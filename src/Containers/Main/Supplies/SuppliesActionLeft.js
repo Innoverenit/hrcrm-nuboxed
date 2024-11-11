@@ -198,7 +198,11 @@ function SuppliesActionLeft (props) {
                                 color: viewType === "all" && "#1890ff",
                             }}
                         >
-                            <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#28a355" }}>
+                            <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#28a355",
+ boxShadow: props.viewType === "all" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "all" ? "scale(1.05)" : "scale(1)"
+
+                             }}>
                                 <div className="text-white">{translatedMenuItems[1]}</div></Avatar>
                                 <Badge size="small"
                         count={(viewType === "all" && suppliesCount.count) || 0}
@@ -220,7 +224,11 @@ function SuppliesActionLeft (props) {
           }}
           onClick={() => setSuppliesViewType("category")}
         >
-          <Avatar style={{ background: viewType === "category" ? "#f279ab" : "#28a355" }}>
+          <Avatar style={{ background: viewType === "category" ? "#f279ab" : "#28a355",
+
+             boxShadow: props.viewType === "category" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "category" ? "scale(1.05)" : "scale(1)"
+           }}>
             <WidgetsIcon className="text-white cursor-pointer !text-icon" /> 
           </Avatar>
 
@@ -239,7 +247,10 @@ function SuppliesActionLeft (props) {
           }}
           onClick={() => setSuppliesViewType("brand")}
         >
-          <Avatar style={{ background: viewType === "brandModel" ? "#f279ab" : "#28a355" }}>
+          <Avatar style={{ background: viewType === "brandModel" ? "#f279ab" : "#28a355",
+             boxShadow: props.viewType === "brandModel" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "brandModel" ? "scale(1.05)" : "scale(1)"
+           }}>
             <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
 
@@ -256,7 +267,10 @@ function SuppliesActionLeft (props) {
           }}
           onClick={() => setSuppliesViewType("brandModel")}
         >
-          <Avatar style={{ background: viewType === "brandModel" ? "#f279ab" : "#28a355" }}>
+          <Avatar style={{ background: viewType === "brandModel" ? "#f279ab" : "#28a355",
+             boxShadow: props.viewType === "brandModel" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "brandModel" ? "scale(1.05)" : "scale(1)"
+           }}>
           <ModelTrainingIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
        
@@ -275,7 +289,10 @@ function SuppliesActionLeft (props) {
                                 color: viewType === "dashboard" && "#1890ff",
                             }}
                         >
-                            <Avatar style={{ background: viewType === "dashboard" ? "#f279ab" : "#28a355" }}>
+                            <Avatar style={{ background: viewType === "dashboard" ? "#f279ab" : "#28a355" ,
+                               boxShadow: props.viewType === "dashboard" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "dashboard" ? "scale(1.05)" : "scale(1)"
+                            }}>
                                 <DeleteOutlined className="text-white" /></Avatar>
 
                         </span>
@@ -297,7 +314,10 @@ function SuppliesActionLeft (props) {
                                 color: "blue",
                             }}
                         >
-                            <Avatar style={{ background: viewType === "suppliesLocation" ? "#f279ab" : "#28a355" }}>
+                            <Avatar style={{ background: viewType === "suppliesLocation" ? "#f279ab" : "#28a355",
+                               boxShadow: props.viewType === "suppliesLocation" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "suppliesLocation" ? "scale(1.05)" : "scale(1)"
+                             }}>
                                 <LocationOnIcon 
                                 className="text-white cursor-pointer !text-icon"
                                 />
@@ -316,7 +336,10 @@ function SuppliesActionLeft (props) {
                                 color: "blue",
                             }}
                         >
-                            <Avatar style={{ background: viewType === "newList" ? "#f279ab" : "#28a355" }}>
+                            <Avatar style={{ background: viewType === "newList" ? "#f279ab" : "#28a355",
+                               boxShadow: props.viewType === "newList" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "newList" ? "scale(1.05)" : "scale(1)"
+                             }}>
                                 <AccountTreeIcon 
                                 className="text-white cursor-pointer !text-icon"
                                 />
