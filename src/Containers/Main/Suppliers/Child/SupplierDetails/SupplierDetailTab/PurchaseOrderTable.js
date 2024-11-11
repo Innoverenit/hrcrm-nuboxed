@@ -23,6 +23,12 @@ import { TerminalSharp } from "@mui/icons-material";
 import { getCurrency } from "../../../../../Auth/AuthAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import ContactPageIcon from "@mui/icons-material/ContactPage";
+import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
+import Shop2Icon from '@mui/icons-material/Shop2'; 
+
 const PoLocationModal  = lazy(() => import("./PoLocationModal"));
 const POSupplierDetailsModal  = lazy(() => import("./POSupplierDetailsModal"));
 const TermsnConditionModal  = lazy(() => import("./TermsnConditionModal"));
@@ -233,23 +239,23 @@ const timerRef = useRef(null);
                 <div class="rounded m-1 p-1 w-[99%] mt-3  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[99%]  p-1 bg-transparent font-bold sticky z-10">
                         <div className=" w-[13.1rem] text-[#00A2E8] text-base  max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
-                        PO ID
+                        <Shop2Icon className=" !text-icon"/>PO ID
                             </div>
                         <div className=" w-[10.1rem]    max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
-                        {translatedMenuItems[0]}    {/* Created" /> */}
+                      <AccountCircleIcon className=" !text-icon"/>  {translatedMenuItems[0]}    {/* Created" /> */}
                         </div>
                         <div className=" w-[13.12rem]  max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
-                        {translatedMenuItems[1]} {/* Location" /> */}
+                        <LocationOnIcon className=" !text-icon"/> {translatedMenuItems[1]} {/* Location" /> */}
                         </div>
                         <div className=" w-[13.12rem]   max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
-                        {translatedMenuItems[2]}  {/* Delivery */}
+                        <LocationOnIcon className=" !text-icon"/> {translatedMenuItems[2]}  {/* Delivery */}
                         </div>
                         <div className=" w-[17.11rem]  max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
-                        {translatedMenuItems[3]} {/* Contact */}
+                        <ContactPageIcon className=" !text-icon"/>  {translatedMenuItems[3]} {/* Contact */}
                         </div>
                                            
                         <div className=" w-[23.14rem]   max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
-                        {translatedMenuItems[5]} 
+                        <CurrencyExchangeIcon className=" !text-icon"/> {translatedMenuItems[5]} 
                          {/* Value" */}
                         </div>
                                       

@@ -6,7 +6,15 @@ import { BundleLoader } from '../../../../../../Components/Placeholder';
 import { getPurchaseOrderDetailsList, updatePriceOfPoItem } from "../../../SuppliersAction"
 import { Button, Input } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
-
+import EventBusyIcon from '@mui/icons-material/EventBusy';
+import BatchPredictionIcon from '@mui/icons-material/BatchPrediction';
+import PublicIcon from '@mui/icons-material/Public';
+ import QrCodeIcon from '@mui/icons-material/QrCode';
+ import ContactsIcon from '@mui/icons-material/Contacts';
+ import WidgetsIcon from '@mui/icons-material/Widgets';
+ import PinIcon from '@mui/icons-material/Pin';
+ import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
+ 
 function PoSupplierDetailsTable(props) {
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -73,50 +81,50 @@ function PoSupplierDetailsTable(props) {
                 <div class="rounded m-1 p-1   w-[100%] h-77vh  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky z-10">
                         <div className="text-[#00A2E8] text-base w-[9.1rem] md:w-[9.1rem]">
-                        {translatedMenuItems[0]} 
+                        <ContactsIcon className=" !text-icon"/> {translatedMenuItems[0]} 
                         {/* Name" */}
                            
                             </div>
 
                             <div className=" w-[9.1rem]">
-                        Supplies Id
+                       <QrCodeIcon className=" !text-icon"/> Supplies Id
                         {/* Name" */}
                            
                             </div>
 
                             <div className=" w-[8.1rem]">
-                       HSN
+                            <PinIcon className=" !text-icon"/>HSN
                         {/* Name" */}
                            
                             </div>
                           
                         <div className="w-[8.1rem]">
-                        {translatedMenuItems[1]} 
+                        <WidgetsIcon className=" !text-icon"/> {translatedMenuItems[1]} 
                         {/* Category */}
                         </div>
 
                         <div className="w-[7.12rem] ">
-                        {translatedMenuItems[2]} 
+                        <ModelTrainingIcon className=" !text-icon"/> {translatedMenuItems[2]} 
                          {/* Attribute */}
-                        </div>
-                        <div className="w-[4.14rem] ">
-                        {/* {translatedMenuItems[4]}   */}
-                        Batch No
                         </div>
                         <div className="w-[6.14rem] ">
                         {/* {translatedMenuItems[4]}   */}
-                        Best Before
+                        <BatchPredictionIcon className=" !text-icon"/>  Batch No
+                        </div>
+                        <div className="w-[7.14rem] ">
+                        {/* {translatedMenuItems[4]}   */}
+                        <EventBusyIcon className=" !text-icon"/> Best Before
                         </div>
                         <div className="w-[5.14rem]">
                         {/* {translatedMenuItems[4]}   */}
-                      Country
+                        <PublicIcon className=" !text-icon"/>Origin
                         </div>
-                        <div className="w-[13.13rem]">
-                        {translatedMenuItems[3]}  
+                        <div className="w-[13.13rem] ">
+                        <QrCodeIcon className=" !text-icon"/> {translatedMenuItems[3]}  
                         {/* Unit */}
                         </div>
                         <div className="w-[9.14rem]">
-                        {translatedMenuItems[4]}  
+                        <QrCodeIcon className=" !text-icon"/> {translatedMenuItems[4]}  
                         {/* Price/Unit */}
                         </div>
 
@@ -126,7 +134,7 @@ function PoSupplierDetailsTable(props) {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingPoDetailsList ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-                        height={"79vh"}
+                        height={"85vh"}
                         style={{scrollbarWidth:"thin"}}                    
                     >
                         {props.poDetails.map((item) => {

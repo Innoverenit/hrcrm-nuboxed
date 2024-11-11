@@ -11,7 +11,7 @@ const EmptyPage = (props) => {
     return (
         <>
     
-           <div className="flex flex-col justify-center items-center md:h-[20rem] h-[79vh]">
+           <div className="flex flex-col justify-center items-center  h-[79vh] max-md:[20rem]">
           
            <img
                   className="big-logo w-[15rem]"

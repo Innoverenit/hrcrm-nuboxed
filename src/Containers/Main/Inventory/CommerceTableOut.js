@@ -1112,7 +1112,8 @@ useEffect(() => {
                                     null}
                             </div>
                           </div>
-                          <div> <PictureAsPdfIcon onClick={exportTemplateCMRPage}/>  </div>
+                          <div> 
+                            <Tooltip title="CRM"><PictureAsPdfIcon onClick={exportTemplateCMRPage} className=" !text-icon text-red-600"/> </Tooltip> </div>
                           <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[5.8rem] max-xl:w-[4.8rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs ml-gap items-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dispatchInspectionInd === 0 || item.dispatchInspectionInd === 1 ?
