@@ -52,7 +52,7 @@ const ActivityListData = (props) => {
             longitude:longitude,
   
           }
-          props.addeventLocation(data,props.uniqueId,item.category)
+          props.addeventLocation(data,item.eventId,item.category)
           message.success('Location fetched successfully!');
         },
         (error) => {
@@ -114,7 +114,8 @@ const ActivityListData = (props) => {
                         </div>
                         )}
           <div class="flex  items-end  justify-end">
-          {(status.category === "Call" || status.category === "Event") && (
+          {/* {(status.category === "Call" || status.category === "Event") && ( */}
+          {( status.category === "Event") && (
   <div class="">
     {/* <Button
       style={{ margin: '0 8px', padding: 0 }}
@@ -197,7 +198,7 @@ const ActivityListData = (props) => {
                     <NoteAltIcon className=' !text-icon  text-green-600 cursor-pointer'/>
                   </div>
                 </div>
-                <div >
+                {/* <div >
                   <Tooltip title="Edit">
                     <BorderColorIcon
                       className="!text-icon cursor-pointer text-[tomato]"
@@ -206,7 +207,7 @@ const ActivityListData = (props) => {
                     //   }}
                     />
                   </Tooltip>
-                </div>
+                </div> */}
             </div>
                 
               </div>

@@ -41,8 +41,11 @@ const AddCustomerActivityModal = (props) => {
           rowdata={props.rowdata}
           /> */}
           <ActivityForm
-           defaultCustomers={props.defaultCustomers}
+           defaultValue={props.defaultValue}
            customerId={props. customerId }
+           uniqueId={props.uniqueId}
+           
+           name={props.name}
           customer={props.customer}
           translateText={props.translateText}
           selectedLanguage={props.selectedLanguage}

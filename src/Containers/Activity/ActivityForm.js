@@ -40,6 +40,10 @@ function ActivityForm (props) {
               >
                 <Suspense fallback={"loading ..."}>
                   <ActivityCallForm 
+                   uniqueId={props.uniqueId}
+                   investor={props.investor}
+                   name={props.name}
+                   defaultValue={props.defaultValue}
                      defaultCustomers={props.defaultCustomers}
                      customerId={props. customerId }
                   customer={props.customer} {...formProps}
@@ -63,6 +67,11 @@ function ActivityForm (props) {
               >
                 <Suspense fallback={"loading ..."}>
                   <ActivityEventForm 
+                   uniqueId={props.uniqueId}
+                   defaultValue={props.defaultValue}
+           
+                   name={props.name}
+                   investor={props.investor}
                     defaultCustomers={props.defaultCustomers}
                     customerId={props. customerId }
                   customer={props.customer} {...formProps}
@@ -85,6 +94,10 @@ function ActivityForm (props) {
               >
                 <Suspense fallback={"loading ..."}>
                   <ActivityTaskForm 
+                   defaultValue={props.defaultValue}
+                   uniqueId={props.uniqueId}
+                   investor={props.investor}
+                   name={props.name}
                     defaultCustomers={props.defaultCustomers}
                     customerId={props. customerId }
                   customer={props.customer} {...formProps}

@@ -9,7 +9,8 @@ const AddCustomerUpdateContactModal = (props) => {
   return (
     <>
       <StyledDrawer
-         title={`${props.translatedMenuItems[13]}`}
+      title="Prospect"
+        //  title={`${props.translatedMenuItems[13]}`}
         width="60%"
         visible={props.addUpdateCustomerContactModal}
         onClose={() => props.handleUpdateCustomerContactModal(false)}

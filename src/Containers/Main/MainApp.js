@@ -2,6 +2,10 @@ import React, { lazy, Suspense, useEffect, useState, } from "react";
 import { Route, Switch } from "react-router-dom";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import { CommentOutlined, CustomerServiceOutlined } from '@ant-design/icons'
+import {
+  handleDistributorModal,
+
+} from "./Account/AccountAction";
 import PhoneMaterialScanner from "../Main/Scan/PhoneScanner/PhoneMaterialScanner"
 import QRCodeList from "../../Containers/Main/Refurbish/QrCodeList";
 import { connect } from "react-redux";
@@ -66,6 +70,7 @@ import Prmotion from "./Promotion/Prmotion";
 import AddCustomerModal from "../Customer/Child/AddCustomerModal";
 import AddOpportunityModal from "../Opportunity/Child/AddOpportunityModal";
 import AddContactModal from "../Contact/Child/AddContactModal";
+import AddAccountModal from "./Account/AddAccountModal";
 const NavMenu = lazy(() =>
   import("./NavMenu")
 );
@@ -559,7 +564,7 @@ function MainApp(props) {
         <ApartmentIcon
         onClick={() => {
        
-          props.handleCustomerModal(true);
+          props.handleDistributorModal(true);
           
   
         }}
@@ -1720,6 +1725,13 @@ function MainApp(props) {
           addOpportunityModal={props.addOpportunityModal}
           handleOpportunityModal={props.handleOpportunityModal}
         />
+        <AddAccountModal
+       selectedLanguage={selectedLanguage}
+       translateText={translateText}
+       // addPitchModal={addPitchModal}
+        handleDistributorModal={props.handleDistributorModal}
+        addDistributorModal={props.addDistributorModal}
+      />
       <AddPartnerModal
         addPartnerModal={props.addPartnerModal}
         handlePartnerModal={props.handlePartnerModal}
@@ -1776,7 +1788,8 @@ const mapStateToProps = ({
   contact,
   language,
   message,
-  subscription
+  subscription,
+  distributor
 }) => ({
   language: language.language,
   addContactModal:contact.addContactModal,
@@ -1809,6 +1822,7 @@ const mapStateToProps = ({
 
   preferedLanguage: auth.userDetails.preferedLanguage,
   addPartnerModal: partner.addPartnerModal,
+  addDistributorModal: distributor.addDistributorModal,
   organizationDetails: auth.organizationDetails,
   addCandidateResumeModal: candidate.addCandidateResumeModal,
   addCallModal: call.addCallModal,
@@ -1841,7 +1855,8 @@ const mapDispatchToProps = (dispatch) =>
       handleInTagDrawer,
       handleCreateSubscriptionDrawer,
       getSuscrption,
-      handlePromotion
+      handlePromotion,
+      handleDistributorModal
     },
     dispatch
   );

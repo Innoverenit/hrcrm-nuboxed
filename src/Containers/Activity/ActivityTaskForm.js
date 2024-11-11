@@ -1,15 +1,15 @@
 import React, {useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Tooltip, Switch } from "antd";
+import { Button, Tooltip, Switch, } from "antd";
 import { getTasks } from "../../Containers/Settings/Task/TaskAction";
 import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FastField } from "formik";
 import dayjs from "dayjs";
-import {
-    getContactListByCustomerId,
-    getOpportunityListByCustomerId,
-  } from "../../Containers/Customer/CustomerAction";
+// import {
+//     getContactListByCustomerId,
+//     getOpportunityListByCustomerId,
+//   } from "../../Containers/Customer/CustomerAction";
 import {getAllCustomerData} from "../../Containers/Customer/CustomerAction"
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { getUnits } from "../../Containers/Settings/Unit/UnitAction";
@@ -40,10 +40,23 @@ import DragableUpload from "../../Components/Forms/Formik/DragableUpload";
 import { Select } from "antd";
 import { Listbox, } from '@headlessui/react';
 import { BundleLoader } from "../../Components/Placeholder";
+import { base_url } from "../../Config/Auth";
 
 const { Option } = Select;
 
 function ActivityTaskForm (props) {
+
+  const [contacts, setContacts] = useState([]);
+ 
+
+  const [isLoadingOpportunity, setIsLoadingOpportunity] = useState(false);
+  const [selectedOpportunity, setSelectedOpportunity] = useState(null);
+
+  const [opportunity, setOpportunity] = useState([]);
+ 
+
+  const [isLoadingContacts, setIsLoadingContacts] = useState(false);
+  const [selectedContact, setSelectedContact] = useState(null);
   const [selectedTaskType, setSelectedTaskType] = useState('');
   const [selectedWorkflow, setSelectedWorkflow] = useState("");
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -135,6 +148,17 @@ const [priority,setpriority]=useState(props.selectedTask
   setpriority(type);
   };
 
+
+  const handleContactChange=(value)=>{
+    setSelectedContact(value);
+  }
+
+
+
+  const handleOpportunityChange=(value)=>{
+    setSelectedOpportunity(value);
+  }
+
   const handleComplexityClick = (type) => {
     setcomplexity(type);
   };
@@ -215,10 +239,12 @@ const [priority,setpriority]=useState(props.selectedTask
   
 
   useEffect(()=> {
+    fetchContacts()
+    fetchOpportunity()
       props.getTaskForStages();
       props.getAllCustomerData(userId)
-      props.getOpportunityListByCustomerId(props.customer.customerId);
-      props.getContactListByCustomerId(props.customer.customerId);
+      // props.getOpportunityListByCustomerId(props.customer.customerId);
+      // props.getContactListByCustomerId(props.customer.customerId);
     props.getCustomerTask(props.orgId);
     props.getProjectTaskList(props.orgId);
     props.getTasks();
@@ -226,6 +252,54 @@ const [priority,setpriority]=useState(props.selectedTask
     props.getCandidateTaskList(props.orgId);
     props.getCandidateTaskFilterList(props.orgId);
   },[]);
+
+
+
+
+  const fetchContacts = async () => {
+    setIsLoadingContacts(true);
+    try {
+      const apiEndpoint = `${base_url}/contact-list/drop-down/${props.uniqueId}`;
+      const response = await fetch(apiEndpoint, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setContacts(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingContacts(false);
+    }
+  };
+
+
+
+
+  const fetchOpportunity = async () => {
+    setIsLoadingOpportunity(true);
+    try {
+      const apiEndpoint = `${base_url}/opportunity/open/${props.uniqueId}`;
+      const response = await fetch(apiEndpoint, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setOpportunity(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingOpportunity(false);
+    }
+  };
 
     console.log(selectedWorkflow)
     console.log(selectedTaskType)
@@ -347,8 +421,8 @@ const [priority,setpriority]=useState(props.selectedTask
                   fullName: "",
                   assignedDate: assignedDate || dayjs(),
                   customerId: "",
-                  opportunity:"",
-                  contact:[],
+                  // opportunity:"",
+                  // contact:[],
                   projectName: "",
                   included: [],
                   taskChecklistId: "",
@@ -479,9 +553,12 @@ const [priority,setpriority]=useState(props.selectedTask
               : addActivityTask(
                   {
                     ...values,
-                    opportunity:values.opportunity,
+                    customer: props.customer ? props.customer.customerId : null,
+                    investorId:props.investor?props.investor.investorId:null,
+                    contacts:selectedContact,
+                    opportunity:selectedOpportunity,
                     //contact:values.contact,
-                    customerId: props.customer.customerId,
+                   
                     taskTypeId:selectedTaskType,
                     taskChecklistId:selectedWorkflow,
                     taskStatus: active,
@@ -1002,10 +1079,10 @@ const [priority,setpriority]=useState(props.selectedTask
              
                  component={SearchSelect}
                  isColumn
-                 value={values.customerId}
-                 isDisabled={defaultCustomers}
+                //  value={values.customerId}
+                 isDisabled={props.defaultValue}
                
-                 defaultValue={defaultCustomers ? defaultCustomers : null}
+                 defaultValue={props.defaultValue ? props.defaultValue : null}
                  // defaultValue={
                  //   defaultCustomers ? defaultCustomers : null
                  // }
@@ -1016,46 +1093,43 @@ const [priority,setpriority]=useState(props.selectedTask
                   <div class=" mt-3">
                   <div className="font-poppins font-bold text-xs">   {translatedMenuItems[8]}</div>
                   {props.user.crmInd === true &&(
-                  <Field
-                    name="contact"
-                    //selectType="contactList"
-                   
-                    // label="Contact"
-                    mode
-                     placeholder="Select"
-                    component={SelectComponent}
-                   
-                    value={values.contact}
-                    options={Array.isArray(filteredContactData) ? filteredContactData : []}
-                   // options={Array.isArray(ContactData) ? ContactData : []}
-                   defaultValue={{
-                    label: `${fullName || ""} `,
-                    value: contactId,
-                  }}
+                   <>
                   
-                  />
+                   <Select
+                   placeholder="Select Contact"
+                   loading={isLoadingContacts}
+                   onChange={handleContactChange}
+                   mode="multiple"
+                 //disabled={!this.state.selectedCustomer} // Disable Contact dropdown if no customer is selected
+                 >
+                   {contacts.map(contact => (
+                     <Option key={contact.contactId} value={contact.contactId}>
+                       {contact.fullName}
+                     </Option>
+                   ))}
+                 </Select> 
+                 </>
                   )} 
                   </div>
                   <div class=" mt-3">
                   <div className="font-poppins font-bold text-xs">   {translatedMenuItems[9]}</div>
                   {props.user.crmInd === true &&(
-                 <Field
-                 name="opportunity"
-                 // selectType="customerList"
-                 isColumnWithoutNoCreate
-               
-                 //component={SearchSelect}
-                 component={SelectComponent}
-                 options={
-                   Array.isArray(opportunityNameOption)
-                     ? opportunityNameOption
-                     : []
-                 }
-                 isColumn
-                 margintop={"0"}
-                //  value={values.opportunityId}
-                 inlineLabel
-               />
+                   <>
+                  
+                   <Select
+                   placeholder="Select Opportunity"
+                   loading={isLoadingOpportunity}
+                   onChange={handleOpportunityChange}
+                   
+                 //disabled={!this.state.selectedCustomer} // Disable Contact dropdown if no customer is selected
+                 >
+                   {opportunity.map(opp => (
+                     <Option key={opp.opportunityId} value={opp.opportunityId}>
+                       {opp.opportunityName}
+                     </Option>
+                   ))}
+                 </Select> 
+                 </>
                   )} 
                   </div>
                   <div className=" mt-2 font-poppins font-bold text-xs">   {translatedMenuItems[10]}</div>
@@ -1205,6 +1279,7 @@ const mapStateToProps = ({
   recruitTaskStages:settings.recruitTaskStages,
   tasks: tasks.tasks,
   sales: opportunity.sales,
+  token: auth.token,
   customerTaskList: task.customerTaskList,
   candidateFilterTaskList: task.candidateFilterTaskList,
   fullName: auth.userDetails.fullName
@@ -1215,8 +1290,8 @@ const mapDispatchToProps = (dispatch) =>
     {
         addActivityTask,
       getAllCustomerData,
-      getOpportunityListByCustomerId,
-      getContactListByCustomerId,
+      // getOpportunityListByCustomerId,
+      // getContactListByCustomerId,
       getTasks,
      // handleChooserModal,
       getCandidateTaskFilterList,

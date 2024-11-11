@@ -2,15 +2,15 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
-import { Button } from "antd";
+import { Button,Select } from "antd";
 import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import { getAssignedToList } from "../Employees/EmployeeAction";
 import {getAllCustomerData} from "../Customer/CustomerAction"
-import {
-    getContactListByCustomerId,
-    getOpportunityListByCustomerId,
-  } from "../Customer/CustomerAction";
+// import {
+//     getContactListByCustomerId,
+//     getOpportunityListByCustomerId,
+//   } from "../Customer/CustomerAction";
 import dayjs from "dayjs";
 import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
@@ -31,7 +31,8 @@ import { StyledPopconfirm } from "../../Components/UI/Antd";
 import { Listbox } from '@headlessui/react'
 import { BundleLoader } from "../../Components/Placeholder";
 import { DivIcon } from "leaflet";
-
+import { base_url } from "../../Config/Auth";
+const { Option } = Select;
 // yup validation scheme for creating a opportunity
 const EventSchema = Yup.object().shape({
   eventTypeId: Yup.string().required("Select event type"),
@@ -46,6 +47,20 @@ const EventSchema = Yup.object().shape({
 });
 
 function ActivityEventForm (props) {
+
+
+
+  const [contacts, setContacts] = useState([]);
+ 
+
+  const [isLoadingOpportunity, setIsLoadingOpportunity] = useState(false);
+  const [selectedOpportunity, setSelectedOpportunity] = useState(null);
+
+  const [opportunity, setOpportunity] = useState([]);
+ 
+
+  const [isLoadingContacts, setIsLoadingContacts] = useState(false);
+  const [selectedContact, setSelectedContact] = useState(null);
 
       const [reminder,setRemider] = useState(true);
       const [defaultOption, setDefaultOption] = useState(props.fullName);
@@ -62,11 +77,66 @@ function ActivityEventForm (props) {
  const handleReminderChange = (checked) => {
   setRemider(checked);
   };
+
+  const handleContactChange=(value)=>{
+    setSelectedContact(value);
+  }
+  const handleOpportunityChange=(value)=>{
+    setSelectedOpportunity(value);
+  }
+
+  
+  const fetchContacts = async () => {
+    setIsLoadingContacts(true);
+    try {
+      const apiEndpoint = `${base_url}/contact-list/drop-down/${props.uniqueId}`;
+      const response = await fetch(apiEndpoint, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setContacts(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingContacts(false);
+    }
+  };
+
+
+
+
+  const fetchOpportunity = async () => {
+    setIsLoadingOpportunity(true);
+    try {
+      const apiEndpoint = `${base_url}/opportunity/open/${props.uniqueId}`;
+      const response = await fetch(apiEndpoint, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setOpportunity(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingOpportunity(false);
+    }
+  };
   useEffect(()=> {
+    fetchContacts()
+    fetchOpportunity()
     props.getAssignedToList(props.orgId);
    props.getAllCustomerData(userId)
-   props.getOpportunityListByCustomerId(props.customer.customerId);
-   props.getContactListByCustomerId(props.customer.customerId);
+  //  props.getOpportunityListByCustomerId(props.customer.customerId);
+  //  props.getContactListByCustomerId(props.customer.customerId);
   },[])
   
   useEffect(() => {
@@ -301,6 +371,7 @@ const {
                     ...values,
                     //contact: values.contact,
                     // contact: values.contactId,
+                    
                     opportunity: values.opportunity,
                     customer: props.customer.customerId,
                     startDate: `${newStartDate}T${newStartTime}`,
@@ -314,10 +385,10 @@ const {
               : addActivityEvent(
                   {
                     ...values,
-                    //contact: values.contact,
-                    // contact: values.contactId,
-                    opportunity: values.opportunity,
-                    customer: props.customer.customerId,
+                    contacts:selectedContact,
+                    opportunity:selectedOpportunity,
+                    customer: props.customer ? props.customer.customerId : null,
+                    investorId:props.investor?props.investor.investorId:null,
                     // ownerIds: userId === userId ? [userId] : [],
                     startDate: `${newStartDate}T${newStartTime}`,
                     endDate: `${newEndDate}T${newEndTime}`,
@@ -587,10 +658,10 @@ const {
                 // label="Tag Company"               
                 component={SearchSelect}
                 isColumn
-                value={values.customerId}
-                isDisabled={defaultCustomers}
+                //value={values.customerId}
+                isDisabled={props.defaultValue}
               
-                defaultValue={defaultCustomers ? defaultCustomers : null}
+                defaultValue={props.defaultValue ? props.defaultValue : null}
                 // defaultValue={
                 //   defaultCustomers ? defaultCustomers : null
                 // }
@@ -602,45 +673,43 @@ const {
                   <div class=" mt-3">
                   <div className="font-bold font-poppins text-xs"> {translatedMenuItems[10]}  </div>
                   {props.user.crmInd === true &&(
-                  <Field
-                    name="contacts"
-                    //selectType="contactList"
-                    //isColumnWithoutNoCreate
-                     //label="Contact"
-                     mode
-                      placeholder="Select"
-                    component={SelectComponent}
-                   // isColumn
-                   options={Array.isArray(filteredContactData) ? filteredContactData : []}
-                     value={values.contact}
-                    // isDisabled={defaultContacts}
-                    defaultValue={{
-                      label: `${fullName || ""} `,
-                      value: contactId,
-                    }}
-                   
-                  />
+                 <>
+                
+                 <Select
+                 placeholder="Select Contact"
+                 loading={isLoadingContacts}
+                 onChange={handleContactChange}
+                 mode="multiple"
+               //disabled={!this.state.selectedCustomer} // Disable Contact dropdown if no customer is selected
+               >
+                 {contacts.map(contact => (
+                   <Option key={contact.contactId} value={contact.contactId}>
+                     {contact.fullName}
+                   </Option>
+                 ))}
+               </Select> 
+               </>
                   )} 
                   </div>
                   <div class=" mt-3">
                   <div className="font-bold font-poppins text-xs"> {translatedMenuItems[11]}  </div>
                   {props.user.crmInd === true &&(
-                 <Field
-                 name="opportunity"
-                 // selectType="customerList"
-                 isColumnWithoutNoCreate              
-                 //component={SearchSelect}
-                 component={SelectComponent}
-                 options={
-                   Array.isArray(opportunityNameOption)
-                     ? opportunityNameOption
-                     : []
-                 }
-                 isColumn
-                 margintop={"0"}
-                //  value={values.opportunityId}
-                 inlineLabel
-               />
+                 <>
+                
+                 <Select
+                 placeholder="Select Opportunity"
+                 loading={isLoadingOpportunity}
+                 onChange={handleOpportunityChange}
+                 
+               //disabled={!this.state.selectedCustomer} // Disable Contact dropdown if no customer is selected
+               >
+                 {opportunity.map(opp => (
+                   <Option key={opp.opportunityId} value={opp.opportunityId}>
+                     {opp.opportunityName}
+                   </Option>
+                 ))}
+               </Select> 
+               </>
                   )} 
                   </div>
               
@@ -795,6 +864,7 @@ const mapStateToProps = ({ auth,activity, event,opportunity,customer, employee, 
   orgId: auth.userDetails.organizationId,
   deletingEvent: event.deleteEvent,
   sales: opportunity.sales,
+  token:auth.token,
   candidateId: candidate.clearbitCandidate.candidateId,
   fullName: auth.userDetails.fullName
 });
@@ -808,8 +878,8 @@ const mapDispatchToProps = (dispatch) =>
       getAssignedToList,
       //handleChooserModal,
       //handleEventModal,
-      getOpportunityListByCustomerId,
-      getContactListByCustomerId,
+      // getOpportunityListByCustomerId,
+      // getContactListByCustomerId,
       getAllCustomerData,
       //setClearbitCandidateData,
     },
