@@ -208,7 +208,7 @@ class LinkedDocuments extends Component {
       </div>
    
         
-      { !fetchingDocumentsByCustomerId && documentsByCustomerId.length === 0 ?<EmptyPage/>: documentsByCustomerId.map((item,index) =>  {
+      { !fetchingDocumentsByCustomerId && documentsByCustomerId.length === 0 ?<EmptyPage className=" overflow-hidden"/>: documentsByCustomerId.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         

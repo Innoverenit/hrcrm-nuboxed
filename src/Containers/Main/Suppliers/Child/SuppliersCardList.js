@@ -110,10 +110,8 @@ function SuppliersCardList(props) {
                {/* URL */}
                <LinkIcon  className="!text-icon  text-[#4f5d75]"/>    {props.translatedMenuItems[41]}
                </div>
-               <div className=" w-[3.50rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
-               {/* Email */} <ConnectWithoutContactIcon
-          className="!text-icon  text-[blue]"
-          />
+               <div className=" w-[5.50rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
+               {/* Email */} <ConnectWithoutContactIcon className="!text-icon  text-[blue]" />
                {/* {props.translatedMenuItems[17]} */}Disqualify
                </div>     
             <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> <PublishIcon className="!text-icon  text-[#4f5d75]"/> {props.translatedMenuItems[38]}</div>

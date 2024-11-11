@@ -1,5 +1,5 @@
 import React, { useEffect, useState,useRef } from "react";
-import { FormattedMessage } from "react-intl";
+import MoveUpIcon from '@mui/icons-material/MoveUp';
 import TocIcon from '@mui/icons-material/Toc';
 import PeopleIcon from '@mui/icons-material/People';
 import { getCustomerListByUserId } from "../CustomerAction"
@@ -421,7 +421,7 @@ const CustomerActionLeft = (props) => {
         <Button type="primary" 
         onClick={props.handleTransferClick}
         >
-          {props.isTransferMode ? 'Transfer' : 'Cancel'}
+         <MoveUpIcon className=" !text-icon  text-white"/> {props.isTransferMode ? 'Transfer' : 'Cancel'}
         </Button>
        {/* )} */}
         </div>
