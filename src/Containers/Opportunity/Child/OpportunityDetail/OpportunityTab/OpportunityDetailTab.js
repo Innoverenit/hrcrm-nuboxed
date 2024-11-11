@@ -523,13 +523,13 @@ return  <BundleLoader />
             addRecruitModal={this.props.addRecruitModal}
             handleRecruitModal={this.props.handleRecruitModal}
             selectedLanguage={this.props.selectedLanguage}
-            translateText={this.props.translateText}
+            translateText={this.state.translateText}
           />
           <AddTagProfileModal
             addTagProfileModal={this.props.addTagProfileModal}
             handleTagProfileModal={this.props.handleTagProfileModal}
             selectedLanguage={this.props.selectedLanguage}
-            translateText={this.props.translateText}
+            translateText={this.state.translateText}
           />
 
           {/* <AddContactModal
@@ -544,7 +544,7 @@ return  <BundleLoader />
             opportunityId={opportunityId}
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}
-          translatedMenuItems={this.props.translatedMenuItems}
+          translatedMenuItems={this.state.translatedMenuItems}
             // defaultCustomers={[{ label: name, value: customerId }]}
             // customerId={{ value: customerId }}
             // callback={() => getContactListByCustomerId(customerId)}
@@ -560,7 +560,7 @@ return  <BundleLoader />
             linkType="opportunity"
              translateText={this.props.translateText}
              selectedLanguage={this.props.selectedLanguage}
-             translatedMenuItems={this.props.translatedMenuItems}
+             translatedMenuItems={this.state.translatedMenuItems}
           />
 
 <AddDocumentModals
@@ -569,7 +569,7 @@ opportunityId={opportunityId}
             handleDocumentUploadModal={handleDocumentUploadModal}
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}
-          translatedMenuItems={this.props.translatedMenuItems}
+          translatedMenuItems={this.state.translatedMenuItems}
           />
           <ReactSpeechModal
           opportunityId={opportunityId}
@@ -577,7 +577,7 @@ opportunityId={opportunityId}
           addSpeechModal={addSpeechModal}
           translateText={this.props.translateText}
              selectedLanguage={this.props.selectedLanguage}
-           translatedMenuItems={this.props.translatedMenuItems}
+           translatedMenuItems={this.state.translatedMenuItems}
           />
       
         </Suspense>

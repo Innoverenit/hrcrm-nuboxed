@@ -1,10 +1,8 @@
 import React, {useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
-import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { base_url } from "../../../../Config/Auth";
-import { Empty, Button, Tooltip, Modal } from "antd";
+import { Empty } from "antd";
 import jsPDF from "jspdf";
 import dayjs from "dayjs";
 import "jspdf-autotable";
@@ -12,7 +10,6 @@ import { StyledTable } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { getSalesReports } from "../../ReportAction";
 import styled from "styled-components";
-import TableHeader from "./TableHeader";
 async function getDataUrl(url) {
   return new Promise((resolve, reject) => {
     var img = new Image();
@@ -343,7 +340,7 @@ console.log(fullDate);
         
          
           >
-            <InsertDriveFileIcon/>
+            <InsertDriveFileIcon className="!text-icon text-[#b288c0]"/>
           </span> */}
             {/* <Tooltip title={"Generate XL"}>
               <Button
@@ -367,7 +364,7 @@ console.log(fullDate);
            // onClick={() => props.setCandidateViewType("table")}
           
           >
-           <InsertDriveFileIcon/>
+           <InsertDriveFileIcon className="!text-icon text-[#b288c0]"/>
           </span> */}
             {/* <Tooltip title={"Generate CSV"}>
               <Button

@@ -406,9 +406,9 @@ const filteredEmployeesData = AllEmplo.filter(
         }) => (
           <div class="overflow-y-auto  overflow-x-hidden max-sm:h-[30rem]">
           <Form className="form-background h-[40rem]">
-            <div class=" flex justify-between max-sm:flex-col">
+            <div class=" flex justify-between max-sm:flex-col ">
               <div class=" h-full w-[47.5%]  max-sm:w-wk">
-              <div className="font-bold font-poppins  text-black text-xs">{translatedMenuItems[0]}</div>
+              <div className="font-semibold font-poppins  text-black text-xs">{translatedMenuItems[0]}</div>
                 <Field
                   isRequired
                   name="opportunityName"
@@ -423,7 +423,7 @@ const filteredEmployeesData = AllEmplo.filter(
                 <div class=" mt-3" />
                 <div class="flex justify-between max-sm:flex-col">
                 <div class=" w-w47.5 max-sm:w-wk">
-                <div className="font-bold font-poppins  text-xs">{translatedMenuItems[1]}</div>
+                <div className="font-semibold font-poppins  text-xs">{translatedMenuItems[1]}</div>
                     <Field
                       name="startDate"
                       //label="Start "                 
@@ -434,7 +434,7 @@ const filteredEmployeesData = AllEmplo.filter(
                     />
                   </div>
                   <div class=" w-w47.5 max-sm:w-wk">
-                  <div className="font-bold font-poppins  text-black text-xs">{translatedMenuItems[2]}</div>
+                  <div className="font-semibold font-poppins  text-black text-xs">{translatedMenuItems[2]}</div>
                     <Field
                       // isRequired
                       name="endDate"
@@ -460,7 +460,7 @@ const filteredEmployeesData = AllEmplo.filter(
                 <div class=" mt-3" />
                 <div class="flex justify-between max-sm:flex-col">
                 <div class=" w-w47.5 max-sm:w-wk">
-                <div className="font-bold font-poppins text-black  text-xs">{translatedMenuItems[3]}</div>
+                <div className="font-semibold font-poppins text-black  text-xs">{translatedMenuItems[3]}</div>
                     <Field
                       name="proposalAmount"
                       //label="Value"
@@ -470,7 +470,7 @@ const filteredEmployeesData = AllEmplo.filter(
                     />
                   </div>
                   <div class=" w-w47.5 max-sm:w-wk">
-                  <div className="font-bold font-poppins  text-black text-xs">{translatedMenuItems[4]}</div>
+                  <div className="font-semibold font-poppins  text-black text-xs">{translatedMenuItems[4]}</div>
                     <Field
                       name="currency"
                       isColumnWithoutNoCreate
@@ -492,7 +492,7 @@ const filteredEmployeesData = AllEmplo.filter(
                 </div>
                 <div class=" mt-3" />
                 <div>
-                <span class=" text-xs font-bold  text-black font-poppins">{translatedMenuItems[5]}
+                <span class=" text-xs font-semibold  text-black font-poppins">{translatedMenuItems[5]}
                   {/* Description */}                  </span>           
                     <span>
                     <span onClick={SpeechRecognition.startListening}>
@@ -607,12 +607,11 @@ const filteredEmployeesData = AllEmplo.filter(
       </Listbox>
 
        <div class=" mt-2 flex flex-col"> 
-                  <div className="font-bold  text-black font-poppins text-xs">{translatedMenuItems[7]}
+                  <div className="font-semibold  text-black font-poppins text-xs">{translatedMenuItems[7]}
                     {/* Include */}
                     </div>
                    <Select
-          showSearch
-          style={{ width: 415 }}
+          showSearch         
           placeholder="Search or select include"
           optionFilterProp="children"
           loading={isLoading}
@@ -638,7 +637,7 @@ const filteredEmployeesData = AllEmplo.filter(
 
                 <div class="flex justify-between max-sm:flex-col">
                   <div class=" w-w47.5 max-sm:w-wk">
-                    <div class=" text-xs font-bold font-poppins text-black">
+                    <div class=" text-xs font-semibold font-poppins text-black">
                     {translatedMenuItems[8]}
                     {/* Workflow */}
                       <Field
@@ -660,7 +659,7 @@ const filteredEmployeesData = AllEmplo.filter(
                   </div>
                   <div class=" mt-1" />
                   <div class=" w-w47.5 max-sm:w-wk">
-                    <div class=" text-xs font-bold font-poppins text-black">
+                    <div class=" text-xs font-semibold font-poppins text-black">
                     {translatedMenuItems[9]}
                       <Field
                         name="oppStage"
@@ -706,7 +705,7 @@ const filteredEmployeesData = AllEmplo.filter(
                 htmlType="submit"
                 loading={props.addingContactOpportunity}
               >
-                <div class=" text-xs font-bold font-poppins">
+                <div class=" text-xs font-semibold font-poppins">
                 {translatedMenuItems[10]}</div>
                 {/* Create */}
               </Button>

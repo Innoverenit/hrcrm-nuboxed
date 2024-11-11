@@ -204,7 +204,10 @@ function OrderActionLeft (props) {
                 color: props.viewType === "complete" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: props.viewType === "complete" ? "#f279ab" : "#28a355" }}>
+              <Avatar style={{ background: props.viewType === "complete" ? "#f279ab" : "#28a355",
+                 boxShadow: props.viewType === "card" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"
+               }}>
                 <HistoryOutlined className="text-white !text-icon" /></Avatar>
 
             </span>
@@ -224,7 +227,10 @@ function OrderActionLeft (props) {
                 color: props.viewType === "productionAll" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: props.viewType === "productionAll" ? "#f279ab" : "#28a355" }}>
+              <Avatar style={{ background: props.viewType === "productionAll" ? "#f279ab" : "#28a355",
+                 boxShadow: props.viewType === "card" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"
+               }}>
                 <div className="text-white ">{translatedMenuItems[3]}</div></Avatar>
 
             </span>
@@ -254,7 +260,10 @@ function OrderActionLeft (props) {
             >
               {/* <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#28a355" }}>
                 <TocIcon className="text-white" /></Avatar> */}
-<Button type={props.viewType === "list" ? "primary" : ""} style={{ backgroundColor: props.viewType === "list" ? "" : "tomato" }}>
+<Button type={props.viewType === "list" ? "primary" : ""} style={{ backgroundColor: props.viewType === "list" ? "" : "tomato",
+      boxShadow: props.viewType === "card" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"
+ }}>
                 
                 <div class="text-white ">{translatedMenuItems[5]}</div></Button>
                 
@@ -276,7 +285,10 @@ function OrderActionLeft (props) {
                 color: props.viewType === "allcomplete" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: props.viewType === "allcomplete" ? "#f279ab" : "#28a355" }}>
+              <Avatar style={{ background: props.viewType === "allcomplete" ? "#f279ab" : "#28a355",
+                    boxShadow: props.viewType === "card" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"
+               }}>
                 <HistoryOutlined className="text-white !text-icon" /></Avatar>
 
             </span>
@@ -294,7 +306,10 @@ function OrderActionLeft (props) {
                             color: props.viewType === "delete" && "#1890ff",
                         }}
                     >
-                        <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#28a355" }}>
+                        <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#28a355",
+                              boxShadow: props.viewType === "card" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"
+                         }}>
                         <DeleteOutlined className="text-white !text-icon" /></Avatar>
 
                     </span>
@@ -316,7 +331,10 @@ function OrderActionLeft (props) {
                 color: props.viewType === "all" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
+              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" ,
+                    boxShadow: props.viewType === "card" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"
+              }}>
                 <div className="text-white ">{translatedMenuItems[3]}</div></Avatar>
 
             </span>
@@ -383,7 +401,10 @@ function OrderActionLeft (props) {
                 color: props.viewType === "completedorders" && "#1890ff",
               }}
             >         
-<Avatar style={{ backgroundColor: props.viewType === "completedorders" ? "#f279ab" : "#28a355" }}>
+<Avatar style={{ backgroundColor: props.viewType === "completedorders" ? "#f279ab" : "#28a355" ,
+      boxShadow: props.viewType === "card" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"
+}}>
                 
 <HistoryOutlined  className="text-white !text-icon" /> </Avatar>
                 
@@ -405,7 +426,10 @@ function OrderActionLeft (props) {
                 color: props.viewType === "cancelledorders" && "#1890ff",
               }}
             >         
-<Avatar  style={{ backgroundColor: props.viewType === "cancelledorders" ? "#f279ab" : "#28a355" }}>
+<Avatar  style={{ backgroundColor: props.viewType === "cancelledorders" ? "#f279ab" : "#28a355",
+      boxShadow: props.viewType === "card" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"
+ }}>
                 
 <DeleteOutlined className="text-white !text-icon" /></Avatar>
                 

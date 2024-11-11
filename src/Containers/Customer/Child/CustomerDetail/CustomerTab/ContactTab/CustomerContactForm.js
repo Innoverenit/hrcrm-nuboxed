@@ -321,7 +321,7 @@ class ContactForm extends Component {
                             {/* name="salutation" */}
                        
                         <div class=" w-full">
-                        <div class=" text-xs font-bold font-poppins"> 
+                        <div class=" text-xs font-semibold font-poppins"> 
                          {translatedMenuItems[0]}             
                           </div>
                           <FastField
@@ -339,7 +339,7 @@ class ContactForm extends Component {
                    
                       <div class=" flex justify-between mt-3">
                         <div class=" w-2/5">
-                        <div class=" text-xs font-bold font-poppins"> 
+                        <div class=" text-xs font-semibold font-poppins"> 
                          {translatedMenuItems[1]}             
                           </div>
                           <FastField
@@ -353,7 +353,7 @@ class ContactForm extends Component {
                           />
                         </div>
                         <div class=" w-2/4">
-                        <div class=" text-xs font-bold font-poppins"> 
+                        <div class=" text-xs font-semibold font-poppins"> 
                          {translatedMenuItems[2]}             
                           </div>
                           <FastField
@@ -371,7 +371,7 @@ class ContactForm extends Component {
                   </div>
                   <div class=" flex justify-between">
                     <div class=" w-2/6 max-sm:w-2/5 mt-1">
-                    <div class=" text-xs font-bold font-poppins"> 
+                    <div class=" text-xs font-semibold font-poppins"> 
                          {translatedMenuItems[3]}    
                          {/* dialCode*/}
                           </div>
@@ -390,7 +390,7 @@ class ContactForm extends Component {
                       />
                     </div>
                     <div class=" w-2/5 ml-2 mr-2 mt-1">
-                    <div class=" text-xs font-bold font-poppins"> 
+                    <div class=" text-xs font-semibold font-poppins"> 
                          {translatedMenuItems[4]}             
                           </div>
                       <FastField
@@ -404,7 +404,7 @@ class ContactForm extends Component {
                       />
                     </div>
                     
-                    <div class="  mt-1 text-xs font-bold font-poppins"> 
+                    <div class="  mt-1 text-xs font-semibold font-poppins"> 
                          {translatedMenuItems[5]}                                              
                     {/* WhatsApp */}
                     <Switch
@@ -461,7 +461,7 @@ class ContactForm extends Component {
                   </div>
                   <div class=" flex justify-between">
                     <div class=" w-full mt-1">
-                    <div class=" text-xs font-bold font-poppins"> 
+                    <div class=" text-xs font-semibold font-poppins"> 
                          {translatedMenuItems[6]}    
                          {/* Email          */}
                           </div>
@@ -480,7 +480,7 @@ class ContactForm extends Component {
               
                   <div class=" flex justify-between mt-2">
                     <div class="w-full">
-                    <div class=" text-xs font-bold font-poppins"> 
+                    <div class=" text-xs font-semibold font-poppins"> 
                          {translatedMenuItems[7]}    
                          {/* Linkedin          */}
                           </div>
@@ -499,7 +499,7 @@ class ContactForm extends Component {
                   {/* <div class=" flex justify-between mt-2">
                     <div class=" w-2/4">
                       <>
-                      <div class=" text-xs font-bold font-poppins"> 
+                      <div class=" text-xs font-semibold font-poppins"> 
                          {translatedMenuItems[8]}             
                           </div>
                          
@@ -521,7 +521,7 @@ class ContactForm extends Component {
                     
 <div class=" w-w47.5 ">
 
-                    <div class=" text-xs font-bold font-poppins"> Reports To</div>
+                    <div class=" text-xs font-semibold font-poppins"> Reports To</div>
                     
  
                    
@@ -546,7 +546,7 @@ class ContactForm extends Component {
 <div class="  flex justify-between max-sm:mt-20">
         <div class="flex flex-col w-w47.5">
                  
-                  <div class=" text-xs font-bold font-poppins">
+                  <div class=" text-xs font-semibold font-poppins">
                     {/* Tag Company */}{this.state.translatedMenuItems[14]}
                      </div>
                  
@@ -575,7 +575,7 @@ class ContactForm extends Component {
 
 <div class=" w-w47.5 ">
                   
-                    <div class=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[15]}</div>
+                    <div class=" text-xs font-semibold font-poppins"> {this.state.translatedMenuItems[15]}</div>
                     
 
                     {/* {this.props.customerConfigure.sourceInd===true&& */}
@@ -596,8 +596,9 @@ class ContactForm extends Component {
                      
                      
                   </div>
-                   <div class=" w-2/5 mt-2">
-                    <div class=" text-xs font-bold font-poppins"> 
+                  <div class="flex justify-between mt-2">
+                   <div class=" w-[47.5%] ">
+                    <div class=" text-xs font-semibold font-poppins"> 
                          {translatedMenuItems[9]}             
                           </div>
 
@@ -611,8 +612,8 @@ class ContactForm extends Component {
                         inlineLabel
                       />
                     </div>
-                  <div class="  w-w47.5 mt-2">
-                  <div class=" text-xs font-bold font-poppins"> 
+                  <div class=" flex w-[47.5%]">
+                  <div class=" text-xs font-semibold font-poppins"> 
                          {translatedMenuItems[10]}             
                           </div>
                           {/* Department */}
@@ -625,9 +626,10 @@ class ContactForm extends Component {
                       inlineLabel
                     /> */}
                   </div>
+                  </div>
                 </div>
                 <div class=" h-4/6 w-w47.5">
-                <div class=" text-xs font-bold font-poppins mt-3"> 
+                <div class=" text-xs font-semibold font-poppins mt-3"> 
                          {translatedMenuItems[11]}             
                           </div>
                   <FieldArray
@@ -641,7 +643,7 @@ class ContactForm extends Component {
                     )}
                   />             
                   <div class=" mt-3">
-                  <div class=" text-xs font-bold font-poppins"> 
+                  <div class=" text-xs font-semibold font-poppins"> 
                          {translatedMenuItems[12]}             
                           </div>
                   <Field
@@ -667,7 +669,7 @@ class ContactForm extends Component {
                   htmlType="submit"
                   loading={addingCustomerContact}
                 >
-                 <div class=" text-xs font-bold font-poppins">  {translatedMenuItems[13]}  </div>   
+                 <div class=" text-xs font-semibold font-poppins">  {translatedMenuItems[13]}  </div>   
                              
                          
                   {/*                     

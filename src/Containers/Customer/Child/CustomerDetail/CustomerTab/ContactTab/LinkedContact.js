@@ -58,7 +58,7 @@ function LinkedContact(props) {
        "1347", //  Login Applied10
        "1348", //  Login Approved11
        "1349", // Apply For Login12
-     "1140" //  Update Contact13
+     "1440" //  Update Contact13
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -407,7 +407,7 @@ function LinkedContact(props) {
           handleUpdateCustomerContactModal={handleUpdateCustomerContactModal}
           translateText={props.translateText}
           selectedLanguage={props.selectedLanguage}
-          translatedMenuItems={props.translatedMenuItems}
+          translatedMenuItems={translatedMenuItems}
 
         />
        

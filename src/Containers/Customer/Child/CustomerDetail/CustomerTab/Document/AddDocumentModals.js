@@ -459,7 +459,8 @@ function AddDocumentModal (props){
           "1158",//4
           "75",//5
           "154",//6
-         
+         "73",//7
+         "138",//8
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -582,7 +583,7 @@ function AddDocumentModal (props){
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage id="app.document" defaultMessage="Document" />}
+        title={translatedMenuItems[8]}
         width="60%"
         visible={documentUploadModal}
         onClose={handleClose}
@@ -610,17 +611,18 @@ function AddDocumentModal (props){
           }}
         >
           {({ errors, touched, isSubmitting, setFieldValue, setFieldTouched, values, ...rest }) => (
-            <Form className="form-background">
+            <Form className="form-background h-[52vh]">
               <div class=" flex justify-between ">
                 <div class=" h-full w-2/4">
                   <Field name="documentId" isRequired component={DragableUpload} />       
                   {errors.documentId && (
-                    <p style={{ color: "tomato", fontWeight: 600 }}>{errors.documentId}</p>
+                    <div className="text-[tomato] text-[0.5rem] font-semibold">{errors.documentId}</div>
                   )}
-                  <div class=" mt-3">
+                  <div class="flex justify-between mt-3">
+                  <div class="  w-1/2">
                     <div className="font-bold font-poppins text-xs">{translatedMenuItems[0]}</div>
                     {/* type */}
-                    <Field
+                    <Field className="w-[14vw]"
                       name="documentTypeId"
                       selectType="documentTypeName"
                       isColumnWithoutNoCreate                     
@@ -630,11 +632,23 @@ function AddDocumentModal (props){
                       inlineLabel
                     />
                   </div>
-
+                  <div class=" flex justify-end w-1/2">
+                    <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    {translatedMenuItems[1]}
+                      {/* Contract */}
+                      </div>
+                    <Switch className="w-[6.25rem] ml-2"          
+                      onChange={handleContract}
+                      checked={contract}
+                      checkedChildren="Yes"
+                      unCheckedChildren="No"
+                    />
+                  </div>
+                  </div>
                   <div class=" w-w47.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
-
-  Contact
+{translatedMenuItems[7]}
+  {/* Contact */}
   </div>
       <Select
        
@@ -651,21 +665,9 @@ function AddDocumentModal (props){
       </Select>
           
             </div>
-                  <div class=" flex  mt-4">
-                    <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                    {translatedMenuItems[1]}
-                      {/* Contract */}
-                      </div>
-                    <Switch
-                      style={{ width: "6.25em", marginLeft: "0.625em" }}
-                      onChange={handleContract}
-                      checked={contract}
-                      checkedChildren="Yes"
-                      unCheckedChildren="No"
-                    />
-                  </div>
+                 
                 </div>
-                <div class=" h-full w-2/5">
+                <div class=" h-full w-[47.5%]">
                 <div className="font-bold font-poppins text-xs">{translatedMenuItems[2]}</div>
                 {/* name */}
                   <Field
@@ -685,7 +687,7 @@ function AddDocumentModal (props){
                       component={TextareaComponent}
                     />
                   </div>           
-       <div className="mt-1 flex flex-col">
+       <div className="mt-2 flex flex-col">
       
       <div className="flex items-center">
       <div className="font-bold font-poppins text-xs">{translatedMenuItems[4]}</div>

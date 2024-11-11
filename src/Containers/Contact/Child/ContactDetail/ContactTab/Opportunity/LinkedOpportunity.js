@@ -110,7 +110,7 @@ function OpportunityTable(props) {
         height={"77vh"}
         style={{ scrollbarWidth:"thin"}}
       >
- <div class="flex">      
+     
  { !props.fetchingContactOpportunity && props.opportunityByContactId.length === 0 ?<EmptyPage />: props.opportunityByContactId.map((item,index) =>  {
                  
                  var findProbability = item.probability;
@@ -338,7 +338,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
 
                  )  
             })}
-              </div>
+             
   
 
       </InfiniteScroll>

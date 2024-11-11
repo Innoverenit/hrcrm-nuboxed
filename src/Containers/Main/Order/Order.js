@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setOrderViewType } from "./OrderAction";
 import OrderHeader from "./OrderHeader";
-import { BundleLoader } from "../../../Components/Placeholder";
+import FWLogo1 from "../../../Assets/Images/cashShake.svg";
 import CompleteOrder from "./CompleteOrder";
 import AllCompleteOrderList from "./AllCompleteOrderList";//2
 import ProductionOrderCardList from "./ProductionOrderCardList";
@@ -59,7 +59,10 @@ class Order extends Component {
     const { viewType } = this.state;
     return (
       <React.Fragment>
-        <Suspense fallback={<BundleLoader />}>
+        <Suspense fallback={<div className="custom-loader">
+          <div className="loader !block"> </div>
+      <div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
+    </div>}>
         <OrderHeader
          selectedLanguage={this.props.selectedLanguage}
          translateText={this.props.translateText}

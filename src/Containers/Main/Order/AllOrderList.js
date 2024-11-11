@@ -9,7 +9,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
-import { base_url, base_url2 } from "../../../Config/Auth";
+import {  base_url2 } from "../../../Config/Auth";
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
+import ContactsIcon from '@mui/icons-material/Contacts';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import GroupsIcon from '@mui/icons-material/Groups';
+import EmptyPage from "../../Main/EmptyPage";
 import {
   // getAllOrderList,
   getAllHighOrderList,
@@ -51,7 +58,7 @@ function AllOrderList(props) {
   "260",  // ' Units', // 4
   "77", // 'Owner', // 5
   "676",  // ' Supervisor',
-  "677",   // 'Lead',
+  "677",   // 'Lead', 
    
   "679",    // 'Created',
   
@@ -216,16 +223,17 @@ const exportPDFAnnexure = async () => {
     <>
         <div className=' flex justify-end sticky  z-auto'>
        <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
+      <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky items-end z-10 max-sm:hidden">
       <div className="font-bold font-poppins text-xs md:w-[3rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
-      <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[7.31rem] ">{translatedMenuItems[1]} ID</div>
-          <div className="font-bold font-poppins text-xs md:w-[8.6rem]">{translatedMenuItems[2]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
+      <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[7.31rem] ">
+      <DynamicFeedIcon className='!text-base mr-1 '/>{translatedMenuItems[1]} ID</div>
+          <div className="font-bold font-poppins text-xs md:w-[8.6rem]"><ApartmentIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[2]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[4.051rem] "> <ContactsIcon className='!text-base mr-1 text-[#e4eb2f]'/>{translatedMenuItems[3]}</div>
           <div className="font-bold font-poppins text-xs md:w-[5.018rem]">{translatedMenuItems[4]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.03rem]">{translatedMenuItems[8]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.031rem]">{translatedMenuItems[5]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.2rem]">{translatedMenuItems[6]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[9.76rem]">{translatedMenuItems[7]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.03rem]"><DateRangeIcon className="!text-icon "/>{translatedMenuItems[8]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.031rem]"><AccountCircleIcon className="!text-icon  text-[#f28482]"/>{translatedMenuItems[5]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.2rem]">  {translatedMenuItems[6]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[9.76rem]"><GroupsIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[7]}</div>
           
           <div className="md:w-24"></div>
         </div>
@@ -238,8 +246,8 @@ const exportPDFAnnexure = async () => {
           style={{ scrollbarWidth:"thin"}}
           endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
         >
-          {props.allHighCompleteOrder.length ?
-            <>
+          {props.allHighCompleteOrder.length === 0?
+            <><EmptyPage/>
               {props.allHighCompleteOrder.map((item) => {
                 const currentdate = dayjs().format("DD/MM/YYYY");
                 const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -266,8 +274,8 @@ const exportPDFAnnexure = async () => {
                   <div>
               <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col 
               scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
-                   <div class="flex max-sm:justify-between border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-wk max-sm:items-center">
-                  <div className=" flex items-center md:w-[4.26rem] max-sm:w-full  ">
+                   <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                  <div className=" flex items-center md:w-[4.26rem]  border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full ">
                                                                 <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -285,7 +293,7 @@ const exportPDFAnnexure = async () => {
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                    <div className=" flex  w-wk     max-sm:w-full">
+                    <div className=" flex   items-center    max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
                         <div class="w-[11.43rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
                         <Badge size="small" count={item.productNum}>
@@ -507,19 +515,20 @@ const exportPDFAnnexure = async () => {
      
       <div className=' flex justify-end sticky  z-auto'>
        <div class="rounded m-1 max-sm:hidden max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-       <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
-       <div className="font-bold font-poppins text-xs md:w-[3rem] text-[white] flex justify-center bg-[teal]">{translatedMenuItems[9]} </div>
-       <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[7.31rem] ">{translatedMenuItems[1]} ID</div>
-          <div className="font-bold font-poppins text-xs md:w-[8.6rem]">{translatedMenuItems[2]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
+       <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky items-end z-10 max-sm:hidden">
+      <div className="font-bold font-poppins text-xs md:w-[3rem] text-[white] flex justify-center bg-[teal]">{translatedMenuItems[9]} </div>
+      <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[7.31rem] ">
+      <DynamicFeedIcon className='!text-base mr-1 '/>{translatedMenuItems[1]} ID</div>
+          <div className="font-bold font-poppins text-xs md:w-[8.6rem]"><ApartmentIcon className='!text-base mr-1 text-[#e4eb2f]'/>{translatedMenuItems[2]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[4.051rem] "> <ContactsIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[3]}</div>
           <div className="font-bold font-poppins text-xs md:w-[5.018rem]">{translatedMenuItems[4]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.03rem]">{translatedMenuItems[8]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.031rem]">{translatedMenuItems[5]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.2rem]">{translatedMenuItems[6]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[9.76rem]">{translatedMenuItems[7]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.03rem]"><DateRangeIcon className="!text-icon "/>{translatedMenuItems[8]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.031rem]"><AccountCircleIcon className="!text-icon  text-[#f28482]"/>{translatedMenuItems[5]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[5.2rem]">  {translatedMenuItems[6]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[9.76rem]"><GroupsIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[7]}</div>
           
-           <div className="md:w-24"></div>
-         </div>
+          <div className="md:w-24"></div>
+        </div>
          <InfiniteScroll
            dataLength={props.allLowCompleteOrder.length}
            next={handleLoadMoreLow}
@@ -529,8 +538,8 @@ const exportPDFAnnexure = async () => {
            style={{ scrollbarWidth:"thin"}}
            endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
          >
-           {props.allLowCompleteOrder.length ?
-             <>
+           {props.allLowCompleteOrder.length === 0 ?
+             <><EmptyPage/>
                {props.allLowCompleteOrder.map((item) => {
                  const currentdate = dayjs().format("DD/MM/YYYY");
                  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -556,8 +565,8 @@ const exportPDFAnnexure = async () => {
                  return (
                    <div>
                 <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                <div class="flex max-sm:justify-between border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-wk max-sm:items-center">
-                   <div className=" flex items-center md:w-[4.26rem] max-sm:w-full  ">
+                <div class="flex max-sm:justify-between  max-sm:w-wk max-sm:items-center">
+                   <div className=" flex items-center border-l-2 border-green-500 bg-[#eef2f9] md:w-[4.26rem] max-sm:w-full  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                                 <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
