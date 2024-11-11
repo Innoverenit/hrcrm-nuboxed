@@ -5,6 +5,7 @@ import { getDeleteHistory } from "./SuppliesAction";
 import ReInstateSupplies from "./ReInstateSupplies";
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
+import FWLogo1 from "../../../Assets/Images/smallLogo.png"
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 
@@ -91,7 +92,10 @@ function SuppliesDeletedTable(props) {
             dataLength={props.deleteSuppliesHistory.length}
             next={handleLoadMore}
             hasMore={hasMore}
-            loader={props.fetchingDeletedSuppliesHistory ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+            loader={props.fetchingDeletedSuppliesHistory ? <div style={{ textAlign: 'center' }}><div className="custom-loader">
+            <div className="loader !block"> </div>
+        <div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
+      </div></div> : null}
             height={"80vh"}
             style={{overflowX:"hidden", scrollbarWidth:"thin"}}
             
