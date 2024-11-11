@@ -105,13 +105,34 @@
 }
 
 .ant-btn-primary:focus {
+  align-items: center;
+  appearance: none;
+  border: 0;
+  border-radius: 6px;
+  box-shadow: rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, rgba(58, 65, 111, .5) 0 -3px 0 inset;
+  box-sizing: border-box;
   color: #fff;
-  height: 1.58rem;
-  padding: 3px 8px;
-  border-radius: 3px;
-  background-color: #1890ff;
-  border-color: #1890ff;
-  background-image: linear-gradient(90deg, #5b96ce, #92c3f0);
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "Poppins", monospace;
+  height: 1.8rem;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  padding-left: "0.5rem";
+  padding-right:"0.5rem";
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s, transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow, transform;
+  font-size: "0.875rem";
+  background-image: linear-gradient(90deg, tomato, #ffb600e0)!important;
 }
 
 
@@ -317,9 +338,9 @@
 
 .ant-btn {
   font-family: "Poppins";
-  height: 1.5rem;
+  height: 1.8rem;
   padding: 3px 8px;
-  font-size: 0.7rem;
+  font-size: 0.875rem;
   border-radius: 3px;
   line-height: revert;
   margin: 0 2px 0 2px;
@@ -509,9 +530,7 @@ iframe#webpack-dev-server-client-overlay {
   height: 1.8rem;
 
 }
-
-.ant-btn-primary {
-  /* color: #fff;
+ /* color: #fff;
   height: 1.8rem;
   font-size: 0.8rem;
   border-color: #fff;
@@ -521,6 +540,7 @@ iframe#webpack-dev-server-client-overlay {
   box-shadow: grey 1px 2px 0px 0px;
   background-image: linear-gradient(90deg, tomato, #ffb600e0);
   transition: background-image 0.3s ease;  */
+.ant-btn-primary {
   align-items: center;
   appearance: none;
   background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
@@ -548,7 +568,12 @@ iframe#webpack-dev-server-client-overlay {
   touch-action: manipulation;
   white-space: nowrap;
   will-change: box-shadow, transform;
-  font-size: "0.8rem";
+  font-size: "0.875rem";
+}
+.ant-btn-primary:active {
+  height: 1.8rem!important;
+  background-image: linear-gradient(90deg, tomato, #ffb600e0)!important;
+
 }
 .ant-btn-primary:hover {
   background-image: linear-gradient(to right, tomato, tomato);
