@@ -2,19 +2,14 @@ import React, { useEffect, useState,  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
-    getMaterialBestBefore,
-    addToWaste,
-    addAsileInbest
-  
+    getWasteMaterial,
+    getWasteMaterialLocation,getInventory
 } from "../Inventory/InventoryAction";
 import TermsnConditionModal from "../Suppliers/Child/SupplierDetails/SupplierDetailTab/TermsnConditionModal"
-import { TerminalSharp } from "@mui/icons-material";
-import {handleTermsnConditionModal} from "../Suppliers/SuppliersAction"
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
 import { Tooltip, Select, Button,Input } from "antd";
-import { base_url2 } from "../../../Config/Auth";
 import CategoryIcon from '@mui/icons-material/Category'
 import FactoryIcon from '@mui/icons-material/Factory';
 
@@ -22,15 +17,20 @@ const { Option } = Select;
 
 const InvenoryWastetab = (props) => {
   const [selectedZones, setSelectedZones] = useState(null);
+  const [selectedLocation, setSelectedLocation] = useState();
     const [row, setRow] = useState({})
     useEffect(() => {
-        props.getMaterialBestBefore(props.locationId);
-        //props.getRoomRackByLocId(props.locationId, props.orgId);
+        props.getWasteMaterial(props.orgId);
+        props.getInventory(props.orgId)
     }, [])
 
 
 
-
+    const handleLocationChange = (locationDetailsId) => {
+        setSelectedLocation(locationDetailsId); 
+    
+        props.getWasteMaterialLocation(locationDetailsId); 
+      };
 
     const handleRow = (item) => {
         setRow(item)
@@ -105,7 +105,7 @@ console.log(selectedZones)
                         height={"67vh"}
                         style={{ scrollbarWidth:"thin"}}
                     > */}
-                         {/* {rowsBest.map((item,index) => {
+                         {props.westMaterial.map((item,index) => {
                             const currentdate = dayjs().format("DD/MM/YYYY");
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
@@ -157,7 +157,17 @@ console.log(selectedZones)
                                         </div>
                                         <div className=" flex  md:w-[3.8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                                         <div class=" text-xs  font-poppins">
-                                        {item.remainingCorrectUnit}
+                                        <Select
+                    style={{ width: "12rem" }}
+                    onChange={handleLocationChange}
+                    placeholder="Select Location"
+                  >
+                    {props.inventory.map((shipper) => (
+                      <Option key={shipper.locationDetailsId} value={shipper.locationDetailsId}>
+                        {shipper.locationName}
+                      </Option>
+                    ))}
+                  </Select>
                                             </div>
                                        
                                         </div>
@@ -167,7 +177,7 @@ console.log(selectedZones)
 
                                 </div>
                             );
-                        })}  */}
+                        })} 
                     {/* </InfiniteScroll> */}
                 </div>
             </div>
@@ -189,14 +199,18 @@ const mapStateToProps = ({ inventory,suppliers, auth }) => ({
     orgId: auth.userDetails.organizationId,
     token: auth.token,
     locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
-    materialBestBefore:inventory.materialBestBefore,
+    westMaterial:inventory.westMaterial,
     addTermsnCondition: suppliers.addTermsnCondition,
+    inventory:inventory.inventory,
+    westMaterialLocation: inventory.westMaterialLocation
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-        
+            getWasteMaterial,
+            getWasteMaterialLocation,
+            getInventory
         },
         dispatch
     );

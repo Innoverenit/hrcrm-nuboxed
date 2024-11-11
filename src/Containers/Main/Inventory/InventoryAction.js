@@ -2469,8 +2469,54 @@ export const getMaterialBestBefore = (locationDetailsId) => (dispatch) => {
     });
 };
 
-
-
+export const getWasteMaterial = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_WASTE_MATERIAL_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/waste/Org/wasteItemList/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_WASTE_MATERIAL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_WASTE_MATERIAL_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const getWasteMaterialLocation = (locationId) => (dispatch) => {
+  dispatch({
+    type: types.GET_WASTE_MATERIAL_LOCATION_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/waste/wasteItemList/${locationId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_WASTE_MATERIAL_LOCATION_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_WASTE_MATERIAL_LOCATION_FAILURE,
+        payload: err,
+      });
+    });
+};
 
 export const getMaterialDamagedData = (locationDetailsId) => (dispatch) => {
   dispatch({
