@@ -12,6 +12,7 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
 import { Tooltip, Select,Input, Button, Popconfirm } from "antd";
 import LiveTvIcon from '@mui/icons-material/LiveTv';
+import FWLogo1 from "../../../Assets/Images/smallLogo.png"
 import ToggleOffIcon from '@mui/icons-material/ToggleOff';
 
 import {
@@ -26,7 +27,6 @@ import {addSuppliesBrand,
 } from 
     "./SuppliesAction"
     import { StyledPopconfirm } from "../../../Components/UI/Antd";
-import { BundleLoader } from "../../../Components/Placeholder";
 import { DeleteOutlined } from "@ant-design/icons";
 
 
@@ -404,7 +404,10 @@ type="delete" className="!text-icon cursor-pointer text-[red]" />
       </div>
     
   
-  <Suspense fallback={<BundleLoader/>}>
+  <Suspense fallback={<div className="custom-loader">
+          <div className="loader !block"> </div>
+      <div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
+    </div>}>
   <MaterialBrandModal
       currentBrandId={currentBrandId}
   addSuppliesBrandModal={props.addSuppliesBrandModal}

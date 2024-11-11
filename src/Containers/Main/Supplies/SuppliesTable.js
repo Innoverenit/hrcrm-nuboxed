@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import AddSuppliesRowImageModal from "./AddSuppliesRowImageModal"
 import DescriptionIcon from '@mui/icons-material/Description';
 import QrCodeIcon from '@mui/icons-material/QrCode';
+import FWLogo1 from "../../../Assets/Images/smallLogo.png"
 import PinIcon from '@mui/icons-material/Pin';
 import {
   getSuppliesList,
@@ -355,7 +356,10 @@ function SuppliesTable(props) {
             dataLength={props.purchaseList.length}
             next={handleLoadMore}
             hasMore={hasMore}
-            loader={props.fetchingPurchaseList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+            loader={props.fetchingPurchaseList ? <div style={{ textAlign: 'center' }}><div className="custom-loader">
+            <div className="loader !block"> </div>
+        <div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
+      </div></div> : null}
             height={"83vh"}
             style={{ scrollbarWidth:"thin" }}
           >
@@ -598,7 +602,10 @@ function SuppliesTable(props) {
         </div>
       </div>
   )}  
-      <Suspense fallback={<BundleLoader />}>
+      <Suspense fallback={<div className="custom-loader">
+          <div className="loader !block"> </div>
+      <div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
+    </div>}>
         <TagBrandModel
            translateText={props.translateText}
            selectedLanguage={props.selectedLanguage}

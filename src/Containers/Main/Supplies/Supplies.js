@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import SuppliesLocationTable from "./SuppliesLocationTable"
 import SuppliesBrandModelTable from "./SuppliesBrandModelTable"
 import { setSuppliesViewType, handleSuppliesModal } from "./SuppliesAction";
-import { BundleLoader } from "../../../Components/Placeholder";
 import FWLogo1 from "../../../Assets/Images/smallLogo.png"
 import SuppliesTab from "./SuppliesTab";
 const SuppliesBrandTable =lazy(()=>import("./SuppliesBrandTable"))

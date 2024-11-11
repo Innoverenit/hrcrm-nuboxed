@@ -3,7 +3,7 @@ import { StyledTabs } from '../../../Components/UI/Antd';
 import TabPane from 'antd/lib/tabs/TabPane';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { BundleLoader } from '../../../Components/Placeholder';
+import FWLogo1 from "../../../Assets/Images/smallLogo.png"
 import NewArrivalListData from './NewArrivalListData';
 import BestbeforeEmailList from './BestbeforeEmailList';
 
@@ -113,7 +113,10 @@ const SuppliesTab = (props) => {
                         </>
                     }
                     key="2">
-                    <Suspense fallback={<BundleLoader />}>
+                    <Suspense fallback={<div className="custom-loader">
+          <div className="loader !block"> </div>
+      <div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
+    </div>}>
                        
                     </Suspense>
                 </TabPane>

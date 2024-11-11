@@ -1,19 +1,52 @@
-import React  from "react";
+import React, { useEffect, useState,  } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import {
+    getMaterialBestBefore,
+    addToWaste,
+    addAsileInbest
+  
+} from "../Inventory/InventoryAction";
+import TermsnConditionModal from "../Suppliers/Child/SupplierDetails/SupplierDetailTab/TermsnConditionModal"
+import { TerminalSharp } from "@mui/icons-material";
+import {handleTermsnConditionModal} from "../Suppliers/SuppliersAction"
+import dayjs from "dayjs";
+import { withRouter } from "react-router";
 import { FormattedMessage } from "react-intl";
+import { Tooltip, Select, Button,Input } from "antd";
+import { base_url2 } from "../../../Config/Auth";
 import CategoryIcon from '@mui/icons-material/Category'
 import FactoryIcon from '@mui/icons-material/Factory';
 
+const { Option } = Select;
 
-function InvenoryWastetab (props) {
+const InvenoryWastetab = (props) => {
+  const [selectedZones, setSelectedZones] = useState(null);
+    const [row, setRow] = useState({})
+    useEffect(() => {
+        props.getMaterialBestBefore(props.locationId);
+        //props.getRoomRackByLocId(props.locationId, props.orgId);
+    }, [])
 
+
+
+
+
+    const handleRow = (item) => {
+        setRow(item)
+    }
     
-    return(
+ 
+
+   
+console.log(selectedZones)
+
+   
+    return (
         <>
-       
-               
-       <div className=' flex sticky  z-auto h-[79vh]'>
+            <div className=' flex sticky  z-auto h-[79vh]'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs items-end sticky z-10">
+                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs items-end sticky z-10">
                         <div className=""></div>
                         <div className="text-[#00A2E8] text-base w-[19.5rem]"><FormattedMessage id="app.po" defaultMessage="PO ID" /></div>
                         <div className=" w-[11.52rem]" >
@@ -64,10 +97,110 @@ function InvenoryWastetab (props) {
 
                         <div className=" w-[3.22rem]"></div>
                     </div>
-                    </div>
-              </div>
+                    {/* <InfiniteScroll
+                        dataLength={props.materialReceiveData.length}
+                        next={handleLoadMore}
+                        hasMore={hasMore}
+                        loader={props.fetchingMaterialReceiveData ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]} ...</div> : null}
+                        height={"67vh"}
+                        style={{ scrollbarWidth:"thin"}}
+                    > */}
+                         {/* {rowsBest.map((item,index) => {
+                            const currentdate = dayjs().format("DD/MM/YYYY");
+                            const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+                            return (
+                                <div>
+                                    <div className="flex rounded py-1 mt-1 bg-white  items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                                      
+
+                                            <div className=" flex items-center border-l-2  h-8 border-green-500 bg-[#eef2f9] w-[10.1rem] max-sm:w-full ">
+                                                <div class="flex ml-gap text-xs font-bold  font-poppins cursor-pointer underline text-blue-600 border-l-2 border-green-500 bg-[#eef2f9]">
+                                                    <div
+                                                      
+                                                    >
+                                                        {item.newPoNumber}
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                     
+
+                                        <div className=" flex w-[18.12rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
+
+                                            <div class=" text-xs  ml-gap font-poppins" >
+                                               
+                                                {item.suppliesFullName}  
+                                            </div>
+
+                                        </div>
+
+                                       
+                                        <div className=" flex w-[11.02rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className="  text-xs  ml-gap font-poppins " >
+
+                                            {item.supplierName}
+
+                                        </div>
+                                        </div>
+                                        <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[4.25rem] max-sm:flex-row  max-sm:justify-between  ">
+
+                                            <div class=" text-xs ml-gap font-poppins">
+                                                {item.hsn}
+                                            </div>
+                                        </div>
+                                      
+                                        <div className=" flex  md:w-[6.4rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs ml-gap font-poppins">
+                                        {item.newSuppliesNo}
+                                            </div>
+                                          
+                                        </div>
+                                        <div className=" flex  md:w-[3.8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs  font-poppins">
+                                        {item.remainingCorrectUnit}
+                                            </div>
+                                       
+                                        </div>
+
+                                                              
+                                    </div>
+
+                                </div>
+                            );
+                        })}  */}
+                    {/* </InfiniteScroll> */}
+                </div>
+            </div>
+            <TermsnConditionModal
+                rowData={row}
+                addTermsnCondition={props.addTermsnCondition}
+                handleTermsnConditionModal={props.handleTermsnConditionModal}
+                translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}
+            />
         </>
     );
 }
 
-export default InvenoryWastetab;
+
+const mapStateToProps = ({ inventory,suppliers, auth }) => ({
+    userId: auth.userDetails.userId,
+    locationId: auth.userDetails.locationId,
+    orgId: auth.userDetails.organizationId,
+    token: auth.token,
+    locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
+    materialBestBefore:inventory.materialBestBefore,
+    addTermsnCondition: suppliers.addTermsnCondition,
+});
+
+const mapDispatchToProps = (dispatch) =>
+    bindActionCreators(
+        {
+        
+        },
+        dispatch
+    );
+
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(InvenoryWastetab)
+);

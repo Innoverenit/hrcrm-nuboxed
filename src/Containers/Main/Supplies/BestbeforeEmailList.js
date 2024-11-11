@@ -8,7 +8,7 @@ import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import {getBestBeforeEmailList,
   deleteEmailList,
 } from "./SuppliesAction";
-import { BundleLoader } from "../../../Components/Placeholder";
+import FWLogo1 from "../../../Assets/Images/smallLogo.png"
 import SuppliesListOfItem from "./SuppliesListOfItem";
 import ContactListOfEmailList from "./ContactListOfEmailList";
 import EmptyPage from "../EmptyPage";
@@ -97,7 +97,10 @@ function BestbeforeEmailList(props) {
   console.log("ee");
  
   if (loading) {
-    return <div><BundleLoader/></div>;
+    return <div><div className="custom-loader">
+    <div className="loader !block"> </div>
+<div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
+</div></div>;
   }
   // const packingNumbers = bestBeforeEmailList.map(item => item.newArrivals);
   // console.log(packingNumbers)
@@ -177,7 +180,10 @@ function BestbeforeEmailList(props) {
 
      </div>
  
- <Suspense fallback={<BundleLoader />}>
+ <Suspense fallback={<div className="custom-loader">
+          <div className="loader !block"> </div>
+      <div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
+    </div>}>
      <SuppliesListOfItem
      handleOpen={handleOpen}
      open={open}
