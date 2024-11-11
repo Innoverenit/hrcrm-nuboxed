@@ -250,7 +250,7 @@ class ContactDetailTab extends Component {
             handleContactOpportunityModal={handleContactOpportunityModal}
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}
-          translatedMenuItems={this.props.translatedMenuItems}
+          translatedMenuItems={this.state.translatedMenuItems}
             // defaultContacts={[
             //   {
             //     label: `${firstName || ""} ${middleName || ""} ${lastName ||

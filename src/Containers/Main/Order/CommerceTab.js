@@ -1,8 +1,7 @@
-import React, { lazy, Suspense, useState,useEffect } from "react";
+import React, { Suspense, useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import AddBoxIcon from '@mui/icons-material/AddBox';
-import { Tooltip, Badge, Button } from "antd";
+import { Button } from "antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";

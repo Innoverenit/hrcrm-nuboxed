@@ -490,7 +490,7 @@ function CustomerOpportunityForm(props) {
                 /> */}
                  <div class="mt-3">
                  <div class="text-xs font-bold w-full max-sm:w-full">
-                 {translatedMenuItems[7]} </div>
+                 {translatedMenuItems[8]} </div>
                 <Field
                   name="customerId"
                   isColumnWithoutNoCreate
@@ -507,7 +507,7 @@ function CustomerOpportunityForm(props) {
                 </div>
          <div class=" mt-3">
          <div class="text-xs font-bold w-full max-sm:w-full">
-         {translatedMenuItems[8]} </div>
+         {translatedMenuItems[7]} </div>
                 <Field
                   name="contactId"
                   isColumnWithoutNoCreate

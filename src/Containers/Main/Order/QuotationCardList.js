@@ -5,11 +5,12 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import {
     getQuotationEcomList,
 } from "./OrderAction";
-import jsPDF from "jspdf";
 import "jspdf-autotable";
 import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { MultiAvatar } from "../../../Components/UI/Elements";
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import ContactsIcon from '@mui/icons-material/Contacts';
 
 function QuotationCardList(props) {
   const [page, setPage] = useState(0);
@@ -104,8 +105,8 @@ const {handleProcureNotesDrawerModal,
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:hidden">
         <div className=" flex justify-between w-[79%]  p-1 bg-transparent font-poppins text-xs font-bold sticky  z-10">
         <div className=" md:w-[0.5rem]"></div>
-                        <div className="w-[10rem] md:w-[4.02rem] text-[#00A2E8] text-base">{translatedMenuItems[0]} ID</div>
-                        <div className="w-[5.4rem] md:w-[5.04rem]">{translatedMenuItems[1]}</div>
+                        <div className="w-[10rem] md:w-[4.02rem] text-[#00A2E8] text-base"><DynamicFeedIcon className='!text-base mr-1 '/>{translatedMenuItems[0]} ID</div>
+                        <div className="w-[5.4rem] md:w-[5.04rem]"><ContactsIcon className='!text-base mr-1 text-[#e4eb2f]'/>{translatedMenuItems[1]}</div>
                         <div className="w-[13.4rem] md:w-[8.04rem] flex">{translatedMenuItems[2]}</div>
                         {/* Customer */}
                         <div className="w-[8.4rem] md:w-[12.14rem]">{translatedMenuItems[3]}</div>

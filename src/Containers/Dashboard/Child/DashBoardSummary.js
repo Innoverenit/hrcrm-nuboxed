@@ -116,7 +116,7 @@ const DashBoardSummary=(props) =>{
           const endDate = dayjs(deal.endDate);
         const difference = currentDate.diff(endDate, 'days');
         return (
-          <div key={index} className="mb-4 p-2 box-content border-2 border-[#00008b23] w-[14rem]">
+          <div key={index} className="mb-4 p-2 ml-2 box-content border-2 border-[#00008b23] w-[13rem]">
             <div className="flex justify-between">
               <div>
                 <div className="font-semibold font-poppins truncate ">{deal.taskName}</div>

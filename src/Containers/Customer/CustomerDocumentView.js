@@ -29,10 +29,7 @@ componentDidMount() {
               href={`${base_url}/document/${item.documentId}`}
             // target="_blank"
             >
-                         <InsertDriveFileIcon 
-                   style={{fontSize:"2.5em",color:"cornflowerblue"}}
-                  // icon={solid("file")} 
-                  />
+                       <InsertDriveFileIcon className="!text-icon text-[#b288c0]"/>
                    </a>                                                             
                         </div>                      
                         <div class="h-8 font-bold font-poppins text-xs overflow-hidden whitespace-nowrap">{item.documentContentType} </div>                              
