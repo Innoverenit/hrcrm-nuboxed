@@ -344,7 +344,7 @@ const [rowdata, setrowdata] = useState("");
         dataLength={allCustomers.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingAllCustomerList?<div class="flex justify-center">Loading...</div>:null}
+        loader={fetchingAllCustomerList?<div class="flex justify-center"><BundleLoader/></div>:null}
         height={"83vh"}
         style={{ scrollbarWidth:"thin"}}
       >

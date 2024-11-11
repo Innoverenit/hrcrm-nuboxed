@@ -359,7 +359,7 @@ const [rowdata, setrowdata] = useState("");
         dataLength={teamCustomer.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={fetchingTeamCustomer?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
+        loader={fetchingTeamCustomer?<div style={{ textAlign: 'center' }}><BundleLoader/></div>:null}
         height={"83vh"}
         style={{ scrollbarWidth:"thin"}}
       >

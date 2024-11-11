@@ -848,6 +848,7 @@ function AccountDetailsTab(props) {
             />
 
 <AddDistributorTicketModal
+distributorData={props.distributorData}
               selectedLanguage={props.selectedLanguage}
               translateText={props.translateText}
                 distributorId={props.distributorData.distributorId}

@@ -385,6 +385,7 @@ const {
               : addActivityEvent(
                   {
                     ...values,
+                    contactId:props.contact?props.contact:null,
                     contacts:selectedContact,
                     opportunity:selectedOpportunity,
                     customer: props.customer ? props.customer.customerId : null,
@@ -647,6 +648,7 @@ const {
                     }}
                   />
                   </div>
+                  {props.type!=="contact"&&(
                   <div class=" mt-3">
                   <div className="font-bold font-poppins text-xs"> {translatedMenuItems[9]}  </div>
                   {props.user.crmInd === true &&(
@@ -670,6 +672,8 @@ const {
             
                   )} 
                   </div>
+                  )}
+                   {props.type!=="contact"&&(
                   <div class=" mt-3">
                   <div className="font-bold font-poppins text-xs"> {translatedMenuItems[10]}  </div>
                   {props.user.crmInd === true &&(
@@ -691,6 +695,8 @@ const {
                </>
                   )} 
                   </div>
+                   )}
+                   {props.type!=="contact"&&(
                   <div class=" mt-3">
                   <div className="font-bold font-poppins text-xs"> {translatedMenuItems[11]}  </div>
                   {props.user.crmInd === true &&(
@@ -712,6 +718,7 @@ const {
                </>
                   )} 
                   </div>
+                   )}
               
                   {/* <Field
                     disabled="true"

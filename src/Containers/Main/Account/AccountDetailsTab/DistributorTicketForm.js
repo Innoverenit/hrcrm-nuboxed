@@ -204,7 +204,7 @@ const [selectedStage, setSelectedStage] = useState(null);
        props.addTicket(
             {
               ...values,
-              assignFrom:selectedCustomer,
+              assignFrom:props.distributorData.distributorId,
               description:text,
               stageId:selectedStage,
               workFlowId:selectedWorkflow,
@@ -264,6 +264,8 @@ Assign Form
        
        placeholder="Select Customer"
        loading={isLoadingCustomers}
+       value={props.distributorData.name}
+       disabled={props.distributorData.name}
        onFocus={handleSelectCustomerFocus}
        onChange={handleCustomerChange}
      >

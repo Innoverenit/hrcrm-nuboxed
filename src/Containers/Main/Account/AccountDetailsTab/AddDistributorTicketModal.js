@@ -18,7 +18,9 @@ const AddDistributorTicketModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-        <DistributorTicketForm/>
+        <DistributorTicketForm
+        distributorData={props.distributorData}
+        />
           {/* <AccountOpportunityStepper {...formProps} />{" "} */}
         </Suspense>
       </StyledDrawer>
