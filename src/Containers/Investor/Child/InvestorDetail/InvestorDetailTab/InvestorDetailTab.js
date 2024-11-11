@@ -10,9 +10,11 @@ import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import {getContactListByInvestorId,handleInvestorContactModal,  handleActivityModal,  handleDealModal} from "../../../InvestorAction";
+import {handleCallActivityModal} from "../../../../Activity/ActivityAction"
 import {  handleDocumentUploadModal,handleCustomerContactModal} from "../../../../Customer/CustomerAction";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
+import ActivityListData from '../../../../Activity/ActivityListData';
 const InvestorActivityModal=lazy(()=>import("../InvestorActivity/InvestorActivityModal"));
 const InvestorTimeLine=lazy(()=>import("../InvestorActivity/InvestorTimeLine"));
 const CreateDealModal=lazy(()=>import("../../../../Deal/Child/CreateDealModal"));
@@ -111,10 +113,18 @@ const InvestorDetailTab = (props) => {
         </div>;
     case "3":
       return  <div>
-         <InvestorTimeLine
+         {/* <InvestorTimeLine
 
 investorDetails={props.investorDetails}
-              />
+              /> */}
+                                  <ActivityListData
+uniqueId={props.investorDetails.investorId}
+type={"investor"}
+investor={props.investorDetails}
+translateText={props.translateText}
+selectedLanguage={props.selectedLanguage}
+//translatedMenuItems={this.props.translatedMenuItems}
+/> 
       </div>;
          case "4":
           return  <div>
@@ -292,7 +302,7 @@ investorDetails={props.investorDetails}
                           defaultMessage="Create"
                         />
                       }
-                       onClick={() => handleActivityModal(true)}
+                       onClick={() => props.handleCallActivityModal(true)}
                      
                     />
                   </>
@@ -475,11 +485,14 @@ investorDetails={props.investorDetails}
                selectedLanguage={props.selectedLanguage}
             customerId={props. customerId }
             customer={props.customer}
-             defaultInvestor={[{ label: name, value: investorId }]}
+             defaultValue={[{ label: name, value: investorId }]}
              investorId={{ value: investorId }}
+             uniqueId={props.investorDetails.investorId}
        investorDetails={props.investorDetails}
-       investorActivityModal={investorActivityModal}
-          handleActivityModal={handleActivityModal}
+       name={props.investorDetails.name}
+       investor={props.investorDetails}
+       callActivityModal={props.callActivityModal}
+       handleCallActivityModal={props.handleCallActivityModal}
         />
 
        
@@ -488,11 +501,12 @@ investorDetails={props.investorDetails}
   );
 };
 
-const mapStateToProps = ({ auth, investor, customer, opportunity,deal }) => ({
+const mapStateToProps = ({ auth, investor,activity, customer, opportunity,deal }) => ({
   opendocumentUploadModal: investor.opendocumentUploadModal,
   user: auth.userDetails,
   documentUploadModal: customer.documentUploadModal,
   userId: auth.userDetails.userId,
+  callActivityModal:activity.callActivityModal,
   addCustomerContactModal: customer.addCustomerContactModal,
   investorActivityCount:investor.investorActivityCount,
   investorActivityModal:investor.investorActivityModal,
@@ -509,7 +523,8 @@ const mapDispatchToProps = (dispatch) =>
       handleCustomerContactModal,
       // handleCustomerOpportunityModal,
 getContactListByInvestorId,
-handleDocumentUploadModal
+handleDocumentUploadModal,
+handleCallActivityModal
       // getOpportunityListByCustomerId,
       // handleRecruitModal,
       // handlefileRecruitModal,

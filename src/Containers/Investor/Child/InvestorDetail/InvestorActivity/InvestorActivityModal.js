@@ -6,6 +6,7 @@ import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
+import ActivityForm from "../../../../Activity/ActivityForm";
 const InvestorCallActivityForm=lazy(()=>import("./InvestorCallActivityForm"));
 const InvestorEventActivityForm=lazy(()=>import("./InvestorEventActivityForm"));
 const InvestorTaskActivityForm=lazy(()=>import("./InvestorTaskActivityForm"));
@@ -16,7 +17,7 @@ const InvestorTaskActivityForm=lazy(()=>import("./InvestorTaskActivityForm"));
 const TabPane = StyledTabs.TabPane;
 
 const InvestorActivityModal = (props) => {
-  const { handleActivityModal, investorActivityModal, ...formProps } = props;
+  const { handleCallActivityModal, callActivityModal, ...formProps } = props;
   const isSmallScreen = window.innerWidth <= 600;
   const drawerWidth = isSmallScreen ? "90%" : "55%";
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -55,115 +56,43 @@ const InvestorActivityModal = (props) => {
         // title=
         // {translatedMenuItems[0]}
         width={drawerWidth}
-        visible={investorActivityModal}
+        visible={callActivityModal}
         maskClosable={false}
         destroyOnClose
-        onClose={() => handleActivityModal(false)}
+        onClose={() => handleCallActivityModal(false)}
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
           {/* <CallTaskForm
           rowdata={props.rowdata}
           /> */}
-          <InvestorActivityTab 
+            <ActivityForm
+            defaultValue={props.defaultValue}
+          //  defaultCustomers={props.defaultCustomers}
+           customerId={props. customerId }
+           uniqueId={props.uniqueId}
+           
+           name={props.name}
+          customer={props.customer}
+          investor={props.investor}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
+          />
+          {/* <InvestorActivityTab 
            translateText={props.translateText}
            selectedLanguage={props.selectedLanguage}
            customerId={props. customerId }
            customer={props.customer}
            defaultInvestor={props.defaultInvestor}
            investorId={props. investorId }
-           investorDetails={props.investorDetails}/>
+           investorDetails={props.investorDetails}/> */}
 
         </Suspense>
       </StyledDrawer>
     </>
   );
-  function InvestorActivityTab (props) {
-    const { addCallTaskModal, handleLeadCallModal } = props;
-      const { ...formProps } = props;
-      console.log(props.rowdata)
-      return (
-        <>
-          <TabsWrapper>
-            <StyledTabs 
-              defaultActiveKey="1"
-              style={{ overflow: "visible", width: "52vw", padding: "5px" }}
-              animated={false}
-            >
-              <TabPane
-                tab={
-                  <span>
-                      <VolumeUpIcon        
-              className='!text-icon'
-              />
-                   {translatedMenuItems[0]}
-                    {/* Calls */}
-                  </span>
-                }
-                key="1"
-              >
-                <Suspense fallback={"loading ..."}>
-                  <InvestorCallActivityForm 
-                   customerId={props. customerId }
-                   customer={props.customer}
-                       defaultInvestor={props.defaultInvestor}
-                       investorId={props. investorId }
-                     investorDetails={props.investorDetails} {...formProps} />
-                </Suspense>
-              </TabPane>
-          
-              <TabPane
-                tab={
-                  <span>
-                    <EventAvailableIcon
-              className='!text-icon '
-              />
-                    {translatedMenuItems[1]}
-                    {/* Events */}
-                  </span>
-                }
-                key="2"
-              >
-                <Suspense fallback={"loading ..."}>
-                  <InvestorEventActivityForm 
-                   customerId={props. customerId }
-                   customer={props.customer}
-                       defaultInvestor={props.defaultInvestor}
-                       investorId={props. investorId }
-                    investorDetails={props.investorDetails} {...formProps}/>
-                </Suspense>
-              </TabPane>
-              <TabPane
-                tab={
-                  <span>
-                      <FactCheckIcon
-              className='!text-icon'
-              />
-                    {translatedMenuItems[2]}
-                    {/* Tasks */}
-                  </span>
-                }
-                key="3"
-              >
-                <Suspense fallback={"loading ..."}>
-                  <InvestorTaskActivityForm 
-                   customerId={props. customerId }
-                   customer={props.customer}
-                      defaultInvestor={props.defaultInvestor}
-                      investorId={props. investorId }
-                    investorDetails={props.investorDetails} {...formProps}/>
-                </Suspense>
-              </TabPane>
-            </StyledTabs>
-          </TabsWrapper>
-          {/* <AddCallTaskModal
-          rowdata={props.rowdata}
-            addCallTaskModal={addCallTaskModal}
-            handleLeadCallModal={handleLeadCallModal}
-          /> */}
-        </>
-      );
-  }
+ 
 };
 
 export default InvestorActivityModal;

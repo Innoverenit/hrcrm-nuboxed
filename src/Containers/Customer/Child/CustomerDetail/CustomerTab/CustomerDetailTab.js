@@ -565,9 +565,11 @@ translatedMenuItems={this.props.translatedMenuItems}
           />
           
           <AddCustomerActivityModal
-           defaultCustomers={[{ label: name, value: customerId }]}
+           defaultValue={[{ label: name, value: customerId }]}
             customerId={{ value: customerId }}
+            uniqueId={this.props.customer.customerId}
           customer={this.props.customer}
+          name={this.props.customer.name}
           // callback={() => getContactListByCustomerId(customerId)}
             callActivityModal={callActivityModal}
             handleCallActivityModal={handleCallActivityModal}

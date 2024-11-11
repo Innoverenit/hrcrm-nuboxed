@@ -3,14 +3,14 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getAllSalesList } from "../Opportunity/OpportunityAction"
 import { FormattedMessage } from "react-intl";
-import { Button, Switch, Tooltip } from "antd";
+import { Button, Switch, Tooltip ,Select} from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
 //import { handleCallNotesModal } from "../../../Call/CallAction";
-import {
-    getContactListByCustomerId,
-    getOpportunityListByCustomerId,
-  } from "../Customer/CustomerAction";
+// import {
+//     getContactListByCustomerId,
+//     getOpportunityListByCustomerId,
+//   } from "../Customer/CustomerAction";
 import dayjs from "dayjs";
 import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
@@ -31,7 +31,9 @@ import SpeechRecognition, { } from 'react-speech-recognition';
 import { AudioOutlined } from '@ant-design/icons';
 import { Listbox } from '@headlessui/react'
 import { BundleLoader } from "../../Components/Placeholder";
+import { base_url } from "../../Config/Auth";
 const ButtonGroup = Button.Group;
+const { Option } = Select;
 const suffix = (
   <AudioOutlined
     onClick={SpeechRecognition.startListening}
@@ -67,6 +69,17 @@ const CallSchema = Yup.object().shape({
 function ActivityCallForm(props) {
 
 
+  const [contacts, setContacts] = useState([]);
+ 
+
+  const [isLoadingOpportunity, setIsLoadingOpportunity] = useState(false);
+  const [selectedOpportunity, setSelectedOpportunity] = useState(null);
+
+  const [opportunity, setOpportunity] = useState([]);
+ 
+
+  const [isLoadingContacts, setIsLoadingContacts] = useState(false);
+  const [selectedContact, setSelectedContact] = useState(null);
   
   const[category,setCategory] =useState(props.selectedCall ? props.selectedCall.callCategory : "New")
   const[reminder,setReminder] =useState(true)
@@ -95,6 +108,15 @@ function ActivityCallForm(props) {
        checked,
     );
   };
+  const handleContactChange=(value)=>{
+    setSelectedContact(value);
+  }
+
+
+
+  const handleOpportunityChange=(value)=>{
+    setSelectedOpportunity(value);
+  }
   function handleCallback (resetForm)  {
     const { handleChooserModal, handleCallModal, callback } = props;
    // handleChooserModal(false);
@@ -102,6 +124,56 @@ function ActivityCallForm(props) {
     callback && callback();
     // resetForm();
   };
+
+
+
+  const fetchContacts = async () => {
+    setIsLoadingContacts(true);
+    try {
+      const apiEndpoint = `${base_url}/contact-list/drop-down/${props.uniqueId}`;
+      const response = await fetch(apiEndpoint, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setContacts(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingContacts(false);
+    }
+  };
+
+
+
+
+  const fetchOpportunity = async () => {
+    setIsLoadingOpportunity(true);
+    try {
+      const apiEndpoint = `${base_url}/opportunity/open/${props.uniqueId}`;
+      const response = await fetch(apiEndpoint, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setOpportunity(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingOpportunity(false);
+    }
+  };
+
+
+ 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
@@ -139,10 +211,12 @@ function ActivityCallForm(props) {
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
   useEffect(() => {
+    fetchContacts()
+    fetchOpportunity()
     props.getAllSalesList();
     props.getAllCustomerData(props.userId)
-    props.getOpportunityListByCustomerId(props.customer.customerId);
-    props.getContactListByCustomerId(props.customer.customerId);
+    //props.getOpportunityListByCustomerId(props.customer.customerId);
+    //props.getContactListByCustomerId(props.customer.customerId);
     // props.getAllOpportunityData(userId)
   }, []);
 
@@ -243,6 +317,7 @@ function ActivityCallForm(props) {
    if (loading) {
     return <div><BundleLoader/></div>;
   }
+  console.log(props.name)
    return (
       <>
         <Formik
@@ -268,10 +343,11 @@ function ActivityCallForm(props) {
 
                 callResult: "",
                 callDescription: "",
-                opportunity:"",
+                // opportunity:"",
                 included: [],
                 assignedTo: selectedOption ? selectedOption.employeeId:userId,
-                contactId: [],
+                // contactId: [],
+                // contacts:[],
                 candidateId: "",
               }
              
@@ -352,7 +428,10 @@ function ActivityCallForm(props) {
             let newEndTime = `${finalEndTime}${timeEndPart}`;
             let testVal = {
               ...values,
-              customer: props.customer.customerId,
+              contacts:selectedContact,
+              opportunity:selectedOpportunity,
+              customer: props.customer ? props.customer.customerId : null,
+              investorId:props.investor?props.investor.investorId:null,
               callCategory: category,
               callType: Type,
               startDate: `${newStartDate}T${newStartTime}`,
@@ -367,6 +446,7 @@ function ActivityCallForm(props) {
                 prefillCall.callId,
                 {
                   ...values,
+                
                   callCategory: category,
                   callType: Type,
 
@@ -747,10 +827,10 @@ function ActivityCallForm(props) {
                }
                component={SearchSelect}
                isColumn
-               value={values.customerId}
-               isDisabled={defaultCustomers}
+               //value={props.name}
+               //isDisabled={defaultCustomers}
              
-               defaultValue={defaultCustomers ? defaultCustomers : null}
+               defaultValue={props.defaultValue}
                // defaultValue={
                //   defaultCustomers ? defaultCustomers : null
                // }
@@ -761,51 +841,42 @@ function ActivityCallForm(props) {
           
                   <div class=" mt-3">
                   {props.user.crmInd === true &&(
-                  <Field
-                  name="contactId"
-                  // label="Include"
-                  label={
-                        <FormattedMessage
-                          id="app.contact"
-                          defaultMessage="Contact"
-                        />
-                      }
-                  mode
-                  placeholder="Select"
-                  component={SelectComponent}
-                  options={Array.isArray(filteredContactData) ? filteredContactData : []}
-                  value={values.contactId}
-                  defaultValue={{
-                    label: `${fullName || ""} `,
-                    value: contactId,
-                  }}
-                />
+               <>
+                <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label>
+                <Select
+                placeholder="Select Contact"
+                loading={isLoadingContacts}
+                onChange={handleContactChange}
+                mode="multiple"
+              //disabled={!this.state.selectedCustomer} // Disable Contact dropdown if no customer is selected
+              >
+                {contacts.map(contact => (
+                  <Option key={contact.contactId} value={contact.contactId}>
+                    {contact.fullName}
+                  </Option>
+                ))}
+              </Select> 
+              </>
                   )} 
                   </div>
                   <div class=" mt-3">
                   {props.user.crmInd === true &&(
-                 <Field
-                 name="opportunity"
-                 // selectType="customerList"
-                 isColumnWithoutNoCreate
-                 label={
-                   <FormattedMessage
-                     id="app.opportunity"
-                     defaultMessage="Opportunity"
-                   />
-                 }
-                 //component={SearchSelect}
-                 component={SelectComponent}
-                 options={
-                   Array.isArray(opportunityNameOption)
-                     ? opportunityNameOption
-                     : []
-                 }
-                 isColumn
-                 margintop={"0"}
-                 value={values.opportunityId}
-                 inlineLabel
-               />
+                  <>
+                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</label>
+                  <Select
+                  placeholder="Select Opportunity"
+                  loading={isLoadingOpportunity}
+                  onChange={handleOpportunityChange}
+                  
+                //disabled={!this.state.selectedCustomer} // Disable Contact dropdown if no customer is selected
+                >
+                  {opportunity.map(opp => (
+                    <Option key={opp.opportunityId} value={opp.opportunityId}>
+                      {opp.opportunityName}
+                    </Option>
+                  ))}
+                </Select> 
+                </>
                   )} 
                   </div>
                
@@ -945,12 +1016,14 @@ const mapStateToProps = ({ auth, call,activity, employee,customer, opportunity, 
   user: auth.userDetails,
   updatingCall: call.updatingCall,
   user: auth.userDetails,
+  token:auth.token,
 //   deletingCall: call.deleteCall,
   sales: opportunity.sales,
   opportunityByCustomerId: customer.opportunityByCustomerId,
   contactByCustomerId: customer.contactByCustomerId,
   addNotesSpeechModal: call.addNotesSpeechModal,
-  fullName: auth.userDetails.fullName
+  fullName: auth.userDetails.fullName,
+  token: auth.token,
 
 });
 
@@ -964,8 +1037,8 @@ const mapDispatchToProps = (dispatch) =>
     //   updateCall,
       //handleCallModal,
     //   deleteCall,
-      getOpportunityListByCustomerId,
-      getContactListByCustomerId,
+      // getOpportunityListByCustomerId,
+      // getContactListByCustomerId,
       //setClearbitCandidateData, 
     //   handleCallNotesModal,
     },

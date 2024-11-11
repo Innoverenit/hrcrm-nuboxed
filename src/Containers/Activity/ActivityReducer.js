@@ -111,7 +111,7 @@ export const activityReducer = (state = initialState, action) => {
               addEventLocation: false,
               //updateEventModal: false,
               activityTimeline: state.activityTimeline.map((event) =>
-              event.eventId === action.payload.eventId
+              event.category === action.payload.category
                 ? action.payload
                 : event
             ),
