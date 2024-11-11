@@ -112,8 +112,8 @@ function OrderPaymentTable(props) {
                 <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "    >
                   <div class="flex">
                   <div className=" flex   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                         {item.approveByFinanceInd && (
                                                          <div class=" text-xs  font-poppins text-center">
-                                                        
                                                                  <AddIcon
 
                                                                      onClick={() => {
@@ -123,7 +123,7 @@ function OrderPaymentTable(props) {
                                                                      }
                                                                  />
                                                               
-                                                         </div>
+                                                         </div>)}
                                                    </div>
                     <div className=" flex  md:w-[7rem] max-sm:w-full  ">
                       <div class="text-xs text-ellipsis overflow-hidden font-semibold  font-poppins cursor-pointer">
@@ -283,13 +283,14 @@ function OrderPaymentTable(props) {
                   </div>
                 </div>
 
-                {showPay &&
+                {showPay && (row.paymentId === item.paymentId) &&
                                              <MultiOrderList 
                                              newOrderNo={props.newOrderNo}
                                              row={row}
-                                                              // dispatchPackingId={item.dispatchPackingId}
-                                                            selectedLanguage={props.selectedLanguag}e  
-                                                              
+                                             paymentId={item.paymentId}
+                                            selectedLanguage={props.selectedLanguage}
+                                            particularRowData={props.particularRowData}
+                                            translateText={props.translateText} 
                                                               />
                                         }
               </div>

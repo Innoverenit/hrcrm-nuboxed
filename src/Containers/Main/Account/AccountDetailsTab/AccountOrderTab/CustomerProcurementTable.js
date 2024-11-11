@@ -74,6 +74,7 @@ function CustomerProcurementTable(props) {
   const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
   const [openDrawer , setOpenDrawer]= useState(false); 
+  const [openStatusDrawer , setOpenStatusDrawer]= useState(false); 
 
     const [error, setError] = useState(null);
     const [data, setData] = useState([]);
@@ -594,7 +595,11 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                             </div>
                                         </div>
                                         <div class="flex flex-row  md:w-[10.03rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
-                                        <div class=" font-poppins text-xs">
+                                        <div class=" font-poppins text-xs cursor-pointer font-bold text-[#1890ff]" 
+                                        onClick={() => {
+                                                                        handleSetParticularOrderData(item);
+                                                                        props.handleStatuShowDrawer(true);
+                                                                    }}> 
                                               {item.status}                                              
                                             </div>
                                         </div>
@@ -824,7 +829,11 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                       </div>
                   </div>
                   <div class="flex flex-row items-center md:w-[10.03rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
-                                        <div class=" font-poppins text-xs">
+                                        <div class=" font-poppins text-xs cursor-pointer font-bold text-[#1890ff]" 
+                                        onClick={() => {
+                                                                        handleSetParticularOrderData(item);
+                                                                        // (true);
+                                                                    }}> 
                                               {item.status}
                                             </div>
                                         </div>
