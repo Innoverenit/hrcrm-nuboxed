@@ -4,6 +4,7 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { FormattedMessage } from "react-intl";
+import ActivityForm from "../../../Activity/ActivityForm";
 
 const ContactCallForm = lazy(() => import("./ContactCallForm"));
 const ContactEventForm = lazy(() =>import("./ContactEventForm"));
@@ -29,74 +30,26 @@ const ContactCETdr = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <ContactActivityTab currentContact={props.currentContact}/>
+        <ActivityForm
+          contact={props.contact}
+          type={props.type}
+          //  defaultValue={props.defaultValue}
+          //  customerId={props. customerId }
+          //  uniqueId={props.uniqueId}
+           
+          //  name={props.name}
+          // customer={props.customer}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
+          />
+          {/* <ContactActivityTab currentContact={props.currentContact}/> */}
 
         </Suspense>
       </StyledDrawer>
     </>
   );
-  function ContactActivityTab (props) {
-    const { clickCETcontactActivity, handleCETactivityContactModal } = props;
-      const { ...formProps } = props;
-
-      return (
-        <>
-          <TabsWrapper>
-            <StyledTabs
-              defaultActiveKey="1"
-              style={{ overflow: "visible", width: "52vw", padding: "5px" }}
-              animated={false}
-            >
-              <TabPane
-                tab={
-                  <span>
-                   <i class="fas fa-phone-square"></i>&nbsp;
-                    Calls
-                  </span>
-                }
-                key="1"
-              >
-                <Suspense fallback={"loading ..."}>
-                  <ContactCallForm  currentContact={props.currentContact} {...formProps} />
-                </Suspense>
-              </TabPane>
-          
-              <TabPane
-                tab={
-                  <span>
-                    <i class="fas fa-tasks"></i>&nbsp;
-                    Events
-                  </span>
-                }
-                key="2"
-              >
-                <Suspense fallback={"loading ..."}>
-                  <ContactEventForm currentContact={props.currentContact} {...formProps}/>
-                </Suspense>
-              </TabPane>
-              <TabPane
-                tab={
-                  <span>
-                    <i class="far fa-calendar-check"></i>&nbsp;
-                    Tasks
-                  </span>
-                }
-                key="3"
-              >
-                <Suspense fallback={"loading ..."}> 
-                  <ContactTaskForm currentContact={props.currentContact} {...formProps}/>
-                </Suspense>
-              </TabPane>
-            </StyledTabs>
-          </TabsWrapper>
-          <ContactCETdr
-          currentContact={props.currentContact}
-            clickCETcontactActivity={clickCETcontactActivity}
-            handleCETactivityContactModal={handleCETactivityContactModal}
-          />
-        </>
-      );
-  }
+ 
 };
 
 export default ContactCETdr;

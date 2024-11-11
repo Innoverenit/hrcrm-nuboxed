@@ -1494,7 +1494,7 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         addSupplierTicketModal:false,
        
-        //allCustomers: [action.payload, ...state.allCustomers],
+        ticketList: [action.payload, ...state.ticketList],
         
       };
     case types.ADD_TICKET_FAILURE:

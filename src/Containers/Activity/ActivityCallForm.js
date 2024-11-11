@@ -430,6 +430,7 @@ function ActivityCallForm(props) {
               ...values,
               contacts:selectedContact,
               opportunity:selectedOpportunity,
+              contactId:props.contact?props.contact:null,
               customer: props.customer ? props.customer.customerId : null,
               investorId:props.investor?props.investor.investorId:null,
               callCategory: category,
@@ -812,33 +813,38 @@ function ActivityCallForm(props) {
                     }}
                   />
                  </div>
-                 <div class=" mt-3">
-                  {props.user.crmInd === true &&(
-               <Field
-               name="customerId"
-               isColumnWithoutNoCreate
-               selectType="customerList"
-               // label="Tag Company"
-               label={
-                 <FormattedMessage
-                   id="app.tagcompany"
-                   defaultMessage="Tag Company"
-                 />
-               }
-               component={SearchSelect}
-               isColumn
-               //value={props.name}
-               //isDisabled={defaultCustomers}
-             
-               defaultValue={props.defaultValue}
-               // defaultValue={
-               //   defaultCustomers ? defaultCustomers : null
-               // }
-               inlineLabel
-             />
-                  )} 
-                  </div>
-          
+                 {props.type!=="contact"&&(
+                  <>
+  <div class=" mt-3">
+  {props.user.crmInd === true &&(
+<Field
+name="customerId"
+isColumnWithoutNoCreate
+selectType="customerList"
+// label="Tag Company"
+label={
+ <FormattedMessage
+   id="app.tagcompany"
+   defaultMessage="Tag Company"
+ />
+}
+component={SearchSelect}
+isColumn
+//value={props.name}
+//isDisabled={defaultCustomers}
+
+defaultValue={props.defaultValue}
+// defaultValue={
+//   defaultCustomers ? defaultCustomers : null
+// }
+inlineLabel
+/>
+  )} 
+  </div>
+  </>
+                 )}
+               
+               {props.type!=="contact"&&(
                   <div class=" mt-3">
                   {props.user.crmInd === true &&(
                <>
@@ -859,6 +865,8 @@ function ActivityCallForm(props) {
               </>
                   )} 
                   </div>
+               )}
+               {props.type!=="contact"&&(
                   <div class=" mt-3">
                   {props.user.crmInd === true &&(
                   <>
@@ -879,6 +887,7 @@ function ActivityCallForm(props) {
                 </>
                   )} 
                   </div>
+               )}
                
                   {/* <div >
                   <Field

@@ -31,7 +31,10 @@ function ContactCETdrawer (props) {
           onClose={() => props.handleContactCETdrawer(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-          <ContactCETTab currentContact={props.currentContact}/>
+          <ContactCETTab
+           contact={props.contact}
+        type={props.type}
+          currentContact={props.currentContact}/>
           </Suspense>
         </StyledDrawer>
       </div>

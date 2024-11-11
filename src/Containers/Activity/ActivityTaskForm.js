@@ -553,6 +553,7 @@ const [priority,setpriority]=useState(props.selectedTask
               : addActivityTask(
                   {
                     ...values,
+                    contactId:props.contact?props.contact:null,
                     customer: props.customer ? props.customer.customerId : null,
                     investorId:props.investor?props.investor.investorId:null,
                     contacts:selectedContact,
@@ -1067,7 +1068,8 @@ const [priority,setpriority]=useState(props.selectedTask
             </div>
           </>
         )}
-      </Listbox>                                                                                      
+      </Listbox>     
+      {props.type!=="contact"&&(                                                                                 
                   <div class=" mt-3">
                   <div className="font-poppins font-bold text-xs">   {translatedMenuItems[7]}</div>
                   {props.user.crmInd === true &&(
@@ -1090,6 +1092,8 @@ const [priority,setpriority]=useState(props.selectedTask
                />
                   )} 
                   </div>
+      )}
+                  {props.type!=="contact"&&(
                   <div class=" mt-3">
                   <div className="font-poppins font-bold text-xs">   {translatedMenuItems[8]}</div>
                   {props.user.crmInd === true &&(
@@ -1111,6 +1115,8 @@ const [priority,setpriority]=useState(props.selectedTask
                  </>
                   )} 
                   </div>
+                  )}
+                  {props.type!=="contact"&&(
                   <div class=" mt-3">
                   <div className="font-poppins font-bold text-xs">   {translatedMenuItems[9]}</div>
                   {props.user.crmInd === true &&(
@@ -1132,6 +1138,7 @@ const [priority,setpriority]=useState(props.selectedTask
                  </>
                   )} 
                   </div>
+                  )}
                   <div className=" mt-2 font-poppins font-bold text-xs">   {translatedMenuItems[10]}</div>
                   <Field
                     name="taskDescription"

@@ -523,6 +523,8 @@ No
       />
       <ContactCETdrawer
         currentContact={currentContact}
+        contact={currentContact.contactId}
+        type="contact"
         contactCETdrawer={props.contactCETdrawer}
         handleContactCETdrawer={props.handleContactCETdrawer}
         translateText={props.translateText}

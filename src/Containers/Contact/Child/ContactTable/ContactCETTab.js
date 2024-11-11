@@ -8,6 +8,7 @@ import { FormattedMessage } from "react-intl";
 import { Badge, Tooltip } from "antd";
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { handleCETactivityContactModal,getContactActivityRecords} from "../../ContactAction";
+import ActivityListData from "../../../Activity/ActivityListData";
 const ContactCETdr =lazy(()=>import("./ContactCETdr"));
 const ContactCETcard =lazy(()=>import("./ContactCETcard"));
 
@@ -78,8 +79,12 @@ function ContactCETTab (props) {
                   >
                     <Suspense fallback={"Loading ..."}>
                       {" "}
-                      <ContactCETcard
+                      {/* <ContactCETcard
                         currentContact={props.currentContact}
+                      /> */}
+                      <ActivityListData
+                      uniqueId={props.contact}
+                      type={props.type}
                       />
                     </Suspense>
                   </TabPane>
@@ -88,6 +93,8 @@ function ContactCETTab (props) {
               </TabsWrapper>
               <Suspense fallback={<BundleLoader/>}>
               <ContactCETdr
+                       contact={props.contact}
+                       type={props.type}
               currentContact={props.currentContact}
                 clickCETcontactActivity={clickCETcontactActivity}
                 handleCETactivityContactModal={handleCETactivityContactModal}
