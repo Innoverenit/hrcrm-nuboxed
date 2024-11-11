@@ -1,5 +1,7 @@
 import React, { lazy, Suspense, useEffect, useState, } from "react";
 import { Route, Switch } from "react-router-dom";
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import { CommentOutlined, CustomerServiceOutlined } from '@ant-design/icons'
 import PhoneMaterialScanner from "../Main/Scan/PhoneScanner/PhoneMaterialScanner"
 import QRCodeList from "../../Containers/Main/Refurbish/QrCodeList";
 import { connect } from "react-redux";
@@ -11,12 +13,14 @@ import { useNavigate } from 'react-router-dom';
 import {
   handleCandidateResumeModal,
 } from "../Candidate/CandidateAction";
+import {handleCustomerModal} from "../Customer/CustomerAction"
 import { bindActionCreators } from "redux";import {
   Tooltip,
   Button,
   Layout,
   message,
-  Badge
+  Badge,
+  FloatButton
 } from "antd";
 import { ThemeProvider } from "styled-components";
 import {
@@ -28,6 +32,7 @@ import { getSuscrption } from "../Subscription/SubscriptionAction";
 import { updateUserById, handleActionDrawerModal, getActionRequiredCount, handlePromotion } from "../Auth/AuthAction";
 import { setLanguage } from "../../Language/LanguageAction";
 import { getOpportunityRecord } from "../Opportunity/OpportunityAction";
+import {handleOpportunityModal} from "../Opportunity/OpportunityAction"
 import { handleMessageModal } from "../LiveMessages/LiveMessageAction";
 import { handleCallModal } from "../Call/CallAction";
 import { getSupportedLanguages } from '../Translate/TranslateService';
@@ -39,6 +44,7 @@ import FlashOnIcon from '@mui/icons-material/FlashOn';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { MultiAvatar } from "../../Components/UI/Elements";
 import AddActionModal from "./AddActionModal";
+import ApartmentIcon from '@mui/icons-material/Apartment';
 import EmptyPage from "./EmptyPage";
 import LanguageSelector from "../Translate/LanguageSelector";
 import FAQPage from "./FAQ/FAQPage";
@@ -47,14 +53,19 @@ import DataRoom from "../Data Room/DataRoom";
 import TagInDrawer from "./Refurbish/ProductionTab/TagInDrawer";
 import PhoneScanner from "./Scan/PhoneScanner/PhoneScanner";
 import Vendor from "./Vendor/Vendor";
+import ContactsIcon from '@mui/icons-material/Contacts';
 import Procre from "./Procre/Procre";
 import Trade from "./Trade/Trade";
+import {handleContactModal} from "../Contact/ContactAction"
 import CreateSubscriptionDrawer from "../Subscription/Child/CreateSubscriptionDrawer";
 import { handleCreateSubscriptionDrawer } from "../Subscription/SubscriptionAction";
 import Quality from "../Quality/Quality";
 import Club from "./Club/Club";
 import PromotionsDrawerr from "./PromotionsDrawerr";
 import Prmotion from "./Promotion/Prmotion";
+import AddCustomerModal from "../Customer/Child/AddCustomerModal";
+import AddOpportunityModal from "../Opportunity/Child/AddOpportunityModal";
+import AddContactModal from "../Contact/Child/AddContactModal";
 const NavMenu = lazy(() =>
   import("./NavMenu")
 );
@@ -498,7 +509,65 @@ function MainApp(props) {
                   </div>
                 </div>
             
-              
+                <FloatButton.Group
+      trigger="hover"
+      type="primary"
+      style={{
+        insetInlineEnd: 94,
+      }}
+      icon={
+      <CustomerServiceOutlined />
+     
+    }
+    >
+       <FloatButton 
+      icon={
+        // <CommentOutlined />
+        <Tooltip title="Contact">
+           <ContactsIcon
+        onClick={() => {
+       
+          props.handleContactModal(true);
+          
+  
+        }}
+        className='!text-base  text-[#e4eb2f]'
+        />
+        </Tooltip>
+       
+        } />
+      <FloatButton 
+      icon={
+        // <CommentOutlined />
+        <Tooltip title="Quotation">
+        <LightbulbIcon
+        onClick={() => {
+       
+          props.handleOpportunityModal(true);
+          
+  
+        }}
+        className='!text-base  text-[#e4eb2f]'
+        />
+        </Tooltip>
+        } />
+      
+      <FloatButton 
+      icon={
+        // <CommentOutlined />
+        <Tooltip title="Customer">
+        <ApartmentIcon
+        onClick={() => {
+       
+          props.handleCustomerModal(true);
+          
+  
+        }}
+        className='!text-base  text-[#e4eb2f]'
+        />
+        </Tooltip>
+        } />
+    </FloatButton.Group>
 
                 <div class="mr-3 flex items-center h-[2.5rem]">            
  {/* <div className="flex items-center">           
@@ -1644,6 +1713,13 @@ function MainApp(props) {
         addMessageModal={props.addMessageModal}
         handleMessageModal={props.handleMessageModal}
       />
+       <AddOpportunityModal
+          translateText={translateText}
+          selectedLanguage={selectedLanguage}
+          //translatedMenuItems={this.props.translatedMenuItems}
+          addOpportunityModal={props.addOpportunityModal}
+          handleOpportunityModal={props.handleOpportunityModal}
+        />
       <AddPartnerModal
         addPartnerModal={props.addPartnerModal}
         handlePartnerModal={props.handlePartnerModal}
@@ -1656,6 +1732,20 @@ function MainApp(props) {
         rowData={rowData}
         createSubscriptiondrawer={props.createSubscriptiondrawer}
         handleCreateSubscriptionDrawer={props.handleCreateSubscriptionDrawer}
+      />
+        <AddCustomerModal
+          addCustomerModal={props.addCustomerModal}
+          handleCustomerModal={props.handleCustomerModal}
+          translateText={translateText}
+          selectedLanguage={selectedLanguage}
+          //translatedMenuItems={this.props.translatedMenuItems}
+        />
+          <AddContactModal
+        addContactModal={props.addContactModal}
+        handleContactModal={props.handleContactModal}
+        translateText={translateText}
+            selectedLanguage={selectedLanguage}
+         // translatedMenuItems={props.translatedMenuItems}
       />
        <PromotionsDrawerr
         rowData={rowData}
@@ -1675,18 +1765,21 @@ const mapStateToProps = ({
   auth,
   theme,
   refurbish,
+  customer,
   call,
   task,
   event,
   candidate,
-  partner,
   opportunity,
+  partner,
+  
   contact,
   language,
   message,
   subscription
 }) => ({
   language: language.language,
+  addContactModal:contact.addContactModal,
   user: auth.userDetails,
   userDetails: auth.userDetails,
   addDrawerActionModal: auth.addDrawerActionModal,
@@ -1721,8 +1814,10 @@ const mapStateToProps = ({
   addCallModal: call.addCallModal,
   suscrptionData: subscription.suscrptionData,
   user: auth.userDetails,
+  addCustomerModal: customer.addCustomerModal,
   actionCount: auth.actionCount,
   token: auth.token,
+  addOpportunityModal:opportunity.addOpportunityModal,
   clickTagInDrawr: refurbish.clickTagInDrawr,
   createSubscriptiondrawer: subscription.createSubscriptiondrawer,
   addPromotionnModal: auth.addPromotionnModal
@@ -1735,10 +1830,13 @@ const mapDispatchToProps = (dispatch) =>
       updateUserById,
       handleCandidateResumeModal,
       handleCallModal,
+      handleCustomerModal,
       setLanguage,
       getOpportunityRecord,
       getActionRequiredCount,
       handleMessageModal,
+      handleContactModal,
+      handleOpportunityModal,
       handleActionDrawerModal,
       handleInTagDrawer,
       handleCreateSubscriptionDrawer,

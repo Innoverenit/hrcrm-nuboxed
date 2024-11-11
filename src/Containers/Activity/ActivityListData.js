@@ -10,6 +10,7 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { bindActionCreators } from 'redux';
 import dayjs from 'dayjs';
 import { getActivityTimeline,
+  addeventLocation
    } from './ActivityAction';
 import { BundleLoader } from '../../Components/Placeholder';
 //import AddCustomerActivityDrawerModal from '../CustomerActivity/AddCustomerActivityDrawerModal';
@@ -51,10 +52,11 @@ const ActivityListData = (props) => {
             longitude:longitude,
   
           }
-          //props.addeventLocation(data,item.eventId)
+          props.addeventLocation(data,props.uniqueId,item.category)
           message.success('Location fetched successfully!');
         },
         (error) => {
+          props.addeventLocation()
           console.error('Error fetching location:', error);
           // message.error('Error fetching location. Please try again.');
         }
@@ -122,13 +124,13 @@ const ActivityListData = (props) => {
     </Button> */}
      {status.complitionInd===false&&(
    <Button 
-   //onClick={() => getLocation(item)}
+   onClick={() => getLocation(status)}
    >
         Complete</Button>
                 )}
                               {status.complitionInd===true&&(
    <CheckCircleIcon 
-   //onClick={() => getLocation(status)}
+   onClick={() => getLocation(status)}
    style={{color:"green"}}
    />
        
@@ -240,6 +242,7 @@ const mapDispatchToProps = (dispatch) =>
     {
     //   linkTaskStatus,
     getActivityTimeline,
+    addeventLocation
         // getCustomerActivityRecords,
         // handleCustomerNoteDrawerModal,
         // handleCustomerActivityModal,

@@ -7,6 +7,11 @@ const initialState = {
   addingActivityCallError: false,
 
 
+
+  addEventLocation:false,
+  addEventLocationError:false,
+
+
   addingActivityEvent:false,
 
 
@@ -94,6 +99,26 @@ export const activityReducer = (state = initialState, action) => {
         addingActivityTask: false,
         //callActivityModal: false,
       };
+
+
+
+
+      case types.ADD_EVENT_LOCATION_REQUEST:
+            return { ...state, addEventLocation: true };
+          case types.ADD_EVENT_LOCATION_SUCCESS:
+            return {
+              ...state,
+              addEventLocation: false,
+              //updateEventModal: false,
+              activityTimeline: state.activityTimeline.map((event) =>
+              event.eventId === action.payload.eventId
+                ? action.payload
+                : event
+            ),
+              
+            };
+          case types.ADD_EVENT_LOCATION_FAILURE:
+            return { ...state, addEventLocation: false, addEventLocationError: false };
 
 
 
