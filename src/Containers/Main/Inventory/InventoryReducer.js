@@ -8,6 +8,14 @@ const initialState = {
 
   addPackDataID:false,
 
+  fetchingWasteMaterial: false,
+            fetchingWasteMaterialError: false,
+            westMaterial:[],
+
+            fetchingWasteMaterialLocation: false,
+            fetchingWasteMaterialLocationError: false,
+            westMaterialLocation:[],
+
   fetchingCompleteDispatchSearch: false,
 fetchingCompleteDispatchSearchError: false,
 
@@ -1766,9 +1774,35 @@ export const inventoryReducer = (state = initialState, action) => {
           fetchingMaterialBestBeforeError: true,
         };
 
+        case types.GET_WASTE_MATERIAL_REQUEST:
+          return { ...state, fetchingWasteMaterial: true };
+        case types.GET_WASTE_MATERIAL_SUCCESS:
+          return {
+            ...state,
+            fetchingWasteMaterial: false,
+            westMaterial: action.payload
+          };
+        case types.GET_WASTE_MATERIAL_FAILURE:
+          return {
+            ...state,
+            fetchingWasteMaterial: false,
+            fetchingWasteMaterialError: true,
+          };
 
-
-
+ case types.GET_WASTE_MATERIAL_LOCATION_REQUEST:
+          return { ...state, fetchingWasteMaterialLocation: true };
+        case types.GET_WASTE_MATERIAL_LOCATION_SUCCESS:
+          return {
+            ...state,
+            fetchingWasteMaterialLocation: false,
+            westMaterialLocation: action.payload
+          };
+        case types.GET_WASTE_MATERIAL_LOCATION_FAILURE:
+          return {
+            ...state,
+            fetchingWasteMaterialLocation: false,
+            fetchingWasteMaterialLocationError: true,
+          };
 
         case types.ADD_TO_WASTE_REQUEST:
       return { ...state, addingToWaste: true };
