@@ -31,6 +31,7 @@ import {
   handleContactDrawerModal,
   handleContactEmailDrawerModal,
   handleContactNotesDrawerModal,
+  handleContactCETdrawer,
   emptyContact,
   handleContactPulseDrawerModal,
   handleContactAddressDrawerModal
@@ -47,6 +48,7 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import AddContactAddressDrawerModal from "./AddContactAddressDrawerModal";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import EmptyPage from "../../../Main/EmptyPage";
+import ContactCETdrawer from "./ContactCETdrawer";
 
 const Option = Select;
 const UpdateContactModal = lazy(() =>
@@ -637,6 +639,16 @@ No
         selectedLanguage={props.selectedLanguage}
       translatedMenuItems={props.translatedMenuItems}
       />
+       <ContactCETdrawer
+        currentContact={currentContact}
+        contact={currentContact.contactId}
+        type="contact"
+        contactCETdrawer={props.contactCETdrawer}
+        handleContactCETdrawer={props.handleContactCETdrawer}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
+      />
     </>
   );
 }
@@ -660,6 +672,7 @@ const mapStateToProps = ({
   addDrawerContactNotesModal:contact.addDrawerContactNotesModal,
   designations: designations.designations,
   departments: departments.departments,
+  contactCETdrawer:contact.contactCETdrawer,
   addDrawerContactEmailModal: contact.addDrawerContactEmailModal,
   addContactSpeechModal: contact.addContactSpeechModal,
   addDrawerContactModal: contact.addDrawerContactModal,
@@ -670,6 +683,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       // getAllCustomerlIST,
       getAllContact,
+      handleContactCETdrawer,
       handleUpdateContactModal,
       handleDonotCallModal,
       setEditContact,

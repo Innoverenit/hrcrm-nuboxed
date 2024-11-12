@@ -32,6 +32,9 @@ function ContactCETdrawer (props) {
         >
           <Suspense fallback={<BundleLoader />}>
           <ContactCETTab
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
+         
            contact={props.contact}
         type={props.type}
           currentContact={props.currentContact}/>
