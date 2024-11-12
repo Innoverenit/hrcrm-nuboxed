@@ -25,8 +25,8 @@ const ContactCETdr = (props) => {
           defaultMessage="Schedule"
         />}
         width={drawerWidth}
-        visible={clickCETcontactActivity}
-        onClose={() => handleCETactivityContactModal(false)}
+        visible={props.callActivityModal}
+        onClose={() => props.handleCallActivityModal(false)}
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>

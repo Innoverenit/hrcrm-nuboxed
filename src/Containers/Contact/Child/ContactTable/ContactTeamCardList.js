@@ -24,6 +24,7 @@ import {
   setEditContact,
   updateOwnercontactById,
   getContactById,
+  handleContactCETdrawer,
   handleDonotCallModal,
   handleContactDrawerModal,
   handleContactEmailDrawerModal,
@@ -50,6 +51,7 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import AddContactAddressDrawerModal from "./AddContactAddressDrawerModal";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import EmptyPage from "../../../Main/EmptyPage";
+import ContactCETdrawer from "./ContactCETdrawer";
 
 const Option = Select;
 const UpdateContactModal = lazy(() =>
@@ -630,6 +632,16 @@ No
         selectedLanguage={props.selectedLanguage}
        translatedMenuItems={props.translatedMenuItems}
       />
+       <ContactCETdrawer
+        currentContact={currentContact}
+        contact={currentContact.contactId}
+        type="contact"
+        contactCETdrawer={props.contactCETdrawer}
+        handleContactCETdrawer={props.handleContactCETdrawer}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
+      />
       <ReactContactSpeechModal
         // item={currentContactId}
         contactData={currentContactId}
@@ -677,6 +689,7 @@ const mapStateToProps = ({
   userId: auth.userDetails.userId,
   teamContact: contact.teamContact,
   user: auth.userDetails,
+  contactCETdrawer:contact.contactCETdrawer,
   addDrawerContactPulseModal:contact.addDrawerContactPulseModal,
   fetchingContacts: contact.fetchingContacts,
   fetchingContactsError: contact.fetchingContactsError,
@@ -698,6 +711,7 @@ const mapDispatchToProps = (dispatch) =>
       getTeamContact,
       handleUpdateContactModal,
       handleDonotCallModal,
+      handleContactCETdrawer,
       setEditContact,
       getDesignations,
       updateOwnercontactById,

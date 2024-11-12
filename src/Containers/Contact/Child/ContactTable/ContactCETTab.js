@@ -7,6 +7,7 @@ import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { FormattedMessage } from "react-intl";
 import { Badge, Tooltip } from "antd";
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import {handleCallActivityModal} from "../../../Activity/ActivityAction"
 import { handleCETactivityContactModal,getContactActivityRecords} from "../../ContactAction";
 import ActivityListData from "../../../Activity/ActivityListData";
 const ContactCETdr =lazy(()=>import("./ContactCETdr"));
@@ -65,7 +66,7 @@ function ContactCETTab (props) {
                                   />
                                 }
                                 onClick={() => {
-                                    handleCETactivityContactModal(true);
+                                    props.handleCallActivityModal(true);
                                 }}
                               
                               />
@@ -93,23 +94,27 @@ function ContactCETTab (props) {
               </TabsWrapper>
               <Suspense fallback={<BundleLoader/>}>
               <ContactCETdr
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}
                        contact={props.contact}
                        type={props.type}
               currentContact={props.currentContact}
-                clickCETcontactActivity={clickCETcontactActivity}
-                handleCETactivityContactModal={handleCETactivityContactModal}
+              callActivityModal={props.callActivityModal}
+              handleCallActivityModal={props.handleCallActivityModal}
               />
               </Suspense>
             </>
           );
       }
-const mapStateToProps = ({ contact }) => ({
+const mapStateToProps = ({ contact,activity }) => ({
     clickCETcontactActivity:contact.clickCETcontactActivity,
+    callActivityModal:activity.callActivityModal,
     contactActivityCount:contact.contactActivityCount
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
     handleCETactivityContactModal,
+    handleCallActivityModal,
     getContactActivityRecords
 }, dispatch);
 
