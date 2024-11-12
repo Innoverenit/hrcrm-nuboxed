@@ -60,7 +60,30 @@ class SuppliesActionRight extends React.Component {
     return (
       <>
       <div className="flex">
-      <Tooltip title="Best Before">
+    
+          <Tooltip title= {this.state.translatedMenuItems[4]}>
+            <Button
+              className="export"
+              onClick={() => this.props.handleImageSuppliesModal(true)}
+              //default
+             // href={`${base_url}/export/product?orgId=${organizationId}`}
+            >
+            Upload Image
+            </Button>
+          </Tooltip>
+         <Tooltip placement="left" title={this.state.translatedMenuItems[1]}>
+            <Button
+              type="primary"
+              ghost
+              onClick={() => this.props.handleUploadMaterialModal(true)}
+            >
+             <UploadIcon className=" !text-icon"/>
+             {this.state.translatedMenuItems[1]}
+             
+             
+            </Button>
+          </Tooltip>
+          <Tooltip title="Best Before">
         <Button
          type="primary"
          onClick={() => handleBestbefore(true)}>
@@ -102,28 +125,6 @@ class SuppliesActionRight extends React.Component {
             </Button>
           </Tooltip>
         )}
-          <Tooltip title= {this.state.translatedMenuItems[4]}>
-            <Button
-              className="export"
-              onClick={() => this.props.handleImageSuppliesModal(true)}
-              //default
-             // href={`${base_url}/export/product?orgId=${organizationId}`}
-            >
-            Upload Image
-            </Button>
-          </Tooltip>
-         <Tooltip placement="left" title={this.state.translatedMenuItems[1]}>
-            <Button
-              type="primary"
-              ghost
-              onClick={() => this.props.handleUploadMaterialModal(true)}
-            >
-             <UploadIcon className=" !text-icon"/>
-             {this.state.translatedMenuItems[1]}
-             
-             
-            </Button>
-          </Tooltip>
           </div>
 <Suspense fallback={<BundleLoader/>}>
         <SuppliesAddModal

@@ -122,13 +122,14 @@ function AllShipperList(props) {
 
                    
                         </div>
+                  
+                        </div>
                         <div className=" flex w-[6.5rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between   md:w-[6rem] max-sm:flex-row ">
 <div class="  text-xs ml-gap items-center  font-poppins">
 {item.dialCode} {item.phoneNo}
 </div>
 
 </div>
-                        </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
                         <div className=" flex  w-[13.3rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 

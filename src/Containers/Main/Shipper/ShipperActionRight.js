@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { FlexContainer } from "../../../Components/UI/Layout";
 import { Button, Tooltip } from "antd";
 import {base_url} from "../../../Config/Auth";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 class ShipperActionRight extends React.Component {
   render() {
     const { handleShipperModal, user,viewType } = this.props;
@@ -24,7 +25,7 @@ class ShipperActionRight extends React.Component {
           :null}
         <Tooltip title={this.props.translatedMenuItems[15]}>
           <Button type="primary" onClick={() => handleShipperModal(true)}>
-           {/* <FormattedMessage id="app.add" defaultMessage="Add" />  */} {this.props.translatedMenuItems[22]}
+           {/* <FormattedMessage id="app.add" defaultMessage="Add" />  */}        <DataSaverOnIcon className="!text-icon"/> {this.props.translatedMenuItems[22]}
           </Button>
         </Tooltip>
       </FlexContainer>

@@ -90,22 +90,7 @@ class ContactActionRight extends React.Component {
          </Tooltip>
        )}
        </div>     
-          {this.props.viewType === "table" &&   (
-         <Tooltip placement="left" title="Create">
-            {user.contactCreateInd === true &&  user.crmInd === true && (
-          <Button 
-           type="primary"
-           onClick={() => handleContactModal(true)}>
-            
-                 <DataSaverOnIcon className="!text-icon"/>
-                 {this.state.translatedMenuItems[0]}
-                 {/* Add */}
-
-            
-          </Button>
-             )}
-        </Tooltip>
-        )}
+     
          {this.props.viewType === "table" &&   (
         <div className="max-sm:hidden">
            <Tooltip placement="left" title="Import">
@@ -121,7 +106,22 @@ class ContactActionRight extends React.Component {
         </Tooltip>
         </div>
          )}
+     {this.props.viewType === "table" &&   (
+         <Tooltip placement="left" title="Create">
+            {user.contactCreateInd === true &&  user.crmInd === true && (
+          <Button 
+           type="primary"
+           onClick={() => handleContactModal(true)}>
+            
+                 <DataSaverOnIcon className="!text-icon"/>
+                 {this.state.translatedMenuItems[0]}
+                 {/* Add */}
 
+            
+          </Button>
+             )}
+        </Tooltip>
+        )}
       </div>
     );
   }
