@@ -2,13 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
-import { Formik, Form, Field, FastField } from "formik";
+import { Formik, Form, Field } from "formik";
 import { FlexContainer } from "../../../../../Components/UI/Layout";
 
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
-import DragableUpload from "../../../../../Components/Forms/Formik/DragableUpload";
-import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
-import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
 import {
     addShipperCost
 } from "../../ShipperAction";
@@ -25,9 +22,39 @@ class ShipperCostForm extends Component {
       ownerAbove: "Specific",
       selectedownerAbove: "Specific",
       data: [1],
+      translatedMenuItems: [],
     };
   }
+  componentDidMount() {
 
+    this.fetchMenuTranslations();
+  }
+ 
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+       
+       
+       "279",// "Source" 0
+       "325",  // Destination 1
+       "657",  // price 2
+       "154",//Submit
+       
+            ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+    // this.props.updateCostShipper()
+  };
   render() {
   
     return (
@@ -66,71 +93,54 @@ class ShipperCostForm extends Component {
             values,
             ...rest
           }) => (
-            <Form>
-              <div style={{  justifyContent: "space-between" }}>
-                <div
-                  style={{
-                    height: "100%",
-                    width: "45%",
-                  }}
-                >
-                 
-                  <div class=" mt-3" />
-                  <Field
-                    name="source"
-                    label="Source"
-                    
+            <Form className="form-background h-[30vh]">
+              <div className="flex justify-between">
+                <div class=" w-[30%]">
+                  <div class=" mt-3 font-bold font-poppins text-xs">{this.state.translatedMenuItems[0]}</div>
+                  <Field className="h-[2rem] mt-1"
+                    name="source"                
                     width={"100%"}
                     isColumn
                     component={InputComponent}
-                    style={{ height: "2em", marginTop: "0.25em" }}
+  
                   />
                 </div>
 
 
 
-               
-                  <Field
+                <div class=" w-[30%]">
+                <div class=" mt-3 font-bold font-poppins text-xs">{this.state.translatedMenuItems[1]}</div>
+                  <Field className="h-[2rem] mt-1"
                     name="destination"
-                    label="Destination"
-                    
                     width={"100%"}
                     isColumn
                     component={InputComponent}
-                    style={{ height: "2em", marginTop: "0.25em" }}
+             
                   />
-
-
-<Field
-                    name="price"
-                    label="Price"
-                    
+</div>
+          <div class=" w-[30%]">
+          <div class=" mt-3 font-bold font-poppins text-xs">{this.state.translatedMenuItems[2]}</div>
+                <Field className="h-[2rem] mt-1"
+                    name="price"                   
                     width={"100%"}
                     isColumn
                     component={InputComponent}
-                    style={{ height: "2em", marginTop: "0.25em" }}
+                  
                   />
-              
+              </div>
 
-                
-
-
-
-
-                
-              
               </div>
               
 
-              <div class=" mt-3" />
+              <div class=" mt-8" />
               <FlexContainer justifyContent="flex-end">
                 <Button
                   htmlType="submit"
                   type="primary"
-            Loading={this.props.addingShipperCost}
+                  Loading={this.props.addingShipperCost}
                 >
-                  {/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
-                  Submit
+             <div class=" font-bold font-poppins text-xs">{this.state.translatedMenuItems[3]}</div>
+                  {/* Submit */}
                 </Button>
               </FlexContainer>
             </Form>

@@ -1,8 +1,6 @@
-import React, { lazy, Suspense } from "react";
+import React, {  Suspense } from "react";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
-//import SuppliesLocationItem from "../Supplies/SuppliesLocationItem"
 import { BundleLoader } from "../../../../../Components/Placeholder";
-import { FormattedMessage } from 'react-intl';
 import ShipperCostForm from "../ShipperDetailsTab/ShipperCostForm"
 
 
@@ -24,6 +22,8 @@ const AddShipperCostModal = (props) => {
      /> */}
   <ShipperCostForm
   shipperId={props.shipperId}
+  translateText={props.translateText}
+  selectedLanguage={props.selectedLanguage}
   />
         </Suspense>
       </StyledDrawer>

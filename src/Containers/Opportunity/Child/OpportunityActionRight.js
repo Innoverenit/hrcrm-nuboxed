@@ -49,7 +49,19 @@ const OpportunityActionRight = (props) => {
        {user.employee_type === "contractor" && user.candiContShareInd === true || user.employee_type === "employee" && user.candiEmpShareInd === true && user.opportunityFullListInd===true &&(
     <OpportunityShareForm/>
        )}
-          <Tooltip placement={"left"} title={<FormattedMessage
+          
+      <Button
+      style={{lineHeight:"inherit"}}
+         type="primary"
+        // default
+      href={`${base_url}/excel/export/user/opportunity/${userId}`}
+      >
+        {/* Export */}
+        <UploadIcon className=" !text-icon"/>
+        {translatedMenuItems[1]}
+        {/* Export */}
+      </Button>
+      <Tooltip placement={"left"} title={<FormattedMessage
               id="app.create"
               defaultMessage="Create"
             />}>
@@ -64,18 +76,6 @@ const OpportunityActionRight = (props) => {
         </Button>
           )}  
       </Tooltip>
-      <Button
-      style={{lineHeight:"inherit"}}
-         type="primary"
-        // default
-      href={`${base_url}/excel/export/user/opportunity/${userId}`}
-      >
-        {/* Export */}
-        <UploadIcon className=" !text-icon"/>
-        {translatedMenuItems[1]}
-        {/* Export */}
-      </Button>
-      
     </div>
   );
 };

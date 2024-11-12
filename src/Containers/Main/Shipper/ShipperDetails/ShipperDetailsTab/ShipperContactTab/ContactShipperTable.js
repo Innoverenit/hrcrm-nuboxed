@@ -10,6 +10,10 @@ import { Tooltip } from "antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import UpdateShipperContactModal from "./UpdateShipperContactModal";
 import { OnlyWrapCard } from '../../../../../../Components/UI/Layout';
+import CategoryIcon from '@mui/icons-material/Category'
+import MobileFriendlyIcon from '@mui/icons-material/MobileFriendly';
+import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 class ShipperContactTable extends Component {
   constructor(props) {
     super(props);
@@ -60,13 +64,19 @@ class ShipperContactTable extends Component {
       <>
         <div className=' flex  sticky h-[83vh]  z-auto'>
           <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
-            <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-              <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[7.1rem]">{this.state.translatedMenuItems[0]}</div>
-              <div className="font-bold font-poppins text-xs md:w-[11.12rem]">{this.state.translatedMenuItems[1]}</div>
-              <div className="font-bold font-poppins text-xs md:w-[4.8rem] ">{this.state.translatedMenuItems[2]}</div>
-              <div className="font-bold font-poppins text-xs md:w-[4.9rem]">{this.state.translatedMenuItems[3]}</div>
-              <div className="font-bold font-poppins text-xs md:w-[7.8rem]">{this.state.translatedMenuItems[4]}</div>
-              <div className=" md:w-[3.1rem]"></div>
+            <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky items-end z-10">
+              <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[7.1rem]">
+              <CategoryIcon className='!text-base '
+              /> {this.state.translatedMenuItems[0]}</div>
+              <div className="font-bold font-poppins text-xs w-[11.12rem] max-md:w-[11.12rem]">
+              <MarkEmailUnreadIcon className='!text-icon  text-[#ff9f1c] '  /> {this.state.translatedMenuItems[1]}</div>
+              <div className="font-bold font-poppins text-xs w-[4.8rem] max-md:w-[4.8rem] ">
+              <MobileFriendlyIcon className='!text-icon text-[#41ead4] '  /> {this.state.translatedMenuItems[2]}</div>
+              <div className="font-bold font-poppins text-xs w-[5.9rem] max-md:w-[4.9rem]">
+          <i className=" fab fa-artstation  text-[#b744b8]"></i>   {this.state.translatedMenuItems[3]}</div>
+              <div className="font-bold font-poppins text-xs w-[7.8rem] max-md:w-[7.8rem]">
+              <ApartmentIcon className='!text-icon text-[#f0386b] '  />    {this.state.translatedMenuItems[4]}</div>
+              <div className=" w-[3.1rem] max-md:w-[3.1rem]"></div>
 
             </div>
             {/* <InfiniteScroll
@@ -80,34 +90,28 @@ class ShipperContactTable extends Component {
             {this.props.contactShipper.map((item) => {
               return (
                 <div>
-                  <div className="flex rounded justify-between  mt-1 bg-white h-8 items-center"
+                  <div className="flex rounded justify-between py-ygap mt-1 bg-white  items-center hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                   >
                     <div class="flex ">
 
-                      <div className=" flex font-medium flex-col border-l-2 border-green-500 bg-[#eef2f9]   md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-                        <h4 class=" text-xs  font-poppins">
+                    <div className=" flex   items-center border-l-2 border-green-500 bg-[#eef2f9] justify-start  md:w-[10rem]  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                    <div class="flex  text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                          
                           {`${item.salutation || ""} ${item.firstName || ""} ${item.middleName || ""
                             } ${item.lastName || ""}`}
-                        </h4>
-
+                        </div>
                       </div>
-
-
-                      <div className=" flex font-medium flex-col items-center justify-center h-8 ml-gap  bg-[#eef2f9] md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-
-
-                        <h4 class=" text-xs  font-poppins">
+                      <div className=" flex   w-[11.1rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                      <div class="flex  text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                           {item.emailId}
-                        </h4>
+                        </div>
 
                       </div>
-
+                   
                     </div>
 
-                    <div className=" flex font-medium flex-col md:w-[27rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
-
-                      <div class=" text-xs  font-poppins text-center">
+                    <div className=" flex      md:w-[27rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                    <div class="flex  text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                         {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
 
                       </div>
@@ -115,7 +119,7 @@ class ShipperContactTable extends Component {
                     <div className=" flex font-medium flex-col md:w-[24rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
 
 
-                      <div class=" text-xs  font-poppins text-center">
+                      <div class=" text-xs ml-gap font-poppins text-center">
                         {item.designationName}
 
                       </div>

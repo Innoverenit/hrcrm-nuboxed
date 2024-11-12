@@ -1,5 +1,4 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import {handleCustomerContactModal} from "../../../../CustomerAction";
@@ -19,7 +18,7 @@ const AddCustomerContactModal = (props) => {
   return (
     <>
       <StyledDrawer
-      title="Customer Contact"
+      title="Contact"
         // title={`${props.translatedMenuItems[1]}`}
         width="60%"
         visible={addCustomerContactModal}

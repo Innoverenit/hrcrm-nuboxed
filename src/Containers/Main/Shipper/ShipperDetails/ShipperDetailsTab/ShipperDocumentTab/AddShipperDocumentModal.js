@@ -28,8 +28,9 @@ class AddShipperDocumentModal extends Component {
         >
           <Suspense fallback={<BundleLoader />}>
             <ShipperDocumentForm
-             translateText={this.props.translateText}
-             selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
             />
           </Suspense>
         </StyledModal>

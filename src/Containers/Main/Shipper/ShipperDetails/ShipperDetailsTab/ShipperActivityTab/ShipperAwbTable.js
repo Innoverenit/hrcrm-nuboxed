@@ -12,6 +12,9 @@ import { setEditTask } from "../../../../../Task/TaskAction";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 
 class ShipperAwbTable extends Component {
   
@@ -72,21 +75,21 @@ class ShipperAwbTable extends Component {
       <>
             <div className=' flex  sticky h-[78vh]  z-auto'>
             <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+            <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs items-end sticky  z-10">
                         <div className=" md:w-[0.5rem]"></div>
-                        <div className="Font-poppins font-bold text-[#00A2E8] text-base md:w-[7.4rem]">  {this.state.translatedMenuItems[0]}</div>
+                        <div className=" text-[#00A2E8] text-base w-[7.4rem] max-md:w-[7.4rem]">  
+                        <RocketLaunchIcon className=" !text-tab text-[#bdd358] mr-2"/>  {this.state.translatedMenuItems[0]}</div>
                         {/* AWB# */}
-                        <div className="Font-poppins font-bold text-xs md:w-[10.1rem]">  {this.state.translatedMenuItems[1]}</div>
+                        <div className="w-[10.1rem] max-md:w-[10.1rem]"> 
+                        <DateRangeIcon className="!text-icon "/> {this.state.translatedMenuItems[1]}</div>
                         {/* Created */}
-                        <div className="Font-poppins font-bold text-xs md:w-[8.8rem] ">  {this.state.translatedMenuItems[2]}</div>
+                        <div className="w-[8.8rem] max-md:w-[8.8rem] ">  {this.state.translatedMenuItems[2]}</div>
                         {/* pickUp */}
-                        <div className="Font-poppins font-bold text-xs md:w-[3.8rem]">  {this.state.translatedMenuItems[3]}</div>
+                        <div className="w-[4.8rem] max-md:w-[4.8rem]"> 
+                        <LocalShippingIcon className='!text-base  text-[#e4eb2f]'
+              /> {this.state.translatedMenuItems[3]}</div>
                         {/* Delivery */}
-                        <div className="md:w-[6.12rem]"></div>
-                      
-                     
-
-
+                        <div className="w-[6.12rem] max-md:w-[6.12rem]"></div>                     
                     </div>
                    
                     {this.props.awbShipper.length > 0 ? (
