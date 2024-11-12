@@ -1,10 +1,11 @@
 import React, { useEffect, useState,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import dayjs from "dayjs";
 import { DeleteOutlined } from "@ant-design/icons";
-import { Tooltip, Avatar } from "antd";
+import { Tooltip, Avatar,Button } from "antd";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component";
 import MergeTypeIcon from '@mui/icons-material/MergeType';
@@ -13,6 +14,7 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {
   deleteCall,
+  addcallLocation,
   getCallListRangeByUserId,
   handleCallModal,
   setEditNote,
@@ -88,6 +90,12 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   function handleSetCallNameId(item) {
     setCurrentNameId(item);
   }
+
+
+
+  const getLocation = (item) => {
+    props.addcallLocation(item.completionInd===false?true:false,item.callId)
+  };
 
 
   const {
@@ -228,6 +236,27 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
             
     
            </div>
+
+
+           <div className="flex w-[6.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[2.12rem]  max-sm:flex-row  max-sm:w-auto ">                                
+               <div class="max-sm:flex justify-end">
+                {item.completionInd===false&&(
+   <Button 
+  onClick={() => getLocation(item)}
+   >
+        Complete</Button>
+                )}
+                              {item.completionInd===true&&(
+   <CheckCircleIcon 
+  onClick={() => getLocation(item)}
+   style={{color:"green"}}
+   />
+       
+                )}
+       
+        
+          </div>
+                   </div>
            <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[7rem] max-sm:flex-row  max-sm:justify-between  ">
                             <div class=" text-xs  items-center font-poppins">
                             {/* {date} */}
@@ -299,6 +328,7 @@ const mapDispatchToProps = (dispatch) =>
       deleteCall,
       handleCallModal,
       setEditNote,
+      addcallLocation,
       getNotesListByCallId,
       handleCallNotesDrawerModal
     },

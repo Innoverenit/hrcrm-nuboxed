@@ -371,6 +371,47 @@ export const getOpportunityRecord = (userId) => (dispatch) => {
     });
 };
 
+export const addcallLocation = (completionInd,callId, cb) => (dispatch, getState) => {
+  //debugger
+  // const { userId } = getState("auth").auth.userDetails;
+  // console.log(data);
+  dispatch({ type: types.ADD_CALL_LOCATION_REQUEST });
+  axios
+    .put(
+      `${base_url}/call/completion/${completionInd}/${callId}`,{},
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      //debugger
+
+      //   dispatch(getEventsListByUserId(userId));
+      console.log(res);
+
+      dispatch({
+        type: types.ADD_CALL_LOCATION_SUCCESS,
+        payload: res.data,
+      });
+      // dispatch({
+      //   type: UPDATE_TODOEVENT_SUCCESS,
+      //   payload: res.data
+      // })
+      // dispatch({type:UPDATE_EVENTS_LIST_BY_USER_ID_SUCCESS,
+      // payload:res.data})
+      cb();
+    })
+    .catch((err) => {
+      //debugger
+      console.log(err);
+      dispatch({
+        type: types.ADD_CALL_LOCATION_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const emptyCall = () => (dispatch) => {
   dispatch({
     type: types.EMPTY_CALL_LIST, 

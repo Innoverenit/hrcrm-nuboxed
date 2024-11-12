@@ -4,6 +4,7 @@ import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import { FormattedMessage } from "react-intl";
+import ActivityForm from "../../../../Activity/ActivityForm";
 const ContactInvestorCallActivityForm =lazy(()=>import("./ContactInvestorCallActivityForm"));
 const ContactInvestorEventActivityForm =lazy(()=>import("./ContactInvestorEventActivityForm"));
 const ContactInvestorTaskActivityForm =lazy(()=>import("./ContactInvestorTaskActivityForm"));
@@ -52,10 +53,10 @@ const ContactInvestorActivityModal = (props) => {
           defaultMessage="Schedule"
         />}
         width={drawerWidth}
-        visible={contactInvestorActivityModal}
+        visible={props.callActivityModal}
         maskClosable={false}
         destroyOnClose
-        onClose={() => handleContactInvestActivityModal(false)}
+        onClose={() => props.handleCallActivityModal(false)}
 
         footer={null}
       >
@@ -63,7 +64,9 @@ const ContactInvestorActivityModal = (props) => {
           {/* <CallTaskForm
           rowdata={props.rowdata}
           /> */}
-          <ContactInvestorActivityTab 
+          <ActivityForm
+           contact={props.contact}
+           type={props.type}
           
            investorId={props. investorId }
            contactInVestDetail={props.contactInVestDetail}
@@ -76,77 +79,7 @@ const ContactInvestorActivityModal = (props) => {
       </StyledDrawer>
     </>
   );
-  function ContactInvestorActivityTab (props) {
-    const { addCallTaskModal, handleLeadCallModal } = props;
-      const { ...formProps } = props;
-      console.log(props.rowdata)
-      return (
-        <>
-          <TabsWrapper>
-            <StyledTabs
-              defaultActiveKey="1"
-              style={{ overflow: "visible", width: "50vw", padding: "4px" }}
-              animated={false}
-            >
-              <TabPane
-                tab={
-                  <span>
-                   <i class="fas fa-phone-square"></i>&nbsp;
-                   {translatedMenuItems[0]}
-                   {/* Calls */}
-                  </span>
-                }
-                key="1"
-              >
-                <Suspense fallback={"loading ..."}>
-                  <ContactInvestorCallActivityForm 
-                    investorId={props. investorId }
-                    contactInVestDetail={props.contactInVestDetail}{...formProps} />
-                </Suspense>
-              </TabPane>
-          
-              <TabPane
-                tab={
-                  <span>
-                    <i class="fas fa-tasks"></i>&nbsp;
-                    {translatedMenuItems[1]}
-                    {/* events  */}
-                  </span>
-                }
-                key="2"
-              >
-                <Suspense fallback={"loading ..."}>
-                  <ContactInvestorEventActivityForm
-                   investorId={props. investorId }
-                   contactInVestDetail={props.contactInVestDetail} {...formProps}/>
-                </Suspense>
-              </TabPane>
-              <TabPane
-                tab={
-                  <span>
-                    <i class="far fa-calendar-check"></i>&nbsp;
-                    {translatedMenuItems[2]}
-                    {/* Calls */}
-                  </span>
-                }
-                key="3"
-              >
-                <Suspense fallback={"loading ..."}>
-                  <ContactInvestorTaskActivityForm 
-                   investorId={props. investorId }
-                   contactInVestDetail={props.contactInVestDetail} {...formProps}/>
-                </Suspense>
-              </TabPane>
-            </StyledTabs>
-          </TabsWrapper>
-          {/* <AddCallTaskModal
-          rowdata={props.rowdata}
-            addCallTaskModal={addCallTaskModal}
-            handleLeadCallModal={handleLeadCallModal}
-          /> */}
-        </>
-      );
-  }
+  
 };
 
 export default ContactInvestorActivityModal;

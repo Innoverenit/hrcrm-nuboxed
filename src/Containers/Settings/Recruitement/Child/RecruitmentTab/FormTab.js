@@ -2,6 +2,7 @@
 import React, { useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import QuotationConfigureForm from "./QuotationConfigureForm"
 import ContactConfigureForm from "./ContactConfigureForm"
 import SupplierConfigureForm from "./SupplierConfigureForm";
 import LeadsConfigureForm from "./LeadsConfigureForm";
@@ -72,6 +73,16 @@ const Form = (props) => {
               />
             </Suspense>
           );
+
+          case "7":
+            return (
+              <Suspense fallback={"Loading..."}>
+                <QuotationConfigureForm
+                  translateText={props.translateText}
+                  selectedLanguage={props.selectedLanguage}
+                />
+              </Suspense>
+            );
       default:
         return null;
     }
@@ -150,6 +161,20 @@ const Form = (props) => {
             </>
           }
           key="6"
+        >
+          {/* {renderTabContent("5")} */}
+        </TabPane>
+
+
+        <TabPane
+          tab={
+            <>
+              <span onClick={props.handleRecruitClick}>
+                <span className="!text-tab ml-[0.25em]">Quotation</span>
+              </span>
+            </>
+          }
+          key="7"
         >
           {/* {renderTabContent("5")} */}
         </TabPane>

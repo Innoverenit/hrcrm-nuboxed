@@ -1,6 +1,7 @@
 import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import {handleCallActivityModal} from "../../../../Activity/ActivityAction"
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import {handleContactInvestActivityModal} from "../../../ContactInvestAction"
 import AddBoxIcon from '@mui/icons-material/AddBox';
@@ -13,6 +14,7 @@ import {
   handleDocumentUploadModal,
 } from "../../../../Contact/ContactAction";
 import AddDocumentModals from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
+import ActivityListData from "../../../../Activity/ActivityListData";
 const ContactInvestTimeLine =lazy(()=>import("../Activity/ContactInvestTimeLine"));
 const LinkedContactInvestDocuments =lazy(()=>import("./ContactInvestDocument/LinkedContactInvestDocuments"));
 const ContactInvestorActivityModal =lazy(()=>import("../Activity/ContactInvestorActivityModal"));
@@ -78,11 +80,17 @@ class ContactInvestDetailTab extends Component {
           translateText={this.props.translateText}
        /></div>;
           case "3":
-              return  <div>  <ContactInvestTimeLine
+              return  <div>  
+                {/* <ContactInvestTimeLine
               contactInVestDetail={this.props.contactInVestDetail}
               selectedLanguage={this.props.selectedLanguage}
               translateText={this.props.translateText}
-      /></div>;
+      /> */}
+        <ActivityListData
+                      uniqueId={this.props.contactInVestDetail.contactId}
+                      type={"contact"}
+                      />
+      </div>;
         default:
           return null;
       }
@@ -171,7 +179,7 @@ class ContactInvestDetailTab extends Component {
                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                   
                         title={this.state.translatedMenuItems[4]}
-                         onClick={() => handleContactInvestActivityModal(true)}
+                         onClick={() => this.props.handleCallActivityModal(true)}
                        
                       />
                     </>
@@ -205,6 +213,10 @@ class ContactInvestDetailTab extends Component {
             contactId={contactId}
           />
                <ContactInvestorActivityModal
+                contact={this.props.contactInVestDetail.contactId}
+        type="contact"
+        callActivityModal={this.props.callActivityModal}
+        handleCallActivityModal={this.props.handleCallActivityModal}
                     translateText={this.props.translateText}
                     selectedLanguage={this.props.selectedLanguage}
                     translatedMenuItems={this.props.translatedMenuItems}
@@ -217,9 +229,10 @@ class ContactInvestDetailTab extends Component {
     );
   }
 }
-const mapStateToProps = ({ contact,contactinvest }) => ({
+const mapStateToProps = ({ contact,contactinvest,activity }) => ({
     documentUploadModal: contact.documentUploadModal,
     contactId:contact.contact.contactId,
+    callActivityModal:activity.callActivityModal,
     contactInvestorActivityModal:contactinvest.contactInvestorActivityModal,
 });
 const mapDispatchToProps = (dispatch) =>
@@ -229,6 +242,7 @@ const mapDispatchToProps = (dispatch) =>
       handleContactOpportunityModal,
       handleContactInvestActivityModal,
       handleContactReactSpeechModal,
+      handleCallActivityModal
     },
     dispatch
   );
