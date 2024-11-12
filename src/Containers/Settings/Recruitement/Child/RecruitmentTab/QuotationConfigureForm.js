@@ -1,35 +1,38 @@
 import React, { useState, useEffect,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import {
+    addCustomerConfigure,
+    getCustomerConfigure
+} from "../../../SettingsAction"
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
-import {  getAllDialCodeList } from "../../../Containers/Auth/AuthAction";
-import { getCustomerData } from "../../Customer/CustomerAction";
-import { getContactData } from "../../Contact/ContactAction";
+import {  getAllDialCodeList } from "../../../../Auth/AuthAction";
+import { getCustomerData } from "../../../../Customer/CustomerAction";
+import { getContactData } from "../../../../Contact/ContactAction";
 import { Button, Select,Switch,Input } from "antd";
-import { Formik, Form, Field, } from "formik";
+import { Formik, Form, Field,} from "formik";
 import * as Yup from "yup";
-import DraggableUpload1 from "../../../Components/Forms/Formik/DraggableUpload1";
+import DraggableUpload1 from "../../../../../Components/Forms/Formik/DraggableUpload1";
 import {
   addOpportunity,
   getInitiative,
   getOppLinkedWorkflow,
   getOppLinkedStages,
   addMoreContact
-} from "../OpportunityAction";
-import {getCustomerConfigure} from "../../Settings/SettingsAction"
-import {getAssignedToList} from "../../Employees/EmployeeAction"
-import { getCrm} from "../../Leads/LeadsAction";
-import {getSaleCurrency} from "../../Auth/AuthAction"
-import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
-import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
-import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
+} from "../../../../Opportunity/OpportunityAction";
+import {getAssignedToList} from "../../../../Employees/EmployeeAction"
+import { getCrm} from "../../../../Leads/LeadsAction";
+import {getSaleCurrency} from "../../../../Auth/AuthAction"
+import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
+import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
+import { DatePicker } from "../../../../../Components/Forms/Formik/DatePicker";
 import dayjs from "dayjs";
 import { Listbox } from "@headlessui/react";
-import { getAllEmployeelist } from "../../Investor/InvestorAction";
-import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
-import { BundleLoader } from "../../../Components/Placeholder";
-import {base_url} from "../../../Config/Auth";
+import { getAllEmployeelist } from "../../../../Investor/InvestorAction";
+import ReactDescription from "../../../../../Components/ReactSpeech/ReactDescription"
+import { BundleLoader } from "../../../../../Components/Placeholder";
+import {base_url} from "../../../../../Config/Auth";
 
 
 
@@ -41,19 +44,9 @@ const OpportunitySchema = Yup.object().shape({
   oppStage: Yup.string().required("Input needed!"),
   //customerId:Yup.string().required("Input needed!"),
 });
-function OpportunityForm(props) {
-
-
-
-
+function QuotationConfigureForm(props) {
   useEffect(() => {
     props.getCustomerConfigure(props.orgId,"add","quotation")
-  
-  }, []);
-  useEffect(() => {
-    
-    // props.getContactData(props.userId);
-    // props.getCustomerData(props.userId);
     props.getInitiative(props.userId);
      props.getOppLinkedStages(props.orgId);
      props.getOppLinkedWorkflow(props.orgId);
@@ -110,6 +103,65 @@ const [selectedStage, setSelectedStage] = useState(null);
   const [transcript, setTranscript] = useState('');
   const [isListening, setIsListening] = useState(false);
   const recognitionRef = useRef(null);
+
+
+
+  const [nameVisible, setIsNameVisible] = useState(false);
+
+  const [assignedToVisible, setAssignedToVisible] = useState(false);
+
+
+  const [customValue2Visible, setIsCustomValue2Visible] = useState(false);
+  const [customValue1Visible, setIsCustomValue1Visible] = useState(false);
+  const [startdateVisible, setIsStartDateVisible] = useState(false);
+
+
+  const [enddateVisible, setIsEndDateVisible] = useState(false);
+  const [oppValueVisible, setIsOppValueVisible] = useState(false);
+  const [descriptionVisible, setIsDescriptionVisible] = useState(false);
+  const [includeVisible, setIsIncludeVisible] = useState(false);
+
+
+  const [customerVisible, setIsCustomerVisible] = useState(false);
+  const [contactVisible, setIsContactVisible] = useState(false);
+  const [workflowVisible, setIsWorkflowVisible] = useState(false);
+  const [stageVisible, setIsStageVisible] = useState(false);
+
+
+  const [documentVisible, setIsDocumentVisible] = useState(false);
+  const [autoEmailVisible, setIsAutoEmailVisible] = useState(false);
+  const [potentilaCurrencyVisible, setIsPotentialCurrencyVisible] = useState(false);
+
+
+
+
+
+  useEffect(() => {
+ 
+    setIsNameVisible(props.customerConfigure.nameInd);
+    
+    setAssignedToVisible(props.customerConfigure.assignedToInd);
+    setIsCustomValue2Visible(props.customerConfigure.customValue2Ind)
+    setIsCustomValue1Visible(props.customerConfigure.customValue1Ind)
+    setIsStartDateVisible(props.customerConfigure.startDateInd)
+    setIsEndDateVisible(props.customerConfigure.endDateInd)
+    setIsOppValueVisible(props.customerConfigure.oppValueInd)
+    setIsDescriptionVisible(props.customerConfigure.descriptionInd)
+    setIsIncludeVisible(props.customerConfigure.includeInd)
+    setIsCustomerVisible(props.customerConfigure.customerInd)
+    setIsContactVisible(props.customerConfigure.contactInd)
+    setIsWorkflowVisible(props.customerConfigure.workFlowInd)
+    setIsStageVisible(props.customerConfigure.stageInd)
+
+    setIsDocumentVisible(props.customerConfigure.documentInd)
+    setIsAutoEmailVisible(props.customerConfigure.autoEmailQtnInd)
+    setIsPotentialCurrencyVisible(props.customerConfigure.potentialCurrencyInd)
+    
+   
+   
+  // }
+}, [props.customerConfigure]);
+    
 
   // useEffect(() => {
   //   fetchCustomers();
@@ -242,6 +294,78 @@ const  handleEmailInd = (checked) => {
     if (!touched) {
       fetchInclude();
       setTouched(true);
+    }
+  };
+
+
+
+
+  const toggleFieldVisibility = (fieldName) => {
+    switch (fieldName) {
+           
+            case 'name':
+                setIsNameVisible(!nameVisible);
+            break;
+             case 'assignedTo':
+                setAssignedToVisible(!assignedToVisible);
+            break;
+             case 'customValue1':
+                setIsCustomValue1Visible(!customValue1Visible);
+            break;
+                                        
+                    case 'customValue2':
+                        setIsCustomValue2Visible(!customValue2Visible);
+                        break;
+                        
+                        case 'startDate':
+                            setIsStartDateVisible(!startdateVisible);
+                            break;
+                            case 'endDate':
+                                setIsEndDateVisible(!enddateVisible);
+                                break;
+                               
+                                 
+                                    case 'oppValue':
+                                        setIsOppValueVisible(!oppValueVisible);
+                                      break;
+                                       case 'description':
+                                        setIsDescriptionVisible(!descriptionVisible);
+                                      break;
+
+
+                                      case 'include':
+                                        setIsIncludeVisible(!includeVisible);
+                                        break;
+
+                                        case 'customer':
+                                            setIsCustomerVisible(!customerVisible);
+                                            break;
+
+
+                                            case 'contact':
+                                                setIsContactVisible(!contactVisible);
+                                                break;
+
+                                                case 'workflow':
+                                                    setIsWorkflowVisible(!workflowVisible);
+                                                break;
+
+                                                case 'stage':
+                                                    setIsStageVisible(!stageVisible);
+                                                    break;
+
+                                                    case 'documented':
+                                                        setIsDocumentVisible(!documentVisible);
+
+                                                        case 'autoEmail':
+                                                            setIsAutoEmailVisible(!autoEmailVisible);
+
+
+                                                            case 'potentialCurrency':
+                                                                setIsPotentialCurrencyVisible(!potentilaCurrencyVisible);
+                                                    break;
+      default:
+        break;
     }
   };
 
@@ -633,25 +757,8 @@ const handleStageChange=(value)=>{
     <>
       <Formik
         initialValues={{
-          opportunityName: "",
-          startDate: startDate || dayjs(),
-          endDate: endDate || null,
-          endDate: dayjs(),
-          userId: props.userId,
-          description: "",
-          proposalAmount: "",
-          // excelId: "",
-          currency: props.user.currency,
-          orgId: props.organizationId,
-          userId: props.userId,
-          // customerId: undefined,
-          oppWorkflow: "",
-          contactId: undefined,
-          oppInnitiative: "",
-          oppStage: "",
-          salesUserIds: selectedOption ? selectedOption.employeeId:props.userId,
-          // included: selectedValues,
-          emialInd:emailInd ? "true" : "false",
+            formType:"add",
+            baseFormType:"quotation",
         }}
         // validationSchema={OpportunitySchema}
         onSubmit={(values, { resetForm }) => {
@@ -728,25 +835,49 @@ const handleStageChange=(value)=>{
 
           let newEndTime = `${finalEndTime}${timeEndPart}`;
 
-          props.addOpportunity(
+          props.addCustomerConfigure(
             {
               ...values,
-              customerId:selectedCustomer,
-              contactId:selectedContact,
-              oppStage: selectedStage,
-              oppWorkflow: selectedWorkflow,
-              workFlowType:selectedWorkFlowType,
-              startDate: `${newStartDate}T20:00:00Z`,
-              endDate: `${newEndDate}T20:00:00Z`,
-              included: selectedValues,
-              description: text,
-              salesUserIds: selectedOption ? selectedOption.employeeId:props.userId,
-              emialInd:emailInd ? "true" : "false",
+              nameInd:nameVisible,
+assignedToInd:assignedToVisible,
+customValue1Ind:customValue1Visible,
+
+customValue2Ind:customValue2Visible,
+startDateInd:startdateVisible,
+endDateInd:enddateVisible,
+oppValueInd:oppValueVisible,
+descriptionInd:descriptionVisible,
+includeInd:includeVisible,
+customerInd:customerVisible,
+contactInd:contactVisible,
+workFlowInd:workflowVisible,
+stageInd:stageVisible,
+documentInd:documentVisible,
+autoEmailQtnInd:autoEmailVisible,
+potentialCurrencyInd:potentilaCurrencyVisible,
+
             },
             props.userId,
-            props.customerId,
-            resetForm()
-          );
+            () => this.handleReset(resetForm)
+          )
+        //     {
+        //       ...values,
+        //       customerId:selectedCustomer,
+        //       contactId:selectedContact,
+        //       oppStage: selectedStage,
+        //       oppWorkflow: selectedWorkflow,
+        //       workFlowType:selectedWorkFlowType,
+        //       startDate: `${newStartDate}T20:00:00Z`,
+        //       endDate: `${newEndDate}T20:00:00Z`,
+        //       included: selectedValues,
+        //       description: text,
+        //       salesUserIds: selectedOption ? selectedOption.employeeId:props.userId,
+        //       emialInd:emailInd ? "true" : "false",
+        //     },
+        //     props.userId,
+        //     props.customerId,
+        //     resetForm()
+        //   );
         }}
       >
         {({
@@ -762,8 +893,6 @@ const handleStageChange=(value)=>{
           <Form className="form-background">
             <div class=" flex justify-between max-sm:flex-col">
               <div class=" h-full w-[47.5%] mt-3 max-sm:w-wk">
-              {props.customerConfigure.nameInd===true&&
-              <>
               <div class="font-bold text-xs">{translatedMenuItems[0]}</div>
                 <Field          
                   name="opportunityName"
@@ -774,11 +903,15 @@ const handleStageChange=(value)=>{
                   component={InputComponent}              
                   inlineLabel
                 />
-                </>
-              }
+
+<Switch
+        checked={nameVisible}
+    onChange={() => toggleFieldVisibility('name')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                 
                 <div class="flex justify-between max-sm:flex-col mt-3">
-                {props.customerConfigure.startDateInd===true&&
                 <div class=" w-w47.5 max-sm:w-wk">
                 <div class="font-bold text-xs">{translatedMenuItems[1]}</div>
                     <Field
@@ -789,9 +922,13 @@ const handleStageChange=(value)=>{
                       isColumn
                       inlineLabel
                     />
+                                                                       <Switch
+        checked={startdateVisible}
+    onChange={() => toggleFieldVisibility('startDate')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                   </div>
-}
-{props.customerConfigure.endDateInd===true&&
                   <div class=" w-w47.5 max-sm:w-wk">
                   <div class="font-bold text-xs">{translatedMenuItems[2]}</div>
                     <Field
@@ -814,12 +951,16 @@ const handleStageChange=(value)=>{
                         }
                       }}
                     />
+                                                                       <Switch
+        checked={enddateVisible}
+    onChange={() => toggleFieldVisibility('endDate')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                   </div>
-}
                 </div>
                
                 <div class="flex justify-between max-sm:flex-col mt-3">
-                {props.customerConfigure.oppValueInd===true&&
                 <div class=" w-w47.5 max-sm:w-wk">
                 <div class="font-bold text-xs">{translatedMenuItems[3]}</div>
                     <Field
@@ -829,9 +970,13 @@ const handleStageChange=(value)=>{
                       width={"100%"}
                       component={InputComponent}
                     />
+                                                                       <Switch
+        checked={oppValueVisible}
+    onChange={() => toggleFieldVisibility('oppValue')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                   </div>
-}
-{props.customerConfigure.potentialCurrencyInd===true&&
                   <div class=" w-w47.5 max-sm:w-wk">
                   <div class="font-bold text-xs">{translatedMenuItems[4]}</div>
                     <Field
@@ -851,11 +996,20 @@ const handleStageChange=(value)=>{
                           : []
                       }
                     />
+                                                                       <Switch
+        checked={potentilaCurrencyVisible}
+    onChange={() => toggleFieldVisibility('potentialCurrency')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                   </div>
-}
                 </div>
+
+
+
+
+                   
                 <div class="flex justify-between max-sm:flex-col mt-3">
-                {props.customerConfigure.customValue1Ind===true&&
                 <div class=" w-w47.5 max-sm:w-wk">
                 <div class="font-bold text-xs">
                 Custom Value1
@@ -867,10 +1021,13 @@ const handleStageChange=(value)=>{
                       width={"100%"}
                       component={InputComponent}
                     />
-   
+                                                                       <Switch
+        checked={customValue1Visible}
+    onChange={() => toggleFieldVisibility('customValue1')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                   </div>
-}
-                  {props.customerConfigure.customValue2Ind===true&&
                   <div class=" w-w47.5 max-sm:w-wk">
                   <div class="font-bold text-xs">
                     Custom Value2
@@ -893,62 +1050,31 @@ const handleStageChange=(value)=>{
                           : []
                       }
                     />
-   
+                                                                       <Switch
+        checked={customValue2Visible}
+    onChange={() => toggleFieldVisibility('customValue2')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                   </div>
-}
                 </div>
-                {props.customerConfigure.descriptionInd===true&&
                 <div class="mt-3">
                 <ReactDescription
                 setText={setText}
                 text={text}
                 />
-              {/* <div>
-                <span class="font-bold text-xs">{translatedMenuItems[5]}</span>
-                Description
-                   <span>
-                    <span onClick={startListening}>
-                      <Tooltip title="Start">
-                        <span >
-                          <RadioButtonCheckedIcon  className="!text-icon ml-1 text-red-600" />
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={stopListening}>
-                      <Tooltip title="Stop">
-                        <span>
-                          <StopCircleIcon   className="!text-icon ml-1 text-green-600" />
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={resetTranscript}>
-                      <Tooltip title="Clear">
-                        <span >
-                          <RotateRightIcon  className="!text-icon ml-1"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-                    </span>
-                
-                  <div>
-                    <textarea
-                      name="description"
-                      className="textarea"
-                      type="text"
-                      value={transcript ? transcript : text}
-                      onChange={handleTextChange}
-                    ></textarea>
-                  </div>
-                  </div> */}
+                                                                   <Switch
+        checked={descriptionVisible}
+    onChange={() => toggleFieldVisibility('description')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
+   
               </div>
-}
               </div>
 
             <div
                class=" h-full w-[47.5%] max-sm:w-wk mr-1">
-                            {props.customerConfigure.assignedToInd===true&&
               <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
@@ -1015,11 +1141,16 @@ const handleStageChange=(value)=>{
                 </Listbox.Options>
               )}
             </div>
+            <Switch
+        checked={assignedToVisible}
+    onChange={() => toggleFieldVisibility('assignedTo')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
           </>
         )}
       </Listbox>
-}
-{props.customerConfigure.includeInd===true&&
+
        <div class=" mt-2" style={{display:"flex",flexDirection:"column"}}>    
                   <div className="font-bold text-xs">
                 {translatedMenuItems[7]}
@@ -1042,10 +1173,14 @@ const handleStageChange=(value)=>{
             </Option>
           ))}
         </Select>
-        </div>  
-}      
+        <Switch
+        checked={includeVisible}
+    onChange={() => toggleFieldVisibility('include')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
+        </div>        
 <div class="flex justify-between max-sm:flex-col mt-[0.75rem]">
-{props.customerConfigure.customerInd===true&&
 <div class=" w-w47.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
 {translatedMenuItems[8]}
@@ -1064,10 +1199,14 @@ const handleStageChange=(value)=>{
           </Option>
         ))}
       </Select>
+      <Switch
+        checked={customerVisible}
+    onChange={() => toggleFieldVisibility('customer')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
           
             </div>
-}
-{props.customerConfigure.contactInd===true&&
             <div class=" w-w47.5 max-sm:w-wk">                         
 
 <div className= "font-bold text-[0.75rem]">
@@ -1091,9 +1230,14 @@ const handleStageChange=(value)=>{
             {contact.fullName}
           </Option>
         ))}
-      </Select>            
+      </Select>  
+      <Switch
+        checked={contactVisible}
+    onChange={() => toggleFieldVisibility('contact')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />          
                 </div>
-}
                         </div>
 
 
@@ -1212,7 +1356,6 @@ const handleStageChange=(value)=>{
                 
                                           
       <div class="flex justify-between max-sm:flex-col mt-3">
-      {props.customerConfigure.workFlowInd===true&&
                   <div class=" w-w47.5 max-sm:w-wk">
                    
 <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Workflow</label>
@@ -1230,9 +1373,13 @@ const handleStageChange=(value)=>{
           </Option>
         ))}
       </Select>
+      <Switch
+        checked={workflowVisible}
+    onChange={() => toggleFieldVisibility('workflow')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                   </div>
-}
-{props.customerConfigure.stageInd===true&&
                  
                   <div class=" w-w47.5 max-sm:w-wk ">
                   <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Stage</label>
@@ -1249,20 +1396,29 @@ const handleStageChange=(value)=>{
           </Option>
         ))}
       </Select>
+      <Switch
+        checked={stageVisible}
+    onChange={() => toggleFieldVisibility('stage')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                   </div>
-}
                 </div>
-                {props.customerConfigure.documentInd===true&&
                 <div class="mt-3">
                                         <Field
                                             name="excelId"
                                             // isRequired
                                             component={DraggableUpload1}
                                         />
+
+<Switch
+        checked={documentVisible}
+    onChange={() => toggleFieldVisibility('documented')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                                     </div>
-}
                                     <div class=" flex">
-                                    {props.customerConfigure.autoEmailQtnInd===true&&
                   <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs">
                      Auto Email Quotation to receipient?
@@ -1274,9 +1430,14 @@ const handleStageChange=(value)=>{
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
+                                                                           <Switch
+        checked={autoEmailVisible}
+    onChange={() => toggleFieldVisibility('autoEmail')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
                       </div>
                     </div>
-}
                     </div>
               </div> 
              
@@ -1286,7 +1447,7 @@ const handleStageChange=(value)=>{
               <Button
                 type="primary"
                 htmlType="submit"
-                loading={addingOpportunity}
+                loading={props.addingCustomerConfig}
               >
                 <div class="font-bold font-poppins text-xs"> Create</div>
              
@@ -1300,9 +1461,10 @@ const handleStageChange=(value)=>{
   );
 }
 
-const mapStateToProps = ({ auth, settings,opportunity,employee,currency,investor, contact, customer,leads }) => ({
+const mapStateToProps = ({ auth, opportunity,employee,currency,investor, contact, customer,leads,settings }) => ({
   user: auth.userDetails,
   crmAllData:leads.crmAllData,
+  addingCustomerConfig:settings.addingCustomerConfig,
   userId: auth.userDetails.userId,
   customerConfigure:settings.customerConfigure,
   organizationId: auth.userDetails.organizationId,
@@ -1335,7 +1497,6 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       addOpportunity,
-      getCustomerConfigure,
       getAllDialCodeList,
       getContactData,
       getCustomerData,
@@ -1343,6 +1504,8 @@ const mapDispatchToProps = (dispatch) =>
       getOppLinkedWorkflow,
       getOppLinkedStages,
       getCrm,
+      addCustomerConfigure,
+      getCustomerConfigure,
       addMoreContact,
       getAllEmployeelist,
       getAssignedToList,
@@ -1351,4 +1514,4 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(OpportunityForm);
+export default connect(mapStateToProps, mapDispatchToProps)(QuotationConfigureForm);
