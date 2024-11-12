@@ -238,7 +238,7 @@ class ShipperDetailsTab extends Component {
               tab={
                 <>
                   <span className="!text-tab">
-                    <RocketLaunchIcon className=" !text-tab text-[#bdd358] mr-2">          
+                    <RocketLaunchIcon className=" !text-tab text-[#bdd358] mr-1">          
                     {/* ship id */}
 </RocketLaunchIcon>
 {this.state.translatedMenuItems[1]} 
@@ -341,7 +341,7 @@ class ShipperDetailsTab extends Component {
               tab={
                 <>
                   <span className="!text-tab">
-                  <ContactsIcon className="!text-icon text-[#96bdc6] mr-1" />
+                  <ContactsIcon className="!text-icon text-[#96bdc6] " />
                     &nbsp;
                     {this.state.translatedMenuItems[4]}
                     {/* Contact */}
@@ -379,7 +379,7 @@ class ShipperDetailsTab extends Component {
               tab={
                 <>
                   <span className="!text-tab">
-                  <RequestQuoteIcon/>
+                  <RequestQuoteIcon className=" !text-icon "/>
                     &nbsp;
                     {this.state.translatedMenuItems[5]}
                     {/* Cost */}

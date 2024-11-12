@@ -158,7 +158,7 @@ class SupplierContactForm extends Component {
                         setFieldTouched,
                         defaultCustomers,
                     }) => (
-                        <Form className="form-background">
+                        <Form className="form-background h-[70vh]">
               <div class=" flex justify-between">
                 <div class=" h-full w-w47.5" >
                 <div class=" flex flex-nowrap justify-between mt-3">
@@ -380,8 +380,8 @@ onChange={this.handleCustomerChange}
 
     </div> */}
     </div>
-                               
-    <div class=" w-2/5">
+            <div className="flex justify-between mt-2">                   
+    <div class=" w-[47.5%]">
                                         <div class=" text-xs font-bold font-poppins"> 
                                         {translatedMenuItems[9]}</div>
                                             <Field
@@ -396,7 +396,7 @@ onChange={this.handleCustomerChange}
                                                 }}
                                             />
                                         </div>
-                                   <div class="  w-w47.5 mt-2">
+                                   <div class=" w-[47.5%]">
                                         <div class=" text-xs font-bold font-poppins"> 
                                         {translatedMenuItems[10]}</div>
                                             <Field
@@ -410,6 +410,7 @@ onChange={this.handleCustomerChange}
                                                     width: "100%"
                                                 }}
                                             />
+                                        </div>
                                         </div>
                                         </div>
 

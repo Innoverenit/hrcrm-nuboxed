@@ -255,7 +255,7 @@ const ContactActionLeft = (props) => {
       </div>
     
 <div class="w-32 md:ml-4 max-sm:hidden">
-      <select
+      <select className="h-[4vh]"
          style={{ boxShadow: "0 0.15em 0.3em #aaa"
         }}
        value={props.selectedCountry} onChange={props.handleCountryChange} >

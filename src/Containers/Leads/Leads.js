@@ -1,7 +1,7 @@
 import React, { Component, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import FWLogo1 from "../../../src/Assets/Images/cashShake.svg";
+import { BundleLoader } from "../../Components/Placeholder";
 import {getLeads} from "../Leads/LeadsAction"
 import AddLeadsImportModal from "../Leads/AddLeadsImportModal"
 import {handleLeadsModal,updateOwnerLeadById, handleLeadsImportModal,updateJunkLeadById } from "./LeadsAction";
@@ -216,10 +216,7 @@ class Leads extends Component {
         />
        
         {/* <LeadsTable/>  */}
-        <Suspense fallback={ <div className="custom-loader">
-          <div className="loader !block"> </div>
-      <div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
-    </div>}>
+        <Suspense fallback={ <BundleLoader />}>
          {teamsAccessInd ? (
           <LeadsTeamCardList 
           handleCheckboxChange={this.handleCheckboxChange}

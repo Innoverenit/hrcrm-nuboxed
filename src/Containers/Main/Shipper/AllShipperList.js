@@ -21,6 +21,12 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import ShipperSearchedData from "./ShipperSearchedData";
 import AddShipperAdressModal from "./AddShipperAdressModal";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import CategoryIcon from '@mui/icons-material/Category'
+import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import ApiIcon from '@mui/icons-material/Api';
 
 function AllShipperList(props) {
   const { handleUpdateShipperModal, updateShipperModal } = props;
@@ -72,14 +78,22 @@ function AllShipperList(props) {
       <div className=' flex  sticky  z-auto'>
       <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-            <div className="font-poppins font-bold text-[#00A2E8] text-base w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[0]}</div>
-            <div className="font-poppins font-bold text-xs w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[1]} #</div>
-            <div className="font-poppins font-bold text-xs w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[2]}</div>
-            <div className="font-poppins font-bold text-xs w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[3]}</div>
-            <div className="font-poppins font-bold text-xs w-[7.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[4]}</div>
-            <div className="font-poppins font-bold text-xs w-[3.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {props.translatedMenuItems[5]}</div>
-            <div className="font-poppins font-bold text-xs w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[6]}</div>
-            <div className="font-poppins font-bold text-xs w-[8.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">API</div>
+            <div className="font-poppins font-bold text-[#00A2E8] text-base w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  
+               <CategoryIcon className='!text-icon '/> {props.translatedMenuItems[0]}</div>
+            <div className="font-poppins font-bold text-xs w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>   {props.translatedMenuItems[1]}</div>
+            <div className="font-poppins font-bold text-xs w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <MailOutlineIcon className="!text-icon  text-[#4f5d75]"/> {props.translatedMenuItems[2]}</div>
+            <div className="font-poppins font-bold text-xs w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <LocalShippingIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[3]}</div>
+            <div className="font-poppins font-bold text-xs w-[7.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
+            <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[4]}</div>
+            <div className="font-poppins font-bold text-xs w-[3.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <LocationOnIcon className='!text-base  text-[#e4eb2f]'/>{props.translatedMenuItems[5]}</div>
+            <div className="font-poppins font-bold text-xs w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              {props.translatedMenuItems[6]}</div>
+            <div className="font-poppins font-bold text-xs w-[8.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                <ApiIcon className='!text-base  text-[#e4eb2f]'/>  API</div>
           </div>
           <InfiniteScroll
         dataLength={props.allShipper.length}

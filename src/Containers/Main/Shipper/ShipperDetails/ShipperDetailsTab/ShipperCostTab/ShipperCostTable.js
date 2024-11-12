@@ -8,12 +8,11 @@ import {
   updateCostShipper,
 } from "../../../ShipperAction";
 import {  } from "../../../../Suppliers/SuppliersAction"
-import { Tooltip,Input ,Button} from "antd";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-//import UpdateShipperCostModal from "./UpdateShipperCostModal";
+import { Input ,Button} from "antd";
 import { OnlyWrapCard } from '../../../../../../Components/UI/Layout';
 import { CloseOutlined, EditOutlined, SaveOutlined } from "@ant-design/icons";
-
+import SourceIcon from '@mui/icons-material/Source';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 
 class ShipperCostTable extends Component {
   constructor(props) {
@@ -109,12 +108,14 @@ class ShipperCostTable extends Component {
  <div className=' flex  sticky h-[78vh]  z-auto'>
           <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
             <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-              <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[7.1rem]">{this.state.translatedMenuItems[0]}</div>
+              <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[7.1rem]">
+              <SourceIcon className="!text-icon  text-[#4b5043]"/> {this.state.translatedMenuItems[0]}</div>
               <div className="font-bold font-poppins text-xs md:w-[11.12rem]">
-                {/* {this.state.translatedMenuItems[1]} */}
-                Destination
+              <i className=" fab fa-artstation  text-[#b744b8]"></i> {this.state.translatedMenuItems[1]}
+                {/* Destination */}
                 </div>
-              <div className="font-bold font-poppins text-xs md:w-[4.8rem] ">{this.state.translatedMenuItems[2]}</div>
+              <div className="font-bold font-poppins text-xs md:w-[4.8rem] "> <CurrencyExchangeIcon className='!text-base mr-1 text-[#e4eb2f]'
+              />{this.state.translatedMenuItems[2]}</div>
               <div className=" md:w-[3.1rem]"></div>
 
             </div>
@@ -175,10 +176,10 @@ class ShipperCostTable extends Component {
 
           return (
             <div key={item.shippingTransferCostId}>
-              <div className="flex rounded justify-between mt-1 bg-white h-8 items-center">
+              <div className="flex rounded justify-between mt-1 bg-white py-ygap items-center hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                 <div className="flex">
-                  {/* Source Field */}
-                  <div className="flex font-medium flex-col border-l-2 border-green-500 bg-[#eef2f9] md:w-[10rem] w-full max-sm:justify-between">
+                  {/* Source Field */}  <div className="flex font-medium flex-col  justify-center h-8 ml-gap bg-[#eef2f9] md:w-[16rem] w-full max-sm:justify-between">
+               
                     {isEditing ? (
                       <Input
                         value={editValues.source}
@@ -186,12 +187,12 @@ class ShipperCostTable extends Component {
                         size="small"
                       />
                     ) : (
-                      <h4 className="text-xs font-poppins">{item.source}</h4>
+                      <div class="flex  text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">{item.source}</div>
                     )}
                   </div>
 
                   {/* Destination Field */}
-                  <div className="flex font-medium flex-col items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[11.1rem] w-full max-sm:justify-between">
+                  <div className="flex font-medium flex-col  justify-center h-8 ml-gap bg-[#eef2f9] md:w-[20.1rem] w-full max-sm:justify-between">
                     {isEditing ? (
                       <Input
                         value={editValues.destination}
@@ -199,13 +200,14 @@ class ShipperCostTable extends Component {
                         size="small"
                       />
                     ) : (
-                      <h4 className="text-xs font-poppins">{item.destination}</h4>
+                      <div class="flex  text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">{item.destination}</div>
+             
                     )}
                   </div>
                 </div>
 
                 {/* Price Field */}
-                <div className="flex font-medium flex-col md:w-[24rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] w-full max-sm:justify-between">
+                <div className="flex font-medium flex-col md:w-[24rem]  justify-center h-8 ml-gap bg-[#eef2f9] w-full max-sm:justify-between">
                   {isEditing ? (
                     <Input
                       value={editValues.price}
@@ -213,7 +215,7 @@ class ShipperCostTable extends Component {
                       size="small"
                     />
                   ) : (
-                    <div className="text-xs font-poppins text-center">{item.price}</div>
+                    <div class="flex  text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">{item.price}</div>
                   )}
                 </div>
 

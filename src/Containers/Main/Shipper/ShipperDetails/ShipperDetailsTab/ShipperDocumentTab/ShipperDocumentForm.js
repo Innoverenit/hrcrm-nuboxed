@@ -47,7 +47,7 @@ class ShipperDocumentForm extends Component {
        "110",// "Name id" 1
        "147",// "Description" 2
        "154",  //Submit 3
-   
+   "887",//Shipper 4
        
             ];
 
@@ -152,8 +152,8 @@ class ShipperDocumentForm extends Component {
             values,
             ...rest
           }) => (
-            <Form class="form-background">
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <Form class="form-background h-[30vh]">
+              <div className="flex justify-between" >
                 <div className="h-[100%] w-[45%]"              
                 ><div class=" mt-3"/>
                   <Field
@@ -166,11 +166,11 @@ class ShipperDocumentForm extends Component {
                     <p style={{ color: "tomato", fontWeight: 600 }}>
                       {errors.documentId}
                     </p>
-                  )}             
+                  )}  
+                   <div class=" mt-3 font-bold font-poppins text-xs">{this.state.translatedMenuItems[0]}</div>           
                   <Field
                     name="documentTypeId"
-                    selectType="documentType"
-                    label= {this.state.translatedMenuItems[0]}                
+                    selectType="documentType"            
                     component={SearchSelect}
                     isColumn
                     margintop={"0.25em"}
@@ -180,16 +180,17 @@ class ShipperDocumentForm extends Component {
                 </div>
                 <div className="h-[100%] w-[45%]"                
                 >
+                   <div class=" mt-3 font-bold font-poppins text-xs">{this.state.translatedMenuItems[1]}</div>
                   <Field
-                    name="documentName"
-                    label= {this.state.translatedMenuItems[1]}                   
+                    name="documentName"              
                     width={"100%"}
                     isColumn
                     component={InputComponent}             
-                  />               
+                  />  
+                   <div class=" mt-3 font-bold font-poppins text-xs">{this.state.translatedMenuItems[2]}</div>             
                   <Field
                     name="documentDescription"
-                    label= {this.state.translatedMenuItems[2]}                 
+                               
                     isRequired
                     isColumn
                     width={"100%"}
@@ -204,7 +205,7 @@ class ShipperDocumentForm extends Component {
                   type="primary"
                   Loading={addingDocumentByShipperId}
                 >
-                        {this.state.translatedMenuItems[3]}
+                       <div class=" mt-3 font-bold font-poppins text-xs">{this.state.translatedMenuItems[3]}</div>
                 </Button>
               </FlexContainer>
             </Form>
