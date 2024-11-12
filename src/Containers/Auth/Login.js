@@ -75,22 +75,19 @@ class Login extends Component {
       <>
         <div class="flex justify-between p-4">
           
-          <div class=" flex flex-col bg-white relative justify-center w-1/2 items-center md:min-h-screen max-sm:w-wk h-[80vh] "
-            // style={{
-            //   // backgroundColor: "#F5F5F5",
-            //   backgroundColor: "white",
-            //   flexDirection: "column",
-            //   position: "relative",
-            //   margin: "auto",
-            // }}
-          >
+          <div class=" flex flex-col bg-[#fffafa] relative justify-center w-1/2 items-center md:min-h-screen max-sm:w-wk h-[80vh] ">
              {/* <div className=" text-xxl font-bold font-poppins"> Welcome to Korero.</div> */}
-            <img
-              className="big-logo w-[13rem]"
+             
+             <div className=" flex justify-start ">
+              <img
+              className="big-logo w-[8rem]"
               src={DevelopTk}
               alt="Tekorero logo"
-            />
+            /></div>
+            
             <br />
+            <div className=" text-2xl font-bold font-poppins">Log in</div>
+            <div className=" text-sm font-poppins">Welcome back! Please enter your details.</div>
 
             <div class="w-[25rem] p-4 max-sm:w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-box bg-white border-2">
               <Formik
