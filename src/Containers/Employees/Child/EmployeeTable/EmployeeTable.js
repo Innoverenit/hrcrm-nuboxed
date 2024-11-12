@@ -23,11 +23,17 @@ import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import {
   getRoles,
 } from "../../../Settings/Category/Role/RoleAction";
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 import EmployeeDetailsView from "../EmployeeGroup/EmployeeDetails/EmployeeDetailsView";
 import SuspendEmployee from "../SuspendEmployee/SuspendEmployee";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import MultiOrgEmployee from "../MultiOrgEmployee";
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import BusinessIcon from '@mui/icons-material/Business';
 import EmployeeSearchedData from "./EmployeeSearchedData";
 const OpenNotifyDrawer =lazy(()=>import("../EmployeeCard/OpenNotifyDrawer"));
 const EmployeePulseDrawerModal =lazy(()=>import("./EmployeePulseDrawerModal"));
@@ -252,20 +258,20 @@ function EmployeeTable(props) {
      <div class=" h-h86 overflow-auto overflow-x-auto">
         <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
-                    <div className="w-[14rem] text-[#00A2E8] text-base font-bold font-poppins md:w-[13.5rem]">{translatedMenuItems[0]}</div>
+                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky items-end z-10 max-sm:hidden">
+                    <div className="w-[14rem] text-[#00A2E8] text-base font-bold font-poppins md:w-[13.5rem]"><LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}</div>
                     {/* Name */}
-                    <div className=" md:w-[9.1rem] font-bold font-poppins text-xs">{translatedMenuItems[1]}</div>
+                    <div className=" md:w-[9.1rem] "><ApartmentIcon className='!text-icon text-[#f0386b] '  />  {translatedMenuItems[1]}</div>
                     {/* Department */}
-                    <div className=" md:w-[6.8rem] font-bold font-poppins text-xs ">{translatedMenuItems[2]}</div>
+                    <div className=" md:w-[6.8rem]  "><i className=" fab fa-artstation mr-1 text-[#b744b8]"></i>{translatedMenuItems[2]}</div>
                     {/* Role */}
-                    <div className="md:w-[9.7rem] font-bold font-poppins text-xs">{translatedMenuItems[3]}</div>
+                    <div className="md:w-[9.7rem] "><LocalPhoneIcon className='!text-icon mr-1 text-[#ff9f1c] '  />{translatedMenuItems[3]}</div>
                     {/* Mobile # */}
-                    <div className="md:w-[13.9rem] font-bold font-poppins text-xs">{translatedMenuItems[4]}</div>
+                    <div className="md:w-[13.9rem] "><MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '  />{translatedMenuItems[4]}</div>
                     {/* Email # */}
-                    <div className="md:w-[10.2rem] font-bold font-poppins text-xs">{translatedMenuItems[5]}</div>
+                    <div className="md:w-[10.2rem] "> <RadioButtonCheckedIcon className="!text-icon mr-1 text-[#f28482]"/>  {translatedMenuItems[5]}</div>
                     {/* Stop Access */}
-                    <div className="md:w-[11.4rem] font-bold font-poppins text-xs">{translatedMenuItems[6]}</div>
+                    <div className="md:w-[11.4rem] "><BusinessIcon className="!text-icon mr-1 text-[#f28482]"/> {translatedMenuItems[6]}</div>
                     {/* Multi Org */}               
                 </div>
                 {props.employees.map((item) => {

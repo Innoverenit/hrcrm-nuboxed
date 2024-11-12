@@ -16,7 +16,6 @@ import dayjs from "dayjs";
 import { AudioOutlined } from '@ant-design/icons';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { BundleLoader } from "../../../../../../Components/Placeholder";
-import NodataFoundPage from '../../../../../../Helpers/ErrorBoundary/NodataFoundPage';
 import { MultiAvatar } from "../../../../../../Components/UI/Elements";
 import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
 import { TerminalSharp } from "@mui/icons-material";
@@ -28,6 +27,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ContactPageIcon from "@mui/icons-material/ContactPage";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import Shop2Icon from '@mui/icons-material/Shop2'; 
+import EmptyPage from "../../../../EmptyPage";
 
 const PoLocationModal  = lazy(() => import("./PoLocationModal"));
 const POSupplierDetailsModal  = lazy(() => import("./POSupplierDetailsModal"));
@@ -237,7 +237,7 @@ const timerRef = useRef(null);
         />
       </div>
                 <div class="rounded m-1 p-1 w-[99%] mt-3  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[99%]  p-1 bg-transparent font-bold sticky z-10">
+                    <div className=" flex justify-between w-[99%]  p-1 bg-transparent font-bold items-end sticky z-10">
                         <div className=" w-[13.1rem] text-[#00A2E8] text-base  max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
                         <Shop2Icon className=" !text-icon"/>PO ID
                             </div>
@@ -270,7 +270,7 @@ const timerRef = useRef(null);
                             height={"67vh"}
                             style={{scrollbarWidth:"thin"}}
                         >
-                            {props.purchaseList.length ? <>
+                            {!props.purchaseList.length ? <>
                                 {props.purchaseList.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -432,7 +432,7 @@ const timerRef = useRef(null);
                                 })}
                             </>
                                 : !props.purchaseList.length
-                                    && !props.fetchingPurchaseSupplierList ? <NodataFoundPage /> : null}
+                                    && !props.fetchingPurchaseSupplierList ? <EmptyPage /> : null}
                         </InfiniteScroll>
                     </div>
                 </div>

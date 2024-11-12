@@ -24,7 +24,6 @@ import EuroIcon from '@mui/icons-material/Euro';
 import { DeleteOutlined } from "@ant-design/icons";
 import { Popconfirm, Tooltip } from "antd";
 import { Link } from 'react-router-dom';
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import UpdateSupplierModal from "./UpdateSupplierModal";
 import SupplierPriceModal from "./SupplierPriceModal";
 import SupplierAddListModal from "./SupplierAddListModal";
@@ -32,6 +31,7 @@ import SuplierPublishToggle from "./SuplierPublishToggle";
 import SupplierSearchedData from "./SupplierSearchedData";
 import SuplierNotApprovalPublish from "./SuplierNotApprovalPublish";
 import AddSuppliersAdressModal from "./AddSuppliersAdressModal";
+import EmptyPage from "../../EmptyPage";
 
 function SuppliersCardList(props) {
 
@@ -89,8 +89,8 @@ function SuppliersCardList(props) {
   ) : (
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex font-poppins text-xs justify-between w-[96%]  p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
-          <div className=" w-[7.91rem] text-[#00A2E8] max-md:text-[0.65rem] max-lg:text-[0.45rem] max-md:w-[14.9rem] "> 
+          <div className=" flex font-poppins text-xs justify-between w-[96%]  p-1 bg-transparent font-bold sticky items-end z-10 max-sm:hidden">
+          <div className=" w-[7.91rem] text-[#00A2E8] max-md:text-[0.65rem] max-lg:text-[0.45rem] max-md:w-[14.9rem] text-base "> 
                {/* Supplier ID */}
               <CategoryIcon className=" text-base"/> {props.translatedMenuItems[40]} ID
                </div>
@@ -279,7 +279,7 @@ function SuppliersCardList(props) {
                   })}
                 </> :
                 !props.supplierList.length &&
-                  !props.fetchingSupplierList ? <NodataFoundPage /> : null}
+                  !props.fetchingSupplierList ? <EmptyPage/> : null}
             </InfiniteScroll>
           </div>
         </div>

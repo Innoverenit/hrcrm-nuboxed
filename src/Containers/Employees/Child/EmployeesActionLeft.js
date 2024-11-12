@@ -29,6 +29,34 @@ const EmployeesActionLeft = (props) => {
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
 
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+       "949", //  "Active Users",
+        "228", //  "All"   
+        "1238", // "Search By Name"   
+       "289",  // Creation Date
+       "954",  // All Locations
+       "",  // All Departments
+     "" //  sort
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
  
   const handleChange = (e) => {
     setCurrentData(e.target.value);
@@ -128,7 +156,7 @@ const EmployeesActionLeft = (props) => {
   return (
     <div class=" flex items-center">
       <Tooltip
-        title={<FormattedMessage id="app.activeuser" defaultMessage="Active Users" />}
+        title={translatedMenuItems[1]}
       > 
        <Badge
           size="small"
@@ -153,7 +181,7 @@ const EmployeesActionLeft = (props) => {
           </Badge> 
       </Tooltip>
   
-      <Tooltip title={<FormattedMessage id="app.allusers" defaultMessage="All " />}>
+      <Tooltip title={translatedMenuItems[1]}>
       <Badge
           size="small"
           count={
@@ -171,15 +199,15 @@ const EmployeesActionLeft = (props) => {
             }}
           >
             <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355" }}>
-            <div class="text-white ">ALL</div>
+            <div class="text-white ">{translatedMenuItems[1]}</div>
             </Avatar>
           </span>
           </Badge>
       </Tooltip>
 
-      <div class=" ml-6 h-6 w-72">
+      <div class=" ml-6  w-72">
       <Input
-     placeholder="Search By Name"
+     placeholder={translatedMenuItems[2]}
       width={"100%"}
             suffix={suffix}
             onPressEnter={handleSearch}  
@@ -190,22 +218,23 @@ const EmployeesActionLeft = (props) => {
       </div>
    
         <div  class=" w-[35%]  ml-2">
-          <StyledSelect placeholder="Sort"  defaultValue="Creation Date" onChange={(e)  => props.handleFilterChange(e)}>
-          <Option value="cretiondate">Creation Date</Option>
+          <StyledSelect placeholder={translatedMenuItems[6]}  defaultValue={translatedMenuItems[1]} onChange={(e)  => props.handleFilterChange(e)}>
+          <Option value="cretiondate">{translatedMenuItems[3]}</Option>
           <Option value="AtoZ">A To Z</Option>
             <Option value="ZtoA">Z To A</Option>
            
           </StyledSelect>
         </div>
-        <div class=" flex items-center ml-4"  style={{border:"0.5px solid lightgray "}} >
+        <div class=" flex items-center ml-4 border border-gray-400"   >
                   <select
+                  className=" w-auto h-[5vh] m-auto"
                     // placeholder="Select Location"
                     //  defaultValue={partners}
-                    style={{ width: "auto",margin:"auto"}}
+                    // style={{ width: "auto",margin:"auto", height:"5vh" }}
                      onChange={props.handleLocationChange}
                      value={props.selectedLocation}
                   >
-                    <option value="">All Locations</option>
+                    <option value="">{translatedMenuItems[4]}</option>
                     {props.showLocation.map((item) => {
                       return (
                         <option value={item.locationName}>
@@ -215,16 +244,16 @@ const EmployeesActionLeft = (props) => {
                     })}
                   </select>
                 </div>
-                <div class=" flex items-center ml-4"  style={{border:"0.5px solid lightgray "}} >
-                  <select
+                <div class=" flex items-center ml-4 border border-gray-400" >
+                  <select  className=" w-auto h-[5vh] m-auto"
                     // placeholder="Select Location"
                     //  defaultValue={partners}
-                    style={{ width: "auto",margin:"auto"}}
+                    // style={{ width: "auto",margin:"auto"}}
                      onChange={props.handleDepartmentChange}
                      value={props.selectedDepartment}
                     //  disabled={!props.selectedLocation}
                   >
-                    <option value="">All Departments</option>
+                    <option value="">{translatedMenuItems[5]}</option>
                     {props.departments.map((item) => {
                       return (
                         <option value={item.departmentName}>

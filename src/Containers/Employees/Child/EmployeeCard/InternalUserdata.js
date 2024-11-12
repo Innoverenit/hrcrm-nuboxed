@@ -125,8 +125,8 @@ console.log(props.filteredData)
                 const tooltipContent = `${item.workplace}, ${item.locationName}`;
                 const showTooltip = tooltipContent.trim() !== ''; 
                  return (
-                  <div class="rounded-md border-2 bg-[#ffffff]  shadow-[#aaa] h-[9rem] 
-                  text-[#444444] my-3 p-1 ml-3 w-[15vw] flex flex-col  max-sm:w-wk max-sm:ml-0 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                  <div class="rounded-md border-2 bg-[#ffffff]  shadow-[#aaa] h-[10rem] 
+                  text-[#444444] my-3 p-1 ml-3 w-[19vw] flex flex-col  max-sm:w-wk max-sm:ml-0 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                       <div class="flex">
                    <Tooltip 
                    title={item.country}
@@ -150,7 +150,7 @@ console.log(props.filteredData)
                             href={`employee/${item.employeeId}`}>{item.fullName}</a> */}
                       
 
-                      <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  
+                      <Link class="overflow-ellipsis  font-bold whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  
                       to={`/employee/${item.employeeId}`} title={item.fullName}>
       {item.fullName}
     </Link>
@@ -161,24 +161,16 @@ console.log(props.filteredData)
                          
                         </div>
                         
-                        <div class=" flex flex-row justify-evenly  w-full items-end">
+                        <div class=" flex flex-row  justify-between w-full ">
                        
                         {/* <div class=" text-xs  font-medium font-poppins">Department   </div> */}
-                      <div class="  text-xs  font-poppins">{item.department === null ?  translatedMenuItems[1] :item.department}</div>
-                      <div class="  text-xs  font-poppins">{item.roleTypeName  === null ?  translatedMenuItems[1] :item.roleTypeName}</div>
-          
-                   
-                      
-                        <div >
-                        {/* <div class=" text-xs  font-medium font-poppins">Role   </div> */}
-                      
-          </div>
-          
-                      </div> 
+                      <div class=" flex justify-start text-xs  font-poppins">{item.department === null ?  translatedMenuItems[1] :item.department}</div>
+                      <div class=" flex text-xs  justify-end font-poppins">{item.roleTypeName  === null ?  translatedMenuItems[1] :item.roleTypeName}</div>
+                     </div> 
                    
                        <div class="  text-xs  font-poppins mt-1 "><PhoneIcon  className="!text-icon cursor-pointer text-[grey]"/> {`${item.countryDialCode} ${item.mobileNo}`}</div>
           <div class="  text-xs  mt-1  font-poppins flex justify-between ">
-            <div>
+            <div className=" truncate" >
             <DraftsIcon  className="!text-base cursor-pointer text-green-400 mr-1" /> 
           <Tooltip title={item.emailId}>
           {elipsize(item.emailId || "", 25)}
@@ -192,13 +184,13 @@ console.log(props.filteredData)
       </div>
           </div>
           <div className=" flex flex-row justify-between w-full items-center">
-          <div class=" flex justify-start text-xs mt-1  font-poppins "> {translatedMenuItems[2]}:    <span>
+          <div class=" flex justify-start text-xs mt-1  font-poppins font-bold "> {translatedMenuItems[2]}:  &nbsp;  <span>
           {item.reportingManagerName 
                         ? `${item.reportingManagerName}`
                         : <span class="text-[red]" > {translatedMenuItems[3]} </span>}
                       </span>
          </div>
-         <div class=" flex justify-end  text-xs  font-poppins ">
+         <div class=" flex justify-end  mt-1 text-xs  items-center font-poppins ">
        
        <span class=" cursor-pointer"
          
@@ -210,7 +202,7 @@ console.log(props.filteredData)
 
         </div>
        </div>
-           <div className=" flex flex-row justify-between w-full">
+           <div className=" flex flex-row justify-between w-full  mb-1 items-center absolute bottom-0">
            <div class=" flex justify-start ">
           
            <Button
@@ -234,7 +226,7 @@ console.log(props.filteredData)
            </Tooltip> */}
             </div>
           
-           <div class="flex justify-end">
+           <div class="flex justify-end  items-center mr-2">
           <div class="  text-xs  font-poppins ">
           <span class=" cursor-pointer"
          

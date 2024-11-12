@@ -75,7 +75,7 @@ class SuppliersActivityTable extends Component {
                         <>
                             {item.activity === "Call" && (
                                 // <Icon type="phone" />
-                                <PhoneOutlined/>
+                                <PhoneOutlined className=""/>
                             )}
                             {item.activity === "Event" && (
                                 // <Icon type="schedule" />

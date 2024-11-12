@@ -1,9 +1,8 @@
 import React, { Component,Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { BundleLoader} from "../../Components/Placeholder";
 import { setEmployeeViewType, handleEmployeeModal, getEmployeelist} from "./EmployeeAction";
-
+import FWLogo1 from "../../../src/Assets/Images/cashShake.svg";
 const EmployeesHeader = lazy(() => import("./Child/EmployeesHeader"));
 const AddEmployeeModal = lazy(() => import("./Child/AddEmployeeModal"));
 const EmployeeCardView = lazy(() => import("./Child/EmployeeCard/EmployeeCardView"));
@@ -74,7 +73,10 @@ class Employees extends Component {
     } = this.props;
     return (
       <React.Fragment>
-        <Suspense fallback={<BundleLoader />}>
+        <Suspense fallback={<div className="custom-loader">
+          <div className="loader !block"> </div>
+      <div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
+    </div>}>
         <EmployeesHeader
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}

@@ -21,6 +21,7 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 
 import AddSuppliersAdressModal from "./AddSuppliersAdressModal";
+import EmptyPage from "../../EmptyPage";
 
 function AllSuppliersCardList(props) {
 
@@ -125,7 +126,7 @@ return(
       </div>
 <div className=' flex  sticky  z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-<div className=" flex max-sm:hidden ml-4 justify-between w-[99%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
+<div className=" flex max-sm:hidden ml-4 justify-between w-[99%]  p-1 bg-transparent font-bold font-poppins text-xs  items-end sticky  z-10">
 <div className=" w-[3.91rem] text-[#00A2E8] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* Supplier ID */}
                <CategoryIcon className=" !text-icon"/>  {props.translatedMenuItems[40]} ID
@@ -149,7 +150,7 @@ return(
         height={"83vh"}
         style={{scrollbarWidth:"thin"}}
       >
-{props.allSupplierList.map((item) => {
+{!props.fetchingSupplierList &&  props.allSupplierList===0 ? <EmptyPage /> :props.allSupplierList.map((item) => {
     const currentdate = dayjs().format("DD/MM/YYYY");
     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
   return (

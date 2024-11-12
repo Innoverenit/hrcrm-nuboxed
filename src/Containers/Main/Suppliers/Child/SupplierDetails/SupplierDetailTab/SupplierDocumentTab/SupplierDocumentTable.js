@@ -7,9 +7,12 @@ import {
   getSupplierDocument,
   // deleteDocument
 } from "../../../../SuppliersAction";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
+import DescriptionIcon from '@mui/icons-material/Description';
+import ArticleIcon from '@mui/icons-material/Article';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
-import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
-
+import EmptyPage from "../../../../../EmptyPage";
 class SupplierDocumentTable extends Component {
 
   constructor(props) {
@@ -104,16 +107,16 @@ class SupplierDocumentTable extends Component {
           <div className="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className="flex max-sm:hidden justify-between w-[100%]  p-2 bg-transparent font-bold sticky top-0 z-10">
               <div className="md:w-[0.5rem]"></div>
-              <div className="md:w-[7.4rem] w-[7.4rem] text-[#00A2E8] text-base font-poppins font-bold"> {translatedMenuItems[0]} 
+              <div className="md:w-[7.4rem] w-[7.4rem] text-[#00A2E8] text-base font-poppins font-bold"><DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[0]} 
               {/* Date */}
               </div>
-              <div className="md:w-[5.1rem] w-[5.1rem] font-poppins font-bold text-xs"> {translatedMenuItems[1]} 
+              <div className="md:w-[5.1rem] w-[5.1rem] font-poppins font-bold text-xs"><ArticleIcon className='!text-icon text-[#a379c9] '  /> {translatedMenuItems[1]} 
               {/* Name */}
               </div>
-              <div className="md:w-[8.8rem] w-[8.8rem] font-poppins font-bold text-xs"> {translatedMenuItems[2]} 
+              <div className="md:w-[8.8rem] w-[8.8rem] font-poppins font-bold text-xs">  <DescriptionIcon className='!text-icon text-[#9ad5ca] '  /> {translatedMenuItems[2]} 
                {/* Description */}
               </div>
-              <div className="md:w-[8.8rem]  w-[8.8rem] font-poppins font-bold text-xs"> {translatedMenuItems[3]} 
+              <div className="md:w-[8.8rem]  w-[8.8rem] font-poppins font-bold text-xs"><AccountCircleIcon className="!text-icon  text-[#f28482]"/>  {translatedMenuItems[3]} 
                {/* Uploaded By */}
               </div>
             </div>
@@ -147,7 +150,7 @@ class SupplierDocumentTable extends Component {
                 ))
               ) : (
                 <div className="text-center p-5">
-                  <NodataFoundPage />
+                  <EmptyPage />
                 </div>
               )}
             </div>
