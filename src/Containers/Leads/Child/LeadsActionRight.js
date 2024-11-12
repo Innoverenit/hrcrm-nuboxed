@@ -51,7 +51,16 @@ class LeadsActionRight extends React.Component {
       <>
         {user.leadsCreateInd === true && user.crmInd === true &&(
         <div class=" flex  items-center">
-       
+         <div className="max-sm:hidden">
+          <Button type="primary"  
+        onClick={() => this.props.handleLeadsImportModal(true)}
+        >
+            <UploadIcon className=" !text-icon"/>
+            {this.state.translatedMenuItems[1]}
+            {/* Import */}
+          </Button>
+          </div>
+          
       {this.props.viewType==="teams" || this.props.viewType ==="all" ?  "" :
       <>
 
@@ -63,15 +72,7 @@ class LeadsActionRight extends React.Component {
           
           </>
         }
-        <div className="max-sm:hidden">
-          <Button type="primary"  
-        onClick={() => this.props.handleLeadsImportModal(true)}
-        >
-            <UploadIcon className=" !text-icon"/>
-            {this.state.translatedMenuItems[1]}
-            {/* Import */}
-          </Button>
-          </div>
+      
         </div>
   
         )} 
