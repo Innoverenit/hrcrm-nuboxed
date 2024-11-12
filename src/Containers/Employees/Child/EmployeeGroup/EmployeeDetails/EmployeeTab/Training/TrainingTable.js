@@ -18,16 +18,50 @@ import dayjs from "dayjs";
 import { base_url } from "../../../../../../../Config/Auth";
 import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 import { Tooltip } from "antd";
+import { Empty } from "antd/lib";
+import EmptyPage from "../../../../../../Main/EmptyPage";
 const UpdateTrainingModal = lazy(() =>
   import("./UpdateTrainingModal")
 );
 
 
 class TrainingTable extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
   componentDidMount() {
+    this.fetchMenuTranslations();
     const { getTrainingDetails, employeeId } = this.props;
     getTrainingDetails(employeeId);
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+      
+        "1692",//Course Name
+        "176",//2Start Date
+        "15",//3Organization/
+        "1178"//" "Grade
+        // Institution
+      
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
+
   render() {
     console.log(this.props.training);
     const {
@@ -53,20 +87,11 @@ class TrainingTable extends Component {
 
 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-          <div className=" md:w-[13.5rem]">
-        <FormattedMessage
-                  id="app.courseName"
-                  defaultMessage="Course Name"
-                /></div>
+          <div className=" text-[#00A2E8] md:w-[13.5rem]"> {this.state.translatedMenuItems[0]}</div>
  
-        <div className="md:w-[10.1rem]">  <FormattedMessage id="app.startDate" defaultMessage="Start Date" /></div>
-                 <div className="md:w-[10.1rem]">
-                 <FormattedMessage
-          id="app.organization"
-          defaultMessage="Organization/Institution"
-        /></div>
-                       <div className=" md:w-[8.1rem]">
-                       <FormattedMessage id="app.grade" defaultMessage="Grade" /></div>
+        <div className="md:w-[10.1rem]">   {this.state.translatedMenuItems[1]}</div>
+                 <div className="md:w-[10.1rem]"> {this.state.translatedMenuItems[2]}</div>
+                       <div className=" md:w-[8.1rem]"> {this.state.translatedMenuItems[3]}</div>
 
                       
         
@@ -75,15 +100,15 @@ class TrainingTable extends Component {
       </div>
    
         
-      {training =="" ? "None":training.map((item) => { 
+      {training =="" ? <EmptyPage/>:training.map((item) => { 
         
         
                     return (
                         <div>
-                            <div className="flex rounded justify-between bg-white mt-[0.5rem] h-8 items-center p-1"
+                            <div className="flex rounded justify-between  mt-[0.5rem] h-8 items-center p-1"
                                 >
                                      
-                                     <div className=" flex  md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                     <div className=" flex h-8 border-l-2 border-green-500 bg-[#eef2f9] md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
 
           <div class="max-sm:w-full">
@@ -105,20 +130,20 @@ class TrainingTable extends Component {
 
                              
                               
-                                <div className=" flex  md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                                <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center  md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
                                   <div class="text-xs   font-poppins">
                                   <span className="font-poppins">{dayjs(item.startDate).format("YYYY/MM/DD")}</span>
                                   </div>
                               </div>
 
-                              <div className=" flex  md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                              <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center  md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
                                 <div class="text-xs   font-poppins">
                                 {item.organization}
                                 </div>
                             </div>
-                            <div className=" flex  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                            <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                    
                                    <div class="text-xs   font-poppins">
                  
@@ -131,6 +156,7 @@ class TrainingTable extends Component {
 
                           
                               </div>
+                              <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-end">
                               <div className=" flex  " style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >
                    
                               <>
@@ -179,7 +205,7 @@ class TrainingTable extends Component {
                                     </div>
                                 </div>
 
-                              
+                              </div>
                              
                             </div>
                         </div>

@@ -10,6 +10,7 @@ import {
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import dayjs from "dayjs";
 import { Tooltip } from "antd";
+import EmptyPage from "../../../../../../Main/EmptyPage";
 const UpdateContractModal = lazy(() => import("./UpdateContractModal"));
 
 class ContractTable extends Component {
@@ -59,7 +60,7 @@ class ContractTable extends Component {
       </div>
    
         
-      {contractDetails == "" ? "None":contractDetails.map((item) => { 
+      {contractDetails == "" ? <EmptyPage/>:contractDetails.map((item) => { 
         
         
         return (
