@@ -3,9 +3,13 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { FormattedMessage } from "react-intl";
-import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import MobileFriendlyIcon from '@mui/icons-material/MobileFriendly';
+import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 import { getSupplierContactList, handleUpdateSupplierContactModal, setEditSupplierContact,applyForLoginInContact } from "../../../../SuppliersAction";
 import { Button } from "antd";
+import EmptyPage from "../../../../../EmptyPage";
 
 function SupplierContactTable(props) {
 
@@ -57,19 +61,19 @@ function SupplierContactTable(props) {
     <div className=' flex sticky  z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky font-poppins text-xs z-10">
-            <div className="text-[#00A2E8] text-base w-[16.8rem] max-xl:text-[0.65rem]">{translatedMenuItems[0]}</div>
+            <div className="text-[#00A2E8] text-base w-[16.8rem] max-xl:text-[0.65rem]">  <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}</div>
             {/* Name */}
-            <div className=" w-[14.1rem] max-xl:text-[0.65rem]">{translatedMenuItems[1]}
+            <div className=" w-[14.1rem] max-xl:text-[0.65rem]"><MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '  />{translatedMenuItems[1]}
              {/* Email */}
             </div>
-            <div className=" w-[10.8rem] max-xl:text-[0.65rem] ">  {translatedMenuItems[2]}
+            <div className=" w-[10.8rem] max-xl:text-[0.65rem] ">  <MobileFriendlyIcon className='!text-icon text-[#41ead4] '  />  {translatedMenuItems[2]}
               {/* mobile */}
             </div>
-            <div className="w-[10.8rem] max-xl:text-[0.65rem]">{translatedMenuItems[3]}
+            <div className="w-[10.8rem] max-xl:text-[0.65rem]">                     <i className=" fab fa-artstation mr-1 text-[#b744b8]"></i>{translatedMenuItems[3]}
             {/* Designation */}
 
             </div>
-            <div className="w-[27.9rem] max-xl:text-[0.65rem]">{translatedMenuItems[4]}
+            <div className="w-[27.9rem] max-xl:text-[0.65rem]">        <ApartmentIcon className='!text-icon text-[#f0386b] '  /> {translatedMenuItems[4]}
              {/* Department */}
 
             </div>
@@ -163,7 +167,7 @@ function SupplierContactTable(props) {
                   })}
                 </> :
                 !props.contactSupplier.length &&
-                  !props.fetchingSupplierContactListById ? <NodataFoundPage /> : null}
+                  !props.fetchingSupplierContactListById ? <EmptyPage /> : null}
             </InfiniteScroll>
           </div>
         </div>

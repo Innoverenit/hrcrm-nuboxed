@@ -234,10 +234,11 @@ const handleLoadMore = () => {
             {lead.sectorName}
            
             </div>
-           <div 
-          className="font-semibold"
-         
-          >
+           
+          <div className=" text-sm text-gray-500 font-poppins">
+            {/* {lead.phoneNumber} */}
+            </div>
+            <div  className="font-semibold">
             <MultiAvatar
                             primaryTitle={lead.sectorName}
                             // imageId={lead.imageId}
@@ -246,10 +247,6 @@ const handleLoadMore = () => {
                             imgHeight={"1.8rem"}
                           />
             </div>
-          <div className="text-sm text-gray-500 font-poppins">
-            {/* {lead.phoneNumber} */}
-            </div>
-          
         </div>
         <div className="text-sm text-gray-500 font-poppins">
           {/* {lead.sector}  {lead.source} */}
@@ -307,7 +304,11 @@ const handleLoadMore = () => {
             {lead.name}
            
             </div>
-           <div  className="font-semibold" >
+           
+          <div className="text-sm text-gray-500 font-poppins">
+            {/* {lead.phoneNumber} */}
+            </div>
+            <div  className="font-semibold" >
             <MultiAvatar
                             primaryTitle={lead.name}
                             imageId={lead.imageId}
@@ -316,10 +317,6 @@ const handleLoadMore = () => {
                             imgHeight={"1.8rem"}
                           />
             </div>
-          <div className="text-sm text-gray-500 font-poppins">
-            {/* {lead.phoneNumber} */}
-            </div>
-          
         </div>
         <div className="text-sm text-gray-500 font-poppins">
           {/* {lead.sector}  {lead.source} */}

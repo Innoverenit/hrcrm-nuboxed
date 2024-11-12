@@ -17,9 +17,9 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import SuplierNotApprovalPublishToggle from "../Child/SuplierNotApprovalPublishToggle"
 import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import SupplierSearchedData from "./SupplierSearchedData";
 import AddSuppliersAdressModal from "./AddSuppliersAdressModal";
+import EmptyPage from "../../EmptyPage";
 
 function SuppliersNotApprovalList(props) {
 
@@ -72,7 +72,7 @@ function SuppliersNotApprovalList(props) {
   ) : (
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
+          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  items-end z-10">
           <div className=" w-[8.91rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* Supplier ID */}
                <CategoryIcon className="!text-icon"/> {props.translatedMenuItems[40]} ID
@@ -186,7 +186,7 @@ function SuppliersNotApprovalList(props) {
                   })}
                 </> :
                 !props.notApprovalSupplierList.length &&
-                  !props.fetchingNotApprovalSupplierList ? <NodataFoundPage /> : null}
+                  !props.fetchingNotApprovalSupplierList ? <EmptyPage /> : null}
             </InfiniteScroll>
           </div> 
         </div>

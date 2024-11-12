@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getSupplierSupplies,setSupplierSuppliesType,getSupplierSuppliesQuality  } from "../../../../SuppliersAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { Tooltip,Button,Select } from "antd";
 import SupplierSuppliesToggle from "./SupplierSuppliesToggle";
 import NewSupploesForm from "./NewSupploesForm";
@@ -12,6 +11,7 @@ import WidgetsIcon from "@mui/icons-material/Widgets";
 import AttractionsIcon from "@mui/icons-material/Attractions";
 import PublishIcon from "@mui/icons-material/Publish";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import EmptyPage from "../../../../../EmptyPage";
 
 const { Option } = Select;
 
@@ -199,7 +199,7 @@ supplierId={props.supplier.supplierId}
                   })}
                 </> :
                 !props.supplierSuppliesList.length &&
-                  !props.fetchingSupplierSupplies ? <NodataFoundPage /> : null}
+                  !props.fetchingSupplierSupplies ? <EmptyPage /> : null}
             </InfiniteScroll>
           </div>
         </div>

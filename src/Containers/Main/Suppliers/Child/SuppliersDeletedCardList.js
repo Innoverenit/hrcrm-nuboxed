@@ -4,10 +4,18 @@ import { bindActionCreators } from "redux";
 import { getSuppliersDeletedList, emptysUPPLIERS ,deleteSupplierData,handleUpdateSupplierModal,setEditSuppliers} from "../SuppliersAction"
 import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import CategoryIcon from '@mui/icons-material/Category';
+import LinkIcon from '@mui/icons-material/Link';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { Link } from 'react-router-dom';
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import UpdateSupplierModal from "./UpdateSupplierModal";
+import FlipCameraAndroidIcon from '@mui/icons-material/FlipCameraAndroid';
 import { BundleLoader } from "../../../../Components/Placeholder";
+import EmptyPage from "../../EmptyPage";
 const SupplierSearchedData =lazy(()=>import("./SupplierSearchedData"));
 const ReInstateSuppliers =lazy(()=>import("../ReInstateSuppliers"));
 function SuppliersDeletedCardList(props) {
@@ -48,36 +56,37 @@ function SuppliersDeletedCardList(props) {
   ) : (
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex ml-4 max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
-          <div className=" w-[8.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.9rem] "> 
+          <div className=" flex ml-4 max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky items-end  z-10">
+          <div className=" w-[8.91rem] max-xl:text-[0.65rem] text-[#00A2E8] max-lg:text-[0.45rem] max-xl:w-[10.9rem] "> 
                {/* Supplier ID */}
+               <CategoryIcon className=" text-base"/> 
                {props.translatedMenuItems[40]} ID
                </div>
-            <div className=" w-[14.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  {props.translatedMenuItems[0]}
+            <div className=" w-[14.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> <ApartmentIcon className="!text-icon text-[#4f5d75] "/>  {props.translatedMenuItems[0]}
               </div>
             <div className=" w-[11.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-            {props.translatedMenuItems[1]}
+            <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>  {props.translatedMenuItems[1]}
             </div>
             <div className=" w-[11.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> 
-               <FormattedMessage id="app.email" defaultMessage="Email" /></div>
+            <MailOutlineIcon className="!text-icon  text-[#4f5d75]"/> <FormattedMessage id="app.email" defaultMessage="Email" /></div>
                <div className=" w-[10.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* url */}
-               {props.translatedMenuItems[41]}
+               <LinkIcon  className="!text-icon  text-[#4f5d75]"/>   {props.translatedMenuItems[41]}
                </div>
             <div className="w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-            {props.translatedMenuItems[34]}
+           <AddLocationAltIcon className="!text-icon  text-[#4f5d75]"/> {props.translatedMenuItems[34]}
 
             </div>
            
             <div className="w-[7.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-            {props.translatedMenuItems[35]}
+           <LocationCityIcon className="!text-icon  text-[#4f5d75]" /> {props.translatedMenuItems[35]}
 
             </div>
             <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-            {props.translatedMenuItems[36]}
+            <LocationCityIcon className="!text-icon  text-[#4f5d75]" /> {props.translatedMenuItems[36]}
 
             </div>
-            <div className="w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  {props.translatedMenuItems[37]}</div>
+            <div className="w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> <FlipCameraAndroidIcon className="!text-icon  text-[#4f5d75]" /> {props.translatedMenuItems[37]}</div>
             
           </div>
           <div class="overflow-x-auto h-[83vh]">
@@ -174,7 +183,7 @@ function SuppliersDeletedCardList(props) {
                   })}
                 </> :
                 !props.supplierDeletedList.length &&
-                  !props.fetchingSupplierDeletedList ? <NodataFoundPage /> : null}
+                  !props.fetchingSupplierDeletedList ? <EmptyPage /> : null}
           </div>
         </div>
       </div>

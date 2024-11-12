@@ -157,8 +157,8 @@ const ProductActionLeft = (props) => {
           onClick={() => props.setProductViewType("table")}
         >
           <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355",
-                 boxShadow: props.viewType === "card" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
-                  transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"
+                 boxShadow: props.viewType === "table" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "table" ? "scale(1.05)" : "scale(1)"
            }}>
             <MenuIcon className="text-white !text-icon" />
           </Avatar>
@@ -176,7 +176,9 @@ const ProductActionLeft = (props) => {
           }}
           onClick={() => props.setProductViewType("category")}
         >
-          <Avatar style={{ background: props.viewType === "category" ? "#f279ab" : "#28a355" }}>
+          <Avatar style={{ background: props.viewType === "category" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "category" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "category" ? "scale(1.05)" : "scale(1)" }}>
             <CategoryIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
 
@@ -192,7 +194,9 @@ const ProductActionLeft = (props) => {
           }}
           onClick={() => props.setProductViewType("brandModel")}
         >
-          <Avatar style={{ background: props.viewType === "brandModel" ? "#f279ab" : "#28a355" }}>
+          <Avatar style={{ background: props.viewType === "brandModel" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "brandModel" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "brandModel" ? "scale(1.05)" : "scale(1)" }}>
             <ModelTrainingIcon className="text-white cursor-pointer !text-icon" />  
           </Avatar>
 
@@ -205,7 +209,9 @@ const ProductActionLeft = (props) => {
      count={( props.deletedProductCount.deletedProduct) || 0}
     overflowCount={999}
   >
-  <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#28a355" }}>
+  <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#28a355" ,
+               boxShadow: props.viewType === "dashboard" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "dashboard" ? "scale(1.05)" : "scale(1)"}}>
     <DeleteOutlined
       className="!text-icon cursor-pointer "
       style={{
@@ -227,7 +233,9 @@ const ProductActionLeft = (props) => {
           }}
           onClick={() => props.setProductViewType("brand")}
         >
-          <Avatar style={{ background: props.viewType === "brand" ? "#f279ab" : "#28a355" }}>
+          <Avatar style={{ background: props.viewType === "brand" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "brand" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "brand" ? "scale(1.05)" : "scale(1)" }}>
             <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
 
@@ -261,7 +269,9 @@ const ProductActionLeft = (props) => {
           }}
           onClick={() => props.setProductViewType("instate")}
         >
-          <Avatar style={{ background: props.viewType === "instate" ? "#f279ab" : "#28a355" }}>
+          <Avatar style={{ background: props.viewType === "instate" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "instate" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "instate" ? "scale(1.05)" : "scale(1)" }}>
             <BrandingWatermarkIcon className="text-white cursor-pointer !text-icon" />
           </Avatar>
 

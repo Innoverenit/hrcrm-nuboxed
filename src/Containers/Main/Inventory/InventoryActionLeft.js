@@ -35,7 +35,9 @@ const InventoryActionLeft = (props) => {
               }}
             >
               
-              <Button type={props.viewType === "material" ? "primary" : ""} style={{ backgroundColor: props.viewType === "material" ? "" : "tomato" }}>
+              <Button type={props.viewType === "material" ? "primary" : ""} style={{ backgroundColor: props.viewType === "material" ? "" : "tomato",
+               boxShadow: props.viewType === "material" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "material" ? "scale(1.05)" : "scale(1)" }}>
              <div class="text-white ">Material</div></Button>
             </span>
           {/* </Badge> */}
@@ -52,7 +54,9 @@ const InventoryActionLeft = (props) => {
               }}
             >
               
-              <Button type={props.viewType === "repair" ? "primary" : ""} style={{ backgroundColor: props.viewType === "repair" ? "" : "tomato" }}>
+              <Button type={props.viewType === "repair" ? "primary" : ""} style={{ backgroundColor: props.viewType === "repair" ? "" : "tomato",
+               boxShadow: props.viewType === "repair" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "repair" ? "scale(1.05)" : "scale(1)" }}>
              <div class="text-white ">Repair</div></Button>
             </span>
          
@@ -70,7 +74,9 @@ const InventoryActionLeft = (props) => {
               }}
             >
               
-              <Button type={props.viewType === "supplier" ? "primary" : ""} style={{ backgroundColor: props.viewType === "supplier" ? "" : "tomato" }}>
+              <Button type={props.viewType === "supplier" ? "primary" : ""} style={{ backgroundColor: props.viewType === "supplier" ? "" : "tomato" ,
+               boxShadow: props.viewType === "supplier" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "supplier" ? "scale(1.05)" : "scale(1)"}}>
              <div class="text-white ">Supplier</div></Button>
             </span>
          
@@ -85,7 +91,9 @@ const InventoryActionLeft = (props) => {
                 color: props.viewType === "commerce" && "#1890ff",
               }}
             >
-              <Button type={props.viewType === "commerce" ? "primary" : ""} style={{ backgroundColor: props.viewType === "commerce" ? "" : "tomato" }}>
+              <Button type={props.viewType === "commerce" ? "primary" : ""} style={{ backgroundColor: props.viewType === "commerce" ? "" : "tomato",
+               boxShadow: props.viewType === "commerce" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "commerce" ? "scale(1.05)" : "scale(1)" }}>
              <div class="text-white ">
              Commerce
               </div>
@@ -123,7 +131,9 @@ const InventoryActionLeft = (props) => {
                 
               }}
             >
-               <Avatar style={{ background: viewType === "table" ? "#f279ab" : "#28a355" }}>
+               <Avatar style={{ background: viewType === "table" ? "#f279ab" : "#28a355" ,
+               boxShadow: props.viewType === "table" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "table" ? "scale(1.05)" : "scale(1)"}}>
               <i class="fas fa-globe"></i>
               </Avatar>
             </span>
