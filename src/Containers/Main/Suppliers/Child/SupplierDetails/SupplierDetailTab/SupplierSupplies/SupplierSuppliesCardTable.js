@@ -7,6 +7,11 @@ import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFo
 import { Tooltip,Button,Select } from "antd";
 import SupplierSuppliesToggle from "./SupplierSuppliesToggle";
 import NewSupploesForm from "./NewSupploesForm";
+import ApartmentIcon from "@mui/icons-material/Apartment";
+import WidgetsIcon from "@mui/icons-material/Widgets";
+import AttractionsIcon from "@mui/icons-material/Attractions";
+import PublishIcon from "@mui/icons-material/Publish";
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 
 const { Option } = Select;
 
@@ -92,19 +97,19 @@ function SupplierSuppliesCardTable(props) {
       <div className=' flex sticky w-[70%]  z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%] p-1 bg-transparent  text-xs font-poppins font-bold sticky  z-10">
-            <div className="text-[#00A2E8] text-base w-[28.1rem] max-xl:text-[0.65rem] max-xl:w-[6.6rem]">   {translatedMenuItems[0]}
+            <div className="text-[#00A2E8] text-base w-[28.1rem] max-xl:text-[0.65rem] max-xl:w-[6.6rem]"><ApartmentIcon className="  !text-icon"/>   {translatedMenuItems[0]}
               {/* Name */}
             </div>
-             <div className="w-[15.9rem] max-xl:text-[0.65rem] max-xl:w-[6.9rem]">  {translatedMenuItems[1]}
+             <div className="w-[15.9rem] max-xl:text-[0.65rem] max-xl:w-[6.9rem]">  <WidgetsIcon className=" !text-icon"/> {translatedMenuItems[1]}
              {/* Category */}
               </div>
-              <div className="w-[3.91rem] max-xl:w-[4.9rem] max-xl:text-[0.65rem]">  {translatedMenuItems[2]}
+              <div className="w-[3.91rem] max-xl:w-[4.9rem] max-xl:text-[0.65rem]">  < AttractionsIcon className=" !text-icon"/> {translatedMenuItems[2]}
               {/* Attribute */}
               </div>
-            <div className=" w-[10.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">    {translatedMenuItems[3]}
+            <div className=" w-[10.11rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">  <PublishIcon className=" !text-icon"/>  {translatedMenuItems[3]}
          {/* Tag with Supplier" */}
            </div>
-                <div className=" w-[10.12rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">   {translatedMenuItems[4]}
+                <div className=" w-[10.12rem] max-xl:text-[0.65rem] max-xl:w-[14.11rem]">  <VerifiedUserIcon className=" !text-icon" /> {translatedMenuItems[4]}
                   {/* Quality */}
                   </div>       
             <div className="w-[1.5rem]">
@@ -136,7 +141,7 @@ function SupplierSuppliesCardTable(props) {
 
                               </div>
                             </div>
-                            <div className=" flex justify-start items-center h-8 ml-gap bg-[#eef2f9] truncate w-[29.01rem] max-xl:w-[10.01rem] items-center max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex justify-start  h-8 ml-gap bg-[#eef2f9] truncate w-[29.01rem] max-xl:w-[10.01rem] items-center max-sm:justify-between  max-sm:flex-row ">
 
                               <div class="  text-xs ml-gap font-poppins max-xl:text-[0.65rem]">
                                 {item.categoryName} {item.subCategoryName}

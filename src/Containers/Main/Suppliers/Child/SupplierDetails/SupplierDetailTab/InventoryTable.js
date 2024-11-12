@@ -15,6 +15,12 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { base_url2 } from "../../../../../../Config/Auth";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import axios from "axios";
+import QrCodeIcon from "@mui/icons-material/QrCode";
+import WidgetsIcon from "@mui/icons-material/Widgets";
+import BrandingWatermarkIcon from "@mui/icons-material/BrandingWatermark";
+import ModelTrainingIcon from "@mui/icons-material/ModelTraining";
+import AttractionsIcon from "@mui/icons-material/Attractions";
+import PublishIcon from "@mui/icons-material/Publish";
 
 const { Option } = Select;
 
@@ -218,41 +224,41 @@ function InventoryTable(props) {
             <div className=' flex justify-end sticky mt-3  z-auto'>
                 <div class="rounded m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[100%] p-1 bg-transparent font-bold sticky top-0 z-10">
-                    <div className="text-[#00A2E8] text-base w-[17.69rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> {translatedMenuItems[0]}
+                    <div className="text-[#00A2E8] text-base w-[17.69rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> <QrCodeIcon className=" !text-icon"/>{translatedMenuItems[0]}
                             {/* Trade ID */}
                             </div>
-                            <div className=" w-[19.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[1]}
+                            <div className=" w-[19.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]"><QrCodeIcon className=" !text-icon"/> {translatedMenuItems[1]}
                             {/* Creation  */}
                         </div>
-                        <div className=" w-[29.1rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> {translatedMenuItems[2]}
+                        <div className=" w-[29.1rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]"><WidgetsIcon className=" !text-icon"/> {translatedMenuItems[2]}
                             {/* Category */}
                             </div>
-                        <div className=" w-[34.1rem] max-xl:text-[0.65rem] max-xl:w-[9.1rem]"> {translatedMenuItems[3]}
+                        <div className=" w-[34.1rem] max-xl:text-[0.65rem] max-xl:w-[9.1rem]"><BrandingWatermarkIcon className=" !text-icon"/> {translatedMenuItems[3]}
                             {/* Brand */}
                         </div>
-                        <div className=" w-[27.12rem] max-xl:text-[0.65rem] max-xl:w-[9.12rem]"> {translatedMenuItems[4]}
+                        <div className=" w-[27.12rem] max-xl:text-[0.65rem] max-xl:w-[9.12rem]"><ModelTrainingIcon className=" !text-icon"/> {translatedMenuItems[4]}
                            {/* Model */}
                         </div>
                        
-                        <div className=" w-[13.24rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[6]}
+                        <div className=" w-[13.24rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]"><AttractionsIcon className=" !text-icon"/> {translatedMenuItems[6]}
                           {/* Attribute */}
                         </div>
-                        <div className=" w-[11.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[7]}
+                        <div className=" w-[11.11rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]"><QrCodeIcon className=" !text-icon"/> {translatedMenuItems[7]}
                             {/* Quality */}
                         </div>
-                        <div className=" w-[11.13rem] max-xl:text-[0.65rem] max-xl:w-[16.13rem]"> {translatedMenuItems[8]}
+                        <div className=" w-[11.13rem] max-xl:text-[0.65rem] max-xl:w-[16.13rem]"><QrCodeIcon className=" !text-icon"/> {translatedMenuItems[8]}
                             {/* Specs */}
                         </div>
-                        <div className=" w-[15.23rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[5]}
+                        <div className=" w-[15.23rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]"><QrCodeIcon className=" !text-icon"/> {translatedMenuItems[5]}
                           {/* Availability Date */}
                         </div>
-                        <div className="w-[7.9rem] md:w-[7.9rem]"> {translatedMenuItems[9]}
+                        <div className="w-[7.9rem] md:w-[7.9rem]"><QrCodeIcon className=" !text-icon"/> {translatedMenuItems[9]}
                            {/* Unit */}
                         </div>
-                        <div className="w-[15.8rem] md:w-[15.8rem]"> {translatedMenuItems[10]}/{translatedMenuItems[9]}
+                        <div className="w-[15.8rem] md:w-[15.8rem]"><QrCodeIcon className=" !text-icon"/> {translatedMenuItems[10]}/{translatedMenuItems[9]}
                          {/* Price */}
                         </div>
-                        <div className="w-[15.9rem] md:w-[15.9rem]"> {translatedMenuItems[11]}
+                        <div className="w-[15.9rem] md:w-[15.9rem]"><PublishIcon className=" !text-icon"/> {translatedMenuItems[11]}
                          {/* Publish */}
                         </div>
                     </div>
@@ -292,7 +298,7 @@ function InventoryTable(props) {
 </svg>
 {getRelativeTime(item.creationDate)}
 </span></div>
-                                                    <div className=" flex  justify-between items-center truncate justify-start h-8 ml-gap bg-[#eef2f9] w-[12.24rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex   items-center truncate justify-start h-8 ml-gap bg-[#eef2f9] w-[12.24rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" max-xl:text-[0.65rem] ml-gap text-xs font-poppins flex items-center">
                                                             {item.categoryName}
                                                            
@@ -352,7 +358,7 @@ function InventoryTable(props) {
                                                            {item.unit}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex  w-[6.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[18.01rem] max-sm:justify-between items-center max-sm:flex-row ">
+                                                    <div className=" flex  w-[6.01rem]  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[18.01rem] max-sm:justify-between items-center max-sm:flex-row ">
                                                         <div class="flex items-center   max-xl:text-[0.65rem] text-xs font-poppins">
                                                            {item.currency} {item.price}
                                                         </div>
