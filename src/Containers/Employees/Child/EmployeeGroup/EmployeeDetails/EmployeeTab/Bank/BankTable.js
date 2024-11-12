@@ -15,6 +15,7 @@ import { getBankDetails } from "../../../../../../Profile/ProfileAction";
 import { deleteBankTable } from "../../../../../../Profile/ProfileAction";
 import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 import { Tooltip } from "antd";
+import EmptyPage from "../../../../../../Main/EmptyPage";
 const DefultToggle = lazy(() => import("./DefultToggle"));
 const UpdateBankModal = lazy(() => import("../../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Bank/UpdateBankModal"));
 
@@ -70,7 +71,7 @@ class BankTable extends Component {
       </div>
    
         
-      {bank =="" ? "None":bank.map((item) => { 
+      {bank =="" ? <EmptyPage/>:bank.map((item) => { 
         
         
                     return (

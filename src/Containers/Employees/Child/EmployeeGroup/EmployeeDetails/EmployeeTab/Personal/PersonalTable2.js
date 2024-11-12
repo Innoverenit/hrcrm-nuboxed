@@ -26,6 +26,7 @@ import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import EmptyPage from "../../../../../../Main/EmptyPage";
 const UpdatePersonalModal = lazy(() => import("../Personal/UpdatePersonalModal"));
 
 class PersonalTable2 extends Component {
@@ -120,7 +121,7 @@ class PersonalTable2 extends Component {
       </div>
    
         
-      {personal =="" ? "None":personal.map((item) => { 
+      {personal =="" ? <EmptyPage/>:personal.map((item) => { 
           const dataLoc=` Address : ${item.address &&
             item.address.length &&
             item.address[0].address1} 

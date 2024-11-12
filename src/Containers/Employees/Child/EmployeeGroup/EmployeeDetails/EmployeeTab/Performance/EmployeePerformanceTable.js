@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {getEmployeeKpiList} from "../../../../../../Main/Teams/TeamsAction"
+import EmptyPage from '../../../../../../Main/EmptyPage';
 const EmployeePerformanceTable = (props) => {
  
   const [editedFields, setEditedFields] = useState({});
@@ -43,7 +44,7 @@ const EmployeePerformanceTable = (props) => {
     <>
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       {props.employeeKpiList.length === 0 ? (
-          <p>{translatedMenuItems[0]}</p>
+          <div><EmptyPage/></div>
         ) : (
           props.employeeKpiList.map((item) => (
             <div key={item.id}>

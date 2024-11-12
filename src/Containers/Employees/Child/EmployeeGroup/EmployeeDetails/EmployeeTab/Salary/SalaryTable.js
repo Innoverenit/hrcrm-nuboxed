@@ -15,6 +15,7 @@ import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip } from "antd";
+import EmptyPage from "../../../../../../Main/EmptyPage";
 const UpdateSalaryModal =lazy(()=>import("./UpdateSalaryModal"));
 
 class SalaryTable extends Component {
@@ -71,7 +72,7 @@ class SalaryTable extends Component {
       </div>
    
         
-      {salaryDetails =="" ? "None":salaryDetails.map((item) => { 
+      {salaryDetails =="" ? <EmptyPage/>:salaryDetails.map((item) => { 
         
         
                     return (
