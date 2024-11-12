@@ -1,5 +1,6 @@
 import React, { lazy, Suspense, useEffect, useState, } from "react";
 import { Route, Switch } from "react-router-dom";
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import { CommentOutlined, CustomerServiceOutlined } from '@ant-design/icons'
 import {
@@ -515,7 +516,8 @@ function MainApp(props) {
                 </div>
             
                 <FloatButton.Group
-      trigger="hover"
+      // trigger="hover"
+        shape="square"
       type="primary"
       style={{
         insetInlineEnd: 94,
@@ -528,14 +530,15 @@ function MainApp(props) {
        <FloatButton 
       icon={
         // <CommentOutlined />
-        <Tooltip title="Contact">
-           <ContactsIcon
-        onClick={() => {
+        <Tooltip title="Order">
+           <DynamicFeedIcon
+           style={{color:"blue"}}
+        // onClick={() => {
        
-          props.handleContactModal(true);
+        //   props.handleContactModal(true);
           
   
-        }}
+        // }}
         className='!text-base  text-[#e4eb2f]'
         />
         </Tooltip>
@@ -546,6 +549,7 @@ function MainApp(props) {
         // <CommentOutlined />
         <Tooltip title="Quotation">
         <LightbulbIcon
+         style={{color:"blue"}}
         onClick={() => {
        
           props.handleOpportunityModal(true);
@@ -562,6 +566,7 @@ function MainApp(props) {
         // <CommentOutlined />
         <Tooltip title="Customer">
         <ApartmentIcon
+         style={{color:"blue"}}  
         onClick={() => {
        
           props.handleDistributorModal(true);

@@ -1572,6 +1572,9 @@ const LeadsCardList = (props) => {
       />
       <OpenCETmodal
         rowdata={rowdata}
+        // currentContact={currentContact}
+        lead={rowdata.leadsId}
+        type="leads"
         // item={currentLeadsId}
         // handleSetCurrentLeadsId={handleSetCurrentLeadsId}
         openCETmodal={props.openCETmodal}
