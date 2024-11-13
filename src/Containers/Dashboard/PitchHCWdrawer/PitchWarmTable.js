@@ -8,12 +8,12 @@ import {getPitchWarmList} from "../DashboardAction";
 function PitchWarmTable (props) {
     useEffect(()=>{
       if (props.timeRangeType === "today"){
-        props.getPitchWarmList(props.userId,props.startDate,props.endDate);
+        props.getPitchWarmList(props.userId,props.endDate,props.startDate);
       }
       else {
-        props.getPitchWarmList(props.userId,props.startDate,props.endDate);
+        props.getPitchWarmList(props.userId,props.endDate,props.startDate);
       }
-    }, [props.userId,props.startDate,props.endDate]);
+    }, [props.userId,props.endDate,props.startDate]);
     const columns = [
       {
         title: <FormattedMessage

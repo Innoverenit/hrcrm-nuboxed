@@ -46,7 +46,7 @@ const OrderRepairCard = (props) => {
 
     useEffect(() => {
         fetchData1();
-    }, [props.userId,props.startDate,props.endDate]);
+    }, [props.userId,props.endDate,props.startDate]);
 
   useEffect(() => {
     const handleResize = () => {

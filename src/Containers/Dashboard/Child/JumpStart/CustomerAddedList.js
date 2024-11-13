@@ -17,11 +17,11 @@ function CustomerAddedList(props) {
 //   }, []);
 useEffect(()=>{
     if (props.timeRangeType === "today") {
-    props.getCustomerAddedList(props.orgId,props.startDate,props.endDate)
+    props.getCustomerAddedList(props.orgId,props.endDate,props.startDate)
     }else {
-        props.getCustomerAddedList(props.orgId,props.startDate,props.endDate)
+        props.getCustomerAddedList(props.orgId,props.endDate,props.startDate)
       }
-   }, [props.orgId,props.startDate,props.endDate]);
+   }, [props.orgId,props.endDate,props.startDate]);
 
 
 

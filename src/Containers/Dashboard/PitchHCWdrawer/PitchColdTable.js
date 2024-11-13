@@ -8,12 +8,12 @@ import {getPitchColdList} from "../DashboardAction";
 function PitchColdTable (props) {
     useEffect(()=>{
       if (props.timeRangeType === "today"){
-        props.getPitchColdList(props.userId,props.startDate,props.endDate);
+        props.getPitchColdList(props.userId,props.endDate,props.startDate);
       }
       else {
-        props.getPitchColdList(props.userId,props.startDate,props.endDate);
+        props.getPitchColdList(props.userId,props.endDate,props.startDate);
       }
-    }, [props.userId,props.startDate,props.endDate]);
+    }, [props.userId,props.endDate,props.startDate]);
     const columns = [
       {
         title: <FormattedMessage

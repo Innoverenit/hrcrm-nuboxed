@@ -8,11 +8,11 @@ import {getOppoAdded} from "../../../DashboardAction";
 function OppoAddedTable (props) {
     useEffect(()=>{
       if (props.timeRangeType === "today"){
-        props.getOppoAdded(props.userId,props.startDate,props.endDate);
+        props.getOppoAdded(props.userId,props.endDate,props.startDate);
       }else {
-        props.getOppoAdded(props.userId,props.startDate,props.endDate);
+        props.getOppoAdded(props.userId,props.endDate,props.startDate);
       }
-    },[props.startDate,props.endDate]);
+    },[props.endDate,props.startDate]);
     const columns = [
       {
         title: <FormattedMessage

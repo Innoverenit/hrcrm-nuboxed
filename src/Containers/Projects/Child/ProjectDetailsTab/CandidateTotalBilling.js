@@ -13,7 +13,7 @@ const CandidateTotalBilling =(props)=>{
   useEffect(() => {
      const { userId, startDate, endDate, organizationId } = props;
     props.getCandidateTotalBilling(props.match.params.candidateId,props.match.params.projectId, startDate, endDate,);
-  }, [props.startDate, props.endDate ]);
+  }, [props.endDate,props.startDate ]);
   return(
    
 <>

@@ -63,7 +63,7 @@ const OrderProductionCard = (props) => {
       }
         
 
-    }, [props.userId,props.startDate,props.endDate]);
+    }, [props.userId,props.endDate,props.startDate]);
 
   useEffect(() => {
     const handleResize = () => {

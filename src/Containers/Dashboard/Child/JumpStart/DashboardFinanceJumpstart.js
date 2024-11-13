@@ -6,6 +6,8 @@ import RepairVolumePieChart from "../JumpStart/RepairVolumePieChart"
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import {
   getFinaceOrderDetails,
+  getRepairDashboardOrderAdded,getRepairDashboardOrderOpen,
+    getRepairDashboardOrderClose,getRepairDashboardOrderCancelled   
 } from "../../DashboardAction";
 import FinaceRapairDrawer from "./FinaceRapairDrawer";
 import CustomerPieChart from "./CustomerPieChart";
@@ -14,9 +16,9 @@ import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 
 function DashboardFinanceJumpstart(props) {
 
-  const [modalVisible, setModalVisible] = useState(false);
-  const [orderType, setOrderType] = useState("");
-  const [ordersData, setOrdersData] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentOrderType, setCurrentOrderType] = useState("");
+  const [modalData, setModalData] = useState([]);
   const [hasMore, setHasMore] = useState(true);
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -63,36 +65,89 @@ function DashboardFinanceJumpstart(props) {
     }
  }, [props.buttonName,props.orgId,props.userId,props.timeRangeType]);
 
-const openModal = (type) => {
-    setOrderType(type);
-    setModalVisible(true);
-    fetchOrdersData(type, 0); 
-  };
+// const openModal = (type) => {
+//     setOrderType(type);
+//     setModalVisible(true);
+//     // fetchOrdersData(type, 0); 
+//   };
 
-  const closeModal = () => {
-    setModalVisible(false);
-  };
+//   const closeModal = () => {
+//     setModalVisible(false);
+//   };
 
-  const fetchOrdersData = (type, page) => {
-    const fetchOrders = {
-      Added: props.getOrdersAddedData,
-      Open: props.getOrdersOpenData,
-      Closed: props.getRepairDashboardOrderClose,
-      Cancelled: props.getRepairDashboardOrderCancelled
-    }[type];
+  // const fetchOrdersData = (type, page) => {
+  //   const fetchOrders = {
+  //     Added: props.getRepairDashboardOrderAdded,
+  //     Open: props.getRepairDashboardOrderOpen,
+  //     Closed: props.getRepairDashboardOrderClose,
+  //     Cancelled: props.getRepairDashboardOrderCancelled
+  //   }[type];
 
-    if(props.buttonName==="My View"){
-    fetchOrders(props.userId, props.startDate, props.endDate, page)
-      .then(data => {
-        setOrdersData(data.orders);
-        setHasMore(data.hasMore);
-      });}
-      else if(props.buttonName==="Enterprise") {
-        fetchOrders(props.orgId, props.startDate, props.endDate, page)
-        .then(data => {
-          setOrdersData(data.orders);
-          setHasMore(data.hasMore);
-        });}
+  //   if (typeof fetchOrders !== 'function') {
+  //     console.error('Invalid fetchOrders type:', type);
+  //     return; 
+  //   }
+
+  //   if(props.buttonName==="My View"){
+  //   fetchOrders(props.userId, props.endDate,props.startDate,page)
+  //     .then(data => {
+  //       setOrdersData(data.orders);
+  //       setHasMore(data.hasMore);
+  //     });}
+  //     else if(props.buttonName==="Enterprise") {
+  //       fetchOrders(props.orgId, props.endDate,props.startDate,page)
+  //       .then(data => {
+  //         setOrdersData(data.orders);
+  //         setHasMore(data.hasMore);
+  //       });}
+  // };
+  
+  
+  useEffect(() => {
+    if (props.repairDashboardOrderAdded) {
+      setModalData(props.repairDashboardOrderAdded);
+    }
+  }, [props.repairDashboardOrderAdded]);
+
+  useEffect(() => {
+    if (props.repairDashboardOrderOpen) {
+      setModalData(props.repairDashboardOrderOpen);
+    }
+  }, [props.repairDashboardOrderOpen]);
+
+  useEffect(() => {
+    if (props.repairDashboardOrderClose) {
+      setModalData(props.repairDashboardOrderClose);
+    }
+  }, [props.repairDashboardOrderClose]);
+
+  useEffect(() => {
+    if (props.repairDashboardOrderCancelled) {
+      setModalData(props.repairDashboardOrderCancelled);
+    }
+  }, [props.repairDashboardOrderCancelled]);
+
+  
+  const handleClick = (type) => {
+    setCurrentOrderType(type);
+    setIsModalOpen(true);
+
+    switch(type) {
+      case 'Added':
+        props.getRepairDashboardOrderAdded(props.userId,props.endDate,props.startDate,"0");
+        break;
+      case 'Open':
+        props.getRepairDashboardOrderOpen(props.userId,props.endDate,props.startDate,"0");
+        break;
+      case 'Closed':
+        props.getRepairDashboardOrderClose(props.userId,props.endDate,props.startDate,"0");
+        break;
+      case 'Cancelled':
+        props.getRepairDashboardOrderCancelled(props.userId,props.endDate,props.startDate,"0");
+        break;
+      default:
+        break;
+    }
   };
 
 
@@ -112,7 +167,7 @@ const openModal = (type) => {
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
               title={translatedMenuItems[0]}
-              jumpstartClick={() => openModal("Added")}
+              jumpstartClick={() => handleClick("Added")}
               cursorData={"pointer"}
               value={props.finaceOrderinDashboard.totalOrder}
              isLoading={props.fetchingFinaceorderDetails}
@@ -132,7 +187,7 @@ const openModal = (type) => {
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
               title={translatedMenuItems[1]}
-              jumpstartClick={() => openModal("Open")}
+              jumpstartClick={() => handleClick("Open")}
               cursorData={"pointer"}
             value={ props.finaceOrderinDashboard.pendingOrder}
             isLoading={props.fetchingFinaceorderDetails}
@@ -153,7 +208,7 @@ const openModal = (type) => {
               noProgress
               title={translatedMenuItems[2]}
              
-              jumpstartClick={() => openModal("Closed")}
+              jumpstartClick={() => handleClick("Closed")}
               cursorData={"pointer"}
               value={props.finaceOrderinDashboard.completeOrder}
               isLoading={props.fetchingFinaceorderDetails}
@@ -173,7 +228,7 @@ const openModal = (type) => {
                         bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
               noProgress
               title={translatedMenuItems[3]}
-              jumpstartClick={() => openModal("Cancelled")}
+              jumpstartClick={() => handleClick("Cancelled")}
               cursorData={"pointer"}
               value={props.finaceOrderinDashboard.cancelOrder}
               isLoading={props.fetchingFinaceorderDetails}
@@ -199,10 +254,12 @@ const openModal = (type) => {
 
 
 <FinaceRapairDrawer
-        isVisible={modalVisible}
-        closeModal={closeModal}
-        type={orderType}
-        ordersData={ordersData}
+     selectedLanguage={props.selectedLanguage}
+     translateText={props.translateText}
+     isModalOpen={isModalOpen}
+     setIsModalOpen={() => setIsModalOpen(false)}
+     modalData={modalData}
+     title={currentOrderType}
         hasMore={hasMore}
         setHasMore={setHasMore}
         buttonName={props.buttonName}
@@ -220,12 +277,20 @@ const mapStateToProps = ({ dashboard, auth }) => ({
   finaceOrderinDashboard: dashboard.finaceOrderinDashboard,
   fetchingFinaceorderDetails: dashboard.fetchingFinaceorderDetails,
   timeRangeType: dashboard.timeRangeType,
+  repairDashboardOrderAdded:dashboard.repairDashboardOrderAdded,
+  repairDashboardOrderOpen:dashboard.repairDashboardOrderOpen,
+  repairDashboardOrderCancelled:dashboard.repairDashboardOrderCancelled,
+  repairDashboardOrderClose:dashboard.repairDashboardOrderClose,
+  startDate: dashboard.startDate,
+  endDate:dashboard.endDate,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       getFinaceOrderDetails,
+      getRepairDashboardOrderAdded,getRepairDashboardOrderOpen,
+    getRepairDashboardOrderClose,getRepairDashboardOrderCancelled
     },
     dispatch
   );

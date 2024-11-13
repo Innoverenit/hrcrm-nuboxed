@@ -15,12 +15,12 @@ function RepairDashboardOrderAddedList(props) {
 
       useEffect(()=> {
         if (props.timeRangeType === "today"){
-          props.getRepairDashboardOrderAdded(props.userId,props.startDate,props.endDate,page);
+          props.getRepairDashboardOrderAdded(props.userId,props.startDate,page);
         }
         else {
-          props.getRepairDashboardOrderAdded(props.userId,props.startDate,props.endDate,page); 
+          props.getRepairDashboardOrderAdded(props.userId,props.endDate,props.startDate,page); 
         }
-      }, [props.userId,props.startDate,props.endDate]);
+      }, [props.userId,props.endDate,props.startDate]);
 
 
       const handleLoadMore = () => {
@@ -29,7 +29,7 @@ function RepairDashboardOrderAddedList(props) {
           if (props.repairDashboardOrderAdded) {
             if (page < proPag) {
               setPage(page + 1);
-              props.getRepairDashboardOrderAdded(props.userId,props.startDate,props.endDate,page);
+              props.getRepairDashboardOrderAdded(props.userId,props.endDate,props.startDate,page);
             }
             if (page === proPag) {
               setHasMore(false)

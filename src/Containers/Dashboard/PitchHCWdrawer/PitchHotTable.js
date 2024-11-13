@@ -8,12 +8,12 @@ import {getPitchHotList} from "../DashboardAction";
 function PitchHotTable (props) {
     useEffect(()=>{
       if (props.timeRangeType === "today"){
-        props.getPitchHotList(props.userId,props.startDate,props.endDate);
+        props.getPitchHotList(props.userId,props.endDate,props.startDate);
       }
       else {
-        props.getPitchHotList(props.userId,props.startDate,props.endDate);
+        props.getPitchHotList(props.userId,props.endDate,props.startDate);
       }
-    }, [props.userId,props.startDate,props.endDate]);
+    }, [props.userId,props.endDate,props.startDate]);
     const columns = [
       {
         title: <FormattedMessage

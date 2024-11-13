@@ -20,13 +20,13 @@ import { FormattedMessage } from "react-intl";
 
   useEffect(()=> {
     if (props.timeRangeType === "today"){
-      props.getDashCustomerAddedLeads(props.userId,props.startDate,props.endDate); 
+      props.getDashCustomerAddedLeads(props.userId,props.endDate,props.startDate); 
     }
     else {
-      props.getDashCustomerAddedLeads(props.userId,props.startDate,props.endDate); 
+      props.getDashCustomerAddedLeads(props.userId,props.endDate,props.startDate); 
     }
   
-  },[props.userId,props.startDate,props.endDate]);
+  },[props.userId,props.endDate,props.startDate]);
   
 
     const data=props.dashCustoLeadsAdded

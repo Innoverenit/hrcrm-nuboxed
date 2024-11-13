@@ -20,6 +20,7 @@ function CustomerJumpStartDrawer (props) {
           <Suspense fallback={<BundleLoader />}>
 
 <CustomerJumpStartDrawerCard 
+viewType={props.viewType}
      modalData={props.modalData}
 
 /> 

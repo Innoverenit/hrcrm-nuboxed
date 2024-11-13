@@ -2557,13 +2557,13 @@ export const getQuotationTableData = (country) => (dispatch) => {
 
 
 
-export const getOrderAddedList = (orgId,startDate,endDate) => (dispatch) => {
+export const getOrderAddedList = (orgId,endDate,startDate) => (dispatch) => {
   dispatch({
     type: types.GET_ORDER_ADDED_LIST_REQUEST,
   });
   axios
     .get(
-      `${base_url2 }/order/all-active-catalogOrders/${orgId}/${endDate}/${startDate}`,
+      `${base_url2}/order/all-active-catalogOrders/${orgId}/${endDate}/${startDate}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -2778,7 +2778,7 @@ export const getContactAddedList = (orgId,startDate,endDate) => (dispatch) => {
 
 
 
-export const getRepairDashboardOrderClose = (userId, startDate, endDate,page) => (dispatch) => {
+export const getRepairDashboardOrderClose = (userId, endDate,startDate,page) => (dispatch) => {
   dispatch({
     type: types.GET_REPAIR_DASHBOARD_ORDER_CLOSE_REQUEST,
   });
@@ -2806,12 +2806,12 @@ export const getRepairDashboardOrderClose = (userId, startDate, endDate,page) =>
 
 
 
-export const getRepairDashboardOrderAdded = (userId, startDate, endDate,page) => (dispatch) => {
-  dispatch({
+export const getRepairDashboardOrderAdded = (userId,endDate,startDate,page) => (dispatch) => {
+    dispatch({
     type: types.GET_REPAIR_DASHBOARD_ORDER_ADDED_REQUEST,
   });
   axios
-    .get(`${base_url2}/dashboard/allOrderList/${userId}/${endDate}/${startDate}/${page}`, {
+    .get(`${base_url2}/dashboard/allOrderList/${userId}/${startDate}/${endDate}/${page}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2835,7 +2835,7 @@ export const getRepairDashboardOrderAdded = (userId, startDate, endDate,page) =>
 
 
 
-export const getRepairDashboardOrderOpen = (userId, startDate, endDate,page) => (dispatch) => {
+export const getRepairDashboardOrderOpen = (userId,endDate,startDate,page) => (dispatch) => {
   dispatch({
     type: types.GET_REPAIR_DASHBOARD_ORDER_OPEN_REQUEST,
   });
@@ -2861,7 +2861,7 @@ export const getRepairDashboardOrderOpen = (userId, startDate, endDate,page) => 
     });
 };
 
-export const getRepairDashboardOrderCancelled = (userId, startDate, endDate,page) => (dispatch) => {
+export const getRepairDashboardOrderCancelled = (userId, endDate,startDate,page) => (dispatch) => {
   dispatch({
     type: types.GET_REPAIR_DASHBOARD_ORDER_CANCELLED_REQUEST,
   });

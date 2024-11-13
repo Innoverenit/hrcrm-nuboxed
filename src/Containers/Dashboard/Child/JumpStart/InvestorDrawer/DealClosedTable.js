@@ -9,12 +9,12 @@ function DealClosedTable (props) {
 
     useEffect(()=>{
       if (props.timeRangeType === "today"){
-        props.getDealClosed(props.userId,props.startDate,props.endDate);
+        props.getDealClosed(props.userId,props.endDate,props.startDate);
       }
       else {
-        props.getDealClosed(props.userId,props.startDate,props.endDate); 
+        props.getDealClosed(props.userId,props.endDate,props.startDate); 
       }
-    }, [props.userId,props.startDate,props.endDate]);
+    }, [props.userId,props.endDate,props.startDate]);
 
     const columns = [
       {

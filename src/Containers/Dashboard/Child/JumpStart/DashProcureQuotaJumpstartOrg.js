@@ -87,7 +87,7 @@ function DashProcureQuotaJumpstartOrg(props) {
         fetchData1();
         fetchData2();
         fetchData3();
-    }, [props.orgId,props.startDate,props.endDate]);
+    }, [props.orgId,props.endDate,props.startDate]);
 
 
   useEffect(() => {

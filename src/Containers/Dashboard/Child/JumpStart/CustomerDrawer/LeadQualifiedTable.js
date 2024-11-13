@@ -10,12 +10,12 @@ import { BundleLoader } from "../../../../../Components/Placeholder";
 function LeadQualifiedTable (props) {
     useEffect(()=>{
       if (props.timeRangeType === "today"){
-        props.getLeadQualified(props.userId,props.startDate,props.endDate);
+        props.getLeadQualified(props.userId,props.endDate,props.startDate);
       }
       else {
-        props.getLeadQualified(props.userId,props.startDate,props.endDate); 
+        props.getLeadQualified(props.userId,props.endDate,props.startDate); 
       }
-    }, [props.userId,props.startDate,props.endDate]);
+    }, [props.userId,props.endDate,props.startDate]);
 
     // const columns = [
     //   {

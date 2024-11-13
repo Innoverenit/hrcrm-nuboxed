@@ -9,13 +9,14 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 function CustomerJumpStartDrawerCard (props) {
  
-useEffect(()=>{
-    if (props.timeRangeType === "today") {
-    props.getCustomerAddedList(props.orgId,props.startDate,props.endDate)
-    }else {
-        props.getCustomerAddedList(props.orgId,props.startDate,props.endDate)
-      }
-   }, [props.orgId,props.startDate,props.endDate]);
+// useEffect(()=>{
+
+//     if (props.timeRangeType === "today") {
+//     props.getCustomerAddedList(props.orgId,props.endDate,props.startDate)
+//     }else {
+//         props.getCustomerAddedList(props.orgId,props.endDate,props.startDate)
+//       }
+//    }, [props.orgId,props.endDate,props.startDate]);
 
 
   return (

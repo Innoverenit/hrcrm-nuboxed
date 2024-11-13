@@ -9,52 +9,52 @@ import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 
-const actionCreators = {
-    Added: getRepairDashboardOrderAdded,
-    Open: getRepairDashboardOrderOpen,
-    Closed: getRepairDashboardOrderClose,
-    Cancelled: getRepairDashboardOrderCancelled
-  };
+// const actionCreators = {
+//     Added: getRepairDashboardOrderAdded,
+//     Open: getRepairDashboardOrderOpen,
+//     Closed: getRepairDashboardOrderClose,
+//     Cancelled: getRepairDashboardOrderCancelled
+//   };
 
 function FinaceRapairDrawerCard (props) {
 
-  const [page, setPage] = useState(0);
+  // const [page, setPage] = useState(0);
 //   const [hasMore, setHasMore] = useState(true);
 
-      useEffect(()=> {
-        if(props.buttonName==="My View"){
-        if (props.timeRangeType === "today"){
-          props.fetchOrdersData(props.userId,props.startDate,props.endDate,page);
-        }
-        else {
-          props.fetchOrdersData(props.userId,props.startDate,props.endDate,page); 
-        }}
-        else if (props.buttonName==="Enterprise"){
-          if (props.timeRangeType === "today"){
-            props.fetchOrdersData(props.orgId,props.startDate,props.endDate,page);
-          }
-          else {
-            props.fetchOrdersData(props.orgId,props.startDate,props.endDate,page); 
-          }
-        }
+      // useEffect(()=> {
+      //   if(props.buttonName==="My View"){
+      //   if (props.timeRangeType === "today"){
+      //     props.fetchOrdersData(props.userId,props.endDate,props.startDate,page);
+      //   }
+      //   else {
+      //     props.fetchOrdersData(props.userId,props.endDate,props.startDate,page); 
+      //   }}
+      //   else if (props.buttonName==="Enterprise"){
+      //     if (props.timeRangeType === "today"){
+      //       props.fetchOrdersData(props.orgId,props.endDate,props.startDate,page);
+      //     }
+      //     else {
+      //       props.fetchOrdersData(props.orgId,props.endDate,props.startDate,page); 
+      //     }
+      //   }
 
-      }, [props.userId,props.orgId,props.startDate,props.endDate,props.type]);
+      // }, [props.userId,props.orgId,props.endDate,props.startDate,props.type]);
 
 
-      const handleLoadMore = () => {
-        const proPag = props.ordersData && props.ordersData.length && props.ordersData[0].pageCount
-        setTimeout(() => {
-          if (props.ordersData) {
-            if (page < proPag) {
-              setPage(page + 1);
-              props.fetchOrdersData(props.userId,props.startDate,props.endDate,page);
-            }
-            if (page === proPag) {
-              props.setHasMore(false)
-            }
-          }
-        }, 100);
-      };
+      // const handleLoadMore = () => {
+      //   const proPag = props.ordersData && props.ordersData.length && props.ordersData[0].pageCount
+      //   setTimeout(() => {
+      //     if (props.ordersData) {
+      //       if (page < proPag) {
+      //         setPage(page + 1);
+      //         props.fetchOrdersData(props.userId,props.endDate,props.startDate,page);
+      //       }
+      //       if (page === proPag) {
+      //         props.setHasMore(false)
+      //       }
+      //     }
+      //   }, 100);
+      // };
 
 
   return (
@@ -75,8 +75,8 @@ function FinaceRapairDrawerCard (props) {
         </div>
        
         <InfiniteScroll
-            dataLength={props.ordersData.length}
-            next={handleLoadMore}
+            dataLength={props.modalData.length}
+            // next={handleLoadMore}
             hasMore={props.hasMore}
             // loader={fetchingProducts ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
             height={"85vh"}
@@ -84,7 +84,7 @@ function FinaceRapairDrawerCard (props) {
             endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
           >
             <>
-              {props.ordersData.map((item) => {
+              {props.modalData.map((item) => {
                 const currentdate = dayjs().format("DD/MM/YYYY");
                 const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 
@@ -275,21 +275,21 @@ function FinaceRapairDrawerCard (props) {
 const mapStateToProps = ({ auth, dashboard }) => ({
     userId: auth.userDetails.userId,
     user: auth.userDetails,
-    startDate: dashboard.startDate,
-    endDate:dashboard.endDate,
-    timeRangeType:dashboard.timeRangeType,
-    repairDashboardOrderAdded:dashboard.repairDashboardOrderAdded,
+    // startDate: dashboard.startDate,
+    // endDate:dashboard.endDate,
+    // timeRangeType:dashboard.timeRangeType,
+    // repairDashboardOrderAdded:dashboard.repairDashboardOrderAdded,
     orgId: auth.userDetails.organizationId,
   
   });
   const mapDispatchToProps = (dispatch,ownProps) => {
-    const fetchOrdersData = actionCreators[ownProps.type];
+    // const fetchOrdersData = actionCreators[ownProps.type];
 
      return bindActionCreators(
       {
-        fetchOrdersData,
-        getRepairDashboardOrderAdded,
-        getRepairDashboardOrderOpen,
+        // fetchOrdersData,
+        // getRepairDashboardOrderAdded,
+        // getRepairDashboardOrderOpen,
       
       },
       dispatch

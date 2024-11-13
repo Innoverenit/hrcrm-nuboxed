@@ -8,12 +8,12 @@ import {getHotColdWarm,handleLeadHCWdrawer} from "../../Containers/Dashboard/Das
 function Piechart1(props) {
   useEffect(()=> {
     if (props.timeRangeType === "today") {
-   props.getHotColdWarm(props.userId,props.startDate,props.endDate);
+   props.getHotColdWarm(props.userId,props.endDate,props.startDate);
     }
     else {
-      props.getHotColdWarm(props.userId,props.startDate,props.endDate);
+      props.getHotColdWarm(props.userId,props.endDate,props.startDate);
     }
-  },[props.userId,props.startDate,props.endDate]);
+  },[props.userId,props.endDate,props.startDate]);
   const [stdudentSubject, setStudentsubject] = useState([]);
   const [studentMarks, setStudentMarks] = useState([]);
 

@@ -8,12 +8,12 @@ import {getOppocLOSED} from "../../../DashboardAction";
 function OppoClosedTable (props) {
     useEffect(()=>{
       if (props.timeRangeType === "today"){
-        props.getOppocLOSED(props.userId,props.startDate,props.endDate);
+        props.getOppocLOSED(props.userId,props.endDate,props.startDate);
       }
       else{
-        props.getOppocLOSED(props.userId,props.startDate,props.endDate);
+        props.getOppocLOSED(props.userId,props.endDate,props.startDate);
       }
-    },[props.userId,props.startDate,props.endDate]);
+    },[props.userId,props.endDate,props.startDate]);
     const columns = [
       {
         title: <FormattedMessage
