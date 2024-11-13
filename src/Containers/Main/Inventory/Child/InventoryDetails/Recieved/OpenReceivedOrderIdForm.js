@@ -2,6 +2,8 @@ import React, { useEffect, lazy, useState, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import axios from "axios";
+import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
+import QrCodeIcon from '@mui/icons-material/QrCode';
 import Swal from "sweetalert2";
 import { FormattedMessage } from "react-intl";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -18,6 +20,7 @@ import {
   searchOpenOrdeReceived,
   ClearReducerData
 } from "../../../InventoryAction";
+import { useDispatch } from 'react-redux';
 import ReceivedOrderIdPhoneNoteModal from "./ReceivedOrderIdPhoneNoteModal";
 import { EditOutlined, FileDoneOutlined,  } from "@ant-design/icons";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -41,7 +44,7 @@ const { Search } = Input;
 
 function OpenReceivedOrderIdForm(props) {
   const componentRefs = useRef([]);
-
+  const dispatch = useDispatch();
   const handlePrint = () => {
     window.print();
   };
@@ -96,10 +99,12 @@ function OpenReceivedOrderIdForm(props) {
           Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
         },
       })
+      dispatch(getPhonelistByOrderId(props.rowData.orderPhoneId,"0" ));
+      dispatch(ClearReducerData());
       console.log("Response:", response.data);
       Swal.fire({
         icon: 'success',
-        title: ' Successfully!',
+        title: 'Inventory Updated Successfully!',
         showConfirmButton: false,
         timer: 1500
       })
@@ -262,9 +267,10 @@ console.log(selectedItems)
           <div style={{ display: "flex", marginLeft: "8rem" }}>
  
             <Button type="primary">
+              <DocumentScannerIcon className="!text-icon"/>
               Scan 
             </Button>
-            <div style={{ marginLeft: '10px' }}>
+            <div class="mt-2">
             <Input
           placeholder="Search by Name "
           width={"100%"}
@@ -547,6 +553,7 @@ console.log(selectedItems)
                             <>
                               {!item.cannotRepairInd && item.inspectionInd !== 3 ?
                                 <Button
+                                  type="primary"
                                   loading={particularRowData.phoneId === item.phoneId && props.updatingRepairStatus}
                                   onClick={() => {
                                     handleSetParticularOrderData(item);
@@ -558,6 +565,7 @@ console.log(selectedItems)
                                   Can't Repair
                                 </Button> :
                                 <Button
+                                  type="primary"
                                   loading={particularRowData.phoneId === item.phoneId && props.updatingRepairStatus}
                                   onClick={() => {
                                     handleSetParticularOrderData(item);
@@ -588,7 +596,7 @@ console.log(selectedItems)
                           />}>
 
                             <ReactToPrint
-                              trigger={() => <Button class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}>Print QR </Button>}
+                              trigger={() => <Button   type="primary" class=" bg-green-600 cursor-pointer text-gray-50" onClick={handlePrint}><QrCodeIcon className="!text-icon"/> Print QR  </Button>}
                               content={() => componentRefs.current[index]}
                             />
                           </Tooltip>

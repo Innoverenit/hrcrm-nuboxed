@@ -3,11 +3,11 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import InventoryCommerceTabO from "./InventoryCommerceTabO"
 import InventoryHeader from "./InventoryHeader";
-import FWLogo1 from "../../../../src/Assets/Images/cashShake.svg";
 import { setInventoryViewType,getInventoryById,setInventoryDetailViewType } from "./InventoryAction";
 import InventoryMaterialTabO from "./InventoryMaterialTabO";
 import InventoryDetailTabO from "./InventoryDetailTabO";//2
 import InventorySupplierTable from "./InventorySupplierTable";
+import { BundleLoader } from "../../../Components/Placeholder";
 
 const InventoryCard = lazy(() => import("./InventoryCard"));
 
@@ -123,10 +123,7 @@ function Inventory(props) {
         translatedMenuItems={translatedMenuItems}
         selectedLanguage={props.selectedLanguage}
       />
-      <Suspense fallback={ <div className="custom-loader">
-          <div className="loader !block"> </div>
-      <div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
-    </div>}>
+      <Suspense fallback={ <BundleLoader/>}>
         {props.viewType === "table" ?  
         <InventoryCard  
         translateText={props.translateText}

@@ -1,11 +1,8 @@
-import 'webrtc-adapter';
 import React, { lazy, useEffect, useState, } from "react";
-import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
-import { Modal, Button } from 'antd';
+import { Button } from 'antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { QrReader } from 'react-qr-reader';
-import { Link } from 'react-router-dom';
 import {addScandata} from "./InventoryAction";
 
 

@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { Component, useState,useEffect } from "react";
 import { Switch, Checkbox, Popconfirm, message, Select } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -6,6 +6,11 @@ import { updateValidationInReceive } from "../../../InventoryAction"
 import dayjs from "dayjs";
 
 function ReceiveValidationToggle(props) {
+
+    const[data,setData]=useState(props.phoneListById)
+    useEffect(()=>{
+      setData(props.phoneListById)
+    },[props.phoneListById])
 
     function onChange() {
         props.updateValidationInReceive({
@@ -45,6 +50,7 @@ function ReceiveValidationToggle(props) {
 
 const mapStateToProps = ({ auth, inventory }) => ({
     userId: auth.userDetails.userId,
+    phoneListById: inventory.phoneListById,
 });
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
