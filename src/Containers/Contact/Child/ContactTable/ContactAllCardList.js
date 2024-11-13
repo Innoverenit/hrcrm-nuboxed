@@ -249,31 +249,31 @@ if (loading) {
         </div>
         </div>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className="font-bold  font-poppins text-xs max-sm:hidden flex justify-between w-[99%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent sticky  z-10">
-      <div class=" flex justify-between w-[89%] font-bold  font-poppins text-xs items-end ">
-        <div className=" w-[43.9rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+      <div className=" max-sm:hidden flex justify-between w-[100%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent  sticky  z-10">
+        <div class=" flex justify-between w-[89%] font-bold  font-poppins text-xs items-end ">
+        <div className=" w-[13.9rem] truncate text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         <ContactsIcon className="!text-icon mr-1 "/>{translatedMenuItems[0]}</div>
-        <div className=" w-[30.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
+        <div className=" w-[13.1rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
         <ApartmentIcon className="!text-icon "/> {translatedMenuItems[1]}</div>
-        <div className=" md:w-[21.1rem] w-[20.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
-        <i className="fab fa-artstation "></i> {translatedMenuItems[2]}</div>
-        <div className="  md:w-[20.1rem] w-[22.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
-        <ApartmentIcon className="!text-icon  "/>{translatedMenuItems[3]}</div>
-        <div className=" md:w-[17.2rem] w-[15.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
-        <LightbulbIcon className="!text-icon  text-[#84a59d]"/> {translatedMenuItems[4]}</div> 
+        <div className=" md:w-[9.1rem] truncate w-[22.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
+        <i className="fab fa-artstation mr-1 text-[#b744b8]"></i>
+            {translatedMenuItems[2]}</div>
+        <div className="  md:w-[8.1rem]  truncate w-[15.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
+        <ApartmentIcon className="!text-icon text-[#f0386b] "/>  {translatedMenuItems[3]}</div>
+        <div className=" md:w-[7.2rem] truncate w-[19.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
+        <LightbulbIcon className="!text-icon truncate  text-[#84a59d]"/> {translatedMenuItems[4]}</div> 
         {/* <div className=" md:w-[14.3rem]  w-[13.3rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
-        <FilterAltIcon className="!text-icon mr-1 text-[#ff66b3]"/> {translatedMenuItems[5]}</div> pipeline */} 
-        <div className=" w-[21.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
-        <RadioButtonCheckedIcon className="!text-icon  text-[#f28482]"/>  {translatedMenuItems[6]}</div>
+        <FilterAltIcon className="!text-icon mr-1 text-[#ff66b3]"/> {translatedMenuItems[5]}</div> */}
+        <div className=" w-[9.11rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
+        <RadioButtonCheckedIcon className="!text-icon  text-[#f28482]"/>   {translatedMenuItems[6]}</div>
         {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[10.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className="font-poppins  truncate font-bold text-xs w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
              <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/>{translatedMenuItems[8]}   {/* Score */}
           
             </div>
-            )}
-               <div className="w-[5rem]"></div>
-        <div className=" w-[19.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">
-        <AccountCircleIcon className="!text-icon  text-[#f28482]"/> {translatedMenuItems[7]} </div>
+            )}            
+               <AccountCircleIcon className="!text-icon truncate mr-1 text-[#f28482]"/><div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">
+      {translatedMenuItems[7]} </div>
       
         <div className="w-[4.2rem]"></div>
         </div>
@@ -392,7 +392,7 @@ if (loading) {
                           </div>
                           </div>
       
-                          <div className="flex items-center justify-center   w-[5.1rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                          <div className="flex items-center justify-center   w-[6.5rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                           
                           <div class="flex items-center text-xs font-poppins w-wk h-8  max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
