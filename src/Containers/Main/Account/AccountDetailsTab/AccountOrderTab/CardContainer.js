@@ -110,6 +110,8 @@ const QRCodeGenerator = ({ data }) => {
                                 display: "flex",
                                 flexDirection: "column",
                                 alignItems: "center",
+                                  height:"-webkit-fill-available",
+                                                    justifyContent:"center"
                             }}
                         >
                             <div style={{ marginBottom: "10px", fontWeight: "bold" }}>Product: {item.product}</div>

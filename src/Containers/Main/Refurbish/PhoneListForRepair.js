@@ -611,6 +611,8 @@ function PhoneListForRepair(props) {
                                                     display: "flex",
                                                     flexDirection: "column",
                                                     alignItems: "center",
+                                                    height:"-webkit-fill-available",
+                                                    justifyContent:"center"
                                                 }}
                                             >
                                                 <div style={{ fontSize: "5rem" }}>

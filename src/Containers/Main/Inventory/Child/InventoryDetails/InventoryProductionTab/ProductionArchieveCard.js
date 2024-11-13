@@ -169,6 +169,8 @@ class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm
                                                 display: "flex",
                                                 flexDirection: "column",
                                                 alignItems: "center",
+                                                  height:"-webkit-fill-available",
+                                                    justifyContent:"center"
                                             }}
                                         >
                                             <div class=" mt-8"><QRCode size={130} value={item.manufactureId} /></div>
