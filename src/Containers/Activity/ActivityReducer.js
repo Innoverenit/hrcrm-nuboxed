@@ -111,10 +111,22 @@ export const activityReducer = (state = initialState, action) => {
               addEventLocation: false,
               //updateEventModal: false,
               activityTimeline: state.activityTimeline.map((event) =>
-              event.category === action.payload.category
+              event.taskId === action.payload.taskId
                 ? action.payload
                 : event
             ),
+            activityTimeline: state.activityTimeline.map((event) =>
+              event.eventId === action.payload.eventId
+                ? action.payload
+                : event
+            ),
+              
+            activityTimeline: state.activityTimeline.map((event) =>
+              event.callId === action.payload.callId
+                ? action.payload
+                : event
+            ),
+              
               
             };
           case types.ADD_EVENT_LOCATION_FAILURE:

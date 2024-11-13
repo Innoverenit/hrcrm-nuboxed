@@ -52,11 +52,19 @@ const ActivityListData = (props) => {
             longitude:longitude,
   
           }
-          props.addeventLocation(data,item.eventId,item.category)
-          message.success('Location fetched successfully!');
+
+          let data1={
+            complitionInd:item.complitionInd===false?true:false,
+            // latitude:latitude,
+            // longitude:longitude,
+  
+          }
+          props.addeventLocation(item.category==="Event"?data:data1,item.category==="Event"?item.eventId:item.callId,item.category)
+          
+          message.success(item.category==="Event"?'Location fetched successfully!':null);
         },
         (error) => {
-          props.addeventLocation()
+          //props.addeventLocation()
           console.error('Error fetching location:', error);
           // message.error('Error fetching location. Please try again.');
         }
@@ -94,7 +102,7 @@ const ActivityListData = (props) => {
                   Completion by {dayjs(status.endDate).format('DD/MM/YYYY')}
                   {status.category === 'Task' ? status.statusTask : null}
                 </div>
-                {status.complitionInd===true&&(
+                {status.complitionInd===true&&status.category === 'Event'&&(
                         <div>
                         {/* {item.completionInd === false ? (
                 <CheckCircleIcon 
@@ -114,15 +122,10 @@ const ActivityListData = (props) => {
                         </div>
                         )}
           <div class="flex  items-end  justify-end">
-          {/* {(status.category === "Call" || status.category === "Event") && ( */}
-          {( status.category === "Event") && (
+           {(status.category === "Call" || status.category === "Event") && (
+        
   <div class="">
-    {/* <Button
-      style={{ margin: '0 8px', padding: 0 }}
-      onClick={() => handleNotesClick(status)}
-    >
-      Complete
-    </Button> */}
+  
      {status.complitionInd===false&&(
    <Button 
    onClick={() => getLocation(status)}
