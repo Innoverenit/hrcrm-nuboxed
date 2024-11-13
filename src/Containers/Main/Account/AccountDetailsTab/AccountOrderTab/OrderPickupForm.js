@@ -10,6 +10,7 @@ const { Option } = Select;
 const OrderPickupForm = (props) => {
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [dateError, setdateError] = useState("");
     useEffect(() => {
         const fetchMenuTranslations = async () => {
           try {
@@ -42,13 +43,20 @@ const OrderPickupForm = (props) => {
         setLocation(val)
     }
     const handleDate = (val) => {
-        setDate(val)
+        setDate(val);
+        setdateError(""); 
     }
     console.log(location)
     console.log(date)
     console.log(props.particularRowData.creationDate)
 
     const handleSubmit = () => {
+
+        if (!date) {
+            setdateError("Please select a date");
+            return;
+        }
+
         let data = {
             inventoryPickUpDate: date,
             transferInd: 1,
@@ -87,8 +95,10 @@ const OrderPickupForm = (props) => {
                         className="w-[8rem]"
                         value={date}
                         onChange={(value) => handleDate(value)}
-                        disabledDate={current => disabledDate(current, givenDate)}
+                        style={{borderRight:"1px solid red"}}
+                        // disabledDate={current => disabledDate(current, givenDate)}
                     />
+                    {/* {dateError && <div className="text-red-500 text-sm mt-2">{dateError}</div>} */}
                 </div>
                 {(location.length === 0 && date.length === 0) ? null : <div>
                     <Button

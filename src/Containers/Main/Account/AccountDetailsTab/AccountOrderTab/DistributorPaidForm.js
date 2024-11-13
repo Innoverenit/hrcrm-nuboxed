@@ -196,7 +196,6 @@ if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotal
                   <div class="w-[40%]">
                   <div class="text-xs font-poppins font-bold">{translatedMenuItems[4]} ID</div>
                     <Field
-                      isRequired
                       name="transactionNumber"
                       // label={
                       //   <FormattedMessage

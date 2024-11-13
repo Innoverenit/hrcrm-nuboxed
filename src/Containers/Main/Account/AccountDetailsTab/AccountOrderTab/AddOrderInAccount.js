@@ -266,7 +266,7 @@ function AddOrderInAccount(props) {
                                             inlineLabel
                                             width={"100%"}
 
-                                            disabledDate={disabledDate}
+                                            // disabledDate={disabledDate}
                                             component={DatePicker}
                                             value={values.availabilityDate}
 
@@ -281,19 +281,19 @@ function AddOrderInAccount(props) {
                                             width={"100%"}
                                             disable={!values.availabilityDate}
                                             component={DatePicker}
-                                            disabledDate={(currentDate) => {
-                                                if (values.availabilityDate) {
-                                                    if (
-                                                        dayjs(currentDate).isBefore(
-                                                            dayjs(values.availabilityDate)
-                                                        )
-                                                    ) {
-                                                        return true;
-                                                    } else {
-                                                        return false;
-                                                    }
-                                                }
-                                            }}
+                                            // disabledDate={(currentDate) => {
+                                            //     if (values.availabilityDate) {
+                                            //         if (
+                                            //             dayjs(currentDate).isBefore(
+                                            //                 dayjs(values.availabilityDate)
+                                            //             )
+                                            //         ) {
+                                            //             return true;
+                                            //         } else {
+                                            //             return false;
+                                            //         }
+                                            //     }
+                                            // }}
                                             value={values.deliveryDate}
 
                                         />

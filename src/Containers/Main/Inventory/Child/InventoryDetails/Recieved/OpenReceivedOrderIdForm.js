@@ -5,7 +5,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { FormattedMessage } from "react-intl";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { Button, Tooltip, Input,Badge,Checkbox } from "antd";
+import { Button, Tooltip, Input,Badge,Checkbox,Popconfirm } from "antd";
 import QRCode from "qrcode.react";
 import {
   handleReceivedOrderIdPhoneNoteModal,
@@ -49,8 +49,7 @@ function OpenReceivedOrderIdForm(props) {
   useEffect(() => {
     setPage(page + 1);
     props.getPhonelistByOrderId(props.rowData.orderPhoneId, page)
-  }, [])
-
+  }, []);
   const [hasMore, setHasMore] = useState(true);
   const [selectedRow, setSelectedRow] = useState(null);
 
@@ -68,7 +67,6 @@ function OpenReceivedOrderIdForm(props) {
       setSelectedItems([]); // Deselect all
     } else {
       setSelectedItems(props.phoneListById); // Select all
-      handleBulkReceive();
     }
     setSelectAll(!selectAll);
   };
@@ -82,7 +80,7 @@ function OpenReceivedOrderIdForm(props) {
       }
     });
   };
-  const handleBulkReceive = async () => {
+  const handleBulkReceiveConfirmed = async () => {
     try { 
       const payload = {
         
@@ -311,7 +309,19 @@ console.log(selectedItems)
         <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
           <div className="md:w-[2.01rem]">
-          <Tooltip title="Select All"><Checkbox checked={selectAll} onChange={handleSelectAll} /></Tooltip>
+          {props.rowData.inspectionInd === 1 && (
+          <Popconfirm
+          title="Do you want to select all?"
+          onConfirm={handleBulkReceiveConfirmed} 
+          onCancel={() => setSelectAll(false)}
+          okText="Yes"
+          cancelText="No"
+                    >
+          <Tooltip title="Select All">
+            <Checkbox checked={selectAll} onChange={handleSelectAll} />
+          </Tooltip>
+          </Popconfirm>
+          )}
           </div>
             <div className=" md:w-[4.74rem]">Brand</div>
             <div className=" md:w-[6.73rem]"><FormattedMessage
@@ -370,10 +380,12 @@ console.log(selectedItems)
     >
                       <div class="flex">
                       <div className="md:w-[2rem]">
+                      {item.inspectionInd === 1 && (
                       <Checkbox
                       checked={selectedItems.includes(item)}
+                      
                       onChange={() => handleCheckboxChange(item)}
-                    />
+                    />)}
                       </div>
                         <div className=" flex   border-l-2  h-8 border-green-500 bg-[#eef2f9] md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           {item.mismatchInd && <div class=" text-xs  font-poppins">
