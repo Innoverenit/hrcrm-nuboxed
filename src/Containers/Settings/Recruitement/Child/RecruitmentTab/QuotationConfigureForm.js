@@ -299,6 +299,27 @@ const  handleEmailInd = (checked) => {
 
 
 
+  const toggleFieldVisibility1 = (value) => {
+    switch (value) {
+      case 'autoEmail':
+        setIsAutoEmailVisible(!autoEmailVisible);
+       
+    }
+   
+
+  }
+
+
+  const toggleFieldVisibility2 = (value) => {
+    switch (value) {
+      case 'documented':
+        setIsDocumentVisible(!documentVisible);
+       
+    }
+   
+
+  }
+
 
   const toggleFieldVisibility = (fieldName) => {
     switch (fieldName) {
@@ -354,11 +375,9 @@ const  handleEmailInd = (checked) => {
                                                     setIsStageVisible(!stageVisible);
                                                     break;
 
-                                                    case 'documented':
-                                                        setIsDocumentVisible(!documentVisible);
+                                                   
 
-                                                        case 'autoEmail':
-                                                            setIsAutoEmailVisible(!autoEmailVisible);
+                                                       
 
 
                                                             case 'potentialCurrency':
@@ -1413,7 +1432,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
 
 <Switch
         checked={documentVisible}
-    onChange={() => toggleFieldVisibility('documented')}
+    onChange={() => toggleFieldVisibility2('documented')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
@@ -1432,7 +1451,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
                         />
                                                                            <Switch
         checked={autoEmailVisible}
-    onChange={() => toggleFieldVisibility('autoEmail')}
+    onChange={() => toggleFieldVisibility1('autoEmail')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
