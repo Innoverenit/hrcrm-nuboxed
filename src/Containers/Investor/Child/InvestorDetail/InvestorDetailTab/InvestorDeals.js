@@ -89,7 +89,7 @@ if (loading) {
   return (
     <>
   <div class="rounded m-1 p-1 w-[99%] h-[77vh]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-    <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold font-poppins text-xs sticky items-end  z-10">
+    <div className=" flex  w-[100%]  justify-between truncate p-1 bg-transparent font-bold font-poppins text-xs sticky items-end  z-10">
         <div className="text-[#00A2E8] text-base md:w-[15rem]">
         <LocationCityIcon className='!text-icon  '  />   {translatedMenuItems[0]} 
        {/* name */}             
@@ -164,7 +164,7 @@ if (loading) {
                     return (
                         <div>
                             <div
-              className="flex rounded justify-between  bg-white mt-1 items-center py-1 max-sm:h-[9rem] max-sm:  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+              className="flex rounded justify-between  bg-white mt-1 items-center py-ygap max-sm:h-[9rem] max-sm:  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
             >
                                      
                                 <div className=" flex h-8 border-l-2 border-green-500 bg-[#eef2f9]  w-[12rem]   max-sm:w-full">
@@ -185,7 +185,7 @@ if (loading) {
                                         <Tooltip>
                                           <div class="max-sm:w-full max-sm:justify-between flex md:">
                                             
-                                            <div class=" text-[0.82rem] flex text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                            <div class=" text-[0.82rem] flex text-blue-500 ml-gap font-poppins font-semibold  cursor-pointer">
                                                                                       
                                               {item.opportunityName}
                                               
@@ -212,7 +212,7 @@ if (loading) {
 </div>
 </div>
 
-<div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[9.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
 <div class=" text-sm  font-poppins">
@@ -231,7 +231,7 @@ imgHeight={"1.8em"}
 </div>
 
 
-<div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[5.3rem] max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[7.3rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
 <div class=" text-xs justify-center  font-poppins">
@@ -239,7 +239,7 @@ imgHeight={"1.8em"}
 </div>
 </div>
 
-<div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[4.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[6.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
 <div class=" text-xs  font-poppins text-center">
@@ -249,7 +249,7 @@ imgHeight={"1.8em"}
 
 </div>
 </div>
-<div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
 <div class=" text-xs  font-poppins text-center">

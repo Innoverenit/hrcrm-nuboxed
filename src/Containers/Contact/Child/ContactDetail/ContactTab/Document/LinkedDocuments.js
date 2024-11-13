@@ -88,7 +88,7 @@ class LinkedDocuments extends Component {
     return (
       <>
          <div class="rounded m-1 p-1 w-[99%] h-[78vh] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[100%] font-poppins font-bold text-xs p-1 bg-transparent font-bold sticky top-0 z-10">
+          <div className=" flex justify-between w-[100%] font-poppins font-bold text-xs p-1 bg-transparent items-end font-bold sticky top-0 z-10">
           <div className="w-[6.9rem] md:w-[11.9rem]"> 
             <DateRangeIcon className='!text-icon  '  />
           {this.state.translatedMenuItems[0]} </div>
@@ -116,7 +116,7 @@ class LinkedDocuments extends Component {
              
                     return (
                         <div>
-                            <div className="flex rounded justify-between  bg-white mt-1  items-center py-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                            <div className="flex rounded justify-between  bg-white mt-1  items-center py-ygap max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                                      
                              <div className=" flex  md:w-[13rem] border-l-2 border-green-500 bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between  ">
                                 <div className="flex max-sm:w-full items-center"> 

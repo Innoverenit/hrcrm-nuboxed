@@ -101,7 +101,7 @@ const DashBoardSummary=(props) =>{
     <div className=" container  mx-auto  p-4 flex rounded mt-1  bg-white h-[87vh]  overflow-x-auto ">
       {/* TASK */}
       <div class="flex flex-col w-[16rem] ml-8 items-center">
-        <h2 className="text-xl font-bold font-poppins mb-4 uppercase">{translatedMenuItems[0]} {`${props.taskperCount.totalTask} `}</h2>
+        <h2 className="text-xl font-bold font-poppins mb-4 uppercase">{translatedMenuItems[0]}<span  className="font-bold text-[tomato] ml-1"> {`${props.taskperCount.totalTask} `}</span></h2>
         <div className="overflow-y-auto max-h-[78vh]">
       {props.fetchingTaskDashboardGantt ? (
         <div className="flex justify-center items-center h-full">
@@ -188,7 +188,7 @@ const DashBoardSummary=(props) =>{
       {/* QUOTATION */}
       <div class="flex flex-col w-[16rem] ml-2 items-center">
   <h2 className="text-xl font-poppins font-bold mb-4 uppercase">
-  {translatedMenuItems[2]}   {`${props.quotationDashboardCount.countByUserId} `}
+  {translatedMenuItems[2]} <span  className=" font-bold text-[tomato] ml-1">   {`${props.quotationDashboardCount.countByUserId} `}</span>
 </h2>
   {props.quotationDashboard.length === 0 &&props.fetchingQuotationDashboard? (
     <>
@@ -208,7 +208,7 @@ const DashBoardSummary=(props) =>{
         <div className="text-sm text-gray-500 font-poppins">{lead.amount}</div>
         <div class="flex justify-between">
         <div className="text-sm text-gray-500 font-poppins  truncate ">{lead.contactPersonName}</div>
-        <Button>{translatedMenuItems[3]}</Button>
+        <Button type="primary">{translatedMenuItems[3]}</Button>
         </div>
       </div>
     ))
@@ -220,7 +220,7 @@ const DashBoardSummary=(props) =>{
 
   {/* Re Order */}
   <div class="flex flex-col w-[16rem] ml-2 items-center">
-        <h2 className="text-xl font-poppins font-bold mb-4 uppercase">{translatedMenuItems[4]} 0 </h2>
+        <h2 className="text-xl font-poppins font-bold mb-4 uppercase">{translatedMenuItems[4]}<span  className=" text-xl font-bold text-[tomato] ml-1">  0</span> </h2>
         {props.reOrderData.map((colleague, index) => (
           <div key={index} className="mb-4 p-2 ml-2 box-content border-2 border-[#00008b23] w-[11rem]">
             <div className="flex justify-between">
@@ -238,7 +238,7 @@ const DashBoardSummary=(props) =>{
       <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-4"></div> 
          {/* Best Before */}
          <div class="flex flex-col w-[16rem] ml-2 items-center">
-        <h2 className="text-xl font-bold font-poppins mb-4 uppercase"> {translatedMenuItems[6]} 2 </h2>
+        <h2 className="text-xl font-bold font-poppins mb-4 uppercase"> {translatedMenuItems[6]} <span  className="font-bold text-[tomato] ml-1"> 2</span> </h2>
         <div className="overflow-y-auto max-h-[78vh]">
       {props.fetchingMaterialBestBefore ? (
         <div className="flex justify-center items-center h-full">
@@ -270,9 +270,10 @@ const DashBoardSummary=(props) =>{
                   orgId:props.orgId,
                   moveToWasteInd:true
                 },
-                colleague.poSupplierSuppliesId
+                colleague.poSupplierSuppliesId,
+            
               );
-                
+              
               }}
             >{translatedMenuItems[7]}</Button>
             </div>
@@ -288,7 +289,7 @@ const DashBoardSummary=(props) =>{
       <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-4"></div> 
         {/* ORDER */}
         <div class="flex flex-col w-[16rem] ml-2 items-center">
-        <h2 className="text-xl font-bold font-poppins mb-4 uppercase">{translatedMenuItems[8]} 6</h2>
+        <h2 className="text-xl font-bold font-poppins mb-4 uppercase">{translatedMenuItems[8]} <span  className=" font-bold text-[tomato] ml-1"> 5</span></h2>
         {data.notInCrm.map((contact, index) => (
           <div key={index} className="mb-4 p-2 ml-2 box-content border-2 border-[#00008b23] w-[11rem]">
             <div className="flex justify-between">
@@ -303,7 +304,7 @@ const DashBoardSummary=(props) =>{
       <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-4"></div> 
       {/* DEALS */}
       <div class="flex flex-col w-[16rem] ml-2 items-center">
-        <h2 className="text-xl font-bold font-poppins mb-4 uppercase"> {translatedMenuItems[9]} 5 </h2>
+        <h2 className="text-xl font-bold font-poppins mb-4 uppercase"> {translatedMenuItems[9]} <span  className="font-bold text-[tomato] ml-1">  6</span></h2>
         {data.colleagues.map((colleague, index) => (
           <div key={index} className="mb-4 p-2 ml-2 box-content border-2 border-[#00008b23] w-[11rem] ">
             <div className="flex justify-between">

@@ -54,7 +54,7 @@ import AddCustomerAdressModal from "./AddCustomerAdressModal";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { CurrencySymbol } from "../../../../Components/Common";
 import EmptyPage from "../../../Main/EmptyPage";
-
+import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
 const AddCustomerEmailDrawerModal =lazy(()=> import("../UpdateCustomer/AddCustomerEmailDrawerModal"));
 const AddCustomerNotesDrawerModal =lazy(()=> import("../CustomerDetail/AddCustomerNotesDrawerModal"));
@@ -295,19 +295,20 @@ const [rowdata, setrowdata] = useState("");
          <div className=' flex sticky  w-[85%] z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky items-end z-10">
-         <div class=" flex justify-between w-[80%] items-end font-poppins font-bold text-xs">
-            <div className="font-poppins font-bold text-[#00A2E8] text-base w-[12.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+         <div class=" flex justify-between w-[82%] items-end font-poppins font-bold text-xs">
+            <div className="font-poppins font-bold text-[#00A2E8] truncate text-base w-[11.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             <ApartmentIcon className="!text-icon  "/>
             {translatedMenuItems[0]}
            {/* name */}
             </div>
-            <div className=" w-[10.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className=" w-[9.9rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
             <WifiCalling3Icon className="!text-icon mr-1 text-[#4f5d75]"/>
             {translatedMenuItems[1]}
              {/* work */}
-
+             <div className=" w-[2.1rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+           </div>
             </div>
-            <div className=" w-[6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className=" w-[7.2rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
             <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> 
             {translatedMenuItems[2]}
              {/* sector */}
@@ -320,33 +321,33 @@ const [rowdata, setrowdata] = useState("");
 
             </div> */}
            
-            <div className=" w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <div className=" w-[6.4rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             <LightbulbIcon className="!text-icon  text-[#84a59d]"/> 
             {translatedMenuItems[4]}
              {/* quotation */}
 
             </div>
             {props.user.aiInd && (
-            <div className=" w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
- <ScoreIcon className="!text-icon  text-[#f28482]"/> 
+            <div className=" w-[4.71rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/> 
             {/* Score */}
             {translatedMenuItems[19]}
             </div>
             )}         
-            <div className=" w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
-            <AccountCircleIcon className="!text-icon  text-[#d64933]"/> 
+            <div className=" w-[4.8rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <AccountCircleIcon className="!text-icon mr-1 text-[#d64933]"/> 
             {translatedMenuItems[6]}
             {/* Assigned" */}
           
             </div>
-            <div className=" w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
-            <AccountCircleIcon className="!text-icon  text-[#d64933]"/> 
+            <div className=" w-[4.7rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <AccountCircleIcon className="!text-icon mr-1 text-[#d64933]"/> 
             {translatedMenuItems[7]}
             {/* Assigned" */}
           
             </div>
-            <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            <AcUnitIcon className="!text-icon  text-[#92dce5]"/> 
+            <div className=" w-[6.8rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <AcUnitIcon className="!text-icon mr-1 text-[#667761]"/> 
             {translatedMenuItems[8]}
              {/* Customer" */}
           

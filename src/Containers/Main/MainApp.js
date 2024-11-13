@@ -514,16 +514,16 @@ function MainApp(props) {
                     </Tooltip>
                   </div>
                 </div>
-            
+          
                 <FloatButton.Group
       // trigger="hover"
         shape="square"
       type="primary"
       style={{
-        insetInlineEnd: 94,
+        insetInlineEnd: 20,
       }}
       icon={
-      <CustomerServiceOutlined />
+      <CustomerServiceOutlined className="!text-icon" />
      
     }
     >
@@ -532,14 +532,14 @@ function MainApp(props) {
         // <CommentOutlined />
         <Tooltip title="Order">
            <DynamicFeedIcon
-           style={{color:"blue"}}
+           
         // onClick={() => {
        
         //   props.handleContactModal(true);
           
   
         // }}
-        className='!text-base  text-[#e4eb2f]'
+        className="!text-icon text-[#e4eb2f] text-[blue]"
         />
         </Tooltip>
        
@@ -556,7 +556,7 @@ function MainApp(props) {
           
   
         }}
-        className='!text-base  text-[#e4eb2f]'
+        className='!text-icon  text-[#e4eb2f]'
         />
         </Tooltip>
         } />
@@ -573,7 +573,7 @@ function MainApp(props) {
           
   
         }}
-        className='!text-base  text-[#e4eb2f]'
+        className='!text-icon  text-[#e4eb2f]'
         />
         </Tooltip>
         } />

@@ -54,6 +54,7 @@ import { CurrencySymbol } from "../../../../Components/Common";
 import {getCrm,}from"./././../../../Leads/LeadsAction";
 import UpdateUserModal from "../CustomerTable/UpdateUserModal"
 import EmptyPage from "../../../Main/EmptyPage";
+import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 const CustomerContactDrawerModal =lazy(()=> import("./CustomerContactDrawerModal"));
 const CustomerOpportunityDrawerModal =lazy(()=> import("./CustomerOpportunityDrawerModal"));
 const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
@@ -290,56 +291,68 @@ const [rowdata, setrowdata] = useState("");
         </div>
          <div className=' flex sticky w-[85%] z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent items-end sticky  z-10">
-        <div class=" flex justify-between font-poppins  text-xs font-bold w-[85%] items-end">
-            <div className=" text-[#00A2E8] text-base w-[11.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.7rem] max-lg:w-[7.31rem]">
-            <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[0]}
-              {/* name */}
-            </div> 
-            <div className=" w-[8.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
-            <WifiCalling3Icon className="!text-icon mr-1 text-[#4f5d75]"/>{translatedMenuItems[1]}          
-                {/* defaultMessage="Work" */}
-            
+         <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky items-end z-10">
+         <div class=" flex justify-between w-[82%] items-end font-poppins font-bold text-xs">
+            <div className="font-poppins font-bold text-[#00A2E8] truncate  text-base w-[11.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            <ApartmentIcon className="!text-icon  "/>
+            {translatedMenuItems[0]}
+           {/* name */}
             </div>
-            <div className=" w-[7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.33rem]">
-            <FactoryIcon className="!text-icon  text-[#84a59d]"/> {translatedMenuItems[2]}     
-                {/* defaultMessage="Sector" */}
+            <div className=" w-[9.9rem] max-xl:text-[0.65rem] truncate  max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <WifiCalling3Icon className="!text-icon mr-1 text-[#4f5d75]"/>
+            {translatedMenuItems[1]}
+             {/* work */}
+             <div className=" w-[2.1rem] max-xl:text-[0.65rem] truncate  max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+           </div>
             </div>
-            {/* <div className=" w-[5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
-            <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[3]}      
-                defaultMessage="Source"
-           
+            <div className=" w-[7.2rem] max-xl:text-[0.65rem] truncate  max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> 
+            {translatedMenuItems[2]}
+             {/* sector */}
+
+            </div>
+            {/* <div className=" w-[7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            <SourceIcon className="!text-icon mr-1 text-[#4b5043]"/> 
+            {translatedMenuItems[3]}
+           source
+
             </div> */}
-          
-            <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.36rem]">
-            <LightbulbIcon className="!text-icon  text-[#84a59d]"/>  {translatedMenuItems[4]}            
-                {/* defaultMessage="Quotation" */}
-      
+           
+            <div className=" w-[6.4rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <LightbulbIcon className="!text-icon  text-[#84a59d]"/> 
+            {translatedMenuItems[4]}
+             {/* quotation */}
+
             </div>
             {props.user.aiInd && (
-            <div className=" font-bold text-xs w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            <ScoreIcon className="!text-icon  text-[#f28482]"/>{/* Score */}
-            {translatedMenuItems[19]}  
+            <div className=" w-[4.71rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+ <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/> 
+            {/* Score */}
+            {translatedMenuItems[19]}
             </div>
-            )}  
-            <div className=" w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[3.2rem]">
-            <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[6]}            
-           {/* ="Assigned" */}
-             
+            )}         
+            <div className=" w-[4.8rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <AccountCircleIcon className="!text-icon mr-1 text-[#d64933]"/> 
+            {translatedMenuItems[6]}
+            {/* Assigned" */}
+          
             </div>
-            <div className="font-poppins w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[3.2rem]">
-            <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[7]}            
-           {/* ="Assigned" */}
-             
+            <div className=" w-[4.7rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <AccountCircleIcon className="!text-icon mr-1 text-[#d64933]"/> 
+            {translatedMenuItems[7]}
+            {/* Assigned" */}
+          
             </div>
-            <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-            <AcUnitIcon className="!text-icon  text-[#92dce5]"/>   {translatedMenuItems[8]}
-             {/* customer */}
+            <div className=" w-[6.8rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <AcUnitIcon className="!text-icon mr-1 text-[#667761]"/> 
+            {translatedMenuItems[8]}
+             {/* Customer" */}
+          
             </div>
-      
-            <div className="w-[3.8rem]"></div>
-            </div>
-      </div>
+         
+          </div>
+
+          </div>
         <InfiniteScroll
         dataLength={allCustomers.length}
         next={handleLoadMore}
@@ -375,7 +388,7 @@ const [rowdata, setrowdata] = useState("");
                 className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                   <div className=" flex  w-[11rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[7rem]  max-sm:w-auto">
+                                   <div className=" flex  w-[11.50rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[7rem]  max-sm:w-auto">
                                    <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {props.showCheckboxes && (
                         <Checkbox
@@ -419,20 +432,20 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                     </div>
                                     </div> 
-                                    <div className=" flex  max-sm:w-auto    w-[5.24rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">                                                        
+                                    <div className=" flex  max-sm:w-auto    w-[7.54rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">                                                        
                                     <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] ml-gap">   
                                     {item.phoneNumber}
                                     </div>                              
                                 </div> 
 
-                                <div className=" flex  w-[2.5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex  w-[2.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
   <CountryFlag1 countryCode={item.countryAlpha2Code} />
   &nbsp;
   {item.countryAlpha2Code}
 </div>
 </div>
-                                <div className=" flex  max-sm:w-auto   w-[8.50rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                                <div className=" flex  max-sm:w-auto   w-[7.40rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
             {/* sector */}
                         <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] ml-gap">
                           {item.sector}
@@ -449,9 +462,9 @@ const [rowdata, setrowdata] = useState("");
 </div>
 
 </div> */}
-<div className=" flex  w-[7.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+<div className=" flex  w-[6.82rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 
-<div className=" flex  w-[2.5rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+<div className=" flex  w-[3rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 <div class=" text-xs  max-sm:text-sm font-poppins text-center">
                             {item.oppNo}
 
@@ -459,7 +472,7 @@ const [rowdata, setrowdata] = useState("");
                           </div>
 
 
-<div className=" flex  w-[3.1rem]  max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+<div className=" flex  w-[3.5rem]  max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 <div class=" text-xs flex max-sm:text-sm font-poppins text-center">
                                 <div>
         <CurrencySymbol currencyType={item.userCurrency}/>     </div> 
@@ -474,13 +487,13 @@ const [rowdata, setrowdata] = useState("");
                             
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 {props.user.aiInd && (
-           <div className=" flex    w-[4.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex    w-[4.62rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
         {item.noteScoreInd}
             </div>
             )}
 
 
-                                <div className=" flex w-[4.90rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">
+                                <div className=" flex w-[4.50rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">
                                   
 
                                     <div class=" text-xs  font-poppins">
@@ -531,7 +544,7 @@ const [rowdata, setrowdata] = useState("");
                         >
                           {user.erpInd === true && (
                             <Button className="justify-start" type="primary"
-                            style={{ width: "6.5rem", background: item.convertInd === 1 ? "tomato" : "linear-gradient(to right, #2BBCCF, #38C98D)" }}
+                            style={{ width: "7rem", background: item.convertInd === 1 ? "tomato" : "linear-gradient(to right, #2BBCCF, #38C98D)" }}
                            
                             >
                               <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] w-wk flex items-center" >
@@ -545,8 +558,8 @@ const [rowdata, setrowdata] = useState("");
                           )}
                         </Popconfirm>
                       </div>
-                       <div className=" flex  w-[5.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
-                      <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[5.2rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+                       <div className=" flex  w-[5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
 </svg>

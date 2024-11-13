@@ -73,7 +73,7 @@ function OpportunityTable(props) {
   return (
     <>
     <div class="rounded m-1 max-sm:m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
- <div className="flex max-sm:hidden  w-[100%]  max-xl:w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
+ <div className="flex max-sm:hidden  w-[100%]  max-xl:w-[100%]  p-1 bg-transparent font-bold font-poppins items-end text-xs sticky  z-10">
         <div className=" w-[15.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> 
            <LightbulbIcon className="!text-icon text-[#84a59d]"/> {translatedMenuItems[0]} ID</div>
         {/* Quotation ID */}
@@ -123,7 +123,7 @@ function OpportunityTable(props) {
 
                   <div className="max-sm:w-wk">
                    <div
-                className="flex rounded justify-between  bg-white mt-1  items-center py-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                className="flex rounded justify-between  bg-white mt-1  items-center py-ygap max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex w-[8rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
                               <div className="ml-gap">
