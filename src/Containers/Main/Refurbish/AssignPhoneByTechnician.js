@@ -166,7 +166,7 @@ const AssignPhoneByTechnician = (props) => {
                         className="w-[300]"
                         value={dueDate}
                         onChange={(value) => hanldeOnChange(value)}
-                        disabledDate={disabledDate}
+                        // disabledDate={disabledDate}
 
                     />
                 </div>

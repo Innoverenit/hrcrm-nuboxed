@@ -129,7 +129,7 @@ const AssignRepairForm = (props) => {
                         className="w-[250px]"
                         value={dueDate}
                         onChange={(value) => hanldeOnChange(value)}
-                        disabledDate={disabledDate}
+                        // disabledDate={disabledDate}
                     />
                 </div>
                 <div class=" w-1/5">
