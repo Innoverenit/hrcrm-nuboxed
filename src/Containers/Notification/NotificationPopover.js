@@ -1,27 +1,38 @@
-import React, { Component } from "react";
+import React, { Component, Suspense } from "react";
 import { connect } from "react-redux";
 import { Badge, Tooltip, Popover } from "antd";
 import NotificationTab from "./NotificationTab";
 import { bindActionCreators } from "redux";
 import { BellOutlined} from '@ant-design/icons';
+import { BundleLoader } from "../../Components/Placeholder";
 import { handlenotificationdrawer } from "./NotificationAction";
-class NotificationPopover extends Component {
-  constructor(props) {
-    super(props);
+import Notificationdrawermodal from "./Notificationdrawermodal";
 
-    this.state = {
-      visible: false
-    };
-    this.handleVisibleChange = this.handleVisibleChange.bind(this);
-  }
+  function NotificationPopover(props) {
+  // constructor(props) {
+  //   super(props);
 
-  handleVisibleChange = visible => {
-    this.setState({ visible });
-  };
-  render() {
+  //   this.state = {
+  //     visible: false
+  //   };
+  //   this.handleVisibleChange = this.handleVisibleChange.bind(this);
+  // }
+
+  // handleVisibleChange = visible => {
+  //   this.setState({ visible });
+  // };
+  // render() {
     return (
+      <>
+      <div>
       <Tooltip title="Notifications">
-        <Popover
+         <BellOutlined type="bell" className="!text-icon cursor-pointer text-[#1890ff]"
+         onClick={() => {
+          props.handlenotificationdrawer(true);
+         
+        }} 
+           />
+        {/* <Popover
           content={
             <div>
               <NotificationTab />
@@ -39,15 +50,24 @@ class NotificationPopover extends Component {
             <BellOutlined type="bell" className="!text-icon cursor-pointer text-[#1890ff]" 
             onClick={() => this.props.handlenotificationdrawer(true)}/>
           </Badge>
-        </Popover>
+        </Popover> */}
       </Tooltip>
-    );
-  }
+      </div>
+      <Suspense fallback={<BundleLoader />}>
+      <Notificationdrawermodal
+      Notificationdrawermodal={props.Notificationdrawermodal}
+       handlenotificationdrawer={props.handlenotificationdrawer}
+      />
+      </Suspense>
+    </>
+    
+    )
 }
 const mapStateToProps = ({ notification }) => ({
-  notificationCount:
-    notification.presentNotifications &&
-    notification.presentNotifications.length
+  // notificationCount:
+  //   notification.presentNotifications &&
+  //   notification.presentNotifications.length
+  Notificationdrawermodal: notification.Notificationdrawermodal
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -56,4 +76,5 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default connect(mapStateToProps)(NotificationPopover);
+
+export default connect(mapStateToProps, mapDispatchToProps)(NotificationPopover);

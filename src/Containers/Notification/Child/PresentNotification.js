@@ -71,8 +71,8 @@ class PresentNotification extends Component {
             <Spin />
           </div>
         ) : (
-            <List
-              style={{ height: 400, overflow: "auto" }}
+            <List className="w-[34vw] h-[78vh] overflow-auto"
+              // style={{ height: 400, overflow: "auto" }}
               dataSource={this.props.presentNotifications.slice(
                 0,
                 this.state.itemsToShow
@@ -124,7 +124,7 @@ class PresentNotification extends Component {
           )}
         {this.props.presentNotifications &&
           this.props.presentNotifications.length > this.state.itemsToShow && (
-            <Button style={{ marginTop: "1.25em" }} onClick={this.showMore}>
+            <Button type="primary" style={{ marginTop: "1.25em" }} onClick={this.showMore}>
               {this.state.expanded ? (
                 <span>Show less</span>
               ) : (

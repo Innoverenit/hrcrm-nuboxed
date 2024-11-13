@@ -18,7 +18,7 @@ import { Tooltip } from "antd";
 const DistributorCollectionTableToday = lazy(() => import("../Distributor/DistributorCollectionTableToday"));
 const DistributorColletcionArchive = lazy(() => import("../Distributor/DistributorColletcionArchive"));
 const DistributorCollectionTableAll = lazy(() => import("../Distributor/DistributorCollectionTableAll"));
-
+const DistributorSummaryTable = lazy(() => import("../Distributor/DistributorSummaryTable"));
 
 const TabPane = StyledTabs.TabPane;
 
@@ -39,8 +39,8 @@ function CollectionDistributorTab(props) {
          "204", //  "Receivables",//0
           "1680",  // Reconsile",//1
           "1357" , // "Credit Memo",//2
-               "1367"  // close
-   
+          "1367",  // close
+           "1168"
           
 
         ];
@@ -117,6 +117,12 @@ function CollectionDistributorTab(props) {
               selectedLanguage={props.selectedLanguage}/>
             )}
           </Suspense></div>;
+           case "4":
+            return  <div>  <DistributorSummaryTable
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
+          
+         /></div>;
 
       default:
         return null;
@@ -127,6 +133,35 @@ function CollectionDistributorTab(props) {
     <>
       <TabsWrapper>
         <StyledTabs defaultActiveKey={activeKey} onChange={handleTabChange}>
+        <TabPane
+            tab={
+              <>
+                <span class="!text-tab">
+                  <i class="fas fa-hand-holding-usd text-[#9e7682]"></i>&nbsp; 
+                  {translatedMenuItems[4]}   {/* <FormattedMessage
+                    id="app.receivable"
+                    defaultMessage="Receivables"
+                  /> */}
+                </span>
+                &nbsp;
+                {activeKey === "4" && <></>}
+              </>
+            }
+            key="4"
+          >
+            <Suspense fallback={"Loading ..."}>
+              {" "}
+              {/* <DistributorCollectionTableToday
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}
+                rowSelectionTodayForDistributor={
+                  rowSelectionTodayForDistributor
+                }
+                handleClearCheck={handleClearCheck}
+              /> */}
+            </Suspense>
+          </TabPane>
+
           <TabPane
             tab={
               <>

@@ -65,17 +65,17 @@ class PastNotification extends Component {
     return (
       <div>
         {this.props.fetchingPastNotifications ? (
-          <div style={{ textAlign: "center" }}>
+          <div className="text-center" >
             <Spin />
           </div>
         ) : (
-            <List
-              style={{
-                height: 400,
-                overflow: "auto",
-                border: "none"
-                //   backgroundColor: this.state.color
-              }}
+            <List className=" w-[34vw] h-[78vh] overflow-auto"
+              // style={{
+              //   height: 400,
+              //   overflow: "auto",
+              //   border: "none"
+              //   //   backgroundColor: this.state.color
+              // }}
               size="small"
               bordered
               dataSource={this.props.pastNotifications.slice(
@@ -120,13 +120,14 @@ class PastNotification extends Component {
                         : null
                     }
                   />
+             
                 </List.Item>
               )}
             />
           )}
         {this.props.pastNotifications &&
           this.props.pastNotifications.length > this.state.itemsToShow && (
-            <Button style={{ marginTop: "1.25em" }} onClick={this.showMore}>
+            <Button type="primary" style={{ marginTop: "1.25em" }} onClick={this.showMore}>
               {this.state.expanded ? (
                 <span>Show less</span>
               ) : (
