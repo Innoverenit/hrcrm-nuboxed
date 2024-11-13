@@ -2,7 +2,6 @@ import React, { Component,lazy, Suspense } from "react";
 import { ActionHeader } from "../../../Components/Utils";
 import { BundleLoader } from "../../../Components/Placeholder";
 const DashboardActionLeft=lazy(() => import("./DashboardActionLeft"));
-const DashboardActionRight=lazy(() => import("./DashboardActionRight"));
 class DashboardHeader extends Component {
   render() {
     return (

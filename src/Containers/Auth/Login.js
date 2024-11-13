@@ -166,7 +166,7 @@ class Login extends Component {
           </div>
           <div class="w-1/2 flex justify-center items-center max-sm:hidden  bg-blue-400">
             <img
-              className="big-logo h-[62%] w-[50%]"
+              className="big-logo h-[50%] w-[94%]"
               src={FWLogo3}
               style={{}}
               alt="Tekorero logo"
