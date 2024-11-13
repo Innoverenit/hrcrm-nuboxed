@@ -201,7 +201,7 @@ class ContactDetailTab extends Component {
             <TabPane
               tab={
                 <>
-                 <LightbulbIcon className="!text-icon"/>
+            <LightbulbIcon className="!text-icon text-[#84a59d]"/>
                     <span class=" ml-1">
                     {this.state.translatedMenuItems[1]}            
                     {/* Quotation */}

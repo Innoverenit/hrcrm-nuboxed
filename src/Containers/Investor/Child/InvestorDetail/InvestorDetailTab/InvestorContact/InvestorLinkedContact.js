@@ -162,7 +162,7 @@ const InvestorLinkedContact = (props) => {
   return (
     <>
       <div class="rounded m-1 p-1 w-[99%]   overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-[99%]  p-1 bg-transparent font-bold sticky items-end z-10">
+        <div className=" flex justify-between w-[99%] truncate p-1 bg-transparent font-bold sticky items-end z-10">
         <div className="text-[#00A2E8] text-base md:w-[16.1rem]">
         <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]}     
         {/* Name      */}
@@ -257,7 +257,7 @@ const InvestorLinkedContact = (props) => {
                                        {item.emailId}
                                   </div>
                               </div>
-                              <div className=" flex  md:w-[7.3rem] h-8 ml-gap bg-[#eef2f9] items-center max-sm:flex-row w-full max-sm:justify-between">                                
+                              <div className=" flex  md:w-[10.3rem] h-8 ml-gap bg-[#eef2f9] items-center max-sm:flex-row w-full max-sm:justify-between">                                
                                 <div class="text-xs  font-poppins">
                                 {item.countryDialCode} {item.mobileNumber}
                                 </div>

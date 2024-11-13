@@ -20,12 +20,12 @@ import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
-import ContactsIcon from '@mui/icons-material/Contacts';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import StairsIcon from '@mui/icons-material/Stairs';
+import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 import {
   getRecruiterList,
   handleUpdateOpportunityModal,
@@ -319,25 +319,31 @@ function OpportunityTeamsCard(props) {
 })}
         </div>
         </div>
+        {/* <div className=" truncate">
+            <DraftsIcon  className="!text-base cursor-pointer text-green-400 mr-1" /> 
+          <Tooltip title={item.emailId}>
+          {elipsize(item.emailId || "", 25)}
+          </Tooltip>
+          </div> */}
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
- <div className="flex max-sm:hidden  w-[94%]  max-xl:w-[87%] p-1 bg-transparent font-bold sticky  z-10">
- <div className="   flex justify-between w-[93%] font-bold items-end font-poppins text-xs">
-   <div className=" w-[17.1rem] text-[#00A2E8] text-base ">
-   <LightbulbIcon className="!text-icon mr-1 text-[#84a59d]"/>{translatedMenuItems[12]} ID</div>
-        <div className=" w-[16.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] ">
-        <ContactsIcon className="!text-icon mr-1 "/> {translatedMenuItems[0]}</div>
-        <div className=" w-[17.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[1]}</div>
-      
-        <div className=" w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> 
-        <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[2]}</div>
-        <div className=" w-[10.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        <CurrencyExchangeIcon className='!text-icon text-[#e4eb2f]' /> {translatedMenuItems[4]}</div>
-        <div className=" w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        <StairsIcon className='!text-icon  '  />  {translatedMenuItems[5]}</div> 
-        <div className=" w-[11.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
+ <div className="flex max-sm:hidden  w-[94%]  max-xl:w-[87%] p-1 bg-transparent font-bold sticky items-end z-10">
+ <div className="   flex justify-between w-[88%] font-bold  items-end font-poppins text-xs">
+   <div className=" w-[11.1rem] truncate text-[#00A2E8] text-base ">
+   <LightbulbIcon className="!text-icon  text-[#84a59d]"/>{translatedMenuItems[12]} ID</div>
+        <div className=" w-[13.8rem] truncate max-md:w-[16.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[15.8rem] ">
+          <RequestQuoteIcon className="!text-icon text-[#aa3e98] "/>
+        {translatedMenuItems[0]}</div>
+        <div className=" w-[14.11rem] truncate max-xl:text-[0.65rem]  max-md:w-[14.11rem] max-lg:text-[0.45rem]">
+        <ApartmentIcon className="!text-icon text-[#d66853] "/> {translatedMenuItems[1]}</div>    
+        <div className=" w-[9.2rem] truncate max-md:w-[12.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> 
+        <ContactPageIcon className='!text-icon text-[#f28482] '  />  {translatedMenuItems[2]}</div>
+        <div className=" w-[9.3rem] truncate max-md:w-[12.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <CurrencyExchangeIcon className='!text-icon text-[#4c0827]' /> {translatedMenuItems[4]}</div>
+        <div className=" w-[10.6rem] truncate max-md:w-[10.6rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <StairsIcon className='!text-icon text-[#f19953] '  />  {translatedMenuItems[5]}</div> 
+        <div className=" w-[8.12rem] truncate max-md:w-[11.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
         <AccountCircleIcon className="!text-icon mr-1 text-[#f28482]"/>{translatedMenuItems[6]}</div> 
-        <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
+        <div className=" w-[7.1rem] truncate  max-md:w-[15.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
         <AccountCircleIcon className="!text-icon mr-1 text-[#f28482]"/>{translatedMenuItems[7]}</div>      
         <div className="w-12"></div>
         </div>
@@ -365,8 +371,7 @@ function OpportunityTeamsCard(props) {
 
                   <div className="max-sm:w-wk">
                
-                   <div
-                className="flex rounded justify-between  bg-white mt-1  items-center py-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[8rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                   <div className="flex rounded justify-between  bg-white mt-1  items-center py-ygap max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[8rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                    <div className=" flex   w-[7rem] items-center   border-l-2 border-green-500 h-8  bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
@@ -406,7 +411,7 @@ function OpportunityTeamsCard(props) {
                               </div>
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex   w-[8rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   w-[9rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
                                   <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
                                   
@@ -435,10 +440,10 @@ function OpportunityTeamsCard(props) {
        
                                 </div>
                             </div>                                                 
-                              <div className=" flex  w-[7rem] items-center justify-start  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex  w-[6.45rem] items-center justify-start  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
    
 
-                                  <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-xs ml-gap font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   <CurrencySymbol currencyType={item.currency} />
           &nbsp;
           {item.proposalAmount}
@@ -483,7 +488,7 @@ strokeColor={"#005075"}
 
                                   </div>
                               </div>
-                              <div className=" flex w-[5rem] items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex w-[5.25rem] items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                     
 
                                   <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">

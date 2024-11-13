@@ -7,6 +7,7 @@ import {investorShare,getInvestorShare,investorShareUpdate} from "../../Investor
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import {getInvestorCurrency} from "../../../Auth/AuthAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const { Option } = Select;
 
@@ -19,6 +20,8 @@ function InventoryPriceAddTable(props) {
   const [editsuppliesId, setEditsuppliesId] = useState(null);
   const [data, setData] = useState([]);
   const [errors, setErrors] = useState({});
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     props.getInvestorShare(props.RowData.investorId);
@@ -39,7 +42,29 @@ function InventoryPriceAddTable(props) {
     setData(props.inventoryShare.map((item, index) => ({ ...item, key: String(index) })));
   }, [props.inventoryShare]);
 
- 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          '1158', // 0 share
+          '1435', // 1 Value per Share
+          '1436', // 2 Purchase
+          '1370',// Add Row
+        
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
 
 
@@ -134,11 +159,13 @@ function InventoryPriceAddTable(props) {
     props.investorShareUpdate(updatedData,props.RowData.investorId);
     setEditsuppliesId(null);
   };
-
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
   return (
     <div>
-      <Button type="primary" onClick={handleAddRow} style={{ marginBottom: 16 }}>
-        Add Row
+      <Button type="primary" className="mb-16" onClick={handleAddRow} >
+        {/* Add Row  */} {translatedMenuItems[3]}
       </Button>
       {rows.map((row, index) => (
           <div key={index} class="flex items-center justify-between">
@@ -207,21 +234,27 @@ function InventoryPriceAddTable(props) {
 
       <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold  font-poppins sticky  z-10">         
-            <div className=" md:w-[12rem]">Shares</div>
-            <div className=" md:w-[14.1rem]">Value per Share</div>
-            <div className=" md:w-[10.2rem] ">Purchase date</div>
-            <div className="w-12"></div>           
+          <div className=" flex justify-between w-[84%]  p-1 bg-transparent font-bold  font-poppins sticky items-end z-10">         
+            <div className=" text-xs w-[12rem] max-md:w-[12rem]"> {translatedMenuItems[0]}
+              {/* Shares */}
+              </div>
+            <div className="text-xs w-[10.1rem] max-md:w-[14.1rem]"> {translatedMenuItems[1]}
+              {/* Value per Share */}
+              </div>
+            <div className="text-xs  w-[6.2rem] max-md:w-[10.2rem] "> {translatedMenuItems[2]}
+              {/* Purchase date */}
+              </div>
+               
               </div>
 
           {data.length ? data.map((item) => {
             return (
               <div key={item.investorId}>
-                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                <div className="flex rounded justify-between mt-1 bg-white  items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 >
 
                  
- <div className=" flex   md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+ <div className=" flex items-center border-l-2 border-green-500 bg-[#eef2f9] h-8 md:w-[16.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                   {editsuppliesId === item.investorId ? (
                     <div class=" text-xs  font-poppins">
                       <Input
@@ -231,13 +264,14 @@ function InventoryPriceAddTable(props) {
                       />
                     </div>
                      ):(
-                      <div className=" text-xs font-poppins">
+                      <div className=" text-xs ml-gap font-poppins">
                       <div> {item.quantityOfShare}</div>
                     </div>
                     )}
                   </div>
                   <div className="flex">
-                  <div className=" flex  items-end  md:w-[2.1rem] max-sm:w-full  ">
+                  <div className=" flex  items-center  justify-start ml-gap bg-[#eef2f9] h-8 md:w-[19.01rem] max-sm:w-full  ">
+                  <div className=" flex   md:w-[3.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                     <div class="text-xs font-semibold  font-poppins cursor-pointer">
                     {editsuppliesId === item.investorId ? (
                       <Select
@@ -252,13 +286,13 @@ function InventoryPriceAddTable(props) {
                         ))}
                       </Select>
                     ):(
-                      <div className=" text-xs font-poppins">
+                      <div className=" text-xs ml-gap font-poppins">
                       <div> {item.currency}</div>
                     </div>
                   )}
                     </div>
-                  </div>
-                  <div className=" flex    md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+               </div>
+                  <div className=" flex   md:w-[6.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                   {editsuppliesId === item.investorId ? (
                     <div class=" text-xs  font-poppins">
                       <Input
@@ -273,10 +307,10 @@ function InventoryPriceAddTable(props) {
 </div>
 )}
                   </div>
+                  </div>
 </div>
 
-
-                 
+<div className=" flex  items-center  justify-start ml-gap bg-[#eef2f9] h-8 md:w-[19.1rem] max-sm:w-full  ">
                   {editsuppliesId === item.investorId ? (
   <DatePicker
   style={{width:"9rem"}}
@@ -284,14 +318,14 @@ function InventoryPriceAddTable(props) {
     onChange={(buyingDate) => handleInputChange(buyingDate, item.key, 'buyingDate')}
   />
 ) : (
-  <div className=" text-xsfont-poppins">
+  <div className=" text-xs ml-gap font-poppins">
     <div>{dayjs(item.buyingDate).format('DD/MM/YY')}</div>
   </div>
 )}
 
-                  <div class="flex md:items-center">
+</div>
 
-
+                  <div class="flex md:items-center items-center  justify-center ml-gap bg-[#eef2f9] h-8">
  {editsuppliesId === item.investorId ? (
                         <>
                       <Button 
