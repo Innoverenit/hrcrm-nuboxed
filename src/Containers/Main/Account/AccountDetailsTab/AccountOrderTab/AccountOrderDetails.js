@@ -469,6 +469,8 @@ function DistributorPauseForm(props) {
                                                                 display: "flex",
                                                                 flexDirection: "column",
                                                                 alignItems: "center",
+                                                                  height:"-webkit-fill-available",
+                                                    justifyContent:"center"
                                                             }}
                                                         >
                                                         

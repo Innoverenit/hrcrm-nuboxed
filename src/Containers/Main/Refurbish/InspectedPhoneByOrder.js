@@ -376,6 +376,8 @@ function InspectedPhoneByOrder(props) {
                                                                 display: "flex",
                                                                 flexDirection: "column",
                                                                 alignItems: "center",
+                                                                  height:"-webkit-fill-available",
+                                                    justifyContent:"center"
                                                             }}
                                                         >
                                                             <div style={{ marginBottom: "10px", fontWeight: "bold" }}> {translatedMenuItems[12]}: {item.company}</div>
