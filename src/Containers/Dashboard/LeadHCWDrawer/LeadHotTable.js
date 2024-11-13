@@ -8,12 +8,12 @@ import {getLeadHotList} from "../DashboardAction";
 function LeadHotTable (props) {
     useEffect(()=>{
       if (props.timeRangeType === "today"){
-        props.getLeadHotList(props.userId,props.startDate,props.endDate);
+        props.getLeadHotList(props.userId,props.endDate,props.startDate);
       }
       else {
-        props.getLeadHotList(props.userId,props.startDate,props.endDate);
+        props.getLeadHotList(props.userId,props.endDate,props.startDate);
       }
-    }, [props.userId,props.startDate,props.endDate]);
+    }, [props.userId,props.endDate,props.startDate]);
     const columns = [
       {
         title: <FormattedMessage

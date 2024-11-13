@@ -8,12 +8,12 @@ import {getLeadWarmList} from "../DashboardAction";
 function LeadWarmTable (props) {
     useEffect(()=>{
       if (props.timeRangeType === "today"){
-        props.getLeadWarmList(props.userId,props.startDate,props.endDate);
+        props.getLeadWarmList(props.userId,props.endDate,props.startDate);
       }
       else {
-        props.getLeadWarmList(props.userId,props.startDate,props.endDate);
+        props.getLeadWarmList(props.userId,props.endDate,props.startDate);
       }
-    }, [props.userId,props.startDate,props.endDate]);
+    }, [props.userId,props.endDate,props.startDate]);
     const columns = [
       {
         title: <FormattedMessage

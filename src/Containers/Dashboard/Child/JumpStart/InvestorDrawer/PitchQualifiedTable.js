@@ -8,12 +8,12 @@ import {getPitchQualified} from "../../../DashboardAction";
 function PitchQualifiedTable (props) {
     useEffect(()=>{
       if (props.timeRangeType === "today"){
-        props.getPitchQualified(props.userId,props.startDate,props.endDate);
+        props.getPitchQualified(props.userId,props.endDate,props.startDate);
       }
       else {
-        props.getPitchQualified(props.userId,props.startDate,props.endDate);
+        props.getPitchQualified(props.userId,props.endDate,props.startDate);
       }
-    }, [props.userId,props.startDate,props.endDate]);
+    }, [props.userId,props.endDate,props.startDate]);
     const columns = [
       {
         title: <FormattedMessage

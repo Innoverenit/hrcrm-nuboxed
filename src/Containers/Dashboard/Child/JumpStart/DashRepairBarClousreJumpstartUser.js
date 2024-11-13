@@ -26,7 +26,7 @@
 //     //   if (props.startDate !== startDate || props.endDate !== endDate) {
 //     //     getDashBoardClosureRatio(userId, startDate, endDate);
 //     //   }
-//     // }, [props.startDate, props.endDate, startDate, endDate, getDashBoardClosureRatio, userId]);
+//     // }, [props.endDate,props.startDate, startDate, endDate, getDashBoardClosureRatio, userId]);
   
 // const repairBar = [
 //     {

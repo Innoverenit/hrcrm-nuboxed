@@ -12,11 +12,11 @@ function ContactAddedList(props) {
 
 useEffect(()=>{
     if (props.timeRangeType === "today") {
-    props.getContactAddedList(props.orgId,props.startDate,props.endDate)
+    props.getContactAddedList(props.orgId,props.endDate,props.startDate)
     }else {
-        props.getContactAddedList(props.orgId,props.startDate,props.endDate)
+        props.getContactAddedList(props.orgId,props.endDate,props.startDate)
       }
-   }, [props.orgId,props.startDate,props.endDate]);
+   }, [props.orgId,props.endDate,props.startDate]);
 
 
 

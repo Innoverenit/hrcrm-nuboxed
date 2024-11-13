@@ -87,7 +87,7 @@ function DashProcureQuotaJumpstartUser(props) {
         fetchData1();
         fetchData2();
         fetchData3();
-    }, [props.userId,props.startDate,props.endDate]);
+    }, [props.userId,props.endDate,props.startDate]);
 
 
   useEffect(() => {

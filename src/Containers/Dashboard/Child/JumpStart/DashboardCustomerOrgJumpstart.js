@@ -16,18 +16,18 @@ function DashboardCustomerOrgJumpstart (props){
 
   useEffect(()=>{
   if (props.timeRangeType === "today") {
-  props.getJumpBulblist(props.userId,props.startDate, props.endDate)
-  props.getJumpBulblist2(props.userId,props.startDate,props.endDate)
-   props.getJumpCustomerlist(props.userId, props.startDate, props.endDate);
-   props.getJumpCustomerlist2(props.userId, props.startDate, props.endDate);
+  props.getJumpBulblist(props.userId,props.endDate,props.startDate)
+  props.getJumpBulblist2(props.userId,props.endDate,props.startDate)
+   props.getJumpCustomerlist(props.userId, props.endDate,props.startDate);
+   props.getJumpCustomerlist2(props.userId, props.endDate,props.startDate);
   }
   else {
-    props.getJumpBulblist(props.userId,props.startDate,props.endDate)
-    props.getJumpBulblist2(props.userId,props.startDate,props.endDate)
-     props.getJumpCustomerlist(props.userId, props.startDate,props.endDate);
-     props.getJumpCustomerlist2(props.userId, props.startDate,props.endDate);
+    props.getJumpBulblist(props.userId,props.endDate,props.startDate)
+    props.getJumpBulblist2(props.userId,props.endDate,props.startDate)
+     props.getJumpCustomerlist(props.userId, props.endDate,props.startDate);
+     props.getJumpCustomerlist2(props.userId, props.endDate,props.startDate);
   }
-},[props.userId, props.startDate,props.endDate]);
+},[props.userId, props.endDate,props.startDate]);
   
   const {handleLeadQualifiedDrawer,openLeadQualified,handleLeadAddedDrawer,
     openLeadAdded,handleOppoAddedDrawer,openOppoAdded,handleOppoClosedDrawer,clickOppoClosed

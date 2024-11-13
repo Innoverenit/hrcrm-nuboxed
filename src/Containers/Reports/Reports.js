@@ -65,16 +65,16 @@ function Reports (props){
 console.log(selectedTask)
   useEffect(()=> {
     if (selectedCategory==="Prospect") {
-   props.getReportProspect(props.userId,props.startDate,props.endDate);
+   props.getReportProspect(props.userId,props.endDate,props.startDate);
     }else if(selectedCategory==="Task"){
-      props.getReportTask(props.userId,props.startDate,props.endDate,selectedTask);
+      props.getReportTask(props.userId,props.endDate,props.startDate,selectedTask);
     }
 
     props.getTaskData(props.organizationId)
     // else {
-    //   props.getReportProspect(props.userId,props.startDate,props.endDate);
+    //   props.getReportProspect(props.userId,props.endDate,props.startDate);
     // }
-  },[props.userId,props.startDate,props.endDate]);
+  },[props.userId,props.endDate,props.startDate]);
 
 
   // handleButtonClick = (category) => {

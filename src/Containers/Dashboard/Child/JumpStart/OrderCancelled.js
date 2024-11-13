@@ -31,7 +31,7 @@ useEffect(()=>{
     }else {
         props.getOrderCancelList(props.orgId,props.endDate,props.startDate)
       }
-   }, [props.orgId,props.startDate,props.endDate]);
+   }, [props.orgId,props.endDate,props.startDate]);
 
 
 

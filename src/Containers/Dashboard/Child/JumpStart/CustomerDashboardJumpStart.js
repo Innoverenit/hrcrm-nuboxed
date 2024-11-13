@@ -36,6 +36,44 @@ function CustomerDashboardJumpStart (props) {
   const [currentOrderType, setCurrentOrderType] = useState("");
   const [error, setError] = useState(null);
 
+
+  const [dashCustomerCount, setdashCustomerCount] = useState({});
+  const [loading1, setLoading1] = useState(false);
+
+  const fetchDashCutomerCount = async () => {
+    try {
+      const response = await axios.get(`${base_url2}/distributor/distributorCount/${props.userId}/${props.timeRangeType}`,{
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      });
+      setdashCustomerCount(response.data);
+      setLoading1(false);
+    } catch (error) {
+      setError(error);
+      setLoading1(false);
+    }
+  };
+
+  const [dashContactCount, setdashContactCount] = useState({});
+  const [loading2, setLoading2] = useState(false);
+
+    const fetchDashContactCount = async () => {
+      try {
+        const response = await axios.get(`${base_url2}/dashboard/contactAdded/${props.userId}/${props.timeRangeType}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setdashContactCount(response.data);
+        setLoading2(false);
+      } catch (error) {
+        setError(error);
+        setLoading2(false);
+      }
+    };
+
+
   const [cuOrdrAdded, setcuOrdrAdded] = useState({});
   const [loading3, setLoading3] = useState(false);
 
@@ -71,9 +109,9 @@ function CustomerDashboardJumpStart (props) {
       }
     };
   useEffect(() => {
-    props.getJumpDistributorDetail(props.timeRangeType);
-    fetchcuOrdrAdded();
-    fetchcuOrdrComplete();
+    // props.getJumpDistributorDetail(props.timeRangeType);
+    fetchDashCutomerCount();
+    fetchDashContactCount();  
   }, [props.timeRangeType]);
 
   useEffect(() => {
@@ -165,7 +203,7 @@ function CustomerDashboardJumpStart (props) {
                   noProgress
                   bgColor="linear-gradient(270deg,#F15753,orange)"
                   title={translatedMenuItems[0]}
-                  value={props.distributorinDashboard.totalDistributor}
+                  value={dashCustomerCount.totalDistributor}
                   jumpstartClick={()=> handleClick("Added")}
                   cursorData={"pointer"}
                 />
@@ -242,6 +280,7 @@ function CustomerDashboardJumpStart (props) {
 </div>
 <Suspense fallback={<BundleLoader />}>
 <CustomerJumpStartDrawer
+viewType={props.viewType}
  selectedLanguage={props.selectedLanguage}
  translateText={props.translateText}
  isModalOpen={isModalOpen}
@@ -304,7 +343,7 @@ const mapStateToProps = ({ dashboard,auth ,leave}) => ({
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  getJumpDistributorDetail,
+  // getJumpDistributorDetail,
   handleCustomerAddedModal,
   handleContactAddedModal,
   handleOrderAddedModal,

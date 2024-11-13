@@ -42,7 +42,7 @@ function BillingListTable(props) {
       props.getCustomerTask(props.orgId);
     }
 
-  }, [props.userId, props.startDate, props.endDate, type])
+  }, [props.userId, props.endDate,props.startDate, type])
 
   const [rowdata, setrowData] = useState({});
 

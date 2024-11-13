@@ -9,12 +9,12 @@ function DealAddedTable (props) {
 
     useEffect(()=>{
       if (props.timeRangeType === "today"){
-        props.getDealAdded(props.userId,props.startDate,props.endDate);
+        props.getDealAdded(props.userId,props.endDate,props.startDate);
       }
       else {
-        props.getDealAdded(props.userId,props.startDate,props.endDate); 
+        props.getDealAdded(props.userId,props.endDate,props.startDate); 
       }
-    }, [props.userId,props.startDate,props.endDate]);
+    }, [props.userId,props.endDate,props.startDate]);
     const columns = [
       {
         title: <FormattedMessage

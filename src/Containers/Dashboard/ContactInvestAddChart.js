@@ -18,12 +18,12 @@ import { FormattedMessage } from "react-intl";
  function ContactInvestAddChart (props) {
   useEffect(() => {
     if (props.timeRangeType === "today"){
-    props.getDashInvestorAddedContactInvest(props.userId,props.startDate,props.endDate); 
+    props.getDashInvestorAddedContactInvest(props.userId,props.endDate,props.startDate); 
     }
     else {
-      props.getDashInvestorAddedContactInvest(props.userId,props.startDate,props.endDate); 
+      props.getDashInvestorAddedContactInvest(props.userId,props.endDate,props.startDate); 
     }
-  }, [props.userId,props.startDate,props.endDate]);
+  }, [props.userId,props.endDate,props.startDate]);
 
 
 

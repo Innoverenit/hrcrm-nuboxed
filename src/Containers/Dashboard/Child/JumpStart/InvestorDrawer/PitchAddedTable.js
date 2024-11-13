@@ -8,12 +8,12 @@ import {getPitchAdded} from "../../../DashboardAction";
 function PitchAddedTable (props) {
     useEffect(()=>{
       if (props.timeRangeType === "today"){
-        props.getPitchAdded(props.userId,props.startDate,props.endDate);
+        props.getPitchAdded(props.userId,props.endDate,props.startDate);
       }
       else {
-        props.getPitchAdded(props.userId,props.startDate,props.endDate); 
+        props.getPitchAdded(props.userId,props.endDate,props.startDate); 
       }
-    }, [props.userId,props.startDate,props.endDate]);
+    }, [props.userId,props.endDate,props.startDate]);
     const columns = [
       {
         title: <FormattedMessage

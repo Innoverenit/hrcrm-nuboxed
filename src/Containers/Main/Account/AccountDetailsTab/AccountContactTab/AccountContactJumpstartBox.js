@@ -115,18 +115,18 @@ function AccountContactJumpstartBox (props) {
 
 //   useEffect(()=>{
 //     if (props.timeRangeType === "today") {
-//     props.getJumpInvestorlist(props.userId, props.startDate, props.endDate);
-//     props.getJumpInvestor2list(props.userId, props.startDate, props.endDate);
-//     props.getJumpInvestor3list(props.userId, props.startDate, props.endDate);
-//     props.getJumpInvestor4list(props.userId, props.startDate, props.endDate);
+//     props.getJumpInvestorlist(props.userId, props.endDate,props.startDate);
+//     props.getJumpInvestor2list(props.userId, props.endDate,props.startDate);
+//     props.getJumpInvestor3list(props.userId, props.endDate,props.startDate);
+//     props.getJumpInvestor4list(props.userId, props.endDate,props.startDate);
 //   }
 //   else {
-//     props.getJumpInvestorlist(props.userId, props.startDate, props.endDate);
-//     props.getJumpInvestor2list(props.userId, props.startDate, props.endDate);
-//     props.getJumpInvestor3list(props.userId, props.startDate, props.endDate);
-//     props.getJumpInvestor4list(props.userId, props.startDate, props.endDate);
+//     props.getJumpInvestorlist(props.userId, props.endDate,props.startDate);
+//     props.getJumpInvestor2list(props.userId, props.endDate,props.startDate);
+//     props.getJumpInvestor3list(props.userId, props.endDate,props.startDate);
+//     props.getJumpInvestor4list(props.userId, props.endDate,props.startDate);
 //   }
-//   },[props.userId,props.startDate,props.endDate]);
+//   },[props.userId,props.endDate,props.startDate]);
 
 useEffect(()=>{
   const start = `${startDate.format("YYYY-MM-DD")}T20:00:00Z`;

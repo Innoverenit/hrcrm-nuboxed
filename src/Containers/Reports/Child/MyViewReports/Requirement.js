@@ -61,7 +61,7 @@ console.log(fullDate);
       getSalesReports(userId, "Recruitment", startDate, endDate);
 
     // }
-  }, [props.startDate, props.endDate]);
+  }, [props.endDate,props.startDate]);
 
   function onChange (list)  {
     setCheckedList(list);

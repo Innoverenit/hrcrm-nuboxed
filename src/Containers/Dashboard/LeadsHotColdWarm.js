@@ -9,12 +9,12 @@ function LeadsHotColdWarm (props) {
      
   useEffect(()=> {
     if (props.timeRangeType === "today") {
-   props.getHotColdWarm(props.userId,props.startDate,props.endDate);
+   props.getHotColdWarm(props.userId,props.endDate,props.startDate);
     }
     else {
-      props.getHotColdWarm(props.userId,props.startDate,props.endDate);
+      props.getHotColdWarm(props.userId,props.endDate,props.startDate);
     }
-  },[props.userId,props.startDate,props.endDate]);
+  },[props.userId,props.endDate,props.startDate]);
 
   const {showHotColdWarm,handleLeadHCWdrawer,openLeadHCWdrawer}=props;
     return (

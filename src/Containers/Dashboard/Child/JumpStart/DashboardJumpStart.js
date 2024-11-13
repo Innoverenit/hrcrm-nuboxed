@@ -197,7 +197,7 @@ const DashboardJumpStart = (props) => {
       fetchData1();
       fetchData3();
     }
-    },[props.userId,props.startDate,props.endDate]);
+    },[props.userId,props.endDate,props.startDate]);
 
 
   if (loading) {
@@ -411,8 +411,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(DashboardJumpStart);
 //     console.log(`End Date: ${this.state.endDate.format("ll")}`);
 //   }
 //   //   useEffect(() => { 
-//   //    props.getDateWiseList(props.recruiterId,props.startDate, props.endDate);
-//   // }, [props.startDate, props.endDate, props.type]);
+//   //    props.getDateWiseList(props.recruiterId,props.endDate,props.startDate);
+//   // }, [props.endDate,props.startDate, props.type]);
 
 //   render() {
 //     const formattedDate = dayjs(this.props.dateOfJoining).format('DD-MM-YYYY'); // Format the date as per your requirement

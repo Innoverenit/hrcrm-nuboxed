@@ -253,6 +253,7 @@ class Dashboard extends Component {
              />)
              :this.state.activeButton==="Accounts" ?
              (<CustomerDashboardJumpStart
+              viewType={viewType}
               selectedLanguage={this.props.selectedLanguage}
              translateText={this.props.translateText}/>)
              : this.state.activeButton==="Finance" ?
@@ -340,6 +341,7 @@ class Dashboard extends Component {
              />)
              : this.state.activeButton==="Accounts" ?
              (<CustomerDashboardOrgJumpStart
+              viewType={viewType}
               selectedLanguage={this.props.selectedLanguage}
              translateText={this.props.translateText}/>)
 

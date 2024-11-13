@@ -8,12 +8,12 @@ import {getLeadAdded} from "../../../DashboardAction";
 function LeadAddedTable (props) {
     useEffect(()=>{
       if (props.timeRangeType === "today"){
-        props.getLeadAdded(props.userId,props.startDate,props.endDate);
+        props.getLeadAdded(props.userId,props.endDate,props.startDate);
       }
       else {
-        props.getLeadAdded(props.userId,props.startDate,props.endDate);
+        props.getLeadAdded(props.userId,props.endDate,props.startDate);
       }
-    }, [props.userId,props.startDate,props.endDate]);
+    }, [props.userId,props.endDate,props.startDate]);
     const columns = [
       {
         title: <FormattedMessage

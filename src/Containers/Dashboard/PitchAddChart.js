@@ -17,13 +17,13 @@ import {
  function PitchAddChart(props) {
   useEffect(()=> {
     if (props.timeRangeType === "today"){
-      props.getDashInvestorAddedPitch(props.userId,props.startDate,props.endDate); 
+      props.getDashInvestorAddedPitch(props.userId,props.endDate,props.startDate); 
     }
     else {
-      props.getDashInvestorAddedPitch(props.userId,props.startDate,props.endDate); 
+      props.getDashInvestorAddedPitch(props.userId,props.endDate,props.startDate); 
     }
   
-  },[props.userId,props.startDate,props.endDate]);
+  },[props.userId,props.endDate,props.startDate]);
  
 
     const data=props.dashInvstPitchAdded
