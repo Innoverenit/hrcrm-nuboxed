@@ -6,16 +6,13 @@ import LeadsTeamWarmcard from './LeadsTeamWarmcard';
 import LeadsTeamColdCard from './LeadsTeamColdCard';
 import LeadsTeamHotcard from './LeadsTeamHotcard';
 import SearchedData from './SearchedData';
-import FWLogo1 from "../../../../../src/Assets/Images/cashShake.svg";
+
 
 
 const LeadsTeamCardList = (props) => {
   return (
     <div>
-       <Suspense fallback={ <div className="custom-loader">
-          <div className="loader !block"> </div>
-      <div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
-    </div>}>
+       <Suspense fallback={ <BundleLoader/>}>
        {props.serachedData.length > 0 ? (
     <SearchedData
     serachedData={props.serachedData}

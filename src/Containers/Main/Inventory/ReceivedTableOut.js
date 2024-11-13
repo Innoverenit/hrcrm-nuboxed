@@ -299,7 +299,12 @@ const ReceivedTableOut = (props) => {
                               />}
                             </div>
                           </div>
-                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[13rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                          
+                          <div
+  className={`flex items-center justify-center h-8 ml-gap w-[13rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ${
+    item.inspectionInd !== 0 &&  item.inspectionInd !== 1 && item.inspectionInd !== 2 && item.inventoryReceiveInd   ? 'bg-[green]' : 'bg-[#eef2f9]'
+  }`}
+>
                             <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.inspectionInd === 0 && item.inventoryReceiveInd ?
                                 <Button
@@ -320,6 +325,7 @@ const ReceivedTableOut = (props) => {
                                 : item.inspectionInd === 2 && item.inventoryReceiveInd ?
                                   <Button
                                     className="cursor-pointer text-base"
+                                     type="primary"
                                     loading={item.orderId === rowData.orderId && props.addingDeliverDate}
                                     onClick={() => {
                                       handleRowData(item);
@@ -340,7 +346,7 @@ const ReceivedTableOut = (props) => {
                                       type="primary"
                                       onClick={handlePauseResume}>
                                       {pause ? "Resume Inspection" : "Pause Inspection"}
-                                    </Button> : item.inventoryReceiveInd ? <b>Sent To Facility</b> : null}
+                                    </Button> : item.inventoryReceiveInd ? <label class="text-white">Sent To Facility</label> : null}
                             </div>
                           </div>
                                     </div>

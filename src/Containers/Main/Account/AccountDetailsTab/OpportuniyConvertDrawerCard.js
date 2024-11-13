@@ -1,15 +1,10 @@
 import React, {Component,useState,useEffect} from "react";
 import { useHistory } from "react-router-dom";
-import ReactDOM from "react-dom";
-import { Link,withRouter } from "react-router-dom";
-import { Radio, Input, Space, message,Button } from "antd";
+import { Radio,Button } from "antd";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {codInventoryOrder} from "../AccountAction";
-// import stripe from "../../Assests/Images/Stripe-Emblem.png";
-// import Razorpay from "../../../../../Assests/Images/razorpay.png";
-// import pay from "../../../../../../../../Assests/Images/cashShake.svg";
-import axios from 'axios';
+
 
 const OpportuniyConvertDrawerCard = ({ props,userId,setopenConvertModal,stripeNo,particularRowItem, invencartItem, addiNVEStripeModal, handleInventoryStripeModal, codInventoryOrder, getInventoryCartItems, addingCODinventory }) => {
   const [value, setValue] = useState(1);

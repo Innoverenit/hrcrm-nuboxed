@@ -2,8 +2,8 @@ import React, { useState,useEffect, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { setSuppliersViewType } from "./SuppliersAction";
-import FWLogo1 from "../../../../src/Assets/Images/cashShake.svg";
 import { getSuppliersList, getAllSuppliersList } from "./SuppliersAction";
+import { BundleLoader } from "../../../Components/Placeholder";
 const SuppliersHeader =lazy(()=>import("../../Main/Suppliers/SuppliersHeader"));
 const SuppliersDeletedCardList =lazy(()=>import("./Child/SuppliersDeletedCardList"));
 const SuppliersCardList =lazy(()=>import("./Child/SuppliersCardList"));
@@ -81,10 +81,7 @@ const SuppliersNotApprovalList =lazy(()=>import("./Child/SuppliersNotApprovalLis
     const { setSuppliersViewType, viewType } = props;
     return (
       <React.Fragment>
-       <Suspense fallback={<div className="custom-loader">
-          <div className="loader !block"> </div>
-      <div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
-    </div>}>
+       <Suspense fallback={<BundleLoader/>}>
         <SuppliersHeader
           setSuppliersViewType={setSuppliersViewType}
           viewType={viewType}
