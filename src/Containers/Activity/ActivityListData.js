@@ -9,8 +9,10 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { bindActionCreators } from 'redux';
 import dayjs from 'dayjs';
+import AddActivityNotesDrawerModal from "./AddActivityNotesDrawerModal"
 import { getActivityTimeline,
-  addeventLocation
+  addeventLocation,
+  handleActivityNoteModal
    } from './ActivityAction';
 import { BundleLoader } from '../../Components/Placeholder';
 //import AddCustomerActivityDrawerModal from '../CustomerActivity/AddCustomerActivityDrawerModal';
@@ -196,7 +198,7 @@ const ActivityListData = (props) => {
                   <div
                     type="link"
                     style={{ margin: '0 8px', padding: 0 }}
-                    //onClick={() => handleNotesClick(status)}
+                  onClick={() => props.handleActivityNoteModal(true)}
                   >
                     <NoteAltIcon className=' !text-icon  text-green-600 cursor-pointer'/>
                   </div>
@@ -220,13 +222,14 @@ const ActivityListData = (props) => {
       </Timeline>
 
       
-      {/* <AddCustomerActivityDrawerModal
+      <AddActivityNotesDrawerModal
+       type={props.type}
+       uniqueId={props.uniqueId}
+      handleActivityNoteModal={props.handleActivityNoteModal}
+      addActivityNotesModal={props.addActivityNotesModal}
        
-        addCustomerActivityDrawerModal={props.addCustomerActivityDrawerModal}
-        handleCustomerActivityModal={props.handleCustomerActivityModal}
-        selectedStatus={selectedStatus}
-        customer={props.customer}
-      /> */}
+      
+      />
     </div>
   );
 };
@@ -237,6 +240,7 @@ const mapStateToProps = ({ customer,activity, auth }) => ({
   fetchingActivityTimelineStatus:activity.fetchingActivityTimelineStatus,
   addCustomerNoteDrawerModal:customer.addCustomerNoteDrawerModal,
   activityTimeline: activity.activityTimeline,
+  addActivityNotesModal:activity.addActivityNotesModal,
   customerActivityCount:customer.customerActivityCount,
   addCustomerActivityDrawerModal:customer.addCustomerActivityDrawerModal,
 });
@@ -246,7 +250,8 @@ const mapDispatchToProps = (dispatch) =>
     {
     //   linkTaskStatus,
     getActivityTimeline,
-    addeventLocation
+    addeventLocation,
+    handleActivityNoteModal
         // getCustomerActivityRecords,
         // handleCustomerNoteDrawerModal,
         // handleCustomerActivityModal,
