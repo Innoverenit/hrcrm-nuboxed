@@ -1,9 +1,39 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import axios from 'axios';
+import {base_url} from "../../../../Config/Auth";
 import ReactApexChart from 'react-apexcharts';
+import { BundleLoader } from '../../../../Components/Placeholder';
+const CustomerSectorPieChart = (props) => {
 
-const CustomerSectorPieChart = () => {
+  useEffect(()=>{
+    fetchDashbysectorChart();
+       }, [props.timeRangeType]);
+
+const [dashSectorChart,setdashSectorChart] = useState({});
+const[loading,setLoading]=useState(true);
+const[error,setError]=useState(null);
+
+  const fetchDashbysectorChart = async () => {
+    try {
+      const response = await axios.get(`${base_url}/dashboard/customerBySector/${props.userId}/${props.timeRangeType}`,{
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      });
+      setdashSectorChart(response.data);
+      setLoading(false);
+    } catch (error) {
+      setError(error);
+      setLoading(false);
+    }
+  };
+  const series = Object.values(dashSectorChart);
   const options = {
-    series: [44, 55, 41, 17, 15],  // Data for the chart
+    series: Object.keys(dashSectorChart),
+    // [44, 55, 41, 17, 15],  
+    // Data for the chart
     chart: {
       // width: 300,  // Chart width
       type: 'donut',  // Chart type
@@ -44,7 +74,10 @@ const CustomerSectorPieChart = () => {
     ]
   };
 
-  const series = [44, 55, 41, 17, 15];  // Data for the donut chart
+  // const series = [44, 55, 41, 17, 15];  // Data for the donut chart
+  if (loading){
+    return <BundleLoader/>
+  }
 
   return (
     <div className=' w-[23vw]'>
@@ -52,5 +85,19 @@ const CustomerSectorPieChart = () => {
     </div>
   );
 };
+const mapStateToProps = ({ dashboard, auth }) => ({
+  orgId: auth.userDetails.organizationId,
+  userId: auth.userDetails.userId,
+  timeRangeType: dashboard.timeRangeType,
+  startDate: dashboard.startDate,
+  endDate: dashboard.endDate,
+});
 
-export default CustomerSectorPieChart;
+const mapDispatchToProps = (dispatch) =>
+  bindActionCreators(
+    {
+    },
+    dispatch
+  );
+
+export default connect(mapStateToProps,mapDispatchToProps)(CustomerSectorPieChart);

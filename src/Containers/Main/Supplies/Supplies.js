@@ -5,7 +5,9 @@ import SuppliesLocationTable from "./SuppliesLocationTable"
 import SuppliesBrandModelTable from "./SuppliesBrandModelTable"
 import { setSuppliesViewType, handleSuppliesModal } from "./SuppliesAction";
 import FWLogo1 from "../../../Assets/Images/smallLogo.png"
+
 import SuppliesTab from "./SuppliesTab";
+import { BundleLoader } from "../../../Components/Placeholder";
 const SuppliesBrandTable =lazy(()=>import("./SuppliesBrandTable"))
 const SuppliesHeader =lazy(()=>import("./SuppliesHeader"));
 const SuppliesTable =lazy(()=>import("./SuppliesTable"));
@@ -34,10 +36,7 @@ function Supplies(props) {
 
     return (
         <React.Fragment>
-              <Suspense fallback={ <div className="custom-loader">
-          <div className="loader !block"> </div>
-      <div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
-    </div>}>
+              <Suspense fallback={<BundleLoader />}>
               <SuppliesHeader
              translateText={props.translateText}
              selectedLanguage={props.selectedLanguage}
