@@ -507,11 +507,15 @@ if (loading) {
                                 ) : ( */}
                                   <div
                                   style={{cursor:"pointer"}}
-                                onClick={() => {
-                                  handleSetCurrentCustomerId(item.customerId)
-                                  props.handleUpdateUserModal(true);
+                                // onClick={() => {
+                                //   handleSetCurrentCustomerId(item.customerId)
+                                //   props.handleUpdateUserModal(true);
                                   
-                                }}
+                                // }}
+                                onMouseEnter={() => {
+                                  handleSetCurrentCustomerId(true);
+                                  props.handleLeadsSubscriptionModal(item);
+                                      }}
                                   >
                                   <MultiAvatar2
                                     primaryTitle={item.assignedTo}
@@ -557,16 +561,19 @@ if (loading) {
                           <Tooltip title={translatedMenuItems[11]}>
                             <MonitorHeartIcon
                               className=" !text-icon cursor-pointer text-[#df9697]"
-                              onClick={() => {
+                              // onClick={() => {
+                              //   handleCustomerPulseDrawerModal(true);
+                              //   handleSetCurrentCustomer(item);
+                              // }}
+                              onMouseEnter={() => {
                                 handleCustomerPulseDrawerModal(true);
                                 handleSetCurrentCustomer(item);
-                              }}
-                              onMouseEnter={() => {
-                                handleMouseEnter(item);
+                                // handleMouseEnter(item);
                                 //handleSetCurrentCustomer(item);
                               }}
                              // onMouseEnter={handleMouseEnter}
-                             onMouseLeave={handleMouseLeave}
+                            //  onMouseLeave={handleMouseLeave}
+                             
                             />
                           </Tooltip>
                         </div>
@@ -575,8 +582,12 @@ if (loading) {
                           <Tooltip title={translatedMenuItems[12]}>
                             <NoteAltIcon
                               className=" !text-icon cursor-pointer text-green-800"
-                              onClick={() => {
-                                handleCustomerNotesDrawerModal(true);
+                              // onClick={() => {
+                              //   handleCustomerNotesDrawerModal(true);
+                              //   handleSetCurrentCustomer(item);
+                              //   handleRowData(item);
+                                onMouseEnter={() => {
+                                  handleCustomerNotesDrawerModal(true);
                                 handleSetCurrentCustomer(item);
                                 handleRowData(item);
                               }}
@@ -587,7 +598,7 @@ if (loading) {
                         <Tooltip title={translatedMenuItems[19]}>
                         <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
-          onClick={() => {
+          onMouseEnter={() => {
             props.handleAddressCutomerModal(true);
             handleRowData(item);
           }}
@@ -622,7 +633,7 @@ if (loading) {
                 
                           <div className="!text-icon"
                       
-                            onClick={() => {
+                      onMouseEnter={() => {
                               props.getCustomerDetailsById(item.customerId);
                               props.getCustomerKeySkill(item.customerId);
                               //   this.props.getCustomerDocument(item.customerId );
@@ -639,7 +650,7 @@ if (loading) {
                           <Tooltip title={translatedMenuItems[14]}>
                             <ContactsIcon
                               className=" !text-icon cursor-pointer text-[#709ab3]"
-                              onClick={() => {
+                              onMouseEnter={() => {
                                 handleCustomerContactDrawerModal(true);
                                 handleSetCurrentCustomer(item);
                               }}
@@ -651,7 +662,7 @@ if (loading) {
                           <Tooltip title={translatedMenuItems[10]}>
                             <LightbulbIcon
                               className=" !text-icon cursor-pointer text-[#AF5910]"
-                              onClick={() => {
+                              onMouseEnter={() => {
                                 handleCustomerOpportunityDrawerModal(true);
                                 handleSetCurrentCustomer(item);
                                 handleRowData(item);
@@ -669,7 +680,7 @@ if (loading) {
                               <BorderColorIcon
                                 className=" !text-icon cursor-pointer text-[tomato]"
 
-                                onClick={() => {
+                                onMouseEnter={() => {
                                   props.setEditCustomer(item);
                                   handleUpdateCustomerModal(true);
                                   handleSetCurrentCustomerId(item.customerId);

@@ -350,7 +350,7 @@ if (loading) {
                                   <div class=" flex max-sm:w-full justify-between  md:flex-col">
                                     
                                       <div class="flex items-center text-xs  text-blue-500  font-poppins  font-semibold  cursor-pointer">
-                                      <Link class="flex  items-center overflow-ellipsis flex whitespace-nowrap h-8 text-xs p-1 max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
+                                      <Link class="flex  items-center overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
   
@@ -467,7 +467,7 @@ No
               <Tooltip title={translatedMenuItems[13]}>
  <NoteAltIcon
           className=" !text-icon cursor-pointer text-green-800"
-          onClick={() => {
+            onMouseEnter={() => {
             handleContactNotesDrawerModal(true);
             handleSetCurrentContact(item);
           }}
@@ -479,7 +479,7 @@ No
               <Tooltip title={translatedMenuItems[12]}>
  <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
-          onClick={() => {
+            onMouseEnter={() => {
             props.handleContactAddressDrawerModal(true);
             handleSetCurrentContact(item);
           }}
@@ -494,7 +494,7 @@ No
                 >
                   <HourglassFullIcon
                   className="!text-icon cursor-pointer text-blue-500"
-                    onClick={() => {
+                      onMouseEnter={() => {
                       props.handleContactCETdrawer(true);
                       handleSetCurrentContact(item);
                     }}
@@ -507,7 +507,7 @@ No
               <Tooltip title={item.mobileNo} >
       {item.doNotCallInd !== true && (
         <span class="  text-xs cursor-pointer"
-          onClick={() => {
+            onMouseEnter={() => {
             props.handleDonotCallModal(true);
             handleSetCurrentContactId(item);
           }}
@@ -517,7 +517,7 @@ No
       )}
       {item.doNotCallInd === true && (
         <span class=" text-xs cursor-pointer"
-          onClick={() => {
+            onMouseEnter={() => {
             props.handleDonotCallModal(true);
             handleSetCurrentContactId(item);
           }}
@@ -533,7 +533,7 @@ No
       <MailOutlineIcon
         type="mail"
         className=" !text-icon cursor-pointer text-[red]"
-        onClick={() => {
+          onMouseEnter={() => {
           props.getContactById(item.contactId);
           props.handleContactEmailDrawerModal(true);
         }}
@@ -542,7 +542,7 @@ No
      </div>
                   <span
         style={{ cursor: "pointer" }}
-        onClick={() => {
+          onMouseEnter={() => {
           handleSetCurrentContactId(item);
           props.handleContactPulseDrawerModal(true);
         }}
@@ -556,7 +556,7 @@ No
          <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                      
                         tooltiptitle={translatedMenuItems[16]}
-                        onClick={() => {
+                          onMouseEnter={() => {
                           handleSetCurrentContactId(item);
                           handleHospitalUploadModal(true)}}                          
                       /></div>
@@ -566,7 +566,7 @@ No
       <Tooltip title={translatedMenuItems[15]}>
         <BorderColorIcon
           className=" !text-icon cursor-pointer text-[tomato]"
-          onClick={() => {
+            onMouseEnter={() => {
             props.setEditContact(item);
             handleUpdateContactModal(true);
             handleSetCurrentContactId(item);

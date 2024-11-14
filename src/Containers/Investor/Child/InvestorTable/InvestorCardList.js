@@ -421,7 +421,7 @@ function InvestorCardList(props) {
                              {/* shares */}
 
                                     <div class="text-xs text-[blue] font-bold cursor-pointer justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
-                                  <div  onClick={() => {
+                                  <div    onMouseEnter={() => {
                               props.handleInvestorPriceDrawer(true);
                               handleCurrentRowData(item);
                             }}>{item.allTotalQuantityOfShare}</div>
@@ -482,7 +482,7 @@ function InvestorCardList(props) {
                                 <div >
                           <Tooltip title={translatedMenuItems[14]} >
                             <MonitorHeartIcon
-                                      onClick={() => {
+                                        onMouseEnter={() => {
                                         handleInvestorPulseDrawerModal(true);
                                         handleCurrentRowData(item);
                                       }}
@@ -493,7 +493,7 @@ function InvestorCardList(props) {
                           <div >
                    <Tooltip title={translatedMenuItems[16]} >
                        <NoteAltIcon
-                onClick={() => {
+                  onMouseEnter={() => {
                   props.handleInvestorNotesDrawerModal(true);
                   handleCurrentRowData(item);
                 }}
@@ -504,7 +504,7 @@ function InvestorCardList(props) {
                          < Tooltip title={translatedMenuItems[15]} >
                           <AddLocationAltIcon
                             className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
-                            onClick={() => {
+                              onMouseEnter={() => {
                               props.handleInvestorAddressDrawerModal(true);
                               handleCurrentRowData(item);
                             }}
@@ -514,7 +514,7 @@ function InvestorCardList(props) {
                    <div>
                                   <Tooltip title={translatedMenuItems[13]} >
                                     <ArticleIcon  className="!text-icon cursor-pointer  max-sm:!text-xl"
-                                  onClick={() => {
+                                    onMouseEnter={() => {
                                     handleInvestorDocumentModal(true);
                                     handleCurrentRowData(item);
                                   }}
@@ -526,7 +526,7 @@ function InvestorCardList(props) {
               {item.url !== "" ? (
                 <span class="cursor-pointer"
                   //type="edit"
-                  onClick={() => {}}
+                    onMouseEnter={() => {}}
                 >
                   {" "}
                   <a href={`https://${item.url}`} target="_blank">
@@ -551,7 +551,7 @@ function InvestorCardList(props) {
             <Tooltip title={translatedMenuItems[17]} >
               <ContactEmergencyIcon
               className=" !text-icon cursor-pointer  text-blue-500 max-sm:!text-xl "
-                onClick={() => {
+                  onMouseEnter={() => {
                   handleInvestorContModal(true);
                     handleCurrentRowData(item);
                   
@@ -564,7 +564,7 @@ function InvestorCardList(props) {
             {user.imInd === true  &&  user.investorUpdateInd === true &&  (
             <Tooltip title={translatedMenuItems[18]} >
               <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato] max-sm:!text-xl"
-                onClick={() => {
+                  onMouseEnter={() => {
                     handleUpdateInvestorModal(true);
                     handleCurrentRowData(item);                 
                 }}

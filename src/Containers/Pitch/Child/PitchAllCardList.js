@@ -267,7 +267,7 @@ iconType="fas fa-mug-hot"
 // tooltip="Hot"
 tooltip={translatedMenuItems[7]}
 role={item.type}
-onClick={() =>{
+  onMouseEnter={() =>{
 const typ="Hot"
 props.updateTypeForPitch(item.investorLeadsId,typ)
 }}
@@ -281,7 +281,7 @@ iconType="	fas fa-burn"
 // tooltip="Warm"
 tooltip={translatedMenuItems[8]}
 role={item.type}
-onClick={() =>{
+  onMouseEnter={() =>{
 const typ="Warm"
 props.updateTypeForPitch(item.investorLeadsId,typ)
 }}
@@ -295,7 +295,7 @@ iconType="far fa-snowflake"
 // tooltip="Cold"
 tooltip={translatedMenuItems[9]}
 role={item.type}
-onClick={() => {
+  onMouseEnter={() => {
 const typ="Cold"
 props.updateTypeForPitch(item.investorLeadsId,typ)
 }}
@@ -376,7 +376,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                               {item.companyName ? (
                               <Tooltip title={translatedMenuItems[11]}>
                   <ConnectWithoutContactIcon
-                    onClick={() => {
+                      onMouseEnter={() => {
                       handleRowData(item);
                       props.handlePitchConvertModal(true);
                    
@@ -403,7 +403,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
         <Tooltip title={item.url}>
           <span className=" cursor-pointer"
             //type="edit"         
-            onClick={() => {}}          >
+              onMouseEnter={() => {}}          >
             {" "}
             <a href={`item.url`} target="_blank">
               <ExploreIcon
@@ -419,7 +419,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                                                 <div >
                                     <Tooltip title={translatedMenuItems[13]}>
                       <NoteAltIcon
-                                onClick={() => {
+                                  onMouseEnter={() => {
                                   props.handlePitchNotesDrawerModal(true);
                                   handleSetCurrentLeadsId(item);
                                 }}
@@ -433,7 +433,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                                   title={translatedMenuItems[14]}
                                 >
                                   <HourglassFullIcon className="text-blue-500 !text-icon"                                                  
-                                onClick={()=>{
+                                  onMouseEnter={()=>{
                                 props.handleAssimodal(true)
                                 handleRowData(item)
                                 }}
@@ -452,7 +452,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                                           <MailOutlineIcon
                                             type="mail"
                                             className="!text-icon cursor-pointer text-green-400"
-                                            // onClick={() => {
+                                            //   onMouseEnter={() => {
                                 //   handleSetCurrentLeadsId(item);
                                 //   props.handleLeadsEmailDrawerModal(true);
                                 // }}
@@ -463,7 +463,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                             <Tooltip title={translatedMenuItems[15]}>
                               <BorderColorIcon
                                 className="!text-icon cursor-pointer text-[tomato]"
-                                onClick={() => {
+                                  onMouseEnter={() => {
                                   props.setEditPitch(item);
                                   props.handleUpdatePitchModal(true);
                                 handleSetCurrentLeadsId(item);                                

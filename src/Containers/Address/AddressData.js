@@ -190,9 +190,12 @@ const AddressTable = (props) => {
       <table>
         <thead>
           <tr>
-            <th> {translatedMenuItems[0]}</th>
+            {/* <th> {translatedMenuItems[0]}</th>
             <th> {translatedMenuItems[1]}</th>
-            <th> {translatedMenuItems[2]}</th>
+            <th> {translatedMenuItems[2]}</th> */}
+            <th> Address</th>
+            <th> Billing Address</th>
+            <th> Action</th>
           </tr>
         </thead>
         <tbody>
@@ -263,8 +266,11 @@ const AddressTable = (props) => {
                   cancelText={translatedMenuItems[5]}
                 >
                   <Switch
-                    checkedChildren={translatedMenuItems[4]}
-                    unCheckedChildren={translatedMenuItems[5]}
+                    // checkedChildren={translatedMenuItems[4]}
+                    // unCheckedChildren={translatedMenuItems[5]}
+                    // checkedChildren="Confirm"
+                    unCheckedChildren="Unconfirm"
+                    // value="Confirm"
                     checked={item.primaryInd}
                     disabled={
                       activeSwitchIndex !== null && activeSwitchIndex !== index

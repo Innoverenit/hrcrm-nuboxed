@@ -312,7 +312,7 @@ function DealWonCard(props) {
                    
                     <div>
                     <Tooltip title= {translatedMenuItems[8]}><span
-          onClick={() => {
+            onMouseEnter={() => {
            props.LinkClosedOpportunity(
              item.opportunityId,
              {
@@ -331,7 +331,7 @@ function DealWonCard(props) {
                         title= {translatedMenuItems[9]}
                       >
                         <span
-                          onClick={() => {
+                            onMouseEnter={() => {
                             props.handleDealsNotesDrawerModal(true);
                             handleSetCurrentItem(item);
                           }}
@@ -348,7 +348,7 @@ function DealWonCard(props) {
                         title= {translatedMenuItems[10]} >
                         {user.imInd === true && user.dealUpdateInd === true && (
                           <span class="cursor-pointer text-[blue]"
-                            onClick={() => {
+                              onMouseEnter={() => {
                               handleUpdateDealModal(true);
                               handleSetCurrentItem(item);
                             }}
@@ -379,7 +379,7 @@ function DealWonCard(props) {
                    <div>
                    <span class=" cursor-default"     
          
-         onClick={() => {
+           onMouseEnter={() => {
             
            }}
          >
