@@ -89,12 +89,12 @@ const LineChartDashedCustom = () => {
   };
 
   return (
-    <div>
+    <div className="w-wk">
       <ReactApexChart
         options={options}
         series={options.series}
         type="line"
-        height={350}
+        height={160}
       />
     </div>
   );

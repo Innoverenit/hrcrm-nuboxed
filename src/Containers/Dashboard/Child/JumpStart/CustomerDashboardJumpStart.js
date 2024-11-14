@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import CustomerSectorPieChart from "../JumpStart/CustomerSectorPieChart"
 import CustomerSourcesPieChart from "../JumpStart/CustomerSourcesPieChart"
 import dayjs from "dayjs";
-import {getJumpDistributorDetail,
+import {getFinaceOrderDetails,
   handleCustomerAddedModal,handleContactAddedModal,handleOrderAddedModal,
   handleOrderClosedModal,getCustomerAddedList,getContactAddedList,getOrderAddedList,
   getOrderClosedList
@@ -109,7 +109,7 @@ function CustomerDashboardJumpStart (props) {
       }
     };
   useEffect(() => {
-    // props.getJumpDistributorDetail(props.timeRangeType);
+    props.getFinaceOrderDetails(props.userId,props.timeRangeType)
     fetchDashCutomerCount();
     fetchDashContactCount();  
   }, [props.timeRangeType]);
@@ -194,7 +194,7 @@ function CustomerDashboardJumpStart (props) {
     <div className="flex flex-row w-full">
         <div className="flex w-full max-sm:flex-col">
           <div className="w-full md:w-1/2 xl:w-1/3 p-2">
-            <div className="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+            <div className="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
               <div className="flex flex-row items-center text-xs">
                 <div className="flex-shrink pr-3">
                   <div className="rounded-full p-2 bg-green-600"><AcUnitIcon className='text-white'/></div>
@@ -211,7 +211,7 @@ function CustomerDashboardJumpStart (props) {
             </div>
           </div>
           <div className="w-full md:w-1/2 xl:w-1/3 p-2">
-            <div className="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+            <div className="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
               <div className="flex flex-row items-center text-xs">
                 <div className="flex-shrink pr-3">
                   <div className="rounded-full p-2 bg-pink-600"><ContactsIcon className='text-white'/></div>
@@ -220,14 +220,14 @@ function CustomerDashboardJumpStart (props) {
                   noProgress
                   bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
                   title={translatedMenuItems[1]}
-                  value={props.distributorinDashboard.totalContactPerson}
+                  // value={props.finaceOrderinDashboard.totalContactPerson}
                   jumpstartClick={()=> handleClick("Contact Added")}
                 />
               </div>
             </div>
           </div>
           <div className="w-full md:w-1/2 xl:w-1/3 p-2">
-            <div className="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+            <div className="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
               <div className="flex flex-row items-center text-xs">
                 <div className="flex-shrink pr-3">
                   <div className="rounded-full p-2 bg-yellow-600"><DynamicFeedIcon className='text-white'/></div>
@@ -236,7 +236,7 @@ function CustomerDashboardJumpStart (props) {
                   noProgress
                   bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
                   title={translatedMenuItems[2]}
-                  value={props.distributorinDashboard.totalOrder}
+                  value={props.finaceOrderinDashboard.totalOrder}
                   jumpstartClick={()=> handleClick("Orders Added")}
                   cursorData="pointer"
                 />
@@ -244,7 +244,7 @@ function CustomerDashboardJumpStart (props) {
             </div>
           </div>
           <div className="w-full md:w-1/2 xl:w-1/3 p-2">
-            <div className="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+            <div className="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
               <div className="flex flex-row items-center text-xs">
                 <div className="flex-shrink pr-3">
                   <div className="rounded-full p-2 bg-blue-600"><DynamicFeedIcon className='text-white'/></div>
@@ -253,7 +253,7 @@ function CustomerDashboardJumpStart (props) {
                   noProgress
                   bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                   title={translatedMenuItems[3]}
-                  value={props.distributorinDashboard.completeOrder}
+                  value={props.finaceOrderinDashboard.completeOrder}
                   jumpstartClick={()=> handleClick("Closed")}
                   cursorData="pointer"
                 />
@@ -330,7 +330,7 @@ const mapStateToProps = ({ dashboard,auth ,leave}) => ({
   avgHour:dashboard.avgHour,
   fetchingAvgHour:dashboard.fetchingAvgHour,
   timeRangeType: dashboard.timeRangeType,
-  distributorinDashboard:dashboard.distributorinDashboard,
+  finaceOrderinDashboard:dashboard.finaceOrderinDashboard,
   customerAddedModal:dashboard.customerAddedModal,
   contactAddedModal:dashboard.contactAddedModal,
   orderAddedModal:dashboard.orderAddedModal,
@@ -343,7 +343,7 @@ const mapStateToProps = ({ dashboard,auth ,leave}) => ({
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  // getJumpDistributorDetail,
+  getFinaceOrderDetails,
   handleCustomerAddedModal,
   handleContactAddedModal,
   handleOrderAddedModal,

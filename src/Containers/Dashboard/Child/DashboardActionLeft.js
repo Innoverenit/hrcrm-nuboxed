@@ -278,7 +278,7 @@ const DashboardActionLeft = (props) => {
                   </span>
                
               )}
-  {(user.taskAccessInd === true || user.role === "ADMIN") && (
+  {/* {(user.taskAccessInd === true || user.role === "ADMIN") && (
             
                 <span
                   className="cursor-pointer mr-1"
@@ -294,7 +294,7 @@ const DashboardActionLeft = (props) => {
                   </Tooltip>
                 </span>
               
-  )}
+  )} */}
               {viewType === "ALL" && showShareForm &&<Suspense fallback={<BundleLoader />}><DashboardShareForm /></Suspense> }
             </>
          
@@ -349,7 +349,7 @@ const DashboardActionLeft = (props) => {
                       </Avatar>
                     </Tooltip>
                   </span>
-              {(user.taskAccessInd === true || user.role === "ADMIN") && (
+              {/* {(user.taskAccessInd === true || user.role === "ADMIN") && (
               
                 <span class="cursor-pointer mr-1"
                   onClick={() => handleButtonClick("Tasks")}
@@ -365,7 +365,7 @@ const DashboardActionLeft = (props) => {
                   </Tooltip>
                 </span>
              
-              )}
+              )} */}
               {user.crmInd === true && user.customerAccessInd === true && (
                 
                   <span class="cursor-pointer mr-1"

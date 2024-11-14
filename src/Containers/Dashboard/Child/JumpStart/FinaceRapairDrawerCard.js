@@ -275,9 +275,6 @@ function FinaceRapairDrawerCard (props) {
 const mapStateToProps = ({ auth, dashboard }) => ({
     userId: auth.userDetails.userId,
     user: auth.userDetails,
-    // startDate: dashboard.startDate,
-    // endDate:dashboard.endDate,
-    // timeRangeType:dashboard.timeRangeType,
     // repairDashboardOrderAdded:dashboard.repairDashboardOrderAdded,
     orgId: auth.userDetails.organizationId,
   
