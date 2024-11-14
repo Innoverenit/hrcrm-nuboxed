@@ -190,7 +190,7 @@ function OpportunityCloseCard(props) {
 <div class="flex  justify-between" >
                            <div>
                            <Tooltip title='Click to Open'><span
-          onClick={() => {
+            onMouseEnter={() => {
            props.LinkClosedOpportunity(
              item.opportunityId,
              {
@@ -210,7 +210,7 @@ function OpportunityCloseCard(props) {
      <span
          
          className=" cursor-pointer "
-            onClick={() => {
+              onMouseEnter={() => {
                 props.getAllRecruitmentByOppId(item.opportunityId);
                 props.getAllRecruitmentPositionByOppId(item.opportunityId);
                 props.getAllRecruitmentAvgTimeByOppId(item.opportunityId);
@@ -245,7 +245,7 @@ function OpportunityCloseCard(props) {
             <span
             className=" !text-base cursor-pointer text-[grey]"
              
-              onClick={() => {
+                onMouseEnter={() => {
                 props.setEditOpportunity(item);
                 handleUpdateOpportunityModal(true);
                 handleSetCurrentOpportunityId(item);

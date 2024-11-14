@@ -259,7 +259,7 @@ function DealLostCard(props) {
                             <Tooltip title= {translatedMenuItems[9]}>
                             {/* // 'Click to Open' */}
                               <span
-                  onClick={() => {
+                    onMouseEnter={() => {
                    props.LinkClosedOpportunity(
                      item.opportunityId,
                      {
@@ -279,7 +279,7 @@ function DealLostCard(props) {
                                 
                               >
                                 <span
-                                  onClick={() => {
+                                    onMouseEnter={() => {
                                     props.handleDealsNotesDrawerModal(true);
                                     handleSetCurrentItem(item);
                                   }}
@@ -298,7 +298,7 @@ function DealLostCard(props) {
                               >
                                 {user.imInd === true && user.dealUpdateInd === true && (
                                   <span class="cursor-pointer text-[blue]"
-                                    onClick={() => {
+                                      onMouseEnter={() => {
                                       handleUpdateDealModal(true);
                                       handleSetCurrentItem(item);
                                     }}
@@ -330,7 +330,7 @@ function DealLostCard(props) {
                            <span class=" cursor-pointer"
                  
                 
-                 onClick={() => {
+                   onMouseEnter={() => {
                     //  props.getAllRecruitmentByOppId(item.opportunityId);
                     //  props.getAllRecruitmentPositionByOppId(item.opportunityId);
                     //  props.getAllRecruitmentAvgTimeByOppId(item.opportunityId);
@@ -581,7 +581,7 @@ function DealLostCard(props) {
                    <div class="flex  w-[0%] max-sm:flex-row max-sm:w-[10%]">
                     <div>
                     <Tooltip title={translatedMenuItems[9]}><span
-          onClick={() => {
+            onMouseEnter={() => {
            props.LinkClosedOpportunity(
              item.opportunityId,
              {
@@ -606,7 +606,7 @@ function DealLostCard(props) {
                         title={translatedMenuItems[10]}
                       >
                         <span
-                          onClick={() => {
+                            onMouseEnter={() => {
                             props.handleDealsNotesDrawerModal(true);
                             handleSetCurrentItem(item);
                           }}
@@ -627,7 +627,7 @@ function DealLostCard(props) {
                       >
                         {user.imInd === true && user.dealUpdateInd === true && (
                           <span class="cursor-pointer text-[blue]"
-                            onClick={() => {
+                              onMouseEnter={() => {
                               handleUpdateDealModal(true);
                               handleSetCurrentItem(item);
                             }}
@@ -663,7 +663,7 @@ function DealLostCard(props) {
                    <span className=" cursor-pointer"
          
          
-         onClick={() => {
+           onMouseEnter={() => {
             //  props.getAllRecruitmentByOppId(item.opportunityId);
             //  props.getAllRecruitmentPositionByOppId(item.opportunityId);
             //  props.getAllRecruitmentAvgTimeByOppId(item.opportunityId);

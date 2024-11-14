@@ -269,7 +269,7 @@ function OpportunityAllCardList(props) {
           <div class="flex basis-[100%] overflow-hidden">
           
           <div class="font-semibold text-[#337df4] cursor-pointer text-xs " 
-            onClick={() => handleButtonClick(item.employeeId)} 
+              onMouseEnter={() => handleButtonClick(item.employeeId)} 
           >
         
           {item.empName}
@@ -512,7 +512,7 @@ strokeColor={"#005075"}
                  <span
        
        className=" cursor-pointer"
-onClick={() => {
+  onMouseEnter={() => {
 props.getAllRecruitmentByOppId(item.opportunityId);
 props.getAllRecruitmentPositionByOppId(item.opportunityId);
 props.getAllRecruitmentAvgTimeByOppId(item.opportunityId);
@@ -544,7 +544,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                  
                   <div>
                   <Tooltip title={translatedMenuItems[8]}><span
-       onClick={() => {
+         onMouseEnter={() => {
         props.LinkClosedOpportunity(
           item.opportunityId,
           {
@@ -575,7 +575,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
             <span
             className=" !text-icon cursor-pointer text-[grey]"
              
-              onClick={() => {
+                onMouseEnter={() => {
                 props.setEditOpportunity(item);
                 handleUpdateOpportunityModal(true);
                 handleSetCurrentOpportunityId(item);

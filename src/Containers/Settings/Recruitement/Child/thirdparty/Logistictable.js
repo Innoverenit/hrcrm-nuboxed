@@ -33,6 +33,114 @@ function Logistictable(props) {
              
               </Button></div>
         </div>
+        <div className=" flex justify-between">
+      <div> DTDC</div>
+      <div>
+        <Switch
+    //     checked={includeVisible}
+    // onChange={() => toggleFieldVisibility('include')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+            // style={{ marginTop:" 4px "}}
+          />
+          </div>
+      <div> <Input
+              placeholder="First Name"
+              name="firstName"
+              style={{marginLeft:"-6px"}}
+            //   value="NAme"
+            //   onChange={handleInputChange}
+            /></div>
+      <div> <Button
+                type="primary"
+                htmlType="submit"
+                // loading={props.addingCustomerConfig}
+              >
+                <div class="font-bold font-poppins text-xs"> Create</div>
+             
+              </Button></div>
+        </div>
+        <div className=" flex justify-between">
+      <div> DHL</div>
+      <div>
+        <Switch
+    //     checked={includeVisible}
+    // onChange={() => toggleFieldVisibility('include')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+            // style={{ marginTop:" 4px "}}
+          />
+          </div>
+      <div> <Input
+              placeholder="First Name"
+              name="firstName"
+              style={{marginLeft:"-6px"}}
+            //   value="NAme"
+            //   onChange={handleInputChange}
+            /></div>
+      <div> <Button
+                type="primary"
+                htmlType="submit"
+                // loading={props.addingCustomerConfig}
+              >
+                <div class="font-bold font-poppins text-xs"> Create</div>
+             
+              </Button></div>
+        </div>
+        <div className=" flex justify-between">
+      <div>UPS</div>
+      <div>
+        <Switch
+    //     checked={includeVisible}
+    // onChange={() => toggleFieldVisibility('include')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+            // style={{ marginTop:" 4px "}}
+          />
+          </div>
+      <div> <Input
+              placeholder="First Name"
+              name="firstName"
+              style={{marginLeft:"-6px"}}
+            //   value="NAme"
+            //   onChange={handleInputChange}
+            /></div>
+      <div> <Button
+                type="primary"
+                htmlType="submit"
+                // loading={props.addingCustomerConfig}
+              >
+                <div class="font-bold font-poppins text-xs"> Create</div>
+             
+              </Button></div>
+        </div>
+        <div className=" flex justify-between">
+      <div> Click Ship</div>
+      <div>
+        <Switch
+    //     checked={includeVisible}
+    // onChange={() => toggleFieldVisibility('include')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+            // style={{ marginTop:" 4px "}}
+          />
+          </div>
+      <div> <Input
+              placeholder="First Name"
+              name="firstName"
+              style={{marginLeft:"-6px"}}
+            //   value="NAme"
+            //   onChange={handleInputChange}
+            /></div>
+      <div> <Button
+                type="primary"
+                htmlType="submit"
+                // loading={props.addingCustomerConfig}
+              >
+                <div class="font-bold font-poppins text-xs"> Create</div>
+             
+              </Button></div>
+        </div>
         </>
     );
 };

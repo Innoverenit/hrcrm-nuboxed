@@ -268,7 +268,7 @@ serachedPitchData={props.serachedPitchData}
                                               // tooltip="Hot"
                                               tooltip= {translatedMenuItems[8]}
                                               role={item.type}
-                                              onClick={() =>{
+                                                onMouseEnter={() =>{
                                                 const typ="Hot"
                                                 props.updateTypeForPitch(item.investorLeadsId,typ)
                                               }}
@@ -282,7 +282,7 @@ serachedPitchData={props.serachedPitchData}
                                       // tooltip="Warm"
                                       tooltip= {translatedMenuItems[9]}
                                       role={item.type}
-                                      onClick={() =>{
+                                        onMouseEnter={() =>{
                                       const typ="Warm"
                                         props.updateTypeForPitch(item.investorLeadsId,typ)
                                       }}
@@ -296,7 +296,7 @@ serachedPitchData={props.serachedPitchData}
                                       // tooltip="Cold"
                                       tooltip= {translatedMenuItems[10]}
                                       role={item.type}
-                                      onClick={() => {
+                                        onMouseEnter={() => {
                                         const typ="Cold"
                                         props.updateTypeForPitch(item.investorLeadsId,typ)
                                       }}
@@ -401,7 +401,7 @@ serachedPitchData={props.serachedPitchData}
                                                                           {item.companyName ? (
                                                                           <Tooltip title= {translatedMenuItems[12]}>
                                                               <ConnectWithoutContactIcon
-                                                                onClick={() => {
+                                                                  onMouseEnter={() => {
                                                                   handleRowData(item);
                                                                   props.handlePitchConvertModal(true);
                                                               
@@ -424,7 +424,7 @@ serachedPitchData={props.serachedPitchData}
                                                     <Tooltip title={item.url}>
                                                       <span className=" cursor-pointer"
                                                         //type="edit"                                 
-                                                        onClick={() => {}}
+                                                          onMouseEnter={() => {}}
                                                       >
                                                         {" "}
                                                         <a href={`item.url`} target="_blank">
@@ -443,7 +443,7 @@ serachedPitchData={props.serachedPitchData}
                                                                                               <div >
                                                                                             <Tooltip title= {translatedMenuItems[14]}>
                                                                               <NoteAltIcon
-                                                                                        onClick={() => {
+                                                                                          onMouseEnter={() => {
                                                                                           props.handlePitchNotesDrawerModal(true);
                                                                                           handleSetCurrentLeadsId(item);
                                                                                         }}
@@ -459,7 +459,7 @@ serachedPitchData={props.serachedPitchData}
                                                                               >
                                                                     <HourglassFullIcon className="text-blue-500 !text-icon" 
 
-                                                                        onClick={()=>{
+                                                                          onMouseEnter={()=>{
                                                                           props.handleAssimodal(true)
                                                                           handleRowData(item)
                                                                           }}
@@ -478,7 +478,7 @@ serachedPitchData={props.serachedPitchData}
                                                                                       <MailOutlineIcon
                                                                                         type="mail"
                                                                                         className="!text-icon cursor-pointer text-[#28a355]"
-                                                                                        // onClick={() => {
+                                                                                        //   onMouseEnter={() => {
                                                                                         //   handleSetCurrentLeadsId(item);
                                                                                         //   props.handleLeadsEmailDrawerModal(true);
                                                                                         // }}
@@ -489,7 +489,7 @@ serachedPitchData={props.serachedPitchData}
                                                                                     <Tooltip title= {translatedMenuItems[16]}>
                                                                                       <BorderColorIcon
                                                                                         className="!text-icon cursor-pointer text-[tomato]"
-                                                                                        onClick={() => {
+                                                                                          onMouseEnter={() => {
                                                                                           props.setEditPitch(item);
                                                                                           props.handleUpdatePitchModal(true);
                                                                                         handleSetCurrentLeadsId(item);

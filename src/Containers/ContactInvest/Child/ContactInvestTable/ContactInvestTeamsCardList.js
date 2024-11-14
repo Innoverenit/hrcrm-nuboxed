@@ -364,7 +364,7 @@ if (loading) {
                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[7.22rem] max-sm:w-full  ">
                                     {/* Deals */}
                                     <div class=" text-xs text-blue-500 cursor-pointer  font-poppins"
-                                      onClick={() => {
+                                        onMouseEnter={() => {
                                         props.handleDealModal(true);
                                         handleCurrentContactIdata(item);
                                       }}
@@ -410,7 +410,7 @@ if (loading) {
      <Tooltip title=     {translatedMenuItems[9]}>
  <MonitorHeartIcon
  className=" !text-icon cursor-pointer text-[#df9697] max-sm:!text-xl"
-          onClick={() => {
+            onMouseEnter={() => {
             handleContactInvestPulseDrawerModal(true);
             handleCurrentContactIdata(item);
           }}        
@@ -421,7 +421,7 @@ if (loading) {
                 <div>
               <Tooltip title=     {translatedMenuItems[10]}>
  <NoteAltIcon
-          onClick={() => {
+            onMouseEnter={() => {
             props.handleContactInvestNotesDrawerModal(true);
             handleCurrentContactIdata(item);
           }}
@@ -432,7 +432,7 @@ if (loading) {
      <Tooltip title=     {translatedMenuItems[11]}>
      <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
-          onClick={() => {
+            onMouseEnter={() => {
             props.handleContactAddressDrawerModal(true);
             handleCurrentContactIdata(item);
           }}
@@ -443,7 +443,7 @@ if (loading) {
                   <Tooltip title={item.mobileNo} >
       {item.doNotCallInd !== true && (
         <span class=" mr-1 text-xs cursor-pointer"
-          onClick={() => {
+            onMouseEnter={() => {
             props.handleDonotCallModal(true);
             handleCurrentContactIdata(item);
           }}
@@ -453,7 +453,7 @@ if (loading) {
       )}
       {item.doNotCallInd === true && (
         <span class=" mr-1 text-xs cursor-pointer"
-          onClick={() => {
+            onMouseEnter={() => {
             props.handleDonotCallModal(true);
             handleCurrentContactIdata(item);
           }}
@@ -469,7 +469,7 @@ if (loading) {
       <MailOutlineIcon className="!text-icon cursor-pointer text-green-800 max-sm:!text-xl"
         type="mail" 
        
-        onClick={() => {
+          onMouseEnter={() => {
           props.getContactById(item.contactId);
           props.handleCurrentContactIdata(true);
         }}
@@ -483,7 +483,7 @@ if (loading) {
       <Tooltip title=     {translatedMenuItems[12]}>
         <BorderColorIcon
           className="!text-icon cursor-pointer text-[tomato] max-sm:!text-xl"
-          onClick={() => {
+            onMouseEnter={() => {
             handleUpdateContactInvestModal(true);
             handleCurrentContactIdata(item);           
           }}
