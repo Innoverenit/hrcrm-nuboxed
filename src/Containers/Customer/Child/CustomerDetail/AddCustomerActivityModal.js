@@ -9,15 +9,7 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import ActivityForm from "../../../Activity/ActivityForm";
 
-const CustomerCallActivityForm = lazy(() =>
-  import("../CustomerActivity/CustomerCallActivityForm")
-);
-const CustomerTaskActivityForm = lazy(() =>
-  import("../CustomerActivity/CustomerTaskActivityForm")
-);
-const CustomerEventActivityForm = lazy(() =>
-  import("../CustomerActivity/CustomerEventActivityForm")
-);
+
 
 const TabPane = StyledTabs.TabPane;
 

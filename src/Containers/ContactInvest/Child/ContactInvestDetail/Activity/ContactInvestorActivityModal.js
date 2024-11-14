@@ -5,9 +5,7 @@ import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import { FormattedMessage } from "react-intl";
 import ActivityForm from "../../../../Activity/ActivityForm";
-const ContactInvestorCallActivityForm =lazy(()=>import("./ContactInvestorCallActivityForm"));
-const ContactInvestorEventActivityForm =lazy(()=>import("./ContactInvestorEventActivityForm"));
-const ContactInvestorTaskActivityForm =lazy(()=>import("./ContactInvestorTaskActivityForm"));
+
 
 const TabPane = StyledTabs.TabPane;
 

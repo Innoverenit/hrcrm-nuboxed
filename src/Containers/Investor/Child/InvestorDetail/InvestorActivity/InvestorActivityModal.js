@@ -7,9 +7,7 @@ import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import ActivityForm from "../../../../Activity/ActivityForm";
-const InvestorCallActivityForm=lazy(()=>import("./InvestorCallActivityForm"));
-const InvestorEventActivityForm=lazy(()=>import("./InvestorEventActivityForm"));
-const InvestorTaskActivityForm=lazy(()=>import("./InvestorTaskActivityForm"));
+
 
 
 
