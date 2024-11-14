@@ -17,7 +17,7 @@ import {
   getOppLinkedStages,
   addMoreContact
 } from "../OpportunityAction";
-import {getCustomerConfigure} from "../../Settings/SettingsAction"
+import {getCustomerConfigure, getUOM} from "../../Settings/SettingsAction"
 import {getAssignedToList} from "../../Employees/EmployeeAction"
 import { getCrm} from "../../Leads/LeadsAction";
 import {getSaleCurrency} from "../../Auth/AuthAction"
@@ -51,7 +51,7 @@ function OpportunityForm(props) {
   
   }, []);
   useEffect(() => {
-    
+    props.getUOM(); 
     // props.getContactData(props.userId);
     // props.getCustomerData(props.userId);
     props.getInitiative(props.userId);
@@ -1439,6 +1439,7 @@ const mapStateToProps = ({ auth, settings,opportunity,employee,currency,investor
   currencies: auth.currencies,
   saleCurrencies: auth.saleCurrencies,
   dialcodeList: auth.dialcodeList,
+  UOMListData:settings.UOMListData,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -1456,7 +1457,8 @@ const mapDispatchToProps = (dispatch) =>
       addMoreContact,
       getAllEmployeelist,
       getAssignedToList,
-      getSaleCurrency
+      getSaleCurrency,
+      getUOM
     },
     dispatch
   );

@@ -946,6 +946,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
     onChange={() => toggleFieldVisibility('startDate')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
+            style={{ marginTop:" 4px "}}
           />
                   </div>
                   <div class=" w-w47.5 max-sm:w-wk">
@@ -975,6 +976,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
     onChange={() => toggleFieldVisibility('endDate')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
+            style={{ marginTop:" 4px "}}
           />
                   </div>
                 </div>
@@ -994,6 +996,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
     onChange={() => toggleFieldVisibility('oppValue')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
+            style={{ marginTop:" 4px "}}
           />
                   </div>
                   <div class=" w-w47.5 max-sm:w-wk">
@@ -1020,6 +1023,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
     onChange={() => toggleFieldVisibility('potentialCurrency')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
+            style={{ marginTop:" 4px "}}
           />
                   </div>
                 </div>
@@ -1046,6 +1050,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
     onChange={() => toggleFieldVisibility('customValue1')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
+            style={{ marginTop:" 4px "}}
           />
           </div>
           <div className=" w-w47.5 max-sm:w-wk">
@@ -1073,12 +1078,13 @@ potentialCurrencyInd:potentilaCurrencyVisible,
                       width={"100%"}
                       component={InputComponent}
                     /> */}
-                                                                       <Switch
+                                                                       {/* <Switch
         checked={customValue1Visible}
     onChange={() => toggleFieldVisibility('customValue1')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
-          />
+            style={{ marginTop:" 4px "}}
+          /> */}
           </div>
                   </div>
                   <div class=" flex  w-w47.5 justify-between mt-4 max-sm:flex-col max-sm:w-wk" >
@@ -1117,6 +1123,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
     onChange={() => toggleFieldVisibility('customValue2')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
+            style={{ marginTop:" 4px "}}
           />
           <div> 
           </div>
@@ -1153,6 +1160,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
     onChange={() => toggleFieldVisibility('description')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
+            style={{ marginTop:" 4px "}}
           />
    
               </div>
@@ -1231,12 +1239,13 @@ potentialCurrencyInd:potentilaCurrencyVisible,
     onChange={() => toggleFieldVisibility('assignedTo')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
+            style={{ marginTop:" 4px "}}
           />
           </>
         )}
       </Listbox>
 
-       <div class=" mt-2" style={{display:"flex",flexDirection:"column"}}>    
+       <div class=" mt-2 flex flex-col" >    
                   <div className="font-bold text-xs">
                 {translatedMenuItems[7]}
                     {/* Include */}
@@ -1258,12 +1267,15 @@ potentialCurrencyInd:potentilaCurrencyVisible,
             </Option>
           ))}
         </Select>
+        <div className=" mt-1 w-auto">
         <Switch
         checked={includeVisible}
     onChange={() => toggleFieldVisibility('include')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
+            // style={{ marginTop:" 4px "}}
           />
+          </div>
         </div>        
 <div class="flex justify-between max-sm:flex-col mt-[0.75rem]">
 <div class=" w-w47.5 max-sm:w-wk">                
@@ -1289,6 +1301,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
     onChange={() => toggleFieldVisibility('customer')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
+            style={{ marginTop:" 4px "}}
           />
           
             </div>
@@ -1321,6 +1334,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
     onChange={() => toggleFieldVisibility('contact')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
+            style={{ marginTop:" 4px "}}
           />          
                 </div>
                         </div>
@@ -1463,6 +1477,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
     onChange={() => toggleFieldVisibility('workflow')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
+            style={{ marginTop:" 4px "}}
           />
                   </div>
                  
@@ -1486,6 +1501,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
     onChange={() => toggleFieldVisibility('stage')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
+            style={{ marginTop:" 4px "}}
           />
                   </div>
                 </div>
@@ -1501,6 +1517,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
     onChange={() => toggleFieldVisibility2('documented')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
+            style={{ marginTop:" 4px "}}
           />
                                     </div>
                                     <div class=" flex">
@@ -1514,12 +1531,14 @@ potentialCurrencyInd:potentilaCurrencyVisible,
                           onChange={handleEmailInd}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
+                          style={{ marginTop:" 4px "}}
                         />
                                                                            <Switch
         checked={autoEmailVisible}
     onChange={() => toggleFieldVisibility1('autoEmail')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
+            style={{ marginTop:" 4px "}}
           />
                       </div>
                     </div>

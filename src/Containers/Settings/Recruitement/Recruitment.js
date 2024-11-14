@@ -20,6 +20,7 @@ const ApprovalTab = lazy(() => import("./Child/Approval/ApprovalTab"));
 const SettingsHolidayTab = lazy(() => import("./Child/Holiday/SettingsHolidayTab"));
 const LeadsTab = lazy(() => import("../../Rules/Child/RulesTab/LeadsTab"));
 const DistributionTab = lazy(() => import("./Child/DistributionTab/DistributionTab"));
+const ThirdParty= lazy(() => import("./Child//thirdparty/ThirdParty"));
 const FinanceTab = lazy(() => import("./Child/FinanceTab/FinanceTab"));
 const ReportScheduler = lazy(() =>
   import("../Recruitement/Child/ReportScheduler/ReportScheduler")
@@ -119,11 +120,12 @@ function Recruitment(props) {
       ruleId: "21",
       component: <RecruitTab/>,
     },
-    // {
-    //   rulesName: "Search",
-    //   ruleId: "3",
-    //   component: <SeachTab />,
-    // },
+    
+    {
+      rulesName: "3rd Party Integration",
+      ruleId: "22",
+      component: <ThirdParty />,
+    },
     // {
     //   rulesName: "Sourcing",
     //   ruleId: "5",
