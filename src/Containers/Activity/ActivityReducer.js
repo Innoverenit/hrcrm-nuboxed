@@ -7,6 +7,9 @@ const initialState = {
   addingActivityCallError: false,
 
 
+  addActivityNotesModal:false,
+
+
 
   addEventLocation:false,
   addEventLocationError:false,
@@ -77,7 +80,8 @@ export const activityReducer = (state = initialState, action) => {
         addingActivityEvent: false,
         //callActivityModal: false,
       };
-    
+      case types.HANDLE_ACTIVITY_NOTES_MODAL:
+        return { ...state, addActivityNotesModal: action.payload };
     
     
     case types.ADD_ACTIVITY_TASK_REQUEST:

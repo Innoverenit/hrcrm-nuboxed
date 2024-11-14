@@ -9,6 +9,14 @@ import { uniqueId } from "lodash";
 
 
 
+export const handleActivityNoteModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ACTIVITY_NOTES_MODAL,
+    payload: modalProps,
+  });
+};
+
+
 export const addActivityCall = (call,customerId, cb) => (dispatch, getState) => {
     ////debugger;
     console.log("inside addCall");
