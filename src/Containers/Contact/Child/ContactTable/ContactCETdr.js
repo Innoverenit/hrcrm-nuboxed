@@ -6,9 +6,7 @@ import { TabsWrapper } from "../../../../Components/UI/Layout";
 import { FormattedMessage } from "react-intl";
 import ActivityForm from "../../../Activity/ActivityForm";
 
-const ContactCallForm = lazy(() => import("./ContactCallForm"));
-const ContactEventForm = lazy(() =>import("./ContactEventForm"));
-const ContactTaskForm = lazy(() => import("./ContactTaskForm"));
+
 
 const TabPane = StyledTabs.TabPane;
 
