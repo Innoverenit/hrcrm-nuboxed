@@ -106,10 +106,11 @@ const MaterialStockTableOut = (props) => {
                             {/* attribute */}
                             <AttractionsIcon className="  !text-icon" />  {props.translatedMenuItems[25]}
                             </div>
-                        <div className="w-[4.25rem] md:w-[16.25rem]">
-                       {/* cell  {props.translatedMenuItems[7]} */}
-                        </div>
+                     
                         <div className="w-[7.11rem] md:w-[4.11rem]"><FormattedMessage id="app.hsn" defaultMessage="HSN" /></div>
+                        <div className="w-[7.11rem] md:w-[4.11rem]">Zone</div>
+                        <div className="w-[7.11rem] md:w-[4.11rem]">Room</div>
+                        <div className="w-[7.11rem] md:w-[4.11rem]">Rack</div>
                         <div className="w-[6.10rem] md:w-[6.10rem]">
                             {/* in stock  */}
                              {props.translatedMenuItems[29]}
@@ -131,7 +132,7 @@ const MaterialStockTableOut = (props) => {
                                     <div className="flex rounded  mt-1 bg-white py-1 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                         <div class="flex">
                                             <div className=" flex md:w-[2.1rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
-                                                <div class="flex justify-between text-xs  font-semibold  font-poppins ">
+                                                <div class="flex justify-between text-xs items-center  font-semibold  font-poppins ">
                                                    
  <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                                                         onClick={() => {
