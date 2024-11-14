@@ -3109,9 +3109,157 @@ export const getReorderdata = () => (dispatch) => {
     });
 };
 
+export const getDealDashboard = (userId) => (dispatch) => {
+  dispatch({ type: types.GET_DEAL_DASHBOARD_REQUEST });
+
+  axios
+    .get(`${base_url}/investorOpportunity/notWon/user/${userId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // console.log(res)
+      dispatch({
+        type: types.GET_DEAL_DASHBOARD_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DEAL_DASHBOARD_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getDealDashboardCount = (userId) => (dispatch) => {
+  dispatch({ type: types.GET_DEAL_DASHBOARD_COUNT_REQUEST });
+
+  axios
+    .get(`${base_url}/investorOpportunity/notWon/count/user/${userId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // console.log(res)
+      dispatch({
+        type: types.GET_DEAL_DASHBOARD_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DEAL_DASHBOARD_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
 
 
+export const getOrderDashboard = (userId,orderType) => (dispatch) => {
+  dispatch({ type: types.GET_ORDER_DASHBOARD_REQUEST });
 
+  axios
+    .get(`${base_url2}/phoneOrder/orderNotCompleted/user/${userId}/${orderType}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // console.log(res)
+      dispatch({
+        type: types.GET_ORDER_DASHBOARD_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ORDER_DASHBOARD_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getOrderDashboardCount = (userId,orderType) => (dispatch) => {
+  dispatch({ type: types.GET_ORDER_DASHBOARD_COUNT_REQUEST });
+
+  axios
+    .get(`${base_url2}/phoneOrder/orderNotCompleted/user/count/${userId}/${orderType}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // console.log(res)
+      dispatch({
+        type: types.GET_ORDER_DASHBOARD_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ORDER_DASHBOARD_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getBestDashboardCount = (locationId) => (dispatch) => {
+  dispatch({ type: types.GET_BEST_DASHBOARD_COUNT_REQUEST });
+
+  axios
+    .get(`${base_url2}/po/countBestBefore/${locationId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // console.log(res)
+      dispatch({
+        type: types.GET_BEST_DASHBOARD_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_BEST_DASHBOARD_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getTaskDashboard = (userId,pageNo) => (dispatch) => {
+  dispatch({ type: types.GET_TASK_DASHBOARD_REQUEST });
+
+  axios
+    .get(`${base_url}/task/openTask/list/${userId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // console.log(res)
+      dispatch({
+        type: types.GET_TASK_DASHBOARD_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_TASK_DASHBOARD_FAILURE,
+        payload: err,
+      });
+    });
+};
 
 export const linkTaskStatusDashboard = (taskId,data ) => (
   dispatch,

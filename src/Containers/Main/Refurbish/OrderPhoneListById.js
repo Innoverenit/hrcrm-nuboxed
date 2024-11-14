@@ -425,8 +425,8 @@ function OrderPhoneListById(props) {
                                                     </div>
                                                 </div>
                                                 <div className=" flex items-center justify-start ml-gap bg-[#eef2f9] h-8 w-[7.03rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    <span title={item.issue}>{item.issue.substring(0, 10)}{item.issue.length > 20 && '...'}</span>
+                                                    <div class=" text-xs ml-gap truncate max-w-[100px]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" title={item.issue}>
+                                                    {item.issue}
                                                     </div>
                                                 </div>
 
@@ -675,7 +675,7 @@ function OrderPhoneListById(props) {
                                                                         /> */}
                                                             <ReactToPrint
                                                               trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>
-                                                                {translatedMenuItems[11]}{/* Print  */}
+                                                                {translatedMenuItems[11]} QR{/* Print  */}
                                                                 <QrCodeIcon className="!text-icon"/></Button>}
                                                                 content={() => componentRefs.current[index]}
                                                             />
@@ -694,7 +694,7 @@ function OrderPhoneListById(props) {
                                                     <div   className=" text-5xl mt-8">
                                                         <QRCode size={150} value={item.phoneId} />
                                                     </div>
-                                                    <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
+                                                    <div className="text-2xl font-bold">IMEI:{item.imei}</div>
                                                 </div>
                                             </div>
 
@@ -708,7 +708,7 @@ function OrderPhoneListById(props) {
                                                               trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} 
                                                               onClick={handlePrintBr}>
                                                             
-                                                                Print Br
+                                                                Print Bar
                                                                 <BarcodeOutlined className="!text-icon"/></Button>}
                                                                 content={() => componentBarRefs.current[index]}
                                                             />

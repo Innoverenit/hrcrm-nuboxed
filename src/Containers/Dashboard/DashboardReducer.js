@@ -11,6 +11,30 @@ const initialState = {
   fetchingReorderDataError:false,
   reOrderData:[],
 
+  fetchingTaskDashboard: false,
+  fetchingTaskDashboardError: false,
+  taskDashboard:[],
+
+  fetchingDealsDashboard: false,
+  fetchingDealsDashboardError: false,
+  dealsDashboard:[],
+
+  fetchingDealsDashboardCount: false,
+  fetchingDealsDashboardCountError: false,
+  dealsDashboardCount:{},
+
+  fetchingOrderDashboard: false,
+  fetchingOrderDashboardError: false,
+  orderDashboard:[],
+
+  fetchingOrderDashboardCount: false,
+  fetchingOrderDashboardCountError: false,
+  orderDashboardCount:{},
+
+  fetchingBestDashboardCount: false,
+  fetchingBestDashboardCountError: false,
+  bestDashboardCount:{},
+
   fetchingRepairDashboardOrderClose:false,
   fetchingRepairDashboardOrderCloseError:false,
   repairDashboardOrderClose:[],
@@ -1389,6 +1413,87 @@ export const dashboardReducer = (state = initialState, action) => {
         };
       case types.GET_REORDER_DATA_FAILURE:
         return { ...state, fetchingReorderData: false, fetchingReorderDataError: true };
+
+        case types.GET_DEAL_DASHBOARD_REQUEST:
+          return { ...state, fetchingDealsDashboard: true};
+        case types.GET_DEAL_DASHBOARD_SUCCESS:
+          return {
+            ...state,
+            fetchingDealsDashboard: false,
+            dealsDashboard: action.payload,
+          };
+        case types.GET_DEAL_DASHBOARD_FAILURE:
+          return { ...state, 
+            fetchingDealsDashboard: false,
+             fetchingDealsDashboardError: true };
+
+             case types.GET_DEAL_DASHBOARD_COUNT_REQUEST:
+              return { ...state, fetchingDealsDashboardCount: true};
+            case types.GET_DEAL_DASHBOARD_COUNT_SUCCESS:
+              return {
+                ...state,
+                fetchingDealsDashboardCount: false,
+                dealsDashboardCount: action.payload,
+              };
+            case types.GET_DEAL_DASHBOARD_COUNT_FAILURE:
+              return { ...state, 
+                fetchingDealsDashboardCount: false,
+                fetchingDealsDashboardCountError: true };
+    
+                case types.GET_ORDER_DASHBOARD_REQUEST:
+                  return { ...state, fetchingOrderDashboard: true};
+                case types.GET_ORDER_DASHBOARD_SUCCESS:
+                  return {
+                    ...state,
+                    fetchingOrderDashboard: false,
+                    orderDashboard: action.payload,
+                  };
+                case types.GET_ORDER_DASHBOARD_FAILURE:
+                  return { ...state, 
+                    fetchingOrderDashboard: false,
+                    fetchingOrderDashboardError: true };
+        
+                    case types.GET_ORDER_DASHBOARD_COUNT_REQUEST:
+                      return { ...state, fetchingOrderDashboardCount: true};
+                    case types.GET_ORDER_DASHBOARD_COUNT_SUCCESS:
+                      return {
+                        ...state,
+                        fetchingOrderDashboardCount: false,
+                        orderDashboardCount: action.payload,
+                      };
+                    case types.GET_ORDER_DASHBOARD_COUNT_FAILURE:
+                      return { ...state, 
+                        fetchingOrderDashboardCount: false,
+                        fetchingOrderDashboardCountError: true };
+
+                        case types.GET_BEST_DASHBOARD_COUNT_REQUEST:
+                          return { ...state, fetchingBestDashboardCount: true};
+                        case types.GET_BEST_DASHBOARD_COUNT_SUCCESS:
+                          return {
+                            ...state,
+                            fetchingBestDashboardCount: false,
+                            bestDashboardCount: action.payload,
+                          };
+                        case types.GET_BEST_DASHBOARD_COUNT_FAILURE:
+                          return { ...state, 
+                            fetchingBestDashboardCount: false,
+                            fetchingBestDashboardCountError: true };
+
+
+                        case types.GET_TASK_DASHBOARD_REQUEST:
+                          return { ...state, fetchingTaskDashboard: true};
+                        case types.GET_TASK_DASHBOARD_SUCCESS:
+                          return {
+                            ...state,
+                            fetchingTaskDashboard: false,
+                            taskDashboard: [
+                              ...state.taskDashboard,
+                              ...action.payload],
+                          };
+                        case types.GET_TASK_DASHBOARD_FAILURE:
+                          return { ...state, 
+                            fetchingTaskDashboard: false,
+                            fetchingTaskDashboardError: true };
 
     case types.GET_JUMPSTART_BULB_REQUEST:
       return {

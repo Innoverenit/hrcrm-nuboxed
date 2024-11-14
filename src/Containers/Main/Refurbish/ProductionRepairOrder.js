@@ -336,7 +336,7 @@ function ProductionRepairOrder(props) {
                     inspectionRequiredInd={props.inspectionRequiredInd}
                 />
                  <RefurbishNoteAll
-                 translateText={props.translateText}
+                 translateText={props.translateText} 
                  selectedLanguage={props.selectedLanguage}
                      rowData={rowData}
                      productioNoteModal={props.productioNoteModal}

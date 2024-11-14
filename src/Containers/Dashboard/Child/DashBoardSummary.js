@@ -1,6 +1,7 @@
 import React, { useEffect, useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import InfiniteScroll from "react-infinite-scroll-component";
 import {linkTaskStatusDashboard} from "../DashboardAction"
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
@@ -16,12 +17,17 @@ import {
 
 } from "../../Main/Inventory/InventoryAction";
 
-import { getQuotationDashboard,getReorderdata,getQuotationDashboardCount ,getTakskdashboardGantt,getTasklist} from "../../Dashboard/DashboardAction";
+import { getQuotationDashboard,getReorderdata,getQuotationDashboardCount ,
+  getTaskDashboard,getTasklist,getDealDashboard,getDealDashboardCount,
+  getOrderDashboard,getOrderDashboardCount,getBestDashboardCount
+} from "../../Dashboard/DashboardAction";
 
 const ButtonGroup = Button.Group;
 const DashBoardSummary=(props) =>{
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
+  const [page, setPage] = useState(0);
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
@@ -56,12 +62,14 @@ const DashBoardSummary=(props) =>{
     props.getQuotationDashboard(props.userId);
     props.getQuotationDashboardCount(props.userId)
     props.getMaterialBestBefore(props.locationId)
-    props.getTakskdashboardGantt(props.userId)
+    props.getBestDashboardCount(props.locationId)
+    props.getTaskDashboard(props.userId,page)
     props.getTasklist(props.userId)
     props.getReorderdata()
-
-
-   
+    props.getDealDashboard(props.userId)
+    props.getDealDashboardCount(props.userId)
+    props.getOrderDashboard(props.userId,"procure")
+    props.getOrderDashboardCount(props.userId,"procure")
   }, []);
   const data = {
     deals: [
@@ -97,20 +105,45 @@ const DashBoardSummary=(props) =>{
     ],
   };
 
+  const handleLoadMore = () => {
+    const callPageMapd = props.taskDashboard && props.taskDashboard.length &&props.taskDashboard[0].pageCount
+    setTimeout(() => {  
+      if  (props.taskDashboard)
+      {
+        if (page < callPageMapd) {    
+    setPage(page + 1);
+    props.getTaskDashboard(props.userId,page)
+            }
+              if (page === callPageMapd){
+                setHasMore(false)
+              }
+            }
+            }, 100);
+  }
   return (
     <div className=" container  mx-auto  p-4 flex rounded mt-1  bg-white h-[87vh]  overflow-x-auto ">
       {/* TASK */}
       <div class="flex flex-col w-[16rem] ml-8 items-center">
-        <h2 className="text-xl font-bold font-poppins mb-4 uppercase">{translatedMenuItems[0]}<span  className="font-bold text-[tomato] ml-1"> {`${props.taskperCount.totalTask} `}</span></h2>
+        <h2 className="text-xl font-bold font-poppins mb-4 uppercase">{translatedMenuItems[0]}<span  className="font-bold text-[tomato] ml-1"> 
+          {`${props.taskperCount.totalTask  ?? ""} `}</span></h2>
         <div className="overflow-y-auto max-h-[78vh]">
-      {props.fetchingTaskDashboardGantt ? (
+        <InfiniteScroll
+        dataLength={props.taskDashboard.length}
+        next={handleLoadMore}
+        hasMore={hasMore}
+        loader={props.fetchingTaskDashboard?<div class="flex justify-center">Loading ...</div>:null}
+        height={"83vh"}
+        style={{scrollbarWidth:"thin"}}
+        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
+      >
+      {props.fetchingTaskDashboard ? (
         <div className="flex justify-center items-center h-full">
           <Spin color="#00008b" size={50} /> 
           <div>{translatedMenuItems[1]}</div>
           {/* Spinner component */} 
         </div>
       ) : (
-        props.tasksdashboardGantt.map((deal, index) => {
+        props.taskDashboard.map((deal, index) => {
           const currentDate = dayjs();
         const completionDate = dayjs(deal.completionDate);
           const endDate = dayjs(deal.endDate);
@@ -181,6 +214,7 @@ const DashBoardSummary=(props) =>{
        
 })
       )}
+      </InfiniteScroll>
     </div>
       </div>
       <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-4"></div> 
@@ -188,7 +222,8 @@ const DashBoardSummary=(props) =>{
       {/* QUOTATION */}
       <div class="flex flex-col w-[16rem] ml-2 items-center">
   <h2 className="text-xl font-poppins font-bold mb-4 uppercase">
-  {translatedMenuItems[2]} <span  className=" font-bold text-[tomato] ml-1">   {`${props.quotationDashboardCount.countByUserId} `}</span>
+  {translatedMenuItems[2]} <span  className=" font-bold text-[tomato] ml-1"> 
+      {`${props.quotationDashboardCount.countByUserId  ?? ""} `}</span>
 </h2>
   {props.quotationDashboard.length === 0 &&props.fetchingQuotationDashboard? (
     <>
@@ -238,7 +273,8 @@ const DashBoardSummary=(props) =>{
       <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-4"></div> 
          {/* Best Before */}
          <div class="flex flex-col w-[16rem] ml-2 items-center">
-        <h2 className="text-xl font-bold font-poppins mb-4 uppercase"> {translatedMenuItems[6]} <span  className="font-bold text-[tomato] ml-1"> 2</span> </h2>
+        <h2 className="text-xl font-bold font-poppins mb-4 uppercase"> {translatedMenuItems[6]} <span  className="font-bold text-[tomato] ml-1">
+        {`${props.bestDashboardCount.bbcnt ?? ""} `}</span> </h2>
         <div className="overflow-y-auto max-h-[78vh]">
       {props.fetchingMaterialBestBefore ? (
         <div className="flex justify-center items-center h-full">
@@ -289,26 +325,32 @@ const DashBoardSummary=(props) =>{
       <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-4"></div> 
         {/* ORDER */}
         <div class="flex flex-col w-[16rem] ml-2 items-center">
-        <h2 className="text-xl font-bold font-poppins mb-4 uppercase">{translatedMenuItems[8]} <span  className=" font-bold text-[tomato] ml-1"> 5</span></h2>
-        {data.notInCrm.map((contact, index) => (
+        <h2 className="text-xl font-bold font-poppins mb-4 uppercase">{translatedMenuItems[8]} <span  className=" font-bold text-[tomato] ml-1">
+        {`${props.orderDashboardCount.count ?? ""} `}</span></h2>
+        <div className=" overflow-x-auto h-[80vh]">
+        {props.orderDashboard.map((contact, index) => (
           <div key={index} className="mb-4 p-2 ml-2 box-content border-2 border-[#00008b23] w-[11rem]">
             <div className="flex justify-between">
-              <div className="font-semibold font-poppins">{contact.name}</div>
-              <div className="text-sm text-gray-500 font-poppins">{contact.time}</div>
+              <div className="font-semibold font-poppins">{contact.contactPersonName}</div>
+              <div className="text-sm text-gray-500 font-poppins"> {`${dayjs(contact.creationDate).format("DD/MM/YYYY")}`}
+              </div>
             </div>
-            <div className="text-sm text-gray-500 font-poppins">{contact.description}</div>
+            <div className="text-sm text-gray-500 font-poppins">{contact.status}</div>
             
           </div>
         ))}
+        </div>
       </div>
       <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-4"></div> 
       {/* DEALS */}
       <div class="flex flex-col w-[16rem] ml-2 items-center">
-        <h2 className="text-xl font-bold font-poppins mb-4 uppercase"> {translatedMenuItems[9]} <span  className="font-bold text-[tomato] ml-1">  6</span></h2>
-        {data.colleagues.map((colleague, index) => (
+        <h2 className="text-xl font-bold font-poppins mb-4 uppercase"> {translatedMenuItems[9]} <span  className="font-bold text-[tomato] ml-1"> 
+        {`${props.dealsDashboardCount.countByUserId ?? ""} `}</span></h2>
+        <div className=" overflow-x-auto h-[60vh]">
+        {props.dealsDashboard.map((colleague, index) => (
           <div key={index} className="mb-4 p-2 ml-2 box-content border-2 border-[#00008b23] w-[11rem] ">
             <div className="flex justify-between">
-              <div className="font-semibold">{colleague.name}  </div>
+              <div className="font-semibold">{colleague.name}  </div> 
               <div className="text-sm text-gray-500 font-poppins">
                 {colleague.date}
                 
@@ -317,6 +359,7 @@ const DashBoardSummary=(props) =>{
             <div className="text-sm text-gray-500 font-poppins">{colleague.description}</div>
           </div>
         ))}
+        </div>
       </div>
     </div>   
   );
@@ -333,7 +376,14 @@ const mapStateToProps = ({ dashboard,inventory, auth }) => ({
   materialBestBefore:inventory.materialBestBefore,
   quotationDashboard:dashboard.quotationDashboard,
   fetchingTaskDashboardGantt:dashboard.fetchingTaskDashboardGantt,
-  quotationDashboardCount:dashboard.quotationDashboardCount
+  quotationDashboardCount:dashboard.quotationDashboardCount,
+  dealsDashboard:dashboard.dealsDashboard,
+  dealsDashboardCount:dashboard.dealsDashboardCount,
+  orderDashboard:dashboard.orderDashboard,
+  orderDashboardCount:dashboard.orderDashboardCount,
+  taskDashboard:dashboard.taskDashboard,
+  fetchingTaskDashboard:dashboard.fetchingTaskDashboard,
+  bestDashboardCount:dashboard.bestDashboardCount
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   getQuotationDashboard,
@@ -341,10 +391,14 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   getMaterialBestBefore,
   getTasklist,
   linkTaskStatusDashboard,
-
+  getDealDashboard,
   getReorderdata,
   addToWaste,
-  getTakskdashboardGantt
+  getTaskDashboard,
+  getDealDashboardCount,
+  getOrderDashboard,
+  getOrderDashboardCount,
+  getBestDashboardCount
 
 }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(DashBoardSummary);
