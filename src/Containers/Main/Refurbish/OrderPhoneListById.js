@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
 import FactCheckIcon from '@mui/icons-material/FactCheck';
+import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import UpdateIcon from '@mui/icons-material/Update';
 import {
     getPhoneOrderIdByUser,
@@ -443,7 +444,9 @@ function OrderPhoneListById(props) {
                                                                title={level.level}
                                                                >
                                                                 <Badge size="small" count={level.levelCount}>
+                                                                    <div class="text-base">
                                                                 {level.level}
+                                                                </div>
                                                                 </Badge>
                                                                    {/* {level.levelCount} */}
                                                                    {/* {item.issue.substring(0, 10)}{item.issue.length > 20 && '...'} */}
@@ -462,7 +465,7 @@ function OrderPhoneListById(props) {
                                                         {props.updatingQCStatus && <span>Loading...</span>}
                                                             {props.rowData.qcInspectionInd === 1 ?
                                                                 <ButtonGroup>
-                                                                    {item.qcStatus === "To Start" && <StatusIcon
+                                                                    {item.qcStatus === "To Start" && <HourglassEmptyIcon
                                                                         type= "In Progress"
                                                                         iconType="fa fa-hourglass-half"
                                                                         tooltip= {translatedMenuItems[12]}
@@ -475,7 +478,7 @@ function OrderPhoneListById(props) {
 
                                                                         }}
                                                                     />}
-                                                                    {item.qcStatus === "In Progress" && <StatusIcon
+                                                                    {item.qcStatus === "In Progress" && <HourglassEmptyIcon
                                                                         type= "Complete"
                                                                         iconType="fa fa-hourglass"
                                                                         tooltip= {translatedMenuItems[13]}
@@ -663,6 +666,7 @@ function OrderPhoneListById(props) {
                                                 </div>
                                                 <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8 w-[7.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {props.user.repairCode === "qrcode" &&
                                                         <Tooltip title={translatedMenuItems[11]}
                                                         // {<FormattedMessage
                                                         //     id="app.Print"
@@ -680,7 +684,7 @@ function OrderPhoneListById(props) {
                                                                 content={() => componentRefs.current[index]}
                                                             />
                                                         </Tooltip>
-
+                                                        }
                                                     </div>
                                                 </div>
 
@@ -700,6 +704,7 @@ function OrderPhoneListById(props) {
 
                                             <div className=" flex  items-center justify-center ml-gap bg-[#eef2f9] h-8   w-[7.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    {props.user.repairCode === "barcode" &&
                                                         <Tooltip title={translatedMenuItems[11]}
                                                        
                                                         >
@@ -713,7 +718,7 @@ function OrderPhoneListById(props) {
                                                                 content={() => componentBarRefs.current[index]}
                                                             />
                                                         </Tooltip>
-
+                            }
                                                     </div>
                                                     <div style={{ display: "none", textAlign: "center" }}>
 
@@ -790,6 +795,7 @@ function OrderPhoneListById(props) {
 const mapStateToProps = ({ refurbish, auth, inventory }) => ({
     orderPhoneList: refurbish.orderPhoneList,
     locationId: auth.userDetails.locationId,
+    user: auth.userDetails,
     userId: auth.userDetails.userId,
     updatingCantRepairQc: refurbish.updatingCantRepairQc,
     fetchingOrderIdByUserId: refurbish.fetchingOrderIdByUserId,

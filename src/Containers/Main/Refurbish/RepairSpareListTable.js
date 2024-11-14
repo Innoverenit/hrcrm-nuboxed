@@ -26,7 +26,7 @@ function RepairSpareListTable(props) {
             width: "1%",
         },
         {
-            title: "Spare",
+            title: "Spares",
             dataIndex: "suppliesName",
             width: "20%",
         },
@@ -81,7 +81,7 @@ function RepairSpareListTable(props) {
         // },
         {
             title: "Completed By",
-            width: "10%",
+            width: "15%",
             render: (text, item) => {
                 return (
                     <>

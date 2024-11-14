@@ -1,5 +1,6 @@
 import { Suspense, lazy } from 'react';
 import { BundleLoader } from '../../../Components/Placeholder';
+import CloseIcon from '@mui/icons-material/Close';
 const AddMultipleQCSpare = lazy(() => import("./AddMultipleQCSpare"));
 const RepairSpareListTable = lazy(() => import("./RepairSpareListTable"));
 
@@ -8,9 +9,12 @@ const AddSpareInRepair = (props) => {
     return (
        
         <>
+        <div class="w-wk flex justify-end">
+         <CloseIcon className='!text-icon cursor-pointer' onClick={props.onClose}/>
+         </div>
             <Suspense fallback={<BundleLoader />}>
                 <div class="flex flex-col">
-                    <div class="w-[50%]">
+                    <div class="w-[70%]">
                         <AddMultipleQCSpare RowData={props.RowData} phoneTaskId={props.newData && props.newData.phoneTaskId}   />
                     </div>
                     <div class="w-wk">

@@ -48,7 +48,7 @@ function DistributorPhoneTaskTable(props) {
     return (
         <>
             <div class="flex justify-between max-sm:flex-col">
-                <div class=" h-full w-w47.5 max-sm:w-wk">
+                <div class=" h-full w-1/2 max-sm:w-wk">
                     <div class="flex justify-between">
                         <div class="w-[45%]">
                             <Select onChange={handleTask}>
