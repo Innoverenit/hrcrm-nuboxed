@@ -16,7 +16,7 @@ class CustomerPulseDrawerModal extends Component {
         <StyledDrawer
         // title="Notes"
           title={this.props.customer.name}
-          width="90%"
+          width="60%"
           destroyOnClose
           closable
           visible={this.props.addDrawerCustomerPulseModal}

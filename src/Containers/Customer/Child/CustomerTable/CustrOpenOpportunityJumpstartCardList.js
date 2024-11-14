@@ -9,8 +9,8 @@ import {
   MultiAvatar2,
 } from "../../../../Components/UI/Elements";
 import {getOpenOppListOfJumpstart} from "../../CustomerAction"
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import EmptyPage from "../../../Main/EmptyPage";
 
 
 function CustrOpenOpportunityJumpstartCardList(props) {
@@ -70,25 +70,24 @@ function CustrOpenOpportunityJumpstartCardList(props) {
 
       return (    
   <>
-  <div class="flex flex-wrap w-1/2">
-  <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex max-sm:hidden  w-[100%]  max-xl:w-[82%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className="text-xs font-bold font-poppins  w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[31.8rem] max-lg:w-[29.8rem]">{translatedMenuItems[0]} ID</div>
+  <div class="flex flex-wrap w-[56vw]">
+  <div class="rounded m-1 max-sm:m-1 p-1 w-[80%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div className=" flex max-sm:hidden  w-[100%]  max-xl:w-[82%] p-1 bg-transparent font-semibold items-end text-xs font-poppins sticky top-0 z-10">
+        <div className=" w-[7.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[31.8rem] max-lg:w-[29.8rem]">{translatedMenuItems[0]} ID</div>
         {/* Quotation ID  */}
-        <div className="text-xs font-bold font-poppins  w-[12.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.2rem] max-lg:w-[11.2rem]">{translatedMenuItems[1]}</div>
+        <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.2rem] max-lg:w-[11.2rem]">{translatedMenuItems[1]}</div>
         {/* Sponsor */}
-        <div className="text-xs font-bold font-poppins  w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[2]}</div>
-        {/* Start Date */}
-        <div className="text-xs font-bold font-poppins  w-[9.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.3rem]">{translatedMenuItems[3]}</div>
+
+        <div className=" w-[7.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.3rem]">{translatedMenuItems[3]}</div>
         {/* Value */}
-        <div className="text-xs font-bold font-poppins  w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.1rem]">{translatedMenuItems[4]}</div>
+        <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.1rem]">{translatedMenuItems[4]}</div>
         {/* Assigned */}
-        <div className="text-xs font-bold font-poppins  w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem]">{translatedMenuItems[5]}</div>
+        <div className=" w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem]">{translatedMenuItems[5]}</div>
         {/* Owner */}
-        <div className="w-12"></div>
+      
       </div>
  
-{ !fetchingCustOpenOppJumpstart && openOppOfCustJumpstart.length === 0 ?<NodataFoundPage />:openOppOfCustJumpstart.map((item,index) =>  {
+{ !fetchingCustOpenOppJumpstart && openOppOfCustJumpstart.length === 0 ?<EmptyPage />:openOppOfCustJumpstart.map((item,index) =>  {
                  
                  var findProbability = item.probability;
                  item.stageList.forEach((element) => {
@@ -99,11 +98,11 @@ function CustrOpenOpportunityJumpstartCardList(props) {
                  return (
                     <div>
                     <div
-                      className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col"
+                      className="flex rounded justify-between  bg-white mt-1  items-center py-gap max-sm:h-[9rem] max-sm:"
                       
                     >
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex font-medium  w-[16rem] max-lg:w-[10rem] max-sm:flex-row  max-sm:w-auto ">
+                      <div className=" flex   w-[16rem] max-lg:w-[10rem] max-sm:flex-row  max-sm:w-auto ">
                                 <div>
 
             <MultiAvatar
@@ -115,18 +114,15 @@ function CustrOpenOpportunityJumpstartCardList(props) {
             />
           
 </div>
-                                   <div class="w-[4%]">
-
-                                   </div>
                                    
                                         <Tooltip>
-                                        <div class=" flex max-sm:w-full  flex-row md:flex-col">
+                                        <div class=" flex max-sm:w-full  flex-row md:">
                                             {/* <div class=" text-xs  font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
-                                            <div class=" text-sm text-blue-500  font-poppins font-semibold cursor-pointer">
+                                            <div class=" text-xs text-blue-500  font-poppins font-semibold cursor-pointer">
                                                 
-                                            <Link class="overflow-ellipsis whitespace-nowrap max-sm:text-sm h-8 text-sm p-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
+                                            <Link class="overflow-ellipsis whitespace-nowrap max-sm:text-xs h-8 text-xs p-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>
          &nbsp;&nbsp;
@@ -152,11 +148,11 @@ function CustrOpenOpportunityJumpstartCardList(props) {
                                 
                                
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col w-[7rem] max-xl:w-[4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex   w-[7rem] max-xl:w-[4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   
 
                                   {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
-                                  <div class=" text-sm  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                  <div class=" text-xs  font-poppins max-sm:text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                   
                                   {item.contactName === null ? "None" :
             <MultiAvatar2
@@ -170,18 +166,18 @@ function CustrOpenOpportunityJumpstartCardList(props) {
           
                                   </div>
                               </div>
-                                <div className=" flex font-medium flex-col w-[9.1rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex   w-[9.1rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
-                                    <div class=" text-sm justify-center  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                    <div class=" text-xs justify-center  font-poppins max-sm:text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                     {dayjs(item.startDate).format("ll")}
                                     </div>
                                 </div>
                              
-                                <div className=" flex font-medium flex-col w-[10.1rem] max-xl:w-[5.1rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex   w-[10.1rem] max-xl:w-[5.1rem] max-sm:w-auto  max-sm:flex-row  max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
 
-                                    <div class=" text-sm  font-poppins text-center max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                    <div class=" text-xs  font-poppins text-center max-sm:text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                     
                                     {item.currency}  {item.proposalAmount}
            
@@ -189,10 +185,10 @@ function CustrOpenOpportunityJumpstartCardList(props) {
                                     </div>
                                 </div>
                                                                                            
-                                <div className=" flex font-medium flex-col w-32 max-xl:w-[5.12rem] max-lg:w-[3.12rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex   w-32 max-xl:w-[5.12rem] max-lg:w-[3.12rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden">Assigned</div> */}
 
-                                    <div class=" text-sm  font-poppins max-sm:text-sm">
+                                    <div class=" text-xs  font-poppins max-sm:text-xs">
                                     
                                     <span>
                                     <MultiAvatar2
@@ -206,7 +202,7 @@ function CustrOpenOpportunityJumpstartCardList(props) {
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex font-medium flex-col w-20 max-xl:w-[2rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
+                                <div className=" flex   w-20 max-xl:w-[2rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
                        
                        {/* <div class=" text-xs  font-poppins max-sm:hidden">Owner</div> */}
 

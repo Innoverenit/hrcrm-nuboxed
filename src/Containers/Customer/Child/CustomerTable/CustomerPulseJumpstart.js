@@ -131,9 +131,9 @@ render() {
 
   return(
     <>
-
-<div class="flex flex-row ">
-<div className="w-1/2">
+<div className=" flex justify-between w-wk"> 
+<div class="flex flex-col w-[50%]">
+<div className=" flex flex-wrap">
     <div class=" flex flex-row w-full" >     
     <div class="flex flex-wrap w-full" >
     <div class="w-full md:w-1/2 xl:w-1/3 p-2">
@@ -369,13 +369,13 @@ render() {
      
       </div>
 </div>
-<div className=" w-1/2">
+<div className=" ">
     <CustomerTimeLineChart
      customer={this.props.customer}
     />
   </div>
 </div>
-<div class=" flex flex-row w-full mt-4" >
+<div class=" flex  w-[50%] mt-1" >
 <Suspense fallback={<BundleLoader />}>
           {activeCard === "quotations" && <CustrOpenOpportunityJumpstartCardList customer={this.props.customer}
           translateText={this.props.translateText}
@@ -396,7 +396,7 @@ render() {
         </Suspense>
 
   </div>
-  
+  </div>
   <AddCustomerContactJumpstartModal
        customer={this.props.customer}
        translateText={this.props.translateText}
