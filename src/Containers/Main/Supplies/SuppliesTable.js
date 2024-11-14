@@ -67,6 +67,8 @@ function SuppliesTable(props) {
   const [openComplementary,setopenComplementary] = useState(false);
   const [openStatus,setopenStatus] = useState(false);
 
+  const {bestbeforelistcount, fetchingbestbefore} = props;
+
   const openModal = () => {
     setModalVisible(true);
   };
@@ -145,8 +147,8 @@ function SuppliesTable(props) {
        "1610" , //  Complimentry22
        "1252" , //  "Print"23
        "800" ,// Supplies Id24
-       "1229",  //  "Orders Added", // 25
-       "1230", //  "Orders Open", // 26
+       "1703",  //  "Best before", // 25
+       "815", //  "re-order", // 26
         "1231",//   "Orders Closed", // 27
         "1232",//  "Orders Cancelled"//28
         ];
@@ -192,8 +194,8 @@ function SuppliesTable(props) {
               title= {translatedMenuItems[25]}
              // jumpstartClick={()=> handleClick("Added")}
               cursorData={"pointer"}
-              value={"0"}
-            // isLoading={props.fetchingorderDetails}
+              value={bestbeforelistcount}
+            // isLoading={fetchingorderDetails}
             />
                          </div>
                      </div>
