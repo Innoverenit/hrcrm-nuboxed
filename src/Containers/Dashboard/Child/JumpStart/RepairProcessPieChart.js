@@ -84,7 +84,11 @@ const[error,setError]=useState(null);
 
   return (
     <div className=' w-[23vw]'>
-      <ReactApexChart options={options} series={series} type="donut" width={options.chart.width} />
+      <ReactApexChart options={options} series={series} 
+      type="donut" 
+      width={options.chart.width} 
+      height={160}
+      />
     </div>
   );
 };

@@ -194,12 +194,12 @@ const StackedBarChart = () => {
   };
 
   return (
-    <div>
+    <div className="w-wk">
       <ReactApexChart
         options={options}
         series={options.series}
         type="bar"
-        height={350}
+        height={160}
       />
     </div>
   );
