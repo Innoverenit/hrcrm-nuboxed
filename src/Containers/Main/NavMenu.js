@@ -575,7 +575,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
         </Menu.Item>
         )}
 
-          {(user.promotionAccessInd === true && user.erpInd === true 
+          {(user.promotionAccessInd === true && user.moduleMapper.ecomModInd === true 
         // || user.role === "ADMIN" && user.productionInd === true
       ) &&  (
         <Menu.Item key="/promotion" style={{ height: "1.45rem", 
