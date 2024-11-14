@@ -200,7 +200,7 @@ console.log(editsuppliesId)
             </Select> */}
 
 <Select
- placeholder="Select a skill" style={{ width: 150 }}
+ placeholder="Select" style={{ width: 150 }}
 >
   {props.librarys.map((d) => (
     <Option key={d.definationId} value={d.definationId}>
@@ -211,33 +211,34 @@ console.log(editsuppliesId)
           </Form.Item>
         </Col>
 
-        <Col>
+        <Col >
           <Form.Item
             label="Level 1"
             name="level1"
             rules={[{ required: true, message: 'Please input Level 1!' }]}
           >
-            <Input placeholder="Level 1" />
+            <Input placeholder="Value" style={{width:"6vw"}} />
           </Form.Item>
         </Col>
 
-        <Col>
+        <Col >
           <Form.Item
             label="Level 2"
             name="level2"
             rules={[{ required: true, message: 'Please input Level 2!' }]}
           >
-            <Input placeholder="Level 2" />
+            <Input placeholder="Value"  style={{width:"6vw"}} />
           </Form.Item>
         </Col>
 
-        <Col>
+        <Col >
           <Form.Item
             label="Level 3"
             name="level3"
             rules={[{ required: true, message: 'Please input Level 3!' }]}
+            
           >
-            <Input placeholder="Level 3" />
+            <Input placeholder="Value" style={{width:"6vw"}} />
           </Form.Item>
         </Col>
 
@@ -251,23 +252,23 @@ console.log(editsuppliesId)
       </Row>
     </Form>
       {/* <Table dataSource={data} columns={columns} /> */}
-      <div className=' flex  sticky z-auto h-[79vh]'>
+      <div className=' flex  sticky z-auto h-[79vh] mt-2'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">          <div className=""></div>
-            <div className=" md:w-[7%]">Skill</div>
-            <div className=" md:w-[6.1rem]">Level 1</div>
-            <div className=" md:w-[4.2rem] ">Level 2</div>
-            <div className="md:w-[5.8rem]">Level 3</div>
-            <div className="w-12"></div>             </div>
+            <div className=" w-[5rem] max-md:w-[7%]">Skill</div>
+            <div className=" w-[6.1rem] max-md:w-[6.1rem]">Level 1</div>
+            <div className="w-[4.2rem] max-md:w-[4.2rem] ">Level 2</div>
+            <div className=" w-[6.8rem] max-md:w-[6.8rem]">Level 3(Senior)</div>
+            <div className="w-12 "></div>             </div>
 
           {data.length ? data.map((item) => {
             return (
               <div key={item.skillLevelLinkId}>
-                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "
+                <div className="flex rounded justify-between mt-1 bg-white  items-center p-1 "
                 >
 
-                  <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
-                    <div class="text-sm  font-semibold  font-poppins cursor-pointer">
+                  <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9]  items-center  w-[9.1rem] max-md:w-[9.1rem] max-sm:w-full  ">
+                    <div class="text-xs  font-semibold  font-poppins cursor-pointer">
                     {editsuppliesId  === item.skillLevelLinkId ? (
                       <Select
                         classNames="w-32"
@@ -282,14 +283,14 @@ console.log(editsuppliesId)
                         ))}
                       </Select>
                     ):(
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className=" text-xs  font-poppins">
                       <div> {item.skill}</div>
                     </div>
                   )}
                     </div>
                   </div>
 
-                  <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                  <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.1rem] max-md:w-[7.1rem] max-sm:flex-row  max-sm:justify-between  ">
                   {editsuppliesId  === item.skillLevelLinkId  ? (
                     <div class=" text-xs  font-poppins">
                       <Input
@@ -300,7 +301,7 @@ console.log(editsuppliesId)
                       />
                     </div>
  ):(
-  <div className="font-normal text-sm  font-poppins">
+  <div className=" text-xs  font-poppins">
   <div> {item.level1}</div>
 </div>
 )}
@@ -308,7 +309,7 @@ console.log(editsuppliesId)
 
 
 
-                  <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex w-[6.5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-md:w-[6.5rem] max-sm:flex-row  max-sm:justify-between ">
                   {editsuppliesId  === item.skillLevelLinkId  ? (
                     <div class=" text-xs  font-poppins">
                       <Input
@@ -318,12 +319,12 @@ console.log(editsuppliesId)
                       />
                     </div>
                      ):(
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className=" text-xs  font-poppins">
                       <div> {item.level2}</div>
                     </div>
                     )}
                   </div>
-                  <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-md:w-[6.2rem] max-sm:flex-row max-sm:justify-between ">
                   {editsuppliesId  === item.skillLevelLinkId  ? (
 
                     <div class=" text-xs  font-semibold  font-poppins">
@@ -335,13 +336,13 @@ console.log(editsuppliesId)
                       />
                     </div>
                      ):(
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className=" text-xs  font-poppins">
                       <div> {item.level3}</div>
                     </div>
                     )}
                   </div>
-
-                  <div>
+ <div className=' flex items-center'>
+                  <div className=' flex items-center justify-end h-8 ml-gap bg-[#eef2f9]'>
       <Popconfirm
                           title="Do you want to delete?"
                           onConfirm={() => props.removeSkillData(item.skillLevelLinkId)}
@@ -355,7 +356,7 @@ console.log(editsuppliesId)
                        </Popconfirm>
                        </div>
 
-                  <div class="flex md:items-center">
+                  <div class="flex md:items-center items-center justify-center h-8 ml-gap bg-[#eef2f9]">
 
 
                     {/* <div class="flex flex-col w-20 max-sm:flex-row max-sm:w-[10%]">
@@ -390,7 +391,7 @@ console.log(editsuppliesId)
                     )}
 
                   </div>
-
+</div>
                 </div>
               </div>
             );

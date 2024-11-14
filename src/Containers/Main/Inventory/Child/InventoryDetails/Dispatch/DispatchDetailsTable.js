@@ -34,7 +34,7 @@ function OpenReceivedOrderIdForm(props) {
         "1314",  // Inspection Completed,//0
         "264", // "Brand",//1
         "265", // "Model",//2
-        "",  // "Color",//3     
+        "1509",  // "Color",//3     
          "1217",   // Condition4
          "1281",  // Technician5
          "1051",  // Inspected6
@@ -117,7 +117,7 @@ let buttonRendered = false;
 })}
 </div>
 
-                <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+                <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-semibold sticky font-poppins text-xs z-10">
                     <div className='w-[5.2rem]'>{translatedMenuItems[1]}</div>
                     <div className=" w-[4.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[2]}</div>
                     <div className="w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]">IMEI</div>
@@ -138,22 +138,22 @@ let buttonRendered = false;
                             return (
                                 <div >
            
-                                    <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                                    <div className="flex rounded  mt-1 bg-white  items-center py-gap max-sm:h-[5rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                        <div className=" flex w-[4.7rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                        <div className=" flex w-[4.7rem] border-l-2 h-8 border-green-500 bg-[#eef2f9]  items-center  max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                {item.company}
                                             </div>
-                                            <div className=" flex w-[3.01rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                            <div className=" flex w-[3.01rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                
                                             {item.model} 
                                             </div>
                                             
-<div className=" flex  w-[7.5rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+<div className=" flex  w-[7.5rem] max-xl:w-[5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                         <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                         {item.imei}
                         </div>
                       </div>
-                                            <div className=" flex   w-[5rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.os}
                                                 </div>
@@ -161,26 +161,26 @@ let buttonRendered = false;
                                             </div>
                                         </div>
                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex   w-[3.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[3.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.gb}
                                                 </div>
 
                                             </div>
 
-                                            <div className=" flex   w-[4.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[4.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                 <div class=" text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.color}
                                                 </div>
 
                                             </div>
-                                            <div className=" flex  w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.conditions}
 
                                                 </div>
                                             </div>
-                                            <div className=" flex justify-center w-[8.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" flex text-xs font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                    
                                                     <MultiAvatar
@@ -191,6 +191,7 @@ let buttonRendered = false;
                                                     />
                                                 </div>
                                             </div>
+                                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
                                             <Tooltip title={translatedMenuItems[7]}>
             <FileDoneOutlined type="file-done"  className=" cursor-pointer !text-icon text-black"
               onClick={() => {
@@ -218,7 +219,8 @@ let buttonRendered = false;
               orderPhoneId={props.rowData.orderPhoneId}
             />}
           </Tooltip>
-          <div className=" flex  justify-end  w-[7.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+          </div>
+          <div className=" flex  justify-end items-center  h-8 ml-gap bg-[#eef2f9]   w-[7.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" flex text-xs font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                  
                                                     <MultiAvatar
@@ -230,7 +232,7 @@ let buttonRendered = false;
                                                 </div>
                                             </div>
                                         
-          <div className=" flex  w-[4.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+          <div className=" flex  w-[4.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.reason}
 

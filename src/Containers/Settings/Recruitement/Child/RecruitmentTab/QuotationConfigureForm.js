@@ -909,7 +909,7 @@ potentialCurrencyInd:potentilaCurrencyVisible,
           ...rest
         }) => (
           <div class="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
-          <Form className="form-background">
+          <Form className="form-background h-[87vh]">
             <div class=" flex justify-between max-sm:flex-col">
               <div class=" h-full w-[47.5%] mt-3 max-sm:w-wk">
               <div class="font-bold text-xs">{translatedMenuItems[0]}</div>
@@ -1029,9 +1029,10 @@ potentialCurrencyInd:potentilaCurrencyVisible,
 
                    
                 <div class="flex justify-between max-sm:flex-col mt-3">
-                <div class=" w-w47.5 max-sm:w-wk">
+                <div class=" flex  w-w47.5 justify-between mt-4 max-sm:w-wk">
+                  <div className=" w-w47.5 max-sm:w-wk">
                 <div class="font-bold text-xs">
-                Custom Value1
+                Custom 1
                     </div>
                     <Field
                       name="proposalAmount"
@@ -1046,13 +1047,55 @@ potentialCurrencyInd:potentilaCurrencyVisible,
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
+          </div>
+          <div className=" w-w47.5 max-sm:w-wk">
+                <div class="font-bold text-xs">
+               UOM
+                    </div>
+                    <Select
+                        className="w-32"
+                      value="items"
+                        // onChange={(value) => setNewUom(value)} // `value` is passed directly by Select's onChange handler
+                      >
+                       
+                          <Option value="items">
+                           item
+                          </Option>
+                          <Option value="items">
+                           item2
+                          </Option>
+                       
+                      </Select>
+                    {/* <Field
+                      name="proposalAmount"
+                      //label="Value"          
+                      isColumn
+                      width={"100%"}
+                      component={InputComponent}
+                    /> */}
+                                                                       <Switch
+        checked={customValue1Visible}
+    onChange={() => toggleFieldVisibility('customValue1')}
+          checkedChildren="Visible"
+            unCheckedChildren="Hidden"
+          />
+          </div>
                   </div>
+                  <div class=" flex  w-w47.5 justify-between mt-4 max-sm:flex-col max-sm:w-wk" >
                   <div class=" w-w47.5 max-sm:w-wk">
                   <div class="font-bold text-xs">
-                    Custom Value2
+                    Custom 2
                     {/* {translatedMenuItems[4]} */}
                     </div>
                     <Field
+                      name="proposalAmount"
+                      //label="Value"          
+                      isColumn
+                      width={"100%"}
+                      component={InputComponent}
+                    />
+                    
+                    {/* <Field
                       name="currency"
                       isColumnWithoutNoCreate
                       defaultValue={{
@@ -1068,13 +1111,36 @@ potentialCurrencyInd:potentilaCurrencyVisible,
                           ? currencyNameOption
                           : []
                       }
-                    />
+                    /> */}
                                                                        <Switch
         checked={customValue2Visible}
     onChange={() => toggleFieldVisibility('customValue2')}
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
+          <div> 
+          </div>
+          
+                      </div>
+                      <div class="w-w47.5 max-sm:w-wk">
+          <div class="font-bold text-xs">
+               UOM
+                    </div>
+                      <Select
+                        className="w-32"
+                      // value={Uom}
+                        // onChange={(value) => setNewUom(value)} // `value` is passed directly by Select's onChange handler
+                      >
+                      
+                          <Option  value="items">
+                          items1
+                          </Option>
+                          <Option  value="items">
+                          items2
+                          </Option>
+                      
+                      </Select>
+                      </div>
                   </div>
                 </div>
                 <div class="mt-3">

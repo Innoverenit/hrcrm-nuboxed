@@ -262,7 +262,7 @@ const ProductionOrderList = (props) => {
                                                         </Tooltip>
                                                     </div>
                                             <div className=" flex w-[9.7rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:w-auto ">
-                                                <Badge size="small" count={`${item.receiveRemainingQuantity} / ${item.phoneCount}`} overflowCount={5000}>
+                                                <Badge size="small" count={`${item.receiveRemainingQuantity} / ${item.phoneCount}`} overflowCount={5000} offset={[0, -7]}>
                                                     <span
                                                         class=" underline font-bold ml-gap  text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
                                                         onClick={() => {
@@ -289,7 +289,7 @@ const ProductionOrderList = (props) => {
                                         </div>
                                        
                                         <div class="flex max-sm:justify-evenly max-sm:w-wk items-center  max-sm:items-center">
-                                            <div className=" flex  w-[4.61rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] vmax-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex  w-[4.61rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                 <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 1000).toFixed(2)}k
                                                 </div>
@@ -310,7 +310,7 @@ const ProductionOrderList = (props) => {
                                         <div class="flex max-sm:justify-evenly max-sm:w-wk items-center  max-sm:items-center">
 
                                             <div className="flex w-[13.22rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                <div class=" text-xs flex items-center justify-start font-poppins justify-start text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                <div class=" text-xs flex items-center justify-start font-poppins  text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                     {item.qcStartInd === 0 ?<div class="ml-gap font-bold text-[#ff1862] text-[0.65rem] text-center">QC to be approved by Sales Owner/ Customer </div>
                                                         : item.qcStartInd === 1 ?
                                                             // <Badge size="small" count={`${item.totalReceiveQuantity - item.cannotRepairCount} / ${item.totalReceiveQuantity}`} overflowCount={5000}>

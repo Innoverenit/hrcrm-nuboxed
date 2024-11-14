@@ -58,15 +58,11 @@ function StockUsedForm(props) {
                     ...rest
                 }) => (
                     <Form>
-                        <div style={{ display: "flex", justifyContent: "space-between" }}>
-                            <div
-                                style={{
-                                    height: "100%",
-                                    width: "45%",
-                                }}
-                            >
-                                <FlexContainer justifyContent="space-between">
-                                    <div style={{ width: "80%", marginTop: "8px" }}>
+                        <div className=" flex justify-between" >
+                            <div className=" h-[100%] w-[45%]"  >
+                            <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+                                
+                                    <div  className="mt-2 w-[80%]">
                                         <Field
                                             name="cellChamberLinkId"
                                             label="Cell"
@@ -77,7 +73,7 @@ function StockUsedForm(props) {
                                             options={Array.isArray(cellOption) ? cellOption : []}
                                         />
                                     </div>
-                                    <div style={{ width: "80%", marginTop: "8px" }}>
+                                    <div  className="mt-2 w-[80%]" >
                                         <Field
                                             name="unitUsed"
                                             label="To Stock"
@@ -91,7 +87,7 @@ function StockUsedForm(props) {
                                             }}
                                         />
                                     </div>
-                                    <div style={{ width: "80%", marginTop: "8px" }}>
+                                    <div  className="mt-2 w-[80%]">
                                         <Field
                                             name="unitWasted"
                                             label="Wasted"
@@ -105,8 +101,8 @@ function StockUsedForm(props) {
                                             }}
                                         />
                                     </div>
-                                </FlexContainer>
-                                <FlexContainer justifyContent="flex-end">
+                                </div>
+                                <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                                     <Button
                                         type="primary"
                                         htmlType="submit"
@@ -115,7 +111,7 @@ function StockUsedForm(props) {
                                     >
                                         Submit
                                     </Button>
-                                </FlexContainer>
+                                </div>
                             </div>
                         </div>
                     </Form>

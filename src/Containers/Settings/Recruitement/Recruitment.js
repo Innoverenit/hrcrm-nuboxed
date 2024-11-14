@@ -100,7 +100,7 @@ function Recruitment(props) {
       component: <FinanceTab/>,
     },
     {
-      rulesName: "Effort Cost",
+      rulesName: "Labour Cost",
       ruleId: "13",
       component: <Matrix/>,
     },
