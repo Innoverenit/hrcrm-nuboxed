@@ -158,7 +158,22 @@ const OrderPhoneTab = (props) => {
                     </TabPane>
                     
                 }
-              
+               <TabPane
+                        tab={
+                            <>
+                                <span>
+
+                               Spares
+                                </span>
+                            </>
+                        }
+                        key="4">
+                        <Suspense fallback={<BundleLoader />}>
+                           
+                        </Suspense>
+
+
+                    </TabPane>
             </StyledTabs>
             <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
                 {renderTabContent(activeKey)}
