@@ -14,6 +14,8 @@ import {
   setClearbitData,
   emptyClearbit
 } from "../CustomerAction";
+
+import SearchSelect1 from "../../../Components/Forms/Formik/SearchSelect1";
 import {getCustomer} from "../../Settings/Category/Customer/CustomerAction"
 import { getCrm } from "../../Leads/LeadsAction";
 import { Listbox } from '@headlessui/react';
@@ -28,6 +30,7 @@ import StopCircleIcon from "@mui/icons-material/StopCircle";
 import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
 import { BundleLoader } from "../../../Components/Placeholder";
 import {base_url} from "../../../Config/Auth";
+import { InputComponent1 } from "../../../Components/Forms/Formik/InputComponent1";
 
 // yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -554,18 +557,29 @@ console.log(selectedSource)
                     />
 }
                   </div>
-                  <div class=" flex justify-between mt-2">
-                    <div class=" w-3/12 max-sm:w-[30%]">
+                 
                
 {props.customerConfigure.dailCodeInd===true&&
 <div className="font-bold text-[0.75rem]">
-{translatedMenuItems[2]}
+{translatedMenuItems[3]}
   {/* Dial code */}
 
 </div>
 }
+<div class="  flex justify-between shadow-[0_0.15em_0.3em_#aaa] border border-[#bfbebb] h-8">
+<div class=" w-3/12 max-sm:w-[30%]">
 {props.customerConfigure.dailCodeInd===true&&
-<Select
+ <FastField
+ name="countryDialCode"
+ selectType="dialCode"
+ component={SearchSelect1}
+ defaultValue={selectedCode}
+ isColumnWithoutNoCreate                      
+ isColumn
+ inlineLabel
+/>    
+}
+{/* <Select
         showSearch
         style={{ width: 120 }}
         placeholder="Search or select code"
@@ -586,25 +600,29 @@ country_dial_code
 }
           </Option>
         ))}
-      </Select>
-}
+      </Select> */}
+
                     </div>
-                    <div class=" w-8/12">
+                    <div class="w-[1px] h-full bg-gray-300">
+  <div class="w-full h-[75%]"></div>
+</div>
+             
+                    <div class=" w-[76%]">
+                    {/* {props.customerConfigure.phoneNoInd===true&&
+                    <div class="font-bold  flex text-xs"> {translatedMenuItems[3]}  </div>
+} */}
                     {props.customerConfigure.phoneNoInd===true&&
-                    <div class="font-bold text-xs"> {translatedMenuItems[3]}  </div>
-}
-                    {props.customerConfigure.phoneNoInd===true&&
-                      <FastField
+                      <Field
                         name="phoneNumber"                           
                         isColumn
-                        component={InputComponent}
+                        component={InputComponent1}
                         inlineLabel
                         width={"100%"}
                       />
 }
                     </div>
                   </div>
-                  <div class="font-bold text-xs"> {translatedMenuItems[1]}  </div>
+                  <div class="font-bold text-xs mt-2"> {translatedMenuItems[1]}  </div>
                   <Field
                     name="url"
                     type="text"

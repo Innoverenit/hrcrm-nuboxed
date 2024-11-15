@@ -15,6 +15,7 @@ import { getDesignations } from "../../../Settings/Designation/DesignationAction
 import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 import { getCustomerData } from "../../../Customer/CustomerAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import { InputComponent1 } from "../../../../Components/Forms/Formik/InputComponent1";
 
 
 const { Option } = Select;
@@ -416,9 +417,10 @@ class UpdateContactForm extends Component {
                     </div>
                   
                   </div>  
-                  <div class=" flex justify-between">
-                    <div class=" w-2/6 max-sm:w-2/5">
-                    <div class="text-xs font-poppins font-bold ">{translatedMenuItems[5]}</div>
+                  
+                  <div class="text-xs font-poppins font-bold mt-2 ">{translatedMenuItems[6]}</div>
+                  <div class=" flex justify-between shadow-[0_0.15em_0.3em_#aaa] border border-[#bfbebb] h-8">
+                  <div class=" w-3/12 max-sm:w-[35%]">     
                       <FastField
                         name="countryDialCode"
                         isColumnWithoutNoCreate
@@ -432,18 +434,23 @@ class UpdateContactForm extends Component {
                         inlineLabel
                       />
                     </div>
-                    <div class="text-xs font-bold font-poppins w-[60%] max-sm:w-2/4">
-                    {translatedMenuItems[6]}
-                      <FastField
+                    <div class="w-[1px] h-full bg-gray-300">
+  <div class="w-full h-[75%]"></div>
+</div>
+<div class=" w-[76%]">
+                    <div class="text-xs font-bold font-poppins  ">
+                    {/* {translatedMenuItems[6]} */}
+                      <Field
                         type="text"
                         name="mobileNumber"
                      
                         //placeholder="Mobile #"
-                        component={InputComponent}
+                        component={InputComponent1}
                         inlineLabel
                         width={"100%"}
                         isColumn
                       />
+                    </div>
                     </div>
                   </div>                                     
                   < div class=" flex justify-between mt-3">

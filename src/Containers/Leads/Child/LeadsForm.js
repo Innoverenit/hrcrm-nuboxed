@@ -500,9 +500,9 @@ props.emptyClearbit();
                     component={InputComponent}
                     inlineLabel
                   /> 
-   <div className="font-bold text-xs">{translatedMenuItems[5]}</div>
+  <div className="font-bold text-xs">{translatedMenuItems[5]}</div>
 <div class=" flex justify-between shadow-[0_0.15em_0.3em_#aaa] border border-[#bfbebb] h-8">
-                    <div class=" w-3/12 max-sm:w-[35%]">     
+                     <div class=" w-3/12 max-sm:w-[35%]">     
                       <FastField
                         name="countryDialCode"
                         selectType="dialCode"
@@ -614,7 +614,7 @@ props.emptyClearbit();
                   </div>
                    )}
                                         
-                  <div class=" flex  justify-between mt-1">
+                  <div class=" flex  justify-between mt-2">
                    <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
                    {props.customerConfigure.sectorInd===true&&
                   <div className="font-bold text-xs">{translatedMenuItems[8]}</div>

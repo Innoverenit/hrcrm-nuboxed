@@ -19,6 +19,7 @@ import {addContactInvest} from "../ContactInvestAction";
 import {getInvestorData,getDialCode} from "../../Investor/InvestorAction";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { base_url } from "../../../Config/Auth";
+import { InputComponent1 } from "../../../Components/Forms/Formik/InputComponent1";
 const { Option } = Select;
 /**
  * yup validation scheme for creating a contact
@@ -444,9 +445,9 @@ class ContactInvestForm extends Component {
                     </div>
                   
                   </div>                            
-                  <div class=" flex justify-between">
-                    <div class="font-bold font-poppins text-xs  w-2/6">
-                  {translatedMenuItems[5]}
+                  <div className="font-bold text-xs">{translatedMenuItems[6]}</div>
+<div class=" flex justify-between shadow-[0_0.15em_0.3em_#aaa] border border-[#bfbebb] h-8">
+                    <div class=" w-3/12 max-sm:w-[35%]">  
                     <FastField
                         name="countryDialCode"
                         isColumnWithoutNoCreate                                
@@ -460,13 +461,16 @@ class ContactInvestForm extends Component {
                         inlineLabel
                       />
                     </div>
-                    <div class=" font-bold font-poppins text-xs w-[60%]">
-                   {translatedMenuItems[6]}
-                      <FastField
+                    <div class="w-[1px] h-full bg-gray-300">
+  <div class="w-full h-[75%]"></div>
+</div>
+                    <div class=" w-[76%]">
+                    <div class="text-xs flex flex-col font-bold "> 
+                      <Field
                         type="number"
                         name="mobileNumber"                                      
                         //placeholder="Mobile #"
-                        component={InputComponent}
+                        component={InputComponent1}
                         inlineLabel
                         width={"100%"}
                         isColumn
@@ -507,7 +511,7 @@ class ContactInvestForm extends Component {
                         
                         //phone no
                           isColumn
-                          component={InputComponent}
+                          component={InputComponent1}
                           inlineLabel
                           width={"100%"}
                         />
@@ -516,6 +520,8 @@ class ContactInvestForm extends Component {
                       )}
                   </div>
               
+                 
+                  </div>
                   < div class=" flex justify-between mt-2">
                     <div class="font-bold font-poppins text-xs w-full">
                   {translatedMenuItems[8]}
@@ -529,7 +535,7 @@ class ContactInvestForm extends Component {
                         inlineLabel
                       />
                     </div>
-                  </div>
+                    </div>
                   <div class="font-bold font-poppins text-xs mt-2">
                   {translatedMenuItems[9]}
                     {/* Descriptions */}

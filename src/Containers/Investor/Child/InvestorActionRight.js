@@ -76,18 +76,7 @@ function InvestorActionRight (props) {
     )} 
         {props.viewType === "list"  &&  user.imInd === true  &&  user.investorCreateInd === true &&  (
           <div>
-        <Tooltip placement="left" title="Create">
-          <Button
-            type="primary"
-            onClick={() => handleInvestorModal(true)}
-          >
-       <DataSaverOnIcon className="!text-icon"/>
-       {translatedMenuItems[0]}
-    
-          </Button>
-     </Tooltip>
-
-     <Tooltip placement="left" title="Create">
+      <Tooltip placement="left" title="Create">
      <Button
        type="primary"
        ghost
@@ -98,6 +87,16 @@ function InvestorActionRight (props) {
       {/* Upload */}
      </Button>
    </Tooltip>
+   <Tooltip placement="left" title="Create">
+          <Button
+            type="primary"
+            onClick={() => handleInvestorModal(true)}
+          >
+       <DataSaverOnIcon className="!text-icon"/>
+       {translatedMenuItems[0]}
+    
+          </Button>
+     </Tooltip>
    </div>
         )}
          < Suspense fallback={"Loading..."}>

@@ -296,7 +296,9 @@ const CustomerActionLeft = (props) => {
               color: props.viewType === "table" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355" }}>
+            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355" ,
+               boxShadow: props.viewType === "table" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "table" ? "scale(1.05)" : "scale(1)"}}>
               <TocIcon className="text-white !text-icon" />
             </Avatar>
           </span>
@@ -335,7 +337,9 @@ const CustomerActionLeft = (props) => {
                 color: props.viewType === "teams" && "#1890ff",
               }}
             >
-              <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#28a355" }}>
+              <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "teams" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "teams" ? "scale(1.05)" : "scale(1)" }}>
                 <PeopleIcon className="text-white !text-icon" />
               </Avatar>
             </span>
@@ -356,7 +360,9 @@ const CustomerActionLeft = (props) => {
                 color: props.viewType === "all" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
+              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "all" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "all" ? "scale(1.05)" : "scale(1)" }}>
               {translatedMenuItems[3]} {/* <FormattedMessage
                   id="app.all"
                   defaultMessage="ALL"
@@ -380,7 +386,9 @@ const CustomerActionLeft = (props) => {
                             color: props.viewType === "dashboard1" && "#1890ff",
                         }}
                     >
-                        <Avatar style={{ background: props.viewType === "dashboard1" ? "#f279ab" : "#28a355" }}>
+                        <Avatar style={{ background: props.viewType === "dashboard1" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "dashboard1" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "dashboard1" ? "scale(1.05)" : "scale(1)" }}>
                             <DeleteOutlined className="text-white !text-icon " /></Avatar>
 
                     </span>

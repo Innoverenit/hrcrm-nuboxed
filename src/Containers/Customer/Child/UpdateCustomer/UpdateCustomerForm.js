@@ -5,8 +5,7 @@ import { Button,Select} from "antd";
 import {getCustomer} from "../../../Settings/Category/Customer/CustomerAction"
 import ProgressiveImage from "../../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../../Components/Forms/Autocomplete/ClearbitImage";
-import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
-import { Formik, Form, Field, FieldArray, FastField } from "formik";
+import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { updateCustomer,setEditCustomer ,setClearbitData,emptyClearbit} from "../../CustomerAction";
@@ -313,9 +312,10 @@ function UpdateCustomerForm (props) {
                  </div>
                     </div>
                     </div>
-                   <div class=" flex justify-between mt-2">
-                   <div class=" w-3/12 max-sm:w-[31%]">
-                   <div class="font-bold text-xs"> {translatedMenuItems[2]}  </div>
+                    <div class="font-bold text-xs mt-2"> {translatedMenuItems[3]}  </div>
+                   <div class=" flex justify-between shadow-[0_0.15em_0.3em_#aaa] border border-[#bfbebb] h-8">
+                   <div class=" w-3/12 max-sm:w-[35%]">     
+                
                       <FastField
                         name="countryDialCode"
                         selectType="dialCode"
@@ -328,8 +328,11 @@ function UpdateCustomerForm (props) {
                         inlineLabel
                        />
                     </div>
-                    <div class=" w-8/12">
-                    <div class="font-bold text-xs"> {translatedMenuItems[3]}  </div>
+                    <div class="w-[1px] h-full bg-gray-300">
+  <div class="w-full h-[75%]"></div>
+</div>
+<div class=" w-[76%]">
+                    {/* <div class="font-bold text-xs"> {translatedMenuItems[3]}  </div> */}
                       <FastField
                         type="text"
                         name="phoneNumber"
