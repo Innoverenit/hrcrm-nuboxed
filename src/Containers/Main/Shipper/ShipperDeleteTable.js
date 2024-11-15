@@ -77,7 +77,7 @@ function ShipperDeleteTable(props) {
         <div className="font-poppins font-bold text-xs md:w-[8.8rem] ">   
         <MailOutlineIcon className="!text-icon  text-[#4f5d75]"/>  {props.translatedMenuItems[2]}</div>
         <div className="font-poppins font-bold text-xs md:w-[7.9rem]"> 
-        <LocalShippingIcon className='!text-base mr-1 text-[#e4eb2f]'/>{props.translatedMenuItems[3]}</div>
+        <LocalShippingIcon className='!text-base mr-1 text-[#7dcfb6]'/>{props.translatedMenuItems[3]}</div>
         <div className="font-poppins font-bold text-xs md:w-[7.8rem]"> 
         <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[4]}</div>
         <div className="font-poppins font-bold text-xs md:w-[7.9rem]">   

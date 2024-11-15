@@ -467,8 +467,8 @@ function MainApp(props) {
                   translateText={translateText}
                   selectedLanguage={selectedLanguage} /></div>
 
-                  <div class="flex flex-start">
-                    <div className="flex items-center ">            
+                  <div class="flex flex-start items-center  ">
+                    <div className="flex items-center  ">            
                 {/* <Button   
                  type="primary"        
                  onClick

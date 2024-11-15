@@ -7,6 +7,7 @@ const AddCallModal = lazy(() => import("./Child/AddCallModal"));
 const CallHeader = lazy(() => import("./Child/CallHeader"));
 const CallTable = lazy(() => import("./Child/CallTable/CallTable"));
 
+
 function Call (props) {
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);

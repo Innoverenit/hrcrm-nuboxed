@@ -9,7 +9,12 @@ import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import {Button,Tooltip,Spin} from "antd"
 import dayjs from "dayjs";
 import PinIcon from '@mui/icons-material/Pin';
-import CategoryIcon from '@mui/icons-material/Category';
+import Shop2Icon from '@mui/icons-material/Shop2'; 
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import FactCheckIcon from '@mui/icons-material/FactCheck';
+import CategoryIcon from '@mui/icons-material/Category'
 
 import {
   getMaterialBestBefore,
@@ -121,18 +126,18 @@ const DashBoardSummary=(props) =>{
             }, 100);
   }
   return (
-    <div className=" container  mx-auto  p-4 flex rounded mt-1  bg-white h-[87vh]  overflow-x-auto ">
+    <div className=" container  mx-auto  p-2 flex rounded mt-1  bg-white h-[87vh]  overflow-x-auto overflow-y-hidden  ">
       {/* TASK */}
-      <div class="flex flex-col w-[16rem] ml-8 items-center">
-        <h2 className="text-xl font-bold font-poppins mb-4 uppercase">{translatedMenuItems[0]}<span  className="font-bold text-[tomato] ml-1"> 
+      <div class="flex flex-col  w-[14rem] items-center">
+        <h2 className="text-xl font-bold font-poppins mb-2 uppercase">  <FactCheckIcon className='!text-icon mr-1 text-[#b02e0c]'/>{translatedMenuItems[0]}<span  className="font-bold text-[tomato] ml-1"> 
           {`${props.taskperCount.totalTask  ?? ""} `}</span></h2>
-        <div className="overflow-y-auto max-h-[78vh]">
+          <div className="h-[89vh]">
         <InfiniteScroll
         dataLength={props.taskDashboard.length}
         next={handleLoadMore}
         hasMore={hasMore}
         loader={props.fetchingTaskDashboard?<div class="flex justify-center">Loading ...</div>:null}
-        height={"83vh"}
+        height={"86vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
       >
@@ -149,11 +154,11 @@ const DashBoardSummary=(props) =>{
           const endDate = dayjs(deal.endDate);
         const difference = currentDate.diff(endDate, 'days');
         return (
-          <div key={index} className="mb-4 p-2 ml-2 box-content border-2 border-[#00008b23] w-[11rem]">
+          <div key={index} className="mb-2  p-1 ml-2 box-content h-16 min-h-[5.25rem]  border-2 border-[#00008b23] w-[11rem]">
             <div className="flex justify-between">
               <div>
                 <div className="font-semibold font-poppins truncate ">{deal.taskName}</div>
-                <div className="text-sm text-gray-500 font-poppins">
+                <div className="text-xs text-gray-500 font-poppins">
                   <ButtonGroup>
                     <StatusIcon
                       class="!text-icon"
@@ -203,7 +208,7 @@ const DashBoardSummary=(props) =>{
               <div className="text-red-600 font-bold inline-block px-2 py-1 rounded max-h-max">
                
               </div>
-              <div className="text-red-600 font-bold bg-red-100 inline-block px-2 py-1 rounded max-h-max">
+              <div className="text-red-600 text-xs font-bold bg-red-100 inline-block px-2 py-1 rounded max-h-max">
                 {`${dayjs(deal.endDate).format("DD/MM/YYYY")}`}
               </div>
               </div>
@@ -217,85 +222,99 @@ const DashBoardSummary=(props) =>{
       </InfiniteScroll>
     </div>
       </div>
-      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-4"></div> 
+      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-1"></div> 
 
       {/* QUOTATION */}
-      <div class="flex flex-col w-[16rem] ml-2 items-center">
-  <h2 className="text-xl font-poppins font-bold mb-4 uppercase">
+      <div class="flex flex-col w-[14rem]  items-center">
+  <h2 className="text-xl font-poppins font-bold mb-2 uppercase">  <LightbulbIcon className='!text-icon mr-1 text-[#84a59d]'/>
   {translatedMenuItems[2]} <span  className=" font-bold text-[tomato] ml-1"> 
       {`${props.quotationDashboardCount.countByUserId  ?? ""} `}</span>
 </h2>
+<div className="h-[89vh] overflow-y-hidden">
+        <InfiniteScroll
+        dataLength={props.taskDashboard.length}
+        next={handleLoadMore}
+        hasMore={hasMore}
+        loader={props.fetchingTaskDashboard?<div class="flex justify-center">Loading ...</div>:null}
+        height={"86vh"}
+        style={{scrollbarWidth:"thin"}}
+        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
+      >
   {props.quotationDashboard.length === 0 &&props.fetchingQuotationDashboard? (
     <>
      <Spin color="#00008b" size={50} /> 
      <div>{translatedMenuItems[1]}</div>
     </>
-    
    
   ) : (
     props.quotationDashboard.map((lead, index) => (
-      <div key={index} className="mb-4 p-2 ml-2 box-content border-2 border-[#00008b23] w-[11rem] ">
+      <div key={index} className="mb-2  p-1 ml-2 h-16 min-h-[5.25rem]  box-content border-2 border-[#00008b23] w-[11rem] ">
         <div className="flex justify-between">
-          <div className="font-semibold font-poppins">{lead.newOrderNo}</div>
-          <div className="text-sm text-gray-500 font-poppins">{lead.time}</div>
+          <div className=" font-semibold font-poppins">{lead.newOrderNo}</div>
+          <div className=" text-xs text-gray-500 font-poppins">{lead.time}</div>
           
         </div>
-        <div className="text-sm text-gray-500 font-poppins">{lead.amount}</div>
+        <div className="text-xs text-gray-500 font-poppins">{lead.amount}</div>
         <div class="flex justify-between">
-        <div className="text-sm text-gray-500 font-poppins  truncate ">{lead.contactPersonName}</div>
-        <Button type="primary">{translatedMenuItems[3]}</Button>
+        <div className="text-xs text-gray-500 font-poppins flex items-center   truncate ">{lead.contactPersonName}</div>
+        <Button style={{  fontSize: "0.75rem" }} type="primary">{translatedMenuItems[3]}</Button>
         </div>
       </div>
     ))
   )}
+   </InfiniteScroll>
+  </div>
 </div>
 
-<div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-4"></div> 
+<div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-1"></div> 
     
 
   {/* Re Order */}
-  <div class="flex flex-col w-[16rem] ml-2 items-center">
-        <h2 className="text-xl font-poppins font-bold mb-4 uppercase">{translatedMenuItems[4]}<span  className=" text-xl font-bold text-[tomato] ml-1">  0</span> </h2>
+  <div class="flex flex-col min-h-[89vh] w-[14rem] items-center">
+        <h2 className="text-xl font-poppins font-bold mb-2 uppercase"> <DynamicFeedIcon className='!text-icon mr-1 text-[#ef6f6c]'/>
+        {translatedMenuItems[4]}<span  className=" text-xl font-bold text-[tomato] ml-1">  0</span> </h2>
         {props.reOrderData.map((colleague, index) => (
-          <div key={index} className="mb-4 p-2 ml-2 box-content border-2 border-[#00008b23] w-[11rem]">
+          <div key={index} className="mb-2  p-1 ml-2 h-16 min-h-[5.25rem]  box-content border-2 border-[#00008b23] w-[11rem]">
             <div className="flex justify-between">
               <div className="font-semibold font-poppins  truncate ">{colleague.suppliesFullName} {colleague.batchNo}</div>
-              <div className="text-red-600 font-bold font-poppins bg-red-100 inline-block px-2 py-1 rounded">
+              <div className="text-red-600 text-xs font-bold font-poppins bg-red-100 inline-block px-2 py-1 rounded">
              {colleague.reorderLevel}
                 </div>
             </div>
-            <div className="text-sm text-gray-500 font-poppins">{colleague.zone} {colleague.aisle} {colleague.chamber} </div>
-            <div className="text-sm text-gray-500 font-poppins">{colleague.locationName}</div>
+            <div className="text-xs text-gray-500 font-poppins">{colleague.zone} {colleague.aisle} {colleague.chamber} </div>
+            <div className="text-xs text-gray-500 font-poppins">{colleague.locationName}</div>
             <Button>{translatedMenuItems[5]} PO</Button>
           </div>
         ))}
       </div>
-      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-4"></div> 
+      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-1"></div> 
          {/* Best Before */}
-         <div class="flex flex-col w-[16rem] ml-2 items-center">
-        <h2 className="text-xl font-bold font-poppins mb-4 uppercase"> {translatedMenuItems[6]} <span  className="font-bold text-[tomato] ml-1">
+         <div class="flex flex-col w-[14rem] items-center">
+        <h2 className="text-xl font-bold font-poppins mb-2 uppercase"> <CategoryIcon className='!text-icon mr-1 text-[#7dcfb6]'
+              /> {translatedMenuItems[6]} <span  className="font-bold text-[tomato] ml-1">
         {`${props.bestDashboardCount.bbcnt ?? ""} `}</span> </h2>
-        <div className="overflow-y-auto max-h-[78vh]">
+        <div className="overflow-y-hidden max-h-[78vh]">
       {props.fetchingMaterialBestBefore ? (
         <div className="flex justify-center items-center h-full">
           <Spin color="#00008b" size={50} /> {/* Spinner component */}
         </div>
       ) : (
         props.materialBestBefore.map((colleague, index) => (
-          <div key={index} className="mb-4 p-2  ml-2 box-content border-2 border-[#00008b23] w-[11rem]">
+          <div key={index} className="mb-2  p-1  ml-2 h-16 min-h-[5.25rem]  box-content border-2 border-[#00008b23] w-[11rem]">
             <div className="flex  w-full truncate">
-              <div className="font-semibold font-poppins  truncate "><CategoryIcon className=" !text-icon"/>{colleague.suppliesFullName} {colleague.batchNo}</div>
+              <div className="font-semibold font-poppins  truncate ">{colleague.suppliesFullName} {colleague.batchNo}</div>
             
             </div>
-            <div className="text-sm text-gray-500 font-poppins">{colleague.newPoNumber} <PinIcon className=" !text-icon"/>{colleague.hsn} </div>
+            <div className="text-xs text-gray-500 font-poppins">    <Shop2Icon className=" !text-base"/>
+              {colleague.newPoNumber} <PinIcon className=" !text-base"/>{colleague.hsn} </div>
             <div class="flex justify-between">
-                      <div className="text-sm text-gray-500 font-poppins">{colleague.zone} {colleague.aisle} {colleague.chamber} </div>
+                      <div className="text-xs text-blue-500 font-poppins">{colleague.zone} {colleague.aisle} {colleague.chamber} </div>
                       </div>
-                      <div className=" flex justify-between"> 
-                         <div className="text-red-600 font-bold bg-red-100 inline-block px-2 py-1 rounded">
+                      <div className=" flex align-bottom justify-between"> 
+                         <div className="text-red-600 text-xs font-bold bg-red-100 inline-block px-2 py-1 rounded">
               {`${dayjs(colleague.bestBeforeUse).format("DD/MM/YYYY")}`}
                 </div>
-            <Button
+            <Button style={{  fontSize: "0.75rem" }} type="primary" 
               onClick={() => {
                 props.addToWaste({
                   poSupplierSuppliesId:colleague.poSupplierSuppliesId,
@@ -322,43 +341,66 @@ const DashBoardSummary=(props) =>{
         </div>
       </div>
 
-      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-4"></div> 
+      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-1"></div> 
         {/* ORDER */}
-        <div class="flex flex-col w-[16rem] ml-2 items-center">
-        <h2 className="text-xl font-bold font-poppins mb-4 uppercase">{translatedMenuItems[8]} <span  className=" font-bold text-[tomato] ml-1">
+        <div class="flex flex-col w-[14rem]  items-center">
+        <h2 className="text-xl font-bold font-poppins mb-2 uppercase">  <DynamicFeedIcon className='!text-icon mr-1 text-[#59c9a5]'/>{translatedMenuItems[8]} 
+        <span  className=" font-bold text-[tomato] ml-1">
         {`${props.orderDashboardCount.count ?? ""} `}</span></h2>
-        <div className=" overflow-x-auto h-[80vh]">
+        <div className=" overflow-x-auto overflow-y-hidden h-[89vh]">
+        <InfiniteScroll
+        dataLength={props.taskDashboard.length}
+        next={handleLoadMore}
+        hasMore={hasMore}
+        loader={props.fetchingTaskDashboard?<div class="flex justify-center">Loading ...</div>:null}
+        height={"86vh"}
+        style={{scrollbarWidth:"thin"}}
+        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
+      >
         {props.orderDashboard.map((contact, index) => (
-          <div key={index} className="mb-4 p-2 ml-2 box-content border-2 border-[#00008b23] w-[11rem]">
+          <div key={index} className="mb-2  p-1 ml-2 h-16 min-h-[5.25rem] box-content border-2 border-[#00008b23] w-[11rem]">
             <div className="flex justify-between">
               <div className="font-semibold font-poppins">{contact.contactPersonName}</div>
-              <div className="text-sm text-gray-500 font-poppins"> {`${dayjs(contact.creationDate).format("DD/MM/YYYY")}`}
+              <div className="text-xs text-gray-500 font-poppins"> {`${dayjs(contact.creationDate).format("DD/MM/YYYY")}`}
               </div>
             </div>
-            <div className="text-sm text-gray-500 font-poppins">{contact.status}</div>
+            <div className="text-xs text-gray-500 font-poppins">{contact.status}</div>
             
           </div>
         ))}
+              </InfiniteScroll>
         </div>
       </div>
-      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-4"></div> 
+      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-1"></div> 
       {/* DEALS */}
-      <div class="flex flex-col w-[16rem] ml-2 items-center">
-        <h2 className="text-xl font-bold font-poppins mb-4 uppercase"> {translatedMenuItems[9]} <span  className="font-bold text-[tomato] ml-1"> 
+      <div class="flex flex-col w-[14rem]  items-center">
+        <h2 className="text-xl font-bold font-poppins mb-2 uppercase">
+        <CurrencyExchangeIcon className='!text-icon  text-[#1d4e89]'/> {translatedMenuItems[9]}
+         <span  className="font-bold text-[tomato] ml-1"> 
         {`${props.dealsDashboardCount.countByUserId ?? ""} `}</span></h2>
-        <div className=" overflow-x-auto h-[60vh]">
+        <div className=" overflow-x-auto overflow-y-hidden h-[89vh]">
+        <InfiniteScroll
+        dataLength={props.taskDashboard.length}
+        next={handleLoadMore}
+        hasMore={hasMore}
+        loader={props.fetchingTaskDashboard?<div class="flex justify-center">Loading ...</div>:null}
+        height={"86vh"}
+        style={{scrollbarWidth:"thin"}}
+        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
+      >
         {props.dealsDashboard.map((colleague, index) => (
-          <div key={index} className="mb-4 p-2 ml-2 box-content border-2 border-[#00008b23] w-[11rem] ">
+          <div key={index} className="mb-2  p-1 ml-2 box-content h-16 min-h-[5.25rem]  border-2 border-[#00008b23] w-[11rem] ">
             <div className="flex justify-between">
               <div className="font-semibold">{colleague.name}  </div> 
-              <div className="text-sm text-gray-500 font-poppins">
+              <div className="text-xs text-gray-500 font-poppins">
                 {colleague.date}
                 
                 </div>
             </div>
-            <div className="text-sm text-gray-500 font-poppins">{colleague.description}</div>
+            <div className="text-xs text-gray-500 font-poppins">{colleague.description}</div>
           </div>
         ))}
+         </InfiniteScroll>
         </div>
       </div>
     </div>   

@@ -159,16 +159,16 @@ const ShipperActionLeft = (props) => {
         <Badge size="small"
           count={props.shippeRecordCount.shipper || 0}
         >
-          <span
-            style={{
-              marginRight: "0.5rem",
-              color: props.viewType === "table" && "#1890ff",
-              fontSize: "17px",
-              cursor: "pointer",
+          <span className="mr-2 cursor-pointer text-base"
+            style={{         
+              color: props.viewType === "table" && "#1890ff",         
             }}
             onClick={() => props.setShipperViewType("table")}
           >
-            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355" }}>
+            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355",
+                                    boxShadow: props.viewType === "table" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                                      transform: props.viewType === "table" ? "scale(1.05)" : "scale(1)"
+             }}>
               <TocIcon className="text-white" />
             </Avatar>
           </span>
@@ -187,7 +187,10 @@ const ShipperActionLeft = (props) => {
               }}
               onClick={() => props.setShipperViewType("all")}
             >
-              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
+              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355",
+                                    boxShadow: props.viewType === "all" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                                      transform: props.viewType === "all" ? "scale(1.05)" : "scale(1)"
+               }}>
                 {/* ALL */}{props.translatedMenuItems[18]}
               </Avatar>
             </span>
@@ -198,7 +201,10 @@ const ShipperActionLeft = (props) => {
         <Badge size="small"
           count={props.recordDeletedData.deletedShipper || 0}
         >
-          <Avatar style={{ background: props.viewType === "grid" ? "#f279ab" : "#28a355" }}>
+          <Avatar style={{ background: props.viewType === "grid" ? "#f279ab" : "#28a355",
+                                    boxShadow: props.viewType === "grid" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                                      transform: props.viewType === "grid" ? "scale(1.05)" : "scale(1)"
+           }}>
             <DeleteOutlined
               className="!text-sm text-white cursor-pointer"
               style={{

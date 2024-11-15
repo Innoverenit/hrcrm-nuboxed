@@ -24,7 +24,7 @@ import AddShipperAdressModal from "./AddShipperAdressModal";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CategoryIcon from '@mui/icons-material/Category'
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import ApiIcon from '@mui/icons-material/Api';
 
@@ -77,22 +77,22 @@ function AllShipperList(props) {
   ) : (
       <div className=' flex  sticky  z-auto'>
       <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-            <div className="font-poppins font-bold text-[#00A2E8] text-base w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  
+      <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky items-end  z-10">
+            <div className="font-poppins font-bold text-[#00A2E8] text-base w-[10.5rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  
                <CategoryIcon className='!text-icon '/> {props.translatedMenuItems[0]}</div>
-            <div className="font-poppins font-bold text-xs w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins font-bold text-xs w-[6.01rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
             <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>   {props.translatedMenuItems[1]}</div>
-            <div className="font-poppins font-bold text-xs w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-            <MailOutlineIcon className="!text-icon  text-[#4f5d75]"/> {props.translatedMenuItems[2]}</div>
-            <div className="font-poppins font-bold text-xs w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-            <LocalShippingIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[3]}</div>
-            <div className="font-poppins font-bold text-xs w-[7.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
+            <div className="font-poppins font-bold text-xs w-[9.8rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '  />{props.translatedMenuItems[2]}</div>
+            <div className="font-poppins font-bold text-xs w-[6.1rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <LocalShippingIcon className='!text-base  text-[#7dcfb6]'/> {props.translatedMenuItems[3]}</div>
+            <div className="font-poppins font-bold text-xs w-[18.7rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
             <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[4]}</div>
-            <div className="font-poppins font-bold text-xs w-[3.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins font-bold text-xs w-[12.4rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
             <LocationOnIcon className='!text-base  text-[#e4eb2f]'/>{props.translatedMenuItems[5]}</div>
-            <div className="font-poppins font-bold text-xs w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins font-bold text-xs w-[5.9rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {props.translatedMenuItems[6]}</div>
-            <div className="font-poppins font-bold text-xs w-[8.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins font-bold text-xs w-[13.24rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                 <ApiIcon className='!text-base  text-[#e4eb2f]'/>  API</div>
           </div>
           <InfiniteScroll
@@ -106,10 +106,10 @@ function AllShipperList(props) {
             return (
               <>
                 <div  >
-                      <div className="flex rounded  mt-1 bg-white h-8 items-center max-sm:rounded-lg
+                      <div className="flex rounded  mt-1 bg-white py-ygap items-center max-sm:rounded-lg
                max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                       <div class="flex items-center border-l-2 border-green-500 bg-[#eef2f9] max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
-                        <div className=" flex  w-[11.6rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[7.6rem] max-lg:w-[6.1rem] max-sm:w-auto  ">
+                        <div className=" flex  w-[9.9rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[7.6rem] max-lg:w-[6.1rem] max-sm:w-auto  ">
 
                  
                           <div class=" text-xs text-blue-500  items-center font-poppins font-semibold  cursor-pointer">
@@ -124,14 +124,14 @@ function AllShipperList(props) {
                         </div>
                   
                         </div>
-                        <div className=" flex w-[6.5rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between   md:w-[6rem] max-sm:flex-row ">
+                        <div className=" flex w-[7rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between   md:w-[6rem] max-sm:flex-row ">
 <div class="  text-xs ml-gap items-center  font-poppins">
 {item.dialCode} {item.phoneNo}
 </div>
 
 </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
-                        <div className=" flex  w-[13.3rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                        <div className=" flex  w-[10.3rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
                           <div class=" font-normal text-xs  ml-gap items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.emailId}
@@ -139,7 +139,7 @@ function AllShipperList(props) {
 
                         </div>
 
-                        <div className=" flex   w-[9.12rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                        <div className=" flex   w-[6.12rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
                           <div class=" font-normal text-xs  ml-gap items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.shipByName}
@@ -148,7 +148,7 @@ function AllShipperList(props) {
                         </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
-                        <div className=" flex   w-[12.31rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                        <div className=" flex   w-[18.31rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
                           <div class=" font-normal text-xs  ml-gap items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {`${(item.address && item.address.length && item.address[0].address1) || ""}
@@ -167,7 +167,7 @@ function AllShipperList(props) {
                           </div>
 
                         </div>
-                        <div className=" flex   w-[8.2rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                        <div className=" flex   w-[5.2rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
 <div class=" font-normal text-xs ml-gap items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
   {(item.address &&
@@ -179,7 +179,7 @@ function AllShipperList(props) {
 </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
-                       <div class="items-center justify-center h-8 ml-gap  bg-[#eef2f9] w-[6rem]">                   
+                       <div class="flex items-center justify-center h-8 ml-gap  bg-[#eef2f9] w-[10.5rem]">                   
                           <Switch
                             className="toggle-clr"
                             //checked={item.productionInd}
@@ -188,8 +188,8 @@ function AllShipperList(props) {
                             unCheckedChildren="No"
                           />
                         </div>
-                        <div className="flex justify-items-end ">
-                          <div class="items-center justify-center h-8  bg-[#eef2f9] flex">
+                        <div className="flex justify-end items-center max-sm:w-wk ">
+                          <div class="items-center  justify-center h-8  bg-[#eef2f9] flex">
                         <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
           onClick={() => {

@@ -56,7 +56,15 @@ const TaskActionRight = (props) => {
         {/* {user.employee_type === "contractor" && user.candiContShareInd === true || user.employee_type === "employee" && user.candiEmpShareInd === true && user.taskFullListInd === true &&(
          <TaskSharedForm/>
          )}  */}
-       {props.viewType === "table"  ? 
+       
+<Button
+          type="primary"
+          style={{ width: "-webkit-fill-available" }}
+        onClick={() => props.handleTaskImportModal(true)}
+        >
+          {/* Import*/} {translatedMenuItems[1]}
+        </Button>
+        {props.viewType === "table"  ? 
       <Tooltip placement="left" title={translatedMenuItems[2]} >
        <Button type="primary"
                               style={{ width: "-webkit-fill-available" }}
@@ -66,13 +74,6 @@ const TaskActionRight = (props) => {
         </Button>
       </Tooltip>
 :null}
-<Button
-          type="primary"
-       
-        onClick={() => props.handleTaskImportModal(true)}
-        >
-          {/* Import*/} {translatedMenuItems[1]}
-        </Button>
      
     </div>
     <Suspense fallback={<BundleLoader />}>
