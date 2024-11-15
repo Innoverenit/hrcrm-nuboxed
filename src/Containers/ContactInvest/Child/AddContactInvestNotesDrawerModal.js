@@ -20,7 +20,7 @@ class AddPitchNotesDrawerModal extends Component {
           <Suspense fallback={<BundleLoader />}>
            
              <MainNotes
-             type="contactInvest"
+             type="contact"
              uniqueId={this.props.contactiData.contactId}
              translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}

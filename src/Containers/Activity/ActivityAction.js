@@ -99,6 +99,42 @@ export const addActivityCall = (call,customerId, cb) => (dispatch, getState) => 
 
 
 
+  export const linkTaskStatus = (taskId,taskStatus ) => (
+    dispatch,
+    getState
+  ) => {
+    // debugger;
+    dispatch({
+      type: types.LINK_TASK_STATUS_REQUEST,
+    });
+    axios
+      .put(`${base_url}/task/universal/activity/completion/${taskId}/${taskStatus}`, 
+       {}, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        //  dispatch(getTaskListRangeByUserId(employeeId));
+        dispatch({
+          type: types.LINK_TASK_STATUS_SUCCESS,
+          payload: res.data,
+        });
+        // cb && cb("success");
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.LINK_TASK_STATUS_FAILURE,
+          payload: err,
+        });
+        // cb && cb("failuer");
+      });
+  };
+
+
+
+
 
   export const addActivityTask = (event,customerId, cb) => (dispatch, getState) => {
     const { userId } = getState("auth").auth.userDetails;

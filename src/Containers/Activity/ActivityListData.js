@@ -12,7 +12,8 @@ import dayjs from 'dayjs';
 import AddActivityNotesDrawerModal from "./AddActivityNotesDrawerModal"
 import { getActivityTimeline,
   addeventLocation,
-  handleActivityNoteModal
+  handleActivityNoteModal,
+  linkTaskStatus
    } from './ActivityAction';
 import { BundleLoader } from '../../Components/Placeholder';
 //import AddCustomerActivityDrawerModal from '../CustomerActivity/AddCustomerActivityDrawerModal';
@@ -155,11 +156,11 @@ const ActivityListData = (props) => {
   tooltip="To Start"
   status={status.taskStatus}
   difference={difference} 
-//   onClick={() =>
-//     props.linkTaskStatus(status.taskId, {
-//       taskStatus: "To Start",
-//     })
-//   }
+  onClick={() =>
+    props.linkTaskStatus(status.taskId,"To Start"
+      
+    )
+  }
 />
         
             <StatusIcon class=" !text-icon"
@@ -168,12 +169,11 @@ const ActivityListData = (props) => {
               tooltip="In Progress"
               status={status.taskStatus}
               difference={difference}
-            //   onClick={() =>
-            //     props.linkTaskStatus(status.taskId, {
-            //       //  ...item,
-            //        taskStatus: "In Progress",
-            //     })
-            //   }
+              onClick={() =>
+                props.linkTaskStatus(status.taskId,"In Progress"
+                  //  ...item,
+                  )
+              }
             />
          
             <StatusIcon class=" !text-icon"
@@ -182,12 +182,12 @@ const ActivityListData = (props) => {
               tooltip="Completed"
               status={status.taskStatus}
               difference={difference}
-            //   onClick={() =>
-            //     props.linkTaskStatus(status.taskId, {
-            //       //  ...item,
-            //        taskStatus: "Completed",
-            //     })
-            //   }
+              onClick={() =>
+                props.linkTaskStatus(status.taskId,"Completed"
+                  //  ...item,
+                  
+                )
+              }
             />
           
         </ButtonGroup>
@@ -251,7 +251,8 @@ const mapDispatchToProps = (dispatch) =>
     //   linkTaskStatus,
     getActivityTimeline,
     addeventLocation,
-    handleActivityNoteModal
+    handleActivityNoteModal,
+    linkTaskStatus
         // getCustomerActivityRecords,
         // handleCustomerNoteDrawerModal,
         // handleCustomerActivityModal,

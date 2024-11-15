@@ -597,7 +597,7 @@ export const OpportunityReducer = (state = initialState, action) => {
       return {
         ...state,
         addingOpportunity: false,
-        //addOpportunityModal: false,
+        addOpportunityModal: false,
         addedOpportunity:action.payload,
         opportunityByUserId: [action.payload, ...state.opportunityByUserId],
         // clearbit: null,
