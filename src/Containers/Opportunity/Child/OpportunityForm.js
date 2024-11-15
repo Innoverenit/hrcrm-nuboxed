@@ -51,7 +51,7 @@ function OpportunityForm(props) {
   
   }, []);
   useEffect(() => {
-    props.getUOM(); 
+   
     // props.getContactData(props.userId);
     // props.getCustomerData(props.userId);
     props.getInitiative(props.userId);
@@ -89,6 +89,8 @@ const [selectedStage, setSelectedStage] = useState(null);
 
   const [workflow, setWorkflow] = useState([]);
   const [selectedWorkflow, setSelectedWorkflow] = useState(null);
+  const[selectedUom,setSelectedUom]=useState(null);
+  const[selectedUom1,setSelectedUom1]=useState(null);
   const [selectedValues, setSelectedValues] = useState([]);
   const [loading, setLoading] = useState(true);
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -111,9 +113,9 @@ const [selectedStage, setSelectedStage] = useState(null);
   const [isListening, setIsListening] = useState(false);
   const recognitionRef = useRef(null);
 
-  // useEffect(() => {
-  //   fetchCustomers();
-  // }, []);
+  useEffect(() => {
+    props.getUOM(); ;
+  }, []);
 const  handleEmailInd = (checked) => {
     setEmailInd(checked)
   };
@@ -183,6 +185,11 @@ const  handleEmailInd = (checked) => {
       setTouchedCustomer(true);
     }
   };
+
+
+  const handleUomChange2=(value)=>{
+    setSelectedUom1(value);
+  }
 
   const fetchContacts = async (customerId) => {
     setIsLoadingContacts(true);
@@ -372,6 +379,12 @@ const handleSelectWorkflowTypeFocus = () => {
     setTouchedWorkFlowType(true);
   }
 };
+
+
+
+const handleUomChange1=(value)=>{
+  setSelectedUom(value);
+}
 
 const handleWorkFlowTypeChange = (type) => {
   setSelectedWorkFlowType(type);
@@ -634,6 +647,8 @@ const handleStageChange=(value)=>{
       <Formik
         initialValues={{
           opportunityName: "",
+          customValue1:"",
+          customValue2:"",
           startDate: startDate || dayjs(),
           endDate: endDate || null,
           endDate: dayjs(),
@@ -733,6 +748,8 @@ const handleStageChange=(value)=>{
               ...values,
               customerId:selectedCustomer,
               contactId:selectedContact,
+              cstmVl1Uom :selectedUom,
+              cstmVl2Uom:selectedUom1,
               oppStage: selectedStage,
               oppWorkflow: selectedWorkflow,
               workFlowType:selectedWorkFlowType,
@@ -818,7 +835,7 @@ const handleStageChange=(value)=>{
 }
                 </div>
                
-                {/* <div class="flex justify-between max-sm:flex-col mt-3">
+              <div class="flex justify-between max-sm:flex-col mt-3">
                 {props.customerConfigure.oppValueInd===true&&
                 <div class=" w-w47.5 max-sm:w-wk">
                 <div class="font-bold text-xs">{translatedMenuItems[3]}</div>
@@ -853,7 +870,7 @@ const handleStageChange=(value)=>{
 }
                 </div>
                 <div class="flex justify-between max-sm:flex-col mt-3">
-                {props.customerConfigure.customValue1Ind===true&&
+                {/* {props.customerConfigure.customValue1Ind===true&&
                 <div class=" w-w47.5 max-sm:w-wk">
                 <div class="font-bold text-xs">
                 Custom Value1
@@ -866,8 +883,8 @@ const handleStageChange=(value)=>{
                     />
    
                   </div>
-}
-                  {props.customerConfigure.customValue2Ind===true&&
+} */}
+                  {/* {props.customerConfigure.customValue2Ind===true&&
                   <div class=" w-w47.5 max-sm:w-wk">
                   <div class="font-bold text-xs">
                     Custom Value2
@@ -890,16 +907,17 @@ const handleStageChange=(value)=>{
                     />
    
                   </div>
-}
-                </div> */}
+} */}
+                </div> 
                  <div class="flex justify-between max-sm:flex-col mt-3">
+                 {props.customerConfigure.customValue2Ind===true&&
                 <div class=" flex  w-w47.5 justify-between mt-4 max-sm:w-wk">
                   <div className=" w-w47.5 max-sm:w-wk">
                 <div class="font-bold text-xs">
                 Custom 1
                     </div>
                     <Field
-                      name="proposalAmount"
+                      name="customValue1"
                       //label="Value"          
                       isColumn
                       width={"100%"}
@@ -918,17 +936,18 @@ const handleStageChange=(value)=>{
                     </div>
                     <Select
                         className="w-32"
-                      value="items"
+                        onChange={handleUomChange1}
+                      // value={Uom}
                         // onChange={(value) => setNewUom(value)} // `value` is passed directly by Select's onChange handler
                       >
+                      
+                      {props.UOMListData.map(uom => (
+          <Option key={uom.unitName} value={uom.unitName}>
+            {uom.unitName}
+          </Option>
+        ))}
                        
-                          <Option value="items">
-                           item
-                          </Option>
-                          <Option value="items">
-                           item2
-                          </Option>
-                       
+                      
                       </Select>
                     {/* <Field
                       name="proposalAmount"
@@ -945,6 +964,8 @@ const handleStageChange=(value)=>{
           /> */}
           </div>
                   </div>
+}
+                  {props.customerConfigure.customValue1Ind===true&&
                   <div class=" flex  w-w47.5 justify-between mt-4 max-sm:flex-col max-sm:w-wk" >
                   <div class=" w-w47.5 max-sm:w-wk">
                   <div class="font-bold text-xs">
@@ -952,7 +973,7 @@ const handleStageChange=(value)=>{
                     {/* {translatedMenuItems[4]} */}
                     </div>
                     <Field
-                      name="proposalAmount"
+                      name="customValue2"
                       //label="Value"          
                       isColumn
                       width={"100%"}
@@ -992,20 +1013,22 @@ const handleStageChange=(value)=>{
                     </div>
                       <Select
                         className="w-32"
+                        onChange={handleUomChange2}
                       // value={Uom}
                         // onChange={(value) => setNewUom(value)} // `value` is passed directly by Select's onChange handler
                       >
                       
-                          <Option  value="items">
-                          items1
-                          </Option>
-                          <Option  value="items">
-                          items2
-                          </Option>
+                      {props.UOMListData.map(uom => (
+          <Option key={uom.unitName} value={uom.unitName}>
+            {uom.unitName}
+          </Option>
+        ))}
+                       
                       
                       </Select>
                       </div>
                   </div>
+}
                 </div>
                 {props.customerConfigure.descriptionInd===true&&
                 <div class="mt-3">

@@ -102,7 +102,7 @@ console.log(this.state.currentProcess)
 const workflowDetailsId=this.state.currentProcess.workflowDetailsId
 
     if (prevState.currentProcess !== this.state.currentProcess && this.state.currentProcess) {
-      this.props.getProcessStagesForDeals( this.props.orgId,workflowDetailsId?workflowDetailsId:this.state.currentProcess);
+      this.props.getProcessStagesForDeals( workflowDetailsId?workflowDetailsId:this.state.currentProcess);
     }
   }
 
@@ -188,7 +188,7 @@ handleStagePublishClick = (stagesId, publishInd) => {
       //   currentProcess: { workflowDetailsId },
       // } = this.state;
 
-       this.props.getProcessStagesForDeals(this.props.orgId,this.state.currentProcess);
+       this.props.getProcessStagesForDeals(this.state.currentProcess);
     } else {
       alert("error");
     }

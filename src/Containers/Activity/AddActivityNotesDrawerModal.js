@@ -13,6 +13,7 @@ const AddActivityNotesModal = (props) => {
       <StyledDrawer
        title="Notes"
         width="75%"
+        destroyOnClose
         visible={props.addActivityNotesModal}
         onClose={() => props.handleActivityNoteModal(false)}
         footer={null}

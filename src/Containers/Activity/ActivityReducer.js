@@ -24,6 +24,10 @@ const initialState = {
   callActivityModal:false,
 
 
+  linkingTaskStatus:false,
+  linkingTaskStatusError:false,
+
+
   fetchingActivityTimelineStatus:false,
   fetchingActivityTimelineStatusError:false,
   activityTimeline:[]
@@ -59,6 +63,36 @@ export const activityReducer = (state = initialState, action) => {
         ...state,
         addingActivityCall: false,
        // callActivityModal: false,
+      };
+
+
+
+
+      case types.LINK_TASK_STATUS_REQUEST:
+      return { ...state, linkingTaskStatus: true };
+    case types.LINK_TASK_STATUS_SUCCESS:
+      return {
+        ...state,
+        linkingTaskStatus: false,
+        activityTimeline: state.activityTimeline.map((item) => {
+          if (item.taskId === action.payload.taskId) {
+            // return { ...item, active: action.payload.active };
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+
+        
+        // cancelOrder: action.payload,
+        // candidateByUserId: action.payload,
+        // addTeamTransferModal: false,
+      };
+    case types.LINK_TASK_STATUS_FAILURE:
+      return {
+        ...state,
+        linkingTaskStatus: false,
+        linkingTaskStatusError: true,
       };
 
     case types.ADD_ACTIVITY_EVENT_REQUEST:

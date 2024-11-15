@@ -3883,14 +3883,14 @@ export const addProcessStageForDeals = (stage, cb) => (dispatch) => {
 };
 
 
-export const getProcessStagesForDeals = (orgId,workflowId) => (
+export const getProcessStagesForDeals = (workflowDetailsId) => (
   dispatch
 ) => {
   dispatch({
     type: types.GET_PROCESS_STAGES_FOR_DEALS_REQUEST,
   });
   axios
-  .get(`${base_url}/workflow/stages/for_dropdown/${orgId}/${workflowId}`, {
+  .get(`${base_url}/workflow/Stages/${workflowDetailsId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

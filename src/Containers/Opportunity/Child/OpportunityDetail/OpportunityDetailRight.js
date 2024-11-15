@@ -19,14 +19,14 @@ class OpportunityDetailRight extends Component {
           opportunity={opportunity} 
         />
         </div>
-        <div style={{ width: "20%" ,}}>
+        {/* <div style={{ width: "20%" ,}}>
           <OpportunityAboutCard
           opportunity={opportunity}
           department={this.props.department}
           partnerLogin={this.props.partnerLogin}
           tradeCurrency={this.props.tradeCurrency}
         />
-        </div>
+        </div> */}
          <div style={{width: "26%"}}>
          <OpportunityReportCard
           opportunity={opportunity}
