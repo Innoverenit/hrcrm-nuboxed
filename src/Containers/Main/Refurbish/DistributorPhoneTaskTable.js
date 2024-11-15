@@ -31,6 +31,21 @@ function DistributorPhoneTaskTable(props) {
         setTask("")
     }
     const handleSubmitTask = () => {
+        if (task === "") {
+            alert("Please select a task.");
+            return;
+        }
+
+        if (task === "custom") {
+            if (!customName.trim()) {
+                alert("Please enter a custom task name.");
+                return; 
+            }
+            if (!selectedLevel) {
+                alert("Please select a level for the custom task.");
+                return;
+            }
+        }
         props.addTaskByPhoneId({
             phoneId: props.phoneId,
             itemTaskId: task === "custom" ? "" : task,

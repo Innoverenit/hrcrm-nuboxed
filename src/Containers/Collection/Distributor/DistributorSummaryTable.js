@@ -2,17 +2,16 @@ import React, { useEffect,useState  } from "react";
 import TimeInterval from "../../../Utils/TimeInterval";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import CustomerPieChart from "../../Dashboard/Child/JumpStart/CustomerPieChart";
-import DashRepairBarClousreJumpstartUser from "../../Dashboard/Child/JumpStart/DashRepairBarClousreJumpstartUser";
 import {
     setSelectedTimeIntervalReport,
     setTimeRangeReport,
   } from "../../Dashboard/DashboardAction";
-
 import CollectionModePaymentChart from "./CollectionModePaymentChart";
 import CollectionTypePaymentChart from "./CollectionTypePaymentChart";
 import ReconcileModePaymentChart from "./ReconcileModePaymentChart";
 import ReconcileTypePaymentChart from "./ReconcileTypePaymentChart";
+import CreditMemoUtilizedChart from "./CreditMemoUtilizedChart";
+import BarChartCustomer from "./BarChartCustomer";
 
 function DistributorSummaryTable(props) {
 
@@ -22,13 +21,44 @@ function DistributorSummaryTable(props) {
                   times={props.dateRangeList}
                   handleClick={props.setSelectedTimeIntervalReport}
                 />
-         <div className=" flex flex-wrap ">
-        <div><CollectionModePaymentChart/></div>
-        <div><CollectionTypePaymentChart/></div>
-        <div><ReconcileModePaymentChart/></div>
-        <div><ReconcileTypePaymentChart/></div>
-        <div><CustomerPieChart/></div>
-       <div> <DashRepairBarClousreJumpstartUser /></div>
+
+<div class="w-wk">
+         <div className="flex justify-between w-wk">
+        <div>
+        <div class=" font-poppins font-bold text-base ">Collection Value by Payment Mode</div>
+          <CollectionModePaymentChart/>
+        </div>
+
+        <div>
+        <div class=" font-poppins font-bold text-base ">Reconcile Value by Payment Mode</div>
+          <ReconcileModePaymentChart/>
+          </div>
+
+          <div>
+        <div class=" font-poppins font-bold text-base ">Reconcile by Payment Type </div>
+          <ReconcileTypePaymentChart/>
+          </div>
+          {/* <div>
+        <div class="font-poppins font-bold text-base">Credit memo utilized</div>
+          <CreditMemoUtilizedChart/>
+          </div> */}
+
+         
+</div>
+
+<div className="flex justify-between w-wk">
+<div>  
+        <div class=" font-poppins font-bold text-base ">Collection by Payment Type</div>
+          <CollectionTypePaymentChart/>
+        </div>
+        
+        
+       <div class="w-wk"> 
+       <div class="font-poppins font-bold text-base">Bar chart by Customer</div>
+        <BarChartCustomer/>
+        </div>
+
+        </div>
         </div>
         </>
     );

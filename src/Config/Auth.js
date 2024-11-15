@@ -1,11 +1,11 @@
 
 
 //Nubox
-const login_url = "https://hrnuboxed.azurewebsites.net";
-const base_url = "https://hrnuboxed.azurewebsites.net/api/v1";
-const base_url2 = "https://erpnuboxed.azurewebsites.net";
-const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT"
-const sub_url = "https://hrnuboxed.azurewebsites.net";
+// const login_url = "https://hrnuboxed.azurewebsites.net";
+// const base_url = "https://hrnuboxed.azurewebsites.net/api/v1";
+// const base_url2 = "https://erpnuboxed.azurewebsites.net";
+// const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT"
+// const sub_url = "https://hrnuboxed.azurewebsites.net";
 
 // // // CT
 // const login_url = "https://crm.celltechnologies.nl";
@@ -22,11 +22,11 @@ const sub_url = "https://hrnuboxed.azurewebsites.net";
 // const sub_url = "https://develop.tekorero.com/Subscription/api/v2";
 
 //TestHr//hrweb( dkorekologo)
-// const login_url = "https://develop.tekorero.com/testHr"; 
-// const base_url = "https://develop.tekorero.com/testHr/api/v1";
-// const base_url2 = "https://develop.tekorero.com/testErp";
-// const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT";
-// const sub_url = "https://develop.tekorero.com/Subscription/api/v2";
+const login_url = "https://develop.tekorero.com/testHr"; 
+const base_url = "https://develop.tekorero.com/testHr/api/v1";
+const base_url2 = "https://develop.tekorero.com/testErp";
+const asses_url = "https://develop.tekorero.com/Assessment-0.0.1-SNAPSHOT";
+const sub_url = "https://develop.tekorero.com/Subscription/api/v2";
 
 // KAPSSN 
 //  const login_url = "http://Hrweb-env.eba-dg22wwp8.ap-south-1.elasticbeanstalk.com";

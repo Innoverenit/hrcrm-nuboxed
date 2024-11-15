@@ -7,10 +7,10 @@ import ReactApexChart from 'react-apexcharts';
 import { BundleLoader } from '../../../Components/Placeholder';
 
 
-const ReconcileModePaymentChart = (props) => {
+const CreditMemoUtilizedChart = (props) => {
 
 useEffect(()=>{
-    fetchModePayment();
+    // fetchModePayment();
      }, [props.timeRangeType]);
 
 const [ModePayment,setModePayment] = useState({});
@@ -19,7 +19,7 @@ const[error,setError]=useState(null);
 
  const fetchModePayment = async () => {
     try {
-      const response = await axios.get(`${base_url2}/dashboard/approveCollectionPayment/${props.userId}/${props.timeRangeType}`,{
+      const response = await axios.get(`${base_url2}/dashboard/cerditDUMMY/${props.userId}/${props.timeRangeType}`,{
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -78,10 +78,11 @@ const[error,setError]=useState(null);
 //    };
 
 
-  // if (loading){
-  //   return <BundleLoader/>
-  // }
-  const options = {
+//   if (loading){
+//     return <BundleLoader/>
+//   }
+
+const options = {
     series: [44, 55, 41, 17, 15],  // Data for the chart
     chart: {
       // width: 300,  // Chart width
@@ -124,7 +125,6 @@ const[error,setError]=useState(null);
   };
 
   const series = [44, 55, 41, 17, 15]; 
-
   return (
     <div className=' w-[23vw]'>
       <ReactApexChart options={options} series={series} 
@@ -154,4 +154,4 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ReconcileModePaymentChart);
+)(CreditMemoUtilizedChart);

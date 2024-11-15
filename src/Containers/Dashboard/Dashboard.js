@@ -57,6 +57,7 @@ const DashboardOrderJumpstartOrg = lazy(()=>import("./Child/JumpStart/DashboardO
 const DashboardProcureJumpstartUser= lazy(()=>import("./Child/JumpStart/DashboardProcureJumpstartUser"));
 const DashboardProcureJumpstartOrg= lazy(()=>import("./Child/JumpStart/DashboardProcureJumpstartOrg"));
 const DashboardFinanceJumpstart= lazy(()=>import("./Child/JumpStart/DashboardFinanceJumpstart"));
+const DashboardFinanceJumpstartOrg= lazy(()=>import("./Child/JumpStart/DashboardFinanceJumpstartOrg"));
 const FinanceDashTab=lazy(()=>import("./FinanceDashTab"));
 const DashRepairOrdrLeftJumstartbox =lazy(()=>import("./Child/JumpStart/DashRepairOrdrLeftJumstartbox"));
 const DashRepairOrdrLeftJumstartboxOrg =lazy(()=>import("./Child/JumpStart/DashRepairOrdrLeftJumstartboxOrg"));
@@ -299,12 +300,12 @@ class Dashboard extends Component {
               selectedLanguage={this.props.selectedLanguage}
              translateText={this.props.translateText}/>
              )
-             : 
-               this.state.activeButton==="Tasks" ?
+             : this.state.activeButton==="Tasks" ?
              (<DashboardTaskOrganizationJumpstart
               selectedLanguage={this.props.selectedLanguage}
              translateText={this.props.translateText}
-             />)
+             />
+            )
              
             
 
@@ -334,7 +335,7 @@ class Dashboard extends Component {
           //    translateText={this.props.translateText}/>)
            
              : this.state.activeButton==="Finance" ?
-             (<DashboardFinanceJumpstart
+             (<DashboardFinanceJumpstartOrg
               buttonName={buttonName} 
               selectedLanguage={this.props.selectedLanguage}
               translateText={this.props.translateText}
@@ -410,10 +411,12 @@ class Dashboard extends Component {
         //   selectedLanguage={this.props.selectedLanguage}
         //   translateText={this.props.translateText}/>)
           // :
-          this.state.activeButton==="Finance" ?(
-            <FinanceDashTab
-            selectedLanguage={this.props.selectedLanguage}
-            translateText={this.props.translateText}/>)
+          this.state.activeButton==="Finance" ?
+          // (
+          //   <FinanceDashTab
+          //   selectedLanguage={this.props.selectedLanguage}
+          //   translateText={this.props.translateText}/>)
+          null
             :this.state.activeButton==="Regional" && activeTab ?(
               null)
               :this.state.activeButton==="multiOrg" && activeTab ?(
@@ -662,7 +665,7 @@ class Dashboard extends Component {
                                 //   selectedLanguage={this.props.selectedLanguage}
                                 //   translateText={this.props.translateText}/>)
 
-                                  :this.state.activeButton === "Procure" ?
+                                  : viewType==="ALL" && this.state.activeButton === "Procure" ?
                                   (<DashInvPayProcureJumstartboxOrg  selectedLanguage={this.props.selectedLanguage}
                                     translateText={this.props.translateText}/>)
                   //  : viewType==="ALL" || this.state.activeButton==="Customer" ? (<DashCustomerChartTab/>)               
@@ -673,9 +676,9 @@ class Dashboard extends Component {
               (<DashRepairOrdrLeftJumstartbox  selectedLanguage={this.props.selectedLanguage}
                 translateText={this.props.translateText}/>)}       
 
-                {/* {viewType==="ME" && this.state.activeButton === "Procure" &&
+                {viewType==="ME" && this.state.activeButton === "Procure" &&
               (<DashInvPayProcureJumstartbox  selectedLanguage={this.props.selectedLanguage}
-                translateText={this.props.translateText}/>)}           */}
+                translateText={this.props.translateText}/>)}          
             </div> 
     </div>
     </div>

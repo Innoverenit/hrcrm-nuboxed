@@ -2563,7 +2563,7 @@ export const getOrderAddedList = (orgId,endDate,startDate) => (dispatch) => {
   });
   axios
     .get(
-      `${base_url2}/order/all-active-catalogOrders/${orgId}/${endDate}/${startDate}`,
+      `${base_url2}/order/all-active-catalogOrders/${orgId}/${startDate}/${endDate}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -2587,13 +2587,13 @@ export const getOrderAddedList = (orgId,endDate,startDate) => (dispatch) => {
 
 
 
-export const getOrderCancelList = (orgId,startDate,endDate) => (dispatch) => {
+export const getOrderCancelList = (orgId,endDate,startDate,) => (dispatch) => {
   dispatch({
     type: types.GET_ORDER_CANCEL_LIST_REQUEST,
   });
   axios
     .get(
-      `${base_url2 }/order/all-delete-catalogOrders/${orgId}/${endDate}/${startDate}`,
+      `${base_url2 }/order/all-delete-catalogOrders/${orgId}/${startDate}/${endDate}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -2649,13 +2649,13 @@ export const getCustomerChart = (orgId,type) => (dispatch) => {
 
 
 
-export const getOrderClosedList = (orgId,startDate,endDate) => (dispatch) => {
+export const getOrderClosedList = (orgId,endDate,startDate,) => (dispatch) => {
   dispatch({
     type: types.GET_ORDER_CLOSED_LIST_REQUEST,
   });
   axios
     .get(
-      `${base_url2 }/order/completeOrders/${orgId}/${endDate}/${startDate}`,
+      `${base_url2 }/order/completeOrders/${orgId}/${startDate}/${endDate}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -2679,13 +2679,13 @@ export const getOrderClosedList = (orgId,startDate,endDate) => (dispatch) => {
 
 
 
-export const getOrderOpenList = (orgId,startDate,endDate) => (dispatch) => {
+export const getOrderOpenList = (orgId,endDate,startDate,) => (dispatch) => {
   dispatch({
     type: types.GET_ORDER_OPEN_LIST_REQUEST,
   });
   axios
     .get(
-      `${base_url2 }/order/completeOrders/${orgId}/${endDate}/${startDate}`,
+      `${base_url2 }/order/completeOrders/${orgId}/${startDate}/${endDate}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -2720,7 +2720,7 @@ export const handleContactAddedModal = (modalProps) => (dispatch) => {
   });
 };
 
-export const getCustomerAddedList = (orgId,startDate,endDate) => (dispatch) => {
+export const getCustomerAddedList = (orgId,endDate,startDate,) => (dispatch) => {
   dispatch({
     type: types.GET_CUSTOMER_ADDED_LIST_REQUEST,
   });
@@ -2747,7 +2747,7 @@ export const getCustomerAddedList = (orgId,startDate,endDate) => (dispatch) => {
     });
 };
 
-export const getContactAddedList = (orgId,startDate,endDate) => (dispatch) => {
+export const getContactAddedList = (orgId,endDate,startDate,) => (dispatch) => {
   dispatch({
     type: types.GET_CONTACT_ADDED_LIST_REQUEST,
   });
@@ -2783,7 +2783,7 @@ export const getRepairDashboardOrderClose = (userId, endDate,startDate,page) => 
     type: types.GET_REPAIR_DASHBOARD_ORDER_CLOSE_REQUEST,
   });
   axios
-    .get(`${base_url2}/dashboard/completeOrderList/${userId}/${endDate}/${startDate}/${page}`, {
+    .get(`${base_url2}/dashboard/completeOrderList/${userId}/${startDate}/${endDate}/${page}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2840,7 +2840,7 @@ export const getRepairDashboardOrderOpen = (userId,endDate,startDate,page) => (d
     type: types.GET_REPAIR_DASHBOARD_ORDER_OPEN_REQUEST,
   });
   axios
-    .get(`${base_url2}/dashboard/inCompleteOrderList/${userId}/${endDate}/${startDate}/${page}`, {
+    .get(`${base_url2}/dashboard/inCompleteOrderList/${userId}/${startDate}/${endDate}/${page}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2866,7 +2866,7 @@ export const getRepairDashboardOrderCancelled = (userId, endDate,startDate,page)
     type: types.GET_REPAIR_DASHBOARD_ORDER_CANCELLED_REQUEST,
   });
   axios
-    .get(`${base_url2}/dashboard/CancelledDummy/${userId}/${endDate}/${startDate}/${page}`, {
+    .get(`${base_url2}/dashboard/CancelledDummy/${userId}/${startDate}/${endDate}/${page}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2919,7 +2919,7 @@ export const getDistributorbyUserID = (userId,endDate,startDate,page) => (dispat
   });
   axios
     .get(
-      `${base_url2}/distributor/${userId}/${endDate}/${startDate}/${page}`,
+      `${base_url2}/distributor/${userId}/${startDate}/${endDate}/${page}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
