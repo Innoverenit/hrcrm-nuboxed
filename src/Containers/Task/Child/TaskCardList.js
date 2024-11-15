@@ -252,29 +252,29 @@ const TaskCardList = (props) => {
     
           <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" font-poppins text-xs flex max-sm:hidden justify-between w-[63%]  p-1 bg-transparent font-bold sticky  z-10">
-          <div className="flex justify-center w-[3.54] truncate md:w-[4.54rem] bg-red-600 text-white">
+          <div className=" font-poppins text-xs flex max-sm:hidden justify-between w-[64%]  p-1 bg-transparent font-bold sticky  z-10">
+          <div className="flex  w-[3.54] truncate md:w-[4.54rem] bg-red-600 text-white">
           {translatedMenuItems[7]}</div>
-        <div className=" flex  w-[6.5rem] truncate  ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
+        <div className=" flex  w-[9.1rem] truncate  ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
         < MergeTypeIcon className='!text-icon text-[#c42847] '  />{translatedMenuItems[0]} 
                         </div>
-        <div className="flex justify-center w-[9.15rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
-        <CategoryIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[1]}
+        <div className="flex  w-[12.9rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
+        <CategoryIcon className='!text-base mr-1 text-[#e4eb2f]'/>{translatedMenuItems[1]}
                         </div>
-             <div className="flex justify-center w-[5.01rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
-             <DateRangeIcon className="!text-icon "/>  {translatedMenuItems[2]}
+             <div className="flex  w-[5.9rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
+             <DateRangeIcon className="!text-icon mr-1"/>  {translatedMenuItems[2]}
                         </div>
-             <div className="flex justify-center w-[5.1rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
+             <div className="flex  w-[7.5rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
        
-                        <div className="flex justify-center w-[10.51rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
+                        <div className="flex  w-[10.51rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
                         {translatedMenuItems[4]}
                          
                           </div>
-        <div className="flex justify-center w-[5.2rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
-        <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[5]} 
+        <div className="flex  w-[5.5rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
+        <AccountCircleIcon className="!text-icon mr-1  text-[#d64933]"/> {translatedMenuItems[5]} 
                         </div>
-        <div className="flex justify-center w-[5.92rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
-        <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[6]}
+        <div className="flex  w-[4.92rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
+        <AccountCircleIcon className="!text-icon  mr-1 text-[#d64933]"/> {translatedMenuItems[6]}
         {/* <div className=" w-[9.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
                   {translatedMenuItems[3]} 
                         </div> */}
@@ -301,10 +301,10 @@ const TaskCardList = (props) => {
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
                         <div>
-                          <div className="flex rounded mt-1 bg-white  items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                             <div className="flex rounded mt-1 bg-white  items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center  ">
-                                <div className=" flex w-[9.1rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
-<div className="flex max-sm:w-full items-center"> 
+                                <div className=" flex w-[4.01rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
+<div className="flex max-sm:w-full ml-gap items-center"> 
 {item.priority === "High" && (
   // <div class="rounded-full h-10 w-16 bg-red-500"></div>
                       <div class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
@@ -317,13 +317,13 @@ const TaskCardList = (props) => {
                     )}
                      </div>
                      </div>
-          <div class=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6rem] max-sm:w-full">
+                     <div class=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8rem] max-sm:w-full">
                                         <Tooltip>
                                         <div class=" flex justify-center  max-sm:justify-between flex-row w-full md:flex-col ">
                                             {/* <div class="text-sm  font-poppins max-sm:hidden">
                                             Type
                                             </div> */}
-                                            <div class="text-xs truncate max-w-[7rem] flex items-center  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" title={item.taskType}>                                       
+                                            <div class="text-xs ml-gap truncate max-w-[7rem] flex items-center  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" title={item.taskType}>                                       
                                             {item.taskType}
        
                                             </div>
@@ -334,6 +334,7 @@ const TaskCardList = (props) => {
                               
 
                                 <div className=" flex   w-[11.12rem]  items-center justify-start  h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
+                                    {/* <div class=" text-sm  font-sm font-poppins max-sm:hidden"> Name </div> */}
                                     <div class=" text-xs ml-gap font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
                                     <span   
                 onClick={() => {
@@ -341,7 +342,7 @@ const TaskCardList = (props) => {
                   handleSetCurrentProcessName(item)
                   // this.props.setCurrentOpportunityRecruitMentData(item);
                 }}
-                className="cursor-pointer text-[#042E8A]"
+                className="cursor-pointer ml-gap text-[#042E8A]"
                           
                >
 
@@ -359,7 +360,7 @@ const TaskCardList = (props) => {
                        <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
                         {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
                    </div>
-                                <div class="flex  w-[6.1rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
+                                <div class="flex  w-[6.2rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
                                   
                     <div class="">
                     <ButtonGroup >
@@ -428,7 +429,7 @@ const TaskCardList = (props) => {
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
                     <div className=" flex w-[4.33rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row  max-sm:w-auto ">
                                   {/* <div class="text-sm  font-poppins max-sm:hidden">Assigned</div> */}
-                                  <div class="text-xs  font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                  <div class="text-xs ml-gap font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                   <span>
               {item.assignedToName === null ? (
                 null
@@ -469,7 +470,7 @@ const TaskCardList = (props) => {
                        
 <div className="w-[3.23rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">
 {item.taskStatus==="Completed"&&(
-                   <div className="flex  w-[5.23rem]  max-sm:flex-row  max-sm:w-auto  ">
+                   <div className="flex  w-[5.23rem] items-center  max-sm:flex-row  max-sm:w-auto  ">
              {item.assignedToName !== item.submittedBy ? 
              <span>
              <Tooltip overlayStyle={{ maxWidth: "400px" }} title={`Review :${item.feedbackReview}`}>
@@ -493,7 +494,7 @@ const TaskCardList = (props) => {
      )}
      </div>
                                         
-                   <div class="flex  w-[6.21rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
+                   <div class="flex  w-[9.21rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
                     <div class=" w-36 items-center">
   {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
     <>
@@ -681,33 +682,34 @@ const TaskCardList = (props) => {
 
 <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 max-sm:m-1  p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] ">
-          <div className=" flex max-sm:hidden justify-between w-[63%]  p-1 bg-transparent font-poppins text-xs font-bold sticky items-end  z-10">
-          <div className=" flex justify-center w-[3.54] md:w-[4.54rem] bg-orange-600 text-white">
+          <div className=" font-poppins text-xs flex max-sm:hidden justify-between w-[64%]  p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" flex justify-center w-[3.54] truncate md:w-[4.54rem] bg-orange-600 text-white">
           {translatedMenuItems[8]}</div>
-        <div className=" w-[6.5rem] ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
+          <div className=" flex  w-[9.1rem] truncate  ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
         < MergeTypeIcon className='!text-icon text-[#c42847] '  />{translatedMenuItems[0]} 
                         </div>
-        <div className="flex justify-center w-[9.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
-        <CategoryIcon className='!text-base  text-[#e4eb2f]'/>   {translatedMenuItems[1]}
+        <div className="flex  w-[12.9rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
+        <CategoryIcon className='!text-base mr-1 text-[#e4eb2f]'/>{translatedMenuItems[1]}
                         </div>
-             <div className="flex justify-center w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
-             <DateRangeIcon className="!text-icon "/>{translatedMenuItems[2]}
+             <div className="flex  w-[5.9rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
+             <DateRangeIcon className="!text-icon mr-1"/>  {translatedMenuItems[2]}
                         </div>
-             <div className="flex justify-center w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
-        
-                        <div className="flex justify-center w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
+             <div className="flex  w-[7.5rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
+       
+                        <div className="flex  w-[10.51rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
                         {translatedMenuItems[4]}
                          
                           </div>
-        <div className="flex justify-center text-xs w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
-        <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[5]} 
+        <div className="flex  w-[5.5rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
+        <AccountCircleIcon className="!text-icon mr-1  text-[#d64933]"/> {translatedMenuItems[5]} 
                         </div>
-        <div className="flex justify-center w-[5.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
-        <AccountCircleIcon className="!text-icon   text-[#d64933]"/>{translatedMenuItems[6]}
-                        </div>
-                        {/* <div className=" w-[9.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
+        <div className="flex  w-[4.92rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
+        <AccountCircleIcon className="!text-icon  mr-1 text-[#d64933]"/> {translatedMenuItems[6]}
+        {/* <div className=" w-[9.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
                   {translatedMenuItems[3]} 
                         </div> */}
+                        </div>
+        
       </div>
       <InfiniteScroll
         dataLength={mediumTaskList.length}
@@ -726,364 +728,377 @@ const TaskCardList = (props) => {
         const incompleteDeviationDate = currentDate.diff(endDate, 'days');
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
-                        <div>
-                           <div className="flex rounded mt-1 bg-white  items-center py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-                            <div class="flex max-sm:justify-between max-sm:w-wk items-center  ">
-                                <div className=" flex w-[9.1rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
-<div className="flex max-sm:w-full"> 
+                      <div>
+                      <div className="flex rounded mt-1 bg-white  items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                     <div class="flex max-sm:justify-between max-sm:w-wk items-center  ">
+                         <div className=" flex w-[4.01rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
+                         <div className="flex max-sm:w-full ml-gap items-center"> 
 {item.priority === "High" && (
   // <div class="rounded-full h-10 w-16 bg-red-500"></div>
                       <div class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
                     )}
                     {item.priority === "Medium" && (
-                      <div class="border rounded-[50%] h-6 w-6 bg-orange-600" ></div>
+                      <div class="border rounded-[50%] h-6 w-6 bg-[orange]" ></div>
                     )}
                     {item.priority === "Low" && (
                       <div class="border rounded-[50%] h-6 w-6 bg-[teal]" ></div>
                     )}
-                    <div class=" w-5"></div>
-          <div class=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-full">
-                                        <Tooltip>
-                                        <div class=" flex justify-center  max-sm:justify-between flex-row w-full md:flex-col ">
-                                            {/* <div class="text-sm  font-poppins max-sm:hidden">
-                                            Type
-                                            </div> */}
-                                             <div class="text-xs truncate max-w-[6rem] flex items-center  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" title={item.taskType}>                                                                             
-                                            {item.taskType}
-       
-                                            </div>
-                                         </div>
-                                        </Tooltip>
-                                        </div>
-                                        </div>
-                                </div>
+                     </div>
+              </div>
+              <div class=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8rem] max-sm:w-full">
+                                 <Tooltip>
+                                 <div class=" flex justify-center  max-sm:justify-between flex-row w-full md:flex-col ">
+                                     {/* <div class="text-sm  font-poppins max-sm:hidden">
+                                     Type
+                                     </div> */}
+                                     <div class="text-xs  ml-gap truncate max-w-[7rem] flex items-center  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" title={item.taskType}>                                       
+                                     {item.taskType}
 
-                                <div className=" flex items-center  h-8 justify-start ml-gap bg-[#eef2f9]  w-[11.12rem] max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
-                                    {/* <div class=" text-sm  font-sm font-poppins max-sm:hidden"> Name </div> */}
-                                    <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
-                                    <span   
-                onClick={() => {
-                  props.handleTaskopenModal(true);               
-                  handleSetCurrentProcessName(item)
-   
-                }}
-                className="cursor-pointer text-[#042E8A]"                         
-               >
-                 {`${item.taskName} `} 
-               </span>
-                                    </div>
-                                </div>
-                               </div>
-                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className="flex w-[5.22rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.121rem] max-lg:w-[2.521rem] max-sm:flex-row  max-sm:w-auto ">
+                                     </div>
+                                  </div>
+                                 </Tooltip>
+                                 </div>
+                               
                        
-                      
-                       <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
-                        {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
-                   </div>
-                                <div class="flex  w-[6.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
-                                  
-                    <div class="">
-                    <ButtonGroup >
-         
-          <StatusIcon class=" !text-icon"
-  type="To Start"
-  iconType={<HourglassEmptyIcon  className=" !text-icon" />} 
- // iconType="fa-hourglass-start"
-  tooltip="To Start"
-  status={item.taskStatus}
-  difference={difference} 
-  onClick={() =>
-    linkTaskStatus(item.taskId, {
-      taskStatus: "To Start",
-    })
-  }
-/>
-        
-            <StatusIcon class=" !text-icon"
-              type="In Progress"
-             iconType={<HourglassTopIcon  className=" !text-icon"/>}
-              tooltip="In Progress"
-              status={item.taskStatus}
-              difference={difference}
-              onClick={() =>
-                linkTaskStatus(item.taskId, {
-                  //  ...item,
-                   taskStatus: "In Progress",
-                })
-              }
-            />
-         
-            <StatusIcon class=" !text-icon"
-              type="Completed"
-            iconType={<HourglassBottomIcon  className=" !text-icon"/>}
-              tooltip="Completed"
-              status={item.taskStatus}
-              difference={difference}
-              onClick={() =>
-                linkTaskStatus(item.taskId, {
-                  //  ...item,
-                   taskStatus: "Completed",
-                })
-              }
-            />
-          
-        </ButtonGroup>
-        <div></div>
-                        </div>               
-                    </div>
+
+                         <div className=" flex   w-[11.12rem]  items-center justify-start  h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
+                             {/* <div class=" text-sm  font-sm font-poppins max-sm:hidden"> Name </div> */}
+                             <div class=" ml-gap text-xs ml-gap font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
+                             <span   
+         onClick={() => {
+           props.handleTaskopenModal(true);               
+           handleSetCurrentProcessName(item)
+           // this.props.setCurrentOpportunityRecruitMentData(item);
+         }}
+         className="cursor-pointer text-[#042E8A]"
                    
+        >
+
+          {`${item.taskName} `} 
+
+
+        </span>
+                             </div>
+                         </div>
+                        </div>
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                         <div className="flex w-[5.22rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.121rem] max-lg:w-[2.521rem] max-sm:flex-row  max-sm:w-auto ">
                 
-                   <div className="flex  text-xs w-[9.2rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
-                   {item.customerName ? (
-  <>{item.customerName}</>
+               
+                <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
+                 {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
+            </div>
+                         <div class="flex  w-[6.2rem]  ml-gap items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
+                           
+             <div class="">
+             <ButtonGroup >
+  
+   <StatusIcon class=" !text-icon"
+type="To Start"
+iconType={<HourglassEmptyIcon  className=" !text-icon" />} 
+// iconType="fa-hourglass-start"
+tooltip="To Start"
+status={item.taskStatus}
+difference={difference} 
+onClick={() =>
+linkTaskStatus(item.taskId, {
+taskStatus: "To Start",
+})
+}
+/>
+ 
+     <StatusIcon class=" !text-icon"
+       type="In Progress"
+      iconType={<HourglassTopIcon  className=" !text-icon"/>}
+       tooltip="In Progress"
+       status={item.taskStatus}
+       difference={difference}
+       onClick={() =>
+         linkTaskStatus(item.taskId, {
+           //  ...item,
+            taskStatus: "In Progress",
+         })
+       }
+     />
+  
+     <StatusIcon class=" !text-icon"
+       type="Completed"
+     iconType={<HourglassBottomIcon  className=" !text-icon"/>}
+       tooltip="Completed"
+       status={item.taskStatus}
+       difference={difference}
+       onClick={() =>
+         linkTaskStatus(item.taskId, {
+           //  ...item,
+            taskStatus: "Completed",
+         })
+       }
+     />
+   
+ </ButtonGroup>
+ <div></div>
+                 </div>
+   
+             </div>
+            
+          
+            <div className="flex text-xs w-[9.2rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
+            <div class="text-xs  font-poppins ml-gap items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+            {item.customerName ? (
+<>{item.customerName}</>
 ) : null}
 
 {item.contact ? (
-  <>{item.contact}</>
+<>{item.contact}</>
 ) : null}        
-
-                   </div>
-                   </div>
-                   <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
-                    <div className=" flex w-[4.33rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row justify-between max-sm:w-auto ">
-                                  {/* <div class="text-sm  font-poppins max-sm:hidden">Assigned</div> */}
-                                  <div class="text-xs  font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                  <span>
-              {item.assignedToName === null ? (
-                null
-              ) : (
-                <>
-                {item.assignedToName === item.submittedBy ? (
-                  
-                  null
-                ) : (
-                  <MultiAvatar2
-                  primaryTitle={item.assignedToName}
-                  imgWidth={"1.8rem"}
-                  imgHeight={"1.8rem"}             
-                />
-                )}
-                </>
-              )}
-            </span>
-                                  </div>
-                              </div>
-                        
-                    
-                                <div className=" flex   w-[5.28rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[2.28rem] max-lg:w-[2.28rem] max-sm:flex-row  max-sm:w-auto ">
-                                    
-                                    <div class="text-xs  font-poppins ">
-                                    <MultiAvatar
-                                   
-                                  primaryTitle={item.ownerName}
-                                  imgWidth={"1.8rem"}
-                                  imgHeight={"1.8rem"}
-                                />
-                                                    </div>
-                                </div>
-                               
-                             
-                       
-<div className="w-[5.23rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">
-{item.taskStatus==="Completed"&&(
-                   <div className="flex  w-[5.23rem]  max-sm:flex-row  max-sm:w-auto items-center justify-center h-8 ml-gap bg-[#eef2f9]  ">
-             {item.assignedToName !== item.submittedBy ? 
-             <span>
-             <Tooltip overlayStyle={{ maxWidth: "400px" }} title={`Review :${item.feedbackReview}`}>
-            {item.feedbackRating === 0 ? (<StarBorderIcon
-            className=" !text-icon text-[#eeeedd]"/>)
-              : (
-                <span>
-                  {item.feedbackRating}
-                 
-                  {<StarBorderIcon
-                  className=" !text-icon text-[#FFD700]"
-                    />}
-                
-                </span>)}
-             
-                </Tooltip>
-                </span>
-              
-                :null}     
-     </div> 
-     )}
-     </div>                                   
-                   <div class="flex  w-[8.21rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.6rem]   max-sm:flex-row max-sm:w-auto">
-                    <div class=" w-36">
-  {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
-    <>
-      <div>
-        <Button
-        onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
-          style={{ backgroundColor: "teal", color: "white" }}
-        >
-          <FormattedMessage id="app.approve" defaultMessage="Approve" />
-        </Button>
-        <Button
-          style={{
-            backgroundColor: "rgb(233, 79, 79)",
-            color: "white",
-          }}
-          onClick={() => rejectTaskByTaskId(item.taskId)}
-        >
-          <FormattedMessage id="app.reject" defaultMessage="Reject" />
-        </Button>
-      </div>
-    </>
-  ) : (
-    <>
-      {item.approvedInd === "Approved" ? (
-        <CheckCircleOutlined
-          type="check-circle"
-          theme="twoTone"
-          twoToneColor="#52c41a"
-          size={140}
-          style={{ fontSize: "1rem" }}
-        />
-      ) : item.approvedInd === "Rejected" ? (
-        <CloseCircleOutlined
-          type="close-circle"
-          theme="twoTone"
-          twoToneColor="red"
-          size={140}
-          style={{ fontSize: "1rem" }}
-        />
-      ) : (
-        <></>
-      )}
-    </>
-  )}
-  </div>
 </div>
-<div className="flex w-[7.23rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
-                                          
-                                          <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                          <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+            </div>
+            </div>
+            <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
+             <div className=" flex w-[4.33rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row  max-sm:w-auto ">
+                           {/* <div class="text-sm  font-poppins max-sm:hidden">Assigned</div> */}
+                           <div class="text-xs  ml-gap font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                           <span>
+       {item.assignedToName === null ? (
+         null
+       ) : (
+         <>
+         {item.assignedToName === item.submittedBy ? (
+           
+           null
+         ) : (
+           <MultiAvatar2
+           primaryTitle={item.assignedToName}
+           imgWidth={"1.8rem"}
+           imgHeight={"1.8rem"}
+           // className="!bg-[#94b3e4]"
+           // // style={{ backgroundColor: "#94b3e4" }}
+         />
+         )}
+         </>
+       )}
+     </span>
+                           </div>
+                       </div>
+                 
+             
+                         <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[4.28rem] max-xl:w-[2.28rem] max-lg:w-[2.28rem] max-sm:flex-row max-sm:w-auto ">
+                             
+                             <div class="text-xs  font-poppins ">
+                             <MultiAvatar
+                            
+                           primaryTitle={item.ownerName}
+                           imgWidth={"1.8rem"}
+                           imgHeight={"1.8rem"}
+                         />
+                                             </div>
+                         </div>
+                        
+                      
+                
+<div className="w-[3.23rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">
+{item.taskStatus==="Completed"&&(
+            <div className="flex  w-[5.23rem] items-center   max-sm:flex-row  max-sm:w-auto  ">
+      {item.assignedToName !== item.submittedBy ? 
+      <span>
+      <Tooltip overlayStyle={{ maxWidth: "400px" }} title={`Review :${item.feedbackReview}`}>
+     {item.feedbackRating === 0 ? (<StarBorderIcon
+     className=" !text-icon text-[#eeeedd]"/>)
+       : (
+         <span>
+           {item.feedbackRating}
+          
+           {<StarBorderIcon
+           className=" !text-icon text-[#FFD700]"
+             />}
+         
+         </span>)}
+      
+         </Tooltip>
+         </span>
+       
+         :null}  
+</div> 
+)}
+</div>
+                                 
+            <div class="flex  w-[9.21rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
+             <div class=" w-36 items-center">
+{item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
+<>
+<div>
+ <Button className=""
+ onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
+   style={{ backgroundColor: "teal", color: "white" }}
+ >
+   <FormattedMessage id="app.approve" defaultMessage="Approve" />
+ </Button>
+ <Button
+   style={{
+     backgroundColor: "rgb(233, 79, 79)",
+     color: "white",
+   }}
+   onClick={() => rejectTaskByTaskId(item.taskId)}
+ >
+   <FormattedMessage id="app.reject" defaultMessage="Reject" />
+ </Button>
+</div>
+</>
+) : (
+<>
+{item.approvedInd === "Approved" ? (
+ <CheckCircleOutlined
+   type="check-circle"
+   theme="twoTone"
+   twoToneColor="#52c41a"
+   size={140}
+   style={{ fontSize: "1rem" }}
+ />
+) : item.approvedInd === "Rejected" ? (
+ <CloseCircleOutlined
+   type="close-circle"
+   theme="twoTone"
+   twoToneColor="red"
+   size={140}
+   className="text-base"
+ // style={{ fontSize: "1rem" }}
+ />
+) : (
+ <></>
+)}
+</>
+)}
+</div>
+</div>
+<div className="flex w-[7.23rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
+<div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+               <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
 </svg>
-{item.taskStatus === "Completed" ? (completeDeviation > 0 &&  <span className=" text-blue-900 font-semibold">{completeDeviation} Days</span>) :
-                        (incompleteDeviationDate > 0 && <span className=" text-blue-900 font-semibold">{incompleteDeviationDate} Days</span>)}
-</span>
-                      
-                     </div>
-                                          
-                                        </div>
+{item.taskStatus === "Completed" ? (completeDeviation > 0 &&  <span className=" text-blue-600 font-semibold">{completeDeviation} Days</span>) :
+(incompleteDeviationDate > 0 && <span className=" text-blue-600 font-semibold">{incompleteDeviationDate} Days</span>)}
+{/* {getRelativeTime(item.creationDate)} */}
+</span></div>  
+           
+               
+                
+              </div>
 </div>
-
-                          
+                   
 <div class="flex  max-sm:justify-end w-wk items-center justify-end  h-8 ml-gap bg-[#eef2f9]">    
 <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem]  max-sm:flex-row  max-sm:w-auto  justify-center ">
-             {item.assignedToName !== item.submittedBy ? 
-                         <Tooltip title="Feedback">
-                         <FeedbackIcon
-                                  onClick={() => {
-                                    handleTaskFeedbackDrawerModal(true);
-                                    handleSetTaskNameId(item);
-                                  }}
-                                  className="!text-icon cursor-pointer text-[#10d512]"
-                                 
-                                />
-                             </Tooltip>
-              
-                :null}
-
-     
-     </div> 
+      {item.assignedToName !== item.submittedBy ? 
+                  <Tooltip title="Feedback">
+                  <FeedbackIcon
+                           onClick={() => {
+                             handleTaskFeedbackDrawerModal(true);
+                             handleSetTaskNameId(item);
+                           }}
+                           className="!text-icon cursor-pointer text-[#10d512]"
+                          
+                         />
+                      </Tooltip>
+       
+         :null}
 
 
-     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
-           
-                      
-          <UploadIcon className="!text-icon cursor-pointer text-[#b3770f]"
-              onClick={() => {
-                props.handleUpdateDocumentDrawerModal(true);
-                handleSetTaskNameId(item);
-              }}
-          />    
-              
+</div> 
 
-     
-     </div> 
-     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
-           
-                      
-     <EscalatorIcon  className="!text-icon cursor-pointer text-[#358fbb]"
-         onClick={() => {
-          handleTaskStepperDrawerModal(true);
-          handleSetTaskNameId(item);
-        }}
-     />
-    </div> 
-                    <div class="flex  max-sm:flex-row  max-sm:w-auto justify-evenly  ">
-                    <Tooltip title="Notes">
-       <NoteAltIcon
-                onClick={() => {
-                  handleTaskNotesDrawerModal(true);
-                  handleSetTaskNameId(item);
-                }}
-                className="!text-icon cursor-pointer text-[green]"
-              />
-           </Tooltip>
-              </div>
-              <div>
-                         <Tooltip title="Document">
-                         <DownloadForOfflineIcon
-                                  onClick={() => {
-                                    props.handleTaskDocumentDrawerModal(true);
-                                    handleSetTaskNameId(item);
-                                  }}
-                                  className="!text-icon cursor-pointer"
-                                 
-                                />
-                             </Tooltip>
-                    {/* )} */}
+
+<div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
+    
+               
+   <UploadIcon className="!text-icon cursor-pointer text-[#b3770f]"
+       onClick={() => {
+         props.handleUpdateDocumentDrawerModal(true);
+         handleSetTaskNameId(item);
+       }}
+   />    
+       
+
+
+</div> 
+<div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
+    
+               
+<EscalatorIcon  className="!text-icon cursor-pointer text-[#358fbb]"
+  onClick={() => {
+   handleTaskStepperDrawerModal(true);
+   handleSetTaskNameId(item);
+ }}
+/>
         
-            </div>
-                    <div class="flex max-sm:flex-row max-sm:w-auto justify-evenly ">   
-          <Tooltip title="Edit">
-          {props.userId === item.userId && (
-                      <BorderColorIcon
-                        type="edit"
-                        className="!text-icon cursor-pointer"                   
-                        onClick={() => {
-                          props.setEditTask(item);
-                          handleUpdateTaskModal(true);
-                        }}
-                      />
-                    )}
-            </Tooltip>
-            </div>
-          
-            <div>
-           
-            {item.complitionStatus !== "completed" && (
-                          <StyledPopconfirm
-                            // title="Do you want to delete?"
-                            title={
-                              <FormattedMessage
-                                id="app.doyouwishtodelete?"
-                                defaultMessage="Do you wish to delete?"
-                              />
-                            }
-                            onConfirm={() => deleteTask(item.taskId, employeeId)}
-                          >
-                                <Tooltip title="Delete">
-                            <DeleteOutlined
-                              type="delete"
-                              className="!text-icon cursor-pointer text-[red]"
-                              
-                            />
-                            </Tooltip>
-                          </StyledPopconfirm>
-                        )}
-      
-            </div>
-                      </div>   
+
+
+</div> 
+             <div class="flex  max-sm:flex-row  max-sm:w-auto justify-evenly  ">
+             <Tooltip title="Notes">
+<NoteAltIcon
+         onClick={() => {
+           handleTaskNotesDrawerModal(true);
+           handleSetTaskNameId(item);
+         }}
+         className="!text-icon cursor-pointer text-[green]"
+       />
+    </Tooltip>
+       </div>
+       <div>
+                  <Tooltip title="Document">
+                  <DownloadForOfflineIcon
+                           onClick={() => {
+                             props.handleTaskDocumentDrawerModal(true);
+                             handleSetTaskNameId(item);
+                           }}
+                           className="!text-icon cursor-pointer"
+                          
+                         />
+                      </Tooltip>         
+ 
+     </div>
+             <div class="flex max-sm:flex-row max-sm:w-auto justify-evenly ">   
+   <Tooltip title="Edit">
+   {props.userId === item.userId && (
+               <BorderColorIcon
+                 type="edit"
+                 className="!text-icon cursor-pointer"                   
+                 onClick={() => {
+                   props.setEditTask(item);
+                   handleUpdateTaskModal(true);
+                 }}
+               />
+             )}
+     </Tooltip>
+     </div>
+   
+     <div>
+    
+     {item.complitionStatus !== "completed" && (
+                   <StyledPopconfirm
+                     // title="Do you want to delete?"
+                     title={
+                       <FormattedMessage
+                         id="app.doyouwishtodelete?"
+                         defaultMessage="Do you wish to delete?"
+                       />
+                     }
+                     onConfirm={() => deleteTask(item.taskId, employeeId)}
+                   >
+                         <Tooltip title="Delete">
+                     <DeleteOutlined
+                       type="delete"
+                       className="!text-icon cursor-pointer text-[red]"
+                       
+                     />
+                     </Tooltip>
+                   </StyledPopconfirm>
+                 )}
+
+     </div>
+               </div>   
+              </div>
+
                      </div>
-                         </div>
                       )
                 })}
                  </InfiniteScroll>
@@ -1092,34 +1107,33 @@ const TaskCardList = (props) => {
 
 <div className=' flex sticky  z-auto'>
           <div class="rounded max-sm:m-1  py-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] ">
-          <div className=" flex max-sm:hidden justify-between w-[63%] font-poppins text-xs p-1 bg-transparent font-bold sticky items-end  z-10">
-          <div className="flex justify-center w-[3.54] md:w-[4.54rem] bg-teal-600 text-white">
+          <div className=" font-poppins text-xs flex max-sm:hidden justify-between w-[64%]  p-1 bg-transparent font-bold sticky  z-10">
+          <div className="flex  w-[3.54] truncate  md:w-[4.54rem] bg-teal-600 text-white">
           {translatedMenuItems[9]}</div>
-        <div className=" text-xs w-[6.5rem] ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
-        < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[0]} 
+          <div className=" flex  w-[9.1rem] truncate  ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
+        < MergeTypeIcon className='!text-icon text-[#c42847] '  />{translatedMenuItems[0]} 
                         </div>
-        <div className="flex justify-center w-[9.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
-        <CategoryIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[1]}
+        <div className="flex  w-[12.9rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
+        <CategoryIcon className='!text-base mr-1 text-[#e4eb2f]'/>{translatedMenuItems[1]}
                         </div>
-             <div className="flex justify-center w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
-             <DateRangeIcon className="!text-icon "/> {translatedMenuItems[2]}
+             <div className="flex  w-[5.9rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
+             <DateRangeIcon className="!text-icon mr-1"/>  {translatedMenuItems[2]}
                         </div>
-             <div className="flex justify-center w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
+             <div className="flex  w-[7.5rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
        
-                        <div className="flex justify-center w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
+                        <div className="flex  w-[10.51rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
                         {translatedMenuItems[4]}
                          
                           </div>
-        <div className="flex justify-center w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
-        <AccountCircleIcon className="!text-icon   text-[#d64933]"/>{translatedMenuItems[5]} 
+        <div className="flex  w-[5.5rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
+        <AccountCircleIcon className="!text-icon mr-1  text-[#d64933]"/> {translatedMenuItems[5]} 
                         </div>
-        <div className="flex justify-center w-[5.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
-        <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[6]}
-                        </div>
-
-                        {/* <div className=" w-[9.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
+        <div className="flex  w-[4.92rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
+        <AccountCircleIcon className="!text-icon  mr-1 text-[#d64933]"/> {translatedMenuItems[6]}
+        {/* <div className=" w-[9.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
                   {translatedMenuItems[3]} 
                         </div> */}
+                        </div>
         
       </div>
       <InfiniteScroll
@@ -1139,11 +1153,11 @@ const TaskCardList = (props) => {
         const incompleteDeviationDate = currentDate.diff(endDate, 'days');
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
-                        <div>
-                           <div className="flex rounded mt-1 bg-white items-center py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-                            <div class="flex max-sm:justify-between max-sm:w-wk items-center  ">
-                                <div className=" flex w-[9.1rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
-<div className="flex max-sm:w-full"> 
+                      <div>
+                      <div className="flex rounded mt-1 bg-white  items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                     <div class="flex max-sm:justify-between max-sm:w-wk items-center  ">
+                         <div className=" flex w-[4.01rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
+                         <div className="flex ml-gap max-sm:w-full"> 
 {item.priority === "High" && (
   // <div class="rounded-full h-10 w-16 bg-red-500"></div>
                       <div class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
@@ -1154,352 +1168,362 @@ const TaskCardList = (props) => {
                     {item.priority === "Low" && (
                       <div class="border rounded-[50%] h-6 w-6 bg-teal-600" ></div>
                     )}
-                    <div class=" w-5"></div>
-          <div class=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-full">
-                                        <Tooltip>
-                                        <div class=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:justify-between flex-row w-full md:flex-col ">
-                                            {/* <div class="text-sm  font-poppins max-sm:hidden">
-                                            Type
-                                            </div> */}
-                                            <div class="text-xs truncate max-w-[6rem] flex items-center  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" title={item.taskType}>                                                                    
-                                            {item.taskType}
-       
-                                            </div>
-                                         </div>
-                                        </Tooltip>
-                                        </div>
-                                        </div>
-                                </div>
+                     </div>
+              </div>
+              <div class=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8rem] max-sm:w-full">
+                                 <Tooltip>
+                                 <div class=" flex justify-center  max-sm:justify-between flex-row w-full md:flex-col ">
+                                     {/* <div class="text-sm  font-poppins max-sm:hidden">
+                                     Type
+                                     </div> */}
+                                     <div class="text-xs truncate max-w-[7rem] flex items-center  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" title={item.taskType}>                                       
+                                     {item.taskType}
 
-                                <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9]  w-[11.12rem] max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
-                                    {/* <div class=" text-sm  font-sm font-poppins max-sm:hidden"> Name </div> */}
-                                    <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
-                                    <span   
-                onClick={() => {
-                  props.handleTaskopenModal(true);               
-                  handleSetCurrentProcessName(item)
-                  // this.props.setCurrentOpportunityRecruitMentData(item);
-                }}
-                className="cursor-pointer text-[#042E8A]"
-                          
-               >
-
-                 {`${item.taskName} `} 
-
-
-               </span>
-                                    </div>
-                                </div>
-                               </div>
-                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className="flex w-[5.22rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.121rem] max-lg:w-[2.521rem] max-sm:flex-row  max-sm:w-auto ">
+                                     </div>
+                                  </div>
+                                 </Tooltip>
+                                 </div>
+                               
                        
-                      
-                       <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
-                        {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
-                   </div>
-                                <div class="flex  w-[6.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
-                                  
-                    <div class="">
-                    <ButtonGroup >
-         
-          <StatusIcon class=" !text-icon"
-  type="To Start"
-  iconType={<HourglassEmptyIcon  className=" !text-icon" />} 
- // iconType="fa-hourglass-start"
-  tooltip="To Start"
-  status={item.taskStatus}
-  difference={difference} 
-  onClick={() =>
-    linkTaskStatus(item.taskId, {
-      taskStatus: "To Start",
-    })
-  }
-/>
-        
-            <StatusIcon class=" !text-icon"
-              type="In Progress"
-             iconType={<HourglassTopIcon  className=" !text-icon"/>}
-              tooltip="In Progress"
-              status={item.taskStatus}
-              difference={difference}
-              onClick={() =>
-                linkTaskStatus(item.taskId, {
-                  //  ...item,
-                   taskStatus: "In Progress",
-                })
-              }
-            />
-         
-            <StatusIcon class=" !text-icon"
-              type="Completed"
-            iconType={<HourglassBottomIcon  className=" !text-icon"/>}
-              tooltip="Completed"
-              status={item.taskStatus}
-              difference={difference}
-              onClick={() =>
-                linkTaskStatus(item.taskId, {
-                  //  ...item,
-                   taskStatus: "Completed",
-                })
-              }
-            />
-          
-        </ButtonGroup>
-        <div></div>
-                        </div>            
-                    </div>
+
+                         <div className=" flex   w-[11.12rem]  items-center justify-start  h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
+                             {/* <div class=" text-sm  font-sm font-poppins max-sm:hidden"> Name </div> */}
+                             <div class=" text-xs ml-gap font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
+                             <span   
+         onClick={() => {
+           props.handleTaskopenModal(true);               
+           handleSetCurrentProcessName(item)
+           // this.props.setCurrentOpportunityRecruitMentData(item);
+         }}
+         className="cursor-pointer text-[#042E8A]"
                    
-                 
-                   <div className="flex  items-center justify-start h-8 ml-gap bg-[#eef2f9]  text-xs w-[9.2rem] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
-                   {item.customerName ? (
-  <>{item.customerName}</>
+        >
+
+          {`${item.taskName} `} 
+
+
+        </span>
+                             </div>
+                         </div>
+                        </div>
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                         <div className="flex w-[5.22rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.121rem] max-lg:w-[2.521rem] max-sm:flex-row  max-sm:w-auto ">
+                
+               
+                <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
+                 {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
+            </div>
+                         <div class="flex  w-[6.2rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
+                           
+             <div class="">
+             <ButtonGroup >
+  
+   <StatusIcon class=" !text-icon"
+type="To Start"
+iconType={<HourglassEmptyIcon  className=" !text-icon" />} 
+// iconType="fa-hourglass-start"
+tooltip="To Start"
+status={item.taskStatus}
+difference={difference} 
+onClick={() =>
+linkTaskStatus(item.taskId, {
+taskStatus: "To Start",
+})
+}
+/>
+ 
+     <StatusIcon class=" !text-icon"
+       type="In Progress"
+      iconType={<HourglassTopIcon  className=" !text-icon"/>}
+       tooltip="In Progress"
+       status={item.taskStatus}
+       difference={difference}
+       onClick={() =>
+         linkTaskStatus(item.taskId, {
+           //  ...item,
+            taskStatus: "In Progress",
+         })
+       }
+     />
+  
+     <StatusIcon class=" !text-icon"
+       type="Completed"
+     iconType={<HourglassBottomIcon  className=" !text-icon"/>}
+       tooltip="Completed"
+       status={item.taskStatus}
+       difference={difference}
+       onClick={() =>
+         linkTaskStatus(item.taskId, {
+           //  ...item,
+            taskStatus: "Completed",
+         })
+       }
+     />
+   
+ </ButtonGroup>
+ <div></div>
+                 </div>
+   
+             </div>
+            
+          
+            <div className="flex text-xs w-[9.2rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
+            <div class="text-xs  font-poppins ml-gap items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+            {item.customerName ? (
+<>{item.customerName}</>
 ) : null}
 
 {item.contact ? (
-  <>{item.contact}</>
+<>{item.contact}</>
 ) : null}        
-
-                   </div>
-                   </div>
-                   <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
-                    <div className=" flex w-[4.33rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row justify-between max-sm:w-auto ">
-                                  {/* <div class="text-sm  font-poppins max-sm:hidden">Assigned</div> */}
-                                  <div class="text-xs  font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                  <span>
-              {item.assignedToName === null ? (
-                null
-              ) : (
-                <>
-                {item.assignedToName === item.submittedBy ? (
-                  
-                  null
-                ) : (
-                  <MultiAvatar2
-                  primaryTitle={item.assignedToName}
-                  imgWidth={"1.8rem"}
-                  imgHeight={"1.8rem"}             
-                />
-                )}
-                </>
-              )}
-            </span>
-                                  </div>
-                              </div>
-                        
-                    
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[5.28rem] max-xl:w-[2.28rem] max-lg:w-[2.28rem] max-sm:flex-row  max-sm:w-auto ">
-                                    
-                                    <div class="text-xs  font-poppins ">
-                                    <MultiAvatar
-                                   
-                                  primaryTitle={item.ownerName}
-                                  imgWidth={"1.8rem"}
-                                  imgHeight={"1.8rem"}
-                                />
-                                                    </div>
-                                </div>
-                               
-                             
-                       
-<div className="w-[5.23rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">
-{item.taskStatus==="Completed"&&(
-                   <div className="flex  w-[5.23rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:w-auto  ">
-             {item.assignedToName !== item.submittedBy ? 
-             <span>
-             <Tooltip overlayStyle={{ maxWidth: "400px" }} title={`Review :${item.feedbackReview}`}>
-            {item.feedbackRating === 0 ? (<StarBorderIcon
-            className=" !text-icon text-[#eeeedd]"/>)
-              : (
-                <span>
-                  {item.feedbackRating}
-                 
-                  {<StarBorderIcon
-                  className=" !text-icon text-[#FFD700]"
-                    />}
-                
-                </span>)}
-             
-                </Tooltip>
-                </span>
-              
-                :null}    
-     </div> 
-     )}
-     </div>                                  
-                   <div class="flex  w-[8.21rem]  items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
-                    <div class=" w-36">
-  {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
-    <>
-      <div>
-        <Button
-        onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
-          style={{ backgroundColor: "teal", color: "white" }}
-        >
-          <FormattedMessage id="app.approve" defaultMessage="Approve" />
-        </Button>
-        <Button
-          style={{
-            backgroundColor: "rgb(233, 79, 79)",
-            color: "white",
-          }}
-          onClick={() => rejectTaskByTaskId(item.taskId)}
-        >
-          <FormattedMessage id="app.reject" defaultMessage="Reject" />
-        </Button>
-      </div>
-    </>
-  ) : (
-    <>
-      {item.approvedInd === "Approved" ? (
-        <CheckCircleOutlined
-          type="check-circle"
-          theme="twoTone"
-          twoToneColor="#52c41a"
-          size={140}
-          style={{ fontSize: "1rem" }}
-        />
-      ) : item.approvedInd === "Rejected" ? (
-        <CloseCircleOutlined
-          type="close-circle"
-          theme="twoTone"
-          twoToneColor="red"
-          size={140}
-          style={{ fontSize: "1rem" }}
-        />
-      ) : (
-        <></>
-      )}
-    </>
-  )}
-  </div>
 </div>
-<div className="flex w-[7.23rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
-                                         
-                                         <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                         <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+            </div>
+            </div>
+            <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
+             <div className=" flex w-[4.33rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row  max-sm:w-auto ">
+                           {/* <div class="text-sm  font-poppins max-sm:hidden">Assigned</div> */}
+                           <div class="text-xs  font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                           <span>
+       {item.assignedToName === null ? (
+         null
+       ) : (
+         <>
+         {item.assignedToName === item.submittedBy ? (
+           
+           null
+         ) : (
+           <MultiAvatar2
+           primaryTitle={item.assignedToName}
+           imgWidth={"1.8rem"}
+           imgHeight={"1.8rem"}
+           // className="!bg-[#94b3e4]"
+           // // style={{ backgroundColor: "#94b3e4" }}
+         />
+         )}
+         </>
+       )}
+     </span>
+                           </div>
+                       </div>
+                 
+             
+                         <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[4.28rem] max-xl:w-[2.28rem] max-lg:w-[2.28rem] max-sm:flex-row max-sm:w-auto ">
+                             
+                             <div class="text-xs  font-poppins ">
+                             <MultiAvatar
+                            
+                           primaryTitle={item.ownerName}
+                           imgWidth={"1.8rem"}
+                           imgHeight={"1.8rem"}
+                         />
+                                             </div>
+                         </div>
+                        
+                      
+                
+<div className="w-[3.23rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">
+{item.taskStatus==="Completed"&&(
+            <div className="flex items-center  w-[5.23rem]  max-sm:flex-row  max-sm:w-auto  ">
+      {item.assignedToName !== item.submittedBy ? 
+      <span>
+      <Tooltip overlayStyle={{ maxWidth: "400px" }} title={`Review :${item.feedbackReview}`}>
+     {item.feedbackRating === 0 ? (<StarBorderIcon
+     className=" !text-icon text-[#eeeedd]"/>)
+       : (
+         <span>
+           {item.feedbackRating}
+          
+           {<StarBorderIcon
+           className=" !text-icon text-[#FFD700]"
+             />}
+         
+         </span>)}
+      
+         </Tooltip>
+         </span>
+       
+         :null}  
+</div> 
+)}
+</div>
+                                 
+            <div class="flex  w-[9.21rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
+             <div class=" w-36 items-center">
+{item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
+<>
+<div>
+ <Button className=""
+ onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
+   style={{ backgroundColor: "teal", color: "white" }}
+ >
+   <FormattedMessage id="app.approve" defaultMessage="Approve" />
+ </Button>
+ <Button
+   style={{
+     backgroundColor: "rgb(233, 79, 79)",
+     color: "white",
+   }}
+   onClick={() => rejectTaskByTaskId(item.taskId)}
+ >
+   <FormattedMessage id="app.reject" defaultMessage="Reject" />
+ </Button>
+</div>
+</>
+) : (
+<>
+{item.approvedInd === "Approved" ? (
+ <CheckCircleOutlined
+   type="check-circle"
+   theme="twoTone"
+   twoToneColor="#52c41a"
+   size={140}
+   style={{ fontSize: "1rem" }}
+ />
+) : item.approvedInd === "Rejected" ? (
+ <CloseCircleOutlined
+   type="close-circle"
+   theme="twoTone"
+   twoToneColor="red"
+   size={140}
+   className="text-base"
+ // style={{ fontSize: "1rem" }}
+ />
+) : (
+ <></>
+)}
+</>
+)}
+</div>
+</div>
+<div className="flex w-[7.23rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[3.23rem] max-lg:w-[2.23rem]  max-sm:flex-row  max-sm:w-auto ">
+<div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5rem] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+               <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
 </svg>
-{item.taskStatus === "Completed" ? (completeDeviation > 0 &&  <span className=" text-blue-900 font-semibold">{completeDeviation} Days</span>) :
-                       (incompleteDeviationDate > 0 && <span className=" text-blue-900 font-semibold">
-                        {incompleteDeviationDate} Days
-                        
-                        </span>)}
-</span>
-                   
-                    </div>
-                                         
-                                       </div>
+{item.taskStatus === "Completed" ? (completeDeviation > 0 &&  <span className=" text-blue-600 font-semibold">{completeDeviation} Days</span>) :
+(incompleteDeviationDate > 0 && <span className=" text-blue-600 font-semibold">{incompleteDeviationDate} Days</span>)}
+{/* {getRelativeTime(item.creationDate)} */}
+</span></div>  
+           
+               
+                
+              </div>
 </div>
-                          
+                   
 <div class="flex  max-sm:justify-end w-wk items-center justify-end  h-8 ml-gap bg-[#eef2f9]">    
 <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem]  max-sm:flex-row  max-sm:w-auto  justify-center ">
-             {item.assignedToName !== item.submittedBy ? 
-                         <Tooltip title="Feedback">
-                         <FeedbackIcon
-                                  onClick={() => {
-                                    handleTaskFeedbackDrawerModal(true);
-                                    handleSetTaskNameId(item);
-                                  }}
-                                  className="!text-icon cursor-pointer text-[#10d512]"
-                                 
-                                />
-                             </Tooltip>
-              
-                :null}
-
-     
-     </div> 
+      {item.assignedToName !== item.submittedBy ? 
+                  <Tooltip title="Feedback">
+                  <FeedbackIcon
+                           onClick={() => {
+                             handleTaskFeedbackDrawerModal(true);
+                             handleSetTaskNameId(item);
+                           }}
+                           className="!text-icon cursor-pointer text-[#10d512]"
+                          
+                         />
+                      </Tooltip>
+       
+         :null}
 
 
-     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
-           
-                      
-          <UploadIcon className="!text-icon cursor-pointer text-[#b3770f]"
-              onClick={() => {
-                props.handleUpdateDocumentDrawerModal(true);
-                handleSetTaskNameId(item);
-              }}
-          />                    
-     </div> 
-     <div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
-           
-                      
-     <EscalatorIcon  className="!text-icon cursor-pointer text-[#358fbb]"
-         onClick={() => {
-          handleTaskStepperDrawerModal(true);
-          handleSetTaskNameId(item);
-        }}
-     />                    
-      </div> 
-                    <div class="flex  max-sm:flex-row  max-sm:w-auto justify-evenly  ">
-                    <Tooltip title="Notes">
-       <NoteAltIcon
-                onClick={() => {
-                  handleTaskNotesDrawerModal(true);
-                  handleSetTaskNameId(item);
-                }}
-                className="!text-icon cursor-pointer text-[green]"
-              />
-           </Tooltip>
-              </div>
-              <div>
-                         <Tooltip title="Document">
-                         <DownloadForOfflineIcon
-                                  onClick={() => {
-                                    props.handleTaskDocumentDrawerModal(true);
-                                    handleSetTaskNameId(item);
-                                  }}
-                                  className="!text-icon cursor-pointer"
-                                 
-                                />
-                             </Tooltip>
-                    {/* )} */}
+</div> 
+
+
+<div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
+    
+               
+   <UploadIcon className="!text-icon cursor-pointer text-[#b3770f]"
+       onClick={() => {
+         props.handleUpdateDocumentDrawerModal(true);
+         handleSetTaskNameId(item);
+       }}
+   />    
+       
+
+
+</div> 
+<div className="flex  max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
+    
+               
+<EscalatorIcon  className="!text-icon cursor-pointer text-[#358fbb]"
+  onClick={() => {
+   handleTaskStepperDrawerModal(true);
+   handleSetTaskNameId(item);
+ }}
+/>
         
-            </div>
-                    <div class="flex max-sm:flex-row max-sm:w-auto justify-evenly ">   
-          <Tooltip title="Edit">
-          {props.userId === item.userId && (
-                      <BorderColorIcon
-                        type="edit"
-                        className="!text-icon cursor-pointer"                   
-                        onClick={() => {
-                          props.setEditTask(item);
-                          handleUpdateTaskModal(true);
-                        }}
-                      />
-                    )}
-            </Tooltip>
-            </div>
-          
-            <div>
-           
-            {item.complitionStatus !== "completed" && (
-                          <StyledPopconfirm
-                            // title="Do you want to delete?"
-                            title={
-                              <FormattedMessage
-                                id="app.doyouwishtodelete?"
-                                defaultMessage="Do you wish to delete?"
-                              />
-                            }
-                            onConfirm={() => deleteTask(item.taskId, employeeId)}
-                          >
-                                <Tooltip title="Delete">
-                            <DeleteOutlined
-                              type="delete"
-                              className="!text-icon cursor-pointer text-[red]"
-                              
-                            />
-                            </Tooltip>
-                          </StyledPopconfirm>
-                        )}
-      
-            </div>
-                      </div>   
+
+
+</div> 
+             <div class="flex  max-sm:flex-row  max-sm:w-auto justify-evenly  ">
+             <Tooltip title="Notes">
+<NoteAltIcon
+         onClick={() => {
+           handleTaskNotesDrawerModal(true);
+           handleSetTaskNameId(item);
+         }}
+         className="!text-icon cursor-pointer text-[green]"
+       />
+    </Tooltip>
+       </div>
+       <div>
+                  <Tooltip title="Document">
+                  <DownloadForOfflineIcon
+                           onClick={() => {
+                             props.handleTaskDocumentDrawerModal(true);
+                             handleSetTaskNameId(item);
+                           }}
+                           className="!text-icon cursor-pointer"
+                          
+                         />
+                      </Tooltip>         
+ 
+     </div>
+             <div class="flex max-sm:flex-row max-sm:w-auto justify-evenly ">   
+   <Tooltip title="Edit">
+   {props.userId === item.userId && (
+               <BorderColorIcon
+                 type="edit"
+                 className="!text-icon cursor-pointer"                   
+                 onClick={() => {
+                   props.setEditTask(item);
+                   handleUpdateTaskModal(true);
+                 }}
+               />
+             )}
+     </Tooltip>
+     </div>
+   
+     <div>
+    
+     {item.complitionStatus !== "completed" && (
+                   <StyledPopconfirm
+                     // title="Do you want to delete?"
+                     title={
+                       <FormattedMessage
+                         id="app.doyouwishtodelete?"
+                         defaultMessage="Do you wish to delete?"
+                       />
+                     }
+                     onConfirm={() => deleteTask(item.taskId, employeeId)}
+                   >
+                         <Tooltip title="Delete">
+                     <DeleteOutlined
+                       type="delete"
+                       className="!text-icon cursor-pointer text-[red]"
+                       
+                     />
+                     </Tooltip>
+                   </StyledPopconfirm>
+                 )}
+
+     </div>
+               </div>   
+              </div>
+
                      </div>
-                            </div>
                     )
                 })}
                  </InfiniteScroll>
