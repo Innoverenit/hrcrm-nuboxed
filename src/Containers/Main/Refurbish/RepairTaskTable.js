@@ -1,26 +1,39 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect,useState,Suspense } from 'react'
 import { getTaskByPhoneId, deleteTaskList,handleSpareProcess } from "./RefurbishAction"
 import { MultiAvatar } from '../../../Components/UI/Elements'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import QCPhoneTaskToggle from './QCPhoneTaskToggle'
-import { Popconfirm,Tooltip } from "antd";
+import { Button, Popconfirm,Tooltip } from "antd";
 import dayjs from "dayjs";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Clock from 'react-clock';
 import 'react-clock/dist/Clock.css';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import QcTaskNwToggle from './QcTaskNwToggle'
 import ProcessSpareDrawer from './ProcessSpareDrawer'
+import ProcessSpareTable from './ProcessSpareTable'
+import RepairSpareListTable from './RepairSpareListTable'
+import { BundleLoader } from '../../../Components/Placeholder'
+import AddSpareInRepair from './AddSpareInRepair'
 
 const RepairTaskTable = (props) => {
     const [newData, setnewData] = useState("");
+    const [open,setOpen]=useState(false);
+    const [newOpen,setNewOpen]=useState(false);
     useEffect(() => {
         props.getTaskByPhoneId(props.phoneId)
     }, [])
 
     function handleSetNewData(item) {
         setnewData(item);
+    }
+    function handleCross() {
+        setOpen(false);
+    }
+    function handleClose() {
+        setNewOpen(false);
     }
     console.log(props.taskByPhone)
     return (
@@ -29,8 +42,14 @@ const RepairTaskTable = (props) => {
 
                 {props.taskByPhone.map((item) => {
                     return (
+                        <>
                         <div class="cursor-pointer w-[100%] flex justify-center max-sm:w-auto mt-2 ">
-                             <div class="w-[30%]">
+                             <div class="w-[30%]"
+                              onClick={() => {
+                              setOpen(true);
+                                handleSetNewData(item);
+                            }}
+                             >
                                 {item.taskName} {item.level}
                             </div>
                             <div class="w-[70%] flex justify-between">
@@ -43,15 +62,16 @@ const RepairTaskTable = (props) => {
 
                                 />
                                  <Tooltip title="Spare">
-                                <AddBoxIcon className=" !text-icon  ml-1 items-center
- text-[#6f0080ad]"
+                                 
+                                   <Button
+                                   type="primary"
                                   onClick={() => {
-                                    props.handleSpareProcess(true);
+                                    setNewOpen(true);
                                     handleSetNewData(item);
                                    // hanldeSpare();
 
-                                }}
-                                />
+                                }}><DataSaverOnIcon className="!text-icon"/> Spare</Button>
+                           
                                 </Tooltip>
                                 <MultiAvatar
                                     primaryTitle={`${item.completeTaskUserName}`}
@@ -61,12 +81,12 @@ const RepairTaskTable = (props) => {
                                 <span>
                                     {dayjs(item.creationDate).format("DD-MM-YY")}
                                 </span>
-                                <span>
+                                {/* <span>
                                     <Clock
                                          style={{ width: "5rem", height: "5rem" }}
                                         value={dayjs(item.creationDate).format("HH:mm")} />
 
-                                </span>
+                                </span> */}
                                 {!item.completeTaskInd && <Popconfirm
                                     title="Do you want to delete?"
                                     onConfirm={() => props.deleteTaskList({
@@ -80,16 +100,35 @@ const RepairTaskTable = (props) => {
                             </div>
 
                         </div>
+                        {open && item.phoneTaskId === newData.phoneTaskId &&
+                         <Suspense fallback={<BundleLoader />}>
+                            <div className="mt-2">
+                            <RepairSpareListTable
+                            phoneId={props.phoneId}
+                            RowData={props.RowData}
+                            onClose={handleCross}   
+                            phoneTaskId={newData && newData.phoneTaskId}                               
+                        />
+                             </div>
+                         </Suspense>
+                }
+                 {newOpen && item.phoneTaskId === newData.phoneTaskId &&
+                         <Suspense fallback={<BundleLoader />}>
+                            <div className="mt-2">
+                         <AddSpareInRepair
+                                 phoneId={props.phoneId}
+                                 RowData={props.RowData}
+                                // orderPhoneId={props.rowData.orderPhoneId} 
+                                 newData={newData} 
+                                 onClose={handleClose}                    
+                             />
+                             </div>
+                         </Suspense>
+                }
+                        </>
                     )
                 })}
-            </div>
-            <ProcessSpareDrawer
-         newData={newData}
-                  RowData={props.RowData}   
-                  rowData={props.rowData}           
-                  processSpareModal={props.processSpareModal}
-                    handleSpareProcess={props.handleSpareProcess}
-                />
+            </div> 
         </div>
     )
 }

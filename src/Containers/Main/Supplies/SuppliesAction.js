@@ -169,6 +169,58 @@ export const getSuppliesHistory = (suppliesId) => (dispatch) => {
     });
 };
 
+
+export const getBestBeforeJumpList = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_BESTBEFORE_JUMPLIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/BestBefore/list/${orgId}`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_BESTBEFORE_JUMPLIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_BESTBEFORE_JUMPLIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getBestBeforeJumpListCount = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_BEST_BEFORE_JUMP_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/BestBefore/count/${orgId}`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_BEST_BEFORE_JUMP_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_BEST_BEFORE_JUMP_FAILURE,
+        payload: err,
+      });
+    });
+};
 /**
  *  delete modal
  */

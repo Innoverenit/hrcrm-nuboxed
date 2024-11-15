@@ -153,8 +153,8 @@ function RefurbishActionLeft (props) {
                   }}
                 >
                   <Avatar style={{ background: viewType === "list" ? "#f279ab" : "#28a355",
-                     boxShadow: props.viewType === "card" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
-                  transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"
+                     boxShadow: props.viewType === "list" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "list" ? "scale(1.05)" : "scale(1)"
                    }}             
                   >
                     <BuildCircleIcon className="text-white cursor-pointer !text-icon" /></Avatar>
@@ -173,7 +173,10 @@ function RefurbishActionLeft (props) {
                   color: viewType === "all" && "#1890ff",
                 }}
               >
-                <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#28a355" }}>
+                <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#28a355",
+                  boxShadow: props.viewType === "all" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "all" ? "scale(1.05)" : "scale(1)"
+                 }}>
                   <div className="text-white">{translatedMenuItems[1]}</div></Avatar>  
                   {/* ALL */}
     

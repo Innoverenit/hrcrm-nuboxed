@@ -115,7 +115,7 @@ const AddMultipleQCSpare = (props) => {
                     <>
                         <div class="flex justify-between">
                             <div class="w-[50%]">
-                                <div class="font-bold text-xs font-poppins text-black">{`Spare ${i + 1}`}</div>
+                                <div class="font-bold text-xs font-poppins text-black">{`Spares ${i + 1}`}</div>
 
                                 <Select
                                     name={`${row.id}_value`}

@@ -11,6 +11,14 @@ const initialState = {
     fetchingbestBeforeEmailListError: false,
     bestBeforeEmailList:[],
 
+    fetchingBestBeforeJumpList: false,
+    fetchingBestBeforeJumpListError: false,
+    bestBeforeSuppliesList:[],
+
+    fetchingBestBeforeCountSupplies: false,
+     fetchingBestBeforeCountSuppliesError: false,
+       suppliesBestBeforeCount:{},            
+
     fetchingSuppliesInputSearchData:false,
     fetchingSuppliesInputSearchDataError: false,
     suppliesSerachedData:[],
@@ -525,6 +533,38 @@ export const suppliesReducer = (state = initialState, action) => {
                 fetchingSuppliesHistory: false,
                 fetchingSuppliesHistoryError: true,
             };
+
+
+            case types.GET_BESTBEFORE_JUMPLIST_REQUEST:
+              return { ...state, fetchingBestBeforeJumpList: true };
+          case types.GET_BESTBEFORE_JUMPLIST_SUCCESS:
+              return {
+                  ...state,
+                  fetchingBestBeforeJumpList: false,
+                  bestBeforeSuppliesList: action.payload,
+              };
+          case types.GET_BESTBEFORE_JUMPLIST_FAILURE:
+              return {
+                  ...state,
+                  fetchingBestBeforeJumpList: false,
+                  fetchingBestBeforeJumpListError: true,
+              };
+
+
+              case types.GET_BEST_BEFORE_JUMP_REQUEST:
+                return { ...state, fetchingBestBeforeCountSupplies: true };
+            case types.GET_BEST_BEFORE_JUMP_SUCCESS:
+                return {
+                    ...state,
+                    fetchingBestBeforeCountSupplies: false,
+                    suppliesBestBeforeCount: action.payload,
+                };
+            case types.GET_BEST_BEFORE_JUMP_FAILURE:
+                return {
+                    ...state,
+                    fetchingBestBeforeCountSupplies: false,
+                    fetchingBestBeforeCountSuppliesError: true,
+                };
 
 
             case types.HANDLE_UPLOAD_MATERIAL_MODAL:

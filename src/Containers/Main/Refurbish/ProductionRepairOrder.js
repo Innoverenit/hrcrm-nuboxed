@@ -294,7 +294,7 @@ function ProductionRepairOrder(props) {
                                                             item.repairInspectionInd === 1 ?
                                                                 <Button style={{ width: "8rem" }}
                                                                     onClick={handlePauseResume}>
-                                                                    {hide ?  translatedMenuItems[8] :  translatedMenuItems[9]}</Button> : <div class="flex items-center justify-center text-white w-[10.2rem] h-8 bg-green-600"> {translatedMenuItems[10]}</div>}
+                                                                    {hide ?  translatedMenuItems[8] :  translatedMenuItems[9]}</Button> : <div class="flex items-center justify-center text-white w-[10.2rem] h-8 bg-[#7dcfb6]"> {translatedMenuItems[10]}</div>}
 
                                                     </div>
                                                 </div>

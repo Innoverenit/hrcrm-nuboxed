@@ -5,6 +5,7 @@ import Barcode from 'react-barcode';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
 import FactCheckIcon from '@mui/icons-material/FactCheck';
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import UpdateIcon from '@mui/icons-material/Update';
 import {
     getRepairPhoneByUser,
@@ -548,11 +549,12 @@ function PhoneListForRepair(props) {
                                             </div>
                         }
                          {props.rowData.repairInspectionInd !== 0 &&
-                                            <div className=" flex  items-center justify-center ml-gap bg-[#eef2f9] h-8  w-[9.019rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                            <div className=" flex  items-center justify-center ml-gap bg-[#eef2f9] h-8  w-[10.019rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                   
-                                                  
+                                                <DataSaverOnIcon className="!text-icon"/> 
                                                   <Tooltip title={translatedMenuItems[8]}>
+                                                 
                                                      <Progress
                                                     percent={acivedPercentage}
                                                     success={{acivedPercentage}}

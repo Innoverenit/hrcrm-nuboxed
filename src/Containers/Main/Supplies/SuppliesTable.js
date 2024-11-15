@@ -19,7 +19,8 @@ import {
   handleMaterialInventory,
   handlePriceModal,
   handleUploadSuppliesModal,
-  handleErpDocumentUploadModal
+  handleErpDocumentUploadModal,
+  getBestBeforeJumpListCount
 } from "./SuppliesAction";
 import {getUOM} from "../../Settings/SettingsAction"
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -48,6 +49,7 @@ import AddDocumentErpModals from "./AddDocumentErpModals";
 import { FormattedMessage } from "react-intl";
 import SuppliesSearchedData from "./SuppliesSearchedData";
 import EmptyPage from "../EmptyPage";
+import BestJumpOpen from "./BestJumpOpen";
 const MaterialInventoryDrawer = lazy(()=>import("./MaterialInventory/MaterialInventoryDrawer"));
 const MaterialBuilderDrawer = lazy(() => import("./MaterialBuilder/MaterialBuilderDrawer"));
 const UpdateSuppliesFormDrawer = lazy(() => import("./UpdateSuppliesFormDrawer"));
@@ -66,7 +68,7 @@ function SuppliesTable(props) {
   const [modalVisible, setModalVisible] = useState(false);
   const [openComplementary,setopenComplementary] = useState(false);
   const [openStatus,setopenStatus] = useState(false);
-
+  const [open , setOpen] = useState(false);
   const {bestbeforelistcount, fetchingbestbefore} = props;
 
   const openModal = () => {
@@ -85,6 +87,7 @@ function SuppliesTable(props) {
     setPage(page + 1);
     props.getSuppliesList(page);
     props.getUOM()
+    props.getBestBeforeJumpListCount(props.orgId)
   }, []);
 
   const handleLoadMore = () => {
@@ -192,9 +195,9 @@ function SuppliesTable(props) {
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
               title= {translatedMenuItems[25]}
-             // jumpstartClick={()=> handleClick("Added")}
+              jumpstartClick={()=> setOpen(true)}
               cursorData={"pointer"}
-              value={bestbeforelistcount}
+              // value={props.suppliesBestBeforeCount}
             // isLoading={fetchingorderDetails}
             />
                          </div>
@@ -392,6 +395,8 @@ function SuppliesTable(props) {
                                   <div className=" flex  max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                                     <div class=" text-[0.65rem] max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                       {item.hsn} 
+                                    
+                                      
                                     </div>
                                     
                                   </div>
@@ -669,7 +674,13 @@ function SuppliesTable(props) {
       uploadSuppliesList={props.uploadSuppliesList}
       handleUploadSuppliesModal={props.handleUploadSuppliesModal}
       />
-
+      <BestJumpOpen
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      particularDiscountData={particularDiscountData}
+      open={open}
+      setOpen={setOpen}
+      />
 
       
       </Suspense>
@@ -695,7 +706,9 @@ const mapStateToProps = ({ supplies, auth,settings }) => ({
   locationSuppliesModal:supplies.locationSuppliesModal,
   UOMListData:settings.UOMListData,
   suppliesSerachedData:supplies.suppliesSerachedData,
-  fetchingSuppliesInputSearchData:supplies.fetchingSuppliesInputSearchData
+  fetchingSuppliesInputSearchData:supplies.fetchingSuppliesInputSearchData,
+  orgId: auth.userDetails.organizationId,
+  suppliesBestBeforeCount:supplies.suppliesBestBeforeCount
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -714,7 +727,8 @@ const mapDispatchToProps = (dispatch) =>
       handleMaterialInventory,
       handleErpDocumentUploadModal,
       handlePriceModal,
-      getUOM
+      getUOM,
+      getBestBeforeJumpListCount
     },
     dispatch
   );

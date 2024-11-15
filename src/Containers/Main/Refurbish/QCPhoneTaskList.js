@@ -67,7 +67,7 @@ function QCPhoneTaskList(props) {
                                  phoneId={props.phoneId}
                                  RowData={props.RowData}
                                 // orderPhoneId={props.rowData.orderPhoneId} 
-                                 newData={props.newData} 
+                                 newData={newData} 
                                  onClose={handleClose}                    
                              />
                              </div>
