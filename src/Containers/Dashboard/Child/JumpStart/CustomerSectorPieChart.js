@@ -82,7 +82,8 @@ const[error,setError]=useState(null);
 
   return (
     <div className=' w-[23vw]'>
-      <ReactApexChart options={options} series={series} type="donut" width={options.chart.width} />
+      {error ? <div class="text-red">No Data</div>:
+      <ReactApexChart options={options} series={series} type="donut" width={options.chart.width} />}
     </div>
   );
 };
