@@ -6,6 +6,9 @@ import { Formik, Form, Field } from "formik";
 import { Input } from "./styled";
 import { ValidationError} from "../../Components/UI/Elements";
 import Button from "antd/lib/button";
+import "./autoplaycarousel.scss";
+import { cardDetails } from "./carousel-config";
+import CarouselItem from "./CarouselItem";
 import { login, generateOtpByEmail, validateOtp } from "./AuthAction";
 import {
   EyeInvisibleOutlined, EyeOutlined,
@@ -81,7 +84,7 @@ class Login extends Component {
              <div className=" flex justify-start ">
               <img
               className="big-logo w-[8rem]"
-              src={FWLogo2}
+              src={DevelopTk}
               alt="Tekorero logo"
             /></div>
             
@@ -164,13 +167,33 @@ class Login extends Component {
 
 
           </div>
-          <div class="w-1/2 flex justify-center items-center max-sm:hidden  bg-blue-400">
-            <img
+          <div class="w-1/2 flex justify-center items-center max-sm:hidden  overflow-x-auto bg-blue-400">
+            {/* <img
               className="big-logo h-[50%] w-[94%]"
               src={FWLogo3}
               style={{}}
               alt="Tekorero logo"
-            />
+            /> */}
+            <div className="carousel-container">
+      <div className="carousel-track ">
+        {/* {Object.keys(cardDetails).map((detailKey) => {
+          return (
+            <CarouselItem
+              imgUrl={cardDetails[detailKey].imgUrl}
+              imgTitle={cardDetails[detailKey].title}
+            ></CarouselItem>
+          );
+        })} */}
+        {Object.keys(cardDetails).map((detailKey) => {
+          return (
+            <CarouselItem 
+              imgUrl={cardDetails[detailKey].imgUrl}
+              imgTitle={cardDetails[detailKey].title}
+            ></CarouselItem>
+          );
+        })}
+      </div>
+    </div>
           </div>
 
         </div>

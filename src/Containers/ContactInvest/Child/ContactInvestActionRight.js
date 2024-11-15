@@ -85,17 +85,7 @@ class ContactInvestActionRight extends React.Component {
             <InsertDriveFileIcon  className="!text-xl"   />
          </a>
          </Tooltip>
-       )} {user.imInd === true  && user.investorContactCreateInd === true &&  (
-        <Tooltip placement="left" title="Create">
-          <Button 
-           type="primary"
-         onClick={() => handleContactInvestModal(true)}
-        >
-       <DataSaverOnIcon className="!text-icon"/> 
-       {this.state.translatedMenuItems[0]}
-          </Button>
-        </Tooltip>
-        )}
+       )}
         {user.userType !== "USER" && user.department !== "Partner" && ( 
         <Button
           type="primary"
@@ -119,6 +109,17 @@ class ContactInvestActionRight extends React.Component {
          {/* Upload */}
         </Button>
       </Tooltip>
+      {user.imInd === true  && user.investorContactCreateInd === true &&  (
+        <Tooltip placement="left" title="Create">
+          <Button 
+           type="primary"
+         onClick={() => handleContactInvestModal(true)}
+        >
+       <DataSaverOnIcon className="!text-icon"/> 
+       {this.state.translatedMenuItems[0]}
+          </Button>
+        </Tooltip>
+        )}
       </div>
       )}
        <UploadContactInvest

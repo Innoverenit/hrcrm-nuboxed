@@ -250,9 +250,9 @@ function UpdateInvestorForm (props) {
                     inlineLabel
                     />
                     : ( null)}   
-                   <div class=" flex justify-between mt-6">
-                   <div class=" w-3/12 font-bold font-poppins text-xs max-sm:w-[30%]">                
-                   {translatedMenuItems[3]} 
+              <div className="font-bold text-xs  mt-3">{translatedMenuItems[4]}</div>         
+   <div class=" flex justify-between shadow-[0_0.15em_0.3em_#aaa] border border-[#bfbebb] h-8">
+   <div class=" w-3/12 max-sm:w-[35%]">  
                  {/* Dial Code */}
                    <FastField
                         name="countryDialCode"
@@ -263,9 +263,12 @@ function UpdateInvestorForm (props) {
                         component={SearchSelect}
                         inlineLabel
                       />
-                    </div>
-                    <div class=" font-bold font-poppins text-xs w-8/12">
-                    {translatedMenuItems[4]} 
+                    </div> <div class="w-[1px] h-full bg-gray-300">
+  <div class="w-full h-[75%]"></div>
+</div>
+<div class=" w-[76%]">
+<div class="text-xs flex flex-col font-bold "> 
+                   
                       <FastField
                         //isRequired
                         type="text"
@@ -275,7 +278,8 @@ function UpdateInvestorForm (props) {
                         // label="Phone No"
                         inlineLabel
                         width={"100%"}
-                        />                   
+                        />   
+                        </div>                
                          </div>
                   </div>
                   

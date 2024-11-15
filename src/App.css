@@ -849,19 +849,12 @@ scrollbar-width: thin;
 }
 
 .loader {
-  border: 5px dashed  #1677ff;
+  border: 2.5px dashed  #1677ff;
   /* border-top: 8px solid #3498db; */
   border-radius: 50%;
   width: 4rem;
   height: 4rem;
   animation: spin 1s linear infinite;
-}
-.custom-loader {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  
 }
 
 @keyframes spin {

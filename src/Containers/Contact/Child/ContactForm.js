@@ -15,6 +15,7 @@ import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 import { getCustomerData } from "../../Customer/CustomerAction";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { base_url } from "../../../Config/Auth";
+import { InputComponent1 } from "../../../Components/Forms/Formik/InputComponent1";
 const { Option } = Select;
 /**
  * yup validation scheme for creating a contact
@@ -466,14 +467,15 @@ class ContactForm extends Component {
                     }
                     </div>
                   
-                  </div>               
-                  <div class=" flex justify-between mt-2 ">
-                    <div class="flex flex-col w-1/4">
+                  </div>    
                   {this.props.customerConfigure.dailCodeInd===true&&
-                  <div class="  flex flex-col text-xs font-semibold font-poppins"> {translatedMenuItems[5]}</div>
-  }
+                  <div class="  flex  text-xs font-semibold font-poppins"> {translatedMenuItems[6]}</div>
+  }           
+             <div class="  flex justify-between shadow-[0_0.15em_0.3em_#aaa] border border-[#bfbebb] h-8">
+             <div class=" w-3/12 max-sm:w-[30%]">
+                
                   {this.props.customerConfigure.dailCodeInd===true&&
-                    <div class=" w-wk max-sm:w-2/5">
+                   
                       <FastField
                         name="countryDialCode"
                         isColumnWithoutNoCreate                 
@@ -485,19 +487,22 @@ class ContactForm extends Component {
                         }}
                         inlineLabel
                       />
-                    </div>
+                    
                
   }
+   <div class="w-[1px] h-full bg-gray-300">
+  <div class="w-full h-[75%]"></div>
+</div>
   </div>
-                    <div class=" w-2/5 max-sm:w-2/5 ">
-                    {this.props.customerConfigure.phoneNoInd===true&&
+                    <div class=" w-[76%] max-sm:w-2/5 ">
+                    {/* {this.props.customerConfigure.phoneNoInd===true&&
                     <div class=" text-xs font-semibold font-poppins"> {translatedMenuItems[6]}</div>
-  }
+  } */}
                     {this.props.customerConfigure.phoneNoInd===true&&
-                      <FastField
+                      <Field
                         type="number"
                         name="mobileNumber"                   
-                        component={InputComponent}
+                        component={InputComponent1}
                         inlineLabel
                         width={"100%"}
                         isColumn
@@ -518,11 +523,12 @@ class ContactForm extends Component {
                     }
                     </div>
                   </div>
-                 
-                  <div class=" flex flex-col justify-between">
-                    <div class=" w-2/4">
-                    <div class=" text-xs font-semibold font-poppins"> </div>
+             
+                    <div class=" text-xs font-semibold font-poppins"> {translatedMenuItems[7]}</div>
                       {" "}
+                   
+                  <div class=" flex justify-between shadow-[0_0.15em_0.3em_#aaa] border border-[#bfbebb] h-8">
+                  <div class=" w-3/12 max-sm:w-[35%]">   
                       {this.state.whatsapp && (
                         <FastField
                           name="countryDialCode1"
@@ -540,10 +546,13 @@ class ContactForm extends Component {
                         />
                       )}
                     </div>
-                    <div class=" w-2/4">
-                    <div class=" text-xs font-semibold font-poppins"> {translatedMenuItems[7]}</div>
+                    <div class="w-[1px] h-full bg-gray-300">
+  <div class="w-full h-[75%]"></div>
+</div>
+<div class=" w-[76%]">
+<div class="text-xs flex flex-col font-bold "> 
                       {this.state.whatsapp && (
-                        <FastField
+                        <Field
                           type="text"
                           name="phoneNumber"
                           placeholder="Phone #"
@@ -554,6 +563,7 @@ class ContactForm extends Component {
                           width={"100%"}
                         />
                       )}
+                      </div>
                     </div>
                   </div>
                  

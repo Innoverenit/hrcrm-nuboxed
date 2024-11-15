@@ -25,6 +25,7 @@ import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage"
 import {getInvestorList} from "../../Settings/Category/InvestorTab/InvestorListAction";
 import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
 import {base_url} from "../../../Config/Auth";
+import { InputComponent1 } from "../../../Components/Forms/Formik/InputComponent1";
 
 // yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -406,10 +407,11 @@ function InvesterForm(props) {
                     component={InputComponent}
                     inlineLabel
                   />     
-                  : ( null)}             
-                   <div class=" flex justify-between mt-3">
-                    <div class=" font-bold font-poppins text-xs w-3/12 max-sm:w-[30%]">
-                    {translatedMenuItems[3]} 
+                  : ( null)}    
+   <div className="font-bold text-xs  mt-3">{translatedMenuItems[4]}</div>         
+   <div class=" flex justify-between shadow-[0_0.15em_0.3em_#aaa] border border-[#bfbebb] h-8">
+   <div class=" w-3/12 max-sm:w-[35%]">     
+                    {/* {translatedMenuItems[3]}  */}
                     {/* Dial Code */}
                     <FastField
                         name="countryDialCode"
@@ -425,24 +427,28 @@ function InvesterForm(props) {
                         inlineLabel
                       />
                     </div>
-                    <div class=" w-8/12 font-bold font-poppins text-xs">
-                    {translatedMenuItems[4]} 
+                    <div class="w-[1px] h-full bg-gray-300">
+  <div class="w-full h-[75%]"></div>
+</div>
+<div class=" w-[76%]">
+<div class="text-xs flex flex-col font-bold "> 
                       <FastField
                         type="text"
                         name="phoneNumber"
                         // label="Phone No"
                         isColumn
-                        component={InputComponent}
+                        component={InputComponent1}
                         inlineLabel
                         width={"100%"}
                       />
+                      </div>
                     </div>
                   </div>
 
                   
                   <div class=" flex justify-between mt-3">
                   {contract ?
-                  <div class=" w-w47.5"  style={{display:"flex",flexDirection:"column"}}>
+                  <div class=" w-w47.5 flex flex-col">
                   {/* <Field                     
                             name="sectorId"
                             label={
@@ -549,7 +555,7 @@ function InvesterForm(props) {
                     />
                   </div>
                     </div> 
-                 <div class="flex justify-between">
+                 <div class="flex justify-between mt-2">
                  <div class=" flex flex-col items-center  mt-2">
                     <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                     {translatedMenuItems[7]} 

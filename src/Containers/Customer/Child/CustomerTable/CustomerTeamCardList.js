@@ -536,7 +536,7 @@ const [rowdata, setrowdata] = useState("");
                                 ) : ( */}
                                   <div
                                   style={{cursor:"pointer"}}
-                                  onMouseEnter={() => {
+                                  onClick={() => {
                                   handleSetCurrentCustomerId(item.customerId)
                                   props.handleUpdateUserModal(true);
                                   

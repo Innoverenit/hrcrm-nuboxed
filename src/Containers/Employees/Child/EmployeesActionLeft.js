@@ -42,8 +42,8 @@ const EmployeesActionLeft = (props) => {
         "1238", // "Search By Name"   
        "289",  // Creation Date
        "954",  // All Locations
-       "",  // All Departments
-     "" //  sort
+       "955",  // All Departments
+     "1706" //  sort
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

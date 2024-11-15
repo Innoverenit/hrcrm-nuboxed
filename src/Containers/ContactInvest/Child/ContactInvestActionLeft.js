@@ -118,7 +118,9 @@ const ContactInvestActionLeft = (props) => {
               color: props.viewType === "card" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#28a355" }}>
+            <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#28a355" ,
+               boxShadow: props.viewType === "card" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)" }}>
             <AccountBalanceIcon className=" !text-icon cursor-pointer "  />
             </Avatar>
           </div>
@@ -145,8 +147,10 @@ const ContactInvestActionLeft = (props) => {
               color: props.viewType === "teams" && "#1890ff",
             }}
           >
-             <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#28a355" }}>
-           <PeopleIcon className=" !sr-onlytext-icon cursor-pointer"/>
+             <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "teams" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "teams" ? "scale(1.05)" : "scale(1)"  }}>
+           <PeopleIcon className=" !sr-only text-icon cursor-pointer"/>
            </Avatar>
           </div>
         </Badge>
@@ -171,7 +175,9 @@ const ContactInvestActionLeft = (props) => {
               color: props.viewType === "all" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
+            <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "all" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "all" ? "scale(1.05)" : "scale(1)"  }}>
    <FormattedMessage id="app.all" defaultMessage="All" class="!text-icon " />
    </Avatar>
           </div>

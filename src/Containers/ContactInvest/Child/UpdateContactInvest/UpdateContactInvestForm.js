@@ -16,6 +16,7 @@ import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 import { getCustomerData } from "../../../Customer/CustomerAction";
 import {getInvestorData,getDialCode} from "../../../Investor/InvestorAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import { InputComponent1 } from "../../../../Components/Forms/Formik/InputComponent1";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const UpdateContactSchema = Yup.object().shape({
@@ -326,9 +327,9 @@ class UpdateContactInvestForm extends Component {
                     </div>
                   
                   </div>  
-                  <div class=" flex justify-between">
-                    <div class="   font-bold font-poppins text-xs w-2/6 max-sm:w-2/5">
-                 {translatedMenuItems[5]} 
+                  <div className="font-bold text-xs">{translatedMenuItems[6]}</div>
+<div class=" flex justify-between shadow-[0_0.15em_0.3em_#aaa] border border-[#bfbebb] h-8">
+                     <div class=" w-3/12 max-sm:w-[35%]">     
                     <FastField
                         name="countryDialCode"
                         isColumnWithoutNoCreate                           
@@ -342,16 +343,20 @@ class UpdateContactInvestForm extends Component {
                         inlineLabel
                       />
                     </div>
-                    <div class=" font-bold font-poppins text-xs w-[60%] max-sm:w-2/4">
-                  {translatedMenuItems[6]}   
-                      <FastField
+                    <div class="w-[1px] h-full bg-gray-300">
+  <div class="w-full h-[75%]"></div>
+</div>
+<div class=" w-[76%]">
+<div class="text-xs flex flex-col font-bold "> 
+                      <Field
                         type="text"
                         name="mobileNumber"                     
-                        component={InputComponent}
+                        component={InputComponent1}
                         inlineLabel
                         width={"100%"}
                         isColumn
                       />
+                    </div>
                     </div>
                   </div>
                       
