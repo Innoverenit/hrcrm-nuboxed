@@ -24,7 +24,7 @@ import AddShipperAdressModal from "./AddShipperAdressModal";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CategoryIcon from '@mui/icons-material/Category'
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import ApiIcon from '@mui/icons-material/Api';
 
@@ -83,37 +83,37 @@ function ShipperCardList(props) {
       <div className=' flex  sticky  z-auto'>
         <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky items-end  z-10">
-            <div className="font-poppins font-bold text-[#00A2E8] text-base w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins font-bold text-[#00A2E8] truncate text-base w-[10.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
              {/* Name */}
              <CategoryIcon
               className='!text-icon'
               /> {props.translatedMenuItems[0]}
               </div>
-            <div className="font-poppins font-bold text-xs w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins font-bold text-xs w-[7.2rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
              {/* Phone */}
              <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>  {props.translatedMenuItems[1]} 
               </div>
-            <div className="font-poppins font-bold text-xs w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins font-bold text-xs w-[10.8rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
              {/* Email */}
-             <MailOutlineIcon className="!text-icon  text-[#4f5d75]"/> {props.translatedMenuItems[2]}
+             <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '  />{props.translatedMenuItems[2]}
               </div>
-            <div className="font-poppins font-bold text-xs w-[7.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins font-bold text-xs w-[6.1rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Ship By */}
-              <LocalShippingIcon className='!text-base mr-1 text-[#e4eb2f]'/>{props.translatedMenuItems[3]}
+              <LocalShippingIcon className='!text-base mr-1 text-[#7dcfb6]'/>{props.translatedMenuItems[3]}
             </div>
-            <div className=" font-poppins font-bold text-xs w-[11.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" font-poppins font-bold text-xs w-[18.7rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
              {/* Address */}
              <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[4]}
               </div>
-            <div className="font-poppins font-bold text-xs w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins font-bold text-xs w-[12.4rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
             {/* City */}
             <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[5]}
               </div>
-            <div className="font-poppins font-bold text-xs w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins font-bold text-xs w-[5.9rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
             {/* Pin Code */}
               {props.translatedMenuItems[6]}
               </div>
-            <div className="font-poppins font-bold text-xs w-[10.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="font-poppins font-bold text-xs w-[13.24rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
             <ApiIcon className='!text-base  text-[#e4eb2f]'/> API</div>
           </div>
           <InfiniteScroll

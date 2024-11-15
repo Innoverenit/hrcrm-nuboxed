@@ -9,7 +9,9 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { Tooltip,  Button } from "antd";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import MergeTypeIcon from '@mui/icons-material/MergeType';
+import CategoryIcon from '@mui/icons-material/Category'
 import {
   getAprrovalTaskTable,
   deleteTask,
@@ -143,24 +145,26 @@ const TaskApproveTable = (props) => {
     <>
       
           <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  text-xs font-poppins z-10">
-          <div className="flex justify-center w-[12.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] max-lg:w-[16.1rem]">{translatedMenuItems[0]} 
+          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky items-end text-xs font-poppins z-10">
+          <div className="flex justify-center w-[12.8rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] max-lg:w-[16.1rem]">
+             < MergeTypeIcon className='!text-icon text-[#c42847] '  />{translatedMenuItems[0]} 
            {/* type */}
                     </div>
-        <div className="flex justify-center w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.2rem] max-lg:w-[8.2rem]">{translatedMenuItems[1]} 
+        <div className="flex justify-center w-[8.2rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.2rem] max-lg:w-[8.2rem]">
+        <CategoryIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[1]} 
                         {/* name" */}
                       </div>
-             <div className="flex justify-center w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[6.2rem] ">{translatedMenuItems[2]} 
+             <div className="flex justify-center w-[5.2rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[6.2rem] ">{translatedMenuItems[2]} 
               {/* submittedby */}
                         </div>
         {/* <div className="flex justify-center w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.2rem] max-lg:w-[9.2rem]">{translatedMenuItems[3]} 
        Ageing
                         </div> */}
-                         <div className="flex justify-center w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.51rem] max-lg:w-[6.51rem]">{translatedMenuItems[4]} 
+                         <div className="flex justify-center w-[10.51rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.51rem] max-lg:w-[6.51rem]">{translatedMenuItems[4]} 
                           {/* Info */}
                           </div>
-        <div className="flex justify-center w-[10.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.23rem]">
-          {translatedMenuItems[5]} On
+        <div className="flex justify-center w-[10.23rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.23rem]">
+        <AccountCircleIcon className="!text-icon   text-[#d64933]"/>  {translatedMenuItems[5]} On
           {/* Assigned On */}
                         </div>
        
@@ -186,7 +190,7 @@ const TaskApproveTable = (props) => {
          console.log("deviationDate",incompleteDeviationDate)
                     return (
                         <div>
-                            <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                            <div className="flex rounded justify-between mt-1 bg-white  items-center py-ygap max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex  border-l-2 border-green-500 h-8 bg-[#eef2f9] w-[13.3rem] max-xl:w-[10.3rem] max-lg:w-[10.3rem] max-sm:w-auto max-sm:flex-row justify-between ">
 <div className="flex max-sm:w-full"> 

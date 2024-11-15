@@ -265,8 +265,8 @@ class ShipperDetailsTab extends Component {
               tab={
                 <>
               <span className="!text-tab">
-                    <i  className=" fa fa-sticky-note !text-tab text-[#b6465f] " aria-hidden="true"></i>
-                    &nbsp; {this.state.translatedMenuItems[2]}
+                    <i  className=" fa fa-sticky-note mr-1 !text-tab text-[#b6465f] " aria-hidden="true"></i>
+                  {this.state.translatedMenuItems[2]}
                     {/* notes */}
                   </span>
                 </>

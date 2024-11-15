@@ -253,27 +253,27 @@ const TaskCardList = (props) => {
           <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" font-poppins text-xs flex max-sm:hidden justify-between w-[63%]  p-1 bg-transparent font-bold sticky  z-10">
-          <div className="flex justify-center w-[3.54] md:w-[4.54rem] bg-red-600 text-white">
+          <div className="flex justify-center w-[3.54] truncate md:w-[4.54rem] bg-red-600 text-white">
           {translatedMenuItems[7]}</div>
-        <div className=" flex  w-[6.5rem] ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
+        <div className=" flex  w-[6.5rem] truncate  ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
         < MergeTypeIcon className='!text-icon text-[#c42847] '  />{translatedMenuItems[0]} 
                         </div>
-        <div className="flex justify-center w-[9.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
+        <div className="flex justify-center w-[9.15rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
         <CategoryIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[1]}
                         </div>
-             <div className="flex justify-center w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
+             <div className="flex justify-center w-[5.01rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
              <DateRangeIcon className="!text-icon "/>  {translatedMenuItems[2]}
                         </div>
-             <div className="flex justify-center w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
+             <div className="flex justify-center w-[5.1rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
        
-                        <div className="flex justify-center w-[10.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
+                        <div className="flex justify-center w-[10.51rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
                         {translatedMenuItems[4]}
                          
                           </div>
-        <div className="flex justify-center w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
+        <div className="flex justify-center w-[5.2rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
         <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[5]} 
                         </div>
-        <div className="flex justify-center w-[5.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
+        <div className="flex justify-center w-[5.92rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
         <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[6]}
         {/* <div className=" w-[9.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
                   {translatedMenuItems[3]} 
@@ -301,10 +301,10 @@ const TaskCardList = (props) => {
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
                         <div>
-                          <div className="flex rounded mt-1 bg-white  items-center py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                          <div className="flex rounded mt-1 bg-white  items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center  ">
                                 <div className=" flex w-[9.1rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
-<div className="flex max-sm:w-full"> 
+<div className="flex max-sm:w-full items-center"> 
 {item.priority === "High" && (
   // <div class="rounded-full h-10 w-16 bg-red-500"></div>
                       <div class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
@@ -315,8 +315,9 @@ const TaskCardList = (props) => {
                     {item.priority === "Low" && (
                       <div class="border rounded-[50%] h-6 w-6 bg-[teal]" ></div>
                     )}
-                   
-          <div class=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-full">
+                     </div>
+                     </div>
+          <div class=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6rem] max-sm:w-full">
                                         <Tooltip>
                                         <div class=" flex justify-center  max-sm:justify-between flex-row w-full md:flex-col ">
                                             {/* <div class="text-sm  font-poppins max-sm:hidden">
@@ -329,11 +330,10 @@ const TaskCardList = (props) => {
                                          </div>
                                         </Tooltip>
                                         </div>
-                                        </div>
-                                </div>
+                                      
+                              
 
                                 <div className=" flex   w-[11.12rem]  items-center justify-start  h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
-                                    {/* <div class=" text-sm  font-sm font-poppins max-sm:hidden"> Name </div> */}
                                     <div class=" text-xs ml-gap font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
                                     <span   
                 onClick={() => {
@@ -453,7 +453,7 @@ const TaskCardList = (props) => {
                               </div>
                         
                     
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[5.28rem] max-xl:w-[2.28rem] max-lg:w-[2.28rem] max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[4.28rem] max-xl:w-[2.28rem] max-lg:w-[2.28rem] max-sm:flex-row max-sm:w-auto ">
                                     
                                     <div class="text-xs  font-poppins ">
                                     <MultiAvatar
@@ -467,7 +467,7 @@ const TaskCardList = (props) => {
                                
                              
                        
-<div className="w-[5.23rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">
+<div className="w-[3.23rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">
 {item.taskStatus==="Completed"&&(
                    <div className="flex  w-[5.23rem]  max-sm:flex-row  max-sm:w-auto  ">
              {item.assignedToName !== item.submittedBy ? 
@@ -493,7 +493,7 @@ const TaskCardList = (props) => {
      )}
      </div>
                                         
-                   <div class="flex  w-[8.21rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
+                   <div class="flex  w-[6.21rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
                     <div class=" w-36 items-center">
   {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
     <>

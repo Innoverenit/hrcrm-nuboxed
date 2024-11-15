@@ -190,26 +190,26 @@ function ContactCardList(props) {
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" max-sm:hidden flex justify-between w-[97%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent font-bold sticky  z-10">
       <div class=" flex justify-between w-[100%] font-bold  font-poppins text-xs items-end ">
-        <div className=" w-[26.9rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+        <div className=" w-[27.9rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         <ContactsIcon className="!text-icon mr-1 "/>
         {translatedMenuItems[0]}</div>
-        <div className=" w-[28.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
+        <div className=" w-[26.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
         <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}</div>
          {/* Company */}
-        <div className=" md:w-[23.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
+        <div className=" md:w-[22.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
         <i className="fab fa-artstation mr-1 text-[#b744b8]"></i>
         {translatedMenuItems[2]}</div>
         {/* Designation */}
-        <div className="w-[22rem]  md:w-[23.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
+        <div className="w-[22rem]  md:w-[22.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
         <ApartmentIcon className="!text-icon text-[#f0386b] "/> {translatedMenuItems[3]}</div>
         {/* Department */}
-        <div className=" md:w-[14.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
+        <div className=" md:w-[15.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
         <LightbulbIcon className="!text-icon text-[#84a59d]"/> {translatedMenuItems[4]}</div>
          {/* Quotation */}
         {/* <div className=" md:w-[12.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
         <FilterAltIcon className="!text-icon mr-1 text-[#ff66b3]"/> {translatedMenuItems[5]}</div> */}
         {/* Pipeline */}
-        <div className=" w-[11.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
+        <div className=" w-[13.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
         <RadioButtonCheckedIcon className="!text-icon  text-[#f28482]"/> {translatedMenuItems[6]}</div>
            {/* Portal Access */}
         {props.user.aiInd && (
@@ -260,7 +260,7 @@ function ContactCardList(props) {
           <div className="flex rounded justify-between  bg-white mt-1 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                
-      <div className=" flex   w-[15rem] max-sm:flex-row border-l-2 border-green-500 bg-[#eef2f9] max-sm:justify-between max-sm:w-wk  ">
+      <div className=" flex   w-[18rem] max-sm:flex-row border-l-2 border-green-500 bg-[#eef2f9] max-sm:justify-between max-sm:w-wk  ">
 <div className="flex max-sm:w-full md:items-center max-lg:w-[7.2rem] max-xl:w-[9rem]"> 
 <div>
                          
@@ -311,7 +311,7 @@ function ContactCardList(props) {
                                    {item.designation}
                               </div>
                           </div>
-                          <div className=" flex   max-sm:w-auto items-center  w-[12.3rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
+                          <div className=" flex   max-sm:w-auto items-center  w-[14.3rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
                           
                             <div class="text-xs  ml-gap max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                  {item.department}
@@ -335,7 +335,7 @@ function ContactCardList(props) {
                               </div>
                           </div>
 </div>
-                          <div className="flex items-center justify-center   w-[6.1rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                          <div className="flex items-center justify-center   w-[7.1rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                           
                           <div class="flex items-center text-xs font-poppins w-wk h-8  max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 

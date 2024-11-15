@@ -65,18 +65,18 @@ class ShipperContactTable extends Component {
         <div className=' flex  sticky h-[83vh]  z-auto'>
           <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
             <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky items-end z-10">
-              <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[7.1rem]">
+              <div className="font-bold font-poppins text-[#00A2E8] truncate text-base w-[10.1rem] max-md:w-[7.1rem]">
               <CategoryIcon className='!text-base '
               /> {this.state.translatedMenuItems[0]}</div>
-              <div className="font-bold font-poppins text-xs w-[11.12rem] max-md:w-[11.12rem]">
+              <div className="font-bold font-poppins text-xs w-[10.9rem] truncate max-md:w-[11.12rem]">
               <MarkEmailUnreadIcon className='!text-icon  text-[#ff9f1c] '  /> {this.state.translatedMenuItems[1]}</div>
-              <div className="font-bold font-poppins text-xs w-[4.8rem] max-md:w-[4.8rem] ">
+              <div className="font-bold font-poppins text-xs w-[12.6rem] truncate max-md:w-[4.8rem] ">
               <MobileFriendlyIcon className='!text-icon text-[#41ead4] '  /> {this.state.translatedMenuItems[2]}</div>
-              <div className="font-bold font-poppins text-xs w-[5.9rem] max-md:w-[4.9rem]">
+              <div className="font-bold font-poppins text-xs w-[11.6rem] truncate max-md:w-[4.9rem]">
           <i className=" fab fa-artstation  text-[#b744b8]"></i>   {this.state.translatedMenuItems[3]}</div>
-              <div className="font-bold font-poppins text-xs w-[7.8rem] max-md:w-[7.8rem]">
+              <div className="font-bold font-poppins text-xs w-[11.8rem] truncate max-md:w-[7.8rem]">
               <ApartmentIcon className='!text-icon text-[#f0386b] '  />    {this.state.translatedMenuItems[4]}</div>
-              <div className=" w-[3.1rem] max-md:w-[3.1rem]"></div>
+              <div className=" w-[4.1rem] truncate max-md:w-[3.1rem]"></div>
 
             </div>
             {/* <InfiniteScroll
