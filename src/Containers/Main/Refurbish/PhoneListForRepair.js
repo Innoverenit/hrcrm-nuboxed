@@ -20,7 +20,7 @@ import {
     ClearReducerDataOfrepair,
     handleSpareProcess
 } from "./RefurbishAction";
-import { Button, Tooltip,  Progress,Input,Badge } from "antd";
+import { Button, Tooltip,  Progress,Input,Badge, Popconfirm } from "antd";
 import {  BarcodeOutlined, RollbackOutlined } from "@ant-design/icons";
 import QRCode from "qrcode.react";
 import dayjs from "dayjs";
@@ -138,6 +138,10 @@ function PhoneListForRepair(props) {
         } else {
           console.error("Input is empty. Please provide a value.");
         }
+      };
+      const handleConfirm = () => {
+        
+        // props.customerToAccount(customerId);
       };
       const handleStartListening = () => {
         setStartTime(Date.now());
@@ -327,7 +331,7 @@ function PhoneListForRepair(props) {
 
                                                 </div>
                                                 </div>
-                    <div className=" flex  w-[95%] font-bold font-poppins text-xs  max-sm:hidden py-1 bg-transparent font-bold sticky items-end z-10">
+                    <div className=" flex  w-[95%] font-bold font-poppins text-xs  max-sm:hidden py-1 bg-transparent  sticky items-end z-10">
                         <div className="text-[#00A2E8] text-base w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         <BrandingWatermarkIcon className="!text-icon" />   {translatedMenuItems[2]} {/* Brand */}
                             </div>
@@ -357,7 +361,7 @@ function PhoneListForRepair(props) {
                         {/* <div className="w-[10.81rem]">Spare</div> */}
                         <div className="w-[10.43rem]">
                         <FactCheckIcon className='!text-base  text-[#e4eb2f]'/>   {translatedMenuItems[8]}</div>
-                        <div className="w-[2.03rem]"></div>
+                        <div className="w-[2.03rem]">Spares</div>
                         <div className="w-[2rem]"></div>
                     </div>
                     <InfiniteScroll
@@ -572,7 +576,25 @@ function PhoneListForRepair(props) {
                                                 </div>
                                             </div>
                         }
-                                        
+
+<div className=" flex  items-center ml-gap bg-[#eef2f9] h-8 w-[6.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+<Popconfirm
+                          title="Wish To Change"
+                        //   onConfirm={() => handleConfirm(item.customerId)}
+                          okText="Yes"
+                          cancelText="No"
+                        >
+                        
+                            <Button className="justify-start" type="primary">
+                              Get/Exchange
+                                {/* {item.convertInd === 0 && translatedMenuItems[17]}
+                                {item.convertInd === 1 && translatedMenuItems[16]}
+                                {item.convertInd === 2 && translatedMenuItems[18]} */}
+                      
+                            </Button>
+                    
+                        </Popconfirm>
+    </div>
                                        
                                             <div className=" flex  items-center ml-gap bg-[#eef2f9] h-8 w-[1.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
