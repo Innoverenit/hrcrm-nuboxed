@@ -270,8 +270,8 @@ const timerRef = useRef(null);
                             height={"67vh"}
                             style={{scrollbarWidth:"thin"}}
                         >
-                            {!props.purchaseList.length ? <>
-                                {props.purchaseList.map((item) => {
+                           
+                           { !props.fetchingPurchaseSupplierList && props.purchaseList.length === 0 ?<EmptyPage />:props.purchaseList.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
@@ -430,9 +430,7 @@ const timerRef = useRef(null);
                                         </>
                                     )
                                 })}
-                            </>
-                                : !props.purchaseList.length
-                                    && !props.fetchingPurchaseSupplierList ? <EmptyPage /> : null}
+                           
                         </InfiniteScroll>
                     </div>
                 </div>

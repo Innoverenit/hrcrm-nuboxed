@@ -6,6 +6,7 @@ import { addTaskByPhoneId, getTaskListByPhone, } from "./RefurbishAction"
 import { Button, Input, Switch, Select } from "antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 import RepairTaskTable from "./RepairTaskTable";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 const QCPhoneTaskList = lazy(() => import("./QCPhoneTaskList"));
 
 const { Option } = Select;
@@ -88,7 +89,7 @@ function RepairTaskList(props) {
                             <Button type="primary"
                             disabled={ props.RowData.repairStatus === "To Start" || props.RowData.repairStatus === "Complete"}
                                 loading={props.addingTaskByPhoneById}
-                                onClick={handleSubmitTask}>Add</Button>
+                                onClick={handleSubmitTask}><DataSaverOnIcon className="!text-icon"/> Add</Button>
                         </div>
                     </div>
                 </div>

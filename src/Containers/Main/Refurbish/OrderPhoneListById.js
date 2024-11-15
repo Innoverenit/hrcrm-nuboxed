@@ -5,6 +5,9 @@ import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
+import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import UpdateIcon from '@mui/icons-material/Update';
 import {
     getPhoneOrderIdByUser,
@@ -21,7 +24,6 @@ import {
 import { AudioOutlined, BarcodeOutlined } from '@ant-design/icons';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Button, Tooltip, Progress,Input,Badge } from "antd";
-import ButtonGroup from "antd/lib/button/button-group";
 import dayjs from "dayjs";
 import QRCode from "qrcode.react";import InfiniteScroll from "react-infinite-scroll-component";
 import ReactToPrint from "react-to-print";
@@ -34,7 +36,7 @@ import Barcode from 'react-barcode';
 const AddingQCSpareList = lazy(() => import('./AddingQCSpareList'));
 const QCPhoneNotesOrderModal = lazy(() => import('./QCPhoneNotesOrderModal'));
 const DistributorPhoneTaskTable = lazy(() => import('./DistributorPhoneTaskTable'));
-
+const ButtonGroup = Button.Group;
 function OrderPhoneListById(props) {
     const [pageNo, setPageNo] = useState(0);
     const [currentLevel, setCurrentLevel] = useState("");
@@ -478,7 +480,7 @@ function OrderPhoneListById(props) {
 
                                                                         }}
                                                                     />}
-                                                                    {item.qcStatus === "In Progress" && <HourglassEmptyIcon
+                                                                    {item.qcStatus === "In Progress" && <HourglassTopIcon
                                                                         type= "Complete"
                                                                         iconType="fa fa-hourglass"
                                                                         tooltip= {translatedMenuItems[13]}
@@ -490,8 +492,20 @@ function OrderPhoneListById(props) {
                                                                             handleQCStatus("Complete", item);
                                                                         }}
                                                                     />}
+                                                                     {item.qcStatus === "Complete" && <HourglassBottomIcon
+                                                                        type= "Complete"
+                                                                        iconType="fa fa-hourglass"
+                                                                        tooltip= {translatedMenuItems[13]}
+                                                                        indStatus={item.qcStatus}
+                                                                        status={active}
+                                                                        id={item.phoneId}
+                                                                        phoneId={RowData.phoneId}
+                                                                        // onClick={() => {
+                                                                        //     handleQCStatus("Complete", item);
+                                                                        // }}
+                                                                    />}
                                                                 </ButtonGroup>
-                                                                : null}
+                                                                : <HourglassBottomIcon/>}
 
                                                         </div>
 
@@ -553,7 +567,7 @@ function OrderPhoneListById(props) {
                                                                         }, item.phoneId)
                                                                     }}
                                                                 >
-                                                                 {translatedMenuItems[17]}   {/* Change Status */}
+                                                                 Reparable  {/* Change Status */}
                                                                 </Button>
                                                                 //   <Tooltip title="Can't Repair">
                                                                 //   <MotionPhotosOffIcon className=" !text-base cursor-pointer text-[tomato]" />
@@ -632,6 +646,7 @@ function OrderPhoneListById(props) {
                                                         </Tooltip> */}
                                                            {/* {isAcivedPercentage ? ( */}
                                                             <Tooltip title={translatedMenuItems[8]}>
+                                                            <DataSaverOnIcon className="!text-icon"/>
                                                                 <Progress
                                                                    percent={acivedPercentage}
                                                                     success={{acivedPercentage}}

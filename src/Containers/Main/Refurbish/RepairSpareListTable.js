@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../Components/UI/Antd";
 import { updateSparePacket } from "./RefurbishAction"
+import CloseIcon from '@mui/icons-material/Close';
 import { getSpareListByPhoneTaskId, deleteSpareList } from "../Account/AccountAction";
 import RepairSpareApproveToggle from "./RepairSpareApproveToggle"
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -28,7 +29,7 @@ function RepairSpareListTable(props) {
         {
             title: "Spares",
             dataIndex: "suppliesName",
-            width: "20%",
+            width: "30%",
         },
         {
             title: "Category",
@@ -46,7 +47,7 @@ function RepairSpareListTable(props) {
             render: (text, item) => {
                 return (
                     <>
-                        {item.attribute} {item.subAttribute}
+                        {item.attributeName} {item.subAttributeName}
                     </>
                 )
             },
@@ -79,23 +80,23 @@ function RepairSpareListTable(props) {
         //     }
 
         // },
-        {
-            title: "Completed By",
-            width: "15%",
-            render: (text, item) => {
-                return (
-                    <>
-                        {item.spareCompleteUser &&
-                            <MultiAvatar
-                                primaryTitle={`${item.spareCompleteUser}`}
-                                imgWidth={"2.1em"}
-                                imgHeight={"2.1em"}
-                            />}
-                    </>
-                )
-            }
+        // {
+        //     title: "Completed By",
+        //     width: "15%",
+        //     render: (text, item) => {
+        //         return (
+        //             <>
+        //                 {item.spareCompleteUser &&
+        //                     <MultiAvatar
+        //                         primaryTitle={`${item.spareCompleteUser}`}
+        //                         imgWidth={"2.1em"}
+        //                         imgHeight={"2.1em"}
+        //                     />}
+        //             </>
+        //         )
+        //     }
 
-        },
+        // },
         {
             title: "",
             width: "10%",
@@ -127,6 +128,9 @@ function RepairSpareListTable(props) {
     console.log(props.phoneTaskIdSpareList)
     return (
         <>
+        <div class="w-wk flex justify-end">
+         <CloseIcon className='!text-icon cursor-pointer' onClick={props.onClose}/>
+         </div>
             <StyledTable
                 columns={columns}
                 dataSource={props.phoneTaskIdSpareList}
