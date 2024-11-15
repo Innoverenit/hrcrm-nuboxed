@@ -82,6 +82,9 @@ function CustomerProcurementTable(props) {
     const [editsuppliesId, setEditsuppliesId] = useState(null);
     const [date, setDate] = useState('');
 
+const [SelectedOrder,setSelectedOrder] =useState("");
+
+
   useEffect(() => {
     props.getProcureRecords(props.distributorId,"procure");
     props.getDistributorOrderOfHigh(props.distributorId, page, "procure","High");
@@ -150,7 +153,30 @@ const handleLoadMoreLow = () => {
   props.getDistributorOrderOfLow(props.distributorId, page, "procure","Low")
 };
  
-
+const handleSelectedOrderDropDown =  async (value,item) => {
+  setSelectedOrder(value);
+  let payload={
+    orderStatus: value,
+  orderId:item.orderId,
+}
+  try {
+    const response = await axios.put(`${base_url2}/phoneOrder/remainsOrder/${item.orderId}`,payload,{  
+        headers: {
+            Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+        },
+     });
+     if (response.data === 'Successfully order created..') {
+      const updatedOrderItems = data.filter(itm => itm.orderId !== item.orderId);
+      setData(updatedOrderItems);
+    } else {
+      console.log(response.data);
+    }
+      setEditsuppliesId(null);
+    } catch (error) {
+      console.error("Error updating item:", error);
+      setEditsuppliesId(null);
+    }
+}
 
   const {
     transcript,
@@ -303,122 +329,7 @@ const handleLoadMoreLow = () => {
           setEditsuppliesId(null);
         }
     };
-
-    const exportPDFAnnexure = async () => {
-      var doc = new jsPDF();
   
-      // Define the static text
-      var companyName = `1 Di Inc.`;
-      var companyAddress = `21A-81 Northern Heights Drive\nRichmond Hill ON L4B 4C9\n+14162780878\nsales@1di.ca\nGST/HST Registration No.: 71265570`;
-      var billTo = `BILL TO\nRobert Cowman\nFG Bradley's Fairview\n1800 Sheppard Ave E. Fairview Mall\nUnit 2045\nToronto Ontario M2J 5A7`;
-      var shipTo = `SHIP TO\nRobert Cowman\nFG Bradley's Fairview\n1800 Sheppard Ave E. Fairview Mall\nUnit 2045\nToronto Ontario M2J 5A7`;
-  
-      // Invoice details
-      var invoiceDetails = `INVOICE # 1361\nDATE: 30/08/2024\nDUE DATE: 29/09/2024\nTERMS: Net 30`;
-      var purchaseOrder = `PURCHASE ORDER #: BO-TM9456525`;
-  
-      // Product table headers
-      var skuHeader = "SKU";
-      var descriptionHeader = "DESCRIPTION";
-      var qtyHeader = "QTY";
-      var rateHeader = "RATE";
-      var amountHeader = "AMOUNT";
-  
-      // Product details
-      var productDetails = [
-          { sku: "KES477", description: "477 | Jumbo Foam D20", qty: 36, rate: "12.50", amount: "450.00" }
-      ];
-  
-      // Tax summary
-      var subtotal = `450.00`;
-      var hst = `58.50`;
-      var total = `508.50`;
-  
-      // Set document font and colors
-      doc.setFont("Helvetica");
-  
-      // Header background color (light blue)
-      doc.setFillColor(62, 115, 185);
-      doc.rect(0, 0, 210, 13, 'F');  // Full-width top blue bar
-  
-      // Company Info
-      doc.setTextColor(0, 0, 0);
-      doc.setFontSize(12);
-      doc.text(companyName, 10, 20);
-      doc.setFontSize(10);
-      doc.text(companyAddress, 10, 25);
-  
-      // Order Information
-      doc.setFontSize(12);
-      doc.text("ORDER", 10, 50);
-      doc.setFontSize(10);
-      doc.text(billTo, 10, 60);
-      doc.text(shipTo, 80, 60);
-  
-      // Invoice Details (right-hand side)
-      doc.text(invoiceDetails, 140, 50);
-      doc.text(purchaseOrder, 140, 80);
-  
-      // Table Headers
-      doc.setFontSize(10);
-      doc.text(skuHeader, 10, 100);
-      doc.text(descriptionHeader, 40, 100);
-      doc.text(qtyHeader, 100, 100);
-      doc.text(rateHeader, 120, 100);
-      doc.text(amountHeader, 150, 100);
-  
-      // Draw product details inside the table
-      let yPosition = 110;
-      productDetails.forEach(item => {
-          doc.text(item.sku, 10, yPosition);
-          doc.text(item.description, 40, yPosition);
-          doc.text(item.qty.toString(), 100, yPosition);
-          doc.text(item.rate, 120, yPosition);
-          doc.text(item.amount, 150, yPosition);
-          yPosition += 10;
-      });
-  
-      // Horizontal line below the product details
-      doc.line(10, yPosition, 200, yPosition);
-      yPosition += 10;
-  
-      // Subtotal, Tax, and Total
-      doc.text(`Subtotal: ${subtotal}`, 140, yPosition);
-      yPosition += 10;
-      doc.text(`HST (ON) @ 13%: ${hst}`, 140, yPosition);
-      yPosition += 10;
-      doc.text(`TOTAL: CAD ${total}`, 140, yPosition);
-  
-      // Footer Section
-      yPosition += 20;
-      doc.setFontSize(12);
-      doc.text("TAX SUMMARY", 10, yPosition);
-      yPosition += 10;
-      doc.setFontSize(10);
-      doc.text(`HST (ON) @ 13%: ${hst}`, 10, yPosition);
-      doc.text(`TOTAL: CAD ${total}`, 140, yPosition);
-  
-      // Terms and Conditions
-      yPosition += 40;
-      doc.setFontSize(12);
-      doc.text("TERM & CONDITIONS", 10, yPosition);
-      yPosition += 10;
-      doc.setFontSize(9);
-      doc.text("Payment is due within 30 days.", 10, yPosition);
-      doc.text("Please make checks payable to: 1 Di Inc.", 10, yPosition + 10);
-  
-      // Footer background color (blue)
-      doc.setFillColor(62, 115, 185);
-      doc.rect(0, 276, 210, 15, 'F');  // Footer bar
-      doc.setTextColor(255, 255, 255);
-      doc.text("Thank you for your business!", 10, 285);
-  
-      // Save the PDF
-      doc.save("Commerce.pdf");
-  };
-  
-  // Commerce
-  console.log("fox",props.distributorData)
 
   return (
     <>
@@ -450,7 +361,7 @@ const handleLoadMoreLow = () => {
                         <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'/>   {translatedMenuItems[1]} ID{/*Order ID"/> */}
                           </div>
                           <div className="w-[5.5rem] md:w-[7rem]">  
-                          <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[9]}
+                          <DateRangeIcon className='!text-icon  '/> {translatedMenuItems[9]}
                           </div>
                         <div className="w-[3.5rem] md:w-[9.1rem]">
                         <LocalShippingIcon
@@ -464,6 +375,12 @@ const handleLoadMoreLow = () => {
                           </div>
                           <div className="w-[4.8rem] md:w-[4.1rem]">
                         {/* {translatedMenuItems[2]}  */}<AddShoppingCartIcon className='!text-icon'/>  Items
+                          </div>
+                          <div className="w-[2.1rem] md:w-[4.4rem]">
+                            {/* {translatedMenuItems[5]} */} Packing
+                          </div>
+                          <div className="w-[2.1rem] md:w-[4.4rem]">
+                            {/* {translatedMenuItems[5]} */} Shipping
                           </div>
                           <div className="w-[2.2rem] md:w-[3.8rem]"> <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' />
                         {translatedMenuItems[7]} {/*Status"/> */}
@@ -502,9 +419,23 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                         <div class="flex">
                                           <div className=" flex  items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
-                                            <div className=" flex  items-center  md:w-[7.56rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
+                                            <div className=" flex  items-center  md:w-[7rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
+
+                                            {editsuppliesId === item.orderId ? (
+                        <>
+                     <Select
+                                                                classNames="w-32"
+                                                                value={SelectedOrder}
+                                                                onChange={(value) => { handleSelectedOrderDropDown(value,item)}}
+                                                            >
+                                                                    <Option value={"closedOrder"}>Closed Order</Option>
+                                                                    <Option value={"createRemainingOrder"}>Create Remaining Order</Option>
+                                                            </Select>
+                      </>
+                      
+                    ) : (
                                                                               <Tooltip>
-                                                                                  <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
+                                                                                  <div class="flex max-sm:flex-row justify-between w-full md:flex-col" onClick={() => handleEditClick(item.orderId)}>
                                                                                       <div class="  text-blue-500  font-poppins font-semibold  cursor-pointer">
                       
                                                                                           {item.priority === "High" && (
@@ -517,6 +448,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                                                                       </div>
                                                                                   </div>
                                                                               </Tooltip>
+                    )}
                                                                           </div>
                                                                      
                                               <div class="max-sm:w-full flex md:w-[6.60rem]  items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
@@ -543,7 +475,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                               </div>
                                               </div>
                                               </div>
-                                            <div className=" flex  w-[12.1rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                                            <div className=" flex  w-[8rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
@@ -563,7 +495,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                           </div>
                                         </div>
                                         <div class="flex">
-                                          <div className=" flex   md:w-[16.01rem]  items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                          <div className=" flex   md:w-[10rem]  items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                                             <div class="flex font-poppins ml-gap items-center text-xs">
                       
                                             {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -592,6 +524,20 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                      }}
                                         >
                                               {item.itemCount}
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row md:w-[6rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class=" font-poppins text-xs cursor-pointer text-black"
+                                       
+                                        >
+                                              {item.packing}
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row md:w-[6rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class=" font-poppins text-xs cursor-pointer text-black"
+                                       
+                                        >
+                                              {item.shipping}
                                             </div>
                                         </div>
                                         <div class="flex flex-row  md:w-[10.03rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
@@ -708,6 +654,12 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                           <div className="w-[4.8rem] md:w-[4.1rem]">
                         {/* {translatedMenuItems[2]}  */}<AddShoppingCartIcon className='!text-icon'/>  Items
                           </div>
+                          <div className="w-[2.1rem] md:w-[4.4rem]">
+                            {/* {translatedMenuItems[5]} */} Packing
+                          </div>
+                          <div className="w-[2.1rem] md:w-[4.4rem]">
+                            {/* {translatedMenuItems[5]} */} Shipping
+                          </div>
                           <div className="w-[2.2rem] md:w-[3.8rem]">
                           <UpdateIcon className='!text-icon text-[#ff66b3]' /> {translatedMenuItems[7]} {/*Status"/> */}
                           </div>
@@ -734,9 +686,22 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                   <div class="flex">
                     <div className=" flex  items-center   max-sm:w-full">
                       <div className="flex items-center max-sm:w-full">
-                      <div className=" flex  items-center  md:w-[7.56rem]  border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
+                      <div className=" flex  items-center  md:w-[7rem]  border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
+                      {editsuppliesId === item.orderId ? (
+                        <>
+                     <Select
+                                                                classNames="w-32"
+                                                                value={SelectedOrder}
+                                                                onChange={(value) => { handleSelectedOrderDropDown(value,item)}}
+                                                            >
+                                                                    <Option value={"closedOrder"}>Closed Order</Option>
+                                                                    <Option value={"createRemainingOrder"}>Create Remaining Order</Option>
+                                                            </Select>
+                      </>
+                      
+                    ) : (
                                                         <Tooltip>
-                                                            <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
+                                                            <div class="flex max-sm:flex-row justify-between w-full md:flex-col" onClick={() => handleEditClick(item.orderId)}>
                                                                 <div class="  text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
@@ -751,6 +716,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                                                 </div>
                                                             </div>
                                                         </Tooltip>
+                    )}
                                                     </div>
                                                     </div>
 
@@ -778,7 +744,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                           </Tooltip>
                         </div>
                     
-                      <div className=" flex items-center w-[12rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center w-[8rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
@@ -797,7 +763,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                     </div>
                   </div>
                   <div class="flex">
-                    <div className=" flex  md:w-[16.01rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between text-xs ">
+                    <div className=" flex  md:w-[10rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between text-xs ">
                       <div class=" font-poppins ml-gap items-center text-xs">
 
                       {`${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].city) || ""}, ${(item.loadingAddress && item.loadingAddress.length && item.loadingAddress[0].country) || ""}
@@ -828,6 +794,20 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                         {item.itemCount}
                       </div>
                   </div>
+                  <div class="flex flex-row md:w-[6rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class=" font-poppins text-xs cursor-pointer text-black"
+                                       
+                                        >
+                                              {item.packing}
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row md:w-[6rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class=" font-poppins text-xs cursor-pointer text-black"
+                                       
+                                        >
+                                              {item.shipping}
+                                            </div>
+                                        </div>
                   <div class="flex flex-row items-center md:w-[10.03rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs cursor-pointer font-bold text-[#1890ff]" 
                                         onClick={() => {
