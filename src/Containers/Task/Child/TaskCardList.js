@@ -468,9 +468,9 @@ const TaskCardList = (props) => {
                                
                              
                        
-<div className="w-[3.23rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">
+<div className="flex w-[3.23rem] items-center  h-8 ml-gap bg-[#eef2f9]">
 {item.taskStatus==="Completed"&&(
-                   <div className="flex  w-[5.23rem] items-center  max-sm:flex-row  max-sm:w-auto  ">
+                   <div className="flex  w-[5.23rem]   max-sm:flex-row  max-sm:w-auto  ">
              {item.assignedToName !== item.submittedBy ? 
              <span>
              <Tooltip overlayStyle={{ maxWidth: "400px" }} title={`Review :${item.feedbackReview}`}>
@@ -896,7 +896,7 @@ taskStatus: "To Start",
                         
                       
                 
-<div className="w-[3.23rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">
+<div className="w-[3.23rem] flex items-center justify-center h-8 ml-gap bg-[#eef2f9]">
 {item.taskStatus==="Completed"&&(
             <div className="flex  w-[5.23rem] items-center   max-sm:flex-row  max-sm:w-auto  ">
       {item.assignedToName !== item.submittedBy ? 
@@ -1321,7 +1321,7 @@ taskStatus: "To Start",
                         
                       
                 
-<div className="w-[3.23rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">
+<div className="w-[3.23rem] flex items-center justify-center h-8 ml-gap bg-[#eef2f9]">
 {item.taskStatus==="Completed"&&(
             <div className="flex items-center  w-[5.23rem]  max-sm:flex-row  max-sm:w-auto  ">
       {item.assignedToName !== item.submittedBy ? 

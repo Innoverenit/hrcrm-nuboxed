@@ -9,6 +9,11 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { Tooltip,  Avatar,Button,message } from "antd";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import relativeTime from 'dayjs/plugin/relativeTime';
+import GroupsIcon from '@mui/icons-material/Groups';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import MergeTypeIcon from '@mui/icons-material/MergeType';
+import InfoIcon from '@mui/icons-material/Info';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 import {
   deleteEvent, getEventListRangeByUserId,
   handleUpdateEventModal,
@@ -157,43 +162,34 @@ const getLocation = (item) => {
    
          <div className=" flex  w-[100%]  max-sm:hidden p-1 bg-transparent font-bold sticky  z-10">
           <div className=" flex justify-between text-xs font-poppins w-[90%]">
-        <div className="flex justify-center w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.2rem]">
-        {translatedMenuItems[0]} {/* <FormattedMessage
-                  id="app.type"
-                  defaultMessage="type"
-                /> */}
+        <div className="flex truncate w-[12.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.2rem]">
+        < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[0]}
+         {/* type" */}
                 </div>
-        <div className="flex justify-center w-[13.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.23rem]">
-        {translatedMenuItems[1]} {/* <FormattedMessage
-                  id="app.subject"
-                  defaultMessage="subject"
-                /> */}
+        <div className="flex truncate w-[15.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.23rem]">
+        <InfoIcon className='!text-icon mr-1 text-[#e4eb2f]' />{translatedMenuItems[1]} 
+        {/* subject"*/}
                 </div>
-        <div className="flex justify-center w-[9.25rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.25rem] ">
-        {translatedMenuItems[2]} 
+        <div className="flex truncate w-[8.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.25rem] ">
+        <DateRangeIcon className="!text-icon mr-1"/>  {translatedMenuItems[2]} 
         {/* start */}
                 </div>
-        <div className="flex  w-[11.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.13rem] max-lg:w-[11.13rem] ">
-        {translatedMenuItems[3]} {/* <FormattedMessage
-                  id="app.subject"
-                  defaultMessage="subject"
-                /> */}
+        <div className="flex truncate  w-[7.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.13rem] max-lg:w-[11.13rem] ">
+        <DateRangeIcon className="!text-icon mr-1"/> {translatedMenuItems[3]}
+         {/*end"/> */}
+                </div>
+                <div className="flex truncate  w-[8.33rem] ">
+                  </div>
+        <div className="flex truncate w-[9.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.32rem] max-lg:w-[4.32rem]">
+        <GroupsIcon className='!text-base mr-1 text-[#e4eb2f]'/> {translatedMenuItems[4]}
+ {/* subject"*/}
                 </div>
      
-        <div className="flex justify-center w-[6.32rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.32rem] max-lg:w-[4.32rem]">
-        {translatedMenuItems[4]} {/* <FormattedMessage
-                  id="app.subject"
-                  defaultMessage="subject"
-                /> */}
+        <div className=" flex truncate w-[5.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.15rem]">
+        <AccountCircleIcon className="!text-icon  mr-1 text-[#d64933]"/>  {translatedMenuItems[5]}
+         {/* subject"*/}
                 </div>
-     
-        <div className=" flex justify-center w-[8.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.15rem]">
-        {translatedMenuItems[5]} {/* <FormattedMessage
-                  id="app.subject"
-                  defaultMessage="subject"
-                /> */}
-                </div>
-        <div className=" flex justify-center w-24 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[22.01rem] max-lg:w-[23.01rem]">
+        <div className=" flex truncate w-[14rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[22.01rem] max-lg:w-[23.01rem]">
   
                 </div>
                 
@@ -224,13 +220,13 @@ const getLocation = (item) => {
                                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex w-[10.98rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-xl:w-[6.98rem] max-lg:w-[5.28rem] max-sm:w-auto ">
                                     <div className="flex max-sm:w-full"> 
-                                        <div class="max-sm:w-full">
+                                        <div class="max-sm:w-full flex items-center">
                                         <Tooltip>
                                         <div class=" flex max-sm:justify-between flex-row w-full md:flex-col">
                                             {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">
                                             Type
                                             </div> */}
-                                            <div class="text-xs items-center ml-gap font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">                                       
+                                            <div class="flex text-xs items-center ml-gap font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">                                       
                                             {item.eventType}
        
                                             </div>
@@ -240,7 +236,7 @@ const getLocation = (item) => {
                                         </div>
                                 </div>
 
-                                <div className=" flex  w-[15.26rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[9.6rem] max-lg:w-[7.6rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className=" flex  w-[14.30rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[9.6rem] max-lg:w-[7.6rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class=" text-[0.875rem]  font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
                                     <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">   
                                     {item.eventSubject}
@@ -262,7 +258,7 @@ const getLocation = (item) => {
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex w-[9.32rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.32rem] max-lg:w-[3.23rem] max-sm:flex-row  max-sm:w-auto">
+                                <div className=" flex w-[7.32rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.32rem] max-lg:w-[3.23rem] max-sm:flex-row  max-sm:w-auto">
                                    
                                 </div>
                                 <div className=" flex  w-[9.31rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.31rem] max-lg:w-[2.31rem] max-sm:flex-row  max-sm:w-auto ">
@@ -295,7 +291,7 @@ const getLocation = (item) => {
             </Avatar.Group>
                                     </div>
                                 </div>
-                                <div className="flex  w-[3.69rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.69rem] max-lg:w-[3.69rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className="flex  w-[5.69rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.69rem] max-lg:w-[3.69rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">Assigned</div> */}
 
                                     <div class="text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
@@ -327,7 +323,7 @@ const getLocation = (item) => {
                                 <div className="flex w-[6.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[2.12rem]  max-sm:flex-row  max-sm:w-auto ">                                
                <div class="max-sm:flex justify-end">
                 {item.complitionInd===false&&(
-   <Button 
+   <Button type="primary"
    onClick={() => getLocation(item)}
    >
         Complete</Button>
@@ -390,7 +386,7 @@ const getLocation = (item) => {
                         )}
                     
                          <Tooltip title={
-      <div>
+      <div class="flex justify-end items-center h-8 ml-gap bg-[#eef2f9]">
         {item.eventDescription}
         <br />
         <FileCopyIcon
