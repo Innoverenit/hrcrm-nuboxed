@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import ViewModuleIcon from '@mui/icons-material/ViewModule';
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 const ModuleList = lazy(() =>
   import("./ModuleList")
 );

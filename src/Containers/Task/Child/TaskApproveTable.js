@@ -287,7 +287,7 @@ const TaskApproveTable = (props) => {
                          <div class="flex  max-sm:justify-end max-sm:w-wk ">  
                   
                    <div class="flex flex-col w-[10.3rem]  items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.2rem] max-lg:w-[6.2rem] justify-center  max-sm:flex-row max-sm:w-auto">
-                   <div class="w-36 max-sm:w-auto">
+                   <div class="w-[10rem] max-sm:w-auto">
   {item.taskType === "Prospect To Customer" ? (
     <>
        <Tooltip title="Qualify? Prospect will move to Customer section!">
