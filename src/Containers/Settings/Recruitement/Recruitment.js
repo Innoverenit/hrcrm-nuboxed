@@ -3,6 +3,7 @@ import {
    getProcessForRecruit,
     dataClear,
 } from "../SettingsAction";
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import RecruitTab from "../../Rules/Child/RulesTab/RecruitPro/RecruitTab";
@@ -31,22 +32,40 @@ function Recruitment(props) {
   const name = [
 
     {
-      rulesName: "Access",
+       rulesName:(
+        <span>
+          <HourglassFullIcon className=" !text-icon" />Access
+        </span>
+      ),
       ruleId: "1",
       component: <Access />,
     },
     {
-      rulesName: "Approval",
+       rulesName:(
+        <span>
+          <HourglassFullIcon className=" !text-icon" />Approval
+        </span>
+      ),
       ruleId: "2",
       component: <ApprovalTab />,
     },
     {
-      rulesName: "Automation",
+      rulesName:(
+        <span>
+          <HourglassFullIcon className=" !text-icon" />Automation
+        </span>
+      ),
+     
       ruleId: "3",
       component: <DistributionTab />,
     },
     {
-      rulesName: "Form",
+      rulesName:(
+        <span>
+          <HourglassFullIcon className=" !text-icon" />Form
+        </span>
+      ),
+   
       ruleId: "4",
       component: <Form
       translateText={props.translateText}
@@ -55,12 +74,21 @@ function Recruitment(props) {
     },
     
     {
-      rulesName: "General",
+      rulesName:(
+      <span>
+      <HourglassFullIcon className=" !text-icon" />General
+    </span>
+  ),
+     
       ruleId: "5",
       component: <General/>,
     },
     {
-      rulesName: "Holidays & Leaves",
+      rulesName:(
+        <span>
+        <i class="fas fa-luggage-cart mr-1 text-[#e4eb3f]"></i>Holidays & Leaves
+      </span>
+    ),
       ruleId: "6",
       component: <SettingsHolidayTab />,
     },
@@ -71,7 +99,12 @@ function Recruitment(props) {
     // },
     
     {
-      rulesName: "Report Scheduler",
+      rulesName:(
+        <span>
+        <HourglassFullIcon className=" !text-icon mr-1" />Report Scheduler
+      </span>
+    ),
+     
       ruleId: "7",
       component: <ReportScheduler />,
     },
@@ -81,48 +114,88 @@ function Recruitment(props) {
     //   component: <LeadsTab />,
     // },
     {
-      rulesName: "Skills & Certification",
+      rulesName:(
+        <span>
+        <HourglassFullIcon className=" !text-icon" />Skills & Certification
+      </span>
+    ),
+    
       ruleId: "9",
       component: <SkillsTab/>,
     },
     {
-      rulesName: "Template",
+      rulesName:(
+        <span>
+        <HourglassFullIcon className=" !text-icon" />Template
+      </span>
+    ), 
       ruleId: "10",
       component: <Template />,
     },
     {
-      rulesName: "Workflow",
+   rulesName:(
+        <span>
+        <HourglassFullIcon className=" !text-icon" />Workflow
+      </span>
+    ), 
       ruleId: "11",
        component: <WorkFlow/>,
     },
     {
-      rulesName: "Finance",
+    rulesName:(
+        <span>
+        <HourglassFullIcon className=" !text-icon" />Finance
+      </span>
+    ),
       ruleId: "12",
       component: <FinanceTab/>,
     },
     {
-      rulesName: "Labour Cost",
+      rulesName:(
+        <span>
+        <HourglassFullIcon className=" !text-icon" />Labour Cost
+      </span>
+    ),
+     
       ruleId: "13",
       component: <Matrix/>,
     },
    {
-      rulesName: "Notification",
+    rulesName:(
+      <span>
+      <HourglassFullIcon className=" !text-icon" />Notification
+    </span>
+  ),
+     
       ruleId: "14",
       component: <NotificationToggleForm />,
     },
     {
-      rulesName: "Pay Roll(Only for GCC)",
+      rulesName:(
+        <span>
+        <HourglassFullIcon className=" !text-icon" />Pay Roll(Only for GCC)
+      </span>
+    ),
       ruleId: "15",
       component: <SalaryTab />,
     },
      {
-      rulesName: "Automation1",
+      rulesName:(
+        <span>
+        <HourglassFullIcon className=" !text-icon" />Automation1
+      </span>
+    ),
       ruleId: "21",
       component: <RecruitTab/>,
     },
     
     {
-      rulesName: "3rd Party Integration",
+      rulesName:(
+        <span>
+        <HourglassFullIcon className=" !text-icon" />3rd Party Integration
+      </span>
+    ),
+   
       ruleId: "22",
       component: <ThirdParty />,
     },

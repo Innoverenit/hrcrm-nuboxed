@@ -495,21 +495,18 @@ const TaskCardList = (props) => {
      </div>
                                         
                    <div class="flex  w-[9.21rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
-                    <div class=" w-36 items-center">
+                    <div class="w-[10rem] items-center">
   {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
     <>
       <div>
-        <Button className=""
+        <Button type="primary"className="bg-[teal] text-[white] font-poppins text-xs "
         onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
-          style={{ backgroundColor: "teal", color: "white" }}
+     
         >
           <FormattedMessage id="app.approve" defaultMessage="Approve" />
         </Button>
-        <Button
-          style={{
-            backgroundColor: "rgb(233, 79, 79)",
-            color: "white",
-          }}
+       <Button type="primary"className="bg-[red] text-[white] font-poppins text-xs "
+      
           onClick={() => rejectTaskByTaskId(item.taskId)}
         >
           <FormattedMessage id="app.reject" defaultMessage="Reject" />
@@ -923,7 +920,7 @@ taskStatus: "To Start",
 </div>
                                  
             <div class="flex  w-[9.21rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
-             <div class=" w-36 items-center">
+             <div class=" w-[10rem] items-center">
 {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
 <>
 <div>
@@ -1348,7 +1345,7 @@ taskStatus: "To Start",
 </div>
                                  
             <div class="flex  w-[9.21rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.6rem] justify-center  max-sm:flex-row max-sm:w-auto">
-             <div class=" w-36 items-center">
+             <div class=" w-[10rem] items-center">
 {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
 <>
 <div>

@@ -5,6 +5,15 @@ import { connect } from "react-redux";
 import EmployeeTab from "./EmployeeTab/EmployeeTab";
 import SuppliersTab from "./SuppliersTab";
 import ShipperTab from "./ShipperTab";
+import ViewModuleIcon from '@mui/icons-material/ViewModule';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import SettingsAccessibilityIcon from '@mui/icons-material/SettingsAccessibility';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import LocationCityIcon from '@mui/icons-material/LocationCity';// corporate
+import ExplicitIcon from '@mui/icons-material/Explicit';//words
+import GroupsIcon from '@mui/icons-material/Groups';
 const PerformanceManagementTab = lazy(() =>
   import("./PerformanceManagementTab/PerformanceManagementTab")
 );
@@ -75,85 +84,139 @@ function CategoryTab (props) {
 
         const name = [
               {
-            rulesName: "Module",
+            rulesName :(
+              <span>
+                <ViewModuleIcon className=" !text-icon" /> Module
+              </span>
+            ),
             ruleId: "1",
             component:<ModuleTab
             translateText={props.translateText}
             selectedLanguage={props.selectedLanguage}/>,
           },
-
           {
-            rulesName:"Role",
+        
+            rulesName:(
+              <span>
+                <SettingsAccessibilityIcon className="text-blue-500 !text-icon" />Role
+              </span>
+            ),
             ruleId: "2",
             component:<Category
             translateText={props.translateText}
             selectedLanguage={props.selectedLanguage}/>,
           },
             {
-              rulesName:  "Activity",
+              rulesName:(
+                <span>
+                  <HourglassFullIcon className="text-blue-500 !text-icon" />Activity
+                </span>
+              ),
               ruleId: "3",
               component:   <CategoryActivity
               translateText={props.translateText}
               selectedLanguage={props.selectedLanguage}/>,
             },
             {
-              rulesName: "Corporate",
+              rulesName:(
+                <span>
+                <LocationCityIcon className='!text-icon mr-1 text-[#e4eb2f]'/>Corporate
+                </span>
+              ), 
+       
               ruleId: "4",
               component: <OthersTab 
               translateText={props.translateText}
               selectedLanguage={props.selectedLanguage}/>,
             },
             {
-              rulesName: "Customer",
+              rulesName:(
+                <span>
+                <ApartmentIcon className='!text-icon mr-1 text-[#e4eb2f]'/>Customer
+                </span>
+              ), 
               ruleId: "5",
               component:<CustomerSectorTab 
               translateText={props.translateText}
               selectedLanguage={props.selectedLanguage}/>,
             },
-            {
-              rulesName: "Suppliers",
+            {  
+               rulesName:(
+                <span>
+                <ApartmentIcon className='!text-icon mr-1 text-[#e4eb2f]'/>Suppliers
+                </span>
+              ), 
               ruleId: "6",
               component:<SuppliersTab 
               translateText={props.translateText}
               selectedLanguage={props.selectedLanguage}/>,
             },
             {
-              rulesName: "Shipper",
+              rulesName:(
+                <span>
+                  <LocalShippingIcon className='!text-icon mr-1 text-[#e4eb2f]'/>Shipper
+                </span>
+              ),
+          
               ruleId: "7",
               component:<ShipperTab 
               translateText={props.translateText}
               selectedLanguage={props.selectedLanguage}/>,
             },
             {
-              rulesName: "Investor",
+              rulesName:(
+                <span>
+                  <LocationCityIcon className='!text-icon mr-1 text-[#e4eb2f]'  />Investor
+                </span>
+              ),
+         
               ruleId: "8",
               component:<InvestorTab 
               translateText={props.translateText}
               selectedLanguage={props.selectedLanguage}/>,
             },
             {
-              rulesName: "Order",
+            rulesName:(
+              <span>
+              <DynamicFeedIcon className='!text-icon mr-1 text-[#e4eb2f]'/>Order
+              </span>
+            ),        
               ruleId: "9",
               component:<OrderTab
               translateText={props.translateText}
               selectedLanguage={props.selectedLanguage} />,
             },
             {
-              rulesName: "Performance Management",
+              rulesName:(
+                <span>
+                <ExplicitIcon className='!text-icon mr-1 text-[#e4eb2f]'/>Performance Management
+                </span>
+              ), 
+            
               ruleId: "10",
               component:<PerformanceManagementTab 
               translateText={props.translateText}
               selectedLanguage={props.selectedLanguage}/>,
             },
             {
-              rulesName: "Words",
+              rulesName:(
+                <span>
+                <ExplicitIcon className='!text-icon mr-1 text-[#e4eb2f]'/>Words
+                </span>
+              ), 
+              
               ruleId: "11",
               component:<Words
               translateText={props.translateText}
               selectedLanguage={props.selectedLanguage}/>,
             },
             {
-              rulesName: "Employee",
+              rulesName:(
+                <span>
+                 <GroupsIcon className='!text-base  text-[#e4eb2f]'/>Employee
+                </span>
+              ), 
+            
               ruleId: "12",
               component:<EmployeeTab
               translateText={props.translateText}
