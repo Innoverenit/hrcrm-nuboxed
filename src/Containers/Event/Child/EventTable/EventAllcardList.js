@@ -21,6 +21,11 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import { BundleLoader } from "../../../../Components/Placeholder";
+import GroupsIcon from '@mui/icons-material/Groups';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import MergeTypeIcon from '@mui/icons-material/MergeType';
+import InfoIcon from '@mui/icons-material/Info';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 const UpdateEventModal = lazy(() => import("../UpdateEventModal"));
 dayjs.extend(relativeTime);
 
@@ -119,46 +124,46 @@ function EventAllcardList (props) {
   
     return(
         <>
-         <div className=' flex  sticky  z-auto'>
-      <div class="rounded  justify-between m-1  max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div className=' flex  sticky  z-auto'>
+        <div class="rounded  justify-between m-1  max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
    
-         <div className=" flex  w-[100%]  max-sm:hidden p-1 bg-transparent font-bold sticky  z-10">
+         <div className=" flex  w-[93%]  max-sm:hidden p-1 bg-transparent font-bold sticky  z-10">
           <div className=" flex justify-between text-xs font-poppins w-[93%]">
-        <div className="flex justify-center w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.2rem]">
-        {/* Type */} {translatedMenuItems[0]}
+        <div className="flex truncate w-[15.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.2rem]">
+        {/* Type */}     < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[0]}
                 </div>
-        <div className="flex justify-center w-[13.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.23rem]">
-      {/* Subject */}  {translatedMenuItems[1]}
+        <div className="flex truncate w-[14.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.23rem]">
+      {/* Subject */}  <InfoIcon className='!text-icon mr-1 text-[#e4eb2f]' />{translatedMenuItems[1]}
                 </div>
-        <div className="flex justify-center w-[9.25rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.25rem] ">
-      {/* Start */} {translatedMenuItems[2]}
+        <div className="flex truncate w-[10.25rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.25rem] ">
+      {/* Start */}  <DateRangeIcon className="!text-icon mr-1"/> {translatedMenuItems[2]}
                 </div>
-        <div className="flex  w-[11.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.13rem] max-lg:w-[11.13rem] ">
-       {/* End */} {translatedMenuItems[3]}
+        <div className="flex  w-[10.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.13rem] max-lg:w-[11.13rem] ">
+       {/* End */} <DateRangeIcon className="!text-icon mr-1"/>  {translatedMenuItems[3]}
+                </div>
+                <div className="flex truncate  w-[8.33rem] "></div>
+        <div className="flex truncate w-[11.32rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.32rem] max-lg:w-[4.32rem]">
+       {/* Include */}   <GroupsIcon className='!text-base mr-1 text-[#e4eb2f]'/> {translatedMenuItems[4]}
                 </div>
      
-        <div className="flex justify-center w-[6.32rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.32rem] max-lg:w-[4.32rem]">
-       {/* Include */} {translatedMenuItems[4]}
+        <div className=" flex truncate w-[6.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.15rem]">
+       {/* Assigned */}         <AccountCircleIcon className="!text-icon  mr-1 text-[#d64933]"/>{translatedMenuItems[5]}
                 </div>
-     
-        <div className=" flex justify-center w-[8.15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.15rem]">
-       {/* Assigned */} {translatedMenuItems[5]}
-                </div>
-        <div className=" flex justify-center w-24 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[22.01rem] max-lg:w-[23.01rem]">
-  {/* Owner */} {translatedMenuItems[6]}
+        <div className=" flex truncate w-[15rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[22.01rem] max-lg:w-[23.01rem]">
+  {/* Owner */}        <AccountCircleIcon className="!text-icon  mr-1 text-[#d64933]"/> {translatedMenuItems[6]}
                 </div>
                 
                 </div>
       </div>
 
-      </div>
+  
 
       <InfiniteScroll
         dataLength={props.eventallListRangeByUserId.length}
         next={handleLoadMore}
         hasMore={hasMore}
         loader={props.fetchingEventAllListRangeByUserId?<div class="flex justify-center">Loading...</div>:null}
-        height={"83vh"}
+        height={"88vh"}
         style={{scrollbarWidth:"thin"}}
       >
       {props.eventallListRangeByUserId.map((item) => { 
@@ -178,7 +183,7 @@ function EventAllcardList (props) {
                                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 <div className=" flex w-[10.98rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-xl:w-[6.98rem] max-lg:w-[5.28rem] max-sm:w-auto ">
                                     <div className="flex max-sm:w-full"> 
-                                        <div class="max-sm:w-full">
+                                        <div class="max-sm:w-full flex items-center">
                                         <Tooltip>
                                         <div class=" flex max-sm:justify-between flex-row w-full md:flex-col">
                                             {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">
@@ -194,7 +199,7 @@ function EventAllcardList (props) {
                                         </div>
                                 </div>
 
-                                <div className=" flex  w-[15.26rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[9.6rem] max-lg:w-[7.6rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className=" flex  w-[11.26rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[9.6rem] max-lg:w-[7.6rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class=" text-[0.875rem]  font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
                                     <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">   
                                     {item.eventSubject}
@@ -208,7 +213,7 @@ function EventAllcardList (props) {
                                     {` ${dayjs(item.startDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
-                                <div className=" flex w-[6.32rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.32rem] max-lg:w-[3.32rem] max-sm:flex-row  max-sm:w-auto">
+                                <div className=" flex w-[7.32rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.32rem] max-lg:w-[3.32rem] max-sm:flex-row  max-sm:w-auto">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">End</div> */}
                                     <div class="text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
                                     {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
@@ -216,7 +221,7 @@ function EventAllcardList (props) {
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex w-[9.32rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.32rem] max-lg:w-[3.23rem] max-sm:flex-row  max-sm:w-auto">
+                                <div className=" flex w-[7.32rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.32rem] max-lg:w-[3.23rem] max-sm:flex-row  max-sm:w-auto">
                                    
                                 </div>
                                 <div className=" flex  w-[9.31rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.31rem] max-lg:w-[2.31rem] max-sm:flex-row  max-sm:w-auto ">
@@ -249,7 +254,7 @@ function EventAllcardList (props) {
             </Avatar.Group>
                                     </div>
                                 </div>
-                                <div className="flex  w-[3.69rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.69rem] max-lg:w-[3.69rem] max-sm:flex-row  max-sm:w-auto ">
+                                <div className="flex  w-[5.69rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.69rem] max-lg:w-[3.69rem] max-sm:flex-row  max-sm:w-auto ">
                                     {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">Assigned</div> */}
 
                                     <div class="text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs ">
@@ -281,7 +286,7 @@ function EventAllcardList (props) {
                                 <div className="flex w-[6.12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[2.12rem]  max-sm:flex-row  max-sm:w-auto ">                                
                <div class="max-sm:flex justify-end">
                 {item.complitionInd===false&&(
-   <Button 
+   <Button type="primary"
    onClick={() => getLocation(item)}
    >
         Complete</Button>
@@ -389,6 +394,7 @@ function EventAllcardList (props) {
                     )
                 })}
                    </InfiniteScroll>
+                   </div>
       </div>
       <Suspense fallback={<BundleLoader />}>
         <UpdateEventModal
