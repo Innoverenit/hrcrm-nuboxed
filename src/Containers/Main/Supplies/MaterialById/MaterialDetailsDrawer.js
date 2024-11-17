@@ -1,7 +1,7 @@
 
 import React, { lazy, Component, Suspense,useState } from "react";
 import { StyledDrawer, StyledTabs } from "../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 import TabPane from 'antd/lib/tabs/TabPane';
 import { BundleLoader } from "../../../../Components/Placeholder";
 import LocationSuppliesList from "../LocationSuppliesList";

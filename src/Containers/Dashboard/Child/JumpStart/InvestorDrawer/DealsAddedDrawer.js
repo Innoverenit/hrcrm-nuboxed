@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledDrawer} from "../../../../../Components/UI/Antd";
 const DealAddedTable =lazy(()=>import("./DealAddedTable"));

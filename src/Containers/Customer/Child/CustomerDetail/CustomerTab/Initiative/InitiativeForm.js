@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, message } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import { MainWrapper } from "../../../../../../Components/UI/Elements";
 import { Formik, Form, Field } from "formik";

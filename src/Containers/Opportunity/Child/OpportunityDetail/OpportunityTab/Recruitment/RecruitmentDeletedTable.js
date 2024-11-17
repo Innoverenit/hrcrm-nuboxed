@@ -2,7 +2,7 @@ import React, { Component, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import LockOpenIcon from '@mui/icons-material/LockOpen';
-import { FormattedMessage } from "react-intl";
+
 import SkillBarChatModal from "../../OpportunityTab/Recruitment/Child/SkillBarChartModal"
 import AddRequirementModal from "./AddRequirementModal"
 import HelpIcon from '@mui/icons-material/Help';

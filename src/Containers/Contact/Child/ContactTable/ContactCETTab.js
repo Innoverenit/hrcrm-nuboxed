@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
+
 import { Badge, Tooltip } from "antd";
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import {handleCallActivityModal} from "../../../Activity/ActivityAction"

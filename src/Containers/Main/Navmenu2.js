@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Menu, Icon, Popover, Badge } from "antd";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
-import { FormattedMessage } from "react-intl";
+
 import { translateText, getSupportedLanguages } from '../Translate/TranslateService';
 import TimeToLeaveIcon from '@mui/icons-material/TimeToLeave';
 import HandshakeIcon from '@mui/icons-material/Handshake';

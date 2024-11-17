@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import VoiceOverOffIcon from '@mui/icons-material/VoiceOverOff';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';

@@ -1,7 +1,7 @@
 import { Field, Form, Formik } from 'formik'
 import React, {useEffect,useState,lazy} from 'react'
 import * as Yup from "yup";
-import { FormattedMessage } from "react-intl";
+
  import {getCandidatesBillableAmount} from "../../DashboardAction"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";

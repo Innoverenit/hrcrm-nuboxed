@@ -8,7 +8,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {getEmployeeKpiList,deleteKpiData,updateAssignedValue} from "../TeamsAction"
 import { Button } from 'antd';
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 const Option = Select;
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);

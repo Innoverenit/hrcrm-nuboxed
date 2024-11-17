@@ -1,8 +1,5 @@
 import React from "react";
 import error from "../../Assets/Images/i.png";
-import { Button } from "antd";
-
-import { FormattedMessage } from "react-intl";
 
 class NodataFoundPage1 extends React.Component {
   constructor(props) {
@@ -50,11 +47,7 @@ class NodataFoundPage1 extends React.Component {
               
                 onClick={() => this.handleRefreshPage()}
               >
-                <FormattedMessage
-                  id="app.close"
-                  defaultMessage="Close"
-                />
-           
+             
               </Button> */}
             </div>
           </div>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Menu,  } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { withRouter } from "react-router-dom";
 import {
   StyledDropdown,

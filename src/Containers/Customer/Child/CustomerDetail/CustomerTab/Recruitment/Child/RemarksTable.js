@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { StyledTable } from "../../../../../../../Components/UI/Antd";
 // import { getRemark } from "../../../../../OpportunityAction";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
 import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";

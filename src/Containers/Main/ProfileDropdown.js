@@ -11,7 +11,7 @@ import {
 } from "../../Components/UI/Antd";
 import {MainWrapper } from "../../Components/UI/Layout";
 import { logout } from "../Auth/AuthAction";
-import { FormattedMessage } from "react-intl";
+
 const Theme = lazy(() => import("../Settings/Theme/Theme"));
 
 

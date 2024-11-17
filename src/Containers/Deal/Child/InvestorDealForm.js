@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getCustomerData,getInvestorData } from "../../Customer/CustomerAction";
 import { getdealsContactdata } from "../../Contact/ContactAction";
-import { FormattedMessage } from "react-intl";
+
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";

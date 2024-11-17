@@ -13,7 +13,7 @@
 //   Tooltip,
 //   Legend
 // } from "recharts";
-// import { FormattedMessage } from "react-intl";
+// 
 
 // const DashRepairBarClousreJumpstartUser = (props) => {
 //     const { getDashBoardClosureRatio, userId, startDate, endDate, dateClosureRangeList, setSelectedClosureTimeIntervalReport } = props;

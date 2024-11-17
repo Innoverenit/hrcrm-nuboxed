@@ -88,7 +88,7 @@ const AccessmentActionLeft = (props) => {
             //props.getCandidateCountSearch()
           }}
         >
-          <FormattedMessage id="app.clear" defaultMessage="Clear" />
+       
 
         </Button> */}
     </div>

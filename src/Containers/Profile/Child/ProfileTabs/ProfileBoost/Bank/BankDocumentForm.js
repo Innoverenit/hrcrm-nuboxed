@@ -7,7 +7,7 @@ import { InputComponent } from "../../../../../../Components/Forms/Formik/InputC
 import * as Yup from "yup";
 import Upload from "../../../../../../Components/Forms/Formik/Upload";
 import { addBankDetails } from "../../../../ProfileAction";
-import { FormattedMessage } from "react-intl";
+
 
 const documentSchema = Yup.object().shape({
   documentId: Yup.string().required("Input needed !"),

@@ -16,7 +16,7 @@ import {
   deleteEducationTable,
 } from "../../../../ProfileAction";
 import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
-import { FormattedMessage } from "react-intl";
+
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 const UpdateEducationModal = lazy(() => import("../../ProfileBoost/Education/UpdateEducationModal"));
 class EducationTable extends Component {

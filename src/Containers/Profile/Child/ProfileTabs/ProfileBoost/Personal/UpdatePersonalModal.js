@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 const UpdatePersonalForm = lazy(() => import("../Personal/UpdatePersonalForm"));
 class UpdatePersonalModal extends Component {
   render() {

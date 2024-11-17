@@ -2,7 +2,7 @@ import React, { useEffect,useState,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Select, Tooltip,Switch } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import {
     addCustomerConfigure,
     getCustomerConfigure

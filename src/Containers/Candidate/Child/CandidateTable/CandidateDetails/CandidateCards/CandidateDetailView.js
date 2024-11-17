@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { SubTitle } from "../../../../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
+
 import dayjs from "dayjs";
 import { Tooltip } from "antd";
 

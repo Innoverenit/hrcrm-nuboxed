@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button, Select , Switch} from "antd";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";

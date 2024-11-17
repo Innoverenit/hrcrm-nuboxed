@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Switch,Button,Select  } from "antd";
 import { getSectors } from "../../../../../Containers/Settings/Sectors/SectorsAction";
-import { FormattedMessage } from "react-intl";
+
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import { getAllCustomerEmployeelist } from "../../../../Employees/EmployeeAction";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";

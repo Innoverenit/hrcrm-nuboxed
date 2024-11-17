@@ -11,7 +11,7 @@ import SearchSelect from "../../../../../../../Components/Forms/Formik/SearchSel
 import { DatePicker } from "../../../../../../../Components/Forms/Formik/DatePicker";
 import dayjs from "dayjs";
 import { updateCandidateEmploymentDetails } from "../../../../../CandidateAction";
-import { FormattedMessage } from "react-intl";
+
 import { getDesignations } from "../../../../../../Settings/Designation/DesignationAction";
 import DragableUpload from "../../../../../../../Components/Forms/Formik/DragableUpload";
 const documentSchema = Yup.object().shape({});

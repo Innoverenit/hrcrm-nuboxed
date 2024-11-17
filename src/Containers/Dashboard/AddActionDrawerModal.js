@@ -1,5 +1,5 @@
 import React, { lazy, Suspense,useState } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import ActionSteps from "../Dashboard/ActionSteps"

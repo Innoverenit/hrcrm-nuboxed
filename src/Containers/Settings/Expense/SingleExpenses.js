@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Button, Tooltip,Popconfirm } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import dayjs from "dayjs";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";

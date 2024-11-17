@@ -2,7 +2,7 @@ import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getSuppliersDeletedList, emptysUPPLIERS ,deleteSupplierData,handleUpdateSupplierModal,setEditSuppliers} from "../SuppliersAction"
-import { FormattedMessage } from "react-intl";
+
 import dayjs from "dayjs";
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';

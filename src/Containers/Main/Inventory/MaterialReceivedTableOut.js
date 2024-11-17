@@ -11,7 +11,7 @@ import {handleTermsnConditionModal} from "../Suppliers/SuppliersAction"
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
 import { TerminalSharp } from "@mui/icons-material";
-import { FormattedMessage } from "react-intl";
+
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Tooltip, Select, Button } from "antd";

@@ -7,7 +7,7 @@ import {
   StyledPopconfirm,
 } from "../../../../../../Components/UI/Antd";
 import DownloadIcon from '@mui/icons-material/Download';
-import { FormattedMessage } from "react-intl";
+
 import { DeleteOutlined } from "@ant-design/icons";
 
 class LinkedInvoice extends Component {

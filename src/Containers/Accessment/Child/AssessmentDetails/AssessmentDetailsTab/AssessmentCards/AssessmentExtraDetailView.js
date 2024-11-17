@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { div } from "../../../../../../Components/UI/Layout";
 import { SubTitle } from "../../../../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
+
 
 function AssessmentExtraDetailView(props) {
     const {

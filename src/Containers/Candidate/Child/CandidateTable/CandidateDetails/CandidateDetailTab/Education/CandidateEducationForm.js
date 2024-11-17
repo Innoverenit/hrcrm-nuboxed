@@ -11,7 +11,7 @@ import * as Yup from "yup";
 import DragableUpload from "../../../../../../../Components/Forms/Formik/DragableUpload";
 import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
 import ButtonGroup from "antd/lib/button/button-group";
-import { FormattedMessage } from "react-intl";
+
 import { addCandidateEducationDetails } from "../../../../../CandidateAction";
 import SearchSelect from "../../../../../../../Components/Forms/Formik/SearchSelect";
 import { getEducations } from "../../../../../../Settings/Educations/EducationAction";

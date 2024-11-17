@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import {  StyledTabs } from "../../Components/UI/Antd";
 import TabsWrapper1 from "../../Components/UI/Layout/TabsWrapper1";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../Components/Placeholder";
 
 const TabPane = StyledTabs.TabPane;

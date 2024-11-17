@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { Formik, Form, Field, FastField } from "formik";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
@@ -50,7 +50,7 @@ function TestForm(props) {
                      isRequired
                     name="testName"
                     type="text"
-                    label={<FormattedMessage id="app.name" defaultMessage="Name" />}
+                    label="Name" 
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -62,12 +62,7 @@ function TestForm(props) {
                     isRequired
                     name="duration"
                     type="text"
-                    label={
-                      <FormattedMessage
-                        id="app.duration"
-                        defaultMessage="Duration"
-                      />
-                    }
+                    label="Duration"
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -78,12 +73,7 @@ function TestForm(props) {
 <FastField
                             name="drtnType"
                             type="text"
-                            label={
-                              <FormattedMessage
-                                id="app.duration"
-                                defaultMessage="Unit"
-                              />
-                            }
+                            label="Unit"
                             options={["Hours", "Days", "Month","Years"]}
                             component={SelectComponent}
                             inlineLabel
@@ -104,7 +94,7 @@ function TestForm(props) {
                   htmlType="submit"
                   loading={props.addingCourse}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
+                  Create
                 </Button>
               </div>
             </Form>

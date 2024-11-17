@@ -8,7 +8,7 @@ import {
   ShoppingOutlined,
 } from "@ant-design/icons";
 import { InputNumber, Popconfirm, Form, Input, Typography, Button, Space, DatePicker } from 'antd';
-import { FormattedMessage } from "react-intl";
+
 import { StyledModal, StyledTable } from "../../../../../Components/UI/Antd";
 import { getCommissionTable,setEditCommission, handleCommission} from "../../../../Settings/SettingsAction";
 // import CommissionUpdateModal from "./CommissionUpdateModal";

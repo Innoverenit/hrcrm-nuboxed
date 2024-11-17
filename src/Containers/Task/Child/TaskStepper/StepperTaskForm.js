@@ -4,7 +4,7 @@ import React, {useState,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip,Select} from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { Formik, Form, Field} from "formik";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import dayjs from "dayjs";

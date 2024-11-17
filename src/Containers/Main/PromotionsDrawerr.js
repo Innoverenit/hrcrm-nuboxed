@@ -1,6 +1,6 @@
 import React, { lazy, Component,Suspense } from "react";
 import { StyledDrawer } from "../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 import Prmotion from "./Promotion/Prmotion";
 import { BundleLoader } from "../../Components/Placeholder";
 

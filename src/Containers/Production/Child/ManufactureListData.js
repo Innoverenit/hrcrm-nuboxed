@@ -1,5 +1,5 @@
 import React,{ useEffect, useState, lazy }  from 'react'
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { connect } from "react-redux";

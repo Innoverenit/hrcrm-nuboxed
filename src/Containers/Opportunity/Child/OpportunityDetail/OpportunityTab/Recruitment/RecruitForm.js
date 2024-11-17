@@ -2,7 +2,7 @@ import React, { useState, useEffect, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { Formik, Form, Field, FieldArray } from "formik";
 import AddressFieldArray from "../../../../../../Components/Forms/Formik/AddressFieldArray";
 import * as Yup from "yup";

@@ -1,7 +1,7 @@
 import React, { Component, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import TopicOutlinedIcon from "@mui/icons-material/TopicOutlined";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";

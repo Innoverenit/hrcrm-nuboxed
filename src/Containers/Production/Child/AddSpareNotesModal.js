@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import SpareNotesList from "../Child/SpareNotesList"
 //import SpareStepsForm from "../Child/SpareStepsForm"
 import { BundleLoader } from "../../../Components/Placeholder";

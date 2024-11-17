@@ -16,7 +16,7 @@ import {
   handlePaidModal
 } from "../Order/OrderAction";
 import { handleOrderDetailsModal } from "../Account/AccountAction";
-import { FormattedMessage } from "react-intl";
+
 import dayjs from "dayjs";
 import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
 import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";

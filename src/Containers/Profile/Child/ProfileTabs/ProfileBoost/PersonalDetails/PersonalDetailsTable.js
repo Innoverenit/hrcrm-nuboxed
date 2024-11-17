@@ -15,7 +15,7 @@ import {
   deletePersonalTable,
 } from "../../../../ProfileAction";
 import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
-import { FormattedMessage } from "react-intl";
+
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 const UpdatePersonalDetailsModal = lazy(() => import("./UpdatePersonalDetailsModal"));
 class EducationTable extends Component {

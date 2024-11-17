@@ -8,7 +8,7 @@ import { bindActionCreators } from "redux";
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { connect } from "react-redux";
 import { Avatar, Input, Tooltip,Badge, Button } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { AudioOutlined } from "@ant-design/icons"
 
 const Option = StyledSelect.Option;

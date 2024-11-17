@@ -2,7 +2,7 @@
  import React, { useEffect, useState } from "react";
  import { connect } from "react-redux";
  import { bindActionCreators } from "redux";
- import { FormattedMessage } from "react-intl";
+ 
  import { Tooltip, Icon,Input,Button, Table,  InputNumber, Popconfirm, Form, Typography  } from "antd";
  import Highlighter from 'react-highlight-words';
  import { CurrencySymbol } from "../../../Components/Common";

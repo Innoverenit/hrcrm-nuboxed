@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FormattedMessage } from "react-intl";
+
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { DeleteOutlined } from "@ant-design/icons";
@@ -288,7 +288,7 @@ if(fetchingCustomerCampaign){
              
              <StyledPopconfirm
                // title="Do you want to delete?"
-               title={<FormattedMessage id="app.doyouwanttodelete" defaultMessage="Do you want to delete" />}
+               title="Do you want to delete"
                onConfirm={() => deleteEvent(item.eventId, employeeId)}
              >
                 <Tooltip title={translatedMenuItems[16]}>

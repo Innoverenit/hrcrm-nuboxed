@@ -7,7 +7,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
  import {getUserKpiList,updateActualValue} from "../../../EmployeeAction"
 // import {getKpis} from "../../../../Settings/Category/KPI/KPIAction"
 import { Button } from 'antd';
-import { FormattedMessage } from "react-intl";
+
 const { TabPane } = Tabs;
 const Option = Select;
 function onChange(pagination, filters, sorter) {

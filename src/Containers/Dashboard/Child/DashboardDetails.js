@@ -8,7 +8,7 @@ import {
 } from "../../../Components/UI/Layout";
 import { BundleLoader } from "../../../Components/Placeholder";
 import DnsIcon from '@mui/icons-material/Dns';
-import { FormattedMessage } from "react-intl";
+
 const OpportunityRequirementBoard = lazy(() => import("./OpportunityRequirementBoard"));
 const Details = lazy(() => import("./Details"));
 

@@ -1,13 +1,13 @@
 
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
-import { FormattedMessage } from "react-intl";
+
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 
 

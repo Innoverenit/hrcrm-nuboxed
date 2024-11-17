@@ -4,7 +4,7 @@ import { Tooltip } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { RollbackOutlined } from "@ant-design/icons";
-import { FormattedMessage } from "react-intl";
+
 
 class SupplierDetailsHeaderLeft extends React.Component {
   render() {

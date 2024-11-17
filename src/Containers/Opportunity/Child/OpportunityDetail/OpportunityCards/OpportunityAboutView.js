@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
+
 import {  Menu,  } from "antd";
 import { CurrencySymbol } from "../../../../../Components/Common";
 class ProfileAboutView extends Component {

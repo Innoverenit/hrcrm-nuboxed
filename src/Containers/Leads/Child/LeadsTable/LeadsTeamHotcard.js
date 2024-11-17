@@ -34,7 +34,7 @@ import {
 } from "../../../Leads/LeadsAction";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Button, Tooltip,Popconfirm,Checkbox } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import UpdateLeadsModal from "../UpdateLeads/UpdateLeadsModal";
 import AddLeadsEmailDrawerModal from "../UpdateLeads/AddLeadsEmailDrawerModal";
 import BorderColorIcon from "@mui/icons-material/BorderColor";

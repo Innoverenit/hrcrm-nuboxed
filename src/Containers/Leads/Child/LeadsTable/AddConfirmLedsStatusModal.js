@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import LeadsConfirmStatusForm from "./LeadsConfirmStatusForm";

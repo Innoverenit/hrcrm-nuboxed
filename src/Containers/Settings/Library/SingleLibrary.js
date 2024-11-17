@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { Button,Tooltip } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';

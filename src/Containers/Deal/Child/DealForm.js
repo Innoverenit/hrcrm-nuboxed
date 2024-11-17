@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getCustomerData,getInvestorData } from "../../Customer/CustomerAction";
 import { getdealsContactdata } from "../../Contact/ContactAction";
-import { FormattedMessage } from "react-intl";
+
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import SpeechRecognition, {
   useSpeechRecognition,

@@ -1,5 +1,5 @@
 import React, { } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer, } from "../../../../Components/UI/Antd";
 
 

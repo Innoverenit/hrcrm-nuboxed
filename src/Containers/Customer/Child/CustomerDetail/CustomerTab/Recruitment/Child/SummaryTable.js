@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { StyledTable } from "../../../../../../../Components/UI/Antd";
 // import { getAllRecruitmentDetailsByOppId } from "../../../../../OpportunityAction";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button, Progress, Tooltip } from "antd";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';

@@ -10,7 +10,7 @@ import { withRouter } from "react-router-dom";
 import { getTemplate } from "../../../../Rules/RulesAction";
 import dayjs from "dayjs";
 import { setCurrentEmail,handleTemplateViewModal } from "../../../../Rules/RulesAction";
-import { FormattedMessage } from "react-intl";
+
 import { EyeInvisibleOutlined } from "@ant-design/icons";
 const ButtonGroup = Button.Group;
 

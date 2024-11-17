@@ -3,7 +3,7 @@ import { Button, Tooltip, Popconfirm} from "antd";
 import {removeKpi} from "../KPI/KPIAction"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { DeleteOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { Select } from "../../../../Components/UI/Elements";

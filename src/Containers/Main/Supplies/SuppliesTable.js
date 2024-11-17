@@ -46,7 +46,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import MaterialStatusToggle from "./MaterialStatusToggle";
 import ReactToPrint from "react-to-print";
 import AddDocumentErpModals from "./AddDocumentErpModals";
-import { FormattedMessage } from "react-intl";
+
 import SuppliesSearchedData from "./SuppliesSearchedData";
 import EmptyPage from "../EmptyPage";
 import BestJumpOpen from "./BestJumpOpen";

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Formik, Form, Field } from "formik";
 import { Button, Tooltip } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import FormikPlacesAutoComplete from "../../../../../../Components/Forms/Formik/FormikPlacesAutoComplete";

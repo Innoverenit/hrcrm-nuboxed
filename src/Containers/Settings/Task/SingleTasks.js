@@ -2,7 +2,7 @@ import React, { Component ,lazy} from "react";
 import { Button, Tooltip,Popconfirm } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { FormattedMessage } from "react-intl";
+
 import dayjs from "dayjs";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";

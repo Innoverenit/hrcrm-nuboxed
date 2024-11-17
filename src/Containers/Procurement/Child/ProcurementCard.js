@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {getBOM} from "../ProcurementAction";
-import { FormattedMessage } from "react-intl";
+
 
 function ProcurementCard(props) {
   const [page, setPage] = useState(0);

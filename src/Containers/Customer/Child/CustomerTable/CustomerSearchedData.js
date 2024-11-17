@@ -38,7 +38,7 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { getAllCustomerEmployeelist } from "../../../Employees/EmployeeAction";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
-import { FormattedMessage } from "react-intl";
+
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import CustomerContactDrawerModal from "./CustomerContactDrawerModal";

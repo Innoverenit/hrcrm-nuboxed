@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import MergeTypeIcon from '@mui/icons-material/MergeType';
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { FormattedMessage } from "react-intl";
+
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import {
   CheckCircleOutlined,

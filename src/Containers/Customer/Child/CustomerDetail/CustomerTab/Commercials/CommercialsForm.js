@@ -8,7 +8,7 @@ import { Formik, Form, Field } from "formik";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
-import { FormattedMessage } from "react-intl";
+
 import {addCommercialsByCustomerId,getCommercialsByCustomerId} from "../../../../CustomerAction";
 
 function CommercialsForm(props) {

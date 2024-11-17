@@ -25,7 +25,7 @@ import {
 } from "../../LeadsAction";
 import DownloadIcon from '@mui/icons-material/Download';
 import { elipsize } from "../../../../Helpers/Function/Functions";
-import { FormattedMessage } from "react-intl";
+
 import { DeleteOutlined } from "@ant-design/icons";
 
 class LeadsDocuments extends Component {

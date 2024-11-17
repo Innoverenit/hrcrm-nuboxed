@@ -1,6 +1,6 @@
 import React, { lazy, Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button, Tooltip, } from "antd";
 import { Formik, Form, Field, FastField } from "formik";

@@ -22,7 +22,7 @@ import {
   handleLeadsNotesDrawerModal
 } from "../../../Leads/LeadsAction";
 import { Button, Tooltip,Checkbox ,Popconfirm } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import UpdateLeadsModal from "../UpdateLeads/UpdateLeadsModal";
 import AddLeadsEmailDrawerModal from "../UpdateLeads/AddLeadsEmailDrawerModal";

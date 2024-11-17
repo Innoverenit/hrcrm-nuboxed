@@ -1,7 +1,7 @@
 import React, { useState,lazy,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import TaskStatusToggle from "../Child/TaskStatusToggle";
 import {
   CheckCircleOutlined,

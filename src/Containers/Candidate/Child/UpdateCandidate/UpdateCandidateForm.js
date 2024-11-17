@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Button, Select, Switch,Checkbox} from "antd";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";

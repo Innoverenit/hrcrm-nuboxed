@@ -3,7 +3,7 @@ import { Modal, Button } from "antd";
 import error from "../../Assets/Images/i.png";
 
 import connectionLoss from "../../Assets/Images/connectionLost.png";
-import { FormattedMessage } from "react-intl";
+
 
 function APIFailed() {
   function handleRefreshPage() {
@@ -84,11 +84,8 @@ function APIFailed() {
             // icon="reload"
             onClick={() => handleRefreshPage()}
           >
-            <FormattedMessage
-              id="app.refresh"
-              defaultMessage="Refresh"
-            />
-            {/* Retry */}
+           
+            Refresh
           </Button>
         </div>
       </div>

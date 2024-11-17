@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { SubTitle, Title, HeaderText } from "../UI/Elements";
-import { FormattedMessage } from "react-intl";
 import { BundleLoader } from "../Placeholder";
 import { Empty, Spin } from "antd";
 class GroupView extends Component {
@@ -68,11 +67,8 @@ class GroupView extends Component {
                {isLoading && <Spin size="large" />}
                 <div style={{ marginBottom: 10 }}></div>
                 {isViewAll ? "View less" :
-                  // "View all"
-                  <FormattedMessage
-                    id="app.viewall"
-                    defaultMessage="View all"
-                  />
+                  "View all"
+                 
                 }
               </SubTitle>
             )}

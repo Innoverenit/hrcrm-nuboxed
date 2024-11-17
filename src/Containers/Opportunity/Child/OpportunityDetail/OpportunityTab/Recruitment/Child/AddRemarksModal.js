@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
 import { StyledModal } from "../../../../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 const RemarkForm = lazy(() => import("./RemarkForm"));
 
 class AddRemarksModal extends Component {

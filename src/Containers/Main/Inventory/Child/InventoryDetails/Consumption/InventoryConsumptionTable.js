@@ -10,7 +10,7 @@ import {
   handleConsumptionReasonModal,
 } from "../../../InventoryAction";
 import { OnlyWrapCard } from "../../../../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
+
 
 const ConsumptionReasonModal =lazy(()=>import("./ConsumptionReasonModal"));
 

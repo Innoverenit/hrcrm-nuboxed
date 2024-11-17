@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, Component } from "react";
 import { Button, Icon } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledModal } from "../../../../Components/UI/Antd";
 const VoIPForm = lazy(() => import("./VoIPForm"));

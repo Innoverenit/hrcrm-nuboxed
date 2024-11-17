@@ -3,7 +3,7 @@ import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
+
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import FactCheckIcon from '@mui/icons-material/FactCheck';

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  Tooltip, Button,Select,Switch } from "antd";
 import { getSectors } from "../../../Containers/Settings/Sectors/SectorsAction";
-import { FormattedMessage } from "react-intl";
+
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
 import dayjs from "dayjs";

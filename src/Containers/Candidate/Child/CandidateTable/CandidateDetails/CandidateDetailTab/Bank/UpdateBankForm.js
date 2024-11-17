@@ -7,7 +7,7 @@ import { Formik, Form, FastField } from "formik";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import * as Yup from "yup";
 import { updateBankDetails } from "../../../../../CandidateAction";
-import { FormattedMessage } from "react-intl";
+
 const documentSchema = Yup.object().shape({
   documentId: Yup.string().required("Input needed !"),
 });

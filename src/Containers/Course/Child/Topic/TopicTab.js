@@ -1,7 +1,7 @@
 import React, { Component,lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import EditIcon from "@mui/icons-material/Edit";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button, message, } from "antd";
 import styled from "styled-components";

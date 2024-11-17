@@ -10,7 +10,7 @@ import {
     getTaskDocument,
     deleteDocumentTask
 } from "../TaskAction";
-import { FormattedMessage } from "react-intl";
+
 
 
 const LinkedTaskDocument = (props) => {

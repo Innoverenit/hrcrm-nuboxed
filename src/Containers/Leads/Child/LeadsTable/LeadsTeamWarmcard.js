@@ -36,7 +36,7 @@ import ScoreIcon from '@mui/icons-material/Score';
 import FWLogo1 from "../../../../../src/Assets/Images/smallLogo.png";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Button, Tooltip,Popconfirm,Checkbox } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import UpdateLeadsModal from "../UpdateLeads/UpdateLeadsModal";
 import AddLeadsEmailDrawerModal from "../UpdateLeads/AddLeadsEmailDrawerModal";
 import BorderColorIcon from "@mui/icons-material/BorderColor";

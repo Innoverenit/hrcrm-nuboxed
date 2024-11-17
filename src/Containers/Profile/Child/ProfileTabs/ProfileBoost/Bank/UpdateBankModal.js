@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 const UpdateBankForm = lazy(() => import("../Bank/UpdateBankForm"));
 
 class UpdateBankModal extends Component {

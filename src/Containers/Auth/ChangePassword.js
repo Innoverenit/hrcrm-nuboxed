@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { message, Input} from "antd";
 import { withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";

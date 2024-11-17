@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledModal } from "../../../../../Components/UI/Antd";
 import LinkDeliveryForm from "./LinkDeliveryForm";
-import { FormattedMessage } from "react-intl";
+
 
 const LinkDeliveryModal = props => {
   const { visible, handleLinkDeliveryModal } = props;

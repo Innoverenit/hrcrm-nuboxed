@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Button } from "antd";
 
 import { updateOrganizationDetails } from "../../../Auth/AuthAction";

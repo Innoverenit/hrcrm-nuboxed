@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { SubTitle } from "../../../../../../../../Components/UI/Elements";
 
 

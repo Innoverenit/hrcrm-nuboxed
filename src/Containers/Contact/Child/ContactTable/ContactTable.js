@@ -1,7 +1,7 @@
 import React, { Component, useEffect, useState, useMemo, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
 import {
@@ -570,7 +570,7 @@ function ContactTable(props) {
       render: (name, item, i) => {
         return (
           <Tooltip
-            title={<FormattedMessage id="app.edit" defaultMessage="Edit" />}
+            title="Edit"
           >
             <span
               style={{ cursor: "pointer" }}

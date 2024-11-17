@@ -1,5 +1,5 @@
 import React, { useState, useEffect, lazy } from "react";
-import { FormattedMessage } from "react-intl";
+
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { DeleteOutlined } from "@ant-design/icons";
 import { linkTypeToggle, removeDocuments } from "../DocumentsAction";

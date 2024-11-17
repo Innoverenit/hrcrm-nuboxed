@@ -8,7 +8,7 @@ import SingleOpportunitySource from './SingleOpportunitySource';
 import { getSources, addSource, removeSource, updateSource } from "../../Opportunity/OpportunityAction";
 import axios from 'axios';
 import { base_url } from "../../../Config/Auth";
-import { FormattedMessage } from "react-intl";
+
 
 class OpportunitySource extends Component {
     constructor(props) {

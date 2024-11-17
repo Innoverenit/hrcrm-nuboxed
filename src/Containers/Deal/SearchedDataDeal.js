@@ -10,7 +10,7 @@ import {
 } from "./DealAction";
 import { CheckCircleTwoTone, StopTwoTone } from "@ant-design/icons";
 import { Button, Tooltip, Dropdown, Menu, Progress } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { CurrencySymbol } from "../../Components/Common";
 import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";

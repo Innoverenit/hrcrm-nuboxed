@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Button, message } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { FormattedMessage } from "react-intl";
+
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 
 

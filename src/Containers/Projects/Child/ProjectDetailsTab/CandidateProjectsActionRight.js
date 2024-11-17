@@ -2,7 +2,7 @@ import React, { } from "react";
 import { connect } from "react-redux";
 import TimeInterval from "../../../../Utils/TimeInterval";
 import { setSelectedTimeIntervalReport } from "../../ProjectsAction";
-// import { FormattedMessage } from "react-intl";
+// 
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { StyledRangePicker, StyledSelect } from "../../../../Components/UI/Antd";

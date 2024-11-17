@@ -6,7 +6,7 @@ import { getExpenseById,handlePExpenseVoucherIdDrawer,getPendingExpense,deleteEx
 import { DeleteOutlined, } from "@ant-design/icons";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
+
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 
 const PExpenseVoucherIdDrawer =lazy(()=>import("./PExpenseVoucherIdDrawer"));

@@ -1,7 +1,7 @@
 import React, {  Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Button, Switch, Tooltip, } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import {getCountries} from "../../../../../../Auth/AuthAction"

@@ -2,7 +2,7 @@ import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip,Avatar,Badge, Button } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import {getInventoryLocationRecords} from "../Inventory/InventoryAction"
 
 const InventoryActionLeft = (props) => {

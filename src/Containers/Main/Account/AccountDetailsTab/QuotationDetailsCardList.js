@@ -16,7 +16,7 @@ import {
 } from "../AccountAction";
 import { DeleteOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../Components/Placeholder";
 
 const { Option } = Select;

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { DeleteOutlined } from "@ant-design/icons";
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -314,9 +314,8 @@ imgHeight={"1.8em"}
   cancelText="No"
 >
  <Tooltip
-        title={
-          <FormattedMessage id="app.drop" defaultMessage="Lost" />
-        }
+        title="Lost" 
+       
       >
  
   <StopTwoTone

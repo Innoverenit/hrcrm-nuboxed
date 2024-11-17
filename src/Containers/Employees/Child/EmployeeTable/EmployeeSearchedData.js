@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect,useMemo, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { SearchOutlined, 
 } from '@ant-design/icons';
 import { DeleteOutlined } from "@ant-design/icons";

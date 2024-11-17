@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { withRouter } from "react-router-dom";
 import { base_url } from "../../../Config/Auth";
 import { Button, Tooltip, } from "antd";

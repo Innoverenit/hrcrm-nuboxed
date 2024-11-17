@@ -2,7 +2,7 @@ import React, { lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { JumpStartBox,  } from "../../../Components/UI/Elements";
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import ReceiptIcon from '@mui/icons-material/Receipt';

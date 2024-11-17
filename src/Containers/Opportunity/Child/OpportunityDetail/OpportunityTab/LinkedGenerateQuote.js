@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { Formik, Form, Field } from "formik";
 import { StyledModal } from "../../../../../Components/UI/Antd";
 import { FlexContainer } from "../../../../../Components/UI/Layout";

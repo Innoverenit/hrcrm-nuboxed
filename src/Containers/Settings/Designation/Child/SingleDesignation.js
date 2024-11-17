@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { Button,Popconfirm,Tooltip } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import dayjs from "dayjs";

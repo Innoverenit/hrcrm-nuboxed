@@ -1,7 +1,7 @@
 import React, {  useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";

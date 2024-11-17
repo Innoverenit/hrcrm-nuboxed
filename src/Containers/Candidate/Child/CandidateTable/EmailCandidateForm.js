@@ -1,7 +1,7 @@
 import React, { Component,lazy,  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { Button, Switch } from "antd";
 import { Editor } from "react-draft-wysiwyg";

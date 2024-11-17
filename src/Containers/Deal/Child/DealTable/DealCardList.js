@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FormattedMessage } from "react-intl";
+
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import {  DeleteOutlined } from "@ant-design/icons";
 import { BundleLoader} from "../../../../Components/Placeholder";

@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import { connect } from 'react-redux'
-import { FormattedMessage } from "react-intl";
+
 import AddWarantyDrawerModal from "../Waranty/AddWarantyDrawerModal"
 import ButtonGroup from "antd/lib/button/button-group";
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';  

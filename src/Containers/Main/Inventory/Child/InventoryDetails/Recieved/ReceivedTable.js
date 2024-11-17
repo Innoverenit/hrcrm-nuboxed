@@ -19,7 +19,7 @@ import { getLocationList } from "../../../../Account/AccountAction"
 import InfoIcon from '@mui/icons-material/Info'; 
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
-import { FormattedMessage } from "react-intl";
+
 import { MultiAvatar, MultiAvatar2 } from "../../../../../../Components/UI/Elements";
 import ReceivedOrderToggle from "./ReceivedOrderToggle";
 import InfiniteScroll from "react-infinite-scroll-component";

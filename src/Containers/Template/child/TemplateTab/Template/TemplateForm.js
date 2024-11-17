@@ -2,7 +2,7 @@ import React, {  useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { Formik, Form, Field } from "formik";
 import {getCustomerListByUserId} from "../../../../Customer/CustomerAction"
 

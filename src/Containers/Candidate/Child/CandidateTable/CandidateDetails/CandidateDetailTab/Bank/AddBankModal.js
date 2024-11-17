@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 const BankDocumentForm = lazy(() => import("./BankDocumentForm"));
 
 class AddBankModal extends Component {
@@ -11,7 +11,7 @@ class AddBankModal extends Component {
       <>
         <StyledDrawer
           //title="Bank"
-          title={<FormattedMessage id="app.bank" defaultMessage="Bank" />}
+          title="Bank"
           width="60%"
           visible={addCandidateBankModal}
           destroyOnClose

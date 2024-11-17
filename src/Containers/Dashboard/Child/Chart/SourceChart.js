@@ -2,7 +2,7 @@ import React, { Component,lazy } from "react";
 import { Tabs } from "antd";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
+
 const SourceMainChart=lazy(() => import("./SourceMainChart"));
 
 const TabPane = Tabs.TabPane;

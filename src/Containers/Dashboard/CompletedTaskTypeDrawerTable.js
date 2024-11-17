@@ -5,7 +5,7 @@ import {getCompletedTaskTypeDetails} from "./DashboardAction";
 import { OnlyWrapCard } from '../../Components/UI/Layout';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Button } from "antd";
-import { FormattedMessage } from "react-intl";
+
 
 const ButtonGroup = Button.Group;
 

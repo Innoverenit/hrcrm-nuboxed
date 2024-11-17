@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { translateText, } from '../../../../../Translate/TranslateService';
 import { Tooltip } from "antd";
 import AddBoxIcon from '@mui/icons-material/AddBox';

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip, Switch } from "antd";
 import { getTasks } from "../../../../../Containers/Settings/Task/TaskAction";
-import { FormattedMessage } from "react-intl";
+
 import { Formik, Form, Field, FastField } from "formik";
 import dayjs from "dayjs";
 import { getAllOpportunityData } from "../../../../Opportunity/OpportunityAction"

@@ -3,7 +3,7 @@ import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
+
 
 const LeadsCallForm = lazy(() => import("./LeadsCallForm"));
 const LeadsEventForm = lazy(() =>import("./LeadsEventForm"));

@@ -1,7 +1,7 @@
 import React, { useState,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Select } from "antd";
 
 import { Button, Switch } from "antd";

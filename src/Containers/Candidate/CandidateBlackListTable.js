@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import styled from "styled-components";
 import { SearchOutlined, UpCircleOutlined } from "@ant-design/icons";
-import { FormattedMessage } from "react-intl";
+
 import { StyledTable, StyledPopconfirm } from "../../Components/UI/Antd";
 import { Button, Select, Tooltip, Input } from "antd";
 import { MultiAvatar, SubTitle } from "../../Components/UI/Elements";

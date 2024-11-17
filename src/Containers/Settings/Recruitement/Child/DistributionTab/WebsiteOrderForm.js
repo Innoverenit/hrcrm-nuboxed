@@ -6,7 +6,7 @@ import {
 
   Select,
 } from "../../../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
+
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import { Button, Switch } from "antd";
 import {

@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { BundleLoader } from "../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
+
 import UpdateImportForm from "../Child/UpdateImportForm"
 import { StyledDrawer } from "../../../Components/UI/Antd";
 //const FeedBackFrom = lazy(() => import("./FeedBackFrom"));

@@ -1,6 +1,6 @@
 import React, { useState,useEffect,lazy } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import {linkDepartmentDocumentToggle,removeDepartments} from "../Department/DepartmentAction"
 import { Button, Popconfirm, Switch, Tooltip } from "antd";

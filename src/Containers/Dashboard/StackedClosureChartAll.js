@@ -14,7 +14,7 @@ import {
   Tooltip,
   Legend
 } from "recharts";
-import { FormattedMessage } from "react-intl";
+
 
  class StackedClosureChartAll extends React.Component {
   constructor() {

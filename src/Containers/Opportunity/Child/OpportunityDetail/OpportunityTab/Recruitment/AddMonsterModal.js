@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { StyledModal } from "../../../../../../Components/UI/Antd";
  const MonsterForm = lazy(() => import("./MonsterForm"));

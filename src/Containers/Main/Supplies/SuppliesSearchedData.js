@@ -44,7 +44,7 @@ import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import MaterialStatusToggle from "./MaterialStatusToggle";
 import ReactToPrint from "react-to-print";
 import AddDocumentErpModals from "./AddDocumentErpModals";
-import { FormattedMessage } from "react-intl";
+
 import EmptyPage from "../EmptyPage";
 const MaterialInventoryDrawer = lazy(()=>import("./MaterialInventory/MaterialInventoryDrawer"));
 const MaterialBuilderDrawer = lazy(() => import("./MaterialBuilder/MaterialBuilderDrawer"));

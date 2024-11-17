@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
 import InfiniteScroll from "react-infinite-scroll-component"
-import { FormattedMessage } from "react-intl";
+
 import {getQuotationTableData} from "../../../Dashboard/DashboardAction"
 import OpportunitySelectStages from "../../../Opportunity/Child/OpportunityTable/OpportunitySelectStages"
 import BorderColorIcon from '@mui/icons-material/BorderColor';

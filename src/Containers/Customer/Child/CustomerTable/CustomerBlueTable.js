@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo, lazy } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { getSectors } from "../../../Settings/Sectors/SectorsAction";
 import dayjs from "dayjs";

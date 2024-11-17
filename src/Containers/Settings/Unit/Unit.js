@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Button, message ,Input} from "antd";
 import { MainWrapper } from "../../../Components/UI/Layout";
 import { TextInput} from "../../../Components/UI/Elements";

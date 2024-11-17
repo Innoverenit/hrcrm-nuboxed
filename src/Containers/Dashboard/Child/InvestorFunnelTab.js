@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import {  StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
+
 const FunnelChartInvestor = lazy(()=>import("./FunnelChartInvestor"));
 
 const TabPane = StyledTabs.TabPane;

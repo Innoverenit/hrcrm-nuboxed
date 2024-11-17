@@ -5,7 +5,7 @@
  import React, { useEffect, useState,lazy } from "react";
  import { connect } from "react-redux";
  import { bindActionCreators } from "redux";
- import { FormattedMessage } from "react-intl";
+ 
  import { Suspense } from "react";
  import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
  import { Tooltip,Input,Button,Badge, } from "antd";

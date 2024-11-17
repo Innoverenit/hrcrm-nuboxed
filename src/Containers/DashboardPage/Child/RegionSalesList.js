@@ -8,7 +8,7 @@ import {
     handleSalesQuotationDrawerModal,
     handleSalesOrderDrawerModal
 } from "../RegionalDashAction";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../Components/Placeholder";
 const  OrderPlanDrawerModal =lazy(()=>import("../Child/OrderPlanDrawerModal"));
 const  QuotationPlanDrawerModal=lazy(()=>import("../Child/QuotationPlanDrawerModal"));

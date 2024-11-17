@@ -283,7 +283,7 @@ const CustomerActionLeft = (props) => {
     <div class=" flex items-center"
     >
       <Tooltip title= {translatedMenuItems[0]}>
-      {/* FormattedMessage id="app.myprospects" defaultMessage="My Prospects" />} */}
+   
         <Badge
           size="small"
           count={(props.viewType === "table" && props.recordData.customer) || 0}
@@ -304,25 +304,7 @@ const CustomerActionLeft = (props) => {
           </span>
         </Badge>
       </Tooltip>
-      {/* <Tooltip title={<FormattedMessage id="app.card" defaultMessage="Card" />}>
-        <Badge
-          size="small"
-          count={(props.viewType === "card" && props.recordData.customer) || 0}
-          overflowCount={999}
-        >
-          <span
-            class=" mr-1 text-sm cursor-pointer"
-            onClick={() => props.setCustomerViewType("card")}
-            style={{
-              color: props.viewType === "card" && "#1890ff",
-            }}
-          >
-            <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#28a355" }}>
-            <GridViewIcon className="text-white"/>
-            </Avatar>
-          </span>
-        </Badge>
-      </Tooltip> */}
+      
       {user.teamsAccessInd === true && (
         <Tooltip title= {translatedMenuItems[1]}>
           <Badge
@@ -363,10 +345,7 @@ const CustomerActionLeft = (props) => {
               <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355",
                boxShadow: props.viewType === "all" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
                   transform: props.viewType === "all" ? "scale(1.05)" : "scale(1)" }}>
-              {translatedMenuItems[3]} {/* <FormattedMessage
-                  id="app.all"
-                  defaultMessage="ALL"
-                /> */}
+              {translatedMenuItems[3]} 
               </Avatar>
 
             </span>

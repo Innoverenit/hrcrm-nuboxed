@@ -7,7 +7,7 @@ import {
   handleSuppliersPriceDrawer,
   handleSuppliersListDrawer
 } from "../SuppliersAction"
-import { FormattedMessage } from "react-intl";
+
 import dayjs from "dayjs";
 import StoreIcon from '@mui/icons-material/Store';
 import EuroIcon from '@mui/icons-material/Euro';

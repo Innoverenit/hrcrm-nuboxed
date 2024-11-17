@@ -1,7 +1,7 @@
 import React, { useState,lazy,useEffect, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import {CloseCircleOutlined} from "@ant-design/icons";
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";

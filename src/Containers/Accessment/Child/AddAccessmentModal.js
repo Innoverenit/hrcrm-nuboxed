@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledModal, StyledTabs } from "../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 const AccessmentForm = lazy(() => import("../Child/AccessmentForm"));
 
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Tabs,Tooltip,Button } from 'antd';
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
+
 import styled from "styled-components";
 import {getRegionTaskList,updateTaskdragstage} from "../RegionalDashAction"
 import StarBorderIcon from '@mui/icons-material/StarBorder';

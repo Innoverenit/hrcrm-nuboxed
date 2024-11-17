@@ -2,7 +2,7 @@ import React, { useEffect, useState,lazy,Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FormattedMessage } from "react-intl";
+
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { Tooltip, Menu, Dropdown, Progress } from "antd";
 import { Link } from 'react-router-dom';

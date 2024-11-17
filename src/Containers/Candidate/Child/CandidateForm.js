@@ -7,7 +7,7 @@ import { getLibrarys } from "../../../Containers/Settings/Library/LibraryAction"
 import { Button, Select,  Switch, Checkbox } from "antd";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
-import { FormattedMessage } from "react-intl";
+
 import { getVendorContactData } from "../../Contact/ContactAction";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";

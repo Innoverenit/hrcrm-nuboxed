@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import { connect } from 'react-redux'
-import { FormattedMessage } from "react-intl";
+
 import {getLocationSupplies,addLocationSuppliesValue} from "../../Main/Supplies/SuppliesAction"
 //import AddWarantyDrawerModal from "../Waranty/AddWarantyDrawerModal"
 import ButtonGroup from "antd/lib/button/button-group";

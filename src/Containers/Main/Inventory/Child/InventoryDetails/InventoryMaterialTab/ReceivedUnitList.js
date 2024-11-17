@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
-import { FormattedMessage } from "react-intl";
+
 import { getReceivedUnitOfAnItem, updatePartIdOfAnItem } from "../../../InventoryAction"
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Button, Input } from "antd";

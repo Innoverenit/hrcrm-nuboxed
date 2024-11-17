@@ -2,7 +2,7 @@ import React, {  useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Select,Switch,Tooltip} from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
 import dayjs from "dayjs";

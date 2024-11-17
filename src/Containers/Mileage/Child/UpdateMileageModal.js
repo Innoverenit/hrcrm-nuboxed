@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledModal } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 const UpdateMileageForm=lazy(()=>import("./UpdateMileageForm"));

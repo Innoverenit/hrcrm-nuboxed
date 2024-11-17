@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Tooltip, Badge, Avatar } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import {getReaasignProduct} from "../ProductionAction"
 import ArchiveIcon from '@mui/icons-material/Archive';
 import TokenIcon from '@mui/icons-material/Token';

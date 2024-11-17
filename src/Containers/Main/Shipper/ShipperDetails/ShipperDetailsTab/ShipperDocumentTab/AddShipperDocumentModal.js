@@ -2,7 +2,7 @@ import React, { lazy, Suspense, Component } from "react";
 import { Button } from "antd";
 import { StyledModal } from "../../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
+
 
 const ShipperDocumentForm = lazy(() => import("./ShipperDocumentForm"));
 const ButtonGroup = Button.Group;

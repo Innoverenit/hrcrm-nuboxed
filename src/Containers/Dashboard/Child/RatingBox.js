@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {  Popconfirm,Rate,Button } from "antd";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { updateTodoEvent, updateTodoCall,updateTodoTask } from "../DashboardAction"
 

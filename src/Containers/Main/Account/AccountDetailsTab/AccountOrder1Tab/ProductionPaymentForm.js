@@ -9,7 +9,7 @@ import { InputComponent } from "../../../../../Components/Forms/Formik/InputComp
 import { addPaidOrder, getPaymentMode } from "../../../Account/AccountAction";
 import dayjs from "dayjs";
 import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
-import { FormattedMessage } from "react-intl";
+
 import { getCurrency } from "../../../../Auth/AuthAction";
 import DragableUpload from "../../../../../Components/Forms/Formik/DragableUpload";
 

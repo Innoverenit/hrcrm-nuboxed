@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Button } from "antd";
 import {getProjectsData} from "../../../../../Settings/Category/Project/ProjectAction"
 import { Formik, Form, Field } from "formik";

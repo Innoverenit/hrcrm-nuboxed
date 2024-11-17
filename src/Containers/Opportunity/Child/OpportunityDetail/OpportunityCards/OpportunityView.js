@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import LinkTagCustomerModal from "./LinkTagCustomerModal"
 import {
   StyledPopconfirm,

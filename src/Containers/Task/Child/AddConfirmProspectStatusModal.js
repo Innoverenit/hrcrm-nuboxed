@@ -1,5 +1,5 @@
 import React, { Suspense ,lazy} from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 const ProspectConfirmStatusForm = lazy(() => import("./ProspectConfirmStatusForm"));

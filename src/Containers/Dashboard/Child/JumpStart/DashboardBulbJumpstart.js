@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
 import {getDateWiseList,getSalesDateWiseList,getJumpBulblist,getJumpBulblist2,getJumpBulblist3,getavgHour} from "../../DashboardAction";
-import { FormattedMessage } from "react-intl";
+
 
 class DashboardBulbJumpstart extends React.Component{
   constructor() {

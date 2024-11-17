@@ -10,7 +10,7 @@ import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState, convertToRaw, } from "draft-js";
 
-import { FormattedMessage } from "react-intl";
+
 
 class CandidateRowEmailModal extends Component {
 

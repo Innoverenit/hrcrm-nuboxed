@@ -1,6 +1,6 @@
 // import { Button, Checkbox, Divider } from "antd";
 // import React, { useEffect, useState } from "react";
-// import { FormattedMessage } from "react-intl";
+// 
 // import { connect } from "react-redux";
 // import dayjs from "dayjs";
 // import { FloatButton } from "antd";
@@ -2836,7 +2836,7 @@
 
 import { Button, Checkbox, Divider } from "antd";
 import React, { useEffect, useState } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { connect } from "react-redux";
 import dayjs from "dayjs";
 import { FloatButton } from "antd";

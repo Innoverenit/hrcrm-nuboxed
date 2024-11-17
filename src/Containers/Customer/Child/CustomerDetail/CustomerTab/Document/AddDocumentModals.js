@@ -1,6 +1,6 @@
 // // import React, { Suspense, Component } from "react";
 // // import { connect } from "react-redux";
-// // import { FormattedMessage } from "react-intl";
+// // 
 // // import { bindActionCreators } from "redux";
 // // import { Button, Switch, Tooltip } from "antd";
 // // import { Formik, Form, Field } from "formik";
@@ -384,7 +384,7 @@
 
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button, Switch, Tooltip,Select } from "antd";
 import { Formik, Form, Field } from "formik";
@@ -739,7 +739,7 @@ function AddDocumentModal (props){
                                 <Field
                                   inlineLabel
                                   name="department"
-                                  label={<FormattedMessage id="app.department" defaultMessage="Function" />}
+                                  label="Function" 
                                   isRequired
                                   isColumn
                                   component={InputComponent}
@@ -748,7 +748,7 @@ function AddDocumentModal (props){
                               <div>
                                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                                   {" "}
-                                  <FormattedMessage id="app.level" defaultMessage="Level" />
+                                Level
                                 </div>
                                 <div class=" flex justify-between">
                                   <ButtonGroup>
@@ -845,7 +845,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AddDocumentModal);
 // import React, { useState } from 'react';
 // // // import React, { Suspense, Component } from "react";
 // import { connect } from "react-redux";
-// import { FormattedMessage } from "react-intl";
+// 
 // import { bindActionCreators } from "redux";
 
 
@@ -1121,7 +1121,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AddDocumentModal);
 
 // import React, { useState } from 'react';
 // import { connect } from "react-redux";
-// import { FormattedMessage } from "react-intl";
+// 
 // import { bindActionCreators } from "redux";
 
 // import { StyledDrawer } from "../../../../../../Components/UI/Antd";
@@ -1215,7 +1215,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(AddDocumentModal);
 
 //   return (
 //     <StyledDrawer
-//       title={<FormattedMessage id="app.document" defaultMessage="Document" />}
+//  
 //       width="60%"
 //       visible={props.documentUploadModal}
 //       onClose={() => props.handleDocumentUploadModal(false)}

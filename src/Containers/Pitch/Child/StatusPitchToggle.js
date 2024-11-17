@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import {
     convertPitchStatus,
 } from "../PitchAction";
-import { FormattedMessage } from "react-intl";
+
 
 function StatusPitchToggle(props) {
     console.log("abc",props.leadsId);
