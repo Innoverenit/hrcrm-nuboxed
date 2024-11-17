@@ -9,7 +9,7 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import LanguageIcon from '@mui/icons-material/Language';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import { FormattedMessage } from "react-intl";
+
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
 import { Input, Menu, Button, Tooltip, Radio,  Badge, Avatar } from "antd";
 import {
@@ -154,10 +154,10 @@ const CandidateActionLeft = (props) => {
           type={props.currentSkillData ? "primary" : "default"}
         // onClick={props.handleSkillClear}
         >
-          <FormattedMessage id="app.clear" defaultMessage="Clear" />
+        Clear
         </Button>
       )}
-     <Tooltip title={<FormattedMessage id="app.tile" defaultMessage="Tile" />}>
+     <Tooltip title="Tile">
       <Badge size="small" count={ props.viewType === "card" &&props.recordData.candidateDetails || 0} overflowCount={5000}>
      <span class="mr-1 cursor-pointer "
        onClick={() => props.setCandidateViewType("card")}
@@ -179,7 +179,7 @@ const CandidateActionLeft = (props) => {
 
 
       <Tooltip
-        title={<FormattedMessage id="app.billableCandidate" defaultMessage="Billable Candidate" />}
+        title="Billable Candidate"
       >
        
        <span class="mr-1 cursor-pointer "
@@ -197,7 +197,7 @@ const CandidateActionLeft = (props) => {
       </Tooltip>
 
       <Tooltip
-        title={<FormattedMessage id="app.all" defaultMessage="All" />}
+        title="All" 
       >
         <Badge size="small" count={ props.viewType === "table" &&props.recordData.candidateDetails || 0} overflowCount={5000}>
         <span class="mr-1 cursor-pointer "
@@ -219,8 +219,8 @@ const CandidateActionLeft = (props) => {
 
 
       <Tooltip
-        title={<FormattedMessage id="app.white" defaultMessage="White" />}
-      >
+        title="White"
+        >
         <Badge size="small" count={ props.viewType === "list" &&props.recordCandidateCategoryData.candidateDetails || 0} overflowCount={5000}>
         <span class="mr-1 cursor-pointer "
             onClick={() => props.setCandidateViewType("list")}
@@ -239,7 +239,7 @@ const CandidateActionLeft = (props) => {
       </Tooltip>
 
       <Tooltip
-        title={<FormattedMessage id="app.blue" defaultMessage="Blue" />}
+        title="Blue"
       >
         <Badge size="small" count={ props.viewType === "dashboard" &&props.recordCandidateCategoryDataBlue.candidateDetails || 0} overflowCount={5000}>
         <span class="mr-1 cursor-pointer "
@@ -258,7 +258,7 @@ const CandidateActionLeft = (props) => {
       </Tooltip>
 
  <Tooltip
-        title={<FormattedMessage id="app.mapview" defaultMessage="Map View" />}
+        title="Map View"
       >
           <Badge size="small"count={ props.viewType === "map" &&props.recordData.candidateDetails || 0}>
           <span class="mr-1 cursor-pointer "
@@ -292,7 +292,7 @@ const CandidateActionLeft = (props) => {
 
  </Tooltip>
  <Tooltip
-        title={<FormattedMessage id="app.dollar" defaultMessage="Dollar" />}
+        title="Dollar"
       >
        
        <span class="mr-1 cursor-pointer "

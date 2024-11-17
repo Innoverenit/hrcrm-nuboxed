@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { Switch, Popconfirm, message } from "antd";
 // import {
 //   addOpportunityStageDisable,

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Tooltip } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import dayjs from "dayjs";
 class EmployeeStatusView extends Component {

@@ -2,7 +2,7 @@ import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, message, Tooltip, Popover, Icon } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import { StyledModal, StyledTabs } from "../../Components/UI/Antd";
 import { FlexContainer, TabsWrapper } from "../../Components/UI/Layout";

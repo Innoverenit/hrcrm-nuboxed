@@ -11,7 +11,7 @@ import {
 import dayjs from "dayjs";
 import {  Switch, Input, message } from 'antd';
 import { withRouter } from "react-router";
-import { FormattedMessage } from "react-intl";
+
 import {  Select, Button } from "antd";
 import CategoryIcon from '@mui/icons-material/Category'
 import FactoryIcon from '@mui/icons-material/Factory';

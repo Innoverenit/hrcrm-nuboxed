@@ -44,7 +44,6 @@ const LocationActionLeft = (props) => {
         <div class=" flex  items-center" >
           <Tooltip
         title={translatedMenuItems[0]}
-        // {<FormattedMessage id="app.listView" defaultMessage="All" />}
       >
          <Badge
           size="small"
@@ -68,7 +67,7 @@ const LocationActionLeft = (props) => {
 
       <Tooltip
         title={translatedMenuItems[1]}
-        // {<FormattedMessage id="app.mapView" defaultMessage="Map View" />}
+      
       >
            <Badge
           size="small"

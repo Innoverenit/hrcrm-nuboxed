@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyledTable } from "../../../../../../../Components/UI/Antd";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 

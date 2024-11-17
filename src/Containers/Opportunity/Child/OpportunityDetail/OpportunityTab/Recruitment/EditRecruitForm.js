@@ -5,7 +5,7 @@ import { Button, } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 
-import { FormattedMessage } from "react-intl";
+
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { FormattedMessage } from "react-intl";
+
 import QuizIcon from '@mui/icons-material/Quiz';
 import {handleTestDrawerModal} from "../../CourseAction"
 import { Button, Tooltip} from "antd";

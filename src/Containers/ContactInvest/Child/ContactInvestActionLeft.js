@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { AudioOutlined } from "@ant-design/icons";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import SpeechRecognition, {
@@ -100,7 +100,7 @@ const ContactInvestActionLeft = (props) => {
   return (
     <div class=" flex  items-center">
       <Tooltip
-        title={<FormattedMessage id="app.myinvestorcontacts" defaultMessage="My Investor Contacts" />}
+        title="My Investor Contacts"
       >
         <Badge
           size="small"
@@ -128,7 +128,7 @@ const ContactInvestActionLeft = (props) => {
       </Tooltip>
       {user.teamsAccessInd === true && (
       <Tooltip
-       title={<FormattedMessage id="app.teamview" defaultMessage="Team View" />}
+       title="Team View"
       >
       <Badge
           size="small"
@@ -157,7 +157,7 @@ const ContactInvestActionLeft = (props) => {
       </Tooltip> 
       )}
       <Tooltip
-       title={<FormattedMessage id="app.all" defaultMessage="All" />}
+       title="All"
       >
         <Badge
           size="small"
@@ -178,7 +178,7 @@ const ContactInvestActionLeft = (props) => {
             <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355",
                boxShadow: props.viewType === "all" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
                   transform: props.viewType === "all" ? "scale(1.05)" : "scale(1)"  }}>
-   <FormattedMessage id="app.all" defaultMessage="All" class="!text-icon " />
+ All
    </Avatar>
           </div>
         </Badge>

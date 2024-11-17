@@ -2,7 +2,7 @@ import { Badge } from "antd";
 import React, { lazy,Suspense ,useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
 const Certification = lazy(() => import("../Recruitement/Child/Certification/Certification"));

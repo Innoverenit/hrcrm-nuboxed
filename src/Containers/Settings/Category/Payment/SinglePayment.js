@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {removePayment} from "../Payment/PaymentAction"
-import { FormattedMessage } from "react-intl";
+
 import { DeleteOutlined } from "@ant-design/icons";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { TextInput } from "../../../../Components/UI/Elements";

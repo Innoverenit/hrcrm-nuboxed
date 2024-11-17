@@ -1,5 +1,5 @@
 import React, {  } from "react";
-import { FormattedMessage } from "react-intl";
+
 
 function InvestorExtraDetailView (props) {
     const {
@@ -17,8 +17,9 @@ function InvestorExtraDetailView (props) {
 
     return (
       <>
-        <InvestorItemRow // label="URL"
-          label={<FormattedMessage id="app.url" defaultMessage="URL" />}
+        <InvestorItemRow 
+        label="URL"
+       
           value={url}
         />
         <InvestorItemRow
@@ -27,31 +28,22 @@ function InvestorExtraDetailView (props) {
         />
 
         <InvestorItemRow //label="Phone Number"
-          label={
-            <FormattedMessage
-              id="app.registrationNumber"
-              defaultMessage="Registration #"
-            />
-          }
+          label="Registration #"
           value={vatNo}
         />
 
         <InvestorItemRow //label="Phone Number"
-          label={
-            <FormattedMessage
-              id="app.registrationNumber"
-              defaultMessage="Tax Registration #"
-            />
-          }
+          label= "Tax Registration #"
+
           value={businessRegistration}
         />
 
         <InvestorItemRow //label="Phone Number"
-          label={<FormattedMessage id="app.sector" defaultMessage="Sector" />}
+          label="Sector"
           value={sector}
         />
          <InvestorItemRow //label="Phone Number"
-          label={<FormattedMessage id="app.source" defaultMessage="Source" />}
+          label="Source"
           value={source}
         />
       </>

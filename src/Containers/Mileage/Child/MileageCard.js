@@ -13,7 +13,7 @@ import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import AssistantIcon from '@mui/icons-material/Assistant';
 import { DeleteOutlined, } from "@ant-design/icons";
 import { BundleLoader } from "../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
+
 const StatusMileageDrawer = lazy(() => import("./StatusMileageDrawer"));
 const MileageVoucherIdDrawer = lazy(() => import("./MileageVoucherIdDrawer"));
 

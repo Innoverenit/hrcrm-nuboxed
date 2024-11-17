@@ -5,7 +5,7 @@ import axios from "axios";
 import DocumentScannerIcon from '@mui/icons-material/DocumentScanner';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import Swal from "sweetalert2";
-import { FormattedMessage } from "react-intl";
+
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Button, Tooltip, Input,Badge,Checkbox,Popconfirm } from "antd";
 import QRCode from "qrcode.react";

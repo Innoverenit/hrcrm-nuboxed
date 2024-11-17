@@ -2,7 +2,7 @@ import React, {useState ,useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getAllSalesList } from "../Opportunity/OpportunityAction"
-import { FormattedMessage } from "react-intl";
+
 import { Button, Switch, Tooltip ,Select} from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
@@ -484,15 +484,8 @@ function ActivityCallForm(props) {
                         {translatedMenuItems[0]}
                       </div>
                       <div class=" flex justify-between">
-                        {/* <Tooltip title="Inbound"> */}
-                        <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.introductory"
-                              defaultMessage="Introductory"
-                            />
-                          }
-                        >
+                        <Tooltip title="Inbound">
+                      
                           <div
                             onClick={() => handleTypeChange("Inbound")}
                             style={{
@@ -507,15 +500,8 @@ function ActivityCallForm(props) {
                             <i className="fas fa-sign-in-alt"></i>
                           </div>
                         </Tooltip>
-                        {/* <Tooltip title="Outbound"> */}
-                        <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.interview"
-                              defaultMessage="Interview"
-                            />
-                          }
-                        >
+                        <Tooltip title="Outbound">
+                      
                           <div
                             onClick={() => handleTypeChange("Outbound")}
                             style={{
@@ -530,15 +516,8 @@ function ActivityCallForm(props) {
                             <i className="fas fa-sign-out-alt"></i>
                           </div>
                         </Tooltip>
-                        {/* <Tooltip title="Conference"> */}
-                        <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.closure"
-                              defaultMessage="Closure"
-                            />
-                          }
-                        >
+                        <Tooltip title="Conference">
+                       
                           <div
                             onClick={() => handleTypeChange("Conference")}
                             style={{
@@ -573,8 +552,8 @@ function ActivityCallForm(props) {
                             category === "New" ? "white" : "black",
                           }}
                         >
-                          {/* New */}
-                          <FormattedMessage id="app.new" defaultMessage="New" />
+                          New
+                       
                         </Button>
                         <Button
                           onClick={() => handleCategoryChange("Follow up")}
@@ -589,11 +568,8 @@ function ActivityCallForm(props) {
                                 : "black",
                           }}
                         >
-                          {/* Follow up */}
-                          <FormattedMessage
-                            id="app.followup"
-                            defaultMessage="Follow up"
-                          />
+                          Follow up
+                         
                         </Button>
                       </ButtonGroup>
                     </div>
@@ -795,13 +771,8 @@ function ActivityCallForm(props) {
     <div class=" mt-3">
                   <Field
                     name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.include"
-                        defaultMessage="Include"
-                      />
-                    }
+                    label="Include"
+                  
                     mode
                     placeholder="Select"
                     component={SelectComponent}
@@ -821,13 +792,8 @@ function ActivityCallForm(props) {
 name="customerId"
 isColumnWithoutNoCreate
 selectType="customerList"
-// label="Tag Company"
-label={
- <FormattedMessage
-   id="app.tagcompany"
-   defaultMessage="Tag Company"
- />
-}
+label="Tag Company"
+
 component={SearchSelect}
 isColumn
 //value={props.name}
@@ -896,11 +862,7 @@ inlineLabel
                     name="candidateId"
                     // type="text"
                     //label="Talent"
-                    label={
-                      <FormattedMessage
-                        id="app.team"
-                        defaultMessage="Team"
-                      />
+                    
                     }
                     placeholder="Start typing to search..."
                     isColumnWithoutNoCreate
@@ -914,8 +876,7 @@ inlineLabel
                     <div class=" w-full"><Field
                       name="callDescription"
                       // label="Notes"
-                      label={
-                        <FormattedMessage id="app.notes" defaultMessage="Notes" />
+                      label=
                       }
                       isColumn
                       width={"100%"}
@@ -973,13 +934,8 @@ inlineLabel
                 {isEditing && (
                   <>
                     <StyledPopconfirm
-                      // title="Do you want to delete?"
-                      title={
-                        <FormattedMessage
-                          id="app.doyouwanttodelete?"
-                          defaultMessage="Do you want to delete?"
-                        />
-                      }
+                      title="Do you want to delete?"
+             
                       onConfirm={() => deleteCall(prefillCall.callId)}
                     >
                       <Button
@@ -987,11 +943,8 @@ inlineLabel
                         htmlType="submit"
                         Loading={deletingCall}
                       >
-                        {/* Delete */}
-                        <FormattedMessage
-                          id="app.delete"
-                          defaultMessage="Delete"
-                        />
+                        Delete
+                       
                       </Button>
                     </StyledPopconfirm>
                   </>
@@ -1004,8 +957,7 @@ inlineLabel
                   {isEditing ? (
                     "Update"
                   ) : (
-                    // "Create"
-                    <FormattedMessage id="app.create" defaultMessage="Create" />
+                    "Create"
                   )}
                 </Button>
               </div>

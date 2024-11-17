@@ -14,7 +14,7 @@ import {
   getOpportunityDocument,
 } from "../../../../OpportunityAction";
 import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
-import { FormattedMessage } from "react-intl";
+
 import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
 const ButtonGroup = Button.Group;
 

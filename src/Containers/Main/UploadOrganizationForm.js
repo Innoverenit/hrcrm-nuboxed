@@ -11,7 +11,7 @@ import { TextareaComponent } from "../../Components/Forms/Formik/TextareaCompone
 import * as Yup from "yup";
 import { FlexContainer } from "../../Components/UI/Layout";
 import DragableUpload from "../../Components/Forms/Formik/DragableUpload";
-import { FormattedMessage } from "react-intl";
+
 const ButtonGroup = Button.Group;
 
 const documentSchema = Yup.object().shape({

@@ -8,7 +8,7 @@ import { InputComponent } from "../../../../../../Components/Forms/Formik/InputC
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
 import { addDocumentDetails } from "../../../../ProfileAction";
-import { FormattedMessage } from "react-intl";
+
 function onChange(date) {}
 
 // const documentSchema = Yup.object().shape({

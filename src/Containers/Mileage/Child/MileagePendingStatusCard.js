@@ -6,7 +6,7 @@ import { Tooltip } from "antd";
 import {StyledPopconfirm } from "../../../Components/UI/Antd";
 import { getMileageByUserId,getPendingMileage,deleteMileageVoucher,handleMileageVoucherIdDrwer } from "../MileageAction";
 import { DeleteOutlined, } from "@ant-design/icons";
-import { FormattedMessage } from "react-intl";
+
 const MileageVoucherIdDrawer = lazy(() => import("./MileageVoucherIdDrawer"))
 
 class MileagePendingStatusCard extends React.Component {

@@ -1,5 +1,4 @@
 import React, { } from "react";
-import { FormattedMessage } from "react-intl";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import { Button, Tooltip } from "antd";
@@ -19,9 +18,8 @@ const billableCurr = props.billingByDesignation.length && props.billingByDesigna
   return (
     <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
       <Tooltip
-        title={<FormattedMessage id="app.billing" defaultMessage="Billing" />}
-      // title={<FormattedMessage id="app.dollar" defaultMessage="Dollar" />}
-      >      
+        title="Billing">
+       
         <span
           onClick={() => props.setBillingViewType("list")}
           style={{
@@ -66,8 +64,7 @@ const billableCurr = props.billingByDesignation.length && props.billingByDesigna
           props.getCandidateCountSearch()
         }}
       >
-        <FormattedMessage id="app.clear" defaultMessage="Clear" />
-        {/* Clear */}
+        Clear
       </Button>
     </div>
   );

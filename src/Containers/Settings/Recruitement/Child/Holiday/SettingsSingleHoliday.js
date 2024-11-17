@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import styled from "styled-components";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { DatePicker } from "antd";

@@ -6,7 +6,7 @@ import{getAllOpportunityData} from "../../Opportunity/OpportunityAction"
 import {getAllCustomerData} from "../../Customer/CustomerAction"
 import { Button, Tooltip, Switch } from "antd";
 import { getEmployeelist,getAssignedToList } from "../../../Containers/Employees/EmployeeAction";
-import { FormattedMessage } from "react-intl";
+
 import { Formik, Form, Field, FastField } from "formik";
 import { getFilteredEmailContact } from "../../Candidate/CandidateAction";
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';

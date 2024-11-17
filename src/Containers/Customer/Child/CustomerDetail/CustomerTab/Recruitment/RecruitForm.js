@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";

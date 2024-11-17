@@ -9,7 +9,7 @@ import { OnlyWrapCard } from '../../Components/UI/Layout';
 import {
   MultiAvatar,
 } from "../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
+
 
 const ButtonGroup = Button.Group;
 

@@ -10,7 +10,7 @@ import { StyledTable } from "../../../../../../../Components/UI/Antd";
 import { getRemark ,handleUpdateRemarkModal,setEditRemark} from "../../../../../OpportunityAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }

@@ -1,6 +1,6 @@
 import React from "react";
 import {  Popconfirm,Tooltip } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { StopTwoTone, DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { CheckCircleTwoTone } from "@ant-design/icons";
 import {

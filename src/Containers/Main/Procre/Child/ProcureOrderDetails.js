@@ -9,7 +9,7 @@ import {
   getModel,
   updateProcureDetails
 } from "../../Account/AccountAction";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../Components/Placeholder";
 
 const { Option } = Select;

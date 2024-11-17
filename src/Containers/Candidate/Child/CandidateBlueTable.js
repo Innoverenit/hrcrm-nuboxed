@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo, lazy } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";

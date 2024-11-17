@@ -1,7 +1,7 @@
 import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import LinkedOpportunity from "../ContactTab/Opportunity/LinkedOpportunity"
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';

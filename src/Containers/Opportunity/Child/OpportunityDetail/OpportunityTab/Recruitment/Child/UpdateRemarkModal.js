@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { StyledModal } from "../../../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
+
  const UpdateRemarkForm = lazy(() => import("./UpdateRemarkForm"));
 
 const UpdateRemarkModal = props => {

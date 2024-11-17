@@ -1,7 +1,6 @@
 import React from "react";
 import error from "../../Assets/Images/i.png";
 import { Button } from "antd";
-import { FormattedMessage } from "react-intl";
 
 class AppErrorBoundary extends React.Component {
   constructor(props) {
@@ -54,11 +53,8 @@ class AppErrorBoundary extends React.Component {
               
                 onClick={() => this.handleRefreshPage()}
               >
-                <FormattedMessage
-                  id="app.refresh"
-                  defaultMessage="Refresh"
-                />
-                {/* Retry */}
+               
+                Refresh
               </Button>
               </div>
             </div>

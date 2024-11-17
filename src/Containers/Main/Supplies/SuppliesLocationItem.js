@@ -12,7 +12,7 @@ import {
 } from "./SuppliesAction";
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
-import { FormattedMessage } from "react-intl";
+
 import { MultiAvatar } from "../../../Components/UI/Elements";
 // import ReceivedDetailModal from "./ReceivedDetailModal";
 // import GrnListOfPOModal from "./GrnListOfPOModal";

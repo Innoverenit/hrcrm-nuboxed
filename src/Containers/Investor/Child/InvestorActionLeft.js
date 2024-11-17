@@ -1,5 +1,5 @@
 import React, { useEffect, useState,useRef } from "react";
-import { FormattedMessage } from "react-intl";
+
 import TocIcon from '@mui/icons-material/Toc';
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { Tooltip, Badge, Avatar,Button,Select } from "antd";
@@ -193,7 +193,7 @@ const InvestorActionLeft = (props) => {
   return (
     <div class=" flex items-center">
 
-      <Tooltip title={<FormattedMessage id="app.myInvestors" defaultMessage="My Investors" />}>
+      <Tooltip title="My Investors">
         <Badge
           size="small"
           count={(props.viewType === "list" && props.investorRecord.investor) || 0}
@@ -217,7 +217,7 @@ const InvestorActionLeft = (props) => {
 
       {props.user.teamsAccessInd === true && (
         <Tooltip
-          title={<FormattedMessage id="app.teamView" defaultMessage="Team View" />}
+          title="Team View"
         >
           <Badge
             size="small"
@@ -241,7 +241,7 @@ const InvestorActionLeft = (props) => {
         </Tooltip>
       )}
       {(props.user.investorFullListInd === true || props.user.role === "ADMIN") && (
-        <Tooltip title={<FormattedMessage id="app.all" defaultMessage="All" />}>
+        <Tooltip title="All" >
           <Badge
             size="small"
             count={(props.viewType === "all" && props.allinvestorRecord.investor) || 0}
@@ -257,7 +257,7 @@ const InvestorActionLeft = (props) => {
               <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355",
                boxShadow: props.viewType === "all" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
                   transform: props.viewType === "all" ? "scale(1.05)" : "scale(1)" }}>
-                <FormattedMessage id="app.all" defaultMessage="ALL" class=" text-white !text-icon"/>
+              All
               </Avatar>
             </span>
           </Badge>
@@ -302,7 +302,7 @@ const InvestorActionLeft = (props) => {
 
 
       {/* <Tooltip
-        title={<FormattedMessage id="app.mapview" defaultMessage="Map View" />}
+        
       >
         <Badge
           size="small"
@@ -345,7 +345,7 @@ const InvestorActionLeft = (props) => {
             props.handleClear();
           }}
         >
-          <FormattedMessage id="app.clear" defaultMessage="Clear" />
+        
         </Button> */}
         <div class=" w-[40%]  ml-2" >
           <StyledSelect placeholder="Sort" defaultValue="Creation Date" value={props.filter} onChange={(e) => props.handleFilterChange(e)}>

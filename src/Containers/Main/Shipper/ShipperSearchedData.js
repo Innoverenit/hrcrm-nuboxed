@@ -15,7 +15,7 @@ import {
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import UpdateShipperModal from "./UpdateShipperModal";
 import AddShipperOrderModal from "./AddShipperOrderModal";
-import { FormattedMessage } from "react-intl";
+
 
 function ShipperSearchedData(props) {
 

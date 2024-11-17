@@ -6,7 +6,7 @@ import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { updateEmailCredentials } from "../EmailAction";
-import { FormattedMessage } from "react-intl";
+
 
 /**
  * yup validation scheme for creating a Team

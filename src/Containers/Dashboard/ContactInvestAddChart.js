@@ -13,7 +13,7 @@ import {
   Tooltip,
   Legend
 } from "recharts";
-import { FormattedMessage } from "react-intl";
+
 
  function ContactInvestAddChart (props) {
   useEffect(() => {

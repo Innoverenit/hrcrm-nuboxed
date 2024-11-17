@@ -5,7 +5,7 @@ import { Formik, Form, Field, } from "formik";
 import {  getDetailsList } from "../../Dashboard/DashboardAction";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
+
 
 
 class Details extends Component {

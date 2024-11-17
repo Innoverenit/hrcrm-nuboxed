@@ -9,7 +9,7 @@ import * as Yup from "yup";
 import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { updateDocumentDetails } from "../../../../ProfileAction";
-import { FormattedMessage } from "react-intl";
+
 
 function onChange(date) {}
 

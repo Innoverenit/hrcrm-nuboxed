@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
-import { FormattedMessage } from "react-intl";
+
 import axios from "axios";
 import { base_url } from "../../../Config/Auth";
 import { InputComponent } from "../Formik/InputComponent";
@@ -166,19 +166,13 @@ class AddAddressField extends Component {
                 <mt-3 />
                 <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto  ">
                   <Button type="primary" htmlType="submit" Loading={isSubmitting}>
-                    {/* Save */}
-                    <FormattedMessage
-                   id="app.save"
-                  defaultMessage="Save"
-                   />
+                    Save
+                 
                 </Button>
                 &nbsp;
                 <Button type="default" onClick={this.props.toggleAdd}>
-                    {/* Cancel */}
-                    <FormattedMessage
-                     id="app.cancel"
-                    defaultMessage="Cancel"
-                    />
+                    Cancel
+                
                 </Button>
                 </div>
               </Form>

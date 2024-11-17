@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import GridViewIcon from '@mui/icons-material/GridView';
 import ViewWeekIcon from '@mui/icons-material/ViewWeek';
-import { FormattedMessage } from "react-intl";
+
 import { AudioOutlined } from "@ant-design/icons";
 import {Input, Tooltip, Avatar } from "antd";
 import { withRouter } from "react-router-dom";
@@ -79,7 +79,7 @@ setSearchOnEnter(true);
   return (
     <div class=" flex items-center" >
       <Tooltip
-        title={<FormattedMessage id="app.myExpenseVouchers" defaultMessage="My Expense Vouchers" />}
+        title="My Expense Vouchers" 
       >
 
         <span class=" mr-1 cursor-pointer text-[1rem]"

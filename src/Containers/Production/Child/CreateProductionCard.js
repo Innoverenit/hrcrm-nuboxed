@@ -5,7 +5,7 @@ import AddCreateManufactureModal from "../Child/AddCreateManufactureModal"
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Tooltip, Button, Select } from "antd";
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 import ReactToPrint from "react-to-print";
 import { BorderColorOutlined, } from "@mui/icons-material";

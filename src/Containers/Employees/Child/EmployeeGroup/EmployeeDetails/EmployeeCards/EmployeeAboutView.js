@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
+
 
 class EmployeeAboutView extends Component {
   render() {

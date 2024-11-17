@@ -1,7 +1,7 @@
 import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { Badge, Tag, Tooltip, Avatar, Button } from "antd";
 import OnDeviceTrainingIcon from '@mui/icons-material/OnDeviceTraining';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';

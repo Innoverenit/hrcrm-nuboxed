@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
+
 
 function CollectionActionRight (props){
   const [selectedTodayRowDistributor,setSelectedTodayRowDistributor] = useState([]);

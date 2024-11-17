@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledCollapse } from "../../../../../../Components/UI/Antd";
 import dayjs from "dayjs";
 import { CaretRightOutlined } from "@ant-design/icons";

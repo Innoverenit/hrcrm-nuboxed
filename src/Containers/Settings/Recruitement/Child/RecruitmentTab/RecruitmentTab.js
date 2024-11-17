@@ -1,7 +1,7 @@
 import React, { Component, } from "react";
 import { connect } from "react-redux";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import {

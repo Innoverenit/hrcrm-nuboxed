@@ -13,7 +13,7 @@ import { DatePicker } from "../../../../../../../Components/Forms/Formik/DatePic
 import { addCandidateEmploymentDetails } from "../../../../../CandidateAction";
 import dayjs from "dayjs";
 import {getSequence} from "../../../../../../Settings/SettingsAction"
-import { FormattedMessage } from "react-intl";
+
 import { getDesignations } from "../../../../../../Settings/Designation/DesignationAction";
 
 const documentSchema = Yup.object().shape({

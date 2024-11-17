@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Formik, Form} from "formik";
-import { FormattedMessage } from "react-intl";
+
 import {
   Select,
 } from "../../../../../Components/UI/Elements";

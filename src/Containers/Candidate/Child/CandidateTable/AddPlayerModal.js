@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 import { base_url } from "../../../../Config/Auth";
 import { Player } from "video-react";
 

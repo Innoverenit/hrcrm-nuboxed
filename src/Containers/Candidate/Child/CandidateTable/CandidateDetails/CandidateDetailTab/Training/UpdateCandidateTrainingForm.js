@@ -10,7 +10,7 @@ import SearchSelect from "../../../../../../../Components/Forms/Formik/SearchSel
 import { DatePicker } from "../../../../../../../Components/Forms/Formik/DatePicker";
 import { updateCandidateTrainingDetails } from "../../../../../CandidateAction";
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
+
 
 const documentSchema = Yup.object().shape({
   // documentId: Yup.string().required("Input needed !"),

@@ -14,7 +14,7 @@ import {
   getCandidateDocument,
 } from "../../../../../../Candidate/CandidateAction";
 import DragableUpload from "../../../../../../../Components/Forms/Formik/DragableUpload";
-import { FormattedMessage } from "react-intl";
+
 import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
 const ButtonGroup = Button.Group;
 const documentSchema = Yup.object().shape({

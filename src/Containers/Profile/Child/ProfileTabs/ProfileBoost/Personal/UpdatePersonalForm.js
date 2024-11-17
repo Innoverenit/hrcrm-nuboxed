@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
 import { updatePersonalDetails } from "../../../../ProfileAction";
-import { FormattedMessage } from "react-intl";
+
 function onChange(date, dateString) {}
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;

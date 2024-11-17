@@ -36,7 +36,7 @@ import {getInvestorsbyId,
   deleteInvestorData,
   handleInvestorPriceDrawer
 } from "../../InvestorAction";
-import { FormattedMessage } from "react-intl";
+
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InvestorPulseDrawerModal from "./InvestorPulseDrawerModal";
 import InventoryPriceDrawer from "./InventoryPriceDrawer";

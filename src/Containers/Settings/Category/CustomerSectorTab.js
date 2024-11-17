@@ -7,7 +7,7 @@ import {  Badge } from "antd";
 import SourceIcon from '@mui/icons-material/Source';
 import PaymentIcon from '@mui/icons-material/Payment';
 import FactoryIcon from '@mui/icons-material/Factory';
-import { FormattedMessage } from "react-intl";
+
 import LOB from "./LOB/LOB";
 import CategoryList from "./CategoryList/CategoryList";
 import CameraIcon from '@mui/icons-material/Camera';

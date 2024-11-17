@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button, Switch, Tooltip,Select } from "antd";
 import { Formik, Form, Field } from "formik";
@@ -166,7 +166,7 @@ console.log(props.currentContactId.contactId)
                       name="documentTypeId"
                       selectType="documentTypeName"
                       isColumnWithoutNoCreate
-                      label={<FormattedMessage id="app.type" defaultMessage="Type" />}
+                      label="Type" 
                       component={SearchSelect}
                       isColumn
                       value={values.documentId}
@@ -187,7 +187,7 @@ console.log(props.currentContactId.contactId)
                 <div class=" h-full w-2/5">
                   <Field
                     name="documentTitle"
-                    label={<FormattedMessage id="app.name" defaultMessage="Name" />}
+                    label="Name"
                     width={"100%"}
                     isColumn
                     component={InputComponent}
@@ -195,7 +195,7 @@ console.log(props.currentContactId.contactId)
                   <div class=" mt-3">
                     <Field
                       name="documentDescription"
-                      label={<FormattedMessage id="app.description" defaultMessage="Description" />}
+                      label="Description"
                       isRequired
                       isColumn
                       width={"100%"}
@@ -272,7 +272,7 @@ console.log(props.currentContactId.contactId)
                                 <Field
                                   inlineLabel
                                   name="department"
-                                  label={<FormattedMessage id="app.department" defaultMessage="Function" />}
+                                  label="Function"
                                   isRequired
                                   isColumn
                                   component={InputComponent}
@@ -281,7 +281,7 @@ console.log(props.currentContactId.contactId)
                               <div>
                                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                                   {" "}
-                                  <FormattedMessage id="app.level" defaultMessage="Level" />
+                                  Level
                                 </div>
                                 <div class=" flex justify-between">
                                   <ButtonGroup>
@@ -336,7 +336,7 @@ console.log(props.currentContactId.contactId)
               </div>
               <div class=" flex justify-end mt-3">
                 <Button htmlType="submit" type="primary" loading={addingDocumentByCustomerId}>
-                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
+                Submit
                 </Button>
               </div>
             </Form>

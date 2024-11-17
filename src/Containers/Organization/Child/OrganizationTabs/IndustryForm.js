@@ -5,7 +5,7 @@ import { Formik, Form, FastField } from "formik";
 import {
   Select,
 } from "../../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
+
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { Button, } from "antd";
 import {

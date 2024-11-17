@@ -1,7 +1,7 @@
 // import React, { useState,useEffect } from 'react';
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
-// import { FormattedMessage } from "react-intl";
+// 
 // import {Button,Switch,message} from "antd";
 // import {  PstoProductionBuilder,getProductionSpareData } from "../../Product/ProductAction";
 // const DynamicInputForm = (props) => {
@@ -132,7 +132,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Button, Switch, message,Popconfirm } from "antd";
 import { PstoProductionBuilder, getProductionSpareData } from "../../Product/ProductAction";

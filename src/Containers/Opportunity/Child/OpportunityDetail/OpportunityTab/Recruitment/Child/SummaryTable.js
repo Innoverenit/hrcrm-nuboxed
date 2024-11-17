@@ -23,7 +23,7 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import styled from "styled-components";
 import { base_url, base_url2 } from "../../../../../../../Config/Auth";
-import { FormattedMessage } from "react-intl";
+
 import dayjs from "dayjs";
 function onChange(pagination, filters, sorter) {
   console.log("Clicked", pagination, filters, sorter);

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, lazy } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { Tooltip, Button, Input } from "antd";

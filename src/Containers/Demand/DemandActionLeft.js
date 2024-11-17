@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FlexContainer } from "../../Components/UI/Layout";
 import { Input } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import {
     inputJobOrderSearch,
     // inputCandidateSkillDataSearch,

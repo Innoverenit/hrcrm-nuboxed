@@ -4,7 +4,7 @@
 // import dayjs from "dayjs";
 // import { Select } from "../../../../../Components/UI/Elements";
 // import { InputNumber, Popconfirm, Form, Input, Typography, Button, Space, DatePicker,Tooltip } from 'antd';
-// import { FormattedMessage } from "react-intl";
+// 
 // // import AddCandidateSequenceModal from "./AddCandidateSequenceModal"
 // import { StyledPopconfirm, StyledTable } from "../../../../../Components/UI/Antd";
 //  import {getSequence,handleCAndidateSequenceModal,getSequenceDetail,updateSequenceTableData,deleteSequenceData} from "../../../../Settings/SettingsAction";

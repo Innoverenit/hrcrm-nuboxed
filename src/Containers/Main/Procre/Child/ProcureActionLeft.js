@@ -6,7 +6,7 @@ import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition
 import { connect } from "react-redux";
 import {getRecords} from "../ProcreAction"
 import { Avatar, Tooltip,Badge } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { AudioOutlined } from "@ant-design/icons"
 
 const Option = StyledSelect.Option;

@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer, StyledModal } from "../../../../../../Components/UI/Antd";
 const RecruitForm = lazy(() => import("./RecruitForm"));
 

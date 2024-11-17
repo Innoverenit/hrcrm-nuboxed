@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getAllSpareList } from "./RefurbishAction"
 import { OnlyWrapCard } from "../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
+
 import ApprovedSpareToggle from "./ApprovedSpareToggle";
 import { BundleLoader } from '../../../Components/Placeholder';
 

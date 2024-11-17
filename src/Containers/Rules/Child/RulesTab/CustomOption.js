@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { EditorState, Modifier } from "draft-js";
 import PropTypes from "prop-types";
-import { FormattedMessage } from "react-intl";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";

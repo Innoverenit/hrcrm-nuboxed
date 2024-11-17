@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
-import { FormattedMessage } from "react-intl";
+
 import { addTermsnCondition, getTermsnConditionOfPo } from "../../../SuppliersAction"
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 

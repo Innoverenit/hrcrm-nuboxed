@@ -6,7 +6,7 @@
 // import { bindActionCreators } from "redux";
 // import { Button } from "antd";
 // import { Autocomplete, TextField } from '@mui/material';
-// import { FormattedMessage } from "react-intl";
+// 
 // import { createMachinaryCell,getLocationMachine, getUserMachineCard } from "../../Child/Location/LocationAction";
 
 // const UserCellMachineCrd = (props) => {
@@ -145,7 +145,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Autocomplete, TextField } from '@mui/material';
-import { FormattedMessage } from "react-intl";
+
 import { createMachinaryCell, getLocationMachine, getUserMachineCard } from "../../Child/Location/LocationAction";
 
 const UserCellMachineCrd = (props) => {

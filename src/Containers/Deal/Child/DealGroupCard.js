@@ -1,6 +1,6 @@
 import React from "react";
 import { Tooltip, Popconfirm } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { StopTwoTone} from "@ant-design/icons";
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { MainWrapper } from "../../../Components/UI/Layout";

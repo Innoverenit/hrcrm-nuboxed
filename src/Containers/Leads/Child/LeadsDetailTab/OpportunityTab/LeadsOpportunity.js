@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import Highlighter from "react-highlight-words";
 import { Link } from "../../../../../Components/Common";
 import dayjs from "dayjs";

@@ -1,6 +1,6 @@
 import React, { useEffect, useState,useMemo,lazy } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { SearchOutlined,
   } from '@ant-design/icons';

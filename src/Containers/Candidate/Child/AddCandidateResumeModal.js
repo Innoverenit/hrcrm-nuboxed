@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 const ResumeForm = lazy(() => import("./ResumeForm"));
@@ -13,7 +13,7 @@ const AddCandidateResumeModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage id="app.resume" defaultMessage="Resume" />}
+        title="Resume"
         width="60%"
         visible={addCandidateResumeModal}
         onClose={() => handleCandidateResumeModal(false)}

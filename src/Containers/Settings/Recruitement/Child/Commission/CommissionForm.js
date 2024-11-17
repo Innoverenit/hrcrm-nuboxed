@@ -5,7 +5,7 @@ import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import { MainWrapper } from "../../../../../Components/UI/Elements";
 import { addCommission } from "../../../../Settings/SettingsAction";
-import { FormattedMessage } from "react-intl";
+
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";

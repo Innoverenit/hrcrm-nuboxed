@@ -5,7 +5,7 @@ import { Button, Tooltip } from "antd";
 import dayjs from "dayjs";
 import { Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FormattedMessage } from "react-intl";
+
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../Components/Placeholder";
 import CountryFlag1 from "../../Settings/Category/Country/CountryFlag1";

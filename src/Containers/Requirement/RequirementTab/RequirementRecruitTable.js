@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import HelpIcon from '@mui/icons-material/Help';
 import AddRequirementModal from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/AddRequirementModal"
 import RecruitmentStages from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/RecruitmentStages";

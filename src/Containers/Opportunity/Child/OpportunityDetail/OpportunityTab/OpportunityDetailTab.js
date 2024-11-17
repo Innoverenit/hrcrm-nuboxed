@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import RecruitmentDeletedTable from "../../OpportunityDetail/OpportunityTab/Recruitment/RecruitmentDeletedTable"
 import {Tooltip, } from "antd";
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
-import { FormattedMessage } from "react-intl";
+
 import PieChartIcon from '@mui/icons-material/PieChart';
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import {

@@ -33,7 +33,7 @@ import ReactToPrint from "react-to-print";
 import PhoneDetailsModal from "./ProductionTab/PhoneDetailsModal";
 import { BundleLoader } from "../../../Components/Placeholder";
 import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
-import { FormattedMessage } from "react-intl";
+
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import ProcessExpandDrawer from "./ProcessExpandDrawer";
 import ProcessSpareDrawer from "./ProcessSpareDrawer";

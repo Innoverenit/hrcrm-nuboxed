@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Tag, Checkbox } from "antd";
 import styled from "styled-components";
 import { Title, HeaderText, SubTitle } from "../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
+
 
 class SubscriptionConfirmationContent extends Component {
   handleChange = (type) => {

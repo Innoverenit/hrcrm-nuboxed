@@ -11,7 +11,7 @@ import {
 import { Link } from 'react-router-dom';
 // import {getCustomerActivityTimeline} from "../../CustomerAction"
 
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../Components/Placeholder";
 
 const Option = Select;

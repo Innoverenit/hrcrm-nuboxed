@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import ProspectSourcePieChart from "../JumpStart/ProspectSourcePieChart"
 import ProspectSectorPieChart from "../JumpStart/ProspectSectorPieChart"
 import dayjs from "dayjs";

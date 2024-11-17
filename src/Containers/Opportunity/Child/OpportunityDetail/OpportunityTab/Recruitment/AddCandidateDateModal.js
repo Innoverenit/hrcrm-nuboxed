@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { useState } from "react";
-import { FormattedMessage } from "react-intl";
+
 import CandidateDateForm from "../Recruitment/CandidateDateForm"
 import { connect } from "react-redux";
 import { BundleLoader } from "../../../../../../Components/Placeholder";

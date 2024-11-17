@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NotificationRow from "./NotificationRow";
-import { FormattedMessage } from "react-intl";
+
 
 class PushNotificationSetting extends Component {
     render() {

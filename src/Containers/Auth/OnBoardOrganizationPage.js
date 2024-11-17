@@ -11,7 +11,7 @@ import Button from "antd/lib/button";
 import { addOnboard, generateOtpByEmail, validateOtp } from "./AuthAction";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
    import FWLogo from "../../Assets/Images/logo_22 copy.png";
-import { FormattedMessage } from "react-intl";
+
 
 
 class OnBoardOrganizationPage extends Component {

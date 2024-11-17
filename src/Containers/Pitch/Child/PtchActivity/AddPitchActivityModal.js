@@ -3,7 +3,7 @@ import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
+
 const PitchCallForm =lazy(()=>import("./PitchCallForm"));
 const PitchTaskForm =lazy(()=>import("./PitchTaskForm"));
 const PitchEventForm =lazy(()=>import("./PitchEventForm"));

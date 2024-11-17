@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStation';
 import { Button, message, Tooltip, Popover, Icon } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import LockIcon from '@mui/icons-material/Lock';
 import { StyledModal, StyledTabs } from "../../../Components/UI/Antd";
 import {

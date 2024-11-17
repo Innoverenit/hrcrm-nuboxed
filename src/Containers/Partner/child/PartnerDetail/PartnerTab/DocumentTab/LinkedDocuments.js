@@ -1,7 +1,7 @@
 import React, { useMemo, Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { base_url } from "../../../../../../Config/Auth";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import {

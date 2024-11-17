@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import { inputEmployeeDataSearch,getEmployeelist,ClearReducerDataOfEmployee, getRecords } from "../EmployeeAction";
 import {  Input, Tooltip, Badge,Avatar } from "antd";
 import { AudioOutlined } from '@ant-design/icons';
-import { FormattedMessage } from "react-intl";
+
 import {getDepartments} from "../../Settings/Department/DepartmentAction"
 import { getlocation } from "../../Event/Child/Location/LocationAction";
 import GridViewIcon from '@mui/icons-material/GridView';

@@ -10,7 +10,7 @@ import { handleUpdateBankModal, setEditBank } from "../../../../ProfileAction";
 import { getBankDetails } from "../../../../ProfileAction";
 import { deleteBankTable } from "../../../../ProfileAction";
 import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
-import { FormattedMessage } from "react-intl";
+
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 const UpdateBankModal = lazy(() => import("../../ProfileBoost/Bank/UpdateBankModal"));
 class BankTable extends Component {

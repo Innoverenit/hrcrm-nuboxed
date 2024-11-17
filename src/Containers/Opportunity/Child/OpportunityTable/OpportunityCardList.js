@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import AddOpportunityPulseModal from "../OpportunityTable/AddOpportunityPulseModal"
 import { DeleteOutlined } from "@ant-design/icons";
 import InfiniteScroll from "react-infinite-scroll-component"
-import { FormattedMessage } from "react-intl";
+
 import OpportunitySelectStages from "../OpportunityTable/OpportunitySelectStages"
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";

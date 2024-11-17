@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
+
 class CustomerExtraDetailView extends Component {
   render() {
     console.log(this.props.customer);
@@ -18,7 +18,7 @@ class CustomerExtraDetailView extends Component {
     return (
       <>
         <CustomerItemRow // label="URL"
-          label={<FormattedMessage id="app.url" defaultMessage="URL" />}
+          label="URL"
           value={url}
         />
         <CustomerItemRow
@@ -27,27 +27,17 @@ class CustomerExtraDetailView extends Component {
         />
 
         <CustomerItemRow //label="Phone Number"
-          label={
-            <FormattedMessage
-              id="app.registrationNumber"
-              defaultMessage="Registration #"
-            />
-          }
+          label="Registration #"
           value={vatNo}
         />
 
         <CustomerItemRow //label="Phone Number"
-          label={
-            <FormattedMessage
-              id="app.registrationNumber"
-              defaultMessage="Tax Registration #"
-            />
-          }
+          label="Tax Registration #"
           value={businessRegistration}
         />
 
         <CustomerItemRow //label="Phone Number"
-          label={<FormattedMessage id="app.sector" defaultMessage="Sector" />}
+          label="Sector" 
           value={sector}
         />
       </>

@@ -5,7 +5,7 @@ import DashboardDoubleChart from "./DashboardDoubleChart"
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import {  StyledTabs } from "../../Components/UI/Antd";
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
-import { FormattedMessage } from "react-intl";
+
 import TabsWrapper1 from "../../Components/UI/Layout/TabsWrapper1";
 import { BundleLoader } from "../../Components/Placeholder";
 const TaskNew =lazy(()=>import("./TaskNew"));

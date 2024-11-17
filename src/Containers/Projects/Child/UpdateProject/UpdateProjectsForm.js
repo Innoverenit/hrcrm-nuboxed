@@ -5,7 +5,7 @@ import { Button } from "antd";
 import dayjs from "dayjs";
 import {updateProjects} from "../../ProjectsAction"
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
-import { FormattedMessage } from "react-intl";
+
 import { Formik, Form, Field, FastField } from "formik";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import * as Yup from "yup";

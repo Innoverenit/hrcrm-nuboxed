@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { FormattedMessage } from "react-intl";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 import PhoneDisabledIcon from "@mui/icons-material/PhoneDisabled";
 import { SearchOutlined } from "@ant-design/icons";

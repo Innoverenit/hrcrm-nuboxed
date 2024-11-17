@@ -1,6 +1,6 @@
 import { Field, Form, Formik } from 'formik'
 import React from 'react'
-import { FormattedMessage } from "react-intl";
+
 
 import { InputComponent } from '../../Components/Forms/Formik/InputComponent'
 

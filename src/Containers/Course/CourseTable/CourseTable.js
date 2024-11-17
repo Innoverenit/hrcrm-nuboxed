@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { FormattedMessage } from "react-intl";
+
 import { getCourse,handleEditModal,setEditCourse } from "../CourseAction";
 import { Link } from "../../../Components/Common";
 import { OnlyWrapCard } from "../../../Components/UI/Layout";
@@ -194,7 +194,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(CourseTable);
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
 // import dayjs from "dayjs";
-// import { FormattedMessage } from "react-intl";
+// 
 // import { Tooltip, Button, Input } from "antd";
 // import SearchIcon from "@mui/icons-material/Search";
 // import Highlighter from "react-highlight-words";

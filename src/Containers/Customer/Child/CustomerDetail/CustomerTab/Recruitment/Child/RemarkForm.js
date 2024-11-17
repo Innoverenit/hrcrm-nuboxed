@@ -7,7 +7,7 @@ import { FlexContainer } from "../../../../../../../Components/UI/Layout";
 import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
 import { TextareaComponent } from "../../../../../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
-import { FormattedMessage } from "react-intl";
+
 // import { addRemark } from "../../../../../OpportunityAction";
 import * as Yup from "yup";
 /**

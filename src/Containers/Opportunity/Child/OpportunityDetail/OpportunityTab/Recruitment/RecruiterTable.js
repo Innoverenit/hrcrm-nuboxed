@@ -712,7 +712,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(RecruiterTable);
 // import React, { useEffect, useState } from "react";
 // import { connect } from "react-redux";
 // import SkillsLoadMore from "../../../../../Candidate/Child/CandidateTable/SkillsLoadMore";
-// import { FormattedMessage } from "react-intl";
+// 
 // import { bindActionCreators } from "redux";
 // import dayjs from "dayjs";
 // // import StatusToggle from "./StatusToggle";

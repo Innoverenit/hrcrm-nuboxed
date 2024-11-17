@@ -1,7 +1,7 @@
 import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, message, Popconfirm } from "antd";

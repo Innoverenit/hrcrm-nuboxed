@@ -11,7 +11,7 @@ import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
 import dayjs from "dayjs";
 import { updateEmploymentDetails } from "../../../../ProfileAction";
-import { FormattedMessage } from "react-intl";
+
 import { getDesignations } from "../../../../../Settings/Designation/DesignationAction";
 const documentSchema = Yup.object().shape({});
 class EmploymentDocumentForm extends Component {

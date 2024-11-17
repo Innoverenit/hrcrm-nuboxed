@@ -14,7 +14,7 @@ import {
 import { withRouter } from "react-router-dom";
 import { getActionTable } from "../../../../../Containers/Rules/RulesAction";
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
+
 
 
 class ActionTable extends React.Component {

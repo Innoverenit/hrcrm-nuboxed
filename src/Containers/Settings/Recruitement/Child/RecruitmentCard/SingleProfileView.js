@@ -1,7 +1,7 @@
 import React from "react";
 import { TextInput, ViewEditCard } from "../../../../../Components/UI/Elements";
 import { FlexContainer } from "../../../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
+
 import styled from "styled-components";
 import { ActionIcon } from "../../../../../Components/Utils";
 import { Button } from "antd";

@@ -12,7 +12,7 @@ import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
 import { addEmploymentDetails } from "../../../../ProfileAction";
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
+
 import { getDesignations } from "../../../../../Settings/Designation/DesignationAction";
 
 const documentSchema = Yup.object().shape({

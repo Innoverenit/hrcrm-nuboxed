@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import axios from "axios";
@@ -182,19 +182,13 @@ class EditAddressField extends Component {
                 <mt-3 />
                 <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   <Button type="primary" htmlType="submit" Loading={isSubmitting}>
-                   {/* Save  */}
-                   <FormattedMessage
-                 id="app.save"
-                 defaultMessage="Save"
-                />
+                   Save 
+                
                 </Button>
                 &nbsp;
                 <Button type="default" onClick={this.props.toggleEdit}>
-                    {/* Cancel */}
-                    <FormattedMessage
-                 id="app.cancel"
-                 defaultMessage="Cancel"
-                />
+                    Cancel
+                    
                 </Button>
                 </div>
               </Form>

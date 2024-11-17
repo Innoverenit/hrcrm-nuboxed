@@ -1,6 +1,6 @@
 import React, {useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button, } from "antd";
 import { Formik, Form, Field, FieldArray } from "formik";

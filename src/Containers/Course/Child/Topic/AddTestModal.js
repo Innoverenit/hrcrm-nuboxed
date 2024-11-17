@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import {handleTestDrawerModal} from "../../CourseAction"
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 const TestForm =lazy(()=>import("../Test/TestForm"));
 
 const AddTestModal = (props) => {
@@ -13,7 +13,7 @@ const AddTestModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage id="app.test" defaultMessage="Test"/>}
+        title="Test"
         width="60%"
         style={{marginTop:"3rem"}}
         visible={props.addTestDrawerModal}

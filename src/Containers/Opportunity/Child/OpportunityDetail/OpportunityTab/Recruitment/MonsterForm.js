@@ -6,7 +6,7 @@ import { SelectComponent } from "../../../../../../Components/Forms/Formik/Selec
 import { Formik, Form, Field } from "formik";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 
-import { FormattedMessage } from "react-intl";
+
 import {getJobCategory,getJobBoardName,getJobBoardOccupation,getJobBoardIndustry,addMonster} from "../../../../OpportunityAction";
 
 //import ExperienceTable from "./ExperienceTable";

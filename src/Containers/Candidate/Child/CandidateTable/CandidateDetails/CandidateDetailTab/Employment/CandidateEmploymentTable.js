@@ -1,6 +1,6 @@
 import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { handleCandidateUpdateEmploymentModal } from "../../../../../CandidateAction";

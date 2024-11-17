@@ -12,7 +12,7 @@ import { TerminalSharp } from "@mui/icons-material";
 import {handleTermsnConditionModal} from "../Suppliers/SuppliersAction"
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
-import { FormattedMessage } from "react-intl";
+
 import { Tooltip, Select, Button,Input } from "antd";
 import { base_url2 } from "../../../Config/Auth";
 import CategoryIcon from '@mui/icons-material/Category'

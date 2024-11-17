@@ -7,7 +7,7 @@ import StopCircleIcon from '@mui/icons-material/StopCircle';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { Button ,Tooltip} from "antd";
 import { Formik, Form, Field } from "formik";
-import { FormattedMessage } from "react-intl";
+
 import { addSentiment } from "../../../../../OpportunityAction";
 
 function SentimentForm(props) {

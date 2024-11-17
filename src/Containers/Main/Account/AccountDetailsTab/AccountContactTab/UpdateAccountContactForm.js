@@ -11,7 +11,7 @@ import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
 import { getDesignations } from "../../../../Settings/Designation/DesignationAction"
 import { getDepartments } from "../../../../Settings/Department/DepartmentAction"
-import { FormattedMessage } from "react-intl";
+
 import PostImageUpld from "../../../../../Components/Forms/Formik/PostImageUpld";
 import AddressFieldArray from "../../../../../Components/Forms/Formik/AddressFieldArray";
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -135,7 +135,7 @@ class UpdateAccountContactForm extends Component {
                                             <FastField
                                                 isRequired
                                                 name="firstName"
-                                                label={<FormattedMessage id="app.firstname" defaultMessage="First Name" />}
+                                                label="First Name" 
                                                 type="text"
                                                 width={"100%"}
                                                 isColumn
@@ -148,7 +148,7 @@ class UpdateAccountContactForm extends Component {
                                                 <div class="w-[47%]">
                                                     <FastField
                                                         name="middleName"
-                                                        label={<FormattedMessage id="app.middlename" defaultMessage="Middle Name" />}
+                                                        label="Middle Name" 
                                                         type="text"
                                                         width={"100%"}
                                                         isColumn
@@ -160,7 +160,7 @@ class UpdateAccountContactForm extends Component {
                                                 <div class="w-[47%]">
                                                     <FastField
                                                         name="lastName"
-                                                        label={<FormattedMessage id="app.lastname" defaultMessage="Last Name" />}
+                                                        label="Last Name" 
                                                         type="text"
                                                         width={"100%"}
                                                         isColumn
@@ -176,7 +176,7 @@ class UpdateAccountContactForm extends Component {
                                         <div class="w-[47%]">
                                             <FastField
                                                 name="dialCode1"
-                                                label={<FormattedMessage id="app.mobile" defaultMessage="Mobile #" />}
+                                                label="Mobile #" 
                                                 isColumn
                                                 isColumnWithoutNoCreate
                                                 selectType="dialCode"
@@ -206,7 +206,7 @@ class UpdateAccountContactForm extends Component {
                                             isRequired
                                             type="email"
                                             name="emailId"
-                                            label={<FormattedMessage id="app.email" defaultMessage="Email" />}
+                                            label="Email"
                                             className="field"
                                             isColumn
                                             width={"100%"}
@@ -218,7 +218,7 @@ class UpdateAccountContactForm extends Component {
                                     <div class="w-full">
                                         <FastField
                                             name="LinkedIn"
-                                            label={<FormattedMessage id="app.linkedIn" defaultMessage="LinkedIn" />}
+                                            label="LinkedIn" 
                                             className="field"
                                             isColumn
                                             width={"100%"}
@@ -229,7 +229,7 @@ class UpdateAccountContactForm extends Component {
                                     <div class="mt-3">
                                         <Field
                                             name="notes"
-                                            label={<FormattedMessage id="app.notes" defaultMessage="Notes" />}
+                                            label="Notes" 
                                             width={"100%"}
                                             isColumn
                                             component={TextareaComponent}
@@ -244,7 +244,7 @@ class UpdateAccountContactForm extends Component {
                                             <Field
                                                 name="designationId"
                                                 placeholder="Designation"
-                                                label={<FormattedMessage id="app.designation" defaultMessage="Designation" />}
+                                                label="Designation" 
                                                 component={SelectComponent}
                                                 options={Array.isArray(designation) ? designation : []}
                                                 style={{
@@ -256,7 +256,7 @@ class UpdateAccountContactForm extends Component {
                                             <Field
                                                 name="departmentId"
                                                 component={InputComponent}
-                                                label={<FormattedMessage id="app.department" defaultMessage="Department" />}
+                                                label="Department"
                                                 style={{
                                                     width: "100%"
                                                 }}
@@ -285,8 +285,8 @@ class UpdateAccountContactForm extends Component {
                                     type="primary"
                                     htmlType="submit"
                                     loading={this.props.updateDisributorContactById}
-                                >
-                                    <FormattedMessage id="app.update" defaultMessage="Update" />
+                                >Update
+                                    
                                 </Button>
                             </div>
                         </Form>

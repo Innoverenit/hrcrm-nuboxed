@@ -3,7 +3,7 @@ import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Input,Tooltip } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import DownloadIcon from '@mui/icons-material/Download';
 import { base_url } from "../../../Config/Auth";
 import { BundleLoader } from "../../../Components/Placeholder";

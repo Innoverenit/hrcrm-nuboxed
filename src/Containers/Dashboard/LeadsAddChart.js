@@ -14,7 +14,7 @@ import {
   Tooltip,
   Legend
 } from "recharts";
-import { FormattedMessage } from "react-intl";
+
 
  function LeadsAddChart (props) {
 

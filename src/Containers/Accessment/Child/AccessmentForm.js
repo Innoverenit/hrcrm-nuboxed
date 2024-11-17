@@ -2,7 +2,7 @@ import React,{useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button} from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { Formik, Form, Field } from "formik";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
@@ -55,7 +55,7 @@ props.getCourse();
                   name="assessmentName"
                   type="text"
                   component={InputComponent}
-                  label={<FormattedMessage id="app.name" defaultMessage="Name" />}
+                  label="Name"
                   isColumn
                   width={"100%"}
                   inlineLabel
@@ -64,7 +64,7 @@ props.getCourse();
               <div class="w-[16%]">
                 <Field
                   name="courseId"
-                  label={<FormattedMessage id="app.course" defaultMessage="course" />}
+                  label="course" 
                   isColumn
                   width={"100%"}
                   component={SelectComponent}
@@ -75,10 +75,7 @@ props.getCourse();
              <div class="w-[16%]">
                 <Field
                    name="duration"
-                   label={<FormattedMessage
-                       id="app.timeperquestion"
-                       defaultMessage="Time per question"
-                     />}
+                   label="Time per question"
                    isColumn
                    width={"100%"}
                    component={InputComponent}
@@ -88,12 +85,7 @@ props.getCourse();
               <div class="w-[8%]">
                 <Field
                   name="durationType"
-                  label={
-                    <FormattedMessage
-                      id="app.durationtype"
-                      defaultMessage="Duration Type"
-                    />
-                  }
+                  label="Duration Type"
                   isColumn
                   width={"100%"}
                   options={["secs","mins"]}
@@ -107,8 +99,7 @@ props.getCourse();
                 htmlType="submit"
                 loading={props.addingAssessment}
               >
-                <FormattedMessage id="app.create" defaultMessage="Create" />
-              </Button>
+                Create              </Button>
             </div>
             </div>
           </Form>

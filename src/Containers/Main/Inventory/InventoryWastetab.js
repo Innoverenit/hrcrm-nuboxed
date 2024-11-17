@@ -8,7 +8,7 @@ import {
 import TermsnConditionModal from "../Suppliers/Child/SupplierDetails/SupplierDetailTab/TermsnConditionModal"
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
-import { FormattedMessage } from "react-intl";
+
 import { Tooltip, Select, Button,Input } from "antd";
 import CategoryIcon from '@mui/icons-material/Category'
 import FactoryIcon from '@mui/icons-material/Factory';

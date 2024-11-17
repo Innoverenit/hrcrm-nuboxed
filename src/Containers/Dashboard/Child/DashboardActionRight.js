@@ -1,6 +1,6 @@
 import React, {  lazy} from "react";
 import { StyledSelect, } from "../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 import {
   setDashboardViewType,
 } from "../DashboardAction";

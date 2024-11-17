@@ -1,7 +1,7 @@
 import React,{ useEffect, useState, lazy }  from 'react'
 import { connect } from "react-redux";
 import {getReportsProductivityData} from "../../ReportAction"
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 
 function ReportsProductivityData(props) {

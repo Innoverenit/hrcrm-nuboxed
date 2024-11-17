@@ -7,7 +7,7 @@ import {
 } from "../../Components/UI/Layout";
 import {handleBillableCandidateModal} from "../Dashboard/DashboardAction"
 import DnsIcon from '@mui/icons-material/Dns';
-import { FormattedMessage } from "react-intl";
+
 const DashboardAllTable2 = lazy(()=>import("../Dashboard/DashboardAllTable2"));
 const DashboardTable2 = lazy(()=>import("../Dashboard/Child/DashboardTable2"));
 const AddCandidateBillableModal = lazy(()=>import("./Child/BillableCandidate/AddCandidateBillableModal"));

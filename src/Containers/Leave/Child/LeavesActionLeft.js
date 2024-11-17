@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Input, Tooltip, Avatar } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import GridViewIcon from '@mui/icons-material/GridView';
 import CategoryIcon from '@mui/icons-material/Category';
 import { AreaChartOutlined } from '@ant-design/icons';
@@ -19,7 +19,7 @@ const LeavesActionLeft = (props) => {
   return (
     <div class=" flex items-center">
       <Tooltip
-        title={<FormattedMessage id="app.Myleaves" defaultMessage="My Leaves" />}
+        title="My Leaves"
       >  <span
         class=" mr-1 text-sm cursor-pointer"
         onClick={() => props.setLeavesViewType("tile")}
@@ -89,7 +89,7 @@ const LeavesActionLeft = (props) => {
             }}
           >
             <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
-              <FormattedMessage id="app.all" defaultMessage="ALL" />
+            ALL
 
             </Avatar>
           </span>

@@ -1,7 +1,7 @@
 import React, { } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import OpportunityStatsCard from "./OpportunityCards/OpportunityStatsCard";
 import { Spin, Tooltip, Icon } from "antd";

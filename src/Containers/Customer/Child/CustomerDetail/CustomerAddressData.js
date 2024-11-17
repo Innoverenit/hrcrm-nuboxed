@@ -1,6 +1,6 @@
 // import React, { Component } from "react";
 // import { SubTitle } from "../../../../Components/UI/Elements";
-// import { FormattedMessage } from "react-intl";
+// 
 // class CustomerAddressData extends Component {
 //   render() {
 //     console.log(this.props.customer);

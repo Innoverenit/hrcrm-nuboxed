@@ -2,7 +2,7 @@ import React, { Component,  Suspense } from "react";
 import { StyledTabs } from "../../../../../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { TabsWrapper } from "../../../../../../../Components/UI/Layout";
 import RemarksTable from "../Child/RemarksTable";
 import { Tooltip } from "antd";

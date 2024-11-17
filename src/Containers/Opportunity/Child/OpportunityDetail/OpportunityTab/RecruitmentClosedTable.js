@@ -1,7 +1,7 @@
 import React, { Component, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import LockIcon from '@mui/icons-material/Lock';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import AddRequirementModal from "../OpportunityTab/Recruitment/AddRequirementModal";

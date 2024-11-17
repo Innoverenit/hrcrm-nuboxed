@@ -1,6 +1,6 @@
 import React , { useState, useEffect}from "react";
 import {Avatar, Tooltip } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import TocIcon from '@mui/icons-material/Toc';

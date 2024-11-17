@@ -1,7 +1,7 @@
 
 import React, { Component } from "react";
 import { Button } from "antd";
-import { FormattedMessage } from "react-intl";
+
 
 import L from "leaflet";
 import { MapLayer, Map, TileLayer, withLeaflet,CircleMarker } from "react-leaflet";

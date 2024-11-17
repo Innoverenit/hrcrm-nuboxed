@@ -1,6 +1,6 @@
 import React from 'react'
 import { ActionIcon } from "../../../Components/Utils";
-import { FormattedMessage } from "react-intl";
+
 import PlannerShareForm from "./PlannerShareForm"
 const PlannerActionLeft = (props) => {
     return (

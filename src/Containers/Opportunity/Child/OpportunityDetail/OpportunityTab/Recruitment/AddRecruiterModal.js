@@ -1,5 +1,5 @@
 import React, { Suspense,useState } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
  import { BundleLoader } from "../../../../../../Components/Placeholder";

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Badge, Tooltip } from "antd";
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-import { FormattedMessage } from "react-intl";
+
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";

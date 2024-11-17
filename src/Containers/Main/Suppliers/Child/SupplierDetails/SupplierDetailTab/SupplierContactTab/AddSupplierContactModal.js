@@ -2,7 +2,7 @@ import React, { lazy, Suspense, Component } from "react";
 import { StyledDrawer } from "../../../../../../../Components/UI/Antd";
 import SupplierContactForm from "./SupplierContactForm";
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
+
 
 class AddSupplierContactModal extends Component {
     render() {

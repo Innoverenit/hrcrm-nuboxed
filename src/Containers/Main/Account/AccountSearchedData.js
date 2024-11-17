@@ -22,7 +22,7 @@ import {
   handleAccountPulse
 } from "./AccountAction";
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
+
 import AccountPulseModal from "./AccountPulseModal";
 import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import ExploreIcon from "@mui/icons-material/Explore";

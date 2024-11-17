@@ -6,7 +6,7 @@ import { Tooltip } from "antd";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { StyledTabs } from "../../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import {
   handleDocumentUploadModal,

@@ -8,7 +8,7 @@
 // import EditableTextArea from "../../../../../Components/Forms/Edit/EditableTextArea";
 // import EditableDatePicker from "../../../../../Components/Forms/Edit/EditableDatePicker";
 // import EditableSelect from "../../../../../Components/Forms/Edit/EditableSelect";
-// import { FormattedMessage } from "react-intl";
+// 
 
 // class OpportunityAboutEdit extends Component {
 //   constructor(props) {

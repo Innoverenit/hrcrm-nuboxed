@@ -1,7 +1,7 @@
 import React, {} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import ContactInvestPieChart1 from "../ContactInvestTable/ContactInvestPieChart1"
 import ContactInvestPieChart2 from "../ContactInvestTable/ContactInvestPieChart2"
 import dayjs from "dayjs";

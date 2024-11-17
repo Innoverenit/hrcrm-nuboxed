@@ -2,7 +2,7 @@ import { Field, Form, Formik } from 'formik'
 import React, {useEffect,useState} from 'react'
 import dayjs from "dayjs";
 import * as Yup from "yup";
-import { FormattedMessage } from "react-intl";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {updateInvoiceData} from "../Invoice/InvoiceAction"

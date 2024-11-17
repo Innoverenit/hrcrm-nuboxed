@@ -1,7 +1,7 @@
 import React,{useEffect,useState} from 'react'
 import { connect } from 'react-redux'
 import { getInventory } from "../Inventory/InventoryAction"
-import { FormattedMessage } from "react-intl";
+
 import {handleSuppliesLocationModal} from "../Supplies/SuppliesAction"
 //import {getLocationSupplies,addLocationSuppliesValue} from "../../Main/Supplies/SuppliesAction"
 //import AddWarantyDrawerModal from "../Waranty/AddWarantyDrawerModal"

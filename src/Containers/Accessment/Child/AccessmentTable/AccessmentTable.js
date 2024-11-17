@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { getAssessment,handleQuestionrModal } from '../../AccessmentAction';
 import { OnlyWrapCard } from "../../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
+
 import { Tooltip,Button } from "antd";
 import { Link } from "../../../../Components/Common";
 import {EditOutlined} from "@ant-design/icons";
@@ -28,15 +28,13 @@ setRowData(item)
          <OnlyWrapCard style={{backgroundColor:"#eaedf1"}}>
          <div className=" flex justify-between w-[100%]  px-2 bg-transparent font-bold sticky top-0 z-10">
          <div className=""></div>
-         <div className=" md:w-[4.1rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
+         <div className=" md:w-[4.1rem]">Name</div>
         <div className=" md:w-[12.1rem]">
-        <FormattedMessage id="app.course" defaultMessage="course"/></div>
-         {/* <div className=" md:w-[4.2rem] "><FormattedMessage id="app.category" defaultMessage="Category" /></div> */}
-        {/* <div className="md:w-[5.8rem]"><FormattedMessage id="app.questions" defaultMessage="Questions #" /></div> */}
-        <div className="md:w-[8.5rem]"><FormattedMessage id="app.time" defaultMessage="Time" /></div>
-        <div className="md:w-[6.8rem]"><FormattedMessage id="app.durationtype" defaultMessage="Duration Type" /></div>
-      {/*  <div className="md:w-[5.2rem]"><FormattedMessage id="app.level" defaultMessage="Level" /></div> */}
-        <div className="md:w-[5.2rem]"><FormattedMessage id="app.url" defaultMessage="URL" /></div>
+       course</div>
+        <div className="md:w-[8.5rem]">Time</div>
+        <div className="md:w-[6.8rem]">Duration Type</div>
+    
+        <div className="md:w-[5.2rem]">URL</div>
         <div className="md:w-[5.2rem]"></div>
         <div className="w-12"></div>
             </div>

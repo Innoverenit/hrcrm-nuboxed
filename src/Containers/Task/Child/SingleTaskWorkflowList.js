@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { Button, Tooltip,  DatePicker, Avatar, } from "antd";
 import {
   TextInput,

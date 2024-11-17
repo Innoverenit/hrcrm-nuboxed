@@ -5,7 +5,7 @@ import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import {handlePitchActivityModal,getPitchActivityRecords} from "../../PitchAction"
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import { FormattedMessage } from "react-intl";
+
 import { Tooltip,Badge } from "antd";
 import { BundleLoader, } from "../../../../Components/Placeholder";
 

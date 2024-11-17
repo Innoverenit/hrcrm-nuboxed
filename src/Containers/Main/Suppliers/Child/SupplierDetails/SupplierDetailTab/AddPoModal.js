@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
+
 const AddPurchaseOrder  = lazy(() => import("./AddPurchaseOrder"));
 const AddPoModal = (props) => {
     const { addLinkSuppliersOrderConfigureModal, handleLinkSuppliersOrderConfigureModal, ...formProps } = props;

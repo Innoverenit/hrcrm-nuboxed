@@ -7,7 +7,7 @@ import { MainWrapper } from "../../../../../Components/UI/Layout";
 import {  TextInput } from "../../../../../Components/UI/Elements";
 import dayjs from "dayjs";
 import { Button, Switch } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { DatePicker } from "antd";
 const SettingsSingleHoliday = lazy(() => import("./SettingsSingleHoliday"));
 

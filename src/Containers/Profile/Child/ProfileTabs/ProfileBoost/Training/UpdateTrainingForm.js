@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
 import { updateTrainingDetails } from "../../../../ProfileAction";
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
+
 const documentSchema = Yup.object().shape({
   documentId: Yup.string().required("Input needed !"),
 });

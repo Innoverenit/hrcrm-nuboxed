@@ -1,14 +1,13 @@
 import React from 'react'
 import {Tooltip } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import TocIcon from '@mui/icons-material/Toc';
 
 const CallActionLeft = (props) => {
     return (
         <div class=" flex items-center" >
                <Tooltip
-        title={<FormattedMessage id="app.calls" defaultMessage="calls" />}
-      >
+        title="calls">
         <span class=" mr-2 cursor-pointer text-xs"
           onClick={() => props.setCallViewType("table")}
           style={{

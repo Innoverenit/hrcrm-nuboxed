@@ -15,7 +15,7 @@ import { withRouter } from "react-router-dom";
 import NotificationView from "./NotificationView";
 import { getNotificationTemplate,setCurrentNotification } from "../../../../Rules/RulesAction";
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
+
 
 // const data = [{ templateName: "Birthday", date: "29-10-20" }];
 class NotificationTable extends React.Component {

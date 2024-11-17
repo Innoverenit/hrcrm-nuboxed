@@ -7,7 +7,7 @@ import { TabsWrapper } from "../../Components/UI/Layout";
 import UpcomingIcon from '@mui/icons-material/Upcoming';
 import {getTodosCount} from "./DashboardAction";
 import { Badge } from "antd";
-import { FormattedMessage } from "react-intl";
+
 const LeavesGanttChart = lazy(()=>import("./Child/LeavesGanttChart"));
 const UpcomingEvents=lazy(() => import("./Child/UpcomingEvents"));
 const DashboardTodo=lazy(() => import("./Child/DashboardTodo"));

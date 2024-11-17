@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { DeleteOutlined } from "@ant-design/icons";
-import { FormattedMessage } from "react-intl";
+
 import { Badge, Tooltip,Avatar } from "antd";
 //import {getLocationRecords,getLocationDeletedCount} from "./LocationAction";
 

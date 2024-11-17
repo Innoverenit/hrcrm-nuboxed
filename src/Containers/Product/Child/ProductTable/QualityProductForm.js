@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react';
 import { Form, Input, Button } from 'antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import MoveToggleQualityProduct from "../ProductTable/MoveToggleQualityProduct"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Tooltip, Button,Input} from "antd";
 import { BundleLoader } from "../../../../../Components/Placeholder";

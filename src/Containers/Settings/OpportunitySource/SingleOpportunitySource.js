@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
-import { FormattedMessage } from "react-intl";
+
 import { Button } from "antd";
 import { TextInput } from "../../../Components/UI/Elements";
 import { ActionIcon } from "../../../Components/Utils";

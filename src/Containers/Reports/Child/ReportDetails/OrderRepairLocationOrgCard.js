@@ -1,7 +1,7 @@
 import React, { useState,lazy,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import dayjs from "dayjs";
 import { Tooltip, Button,Select  } from "antd";
 import { MultiAvatar, } from "../../../../Components/UI/Elements";

@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 import { Button, Tooltip } from "antd";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { BundleLoader, } from "../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
+
 import {handleUploadPitchModal} from "../PitchAction";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import UploadIcon from '@mui/icons-material/Upload';

@@ -1,7 +1,7 @@
 import React, { Component, lazy, Suspense } from "react";
 import { bindActionCreators } from "redux";
 import Tabs from "react-draggable-tabs";
-import { FormattedMessage } from "react-intl";
+
 import ReactDOM from "react-dom";
 import QuotProAndService from "./QuotProAndService";
 import { Tooltip, Button, message, Icon } from "antd";

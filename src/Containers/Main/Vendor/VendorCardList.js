@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 //import { getSuppliersList, emptysUPPLIERS ,deleteSupplierData,handleUpdateSupplierModal,setEditSuppliers} from "../SuppliersAction"
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FormattedMessage } from "react-intl";
+
 import dayjs from "dayjs";
 import { DeleteOutlined } from "@ant-design/icons";
 import {Popconfirm,Tooltip } from "antd";

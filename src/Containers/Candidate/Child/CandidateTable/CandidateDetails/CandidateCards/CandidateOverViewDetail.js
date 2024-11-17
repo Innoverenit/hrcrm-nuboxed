@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Tooltip } from "antd";
 import { SubTitle } from "../../../../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
+
 
 
 class CandidateOverViewDetail extends Component {

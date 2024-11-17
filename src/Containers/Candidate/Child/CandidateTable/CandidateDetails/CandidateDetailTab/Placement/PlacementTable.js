@@ -8,7 +8,7 @@ import {  Menu,Dropdown,Button,
   import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
+
 import {
    getPlacement,
 } from "../../../../../CandidateAction";

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Button, } from "antd";
 import { bindActionCreators } from "redux";
 import { StyledSteps } from "../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 const FirstCandidateBillablePage = lazy(()=>import("./FirstCandidateBillablePage"));
 
 

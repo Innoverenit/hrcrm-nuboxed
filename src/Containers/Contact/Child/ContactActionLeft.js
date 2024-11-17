@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { AudioOutlined } from "@ant-design/icons";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import SpeechRecognition, {
@@ -141,7 +141,7 @@ const ContactActionLeft = (props) => {
   return (
     <div class=" flex  items-center">
       <Tooltip
-        title={<FormattedMessage id="app.mycontacts" defaultMessage="My Contacts" />}
+        title="My Contacts" 
       >
         <Badge
           size="small"
@@ -222,7 +222,7 @@ const ContactActionLeft = (props) => {
       </Tooltip>
       )}
       {/* <Tooltip
-        title={<FormattedMessage id="app.vendor" defaultMessage="Vendor" />}
+        title=
       >
         <Badge
           size="small"

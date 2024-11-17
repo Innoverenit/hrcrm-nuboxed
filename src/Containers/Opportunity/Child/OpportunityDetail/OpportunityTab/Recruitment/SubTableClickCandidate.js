@@ -1,6 +1,6 @@
 import React,{Component,} from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { Suspense } from "react";
 import styled from 'styled-components'
 import {

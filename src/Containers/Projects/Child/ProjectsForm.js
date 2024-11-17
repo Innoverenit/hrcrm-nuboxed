@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import {addProjectsData} from "../ProjectsAction"
-import { FormattedMessage } from "react-intl";
+
 import {getCustomerTask} from "../../Task/TaskAction"
 
 import { Formik, Form, Field, } from "formik";

@@ -1,7 +1,7 @@
 
 import React, {useEffect,useState  } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { base_url } from "../../../Config/Auth";

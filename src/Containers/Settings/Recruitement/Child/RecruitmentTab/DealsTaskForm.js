@@ -3,7 +3,7 @@
 // import { connect } from "react-redux";
 // import { base_url } from "../../../../../Config/Auth";
 // import { bindActionCreators } from "redux";
-// import { FormattedMessage } from "react-intl";
+// 
 // import MoveToggleTaskStage from "../../Child/RecruitmentTab/MoveToggleTaskStage"
 // import {addProcessTaskStage,getProcessTaskStage,deleteTaskStageData} from "../../../SettingsAction"
 // import { StyledPopconfirm } from '../../../../../Components/UI/Antd';
@@ -234,7 +234,7 @@ import { Input, Button, Select } from 'antd';
 import { connect } from "react-redux";
 import { base_url } from "../../../../../Config/Auth";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import MoveToggleTaskStage from "../../Child/RecruitmentTab/MoveToggleTaskStage";
 import { addProcessTaskStage, getProcessTaskStage, deleteTaskStageData,updateProcessTaskStage } from "../../../SettingsAction";
 import { StyledPopconfirm } from '../../../../../Components/UI/Antd';

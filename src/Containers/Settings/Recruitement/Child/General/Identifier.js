@@ -5,7 +5,7 @@ import { Switch, Popconfirm, message } from "antd";
 import { addingIdentifier, getIdentifier } from "../../../../Settings/SettingsAction";
 import dayjs from "dayjs";
 import { Button } from "antd";
-import { FormattedMessage } from "react-intl";
+
 
 function Identifier(props) {
   const [formValues, setFormValues] = useState({

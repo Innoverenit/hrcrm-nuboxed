@@ -1,6 +1,6 @@
 
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
+
 
 class ContactInvestDetailView extends Component {
   render() {
