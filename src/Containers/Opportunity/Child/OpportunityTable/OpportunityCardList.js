@@ -486,7 +486,7 @@ imgHeight={"1.8rem"}
 <MailOutlineIcon className="!text-icon"
                 type="mail"
                 style={{ cursor: "pointer" }}
-                  onMouseEnter={() => {
+                  onClick={() => {
                   props.handleOpportunityRowEmailModal(true);
                   handleSetCurrentOpportunityId(item);
                 }}
@@ -497,7 +497,7 @@ imgHeight={"1.8rem"}
 <MonitorHeartIcon className="!text-icon"
                 type="mail"
                 style={{ cursor: "pointer" }}
-                  onMouseEnter={() => {
+                  onClick={() => {
                   props.handleOpportunityPulseModal(true);
                   handleSetCurrentOpportunityId(item);
                 }}
@@ -524,7 +524,7 @@ imgHeight={"1.8rem"}
         >
            <span
 
-                onMouseEnter={() => {
+                onClick={() => {
               
                 handleOpportunityNotesDrawerModal(true);
                 handleSetCurrentOpportunityId(item);
@@ -547,7 +547,7 @@ imgHeight={"1.8rem"}
               
             <span
             className="!text-icon cursor-pointer text-[grey] mb-1"
-                onMouseEnter={() => {
+                onClick={() => {
                 props.setEditOpportunity(item);
                 handleUpdateOpportunityModal(true);
                 handleSetCurrentOpportunityId(item);

@@ -303,7 +303,7 @@ function ContactInvestCardList(props) {
                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[7.22rem] max-sm:w-full  ">
                                     {/* Deals */}
                                     <div class=" text-xs text-blue-500 cursor-pointer  font-poppins"
-                                        onMouseEnter={() => {
+                                        onClick={() => {
                                         props.handleDealModal(true);
                                         handleCurrentContactIdata(item);
                                       }}
@@ -333,7 +333,7 @@ function ContactInvestCardList(props) {
                   
                     <Tooltip title= {translatedMenuItems[7]}>
                   <MonitorHeartIcon className="flex !text-icon cursor-pointer text-[#df9697] max-sm:!text-xl"
-                     onMouseEnter={() => {
+                     onClick={() => {
                   handleContactInvestPulseDrawerModal(true);
                   handleCurrentContactIdata(item);
                 }}
@@ -341,7 +341,7 @@ function ContactInvestCardList(props) {
                    </Tooltip>
                    <Tooltip title={translatedMenuItems[8]}>
        <NoteAltIcon
-                  onMouseEnter={() => {
+                  onClick={() => {
                   props.handleContactInvestNotesDrawerModal(true);
                   handleCurrentContactIdata(item);
                 }}
@@ -351,7 +351,7 @@ function ContactInvestCardList(props) {
            <Tooltip title= {translatedMenuItems[9]}>
                    <AddLocationAltIcon
           className="flex !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
-            onMouseEnter={() => {
+            onClick={() => {
             props.handleContactAddressDrawerModal(true);
             handleCurrentContactIdata(item);
           }}
@@ -362,7 +362,7 @@ function ContactInvestCardList(props) {
                     <Tooltip title={item.mobileNo} >
             {item.doNotCallInd !== true && (
               <span class=" mr-1 text-xs cursor-pointer"
-                  onMouseEnter={() => {
+                  onClick={() => {
                   props.handleDonotCallModal(true);
                   handleCurrentContactIdata(item);
                 }}
@@ -372,7 +372,7 @@ function ContactInvestCardList(props) {
             )}
             {item.doNotCallInd === true && (
               <span class=" mr-1 text-xs cursor-pointer"
-                  onMouseEnter={() => {
+                  onClick={() => {
                   props.handleDonotCallModal(true);
                   handleCurrentContactIdata(item);
                 }}
@@ -386,7 +386,7 @@ function ContactInvestCardList(props) {
             <MailOutlineIcon className="flex !text-icon cursor-pointer text-green-800 max-sm:!text-xl"
               type="mail"
              
-                onMouseEnter={() => {
+                onClick={() => {
                 props.getContactById(item.contactId);
                 props.handleCurrentContactIdata(true);
               }}
@@ -397,7 +397,7 @@ function ContactInvestCardList(props) {
             <Tooltip title=    {translatedMenuItems[10]}>
               <BorderColorIcon
                 className="flex !text-icon cursor-pointer text-[tomato] max-sm:!text-xl"
-                  onMouseEnter={() => {
+                  onClick={() => {
                   handleUpdateContactInvestModal(true);
                   handleCurrentContactIdata(item);                
                 }}

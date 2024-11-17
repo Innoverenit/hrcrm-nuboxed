@@ -512,7 +512,7 @@ if (loading) {
                                 //   props.handleUpdateUserModal(true);
                                   
                                 // }}
-                                onMouseEnter={() => {
+                                onClick={() => {
                                   handleSetCurrentCustomerId(true);
                                   props.handleLeadsSubscriptionModal(item);
                                       }}
@@ -565,13 +565,13 @@ if (loading) {
                               //   handleCustomerPulseDrawerModal(true);
                               //   handleSetCurrentCustomer(item);
                               // }}
-                              onMouseEnter={() => {
+                              onClick={() => {
                                 handleCustomerPulseDrawerModal(true);
                                 handleSetCurrentCustomer(item);
                                 // handleMouseEnter(item);
                                 //handleSetCurrentCustomer(item);
                               }}
-                             // onMouseEnter={handleMouseEnter}
+                             // onClick={handleMouseEnter}
                             //  onMouseLeave={handleMouseLeave}
                              
                             />
@@ -586,7 +586,7 @@ if (loading) {
                               //   handleCustomerNotesDrawerModal(true);
                               //   handleSetCurrentCustomer(item);
                               //   handleRowData(item);
-                                onMouseEnter={() => {
+                                onClick={() => {
                                   handleCustomerNotesDrawerModal(true);
                                 handleSetCurrentCustomer(item);
                                 handleRowData(item);
@@ -598,7 +598,7 @@ if (loading) {
                         <Tooltip title={translatedMenuItems[19]}>
                         <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
-          onMouseEnter={() => {
+          onClick={() => {
             props.handleAddressCutomerModal(true);
             handleRowData(item);
           }}
@@ -633,7 +633,7 @@ if (loading) {
                 
                           <div className="!text-icon"
                       
-                      onMouseEnter={() => {
+                      onClick={() => {
                               props.getCustomerDetailsById(item.customerId);
                               props.getCustomerKeySkill(item.customerId);
                               //   this.props.getCustomerDocument(item.customerId );
@@ -650,7 +650,7 @@ if (loading) {
                           <Tooltip title={translatedMenuItems[14]}>
                             <ContactsIcon
                               className=" !text-icon cursor-pointer text-[#709ab3]"
-                              onMouseEnter={() => {
+                              onClick={() => {
                                 handleCustomerContactDrawerModal(true);
                                 handleSetCurrentCustomer(item);
                               }}
@@ -662,7 +662,7 @@ if (loading) {
                           <Tooltip title={translatedMenuItems[10]}>
                             <LightbulbIcon
                               className=" !text-icon cursor-pointer text-[#AF5910]"
-                              onMouseEnter={() => {
+                              onClick={() => {
                                 handleCustomerOpportunityDrawerModal(true);
                                 handleSetCurrentCustomer(item);
                                 handleRowData(item);
@@ -680,7 +680,7 @@ if (loading) {
                               <BorderColorIcon
                                 className=" !text-icon cursor-pointer text-[tomato]"
 
-                                onMouseEnter={() => {
+                                onClick={() => {
                                   props.setEditCustomer(item);
                                   handleUpdateCustomerModal(true);
                                   handleSetCurrentCustomerId(item.customerId);

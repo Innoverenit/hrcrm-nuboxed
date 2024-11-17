@@ -491,7 +491,7 @@ console.log(selectedSource)
               currencyId:selectedCurrency,
               source: selectedSource,
               sectorId: selectedSector,
-              description: text,
+              notes: text,
               currencyId:selectedCurrency,
               assignedTo: selectedOption ? selectedOption.employeeId : userId,
              
@@ -741,7 +741,7 @@ country_dial_code
         onChange={handleSelectCurrency}
       >
         {currency.map(currencies => (
-          <Option key={currencies.currency_name} value={currencies.currency_name}>
+          <Option key={currencies.currency_id} value={currencies.currency_id}>
             {currencies.currency_name}
           </Option>
         ))}

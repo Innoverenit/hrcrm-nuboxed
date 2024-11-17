@@ -215,7 +215,7 @@ const LeadsTeamWarmcard = (props) => {
           return (
             <div>
             <div
-              className="flex rounded justify-between  bg-white mt-1  items-center py-ygap  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
+              className="flex rounded justify-between  bg-white mt-1  items-center py-ygap  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
             >
              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
              <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -240,7 +240,7 @@ const LeadsTeamWarmcard = (props) => {
                           />
                         }
                         role={item.type}
-                          onMouseEnter={() => {
+                          onClick={() => {
                           const typ = "Hot";
                           props.updateTypeForLead(item.leadsId, typ);
                         }}
@@ -260,7 +260,7 @@ const LeadsTeamWarmcard = (props) => {
                           />
                         }
                         role={item.type}
-                          onMouseEnter={() => {
+                          onClick={() => {
                           const typ = "Warm";
                           props.updateTypeForLead(item.leadsId, typ);
                         }}
@@ -280,7 +280,7 @@ const LeadsTeamWarmcard = (props) => {
                           />
                         }
                         role={item.type}
-                          onMouseEnter={() => {
+                          onClick={() => {
                           const typ = "Cold";
                           props.updateTypeForLead(item.leadsId, typ);
                         }}
@@ -357,7 +357,7 @@ const LeadsTeamWarmcard = (props) => {
                   {item.url !== null ? (
                     <Tooltip title={item.url}>
                       <div class="cursor-pointer"
-                          onMouseEnter={() => {}}
+                          onClick={() => {}}
                       >
                         {" "}
                         <a href={`https://www.${item.url}`} target="_blank">
@@ -511,7 +511,7 @@ const LeadsTeamWarmcard = (props) => {
                     <Tooltip title={translatedMenuItems[15]}>
                       <NoteAltIcon
                        className=" !text-icon cursor-pointer text-green-800"
-                          onMouseEnter={() => {
+                          onClick={() => {
                           handleRowData(item);
                           handleLeadsNotesDrawerModal(true);
                        
@@ -522,7 +522,7 @@ const LeadsTeamWarmcard = (props) => {
                   </div>
                   <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
-            onMouseEnter={() => {
+            onClick={() => {
             props.handleLeadsAddressDrawerModal(true);
             handleRowData(item);
           }}
@@ -535,7 +535,7 @@ const LeadsTeamWarmcard = (props) => {
                       {/* activity */}
                       <HourglassFullIcon
                        className="!text-icon cursor-pointer text-blue-500"
-                          onMouseEnter={() => {
+                          onClick={() => {
                               handleRowData(item);
                           props.handleCETmodal(true);
                       
@@ -549,7 +549,7 @@ const LeadsTeamWarmcard = (props) => {
                       <MailOutlineIcon
                         type="mail"
                         className="!text-icon cursor-pointer text-green-400"
-                          onMouseEnter={() => {
+                          onClick={() => {
                           handleSetCurrentLeadsId(item);
                           props.handleLeadsEmailDrawerModal(true);
                         }}
@@ -561,7 +561,7 @@ const LeadsTeamWarmcard = (props) => {
                       <Tooltip title={translatedMenuItems[18]}>
                         <BorderColorIcon
                          className="!text-icon cursor-pointer text-[tomato]"
-                            onMouseEnter={() => {
+                            onClick={() => {
                             props.setEditLeads(item);
                             handleUpdateLeadsModal(true);
                             handleSetCurrentLeadsId(item);

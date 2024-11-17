@@ -175,7 +175,7 @@ function NavMenu(props) {
 
 <Menu.Item key="/dashboard" style={{ height: "1.45rem", paddingLeft:"1px",
 
-color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
+color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
   <Link to="/dashboard" onClick={() => handleSelect('/dashboard')}>
     <DashboardIcon
 
@@ -195,7 +195,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
      
         {(user.imInd === true && user.basicAccessInd === true || user.role === "ADMIN" && user.imInd === true) && (
           <Menu.Item key="/planner" style={{ height: "1.45rem", 
-          color: selectedMenuItem === '/planner' ? 'tomato' : '#28a355', paddingLeft:"1px"}}>
+          color: selectedMenuItem === '/planner' ? 'tomato' : '#28a355', paddingLeft:"1px"} } className='scale-[0.99] hover:scale-105 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '> 
             <Link to="/planner" onClick={() => handleSelect('/planner')}>  
               <CalendarMonthIcon
               className='!text-base  text-[#e4eb2f] '

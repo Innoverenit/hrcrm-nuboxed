@@ -534,11 +534,13 @@ const [rowdata, setrowdata] = useState("");
 
                                   null
                                 ) : ( */}
-                                  <div
-                                  style={{cursor:"pointer"}}
+                                  <div  className=" cursor-pointer"
+                                 
                                   onClick={() => {
+                                 
                                   handleSetCurrentCustomerId(item.customerId)
                                   props.handleUpdateUserModal(true);
+                                  handleRowData(item);
                                   
                                 }}
                                   >
@@ -608,7 +610,7 @@ const [rowdata, setrowdata] = useState("");
                           <Tooltip title= {translatedMenuItems[12]}>
                             <MonitorHeartIcon
                               className=" !text-icon cursor-pointer text-[#df9697]"
-                                onMouseEnter={() => {
+                                onClick={() => {
                                 handleCustomerPulseDrawerModal(true);
                                 handleSetCurrentCustomer(item);
                               }}
@@ -620,7 +622,7 @@ const [rowdata, setrowdata] = useState("");
                           <Tooltip title= {translatedMenuItems[13]}>
                             <NoteAltIcon
                               className=" !text-icon cursor-pointer text-green-800"
-                                onMouseEnter={() => {
+                                onClick={() => {
                                 handleCustomerNotesDrawerModal(true);
                                 handleSetCurrentCustomer(item);
                                 handleRowData(item);
@@ -633,7 +635,7 @@ const [rowdata, setrowdata] = useState("");
                         <Tooltip title= {translatedMenuItems[20]}>
                         <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
-            onMouseEnter={() => {
+            onClick={() => {
             props.handleAddressCutomerModal(true);
             handleRowData(item);
           }}
@@ -647,7 +649,7 @@ const [rowdata, setrowdata] = useState("");
                               <div
                                 //type="edit"
                                 style={{ cursor: "pointer" }}
-                                  onMouseEnter={() => { }}
+                                  onClick={() => { }}
                               >
                                 {" "}
                                 <a href={`https://${item.url}`} target="_blank">
@@ -667,7 +669,7 @@ const [rowdata, setrowdata] = useState("");
            
                           <div class="!text-icon "
                             // style={{ fontSize: "0.8rem" }}
-                              onMouseEnter={() => {
+                              onClick={() => {
                               props.getCustomerDetailsById(item.customerId);
                               props.getCustomerKeySkill(item.customerId);
                               //   this.props.getCustomerDocument(item.customerId );
@@ -685,7 +687,7 @@ const [rowdata, setrowdata] = useState("");
                           <Tooltip title= {translatedMenuItems[15]}>
                             <ContactsIcon
                               className=" !text-icon cursor-pointer text-[#709ab3]"
-                                onMouseEnter={() => {
+                                onClick={() => {
                                 handleCustomerContactDrawerModal(true);
                                 handleSetCurrentCustomer(item);
                               }}
@@ -697,7 +699,7 @@ const [rowdata, setrowdata] = useState("");
                           <Tooltip title= {translatedMenuItems[11]}>
                             <LightbulbIcon
                               className=" !text-icon cursor-pointer text-[#AF5910]"
-                                onMouseEnter={() => {
+                                onClick={() => {
                                 handleCustomerOpportunityDrawerModal(true);
                                 handleSetCurrentCustomer(item);
                                 handleRowData(item);
@@ -713,7 +715,7 @@ const [rowdata, setrowdata] = useState("");
                               <BorderColorIcon
                                 className=" !text-icon cursor-pointer text-[tomato]"
 
-                                  onMouseEnter={() => {
+                                  onClick={() => {
                                   props.setEditCustomer(item);
                                   handleUpdateCustomerModal(true);
                                   handleSetCurrentCustomerId(item.customerId);
@@ -725,7 +727,7 @@ const [rowdata, setrowdata] = useState("");
               <MailOutlineIcon
                 type="mail"
                 style={{ cursor: "pointer",fontSize: "1rem" }}
-                  onMouseEnter={() => {
+                  onClick={() => {
                   props.getCustomerById(item.customerId);
                   props.handleCustomerEmailDrawerModal(true);
                 }}
@@ -811,6 +813,7 @@ const [rowdata, setrowdata] = useState("");
       />
 
       <UpdateUserModal
+         rowdata={rowdata}
       currentCustomerId={currentCustomerId}
       updateUserModal={props.updateUserModal}
       handleUpdateUserModal={props.handleUpdateUserModal}

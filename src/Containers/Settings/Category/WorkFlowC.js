@@ -202,7 +202,7 @@ const WorkFlowC = (props) => {
           key={option}
           value={option}
           disabled={isDisabled}
-          onMouseEnter={() => {
+          onClick={() => {
             if (isDisabled) {
               message.info(`${option} has already been selected.`);
             }
