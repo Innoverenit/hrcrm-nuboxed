@@ -17,7 +17,9 @@ class UpdateUserModal extends Component {
     return (
       <div>
         <StyledDrawer
-          title="Reassigned"
+          title=
+          // "Reassigned"
+          {`Reassigned : ${this.props.rowdata.name}`}
           width="35%"
           visible={this.props.updateUserModal}
           closable

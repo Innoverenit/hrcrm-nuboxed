@@ -325,7 +325,7 @@ function DealCardList(props) {
                               type="check-circle"
                               theme="twoTone"
                               twoToneColor="#24D8A7"                           
-                                onMouseEnter={() => {
+                                onClick={() => {
                                 props.handleOwnModal(true);
                                 handleSetCurrentItem(item);
                               }}
@@ -340,7 +340,7 @@ function DealCardList(props) {
                               theme="twoTone"
                               twoToneColor="red"
                               size={140}    
-                                onMouseEnter={() =>
+                                onClick={() =>
                                 props.lostStatusRecruit(item.opportunityId, {
                                   lostInd: true,
                                 })
@@ -356,7 +356,7 @@ function DealCardList(props) {
                         title= {translatedMenuItems[11]}
                       >
                         <span
-                            onMouseEnter={() => {
+                            onClick={() => {
                             props.handleDealContactsDrawerModal(true);
                             handleSetCurrentItem(item);
                           }}
@@ -371,7 +371,7 @@ function DealCardList(props) {
                         title= {translatedMenuItems[12]}
                       >
                         <span
-                            onMouseEnter={() => {
+                            onClick={() => {
                             props.handleDealsNotesDrawerModal(true);
                             handleSetCurrentItem(item);
                           }}
@@ -387,7 +387,7 @@ function DealCardList(props) {
                       >
                         {user.imInd === true && user.dealUpdateInd === true && (
                           <span class="cursor-pointer text-[blue]"
-                              onMouseEnter={() => {
+                              onClick={() => {
                               handleUpdateDealModal(true);
                               handleSetCurrentItem(item);
                             }}

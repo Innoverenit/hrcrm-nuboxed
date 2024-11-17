@@ -4711,14 +4711,370 @@ const onCheckAllWarrentyChange = (e) => {
       >
        
           <div>
+          <div class="flex flex-col">
+              <div class="text-clr flex text-base font-bold  mt-6">
+                General & Self Service
+              </div>
+
+              <div class="flex flex-col  ">
+                {/* Left Box */}
+                <div class=" w-[100%] p-1">
+                  <div class="flex flex-col ">
+                    <div class="flex justify-between  border  mt-2 w-[100%] h-16">
+                      <div className=" flex w-2/5">
+                        abcd
+                      </div>
+                      <div  className=" flex w-3/5 flex-col">
+                        <div class="text-sm font-semibold">Users</div>
+                        <Checkbox
+                          indeterminate={indeterminateUser}
+                          onChange={onCheckAllUserChange}
+                          checked={checkAllUser}
+                        >
+                          <div class="text-xs"> Check all</div>
+                        </Checkbox>
+                        {/* <Divider /> */}
+                        <CheckboxGroup
+                          options={userOptions}
+                          value={checkedUserList}
+                          onChange={onUserChange}
+                        />
+                      </div>
+                    </div>
+                    <div class="flex justify-between border  mt-2 w-[100%] h-16">
+                    <div className=" flex w-2/5">
+                        abcd
+                      </div>
+                      <div className=" flex w-3/5 flex-col">
+                        <div class="text-sm font-semibold">Facility</div>
+                        <Checkbox
+                          indeterminate={indeterminatePlant}
+                          onChange={onCheckAllPlantChange}
+                          checked={checkAllPlant}
+                        >
+                          <div class="text-xs"> Check all</div>
+                        </Checkbox>
+                        {/* <Divider /> */}
+                        <CheckboxGroup
+                          options={plainOptions}
+                          value={checkedPlantList}
+                          onChange={onPlantChange}
+                        />
+                      </div>
+                    </div>
+                    <div class="flex justify-between  border  mt-2 w-[100%] h-16">
+                    <div className=" flex w-2/5">
+                        abcd
+                      </div>
+                      <div className=" flex w-3/5 flex-col">
+                        <div class="text-sm font-semibold">Repository</div>
+                        <Checkbox
+                          indeterminate={indeterminateRepository}
+                          onChange={onCheckAllRepositoryChange}
+                          checked={checkAllRepository}
+                        >
+                          <div class="text-xs"> Check all</div>
+                        </Checkbox>
+                        {/* <Divider /> */}
+                        <CheckboxGroup
+                          options={repositoryCheckedList}
+                          value={checkedRepositoryList}
+                          onChange={onRepositoryChange}
+                        />
+                      </div>
+                        </div>
+                        <div class="flex justify-between  border  mt-2 w-[100%] h-16">
+                        <div className=" flex w-2/5">
+                        abcd
+                      </div>
+                      <div className=" flex w-3/5 flex-col">
+                        <div class="text-sm font-semibold">Settings</div>
+                        <Checkbox
+                          indeterminate={indeterminateSettings}
+                          onChange={onCheckAllSettingsChange}
+                          checked={checkAllSettings}
+                        >
+                          <div class="text-xs"> Check all</div>
+                        </Checkbox>
+                        {/* <Divider /> */}
+                        <CheckboxGroup
+                          options={settingsCheckedList}
+                          value={checkedSettingsList}
+                          onChange={onSettingsChange}
+                        />
+                      </div>
+</div> 
+<div class="flex justify-between  border  mt-2 w-[100%] h-16">
+            <div className=" flex w-2/5">
+                        abcd
+                      </div>
+                      <div className=" flex w-3/5 flex-col">
+                        <div class="text-sm font-semibold">Basic</div>
+                        <Checkbox
+                          indeterminate={indeterminateBasic}
+                          onChange={onCheckAllBasicChange}
+                          checked={checkAllBasic}
+                        >
+                          <div class="text-xs"> Check all</div>
+                        </Checkbox>
+                        {/* <Divider /> */}
+                        <CheckboxGroup
+                          options={basicCheckedList}
+                          value={checkedBasicList}
+                          onChange={onBasicChange}
+                        />
+                      </div>
+                      </div>
+                      <div class="flex justify-between  border  mt-2 w-[100%] h-16">
+                      <div className=" flex w-2/5">
+                        abcd
+                      </div>
+                      <div className=" flex w-3/5 flex-col">
+                        <div class="text-sm font-semibold">Tasks</div>
+                        <Checkbox
+                          indeterminate={indeterminateTasks}
+                          onChange={onCheckAllTasksChange}
+                          checked={checkAllTasks}
+                        >
+                          <div class="text-xs">Check all</div>
+                        </Checkbox>
+                        {/* <Divider /> */}
+                        <CheckboxGroup
+                          options={defaultCheckedList}
+                          value={checkedTasksList}
+                          onChange={onTasksChange}
+                        />
+                      </div>
+                    </div>
+
+                   <div class="flex justify-between  border  mt-2 w-[100%] h-16">
+                   <div className=" flex w-2/5">
+                        abcd
+                      </div>
+                      <div className=" flex w-3/5 flex-col">
+                        <div class="text-sm font-semibold">Dashboard</div>
+                        <Checkbox
+                          indeterminate={indeterminateDashboard}
+                          onChange={onCheckAllDashboardChange}
+                          checked={checkAllDashboard}
+                        >
+                          <div class="text-xs"> Check all</div>
+                        </Checkbox>
+                        {/* <Divider /> */}
+                        <CheckboxGroup
+                          options={dashboardCheckedList}
+                          value={checkedDashboardList}
+                          onChange={onDashboardChange}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right Box */}
+                <div class=" w-[100%]  p-1">
+                  <div class="flex flex-col">
+                  <div class="flex justify-between  border  mt-2 w-[100%] h-16">
+                  <div className=" flex w-2/5">
+                        abcd
+                      </div>
+                      <div className=" flex w-3/5 flex-col">
+                        <div class="text-sm font-semibold">Locations</div>
+                        <Checkbox
+                          indeterminate={indeterminateLocation}
+                          onChange={onCheckAllLocationChange}
+                          checked={checkAllLocation}
+                        >
+                          <div class="text-xs"> Check all</div>
+                        </Checkbox>
+                    
+                        <CheckboxGroup
+                          options={plainOptions}
+                          value={checkedLocationList}
+                          onChange={onLocationChange}
+                        />
+                      </div>
+                    </div>
+
+                    <div class="flex justify-between  border  mt-2 w-[100%] h-16">
+                    <div className=" flex w-2/5">
+                        abcd
+                      </div>
+                      <div  className=" flex w-3/5 flex-col">
+                        <div class="text-sm font-semibold">Teams</div>
+                        <Checkbox
+                          indeterminate={indeterminateTeams}
+                          onChange={onCheckAllTeamsChange}
+                          checked={checkAllTeams}
+                        >
+                          <div class="text-xs"> Check all</div>
+                        </Checkbox>
+                        {/* <Divider /> */}
+                        <CheckboxGroup
+                          options={plainOptions}
+                          value={checkedTeamsList}
+                          onChange={onTeamsChange}
+                        />
+                      </div>
+                    </div>
+
+                    <div class="flex justify-between  border  mt-2 w-[100%] h-16">
+                    <div className=" flex w-2/5">
+                        abcd
+                      </div>
+                      <div  className=" flex w-3/5 flex-col">
+                        <div class="text-sm font-semibold">Reports</div>
+                        <Checkbox
+                          indeterminate={indeterminateReport}
+                          onChange={onCheckAllReportChange}
+                          checked={checkAllReport}
+                        >
+                          <div class="text-xs"> Check all</div>
+                        </Checkbox>
+                        {/* <Divider /> */}
+                        <CheckboxGroup
+                          options={defaultCheckedList}
+                          value={checkedReportList}
+                          onChange={onReportChange}
+                        />
+                      </div>
+                      </div>
+
+                      <div class="flex justify-between  border  mt-2 w-[100%] h-16">
+                      <div className=" flex w-2/5">
+                        abcd
+                      </div>
+                      <div  className=" flex w-3/5 flex-col">
+                        <div class="text-sm font-semibold">Language</div>
+                        <Checkbox
+                          indeterminate={indeterminatLanguage}
+                          onChange={onCheckAllLanguageChange}
+                          checked={checkAllLanguage}
+                        >
+                          <div class="text-xs"> Check all</div>
+                        </Checkbox>
+                  
+                        <CheckboxGroup
+                          options={multiLanguageCheckedList}
+                          value={checkedLanguage}
+                          onChange={onLanguageChange}
+                        />
+                      </div>
+                      </div>
+                      <div class="flex justify-between  border  mt-2 w-[100%] h-16">
+                      <div className=" flex w-2/5">
+                        abcd
+                      </div>
+                      <div  className=" flex w-3/5 flex-col">
+                        <div class="text-sm font-semibold">Planner</div>
+                        <Checkbox
+                          indeterminate={indeterminatePlanner}
+                          onChange={onCheckAllPlannerChange}
+                          checked={checkAllPlanner}
+                        >
+                          <div class="text-xs"> Check all </div>
+                        </Checkbox>
+                        {/* <Divider /> */}
+                        <CheckboxGroup
+                          options={plannerCheckedList}
+                          value={checkedPlanner}
+                          onChange={onPlannerChange}
+                        />
+                      </div>
+                    </div>
+                    {/* <div class="flex justify-between mt-4"> */}
+                    {/* <div>
+                        <div class="text-sm font-semibold">Calls</div>
+                        <Checkbox
+                          indeterminate={indeterminateCalls}
+                          onChange={onCheckAllCallsChange}
+                          checked={checkAllCalls}
+                        >
+                          <div class="text-xs"> Check all </div>
+                        </Checkbox>
+                        <Divider />
+                        <CheckboxGroup
+                          options={callCheckedList}
+                          value={checkedCalls}
+                          onChange={onCallsChange}
+                        />
+                      </div> */}
+<div class="flex justify-between  border  mt-2 w-[100%] h-16">
+                      <div className=" flex w-2/5">
+                        abcd
+                      </div>
+                      <div  className=" flex w-3/5 flex-col">
+                        <div class="text-sm font-semibold">Calls</div>
+                        <Checkbox
+                          indeterminate={indeterminateCall}
+                          onChange={onCheckAllCallChange}
+                          checked={checkAllCall}
+                        >
+                          <div class="text-xs"> Check all </div>
+                        </Checkbox>
+                        {/* <Divider /> */}
+                        <CheckboxGroup
+                          options={newCallCheckedList}
+                          value={checkedCall}
+                          onChange={onCallChange}
+                        />
+                      </div>
+</div>
+<div class="flex justify-between  border  mt-2 w-[100%] h-16">
+<div className=" flex w-2/5">
+                        abcd
+                      </div>
+                      <div  className=" flex w-3/5 flex-col">
+                        <div class="text-sm font-semibold">Download</div>
+                        <Checkbox
+                          indeterminate={indeterminateDownload}
+                          onChange={onCheckAllDownloadChange}
+                          checked={checkAllDownload}
+                        >
+                          <div class="text-xs"> Check all </div>
+                        </Checkbox>
+                        {/* <Divider /> */}
+                        <CheckboxGroup
+                          options={downloadCheckedList}
+                          value={checkedDownload}
+                          onChange={onDownloadChange}
+                        />
+                      </div>
+                      </div>
+                      <div class="flex justify-between  border  mt-2 w-[100%] h-16">
+                      <div className=" flex w-2/5">
+                        abcd
+                      </div>
+                      <div  className=" flex w-3/5 flex-col">
+                        <div class="text-sm font-semibold">Events</div>
+                        <Checkbox
+                          indeterminate={indeterminateEvents}
+                          onChange={onCheckAllEventsChange}
+                          checked={checkAllEvents}
+                        >
+                          <div class="text-xs"> Check all </div>
+                        </Checkbox>
+                        {/* <Divider /> */}
+                        <CheckboxGroup
+                          options={eventCheckedList}
+                          value={checkedEvents}
+                          onChange={onEventsChange}
+                        />
+                        </div>
+                      </div>
+                      </div>
+                  </div>
+                </div>
+              </div>
+        
           {/* {props.departmentData.hrInd === true ? ( */}
-            <div class="flex flex-col">
+            {/* <div class="flex flex-col">
               <div class="text-clr flex justify-center text-base font-bold  mt-6">
                 General & Self Service
               </div>
 
               <div class="flex  ">
-                {/* Left Box */}
+                Left Box
                 <div class=" border border-gray-300  w-1/2 p-1">
                   <div class="flex flex-col">
                     <div class="flex justify-between mt-2">
@@ -4847,7 +5203,7 @@ const onCheckAllWarrentyChange = (e) => {
                   </div>
                 </div>
 
-                {/* Right Box */}
+                Right Box
                 <div class="flex border border-gray-300  w-1/2  p-1">
                   <div class="flex flex-col">
                     <div class="flex justify-between mt-4">
@@ -4940,22 +5296,7 @@ const onCheckAllWarrentyChange = (e) => {
                       </div>
                     </div>
                     <div class="flex justify-between mt-4">
-                    {/* <div>
-                        <div class="text-sm font-semibold">Calls</div>
-                        <Checkbox
-                          indeterminate={indeterminateCalls}
-                          onChange={onCheckAllCallsChange}
-                          checked={checkAllCalls}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={callCheckedList}
-                          value={checkedCalls}
-                          onChange={onCallsChange}
-                        />
-                      </div> */}
+                   
  <div>
                         <div class="text-sm font-semibold">Calls</div>
                         <Checkbox
@@ -5009,7 +5350,7 @@ const onCheckAllWarrentyChange = (e) => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           {/* ) : null} */}
 
           {props.departmentData.hrInd === true ? (

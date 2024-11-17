@@ -321,7 +321,7 @@ console.log(selectedEmployee)
           <div class="flex basis-[100%] overflow-hidden">
           
           <div class="font-semibold text-[#337df4] cursor-pointer text-xs "
-             onMouseEnter={() => handleButtonClick(item.employeeId)} 
+             onClick={() => handleButtonClick(item.employeeId)} 
           >
         
   {item.empName}
@@ -503,7 +503,7 @@ console.log(selectedEmployee)
 {/* sHARES*/}
 
     <div class="text-xs text-[blue] font-bold cursor-pointer justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
-  <div    onMouseEnter={() => {
+  <div    onClick={() => {
 props.handleInvestorPriceDrawer(true);
 handleCurrentRowData(item);
 }}>{item.allTotalQuantityOfShare}</div>
@@ -588,7 +588,7 @@ handleCurrentRowData(item);
                                       <div >
                                 <Tooltip title="Pulse">
                <MonitorHeartIcon
-                          onMouseEnter={() => {
+                          onClick={() => {
                           handleInvestorPulseDrawerModal(true);
                           handleCurrentRowData(item);
                         }}
@@ -599,7 +599,7 @@ handleCurrentRowData(item);
                                 <div >
                          <Tooltip title="Notes">
              <NoteAltIcon
-                        onMouseEnter={() => {
+                        onClick={() => {
                         props.handleInvestorNotesDrawerModal(true);
                         handleCurrentRowData(item);
                       }}
@@ -609,7 +609,7 @@ handleCurrentRowData(item);
                          </div>
                                 <AddLocationAltIcon
                 className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
-                  onMouseEnter={() => {
+                  onClick={() => {
                   props.handleInvestorAddressDrawerModal(true);
                   handleCurrentRowData(item);
                 }}
@@ -622,7 +622,7 @@ handleCurrentRowData(item);
                     {item.url !== "" ? (
                       <span class="cursor-pointer"
                         //type="edit"
-                          onMouseEnter={() => {}}
+                          onClick={() => {}}
                       >
                         {" "}
                         <a href={`https://${item.url}`} target="_blank">
@@ -650,7 +650,7 @@ handleCurrentRowData(item);
                   <Tooltip title="Investor Contact">
                     <ContactEmergencyIcon
                     className=" !text-icon cursor-pointer  text-blue-500 max-sm:!text-xl"
-                        onMouseEnter={() => {
+                        onClick={() => {
                         handleInvestorContModal(true);
                           handleCurrentRowData(item);
                         
@@ -664,7 +664,7 @@ handleCurrentRowData(item);
                   {user.imInd === true  &&  user.investorUpdateInd === true &&  (
                   <Tooltip title="Edit">
                     <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato] max-sm:!text-xl"
-                        onMouseEnter={() => {
+                        onClick={() => {
                           handleUpdateInvestorModal(true);
                           handleCurrentRowData(item);                 
                       }}
@@ -909,7 +909,7 @@ handleCurrentRowData(item);
                              {/* sHARES*/}
 
                                     <div class="text-xs text-[blue] font-bold cursor-pointer justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
-                                  <div    onMouseEnter={() => {
+                                  <div    onClick={() => {
                               props.handleInvestorPriceDrawer(true);
                               handleCurrentRowData(item);
                             }}>{item.allTotalQuantityOfShare}</div>
@@ -1003,7 +1003,7 @@ handleCurrentRowData(item);
                                 <div >
                           <Tooltip title="Pulse">
          <MonitorHeartIcon
-                    onMouseEnter={() => {
+                    onClick={() => {
                     handleInvestorPulseDrawerModal(true);
                     handleCurrentRowData(item);
                   }}
@@ -1014,7 +1014,7 @@ handleCurrentRowData(item);
                           <div >
                    <Tooltip title="Notes">
        <NoteAltIcon
-                  onMouseEnter={() => {
+                  onClick={() => {
                   props.handleInvestorNotesDrawerModal(true);
                   handleCurrentRowData(item);
                 }}
@@ -1024,7 +1024,7 @@ handleCurrentRowData(item);
                    </div>
                           <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
-            onMouseEnter={() => {
+            onClick={() => {
             props.handleInvestorAddressDrawerModal(true);
             handleCurrentRowData(item);
           }}
@@ -1037,7 +1037,7 @@ handleCurrentRowData(item);
               {item.url !== "" ? (
                 <span class="cursor-pointer"
                   //type="edit"
-                    onMouseEnter={() => {}}
+                    onClick={() => {}}
                 >
                   {" "}
                   <a href={`https://${item.url}`} target="_blank">
@@ -1065,7 +1065,7 @@ handleCurrentRowData(item);
             <Tooltip title="Investor Contact">
               <ContactEmergencyIcon
               className=" !text-icon cursor-pointer  text-blue-500 max-sm:!text-xl"
-                  onMouseEnter={() => {
+                  onClick={() => {
                   handleInvestorContModal(true);
                     handleCurrentRowData(item);
                   
@@ -1079,7 +1079,7 @@ handleCurrentRowData(item);
             {user.imInd === true  &&  user.investorUpdateInd === true &&  (
             <Tooltip title="Edit">
               <BorderColorIcon className=" !text-icon cursor-pointer text-[tomato] max-sm:!text-xl"
-                  onMouseEnter={() => {
+                  onClick={() => {
                     handleUpdateInvestorModal(true);
                     handleCurrentRowData(item);                 
                 }}

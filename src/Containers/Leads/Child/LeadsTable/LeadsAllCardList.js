@@ -313,7 +313,7 @@ const LeadsAllCardList = (props) => {
                         // tooltip="Hot"
                         tooltip={translatedMenuItems[21]}
                         role={item.type}
-                          onMouseEnter={() => {
+                          onClick={() => {
                           const typ = "Hot";
                           props.updateTypeForLead(item.leadsId, typ);
                         }}
@@ -329,7 +329,7 @@ const LeadsAllCardList = (props) => {
                         // tooltip="Warm"
                         tooltip={translatedMenuItems[22]}
                         role={item.type}
-                          onMouseEnter={() => {
+                          onClick={() => {
                           const typ = "Warm";
                           props.updateTypeForLead(item.leadsId, typ);
                         }}
@@ -345,7 +345,7 @@ const LeadsAllCardList = (props) => {
                         // tooltip="Cold"
                         tooltip={translatedMenuItems[23]}
                         role={item.type}
-                          onMouseEnter={() => {
+                          onClick={() => {
                           const typ = "Cold";
                           props.updateTypeForLead(item.leadsId, typ);
                         }}
@@ -421,7 +421,7 @@ const LeadsAllCardList = (props) => {
                   {item.url !== null ? (
                     <Tooltip title={item.url}>
                       <div class="cursor-pointer"
-                          onMouseEnter={() => {}}
+                          onClick={() => {}}
                       >
                         {" "}
                         <a href={`https://www.${item.url}`} target="_blank">
@@ -580,7 +580,7 @@ const LeadsAllCardList = (props) => {
                     <Tooltip title={translatedMenuItems[15]}>
                       <NoteAltIcon
                        className=" !text-icon cursor-pointer text-green-800"
-                          onMouseEnter={() => {
+                          onClick={() => {
                           handleRowData(item);
                           handleLeadsNotesDrawerModal(true);
                        
@@ -591,7 +591,7 @@ const LeadsAllCardList = (props) => {
                   </div>
                   <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
-            onMouseEnter={() => {
+            onClick={() => {
             props.handleLeadsAddressDrawerModal(true);
             handleRowData(item);
           }}
@@ -604,7 +604,7 @@ const LeadsAllCardList = (props) => {
                       {/* Activity */}
                       <HourglassFullIcon
                        className="!text-icon cursor-pointer text-blue-500"
-                          onMouseEnter={() => {
+                          onClick={() => {
                               handleRowData(item);
                           props.handleCETmodal(true);
                       
@@ -617,7 +617,7 @@ const LeadsAllCardList = (props) => {
                       <MailOutlineIcon
                         type="mail"
                         className="!text-icon cursor-pointer text-green-400"
-                          onMouseEnter={() => {
+                          onClick={() => {
                           handleSetCurrentLeadsId(item);
                           props.handleLeadsEmailDrawerModal(true);
                         }}
@@ -629,7 +629,7 @@ const LeadsAllCardList = (props) => {
                       <Tooltip title={translatedMenuItems[18]}>
                         <BorderColorIcon
                          className="!text-icon cursor-pointer text-[tomato]"
-                            onMouseEnter={() => {
+                            onClick={() => {
                             props.setEditLeads(item);
                             handleUpdateLeadsModal(true);
                             handleSetCurrentLeadsId(item);
@@ -750,7 +750,7 @@ const LeadsAllCardList = (props) => {
                         // tooltip="Hot"
                         tooltip= {translatedMenuItems[21]}
                         role={item.type}
-                          onMouseEnter={() => {
+                          onClick={() => {
                           const typ = "Hot";
                           props.updateTypeForLead(item.leadsId, typ);
                         }}
@@ -765,7 +765,7 @@ const LeadsAllCardList = (props) => {
                         // tooltip="Warm"
                         tooltip= {translatedMenuItems[22]}
                         role={item.type}
-                          onMouseEnter={() => {
+                          onClick={() => {
                           const typ = "Warm";
                           props.updateTypeForLead(item.leadsId, typ);
                         }}
@@ -780,7 +780,7 @@ const LeadsAllCardList = (props) => {
                         // tooltip="Cold"
                         tooltip= {translatedMenuItems[23]}
                         role={item.type}
-                          onMouseEnter={() => {
+                          onClick={() => {
                           const typ = "Cold";
                           props.updateTypeForLead(item.leadsId, typ);
                         }}
@@ -855,7 +855,7 @@ const LeadsAllCardList = (props) => {
                   {item.url !== null ? (
                     <Tooltip title={item.url}>
                       <div class="cursor-pointer"
-                          onMouseEnter={() => {}}
+                          onClick={() => {}}
                       >
                         {" "}
                         <a href={`https://www.${item.url}`} target="_blank">
@@ -1010,7 +1010,7 @@ const LeadsAllCardList = (props) => {
                     <Tooltip title={translatedMenuItems[15]}>
                       <NoteAltIcon
                        className=" !text-icon cursor-pointer text-green-800"
-                          onMouseEnter={() => {
+                          onClick={() => {
                           handleRowData(item);
                           handleLeadsNotesDrawerModal(true);
                        
@@ -1021,7 +1021,7 @@ const LeadsAllCardList = (props) => {
                   </div>
                   <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
-            onMouseEnter={() => {
+            onClick={() => {
             props.handleLeadsAddressDrawerModal(true);
             handleRowData(item);
           }}
@@ -1034,7 +1034,7 @@ const LeadsAllCardList = (props) => {
                       {/* Activity */}
                       <HourglassFullIcon
                        className="!text-icon cursor-pointer text-blue-500"
-                          onMouseEnter={() => {
+                          onClick={() => {
                               handleRowData(item);
                           props.handleCETmodal(true);
                       
@@ -1048,7 +1048,7 @@ const LeadsAllCardList = (props) => {
                       <MailOutlineIcon
                         type="mail"
                         className="!text-icon cursor-pointer text-green-400"
-                          onMouseEnter={() => {
+                          onClick={() => {
                           handleSetCurrentLeadsId(item);
                           props.handleLeadsEmailDrawerModal(true);
                         }}
@@ -1060,7 +1060,7 @@ const LeadsAllCardList = (props) => {
                       <Tooltip title={translatedMenuItems[18]}>
                         <BorderColorIcon
                          className="!text-icon cursor-pointer text-[tomato]"
-                            onMouseEnter={() => {
+                            onClick={() => {
                             props.setEditLeads(item);
                             handleUpdateLeadsModal(true);
                             handleSetCurrentLeadsId(item);
@@ -1182,7 +1182,7 @@ const LeadsAllCardList = (props) => {
                         // tooltip="Hot"
                         tooltip= {translatedMenuItems[21]}
                         role={item.type}
-                          onMouseEnter={() => {
+                          onClick={() => {
                           const typ = "Hot";
                           props.updateTypeForLead(item.leadsId, typ);
                         }}
@@ -1197,7 +1197,7 @@ const LeadsAllCardList = (props) => {
                         // tooltip="Warm"
                         tooltip= {translatedMenuItems[22]}
                         role={item.type}
-                          onMouseEnter={() => {
+                          onClick={() => {
                           const typ = "Warm";
                           props.updateTypeForLead(item.leadsId, typ);
                         }}
@@ -1212,7 +1212,7 @@ const LeadsAllCardList = (props) => {
                         // tooltip="Cold"
                         tooltip= {translatedMenuItems[23]}
                         role={item.type}
-                          onMouseEnter={() => {
+                          onClick={() => {
                           const typ = "Cold";
                           props.updateTypeForLead(item.leadsId, typ);
                         }}
@@ -1288,7 +1288,7 @@ const LeadsAllCardList = (props) => {
                   {item.url !== null ? (
                     <Tooltip title={item.url}>
                       <div class="cursor-pointer"
-                          onMouseEnter={() => {}}
+                          onClick={() => {}}
                       >
                         {" "}
                         <a href={`https://www.${item.url}`} target="_blank">
@@ -1441,7 +1441,7 @@ const LeadsAllCardList = (props) => {
                     <Tooltip title={translatedMenuItems[15]}>
                       <NoteAltIcon
                        className=" !text-icon cursor-pointer text-green-800"
-                          onMouseEnter={() => {
+                          onClick={() => {
                           handleRowData(item);
                           handleLeadsNotesDrawerModal(true);                     
                         }}                     
@@ -1450,7 +1450,7 @@ const LeadsAllCardList = (props) => {
                   </div>
                   <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
-            onMouseEnter={() => {
+            onClick={() => {
             props.handleLeadsAddressDrawerModal(true);
             handleRowData(item);
           }}
@@ -1463,7 +1463,7 @@ const LeadsAllCardList = (props) => {
                       {/* Activity */}
                       <HourglassFullIcon
                        className="!text-icon cursor-pointer text-blue-500"
-                          onMouseEnter={() => {
+                          onClick={() => {
                               handleRowData(item);
                           props.handleCETmodal(true);
                       
@@ -1477,7 +1477,7 @@ const LeadsAllCardList = (props) => {
                       <MailOutlineIcon
                         type="mail"
                         className="!text-icon cursor-pointer text-green-400"
-                          onMouseEnter={() => {
+                          onClick={() => {
                           handleSetCurrentLeadsId(item);
                           props.handleLeadsEmailDrawerModal(true);
                         }}
@@ -1489,7 +1489,7 @@ const LeadsAllCardList = (props) => {
                       <Tooltip title={translatedMenuItems[18]}>
                         <BorderColorIcon
                          className="!text-icon cursor-pointer text-[tomato]"
-                            onMouseEnter={() => {
+                            onClick={() => {
                             props.setEditLeads(item);
                             handleUpdateLeadsModal(true);
                             handleSetCurrentLeadsId(item);

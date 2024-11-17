@@ -406,7 +406,7 @@ strokeColor={"#005075"}
                  <div class="flex max-sm:justify-evenly max-sm:w-wk items-center  h-8 ml-gap bg-[#eef2f9]">
                     <div>
                     <Tooltip title={translatedMenuItems[8]}><span
-           onMouseEnter={() => {
+           onClick={() => {
           props.LinkClosedOpportunity(
             item.opportunityId,
             {
@@ -443,7 +443,7 @@ strokeColor={"#005075"}
               
               <span
               className=" !text-icon cursor-pointer text-[grey]"
-                  onMouseEnter={() => {
+                  onClick={() => {
                   props.setEditOpportunity(item);
                   handleUpdateOpportunityModal(true);
                   handleSetCurrentOpportunityId(item);
@@ -482,7 +482,7 @@ strokeColor={"#005075"}
                    <div>
                    <span
           className=" cursor-pointer"
-           onMouseEnter={() => {
+           onClick={() => {
              props.getAllRecruitmentByOppId(item.opportunityId);
              props.getAllRecruitmentPositionByOppId(item.opportunityId);
              props.getAllRecruitmentAvgTimeByOppId(item.opportunityId);
@@ -518,7 +518,7 @@ strokeColor={"#005075"}
               
             <span
 
-                onMouseEnter={() => {
+                onClick={() => {
               
                 handleOpportunityNotesDrawerModal(true);
                 handleSetCurrentOpportunityId(item);
