@@ -11,10 +11,8 @@ const AddCandidateBillableModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.billable"
-          defaultMessage="Billable"
-        />}
+        title="Billable"
+       
         width="60%"
         style={{marginTop:"3rem"}}
         visible={props.billableCandidateModal}

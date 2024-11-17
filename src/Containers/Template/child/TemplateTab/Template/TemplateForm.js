@@ -124,13 +124,8 @@ function TemplateForm(props) {
                           type="text"
                           isColumn
                           width={"100%"}
-                          /// label="Name"
-                          label={
-                            <FormattedMessage
-                              id="app.name"
-                              defaultMessage="Name"
-                            />
-                          }
+                           label="Name"
+                         
                           component={InputComponent}
                           inlineLabel
                           style={{
@@ -147,13 +142,8 @@ function TemplateForm(props) {
                           type="text"
                           isColumn
                           width={"100%"}
-                          //label="Subject"
-                          label={
-                            <FormattedMessage
-                              id="app.subject"
-                              defaultMessage="Subject"
-                            />
-                          }
+                          label="Subject"
+                         
                           component={InputComponent}
                           inlineLabel
                           style={{
@@ -168,12 +158,8 @@ function TemplateForm(props) {
                       name="customerId"
                       isColumnWithoutNoCreate
                       selectType="customerList"
-                      label={
-                        <FormattedMessage
-                          id="app.customer"
-                          defaultMessage="Customer"
-                        />
-                      }
+                      label="Customer"
+                        
                       isColumn
                       component={SelectComponent}
                  options={
@@ -193,13 +179,8 @@ function TemplateForm(props) {
                     <div class=" w-[50%]">
                       <Field
                         name="description"
-                        //label="Description"
-                        label={
-                          <FormattedMessage
-                            id="app.description"
-                            defaultMessage="Description"
-                          />
-                        }
+                        label="Description"
+                     
                         width={"100%"}
                         height={"5.625em"}
                         isColumn
@@ -269,7 +250,7 @@ function TemplateForm(props) {
                   Loading={props.addingTemplate}
                   disabled={edit}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
+                 Create
 
                 </Button>
               </div>

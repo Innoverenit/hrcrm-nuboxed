@@ -219,7 +219,7 @@ setEditingKey(record.taskId);
         },
       },
       {
-        title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+        title: "Name" ,
     //  dataIndex: "taskName",
      width:"12%",
      ...getColumnSearchProps('taskName'),
@@ -244,10 +244,8 @@ setEditingKey(record.taskId);
      }
      },
         {
-           title: <FormattedMessage
-          id="app.type"
-          defaultMessage="Type"
-        />,
+           title:"Type"
+      ,
         dataIndex: "taskType",
         width:"10%",
         render: (name, item, i) => {     
@@ -273,7 +271,7 @@ setEditingKey(record.taskId);
         },
         },
         {
-          title: <FormattedMessage id="app.Owner" defaultMessage="Owner" />,
+          title: "Owner",
         dataIndex: "submittedBy",
         field: "submittedBy",
         width:"12%",
@@ -295,24 +293,18 @@ setEditingKey(record.taskId);
       },
         },
         {
-          // title: "Assigned on",
-          title: <FormattedMessage id="app.assignedon" defaultMessage="Assigned on" />,
+          title: "Assigned on",
+         
           dataIndex: "assignedOn",
           width:"15%",
           render: (name, item, i) => {
             return <span>{` ${dayjs(item.assignedOn).format("ll")}`}</span>;
           },
         },
-        // {
-        //   // title: "Contact",
-        //   title: <FormattedMessage id="app.talent" defaultMessage="Talent" />,
-        //   dataIndex: "candidateName",
-        //   width:"10%",
-        //   ...getColumnSearchProps('candidateName'),     
-        // },
+       
         {
-          // title: "Start",
-          title: <FormattedMessage id="app.start" defaultMessage="Start" />,
+          title: "Start",
+         
           dataIndex: "startDate",
           width:"12%",
           defaultSortOrder: "descend",
@@ -326,8 +318,8 @@ setEditingKey(record.taskId);
           },
         },
         {
-          // title: "End",
-          title: <FormattedMessage id="app.end" defaultMessage="End" />,
+          title: "End",
+        
           dataIndex: "endDate",
           width:"12%",
           render: (name, item, i) => {
@@ -341,8 +333,7 @@ setEditingKey(record.taskId);
           },
         },
         {
-          // title: "Status",
-          title: <FormattedMessage id="app.status" defaultMessage="Status" />,
+          title: "Status",
           dataIndex: "complitionStatus",
           width:"12%",
           editable: true, 

@@ -371,44 +371,7 @@ const CandidateActionLeft = (props) => {
         // icon={solid("filter")}
          />
       </Button>
-      {/* &nbsp; */}
-      {/* {user.userType !== "USER" && user.department !== "Vendor" && (
-        <Button
-          type={props.currentData ? "primary" : "danger"}
-          // onClick={props.handleClear}
-          onClick={() => {
-            props.handleClear();
-            props.getCandidateCountSearch()
-          }}
-        >
-          <FormattedMessage id="app.clear" defaultMessage="Clear" />
-     
-        </Button>
-      )} */}
       
-      {/* &nbsp; &nbsp; */}
-      {/* {user.userType !== "USER" && user.department !== "Vendor" && ( 
-      <div style={{ marginLeft: "20px" }}>
-        <Search
-          placeholder="Search By Skill"
-          onSearch={(value) => {
-            props.inputCandidateSkillDataSearch(value);
-            props.setCurrentSkillData(value);
-          }}
-          allowClear={false}
-          enterButton
-        />
-      </div>
-      )} */}
-       {/* &nbsp; &nbsp;  */}
-      {/* {user.userType !== "USER" && user.department !== "Vendor" && ( 
-      <Button
-        type={props.currentSkillData ? "primary" : "default"}
-        onClick={props.handleSkillClear}
-      >
-        <FormattedMessage id="app.clear" defaultMessage="Clear" />
-      </Button>
-      )} */}
       
        {/* {props.inputCandidateDataSearch&& */}
        {props.candidateCountSearch.count ?<div class=" w-[50%] text-base text-bold text-[tomato] pl-[0.3rem]" >

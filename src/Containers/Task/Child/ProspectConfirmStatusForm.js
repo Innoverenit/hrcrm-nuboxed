@@ -138,8 +138,7 @@ function ProspectConfirmStatusForm(props) {
                   //   props.convertProspectStatus(props.rowdata.taskId,user)}}
                   loading={props.linkingProspectStatus}
                 >
-                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
-                  {/* Update */}
+                Update
                 </Button>
               </div>                         
                                                </div>                                                                     

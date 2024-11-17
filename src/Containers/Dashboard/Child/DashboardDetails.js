@@ -69,10 +69,7 @@ class DashboardDetails extends Component {
           
                             <ListAltIcon  />
                     <span class=" ml-[0.25em]" >
-                    <FormattedMessage
-        id="app.kanban"
-        defaultMessage="Kanban"
-      />
+                 Kanban
                       </span>
                   
                   {activeKey === "1" && (
@@ -105,10 +102,7 @@ class DashboardDetails extends Component {
                  <DnsIcon/>
    
                  <span class=" ml-[0.25em]" >
-                    <FormattedMessage
-        id="app.details"
-        defaultMessage="Details"
-      />
+                   Details
                       </span>
                   
                   {activeKey === "2" && (

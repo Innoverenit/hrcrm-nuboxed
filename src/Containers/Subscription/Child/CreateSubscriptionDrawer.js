@@ -13,10 +13,8 @@ class CreateSubscriptionDrawer extends Component {
     return (
       <>
         <StyledDrawer
-          title={<FormattedMessage
-            id="app.subscription"
-            defaultMessage="Subscription"
-          />}
+          title="Subscription"
+         
 
           width={drawerWidth}
           visible={createSubscriptiondrawer}

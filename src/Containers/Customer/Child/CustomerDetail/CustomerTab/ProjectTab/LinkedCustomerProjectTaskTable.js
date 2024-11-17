@@ -229,7 +229,7 @@ class LinkedCustomerProjectTaskTable extends React.Component {
       },
       {
         headerName: "Submitted by",
-       // title: <FormattedMessage id="app.submittedby" defaultMessage="Submitted by" />,
+
        field: "submittedBy",
         width:100,
         renderCell: (cellValues) => {
@@ -249,7 +249,6 @@ class LinkedCustomerProjectTaskTable extends React.Component {
       },
       {
         headerName: "Assigned on",
-        //title: <FormattedMessage id="app.assignedon" defaultMessage="Assigned on" />,
         field: "",
         width:100,
         renderCell: (cellValues,row) => {
@@ -259,7 +258,6 @@ class LinkedCustomerProjectTaskTable extends React.Component {
       },
       {
         headerName: "Assigned",
-        //title: <FormattedMessage id="app.assignedon" defaultMessage="Assigned on" />,
         field: "assignedToName",
         width:100,
         renderCell: (cellValues) => {
@@ -278,7 +276,6 @@ class LinkedCustomerProjectTaskTable extends React.Component {
       },
       {
         headerName: "Talent",
-        //title: <FormattedMessage id="app.talent" defaultMessage="Talent" />,
         field: "candidateName",
         width:120,
         renderCell: (cellValues) => {
@@ -314,7 +311,6 @@ class LinkedCustomerProjectTaskTable extends React.Component {
       },
       {
         headerName: "Start",
-        //title: <FormattedMessage id="app.start" defaultMessage="Start" />,
         field: "startDate",
         width:100,
        // defaultSortOrder: "descend",
@@ -331,7 +327,6 @@ class LinkedCustomerProjectTaskTable extends React.Component {
       },
       {
         headerName: "End",
-        //title: <FormattedMessage id="app.end" defaultMessage="End" />,
         field: "endDate",
         width:100,
         renderCell: (cellValues,row) => {
@@ -346,7 +341,6 @@ class LinkedCustomerProjectTaskTable extends React.Component {
       },
       {
         headerName: "Status",
-        //title: <FormattedMessage id="app.status" defaultMessage="Status" />,
         field: "taskStatus",
         width:20,
         renderCell: (cellValues,row) => {

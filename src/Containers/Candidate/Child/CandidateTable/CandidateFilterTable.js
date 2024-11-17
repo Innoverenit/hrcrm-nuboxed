@@ -32,19 +32,15 @@ function CandidateFilterTable(props) {
 
     {
       //title: "Name",
-      title: <FormattedMessage
-        id="app.filterId"
-        defaultMessage="Filter ID"    
-      />,
+      title: "Filter ID"    
+      ,
       width: "20%",
     
     },
     {
       //title: "Currency",
-      title: <FormattedMessage
-        id="app.parameter"
-        defaultMessage="Parameter"
-      />,
+      title: "Parameter"
+     ,
        width: "15%",
     },
 

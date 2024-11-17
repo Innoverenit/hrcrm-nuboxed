@@ -22,11 +22,8 @@ class AddIntegrationModal extends Component {
     return (
       <>
         <StyledModal
-          //title="Integration"
-          title={<FormattedMessage
-            id="app.integration"
-            defaultMessage="Integration"
-          />}
+          title="Integration"
+          
           width="36vw"
           height="30vh"
           visible={addIntegrationModal}

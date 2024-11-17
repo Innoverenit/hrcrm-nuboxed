@@ -309,8 +309,8 @@ class TaskWorkflowTab extends Component {
         <StageWrapper>
           <MainWrapper>
             <h1>
-              {/* Workflow */}
-              <FormattedMessage id="app.workFlow" defaultMessage="WorkFlow" />
+              Workflow
+           
             </h1>
 
             <div class=" flex flex-col">
@@ -422,10 +422,7 @@ class TaskWorkflowTab extends Component {
                           htmlType="submit"
                           onClick={this.handleEditProcessName}
                         >
-                          <FormattedMessage
-                            id="app.save"
-                            defaultMessage="Save"
-                          />
+                         Save
                         </Button>
                         <Button
                              type="cancel"
@@ -434,10 +431,7 @@ class TaskWorkflowTab extends Component {
                           color: "black",
                         }}
                           onClick={this.handleCancel}>
-                          <FormattedMessage
-                            id="app.cancel"
-                            defaultMessage="Cancel"
-                          />
+                         Cancel
                         </Button>
                       </div>
                     </div>
@@ -552,13 +546,13 @@ class TaskWorkflowTab extends Component {
                     htmlType="submit"
                     onClick={this.handleAddStage}
                   >
-                    {/* Save */}
-                    <FormattedMessage id="app.save" defaultMessage="Save" />
+                    Save
+                   
                   </Button>
 
                   <Button type="cancel"  onClick={this.toggleInput}>
-                    {/* Cancel */}
-                    <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                    Cancel
+                  
                   </Button>
                 </div>
               </div>
@@ -571,11 +565,8 @@ class TaskWorkflowTab extends Component {
                     htmlType="button"
                     onClick={this.toggleInput}
                   >
-                    {/* Add Stage */}
-                    <FormattedMessage
-                      id="app.addstage"
-                      defaultMessage="Add Stage"
-                    />
+                    Add Stage
+                    
                   </Button>
                 </div>
               </>

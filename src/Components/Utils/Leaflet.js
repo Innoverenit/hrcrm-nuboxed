@@ -93,13 +93,9 @@ class MapContainer extends Component {
                 style={{ border: "0.06em solid #aaa" }}
                 onClick={() => this.toggleMapZoom(false)}
               >
-                &nbsp;&nbsp;&nbsp;&nbsp;
+                
                NEAR BY 
-                {/* <FormattedMessage
-                  id="app.nearby"
-                  defaultMessage="NEAR BY"
-                /> */}
-                &nbsp;&nbsp;&nbsp;&nbsp;
+               
               </Button>
             )}
             {!zoomedOut && (
@@ -108,10 +104,7 @@ class MapContainer extends Component {
                 onClick={() => this.toggleMapZoom(true)}
               >
                  WORLD WIDE 
-                {/* <FormattedMessage
-                  id="app.worldwide"
-                  defaultMessage="WORLD WIDE"
-                /> */}
+                
               </Button>
             )}
           </Button.Group>

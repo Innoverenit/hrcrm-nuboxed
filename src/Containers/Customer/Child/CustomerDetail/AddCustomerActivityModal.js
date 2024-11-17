@@ -20,10 +20,8 @@ const AddCustomerActivityModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.schedulecall"
-          defaultMessage="Schedule"
-        />}
+        title="Schedule"
+    
         width={drawerWidth}
         visible={callActivityModal}
         onClose={() => handleCallActivityModal(false)}

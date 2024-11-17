@@ -10,9 +10,7 @@ const AddCustomerUpdateOpportunityModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={
-          <FormattedMessage id="app.updateQuotation" defaultMessage="Update Quotation" />
-        }
+        title="Update Quotation" 
         width="60%"
         visible={props.addUpdateCustomerOpportunityModal}
         onClose={() => props.handleUpdateCustomerOpportunityModal(false)}

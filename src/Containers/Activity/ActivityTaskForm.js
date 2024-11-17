@@ -725,12 +725,8 @@ const [priority,setpriority]=useState(props.selectedTask
                             type="To Start"
                             iconType="fa-hourglass-start"
                             tooltip="To Start"
-                            tooltipTitle={
-                              <FormattedMessage
-                                id="app.tostart"
-                                defaultMessage="To Start"
-                              />
-                            }
+                            tooltipTitle="To Start"
+                              
                             status={active}
                             onClick={() => glassButtoClick("To Start")}
                           />
@@ -739,12 +735,8 @@ const [priority,setpriority]=useState(props.selectedTask
                             type="In Progress"
                             iconType="fa-hourglass-half"
                             tooltip="In Progress"
-                            tooltipTitle={
-                              <FormattedMessage
-                                id="app.inprogress"
-                                defaultMessage="inprogress"
-                              />
-                            }
+                            tooltipTitle="inprogress"
+                              
                             status={active}
                             onClick={() => glassButtoClick("In Progress")}
                           />
@@ -753,12 +745,8 @@ const [priority,setpriority]=useState(props.selectedTask
                             type="Completed"
                             iconType="fa-hourglass"
                             tooltip="Completed"
-                            tooltipTitle={
-                              <FormattedMessage
-                                id="app.completed"
-                                defaultMessage="completed"
-                              />
-                            }
+                            tooltipTitle="completed"
+                            
                             status={active}
                             onClick={() => glassButtoClick("Completed")}                      
                           />
@@ -1213,13 +1201,8 @@ const [priority,setpriority]=useState(props.selectedTask
                 {isEditing && (
                   <>
                     <StyledPopconfirm
-                      //title="Do you want to delete?"
-                      title={
-                        <FormattedMessage
-                          id="app.doyouwanttodelete?"
-                          defaultMessage="Do you want to delete?"
-                        />
-                      }
+                    title="Do you want to delete?"
+                     
                       onConfirm={() => deleteTask(prefillTask.taskId)}
                     >
                       <Button
@@ -1227,11 +1210,8 @@ const [priority,setpriority]=useState(props.selectedTask
                         htmlType="submit"
                         Loading={deletingTask}
                       >
-                        <FormattedMessage
-                          id="app.delete"
-                          defaultMessage="Delete"
-                        />
-                        {/* Delete */}
+                        
+                        Delete
                       </Button>
                     </StyledPopconfirm>
                   </>

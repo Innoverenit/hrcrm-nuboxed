@@ -95,11 +95,7 @@ class TaskDashboardTab extends Component {
                   <ListAltIcon style={{fontSize:"1.1rem"}}/>
                  
                <span class=" ml-1 font-semibold">
-               {/* <FormattedMessage
-                id="app.openTasks"
-                defaultMessage="Open Tasks"
-              /> */}
-              {/* Development */}
+             
               {translatedMenuItems[0]}
                 </span>
               
@@ -124,10 +120,7 @@ class TaskDashboardTab extends Component {
                   <ListAltIcon style={{fontSize:"1.1rem"}}/>
                  
                <span class=" ml-1 font-semibold">
-               {/* <FormattedMessage
-                id="app.openTasks"
-                defaultMessage="Open Tasks"
-              /> */}
+              
                {translatedMenuItems[1]}
                 </span>
               
@@ -151,11 +144,7 @@ class TaskDashboardTab extends Component {
                   <ListAltIcon style={{fontSize:"1.1rem"}}/>
                  
                <span class=" ml-1 font-semibold">
-               {/* <FormattedMessage
-                id="app.completedTasks"
-                defaultMessage="Completed Tasks"
-              /> */}
-                {/* Completed Tasks */}
+    
                 {translatedMenuItems[2]}
                 </span>
               
@@ -180,10 +169,7 @@ class TaskDashboardTab extends Component {
 
                   <span class=" ml-1 font-semibold">
                   {translatedMenuItems[3]}
-                  {/* <FormattedMessage
-                id="app.events"
-                defaultMessage="Events"
-              /> */}         
+                
                     {/* Events */}
                     </span>
 

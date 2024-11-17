@@ -35,10 +35,7 @@ class InvestorsPitchTab extends Component {
                 <>
                   <ListAltIcon style={{fontSize:"1.1rem"}}/>
                  
-               <span class=" ml-1 font-semibold"><FormattedMessage
-              id="app.pitch"
-              defaultMessage="Pitch"
-            /></span>
+               <span class=" ml-1 font-semibold">Pitch</span>
               
 
                   {activeKey === "1" && (

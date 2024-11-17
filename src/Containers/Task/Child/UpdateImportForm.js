@@ -97,12 +97,8 @@ class UpdateImportForm extends Component {
                       <Field
                         name="documentTitle"
                         //label="Name"
-                        label={
-                          <FormattedMessage
-                            id="app.title"
-                            defaultMessage="Title"
-                          />
-                        }
+                        label="Title"
+                          
                         width={"100%"}
                         isColumn
                         component={InputComponent}

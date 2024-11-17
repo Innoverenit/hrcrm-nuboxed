@@ -159,11 +159,9 @@ import { SearchOutlined } from "@ant-design/icons";
  
      {
        //title: "Name",
-       title: <FormattedMessage
-         id="app.month(Year)"
-         defaultMessage="Month(Year)"
+       title: "Month(Year)"
       
-       />,
+     ,
        width:"14%",
  
        dataIndex: "requirement",
@@ -171,10 +169,8 @@ import { SearchOutlined } from "@ant-design/icons";
      },
      {
        //title: "Currency",
-       title: <FormattedMessage
-         id="app.amount"
-         defaultMessage="Amount"
-       />,
+       title:"Amount"
+      ,
  
        dataIndex: "jobId",
      //   ...getColumnSearchProps('customer'),
@@ -182,10 +178,8 @@ import { SearchOutlined } from "@ant-design/icons";
      },
      {
         //title: "Currency",
-        title: <FormattedMessage
-          id="app.highestOnboarded"
-          defaultMessage="Highest Onboarded"
-        />,
+        title: "Highest Onboarded"
+      ,
   
         dataIndex: "sponsor",
       //   ...getColumnSearchProps('customer'),

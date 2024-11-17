@@ -82,9 +82,7 @@ function UpdateCustomerInititativeForm(props) {
                   type="text"
                   //label="Name"
 
-                  label={
-                    <FormattedMessage id="app.name" defaultMessage="Name" />
-                  }
+                  label="Name" 
                   isColumn
                   width={"100%"}
                   component={InputComponent}
@@ -119,9 +117,8 @@ function UpdateCustomerInititativeForm(props) {
               >
                 <Field
                   name="description"
-                  label={
-                    <FormattedMessage id="app.description" defaultMessage="Description" />
-                  }
+                  label="Description" 
+             
                   width={"100%"}
                   isColumn
                   component={TextareaComponent}
@@ -135,7 +132,7 @@ function UpdateCustomerInititativeForm(props) {
                 htmlType="submit"
                 Loading={props.updateCustomerInitiatives}
               >
-                <FormattedMessage id="app.update" defaultMessage="Update" />
+              Update
                 {/* Create */}
               </Button>
             </div>

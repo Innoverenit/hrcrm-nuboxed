@@ -12,10 +12,8 @@ const AddTemplateNotificatonModal = (props) => {
     <>
       <StyledDrawer
         //title="Template"
-        title={<FormattedMessage
-          id="app.notificaton"
-          defaultMessage="Notificaton"
-        />}
+        title="Notificaton"
+      
         width="60%"
         visible={props.addTemplateNotificatonModal}
         maskClosable={false}

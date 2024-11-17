@@ -84,10 +84,7 @@ class SingleProfileView extends React.Component {
                         }
                       >
                         {/* Save */}
-                        <FormattedMessage
-                         id="app.save"
-                         defaultMessage="Save"
-                        />
+                        Save
                     </Button>
                     &nbsp;
                     <Button
@@ -97,11 +94,8 @@ class SingleProfileView extends React.Component {
                         }}
                         onClick={() => toggleViewType()}
                       >
-                        {/* Cancel */}
-                        <FormattedMessage
-                        id="app.save"
-                        defaultMessage="Save"
-                        />
+                     
+                       Save                       
                     </Button>
                     </FlexContainer>
                   </FlexContainer>

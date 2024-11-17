@@ -17,40 +17,28 @@ class ContactInvestDetailView extends Component {
     return (
       <>
         <ContactInvestItemRow 
-          label={<FormattedMessage
-            id="app.company"
-            defaultMessage="Company"
-          />}
+          label="Company"
+     
           value={tagWithCompany} />
         <ContactInvestItemRow 
-          label={<FormattedMessage
-            id="app.department"
-            defaultMessage="Department"
-          />}
+          label="Department"
+        
           value={department} />
         <ContactInvestItemRow  
-          label={<FormattedMessage
-            id="app.designation"
-            defaultMessage="Designation"
-          />}
+          label="Designation"
+       
           value={designation} />
 <ContactInvestItemRow 
-          label={<FormattedMessage
-            id="app.source"
-            defaultMessage="Source"
-          />}
+          label="Source"
+        
           value={source} />
-        <ContactInvestItemRow //label="Email" 
-          label={<FormattedMessage
-            id="app.emailId"
-            defaultMessage="Email"
-          />}
+        <ContactInvestItemRow
+        label="Email" 
+        
           value={emailId} />
-        <ContactInvestItemRow //label="Mobile #" 
-          label={<FormattedMessage
-            id="app.mobileNumber"
-            defaultMessage="Mobile #"
-          />}
+        <ContactInvestItemRow 
+        label="Mobile #" 
+         
           value={mobileNumber} />
       </>
     );

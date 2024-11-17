@@ -159,11 +159,8 @@ class NoteFile extends Component {
                       marginRight: "0.3125em",
                     }}
                   >
-                    <FormattedMessage
-                      id="app.post"
-                      defaultMessage="Post"
-                    />
-                    {/* Post */}
+                   
+                    Post
                   </Button>
                 </div>
              

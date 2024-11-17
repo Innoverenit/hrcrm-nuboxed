@@ -365,7 +365,7 @@ function CandidateGridTable(props) {
 //     },
     {
         headerName: "Name",
-      //title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+    
       field: "fullName",
       width: 120,
       //...getColumnSearchProps("fullName"),
@@ -390,9 +390,7 @@ function CandidateGridTable(props) {
       },
     },
     {
-      // title: <FormattedMessage 
-      // id="app.category" defaultMessage=""
-      //  />,
+      
       headerName: "",
       field: "category",
       width: 20,
@@ -468,14 +466,12 @@ function CandidateGridTable(props) {
 
     {
         headerName: "Vendor",
-      //title: <FormattedMessage id="app.vendor" defaultMessage="Vendor" />,
       field: "partnerName",
       width: 90,
       //...getColumnSearchProps("partnerName"),
     },
     {
         headerName: "Role",
-      //title: <FormattedMessage id="app.role" defaultMessage="Role" />,
       field: "roleType",
       width: 80,
     //   filters: roleTypeOption,
@@ -485,46 +481,12 @@ function CandidateGridTable(props) {
     //   },
     },
 
-    // {
-    //   title: (
-    //     <FormattedMessage id="app.mobileNumber" defaultMessage="Mobile #" />
-    //   ),
-    //   dataIndex: "mobileNumber",
-    //   width: "10%",
-    //   render: (name, item, i) => {
-    //     return (
-    //       <span>
-    //         {item.countryDialCode} {item.mobileNumber}
-    //       </span>
-    //     );
-    //   },
-    // },
-   
-    // {
-    //     headerName: "",
-    //   width:5
-    //       },
+    
     {
         headerName: "Country",
-      //title: <FormattedMessage id="app.country" defaultMessage="Country" />,
       field: "country",
       //align: "left",
       width: 80,
-    //   filters: CountryTypeOption,
-    //   onFilter: (value, record) => {
-    //     return record.country === value;
-    //   },
-    //   sorter: (a, b) => {
-    //     var nameA = a.country; // ignore upper and lowercase
-    //     var nameB = b.country; // ignore upper and lowercase
-    //     if (nameA < nameB) {
-    //       return -1;
-    //     }
-    //     if (nameA > nameB) {
-    //       return 1;
-    //     }
-    //     return 0;
-    //   },
     },
     {
       headerName: "Skills",
@@ -600,9 +562,7 @@ function CandidateGridTable(props) {
       },
     },
     {
-    //   title: (
-    //     <FormattedMessage id="app.expectation" defaultMessage="Expectation" />
-    //   ),
+   
     headerName: "Expectation",
       field: "billing",
       //align: "left",
@@ -627,7 +587,6 @@ function CandidateGridTable(props) {
     },
     {
         headerName: "Available",
-      //title: <FormattedMessage id="app.available" defaultMessage="Available" />,
       field: "availableDate",
       width: 70,
       renderCell: (cellValues,row) => {
@@ -648,14 +607,8 @@ function CandidateGridTable(props) {
     {
         headerName: "Owner",
         field: "ownerName",
-     // title: <FormattedMessage id="app.owner" defaultMessage="Owner" />,
-      // dataIndex: "ownerName",
       width: 80,
-      // ...getColumnSearchProps('ownerName'),
-    //   filters: ownerlistType,
-    //   onFilter: (value, record) => {
-    //     return record.fullName === value;
-    //   },
+     
     renderCell: (cellValues,row) => {
         console.log("cell",cellValues)
          const data=cellValues.row
@@ -680,8 +633,6 @@ function CandidateGridTable(props) {
 
         headerName: "Active",
         field: "active",
-      //title: <FormattedMessage id="app.active" defaultMessage="Active" />,
-      // dataIndex: "active",
       width: 70,
       renderCell: (cellValues,row) => {
         console.log("cell",cellValues)

@@ -9,10 +9,8 @@ const AddConfirmProspectStatusModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.convertasCustomer"
-          defaultMessage="Convert as Customer"
-        />}
+        title="Convert as Customer"
+      
         width={drawerWidth}
         visible={props.addProspectConfirmationModal}
         onClose={() => props.handleProspectConfirmationModal(false)}

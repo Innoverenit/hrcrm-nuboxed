@@ -17,7 +17,7 @@ const SubscriptionActionLeft = (props) => {
   return (
     <div class=" flex items-center">
       <Tooltip
-        title={<FormattedMessage id="app.tileView" defaultMessage="Tile View" />}
+        title="Tile View"
       > 
        <Badge
           size="small"

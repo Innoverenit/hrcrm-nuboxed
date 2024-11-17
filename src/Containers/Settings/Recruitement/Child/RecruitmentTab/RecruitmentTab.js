@@ -257,8 +257,8 @@ class RecruitmentTab extends Component {
           <MainWrapper>
             <h1
             >
-              {/* Workflow */}
-              <FormattedMessage id="app.workflow" defaultMessage="Workflow" />
+              Workflow
+           
             </h1>
            
             <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
@@ -314,17 +314,14 @@ class RecruitmentTab extends Component {
                         htmlType="submit"
                         onClick={this.handleEditProcessName}
                       >
-                        {/* Save */}
-                        <FormattedMessage id="app.save" defaultMessage="Save" />
+                        Save
+                    
                       </Button>                    
                       <Button
                         type="primary"
                         onClick={this.handleCancel}
                       >
-                        <FormattedMessage
-                          id="app.cancel"
-                          defaultMessage="Cancel"
-                        />
+                     Cancel
                       </Button>
                     </div>
                   </div>
@@ -505,13 +502,13 @@ class RecruitmentTab extends Component {
                   htmlType="submit"
                   onClick={this.handleAddStage}
                 >
-                  {/* Save */}
-                  <FormattedMessage id="app.save" defaultMessage="Save" />
+                  Save
+                
                 </Button>
                
                 <Button type="primary" ghost onClick={this.toggleInput}>
-                  {/* Cancel */}
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                  Cancel
+             
                 </Button>
                 </div>
               </div>
@@ -527,11 +524,8 @@ class RecruitmentTab extends Component {
                     htmlType="button"
                     onClick={this.toggleInput}
                   >
-                    {/* Add Stage */}
-                    <FormattedMessage
-                      id="app.addstage"
-                      defaultMessage="Add Stage"
-                    />
+                    Add Stage
+                  
                   </Button>
                 </div>
               </>

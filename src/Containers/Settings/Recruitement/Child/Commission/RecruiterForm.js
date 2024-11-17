@@ -75,12 +75,8 @@ function RecruiterForm(props) {
                      // selectType="employee"
                           isColumnWithoutNoCreate
                     // label="Assigned"
-                    label={
-                      <FormattedMessage
-                        id="app.name"
-                        defaultMessage="Name"
-                      />
-                    }
+                    label="Name"
+                     
                     component={SelectComponent}
                      options={Array.isArray(recruiterNameOption) ? recruiterNameOption : []}
                     //options={["rdf","desh"]}
@@ -111,12 +107,8 @@ function RecruiterForm(props) {
                         // defaultValue={{
                         //   value: this.props.user.currency,
                         // }}
-                        label={
-                          <FormattedMessage
-                            id="app.currency"
-                            defaultMessage="Currency"
-                          />
-                        }
+                        label="Currency"
+                        
                         width="100%"
                         isColumn
                         selectType="currencyName"

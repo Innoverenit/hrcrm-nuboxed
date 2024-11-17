@@ -66,11 +66,8 @@ class DashboardDetailsTab extends Component {
                    style={{fontSize:"1.1rem"}}
                   />
                     <span class=" ml-1">
-                    <FormattedMessage
-              id="app.openRequirements"
-              defaultMessage="Open Requirements"
-            />
-                     </span>
+                  "Open Requirements"
+                        </span>
                   
                   {activeKey === "1" && (
                     <>

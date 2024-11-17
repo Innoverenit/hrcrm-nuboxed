@@ -41,29 +41,20 @@ class CandidateEmploymentTable extends Component {
         width: "2%",
       },
       {
-        // title: "Company Name",
-        title: (
-          <FormattedMessage
-            id="app.companyname"
-            defaultMessage="Company Name"
-          />
-        ),
+        title: "Company Name",
+    
         dataIndex: "companyName",
          width: "15%"
       },
       {
-        //title: "Designation",
-        title: (
-          <FormattedMessage id="app.designationType" defaultMessage="Designation" />
-        ),
+       title: "Designation",
+        
         dataIndex: "designationType",
         width: "12%"
       },
       {
-        //title: "Start Date",
-        title: (
-          <FormattedMessage id="app.start" defaultMessage="Start" />
-        ),
+       title: "Start Date",
+       
         dataIndex: "startDate",
         width: "12%",
         render: (name, item, i) => {
@@ -71,8 +62,8 @@ class CandidateEmploymentTable extends Component {
         },
       },
       {
-        //title: "End Date",
-        title: <FormattedMessage id="app.end" defaultMessage="End" />,
+      title: "End Date",
+    
         dataIndex: "endDate",
         width: "12%",
         render: (name, item, i) => {
@@ -94,40 +85,13 @@ class CandidateEmploymentTable extends Component {
       },
 
       {
-        title: (
-          <FormattedMessage id="app.remarks" defaultMessage="Remarks" />
-        ),
+        title:"Remarks" ,
         width:"10%",
         dataIndex: "description",
       },
      
      
-      // {
-      //   title:"Document",
-      //   dataIndex:"documentType",
-      //   width:"12%",
-
-      // },
-      // {
-      //   title: "",
-      //   dataIndex: "id",
-      //   width: "2%",
-      //   render: (name, item, i) => {
-      //     return (
-      //       <StyledPopconfirm
-      //         //title="Do you want to delete?"
-      //         title={<FormattedMessage
-      //           id="app.doyouwanttodelete?"
-      //           defaultMessage="Do you want to delete?"
-      //         />}
-      //         onConfirm={() => deleteCandidateEmploymentTable(item.id)}
-      //       >
-      //         <Icon type="delete" style={{ cursor: "pointer", color: "red" }} />
-      //         {/* <Button type="primary" className='edit_hover_class' icon="delete"  /> */}
-      //       </StyledPopconfirm>
-      //     );
-      //   },
-      // },
+     
       {
         title: "",
         dataIndex: "documentTypeId",

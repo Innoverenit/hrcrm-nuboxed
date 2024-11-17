@@ -412,7 +412,7 @@ function AddShipperForm(props) {
                 >
                     Update
                     {/* {props.translatedMenuItems[15]} */}
-                  {/* <FormattedMessage id="app.create" defaultMessage="Create" /> */}
+                
                 </Button>
               </div>
             </Form>

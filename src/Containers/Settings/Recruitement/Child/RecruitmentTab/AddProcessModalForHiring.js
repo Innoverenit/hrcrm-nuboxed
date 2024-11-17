@@ -13,11 +13,8 @@ const AddProcessModalForHiring = (props) => {
   return (
     <>
       <StyledDrawer
-        // title="Workflow"
-        title={<FormattedMessage
-          id="app.workflow"
-          defaultMessage="Workflow"
-        />}
+        title="Workflow"
+       
         width="60%"
         visible={props.addProcessHiringModal}
         maskClosable={false}

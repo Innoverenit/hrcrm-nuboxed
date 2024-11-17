@@ -8,10 +8,8 @@ const AddTimeZoneModal = props => {
     <>
       <StyledModal
         // title="Set TimeZone"
-        title={<FormattedMessage
-          id="app.settimeZone"
-          defaultMessage="Set TimeZone"
-        />}
+        title="Set TimeZone"
+    
         width="40vw"
         visible={addTimeZoneModal}
         maskClosable={false}

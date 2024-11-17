@@ -45,18 +45,7 @@ class NodataFoundPage extends React.Component {
                 
                 </div>
               </div>
-              {/* <div class=" mt-3" />
-              <Button
-                type="primary"
-              
-                onClick={() => this.handleRefreshPage()}
-              >
-                <FormattedMessage
-                  id="app.close"
-                  defaultMessage="Close"
-                />
-           
-              </Button> */}
+             
             </div>
           </div>
         </>

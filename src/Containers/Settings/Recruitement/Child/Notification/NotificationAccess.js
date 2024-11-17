@@ -909,7 +909,7 @@ const NotificationAccess = (props) => {
                     handleUpdateAccess();
                   }}
                 >
-                  <FormattedMessage id="app.Update" defaultMessage="Update" />
+                 Update
                 </Button>
               </div>
             </TabsWrapper>

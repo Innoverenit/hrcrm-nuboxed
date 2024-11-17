@@ -239,19 +239,12 @@ handleYearChange = (date) => {
                       Loading={this.props.addingHoliday}
                       onClick={this.handleAddStage}
                     >
-                    
-                      <FormattedMessage
-                    id="app.save"
-                    defaultMessage="Save"
-                   />
+                    Save
                     </Button>
                     &nbsp;
                     <Button type="primary" ghost onClick={this.handleCancel}>
                    
-                      <FormattedMessage
-                 id="app.cancel"
-                 defaultMessage="Cancel"
-                />
+                 Cancel
                     </Button>
                   </div>
                 </div>

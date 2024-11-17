@@ -99,17 +99,11 @@ class SingleTopic extends Component {
                   loading={updatingStages}                  
             
                 >
-                  <FormattedMessage
-                    id="app.save"
-                    defaultMessage="Save"
-                  />
+                Save
                 </Button>
                 &nbsp;
                 <Button type="primary" ghost onClick={() => toggleViewType()}>
-                  <FormattedMessage
-                    id="app.cancel"
-                    defaultMessage="Cancel"
-                  />
+               Cancel
                 </Button>
               </div>
             )

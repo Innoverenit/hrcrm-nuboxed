@@ -10,10 +10,7 @@ const LinkedCustomerProjectModal = (props) => {
   return (
     <>
       <StyledDrawer
-        // title={<FormattedMessage
-        //   id="app.updateopportunity" 
-        //   defaultMessage="Update Opportunity"
-        // />}
+    
          title="Task"
         width="77%"
         style={{marginTop:"5rem"}}

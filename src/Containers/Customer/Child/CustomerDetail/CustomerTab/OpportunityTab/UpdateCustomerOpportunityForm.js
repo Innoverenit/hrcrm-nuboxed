@@ -257,14 +257,7 @@ console.log("hh",customerId)
                     isRequired
                     name="opportunityName"
                     type="text"
-                    //label="Name"
-
-                    label={
-                      <FormattedMessage
-                        id="app.name"
-                        defaultMessage="Name"
-                      />
-                    }
+                    label="Name"
                     isColumn
 
                     width={"100%"}
@@ -279,13 +272,8 @@ console.log("hh",customerId)
                       <Field
                         isRequired
                         name="startDate"
-                        //label="Start "
-                        label={
-                          <FormattedMessage
-                            id="app.startdate"
-                            defaultMessage="Start Date"
-                          />
-                        }
+                        label="Start Date"
+                        
                         component={DatePicker}
                         value={values.startDate}
                         isColumn
@@ -296,13 +284,8 @@ console.log("hh",customerId)
                       <Field
                         isRequired
                         name="endDate"
-                        // label="End Date"
-                        label={
-                          <FormattedMessage
-                            id="app.enddate"
-                            defaultMessage="End Date"
-                          />
-                        }
+                        label="End Date"
+                      
                         isColumn
                         component={DatePicker}
                         // value={values.endDate}
@@ -329,14 +312,9 @@ console.log("hh",customerId)
                   <div class=" w-[47%]" >
                       <Field
                         name="proposalAmount"
-                        //label="Value"
+                        label="Value"
 
-                        label={
-                          <FormattedMessage
-                            id="app.Value"
-                            defaultMessage="Value"
-                          />
-                        }
+                     
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -350,10 +328,8 @@ console.log("hh",customerId)
                         // }}
                         isColumnWithoutNoCreate
                         placeholder="Currency"
-                        label={<FormattedMessage
-                          id="app.currency"
-                          defaultMessage="Currency"
-                        />}
+                        label="Currency"
+                    
                         isColumn
                         // selectType="currencyName"
                         isRequired
@@ -371,9 +347,7 @@ console.log("hh",customerId)
                   <Field
                     name="description"
                     // label="Notes"
-                    label={
-                      <FormattedMessage id="app.description" defaultMessage="Description" />
-                    }
+                    label="Description" 
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -458,9 +432,7 @@ console.log("hh",customerId)
                     isColumnWithoutNoCreate
                     // label="Assigned"
                     label={
-                      <FormattedMessage
-                        id="app.assignedto"
-                        defaultMessage="Assigned"
+                    "Assigned"
                       />
                     }
                     width="100%"
@@ -481,14 +453,8 @@ console.log("hh",customerId)
                     name="customerId"
                     isColumnWithoutNoCreate
                     selectType="customerList"
-                    // label="Customer"
+                    label="Customer"
 
-                    label={
-                      <FormattedMessage
-                        id="app.customer"
-                        defaultMessage="Customer"
-                      />
-                    }
                     // isRequired
                     component={SearchSelect}
                     isColumn
@@ -505,13 +471,8 @@ console.log("hh",customerId)
                     name="contactId"
                     isColumnWithoutNoCreate
                     selectType="contactOpportunityList"
-                    // label="Contact"
-                    label={
-                      <FormattedMessage
-                        id="app.contact"
-                        defaultMessage="Contact"
-                      />
-                    }
+                   label="Contact"
+                  
                     // isRequired
                     component={SearchSelect}
                     isColumn
@@ -532,12 +493,8 @@ console.log("hh",customerId)
                     name="oppWorkflow"
                    // selectType="contactListFilter"
                     isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.workflow"
-                        defaultMessage="Workflow"
-                      />
-                    }
+                    label="Workflow"
+                     
                    // component={SearchSelect}
                    component={SelectComponent}
                    options={Array.isArray(WorkflowOptions) ? WorkflowOptions : []}
@@ -559,12 +516,8 @@ console.log("hh",customerId)
                      name="oppStage"
                      //selectType="initiativeName"
                     isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.stages"
-                        defaultMessage="Stages"
-                      />
-                    }
+                    label="Stages"
+                      
                     component={SelectComponent}
                     options={
                       Array.isArray(getStagesOptions("oppWorkflow", values.oppWorkflow))
@@ -596,7 +549,7 @@ console.log("hh",customerId)
                   htmlType="submit"
                   Loading={updatingCustomerOpportunity}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Upsate" />
+                 Update
                   {/* Create */}
                 </Button>
                 </div>

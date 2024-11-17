@@ -92,11 +92,8 @@ class EmployeeTable extends React.Component {
      },
 
       {
-        //title: "Created on",
-        title: <FormattedMessage
-          id="app.createdon"
-          defaultMessage="Created on"
-        />,
+        title: "Created on",
+
         width: "15%",
         render: (name, item, i) => {
           return <span>{dayjs(item.creationDate).format("YYYY-MM-DD")}</span>;
@@ -114,10 +111,8 @@ class EmployeeTable extends React.Component {
             <>
              <Tooltip
                   // title="Close Template"
-                  title={<FormattedMessage
-                    id="app.closetemplate"
-                    defaultMessage="Close Template"
-                  />}
+                  title="Close Template"
+                
                 >
                   <EyeInvisibleOutlined
                     type="eye-invisible"
@@ -134,55 +129,7 @@ class EmployeeTable extends React.Component {
                     size="30"
                   />
                 </Tooltip>
-              {/* {close ? (
-                <Tooltip
-                  // title="Close Template"
-                  title={<FormattedMessage
-                    id="app.closetemplate"
-                    defaultMessage="Close Template"
-                  />}
-                >
-                  <Icon
-                    type="eye-invisible"
-                    onClick={this.handleCloseIconClick}
-                    style={{
-                      fontSize: "1.125em",
-                      color: this.state.show ? "#1890ff" : "black",
-                    }}
-                    size="30"
-                  />
-                </Tooltip>
-              ) : (
-                  <Tooltip
-                    //title="View Template"
-                    title={<FormattedMessage
-                      id="app.viewtemplate"
-                      defaultMessage="View Template"
-                    />}
-
-                  >
-                    <Icon
-                      type="eye"
-                      onClick={() => {
-                        this.handleIconClick(
-                          item.templateId,
-                          item.template,
-                          item.type
-                        );
-                        this.props.setCurrentEmail(item);
-                      }}
-                      style={{
-                        fontSize: "1.125em",
-                        color:
-                          this.state.show &&
-                            this.state.templateId === item.templateId
-                            ? "#1890ff"
-                            : "black",
-                      }}
-                      size="30"
-                    />
-                  </Tooltip>
-                )} */}
+              
             </>
           );
         },

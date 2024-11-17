@@ -409,13 +409,8 @@ class CandidateForm extends Component {
                           <FastField
                             name="salutation"
                             type="text"
-                            // label="Salutation"
-                            label={
-                              <FormattedMessage
-                                id="app.salutation"
-                                defaultMessage="Salutation"
-                              />
-                            }
+                            label="Salutation"
+                          
                             options={["Mr.", "Ms.", "None"]}
                             component={SelectComponent}
                             inlineLabel
@@ -427,13 +422,8 @@ class CandidateForm extends Component {
                           <FastField
                             isRequired
                             name="firstName"
-                            // label="First Name"
-                            label={
-                              <FormattedMessage
-                                id="app.firstName"
-                                defaultMessage="First Name"
-                              />
-                            }
+                            label="First Name"
+                           
                             type="text"
                             width={"100%"}
                             isColumn
@@ -447,13 +437,8 @@ class CandidateForm extends Component {
                         <div class=" w-[30%]" >
                           <FastField
                             name="middleName"
-                            //label="Middle Name"
-                            label={
-                              <FormattedMessage
-                                id="app.middleName"
-                                defaultMessage="Middle"
-                              />
-                            }
+                            label="Middle Name"
+                           
                             type="text"
                             width={"100%"}
                             isColumn
@@ -464,13 +449,8 @@ class CandidateForm extends Component {
                         <div class=" w-[65%]" >
                           <FastField
                             name="lastName"
-                            //label="Last Name"
-                            label={
-                              <FormattedMessage
-                                id="app.lastName"
-                                defaultMessage="Last Name"
-                              />
-                            }
+                            label="Last Name"
+                            
                             type="text"
                             width={"100%"}
                             isColumn
@@ -503,13 +483,8 @@ class CandidateForm extends Component {
                         isRequired
                         type="email"
                         name="emailId"
-                        //label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.emailId"
-                            defaultMessage="Email"
-                          />
-                        }
+                        label="Email"
+                       
                         // className="field"
                         isColumn
                         width={"100%"}
@@ -523,13 +498,8 @@ class CandidateForm extends Component {
                       <FastField
                         name="countryDialCode"
                         isColumnWithoutNoCreate
-                        //label="Mobile #"
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        label="Mobile #"
+                       
                         isColumn
                         selectType="dialCode"
                         component={SearchSelect}
@@ -576,12 +546,8 @@ class CandidateForm extends Component {
                           selectType="dialCode"
                           //label="Available from"
 
-                          label={
-                            <FormattedMessage
-                              id="app.#whatsApp"
-                              defaultMessage="WhatsApp #"
-                            />
-                          }
+                          label="WhatsApp #"
+                          
                           component={SearchSelect}
                           isColumn
                           // value={values.availableDate}
@@ -610,13 +576,8 @@ class CandidateForm extends Component {
                       <FastField
                         type="text"
                         name="linkedin"
-                        //label="Linkedin "
-                        label={
-                          <FormattedMessage
-                            id="app.linkedin"
-                            defaultMessage="Linkedin"
-                          />
-                        }
+                        label="Linkedin "
+                       
                         isColumn
                         width={"100%"}
                         //value={ this.props.parsingForm.hasOwnProperty("linkedInProfile") ? this.props.parsingForm.linkedInProfile: ""}
@@ -639,13 +600,8 @@ class CandidateForm extends Component {
                       <FastField
                         name="nationality"
                         isColumnWithoutNoCreate
-                        //label="Mobile #"
-                        label={
-                          <FormattedMessage
-                            id="app.nationality"
-                            defaultMessage="Nationality"
-                          />
-                        }
+                        label="Mobile #"
+                       
                         isColumn
                         selectType="country"
                         component={SearchSelect}
@@ -680,13 +636,9 @@ class CandidateForm extends Component {
                     <div class=" w-[48%]" >
                           <FastField
                             name="idProof"
-                            //label="Mobile #"
-                            label={
-                              <FormattedMessage
-                                id="app.idproof"
-                                defaultMessage="ID Proof"
-                              />
-                            }
+                         
+                            label="ID Proof"
+                              
                             isColumn
                             options={["PassPort", "ID Card"]}
                             component={SelectComponent}
@@ -698,12 +650,8 @@ class CandidateForm extends Component {
                             type="idNumber"
                             name="idNumber"
                             //placeholder="Mobile #"
-                            label={
-                              <FormattedMessage
-                                id="app.idNumber"
-                                defaultMessage="ID Number"
-                              />
-                            }
+                            label="ID Number"
+                             
                             component={InputComponent}
                             inlineLabel
                             width={"100%"}
@@ -717,12 +665,8 @@ class CandidateForm extends Component {
                       <div class=" w-[57%]" >
                           <Field
                             name="dateOfBirth"
-                            label={
-                              <FormattedMessage
-                                id="app.dateOfBirth"
-                                defaultMessage="Date of Birth"
-                              />
-                            }
+                            label="Date of Birth"
+                              
                             isColumn
                             component={DatePicker}
                             value={values.dateOfBirth}
@@ -734,12 +678,8 @@ class CandidateForm extends Component {
                             name="gender"
                             type="text"
                             // label="Salutation"
-                            label={
-                              <FormattedMessage
-                                id="app.gender"
-                                defaultMessage="Gender"
-                              />
-                            }
+                            label="Gender"
+                              
                             options={["Male", "Female", "Others"]}
                             component={SelectComponent}
                             inlineLabel
@@ -774,14 +714,9 @@ class CandidateForm extends Component {
                         // name="address[0].country"
                         name="country"
                         isColumnWithoutNoCreate
-                        // label="Country"
+                        label="Country"
 
-                        label={
-                          <FormattedMessage
-                            id="app.country"
-                            defaultMessage="Country"
-                          />
-                        }
+                       
                         component={SearchSelect}
                         defaultValue={{
                           value: this.props.user.countryName,
@@ -820,12 +755,8 @@ class CandidateForm extends Component {
                               name="tag_with_company"
                               // selectType="customerList"
                               // label="Tag Company"
-                              label={
-                                <FormattedMessage
-                                  id="currentemployer"
-                                  defaultMessage="Employer"
-                                />
-                              }
+                              label="Employer"
+                                
                               component={InputComponent}
                               isColumn
                               // value={values.customerId}
@@ -847,12 +778,8 @@ class CandidateForm extends Component {
                             name="partnerId"
                             isColumnWithoutNoCreate
                             //label="Mobile #"
-                            label={
-                              <FormattedMessage
-                                id="app.vendor"
-                                defaultMessage="Vendor"
-                              />
-                            }
+                            label="Vendor"
+                              
                             isColumn
                             selectType="partnerListName"
                             component={SearchSelect}
@@ -866,12 +793,9 @@ class CandidateForm extends Component {
                             name="contactId"
                             // selectType="contactListFilter"
                             isColumnWithoutNoCreate
-                            label={
-                              <FormattedMessage
-                                id="app.vendorContact"
-                                defaultMessage="Vendor Contact"
-                              />
-                            }
+                            label=
+                              "Vendor Contact"
+                            
                             component={SelectComponent}
                             options={
                               Array.isArray(
@@ -919,12 +843,8 @@ class CandidateForm extends Component {
                               name="roleTypeId"
                               selectType="roleType"
                               //label="Designation"
-                              label={
-                                <FormattedMessage
-                                  id="app.role"
-                                  defaultMessage="Role"
-                                />
-                              }
+                              label="Role"
+                              
                               isColumnWithoutNoCreate
                               isColumn
                               component={SearchSelect}
@@ -936,12 +856,8 @@ class CandidateForm extends Component {
                               name="experience"
                               type="number"
                               //label="Email"
-                              label={
-                                <FormattedMessage
-                                  id="app.experience"
-                                  defaultMessage="Experience"
-                                />
-                              }
+                              label="Experience"
+                              
                               // className="field"
                               placeholder="Years"
                               isColumn
@@ -979,12 +895,9 @@ onChange={this.NumericOnly}
                             name="sectorId"
                             // isColumnWithoutNoCreate
                             //  selectType="sectorName"
-                            label={
-                              <FormattedMessage
-                                id="app.sector"
-                                defaultMessage="Sector"
-                              />
-                            }
+                            label="
+                                Sector"
+                              
                             isColumn
                             //component={SearchSelect}
                             component={SelectComponent}
@@ -1085,12 +998,8 @@ onChange={this.NumericOnly}
                                 name="availableDate"
                                 //label="Available from"
 
-                                label={
-                                  <FormattedMessage
-                                    id="app.availableDate"
-                                    defaultMessage="Available from"
-                                  />
-                                }
+                                label="Available from"
+                                  
                                 // disabled={!this.state.availability}
                                 component={DatePicker}
                                 isColumn
@@ -1121,12 +1030,8 @@ onChange={this.NumericOnly}
                           // type="email"
                           name="workPreference"
                           //label="Email"
-                          label={
-                            <FormattedMessage
-                              id="app.workPreference"
-                              defaultMessage="Work Preference"
-                            />
-                          }
+                          label="Work Preference"
+                           
                           // className="field"
                           isColumn
                           width={"100%"}
@@ -1156,12 +1061,7 @@ onChange={this.NumericOnly}
                               label={
                                 this.state.billing ? "Expectation" : "Billing"
                               }
-                              // label={
-                              //   <FormattedMessage
-                              //     id="app.billing"
-                              //     defaultMessage="Billing/Hr"
-                              //   />
-                              // }
+                             
                               width={"100%"}
                               isColumn
                               component={InputComponent}
@@ -1175,12 +1075,7 @@ onChange={this.NumericOnly}
                               // defaultValue={{
                               //   value: this.props.user.currency,
                               // }}
-                              label={
-                                <FormattedMessage
-                                  id="app.currency"
-                                  defaultMessage="Currency"
-                                />
-                              }
+                              label="Currency"
                               isColumn
                               selectType="currencyName"
                               isRequired
@@ -1191,40 +1086,7 @@ onChange={this.NumericOnly}
                         </div>
                       </div>
                       <div class=" w-[47.5%]">
-                        {/* {this.state.billing ? (
-                        <div style={{ width: "22%" }}>
-                          <Field
-                            name="CostType"
-                            //label="Email"
-                            label={
-                              <FormattedMessage
-                                id="app.cost"
-                                defaultMessage="Cost Type"
-                              />
-                            }
-                            // className="field"
-                            isColumn
-                            width={"100%"}
-                            component={SelectComponent}
-                            options={["Monthly Salary", "Annual Salary"]}
-
-                            inlineLabel
-                          />
-                        </div>
-                      ) : (
-                        <div style={{ width: "22%" }}>
-                          <Field
-                            name="CostType"
-                            label="Cost Type"
-                            // className="field"
-                            isColumn
-                            width={"100%"}
-                            component={SelectComponent}
-                            options={["Hourly", "Weekly", "Monthly"]}
-                            inlineLabel
-                          />
-                        </div>
-                      )} */}
+                      
                            <div class=" flex justify-between" >
                            <div class=" w-[48%]">
                             <FastField
@@ -1232,12 +1094,8 @@ onChange={this.NumericOnly}
                               // type="text"
                               name="currentSalary"
                               //label="Email"
-                              label={
-                                <FormattedMessage
-                                  id="app.currentsalary"
-                                  defaultMessage="Current Salary"
-                                />
-                              }
+                              label="Current Salary"
+                                
                               // className="field"
                               isColumn
                               width={"100%"}
@@ -1253,12 +1111,9 @@ onChange={this.NumericOnly}
                               // defaultValue={{
                               //   value: this.props.user.currency,
                               // }}
-                              label={
-                                <FormattedMessage
-                                  id="app.currency"
-                                  defaultMessage="Currency"
-                                />
-                              }
+                              label="Currency"
+                                
+                              
                               isColumn
                               width={"100%"}
                               selectType="currencyName"
@@ -1275,12 +1130,8 @@ onChange={this.NumericOnly}
                       <Field
                         name="benifit"
                         //label="State"
-                        label={
-                          <FormattedMessage
-                            id="benifit"
-                            defaultMessage="Benefits"
-                          />
-                        }
+                        label="Benefits"
+                         
                         component={InputComponent}
                         isColumn
                         width="100%"
@@ -1290,12 +1141,8 @@ onChange={this.NumericOnly}
                       <FastField
                         name="noticePeriod"
                         //label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.notice"
-                            defaultMessage="Notice (months)"
-                          />
-                        }
+                        label="Notice (months)"
+                          
                         // className="field"
                         isColumn
                         width={"100%"}
@@ -1310,12 +1157,9 @@ onChange={this.NumericOnly}
                       <Field
                         name="noticeDetail"
                         //label="Description"
-                        label={
-                          <FormattedMessage
-                            id="app.noticeperiodinfo"
-                            defaultMessage="Notice Period Info"
-                          />
-                        }
+                        label=
+                         "Notice Period Info"
+                        
                         isRequired
                         isColumn
                         component={TextareaComponent}
@@ -1332,9 +1176,9 @@ onChange={this.NumericOnly}
                   // icon={<PoweroffOutlined />}
                   Loading={addingCandidate}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
-                  {/*                     
-                    Create */}
+                 
+                                      
+                    Create
                 </Button>
               </div>
             </Form>

@@ -60,11 +60,7 @@ class SingleOpportunitySource extends Component {
                                     Loading={updatingSources}
                                     onClick={() => handleUpdateSource(leadSourceId, value, toggleViewType())}
                                 >
-                                    {/* Save */}
-                                    <FormattedMessage
-                                                id="app.save"
-                                                defaultMessage="Save"
-                                            />
+                                    Save
                                 
                                     </Button>&nbsp;
                             <Button
@@ -72,11 +68,8 @@ class SingleOpportunitySource extends Component {
                                     ghost
                                     onClick={() => toggleViewType()}
                                 >
-                                    {/* Cancel */}
-                                    <FormattedMessage
-                                                id="app.cancel"
-                                                defaultMessage="Cancel"
-                                            />
+                                    Cancel
+                                  
                                     </Button>
                             </div>
                     )}

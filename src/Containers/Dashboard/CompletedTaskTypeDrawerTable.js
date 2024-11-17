@@ -26,30 +26,12 @@ function CompletedTaskTypeDrawerTable (props) {
          <div className=' flex justify-end sticky top-28 z-auto'>
         <OnlyWrapCard style={{backgroundColor:"#eaedf1"}}>
         <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[5.1rem]">    <FormattedMessage
-                id="app.priority"
-                defaultMessage="Priority"
-              /></div>
-        <div className=" md:w-[6rem]">     <FormattedMessage
-                id="app.taskName"
-                defaultMessage="Task Name"
-              /></div>
-        <div className="md:w-24"> <FormattedMessage
-                id="app.assignedTo"
-                defaultMessage="Assigned"
-              /></div>
-        <div className=" md:w-[6.8rem] ">       <FormattedMessage
-                id="app.status"
-                defaultMessage="Status"
-              /></div>
-        <div className="md:w-[5.9rem]"> <FormattedMessage
-                id="app.endDate"
-                defaultMessage="End Date"
-              /></div>
-        <div className="md:w-36">   <FormattedMessage
-                id="app.deviation"
-                defaultMessage="Deviation"
-              /></div>
+        <div className=" md:w-[5.1rem]">   Priority</div>
+        <div className=" md:w-[6rem]"> Task Name</div>
+        <div className="md:w-24"> Assigned</div>
+        <div className=" md:w-[6.8rem] ">  Status</div>
+        <div className="md:w-[5.9rem]">End Date</div>
+        <div className="md:w-36">  Deviation</div>
       </div>
         <InfiniteScroll
         dataLength={props.completedtypeTasks.length}

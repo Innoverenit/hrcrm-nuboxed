@@ -112,9 +112,8 @@ function CommercialsForm(props) {
                   type="primary"
                   htmlType="Update"
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
-                  {/*                     
-                    Create */}
+                                     
+                    Create
                 </Button>
               </div>
                 </div>

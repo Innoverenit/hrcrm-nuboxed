@@ -259,11 +259,8 @@ class PlacementTable extends Component {
                           <div class="flex flex-row w-[5%] max-sm:flex-row max-sm:w-[10%]">
                             <div>
                             {close ? (
-                    <Tooltip //title="Close Details"
-                      title={<FormattedMessage
-                        id="app.closedetails"
-                        defaultMessage="Close Details"
-                      />}
+                    <Tooltip title="Close Details"
+                      
                     >
                         <span
                         onClick={() => this.handleCloseIconClick()}
@@ -283,11 +280,8 @@ class PlacementTable extends Component {
                   ) :
                    (
                       <>
-                        <Tooltip //title="Access Details"
-                          title={<FormattedMessage
-                            id="app.accessdetails"
-                            defaultMessage="Access Details"
-                          />}
+                        <Tooltip title="Access Details"
+                       
                         >
                 <span
                             onClick={() =>

@@ -106,10 +106,7 @@ class ContactInvestDetailTab extends Component {
                  <CurrencyExchangeIcon className="!text-icon text-[#fce762]"/>
                     <span class=" ml-1 !text-tab">
                     {this.state.translatedMenuItems[0]}
-                     {/* <FormattedMessage
-                      id="app.deals"
-                      defaultMessage="Deals"
-                    /> */}
+                  
                   </span>
                   {activeKey === "1" && (
                     <>
@@ -135,11 +132,7 @@ class ContactInvestDetailTab extends Component {
                   ></i>
                   <span class=" ml-1 !text-tab">
                   {this.state.translatedMenuItems[1]}
-                    {/* <FormattedMessage
-                      id="app.documents"
-                      defaultMessage="Documents"
-                    /> */}
-                    {/* Documents */}
+                  
                   </span>
                   {activeKey === "2" && (
                     <>

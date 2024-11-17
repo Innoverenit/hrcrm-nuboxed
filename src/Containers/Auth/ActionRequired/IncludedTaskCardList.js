@@ -145,12 +145,8 @@ function IncludedTaskCardList(props) {
                       {item.approveInd && item.opportunityOwner ? (
                         <>
                           <Tooltip
-                            title={
-                              <FormattedMessage
-                                id="app.Own"
-                                defaultMessage="Own"
-                              />
-                            }
+                            title="Own"
+                              
                           >
                             <CheckCircleTwoTone
                               type="check-circle"
@@ -178,12 +174,8 @@ function IncludedTaskCardList(props) {
                       ) : (
                         <>
                           <Tooltip
-                            title={
-                              <FormattedMessage
-                                id="app.Own"
-                                defaultMessage="Won"
-                              />
-                            }
+                            title="Won"
+                              
                           >
                             <CheckCircleTwoTone
                               type="check-circle"
@@ -204,12 +196,8 @@ function IncludedTaskCardList(props) {
                           </Tooltip>
                           &nbsp; &nbsp;
                           <Tooltip
-                            title={
-                              <FormattedMessage
-                                id="app.drop"
-                                defaultMessage="Lost"
-                              />
-                            }
+                            title="Lost"
+                             
                           >
                             <StopTwoTone
                               type="stop"
@@ -230,12 +218,8 @@ function IncludedTaskCardList(props) {
                     <div>
                       <Tooltip
                         placement="right"
-                        title={
-                          <FormattedMessage
-                            id="app.notes"
-                            defaultMessage="Notes"
-                          />
-                        }
+                        title="Notes"
+                          
                       >
                         <span
                           onClick={() => {
@@ -254,12 +238,8 @@ function IncludedTaskCardList(props) {
                       </Tooltip>
                       <Tooltip
                         placement="right"
-                        title={
-                          <FormattedMessage
-                            id="app.edit"
-                            defaultMessage="Edit"
-                          />
-                        }
+                        title="Edit"
+                         
                       >
                         {user.imInd === true && user.dealUpdateInd === true && (
                           <span class="cursor-pointer text-[blue]"

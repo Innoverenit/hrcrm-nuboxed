@@ -57,10 +57,8 @@ this.props.getDetailsList(this.props.item.recruitmentId);
                       isRequired
                       name="jobOrder"
                       //type="text"
-                      label={<FormattedMessage
-                        id="app.jobId"
-                        defaultMessage="Job ID"
-                      />}
+                      label="Job ID"
+                     
                       // label="Job ID"
                       isColumn
                       width={"100%"}
@@ -71,10 +69,8 @@ this.props.getDetailsList(this.props.item.recruitmentId);
                       isRequired
                      name="requirementName"
                       type="text"
-                      label={<FormattedMessage
-                        id="app.requirement"
-                        defaultMessage="Requirement"
-                      />}
+                      label="Requirement"
+                   
                       // label="Requirement"
                       isColumn
                       width={"100%"}
@@ -85,10 +81,8 @@ this.props.getDetailsList(this.props.item.recruitmentId);
                       isRequired
                       name="ownerName"
                       type="text"
-                      label={<FormattedMessage
-                        id="app.created"
-                        defaultMessage="Created"
-                      />}
+                      label="Created"
+                     
                       // label="Created"
                       isColumn
                       width={"100%"}
@@ -99,10 +93,8 @@ this.props.getDetailsList(this.props.item.recruitmentId);
                       isRequired
                       name="creationDate"
                       type="text"
-                      label={<FormattedMessage
-                        id="app.createdOn"
-                        defaultMessage="Created On"
-                      />}
+                      label="Created On"
+                     
                       // label="Created On"
                       isColumn
                       width={"100%"}
@@ -113,10 +105,8 @@ this.props.getDetailsList(this.props.item.recruitmentId);
                       isRequired
                       name="recruiterList"
                       type="text"
-                      label={<FormattedMessage
-                        id="app.recruiter"
-                        defaultMessage="Recruiter"
-                      />}
+                      label="Recruiter"
+                     
                       // label="Recruiter"
                       isColumn
                       width={"100%"}
@@ -129,10 +119,8 @@ this.props.getDetailsList(this.props.item.recruitmentId);
                       isRequired
                       name="avilableDate"
                       type="text"
-                      label={<FormattedMessage
-                        id="app.start"
-                        defaultMessage="Start"
-                      />}
+                      label="Start"
+                    
                       // label="Start"
                       isColumn
                       width={"100%"}
@@ -143,10 +131,8 @@ this.props.getDetailsList(this.props.item.recruitmentId);
                       isRequired
                       name="duration"
                       type="text"
-                      label={<FormattedMessage
-                        id="app.duration"
-                        defaultMessage="Duration"
-                      />}
+                      label="Duration"
+                    
                       // label="Duration"
                       isColumn
                       width={"100%"}
@@ -157,10 +143,8 @@ this.props.getDetailsList(this.props.item.recruitmentId);
                       isRequired
                       name="billing"
                       type="text"
-                      label={<FormattedMessage
-                        id="app.billing"
-                        defaultMessage="Billing"
-                      />}
+                      label="Billing"
+                 
                       // label="Billing"
                       isColumn
                       width={"100%"}
@@ -171,10 +155,8 @@ this.props.getDetailsList(this.props.item.recruitmentId);
                       isRequired
                       name="candidatetList"
                       type="text"
-                      label={<FormattedMessage
-                        id="app.talent"
-                        defaultMessage="Talent"
-                      />}
+                      label="Talent"
+                    
                       // label="Talent"
                       isColumn
                       width={"100%"}
@@ -185,10 +167,8 @@ this.props.getDetailsList(this.props.item.recruitmentId);
                       isRequired
                       name="partnerName"
                       type="text"
-                      label={<FormattedMessage
-                        id="app.sponsor"
-                        defaultMessage="Sponsor"
-                      />}
+                      label="Sponsor"
+                    
                       // label="Sponsor"
                       isColumn
                       width={"100%"}

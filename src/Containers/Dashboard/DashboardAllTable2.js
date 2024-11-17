@@ -187,10 +187,8 @@ function DashboardAllTable2(props) {
     },
     {
       //title: "Currency",
-      title: <FormattedMessage
-        id="app.jobId"
-        defaultMessage="Job ID"
-      />,
+      title: "Job ID"
+    ,
      dataIndex: "jobOrder",
       width: "10%",
       ...getColumnSearchProps('jobOrder'),
@@ -227,39 +225,30 @@ function DashboardAllTable2(props) {
   
     },
     {
-      title: <FormattedMessage
-        id="app.role"
-        defaultMessage="Role"
-      />,
+      title: "Role"
+     ,
   
       dataIndex: "role",
        width: "10%",
     },
     {
-     title: <FormattedMessage
-       id="app.customer"
-       defaultMessage="Customer"
-     />,
+     title: "Customer"
+    ,
      dataIndex: "customerName",
      ...getColumnSearchProps('customerName'),
       width: "12%",
    },
  
     {
-       title: <FormattedMessage
-         id="app.sponsor"
-         defaultMessage="Sponsor"
-       />,
+       title: "Sponsor",
  
        dataIndex: "sponserName",
        ...getColumnSearchProps('sponserName'),
         width: "7%",
      },
      {
-      title: <FormattedMessage
-      id="app.ageing"
-      defaultMessage="Ageing"
-    />,
+      title: "Ageing"
+  ,
       // title:"Ageing",
       width: "11%",
        // dataIndex: "sponserName",
@@ -315,10 +304,8 @@ function DashboardAllTable2(props) {
     //        },
       
    {
-     title: <FormattedMessage
-       id="app.created"
-       defaultMessage="Created"
-     />,
+     title: "Created"
+  ,
 
      dataIndex: "creationDate",
      sorter: (a, b) => {
@@ -382,10 +369,8 @@ return {
  },
  children: (
    <>
-   <Tooltip title={<FormattedMessage
-        id="app.dropped"
-        defaultMessage="Dropped"
-      />}>
+   <Tooltip title="Dropped"
+     >
    <Badge count={item.rejected}  style={{ right: "1px" }}>
  <span class=" cursor-pointer "
    style={{
@@ -406,10 +391,8 @@ return {
 },
 },
 {
-     title: <FormattedMessage
-       id="app.progress"
-       defaultMessage="Progress"
-     />,
+     title: "Progress"
+  ,
      dataIndex: "selectedCandidate",
      width: "15%",
      

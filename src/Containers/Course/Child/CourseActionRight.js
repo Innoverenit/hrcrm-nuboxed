@@ -34,7 +34,7 @@ class CourseActionRight extends React.Component {
             type="primary"
             onClick={() => handleCourseModal(true)}
           >
-            <FormattedMessage id="app.add" defaultMessage="Add"/>
+           "Add"
           </Button>
            )} 
         </Tooltip>

@@ -61,11 +61,7 @@ function EditRecruitForm(props) {
                 >
                   <Field
                     name="description"
-                    //label="Description"
-                    label={<FormattedMessage
-                      id="app.description"
-                      defaultMessage="Description"
-                    />}
+                    label="Description"
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -82,11 +78,7 @@ function EditRecruitForm(props) {
                       {" "}
                       <Field
                         name="avilableDate"
-                        //label="Start Date"
-                        label={<FormattedMessage
-                          id="app.avilableDate"
-                          defaultMessage="Start Date"
-                        />}
+                        label="Start Date"
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -104,11 +96,8 @@ function EditRecruitForm(props) {
                     <div style={{ width: "22%" }}>
                       <Field
                         name="billing"
-                        //label="Billing / hour"
-                        label={<FormattedMessage
-                          id="app.billing"
-                          defaultMessage="Billing / hour"
-                        />}
+                        label="Billing / hour"
+                      
                         width={"100%"}
                         isRequired
                         isColumn
@@ -155,11 +144,7 @@ function EditRecruitForm(props) {
                   htmlType="submit"
                   Loading={props.updatingRecruitment}
                 >
-                  <FormattedMessage
-                    id="app.update"
-                    defaultMessage="Update"
-                  />
-                  {/* Update */}
+                  Update
                 </Button>
               </div>
             </Form>

@@ -54,10 +54,7 @@ import {
       {/* Recruitment Performance */}
       <div class=" flex justify-between" >
       {/* <div style={{ width: "47%" }}> */}
-      <span>  <FormattedMessage
-                id="app.performance"
-                defaultMessage="Performance"
-              /></span>
+      <span> Performance</span>
       {/* </div> */}
       {/* <div style={{ width: "47%" }}> */}
     <TimeInterval

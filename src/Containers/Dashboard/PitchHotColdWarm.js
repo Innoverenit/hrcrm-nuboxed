@@ -28,37 +28,7 @@ function PitchHotColdWarm (props) {
     return (
       <>
    
-          {/* <div className="grid grid-cols-5 gap-4 p-4">
-        <div className="col-span-2 sm:col-span-1">
-          <div className="flex"><FormattedMessage
-              id="app.hot"
-              defaultMessage="Hot"
-            /></div>
-          <div class="text-2xl cursor-pointer" onClick={()=>{handlePitchHCWdrawer(true)}}>{investorHotColdWarm.hotList}</div>
-          </div>
-         
-          <div className="col-span-2 sm:col-span-1">
-          <div className="flex">
-          <FormattedMessage
-              id="app.warm"
-              defaultMessage="Warm"
-            />
-            
-            </div>
-          <div class="text-2xl cursor-pointer" onClick={()=>{handlePitchHCWdrawer(true)}}>{investorHotColdWarm.warmList}</div>
-        </div>
-
-        <div className="col-span-2 sm:col-span-1">
-          <div className="flex">
-          <FormattedMessage
-              id="app.cold"
-              defaultMessage="Cold"
-            />
-            
-            </div>
-          <div class="text-2xl cursor-pointer" onClick={()=>{handlePitchHCWdrawer(true)}}>{investorHotColdWarm.coldList}</div>
-          </div>
-</div> */}
+       
      <div >
         <Chart
           type="pie"

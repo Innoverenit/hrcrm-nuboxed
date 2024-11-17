@@ -127,10 +127,8 @@ handleContract = (checked) => {
     return (
       <>
         <StyledDrawer
-          // title="Document"
-          title={
-            <FormattedMessage id="app.document" defaultMessage="Document" />
-          }
+          title="Document"
+          
           width="60%"
           visible={documentUploadModal}
           destroyOnClose
@@ -206,25 +204,7 @@ handleContract = (checked) => {
                       <div class=" flex justify-between mt-4"
                   >
                       <div class=" w-[47%]" >
-                      {/* <Field
-                        name="documentTypeId"
-                        selectType="documentTypeName"
-                        isColumnWithoutNoCreate
-                        // label="Types"
-                        label={
-                          <FormattedMessage
-                            id="app.type"
-                            defaultMessage="Type"
-                          />
-                        }
-                        // isRequired
-                        component={SearchSelect}
-                        isColumn
-                        value={values.documentId}
-                        // defaultValue={{ label: firstName, value: documentId }}
-                        inlineLabel
-                        
-                      /> */}
+                     
                     
                       <div class=" text-xs font-bold font-poppins text-black">Type</div> 
                       <Select
@@ -245,13 +225,8 @@ handleContract = (checked) => {
                       <div class=" w-[47%]" >
                       <Field
                         name="documentTitle"
-                        //label="Name"
-                        label={
-                          <FormattedMessage
-                            id="app.name"
-                            defaultMessage="Name"
-                          />
-                        }
+                        label="Name"
+                      
                         width={"100%"}
                         isColumn
                         component={InputComponent}
@@ -285,13 +260,8 @@ handleContract = (checked) => {
                     >
                      <Field
                         name="documentDescription"
-                        // label="Description"
-                        label={
-                          <FormattedMessage
-                            id="app.documentDescription"
-                            defaultMessage="Description"
-                          />
-                        }
+                         label="Description"
+                       
                         isRequired
                         isColumn
                         width={"100%"}
@@ -345,13 +315,8 @@ handleContract = (checked) => {
                                   <Field
                                     inlineLabel
                                     name="department"
-                                    //label="Function"
-                                    label={
-                                      <FormattedMessage
-                                        id="app.department"
-                                        defaultMessage="Function"
-                                      />
-                                    }
+                                  label="Function"
+                                   
                                     isRequired
                                     isColumn
                                    // selectType="department"
@@ -360,11 +325,8 @@ handleContract = (checked) => {
                                 </div>
                                 <div>
                                   <div class=" text-xs font-bold font-poppins text-black">
-                                    <FormattedMessage
-                                      id="app.level"
-                                      defaultMessage="Level"
-                                    />
-                                    ,{/* Level */}
+                                    Level
+                                  
                                   </div>
                                   <div class=" flex justify-between mt-[0.25em]"
                                   >
@@ -444,11 +406,8 @@ handleContract = (checked) => {
                       type="primary"
                       Loading={addingDocumentByCandidateId}
                     >
-                      <FormattedMessage
-                        id="app.submit"
-                        defaultMessage="Submit"
-                      />
-                      {/* Submit */}
+                      Submit
+                     
                     </Button>
                   </div>
                 </Form>

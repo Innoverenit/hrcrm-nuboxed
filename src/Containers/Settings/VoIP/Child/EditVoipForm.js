@@ -66,13 +66,8 @@ class EditVoipForm extends Component {
                   <Field
                     name="sid"
                     placeholder="Account SID"
-                    //label="Account SID"
-                    label={
-                      <FormattedMessage
-                        id="app.accountsid"
-                        defaultMessage="Account SID"
-                      />
-                    }
+                   label="Account SID"
+                    
                     inlineLabel
                     labelWidth="24%"
                     isRequired
@@ -85,13 +80,8 @@ class EditVoipForm extends Component {
                     isRequired
                     name="authorizationToken"
                     placeholder="Auth token"
-                    //label="Auth Token"
-                    label={
-                      <FormattedMessage
-                        id="app.authorizationToken"
-                        defaultMessage="Auth token"
-                      />
-                    }
+                    label="Auth Token"
+                   
                     inlineLabel
                     labelWidth="24%"
                     width={"100%"}
@@ -103,13 +93,8 @@ class EditVoipForm extends Component {
                     isRequired
                     name="phoneNo"
                     placeholder="Twilio number"
-                    //label="Twilio number"
-                    label={
-                      <FormattedMessage
-                        id="app.phoneNo"
-                        defaultMessage="Twilio number"
-                      />
-                    }
+                  label="Twilio number"
+                   
                     labelWidth="24%"
                     component={InputComponent}
                     inlineLabel
@@ -121,13 +106,8 @@ class EditVoipForm extends Component {
                     isRequired
                     name="voipProvider"
                     placeholder="VoIP Provider"
-                    //label="VoIP Provider"
-                    label={
-                      <FormattedMessage
-                        id="app.voipProvider"
-                        defaultMessage="VoIP Provider"
-                      />
-                    }
+                   label="VoIP Provider"
+                    
                     labelWidth="24%"
                     component={InputComponent}
                     inlineLabel
@@ -143,8 +123,7 @@ class EditVoipForm extends Component {
                   htmlType="submit"
                   Loading={updatingTwilioCredential}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
-                  {/* Update */}
+                   Update 
                 </Button>
               </div>
             </Form>

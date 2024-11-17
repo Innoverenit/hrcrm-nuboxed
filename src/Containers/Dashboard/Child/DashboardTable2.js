@@ -153,10 +153,8 @@ const AddJobDetailModal = lazy(() => import("../Child/AddJobDetailModal"));
     },
     {
       //title: "Currency",
-      title: <FormattedMessage
-        id="app.jobId"
-        defaultMessage="Job ID"
-      />,
+      title: "Job ID"
+   ,
      dataIndex: "jobOrder",
       width: "13%",
       ...getColumnSearchProps('jobOrder'),
@@ -193,19 +191,15 @@ const AddJobDetailModal = lazy(() => import("../Child/AddJobDetailModal"));
   
     },
     {
-     title: <FormattedMessage
-       id="app.customer"
-       defaultMessage="Customer"
-     />,
+     title:"Customer"
+    ,
      dataIndex: "customerName",
      ...getColumnSearchProps('customerName'),
       width: "16%",
    },
     {
-       title: <FormattedMessage
-         id="app.sponsor"
-         defaultMessage="Sponsor"
-       />,
+       title: "Sponsor"
+      ,
  
        dataIndex: "sponserName",
        ...getColumnSearchProps('sponserName'),
@@ -219,10 +213,8 @@ const AddJobDetailModal = lazy(() => import("../Child/AddJobDetailModal"));
         width: "10%",
      },
    {
-     title: <FormattedMessage
-       id="app.created"
-       defaultMessage="Created"
-     />,
+     title:"Created"
+     ,
 
      dataIndex: "creationDate",
      sorter: (a, b) => {
@@ -261,10 +253,8 @@ render: (name, item, i) => {
    children: (
      <>
      <Tooltip 
-     title={<FormattedMessage
-      id="app.submitted"
-      defaultMessage="Submitted"
-    />}
+     title="Submitted"
+ 
      >
      <Badge count={item.offered}  style={{ right: "1px" }}>
    <span
@@ -296,10 +286,8 @@ return {
  children: (
    <>
    <Tooltip 
-    title={<FormattedMessage
-      id="app.dropped"
-      defaultMessage="Dropped"
-    />}
+    title="Dropped"
+  
   >
    <Badge count={item.rejected}  style={{ right: "1px" }}>
  <span
@@ -320,10 +308,8 @@ return {
 },
 },
 {
-     title: <FormattedMessage
-       id="app.progress"
-       defaultMessage="Progress"
-     />,
+     title:"Progress"
+    ,
      dataIndex: "selectedCandidate",
      width: "15%",
      
@@ -409,10 +395,8 @@ render: (name, item, i) => {
    children: (
      <>
       <Tooltip
-          title={<FormattedMessage
-            id="app.selected"
-            defaultMessage="Selected"
-          />}
+          title="Selected"
+        
     >
      <Badge count={item.closedPosition}  style={{ right: "1px" }}>
    <span
@@ -443,10 +427,8 @@ render: (name, item, i) => {
    children: (
      <>
      <Tooltip 
-        title={<FormattedMessage
-          id="app.onBoarded"
-          defaultMessage="OnBoarded"
-        />}
+        title="OnBoarded"
+     
 >
      <Badge count={item.onBoardNo}  style={{ right: "1px" }}>
    <span

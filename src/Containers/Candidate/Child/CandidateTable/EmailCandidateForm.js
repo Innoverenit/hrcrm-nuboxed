@@ -263,10 +263,7 @@ class EmailCandidateForm extends Component {
                         //selectType="customerList"
                         isColumnWithoutNoCreate
                         label={
-                          <FormattedMessage
-                            id="app.customer"
-                            defaultMessage={this.state.vendor ? "Vendor" : "Customer"}
-                          />
+                         this.state.vendor ? "Vendor" : "Customer"
                         }
                         // component={SearchSelect}
                         component={SelectComponent}
@@ -281,12 +278,8 @@ class EmailCandidateForm extends Component {
                         isRequired
                         //selectType="contactListFilter"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.contact"
-                            defaultMessage="Contact"
-                          />
-                        }
+                        label="Contact"
+                         
                         // component={SearchSelect}
                         isColumn
                         component={SelectComponent}
@@ -310,12 +303,8 @@ class EmailCandidateForm extends Component {
                       <Field
                         name="customer2"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.customer"
-                            defaultMessage={this.state.vendor ? "Vendor" : "Customer"}
-                          />
-                        }
+                        label={this.state.vendor ? "Vendor" : "Customer"}
+                         
                         component={SelectComponent}
                         options={Array.isArray(customerOption) ? customerOption : []}
                         isColumn
@@ -327,12 +316,8 @@ class EmailCandidateForm extends Component {
                         name="contact2"
                         //selectType="contactListFilter"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.contact"
-                            defaultMessage="Contact"
-                          />
-                        }
+                        label="Contact"
+                         
                         isColumn
                         component={SelectComponent}
                         options={
@@ -356,12 +341,8 @@ class EmailCandidateForm extends Component {
                         name="customer3"
                         // selectType="customerList"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.customer"
-                            defaultMessage={this.state.vendor ? "Vendor" : "Customer"}
-                          />
-                        }
+                        label={this.state.vendor ? "Vendor" : "Customer"}
+                          
                         // component={SearchSelect}
                         component={SelectComponent}
                         options={Array.isArray(customerOption) ? customerOption : []}
@@ -374,12 +355,8 @@ class EmailCandidateForm extends Component {
                         name="contact3"
                         //selectType="contactListFilter"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.contact"
-                            defaultMessage="Contact"
-                          />
-                        }
+                        label="Contact"
+                         
                         isColumn
                         component={SelectComponent}
                         options={
@@ -395,10 +372,7 @@ class EmailCandidateForm extends Component {
                   </div>
                 
                   <div class=" flex items-center mt-3" >
-                    <span><FormattedMessage
-                      id="app.subject"
-                      defaultMessage="Subject"
-                    /></span>
+                    <span>Subject</span>
                     <Field
                       name="subject"
                       inlineLabel
@@ -433,8 +407,8 @@ class EmailCandidateForm extends Component {
                       loading={this.props.addingCandidateEmail}
                       style={{ marginTop: "1.62em" }}
                     >
-                      {/* Send */}
-                      <FormattedMessage id="app.send" defaultMessage="Send" />
+                      Send
+                    
                     </Button>
                   </div>
                 </Form>

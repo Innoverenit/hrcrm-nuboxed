@@ -57,10 +57,7 @@ class InvestorFunnelTab extends Component {
                 <>
                   <ListAltIcon style={{fontSize:"1.1rem"}}/>
                   <span class=" ml-1">
-                  <FormattedMessage
-              id="app.funnel"
-              defaultMessage="Funnel"
-            />
+                Funnel
                     </span>
 
                 

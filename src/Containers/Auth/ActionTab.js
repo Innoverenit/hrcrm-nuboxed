@@ -75,10 +75,8 @@ class ActionTab extends Component {
                  
                   <span class="font-poppins ml-[0.25em]" >
                   <Badge count={this.props.dealsIncludedCount.InvestorOppCount} overflowCount={999}>
-               <FormattedMessage
-          id="app.Deals"
-          defaultMessage="Deals"
-        />
+              Deals
+       
               </Badge>
                 </span>
           
@@ -105,10 +103,8 @@ class ActionTab extends Component {
               />
                   <span class="font-poppins ml-[0.25em]" >
                   <Badge count={this.props.taskIncludedCount.TaskCount} overflowCount={999}>
-               <FormattedMessage
-          id="app.Task"
-          defaultMessage="Task"
-        />
+              Task
+    
           </Badge>
                 </span>
             

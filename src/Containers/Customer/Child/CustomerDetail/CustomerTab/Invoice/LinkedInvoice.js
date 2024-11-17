@@ -115,9 +115,7 @@ class LinkedInvoice extends Component {
     //     render: (name, item, i) => {
     //       return (
     //         <StyledPopconfirm
-    //           title={<FormattedMessage
-    //             id="app.doyouwanttodelete?"
-    //             defaultMessage="Do you want to delete?"
+    //           title="Do you want to delete?"
     //           />}
             
     //         >

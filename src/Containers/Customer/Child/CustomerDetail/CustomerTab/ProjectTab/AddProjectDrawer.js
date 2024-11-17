@@ -10,9 +10,7 @@ const AddProjectDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-        title={
-          <FormattedMessage id="app.project" defaultMessage="Project" />
-        }
+        title="Project" 
         width="45%"
         visible={props.addCustomerProjectDrawer}
         maskClosable={false}

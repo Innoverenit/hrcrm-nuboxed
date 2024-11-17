@@ -61,12 +61,8 @@ render() {
         
         <JumpStartBox
             noProgress
-            title={
-              <FormattedMessage
-                id="app.opportunities"
-                defaultMessage="#Open Opportunities"
-              />
-            }
+            title="#Open Opportunities"
+              
             // value={
             //   this.props.OppValue.CustomerOppertunityDetails
 
@@ -81,12 +77,8 @@ render() {
        
           <JumpStartBox
             noProgress
-            title={
-              <FormattedMessage
-                id="app.pipeLineValue"
-                defaultMessage="Pipe line value"
-              />
-            }
+            title="Pipe line value"
+             
             bgColor="#34495E "
             // value={
             //   pipeLineValue
@@ -99,12 +91,8 @@ render() {
 
 <JumpStartBox
         noProgress
-        title={
-          <FormattedMessage
-            id="app.opportunities"
-            defaultMessage=" Opportunities Won"
-          />
-        }
+        title=" Opportunities Won"
+         
         // value={
         //   this.props.WonCustomerOpp.CustomerWonOppertunityDetails
 
@@ -116,12 +104,8 @@ render() {
       />
       <JumpStartBox
         noProgress
-        title={
-          <FormattedMessage
-            id="app.activity"
-            defaultMessage="Activity"
-          />
-        }
+        title="Activity"
+         
         // value={
         //   this.props.WonCustomerOpp.CustomerWonOppertunityDetails
 
@@ -133,12 +117,8 @@ render() {
       />
       <JumpStartBox
             noProgress
-            title={
-              <FormattedMessage
-                id="app.#Contacts"
-                defaultMessage="#Contacts "
-              />
-            }
+            title="#Contacts "
+             
 
             // value={
             //   this.props.contactValue.CustomerContactDetails
@@ -160,69 +140,7 @@ render() {
       </div>
 
 <div class=" flex flex-row w-full mt-4" >
-{/* <div class="flex w-full" >
-    
-<JumpStartBox2
-            noProgress
-            // title="Open Tasks"
-            title={
-              <FormattedMessage
-                id="app.weightedValue"
-                defaultMessage="Weighted Value"
-              />
-            }
-            value={
-              weightedValue
 
-            }
-            isLoading={this.props.fetchingWeightedValue} 
-            //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-          
-            
-          />
-  
-   
-      <JumpStartBox1
-        noProgress
-        title={
-          <FormattedMessage
-            id="app.pipeLineValue"
-            defaultMessage="Won Pipe line value"
-          />
-        }
-      
-        value={
-          this.props.WonCustomerPipeline.WonPipeLineValue
-
-        }
-         isLoading={this.props.fetchingWonCusPipelineValue} 
-        //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-      
-      />
-
-      <JumpStartBox2
-        noProgress
-        // title="Open Tasks"
-        title={
-          <FormattedMessage
-            id="app.weightedValue"
-            defaultMessage="Won Weighted Value"
-          />
-        }
-        value={
-          this.props.WonCustomerWeighted.weightedValue
-
-        }
-        isLoading={this.props.fetchingWonCusmWeightedValue} 
-        //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-      
-        
-      />
-
- 
-       
-
-    </div> */}
 
   </div>
   </>

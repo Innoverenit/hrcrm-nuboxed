@@ -50,21 +50,13 @@ function ContactCETTab (props) {
                      
                           <>
                             <Tooltip 
-                              title={
-                                <FormattedMessage
-                                  id="app.create"
-                                  defaultMessage="Create"
-                                />
-                              }
+                              title="Create"
+                               
                             >
                           
                                <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"                                                       
-                                tooltiptitle={
-                                  <FormattedMessage
-                                    id="app.Create"
-                                    defaultMessage="Create"
-                                  />
-                                }
+                                tooltiptitle="Create"
+                                  
                                 onClick={() => {
                                     props.handleCallActivityModal(true);
                                 }}

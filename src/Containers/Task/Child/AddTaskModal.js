@@ -11,11 +11,8 @@ const AddTaskModal = (props) => {
   return (
     <>
       <StyledDrawer
-        //title="Schedule Task"
-        title={<FormattedMessage
-          id="app.scheduletask"
-          defaultMessage="Schedule Task"
-        />}
+       title="Schedule Task"
+       
         width={drawerWidth}
         visible={addTaskModal}
         onClose={() => handleTaskModal(false)}

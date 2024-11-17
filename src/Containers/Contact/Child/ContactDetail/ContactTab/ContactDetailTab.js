@@ -98,70 +98,7 @@ class ContactDetailTab extends Component {
       <>
         <TabsWrapper>
           <StyledTabs defaultActiveKey="1" onChange={this.handleTabChange}>
-          {/* <TabPane
-              tab={
-                <>
-                 
-                 <WorkIcon style={{fontSize:"1.1rem"}}
-                  />
-                    <span class=" ml-1">
-                     <FormattedMessage
-                      id="app.orders"
-                      defaultMessage="Orders"
-                    />
-                  </span>
-                  {activeKey === "1" && (
-                    <>
-                    </>
-                  )}
-                </>
-              }
-              key="1"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <OpportunityTable />
-              </Suspense>
-            </TabPane> */}
-            
-             {/* <TabPane
-              tab={
-                <>
-                  <span>
-                    <NoteAltIcon style={{fontSize:"1.1rem"}}/>
-                    &nbsp;
-                    <FormattedMessage
-                      id="app.notes"
-                      defaultMessage="Notes"
-                    />
-                    &nbsp;
-                    {activeKey === "2" && (
-                      <>
-                      
-                        <Tooltip title="Voice to Text">
-                      <span                       
-                    onClick={()=>handleContactReactSpeechModal(true)}
-                   >
-                  <MicIcon
-                  style={{fontSize:"1.1rem"}}
-                   />
-                  
-                  </span>
-                  </Tooltip>
-                  </>
-                    )}
-                  </span>
-                  
-                 
-                </>
-              }
-              key="2"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <LinkedContactNotes />
-              </Suspense>
-            </TabPane> */}
+         
             <TabPane
               tab={
                 <>
@@ -174,11 +111,8 @@ class ContactDetailTab extends Component {
                     <>
                  <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
               
-                        // tooltipTitle="Upload Document"
-                        tooltiptitle={<FormattedMessage
-                          id="app.uploaddocument"
-                          defaultMessage="Upload Document"
-                        />}
+                     tooltipTitle="Upload Document"
+                      
                         onClick={() => handleDocumentUploadModal(true)}                      
                       />
                     </>

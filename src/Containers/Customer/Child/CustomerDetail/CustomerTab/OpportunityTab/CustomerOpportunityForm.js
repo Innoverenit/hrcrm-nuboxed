@@ -464,29 +464,7 @@ function CustomerOpportunityForm(props) {
           </>
         )}
       </Listbox>
-                {/* <Field
-                  name="salesUserIds"
-                  // selectType="employee"
-                  isColumnWithoutNoCreate
-                  // label="Assigned"
-                  label={
-                    <FormattedMessage
-                      id="app.assignedto"
-                      defaultMessage="Assigned"
-                    />
-                  }
-                  component={SelectComponent}
-                  options={Array.isArray(salesNameOption) ? salesNameOption : []}
-                  // margintop={"0"}
-                  isColumn
-                  // value={values.employeeId}
-                  // defaultValue={{
-                  //   label: `${fullName}`,
-                  //   value: employeeId,
-                  // }}
-                  inlineLabel
-                  style={{ flexBasis: "80%" }}
-                /> */}
+               
                  <div class="mt-3">
                  <div class="text-xs font-bold w-full max-sm:w-full">
                  {translatedMenuItems[8]} </div>

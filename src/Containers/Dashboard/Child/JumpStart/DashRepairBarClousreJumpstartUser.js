@@ -55,10 +55,9 @@
 // <div class="mr-5 ml-5 mt-4 h-[21rem] w-wk">  
 //       <div class=" flex justify-between" >
 //       <span>
-//       <FormattedMessage
-//                         id="app.hours"
-//                         defaultMessage="Hours"
-//                       />
+//     
+//                        "Hours"
+//                  
         
 //         </span>
 //    <TimeInterval

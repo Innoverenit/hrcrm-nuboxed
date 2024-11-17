@@ -172,10 +172,7 @@ class RecruitmentTable extends Component {
     const columns = [
       {
         //title: "Currency",
-        title: <FormattedMessage
-          id="app.jobId"
-          defaultMessage="Job ID"
-        />,
+        title: "Job ID"  ,
        dataIndex: "jobOrder",
         width: "9%",
         ...this.getColumnSearchProps('jobOrder'),
@@ -199,10 +196,8 @@ class RecruitmentTable extends Component {
     
       },
       {
-        title: <FormattedMessage
-          id="app.requirementName"
-          defaultMessage="Requirement"
-        />,
+        title: "Requirement"
+        ,
         dataIndex: "requirementName",
         width: "10%",
         ...this.getColumnSearchProps('requirementName'),
@@ -245,11 +240,8 @@ class RecruitmentTable extends Component {
       },
   },
   {
-        // title: "Start",
-        title: <FormattedMessage
-          id="app.processName"
-          defaultMessage="Start"
-        />,
+        title: "Start",
+
         dataIndex: "processName",
         width: "7%",
         render: (name, item, i) => {
@@ -267,20 +259,14 @@ class RecruitmentTable extends Component {
         },
       },
       {
-        //title: "Rate/hr",
-        title: <FormattedMessage
-          id="app.billing"
-          defaultMessage="Rate/hr"
-        />,
+        title: "Rate/hr",
         dataIndex: "billing",
         width: "6%",
       },
       {
-        //title: "Stages",
-        title: <FormattedMessage
-          id="app.experience"
-          defaultMessage="Experience"
-        />,
+      
+        title: "Experience"
+      ,
         dataIndex: "experience",
         width: "9%",
         sorter: (a, b) => {
@@ -297,11 +283,8 @@ class RecruitmentTable extends Component {
         },
       },
       {
-        //title: "Skill Set",
-        title: <FormattedMessage
-          id="app.skillset"
-          defaultMessage="Skills Set"
-        />,
+        title: "Skill Set",
+        
         dataIndex: "skillName",
         width: "9%",
         ...this.getColumnSearchProps('skillName'),
@@ -325,10 +308,8 @@ class RecruitmentTable extends Component {
   },
 {
   //title: "Sponsor",
-  title: <FormattedMessage
-    id="app.recruitOwner"
-    defaultMessage="Recruit Owner"
-  />,
+  title: "Recruit Owner"
+  ,
    dataIndex: "recruitOwner",
   width: "10%",
   render: (name, item, i) => {
@@ -346,11 +327,8 @@ class RecruitmentTable extends Component {
   },
 },
 {
-        //title: "Sponsor",
-        title: <FormattedMessage
-          id="app.sponsor"
-          defaultMessage="Sponsor"
-        />,
+        title: "Sponsor",
+       
         dataIndex: "sponserName",
         width: "7%",
         render: (name, item, i) => {

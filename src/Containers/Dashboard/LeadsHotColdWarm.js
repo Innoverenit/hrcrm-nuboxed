@@ -22,26 +22,17 @@ function LeadsHotColdWarm (props) {
    
           <div className="grid grid-cols-5 gap-4 p-4">
         <div className="col-span-2 sm:col-span-1">
-          <div className="flex">        <FormattedMessage
-          id="app.hot"
-          defaultMessage="Hot"
-        /></div>
+          <div className="flex">      Hot
+      </div>
           <div class="text-2xl cursor-pointer" onClick={()=>{handleLeadHCWdrawer(true)}}>{showHotColdWarm.hotList}</div></div>
           <div className="col-span-2 sm:col-span-1">
-          <div className="flex">
-          <FormattedMessage
-          id="app.hot"
-          defaultMessage="Cold"
-        />
+          <div className="flex">Cold
             </div>
           <div class="text-2xl cursor-pointer" onClick={()=>{handleLeadHCWdrawer(true)}}>{showHotColdWarm.coldList}</div>
           </div>
           <div className="col-span-2 sm:col-span-1">
           <div className="flex">
-          <FormattedMessage
-          id="app.warm"
-          defaultMessage="Warm"
-        />
+          Warm
             </div>
           <div class="text-2xl cursor-pointer" onClick={()=>{handleLeadHCWdrawer(true)}}>{showHotColdWarm.warmList}</div>
         </div>

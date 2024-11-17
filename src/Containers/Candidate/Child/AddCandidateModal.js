@@ -9,10 +9,8 @@ const AddCandidateModal = props => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.candidate"
-          defaultMessage="Candidate"
-        />}
+        title="Candidate"
+        
         width="60%"
         visible={addCandidateModal}
         onClose={() => handleCandidateModal(false)}

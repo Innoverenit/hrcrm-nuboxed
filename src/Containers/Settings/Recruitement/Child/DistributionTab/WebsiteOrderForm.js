@@ -167,8 +167,8 @@ const handleDeptChange = (event) => {
                   htmlType="submit"
                   Loading={props.updateRequirement}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
-                  {/* Update */}
+              
+                  Update
                 </Button>
               </div>
               <div class="mt-4">

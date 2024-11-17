@@ -12,11 +12,8 @@ const AddTemplateModal = (props) => {
   return (
     <>
       <StyledDrawer
-        //title="Template"
-        title={<FormattedMessage
-          id="app.Template"
-          defaultMessage="Template"
-        />}
+        title="Template"
+       
         width="60%"
         visible={props.addTemplateModal}
         maskClosable={false}

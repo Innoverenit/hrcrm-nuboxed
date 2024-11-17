@@ -246,19 +246,13 @@ class SingleOpportunityStages extends Component {
                     )
                   }
                 >
-                  {/* Save */}
-                  <FormattedMessage
-                    id="app.save"
-                    defaultMessage="Save"
-                  />
+                  Save
+                
                 </Button>
                 &nbsp;
                 <Button  type="cancel"  onClick={() => toggleViewType()}>
-               {/* Cancel */}
-                  <FormattedMessage
-                    id="app.cancel"
-                    defaultMessage="Cancel"
-                  />
+               Cancel
+                 
                 </Button>
               </div>
             )

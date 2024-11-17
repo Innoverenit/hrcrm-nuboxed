@@ -9,10 +9,8 @@ const AddFileRecruitModal = (props) => {
   return (
     <>
       <StyledModal
-        title={<FormattedMessage
-          id="app.requirement"
-          defaultMessage="File Requirement"
-        />}
+        title="File Requirement"
+  
         width="40%"
         visible={props.addFileRecruitModal}
         maskClosable={false}

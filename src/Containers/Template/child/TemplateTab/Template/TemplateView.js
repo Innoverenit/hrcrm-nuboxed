@@ -151,11 +151,8 @@ function TemplateView(props) {
                           type="text"
                           isColumn
                           width={"100%"}
-                          //label="Name"
-                          label={<FormattedMessage
-                            id="app.name"
-                            defaultMessage="Name"
-                          />}
+                          label="Name"
+                          
                           component={InputComponent}
                           inlineLabel
                           style={{
@@ -173,11 +170,8 @@ function TemplateView(props) {
                           type="text"
                           isColumn
                           width={"100%"}
-                          // label="Subject"
-                          label={<FormattedMessage
-                            id="app.subject"
-                            defaultMessage="Subject"
-                          />}
+                          label="Subject"
+                        
                           component={InputComponent}
                           inlineLabel
                           style={{
@@ -197,12 +191,8 @@ function TemplateView(props) {
                       
 
                       // label="Sectors"
-                      label={
-                        <FormattedMessage
-                          id="app.customer"
-                          defaultMessage="Customer"
-                        />
-                      }
+                      label="Customer"
+                       
                       isColumn
                       component={SearchSelect}
                       // value={values.sectorId}
@@ -217,11 +207,8 @@ function TemplateView(props) {
                     <div class=" w-[50%]" >
                       <Field
                         name="descripion"
-                        //label="Description"
-                        label={<FormattedMessage
-                          id="app.descripion"
-                          defaultMessage="Description"
-                        />}
+                        label="Description"
+                       
                         width={"100%"}
                         height={"5.9375em"}
                         isColumn
@@ -287,11 +274,8 @@ function TemplateView(props) {
                   Loading={props.udatingEmail}
                   disabled={!edit}
                 >
-                  <FormattedMessage
-                    id="app.update"
-                    defaultMessage="Update"
-                  />
-                  {/* Update */}
+                 
+                  Update
                 </Button>
               </div>
             </Form>

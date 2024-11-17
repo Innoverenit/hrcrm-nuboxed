@@ -10,10 +10,8 @@ const UpdateCandidateResumeModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.updateResume"
-          defaultMessage="Update Resume"
-        />}
+        title="Update Resume"
+      
         width="60%"
         visible={updateCandidateResumeModal}
         onClose={() => handleupdateCandidateResumeModal(false)}
