@@ -309,13 +309,8 @@ class CandidateTaskForm extends Component {
 
                           <div class=" flex">
                           <Tooltip
-                              //title="High"
-                              title={
-                                <FormattedMessage
-                                  id="app.high"
-                                  defaultMessage="High"
-                                />
-                              }
+                              title="High"
+                              
                             >
                               <Button
                                // type="primary"
@@ -334,13 +329,8 @@ class CandidateTaskForm extends Component {
                             </Tooltip>
                             &nbsp;
                             <Tooltip
-                              //title="Medium"
-                              title={
-                                <FormattedMessage
-                                  id="app.medium"
-                                  defaultMessage="Medium"
-                                />
-                              }
+                              title="Medium"
+                             
                             >
                               <Button
                                // type="primary"
@@ -358,13 +348,9 @@ class CandidateTaskForm extends Component {
                               />
                             </Tooltip>
                             &nbsp;
-                            <Tooltip //title="Low"
-                              title={
-                                <FormattedMessage
-                                  id="app.low"
-                                  defaultMessage="Low"
-                                />
-                              }
+                            <Tooltip 
+                            title="Low"
+                             
                             >
                               <Button
                                 //type="primary"
@@ -392,7 +378,7 @@ class CandidateTaskForm extends Component {
                         <div class=" w-full" >
                           <div class=" text-xs font-bold font-poppins text-black">
                             Type
-                            {/* <FormattedMessage id="app.type" defaultMessage="Type" /> */}
+                           
                           </div>
                           <Field
                             isRequired

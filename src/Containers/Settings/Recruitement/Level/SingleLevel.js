@@ -83,13 +83,11 @@ class SingleLevel extends Component {
                       handleUpdateSector(sectorId, value, toggleViewType())
                     }
                   >
-                    {/* Save */}
-                    <FormattedMessage id="app.update" defaultMessage="Update" />
+                    Save
                   </Button>
                   &nbsp;
                   <Button type="primary" ghost onClick={() => toggleViewType()}>
-                    {/* Cancel */}
-                    <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                    Cancel
                   </Button>
                 </div>
               </div>

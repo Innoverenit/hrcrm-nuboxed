@@ -12,11 +12,8 @@ class CandidateDetailActionLeft extends React.Component {
         <RollbackOutlined
           style={{ marginRight: "0.3rem",color: "#1890ff" }}
           iconType="rollback"
-          // tooltipTitle="Back"
-          tooltiptitle={<FormattedMessage
-            id="app.back"
-            defaultMessage="Back"
-          />}
+          tooltipTitle="Back"
+         
          
           onClick={() => this.props.history.goBack()}
         />{" "}

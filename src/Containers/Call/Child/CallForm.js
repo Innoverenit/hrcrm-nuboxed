@@ -661,9 +661,7 @@ function CallForm(props) {
                       <div class=" flex justify-between">
                         {/* <Tooltip title="Inbound"> */}
                         <Tooltip
-                          title={
-                            <FormattedMessage id="app.introductory" defaultMessage="introductory"/>
-                          }
+                          title="introductory"
                         >
                           <div
                             onClick={() => handleTypeChange("Inbound")}
@@ -680,12 +678,8 @@ function CallForm(props) {
                         </Tooltip>
                         {/* <Tooltip title="Outbound"> */}
                         <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.interview"
-                              defaultMessage="Interview"
-                            />
-                          }
+                          title="Interview"
+                            
                         >
                           <div
                             onClick={() => handleTypeChange("Outbound")}
@@ -702,12 +696,8 @@ function CallForm(props) {
                         </Tooltip>
                         {/* <Tooltip title="Conference"> */}
                         <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.closure"
-                              defaultMessage="Closure"
-                            />
-                          }
+                          title="Closure"
+                           
                         >
                           <div
                             onClick={() => handleTypeChange("Conference")}
@@ -727,10 +717,7 @@ function CallForm(props) {
                     <div class=" w-1/2 mt-3">
                       
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs ">
-                    {translatedMenuItems[1]} {/* <FormattedMessage
-                          id="app.category"
-                          defaultMessage="category"
-                        /> */}
+                    {translatedMenuItems[1]} 
                       </div>
                       
                       <ButtonGroup>
@@ -745,8 +732,8 @@ function CallForm(props) {
                             category === "New" ? "white" : "black",
                           }}
                         >
-                          {/* New */}
-                          <FormattedMessage id="app.new" defaultMessage="new" />
+                          New
+                        
                         </Button>
                         <Button
                           onClick={() => handleCategoryChange("Follow up")}
@@ -761,11 +748,8 @@ function CallForm(props) {
                                 : "black",
                           }}
                         >
-                          {/* Follow up */}
-                          <FormattedMessage
-                            id="app.followup"
-                            defaultMessage="followup"
-                          />
+                          Follow up
+                          
                         </Button>
                       </ButtonGroup>
                     </div>
@@ -1056,114 +1040,13 @@ function CallForm(props) {
                   )} 
                   </div>
                 
-                  {/* <div >
-                  <Field
-                    disabled="true"
-                    isRequired
-                    name="candidateId"
-                    // type="text"
-                    //label="Talent"
-                    label={
-                      <FormattedMessage
-                        id="app.team"
-                        defaultMessage="Team"
-                      />
-                    }
-                    placeholder="Start typing to search..."
-                    isColumnWithoutNoCreate
-                    setClearbitCandidateData={props.setClearbitCandidateData}
-                    component={CandidateClearbit}
-                    inlineLabel
-                  />
-                   </div>
-                   */}
+                 
                 <div class="mt-2">
                 <ReactDescription
                 setText={setText}
                 text={text}
                 />
-              {/* <div>
-            <span class=" text-xs font-bold font-poppins"> {translatedMenuItems[14]}</span>
-            <span>
-                    <span onClick={SpeechRecognition.startListening}>
-                      <Tooltip title="Start">
-                        <span  >
-                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={SpeechRecognition.stopListening}>
-                      <Tooltip title="Stop">
-                        <span
-                          
-                           >
-                          <StopCircleIcon  className="!text-icon ml-1 text-green-600" />
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={resetTranscript}>
-                      <Tooltip title="Clear">
-                        <span  >
-                          <RotateRightIcon className="!text-icon ml-1"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-                  </span>                               
-                </div>
-                <div>
-                    <textarea
-                      name="description"
-                      className="textarea h-26"
-                      type="text"
-                      value={transcript ? transcript : text}
-                      onChange={handletext}
-                    ></textarea>
-                  </div> */}
-                  </div>
-              
-                  {/* <div class=" flex justify-between" >
-                    <div 
-                    class=" w-1/2 font-bold">
-                    <div class=" flex justify-between" >
-                        <div>
-                          <div class=" text-xs font-bold font-poppins text-black">Set Reminder</div>
-                        </div>
-                        <div>
-                          <Switch
-                            onChange={handleReminderChange}
-                            checked={reminder}
-                            checkedChildren="Yes"
-                            unCheckedChildren="No"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class=" w-1/3 font-bold">
-                      {reminder ? (
-                        <div>
-                          <Field
-                            // isRequired
-                            name="remindTime"
-                            label="Reminder"
-                            width={"100%"}
-                            component={SelectComponent}
-                            options={[
-                              "15 min",
-                              "30 min",
-                              "45 min",
-                              "1 hour",
-                              "2 hour",
-                            ]}
-                            defaultValue="30 min"
-                            isColumn
-                            inlineLabel
-                          />
-                        </div>
-                      ) : null}
-                    </div>
-                  </div> */}
+            
                 </div>
               </div>
              
@@ -1171,13 +1054,8 @@ function CallForm(props) {
                 {isEditing && (
                   <>
                     <StyledPopconfirm
-                      // title="Do you want to delete?"
-                      title={
-                        <FormattedMessage
-                          id="app.doyouwanttodelete?"
-                          defaultMessage="doyouwanttodelete?"
-                        />
-                      }
+                      title="Do you want to delete?"
+                    
                       onConfirm={() => deleteCall(prefillCall.callId)}
                     >
                       <Button
@@ -1185,11 +1063,8 @@ function CallForm(props) {
                         htmlType="submit"
                         Loading={deletingCall}
                       >
-                        {/* Delete */}
-                        <FormattedMessage
-                          id="app.delete"
-                          defaultMessage="delete"
-                        />
+                        Delete
+                        
                       </Button>
                     </StyledPopconfirm>
                   </>

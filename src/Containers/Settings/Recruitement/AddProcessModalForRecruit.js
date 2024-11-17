@@ -14,11 +14,8 @@ const AddProcessModal = (props) => {
   return (
     <>
       <StyledModal
-        // title="Workflow"
-        title={<FormattedMessage
-          id="app.workflow"
-          defaultMessage="Workflow"
-        />}
+        title="Workflow"
+       
         width="30%"
         visible={props.addProcessModal}
         maskClosable={false}

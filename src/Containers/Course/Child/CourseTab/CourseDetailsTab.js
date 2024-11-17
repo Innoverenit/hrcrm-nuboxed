@@ -71,7 +71,7 @@ class CourseDetailsTab extends Component {
                   <TopicOutlinedIcon
                   />
                   <span class=" ml-1">
-                    <FormattedMessage id="app.topic" defaultMessage="Topic" />
+                  Topic
                   </span>
                   {activeKey === "1" && <></>}
                 </>

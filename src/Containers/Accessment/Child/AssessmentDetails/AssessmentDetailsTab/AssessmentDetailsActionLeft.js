@@ -18,12 +18,8 @@ function AssessmentDetailsActionLeft(props) {
         <RollbackOutlined
           class="mr-[0.3rem]" 
             iconType="rollback"
-           tooltipTitle={
-            <FormattedMessage
-              id="app.back"
-              defaultMessage="Back"
-            />
-          }
+           tooltipTitle="Back"
+           
         onClick={() => props.history.goBack()}
         />
         </div>

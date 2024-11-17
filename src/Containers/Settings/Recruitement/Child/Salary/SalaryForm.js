@@ -146,12 +146,8 @@ class SalaryForm extends Component {
                            
                            name="transportation"
                            // label="First Name"
-                           label={
-                             <FormattedMessage
-                               id="app.transportation"
-                               defaultMessage="Transportation"
-                             />
-                           }
+                           label="Transportation"
+                            
                            type="text"
                            width={"100%"}
                            isColumn
@@ -164,12 +160,8 @@ class SalaryForm extends Component {
                            
                            name="basic"
                            // label="First Name"
-                           label={
-                             <FormattedMessage
-                               id="app.basic"
-                               defaultMessage="Basic"
-                             />
-                           }
+                           label="Basic"
+                          
                            type="text"
                            width={"100%"}
                            isColumn
@@ -191,12 +183,8 @@ class SalaryForm extends Component {
                            
                            name="housing"
                            // label="First Name"
-                           label={
-                             <FormattedMessage
-                               id="app.housing"
-                               defaultMessage="Housing"
-                             />
-                           }
+                           label="Housing"
+                            
                            type="text"
                            width={"100%"}
                            isColumn
@@ -209,12 +197,8 @@ class SalaryForm extends Component {
                            
                            name="others"
                            // label="First Name"
-                           label={
-                             <FormattedMessage
-                               id="app.others"
-                               defaultMessage="Others"
-                             />
-                           }
+                           label="Others"
+                            
                            type="text"
                            width={"100%"}
                            isColumn
@@ -232,9 +216,8 @@ class SalaryForm extends Component {
                   htmlType="submit"
                 //   loading={addingCustomerContact}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
-                  {/*                     
-                    Create */}
+                                 
+                    Create 
                 </Button>
               </div>
             </Form>

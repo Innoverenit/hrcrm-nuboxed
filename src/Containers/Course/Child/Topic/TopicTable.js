@@ -1,13 +1,12 @@
-import React, { useEffect, useState,useMemo,lazy } from 'react'
+import React, { useEffect, useState,} from 'react'
 import { StyledTable } from '../../../../Components/UI/Antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import dayjs from "dayjs";
-import { FormattedMessage } from 'react-intl';
+import {  } from 'react-intl';
 import { Tooltip,Button,Input } from "antd";
 import SearchIcon from '@mui/icons-material/Search';
 import Highlighter from 'react-highlight-words';
-import jsPDF from "jspdf";
+
 import "jspdf-autotable";
 
 import { BundleLoader } from '../../../../Components/Placeholder';

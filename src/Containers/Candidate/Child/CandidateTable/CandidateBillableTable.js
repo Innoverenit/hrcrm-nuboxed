@@ -1,11 +1,11 @@
-import React, { useEffect, useState,useMemo,lazy } from 'react'
+import React, {  useState,} from 'react'
 import { StyledTable } from '../../../../Components/UI/Antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 // import {getCandidatesBillableAmount} from "../../../Dashboard/DashboardAction"
-import { FormattedMessage } from 'react-intl';
-import {Button,Input,Checkbox } from "antd";
+
+import {Button,Input } from "antd";
 import SearchIcon from '@mui/icons-material/Search';
 import Highlighter from 'react-highlight-words';
 import "jspdf-autotable";

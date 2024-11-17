@@ -436,12 +436,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(DashboardJumpStart);
 //               noProgress
 //               title= {translatedMenuItems[0]}
                         
-//               // {
-//               //   <FormattedMessage
-//               //     id="app.leavebalance"
-//               //     defaultMessage="Leave Balance"
-//               //   />
-//               // }
+//               //
 //               bgColor="linear-gradient(270deg,#F15753,orange)"
 
 //               value={this.props.leaveFetching.leaveBalance}
@@ -462,12 +457,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(DashboardJumpStart);
 //               noProgress
 //               bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
 
-//               title={
-//                 <FormattedMessage
-//                   id="app.avHoursThisMonth"
-//                   defaultMessage="Average work hours"
-//                 />
-//               }
+//              
 //               // title="AV hours this month  "
 //               value={
 //                 // this.props.user.department === "Recruiter"
@@ -495,12 +485,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(DashboardJumpStart);
 //             <JumpStartBox
 //               noProgress
 //               // title="Open Tasks"
-//               title={
-//                 <FormattedMessage
-//                   id="app.openTasks"
-//                   defaultMessage="Open Tasks"
-//                 />
-//               }
+//            
 //               bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
 
 //               //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
@@ -521,12 +506,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(DashboardJumpStart);
 //             />
 //             <JumpStartBox
 //               noProgress
-//               title={
-//                 <FormattedMessage
-//                   id="app.joiningDate"
-//                   defaultMessage="Joining Date"
-//                 />
-//               }
+//              
 //               bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
 
 //               // title="Joining Date"

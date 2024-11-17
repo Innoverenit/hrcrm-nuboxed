@@ -9,9 +9,7 @@ const AddRecruiterModal = (props) => {
     <>
       <StyledModal
 
-        title={
-          <FormattedMessage id="app.requirement" defaultMessage="Requirement" />
-        }
+        title="Requirement" 
         width="29%"
         visible={props.addRecruitModal}
         maskClosable={false}

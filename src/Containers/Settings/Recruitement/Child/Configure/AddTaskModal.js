@@ -14,11 +14,8 @@ const AddTaskModal = (props) => {
   return (
     <>
       <StyledDrawer
-        // title="Workflow"
-        title={<FormattedMessage
-          id="app.task"
-          defaultMessage="Task"
-        />}
+         title="Task"
+      
         width="60%"
         visible={props.addTaskDrawer}
         maskClosable={false}

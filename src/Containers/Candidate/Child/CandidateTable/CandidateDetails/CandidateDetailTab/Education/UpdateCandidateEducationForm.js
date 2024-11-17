@@ -96,13 +96,8 @@ class UpdateCandidateEducationForm extends Component {
                 <FastField
                   name="educationTypeId"
                   type="text"
-                  //label="Education"
-                  label={
-                    <FormattedMessage
-                      id="app.education"
-                      defaultMessage="Education"
-                    />
-                  }
+                  label="Education"
+                  
                   // options={[
                   //   "Matriculation",
                   //   "Intermediate",
@@ -129,13 +124,8 @@ class UpdateCandidateEducationForm extends Component {
                     type="text"
                     isColumn
                     width={"100%"}
-                    //label="Course Name"
-                    label={
-                      <FormattedMessage
-                        id="app.courseName"
-                        defaultMessage="Course Name"
-                      />
-                    }
+                   label="Course Name"
+                   
                     component={InputComponent}
                     inlineLabel
                    
@@ -192,13 +182,8 @@ class UpdateCandidateEducationForm extends Component {
                     type="text"
                     isColumn
                     width={"100%"}
-                    //label="Specialization"
-                    label={
-                      <FormattedMessage
-                        id="app.Specialization"
-                        defaultMessage="Specialization"
-                      />
-                    }
+                    label="Specialization"
+                   
                     component={InputComponent}
                     inlineLabel
                     />
@@ -212,13 +197,8 @@ class UpdateCandidateEducationForm extends Component {
                     type="text"
                     isColumn
                     width={"100%"}
-                    //label="University/Institute "
-                    label={
-                      <FormattedMessage
-                        id="app.university"
-                        defaultMessage="University/Institute"
-                      />
-                    }
+                  label="University/Institute "
+                  
                     component={InputComponent}
                     inlineLabel
                   />
@@ -229,13 +209,8 @@ class UpdateCandidateEducationForm extends Component {
               >
                     <Field
                       name="yearOfPassing"
-                      //label="Year of Passing"
-                      label={
-                        <FormattedMessage
-                          id="app.yearOfPassing"
-                          defaultMessage="Year of Passing"
-                        />
-                      }
+                    label="Year of Passing"
+                     
                       component={InputComponent}
                       isColumn
                       width={"100%"}
@@ -249,13 +224,8 @@ class UpdateCandidateEducationForm extends Component {
               >
                     <Field
                       // isRequired
-                      //label="Marks Secured"
-                      label={
-                        <FormattedMessage
-                          id="app.marksSecured"
-                          defaultMessage="Marks Secured"
-                        />
-                      }
+                     label="Marks Secured"
+                      
                       name="marksSecured"
                       type="text"
                       isColumn
@@ -268,12 +238,8 @@ class UpdateCandidateEducationForm extends Component {
               >
                     <Field
                       name="marksType"
-                      label={
-                        <FormattedMessage
-                          id="app.marksType"
-                          defaultMessage="Marks Type"
-                        />
-                      }
+                      label="Marks Type"
+                       
                       type="text"
                       component={SelectComponent}
                       options={["%", "Out of 10", "Out of 5"]}
@@ -296,13 +262,8 @@ class UpdateCandidateEducationForm extends Component {
               >
                 <Field
                   name="documentTitle"
-                  //label="Name of Document"
-                  label={
-                    <FormattedMessage
-                      id="app.documentTitle"
-                      defaultMessage="Name of Document"
-                    />
-                  }
+                  label="Name of Document"
+                  
                   width={"100%"}
                   isColumn
                   component={InputComponent}
@@ -314,13 +275,8 @@ class UpdateCandidateEducationForm extends Component {
                       name="documentTypeId"
                       selectType="documentTypeName"
                       isColumnWithoutNoCreate
-                      // label="Type"
-                      label={
-                        <FormattedMessage
-                          id="app.type"
-                          defaultMessage="Type"
-                        />
-                      }
+                      label="Type"
+                    
                       // isRequired
                       component={SearchSelect}
                       isColumn
@@ -341,7 +297,7 @@ class UpdateCandidateEducationForm extends Component {
                 type="primary"
                 Loading={updatingCandidateEducationDetails}
               >
-                <FormattedMessage id="app.update" defaultMessage="Update" />
+               Update
               </Button>
             </div>
           </Form>

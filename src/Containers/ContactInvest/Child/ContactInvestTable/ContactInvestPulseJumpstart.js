@@ -55,13 +55,9 @@ render() {
                              </div>
                              <JumpStartBox
             noProgress
-            title={
-              <FormattedMessage
-                id="app.opendeals"
-                defaultMessage="#Open Deals"
-              />
-            }
-            // }
+            title="#Open Deals"
+             
+   
             bgColor="#33D7FF"             
           />  
                          </div>
@@ -77,12 +73,8 @@ render() {
                                </div>
                                <JumpStartBox
             noProgress
-            title={
-              <FormattedMessage
-                id="app.pipeLineValue"
-                defaultMessage="Pipe line value"
-              />
-            }
+            title="Pipe line value"
+              
             bgColor="#34495E "
                    
           />
@@ -100,12 +92,8 @@ render() {
                               </div>
                               <JumpStartBox
         noProgress
-        title={
-          <FormattedMessage
-            id="app.activity"
-            defaultMessage="Activity"
-          />
-        }      
+        title="Activity"
+              
         bgColor="#FF4C33"     
       />
                           </div>
@@ -121,12 +109,7 @@ render() {
                               </div>
                               <JumpStartBox
             noProgress
-            title={
-              <FormattedMessage
-                id="app.#Contacts"
-                defaultMessage="#Contacts "
-              />
-            }     
+            title="#Contacts "
             bgColor="linear-gradient(270deg,black,grey)"                     
           /> 
                           </div>

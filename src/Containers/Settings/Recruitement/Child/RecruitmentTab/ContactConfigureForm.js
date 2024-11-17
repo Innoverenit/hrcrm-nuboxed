@@ -661,9 +661,7 @@ useEffect(() => {
                     {/* {translatedMenuItems[17]} */}
                     Update
                     </div>
-                  {/* <FormattedMessage id="app.create" defaultMessage="Create" /> */}
-                  {/*                     
-                    Create */}
+                
                 </Button>
               </div>
             </Form>

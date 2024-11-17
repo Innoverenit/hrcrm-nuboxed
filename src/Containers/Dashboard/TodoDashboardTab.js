@@ -68,11 +68,7 @@ class TodoDashboardTab extends Component {
                 overflowCount={999}
               > 
                <span class=" ml-1 font-semibold">
-               <FormattedMessage
-                id="app.toDo"
-                defaultMessage="ToDo"
-              />
-                {/* ToDo */}
+               ToDo 
                 </span>
                </Badge>
 
@@ -95,10 +91,7 @@ class TodoDashboardTab extends Component {
                   <UpcomingIcon style={{fontSize:"1.1rem"}}/>
 
                   <span class=" ml-1 font-semibold">
-                  <FormattedMessage
-              id="app.leaves"
-              defaultMessage="Leaves"
-            />
+               Leaves
                     </span>
 
                  
@@ -111,64 +104,7 @@ class TodoDashboardTab extends Component {
                 <LeavesGanttChart />
               </Suspense>
             </TabPane>
-            {/* {this.props.user.dashboardrecruitDashInd === true &&(
-            <TabPane
-              tab={
-                <>
-                  <DnsIcon 
-                   style={{fontSize:"1.1rem"}}
-                  />
-                    <span class=" ml-1 font-semibold">
-                    <FormattedMessage
-                id="app.openRequirements"
-                defaultMessage="Open Requirements"
-              />
-                
-                      </span>
-                  
-                  {activeKey === "2" && (
-                    <>
-                    </>
-                  )}
-                </>
-              }
-              key="3"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                
-                                  
-                                                   {this.props.viewType==="ME"  ?(
-                   <DashboardAllTable2/>
-     
-          
-            ) : (
-              <DashboardTable2
-      />
-          )} 
-              </Suspense>
-    </TabPane>
-            )} */}
-            {/* <TabPane
-              tab={
-                <>
-                  <TipsAndUpdatesIcon style={{fontSize:"1.1rem"}}/>
-
-                  <span class=" ml-1">Actions</span>
-
-                  {activeKey === "2" && (
-                    <>
-                    </>
-                  )}
-                </>
-              }
-              key="2"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <ActionNotification />
-              </Suspense>
-            </TabPane> */}
+           
             {this.props.userFullListInd ? (
             <TabPane
               tab={
@@ -176,10 +112,8 @@ class TodoDashboardTab extends Component {
                   <UpcomingIcon style={{fontSize:"1.1rem"}}/>
 
                   <span class=" ml-1">
-                  <FormattedMessage
-                id="app.upComingEvents"
-                defaultMessage="UpComing Events"
-              />
+                UpComing Events
+             
                     </span>
 
                   {activeKey === "3" && (

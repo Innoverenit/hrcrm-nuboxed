@@ -266,8 +266,7 @@ function ContactTable(props) {
       },
     },
     {
-      //title: "Name",
-      title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+title: "Name",
       dataIndex: "firstName",
       ...getColumnSearchProps("firstName"),
       width: "15%",
@@ -301,17 +300,15 @@ function ContactTable(props) {
       },
     },
     {
-      //title: "Company",
-      title: <FormattedMessage id="app.company" defaultMessage="Company" />,
+      title: "Company",
+     
       dataIndex: "tagWithCompany",
       ...getColumnSearchProps("tagWithCompany"),
       width: "15%",
     },
     {
-      //title: "Designation",
-      title: (
-        <FormattedMessage id="app.designation" defaultMessage="Designation" />
-      ),
+     title: "Designation",
+      
       dataIndex: "designation",
       width: "15%",
       defaultSortOrder: "descend",
@@ -323,8 +320,8 @@ function ContactTable(props) {
       },
     },
     {
-      //title: "Department",
-      title: <FormattedMessage id="app.sector" defaultMessage="Sector" />,
+   title: "Department",
+    
       width: "15%",
       dataIndex: "department",
       // dataIndex:"secor",
@@ -336,15 +333,14 @@ function ContactTable(props) {
     },
 
     {
-      title: (
-        <FormattedMessage id="app.Portal Acess" defaultMessage="Portal Acess" />
-      ),
+      title: "Portal Acess" 
+      ,
       width: "8%",
     },
 
     {
       //title: "Email",
-      title: <FormattedMessage id="app.owner" defaultMessage="Owner" />,
+      title:"Owner" ,
       dataIndex: "ownerName",
       // ...getColumnSearchProps('ownerName'),
       width: "7%",

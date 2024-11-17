@@ -318,8 +318,8 @@ function ContactTable(props) {
       },
     },
     {
-      //title: "Name",
-      title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+      title: "Name",
+      
       dataIndex: "fullName",
       ...getColumnSearchProps("fullName"),
       width: "15%",
@@ -355,25 +355,16 @@ function ContactTable(props) {
       },
     },
 
-    // {
-    //   //title: "Type",
-    //   title: <FormattedMessage id="app.contactType" defaultMessage="Type" />,
-    //   dataIndex: "contactType",
-    //   // width: "15%",
-    // },
-    // specify the condition of filtering result
-    // here is that finding the name started with `value`
+    
     {
-      title: <FormattedMessage id="app.company" defaultMessage="Company" />,
+      title: "Company" ,
       dataIndex: "tagWithCompany",
       width: "12%",
       ...getColumnSearchProps("tagWithCompany"),
     },
     {
-      //title: "Designation",
-      title: (
-        <FormattedMessage id="app.designation" defaultMessage="Designation" />
-      ),
+     title: "Designation",
+     
       dataIndex: "designation",
       width: "12%",
       defaultSortOrder: "descend",
@@ -385,10 +376,8 @@ function ContactTable(props) {
       },
     },
     {
-      //title: "Department",
-      title: (
-        <FormattedMessage id="app.department" defaultMessage="Department" />
-      ),
+    title: "Department",
+     
       width: "12%",
       dataIndex: "department",
       filters: departmentNameOption,
@@ -397,7 +386,7 @@ function ContactTable(props) {
       },
     },
     {
-      title: <FormattedMessage id="app.lastPost" defaultMessage="Last Posted on" />,
+      title: "Last Posted on" ,
       dataIndex: "lastRequirementOn",
       width: "19%",
       sorter: (a, b) => a.lastRequirementOn - b.lastRequirementOn,
@@ -416,13 +405,13 @@ function ContactTable(props) {
     },
 
     {
-      title: <FormattedMessage id="app.Portal Acess" defaultMessage="Portal Acess" />,
+      title: "Portal Acess" ,
       width: "8%",
     },
 
 
     {
-      title: <FormattedMessage id="app.owner" defaultMessage="Owner" />,
+      title: "Owner" ,
       dataIndex: "ownerName",
       // ...getColumnSearchProps('ownerName'),
       width: "7%",

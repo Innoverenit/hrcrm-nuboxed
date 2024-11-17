@@ -411,7 +411,7 @@ function CandidateTable(props) {
     },
     {
        title:"Name",
-      // title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+ 
       dataIndex: "fullName",
       width: "13%",
       ...getColumnSearchProps("fullName"),
@@ -496,14 +496,13 @@ function CandidateTable(props) {
 
     {
        title:"Vendor",
-      // title: <FormattedMessage id="app.vendor" defaultMessage="Vendor" />,
+     
       dataIndex: "partnerName",
       width: "10%",
       ...getColumnSearchProps("partnerName"),
     },
     {
        title:"Role",
-      // title: <FormattedMessage id="app.role" defaultMessage="Role" />,
       dataIndex: "roleType",
       width: "8%",
       filters: roleTypeOption,
@@ -519,7 +518,6 @@ function CandidateTable(props) {
     },
     {
      
-      // title: <FormattedMessage id="app.country" defaultMessage="Country" />,
       dataIndex: "country",
       align: "left",
       width: "4%",
@@ -552,7 +550,6 @@ function CandidateTable(props) {
     },
     {
        title:"Skills",
-      // title: <FormattedMessage id="app.skills" defaultMessage="Skills" />,
       // dataIndex: "skillList",
       width: "17%",
       ...getColumnSearchProps("skillList"),
@@ -627,9 +624,7 @@ function CandidateTable(props) {
     },
     {
        title:"Expectation",
-      // title: (
-      //   <FormattedMessage id="app.expectation" defaultMessage="Expectation" />
-      // ),
+     
       dataIndex: "billing",
       align: "left",
       width: "8%",
@@ -649,7 +644,6 @@ function CandidateTable(props) {
     },
     {
        title:"Available",
-      // title: <FormattedMessage id="app.available" defaultMessage="Available" />,
       dataIndex: "availableDate",
       width: "7%",
       render: (text, item) => {
@@ -667,7 +661,6 @@ function CandidateTable(props) {
     },
     {
        title:"Owner",
-      // title: <FormattedMessage id="app.owner" defaultMessage="Owner" />,
       // dataIndex: "ownerName",
       width: "6%",
       filters: ownerlistType,
@@ -694,7 +687,6 @@ function CandidateTable(props) {
     },
     {
       title:"Active",
-      // title: <FormattedMessage id="app.active" defaultMessage="Active" />,
       // dataIndex: "active",
       width: "6%",
       render: (name, item, i) => {

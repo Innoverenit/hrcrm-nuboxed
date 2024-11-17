@@ -36,11 +36,8 @@ class AddPlayerModal extends Component {
     return (
       <>
         <StyledDrawer
-          // title="Youtube"
-          title={<FormattedMessage
-            id="app.youtube"
-            defaultMessage="Youtube"
-             />}
+          title="Youtube"
+          
           width="60%"
           visible={addPlayerModal}
           onClose={() => handlePlayerModal(false)}

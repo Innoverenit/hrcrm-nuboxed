@@ -40,10 +40,7 @@ class DashInvestorsChartTab extends Component {
                   {/* <ListAltIcon style={{fontSize:"1.1rem"}}/> */}
                  
                <span class=" ml-1 font-semibold">
-               <FormattedMessage
-              id="app.pitchAdded"
-              defaultMessage="Pitch Added"
-            />
+             Pitch Added
                </span>
                   {activeKey === "1" && (
                     <>
@@ -65,10 +62,7 @@ class DashInvestorsChartTab extends Component {
                   {/* <EventAvailableIcon style={{fontSize:"1.1rem"}}/> */}
 
                   <span class=" ml-1 font-semibold">
-                  <FormattedMessage
-              id="app.contactInvestorAdded"
-              defaultMessage="Contacts Added"
-            />
+                 Contacts Added
                    </span>
 
                   {activeKey === "2" && (

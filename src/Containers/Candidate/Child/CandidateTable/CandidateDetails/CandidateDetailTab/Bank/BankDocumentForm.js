@@ -67,12 +67,8 @@ class BankDocumentForm extends Component {
                   <FastField
                     name="accountHolderName"
                     //label="Account Number"
-                    label={
-                      <FormattedMessage
-                        id="app.accountHolderName"
-                        defaultMessage="Account Holder Name"
-                      />
-                    }
+                    label="Account Holder Name"
+                     
                     isColumn
                     width={"100%"}
                     
@@ -86,12 +82,8 @@ class BankDocumentForm extends Component {
                   <FastField
                     name="accountNo"
                     //label="Account Number"
-                    label={
-                      <FormattedMessage
-                        id="app.accountNo"
-                        defaultMessage="Account #"
-                      />
-                    }
+                    label="Account #"
+                     
                     isColumn
                     width={"100%"}
                     selectType="number"
@@ -106,12 +98,8 @@ class BankDocumentForm extends Component {
                     <FastField
                       name="ifscCode"
                       //label="IFSC CODE"
-                      label={
-                        <FormattedMessage
-                          id="app.swiftCode"
-                          defaultMessage="SWIFT Code"
-                        />
-                      }
+                      label="SWIFT Code"
+                        
                       className="field"
                       isColumn
                       width={"100%"}
@@ -125,12 +113,8 @@ class BankDocumentForm extends Component {
                     <FastField
                       name="branchName"
                       // label="Branch Name"
-                      label={
-                        <FormattedMessage
-                          id="app.branch"
-                          defaultMessage="Branch"
-                        />
-                      }
+                      label="Branch"
+                        
                       type="text"
                       width={"100%"}
                       isColumn
@@ -146,12 +130,8 @@ class BankDocumentForm extends Component {
                     isRequired
                     name="bankName"
                     //label="Bank Name"
-                    label={
-                      <FormattedMessage
-                        id="app.bank"
-                        defaultMessage="Bank"
-                      />
-                    }
+                    label="Bank"
+                    
                     type="text"
                     width={"100%"}
                     isColumn

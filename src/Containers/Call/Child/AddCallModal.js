@@ -10,10 +10,8 @@ const AddCallModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.schedulecall"
-          defaultMessage="Schedule Call"
-        />}
+        title="Schedule Call"
+        
         width={drawerWidth}
         visible={addCallModal}
         onClose={() => handleCallModal(false)}

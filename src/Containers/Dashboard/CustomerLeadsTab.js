@@ -37,10 +37,7 @@ class CustomerLeadsTab extends Component {
                   <ListAltIcon style={{fontSize:"1.1rem"}}/>
                  
                <span class=" ml-1 font-semibold">
-               <FormattedMessage
-          id="app.leads"
-          defaultMessage="Leads"
-        />
+             Leads
                 </span>
               
 

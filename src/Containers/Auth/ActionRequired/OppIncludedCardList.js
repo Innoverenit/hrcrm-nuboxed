@@ -252,11 +252,8 @@ imgHeight={"1.8em"}
               {item.approveInd&&item.opportunityOwner ? (
 <>
   <Tooltip 
-    title={<FormattedMessage
-      id="app.Own"
-      defaultMessage="Own"
-    />}
-
+    title="Own"
+   
   >
     <CheckCircleTwoTone
       type="check-circle"
@@ -288,11 +285,8 @@ imgHeight={"1.8em"}
   cancelText="No"
 >
   <Tooltip 
-    title={<FormattedMessage
-      id="app.Own"
-      defaultMessage="Won"
-    />}
-
+    title="Won"
+   
   >
     <CheckCircleTwoTone
       type="check-circle"
@@ -336,12 +330,8 @@ imgHeight={"1.8em"}
 <div>
 <Tooltip
           placement="right"
-          title={
-            <FormattedMessage
-              id="app.notes"
-              defaultMessage="Notes"
-            />
-          }
+          title="Notes"
+            
         >
          
               
@@ -359,12 +349,8 @@ imgHeight={"1.8em"}
           </Tooltip>
 <Tooltip
           placement="right"
-          title={
-            <FormattedMessage
-              id="app.edit"
-              defaultMessage="Edit"
-            />
-          }
+          title="Edit"
+           
         >
             {user.opportunityUpdateInd ===true && user.crmInd === true &&  (
               

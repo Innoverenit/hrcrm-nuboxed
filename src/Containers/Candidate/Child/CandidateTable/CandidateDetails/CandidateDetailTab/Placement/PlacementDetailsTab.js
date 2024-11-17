@@ -36,11 +36,7 @@ class PlacementDetailsTab extends Component {
                   <span>Remarks</span>
                   {activeKey === "1" && (
                     <>
-                      {/* <Tooltip //title="Tag Remarks"
-                        title={<FormattedMessage
-                          id="app.tagremarks"
-                          defaultMessage="tagremarks"
-                        />} */}
+                    
                       
                         <ActionIcon
                          

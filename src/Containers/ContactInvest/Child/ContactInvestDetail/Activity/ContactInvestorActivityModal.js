@@ -46,10 +46,8 @@ const ContactInvestorActivityModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.schedulecall"
-          defaultMessage="Schedule"
-        />}
+        title="Schedule"
+       
         width={drawerWidth}
         visible={props.callActivityModal}
         maskClosable={false}

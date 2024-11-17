@@ -448,28 +448,7 @@ const {
                   />
                  
                   
-                    {/* <Field
-                      name="employeesId"
-                      isColumnWithoutNoCreate
-                      selectType="employee"
-                      // label="Assigned"
-                      label={
-                        <FormattedMessage
-                          id="app.assignedto"
-                          defaultMessage="Assigned"
-                        />
-                      }
-                      component={SearchSelect}
-                      isColumn
-                      value={values.employeeId}
-                      defaultValue={{
-                        label: `${firstName || ""} ${middleName || ""} ${
-                          lastName || ""
-                        }`,
-                        value: employeeId,
-                      }}
-                      inlineLabel
-                    /> */}
+                  
                  <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
@@ -555,30 +534,7 @@ const {
                     }}
                   />
                   </div>
-                  {/* <div class=" mt-3">
-                  {props.user.crmInd === true &&(
-                <Field
-                name="customerId"
-                isColumnWithoutNoCreate
-                selectType="customerList"
-                // label="Tag Company"
-                label={
-                  <FormattedMessage
-                    id="app.tagcompany"
-                    defaultMessage="Tag Company"
-                  />
-                }
-                component={SearchSelect}
-                isColumn
-                value={values.customerId}
-                isDisabled
-                defaultValue={{
-                  label:`${props.customer.name}`,
-                }}
-                inlineLabel
-              />
-                  )} 
-                  </div> */}
+                
                   <div class=" mt-3">
                   <div className="font-bold font-poppins text-xs"> {translatedMenuItems[9]}</div>
                   {props.user.crmInd === true &&(
@@ -734,10 +690,7 @@ const {
                         htmlType="submit"
                         Loading={deletingEvent}
                       >
-                        <FormattedMessage
-                          id="app.delete"
-                          defaultMessage="Delete"
-                        />
+                      Delete
                       </Button>
                     </StyledPopconfirm>
                   </>

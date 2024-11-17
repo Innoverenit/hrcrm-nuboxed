@@ -24,10 +24,7 @@ const assessmentId=props.assessmentByAssessmentId.assessmentId;
             tab={
               <>
                 <span>
-                  <FormattedMessage
-                    id="app.questions"
-                    defaultMessage="Questions"
-                  />
+                  Questions
                 </span>
               </>
             }

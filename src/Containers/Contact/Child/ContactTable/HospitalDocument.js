@@ -44,19 +44,13 @@ class HospitalDocument extends Component {
          <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky top-0 z-10">
           <div className=" md:w-[6.9rem]">
-        <FormattedMessage
-                  id="app.date"
-                  defaultMessage="Date"
-                /></div>
+     Date</div>
  
-        <div className="md:w-[11.1rem]">  <FormattedMessage id="app.name" defaultMessage="Name" /></div>
+        <div className="md:w-[11.1rem]"> Name</div>
                  <div className="md:w-[18.12rem]">
-                 <FormattedMessage
-          id="app.description"
-          defaultMessage="Description"
-        /></div>
+               Description</div>
                        <div className=" md:w-[7.1rem]">
-                       <FormattedMessage id="app.uploadedBy" defaultMessage="Uploaded By" /></div>
+                     Uploaded By</div>
 
                       
        

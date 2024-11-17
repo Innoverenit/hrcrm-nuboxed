@@ -108,9 +108,7 @@ function InitiativeForm(props) {
                 >
                   <Field
                      name="description"
-                    label={
-                      <FormattedMessage id="app.description" defaultMessage="Description" />
-                    }
+                    label="Description" 
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -124,7 +122,7 @@ function InitiativeForm(props) {
                   htmlType="submit"
                   loading={props.addingInitiatives}
                 >
-                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
+                 Submit
                 </Button>
               </div>
               </MainWrapper>

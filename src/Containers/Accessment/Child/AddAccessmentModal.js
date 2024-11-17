@@ -11,11 +11,7 @@ class AddAccessmentModal extends Component {
     return (
       <>
         <StyledModal
-          title={<FormattedMessage
-            id="app.assessment"
-            defaultMessage="Assessment"
-          />}
-
+          title="Assessment"
           width="60%"
           visible={addAccessmentModal}
           destroyOnClose

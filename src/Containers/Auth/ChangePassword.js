@@ -155,10 +155,7 @@ class ChangePassword extends Component {
                    
                     >
                    
-                      <FormattedMessage
-                        id="app.savepassword"
-                        defaultMessage="Save Password"
-                      />
+                     Save Password
                     </Button>
                     </div>
                   </Form>

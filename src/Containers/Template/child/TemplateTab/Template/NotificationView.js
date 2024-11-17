@@ -133,11 +133,8 @@ function NotificationView(props) {
                     type="text"
                     isColumn
                     width={"100%"}
-                    //label="Name"
-                    label={<FormattedMessage
-                      id="app.notificationName"
-                      defaultMessage="Name"
-                    />}
+                    label="Name"
+                   
                     component={InputComponent}
                     inlineLabel
                     style={{
@@ -149,11 +146,8 @@ function NotificationView(props) {
                   <mt-3 />
                   <Field
                     name="description"
-                    //label="Description"
-                    label={<FormattedMessage
-                      id="app.description"
-                      defaultMessage="Description"
-                    />}
+                    label="Description"
+                  
                     width={"100%"}
                     isColumn
                     height={"4.375em"}
@@ -213,10 +207,7 @@ function NotificationView(props) {
                   Loading={props.udatingNotification}
                   disabled={edit}
                 >
-                  <FormattedMessage
-                    id="app.update"
-                    defaultMessage=" Update"
-                  />
+                 Update
 
                   {/* Update */}
                 </Button>

@@ -42,10 +42,8 @@ function ChooseCandidateEmailTable(props) {
    
     },
     {
-      // title: "Name",
-      title: (
-        <FormattedMessage id="app.name" defaultMessage="Name" />
-      ),
+      title: "Name",
+      
       hidden:tablevalue.includes("Name") ? false : true,
       dataIndex: "name",
       defaultSortOrder: "ascend",
@@ -75,8 +73,7 @@ function ChooseCandidateEmailTable(props) {
     
   
     {
-      //title: "End Date",
-      title: <FormattedMessage id="app.availlabillity" defaultMessage="Availability" />,
+      title: "Availability",
      hidden:tablevalue.includes("Available") ? false : true,
       dataIndex: "availableDate",
       width: "20%",
@@ -87,12 +84,8 @@ function ChooseCandidateEmailTable(props) {
   },
     {
       //title: "Value",
-      title: (
-        <FormattedMessage
-          id="app.mobile"
-          defaultMessage="Mobile"
-        />
-      ),
+      title: "Mobile"
+       ,
      hidden:tablevalue.includes("Mobile") ? false : true,
       dataIndex: "mobileNo",
       width: "20%",
@@ -101,12 +94,8 @@ function ChooseCandidateEmailTable(props) {
 
     {
       //title: "sponsor",
-      title: (
-        <FormattedMessage
-          id="app.email"
-          defaultMessage="Email"
-        />
-      ),
+      title:"Email"
+        ,
      hidden:tablevalue.includes("Email") ? false : true,
       dataIndex: "email",
       width: "20%",

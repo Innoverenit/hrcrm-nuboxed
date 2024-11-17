@@ -308,8 +308,8 @@ title:"",
 width:"1%"
     },
     {
-      // title: "Name",
-      title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+      title: "Name",
+  
       dataIndex: "fullName",
       width: "13%",
       ...getColumnSearchProps("fullName"),
@@ -332,9 +332,7 @@ width:"1%"
       },
     },
     {
-      // title: <FormattedMessage 
-      // id="app.category" defaultMessage=""
-      //  />,
+     
       dataIndex: "category",
       width: "3%",
       render: (name, item, i) => {
@@ -399,13 +397,13 @@ width:"1%"
 
 
     {
-      title: <FormattedMessage id="app.vendor" defaultMessage="Vendor" />,
+      title:"Vendor" ,
       dataIndex: "partnerName",
       width: "10%",
       ...getColumnSearchProps("partnerName"),
     },
     {
-      title: <FormattedMessage id="app.role" defaultMessage="Role" />,
+      title:"Role" ,
       dataIndex: "roleType",
       width: "8%",
       filters: roleTypeOption,
@@ -421,7 +419,7 @@ width:"1%"
       width:"1%"
           },
     {
-      title: <FormattedMessage id="app.country" defaultMessage="Country" />,
+      title: "Country" ,
       dataIndex: "country",
       align: "left",
       width: "9%",
@@ -438,7 +436,7 @@ width:"1%"
       },
     },
     {
-      title: <FormattedMessage id="app.skills" defaultMessage="Skills" />,
+      title: "Skills" ,
       // dataIndex: "skillList",
       width: "17%",
       ...getColumnSearchProps("skillList"),
@@ -523,9 +521,7 @@ width:"1%"
       },
     },
     {
-      title: (
-        <FormattedMessage id="app.expectation" defaultMessage="Expectation" />
-      ),
+      title: "Expectation" ,
       dataIndex: "billing",
       align: "left",
       width: "8%",
@@ -546,7 +542,7 @@ width:"1%"
       },
     },
     {
-      title: <FormattedMessage id="app.available" defaultMessage="Available" />,
+      title: "Available" ,
       dataIndex: "availableDate",
       width: "7%",
       render: (text, item) => {
@@ -563,7 +559,7 @@ width:"1%"
       },
     },
     {
-      title: <FormattedMessage id="app.owner" defaultMessage="Owner" />,
+      title:"Owner" ,
       // dataIndex: "ownerName",
       width: "6%",
       render: (name, item, i) => {
@@ -585,7 +581,7 @@ width:"1%"
       },
     },
     {
-      title: <FormattedMessage id="app.active" defaultMessage="Active" />,
+      title: "Active" ,
       // dataIndex: "active",
       width: "6%",
       render: (name, item, i) => {

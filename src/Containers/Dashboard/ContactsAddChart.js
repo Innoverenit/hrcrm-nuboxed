@@ -34,10 +34,7 @@ import {
     
     <div class=" flex justify-between" >
 
-      <span><FormattedMessage
-              id="app.hours"
-              defaultMessage="Hours"
-            /></span>
+      <span>Hours</span>
 
 
     <TimeInterval

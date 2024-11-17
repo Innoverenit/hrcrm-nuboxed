@@ -767,7 +767,7 @@ function InvesterForm(props) {
                   htmlType="submit"
                   loading={addingInvestor}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
+                Create
                 </Button>
               </div>
             </Form>

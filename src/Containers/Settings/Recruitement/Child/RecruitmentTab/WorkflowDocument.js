@@ -102,7 +102,7 @@ class WorkflowDocument extends Component {
             this.handleClear();
           }}
         >
-          <FormattedMessage id="app.clear" defaultMessage="Clear" />
+      Clear
       
         </Button>
         </div>

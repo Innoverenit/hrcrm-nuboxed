@@ -45,10 +45,7 @@ const HeaderActionRight  = (props) => {
                 }}
                onClick={() => setDashboardViewType("ALL")}
               >
-                <FormattedMessage
-                  id="app.enterprise"
-                  defaultMessage="Enterprise"
-                />
+              Enterprise
               </Tag>
             )}
              {viewType==="ALL" && (

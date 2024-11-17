@@ -60,9 +60,7 @@ function UpdateCourseForm(props) {
                   isRequired
                   name="courseName"
                   type="text"
-                  label={
-                    <FormattedMessage id="app.name" defaultMessage="Name" />
-                  }
+                  label="Name"
                   isColumn
                   width={"100%"}
                   component={InputComponent}
@@ -74,12 +72,8 @@ function UpdateCourseForm(props) {
                       isRequired
                       name="duration"
                       type="text"
-                      label={
-                        <FormattedMessage
-                          id="app.duration"
-                          defaultMessage="Duration"
-                        />
-                      }
+                      label="Duration"
+                       
                       isColumn
                       width={"100%"}
                       component={InputComponent}
@@ -90,12 +84,8 @@ function UpdateCourseForm(props) {
                     <FastField
                       name="drtnType"
                       type="text"
-                      label={
-                        <FormattedMessage
-                          id="app.duration"
-                          defaultMessage="Duration(months)"
-                        />
-                      }
+                      label="Duration(months)"
+                     
                       options={["Hours", "Days", "Month", "Years"]}
                       component={SelectComponent}
                       inlineLabel
@@ -108,9 +98,7 @@ function UpdateCourseForm(props) {
                     <Field
                       name="price"
                       //label="State"
-                      label={
-                        <FormattedMessage id="price" defaultMessage="Price" />
-                      }
+                      label="Price" 
                       component={InputComponent}
                       isColumn
                       width="100%"
@@ -121,12 +109,8 @@ function UpdateCourseForm(props) {
                       name="currencyName"
                       isColumnWithoutNoCreate
                       placeholder="Currency"
-                      label={
-                        <FormattedMessage
-                          id="app.currency"
-                          defaultMessage="Currency"
-                        />
-                      }
+                      label="Currency"
+                        
                       isColumn
                       selectType="currencyName"
                       isRequired
@@ -151,7 +135,7 @@ function UpdateCourseForm(props) {
             <div class=" mt-3" />
             <div class=" flex justify-end">
               <Button type="primary" htmlType="submit" loading={updatingCourse}>
-                <FormattedMessage id="app.create" defaultMessage="Update" />
+              Update
               </Button>
             </div>
           </Form>

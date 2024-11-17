@@ -66,14 +66,8 @@ function RemarkForm(props) {
                 {" "}
                 <Field
                   name="stageId"
-                  // label="Stage"
-                  label={
-                    <FormattedMessage
-                      name="stageId"
-                      id="app."
-                      defaultMessage="Stage"
-                    />
-                  }
+                  label="Stage"
+                 
                   isRequired
                   isColumn
                   style={{
@@ -87,13 +81,8 @@ function RemarkForm(props) {
                 <div class=" mt-3" />
                 <Field
                   name="reviewer"
-                  //label="Reviewer"
-                  label={
-                    <FormattedMessage
-                      id="app.reviewer"
-                      defaultMessage="Reviewer"
-                    />
-                  }
+                  label="Reviewer"
+                 
                   width={"100%"}
                   isColumn
                   component={InputComponent}
@@ -133,8 +122,8 @@ function RemarkForm(props) {
                 htmlType="submit"
                 Loading={props.addingRemark}
               >
-                <FormattedMessage id="app.remark" defaultMessage="Remark" />
-                {/* Remark */}
+              
+                Remark
               </Button>
             </FlexContainer>
           </Form>

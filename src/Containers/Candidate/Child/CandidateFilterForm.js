@@ -78,12 +78,8 @@ function CandidateFilterForm(props) {
                         <FastField
                           name="roleType"
                           selectType="roleType"
-                          label={
-                            <FormattedMessage
-                              id="app.role"
-                              defaultMessage="Role"
-                            />
-                          }
+                          label="Role"
+                            
                           isColumnWithoutNoCreate
                           isColumn
                           component={SearchSelect}
@@ -105,12 +101,8 @@ function CandidateFilterForm(props) {
                           name="currency"
                           isColumnWithoutNoCreate
                           placeholder="Currency"
-                          label={
-                            <FormattedMessage
-                              id="app.currency"
-                              defaultMessage="Currency"
-                            />
-                          }
+                          label="Currency"
+                           
                           style={{
                             width: "70%",
                           }}
@@ -153,12 +145,8 @@ function CandidateFilterForm(props) {
                       {selectFilter === "Work Preference" && (
                         <FastField
                           name="workPreference"
-                          label={
-                            <FormattedMessage
-                              id="app.workpreference"
-                              defaultMessage="Work Preference"
-                            />
-                          }
+                          label="Work Preference"
+                            
                           options={["Remote", "Hybrid", "Office"]}
                           isColumn
                           component={SelectComponent}
@@ -168,12 +156,8 @@ function CandidateFilterForm(props) {
                       {selectFilter === "Location" && (
                         <FastField
                           name="workLocation"
-                          label={
-                            <FormattedMessage
-                              id="app.location"
-                              defaultMessage="Location"
-                            />
-                          }
+                          label="Location"
+                            
                           isColumn
                           component={InputComponent}
                           inlineLabel
@@ -192,8 +176,8 @@ function CandidateFilterForm(props) {
                 type="primary"
                 htmlType="submit"
               >
-                <FormattedMessage id="app.create" defaultMessage="Create" />
-                {/* Create */}
+               
+                Create
               </Button>
             </div>
           </Form>

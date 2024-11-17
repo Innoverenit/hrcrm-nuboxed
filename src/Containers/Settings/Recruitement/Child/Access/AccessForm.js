@@ -2803,7 +2803,7 @@
 //                   handleUpdateAccess();
 //                 }}
 //               >
-//                 <FormattedMessage id="app.Update" defaultMessage="Update" />
+//               
 //               </Button>
 //             </FloatButton.Group>
 //           </div>

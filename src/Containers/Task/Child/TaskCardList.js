@@ -503,13 +503,13 @@ const TaskCardList = (props) => {
         onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
      
         >
-          <FormattedMessage id="app.approve" defaultMessage="Approve" />
+       Approve
         </Button>
        <Button type="primary"className="bg-[red] text-[white] font-poppins text-xs "
       
           onClick={() => rejectTaskByTaskId(item.taskId)}
         >
-          <FormattedMessage id="app.reject" defaultMessage="Reject" />
+Reject
         </Button>
       </div>
     </>
@@ -644,13 +644,8 @@ const TaskCardList = (props) => {
            
             {item.complitionStatus !== "completed" && (
                           <StyledPopconfirm
-                            // title="Do you want to delete?"
-                            title={
-                              <FormattedMessage
-                                id="app.doyouwishtodelete?"
-                                defaultMessage="Do you wish to delete?"
-                              />
-                            }
+                            title="Do you want to delete?"
+                           
                             onConfirm={() => deleteTask(item.taskId, employeeId)}
                           >
                                 <Tooltip title="Delete">
@@ -928,7 +923,7 @@ taskStatus: "To Start",
  onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
    style={{ backgroundColor: "teal", color: "white" }}
  >
-   <FormattedMessage id="app.approve" defaultMessage="Approve" />
+   Approve
  </Button>
  <Button
    style={{
@@ -937,7 +932,7 @@ taskStatus: "To Start",
    }}
    onClick={() => rejectTaskByTaskId(item.taskId)}
  >
-   <FormattedMessage id="app.reject" defaultMessage="Reject" />
+   Reject
  </Button>
 </div>
 </>
@@ -1072,13 +1067,9 @@ taskStatus: "To Start",
     
      {item.complitionStatus !== "completed" && (
                    <StyledPopconfirm
-                     // title="Do you want to delete?"
-                     title={
-                       <FormattedMessage
-                         id="app.doyouwishtodelete?"
-                         defaultMessage="Do you wish to delete?"
-                       />
-                     }
+                   title="Do you want to delete?"
+                     
+                    
                      onConfirm={() => deleteTask(item.taskId, employeeId)}
                    >
                          <Tooltip title="Delete">
@@ -1353,7 +1344,7 @@ taskStatus: "To Start",
  onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
    style={{ backgroundColor: "teal", color: "white" }}
  >
-   <FormattedMessage id="app.approve" defaultMessage="Approve" />
+  Approve
  </Button>
  <Button
    style={{
@@ -1362,7 +1353,7 @@ taskStatus: "To Start",
    }}
    onClick={() => rejectTaskByTaskId(item.taskId)}
  >
-   <FormattedMessage id="app.reject" defaultMessage="Reject" />
+   Reject
  </Button>
 </div>
 </>
@@ -1497,13 +1488,8 @@ taskStatus: "To Start",
     
      {item.complitionStatus !== "completed" && (
                    <StyledPopconfirm
-                     // title="Do you want to delete?"
-                     title={
-                       <FormattedMessage
-                         id="app.doyouwishtodelete?"
-                         defaultMessage="Do you wish to delete?"
-                       />
-                     }
+                   title="Do you want to delete?"
+                    
                      onConfirm={() => deleteTask(item.taskId, employeeId)}
                    >
                          <Tooltip title="Delete">

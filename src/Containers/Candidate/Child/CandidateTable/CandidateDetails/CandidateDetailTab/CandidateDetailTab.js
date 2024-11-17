@@ -124,10 +124,7 @@ function CandidateDetailTab(props) {
                 <span>
                   <LocalActivityIcon style={{ fontSize: "1.1rem" }} />
                   <span class=" ml-[0.25em]" >
-                    <FormattedMessage
-                      id="app.activity"
-                      defaultMessage="Activity"
-                    />
+                   Activity
 
 
                   </span>
@@ -139,12 +136,10 @@ function CandidateDetailTab(props) {
                     <AddBoxIcon className=" !text-icon  ml-1 items-center
  text-[#6f0080ad]"
                      
-                      tooltiptitle={
-                        <FormattedMessage
-                          id="app.Create"
-                          defaultMessage="Create"
-                        />
-                      }
+                      tooltiptitle=
+                          "Create"
+                       
+                      
                       onClick={() =>
                         handleCandidateActivityModal(true)
                       }
@@ -241,11 +236,7 @@ function CandidateDetailTab(props) {
               <>
                 <span>
                   <NoteAltIcon style={{ fontSize: "1.1rem" }} />
-                  &nbsp;
-                  <FormattedMessage
-                    id="app.notes"
-                    defaultMessage="Notes"
-                  />
+                Notes
                   {/* {translatedContent[4]} */}
                   &nbsp;
                   {activeKey === "5" && (

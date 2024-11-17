@@ -571,21 +571,7 @@ props.emptyClearbit();
           />
                     <div>
                       <div class=" flex justify-between max-sm:flex-col">
-                        {/* <div class=" w-2/5 max-sm:w-full">
-                          <Field
-                            name="salutation"
-                            label={
-                              <FormattedMessage
-                                id="app.salutation"
-                                defaultMessage="Salutation"
-                              />
-                            }
-                            options={["Mr.", "Ms.", "None"]}
-                            component={SelectComponent}
-                            inlineLabel
-                            isColumn
-                          />
-                        </div> */}
+                        
                         <div class=" w-wk max-sm:w-full ">
                           <FastField
                             isRequired
@@ -1171,9 +1157,9 @@ translatedMenuItems={props.translatedMenuItems}
                htmlType="submit"
                    loading={props.addingCustomerConfig}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
-                  {/*                     
-                    Create */}
+                 
+                            
+                   Update 
                 </Button>
               </div>
             </Form>

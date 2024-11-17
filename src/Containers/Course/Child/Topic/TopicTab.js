@@ -124,11 +124,11 @@ class TopicTab extends Component {
                   onClick={this.handleAddTopic}
                 >
                   
-                  <FormattedMessage id="app.save" defaultMessage="Save" />
+              Save
                 </Button>
                 &nbsp;
                 <Button type="primary" ghost onClick={this.toggleInput}>
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+Cancel
                 </Button>
               </div>
             ) : (
@@ -140,10 +140,7 @@ class TopicTab extends Component {
                     htmlType="button"
                     onClick={this.toggleInput}
                   >
-                    <FormattedMessage
-                      id="app.addtopic"
-                      defaultMessage="Add Topic"
-                    />
+                 Add Topic
                   </Button>
                 </div>
                

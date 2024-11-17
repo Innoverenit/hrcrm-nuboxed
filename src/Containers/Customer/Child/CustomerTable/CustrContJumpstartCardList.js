@@ -83,38 +83,20 @@ function CustrContJumpstartCardList(props) {
       <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[98%] max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" max-sm:hidden flex justify-between w-[95%] max-lg:w-[89%] max-xl:w-[96%] p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
-        <FormattedMessage
-                  id="app.name"
-                  defaultMessage="Name"
-                /></div>
-        <div className=" w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]"><FormattedMessage
-                  id="app.company"
-                  defaultMessage="Company"
-                /></div>
-        <div className=" md:w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]"><FormattedMessage
-                  id="app.designation"
-                  defaultMessage="Designation"
-                /></div>
-        <div className="md:w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]"><FormattedMessage
-                  id="app.department"
-                  defaultMessage="Department"
-                /></div>
-        <div className="md:w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]"><FormattedMessage
-                  id="app.quotation"
-                  defaultMessage="Quotation"
-                /></div>
-        <div className="md:w-[5.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]"><FormattedMessage
-                  id="app.pipeline"
-                  defaultMessage="Pipeline"
-                /></div>
-        <div className="w-[6.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]"><FormattedMessage
-                  id="app.portalacess"
-                  defaultMessage="Portal Acess"
-                /></div>
-        <div className="w-[2.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]"><FormattedMessage
-                  id="app.owner"
-                  defaultMessage="Owner"
-                /></div>
+    Name</div>
+        <div className=" w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">Company
+              </div>
+        <div className=" md:w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">Designation</div>
+        <div className="md:w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
+                Department</div>
+        <div className="md:w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">Quotation
+               </div>
+        <div className="md:w-[5.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]">Pipeline
+               </div>
+        <div className="w-[6.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">Portal Acess
+              </div>
+        <div className="w-[2.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">Owner"
+               </div>
         <div className="w-[4.2rem]"></div>
 
       </div>
@@ -263,12 +245,8 @@ function CustrContJumpstartCardList(props) {
  
 <div>
                       <Tooltip
-                        title={
-                          <FormattedMessage
-                            id="app.activity"
-                            defaultMessage="Activity"
-                          />
-                        }
+                        title="Activity"
+                         
                       >
                         <AddchartIcon
                         className="!text-base cursor-pointer text-blue-500"

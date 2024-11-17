@@ -63,20 +63,16 @@ handleProjectId = (e) => {
   
     const steps = [
       {
-        title:  <FormattedMessage
-        id="app.first"
-        defaultMessage="First"
-      />,
+        title: "First"
+   ,
         content: <FirstCandidateBillablePage
     
         />,
        
       },
       {
-        title:  <FormattedMessage
-        id="app.second"
-        defaultMessage="Second"
-      />,
+        title: "Second"
+  ,
         // content:<SecondInvoicePage/>,
         // <SecondStep projectDetailsId={this.props.projectDetailsId} />,
       },

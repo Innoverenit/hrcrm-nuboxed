@@ -13,11 +13,7 @@ const AddActionDrawerModal = (props) => {
     <>
       <StyledDrawer
         title="Action Steps"
-        // title={this.state.message}
-        // title={<FormattedMessage
-        //   id="app.candidate"
-        //   defaultMessage="Candidate"
-        // />}
+      
         width="45%"
         visible={props.addDrawerActionModal}
         maskClosable={false}

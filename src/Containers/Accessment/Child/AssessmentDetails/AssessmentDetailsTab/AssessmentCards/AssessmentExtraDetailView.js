@@ -10,47 +10,34 @@ function AssessmentExtraDetailView(props) {
     return (
         <>
         
-          <AssessmentItemRow // label="URL" 
-            label={<FormattedMessage
-              id="app.url"
-              defaultMessage="URL"
-            />}
+          <AssessmentItemRow 
+          label="URL" 
+          
   
             value={url} />
-          <AssessmentItemRow //label="Phone Number" 
-            label={<FormattedMessage
-              id="app.category"
-              defaultMessage="Category"
-            />}
-  
+          <AssessmentItemRow 
+          label="Phone Number" 
+           
             value={category} 
             
             />
             
             <AssessmentItemRow //label="Phone Number" 
-            label={<FormattedMessage
-              id="app.level"
-              defaultMessage="Level"
-            />}
+            label="Level"
+            
   
              value={level} 
             
             />
   
   <AssessmentItemRow //label="Phone Number" 
-            label={<FormattedMessage
-              id="app.questions"
-              defaultMessage="Questions #"
-            />}
-  
-             value={noOfQuestions} 
+            label="Questions #"
+           value={noOfQuestions} 
             
             />
             <AssessmentItemRow //label="Phone Number" 
-            label={<FormattedMessage
-              id="app.theme"
-              defaultMessage="Theme"
-            />}
+            label="Theme"
+           
   
              value={theme} 
             

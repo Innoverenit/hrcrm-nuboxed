@@ -84,13 +84,9 @@ const LinkedTaskDocument = (props) => {
            
      
                          <StyledPopconfirm
-                           // title="Do you want to delete?"
-                           title={
-                             <FormattedMessage
-                               id="app.doyouwishtodelete?"
-                               defaultMessage="Do you wish to delete?"
-                             />
-                           }
+                           title="Do you want to delete?"
+                          
+                         
                            onConfirm={() => deleteDocumentTask(item.documentId)}
                          >
                            <DeleteIcon

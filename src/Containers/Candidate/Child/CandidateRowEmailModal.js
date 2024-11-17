@@ -71,11 +71,9 @@ class CandidateRowEmailModal extends Component {
     return (
       <div>
         <StyledDrawer
-              // title="Opportunity"
-        title={<FormattedMessage
-          id="app.email"
-          defaultMessage="Email"
-        />}
+            
+        title="Email"
+       
         width={"60%"}
         visible={this.props.addCandidateRowEmailModal}
         // maskClosable={false}

@@ -8,10 +8,8 @@ const AddCourseModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.course"
-          defaultMessage="Course"
-        />}
+        title="Course"
+      
         width="60%"
         style={{marginTop:"5rem"}}
         visible={props.addCourseModal}

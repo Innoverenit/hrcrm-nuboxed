@@ -285,7 +285,6 @@ class TaskDeletedTable extends React.Component {
       },
       {
         headerName: "Owner",
-       // title: <FormattedMessage id="app.submittedby" defaultMessage="Submitted by" />,
        field: "submittedBy",
         width:70,
         renderCell: (cellValues) => {
@@ -308,7 +307,6 @@ class TaskDeletedTable extends React.Component {
       },
       {
         headerName: "Assigned on",
-        //title: <FormattedMessage id="app.assignedon" defaultMessage="Assigned on" />,
         field: "",
         width:100,
         renderCell: (cellValues,row) => {
@@ -318,7 +316,6 @@ class TaskDeletedTable extends React.Component {
       },
       {
         headerName: "Assigned",
-        //title: <FormattedMessage id="app.assignedon" defaultMessage="Assigned on" />,
         field: "assignedToName",
         width:90,
         renderCell: (cellValues) => {
@@ -338,8 +335,7 @@ class TaskDeletedTable extends React.Component {
       },
       {
         headerName: "Talent",
-        //title: <FormattedMessage id="app.talent" defaultMessage="Talent" />,
-        field: "candidateName",
+              field: "candidateName",
         width:70,
         renderCell: (cellValues) => {
           const data=cellValues.row
@@ -392,8 +388,7 @@ class TaskDeletedTable extends React.Component {
       },
       {
         headerName: "Start",
-        //title: <FormattedMessage id="app.start" defaultMessage="Start" />,
-        field: "startDate",
+      field: "startDate",
         width:90,
        // defaultSortOrder: "descend",
        renderCell: (cellValues,row) => {
@@ -415,7 +410,7 @@ class TaskDeletedTable extends React.Component {
       },
       {
         headerName: "End",
-        //title: <FormattedMessage id="app.end" defaultMessage="End" />,
+      
         field: "endDate",
         width:90,
         renderCell: (cellValues,row) => {
@@ -438,7 +433,7 @@ class TaskDeletedTable extends React.Component {
       },
       {
         headerName: "Status",
-        //title: <FormattedMessage id="app.status" defaultMessage="Status" />,
+    
         field: "taskStatus",
         width:20,
         renderCell: (cellValues,row) => {
@@ -494,8 +489,8 @@ class TaskDeletedTable extends React.Component {
                       onClick={() => approveTaskByTaskId(data.taskId)}
                       style={{ backgroundColor: "teal", color: "white" }}
                     >
-                      {/* Approve */}
-                      <FormattedMessage id="app.approve" defaultMessage="Approve" />
+                      Approve
+                  
                     </Button>
                     <Button
                       style={{
@@ -504,8 +499,8 @@ class TaskDeletedTable extends React.Component {
                       }}
                       onClick={() => rejectTaskByTaskId(data.taskId)}
                     >
-                      {/* Reject */}
-                      <FormattedMessage id="app.reject" defaultMessage="Reject" />
+                      Reject
+                  
                     </Button>
                   </div>
                 </>
@@ -570,8 +565,8 @@ class TaskDeletedTable extends React.Component {
             <>
             {data.complitionStatus !== "completed" &&(
             <StyledPopconfirm
-              // title="Do you want to delete?"
-              title={<FormattedMessage id="app.doyouwishtodelete?" defaultMessage="Do you wish to delete?" />}
+            title="Do you want to delete?"
+           
               onConfirm={() => deleteTask(data.taskId, employeeId)}
             >
               <DeleteIcon type="delete" style={{ cursor: "pointer" }} />

@@ -129,7 +129,7 @@ class Program extends Component {
                   this.handleClear();
                 }}
               >
-                <FormattedMessage id="app.clear" defaultMessage="Clear" />
+               Clear
               </Button>
             </div>
 
@@ -177,14 +177,10 @@ class Program extends Component {
                   onClick={this.handleAddSector}
                   style={{ marginRight: "0.125em" }}
                 >
-                  {/* Save */}
-                  <FormattedMessage id="app.save" defaultMessage="Save" />
-                </Button>
-                &nbsp;
+                  Save</Button>
+             
                 <Button type="primary" ghost onClick={this.toggleInput}>
-                  {/* Cancel */}
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
-                </Button>
+                  Cancel</Button>
               </div>
             ) : (
               <>
@@ -197,11 +193,8 @@ class Program extends Component {
                     Loading={addingPrograms}
                     onClick={this.toggleInput}
                   >
-                    {/* Add More */}
-                    <FormattedMessage
-                      id="app.addmore"
-                      defaultMessage="Add More"
-                    />
+                 
+                  Add More
                   </Button>
                 </div>
                

@@ -542,28 +542,7 @@ const {
                   />
                  
                   
-                    {/* <Field
-                      name="employeesId"
-                      isColumnWithoutNoCreate
-                      selectType="employee"
-                      // label="Assigned"
-                      label={
-                        <FormattedMessage
-                          id="app.assignedto"
-                          defaultMessage="Assigned"
-                        />
-                      }
-                      component={SearchSelect}
-                      isColumn
-                      value={values.employeeId}
-                      defaultValue={{
-                        label: `${firstName || ""} ${middleName || ""} ${
-                          lastName || ""
-                        }`,
-                        value: employeeId,
-                      }}
-                      inlineLabel
-                    /> */}
+                  
                  <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
@@ -831,10 +810,7 @@ const {
                         htmlType="submit"
                         Loading={deletingEvent}
                       >
-                        <FormattedMessage
-                          id="app.delete"
-                          defaultMessage="Delete"
-                        />
+                        Delete
                       </Button>
                     </StyledPopconfirm>
                   </>

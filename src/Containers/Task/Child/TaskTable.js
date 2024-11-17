@@ -490,11 +490,8 @@ return (
                     onClick={() => approveTaskByTaskId(item.taskId)}
                     style={{ backgroundColor: "teal", color: "white" }}
                   >
-                    {/* Approve */}
-                    <FormattedMessage
-                      id="app.approve"
-                      defaultMessage="Approve"
-                    />
+                     Approve
+                    
                   </Button>
                   <Button
                     style={{
@@ -503,11 +500,7 @@ return (
                     }}
                     onClick={() => rejectTaskByTaskId(item.taskId)}
                   >
-                    {/* Reject */}
-                    <FormattedMessage
-                      id="app.reject"
-                      defaultMessage="Reject"
-                    />
+                     Reject 
                   </Button>
                 </div>
               </>
@@ -594,13 +587,8 @@ return (
                       <>
                         {item.complitionStatus !== "completed" && (
                           <StyledPopconfirm
-                            // title="Do you want to delete?"
-                            title={
-                              <FormattedMessage
-                                id="app.doyouwishtodelete?"
-                                defaultMessage="Do you wish to delete?"
-                              />
-                            }
+                         title="Do you want to delete?"
+                            
                             onConfirm={() => deleteTask(item.taskId, employeeId)}
                           >
                             <DeleteIcon

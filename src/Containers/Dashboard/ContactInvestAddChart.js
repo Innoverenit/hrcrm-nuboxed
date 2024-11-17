@@ -32,10 +32,7 @@ import {
     <>
     <div class="mr-5 ml-5 h-[16rem] w-wk ">  
        <div class=" flex justify-between" >
-      <span>        <FormattedMessage
-              id="app.hours"
-              defaultMessage="Hours"
-            /></span>
+      <span> Hours</span>
     <TimeInterval
           times={props.dateClosureRangeList}
            handleClick={props.setSelectedClosureTimeIntervalReport}

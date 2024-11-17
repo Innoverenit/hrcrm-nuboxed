@@ -125,7 +125,7 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                   }}
                 >
                     <div class="mt-3" />
-                   <div class=" text-xs font-bold font-poppins text-black"><FormattedMessage id="app.name" defaultMessage="Name" /></div>
+                   <div class=" text-xs font-bold font-poppins text-black">Name</div>
                   <Field
                     isRequired
                     name="name"
@@ -140,10 +140,8 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                   <Field
                     name="url"
                     type="text"
-                    // label="URL"
-                    label={
-                      <FormattedMessage id="app.url" defaultMessage="URL" />
-                    }
+                    label="URL"
+                    
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -154,9 +152,7 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                   <Field
                     name="email"
                     type="text"                   
-                    label={
-                      <FormattedMessage id="app.email" defaultMessage="Email" />
-                    }
+                    label="Email"
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -168,12 +164,8 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                         name="countryDialCode"
                         selectType="dialCode"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode"
-                            defaultMessage="Dial Code #"
-                          />
-                        }
+                        label="Dial Code #"
+                      
                         isColumn
                         component={SearchSelect}
                         // value={values.countryDialCode1}
@@ -200,12 +192,8 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                         name="sectorId"
                         isColumnWithoutNoCreate
                         selectType="sectorName"
-                        label={
-                          <FormattedMessage
-                            id="app.sector"
-                            defaultMessage="Sector"
-                          />
-                        }
+                        label="Sector"
+                         
                         isColumn
                         component={SearchSelect}
                       />
@@ -236,10 +224,8 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                  <div class="mt-3" />
                   <Field
                     name="notes"
-                    // label="Notes"
-                    label={
-                      <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                    }
+                    label="Notes"
+                  
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -258,13 +244,9 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                     name="assignedTo"
                     selectType="employee"
                     isColumnWithoutNoCreate
-                    // label="Assigned"
-                    label={
-                      <FormattedMessage
-                        id="app.assignedto"
-                        defaultMessage="Assigned"
-                      />
-                    }
+                    label="Assigned"
+                   
+                    
                
                     isColumn
                   
@@ -280,12 +262,8 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                       <Field
                         name="vatNo"
                         type="text" 
-                        label={
-                          <FormattedMessage
-                            id="app.vatNumber"
-                            defaultMessage="VAT Number"
-                          />
-                        }
+                        label="VAT Number"
+                        
                         //isRequired
                         isColumn
                         width={"100%"}
@@ -298,12 +276,8 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                         name="businessRegistration"
                         type="text"
                         // label="URL"
-                        label={
-                          <FormattedMessage
-                            id="app.businessregistration"
-                            defaultMessage=" Business Registration#"
-                          />
-                        }
+                        label=" Business Registration#"
+                          
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -340,8 +314,7 @@ checked:this.props.setEditingCustomer.category==="White" || this.props.setEditin
                   htmlType="submit"
                   Loading={updateCustomerById}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
-                  {/* Update */}
+                 Update
                 </Button>
               </div>
             </Form>

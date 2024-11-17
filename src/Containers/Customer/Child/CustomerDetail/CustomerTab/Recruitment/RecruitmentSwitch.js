@@ -39,11 +39,8 @@ class RecruitmentSwitch extends Component {
     return (
       <div>
         <Popconfirm
-          //title="Do you wish to proceed?"
-          title={<FormattedMessage
-            id="app.doyouwishtoproceed?"
-            defaultMessage="Do you wish to proceed?"
-          />}
+          title="Do you wish to proceed?"
+         
           onConfirm={this.props.contactId ? this.onChange : this.handleError}
           onCancel={null}
           okText="Ok"

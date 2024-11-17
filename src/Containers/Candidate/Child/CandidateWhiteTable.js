@@ -208,8 +208,8 @@ function CandidateWhiteTable(props) {
       },
     },
     {
-      // title: "Name",
-      title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+      title: "Name",
+     
       width: "13%",
       ...getColumnSearchProps('name'),
       sorter: (a, b) => {
@@ -282,16 +282,14 @@ function CandidateWhiteTable(props) {
    
     {
       
-      title: (
-        <FormattedMessage id="app.vendor" defaultMessage="Vendor" />
-      ),
+      title:"Vendor",
       dataIndex: "partnerName",
       width: "10%",
       ...getColumnSearchProps('partnerName'),
     },
      {
      
-      title: <FormattedMessage id="app.role" defaultMessage="Role" />,
+      title: "Role" ,
        dataIndex: "roleType",
       width: "10%",
       filters:roleTypeOption,
@@ -303,8 +301,8 @@ function CandidateWhiteTable(props) {
     },
 
     {
-      // title: "Mobile #",
-      title: <FormattedMessage id="app.mobileNumber" defaultMessage="Mobile #" />,
+      title: "Mobile #",
+     
       dataIndex: "mobileNumber",
       width: "10%",
       render: (name, item, i) => {
@@ -316,8 +314,8 @@ function CandidateWhiteTable(props) {
       },
     },
     {
-      // title: "Country",
-      title: <FormattedMessage id="app.country" defaultMessage="Country" />,
+      title: "Country",
+   
       dataIndex: "country",
       align: "left",
       sorter: (a, b) => {
@@ -336,7 +334,7 @@ function CandidateWhiteTable(props) {
     
     },
     {
-      title: <FormattedMessage id="app.skills" defaultMessage="Skills" />,
+      title: "Skills" ,
       // dataIndex: "skillList",
       width: "17%",
       ...getColumnSearchProps("skillList"),
@@ -364,7 +362,7 @@ function CandidateWhiteTable(props) {
   
     {
       // title: "Designation",
-      title: <FormattedMessage id="app.cost" defaultMessage="Cost" />,
+      title: "Cost" ,
        dataIndex: "billing",
       align: "left",
       width: "6%",
@@ -381,7 +379,7 @@ function CandidateWhiteTable(props) {
       },
     },
     {
-      title: <FormattedMessage id="app.benefits" defaultMessage="Benefits" />,
+      title:"Benefits" ,
        dataIndex: "benifit",
       width: "6%", 
       render: (name, item, i) => {        
@@ -398,7 +396,7 @@ function CandidateWhiteTable(props) {
     },
 {
       // title: "Designation",
-      title: <FormattedMessage id="app.available" defaultMessage="Available" />,
+      title: "Available" ,
        dataIndex: "availableDate",
       width: "7%",
       render: (text, item) => {
@@ -417,7 +415,7 @@ function CandidateWhiteTable(props) {
     
   {
    //title: "",
-    title: <FormattedMessage id="app.owner" defaultMessage="Owner" />,
+    title:"Owner" ,
    //dataIndex: "ownerName",
    width: "8%",
   //  ...getColumnSearchProps('ownerName'),
@@ -448,7 +446,7 @@ function CandidateWhiteTable(props) {
  },
     {
       // title: "Status",
-      title: <FormattedMessage id="app.active" defaultMessage="Active" />,
+      title: "Active" ,
       // dataIndex: "active",
       width: "6%",
       render: (name, item, i) => {

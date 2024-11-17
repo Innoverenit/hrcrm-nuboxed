@@ -186,13 +186,8 @@ class UpdateCandidateForm extends Component {
                           <FastField
                             name="salutation"
                             type="text"
-                            // label="Salutation"
-                            label={
-                              <FormattedMessage
-                                id="app.salutation"
-                                defaultMessage="Salutation"
-                              />
-                            }
+                            label="Salutation"
+                           
                             options={["Mr.", "Ms.", "None"]}
                             component={SelectComponent}
                             inlineLabel
@@ -204,13 +199,8 @@ class UpdateCandidateForm extends Component {
                           <FastField
                             isRequired
                             name="firstName"
-                            // label="First Name"
-                            label={
-                              <FormattedMessage
-                                id="app.firstname"
-                                defaultMessage="First Name"
-                              />
-                            }
+                            label="First Name"
+                           
                             type="text"
                             width={"100%"}
                             isColumn
@@ -224,13 +214,8 @@ class UpdateCandidateForm extends Component {
                         <div class=" w-[30%]" >
                           <FastField
                             name="middleName"
-                            // label="Middle "
-                            label={
-                              <FormattedMessage
-                                id="app.middleName"
-                                defaultMessage="Middle"
-                              />
-                            }
+                            label="Middle "
+                           
                             type="text"
                             width={"100%"}
                             isColumn
@@ -241,13 +226,8 @@ class UpdateCandidateForm extends Component {
                         <div class=" w-[65%]" >
                           <FastField
                             name="lastName"
-                            // label="Last Name"
-                            label={
-                              <FormattedMessage
-                                id="app.lastName"
-                                defaultMessage="Last Name"
-                              />
-                            }
+                            label="Last Name"
+                           
                             type="text"
                             width={"100%"}
                             isColumn
@@ -273,13 +253,8 @@ class UpdateCandidateForm extends Component {
                         // isRequired
                         type="email"
                         name="emailId"
-                        // label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.email"
-                            defaultMessage="Email"
-                          />
-                        }
+                         label="Email"
+                       
                         className="field"
                         isColumn
                         width={"100%"}
@@ -294,13 +269,8 @@ class UpdateCandidateForm extends Component {
                       <FastField
                         name="countryDialCode"
                         isColumnWithoutNoCreate
-                        // label="Mobile #"
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode"
-                            defaultMessage="Mobile #"
-                          />
-                        }
+                         label="Mobile #"
+                    
                         isColumn
                        selectType="dialCode"
                         component={SearchSelect}
@@ -350,12 +320,8 @@ class UpdateCandidateForm extends Component {
                         name="nationality"
                         isColumnWithoutNoCreate
                         //label="Mobile #"
-                        label={
-                          <FormattedMessage
-                            id="app.nationality"
-                            defaultMessage="Nationality"
-                          />
-                        }
+                        label="Nationality"
+                         
                         isColumn
                         selectType="country"
                         component={SearchSelect}
@@ -397,12 +363,8 @@ class UpdateCandidateForm extends Component {
                           selectType="dialCode"
                           //label="Available from"
 
-                          label={
-                            <FormattedMessage
-                              id="app.#whatsApp"
-                              defaultMessage="WhatsApp #"
-                            />
-                          }
+                          label="WhatsApp #"
+                         
                           component={SearchSelect}
                           isColumn
                           // value={values.availableDate}
@@ -431,13 +393,8 @@ class UpdateCandidateForm extends Component {
                       <FastField
                         type="text"
                         name="linkedin"
-                        // label="Linkedin "
-                        label={
-                          <FormattedMessage
-                            id="app.linkedin"
-                            defaultMessage="LinkedIn"
-                          />
-                        }
+                        label="Linkedin "
+                      
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -453,12 +410,8 @@ class UpdateCandidateForm extends Component {
                     <FastField
                         name="idProof"
                         //label="Mobile #"
-                        label={
-                          <FormattedMessage
-                            id="app.idproof"
-                            defaultMessage="ID Proof"
-                          />
-                        }
+                        label="ID Proof"
+                          
                         isColumn
                        options={[
                           "PassPort",
@@ -478,12 +431,8 @@ class UpdateCandidateForm extends Component {
                         type="text"
                         name="idNumber"
                         //placeholder="Mobile #"
-                        label={
-                          <FormattedMessage
-                            id="app.idNumber"
-                            defaultMessage="ID Number"
-                          />
-                        }
+                        label="ID Number"
+                        
                         component={InputComponent}
                         inlineLabel
                         width={"100%"}
@@ -497,12 +446,8 @@ class UpdateCandidateForm extends Component {
                   <div class=" w-[57%]">
                       <Field
                         name="dateOfBirth"
-                        label={
-                          <FormattedMessage
-                            id="app.dateOfBirth"
-                            defaultMessage="Date of Birth"
-                          />
-                        }
+                        label="Date of Birth"
+                        
                         isColumn
                         component={DatePicker}
                         value={values.dateOfBirth}
@@ -515,12 +460,8 @@ class UpdateCandidateForm extends Component {
                         name="gender"
                         type="text"
                         // label="Salutation"
-                        label={
-                          <FormattedMessage
-                            id="app.gender"
-                            defaultMessage="Gender"
-                          />
-                        }
+                        label="Gender"
+                         
                         options={["Male", "Female", "Others"]}
                         component={SelectComponent}
                         inlineLabel
@@ -556,14 +497,9 @@ class UpdateCandidateForm extends Component {
                         // name="address[0].country"
                         name="country"
                         isColumnWithoutNoCreate
-                        // label="Country"
+                       label="Country"
 
-                        label={
-                          <FormattedMessage
-                            id="app.country"
-                            defaultMessage="Country"
-                          />
-                        }
+                        
                         component={SearchSelect}
                         defaultValue={{
                           value: this.props.user.countryName,
@@ -590,12 +526,8 @@ class UpdateCandidateForm extends Component {
                       isColumnWithoutNoCreate
                       selectType="sectorName"
                       // label="Department"
-                      label={
-                        <FormattedMessage
-                          id="app.sector"
-                          defaultMessage="Sector"
-                        />
-                      }                      
+                      label="Sector"
+                                           
                       isColumn
                       component={SearchSelect}
                       value={values.sectorId}
@@ -622,12 +554,8 @@ class UpdateCandidateForm extends Component {
                         name="roleTypeId"
                         selectType="roleType"
                         //label="Designation"
-                        label={
-                          <FormattedMessage
-                            id="app.role"
-                            defaultMessage="Role"
-                          />
-                        }
+                        label="Role"
+                         
                         isColumnWithoutNoCreate                       
                         isColumn                       
                         component={SearchSelect}
@@ -638,13 +566,8 @@ class UpdateCandidateForm extends Component {
                     <div class=" w-[47%]">
                       <FastField
                         name="designationTypeId"
-                        // label="Designation"
-                        label={
-                          <FormattedMessage
-                            id="app.designation"
-                            defaultMessage="Designation"
-                          />
-                        }
+                        label="Designation"
+                        
                         selectType="designationType"
                         isColumnWithoutNoCreate                       
                         isColumn
@@ -662,12 +585,8 @@ class UpdateCandidateForm extends Component {
                           name="tag_with_company"
                           // selectType="customerList"
                           // label="Tag Company"
-                          label={
-                            <FormattedMessage
-                            id="currentemployer"
-                            defaultMessage="Current Employer"
-                          />
-                          }
+                          label="Current Employer"
+                          
                           component={InputComponent}
                           isColumn
                           // value={values.customerId}
@@ -682,12 +601,8 @@ class UpdateCandidateForm extends Component {
                         name="partnerId"
                         isColumnWithoutNoCreate
                         //label="Mobile #"
-                        label={
-                          <FormattedMessage
-                            id="app.vendor"
-                            defaultMessage="Vendor"
-                          />
-                        }
+                        label="Vendor"
+                         
                         isColumn                       
                         selectType="partnerListName"
                         component={SearchSelect}                       
@@ -754,13 +669,8 @@ class UpdateCandidateForm extends Component {
                         {this.state.availability && (
                         <Field
                           name="availableDate"
-                          // label="Available from"
-                          label={
-                            <FormattedMessage
-                              id="app.availablefrom"
-                              defaultMessage="Available from"
-                            />
-                          }
+                         label="Available from"
+                         
                           // disabled={!this.state.availability}
                           component={DatePicker}
                           isColumn
@@ -778,12 +688,8 @@ class UpdateCandidateForm extends Component {
                         // type="email"
                         name="workPreference"
                         //label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.workpreference"
-                            defaultMessage="Work Preference"
-                          />
-                        }
+                        label="Work Preference"
+                         
                         className="field"
                         isColumn
                         width={"100%"}
@@ -799,23 +705,7 @@ class UpdateCandidateForm extends Component {
                         inlineLabel
                       />
                     </div>
-                      {/* <div style={{ width: "47%" }}>
-                        <FastField
-                          name="experience"
-                          //label="Email"
-                          label={
-                            <FormattedMessage
-                              id="app.experience"
-                              defaultMessage="Experience (Years)"
-                            />
-                          }
-                          // className="field"
-                          isColumn
-                          width={"100%"}
-                          component={InputComponent}
-                          inlineLabel
-                        />
-                      </div> */}
+                    
                       </div>
                     
                       <div class=" flex justify-between mt-3" >
@@ -825,12 +715,7 @@ class UpdateCandidateForm extends Component {
                         <Field
                           name="billing"
                           label={this.state.billing?"Expectation":"Billing"}
-                          // label={
-                          //   <FormattedMessage
-                          //     id="app.billinghour"
-                          //     defaultMessage="Billing/hour (Sell)"
-                          //   />
-                          // }
+                         
                           width={"100%"}
                           isColumn
                           component={InputComponent}                         
@@ -843,12 +728,8 @@ class UpdateCandidateForm extends Component {
                         defaultValue={{
                           value: this.props.user.currency,
                         }}
-                        label={
-                          <FormattedMessage
-                            id="app.currency"
-                            defaultMessage="Currency"
-                          />
-                        }
+                        label="Currency"
+                       
                         width="100%"
                         isColumn
                         selectType="currencyName"
@@ -862,24 +743,7 @@ class UpdateCandidateForm extends Component {
                       </div>
                       </div>
                       <div class=" w-[47.5%]">
-                      {/* <FastField
-                        name="costType"
-                        //label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.costtype"
-                            defaultMessage="Cost Type"
-                          />
-                        }
-                        // className="field"
-                        isColumn
-                        width={"100%"}
-                        component={SelectComponent}
-                        options={["Hourly","Weekly","Monthly","Monthly Salary","Annual Salary"]}
-                        inlineLabel
-                        /> */}
-                        
-                     
+                    
                         <div class=" flex justify-between" >
                     <div class=" w-[48%]">
                   <FastField
@@ -887,12 +751,8 @@ class UpdateCandidateForm extends Component {
                         // type="text"
                         name="currentCtc"
                         //label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.currentsalary"
-                            defaultMessage="Current Salary"
-                          />
-                        }
+                        label="Current Salary"
+                         
                         // className="field"
                         isColumn
                         width={"100%"}
@@ -907,12 +767,9 @@ class UpdateCandidateForm extends Component {
                         defaultValue={{
                           value: this.props.user.currency,
                         }}
-                        label={
-                          <FormattedMessage
-                            id="app.currency"
-                            defaultMessage="Currency"
-                          />
-                        }
+                        label=
+                         "Currency"
+                          
                         width="100%"
                         isColumn
                         selectType="currencyName"
@@ -932,12 +789,8 @@ class UpdateCandidateForm extends Component {
                         name="benifit"
                         //label="State"
 
-                        label={
-                          <FormattedMessage
-                            id="benifit"
-                            defaultMessage="Benefits"
-                          />
-                        }
+                        label="Benefits"
+                          
                         component={InputComponent}
                         isColumn
                         width="100%"
@@ -947,13 +800,9 @@ class UpdateCandidateForm extends Component {
                     <FastField
                         name="noticePeriod"
                         //label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.notice"
-                            defaultMessage="Notice (months)"
+                        label="Notice (months)"
                             
-                          />
-                        }
+                          
                         // className="field"
                         isColumn
                         width={"100%"}
@@ -968,12 +817,8 @@ class UpdateCandidateForm extends Component {
                     <Field
                         name="noticeDetail"
                         //label="Description"
-                        label={
-                          <FormattedMessage
-                              id="app.noticeperiodinfo"
-                              defaultMessage="Notice Period Info"
-                            />
-                        }
+                        label="Notice Period Info"
+                          
                         isRequired
                         isColumn
                        
@@ -992,7 +837,7 @@ class UpdateCandidateForm extends Component {
                   htmlType="submit"
                   loading={updateCandidateById}
                 >                
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+                Update
                 </Button>
               </div>
             </Form>

@@ -76,12 +76,8 @@ console.log("orggg",props.organizationId)
                     // selectType="employee"
                     isColumnWithoutNoCreate
                     // label="Assigned"
-                    label={
-                      <FormattedMessage
-                        id="app.name"
-                        defaultMessage="Name"
-                      />
-                    }
+                    label="Name"
+                     
                     component={SelectComponent}
                     options={Array.isArray(salesNameOption) ? salesNameOption : []}
                     // options={["rdf","desh"]}
@@ -113,12 +109,8 @@ console.log("orggg",props.organizationId)
                         // defaultValue={{
                         //   value: this.props.user.currency,
                         // }}
-                        label={
-                          <FormattedMessage
-                            id="app.currency"
-                            defaultMessage="Currency"
-                          />
-                        }
+                        label="Currency"
+                         
                         width="100%"
                         isColumn
                         selectType="currencyName"

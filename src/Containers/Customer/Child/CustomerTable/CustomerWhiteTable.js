@@ -175,8 +175,7 @@ function CustomerWhiteTable(props) {
       width: "2%",
     },
     {
-      //title: "Name",
-      title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+      title: "Name",
       dataIndex: "name",
       ...getColumnSearchProps('name'),
       width: "19%",
@@ -220,14 +219,14 @@ function CustomerWhiteTable(props) {
     },
     {
      
-      title: <FormattedMessage id="app.url" defaultMessage="URL" />,
+      title: "URL",
       dataIndex: "url",
       width:"15%",
     },
    
     {
     
-      title: <FormattedMessage id="app.sector" defaultMessage="Sector" />,
+      title: "Sector" ,
       dataIndex: "sector",
        width: "13%",
        filters: sectorsNameOption,
@@ -240,19 +239,14 @@ function CustomerWhiteTable(props) {
 
     {
     
-      title: <FormattedMessage id="app.email" defaultMessage="Email" />,
+      title: "Email",
       dataIndex: "email",
       width: "19%",
       ...getColumnSearchProps('email'),
     },
     
     {
-    title: (
-        <FormattedMessage
-          id="app.address"
-          defaultMessage="Address"
-        />
-      ),
+    title:"Address" ,
       // dataIndex: "address[0].address1",
       render: (name, item, i) => {
         console.log(item);
@@ -274,7 +268,7 @@ function CustomerWhiteTable(props) {
       width: "30%",
     },
     {
-      title: <FormattedMessage id="app.country" defaultMessage="Country" />,
+      title:"Country",
       dataIndex: "country",
       width: "10%",
       sorter: (a, b) => {
@@ -291,7 +285,7 @@ function CustomerWhiteTable(props) {
       },
     },
     {
-      title: <FormattedMessage id="app.owner" defaultMessage="Owner" />,
+      title: "Owner" ,
       dataIndex: "ownerName",
       width: "8%",
       // ...getColumnSearchProps('ownerName'),

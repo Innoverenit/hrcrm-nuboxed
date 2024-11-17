@@ -320,26 +320,13 @@ function LinkedContact(props) {
               placement="bottom"
               //title="Do you wish to detach?"
               title={translatedMenuItems[8]}
-              // {
-              //   <FormattedMessage
-              //     id="app.doyouwishtodetach?"
-              //     defaultMessage="Do you wish to detach?"
-              //   />
-              // }
-              //   onConfirm={() =>
-              //     unlinkContactFromOpportunity(opportunityId, name)
-              //   }
+             
             >
               <ActionIcon
                className=" !text-xl cursor-pointer text-[#fb8500]"
                 //tooltipTitle="Detach Contact"
                 tooltiptitle={translatedMenuItems[9]}
-                // {
-                //   <FormattedMessage
-                //     id="app.detachcontact"
-                //     defaultMessage="Detach Contact"
-                //   />
-                // }
+               
                 iconType="api"
                 onClick={null}
                 size="1em"
@@ -370,7 +357,7 @@ function LinkedContact(props) {
             )
         }}
     >
-     {translatedMenuItems[12]} {/* <FormattedMessage id="app.applyforlogin" defaultMessage="Apply For Login" /> */}
+     {translatedMenuItems[12]} 
       </Button>
 </div> : item.accessInd === 2 ? <b class=" font-bold font-poppins text-xs">{translatedMenuItems[10]}</b> : <b class="text-[#32CD32] font-bold font-poppins text-xs">{translatedMenuItems[11]}</b>
 

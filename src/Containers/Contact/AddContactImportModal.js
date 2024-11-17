@@ -11,10 +11,8 @@ const AddContactImportModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.contactImport"
-          defaultMessage="Contact Import"
-        />}
+        title="Contact Import"
+       
         width={drawerWidth}
         visible={addContactImportModal}
         onClose={() => handleContactImportModal(false)}

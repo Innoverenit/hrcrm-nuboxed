@@ -568,12 +568,8 @@ function UpdateTaskForm(props) {
                           type="To Start"
                           iconType="fa-hourglass-start"
                           tooltip="To Start"
-                          tooltipTitle={
-                            <FormattedMessage
-                              id="app.tostart"
-                              defaultMessage="To Start"
-                            />
-                          }
+                          tooltipTitle="To Start"
+                           
                           status={active}
                           onClick={() => glassButtoClick("To Start")}
                         />
@@ -581,12 +577,8 @@ function UpdateTaskForm(props) {
                           type="In Progress"
                           iconType="fa-hourglass-half"
                           tooltip="In Progress"
-                          tooltipTitle={
-                            <FormattedMessage
-                                id="app.inprogress"
-                                defaultMessage="inprogress"
-                              />
-                          }
+                          tooltipTitle="inprogress"
+                            
                           status={active}
                           onClick={() => glassButtoClick("In Progress")}
                         />
@@ -594,12 +586,8 @@ function UpdateTaskForm(props) {
                           type="Completed"
                           iconType="fa-hourglass"
                           tooltip="Completed"
-                          tooltipTitle={
-                            <FormattedMessage
-                                id="app.completed"
-                                defaultMessage="completed"
-                              />
-                          }
+                          tooltipTitle="completed"
+                            
                           status={active}
                           onClick={() => glassButtoClick("Completed")}
                           //  status={item.taskStatus}
@@ -612,30 +600,7 @@ function UpdateTaskForm(props) {
                   </div>
                 </div>
             
-                {/* <div class=" flex justify-between w-full max-sm:flex-col">
-                
-                  <div class=" w-5/12 max-sm:w-wk">
-                    <div class=" flex justify-between w-full">
-                      <div class=" w-full">
-                        <Field
-                          isRequired
-                          name="taskName"
-                          label={
-                            <FormattedMessage
-                              id="app.name"
-                              defaultMessage="Name"
-                            />
-                          }
-                          component={InputComponent}
-                          isColumn
-                          width={"100%"}
-                          inlineLabel
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                */}
+               
                 
                 <div class="mt-3 flex justify-between">
                 {values.taskTypeId === "TSK52434477391272022" && (
@@ -648,12 +613,8 @@ function UpdateTaskForm(props) {
                    isRequired
                    value={values.taskChecklistId}
                    placeolder='Select type'
-                   label={
-                     <FormattedMessage
-                       id="app.taskList"
-                       defaultMessage="taskList"
-                     />
-                   }
+                   label="taskList"
+                    
                   // component={SearchSelect}
                   component={SelectComponent}
                   options={Array.isArray(TaskOptions) ? TaskOptions : []} 
@@ -723,12 +684,8 @@ function UpdateTaskForm(props) {
                       <Field
                         // isRequired
                         name="customerId"
-                        label={
-                          <FormattedMessage
-                            id="app.prospect"
-                            defaultMessage="Prospect"
-                          />
-                        }
+                        label="Prospect"
+                        
                         isColumn
                         component={SelectComponent}
                         value={values.customerId}
@@ -749,12 +706,8 @@ function UpdateTaskForm(props) {
                       <Field
                         isRequired
                         name="projectName"
-                        label={
-                          <FormattedMessage
-                            id="app.project"
-                            defaultMessage="project"
-                          />
-                        }
+                        label="project"
+                         
                         component={SelectComponent}
                         options={
                           Array.isArray(
@@ -786,12 +739,8 @@ function UpdateTaskForm(props) {
                       <Field
                         // isRequired
                         name="value"
-                        label={
-                          <FormattedMessage
-                            id="app.value"
-                            defaultMessage="value"
-                          />
-                        }
+                        label="value"
+                          
                         component={InputComponent}
                         isColumn
                         inlineLabel
@@ -806,12 +755,8 @@ function UpdateTaskForm(props) {
                       <Field
                         // isRequired
                         name="unit"
-                        label={
-                          <FormattedMessage
-                            id="app.unit"
-                            defaultMessage="unit"
-                          />
-                        }
+                        label="unit"
+                          
                         isColumn
                         value={values.unit}
                         component={SelectComponent}
@@ -833,10 +778,7 @@ function UpdateTaskForm(props) {
                     <div class=" flex justify-between w-full">
                       {values.taskTypeId === "TSK52434477391272022" && (
                         <div class=" w-full">
-                          <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
-                              id="app.complexity"
-                              defaultMessage="complexity"
-                            /></div>
+                          <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">complexity</div>
                           <div>
                             <Tooltip title="Easy">
                               <Button
@@ -888,11 +830,8 @@ function UpdateTaskForm(props) {
                           <Field
                             isRequired
                             name="assignedDate"
-                            label={<FormattedMessage
-                              id="app.assignedDate"
-                              defaultMessage="assignedDate"
-                            />}
-                            component={DatePicker}
+                            label="AssignedDate"
+                               component={DatePicker}
                             isColumn
                             value={values.assignedDate}
                             inlineLabel
@@ -1151,13 +1090,8 @@ function UpdateTaskForm(props) {
               {isEditing && (
                 <>
                   <StyledPopconfirm
-                    //title="Do you want to delete?"
-                    title={
-                      <FormattedMessage
-                        id="app.doyouwanttodelete?"
-                        defaultMessage="Do you want to delete?"
-                      />
-                    }
+                    title="Do you want to delete?"
+                    
                     onConfirm={() => deleteTask(prefillTask.taskId)}
                   >
                     <Button
@@ -1165,11 +1099,8 @@ function UpdateTaskForm(props) {
                       htmlType="submit"
                       Loading={deletingTask}
                     >
-                      <FormattedMessage
-                          id="app.delete"
-                          defaultMessage="delete"
-                        />
-                      {/* Delete */}
+                      
+                     Delete
                     </Button>
                   </StyledPopconfirm>
                 </>

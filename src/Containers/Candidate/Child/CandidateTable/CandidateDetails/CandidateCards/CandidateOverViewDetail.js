@@ -20,10 +20,8 @@ class CandidateOverViewDetail extends Component {
      
         <CandidateItemRow //label="Company" 
         
-          label={<FormattedMessage
-            id="app.address"
-            defaultMessage="Address"
-          />}       
+          label="Address"
+           
           value={addressdata||""}        
           />
                   <CandidateItemRow label="Street" value={addressdata1||""} />

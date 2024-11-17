@@ -54,11 +54,7 @@
 //       {/* Recruitment Performance */}
 //       <div class=" flex justify-between" >
 //       {/* <div style={{ width: "47%" }}> */}
-//       <span>
-//       <FormattedMessage
-//                         id="app.hours"
-//                         defaultMessage="Hours"
-//                       />
+//       <span>Hours
         
 //         </span>
 //       {/* </div> */}

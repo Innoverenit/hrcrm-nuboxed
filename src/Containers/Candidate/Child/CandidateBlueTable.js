@@ -199,8 +199,8 @@ function CandidateBlueTable(props) {
       },
     },
     {
-      // title: "Name",
-      title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+      title: "Name",
+    
       width: "13%",
       ...getColumnSearchProps("name"),
       sorter: (a, b) => {
@@ -272,15 +272,15 @@ function CandidateBlueTable(props) {
     },
 
     {
-      // title: "Company",
-      title: <FormattedMessage id="app.vendor" defaultMessage="Vendor" />,
+      title: "Company",
+
       dataIndex: "partnerName",
       width: "10%",
       ...getColumnSearchProps("partnerName"),
     },
     {
-      // title: "Status",
-      title: <FormattedMessage id="app.role" defaultMessage="Role" />,
+      title: "Status",
+      title: "Role",
       dataIndex: "roleType",
       width: "10%",
       filters: roleTypeOption,
@@ -291,9 +291,7 @@ function CandidateBlueTable(props) {
     },
 
     {
-      title: (
-        <FormattedMessage id="app.mobileNumber" defaultMessage="Mobile #" />
-      ),
+      title: "Mobile #",
       dataIndex: "mobileNumber",
       width: "10%",
       render: (name, item, i) => {
@@ -305,7 +303,7 @@ function CandidateBlueTable(props) {
       },
     },
     {
-      title: <FormattedMessage id="app.country" defaultMessage="Country" />,
+      title: "Country" ,
       dataIndex: "country",
       align: "left",
       sorter: (a, b) => {
@@ -323,7 +321,7 @@ function CandidateBlueTable(props) {
       width: "7%",
     },
     {
-      title: <FormattedMessage id="app.skills" defaultMessage="Skills" />,
+      title: "Skills",
       // dataIndex: "skillList",
       width: "17%",
       ...getColumnSearchProps("skillList"),
@@ -350,7 +348,7 @@ function CandidateBlueTable(props) {
     },
 
     {
-      title: <FormattedMessage id="app.cost" defaultMessage="Cost" />,
+      title: "Cost" ,
       dataIndex: "billing",
       align: "left",
       width: "6%",
@@ -366,7 +364,7 @@ function CandidateBlueTable(props) {
       },
     },
     {
-      title: <FormattedMessage id="app.benefits" defaultMessage="Benefits" />,
+      title:"Benefits" ,
       dataIndex: "benifit",
       width: "6%",
       render: (name, item, i) => {
@@ -381,7 +379,7 @@ function CandidateBlueTable(props) {
       },
     },
     {
-      title: <FormattedMessage id="app.available" defaultMessage="Available" />,
+      title: "Available" ,
       dataIndex: "availableDate",
       width: "7%",
       render: (text, item) => {
@@ -400,7 +398,7 @@ function CandidateBlueTable(props) {
 
     {
       //title: "",
-      title: <FormattedMessage id="app.owner" defaultMessage="Owner" />,
+      title: "Owner" ,
       width: "8%",
       filters: ownerlistType,
 
@@ -426,7 +424,7 @@ function CandidateBlueTable(props) {
       },
     },
     {
-      title: <FormattedMessage id="app.active" defaultMessage="Active" />,
+      title: "Active" ,
       width: "6%",
       render: (name, item, i) => {
         return (

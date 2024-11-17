@@ -244,19 +244,13 @@ class SingleRecruitStages extends Component {
                     )
                   }
                 >
-                  {/* Save */}
-                  <FormattedMessage
-                    id="app.save"
-                    defaultMessage="Save"
-                  />
+                  Save
+                
                 </Button>
              
                 <Button type="primary" ghost onClick={() => toggleViewType()}>
-               {/* Cancel */}
-                  <FormattedMessage
-                    id="app.cancel"
-                    defaultMessage="Cancel"
-                  />
+               Cancel
+                 
                 </Button>
               </div>
             )

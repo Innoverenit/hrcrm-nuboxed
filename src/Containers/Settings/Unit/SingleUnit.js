@@ -84,12 +84,12 @@ class SingleUnit extends Component {
                     }
                   >
                   
-                    <FormattedMessage id="app.update" defaultMessage="Update" />
+                 Update
                   </Button>
                   &nbsp;
                   <Button type="primary" ghost onClick={() => toggleViewType()}>
                  
-                    <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                  Cancel
                   </Button>
                 </div>
               </div>

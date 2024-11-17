@@ -103,13 +103,11 @@ class SingleCustomer extends Component {
                     }}>
 
                   
-                    {/* Save */}
-                    <FormattedMessage id="app.update" defaultMessage="Update" />
+                   Update
                   </Button>
              
                   <Button type="cancel"  onClick={() => toggleViewType()}>
-                    {/* Cancel */}
-                    <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                  Cancel 
                   </Button>
                 </div>
               </div>

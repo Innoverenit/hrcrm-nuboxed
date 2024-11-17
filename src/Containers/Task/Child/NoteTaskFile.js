@@ -146,24 +146,8 @@ class NoteTaskFile extends Component {
                   placeholder={placeholder || "Type here"}
                   toolbar={toolbarOption}
                 />
-                {/* <div class=" flex ">
-                  <Button
-                    type="primary"
-                    htmlType="submit"
-                 
-                    style={{
-                      marginTop: "3.8125em",
-                      marginBottom: "0.3125em",
-                      marginRight: "0.3125em",
-                    }}
-                  >
-                    <FormattedMessage
-                      id="app.notify"
-                      defaultMessage="Notify"
-                    />
                
-                  </Button>
-                </div> */}
+                  
                 <div class=" flex justify-end">
                   <Button
                     type="primary"
@@ -175,11 +159,7 @@ class NoteTaskFile extends Component {
                       marginRight: "0.3125em",
                     }}
                   >
-                    <FormattedMessage
-                      id="app.post"
-                      defaultMessage="Post"
-                    />
-                    {/* Post */}
+                     Post 
                   </Button>
                 </div>
              

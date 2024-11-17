@@ -12,10 +12,7 @@ class RecruitProJumpStart extends Component {
         <div class=" flex flex-row flex-wrap w-full mt-[0.9375em] items-start self-start justify-start grow shrink h-auto mr-auto ">    
           <JumpStartBox
         
-            title={<FormattedMessage
-              id="app."
-              defaultMessage=""
-            />}
+            title=""
             noProgress
             stringValue
    
@@ -25,10 +22,7 @@ class RecruitProJumpStart extends Component {
           <CurrencySymbol />
           <JumpStartBox
             // title="# Positions"
-            title={<FormattedMessage
-              id="app."
-              defaultMessage=""
-            />}
+            
             noProgress
             stringValue
           
@@ -39,10 +33,7 @@ class RecruitProJumpStart extends Component {
             noProgress
             stringValue
      
-            title={<FormattedMessage
-              id="app."
-              defaultMessage=""
-            />}
+           
           
             bgColor="#0093d7"
           />
@@ -50,10 +41,8 @@ class RecruitProJumpStart extends Component {
             noProgress
             stringValue
     
-            title={<FormattedMessage
-              id="app.averagetime"
-              defaultMessage="Average Time"
-            />}
+            title="Average Time"
+         
        
             bgColor="#24b9fe"
           />

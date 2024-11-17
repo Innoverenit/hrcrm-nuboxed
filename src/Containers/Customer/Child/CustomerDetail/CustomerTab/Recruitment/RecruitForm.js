@@ -145,11 +145,7 @@ function RecruitForm(props) {
                       {" "}
                       <Field
                         name="requirementName"
-                        //label="Name"
-                        label={<FormattedMessage
-                          id="app.requirementName"
-                          defaultMessage="Name"
-                        />}
+                        label="Name"
                         width={"100%"}
                         isRequired
                         isColumn
@@ -160,11 +156,8 @@ function RecruitForm(props) {
                     <div class=" w-2/4">
                       <Field
                         name="sponserId"
-                        //  label="Sponsor"
-                        label={<FormattedMessage
-                          id="app.sponserId"
-                          defaultMessage="Sponsor"
-                        />}
+                         label="Sponsor"
+                        
                         isColumn                       
                         // component={InputComponent}
                       component={SelectComponent}
@@ -180,11 +173,7 @@ function RecruitForm(props) {
                       {" "}
                       <Field
                         name="number"
-                        // label="# Positions"
-                        label={<FormattedMessage
-                          id="app.number"
-                          defaultMessage="# Positions"
-                        />}
+                        label="# Positions"
                         width={"100%"}
                         isRequired
                         isColumn
@@ -206,11 +195,7 @@ function RecruitForm(props) {
 
                   <Field
                     name="description"
-                    //label="Description"
-                    label={<FormattedMessage
-                      id="app.description"
-                      defaultMessage="Description"
-                    />}
+                    label="Description"
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -222,10 +207,8 @@ function RecruitForm(props) {
                   <Field
                     name="recruitmentProcessId"
                   
-                    label={<FormattedMessage
-                      id="app.recruitmentProcessId"
-                      defaultMessage="Workflow"
-                    />}
+                    label="Workflow"
+                 
                     isRequired
                     isColumn                   
                   component={SelectComponent}
@@ -237,10 +220,8 @@ function RecruitForm(props) {
                       {" "}
                       <Field
                         name="avilableDate"                       
-                        label={<FormattedMessage
-                          id="app.avilableDate"
-                          defaultMessage="Start Date"
-                        />}
+                        label="Start Date"
+                    
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -254,10 +235,8 @@ function RecruitForm(props) {
                       <Field
                         name="billing"
                         
-                        label={<FormattedMessage
-                          id="app.billing"
-                          defaultMessage="Billing/hour"
-                        />}
+                        label="Billing/hour"
+                      
                         width={"100%"}
                         isRequired
                         isColumn
@@ -294,11 +273,7 @@ function RecruitForm(props) {
                   htmlType="submit"
                   Loading={props.linkingRecruitToCustomer}
                 >
-                  <FormattedMessage
-                    id="app.create"
-                    defaultMessage="Create"
-                  />
-                  {/* Create */}
+                Create
                 </Button>
               </div>
             </Form>

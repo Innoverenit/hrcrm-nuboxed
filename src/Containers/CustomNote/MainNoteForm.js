@@ -185,7 +185,7 @@ class MainNoteForm extends Component {
                 disabled={this.state.edit}
                 style={{ marginTop: "1.3125em" }}
               >
-                <FormattedMessage id="app.post" defaultMessage="Post" />
+               Post
               </Button>
               <Button
                 type="default"

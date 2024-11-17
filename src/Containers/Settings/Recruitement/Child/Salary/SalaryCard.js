@@ -158,8 +158,7 @@ function SalaryCard(props) {
                     htmlType="submit"
                     Loading={props.addingSalary}
                   >
-                    <FormattedMessage id="app.update" defaultMessage="Update" />
-                    {/* Update */}
+                    Update
                   </Button>
                 </div>
 

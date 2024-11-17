@@ -85,35 +85,35 @@ export const Waranty = (props) => {
                     <div className=""></div>
                     <div className="md:w-[22.12rem]">
                     {translatedMenuItems[0]}
-                      {/* <FormattedMessage id="app.manufactureid" defaultMessage="Manufacture ID" /> */}
+                    
                       </div>
                     <div className="md:w-[22.12rem]">
                     {/* {translatedMenuItems[1]} */}
                     Order Id
-                      {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */}
+                  
                       </div>
                     <div className="md:w-[15.5rem]">
                     {/* {translatedMenuItems[2]} */}
                     Customer
-                      {/* <FormattedMessage id="app.date" defaultMessage="Date" /> */}
+                
                       </div>
                     <div className="md:w-[15.5rem]">
                     {/* {translatedMenuItems[3]} */}
                     Address
-                      {/* <FormattedMessage id="app.status" defaultMessage="Status" /> */}
+
                       </div>
                     <div className=""></div>
                     <div className="md:w-[15.5rem]">
                   Category
-                      {/* <FormattedMessage id="app.todispatch" defaultMessage="To Dispatch" /> */}
+                    
                       </div>
                       <div className="md:w-[15.5rem]">
                  Attribute
-                      {/* <FormattedMessage id="app.todispatch" defaultMessage="To Dispatch" /> */}
+                  
                       </div>
                       <div className="md:w-[15.5rem]">
                  Date
-                      {/* <FormattedMessage id="app.todispatch" defaultMessage="To Dispatch" /> */}
+                  
                       </div>
                 
                 </div>

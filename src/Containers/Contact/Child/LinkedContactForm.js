@@ -88,10 +88,7 @@ class LinkedContactForm extends Component {
                   <Button type="primary" htmlType="submit" 
                   loading={this.props.linkingOpportunityContact}>
                   
-                    <FormattedMessage
-                      id="app.add"
-                      defaultMessage="Add"
-                    />
+                  Add
                   </Button>
                 </div>
               </Form>

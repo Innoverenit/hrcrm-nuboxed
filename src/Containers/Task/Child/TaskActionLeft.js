@@ -36,7 +36,6 @@ const TaskActionLeft = props => {
     <div class=" flex items-center" >
       <Tooltip
         title={translatedMenuItems[0]}
-        // {<FormattedMessage id="app.myTasks" defaultMessage="My Tasks" />}
       >
         <span class=" mr-1 text-xs"
           onClick={() => props.setTaskViewType("table")}
@@ -51,7 +50,7 @@ const TaskActionLeft = props => {
       </Tooltip>
       <Tooltip
         title={translatedMenuItems[1]}
-        // {<FormattedMessage id="app.mytaskView" defaultMessage="My Tasks- Gantt View" />}
+       
       >
         <span class=" mr-1 text-xs"
           onClick={() => props.setTaskViewType("gantt")}
@@ -67,7 +66,7 @@ const TaskActionLeft = props => {
       </Tooltip>
       <Tooltip
         title={translatedMenuItems[2]}
-        // {<FormattedMessage id="app.approvals" defaultMessage="Approvals" />}
+     
       >  
         
         <span class=" mr-1 text-xs"

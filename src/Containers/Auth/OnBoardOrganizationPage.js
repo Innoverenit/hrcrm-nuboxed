@@ -127,12 +127,8 @@ class OnBoardOrganizationPage extends Component {
                       <FastField
                       label="Industry"
     name="industry"
-    placeholder={
-      <FormattedMessage
-      id="app.selectedIndustry"
-      defaultMessage="Select Industry"
-    />
-    }
+    placeholder="Select Industry"
+
     // placeholder="Select Industry" 
     isColumn
     options={["Real Estate", "Manufacturing", "Refurbish"]}
@@ -143,13 +139,8 @@ class OnBoardOrganizationPage extends Component {
                     < div class="mt-3" />
                     <FastField
                             name="preferedLanguage"
-                            placeholder={
-                              <FormattedMessage
-                              id="app.selectedLanguage"
-                              defaultMessage="Select Language"
-                            />
-                            }
-                            // placeholder="Select Date"
+                          
+                            placeholder="Select Date"
                             isColumn
                             options={["English", "Dutch"]}
                             component={SelectComponent}
@@ -161,13 +152,8 @@ class OnBoardOrganizationPage extends Component {
                     <div class=" flex flex-row justify-between">
                     <FastField
                             name="fiscalStartDate"
-                            placeholder={
-                              <FormattedMessage
-                              id="app.selectedDate"
-                              defaultMessage="Select Date"
-                            />
-                            }
-                            // placeholder="Select Date"
+                            
+                            placeholder="Select Date"
                             isColumn
                             options={["1", "2","3","4","5", "6","7","8","9", "10","11","12","13", "14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]}
                             component={SelectComponent}

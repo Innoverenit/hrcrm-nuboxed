@@ -126,13 +126,11 @@ class SingleKpi extends Component {
                     }}>
 
                   
-                    {/* Save */}
-                    <FormattedMessage id="app.update" defaultMessage="Update" />
+                    Save
                   </Button>
                
                   <Button type="cancel"  onClick={() => toggleViewType()}>
-                    {/* Cancel */}
-                    <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                    Cancel
                   </Button>
                 </div>
               </div>

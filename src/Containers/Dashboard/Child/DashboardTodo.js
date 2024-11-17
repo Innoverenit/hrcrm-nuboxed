@@ -231,11 +231,8 @@ class Todo extends Component {
                     // disabled={todo.completionInd === "false"}
                     onConfirm={this.onConfirm}
                     okText="Ok"
-                    // cancelText="Cancel"
-                    cancelText={<FormattedMessage
-                      id="app.cancel"
-                      defaultMessage="Cancel"
-                    />}
+                    cancelText="Cancel"
+                    
                     onCancel={this.confirm}
                   >
  

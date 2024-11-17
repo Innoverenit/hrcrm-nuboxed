@@ -137,12 +137,7 @@ function EventForm(props) {
                   name="endDate"
                   // label="End "
                   label={props.translatedMenuItems[10]} 
-                  // {
-                  //   <FormattedMessage
-                  //     id="app.enddate"
-                  //     defaultMessage="enddate"
-                  //   />
-                  // }
+                 
                   component={DatePicker}
                   isColumn
                   value={values.endDate || values.startDate}
@@ -170,7 +165,7 @@ function EventForm(props) {
                 loading={props.DistributorCollectionArchive}
               >
 
-                        <div class="text-xs font-bold font-poppins"> {props.translatedMenuItems[11]}</div>    {/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
+                        <div class="text-xs font-bold font-poppins"> {props.translatedMenuItems[11]}</div>    
 
               </Button>
             </div>

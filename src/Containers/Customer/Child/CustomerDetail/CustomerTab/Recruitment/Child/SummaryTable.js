@@ -165,26 +165,18 @@ class SummaryTable extends Component {
       },
       {
         title: "Requirement",
-        title: <FormattedMessage
-          id="app.requirementName"
-          defaultMessage="Requirement"
-        />,
+        title: "Requirement",
         dataIndex: "requirementName",
       },
       {
         title: "# Positions",
-        title: <FormattedMessage
-          id="app.number"
-          defaultMessage="# Positions"
-        />,
+        title: "# Positions"
+     ,
         dataIndex: "number",
       },
       {
         title: "Sponsor",
-        title: <FormattedMessage
-          id="app.sponserName"
-          defaultMessage="Sponsor"
-        />,
+        title: "Sponsor",
         dataIndex: "sponserName",
         render: (name, item, i) => {
           return (
@@ -202,34 +194,22 @@ class SummaryTable extends Component {
       },
       {
         title: "Filled",
-        title: <FormattedMessage
-          id="app.closedPosition"
-          defaultMessage="Filled"
-        />,
+        title: "Filled",
         dataIndex: "closedPosition",
       },
       {
-        //title: "Unfilled",
-        title: <FormattedMessage
-          id="app.openedPosition"
-          defaultMessage="Unfilled"
-        />,
+        title: "Unfilled",
+      
         dataIndex: "openedPosition",
       },
       {
-        //title: "Submitted",
-        title: <FormattedMessage
-          id="app.offered"
-          defaultMessage="Submitted"
-        />,
+        title: "Submitted",
+      
         dataIndex: "offered",
       },
       {
-        // title: "Rejected",
-        title: <FormattedMessage
-          id="app.rejected"
-          defaultMessage="Rejected"
-        />,
+        title: "Rejected",
+        
         dataIndex: "rejected",
       },
       {

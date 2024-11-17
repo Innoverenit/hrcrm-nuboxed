@@ -186,10 +186,7 @@ import { SearchOutlined } from "@ant-design/icons";
  
      {
        //title: "Name",
-       title: <FormattedMessage
-         id="app.jobId"
-         defaultMessage="Job ID"
-       />,
+       title: "Job ID",
  
        dataIndex: "jobOrder",
      //   ...getColumnSearchProps('opportunityName'),
@@ -225,10 +222,8 @@ import { SearchOutlined } from "@ant-design/icons";
      },
      {
        //title: "Currency",
-       title: <FormattedMessage
-         id="app.requirement"
-         defaultMessage="Requirement"
-       />,
+       title:"Requirement"
+       ,
  
        dataIndex: "requirementName",
      //   ...getColumnSearchProps('customer'),
@@ -236,10 +231,8 @@ import { SearchOutlined } from "@ant-design/icons";
      },
      {
         //title: "Currency",
-        title: <FormattedMessage
-          id="app.createdOn"
-          defaultMessage="Created On"
-        />,
+        title: "Created On"
+     ,
   
         dataIndex: "creationDate",
       //   ...getColumnSearchProps('customer'),
@@ -251,10 +244,8 @@ import { SearchOutlined } from "@ant-design/icons";
       },
      {
        //title: "Start Date",
-       title: <FormattedMessage
-         id="app.start"
-         defaultMessage="Start"
-       />,
+       title: "Start"
+     ,
  
        dataIndex: "avilableDate",
        width:"12%",
@@ -282,10 +273,8 @@ import { SearchOutlined } from "@ant-design/icons";
      },
      {
        //title: "End Date",
-       title: <FormattedMessage
-         id="app.billing"
-         defaultMessage="Billing"
-       />,
+       title: "Billing"
+    ,
        dataIndex: "billing",
        width:"8%",
        //defaultSortOrder: "descend",
@@ -308,10 +297,8 @@ import { SearchOutlined } from "@ant-design/icons";
      },
      {
        //title: "Value",
-       title: <FormattedMessage
-         id="app.stages"
-         defaultMessage="Stages"
-       />,
+       title: "Stages"
+    ,
       //  dataIndex: "stageList",
        width: "7%",
        render: (name, item, i) => {
@@ -486,7 +473,7 @@ import { SearchOutlined } from "@ant-design/icons";
     
      {
        //title: "Email",
-       title: <FormattedMessage id="app.sponsor" defaultMessage="Sponsor" />,
+       title:"Sponsor" ,
        dataIndex: "sponserName",
      //   ...getColumnSearchProps('ownerName'),
      //   render: (name, item, i) => {
@@ -513,7 +500,7 @@ import { SearchOutlined } from "@ant-design/icons";
  
      // {
      //   //title: "Email",
-     //   title: <FormattedMessage id="app.recruiter" defaultMessage="Recruiter" />,
+     // 
      //   dataIndex: "fullName",
      //   // ...getColumnSearchProps('recruiterDetails'),
      //   render: (name, item, i) => {
@@ -562,9 +549,7 @@ import { SearchOutlined } from "@ant-design/icons";
      //       // <Tooltip title="Edit">
      //       <Tooltip
      //       title={
-     //         <FormattedMessage
-     //           id="app.edit"
-     //           defaultMessage="Edit"
+     //    
      //         />
      //       }
      //     >

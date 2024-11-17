@@ -309,7 +309,7 @@ const TaskApproveTable = (props) => {
               onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
               style={{ backgroundColor: "teal", color: "white" }}
             >
-              <FormattedMessage id="app.approve" defaultMessage="Approve" />
+             Approve
             </Button>
             <Button
               style={{
@@ -318,7 +318,7 @@ const TaskApproveTable = (props) => {
               }}
               onClick={() => rejectTaskByTaskId(item.taskId)}
             >
-              <FormattedMessage id="app.reject" defaultMessage="Reject" />
+             Reject
             </Button>
           </div>
         </>

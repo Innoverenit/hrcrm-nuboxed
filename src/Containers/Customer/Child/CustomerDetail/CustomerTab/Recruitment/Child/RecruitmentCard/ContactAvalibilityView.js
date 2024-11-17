@@ -13,19 +13,12 @@ class ContactAvailibityView extends Component {
     return (
       <>
         <ContactItemRow
-          //label="Availability"
-          label={<FormattedMessage
-            id="app.availability"
-            defaultMessage="Availability"
-          />}
+          label="Availability"
+         
           value={dayjs(availableDate).format("ll")}
         />
         <ContactItemRow
-          // label="Billing / hr"
-          label={<FormattedMessage
-            id="app.billing"
-            defaultMessage="Billing / hr"
-          />}
+          label="Billing / hr"
           value={`${billing || ""} ${currency || ""}`}
         />
       </>

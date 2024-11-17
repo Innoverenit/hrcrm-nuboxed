@@ -138,10 +138,7 @@ function CollectionDistributorTab(props) {
               <>
                 <span class="!text-tab">
                   <i class="fas fa-hand-holding-usd text-[#9e7682]"></i>&nbsp; 
-                  {translatedMenuItems[4]}   {/* <FormattedMessage
-                    id="app.receivable"
-                    defaultMessage="Receivables"
-                  /> */}
+                  {translatedMenuItems[4]}   
                 </span>
                 &nbsp;
                 {activeKey === "4" && <></>}
@@ -167,10 +164,7 @@ function CollectionDistributorTab(props) {
               <>
                 <span class="!text-tab">
                   <i class="fas fa-hand-holding-usd text-[#9e7682]"></i>&nbsp; 
-                  {translatedMenuItems[0]}   {/* <FormattedMessage
-                    id="app.receivable"
-                    defaultMessage="Receivables"
-                  /> */}
+                  {translatedMenuItems[0]}  
                 </span>
                 &nbsp;
                 {activeKey === "1" && <></>}
@@ -198,10 +192,7 @@ function CollectionDistributorTab(props) {
               <>
                 <span className="!text-tab">
                   <i class="fas fa-archive text-[#42bfdd]"></i>&nbsp;
-                  {translatedMenuItems[1]}   {/* <FormattedMessage
-                    id="app.archive"
-                    defaultMessage="Archive"
-                  /> */}
+                  {translatedMenuItems[1]}   
                 </span>
                 &nbsp;
               </>
@@ -228,7 +219,7 @@ function CollectionDistributorTab(props) {
         setActiveKey("3");
       }}>
          <CreditCardIcon className="!text-icon text-[#edd382] mr-1"/>&nbsp;
-        {translatedMenuItems[2]} {/* <FormattedMessage id="app.creditmemo" defaultMessage="Credit Memo" /> */}
+        {translatedMenuItems[2]}
       </span>
       {activeKey === "3" && (
         <>
@@ -266,28 +257,7 @@ function CollectionDistributorTab(props) {
 
         
 
-          {/* <TabPane
-            tab={
-              <>
-                <span>
-                <GroupsIcon />
-                &nbsp;
-                <FormattedMessage
-                              id="app.all"
-                              defaultMessage="All"
-                  /> 
-                </span>
-                &nbsp;
-              </>
-            }
-            key="3"
-          >
-            <Suspense fallback={"Loading ..."}>
-              {" "}
-              <DistributorCollectionTableAll/>
-            </Suspense>
-          </TabPane> */}
-
+        
 
         </StyledTabs>
         <Suspense fallback={<div class="flex justify-center">Loading...</div>}>

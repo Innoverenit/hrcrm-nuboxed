@@ -59,10 +59,8 @@ class GantChartTab extends Component {
                 <>
                   <ListAltIcon style={{fontSize:"1.1rem"}}/>
                   <span class=" ml-1 font-semibold">
-                  <FormattedMessage
-              id="app.openTasks"
-              defaultMessage="Open Tasks"
-            />
+                 Open Tasks
+           
                     </span>
 
                 
@@ -84,10 +82,7 @@ class GantChartTab extends Component {
                 <>
                   <ListAltIcon style={{fontSize:"1.1rem"}}/>
                   <span class=" ml-1 font-semibold">
-                  <FormattedMessage
-              id="app.tasksThisMonth"
-              defaultMessage="Tasks-This Month"
-            />
+               Tasks-This Month
                    </span>
 
                 

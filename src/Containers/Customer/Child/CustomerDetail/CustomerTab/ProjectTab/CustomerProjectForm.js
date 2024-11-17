@@ -68,13 +68,8 @@ function CustomerProjectForm(props) {
                      isRequired
                     name="projectName"
                     type="text"
-                    //label="Name"
-                    label={
-                      <FormattedMessage
-                        id="app.projectName"
-                        defaultMessage="Project Name"
-                      />
-                    }
+                    label=" Project Name"
+                    
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -86,12 +81,8 @@ function CustomerProjectForm(props) {
                               name="taskTypeId"
                               selectType="taskType"
                               //label="Designation"
-                              label={
-                                <FormattedMessage
-                                  id="app.taskList"
-                                  defaultMessage="Task List"
-                                />
-                              }
+                              label="Task List"
+                               
                               isColumnWithoutNoCreate
                               isColumn
                               component={SearchSelect}
@@ -104,11 +95,8 @@ function CustomerProjectForm(props) {
                       {" "}
                       <Field
                         name="avilableDate"
-                        //label="Start Date"
-                        label={<FormattedMessage
-                          id="app.avilableDate"
-                          defaultMessage="Start Date"
-                        />}
+                        label="Start Date"
+                       
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -127,11 +115,8 @@ function CustomerProjectForm(props) {
                       {" "}
                       <Field
                         name="avilableDate"
-                        //label="Start Date"
-                        label={<FormattedMessage
-                          id="app.avilableDate"
-                          defaultMessage="End Date"
-                        />}
+                        label="End Date"
+                        
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -165,9 +150,8 @@ function CustomerProjectForm(props) {
                   htmlType="submit"
                 //   loading={addingCourse}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
-                  {/*                     
-                    Create */}
+                               
+                    Create
                 </Button>
               </div>
             </Form>

@@ -47,10 +47,8 @@ class NotificationTable extends React.Component {
 
       {
         //title: "Created on",
-        title: <FormattedMessage
-          id="app.createdon"
-          defaultMessage="Description"
-        />,
+        title: "Description"
+      ,
         width: "15%",
         render: (name, item, i) => {
           return <span>{dayjs(item.creationDate).format("YYYY-MM-DD")}</span>;

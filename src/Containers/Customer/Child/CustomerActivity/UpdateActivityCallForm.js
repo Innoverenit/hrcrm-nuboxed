@@ -349,18 +349,14 @@ function UpdateActivityCallForm(props) {
                     <div class=" w-2/6 max-sm:w-wk">
                   
                       <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">
-                        {/* Type */}
-                        <FormattedMessage id="app.type" defaultMessage="Type" />
+                        Type
+                      
                       </div>
                       <div class=" flex justify-between">
                         {/* <Tooltip title="Inbound"> */}
                         <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.introductory"
-                              defaultMessage="Introductory"
-                            />
-                          }
+                          title="Introductory"
+                           
                         >
                           <div
                             onClick={() => handleTypeChange("Inbound")}
@@ -378,12 +374,8 @@ function UpdateActivityCallForm(props) {
                         </Tooltip>
                         {/* <Tooltip title="Outbound"> */}
                         <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.interview"
-                              defaultMessage="Interview"
-                            />
-                          }
+                          title="Interview"
+                           
                         >
                           <div
                             onClick={() => handleTypeChange("Outbound")}
@@ -401,12 +393,8 @@ function UpdateActivityCallForm(props) {
                         </Tooltip>
                         {/* <Tooltip title="Conference"> */}
                         <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.closure"
-                              defaultMessage="Closure"
-                            />
-                          }
+                          title="Closure"
+                            
                         >
                           <div
                             onClick={() => handleTypeChange("Conference")}
@@ -427,10 +415,7 @@ function UpdateActivityCallForm(props) {
                     <div class=" w-1/2">
                      
                       <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">
-                        <FormattedMessage
-                          id="app.category"
-                          defaultMessage="Category"
-                        />
+                     Category
                       </div>
                       
                       <ButtonGroup>
@@ -445,8 +430,8 @@ function UpdateActivityCallForm(props) {
                             category === "New" ? "white" : "black",
                           }}
                         >
-                          {/* New */}
-                          <FormattedMessage id="app.new" defaultMessage="New" />
+                          New
+                       
                         </Button>
                         <Button
                           onClick={() => handleCategoryChange("Follow up")}
@@ -461,11 +446,7 @@ function UpdateActivityCallForm(props) {
                                 : "black",
                           }}
                         >
-                          {/* Follow up */}
-                          <FormattedMessage
-                            id="app.followup"
-                            defaultMessage="Follow up"
-                          />
+                          Follow up
                         </Button>
                       </ButtonGroup>
                     </div>
@@ -518,12 +499,8 @@ function UpdateActivityCallForm(props) {
                     // isRequired
                     name="callPurpose"
                     // label="Topic"
-                    label={
-                      <FormattedMessage
-                        id="app.subject"
-                        defaultMessage="Subject"
-                      />
-                    }
+                    label="Subject"
+                    
                     component={InputComponent}
                     isColumn
                     width={"100%"}
@@ -532,10 +509,8 @@ function UpdateActivityCallForm(props) {
             <div class=" mt-3">
                   <Field
                     name="startDate"
-                    // label="Date"
-                    label={
-                      <FormattedMessage id="app.date" defaultMessage="Date" />
-                    }
+                    label="Date"
+                  
                     component={DatePicker}
                     isColumn
                     width={"100%"}
@@ -548,13 +523,8 @@ function UpdateActivityCallForm(props) {
                     <div class=" w-1/2 max-sm:w-wk">
                       <Field
                         name="startTime"
-                        // label="Start Time"
-                        label={
-                          <FormattedMessage
-                            id="app.starttime"
-                            defaultMessage="Start Time"
-                          />
-                        }
+                        label="Start Time"
+                       
                         component={TimePicker}
                         isRequired
                         isColumn
@@ -569,13 +539,8 @@ function UpdateActivityCallForm(props) {
                     <div class=" w-2/5 max-sm:w-wk">
                       <Field
                         name="endTime"
-                        // label="End Time"
-                        label={
-                          <FormattedMessage
-                            id="app.endtime"
-                            defaultMessage="End Time"
-                          />
-                        }
+                        label="End Time"
+                        
                         component={TimePicker}
                         use12Hours
                         isRequired
@@ -594,13 +559,8 @@ function UpdateActivityCallForm(props) {
                     defaultValue={{ label: timeZone, value: userId }}
                     name="timeZone"
                     isColumnWithoutNoCreate
-                    //label="TimeZone "
-                    label={
-                      <FormattedMessage
-                        id="app.timeZone"
-                        defaultMessage="Time Zone"
-                      />
-                    }
+                    label="TimeZone "
+                  
                     selectType="timeZone"
                     isColumn
                     value={values.timeZone}
@@ -682,13 +642,8 @@ function UpdateActivityCallForm(props) {
     <div class=" mt-3">
                   <Field
                     name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.include"
-                        defaultMessage="Include"
-                      />
-                    }
+                    label="Include"
+                   
                     mode
                     placeholder="Select"
                     component={SelectComponent}
@@ -706,13 +661,8 @@ function UpdateActivityCallForm(props) {
                name="customerId"
                isColumnWithoutNoCreate
                selectType="customerList"
-               // label="Tag Company"
-               label={
-                 <FormattedMessage
-                   id="app.tagcompany"
-                   defaultMessage="Tag Company"
-                 />
-               }
+               label="Tag Company"
+             
                component={SearchSelect}
                isColumn
                value={values.customerId}
@@ -733,13 +683,8 @@ function UpdateActivityCallForm(props) {
                     name="contactId"
                     //selectType="contactList"
                     isColumnWithoutNoCreate
-                    // label="Contact"
-                    label={
-                      <FormattedMessage
-                        id="app.contact"
-                        defaultMessage="Contact"
-                      />
-                    }
+                    label="Contact"
+                 
                     component={SelectComponent}
                     isColumn
                     options={Array.isArray(ContactData) ? ContactData : []}
@@ -759,12 +704,8 @@ function UpdateActivityCallForm(props) {
                  name="opportunity"
                  // selectType="customerList"
                  isColumnWithoutNoCreate
-                 label={
-                   <FormattedMessage
-                     id="app.opportunity"
-                     defaultMessage="Opportunity"
-                   />
-                 }
+                 label="Opportunity"
+                  
                  //component={SearchSelect}
                  component={SelectComponent}
                  options={
@@ -787,13 +728,8 @@ function UpdateActivityCallForm(props) {
                 {isEditing && (
                   <>
                     <StyledPopconfirm
-                      // title="Do you want to delete?"
-                      title={
-                        <FormattedMessage
-                          id="app.doyouwanttodelete?"
-                          defaultMessage="Do you want to delete?"
-                        />
-                      }
+                      title="Do you want to delete?"
+                    
                       onConfirm={() => deleteCall(prefillCall.callId)}
                     >
                       <Button
@@ -801,11 +737,8 @@ function UpdateActivityCallForm(props) {
                         htmlType="submit"
                         Loading={deletingCall}
                       >
-                        {/* Delete */}
-                        <FormattedMessage
-                          id="app.delete"
-                          defaultMessage="Delete"
-                        />
+                        Delete
+                       
                       </Button>
                     </StyledPopconfirm>
                   </>
@@ -818,8 +751,7 @@ function UpdateActivityCallForm(props) {
                   {isEditing ? (
                     "Update"
                   ) : (
-                    // "Create"
-                    <FormattedMessage id="app.Update" defaultMessage="Update" />
+                    "Create"
                   )}
                 </Button>
               </div>

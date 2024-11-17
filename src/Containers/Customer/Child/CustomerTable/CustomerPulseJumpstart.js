@@ -272,12 +272,8 @@ render() {
                                 </div>
                                 <JumpStartBox
             noProgress
-            title={
-              <FormattedMessage
-                id="app.#Contacts"
-                defaultMessage="#Contacts "
-              />
-            }
+            title="#Contacts "
+             
             jumpstartClick={() => this.handleCardClick("contacts")}
           
             cursorData={

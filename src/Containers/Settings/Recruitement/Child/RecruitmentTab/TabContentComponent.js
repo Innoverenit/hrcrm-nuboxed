@@ -372,9 +372,9 @@ fetchType = async () => {
         <StageWrapper>
           <div class="mr-5 ml-5">
             <div>
-            
-              {/* Workflow */}
-              <FormattedMessage id="app.workflow" defaultMessage="Workflow" />
+          
+              Workflow
+
             </div>
 
             <div class=" flex">
@@ -500,7 +500,7 @@ fetchType = async () => {
                         htmlType="submit"
                         onClick={this.handleEditProcessName}
                       >
-                        <FormattedMessage id="app.save" defaultMessage="Save" />
+                       Save
                       </Button>
                       <Button
                            type="cancel"
@@ -510,10 +510,7 @@ fetchType = async () => {
                         }}
                         onClick={this.handleCancel}
                       >
-                        <FormattedMessage
-                          id="app.cancel"
-                          defaultMessage="Cancel"
-                        />
+                       Cancel
                       </Button>
                     </div>
                   </div>
@@ -644,12 +641,12 @@ fetchType = async () => {
                   onClick={this.handleAddStage}
                 >
                   
-                  <FormattedMessage id="app.save" defaultMessage="Save" />
+                Save
                 </Button>
                 &nbsp;
                 <Button type="cancel"  onClick={this.toggleInput}>
                 
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+         Cancel
                 </Button>
               </div>
             ) : this.state.currentProcess.workflowName? (
@@ -663,10 +660,7 @@ fetchType = async () => {
                     style={{ marginTop: "0.62em" }}
                   >
                    
-                    <FormattedMessage
-                      id="app.addstage"
-                      defaultMessage="Add Stage"
-                    />
+                  Add Stage
                   </Button>
                 </div>
               </>

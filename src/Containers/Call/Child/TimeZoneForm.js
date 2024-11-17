@@ -31,11 +31,8 @@ class TimeZoneForm extends Component {
               <div style={{ width: 500, margin: "auto" }}>
                 <Field
                   name="timeZone"
-                  // label="TimeZone "
-                  label={<FormattedMessage
-                    id="app.timezone"
-                    defaultMessage="TimeZone"
-                  />}
+                  label="TimeZone "
+                
                   selectType="timeZone"
                   component={SearchSelect}
                   inlineLabel
@@ -43,11 +40,8 @@ class TimeZoneForm extends Component {
                 />
 
                 <Button type="primary" htmlType="submit">
-                  {/* Submit */}
-                  <FormattedMessage
-                    id="app.submit"
-                    defaultMessage="Submit"
-                  />
+                  Submit
+                 
                 </Button>
               </div>
             </Form>

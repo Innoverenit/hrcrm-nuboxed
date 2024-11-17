@@ -32,18 +32,14 @@ class RecruitmentDetailsTab extends Component {
                   <span>Remarks</span>
                   {activeKey === "1" && (
                     <>
-                      <Tooltip //title="Tag Remarks"
-                        title={<FormattedMessage
-                          id="app.tagremarks"
-                          defaultMessage="Tag Remarks"
-                        />}
+                      <Tooltip
+                       title="Tag Remarks"
+                       
                       >
                          <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                      
-                          tooltiptitle={<FormattedMessage
-                            id="app.tagremarks"
-                            defaultMessage="Tag Remarks"
-                          />}
+                          tooltiptitle="Tag Remarks"
+                        
                           // handleIconClick={() => handleRemarksModal(true)}
                       
                         />
@@ -72,26 +68,19 @@ class RecruitmentDetailsTab extends Component {
                   <span>
                     <FileOutlined type="file" />
                     {/* <FileOutlined /> */}
-                    <FormattedMessage
-                      id="app.documents"
-                      defaultMessage="Documents"
-                    />
-                    {/* Documents */}
+                  
+                    Documents
                   </span>
                   {activeKey === "3" && (
                     <>
                       <Tooltip //title="Tag Document"
-                        title={<FormattedMessage
-                          id="app.tagdocument"
-                          defaultMessage="Tag Document"
-                        />}
+                        title="Tag Document"
+                      
                       >
                          <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                       
-                          tooltiptitle={<FormattedMessage
-                            id="app.tagdocument"
-                            defaultMessage="Tag Document"
-                          />}
+                          tooltiptitle="Tag Document"
+                        
                          
                         />
                       </Tooltip>

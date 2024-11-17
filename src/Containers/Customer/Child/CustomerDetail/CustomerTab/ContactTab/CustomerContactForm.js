@@ -428,12 +428,8 @@ class ContactForm extends Component {
                           selectType="dialCode"
                           //label="Available from"
 
-                          label={
-                            <FormattedMessage
-                              id="app.#whatsApp"
-                              defaultMessage="Dial Code "
-                            />
-                          }
+                          label="Dial Code "
+                          
                           component={SearchSelect}
                           isColumn
                           // value={values.availableDate}
@@ -449,11 +445,8 @@ class ContactForm extends Component {
                           width={"100%"}
                           style={{ flexBasis: "30%" }}
                           component={InputComponent}
-                          label={
-                            <FormattedMessage
-                              id="app.phoneNumber"
-                              defaultMessage="Whatsapp #"
-                            />}
+                          label="Whatsapp #"
+                    
                           inlineLabel
                         />
                       )}

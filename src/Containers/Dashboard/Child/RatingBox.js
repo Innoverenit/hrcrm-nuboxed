@@ -144,11 +144,8 @@ function RatingBox(props) {
                           // disabled={todo.completionInd === "false"}
                           onConfirm={() => handleToggleCollection()}
                           okText="Ok"
-                          // cancelText="Cancel"
-                          cancelText={<FormattedMessage
-                            id="app.cancel"
-                            defaultMessage="Cancel"
-                          />}
+                          cancelText="Cancel"
+                         
                         //   onCancel={this.confirm}
                         >
                  <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
@@ -159,10 +156,7 @@ function RatingBox(props) {
                           
                             >
                             
-                              <FormattedMessage
-                                id="app.rating"
-                                defaultMessage="Rating"
-                              />
+                           Rating
                             </Button>
                           </div>
                         </Popconfirm>

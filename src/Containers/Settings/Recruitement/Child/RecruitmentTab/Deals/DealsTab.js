@@ -272,8 +272,8 @@ handleStagePublishClick = (investorOppStagesId, publishInd) => {
           <MainWrapper>
             <h1
             >
-              {/* Workflow */}
-              <FormattedMessage id="app.workflow" defaultMessage="Workflow" />
+              Workflow
+           
             </h1>
 
             <div class=" flex">
@@ -382,7 +382,7 @@ handleStagePublishClick = (investorOppStagesId, publishInd) => {
                         htmlType="submit"
                         onClick={this.handleEditProcessName}
                       >
-                        <FormattedMessage id="app.save" defaultMessage="Save" />
+                     Save
                       </Button>
                       <Button
                            type="cancel"
@@ -392,10 +392,7 @@ handleStagePublishClick = (investorOppStagesId, publishInd) => {
                         }}
                         onClick={this.handleCancel}
                       >
-                        <FormattedMessage
-                          id="app.cancel"
-                          defaultMessage="Cancel"
-                        />
+                       Cancel
                       </Button>
                     </div>
                   </div>
@@ -520,13 +517,11 @@ handleStagePublishClick = (investorOppStagesId, publishInd) => {
                   htmlType="submit"
                   onClick={this.handleAddStage}
                 >
-                  {/* Save */}
-                  <FormattedMessage id="app.save" defaultMessage="Save" />
+                  Save
                 </Button>
                 &nbsp;
                 <Button type="cancel"  onClick={this.toggleInput}>
-                  {/* Cancel */}
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                  Cancel
                 </Button>
               </div>
             ) : this.state.currentProcess.workflowName? (
@@ -539,11 +534,8 @@ handleStagePublishClick = (investorOppStagesId, publishInd) => {
                     onClick={this.toggleInput}
                     style={{ marginTop: "0.62em" }}
                   >
-                    {/* Add Stage */}
-                    <FormattedMessage
-                      id="app.addstage"
-                      defaultMessage="Add Stage"
-                    />
+                    Add Stage
+                  
                   </Button>
                 </div>
               </>

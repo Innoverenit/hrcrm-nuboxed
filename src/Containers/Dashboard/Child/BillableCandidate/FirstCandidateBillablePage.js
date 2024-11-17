@@ -89,12 +89,8 @@ onSubmit={(values, { resetForm }) => {
                         isRequired
                         name="month"
                         //label="Start "
-                        label={
-                          <FormattedMessage
-                            id="app.month"
-                            defaultMessage="Month"
-                          />
-                        }
+                        label="Month"
+                         
                         isColumn
                         options={["Jan", "Feb", "Mar","Apr","May","Jun","July","Aug","Sep","Oct","Nov","Dec"]}
                         component={SelectComponent}
@@ -111,12 +107,7 @@ onSubmit={(values, { resetForm }) => {
                         isRequired
                         name="year"
                         //label="Start "
-                        label={
-                          <FormattedMessage
-                            id="app.year"
-                            defaultMessage="Year"
-                          />
-                        }
+                        label="Year"                          
                         isColumn              
                        component={InputComponent}
                         // value={values.startDate}
