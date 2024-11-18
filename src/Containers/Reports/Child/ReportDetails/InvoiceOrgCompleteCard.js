@@ -1,5 +1,6 @@
 import React, { useState,lazy,useEffect } from "react";
 import { connect } from "react-redux";
+import { FormattedMessage, } from "react-intl";
 import { bindActionCreators } from "redux";
 
 import {
