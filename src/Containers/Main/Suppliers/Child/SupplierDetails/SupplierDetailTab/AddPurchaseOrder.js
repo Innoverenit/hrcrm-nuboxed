@@ -207,10 +207,9 @@ const AddPurchaseOrder = (props) => {
                                         <div class="  font-bold font-poppins text-xs mt-1"> {translatedMenuItems[2]} </div>
                                         <Field
                                             name="unit"
-                                            // label={<FormattedMessage
-                                            //     id="app.units"
-                                            //     defaultMessage="Units"
-                                            // />}
+                                        
+                                            // Units"
+                                       
                                             isRequired
                                             isColumn
                                             inlineLabel
@@ -227,10 +226,8 @@ const AddPurchaseOrder = (props) => {
                                         <div class=" text-xs font-poppins font-bold"> {translatedMenuItems[3]} </div>
                                             <Field
                                                 name="categoryName"
-                                                // label={<FormattedMessage
-                                                //     id="app.category"
-                                                //     defaultMessage="Category"
-                                                // />}
+                                                // Category"
+                                             
                                                 disabled
                                                 isColumn
                                                 inlineLabel
@@ -242,10 +239,8 @@ const AddPurchaseOrder = (props) => {
                                         <div class=" text-xs font-poppins font-bold"> {translatedMenuItems[4]} </div>
                                             <Field
                                                 name="subCategoryName"
-                                                // label={<FormattedMessage
-                                                //     id="app.subcategory"
-                                                //     defaultMessage="Sub Category"
-                                                // />}
+                                         //Sub Category"
+                                             
                                                 disabled
                                                 isColumn
                                                 inlineLabel
@@ -259,10 +254,8 @@ const AddPurchaseOrder = (props) => {
                                         <div class=" text-xs font-poppins font-bold"> {translatedMenuItems[5]} </div>
                                             <Field
                                                 name="attributeName"
-                                                // label={<FormattedMessage
-                                                //     id="app.attribute"
-                                                //     defaultMessage="Attribute"
-                                                // />}
+                                           //"Attribute"
+                                           
                                                 disabled
                                                 isColumn
                                                 inlineLabel
@@ -274,10 +267,8 @@ const AddPurchaseOrder = (props) => {
                                         <div class=" text-xs font-poppins font-bold"> {translatedMenuItems[6]} </div>
                                             <Field
                                                 name="subAttributeName"
-                                                // label={<FormattedMessage
-                                                //     id="app.subattribute"
-                                                //     defaultMessage="Sub Attribute"
-                                                // />}
+                                         // Sub Attribute"
+                                           
                                                 disabled
                                                 isColumn
                                                 inlineLabel
@@ -294,10 +285,7 @@ const AddPurchaseOrder = (props) => {
                                             loading={props.addingPurchaseSuppliers}
                                         >
                                               {translatedMenuItems[7]}
-                                            {/* <FormattedMessage
-                                                id="app.submit"
-                                                defaultMessage="Submit"
-                                            /> */}
+                                              {/* Submit */}
                                         </Button>
                                     </div>
                                 </div>

@@ -105,18 +105,18 @@ class SupplierDocumentTable extends Component {
       <>
        <div className="flex justify-end sticky  z-auto">
           <div className="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <div className="flex max-sm:hidden justify-between w-[100%]  p-2 bg-transparent font-bold sticky top-0 z-10">
+            <div className="flex max-sm:hidden justify-between w-[100%]  p-2 bg-transparent font-bold sticky items-end top-0 z-10">
               <div className="md:w-[0.5rem]"></div>
-              <div className="md:w-[7.4rem] w-[7.4rem] text-[#00A2E8] text-base font-poppins font-bold"><DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[0]} 
+              <div className="max-md:w-[7.4rem] truncate w-[7.4rem] text-[#00A2E8] text-base font-poppins font-bold"><DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[0]} 
               {/* Date */}
               </div>
-              <div className="md:w-[5.1rem] w-[5.1rem] font-poppins font-bold text-xs"><ArticleIcon className='!text-icon text-[#a379c9] '  /> {translatedMenuItems[1]} 
+              <div className="max-md:w-[5.1rem] truncate w-[5.1rem] font-poppins font-bold text-xs"><ArticleIcon className='!text-icon text-[#a379c9] '  /> {translatedMenuItems[1]} 
               {/* Name */}
               </div>
-              <div className="md:w-[8.8rem] w-[8.8rem] font-poppins font-bold text-xs">  <DescriptionIcon className='!text-icon text-[#9ad5ca] '  /> {translatedMenuItems[2]} 
+              <div className="max-md:w-[8.8rem] truncate w-[8.8rem] font-poppins font-bold text-xs">  <DescriptionIcon className='!text-icon text-[#9ad5ca] '  /> {translatedMenuItems[2]} 
                {/* Description */}
               </div>
-              <div className="md:w-[8.8rem]  w-[8.8rem] font-poppins font-bold text-xs"><AccountCircleIcon className="!text-icon  text-[#f28482]"/>  {translatedMenuItems[3]} 
+              <div className="max-md:w-[8.8rem] truncate w-[8.8rem] font-poppins font-bold text-xs"><AccountCircleIcon className="!text-icon  text-[#f28482]"/>  {translatedMenuItems[3]} 
                {/* Uploaded By */}
               </div>
             </div>
@@ -124,22 +124,22 @@ class SupplierDocumentTable extends Component {
               {documentsBySupplierId.length > 0 ? (
                 documentsBySupplierId.map((item) => (
                   <div key={item.id}>
-                    <div className="flex rounded mt-1 bg-white  items-center max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                    <div className="flex rounded mt-1 bg-white py-ygap  items-center max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                       <div className="flex w-3/4 ">
-                        <div className="flex border-l-2 h-8 border-green-500 bg-[#eef2f9] md:w-[1.56rem] max-sm:w-full">
+                        <div className="flex border-l-2 h-8 border-green-500 bg-[#eef2f9] max-md:w-[1.56rem] w-[1.56rem] max-sm:w-full">
                           {dayjs(item.creationDate).format("ll")}
                         </div>
-                        <div className="flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
+                        <div className="flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-md:w-[7.4rem] w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between">
                           <div className="text-xs ml-gap font-poppins text-center">
                             {item.contactDocumentName}
                           </div>
                         </div>
-                        <div className="flex  items-center  h-8 ml-gap bg-[#eef2f9] md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
-                          <div className="text-xs  font-poppins text-center">
+                        <div className="flex  items-center  h-8 ml-gap bg-[#eef2f9] max-md:w-[6.2rem] w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
+                          <div className="text-xs ml-gap  font-poppins text-center">
                             {item.description}
                           </div>
                         </div>
-                        <div className="flex items-center h-8 ml-gap bg-[#eef2f9] md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
+                        <div className="flex items-center h-8 ml-gap bg-[#eef2f9] max-md:w-[6.2rem] w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between">
                           <div className="text-xs  font-poppins text-center">
                             {item.uploadedBy}
                           </div>

@@ -237,29 +237,28 @@ const timerRef = useRef(null);
         />
       </div>
                 <div class="rounded m-1 p-1 w-[99%] mt-3  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[99%]  p-1 bg-transparent font-bold items-end sticky z-10">
-                        <div className=" w-[13.1rem] text-[#00A2E8] text-base  max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
-                        <Shop2Icon className=" !text-icon"/>PO ID
+                    <div className=" flex justify-between w-[99%]  p-1 bg-transparent  font-bold font-poppins text-xs items-end sticky z-10">
+                        <div className=" w-[11.1rem] text-[#00A2E8] text-base truncate  max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
+                        <Shop2Icon className="mr-1 !text-icon"/>PO ID
                             </div>
-                        <div className=" w-[10.1rem]    max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
+                        <div className=" w-[4.1rem]  truncate max-md:w-[10.1rem]  max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
                       <AccountCircleIcon className=" !text-icon"/>  {translatedMenuItems[0]}    {/* Created" /> */}
                         </div>
-                        <div className=" w-[13.12rem]  max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
+                        <div className=" w-[12.7rem]  truncate  max-md:w-[13.12rem] max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
                         <LocationOnIcon className=" !text-icon"/> {translatedMenuItems[1]} {/* Location" /> */}
                         </div>
-                        <div className=" w-[13.12rem]   max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
+                        <div className=" w-[12.8rem]  truncate  max-md:w-[13.12rem]  max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
                         <LocationOnIcon className=" !text-icon"/> {translatedMenuItems[2]}  {/* Delivery */}
                         </div>
-                        <div className=" w-[17.11rem]  max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
+                        <div className=" w-[13.11rem]  truncate   max-md:w-[17.11rem] max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
                         <ContactPageIcon className=" !text-icon"/>  {translatedMenuItems[3]} {/* Contact */}
                         </div>
                                            
-                        <div className=" w-[23.14rem]   max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
+                        <div className=" w-[31.14rem]  truncate  max-md:w-[23.14rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
                         <CurrencyExchangeIcon className=" !text-icon"/> {translatedMenuItems[5]} 
                          {/* Value" */}
                         </div>
-                                      
-                        <div className=" md:w-[5.1rem]"> </div>
+                                  
                     </div>
                     <div class="">
                         <InfiniteScroll
