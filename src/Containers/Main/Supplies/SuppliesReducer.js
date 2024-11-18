@@ -11,6 +11,10 @@ const initialState = {
     fetchingbestBeforeEmailListError: false,
     bestBeforeEmailList:[],
 
+    fetchingReOrder: false,
+    fetchingReOrderError: false,
+    reOrderCount:{},
+
     fetchingBestBeforeJumpList: false,
     fetchingBestBeforeJumpListError: false,
     bestBeforeSuppliesList:[],
@@ -566,6 +570,21 @@ export const suppliesReducer = (state = initialState, action) => {
                     fetchingBestBeforeCountSuppliesError: true,
                 };
 
+
+                case types.GET_REORDER_REQUEST:
+                  return { ...state, fetchingReOrder: true };
+              case types.GET_REORDER_SUCCESS:
+                  return {
+                      ...state,
+                      fetchingReOrder: false,
+                      reOrderCount: action.payload,
+                  };
+              case types.GET_REORDER_FAILURE:
+                  return {
+                      ...state,
+                      fetchingReOrder: false,
+                      fetchingReOrderError: true,
+                  };
 
             case types.HANDLE_UPLOAD_MATERIAL_MODAL:
       return { ...state, uploadMaterialModal: action.payload };

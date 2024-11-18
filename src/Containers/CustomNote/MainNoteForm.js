@@ -8,6 +8,9 @@ import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import { Button } from "antd";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+// import createMentionPlugin from 'draft-js-mention-plugin';
+// import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+// import 'draft-js-mention-plugin/lib/plugin.css';
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw, ContentState } from "draft-js";
 import draftToHtml from "draftjs-to-html";
@@ -43,6 +46,14 @@ class MainNoteForm extends Component {
       edit: true,
       recognizing: false,
     };
+    // this.mentionPlugin = createMentionPlugin();
+    this.plugins = [this.mentionPlugin];
+    this.users = [
+      { id: 1, name: 'Abinash' },
+      { id: 2, name: 'John' },
+      { id: 3, name: 'Alice' },
+      { id: 4, name: 'Michael' },
+    ];
     this.recognition = null;
     this.timer = null;
   }
@@ -139,6 +150,7 @@ class MainNoteForm extends Component {
   };
 
   render() {
+    // const { MentionSuggestions } = this.mentionPlugin;
     const { user, addNote, customerId, uniqueId, employeeId } = this.props;
     const { editorState, recognizing } = this.state;
 
@@ -177,7 +189,20 @@ class MainNoteForm extends Component {
               onEditorStateChange={this.onEditorStateChange}
               placeholder="Type here"
               toolbar={toolbarOption}
+                //  plugins={this.plugins}
             />
+              {/* <MentionSuggestions
+          onSearchChange={({ value }) => {
+            // Filter users based on search term
+            const filteredUsers = this.users.filter((user) =>
+              user.name.toLowerCase().startsWith(value.toLowerCase())
+            );
+            return filteredUsers;
+          }}
+          renderSuggestion={(suggestion) => (
+            <div>{suggestion.name}</div>
+          )}
+        /> */}
             <div className="flex justify-end">
               <Button
                 type="primary"

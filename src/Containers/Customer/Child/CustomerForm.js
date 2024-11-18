@@ -489,7 +489,7 @@ console.log(selectedSource)
               ...values,
               category: checked ? "Both" : whiteblue ? "White" : "Blue",
               currencyId:selectedCurrency,
-              source: selectedSource,
+              sourceId: selectedSource,
               sectorId: selectedSector,
               notes: text,
               currencyId:selectedCurrency,

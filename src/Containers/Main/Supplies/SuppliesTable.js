@@ -20,7 +20,8 @@ import {
   handlePriceModal,
   handleUploadSuppliesModal,
   handleErpDocumentUploadModal,
-  getBestBeforeJumpListCount
+  getBestBeforeJumpListCount,
+  getReorderCount
 } from "./SuppliesAction";
 import {getUOM} from "../../Settings/SettingsAction"
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -50,6 +51,7 @@ import AddDocumentErpModals from "./AddDocumentErpModals";
 import SuppliesSearchedData from "./SuppliesSearchedData";
 import EmptyPage from "../EmptyPage";
 import BestJumpOpen from "./BestJumpOpen";
+import ReOrderOpen from "./ReOrderOpen";
 const MaterialInventoryDrawer = lazy(()=>import("./MaterialInventory/MaterialInventoryDrawer"));
 const MaterialBuilderDrawer = lazy(() => import("./MaterialBuilder/MaterialBuilderDrawer"));
 const UpdateSuppliesFormDrawer = lazy(() => import("./UpdateSuppliesFormDrawer"));
@@ -69,6 +71,7 @@ function SuppliesTable(props) {
   const [openComplementary,setopenComplementary] = useState(false);
   const [openStatus,setopenStatus] = useState(false);
   const [open , setOpen] = useState(false);
+  const [reOpen , setreOpen] = useState(false);
   const {bestbeforelistcount, fetchingbestbefore} = props;
 
   const openModal = () => {
@@ -88,6 +91,7 @@ function SuppliesTable(props) {
     props.getSuppliesList(page);
     props.getUOM()
     props.getBestBeforeJumpListCount(props.orgId)
+    props.getReorderCount()
   }, []);
 
   const handleLoadMore = () => {
@@ -197,7 +201,7 @@ function SuppliesTable(props) {
               title= {translatedMenuItems[25]}
               jumpstartClick={()=> setOpen(true)}
               cursorData={"pointer"}
-              // value={props.suppliesBestBeforeCount}
+               value={props.suppliesBestBeforeCount.bbcnt}
             // isLoading={fetchingorderDetails}
             />
                          </div>
@@ -215,9 +219,9 @@ function SuppliesTable(props) {
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
               title= {translatedMenuItems[26]} 
-            //jumpstartClick={()=> handleClick("Open")}
+            jumpstartClick={()=> setreOpen(true)}
               cursorData={"pointer"}
-            // value={ pendingOrder}
+            //  value={ props.reOrderCount.count}
             // isLoading={props.fetchingorderDetails}
             />
                            </div>
@@ -677,7 +681,13 @@ function SuppliesTable(props) {
       open={open}
       setOpen={setOpen}
       />
-
+ <ReOrderOpen
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      particularDiscountData={particularDiscountData}
+      reOpen={reOpen}
+      setreOpen={setreOpen}
+      />
       
       </Suspense>
 
@@ -704,7 +714,8 @@ const mapStateToProps = ({ supplies, auth,settings }) => ({
   suppliesSerachedData:supplies.suppliesSerachedData,
   fetchingSuppliesInputSearchData:supplies.fetchingSuppliesInputSearchData,
   orgId: auth.userDetails.organizationId,
-  suppliesBestBeforeCount:supplies.suppliesBestBeforeCount
+  suppliesBestBeforeCount:supplies.suppliesBestBeforeCount,
+  reOrderCount:supplies.reOrderCount
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -724,7 +735,8 @@ const mapDispatchToProps = (dispatch) =>
       handleErpDocumentUploadModal,
       handlePriceModal,
       getUOM,
-      getBestBeforeJumpListCount
+      getBestBeforeJumpListCount,
+      getReorderCount
     },
     dispatch
   );

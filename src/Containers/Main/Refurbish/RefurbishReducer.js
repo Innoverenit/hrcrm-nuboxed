@@ -7,6 +7,9 @@ const initialState = {
   fetchingTodayProductionError: false,
   production: [],
 
+  fetchingTabSpareList: false,
+          fetchingTabSpareListError: false,
+          tabSpareList:[],
 
   fetchingLevelData:false,
   fetchingLevelDataError:false,
@@ -94,6 +97,9 @@ const initialState = {
   fetchingTaskByPhoneId: false,
   fetchingTaskByPhoneIdError: false,
   taskByPhone: [],
+
+  getToExchange: false,
+  getToExchangeError: false,
 
   fetchingAllInputSearchData:false,
   fetchingAllInputSearchDataError:false,
@@ -1094,7 +1100,20 @@ export const refurbishReducer = (state = initialState, action) => {
         fetchingRepairorderByIdError: true,
       };
 
-
+      case types.GET_TAB_SPARE_LIST_REQUEST:
+        return { ...state, fetchingTabSpareList: true };
+      case types.GET_TAB_SPARE_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingTabSpareList: false,
+          tabSpareList: [...state.tabSpareList, ...action.payload],
+        };
+      case types.GET_TAB_SPARE_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingTabSpareList: false,
+          fetchingTabSpareListError: true,
+        };
 
 
       case types.GET_LEVEL_DATA_REQUEST:
@@ -1642,6 +1661,26 @@ export const refurbishReducer = (state = initialState, action) => {
         updatingPauseStatus: false,
         updatingPauseStatusError: true,
       };
+
+      case types.GET_TO_EXCHANGE_REQUEST:
+        return { ...state, getToExchange: true };
+      case types.GET_TO_EXCHANGE_SUCCESS:
+        return {
+          ...state,
+          getToExchange: false,
+          repairPhone: state.repairPhone.map((item) =>
+            item.phoneId === action.payload.phoneId
+              ? action.payload
+              : item
+          ),
+  
+        };
+      case types.GET_TO_EXCHANGE_FAILURE:
+        return {
+          ...state,
+          getToExchange: false,
+          getToExchangeError: true,
+        };
 
     case types.ADD_LEAD_REQUEST:
       return { ...state, addingLead: true };

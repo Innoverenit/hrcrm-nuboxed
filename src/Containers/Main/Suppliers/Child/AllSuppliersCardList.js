@@ -127,20 +127,20 @@ return(
 <div className=' flex  sticky  z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
 <div className=" flex max-sm:hidden ml-4 justify-between w-[99%]  p-1 bg-transparent font-bold font-poppins text-xs  items-end sticky  z-10">
-<div className=" w-[3.91rem] text-[#00A2E8] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
+<div className=" w-[6.91rem] truncate text-[#00A2E8] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* Supplier ID */}
                <CategoryIcon className=" !text-icon"/>  {props.translatedMenuItems[40]} ID
                </div>
-            <div className=" w-[3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">   <ApartmentIcon className="!text-icon text-[#4f5d75] "/>    {props.translatedMenuItems[0]}</div>
-            <div className=" w-[3.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
+            <div className=" w-[16rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">   <ApartmentIcon className="!text-icon text-[#4f5d75] "/>    {props.translatedMenuItems[0]}</div>
+            <div className=" w-[8.1rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
             <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>  {props.translatedMenuItems[1]}
             </div>
-            <div className=" w-[3.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">    <MailOutlineIcon className="!text-icon  text-[#4f5d75]"/>  {props.translatedMenuItems[2]}</div>  
-            <div className=" w-[3.94rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
+            <div className=" w-[12.92rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] ">    <MailOutlineIcon className="!text-icon  text-[#4f5d75]"/>  {props.translatedMenuItems[2]}</div>  
+            <div className=" w-[16.94rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* Supplier ID */}
                <LinkIcon  className="!text-icon  text-[#4f5d75]"/>   {props.translatedMenuItems[41]}
                </div>   
-          <div className=" w-[8.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> <AccountCircleIcon className="!text-icon  text-[#f28482]"/>Owner</div>
+          <div className=" w-[11.91rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> <AccountCircleIcon className="!text-icon  text-[#f28482]"/>Owner</div>
           </div>
         <InfiniteScroll
         dataLength={props.allSupplierList.length}
@@ -156,8 +156,8 @@ return(
   return (
     <>
         <div
-                  className="flex  rounded justify-between bg-white  items-center py-1   max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                          <div class=" flex flex-row justify-between  w-wk max-sm:flex-col">
+                  className="flex  rounded justify-between bg-white  items-center py-ygap   max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                          <div class=" flex flex-row justify-between  max-sm:flex-col">
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className="border-l-2 border-green-500 bg-[#eef2f9] h-8 flex items-center w-[7.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
                           <div class=" text-xs ml-gap font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -167,7 +167,7 @@ return(
 
 
 </div>
-                            <div className=" h-8 flex items-center ml-gap w-[14.5rem] bg-[#eef2f9] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
+                            <div className=" h-8 flex items-center ml-gap w-[16.5rem] bg-[#eef2f9] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
                               <div >
                               <a class="overflow-ellipsis whitespace-nowrap h-8 p-1 text-[#042E8A] text-xs  underline font-bold font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm" 
                             href={`supplier/${item.supplierId}`}>{item.name}</a>

@@ -44,7 +44,7 @@ import {
   handleCustomerOpportunityDrawerModal,
   handleAddressCutomerModal,
   deleteCustomer,
-  handleUpdateUserModal
+  // handleUpdateUserModal
 } from "../../CustomerAction";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
@@ -55,7 +55,7 @@ import CustomerSearchedData from "./CustomerSearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddCustomerAdressModal from "./AddCustomerAdressModal";
 import EmptyPage from "../../../Main/EmptyPage";
-import UpdateUserModal from "./UpdateUserModal";
+//import UpdateUserModal from "./UpdateUserModal";
 const AddCustomerDrawerModal = lazy(() =>
   import("../../AddCustomerDrawerModal")
 );
@@ -418,7 +418,7 @@ if (loading) {
   (item.phoneNumber !== null && item.phoneNumber !== undefined) ?
 
  
-  `${item.countryDialCode} ${item.phoneNumber}` :
+  `+${item.countryDialCode} ${item.phoneNumber}` :
 
   
   (item.phoneNumber !== null && item.phoneNumber !== undefined) ?
@@ -717,11 +717,11 @@ if (loading) {
       </div>
   )}
   <Suspense fallback={<BundleLoader />}>
-  <UpdateUserModal
+  {/* <UpdateUserModal
       currentCustomerId={currentCustomerId}
       updateUserModal={props.updateUserModal}
       handleUpdateUserModal={props.handleUpdateUserModal}
-      />
+      /> */}
       <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}
         handleCustomerDrawerModal={props.handleCustomerDrawerModal}
@@ -832,7 +832,7 @@ const mapDispatchToProps = (dispatch) =>
     {
 
       getCustomerListByUserId,
-      handleUpdateUserModal,
+      // handleUpdateUserModal,
       handleUpdateCustomerModal,
       handleCustomerPulseDrawerModal,
       handleCustomerContactDrawerModal,

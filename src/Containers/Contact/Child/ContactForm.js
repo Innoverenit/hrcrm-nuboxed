@@ -310,7 +310,7 @@ class ContactForm extends Component {
             phoneNumber: "",
             mobileNumber: "",
             emailId: "",
-            alternateEmail:"",
+            alternateEmailId:"",
             linkedinPublicUrl: "",
             bedrooms:"",
         
@@ -455,7 +455,7 @@ class ContactForm extends Component {
                     {this.props.customerConfigure.alternateEmailInd===true&&
                       <FastField
                         type="email"
-                        name="alternateEmail"
+                        name="alternateEmailId"
                         //label="Email"              
                         className="field"
                         isColumn

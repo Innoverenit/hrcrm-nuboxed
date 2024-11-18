@@ -18,7 +18,8 @@ import {
     updatePauseStatus,
     searchimeiNamerapir,
     ClearReducerDataOfrepair,
-    handleSpareProcess
+    handleSpareProcess,
+    getToExchange
 } from "./RefurbishAction";
 import { Button, Tooltip,  Progress,Input,Badge, Popconfirm } from "antd";
 import {  BarcodeOutlined, RollbackOutlined } from "@ant-design/icons";
@@ -47,6 +48,7 @@ function PhoneListForRepair(props) {
     const [searchOnEnter, setSearchOnEnter] = useState(false); 
     const componentRefs = useRef([]);
     const componentBarRefs = useRef([]);
+    const [isGet, setIsGet] = useState(true);
     const [startTime, setStartTime] = useState(null);
     const [isRecording, setIsRecording] = useState(false); //Code for Search
     const minRecordingTime = 3000; // 3 seconds
@@ -139,9 +141,12 @@ function PhoneListForRepair(props) {
           console.error("Input is empty. Please provide a value.");
         }
       };
-      const handleConfirm = () => {
-        
-        // props.customerToAccount(customerId);
+      const handleConfirm = (phoneId) => {
+        const payload={
+            phoneInd:""
+        }
+         props.getToExchange(payload,phoneId);
+         setIsGet(!isGet); // Toggle button state
       };
       const handleStartListening = () => {
         setStartTime(Date.now());
@@ -578,22 +583,23 @@ function PhoneListForRepair(props) {
                         }
 
 <div className=" flex  items-center ml-gap bg-[#eef2f9] h-8 w-[6.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-<Popconfirm
+                         <Popconfirm
                           title="Wish To Change"
-                        //   onConfirm={() => handleConfirm(item.customerId)}
+                           onConfirm={() => handleConfirm(item.phoneId)}
                           okText="Yes"
                           cancelText="No"
                         >
                         
                             <Button className="justify-start" type="primary">
-                              Get/Exchange
-                                {/* {item.convertInd === 0 && translatedMenuItems[17]}
-                                {item.convertInd === 1 && translatedMenuItems[16]}
-                                {item.convertInd === 2 && translatedMenuItems[18]} */}
+                            {isGet ? 'Get' : 'Exchange'}
+                               
                       
                             </Button>
                     
                         </Popconfirm>
+                         {/* {item.convertInd === 0 && translatedMenuItems[17]}
+                                {item.convertInd === 1 && translatedMenuItems[16]}
+                                {item.convertInd === 2 && translatedMenuItems[18]} */}
     </div>
                                        
                                             <div className=" flex  items-center ml-gap bg-[#eef2f9] h-8 w-[1.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -769,7 +775,8 @@ const mapDispatchToProps = (dispatch) =>
             searchimeiNamerapir,
             ClearReducerDataOfrepair,
             handleProcessExpand,
-            handleSpareProcess
+            handleSpareProcess,
+            getToExchange
         },
         dispatch
     );

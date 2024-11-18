@@ -65,37 +65,74 @@ import React, { useEffect } from 'react'
 import { getGeneratorSuppliersList } from "../../../SuppliersAction"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { BundleLoader } from '../../../../../../Components/Placeholder';
+const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+const [loading, setLoading] = useState(true);
 
 function AddedSuppliesTable(props) {
     useEffect(() => {
         props.getGeneratorSuppliersList()
     }, [])
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            const itemsToTranslate = [
+            "110", //  "Name",//0
+             "14", // 'Category',//2
+             "1154",    // Sub-category 3
+             "259", // 'Attribute',//4
+             "263",      //  Sub-attribute 5
+             "654",// 'Quality',//6
+             "260", // Units 7
+            
+        
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+          } catch (error) {
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage])
+      if (loading) {
+        return <div><BundleLoader/></div>;
+      }
     return (
         <>
             <div className=' flex justify-end sticky top-28 z-auto'>
                 <div class=" m-3 p-1 h-62vh overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between  p-1 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" font-poppins text-xs md:w-[19.1rem]">
-                            Name
+                        {translatedMenuItems[0]}
+                          {/* Name */}
                         </div>
                         <div className="font-poppins text-xs md:w-[14.1rem]">
-                            Category
+                        {translatedMenuItems[1]} 
+                         {/* Category */}
                         </div>
                         <div className="font-poppins text-xs md:w-[14.1rem]">
-                            Sub-category
+                        {translatedMenuItems[1]} 
+                          {/* Sub-category */}
                         </div>
                         <div className="font-poppins text-xs md:w-[14.1rem]">
-                            Attribute
+                        {translatedMenuItems[1]}  
+                         {/* Attribute */}
                         </div>
                         <div className="font-poppins text-xs md:w-[14.1rem]">
-                            Sub-attribute
+                        {translatedMenuItems[1]} 
+                         {/* Sub-attribute */}
                         </div>
                        
                         <div className="font-poppins text-xs md:w-[5.1rem]">
-                            Quality
+                        {translatedMenuItems[1]} 
+                          {/* Quality */}
                         </div>
                         <div className="font-poppins text-xs md:w-[5.1rem]">
-                            Units
+                        {translatedMenuItems[1]}  
+                         {/* Units */}
                         </div>
 
                     </div>

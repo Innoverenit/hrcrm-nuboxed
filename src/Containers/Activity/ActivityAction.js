@@ -187,6 +187,12 @@ export const addActivityCall = (call,customerId, cb) => (dispatch, getState) => 
         }
       )
       .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Completed Successfully!',
+          showConfirmButton: false,
+          timer: 1500
+        })
         //debugger
   
         //   dispatch(getEventsListByUserId(userId));
