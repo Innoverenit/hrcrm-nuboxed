@@ -263,13 +263,7 @@ class UpdateInvestorContactForm extends Component {
                             <FastField
                               isRequired
                               name="firstName"
-                              // label="First Name"
-                              label={
-                                <FormattedMessage
-                                  id="app.firstName"
-                                  defaultMessage="First Name"
-                                />
-                              }
+                              label="First Name"
                               type="text"
                               width={"100%"}
                               isColumn
@@ -283,13 +277,7 @@ class UpdateInvestorContactForm extends Component {
                           <div class=" w-2/5">
                             <FastField
                               name="middleName"
-                              //label="Middle Name"
-                              label={
-                                <FormattedMessage
-                                  id="app.middle"
-                                  defaultMessage="Middle"
-                                />
-                              }
+                              label="Middle Name"
                               type="text"
                               width={"100%"}
                               isColumn
@@ -300,13 +288,7 @@ class UpdateInvestorContactForm extends Component {
                           <div class=" w-2/4">
                             <FastField
                               name="lastName"
-                              //label="Last Name"
-                              label={
-                                <FormattedMessage
-                                  id="app.lastName"
-                                  defaultMessage="Last Name"
-                                />
-                              }
+                              label="Last Name"
                               type="text"
                               width={"100%"}
                               isColumn
@@ -323,12 +305,7 @@ class UpdateInvestorContactForm extends Component {
                           name="countryDialCode"
                           isColumnWithoutNoCreate
                           //label="Mobile #"
-                          label={
-                            <FormattedMessage
-                              id="app.countryDialCode"
-                              defaultMessage="Dial Code"
-                            />
-                          }
+                          label="Dial Code"
                           isColumn
                           selectType="dialCode"
                           component={SearchSelect}
@@ -344,12 +321,7 @@ class UpdateInvestorContactForm extends Component {
                           type="text"
                           name="mobileNumber"
                           //placeholder="Mobile #"
-                          label={
-                            <FormattedMessage
-                              id="app.mobileNumber"
-                              defaultMessage="Mobile #"
-                            />
-                          }
+                          label="Mobile #"
                           component={InputComponent}
                           inlineLabel
                           width={"100%"}
@@ -364,12 +336,7 @@ class UpdateInvestorContactForm extends Component {
                           isColumnWithoutNoCreate
                           selectType="dialCode"
                           //label="Phone No #"
-                          label={
-                            <FormattedMessage
-                              id="app.countryDialCode1"
-                              defaultMessage="Dial Code"
-                            />
-                          }
+                          label="Dial Code"
                           isColumn
                           component={SearchSelect}
                           defaultValue={{
@@ -384,12 +351,7 @@ class UpdateInvestorContactForm extends Component {
                           type="text"
                           name="phoneNumber"
                           // placeholder="Phone #"
-                          label={
-                            <FormattedMessage
-                              id="app.phoneNumber"
-                              defaultMessage="Phone #"
-                            />
-                          }
+                          label="Phone #"
                           isColumn
                           component={InputComponent}
                           inlineLabel
@@ -405,13 +367,7 @@ class UpdateInvestorContactForm extends Component {
                           isRequired
                           type="email"
                           name="emailId"
-                          //label="Email"
-                          label={
-                            <FormattedMessage
-                              id="app.emailId"
-                              defaultMessage="Email"
-                            />
-                          }
+                          label="Email"
                           className="field"
                           isColumn
                           width={"100%"}
@@ -426,13 +382,7 @@ class UpdateInvestorContactForm extends Component {
                         <FastField
                           type="text"
                           name="linkedinPublicUrl"
-                          //label="Linkedin "
-                          label={
-                            <FormattedMessage
-                              id="app.linkedinPublicUrl"
-                              defaultMessage="Linkedin"
-                            />
-                          }
+                          label="Linkedin "
                           isColumn
                           width={"100%"}
                           component={InputComponent}
@@ -500,13 +450,7 @@ class UpdateInvestorContactForm extends Component {
                       <div class=" w-2/5">
                         <FastField
                          name="designationTypeId"
-                         //label="Designation"
-                         label={
-                           <FormattedMessage
-                             id="app.designation"
-                             defaultMessage="Designation"
-                           />
-                         }
+                         label="Designation"
                          selectType="designationType"
                            isColumn
                          component={SearchSelect}
@@ -518,13 +462,7 @@ class UpdateInvestorContactForm extends Component {
                      <div class=" w-2/5">
                       <FastField
                         name="departmentId"
-                        //label="Department"
-                        label={
-                          <FormattedMessage
-                            id="app.department"
-                            defaultMessage="Department"
-                          />
-                        }
+                        label="Department"
                         isColumn
                         isColumnWithoutNoCreate
                         component={SearchSelect}
@@ -554,10 +492,7 @@ class UpdateInvestorContactForm extends Component {
                         <div class="mt-3">          
                     <Field
                       name="notes"
-                      // label="Notes"
-                      label={
-                        <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                      }
+                      label="Notes"
                       width={"100%"}
                       isColumn
                       component={TextareaComponent}
@@ -572,7 +507,7 @@ class UpdateInvestorContactForm extends Component {
                     htmlType="submit"
                     loading={updateInvestorContactById}
                   >
-                    <FormattedMessage id="app.update" defaultMessage="Update" />
+                  Update
                     {/*                     
                     Create */}
                   </Button>

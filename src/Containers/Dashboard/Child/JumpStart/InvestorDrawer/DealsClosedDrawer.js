@@ -9,10 +9,8 @@ const DealsClosedDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-         title={<FormattedMessage
-          id="app.dealsClosed"
-          defaultMessage="Deals Closed"
-        />}
+         title="Deals Closed"
+        
         width="60%"
         visible={props.openDealClosed}
         onClose={()  => props.handleDealClosedDrawer(false)}

@@ -213,7 +213,7 @@ console.log(props.filteredData)
                           props.handleNotifyDrawer(true);
                          }}
                     >
-                       {translatedMenuItems[6]} {/* <FormattedMessage id="app.applyforlogin" defaultMessage="Apply For Login" /> */}
+                       {translatedMenuItems[6]}
                     </Button>
            {/* <Tooltip title= {translatedMenuItems[6]}>
            <CircleNotificationsIcon

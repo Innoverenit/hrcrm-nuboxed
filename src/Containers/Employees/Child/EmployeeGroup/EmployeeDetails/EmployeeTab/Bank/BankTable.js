@@ -48,22 +48,16 @@ class BankTable extends Component {
              <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
           <div className=" md:w-[6.5rem]">
-        <FormattedMessage
-                  id="app.bankName"
-                  defaultMessage="Account Holder"
-                /></div>
+        Account Holder</div>
  
-        <div className="md:w-[6.1rem]">  <FormattedMessage id="app.bankName" defaultMessage="Bank Name" /></div>
+        <div className="md:w-[6.1rem]"> Bank Name</div>
                  <div className="md:w-[10.1rem]">
-                 <FormattedMessage
-          id="app.branchName"
-          defaultMessage="Branch Name"
-        /></div>
+               Branch Name</div>
                        <div className=" md:w-[8.1rem]">
-                       <FormattedMessage id="app.accountNo" defaultMessage="Account#" /></div>
+                     Account#</div>
 
                        <div className=" md:w-[8.1rem]">
-                       <FormattedMessage id="app.ifscCode" defaultMessage="SWIFT Code" /></div>
+                    SWIFT Code</div>
        
         
         <div className="w-[10.2rem]"></div>

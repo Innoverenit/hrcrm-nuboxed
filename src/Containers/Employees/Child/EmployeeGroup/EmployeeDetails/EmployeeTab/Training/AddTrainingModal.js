@@ -13,10 +13,7 @@ class AddTrainingModal extends Component {
     return (
       <>
         <StyledDrawer
-          //title="Training"
-          title={
-            <FormattedMessage id="app.training" defaultMessage="Training" />
-          }
+          title="Training"
           width="55%"
           visible={addTrainingModal}
           onClose={() => handleTrainingModal(false)}

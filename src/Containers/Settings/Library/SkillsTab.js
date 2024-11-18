@@ -28,10 +28,7 @@ function SkillsTab(props) {
 >
 </Badge>
                     <span style={{ marginLeft: "0.25em" }}>
-                      <FormattedMessage
-                        id="app.Skills"
-                        defaultMessage="Skills"
-                      />
+                     Skills
                   </span>
                 
                 </>
@@ -52,10 +49,7 @@ function SkillsTab(props) {
 >
 </Badge>
                     <span style={{ marginLeft: "0.25em" }}>
-                      <FormattedMessage
-                        id="app.Certifications"
-                        defaultMessage="Certifications"
-                      />
+                    Certifications
                   </span>
                
                 </>

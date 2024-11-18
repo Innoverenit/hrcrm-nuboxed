@@ -159,11 +159,7 @@ class UpdateLeaveForm extends Component {
                         isRequired
                         name="startDate"
 
-                        // label="Start Date"
-                        label={<FormattedMessage
-                          id="app.startDate"
-                          defaultMessage="Start Date"
-                        />}
+                        label="Start Date"
                         component={DatePicker}
                         // width="100%"
                         value={values.startDate}
@@ -182,13 +178,7 @@ class UpdateLeaveForm extends Component {
                       <Field
                         isRequired
                         name="endDate"
-                        // label="End Date "
-
-                        label={<FormattedMessage
-                          id="app.endDate"
-                          defaultMessage="End Date"
-                        />}
-                        isColumn
+                        label="End Date "
                         component={DatePicker}
                         value={values.endDate || values.startDate}
                         inlineLabel
@@ -243,11 +233,7 @@ class UpdateLeaveForm extends Component {
                     <div class=" w-1/2 mt-3 max-sm:w-wk">
               <Field
                 name="coverDetails"
-                //label="Cover"
-                label={<FormattedMessage
-                  id="app.coverDetails"
-                  defaultMessage="Cover"
-                />}
+                label="Cover"
                 width={"100%"}
                 component={InputComponent}
                 isColumn
@@ -257,11 +243,7 @@ class UpdateLeaveForm extends Component {
                   <Field
                     isRequired
                     name="reason"
-                    //  / label="Reason"
-                    label={<FormattedMessage
-                      id="app.reason"
-                      defaultMessage="Reason"
-                    />}
+                     label="Reason"
                     width={"100%"}
                     component={TextareaComponent}
                     inlineLabel

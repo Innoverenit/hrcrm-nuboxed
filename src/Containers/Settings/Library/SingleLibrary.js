@@ -54,8 +54,7 @@ class SingleLibrary extends Component {
                   &nbsp;            
                   <Tooltip title="Delete">
                   <StyledPopconfirm
-              // title="Do you want to delete?"
-              title={<FormattedMessage id="app.doyouwanttodelete" defaultMessage="Do you want to delete" />}
+              title="Do you want to delete?"
               onConfirm={() => handleDeleteSkill(definationId)}
             >
                     <DeleteOutlined className="items-center ml-1 text-red-600 !text-icon"                               
@@ -86,13 +85,11 @@ class SingleLibrary extends Component {
                       handleUpdateLibrary(definationId, value, toggleViewType())
                     }
                   >
-                    {/* Save */}
-                    <FormattedMessage id="app.update" defaultMessage="Update" />
+                    Save
                   </Button>
                   &nbsp;
                   <Button type="primary" ghost onClick={() => toggleViewType()}>
-                    {/* Cancel */}
-                    <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                    Cancel
                   </Button>
                 </div>
               </div>

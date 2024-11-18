@@ -8,12 +8,7 @@ const UpdateExpenseModal = (props) => {
   return (
     <>
       <StyledDrawer
-        //title="Update Customer"
-
-        title={<FormattedMessage
-          id="app.updatecustomer"
-          defaultMessage="Update Expense"
-        />}
+        title="Update Expense"
         width="60vw"
         // height="14vw"
         visible={props.updateExpenseModal}

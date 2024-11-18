@@ -21,11 +21,8 @@ const ProfileMenu = ({ logout, history }) => (
       <StyledMenu>
         <StyledMenuItem  key="0" >
           <a href="#" onClick={() => history.push("/profile")}>
-            <FormattedMessage
-              id="app.profile"
-              defaultMessage="Profile"
-            />
-            {/* Profile */}
+          
+            Profile
           </a>
         </StyledMenuItem>
         {/* <StyledMenuItem
@@ -48,11 +45,8 @@ const ProfileMenu = ({ logout, history }) => (
         </StyledMenuItem> */}
         <StyledMenuItem key="3">
           <a href="#" onClick={() => history.push("/change-password")}>
-            <FormattedMessage
-              id="app.changepassword"
-              defaultMessage="Change Password"
-            />
-            {/* Change Password */}
+       
+            Change Password
           </a>
         </StyledMenuItem>
         <StyledMenuItem key="4">

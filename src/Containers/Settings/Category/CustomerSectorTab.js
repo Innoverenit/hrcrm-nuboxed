@@ -93,7 +93,6 @@ class CustomerSectorTab extends Component {
                 overflowCount={999} offset={[ 0, -16]}
               >
              
-                      {/* <FormattedMessage id="app.category" defaultMessage="Category" /> */}
                       </Badge>
                      
                      
@@ -194,8 +193,7 @@ class CustomerSectorTab extends Component {
                       <PaymentIcon  className=" !text-icon"/>
             
                          <span class=" !text-tab font-poppins ml-1 text-sm">
-                         
-                         <FormattedMessage id="app.payment" defaultMessage="Payment" />
+                       Payment
                       
                       </span>
                      <Badge
@@ -217,7 +215,7 @@ class CustomerSectorTab extends Component {
             
                          <span class=" !text-tab font-poppins ml-1 text-sm">
                         
-                      <FormattedMessage id="app.lob" defaultMessage="LOB" /></span>
+                LOB</span>
                       <Badge
                 count={this.props.lobCount.LobCount}
                 overflowCount={999} offset={[ 0, -16]}

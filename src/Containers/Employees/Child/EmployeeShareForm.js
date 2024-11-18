@@ -51,11 +51,7 @@ function EmployeeShareForm(props) {
               <div style={{ width: "12em", marginTop: "0.6em" }}>
                 <Field
                   name="userId"
-                  //  label="Sponsor"
-                  // label={<FormattedMessage
-                  //   id="app.sponserId"
-                  //   defaultMessage="Sponsor"
-                  // />}
+                 
                   placeholder="Select"
                   isColumn
                   style={{

@@ -52,10 +52,8 @@ function LeadsAgingForm(props) {
                 </div>
                 <div class=" mb-8">
                 <div class=" text-xs font-bold font-poppins text-black">
-                  l<FormattedMessage
-                    id="app.category"
-                    defaultMessage="Category"
-                  />
+                  l-Category
+              
                 </div>
                 </div>
 
@@ -79,11 +77,8 @@ function LeadsAgingForm(props) {
                         />
                         <div >
                         <div class=" text-xs font-bold font-poppins text-black">
-                          {/* Days */}
-                          <FormattedMessage
-                            id="app.days"
-                            defaultMessage="Days"
-                          />
+                          Days
+                     
                         </div>
                       </div>
                       </div>                   
@@ -107,11 +102,7 @@ function LeadsAgingForm(props) {
                         />
                         <div >
                         <div class=" text-xs font-bold font-poppins text-black">
-                          {/* Days */}
-                          <FormattedMessage
-                            id="app.days"
-                            defaultMessage="Days"
-                          />
+                          Days
                         </div>
                       </div>
                       </div>                   
@@ -135,11 +126,8 @@ function LeadsAgingForm(props) {
                         />
                         <div >
                         <div class=" text-xs font-bold font-poppins text-black">
-                          {/* Days */}
-                          <FormattedMessage
-                            id="app.days"
-                            defaultMessage="Days"
-                          />
+                          Days
+                          
                         </div>
                       </div>
                       </div>                   
@@ -170,30 +158,18 @@ function LeadsAgingForm(props) {
                 <div class=" flex justify-end mr-3 mt-3"
                 >
                   <Popconfirm
-                    // title="Do you wish to proceed?"
-                    title={<FormattedMessage
-                      id="app.doyouwishtoproceed?"
-                      defaultMessage="Do you wish to proceed?"
-                    />}
+                    title="Do you wish to proceed?"
                     onConfirm={() => props.addLeadsaging(values)}
                     onCancel={props.getLeadAging}
                     okText="Ok"
-                    // cancelText="Cancel"
-                    cancelText={<FormattedMessage
-                      id="app.cancel"
-                      defaultMessage="Cancel"
-                    />}
+                    cancelText="Cancel"
                   >
                     <Button className="mr-[-0.43em] mt-[1.25rem] mb-[0.31em]"
                       type="primary"
                       loading={props.addingLeadAging}
                       htmlType="submit"
                     >
-                      {/* Update */}
-                      <FormattedMessage
-                        id="app.update"
-                        defaultMessage="Update"
-                      />
+                      Update
                     </Button>
                   </Popconfirm>
                 </div>

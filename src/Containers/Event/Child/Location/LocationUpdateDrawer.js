@@ -12,10 +12,8 @@ const LocationUpdateDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.updateLocation"
-          defaultMessage="Update Location"
-        />}
+        title="Update Location"
+        
         destroyOnClose
           closable
         width={drawerWidth}

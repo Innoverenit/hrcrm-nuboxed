@@ -133,7 +133,7 @@ class LeadsDocuments extends Component {
 
     const columns = [
       {
-        title: <FormattedMessage id="app.date" defaultMessage="Date" />,
+        title:"Date" ,
         dataIndex: "creationDate",
         sorter: (a, b) => {
           var creationDateA = a.creationDate; // ignore upper and lowercase
@@ -152,20 +152,17 @@ class LeadsDocuments extends Component {
         },
       },
       {
-        //title: "Name",
-        title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+        title: "Name",
         dataIndex: "documentTitle",
         ...this.getColumnSearchProps("documentTitle"),
       },
       {
-        title: <FormattedMessage id="app.type" defaultMessage="Type" />,
+        title:"Type",
         dataIndex: "documentContentType",
       },
       {
-        //title: "Description",
-        title: (
-          <FormattedMessage id="app.description" defaultMessage="Description" />
-        ),
+        title: "Description",
+        
         dataIndex: "documentDescription",
         width: "20%",
         render: (name, item, i) => {
@@ -176,10 +173,7 @@ class LeadsDocuments extends Component {
         sorter: (a, b) => a.taskType.length - b.taskType.length,
       },
       {
-        //title: "Uploaded By",
-        title: (
-          <FormattedMessage id="app.uploadedBy" defaultMessage="Uploaded By" />
-        ),
+        title: "Uploaded By",
         dataIndex: "uploadedBy",
         render: (name, item, i) => {
           return (
@@ -222,13 +216,7 @@ class LeadsDocuments extends Component {
         render: (name, item, i) => {
           return (
             <StyledPopconfirm
-              //title="Do you want to delete?"
-              title={
-                <FormattedMessage
-                  id="app.doyouwanttodelete?"
-                  defaultMessage="Do you want to delete?"
-                />
-              }
+              title="Do you want to delete?"
               onConfirm={() => deleteLeadsDocument(item.documentId)}
             >
               <DeleteOutlined

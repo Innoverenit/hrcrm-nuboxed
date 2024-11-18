@@ -62,11 +62,7 @@ class UpdateTrainingForm extends Component {
                       <FastField
                         isRequired
                         name="courseName"
-                        //label="Course Name"
-                        label={<FormattedMessage
-                          id="app.courseName"
-                          defaultMessage="Course Name"
-                        />}
+                        label="Course Name"
                         type="text"
                         width={"100%"}
                         isColumn
@@ -82,10 +78,7 @@ class UpdateTrainingForm extends Component {
                       <FastField
                         type="Organization"
                         name="organization"
-                        label={<FormattedMessage
-                          id="app.organization"
-                          defaultMessage="Organization"
-                        />}
+                        label="Organization"
                         className="field"
                         isColumn
                         width={"100%"}
@@ -97,10 +90,8 @@ class UpdateTrainingForm extends Component {
                       {/* <div class=" text-xs font-bold font-poppins text-black">Grade</div> */}
                       <FastField
                         name="grade"
-                        label={<FormattedMessage
-                          id="app.grade"
-                          defaultMessage="Grade"
-                        />}
+                        label="Grade"
+                     
                         isColumn
                         selectType="text"
                         width={"100%"}
@@ -113,11 +104,7 @@ class UpdateTrainingForm extends Component {
                       <div class=" w-[47%]" >
                       <Field
                         name="startDate"
-                        //label="Start Date"
-                        label={<FormattedMessage
-                          id="app.startDate"
-                          defaultMessage="Start Date"
-                        />}
+                        label="Start Date"
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -131,12 +118,7 @@ class UpdateTrainingForm extends Component {
                   >
                       <Field
                         name="endDate"
-                        //label="End Date "
-                        label={<FormattedMessage
-                          id="app.endDate"
-                          defaultMessage="End Date"
-                        />}
-                        isRequired
+                        label="End Date "
                         isColumn
                         width={"100%"}
                         component={DatePicker}
@@ -166,10 +148,7 @@ class UpdateTrainingForm extends Component {
                     type="primary"
                     Loading={updatingTrainingDetails}
                   >
-                    <FormattedMessage
-                      id="app.update"
-                      defaultMessage="Update"
-                    />
+                    Update
                   </Button>
                 </div>
               </Form>

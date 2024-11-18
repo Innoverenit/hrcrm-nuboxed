@@ -9,10 +9,8 @@ const PitchHCWdrawer = (props) => {
   return (
     <>
       <StyledDrawer
-        title={      <FormattedMessage
-          id="app.pitchHCW"
-          defaultMessage="Pitch HCW"
-        />}
+        title="Pitch HCW"
+      
       
         width="60%"
         visible={props.openPitchHCWdrawer}

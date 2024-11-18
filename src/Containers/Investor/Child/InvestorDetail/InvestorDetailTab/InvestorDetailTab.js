@@ -182,12 +182,7 @@ selectedLanguage={props.selectedLanguage}
                 {activeKey === "1" && (
                   <>
                     <Tooltip 
-                      title={
-                        <FormattedMessage
-                          id="app.create"
-                          defaultMessage="Create"
-                        />
-                      }
+                      title="Create"
                     >
                       {/* {this.props.user.contactCreateInd === true && ( */}
                       
@@ -196,13 +191,7 @@ selectedLanguage={props.selectedLanguage}
                     
                    <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                          
-                          //tooltipTitle="Create"
-                          tooltiptitle={
-                            <FormattedMessage
-                              id="app.Create"
-                              defaultMessage="Create"
-                            />
-                          }
+                          tooltipTitle="Create"
                           onClick={() => {
                            // handleInvestorContactModal(true);
                            handleCustomerContactModal(true);
@@ -255,12 +244,8 @@ selectedLanguage={props.selectedLanguage}
                   
  <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                      
-                      title={
-                        <FormattedMessage
-                          id="app.uploaddocument"
-                          defaultMessage="Upload Document"
-                        />
-                      }
+                      title="Upload Document"
+                       
                       onClick={() => handleDocumentUploadModal(true)}
                     
                     />
@@ -296,12 +281,8 @@ selectedLanguage={props.selectedLanguage}
                     
  <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                      
-                      title={
-                        <FormattedMessage
-                          id="app.create"
-                          defaultMessage="Create"
-                        />
-                      }
+                      title="Create"
+                       
                        onClick={() => props.handleCallActivityModal(true)}
                      
                     />
@@ -332,22 +313,14 @@ investorDetails={props.investorDetails}
                 {activeKey === "4" && (
                   <>
                   <Tooltip 
-                      title={
-                        <FormattedMessage
-                          id="app.create"
-                          defaultMessage="Create"
-                        />
-                      }
+                      title="Create"
+                       
                     >
                     
  <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                      
-                      title={
-                        <FormattedMessage
-                          id="app.create"
-                          defaultMessage="Create"
-                        />
-                      }
+                      title="Create"
+                        
                        onClick={() => handleDealModal(true)}
                      
                      

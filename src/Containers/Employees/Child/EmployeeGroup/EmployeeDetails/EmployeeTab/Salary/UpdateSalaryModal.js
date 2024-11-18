@@ -15,11 +15,7 @@ class UpdateSalaryModal extends Component {
     return (
       <>
         <StyledDrawer
-          // title="Salary"
-          title={<FormattedMessage
-            id="app.salaray"
-            defaultMessage="Salary"
-          />}
+          title="Salary"
           width="30%"
           visible={updateSalaryModal}
           onClose={() => handleUpdateSalaryModal(false)}

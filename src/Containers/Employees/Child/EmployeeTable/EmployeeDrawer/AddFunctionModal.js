@@ -8,11 +8,7 @@ const AddFunctionModal = (props) => {
   return (
     <>
       <StyledModal
-        //title="Customer"
-        title={<FormattedMessage
-          id="app.customer"
-          defaultMessage="Customer"
-        />}
+        title="Customer"
         width="60%"
         visible={props.addInnoventoryModal}
         maskClosable={false}

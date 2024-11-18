@@ -9,7 +9,6 @@ import { bindActionCreators } from 'redux';
 import {getCategorylist} from "../../../Suppliers/SuppliersAction";
 import * as Yup from "yup";
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
 import { BundleLoader } from '../../../../../Components/Placeholder';
 
 const AddCatalogueTable = lazy(() => import("./AddCatalogueTable"));
@@ -105,10 +104,8 @@ const AddCatalogueForm = (props) => {
                                   <div class="w-[33%]">
                                       <Field
                                           name="productId"
-                                          label={<FormattedMessage
-                                              id="app.items"
-                                              defaultMessage="Items"
-                                          />}
+                                          label="Items"
+                                       
                                           isRequired
                                           isColumn
                                           inlineLabel
@@ -127,10 +124,8 @@ const AddCatalogueForm = (props) => {
                                   <div class="w-[30%]">
                                       <Field
                                           name="categoryName"
-                                          label={<FormattedMessage
-                                              id="app.category"
-                                              defaultMessage="Category"
-                                          />}
+                                          label="Category"
+                                        
                                           disabled
                                           isColumn
                                           inlineLabel
@@ -141,10 +136,8 @@ const AddCatalogueForm = (props) => {
                                   <div class="w-[30%]">
                                       <Field
                                           name="subCategoryName"
-                                          label={<FormattedMessage
-                                              id="app.subcategory"
-                                              defaultMessage="Sub Category"
-                                          />}
+                                          label="Sub Category"
+                                      
                                           disabled
                                           isColumn
                                           inlineLabel
@@ -157,10 +150,8 @@ const AddCatalogueForm = (props) => {
                                   <div class="w-[25%]">
                                       <Field
                                           name="attributeName"
-                                          label={<FormattedMessage
-                                              id="app.attribute"
-                                              defaultMessage="Attribute"
-                                          />}
+                                          label="Attribute"
+                                      
                                           disabled
                                           isColumn
                                           inlineLabel
@@ -171,10 +162,8 @@ const AddCatalogueForm = (props) => {
                                   <div class="w-[25%]">
                                       <Field
                                           name="subAttributeName"
-                                          label={<FormattedMessage
-                                              id="app.subattribute"
-                                              defaultMessage="Sub Attribute"
-                                          />}
+                                          label="Sub Attribute"
+                                        
                                           disabled
                                           isColumn
                                           inlineLabel
@@ -185,10 +174,8 @@ const AddCatalogueForm = (props) => {
                                   <div class="w-[25%]">
                                       <Field
                                           name="quantity"
-                                          label={<FormattedMessage
-                                              id="app.unit"
-                                              defaultMessage="Unit"
-                                          />}
+                                          label="Unit"
+                                       
                                           isRequired
                                           isColumn
                                           inlineLabel
@@ -202,10 +189,7 @@ const AddCatalogueForm = (props) => {
                                           htmlType="submit"
                                           loading={props.addingUnitForCatalogueItem}
                                       >
-                                          <FormattedMessage
-                                              id="app.submit"
-                                              defaultMessage="Submit"
-                                          />
+                                          Submit
                                       </Button>
                                   </div>
                               </div>

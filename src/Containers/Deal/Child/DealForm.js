@@ -687,12 +687,7 @@ const [selectedStage, setSelectedStage] = useState(null);
                 <div class=" w-w47.5 max-sm:w-wk">
                 <Field
                             name="source"
-                             label={
-                              <FormattedMessage
-                                id="app.source"
-                                defaultMessage="source"
-                              />
-                            }
+                             label="source"                             
                             isColumnWithoutNoCreate
                             component={SelectComponent}
                     options={

@@ -10,7 +10,6 @@ import {
     handleOrderPaymentModal
 } from "../../AccountAction";
 import PaidIcon from '@mui/icons-material/Paid';
-import { FormattedMessage } from 'react-intl';
 import { Button,  Tooltip } from 'antd';
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { MultiAvatar2 } from '../../../../../Components/UI/Elements';
@@ -142,10 +141,7 @@ const AccountOrder1Table = (props) => {
                                                                 {date === currentdate ? (
                                                                     <span
                                                                         class="text-[tomato] font-bold text-[0.65rem]">
-                                                                        {<FormattedMessage
-                                                                            id="app.new"
-                                                                            defaultMessage="New"
-                                                                        />}
+                                                                      New
                                                                     </span>
                                                                 ) : null}
                                                             </div>

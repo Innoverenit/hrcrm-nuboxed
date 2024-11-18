@@ -11,7 +11,6 @@ import { InputComponent } from "../../../../../Components/Forms/Formik/InputComp
 import { TextareaComponent } from '../../../../../Components/Forms/Formik/TextareaComponent';
 import { Button, Tooltip, message} from 'antd';
 import { getSaleCurrency } from "../../../../Auth/AuthAction";
-import { FormattedMessage } from 'react-intl';
 import { getContactDistributorList } from "../../../Suppliers/SuppliersAction"
 import { addOrderProcurementForm, getLobList } from '../../AccountAction'
 import { ExclamationCircleOutlined } from '@ant-design/icons';
@@ -371,26 +370,7 @@ function AddProcurementInAccount(props) {
                                                     />
                                                 </Tooltip>
                                                 &nbsp;
-                                                {/* <Tooltip title={<FormattedMessage
-                                                    id="app.medium"
-                                                    defaultMessage="Medium"
-                                                />}>
-                                                    <Button
-                                                        // type="primary"
-                                                        shape="circle"
-                                                        icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
-                                                        onClick={() => handleButtonClick("Medium")}
-                                                        style={{
-                                                            backgroundColor:
-                                                                priority === "Medium"
-                                                                    ? "Orange"
-                                                                    : "white",
-                                                            borderRadius: "50%",
-                                                            width: "31px",
-                                                            height: "31px"
-                                                        }}
-                                                    />
-                                                </Tooltip> */}
+                                               
                                                 &nbsp;
                                                 <Tooltip title= {translatedMenuItems[9]}
                                                 >

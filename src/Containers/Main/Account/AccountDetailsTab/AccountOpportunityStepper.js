@@ -5,7 +5,6 @@ import { bindActionCreators } from "redux";
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
 import { StyledSteps } from "../../../../Components/UI/Antd";
 import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
-import { FormattedMessage } from 'react-intl';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AccountOpportunityForm from "./AccountOpportunityForm";
 import AccountRepairSecondStep from "./AccountRepairSecondStep";
@@ -40,18 +39,14 @@ class AccountOpportunityStepper extends Component {
     render() {
         const steps = [
             {
-                title: <FormattedMessage
-                    id="app.order"
-                    defaultMessage="Order"
-                />,
+                title: "Order"
+                ,
                 icon: <UserOutlined />,
                 content: <AccountOpportunityForm distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
             },
             {
-                title: <FormattedMessage
-                    id="app.phonedetails"
-                    defaultMessage="Phone details"
-                />,
+                title: "Phone details"
+           ,
                 icon: <PhoneOutlined
                     style={{ color: "blue" }}
                 />,
@@ -66,10 +61,8 @@ class AccountOpportunityStepper extends Component {
                 <StyledSteps current={current}>
                     <Step
                         title={<AddShoppingCartIcon style={{ fontSize: "1rem" }} />}
-                        description={<FormattedMessage
-                            id="app.quotation"
-                            defaultMessage="Quotation"
-                        />}
+                        description="Quotation"
+                       
                     />
                     <Step
                         title={<ControlPointDuplicateIcon style={{ fontSize: "1rem" }} />}
@@ -92,10 +85,7 @@ class AccountOpportunityStepper extends Component {
                                             type="primary"
                                             onClick={() => this.next()}
                                         >
-                                            <FormattedMessage
-                                                id="app.proceed"
-                                                defaultMessage="Proceed"
-                                            />
+                                           Proceed
                                         </Button>
                                         } 
                                     </>
@@ -108,10 +98,7 @@ class AccountOpportunityStepper extends Component {
                                 className=" w-16 absolute top-3/4 right-0 mt"
                                 style={{ marginRight: "1rem", marginTop: "90px" }} onClick={() => this.prev()}
                             >
-                                <FormattedMessage
-                                    id="app.previous"
-                                    defaultMessage="Previous"
-                                />
+                              Previous
                             </Button>
                         )}
                     </div>

@@ -68,10 +68,7 @@ class OpportunitySource extends Component {
                     <MainWrapper style={{ flexBasis: '50%', height: 540, overflow: 'auto', color: '#FFFAFA' }} >
                     <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                             <Title style={{ padding: 8 }}>
-                                <FormattedMessage
-                                    id="app.listofsources"
-                                    defaultMessage="List of Sources"
-                                />
+                               
                                     List of Sources
                                 </Title>
                             {sources.length &&
@@ -79,10 +76,7 @@ class OpportunitySource extends Component {
                                     key={i}
                                     value={singleSource}
                                     name='singleSource'
-                                    label={<FormattedMessage
-                                        id="app.singleSource"
-                                        defaultMessage="Single Source"
-                                    />}
+                                    label="Single Source"
                                     source={source}
                                     linkedSources={linkedSources}
                                     updatingSources={updatingSources}
@@ -99,10 +93,8 @@ class OpportunitySource extends Component {
                                         <TextInput
                                             placeholder='Add source'
                                             name='sourceName'
-                                            label={<FormattedMessage
-                                                id="app.sourceName"
-                                                defaultMessage="Add source"
-                                            />}
+                                            label="Add source"
+                                            
                                             value={sourceName}
                                             onChange={this.handleChange}
                                         />&nbsp;
@@ -112,23 +104,14 @@ class OpportunitySource extends Component {
                                             Loading={addingSources}
                                             onClick={this.handleAddSource}
                                         >
-                                            <FormattedMessage
-                                                id="app.save"
-                                                defaultMessage="Save"
-                                            />
-
-                                            {/* Save */}
+                                            Save
                                         </Button>&nbsp;
                                         <Button
                                             type='primary'
                                             ghost
                                             onClick={this.toggleInput}
                                         >
-                                            <FormattedMessage
-                                                id="app.cancel"
-                                                defaultMessage="Cancel"
-                                            />
-                                            {/* Cancel */}
+                                            Cancel
 
                                         </Button>
                                     </div>
@@ -143,11 +126,8 @@ class OpportunitySource extends Component {
                                         Loading={addingSources}
                                         onClick={this.toggleInput}
                                     >
-                                        <FormattedMessage
-                                            id="app.addsource"
-                                            defaultMessage="Add Source"
-                                        />
-                                        {/* Add Source */}
+                                     
+                                        Add Source
                                     </Button>
                                 </>
                         }

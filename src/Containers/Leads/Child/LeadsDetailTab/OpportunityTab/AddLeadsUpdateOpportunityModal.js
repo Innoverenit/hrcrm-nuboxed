@@ -10,9 +10,7 @@ const AddLeadsUpdateOpportunityModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={
-          <FormattedMessage id="app.opportunity" defaultMessage="Update Opportunity" />
-        }
+        title="Update Opportunity" 
         width="45%"
         visible={props.addUpdateLeadsOpportunityModal}
         maskClosable={false}

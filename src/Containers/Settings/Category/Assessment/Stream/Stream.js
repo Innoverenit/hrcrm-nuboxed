@@ -141,7 +141,7 @@ class Stream extends Component {
                   this.handleClear();
                 }}
               >
-                <FormattedMessage id="app.clear" defaultMessage="Clear" />
+                Clear
               </Button>
             </div>
 
@@ -189,13 +189,11 @@ class Stream extends Component {
                   onClick={this.handleAddSector}
                   style={{ marginRight: "0.125em" }}
                 >
-                  {/* Save */}
-                  <FormattedMessage id="app.save" defaultMessage="Save" />
+                  Save
                 </Button>
                 &nbsp;
                 <Button type="primary" ghost onClick={this.toggleInput}>
-                  {/* Cancel */}
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                  Cancel
                 </Button>
               </div>
             ) : (
@@ -209,11 +207,7 @@ class Stream extends Component {
                     Loading={addingStreams}
                     onClick={this.toggleInput}
                   >
-                    {/* Add More */}
-                    <FormattedMessage
-                      id="app.addmore"
-                      defaultMessage="Add More"
-                    />
+       Add More
                   </Button>
                 </div>
                

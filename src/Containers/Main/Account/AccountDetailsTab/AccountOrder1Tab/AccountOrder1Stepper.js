@@ -5,7 +5,6 @@ import { Button } from "antd";
 import { bindActionCreators } from "redux";
 import { StyledSteps } from "../../../../../Components/UI/Antd";
 import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
-import { FormattedMessage } from 'react-intl';
 import { BundleLoader } from '../../../../../Components/Placeholder';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
@@ -44,18 +43,14 @@ class AccountOrder1Stepper extends Component {
         console.log(this.props.orderId)
         const steps = [
             {
-                title: <FormattedMessage
-                    id="app.order"
-                    defaultMessage="Order"
-                />,
+                title: "Order"
+               ,
                 icon: <UserOutlined />,
                 content:<Suspense fallback={<BundleLoader />}> <AddAddressDetail distributorId={this.props.distributorId} /></Suspense>,
             },
             {
-                title: <FormattedMessage
-                    id="app.catalogue"
-                    defaultMessage="Catalogue List"
-                />,
+                title: "Catalogue List"
+              ,
                 icon: <PhoneOutlined
                     style={{ color: "blue" }}
                 />,
@@ -70,17 +65,13 @@ class AccountOrder1Stepper extends Component {
                 <StyledSteps current={current}>
                     <Step
                         title={<AddShoppingCartIcon style={{ fontSize: "1rem" }} />}
-                        description={<FormattedMessage
-                            id="app.oderdetails"
-                            defaultMessage="Order Details"
-                        />}
+                        description="Order Details"
+                       
                     />
                     <Step
                         title={<ControlPointDuplicateIcon style={{ fontSize: "1rem" }} />}
-                        description={<FormattedMessage
-                            id="app.unitsinfo"
-                            defaultMessage="Units Info"
-                        />}
+                        description="Units Info"
+                      
                     />
 
                 </StyledSteps>
@@ -99,10 +90,8 @@ class AccountOrder1Stepper extends Component {
                                             type="primary"
                                             onClick={() => this.next()}
                                         >
-                                            <FormattedMessage
-                                                id="app.proceed"
-                                                defaultMessage="Proceed"
-                                            />
+                                           Proceed
+                                            
                                         </Button>
                                          } 
                                     </>
@@ -112,10 +101,7 @@ class AccountOrder1Stepper extends Component {
 
                         {current > 0 && (
                             <Button className=" w-16 absolute top-3/4 right-0 mt" style={{ marginRight: "1rem", marginTop: "90px" }} onClick={() => this.prev()}>
-                                <FormattedMessage
-                                    id="app.previous"
-                                    defaultMessage="Previous"
-                                />
+                             Previous
                             </Button>
                         )}
                     </div>

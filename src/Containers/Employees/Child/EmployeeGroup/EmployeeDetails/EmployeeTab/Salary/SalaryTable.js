@@ -49,20 +49,15 @@ class SalaryTable extends Component {
           <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
           <div className=" md:w-[6.5rem]">
-        <FormattedMessage
-                  id="app.grossMonthlySalary"
-                  defaultMessage="Gross Salary"
-                /></div>
+     Gross Salary</div>
  
         <div className="md:w-[10.1rem]"> 
-         <FormattedMessage id="app.netSalary" defaultMessage="Net Salary" /></div>
+         Net Salary</div>
                  <div className="md:w-[10.1rem]">
-                 <FormattedMessage
-          id="app.startingDate"
-          defaultMessage="Start Date"
-        /></div>
+               Start Date
+        </div>
                        <div className=" md:w-[8.1rem]">
-                       <FormattedMessage id="app.endDate" defaultMessage="End Date" /></div>
+                     End Date</div>
 
 
        

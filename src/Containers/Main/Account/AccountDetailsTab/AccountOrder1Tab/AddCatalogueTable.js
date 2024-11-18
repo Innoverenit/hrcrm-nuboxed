@@ -4,7 +4,6 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Button } from 'antd'
 import dayjs from 'dayjs'
-import { FormattedMessage } from 'react-intl'
 
 const AddCatalogueTable = (props) => {
     useEffect(() => {
@@ -34,28 +33,16 @@ const AddCatalogueTable = (props) => {
                 <div class="rounded m-1  p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[100%]  p-1 bg-transparent font-bold stickyz-10">
                         <div className=" md:w-[9.41rem]">
-                            <FormattedMessage
-                                id="app.name"
-                                defaultMessage="Name"
-                            />
+                           Name
                         </div>
                         <div className=" md:w-[8.1rem]">
-                            <FormattedMessage
-                                id="app.category"
-                                defaultMessage="Category"
-                            />
+                          Category
                         </div>
                         <div className=" md:w-[11.2rem]">
-                            <FormattedMessage
-                                id="app.attribute"
-                                defaultMessage="Attribute"
-                            />
+                          "Attribute
                         </div>
                         <div className="md:w-[5.8rem]">
-                            <FormattedMessage
-                                id="app.units"
-                                defaultMessage="Units"
-                            />
+                            Units
                         </div>
                     </div>
                     <div class="overflow-x-auto h-[38vh]">

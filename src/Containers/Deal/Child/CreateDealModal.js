@@ -11,10 +11,8 @@ const CreateDealModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.deal"
-          defaultMessage="Deal"
-        />}
+        title="Deal"
+      
         width={drawerWidth}
         visible={opencreateDealModal}
         maskClosable={false}

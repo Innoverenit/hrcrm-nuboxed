@@ -308,15 +308,11 @@ function Invoicesearch(props) {
                                                                     <Button onClick={() => {
                                                                         handleSubmitPrice()
                                                                     }} >
-                                                                        <FormattedMessage
-                                                                            id="app.save"
-                                                                            defaultMessage="Save"
-                                                                        />
+                                                                       Save
+                                                                       
                                                                     </Button>
-                                                                    <Button onClick={() => handleUpdateRevisePrice(false)}><FormattedMessage
-                                                                        id="app.cancel"
-                                                                        defaultMessage="Cancel"
-                                                                    /></Button>
+                                                                    <Button onClick={() => handleUpdateRevisePrice(false)}>Cancel
+                                                                    </Button>
                                                                 </div>
                                                             </>
                                                         ) : <Tooltip title="Update Invoice">

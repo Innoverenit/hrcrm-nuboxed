@@ -354,10 +354,7 @@ function InvesterForm(props) {
                   <Field
                     name="name"
                     type="text"
-                    //label="Name"
-                    label={
-                      <FormattedMessage id="app.name" defaultMessage="Name" />
-                    }
+                    label="Name"
                     isColumn
                     width={"100%"}
                     setClearbitData={props.setClearbitData}
@@ -369,8 +366,7 @@ function InvesterForm(props) {
                   <Field
                     name="url"
                     type="text"
-                    // label="URL"
-                    label={<FormattedMessage id="app." defaultMessage="URL" />}
+                    label="URL"
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -380,10 +376,7 @@ function InvesterForm(props) {
                   <Field
                     name="email"
                     type="text"
-                    // label="Email"
-                    label={
-                      <FormattedMessage id="app.email" defaultMessage="Email" />
-                    }
+                    label="Email"
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -395,12 +388,7 @@ function InvesterForm(props) {
                     <FastField
                         name="countryDialCode"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.dialCode"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        label="Dial Code"
                         defaultValue={{
                           label:`+${user.countryDialCode}`,
                         }}
@@ -429,25 +417,7 @@ function InvesterForm(props) {
                   <div class=" flex justify-between mt-3">
                   {contract ?
                   <div class=" w-w47.5"  style={{display:"flex",flexDirection:"column"}}>
-                  {/* <Field                     
-                            name="sectorId"
-                            label={
-                              <FormattedMessage
-                                id="app.sector"
-                                defaultMessage="Sector"
-                              />
-                            }
-                            isColumn
-                            placeholder="Sector"
-                          
-                            value={values.sectorId}
-                            component={SelectComponent}
-                        options={
-                          Array.isArray(sectorOption)
-                            ? sectorOption
-                            : []
-                        }
-                          /> */}
+               
                              <div class="font-bold text-xs font-poppins text-black">Sector</div>
 
 <Select
@@ -469,20 +439,7 @@ function InvesterForm(props) {
                      : ( null)}
                       {contract ?
                     <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
-                    {/* <FastField
-                            name="source"
-                             label={
-                              <FormattedMessage
-                                id="app.source"
-                                defaultMessage="Source"
-                              />
-                            }
-                            isColumnWithoutNoCreate
-                            selectType="sourceName"
-                            component={SearchSelect}
-                            value={values.source}
-                            isColumn
-                          /> */}
+                  
                           <div class="font-bold text-xs font-poppins text-black">Source</div>
 
 <Select
@@ -507,12 +464,8 @@ function InvesterForm(props) {
                   <div class=" w-w47.5">
                   <Field                     
                             name="investorCategoryId"
-                            label={
-                              <FormattedMessage
-                                id="app.type"
-                                defaultMessage="Type"
-                              />
-                            }
+                            label="Type"
+                              
                             isColumn
                             placeholder="Type"
                            
@@ -705,12 +658,8 @@ function InvesterForm(props) {
                       <Field
                         name="vatNo"
                         type="text"
-                        label={
-                          <FormattedMessage
-                            id="app.vatNumber"
-                            defaultMessage="VAT Number"
-                          />
-                        }
+                        label="VAT Number"
+                        
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -724,12 +673,8 @@ function InvesterForm(props) {
                         name="businessRegistration"
                         type="text"
                         // label="URL"
-                        label={
-                          <FormattedMessage
-                            id="app.businessregistration"
-                            defaultMessage=" Business Registration#"
-                          />
-                        }
+                        label="Business Registration#"
+                        
                         isColumn
                         width={"100%"}
                         component={InputComponent}

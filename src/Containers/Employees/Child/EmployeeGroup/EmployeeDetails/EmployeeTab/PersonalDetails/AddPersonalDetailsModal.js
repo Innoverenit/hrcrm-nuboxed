@@ -10,11 +10,7 @@ class AddPersonalDetailsModal extends Component {
         return (
             <>
                 <StyledDrawer
-                    // title="Personal Details"
-                    title={<FormattedMessage
-                        id="app.personaldetails"
-                        defaultMessage="Personal Details"
-                    />}
+                    title="Personal Details"
                     width="60%"
 
                     visible={addPersonalDetailsModal}

@@ -281,13 +281,7 @@ const LeadsTeamCardList = (props) => {
                         <RoleButton
                           type="Hot"
                           iconType="fas fa-mug-hot"
-                          // tooltip="Hot"
-                          tooltip={
-                            <FormattedMessage
-                              id="app.hot"
-                              defaultMessage="Hot"
-                            />
-                          }
+                          tooltip="Hot"
                           role={item.type}
                           onClick={() => {
                             const typ = "Hot";
@@ -301,13 +295,7 @@ const LeadsTeamCardList = (props) => {
                         <RoleButton1
                           type="Warm"
                           iconType="	fas fa-burn"
-                          // tooltip="Warm"
-                          tooltip={
-                            <FormattedMessage
-                              id="app.warm"
-                              defaultMessage="Warm"
-                            />
-                          }
+                          tooltip="Warm"
                           role={item.type}
                           onClick={() => {
                             const typ = "Warm";
@@ -321,13 +309,7 @@ const LeadsTeamCardList = (props) => {
                         <RoleButton2
                           type="Cold"
                           iconType="far fa-snowflake"
-                          // tooltip="Cold"
-                          tooltip={
-                            <FormattedMessage
-                              id="app.cold"
-                              defaultMessage="Cold"
-                            />
-                          }
+                          tooltip="Cold"
                           role={item.type}
                           onClick={() => {
                             const typ = "Cold";
@@ -536,12 +518,7 @@ const LeadsTeamCardList = (props) => {
                     </div>
                     <div >
                       <Tooltip
-                        title={
-                          <FormattedMessage
-                            id="app.activity"
-                            defaultMessage="Activity"
-                          />
-                        }
+                        title="Activity"
                       >
                         <AddchartIcon
                          className="!text-icon cursor-pointer text-blue-500"

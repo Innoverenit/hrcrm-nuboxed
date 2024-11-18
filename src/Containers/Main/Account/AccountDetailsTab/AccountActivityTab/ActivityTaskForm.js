@@ -487,11 +487,8 @@ function ActivityTaskForm(props) {
                                         <div class=" flex justify-between flex-col w-full">
 
                                             <div class=" text-xs font-bold font-poppins text-black">
-                                                {/* Priority */}
-                                                <FormattedMessage
-                                                    id="app.priority"
-                                                    defaultMessage="Priority"
-                                                />
+                                                Priority
+                                              
 
                                             </div>
 
@@ -591,11 +588,8 @@ function ActivityTaskForm(props) {
                                         <div style={{ width: "24%" }}>
 
                                             <div class=" text-xs font-bold font-poppins text-black">
-                                                <FormattedMessage
-                                                    id="app.status"
-                                                    defaultMessage="Status"
-                                                />
-                                                {/* Status */}
+                                              
+                                                Status
                                             </div>
 
                                             <div style={{ width: "100%" }}>
@@ -605,12 +599,7 @@ function ActivityTaskForm(props) {
                                                         type="To Start"
                                                         iconType="fa-hourglass-start"
                                                         tooltip="To Start"
-                                                        tooltipTitle={
-                                                            <FormattedMessage
-                                                                id="app.tostart"
-                                                                defaultMessage="To Start"
-                                                            />
-                                                        }
+                                                        tooltipTitle="To Start"
                                                         status={active}
                                                         onClick={() => glassButtoClick("To Start")}
                                                     />
@@ -619,12 +608,7 @@ function ActivityTaskForm(props) {
                                                         type="In Progress"
                                                         iconType="fa-hourglass-half"
                                                         tooltip="In Progress"
-                                                        tooltipTitle={
-                                                            <FormattedMessage
-                                                                id="app.inprogress"
-                                                                defaultMessage="In Progress"
-                                                            />
-                                                        }
+                                                        tooltipTitle="In Progress"
                                                         status={active}
                                                         onClick={() => glassButtoClick("In Progress")}
                                                     />
@@ -633,12 +617,7 @@ function ActivityTaskForm(props) {
                                                         type="Completed"
                                                         iconType="fa-hourglass"
                                                         tooltip="Completed"
-                                                        tooltipTitle={
-                                                            <FormattedMessage
-                                                                id="app.completed"
-                                                                defaultMessage="Completed"
-                                                            />
-                                                        }
+                                                        tooltipTitle="Completed"
                                                         status={active}
                                                         onClick={() => glassButtoClick("Completed")}
                                                     //  status={item.taskStatus}
@@ -662,12 +641,7 @@ function ActivityTaskForm(props) {
                                                 isRequired
                                                 name="endDate"
                                                 // label="End "
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.endDate"
-                                                        defaultMessage="End Date"
-                                                    />
-                                                }
+                                                label="End Date"
                                                 component={DatePicker}
                                                 isColumn
                                                 value={values.endDate || values.startDate}
@@ -696,12 +670,7 @@ function ActivityTaskForm(props) {
                                                 isRequired
                                                 name="taskName"
                                                
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.name"
-                                                        defaultMessage="Name"
-                                                    />
-                                                }
+                                                label="Name"
                                                 component={InputComponent}
                                                 isColumn
                                                 width={"100%"}
@@ -973,13 +942,7 @@ function ActivityTaskForm(props) {
                                                 name="contactId"
                                                 //selectType="contactList"
                                                 isColumnWithoutNoCreate
-                                                // label="Contact"
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.contact"
-                                                        defaultMessage="Contact"
-                                                    />
-                                                }
+                                                label="Contact"
                                                 component={SelectComponent}
                                                 isColumn
                                                 options={Array.isArray(ContactData) ? ContactData : []}
@@ -1000,12 +963,7 @@ function ActivityTaskForm(props) {
                                                 name="customerId"
                                                 // selectType="customerList"
                                                 isColumnWithoutNoCreate
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.customer"
-                                                        defaultMessage="Customer"
-                                                    />
-                                                }
+                                                label="Customer"
                                                 //component={SearchSelect}
                                                 component={SelectComponent}
                                                 options={
@@ -1027,12 +985,8 @@ function ActivityTaskForm(props) {
                                                 name="opportunityId"
                                                 // selectType="customerList"
                                                 isColumnWithoutNoCreate
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.opportunity"
-                                                        defaultMessage="Opportunity"
-                                                    />
-                                                }
+                                                label="Opportunity"
+                                                   
                                                 //component={SearchSelect}
                                                 component={SelectComponent}
                                                 options={
@@ -1049,10 +1003,8 @@ function ActivityTaskForm(props) {
                                     </div>
                                     <Field
                                         name="taskDescription"
-                                        //label="Notes"
-                                        label={
-                                            <FormattedMessage id="app.description" defaultMessage="Description" />
-                                        }
+                                        label="Notes"
+                                     
                                         width={"21.875em"}
                                         isColumn
                                         component={TextareaComponent}
@@ -1064,12 +1016,8 @@ function ActivityTaskForm(props) {
                                             name="link"
                                             //label="Name"
                                             // value={values.taskName}
-                                            label={
-                                                <FormattedMessage
-                                                    id="app.link"
-                                                    defaultMessage="Link"
-                                                />
-                                            }
+                                            label="Link"
+                                               
                                             component={InputComponent}
                                             isColumn
                                             width={"100%"}
@@ -1132,13 +1080,7 @@ function ActivityTaskForm(props) {
                                 {isEditing && (
                                     <>
                                         <StyledPopconfirm
-                                            //title="Do you want to delete?"
-                                            title={
-                                                <FormattedMessage
-                                                    id="app.doyouwanttodelete?"
-                                                    defaultMessage="Do you want to delete?"
-                                                />
-                                            }
+                                            title="Do you want to delete?"
                                             onConfirm={() => deleteTask(prefillTask.taskId)}
                                         >
                                             <Button
@@ -1146,11 +1088,8 @@ function ActivityTaskForm(props) {
                                                 htmlType="submit"
                                                 Loading={deletingTask}
                                             >
-                                                <FormattedMessage
-                                                    id="app.delete"
-                                                    defaultMessage="Delete"
-                                                />
-                                                {/* Delete */}
+                                        
+                                                Delete
                                             </Button>
                                         </StyledPopconfirm>
                                     </>
@@ -1163,8 +1102,7 @@ function ActivityTaskForm(props) {
                                     {isEditing ? (
                                         "Update"
                                     ) : (
-                                        // "Create"
-                                        <FormattedMessage id="app.create" defaultMessage="Create" />
+                                        "Create"
                                     )}
                                 </Button>
                             </div>

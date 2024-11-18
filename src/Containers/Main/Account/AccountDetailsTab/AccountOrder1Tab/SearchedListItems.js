@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { FormattedMessage } from 'react-intl'
 import MoveToProductionArchieve from './MoveToProductionArchieve'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { getDispatchItemList } from "../../AccountAction"
@@ -21,28 +20,16 @@ const SearchedListItems = (props) => {
                 <div class="rounded-lg mx-5 my-2 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[80%] pl-9 bg-transparent font-bold sticky top-0 z-10">
                         <div className=" md:w-[10rem]">
-                            <FormattedMessage
-                                id="app.Id"
-                                defaultMessage="ID #"
-                            />
+                          ID #
                         </div>
                         <div className=" md:w-[10rem]">
-                            <FormattedMessage
-                                id="app.name"
-                                defaultMessage="Name"
-                            />
+                         Name
                         </div>
                         <div className=" md:w-[10rem]">
-                            <FormattedMessage
-                                id="app.category"
-                                defaultMessage="Category"
-                            />
+                          Category
                         </div>
                         <div className=" md:w-[10rem]">
-                            <FormattedMessage
-                                id="app.attribute"
-                                defaultMessage="Attribute"
-                            />
+                          Attribute
                         </div>
                         <div className=" md:w-[10rem]"></div>
                     </div>

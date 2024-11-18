@@ -9,10 +9,8 @@ const LeadAddedDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-   title={<FormattedMessage
-    id="app.leadsAdded"
-    defaultMessage="Leads Added"
-  />}
+   title="Leads Added"
+ 
         width="60%"
         visible={props.openLeadAdded}
         onClose={()  => props.handleLeadAddedDrawer(false)}

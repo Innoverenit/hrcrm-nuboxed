@@ -17,10 +17,7 @@ class UpdateVisaModal extends Component {
       <>
         <StyledDrawer
           //title="Education"
-          title={<FormattedMessage
-            id="app.visa"
-            defaultMessage="Visa"
-          />}
+          title="Visa"
           width="60%"
           visible={updateVisaModal}
           onClose={() => handleUpdateVisaModal(false)}

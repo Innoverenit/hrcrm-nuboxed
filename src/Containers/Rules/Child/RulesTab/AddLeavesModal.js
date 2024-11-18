@@ -10,11 +10,7 @@ const AddLeavesModal = (props) => {
     return (
         <>
             <StyledModal
-                //title="Schedule Task"
-                label={<FormattedMessage
-                    id="app.scheduletask"
-                    defaultMessage="Schedule Task"
-                />}
+                title="Schedule Task"
                 width="55vw"
                 visible={addLeavesModal}
                 maskClosable={false}

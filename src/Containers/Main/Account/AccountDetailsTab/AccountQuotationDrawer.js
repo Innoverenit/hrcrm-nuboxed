@@ -10,9 +10,7 @@ const AddAccountOpportunityModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={
-          <FormattedMessage id="app.quotation" defaultMessage="Quotation" />
-        }
+        title="Quotation" 
         width="90%"
         visible={props.addAccountOpportunityModal}
         onClose={() => props.handleAccountOpportunityModal(false)}

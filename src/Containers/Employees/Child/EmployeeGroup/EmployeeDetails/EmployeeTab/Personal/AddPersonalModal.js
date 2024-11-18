@@ -11,11 +11,7 @@ class AddPersonalModal extends Component {
     return (
       <>
         <StyledDrawer
-          //title="Emergency Contact"
-          title={<FormattedMessage
-            id="app.emergencycontact"
-            defaultMessage="Emergency Contact"
-          />}
+          title="Emergency Contact"
           width="55%"
           visible={addPersonalModal}
           onClose={() => handlePersonalModal(false)}

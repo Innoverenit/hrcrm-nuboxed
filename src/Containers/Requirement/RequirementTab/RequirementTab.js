@@ -114,10 +114,7 @@ class RequirementTab extends Component {
                             
                           
                           {/* <Tooltip //title="Tag Position"
-                            title={<FormattedMessage
-                              id="app.tagposition"
-                              defaultMessage="Tag Position"
-                            />}
+                            title=
   
                           >
                              {user.userType !== "USER" && user.department !== "Customer" && (

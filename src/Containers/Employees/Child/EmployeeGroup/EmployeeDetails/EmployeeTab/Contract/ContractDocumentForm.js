@@ -71,13 +71,7 @@ class ContractDocumentForm extends Component {
                     <div class=" w-[47%]">
                       <Field
                         name="previous_start_date"
-                        //label="Start Date"
-                        label={
-                          <FormattedMessage
-                            id="app.startDate"
-                            defaultMessage="Start Date"
-                          />
-                        }
+                        label="Start Date"
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -95,13 +89,7 @@ class ContractDocumentForm extends Component {
                     <div class=" w-[47%]">
                       <Field
                         name="previous_end_date"
-                        // label="End Date "
-                        label={
-                          <FormattedMessage
-                            id="app.endDate"
-                            defaultMessage="End Date"
-                          />
-                        }
+                        label="End Date "
                         isRequired
                         isColumn
                         width={"100%"}
@@ -139,13 +127,7 @@ class ContractDocumentForm extends Component {
                       type="text"
                       isColumn
                       width={"100%"}
-                      //label="Course Name"
-                      label={
-                        <FormattedMessage
-                          id="app.contractType"
-                          defaultMessage="Contract Type"
-                        />
-                      }
+                      label="Course Name"
                       component={InputComponent}
                       inlineLabel
                       style={{
@@ -161,10 +143,7 @@ class ContractDocumentForm extends Component {
                   <div class=" mt-3">
                   <Field
                     name="notes"
-                    // label="Notes"
-                    label={
-                      <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                    }
+                    label="Notes"
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -185,7 +164,7 @@ class ContractDocumentForm extends Component {
                   type="primary"
                   Loading={addingContractDetails}
                 >
-                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
+              Submit
                 </Button>
               </div>
             </Form>

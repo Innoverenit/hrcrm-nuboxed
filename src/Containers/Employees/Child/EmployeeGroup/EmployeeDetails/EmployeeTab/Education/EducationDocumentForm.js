@@ -123,17 +123,7 @@ fetchMenuTranslations = async () => {
                    <FastField
                     name="documentTypeId"
                     type="text"
-                    //label="Type"
-                    // label={
-                    //   <FormattedMessage id="app.type" defaultMessage="Type" />
-                    // }
-                    // options={[
-                    //   "Aadhar Card",
-                    //   "Voter-Id Card",
-                    //   "Driving-License",
-                    //   "Pan Card",
-                    //   "Passport",
-                    // ]}
+                 
                     options={
                       Array.isArray(documentNameOption)
                         ? documentNameOption

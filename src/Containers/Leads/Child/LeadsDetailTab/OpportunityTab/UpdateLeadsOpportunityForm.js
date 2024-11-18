@@ -208,14 +208,7 @@ class UpdateLeadsOpportunityForm extends Component {
                     isRequired
                     name="opportunityName"
                     type="text"
-                    //label="Name"
-
-                    label={
-                      <FormattedMessage
-                        id="app.name"
-                        defaultMessage="Name"
-                      />
-                    }
+                    label="Name"
                     isColumn
                    
                     width={"100%"}
@@ -230,13 +223,7 @@ class UpdateLeadsOpportunityForm extends Component {
                       <Field
                         isRequired
                         name="startDate"
-                        //label="Start "
-                        label={
-                          <FormattedMessage
-                            id="app.startdate"
-                            defaultMessage="Start Date"
-                          />
-                        }
+                        label="Start "
                         component={DatePicker}
                         value={values.startDate}
                         isColumn
@@ -247,13 +234,7 @@ class UpdateLeadsOpportunityForm extends Component {
                       <Field
                         isRequired
                         name="endDate"
-                        // label="End Date"
-                        label={
-                          <FormattedMessage
-                            id="app.enddate"
-                            defaultMessage="End Date"
-                          />
-                        }
+                        label="End Date"
                         isColumn
                         component={DatePicker}
                         value={values.endDate || values.startDate}
@@ -279,12 +260,7 @@ class UpdateLeadsOpportunityForm extends Component {
                   <div class=" w-2/4">
                       <Field
                         name="proposalAmount"
-                        label={
-                          <FormattedMessage
-                            id="app.proposalAmount"
-                            defaultMessage="Value"
-                          />
-                        }
+                        label="Value"
                         isColumn
                         width={"100%"}
                         component={InputComponent}                       
@@ -294,13 +270,7 @@ class UpdateLeadsOpportunityForm extends Component {
                       <Field
                         name="currency"
                         isColumnWithoutNoCreate
-                        // label="Currency"
-                        label={
-                          <FormattedMessage
-                            id="app.currency"
-                            defaultMessage="Currency"
-                          />
-                        }
+                        label="Currency"
                         width="100%"
                         isColumn
                         selectType="currencyName"
@@ -317,12 +287,7 @@ class UpdateLeadsOpportunityForm extends Component {
                     isRequired
                     name="salesUserIds"
                     isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.assignedto"
-                        defaultMessage="Assigned"
-                      />
-                    }
+                    label="Assigned"
                     component={SelectComponent}
                     options={Array.isArray(salesNameOption) ? salesNameOption : []}
                     isColumn
@@ -334,11 +299,7 @@ class UpdateLeadsOpportunityForm extends Component {
                     name="customerId"
                     isColumnWithoutNoCreate
                     selectType="customerList"
-                    //label="Customer"
-                    label={<FormattedMessage
-                      id="app.customer"
-                      defaultMessage="Customer"
-                    />}
+                    label="Customer"
                     // isRequired
                     component={SearchSelect}
                     isColumn
@@ -350,11 +311,7 @@ class UpdateLeadsOpportunityForm extends Component {
                     name="contactId"
                     isColumnWithoutNoCreate
                     selectType="contactListFilter"
-                    //label="Contact"
-                    label={<FormattedMessage
-                      id="app.contactId"
-                      defaultMessage="Contact"
-                    />}
+                    label="Contact"
                     // isRequired
                     component={SearchSelect}
                     isColumn
@@ -370,12 +327,7 @@ class UpdateLeadsOpportunityForm extends Component {
                   <Field
                     name="oppWorkflow"
                     isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.workflow"
-                        defaultMessage="Workflow"
-                      />
-                    }
+                    label="Workflow"
                    component={SelectComponent}
                    options={Array.isArray(WorkflowOptions) ? WorkflowOptions : []}
                    value={values.oppWorkflow}
@@ -388,12 +340,8 @@ class UpdateLeadsOpportunityForm extends Component {
                     <Field
                      name="oppStage"
                     isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.stages"
-                        defaultMessage="Stages"
-                      />
-                    }
+                    label="Stages"
+                      
                     component={SelectComponent}
                     options={
                       Array.isArray(this.getStagesOptions("oppWorkflow", values.oppWorkflow))
@@ -422,8 +370,8 @@ class UpdateLeadsOpportunityForm extends Component {
                   htmlType="submit"
                    Loading={updatingLeadsOpportunity}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Upsate" />
-                  {/* Create */}
+                Update
+                 
                 </Button>
               </div>
             </Form>

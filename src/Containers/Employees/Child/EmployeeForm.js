@@ -431,11 +431,6 @@ function EmployeeForm(props) {
                             type="text"
                             isColumn
                             width={"100%"}
-                          //   // label={<FormattedMessage
-                          //   //   id="app.firstName"
-                          //   //   defaultMessage="First Name"
-                          //   // />
-                          // }
                             component={InputComponent}
                             inlineLabel
                           />
@@ -451,10 +446,6 @@ function EmployeeForm(props) {
                             type="text"
                             isColumn
                             width={"100%"}
-                            // label={<FormattedMessage
-                            //   id="app.middleName"
-                            //   defaultMessage="Middle Name"
-                            // />}
                             component={InputComponent}
                             inlineLabel
                           />
@@ -467,10 +458,6 @@ function EmployeeForm(props) {
                             type="text"
                             isColumn
                             width={"100%"}
-                            // label={<FormattedMessage
-                            //   id="app.lastName"
-                            //   defaultMessage="Last Name"
-                            // />}
                             component={InputComponent}
                             inlineLabel
                           />
@@ -488,9 +475,6 @@ function EmployeeForm(props) {
                         type="text"
                         isColumn
                         width={"100%"}
-                        // label={<FormattedMessage
-                        //   id="app.emailId"
-                        //   defaultMessage="Email" />}
                         component={InputComponent}
                         inlineLabel
                       />
@@ -501,10 +485,6 @@ function EmployeeForm(props) {
                         name="currency"
                         isColumnWithoutNoCreate
                         placeholder="Currency"
-                        // label={<FormattedMessage
-                        //   id="app.currency"
-                        //   defaultMessage="Currency"
-                        // />}
                         isColumn
                         // selectType="currencyName"
                         isRequired
@@ -525,12 +505,6 @@ function EmployeeForm(props) {
                         <FastField
                           name="countryDialCode"
                           isColumnWithoutNoCreate
-                          // label={
-                          //   <FormattedMessage
-                          //     id="app.dialCode"
-                          //     defaultMessage="Dial Code"
-                          //   />
-                          // }
                           isColumn
                           // width={"100%"}
                           selectType="dialCode"
@@ -543,7 +517,6 @@ function EmployeeForm(props) {
                         <Field
                           type="text"
                           name="mobileNo"
-                          // label="Personal"
                           placeholder="Input"
                           component={InputComponent}
                           inlineLabel
@@ -560,12 +533,7 @@ function EmployeeForm(props) {
                         <FastField
                           name="countryDialCode1"
                           isColumnWithoutNoCreate
-                          // label={
-                          //   <FormattedMessage
-                          //     id="app.dialCode"
-                          //     defaultMessage="Dial Code"
-                          //   />
-                          // }
+                         
                           isColumn
                           // width={"100%"}
                           selectType="dialCode"
@@ -590,19 +558,12 @@ function EmployeeForm(props) {
                   </div>
                   <div class=" flex justify-between max-sm:flex-col" >
                     <div class="mt-2 w-w48 max-sm:w-wk">
-                      {/* <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
-                      id="app.dateofjoining"
-                      defaultMessage=" Date Of Joining"
-                    />
-                    </div> */}
+                  
                     <div class=" text-xs font-bold font-poppins">{translatedMenuItems[10]}</div>
                       <Field
                         isRequired
                         name="dateOfJoining"
-                        // label={<FormattedMessage
-                        //   id="app.dateOfJoining"
-                        //   defaultMessage="Date of Joining"
-                        // />}
+                        
                         isColumn
                         component={DatePicker}
                         value={values.dateOfJoining}
@@ -614,18 +575,11 @@ function EmployeeForm(props) {
                     </div>
                     <div class="mt-2 w-w47.5 max-sm:w-wk">
                     <div class=" text-xs font-bold font-poppins">{translatedMenuItems[11]}</div>
-                      {/* <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
-                      id="app.dateofbirth"
-                      defaultMessage=" Date Of Birth"
-                    />
-                    </div> */}
+                  
                       <Field
                         isRequired
                         name="dob"
-                        // label={<FormattedMessage
-                        //   id="app.dateOfBirth"
-                        //   defaultMessage="Date of Birth"
-                        // />}
+                     
                         isColumn
                         component={DatePicker}
                         value={values.dob}
@@ -645,10 +599,7 @@ function EmployeeForm(props) {
                         type="text"
                         isColumn
                         width={"100%"}
-                        // label={<FormattedMessage
-                        //   id="app.linkedIn"
-                        //   defaultMessage="LinkedIn"
-                        // />}
+                    
                         component={InputComponent}
                         inlineLabel
                       />
@@ -733,10 +684,7 @@ function EmployeeForm(props) {
                         name="label"
                         type="level"
                         placeholder="Select"
-                        // label={<FormattedMessage
-                        //   id="app.level"
-                        //   defaultMessage="Level"
-                        // />}
+                        
                         // label={translatedMenuItems[21]}
                         options={["L1", "L2", "L3"]}
                         component={SelectComponent}
@@ -751,11 +699,7 @@ function EmployeeForm(props) {
                   <div class=" text-xs font-bold font-poppins">{translatedMenuItems[22]}</div>
                     <Field
                       name="roleType"
-                      // label={<FormattedMessage
-                      //   id="app.role"
-                      //   defaultMessage="Role"
-                      // />}
-                      // label={translatedMenuItems[22]} 
+                  
                       isColumnWithoutNoCreate
                       component={SelectComponent}
                       options={

@@ -125,10 +125,10 @@ const SingleDocuments = ({
                   disabled={!value}
                   onClick={() => handleUpdateDocument(documentTypeId, value, toggleViewType())}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+               Update
                 </Button>
                 <Button type="cancel" onClick={() => toggleViewType()}>
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+               Cancel
                 </Button>
               </div>
             </div>

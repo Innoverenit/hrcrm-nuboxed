@@ -84,21 +84,19 @@ function RegionSalesList(props) {
           <div className="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className="flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
               <div className="md:w-[7.9rem]">
-                <FormattedMessage id="app.kpi" defaultMessage="KPI" />
+              KPI
               </div>
             
               
               <div className="md:w-[9.1rem]">
-                <FormattedMessage id="app.assigned" defaultMessage="Assigned " />
+              Assigned 
               </div>
           
              
-              <div className="md:w-[11.11rem]">
-                <FormattedMessage id="app.achieved" defaultMessage="Achieved " />
+              <div className="md:w-[11.11rem]">Achieved
               </div>
             
-              <div className="md:w-[9.2rem]">
-                <FormattedMessage id="app.actual" defaultMessage="Actual " />
+              <div className="md:w-[9.2rem]">Actual
               </div>
             
             </div>
@@ -200,30 +198,30 @@ function RegionSalesList(props) {
          <div className="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
            <div className="flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
              <div className="md:w-[9.5rem]">
-               <FormattedMessage id="app.kpi" defaultMessage="KPI" />
+               KPI
              </div>
              <div className="md:w-[5.5rem]">
-               <FormattedMessage id="app.lob" defaultMessage="LOB" />
+            LOB
              </div>
              <div className="md:w-[7.1rem]">
-               <FormattedMessage id="app.assigned" defaultMessage="Assigned" />
+            Assigned
              </div>
              <div className="md:w-[7.11rem]">
-               <FormattedMessage id="app.assigned" defaultMessage=" Total" />
+               Total
              </div>
          
              <div className="md:w-[6.11rem]">
-               <FormattedMessage id="app.achieved" defaultMessage="Achieved" />
+            Achieved
              </div>
              <div className="md:w-[1.51rem]">
-               <FormattedMessage id="app.achieved" defaultMessage=" Total" />
+                Total
              </div>
              <div class="w-[2rem]"></div>
              <div className="md:w-[5.01rem]">
-               <FormattedMessage id="app.actual" defaultMessage="Actual" />
+            Actual
              </div>
              <div className="md:w-[5rem]">
-               <FormattedMessage id="app.actual" defaultMessage="Total" />
+             Total
              </div>
 
            

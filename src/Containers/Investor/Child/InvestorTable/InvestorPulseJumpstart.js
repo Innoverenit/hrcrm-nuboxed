@@ -91,12 +91,8 @@ render() {
                              </div>
                              <JumpStartBox
             noProgress
-            title={
-              <FormattedMessage
-                id="app.deals"
-                defaultMessage=" # Deals"
-              />
-            }
+            title=" # Deals"
+              
             bgColor="#33D7FF" 
             // bgColor="linear-gradient(270deg,#7630f0,#ad82f7)"
             value={
@@ -122,12 +118,8 @@ render() {
             noProgress
             // bgColor="linear-gradient(270deg,#ad82f7,#3dcec7)"
             bgColor="#34495E "
-            title={
-              <FormattedMessage
-                id="app.pipeLineValue"
-                defaultMessage="Pipe line value"
-              />
-            }
+            title="Pipe line value"
+              
           
             value={
               pipeLineValue
@@ -154,12 +146,8 @@ render() {
           // bgColor="linear-gradient(270deg,#3062d8,#94a4b2)"
             noProgress
             // title="Open Tasks"
-            title={
-              <FormattedMessage
-                id="app.weightedValue"
-                defaultMessage="Weighted Value"
-              />
-            }
+            title="Weighted Value"
+              
             value={
               weightedValue
 
@@ -183,12 +171,8 @@ render() {
                               </div>
                               <JumpStartBox
         noProgress
-        title={
-          <FormattedMessage
-            id="app.activity"
-            defaultMessage="Activity"
-          />
-        }
+        title="Activity"
+          
         value={
           this.props.InvestActivityValue.count
 
@@ -217,12 +201,8 @@ render() {
                               <JumpStartBox
            bgColor="linear-gradient(270deg,black,grey)"
             noProgress
-            title={
-              <FormattedMessage
-                id="app.#Contacts"
-                defaultMessage="#Contacts "
-              />
-            }
+            title="#Contacts "
+             
 
             value={
               this.props.InvcontactValue.contact
@@ -249,12 +229,8 @@ render() {
                              <JumpStartBox
              bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                 noProgress
-                title={
-                  <FormattedMessage
-                    id="app.Deals"
-                    defaultMessage="Won Deals"
-                  />
-                }
+                title="Won Deals"
+               
                 value={
                   this.props.WonInvestOpp.opportunityWon
     
@@ -277,12 +253,8 @@ render() {
                                <JumpStartBox
                bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                 noProgress
-                title={
-                  <FormattedMessage
-                    id="app.pipeLineValue"
-                    defaultMessage="Won Pipe line value"
-                  />
-                }
+                title="Won Pipe line value"
+                 
                 value={
                   this.props.WonInvestorPipeline.pipeLineWonValue
     
@@ -306,12 +278,8 @@ render() {
                bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                 noProgress
                 // title="Open Tasks"
-                title={
-                  <FormattedMessage
-                    id="app.weightedValue"
-                    defaultMessage="Won Weighted Value"
-                  />
-                }
+                title="Won Weighted Value"
+                  
                 value={
                   this.props.WonInvWeighted.weightedWonValue
     

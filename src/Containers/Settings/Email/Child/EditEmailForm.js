@@ -77,11 +77,7 @@ class EditEmailForm extends Component {
                   >
                     <Field
                       name="email"
-                      //label="Email Id"
-                      label={<FormattedMessage
-                        id="app.email"
-                        defaultMessage="Email Id"
-                      />}
+                      label="Email Id"
                       inlineLabel
                       isRequired
                       width={"100%"}
@@ -93,11 +89,7 @@ class EditEmailForm extends Component {
                       type="password"
                       isRequired
                       name="password"
-                      //label="Password"
-                      label={<FormattedMessage
-                        id="app.password"
-                        defaultMessage="Password"
-                      />}
+                      label="Password"
                       inlineLabel
                       width={"100%"}
                       component={InputComponent}
@@ -108,11 +100,7 @@ class EditEmailForm extends Component {
                       isMulti
                       isRequired                 
                      name="host"
-                      // label="Host Name"
-                      label={<FormattedMessage
-                        id="app.host"
-                        defaultMessage="Host Name"
-                      />}
+                      label="Host Name"
                       component={InputComponent}
                       inlineLabel
                       width={"100%"}
@@ -121,11 +109,7 @@ class EditEmailForm extends Component {
                     <mt-3 />
                     <Field
                       name="port"
-                      //label="Port"
-                      label={<FormattedMessage
-                        id="app.port"
-                        defaultMessage="Port"
-                      />}
+                      label="Port"
                       inlineLabel
                       isRequired
                       width={"100%"}
@@ -141,12 +125,9 @@ class EditEmailForm extends Component {
                     htmlType="submit"
                     Loading={updatingEmailCredential}
                   >
-                    <FormattedMessage
-                      id="app.update"
-                      defaultMessage="Update"
-                    />
+                  
 
-                    {/* Update */}
+                    Update
                   </Button>
                 </div>
               </Form>

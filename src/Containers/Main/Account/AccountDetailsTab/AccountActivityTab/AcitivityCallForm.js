@@ -344,19 +344,12 @@ function CallForm(props) {
                                         <div class=" w-2/6 max-sm:w-wk">
                                             < div class="mt-3" />
                                             <div class=" text-xs font-bold font-poppins text-black">
-                                                {/* Type */}
-                                                <FormattedMessage id="app.type" defaultMessage="Type" />
+                                                Type
                                             </div>
                                             <div class=" flex justify-between">
                                                 {/* <Tooltip title="Inbound"> */}
                                                 <Tooltip
-                                                    title={
-                                                        <FormattedMessage
-                                                            id="app.introductory"
-                                                            defaultMessage="Introductory"
-                                                        />
-                                                    }
-                                                >
+                                                    title="Introductory">
                                                     <div
                                                         onClick={() => handleTypeChange("Inbound")}
                                                         style={{
@@ -373,12 +366,8 @@ function CallForm(props) {
                                                 </Tooltip>
                                                 {/* <Tooltip title="Outbound"> */}
                                                 <Tooltip
-                                                    title={
-                                                        <FormattedMessage
-                                                            id="app.interview"
-                                                            defaultMessage="Interview"
-                                                        />
-                                                    }
+                                                    title="Interview"
+                                                        
                                                 >
                                                     <div
                                                         onClick={() => handleTypeChange("Outbound")}
@@ -396,12 +385,8 @@ function CallForm(props) {
                                                 </Tooltip>
                                                 {/* <Tooltip title="Conference"> */}
                                                 <Tooltip
-                                                    title={
-                                                        <FormattedMessage
-                                                            id="app.closure"
-                                                            defaultMessage="Closure"
-                                                        />
-                                                    }
+                                                    title="Closure"
+                                                       
                                                 >
                                                     <div
                                                         onClick={() => handleTypeChange("Conference")}
@@ -422,10 +407,8 @@ function CallForm(props) {
                                         <div class=" w-1/2">
                                             < div class="mt-3" />
                                             <div class=" text-xs font-bold font-poppins text-black">
-                                                <FormattedMessage
-                                                    id="app.category"
-                                                    defaultMessage="Category"
-                                                />
+                                          Category
+                                              
                                             </div>
 
                                             <ButtonGroup>
@@ -440,8 +423,7 @@ function CallForm(props) {
                                                             category === "New" ? "white" : "black",
                                                     }}
                                                 >
-                                                    {/* New */}
-                                                    <FormattedMessage id="app.new" defaultMessage="New" />
+                                                    New
                                                 </Button>
                                                 <Button
                                                     onClick={() => handleCategoryChange("Follow up")}
@@ -456,11 +438,7 @@ function CallForm(props) {
                                                                 : "black",
                                                     }}
                                                 >
-                                                    {/* Follow up */}
-                                                    <FormattedMessage
-                                                        id="app.followup"
-                                                        defaultMessage="Follow up"
-                                                    />
+                                                    Follow up
                                                 </Button>
                                             </ButtonGroup>
                                         </div>
@@ -513,12 +491,7 @@ function CallForm(props) {
                                         isRequired
                                         name="callPurpose"
                                         // label="Topic"
-                                        label={
-                                            <FormattedMessage
-                                                id="app.subject"
-                                                defaultMessage="Subject"
-                                            />
-                                        }
+                                        label="Subject"
                                         component={InputComponent}
                                         isColumn
                                         width={"100%"}
@@ -527,10 +500,8 @@ function CallForm(props) {
                                     < div class="mt-3" />
                                     <Field
                                         name="startDate"
-                                        // label="Date"
-                                        label={
-                                            <FormattedMessage id="app.date" defaultMessage="Date" />
-                                        }
+                                        label="Date"
+                                        
                                         component={DatePicker}
                                         isColumn
                                         width={"100%"}
@@ -542,13 +513,7 @@ function CallForm(props) {
                                         <div class=" w-1/2 max-sm:w-wk">
                                             <Field
                                                 name="startTime"
-                                                // label="Start Time"
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.starttime"
-                                                        defaultMessage="Start Time"
-                                                    />
-                                                }
+                                                label="Start Time"
                                                 component={TimePicker}
                                                 isRequired
                                                 isColumn
@@ -563,13 +528,7 @@ function CallForm(props) {
                                         <div class=" w-2/5 max-sm:w-wk">
                                             <Field
                                                 name="endTime"
-                                                // label="End Time"
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.endtime"
-                                                        defaultMessage="End Time"
-                                                    />
-                                                }
+                                                label="End Time"
                                                 component={TimePicker}
                                                 use12Hours
                                                 isRequired
@@ -588,13 +547,7 @@ function CallForm(props) {
                                         defaultValue={{ label: timeZone, value: userId }}
                                         name="timeZone"
                                         isColumnWithoutNoCreate
-                                        //label="TimeZone "
-                                        label={
-                                            <FormattedMessage
-                                                id="app.timeZone"
-                                                defaultMessage="Time Zone"
-                                            />
-                                        }
+                                        label="TimeZone "
                                         selectType="timeZone"
                                         isColumn
                                         value={values.timeZone}
@@ -607,10 +560,7 @@ function CallForm(props) {
                                             {dayjs(startDate).isBefore(dayjs()) && (
                                                 <span>
                                                     <b>
-                                                        <FormattedMessage
-                                                            id="app.thiscalloccursinthepast!"
-                                                            defaultMessage="This Call occurs in the past !"
-                                                        />
+                                                        This Call occurs in the past !
                                                     </b>
                                                 </span>
                                             )}
@@ -621,10 +571,7 @@ function CallForm(props) {
                                                 <span>
                                                     <b>
                                                         {" "}
-                                                        <FormattedMessage
-                                                            id="app.thiscalloccursinthepast!"
-                                                            defaultMessage="This Call occurs in the past !"
-                                                        />
+                                                        This Call occurs in the past !
                                                     </b>
                                                 </span>
                                             )}
@@ -701,12 +648,7 @@ function CallForm(props) {
                                     <Field
                                         name="included"
                                         // label="Include"
-                                        label={
-                                            <FormattedMessage
-                                                id="app.include"
-                                                defaultMessage="Include"
-                                            />
-                                        }
+                                        label="Include"
                                         mode
                                         placeholder="Select"
                                         component={SelectComponent}
@@ -724,13 +666,7 @@ function CallForm(props) {
                                                 name="contactId"
                                                 //selectType="contactList"
                                                 isColumnWithoutNoCreate
-                                                // label="Contact"
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.contact"
-                                                        defaultMessage="Contact"
-                                                    />
-                                                }
+                                                label="Contact"
                                                 component={SelectComponent}
                                                 isColumn
                                                 options={Array.isArray(ContactData) ? ContactData : []}
@@ -751,12 +687,7 @@ function CallForm(props) {
                                                 name="customerId"
                                                 // selectType="customerList"
                                                 isColumnWithoutNoCreate
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.customer"
-                                                        defaultMessage="Customer"
-                                                    />
-                                                }
+                                                label="Customer"
                                                 //component={SearchSelect}
                                                 component={SelectComponent}
                                                 options={
@@ -778,12 +709,7 @@ function CallForm(props) {
                                                 name="opportunityId"
                                                 // selectType="customerList"
                                                 isColumnWithoutNoCreate
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.opportunity"
-                                                        defaultMessage="Opportunity"
-                                                    />
-                                                }
+                                                label="Opportunity"
                                                 //component={SearchSelect}
                                                 component={SelectComponent}
                                                 options={
@@ -804,9 +730,7 @@ function CallForm(props) {
                                         <div class=" w-full"><Field
                                             name="callDescription"
                                             // label="Notes"
-                                            label={
-                                                <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                                            }
+                                            label="Notes" 
                                             isColumn
                                             width={"100%"}
                                             component={TextareaComponent}
@@ -823,13 +747,7 @@ function CallForm(props) {
                                 {isEditing && (
                                     <>
                                         <StyledPopconfirm
-                                            // title="Do you want to delete?"
-                                            title={
-                                                <FormattedMessage
-                                                    id="app.doyouwanttodelete?"
-                                                    defaultMessage="Do you want to delete?"
-                                                />
-                                            }
+                                            title="Do you want to delete?"
                                             onConfirm={() => deleteCall(prefillCall.callId)}
                                         >
                                             <Button
@@ -837,11 +755,7 @@ function CallForm(props) {
                                                 htmlType="submit"
                                                 Loading={deletingCall}
                                             >
-                                                {/* Delete */}
-                                                <FormattedMessage
-                                                    id="app.delete"
-                                                    defaultMessage="Delete"
-                                                />
+                                                Delete
                                             </Button>
                                         </StyledPopconfirm>
                                     </>
@@ -854,8 +768,8 @@ function CallForm(props) {
                                     {isEditing ? (
                                         "Update"
                                     ) : (
-                                        // "Create"
-                                        <FormattedMessage id="app.create" defaultMessage="Create" />
+                                        "Create"
+                                       
                                     )}
                                 </Button>
                             </div>

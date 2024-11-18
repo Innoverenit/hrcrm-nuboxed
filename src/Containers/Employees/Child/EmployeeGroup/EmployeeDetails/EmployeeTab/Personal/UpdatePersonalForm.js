@@ -85,13 +85,7 @@ class UpdatePersonalForm extends Component {
                       <FastField
                         name="contactSalutation"
                         type="text"
-                        // label="Salutation"
-                        label={
-                          <FormattedMessage
-                            id="app.contactSalutation"
-                            defaultMessage="Salutation"
-                          />
-                        }
+                        label="Salutation"
                         options={["Mr.", "Ms.", "None"]}
                         component={SelectComponent}
                         inlineLabel
@@ -103,13 +97,7 @@ class UpdatePersonalForm extends Component {
                       <FastField
                         isRequired
                         name="contactFirstName"
-                        //label="First Name"
-                        label={
-                          <FormattedMessage
-                            id="app.contactFirstName"
-                            defaultMessage="First Name"
-                          />
-                        }
+                        label="First Name"
                         type="text"
                         width={"100%"}
                         isColumn
@@ -124,13 +112,7 @@ class UpdatePersonalForm extends Component {
                   <div class=" w-[55%]" >
                       <FastField
                         name="contactLastName"
-                        // label="Last Name"
-                        label={
-                          <FormattedMessage
-                            id="app.contactLastName"
-                            defaultMessage="Last Name"
-                          />
-                        }
+                        label="Last Name"
                         type="text"
                         width={"100%"}
                         isColumn
@@ -141,13 +123,7 @@ class UpdatePersonalForm extends Component {
                     <div class=" w-[38%]" >
                       <FastField
                         name="contactMiddleName"
-                        // label="Middle "
-                        label={
-                          <FormattedMessage
-                            id="app.contactMiddleName"
-                            defaultMessage="Middle"
-                          />
-                        }
+                        label="Middle "
                         type="text"
                         width={"100%"}
                         isColumn
@@ -162,13 +138,7 @@ class UpdatePersonalForm extends Component {
                     <div class=" w-[47%]">
                       <Field
                         name="countryDialCode"
-                        // label="Mobile #"
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode"
-                            defaultMessage="Mobile #"
-                          />
-                        }
+                        label="Mobile #"
                         isColumn
                         selectType="dialCode"
                         component={SearchSelect}
@@ -180,12 +150,7 @@ class UpdatePersonalForm extends Component {
                       <Field
                         type="text"
                         name="mobileNo"
-                        label={
-                          <FormattedMessage
-                            id="app.mobileNo"
-                            defaultMessage="Mobile No"
-                          />
-                        }
+                        label="Mobile No"
                         placeholder="Mobile #"
                         component={InputComponent}
                         inlineLabel
@@ -200,13 +165,7 @@ class UpdatePersonalForm extends Component {
                     <div class=" w-[47%]">
                       <Field
                         name="countryDialCode1"
-                        //  label="Phone #"
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode1"
-                            defaultMessage="Phone #"
-                          />
-                        }
+                         label="Phone #"
                         isColumn
                         selectType="dialCode"
                         component={SearchSelect}
@@ -218,12 +177,7 @@ class UpdatePersonalForm extends Component {
                       <Field
                         type="text"
                         name="phoneNo"
-                        label={
-                          <FormattedMessage
-                            id="app.phoneNo"
-                            defaultMessage="Phone No"
-                          />
-                        }
+                        label="Phone No"
                         placeholder="Phone #"
                         component={InputComponent}
                         inlineLabel
@@ -241,7 +195,7 @@ class UpdatePersonalForm extends Component {
                   type="primary"
                   Loading={updatingPersonalDetails}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+                 Update
                 </Button>
               </div>
             </Form>

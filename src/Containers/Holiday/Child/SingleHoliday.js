@@ -191,19 +191,11 @@ class SingleHoliday extends Component {
                         )
                       }
                     >
-                      {/* Save */}
-                      <FormattedMessage
-                 id="app.save"
-                 defaultMessage="Save"
-                />
+                      Save
                   </Button>
                  <div class=" ml-2">
                   <Button type="primary" ghost onClick={() => toggleViewType()}>
-                      {/* Cancel */}
-                      <FormattedMessage
-                 id="app.cancel"
-                 defaultMessage="Cancel"
-                />
+                      Cancel
                   </Button>
                   </div>
                   </div>

@@ -140,11 +140,8 @@ class UpdateNoteFile extends Component {
                      
                     }}
                   >
-                    <FormattedMessage
-                      id="app.post"
-                      defaultMessage="Post"
-                    />
-                    {/* Post */}
+                    
+                    Post
                   </Button>
                 </div>
              

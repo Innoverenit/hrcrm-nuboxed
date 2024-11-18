@@ -291,12 +291,8 @@ function UpdateInvestorForm (props) {
                         name="sectorId"
                         isColumnWithoutNoCreate
                         selectType="sectorName"
-                        label={
-                          <FormattedMessage
-                            id="app.sector"
-                            defaultMessage="Sector"
-                          />
-                        }
+                        label="Sector"
+                          
                         isColumn
                         component={SearchSelect}
                         defaultValue={RowData.sector}
@@ -308,12 +304,8 @@ function UpdateInvestorForm (props) {
                     <FastField
                             name="source"
                             isColumnWithoutNoCreate
-                             label={
-                              <FormattedMessage
-                                id="app.source"
-                                defaultMessage="Source"
-                              />
-                            }
+                             label="Source"
+                             
                             defaultValue={{
                               label:RowData.source,
                             }}
@@ -497,12 +489,7 @@ function UpdateInvestorForm (props) {
                       <Field
                         name="vatNo"
                         type="text" 
-                        label={
-                          <FormattedMessage
-                            id="app.vatNumber"
-                            defaultMessage="VAT Number"
-                          />
-                        }
+                        label="VAT Number"
                         //isRequired
                         isColumn
                         width={"100%"}
@@ -517,12 +504,8 @@ function UpdateInvestorForm (props) {
                         name="businessRegistration"
                         type="text"
                         // label="URL"
-                        label={
-                          <FormattedMessage
-                            id="app.businessregistration"
-                            defaultMessage=" Business Registration#"
-                          />
-                        }
+                        label=" Business Registration#"
+                       
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -570,8 +553,8 @@ function UpdateInvestorForm (props) {
                   Loading={updateInvestorById}
                 >
                   {translatedMenuItems[16]}
-                  {/* <FormattedMessage id="app.update" defaultMessage="Update" /> */}
-                  {/* Update */}
+                 
+                  Update
                 </Button>
               </div>
             </Form>

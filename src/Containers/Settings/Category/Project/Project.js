@@ -137,7 +137,7 @@ class Project extends Component {
             this.handleClear();
           }}
         >
-          <FormattedMessage id="app.clear" defaultMessage="Clear" />
+         Clear
       
         </Button>
         </div>
@@ -182,13 +182,11 @@ class Project extends Component {
                   onClick={this.handleAddProject}
                   style={{ marginRight: "0.125em" }}
                 >
-                  {/* Save */}
-                  <FormattedMessage id="app.save" defaultMessage="Save" />
+                  Save
                 </Button>
                 &nbsp;
                 <Button type="primary" ghost onClick={this.toggleInput}>
-                  {/* Cancel */}
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                  Cancel
                 </Button>
               </div>
             ) : (
@@ -202,11 +200,7 @@ class Project extends Component {
                      Loading={addingProjectsData}
                     onClick={this.toggleInput}
                   >
-                    {/* Add More */}
-                    <FormattedMessage
-                      id="app.addmore"
-                      defaultMessage="Add More"
-                    />
+                    Add More
                   </Button>
                 </div>
                 <div>Updated on {dayjs(this.props.projectsData && this.props.projectsData.length && this.props.projectsData[0].updationDate).format("ll")} by {this.props.projectsData && this.props.projectsData.length && this.props.projectsData[0].name}</div>

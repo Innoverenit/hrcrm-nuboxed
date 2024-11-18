@@ -90,12 +90,7 @@ class Rules1Form extends Component {
                                                 <div style={{ width: "65%" }}>
                                                     <Field
                                                         name="unit"
-                                                        //label="Time"
-                                                        label={<FormattedMessage
-                                                            id="app.unit"
-                                                            defaultMessage="Time"
-                                                        />}
-                                                        isColumn
+                                                        label="Time"
                                                         width={"100%"}
                                                         component={InputComponent}
                                                         inlineLabel
@@ -111,10 +106,7 @@ class Rules1Form extends Component {
                                                     <FastField
                                                         name="unitValue"
                                                         isRequired
-                                                        label={<FormattedMessage
-                                                            id="app.unitValue"
-                                                            defaultMessage="text"
-                                                        />}
+                                                        label="text"                                                      
                                                         type="text"
                                                         isColumn
                                                         options={["Days", "Hours"]}

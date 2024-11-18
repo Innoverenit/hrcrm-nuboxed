@@ -110,37 +110,15 @@ const SalesTaskCardList = (props) => {
           <div className=' flex justify-end sticky top-28 z-auto'>
           <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[10.5rem]">
-          <FormattedMessage
-                          id="app.type"
-                          defaultMessage="types"
-                        />
+        <div className=" md:w-[10.5rem]">types
                         </div>
-        <div className=" md:w-[12rem]"><FormattedMessage
-                          id="app.name"
-                          defaultMessage="name"
-                        /></div>
-             <div className=" md:w-28 "><FormattedMessage
-                          id="app.end"
-                          defaultMessage="end"
-                        /></div>
+        <div className=" md:w-[12rem]">name</div>
+             <div className=" md:w-28 ">end</div>
              <div className=" md:w-28 "></div>
-        <div className="md:w-36"><FormattedMessage
-                          id="app.ageing"
-                          defaultMessage="Ageing"
-                        /></div>
-                              <div className="md:w-24"><FormattedMessage
-                          id="app.Info"
-                          defaultMessage="Info"
-                        /></div>
-        <div className="md:w-[6.2rem]"><FormattedMessage
-                          id="app.assignedto"
-                          defaultMessage="assignedto"
-                        /></div>
-        <div className="md:w-[6.5rem]"><FormattedMessage
-                          id="app.owner"
-                          defaultMessage="owner"
-                        /></div>
+        <div className="md:w-36">Ageing</div>
+                              <div className="md:w-24">Info</div>
+        <div className="md:w-[6.2rem]">assignedto</div>
+        <div className="md:w-[6.5rem]">owner</div>
   
         <div className="md:w-[3%]"></div>
         <div className="md:w-[5%]"></div>

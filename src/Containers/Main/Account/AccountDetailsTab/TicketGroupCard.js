@@ -70,7 +70,7 @@ const BussinessCard = (props) => {
   okText="Yes"
   cancelText="No"
 >
-  <Tooltip 
+  <Tooltip 1
     title={<FormattedMessage
       id="app.Own"
       defaultMessage="Won"

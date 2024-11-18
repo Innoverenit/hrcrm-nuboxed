@@ -16,19 +16,15 @@ function LeadWarmTable (props) {
     }, [props.userId,props.endDate,props.startDate]);
     const columns = [
       {
-        title: <FormattedMessage
-          id="app.name"
-          defaultMessage="Name"
-        />,
+        title:"Name"
+       ,
         width: "30%",
         dataIndex: "name",
       },
      
       {
-        title: <FormattedMessage
-          id="app.emailId"
-          defaultMessage="Email Id"
-        />,
+        title: "Email Id"
+       ,
         width: "22%",
         dataIndex: "email",
         defaultSortOrder: 'descend',
@@ -45,10 +41,8 @@ function LeadWarmTable (props) {
       },
       {
         // title: "Status",
-        title: <FormattedMessage
-          id="app.companyName"
-          defaultMessage="Company Name"
-        />,
+        title: "Company Name"
+       ,
         width: "25%",
         dataIndex: "companyName",
         // sorter: (a, b) => {

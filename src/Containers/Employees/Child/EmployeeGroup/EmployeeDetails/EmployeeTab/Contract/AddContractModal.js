@@ -17,11 +17,7 @@ class AddContractModal extends Component {
     return (
       <>
         <StyledDrawer
-          // title="Contract"
-          title={<FormattedMessage
-            id="app.contract"
-            defaultMessage="Contract"
-          />}
+          title="Contract"
           width="25%"
           visible={addContractModal}
           onClose={() => handleContractModal(false)}

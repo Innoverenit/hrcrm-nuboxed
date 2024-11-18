@@ -55,11 +55,7 @@ class UpdateBankForm extends Component {
                   <div style={{ width: "100%" }}>
                     <FastField
                       name="accountNo"
-                      // label="Account Number"
-                      label={<FormattedMessage
-                        id="app.accountNo"
-                        defaultMessage="Account Number"
-                      />}
+                      label="Account Number"
                       isColumn
                       margintop={"0.25em"}
                       selectType="number"
@@ -73,11 +69,7 @@ class UpdateBankForm extends Component {
                     <div style={{ width: "47%" }}>
                       <FastField
                         name="ifscCode"
-                        //label="IFSC CODE"
-                        label={<FormattedMessage
-                          id="app.ifscCode"
-                          defaultMessage="IFSC CODE"
-                        />}
+                        label="IFSC CODE"
                         className="field"
                         isColumn
                         width={"100%"}
@@ -90,11 +82,7 @@ class UpdateBankForm extends Component {
                       <FastField
                         isRequired
                         name="branchName"
-                        //label="Branch Name"
-                        label={<FormattedMessage
-                          id="app.branchName"
-                          defaultMessage="Branch Name"
-                        />}
+                        label="Branch Name"
                         type="text"
                         width={"100%"}
                         isColumn
@@ -108,11 +96,7 @@ class UpdateBankForm extends Component {
                     <FastField
                       isRequired
                       name="bankName"
-                      //label="Bank Name"
-                      label={<FormattedMessage
-                        id="app.bankName"
-                        defaultMessage="Bank Name"
-                      />}
+                      label="Bank Name"
                       type="text"
                       width={"100%"}
                       isColumn
@@ -129,10 +113,8 @@ class UpdateBankForm extends Component {
                     type="primary"
                     Loading={updatingBankDetails}
                   >
-                    <FormattedMessage
-                      id="app.update"
-                      defaultMessage="Update"
-                    />
+                    
+                    Update
                   </Button>
                 </div>
               </Form>

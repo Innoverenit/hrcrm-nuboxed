@@ -9,10 +9,8 @@ const LeadQualifiedDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-          title={<FormattedMessage
-            id="app.leadsQualified"
-            defaultMessage="Leads Qualified"
-          />}
+          title="Leads Qualified"
+       
         width="60%"
         visible={props.openLeadQualified}
         onClose={()  => props.handleLeadQualifiedDrawer(false)}

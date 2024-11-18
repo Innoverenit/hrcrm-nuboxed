@@ -63,13 +63,8 @@ function Rules2Form() {
                     <div style={{ width: "65%" }}>
                       <Field
                         name="unit"
-                        //label="Time"
-                        label={
-                          <FormattedMessage
-                            id="app.unit"
-                            defaultMessage="Time"
-                          />
-                        }
+                        label="Time"
+                       
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -85,12 +80,8 @@ function Rules2Form() {
                       <FastField
                         name="unitValue"
                         isRequired
-                        label={
-                          <FormattedMessage
-                            id="app.unitValue"
-                            defaultMessage="text"
-                          />
-                        }
+                        label="text"
+                         
                         type="text"
                         isColumn
                         options={["Days", "Hours"]}

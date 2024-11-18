@@ -17,10 +17,8 @@ class AddLeadsModal extends Component {
     return (
       <>
         <StyledDrawer
-          title={<FormattedMessage
-            id="app.leads"
-            defaultMessage="Add Leads"
-          />}
+          title="Add Leads"
+       
           width={drawerWidth}
           destroyOnClose
           visible={addLeadsModal}

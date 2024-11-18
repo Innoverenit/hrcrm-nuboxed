@@ -9,7 +9,6 @@ import { Tooltip } from 'antd';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import {handleDocumentUploadModal} from "../Customer/CustomerAction";
   import AddBoxIcon from '@mui/icons-material/AddBox';
-import { FormattedMessage } from 'react-intl';
 const AddDocumentModals=lazy(()=> import("../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals"));
 const AddDataRoomNotesDrawerModal=lazy(()=> import("./AddDataRoomNotesDrawerModal"));
 const TaskDataCardList=lazy(()=> import("./TaskDataCardList"));
@@ -78,30 +77,18 @@ const DataRoomTab = (props) => {
                 <>
                   <InsertDriveFileIcon className='!text-icon'  />
                   <span class=" ml-1">
-                    <FormattedMessage
-                      id="app.documents"
-                      defaultMessage="Documents"
-                    />
-                    {/* Documents */}
+                   
+                    Documents
                   </span>
                   {/* {activeKey === "2" && ( */}
                     <>
                      <Tooltip //title="Create"
-                        title={
-                          <FormattedMessage
-                          id="app.uploaddocument"
-                          defaultMessage="Upload Document"
-                        />
-                        }
+                        title="Upload Document"
+                      
                       >
                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                       
-                        tooltiptitle={
-                          <FormattedMessage
-                            id="app.uploaddocument"
-                            defaultMessage="Upload Document"
-                          />
-                        }
+                        tooltiptitle="Upload Document"
                         onClick={() => handleDocumentUploadModal(true)}
                      
                        

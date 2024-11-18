@@ -1,7 +1,6 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
-import { FormattedMessage } from 'react-intl';
 const ProductionPaymentTable = lazy(() => import("./ProductionPaymentTable"));
 const ProductionPaymentForm = lazy(() => import("./ProductionPaymentForm"));
 
@@ -15,10 +14,8 @@ class ProductionPaymentModal extends Component {
         return (
             <>
                 <StyledDrawer
-                    title={<FormattedMessage
-                        id="app.collection"
-                        defaultMessage="Collection"
-                    />}
+                    title="Collection"
+                   
                     width="70%"
                     visible={showPaymentListModal}
                     onClose={() => handleOrderPaymentModal(false)}

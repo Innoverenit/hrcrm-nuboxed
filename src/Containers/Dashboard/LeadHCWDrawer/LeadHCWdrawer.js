@@ -9,10 +9,8 @@ const LeadHCWdrawer = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.leadsHCW"
-          defaultMessage= "Leads HCW"
-        />}
+        title="Leads HCW"
+       
        
         width="60%"
         visible={props.openLeadHCWdrawer}

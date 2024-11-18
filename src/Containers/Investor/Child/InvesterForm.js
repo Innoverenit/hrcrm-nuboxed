@@ -693,12 +693,8 @@ function InvesterForm(props) {
                       <Field
                         name="vatNo"
                         type="text"
-                        label={
-                          <FormattedMessage
-                            id="app.vatNumber"
-                            defaultMessage="VAT Number"
-                          />
-                        }
+                        label="VAT Number"
+                         
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -711,13 +707,7 @@ function InvesterForm(props) {
                       <Field
                         name="businessRegistration"
                         type="text"
-                        // label="URL"
-                        label={
-                          <FormattedMessage
-                            id="app.businessregistration"
-                            defaultMessage=" Business Registration#"
-                          />
-                        }
+                        label="URL"
                         isColumn
                         width={"100%"}
                         component={InputComponent}

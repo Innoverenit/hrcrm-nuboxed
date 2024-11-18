@@ -25,51 +25,25 @@ function InvestorDealJumpstartDrawerCard (props) {
         <div class="rounded m-1 max-sm:m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden  w-[92.5%] justify-between p bg-transparent font-bold sticky  z-10">
             <div className=" text-xs font-poppins font-bold w-[18.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
-              <FormattedMessage
-                id="app.name"
-                defaultMessage="Name"
-              />
+              Name
             </div>
             
             <div className="text-xs font-poppins font-bold w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
-              <FormattedMessage
-                id="app.country"
-                defaultMessage="Country"
-              />
+            Country
 
             </div>
             <div className="text-xs font-poppins font-bold w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
-              <FormattedMessage
-                id="app.pipeline"
-                defaultMessage="Pipeline"
-              />
-
-            </div>
-            {/* <div className="md:w-[3.9rem]">
-        <FormattedMessage
-                        id="app.weighted"
-                        defaultMessage="Weighted"
-                      />
-          
-          </div> */}
+              Pipeline
+          </div>
             <div className="text-xs font-poppins font-bold w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
-              <FormattedMessage
-                id="app.assigned"
-                defaultMessage="Assigned"
-              />
+           Assigned
 
             </div>
             <div className="text-xs font-poppins font-bold w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
-              <FormattedMessage
-                id="app.owner"
-                defaultMessage="Owner"
-              />
+             Owner
             </div>
             <div className="text-xs font-poppins font-bold w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-              <FormattedMessage
-                id="app.customer"
-                defaultMessage="Customer"
-              />
+             Customer
             </div>
             <div className="w-[3.8rem]"></div>
 

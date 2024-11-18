@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getSubOrderData, updateSubOrderAwb, handleSuborderPhone } from "../../AccountAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { FormattedMessage } from 'react-intl';
 import { Badge, Button, Input } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";

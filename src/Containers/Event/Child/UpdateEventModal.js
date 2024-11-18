@@ -10,10 +10,7 @@ const UpdateEventModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.updateevent"
-          defaultMessage="Update Event"
-        />}
+        title="Update Event"
         width={drawerWidth}
         visible={updateEventModal}
         onClose={() => handleUpdateEventModal(false)}

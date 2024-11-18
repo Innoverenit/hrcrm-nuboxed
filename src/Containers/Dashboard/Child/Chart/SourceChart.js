@@ -14,28 +14,21 @@ class SourceChart extends Component {
     const panes = [
       {
         // title: "Source", 
-        title: <FormattedMessage
-          id="app.source"
-          defaultMessage="Source"
-        />,
+        title: "Source"
+       ,
         content: <SourceMainChart />,
         key: "1"
       },
       {
         // title: "Source", 
-        title: <FormattedMessage
-          id="app.funnel"
-          defaultMessage="funnel"
-        />,
+        title: "funnel"
+    ,
         // content: <SourceMainChart />,
         key: "2"
       },
       {
-        // title: "Source", 
-        title: <FormattedMessage
-          id="app.stages"
-          defaultMessage="Stages"
-        />,
+        title:"Stages",
+        
         // content: <SourceMainChart />,
         key: "3"
       },
