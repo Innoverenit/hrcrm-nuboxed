@@ -276,7 +276,7 @@ function LinkedContact(props) {
                                     </div>
                                 </div>
                                 <div className=" flex  md:w-[2rem] items-center justify-center h-8  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
-                                    <NotAccessibleOutlined/>
+                                    {/* <NotAccessibleOutlined/> */}
 
                                     <div class=" text-xs  font-poppins text-center">
                                     <Tooltip title="LinkedIn">
