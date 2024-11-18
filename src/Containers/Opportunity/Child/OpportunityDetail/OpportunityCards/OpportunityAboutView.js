@@ -108,10 +108,7 @@ class ProfileAboutView extends Component {
      
         <ProfileItemRow
           //label="Proposal value"
-          label={<FormattedMessage
-            id="app.proposalvalue"
-            defaultMessage="Proposal Value"
-          />}
+          label="Proposal Value"
           // value={proposalAmount} 
           value={
             <span>

@@ -10,10 +10,8 @@ const UpdateMileageModal = (props) => {
     <>
       <StyledModal
         // title="Mileage"
-        title={<FormattedMessage
-          id="app.mileage"
-          defaultMessage="Mileage"
-        />}
+        title="Mileage"
+ 
         width="70%"
         visible={updateMileageModal}
         onCancel={() => handleUpdateMileageModal(false)}

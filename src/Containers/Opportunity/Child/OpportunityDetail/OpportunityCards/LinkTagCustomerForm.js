@@ -95,13 +95,7 @@ class LinkTagCustomerForm extends Component {
                     name="customerId"
                  
                     isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.customer"
-                        defaultMessage="Customer"
-                      />
-                    }
-                  
+                    label= "Customer"               
                     component={SelectComponent}
                     options={Array.isArray(customerNameOption) ? customerNameOption : []}
                     isColumn
@@ -118,10 +112,8 @@ class LinkTagCustomerForm extends Component {
                       
                         Loading={this.props.linkingtagCustomerOpportunity}
                       >
-                        <FormattedMessage
-                          id="app.add"
-                          defaultMessage="Add"
-                        /> 
+                      Add
+                       
                       </Button>
                     </div>
                   </Form>

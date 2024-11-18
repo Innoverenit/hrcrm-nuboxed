@@ -80,7 +80,7 @@ setSearchOnEnter(true);
   return (
     <div class=" flex items-center" >
       <Tooltip
-        title={<FormattedMessage id="app.myMileageVouchers" defaultMessage="My Mileage Vouchers" />}
+        title="My Mileage Vouchers"
       >
         <Badge
           size="small"
@@ -134,7 +134,7 @@ setSearchOnEnter(true);
               }}
             >
               <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
-                <FormattedMessage id="app.all" defaultMessage="ALL" />
+             ALL
               </Avatar>
             </span>
           </Badge>
