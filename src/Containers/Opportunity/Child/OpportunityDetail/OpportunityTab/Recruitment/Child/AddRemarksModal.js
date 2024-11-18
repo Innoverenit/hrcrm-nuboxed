@@ -13,10 +13,7 @@ class AddRemarksModal extends Component {
       <>
         <StyledModal
           //title="Remarks"
-          title={<FormattedMessage
-            id="app.feedback"
-            defaultMessage="Feedback"
-          />}
+          title="Feedback"
           width="25%"
           visible={addRemarksModal}
           destroyOnClose
