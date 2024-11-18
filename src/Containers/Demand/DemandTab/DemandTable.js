@@ -40,6 +40,7 @@ import {
   getTopicsByCandidateId,
   //   getContactDocument,
 } from "../../Candidate/CandidateAction";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import dayjs from "dayjs";
 import EditRecruitForm from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/EditRecruitForm";
 import { Suspense } from "react";
@@ -48,7 +49,7 @@ import RecruitmentSwitch from "../../Opportunity/Child/OpportunityDetail/Opportu
 import SelectSponsorForm from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/SelectSponsorForm";
 import { addRecruitProProfile, deleteRequirementData } from "../../Opportunity/OpportunityAction";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { CheckCircleOutlined, CheckCircleTwoTone, EyeInvisibleOutlined, EyeOutlined, StopTwoTone } from "@ant-design/icons";
+import {  CheckCircleTwoTone, EyeInvisibleOutlined, EyeOutlined, StopTwoTone } from "@ant-design/icons";
 class DemandTable extends Component {
   constructor(props) {
     super(props);
@@ -276,7 +277,7 @@ class DemandTable extends Component {
                       
 
                       >
-                        <CheckCircleOutlined
+                        <CheckCircleOutlineIcon
                           type="check-circle"
                           theme="twoTone"
                           twoToneColor="#52c41a"

@@ -4,11 +4,10 @@ import { bindActionCreators } from "redux";
 
 import TaskStatusToggle from "../Child/TaskStatusToggle";
 import {
-  CheckCircleOutlined,
   CloseCircleOutlined,
  
 } from "@ant-design/icons";
-
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import SearchIcon from '@mui/icons-material/Search';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import AddTaskProjectDrawerModal from "../Child/AddTaskProjectDrawerModal";
@@ -509,7 +508,7 @@ return (
             ) : (
               <>
                 {item.approvedInd === "Approved" ? (
-                  <CheckCircleOutlined
+                  <CheckCircleOutlineIcon
                     type="check-circle"
                     theme="twoTone"
                     twoToneColor="#52c41a"

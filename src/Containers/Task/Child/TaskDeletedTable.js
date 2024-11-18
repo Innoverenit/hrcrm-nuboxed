@@ -1,9 +1,8 @@
 import React, { lazy} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import {
-  CheckCircleOutlined,
   CloseCircleOutlined,
 } from '@ant-design/icons';
 import SearchIcon from '@mui/icons-material/Search';
@@ -507,7 +506,7 @@ class TaskDeletedTable extends React.Component {
               ) : (
                   <>
                     {data.approvedInd === "Approved" ? (
-                      <CheckCircleOutlined
+                      <CheckCircleOutlineIcon
                         type="check-circle"
                         theme="twoTone"
                         twoToneColor="#52c41a"
