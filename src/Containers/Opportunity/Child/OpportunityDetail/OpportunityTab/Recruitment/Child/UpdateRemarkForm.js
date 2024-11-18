@@ -8,6 +8,7 @@ import RotateRightIcon from '@mui/icons-material/RotateRight';
 import { Button ,Tooltip} from "antd";
 import { Formik, Form, Field } from "formik";
 
+import { FormattedMessage } from 'react-intl';
 import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import {updateRemark}  from "../../../../../OpportunityAction";

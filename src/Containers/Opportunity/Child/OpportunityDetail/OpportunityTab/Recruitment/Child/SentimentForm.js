@@ -132,10 +132,7 @@ function SentimentForm(props) {
                   //onClick={props.handleRemarksModal}
                   Loading={props.addingSentiment}
                 >
-                  <FormattedMessage
-                    id="app.submit"
-                    defaultMessage="Submit"
-                  />
+                 Submit 
                   {/* Remark */}
                 </Button>
                

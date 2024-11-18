@@ -1,5 +1,6 @@
 import React, { Component, Suspense } from "react";
 import { StyledTable } from "../../../../../../../Components/UI/Antd";
+import { FormattedMessage } from 'react-intl';
 import {
   getAllRecruitmentDetailsByOppId,
   addWebsite,

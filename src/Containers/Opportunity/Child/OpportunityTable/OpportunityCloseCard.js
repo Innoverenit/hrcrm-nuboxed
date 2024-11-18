@@ -233,12 +233,8 @@ function OpportunityCloseCard(props) {
                            </div>
                            <div>
                            <Tooltip
-          title={
-            <FormattedMessage
-              id="app.edit"
-              defaultMessage="Edit"
-            />
-          }
+          title="Edit"
+           
         >
             {user.opportunityUpdateInd ===true && (
               

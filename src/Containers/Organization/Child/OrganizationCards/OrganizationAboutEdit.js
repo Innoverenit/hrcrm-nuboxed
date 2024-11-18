@@ -153,19 +153,13 @@ class OrganizationAboutEdit extends Component {
             Loading={this.props.updatingOrganizationDetails}
             onClick={this.handleUpdate}
           >
-            {/* Save */}
-            <FormattedMessage
-                 id="app.save"
-                 defaultMessage="Save"
-                />
+            Save
+            
           </Button>
           &nbsp;
           <Button type="ghost" onClick={() => toggleViewType()}>
-            {/* Cancel */}
-            <FormattedMessage
-                 id="app.cancel"
-                 defaultMessage="Cancel"
-                />
+            Cancel
+          
           </Button>
         </div>
       </>

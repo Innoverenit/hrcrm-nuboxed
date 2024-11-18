@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { FormattedMessage } from 'react-intl';
 
 import { JumpStartBox } from "../../../../Components/UI/Elements";
 import { CurrencySymbol } from "../../../../Components/Common";

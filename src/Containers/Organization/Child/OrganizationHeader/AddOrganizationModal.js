@@ -11,10 +11,8 @@ const AddOrganizationModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.addOrganization"
-          defaultMessage="Add Organization"
-        />}
+        title="Add Organization"
+       
         width={drawerWidth}
         visible={props.addOrganizationModal}
         closable

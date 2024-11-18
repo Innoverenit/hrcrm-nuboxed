@@ -11,11 +11,7 @@ class CandidateAvailibityView extends Component {
     return (
       <>
         <CandidateItemRow
-          //label="Availability"
-          label={<FormattedMessage
-            id="app.availability"
-            defaultMessage="Availability"
-          />}
+          label="Availability"
           value=
           {this.props.candidate.availableDate === null ? "None" :
           <>
@@ -24,11 +20,7 @@ class CandidateAvailibityView extends Component {
           }
         />
         <CandidateItemRow
-          //label="Billing / hr"
-          label={<FormattedMessage
-            id="app.billing/hr"
-            defaultMessage="Billing / hr"
-          />}
+          label="Billing / hr"
           value={`${billing || ""} ${currency || ""}`}
         />
       </>

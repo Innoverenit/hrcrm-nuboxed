@@ -9,11 +9,8 @@ const UpdateRemarkModal = props => {
   return (
     <>
       <StyledModal
-        // title=" Update Candidate"
-        title={<FormattedMessage
-          id="app.feedback"
-          defaultMessage="Feedback"
-        />}
+        title="Feedback"
+        
         width="22%"
         visible={updateRemarkModal}
         closable
