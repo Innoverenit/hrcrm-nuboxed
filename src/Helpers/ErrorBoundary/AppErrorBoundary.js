@@ -30,7 +30,7 @@ class AppErrorBoundary extends React.Component {
          <div class=" flex  flex-col justify-center items-center  w-[25rem] h-[25rem]  bg-[#f5f5f5]"
             style={{ boxShadow: " 0 0.8125em 1.6875em -0.3125em rgba(50, 50, 93, 0.25)"}}
             >
-               <img className="h-[3.125rem] w-[3.125rem] rounded"
+               <img alt="" className="h-[3.125rem] w-[3.125rem] rounded"
                 src={error}           
               >              
               </img>
