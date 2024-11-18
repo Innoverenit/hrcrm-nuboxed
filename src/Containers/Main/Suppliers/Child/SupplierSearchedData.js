@@ -11,7 +11,7 @@ import {
 import dayjs from "dayjs";
 import StoreIcon from '@mui/icons-material/Store';
 import EuroIcon from '@mui/icons-material/Euro';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Popconfirm, Tooltip } from "antd";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Link } from 'react-router-dom';
@@ -214,9 +214,7 @@ function SupplierSearchedData(props) {
                                     title="Do you want to delete?"
                                     onConfirm={() => props.deleteSupplierData(item.supplierId, props.userId)}
                                   >
-                                    <DeleteOutlined
-                                      className=" !text-icon cursor-pointer text-[red]"
-                                    />
+                                   <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                                   </Popconfirm>
                                 </Tooltip>
                               </div>

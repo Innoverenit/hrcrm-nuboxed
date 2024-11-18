@@ -27,7 +27,7 @@ import {addSuppliesBrand,
 } from 
     "./SuppliesAction"
     import { StyledPopconfirm } from "../../../Components/UI/Antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 
 

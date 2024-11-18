@@ -15,7 +15,7 @@ import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Tooltip, Button,  } from "antd";
 import dayjs from "dayjs";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { StyledPopconfirm, } from "../../Components/UI/Antd";
 import StairsIcon from '@mui/icons-material/Stairs';
  import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
@@ -595,11 +595,7 @@ const TaskDataCardList = (props) => {
                             onConfirm={() => deleteTask(item.taskId, employeeId)}
                           >
                                 <Tooltip title="Delete">
-                            <DeleteOutlined
-                              type="delete"
-                              className="!text-lg cursor-pointer text-[red]"
-                              
-                            />
+                                <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                             </Tooltip>
                           </StyledPopconfirm>
                         )}

@@ -6,7 +6,7 @@ import { getBuilderByProId,removeProductBuilder,updateProductSuplrBuilder,handle
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { MultiAvatar } from "../../../../Components/UI/Elements";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddProductNotesDrawerModal from "./AddProductNotesDrawerModal";
 function ProductbuilderTable2 (props) {
 
@@ -279,9 +279,7 @@ return (
 
                           >
                      <Tooltip title={translatedMenuItems[12]}>
-                          <DeleteOutlined
-                           className=" !text-icon cursor-pointer !text-[red]"
-                          />
+                     <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                        </Tooltip>
                        </Popconfirm>
                        </div>

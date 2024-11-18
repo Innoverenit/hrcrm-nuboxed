@@ -5,7 +5,7 @@ import { Tooltip,Button } from "antd";
 import { getMaterialBuilderById,removeMaterialBuilder,updateMaterialBuilder } from "../SuppliesAction";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 function MaterialbuilderCard (props) {
 
@@ -153,15 +153,7 @@ return (
                           onConfirm={() => props.removeMaterialBuilder({active:false},item.supplySupplyLinkId)}
                           >
                      <Tooltip title= {props.translatedMenuItems[9]}>
-                          <DeleteOutlined
-                          className="!text-icon cursor-pointer "
-                          style={{
-                       
-                            color: "red",
-                          
-                          }}
-                           
-                          />
+                     <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                        </Tooltip>
                        </StyledPopconfirm>
                        </div>

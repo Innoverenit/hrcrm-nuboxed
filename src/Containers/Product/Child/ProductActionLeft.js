@@ -2,7 +2,7 @@ import React, { useEffect, useState,useRef } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Tooltip, Avatar,Badge,Input } from "antd";
 import { AudioOutlined } from '@ant-design/icons';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -212,8 +212,7 @@ const ProductActionLeft = (props) => {
   <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#28a355" ,
                boxShadow: props.viewType === "dashboard" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
                   transform: props.viewType === "dashboard" ? "scale(1.05)" : "scale(1)"}}>
-    <DeleteOutlined
-      className="!text-icon cursor-pointer "
+      <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  
       style={{
 
         color: props.viewType === "dashboard" && "red",

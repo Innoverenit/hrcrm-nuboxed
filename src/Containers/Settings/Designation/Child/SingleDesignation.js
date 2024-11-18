@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { Button,Popconfirm,Tooltip } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import dayjs from "dayjs";
 import { connect } from "react-redux";
 import {removeDesignations} from "../DesignationAction"
@@ -65,17 +65,7 @@ class SingleDesignation extends Component {
                           cancelText="No"
                           onConfirm={() => this.props.removeDesignations(designationTypeId )}
                         >
-                    <DeleteOutlined
-    
-                      // onClick={() => handleDeleteDesignation(designationTypeId)}
-                  
-                      style={{
-                        verticalAlign: "center",
-                        marginLeft: "1rem",
-                        fontSize:"1rem",
-                        color: "red",
-                      }}
-                    />
+                    <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                       </Popconfirm>
                   </Tooltip>
                   {/* {disableDelete && <ActionIcon

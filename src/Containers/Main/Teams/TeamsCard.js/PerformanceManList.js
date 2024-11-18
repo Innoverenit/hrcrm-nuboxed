@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  Select, Tooltip } from "antd"
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
  import {getUserKpiList,} from "../../../Employees/EmployeeAction"
 import { Button } from 'antd';

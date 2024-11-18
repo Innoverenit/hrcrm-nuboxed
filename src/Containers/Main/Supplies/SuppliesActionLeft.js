@@ -2,7 +2,7 @@ import React, { useEffect, useState,useRef } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Tooltip, Badge, Avatar,Input } from "antd";
 import { AudioOutlined } from '@ant-design/icons';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
@@ -293,7 +293,7 @@ function SuppliesActionLeft (props) {
                                boxShadow: props.viewType === "dashboard" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
                   transform: props.viewType === "dashboard" ? "scale(1.05)" : "scale(1)"
                             }}>
-                                <DeleteOutlined className="text-white" /></Avatar>
+                                <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  /></Avatar>
 
                         </span>
                     </Badge>

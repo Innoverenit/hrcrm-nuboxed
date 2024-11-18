@@ -1,7 +1,7 @@
 import React, { useEffect,lazy,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { base_url } from "../../../../Config/Auth";
 import DownloadIcon from '@mui/icons-material/Download';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -201,12 +201,7 @@ return <div><BundleLoader/></div>;
                         cancelText="No"
                         onConfirm={() =>  props.removeSource(region.sourceId,props.orgId)}
                       >
-                <DeleteOutlined 
-               className=" !text-icon text-red-600 cursor-pointer"
-              // onClick={() => 
-              //     props.removeServiceLine(item.sourceId)
-              //  }
-                 />
+             <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                  </Popconfirm>
             </div>
         </div>

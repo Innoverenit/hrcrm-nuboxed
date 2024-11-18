@@ -5,7 +5,7 @@ import ClubStatusToggle from "./ClubStatusToggle"
 import { Button, Input, Select,Tooltip } from "antd";
 import {clubShare,getclubShare,updateClub} from "../../SettingsAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { SketchPicker } from "react-color"; 
@@ -377,10 +377,8 @@ console.log(props.clubShareData)
 
                           >
                      <Tooltip title="Delete">
-                     <DeleteOutlined
-                      
-                         className=" !text-icon text-red-600 cursor-pointer flex justify-center "
-                          />
+                    
+                     <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                        </Tooltip>
                        </StyledPopconfirm>
                        </div>

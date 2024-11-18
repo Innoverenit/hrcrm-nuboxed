@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { Button } from "antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { Formik, Form, Field,} from "formik";
 import { Select} from "../../../../Components/UI/Elements";
@@ -263,10 +263,7 @@ const LocationCellForm = (props) => {
 
                     >
                       
-                      <DeleteOutlined
-                        type="delete"
-                        className=" !text-icon cursor-pointer !text-[red]"
-                      />
+                      <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                   
                     </StyledPopconfirm>
                

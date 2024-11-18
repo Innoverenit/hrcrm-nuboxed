@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, DatePicker } from "antd";
 import dayjs from "dayjs";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {
   getMileageByVoucherId,
   handleUpdateMileageModal,
@@ -235,9 +235,7 @@ function MileageDrawerCard(props) {
                   <div className="flex   justify-center">
                 {item.status === "Pending" ? (
             <Tooltip title="Delete">
-              <DeleteOutlined
-                type="delete"
-                style={{ fontSize:"1rem",cursor: "pointer",display:"flex",alignItems:"flex-start" }}
+             <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  
                  onClick={() => {
                 this.props.deleteMileage(item.mileageId);
                   
@@ -295,7 +293,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MileageDrawerCard);
 // import { bindActionCreators } from "redux";
 // import { Tooltip, DatePicker } from "antd";
 // import dayjs from "dayjs";
-// import { DeleteOutlined } from "@ant-design/icons";
+// import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 // import {  OnlyWrapCard } from '../../../Components/UI/Layout';
 // import QuestionMarkIcon from "@mui/icons-material/QuestionMark";
 // import {

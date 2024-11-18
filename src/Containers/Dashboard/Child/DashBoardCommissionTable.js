@@ -18,7 +18,7 @@
  // import UpdateOpportunityModal from "../UpdateOpportunity/UpdateOpportunityModal";
  import APIFailed from "../../../Helpers/ErrorBoundary/APIFailed";
 import { dashboardReducer } from "../DashboardReducer";
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
  
  function onChange(pagination, filters, sorter) {
    console.log("params", pagination, filters, sorter);
@@ -68,7 +68,7 @@ import { SearchOutlined } from "@ant-design/icons";
              <Button
                type="primary"
                onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                icon={<SearchOutlined />}
+                icon={<SearchIcon />}
                //icon="search"
                size="small"
                style={{ width: 90 }}
@@ -97,8 +97,8 @@ import { SearchOutlined } from "@ant-design/icons";
          </div>
        ),
        filterIcon: (filtered) => (
-         // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-         <SearchOutlined type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+         // <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
+         <SearchIcon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
        ),
        onFilter: (value, record) =>
          record[dataIndex]

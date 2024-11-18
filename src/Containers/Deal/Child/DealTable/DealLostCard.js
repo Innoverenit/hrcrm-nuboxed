@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import dayjs from "dayjs";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LockIcon from "@mui/icons-material/Lock";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
@@ -319,10 +319,9 @@ function DealLostCard(props) {
                               >
                                 {user.imInd === true && user.dealDeleteInd === true && (
                                 
-                                  <DeleteOutlined
-                                    type="delete"
-                                    className="!text-icon text-[red] cursor-pointer"
-                                  />
+                                 
+                                <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+                              
                                   )}
                                   </StyledPopconfirm>
                               </div>                                                                                                           
@@ -648,10 +647,7 @@ function DealLostCard(props) {
                       >
                         {user.imInd === true && user.dealDeleteInd === true && (
                         
-                          <DeleteOutlined
-                            type="delete"
-                            className="!text-xl text-[red] cursor-pointer"
-                          />
+                        <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                           )}
                           </StyledPopconfirm>
                       </div>

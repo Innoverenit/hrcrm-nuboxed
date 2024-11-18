@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { FormattedMessage } from 'react-intl';
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import PublishStatusToggle from "../PublishStatusToggle";
 import {
@@ -67,12 +67,11 @@ function PublishTable(props) {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
-            //icon="search"
+          
             size="small"
             style={{ width: 90 }}
           >
-            Search
+            <SearchIcon ClassName="!text-icon" /> Search
           </Button>
           <Button
             onClick={() => handleReset(clearFilters)}
@@ -95,7 +94,7 @@ function PublishTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined
+        <SearchIcon ClassName="!text-icon"
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />

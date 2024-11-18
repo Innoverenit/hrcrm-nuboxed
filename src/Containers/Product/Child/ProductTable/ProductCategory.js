@@ -9,7 +9,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import { MultiAvatar} from "../../../../Components/UI/Elements";
 import { Button, Input,Popconfirm } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { base_url, base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
@@ -322,7 +322,7 @@ const breakPoints = [
                                 onConfirm={() => DeleteOnClick(item)}
                               >
 
-                                <DeleteOutlined className=" !text-icon cursor-pointer text-[red]" />
+<DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                               </Popconfirm>
                             </div>
                                                           <div className=" flex   max-sm:flex-row  max-sm:justify-between ">

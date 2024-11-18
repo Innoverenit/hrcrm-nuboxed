@@ -8,7 +8,7 @@ import { MultiAvatar } from "../../../../Components/UI/Elements";
 import "jspdf-autotable";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Link } from "../../../../Components/Common";
 import {
   getJunkedLeads,
@@ -529,10 +529,7 @@ const LeadsJunkList = (props) => {
                           title={translatedMenuItems[19]}
                           onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
                      <Tooltip title="Delete">
-                          <DeleteOutlined
-                            type="delete"
-                            className=" !text-icon cursor-pointer text-[red]"
-                          />
+                     <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                        </Tooltip>
                         </StyledPopconfirm>
                       </div>

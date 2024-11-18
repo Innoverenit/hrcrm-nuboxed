@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import PeopleIcon from '@mui/icons-material/People';
 import { CheckCircleTwoTone } from "@ant-design/icons";
 import { AudioOutlined } from '@ant-design/icons';
@@ -355,7 +355,7 @@ const DealActionLeft = (props) => {
             }}
           >
              <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#28a355" }}>
-            <DeleteOutlined  className="text-white !text-icon"/>
+             <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
             </Avatar>
           </span>
         </Badge>

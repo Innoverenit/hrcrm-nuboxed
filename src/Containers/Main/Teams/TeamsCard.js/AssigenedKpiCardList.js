@@ -2,7 +2,7 @@ import React, { useEffect, useState, useMemo, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  Select, Tooltip,Progress } from "antd"
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {getLob} from "../../../Settings/Category/LOB/LOBAction"
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {getEmployeeKpiList,deleteKpiData,updateAssignedValue} from "../TeamsAction"
@@ -471,14 +471,7 @@ width={30}
                 onConfirm={() => props.deleteKpiData(item.userKpiLinkId)}
                 >
            <Tooltip title="Delete">
-                <DeleteOutlined
-                  type="delete"
-                  style={{
-                    cursor: "pointer",
-                    color: "red",
-                    fontSize: "1rem",
-                  }}
-                />
+           <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
              </Tooltip>
               </StyledPopconfirm>
 

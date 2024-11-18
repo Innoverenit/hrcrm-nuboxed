@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Tooltip,  Avatar,Button,message } from "antd";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import relativeTime from 'dayjs/plugin/relativeTime';
@@ -378,9 +378,7 @@ function EventAllcardList (props) {
               onConfirm={() => deleteEvent(item.eventId, props.userId)}
             >
                <Tooltip title={translatedMenuItems[8]}>
-              <DeleteOutlined  type="delete"
-                className="!text-icon cursor-pointer text-[red]"
-              />
+               <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
               </Tooltip>
             </StyledPopconfirm>
       

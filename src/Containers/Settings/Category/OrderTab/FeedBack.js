@@ -1,7 +1,7 @@
 import React, { useEffect,lazy,useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Popconfirm, message, Input } from "antd";
 import { MainWrapper } from "../../../../Components/UI/Layout";
@@ -235,12 +235,7 @@ const FeedBack = (props) => {
                           cancelText="No"
                            onConfirm={() =>  props.removeFeedBack(region.feedbackId)}
                         >
-                  <DeleteOutlined 
-                      className=" !text-icon text-red-600 cursor-pointer flex justify-center "
-                // onClick={() => 
-                //     props.removeServiceLine(item.feedbackId)
-                //  }
-                   />
+                 <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                    </Popconfirm>
               </div>
           </div>

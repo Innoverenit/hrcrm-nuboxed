@@ -1,7 +1,7 @@
 import React, { useEffect,lazy,useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Popconfirm,Tooltip,Button, Input } from "antd";
 import dayjs from "dayjs";
@@ -214,14 +214,12 @@ return <div><BundleLoader/></div>;
           cancelText="No"
           onConfirm={() => props.removeInvestor(region.investorCategoryId,props.orgId)}
         >
-          <DeleteOutlined   className=" !text-icon text-red-600 cursor-pointer "
-          />
+         <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+      
         </Popconfirm>
       </div>
     </div>
-     {/* <div className="font-bold">
-     Updated on {dayjs(region.updationDate).format('YYYY-MM-DD')} by {region.updatedBy}
-   </div> */}
+    
    </>
   ))}
   

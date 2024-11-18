@@ -9,7 +9,7 @@ import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import InfiniteScroll from "react-infinite-scroll-component";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import UpdateSupplierModal from "./UpdateSupplierModal";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SupplierSearchedData from "./SupplierSearchedData";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CategoryIcon from '@mui/icons-material/Category';
@@ -253,9 +253,7 @@ return(
               title={`${props.translatedMenuItems[22]} ?`}
              onConfirm={() => props.deleteSupplierData(item.supplierId)}
             >
-              <DeleteOutlined
-className=" !text-icon cursor-pointer text-[red] max-sm:!text-2xl"
-              />
+            <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
             </Popconfirm>
             </div>
             </div> 

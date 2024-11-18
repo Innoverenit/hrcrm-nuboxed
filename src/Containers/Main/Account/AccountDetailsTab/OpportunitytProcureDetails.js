@@ -16,7 +16,7 @@ import {
 } from "../AccountAction";
 import { getSaleCurrency } from "../../../Auth/AuthAction";
 import {getCategorylist,getSupplierSuppliesQuality} from "../../Suppliers/SuppliersAction"
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 
 const { Option } = Select;
@@ -443,14 +443,7 @@ function OpportunitytProcureDetails(props) {
                     onConfirm={() => props.deleteProcureData(item.id)}
                   >
                     <Tooltip title="Delete">
-                      <DeleteOutlined
-                        type="delete"
-                        style={{
-                          cursor: "pointer",
-                          color: "red",
-                          fontSize: "1rem",
-                        }}
-                      />
+                    <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                     </Tooltip>
                   </StyledPopconfirm>
                 </div>

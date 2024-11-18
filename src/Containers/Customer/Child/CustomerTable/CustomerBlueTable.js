@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { getSectors } from "../../../Settings/Sectors/SectorsAction";
 import dayjs from "dayjs";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
 import { getAllSalesList } from "../../../Opportunity/OpportunityAction";
 import { StyledTable } from "../../../../Components/UI/Antd";
 import { Tooltip, Button, Input } from "antd";
@@ -81,7 +81,7 @@ function CustomerBlueTable(props) {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             //icon="search"
             size="small"
             style={{ width: 90 }}
@@ -109,8 +109,8 @@ function CustomerBlueTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-        <SearchOutlined
+        // <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />

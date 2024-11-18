@@ -6,7 +6,7 @@ import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {getDepartments} from "../../../../Containers/Settings/Department/DepartmentAction"
 import {getUserListLocation} from "../../Child/Location/LocationAction"
 import{getAlLoCell,createUserCell,deleteUserCell,getCellCode,getUserCell,handleUserCellModal} from "../../../Event/Child/Location/LocationAction";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { BundleLoader } from "../../../../Components/Placeholder";
 const AddUserCellModal = lazy(() => ("/AddUserCellModal"));
 
@@ -257,7 +257,7 @@ const UsersCellCard = (props) => {
                             onConfirm={() => handleDelete(item)}
 
                           >
-                        <DeleteOutlined className="!text-red-500 !text-icon"/>
+                        <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                         </StyledPopconfirm>
                       </div>
                     </div>

@@ -13,7 +13,7 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Tooltip, Button,  } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { StyledPopconfirm, } from "../../../../Components/UI/Antd";
 import StairsIcon from '@mui/icons-material/Stairs';
 import { MultiAvatar, } from "../../../../Components/UI/Elements";
@@ -510,11 +510,7 @@ const ReportTaskList = (props) => {
                             //onConfirm={() => deleteTask(item.taskId, employeeId)}
                           >
                                 <Tooltip title="Delete">
-                            <DeleteOutlined
-                              type="delete"
-                              className="!text-icon cursor-pointer text-[red]"
-                              
-                            />
+                                <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                             </Tooltip>
                           </StyledPopconfirm>
                         )}

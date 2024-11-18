@@ -7,7 +7,7 @@ import { StyledTable } from "../../../Components/UI/Antd";
 import dayjs from "dayjs";
 import { Tooltip, Button, Input, Space } from "antd";
 import Highlighter from "react-highlight-words";
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
 import APIFailed from "../../../Helpers/ErrorBoundary/APIFailed";
 import {
   getProductionExecutiveAndManager,
@@ -50,11 +50,11 @@ function TeamsAllocationTable({
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+           
             size="small"
             style={{ width: 90 }}
           >
-            Search
+           <SearchIcon ClassName="!text-icon" /> Search
           </Button>
           <Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
             Reset
@@ -74,7 +74,7 @@ function TeamsAllocationTable({
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+      <SearchIcon ClassName="!text-icon" style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]

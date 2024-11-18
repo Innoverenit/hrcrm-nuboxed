@@ -4,7 +4,7 @@ import { Timeline, Button, Popconfirm } from 'antd';
 import dayjs from "dayjs";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { removeNotesOfProduct,updateNoteOfProduct } from "../../ProductAction";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {  SubTitle } from "../../../../Components/UI/Elements";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -76,7 +76,7 @@ const SingleNoteProductNoteForm = (props) => {
 
         {`${dayjs(creationDate).fromNow()}`} {ownerName} &nbsp;&nbsp;
      
-          <DeleteOutlined
+        <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  
           onClick={() => {
             const data = {
               productionBuilderId:props.rowdata.productionBuilderId,
@@ -86,10 +86,7 @@ const SingleNoteProductNoteForm = (props) => {
             props.removeNotesOfProduct(data);
           }}
            
-            style={{
-              color: "red",
-              cursor: "pointer"
-            }}
+          
           />
            &nbsp;&nbsp;
            <BorderColorIcon

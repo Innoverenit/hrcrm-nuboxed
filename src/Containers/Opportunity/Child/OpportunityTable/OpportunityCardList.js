@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import AddOpportunityPulseModal from "../OpportunityTable/AddOpportunityPulseModal"
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import InfiniteScroll from "react-infinite-scroll-component"
 import { FormattedMessage } from 'react-intl';
 
@@ -565,9 +565,7 @@ imgHeight={"1.8rem"}
           >
            
              {user.opportunityDeleteInd ===true && user.crmInd === true &&  (
-            <DeleteOutlined
-            // loading={props.deleteOpportunityData}
-            type="delete" className="!text-icon cursor-pointer text-[red]" />
+          <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
              )}
           </StyledPopconfirm>
 

@@ -5,24 +5,15 @@ import { StyledTable } from "../../../../../../Components/UI/Antd";
 import dayjs from "dayjs";
 import { Input, Space, Tooltip, Button } from "antd";
 import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
-// import {
-//   getProductionExecutive,
-//   handleAssignShiftModal,
-//   getShift,
-// } from "../../../../Shift/ShiftAction";
 import {
   handleDeputeButtonModal,
   setEditPlantAllocation,
 } from "../../../../PlantAction";
-// import DeputeButtonModal from "./DeputeButtonModal";
-// import AssignShiftModal from "./AssignShiftModal";
 import Highlighter from "react-highlight-words";
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
 
 class AllocationTable extends Component {
   componentDidMount() {
-    // this.props.getProductionExecutive(this.props.locationDetailsId);
-    // this.props.getShift(this.props.locationDetailsId);
   }
   state = {
     searchText: "",
@@ -55,11 +46,11 @@ class AllocationTable extends Component {
           <Button
             type="primary"
             onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+         
             size="small"
             style={{ width: 90 }}
           >
-            Search
+           <SearchIcon ClassName="!text-icon" /> Search
           </Button>
           <Button
             onClick={() => this.handleReset(clearFilters)}
@@ -85,7 +76,7 @@ class AllocationTable extends Component {
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+      <SearchIcon ClassName="!text-icon" style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]

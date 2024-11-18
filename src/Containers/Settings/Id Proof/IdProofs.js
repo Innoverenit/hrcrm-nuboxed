@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { Popconfirm,Tooltip,Input } from "antd";
 import { base_url } from "../../../Config/Auth";
 import DownloadIcon from '@mui/icons-material/Download';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
@@ -207,12 +207,7 @@ return <div><BundleLoader/></div>;
                         cancelText="No"
                         onConfirm={() =>  props.removeIdProof(region.idProofTypeId,props.orgId)}
                       >
-                <DeleteOutlined className=" !text-icon text-red-600 cursor-pointer"
-                 
-              // onClick={() => 
-              //     props.removeServiceLine(item.idProofTypeId)
-              //  }
-                 />
+                <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                  </Popconfirm>
             </div>
         </div>

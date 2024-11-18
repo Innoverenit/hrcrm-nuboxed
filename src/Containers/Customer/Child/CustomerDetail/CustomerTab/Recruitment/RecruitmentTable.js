@@ -7,7 +7,7 @@ import {
 } from "../../../../../../Components/UI/Antd";
 import {
   Tooltip,
-  Table, Input, Button,
+  Input, Button,
   message,
   Badge,
 } from "antd";
@@ -15,7 +15,7 @@ import { Link } from "../../../../../../Components/Common";
 import Highlighter from 'react-highlight-words';
 import dayjs from "dayjs";
 import { getCustomerRecruit } from "../../../../CustomerAction";
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
 import { MultiAvatar,SubTitle } from "../../../../../../Components/UI/Elements";
 class RecruitmentTable extends Component {
   constructor(props) {
@@ -50,7 +50,7 @@ class RecruitmentTable extends Component {
         <Button
           type="primary"
           onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-          icon={<SearchOutlined />}
+          icon={<SearchIcon />}
           size="small"
           style={{ width: 90, marginRight: 8 }}
         >
@@ -74,7 +74,7 @@ class RecruitmentTable extends Component {
             </Button>
       </div>
     ),
-    filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+    filterIcon: filtered => <SearchIcon style={{ color: filtered ? '#1890ff' : undefined }} />,
     onFilter: (value, record) =>
       record[dataIndex]
         .toString()

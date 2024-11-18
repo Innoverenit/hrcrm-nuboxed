@@ -6,7 +6,7 @@ import {linkDepartmentDocumentToggle,removeDepartments} from "../Department/Depa
 import { Button, Popconfirm, Switch, Tooltip } from "antd";
 import {addingDeptModules} from "../Department/DepartmentAction"
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { TextInput } from "../../../Components/UI/Elements";
 import dayjs from "dayjs";
 import ViewEditCard from "../../../Components/UI/Elements/ViewEditCard";
@@ -753,17 +753,9 @@ const SingleDepartment = (props) => {
                           cancelText="No"
                           onConfirm={() => props.removeDepartments(departmentId,props.orgId )}
                         >
-                      <DeleteOutlined
-                        // onClick={() => handleDeleteDepartment(departmentId)}
+                    
                      
-                        style={{
-                          cursor:"pointer",
-                          verticalAlign: "center",
-                          marginLeft: "5px",
-                          fontSize: "1rem",
-                          color: "red",
-                        }}
-                      />
+                        <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                        </Popconfirm>
                     )}
                     </Tooltip>

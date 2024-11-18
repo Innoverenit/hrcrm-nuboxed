@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import InfiniteScroll from "react-infinite-scroll-component"
 
 import {getQuotationTableData} from "../../../Dashboard/DashboardAction"
@@ -312,9 +312,7 @@ imgHeight={"1.8em"}
           >
            
              {user.opportunityDeleteInd ===true && user.crmInd === true &&  (
-            <DeleteOutlined
-            // loading={props.deleteOpportunityData}
-            type="delete" className=" !text-xl cursor-pointer text-[red]" />
+         <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
              )}
           </StyledPopconfirm>
 

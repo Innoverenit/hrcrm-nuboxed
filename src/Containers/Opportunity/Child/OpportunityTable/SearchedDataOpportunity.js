@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import dayjs from "dayjs";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LockIcon from "@mui/icons-material/Lock";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
   MultiAvatar,
@@ -389,10 +389,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                     >
                         {user.opportunityDeleteInd ===true && (
                       
-                        <DeleteOutlined
-                          type="delete"
-                          className=" !text-icon cursor-pointer text-[red]"
-                        />
+                      <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                         )}
                         </Tooltip>
                         </StyledPopconfirm>

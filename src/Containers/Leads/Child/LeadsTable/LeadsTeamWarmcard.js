@@ -10,7 +10,7 @@ import "jspdf-autotable";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import {
     
@@ -562,10 +562,7 @@ const LeadsTeamWarmcard = (props) => {
                         title={translatedMenuItems[19]}
                         onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
                    <Tooltip title="Delete">
-                        <DeleteOutlined
-                          type="delete"
-                          className=" !text-icon cursor-pointer text-[red]"
-                        />
+                   <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                      </Tooltip>
                       </StyledPopconfirm>
                     </div>

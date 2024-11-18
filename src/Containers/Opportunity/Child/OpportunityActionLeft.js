@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { CheckCircleTwoTone } from "@ant-design/icons";
 import { AudioOutlined } from '@ant-design/icons';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
@@ -414,7 +414,7 @@ const OpportunityActionLeft = (props) => {
              <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#28a355",
                boxShadow: props.viewType === "dashboard" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
                   transform: props.viewType === "dashboard" ? "scale(1.05)" : "scale(1)" }}>
-            <DeleteOutlined className="text-white !text-icon" />
+            <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
             </Avatar>
           </span>
         </Badge>

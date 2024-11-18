@@ -2,7 +2,7 @@ import React, { useState,lazy,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import dayjs from "dayjs";
 import { Tooltip, Button,Popconfirm  } from "antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -163,16 +163,7 @@ const cancelEdit = () => {
                         cancelText="No"
                         onConfirm={() =>  props.deleteStepperTaskData(item.id,)}
                       >
-                <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                    cursor:"pointer"
-                  }}
-              // onClick={() => 
-              //     props.removeServiceLine(item.id)
-              //  }
-                 />
+                <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                  </Popconfirm>
 
                                   </div>

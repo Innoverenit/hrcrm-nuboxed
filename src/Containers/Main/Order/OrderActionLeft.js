@@ -3,7 +3,7 @@ import {  StyledSelect } from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { Button, Input, Badge, Tooltip, Avatar } from "antd";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { AudioOutlined, HistoryOutlined } from "@ant-design/icons";
 import { getOrderCount, getAllOrderCount,inputOrderNoSearch,getAllHighOrderList,ClearSearchedOrder,
@@ -310,7 +310,7 @@ function OrderActionLeft (props) {
                               boxShadow: props.viewType === "card" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
                   transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"
                          }}>
-                        <DeleteOutlined className="text-white !text-icon" /></Avatar>
+                       <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  /></Avatar>
 
                     </span>
                     {/* </Badge> */}

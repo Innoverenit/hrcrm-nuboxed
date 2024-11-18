@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { Tooltip, Badge, Select ,Popconfirm} from "antd";
 import dayjs from "dayjs";
 import PaidIcon from '@mui/icons-material/Paid';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -485,10 +485,7 @@ const exportPDFAnnexure = async () => {
                               // "Do you want to delete?"
                                onConfirm={() => props.deleteOrderRepairData(item.orderId,props.userId)}
                             >
-                              <DeleteOutlined
-                                className=" !text-icon cursor-pointer text-[red] max-sm:!text-2xl"
-
-                              />
+                             <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                             </Popconfirm>
                         </Tooltip>
 
@@ -751,7 +748,7 @@ const exportPDFAnnexure = async () => {
                               title= {translatedMenuItems[15]}
                                onConfirm={() => props.deleteOrderRepairData(item.orderId,props.userId)}
                             >
-                              <DeleteOutlined
+                             <DeleteOutlineIcon 
                                 className=" !text-icon cursor-pointer text-[red] max-sm:!text-2xl"
 
                               />

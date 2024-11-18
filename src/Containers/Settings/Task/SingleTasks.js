@@ -1,6 +1,6 @@
 import React, { Component ,lazy} from "react";
 import { Button, Tooltip,Popconfirm } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 
 import dayjs from "dayjs";
@@ -81,17 +81,7 @@ class SingleTasks extends Component {
                           cancelText="No"
                           onConfirm={() => this.props.removeTask(taskTypeId )}
                         >
-                    <DeleteOutlined
-                    
-                      // onClick={() => handleDeleteTask(taskTypeId)}
-                    
-                      style={{
-                        verticalAlign: "center",
-                        marginLeft: "1rem",
-                        fontSize:"1rem",
-                        color: "red",
-                      }}
-                    />
+                   <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                        </Popconfirm>
                   </Tooltip>
  

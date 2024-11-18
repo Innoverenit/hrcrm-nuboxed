@@ -9,7 +9,7 @@ import { getProductCurrency, createProductCurrency,
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import {getSaleCurrency} from "../../../Auth/AuthAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const { Option } = Select;
 
@@ -379,10 +379,7 @@ function ProductbuilderTable(props) {
 
                           >
                      <Tooltip title={translatedMenuItems[9]}>
-                     <DeleteOutlined
-                      style={{ color: 'red' }}
-                          className="!text-icon cursor-pointer  flex justify-center items-center mt-1 ml-1"
-                          />
+                  
                        </Tooltip>
                        </StyledPopconfirm>
                        </div>

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../../Components/UI/Antd";
 import PlantDetailView from "./PlantDetailView";
-// import UpdatePlantModal from "../UpdatePlant/UpdatePlantModal";
 import { Tooltip, Button, Input, Space } from "antd";
 import APIFailed from "../../../../Helpers/ErrorBoundary/APIFailed";
 import {
@@ -12,8 +11,7 @@ import {
   handleUpdatePlantModal,
 } from "../../PlantAction";
 import Highlighter from "react-highlight-words";
-import { SearchOutlined } from "@ant-design/icons";
-// import { getLocationsType } from "../../../Locations/LocationsAction";
+import SearchIcon from '@mui/icons-material/Search';;
 import dayjs from "dayjs";
 
 class PlantTable extends Component {
@@ -52,11 +50,11 @@ class PlantTable extends Component {
           <Button
             type="primary"
             onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+         
             size="small"
             style={{ width: 90 }}
           >
-            Search
+            <SearchIcon ClassName="!text-icon" /> Search
           </Button>
           <Button
             onClick={() => this.handleReset(clearFilters)}
@@ -82,7 +80,7 @@ class PlantTable extends Component {
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+      <SearchIcon ClassName="!text-icon" style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]

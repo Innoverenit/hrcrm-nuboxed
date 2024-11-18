@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Popconfirm, Input } from "antd";
 import dayjs from "dayjs";
@@ -178,8 +178,7 @@ return <div><BundleLoader/></div>;
                         cancelText="No"
                         onConfirm={() =>  props.removeBrandCategory(region.shipById,props.orgId)}
                       >
-                <DeleteOutlined 
-                   className=" !text-icon text-red-600 cursor-pointer flex justify-center "
+                <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  
               // onClick={() => 
               //     props.removeServiceLine(item.shipById)
               //  }

@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 
 import { SearchOutlined, 
 } from '@ant-design/icons';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import CellTowerIcon from '@mui/icons-material/CellTower';
 import Highlighter from 'react-highlight-words';
@@ -407,13 +407,7 @@ function EmployeeSearchedData(props) {
                  onConfirm={() => props.deleteEmployeeData(item.userId)}>
            <Tooltip title="Delete">
         
-           <DeleteOutlined
-        style={{
-          cursor: "pointer",
-          color: "red",
-          fontSize: "1rem",
-        }}
-           />
+           <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
        
            </Tooltip>
            </StyledPopconfirm>
