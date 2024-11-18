@@ -84,10 +84,7 @@ const BussinessCard = (props) => {
   cancelText="No"
 >
   <Tooltip 
-    title={<FormattedMessage
-      id="app.Own"
-      defaultMessage="Won"
-    />}
+    title="Won"
 
   >
     <CheckCircleTwoTone
@@ -109,9 +106,7 @@ const BussinessCard = (props) => {
   cancelText="No"
 >
  <Tooltip
-        title={
-          <FormattedMessage id="app.drop" defaultMessage="Lost" />
-        }
+        title="Lost"
       >
  
   <StopTwoTone

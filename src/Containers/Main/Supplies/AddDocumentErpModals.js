@@ -155,7 +155,7 @@ function AddDocumentErpModals (props){
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage id="app.document" defaultMessage="Document" />}
+        title="Document"
         width="60%"
         visible={erpDocumentUploadModal}
         onClose={handleClose}
@@ -282,7 +282,7 @@ function AddDocumentErpModals (props){
                                 <Field
                                   inlineLabel
                                   name="department"
-                                  label={<FormattedMessage id="app.department" defaultMessage="Function" />}
+                                  label="Function"
                                   isRequired
                                   isColumn
                                   component={InputComponent}
@@ -291,7 +291,7 @@ function AddDocumentErpModals (props){
                               <div>
                                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                                   {" "}
-                                  <FormattedMessage id="app.level" defaultMessage="Level" />
+                                  Level
                                 </div>
                                 <div class=" flex justify-between">
                                   <ButtonGroup>

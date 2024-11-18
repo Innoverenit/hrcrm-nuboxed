@@ -1,7 +1,5 @@
 import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from 'react-intl';
-
 import { bindActionCreators } from "redux";
 import {
   StyledTable,
@@ -40,54 +38,34 @@ class TrainingTable extends Component {
 
     const columns = [
       {
-        //title: " Course Name",
-        title: (
-          <FormattedMessage id="app.courseName" defaultMessage=" Course Name" />
-        ),
+        title: " Course Name",
         dataIndex: "courseName",
         // width: "35%"
       },
       {
-        //title: "Start Date",
-        title: (
-          <FormattedMessage id="app.startDate" defaultMessage="Start Date" />
-        ),
+        title: "Start Date",
         dataIndex: "startDate",
         render: (name, item, i) => {
           return <span>{dayjs(item.startDate).format("LL")}</span>;
         },
       },
       {
-        //title: "End Date",
-        title: <FormattedMessage id="app.endDate" defaultMessage="End Date" />,
+        title: "End Date",
         dataIndex: "endDate",
         render: (name, item, i) => {
           return <span>{dayjs(item.endDate).format("LL")}</span>;
         },
       },
       {
-        // title: "Organization/Institution",
-        title: (
-          <FormattedMessage
-            id="app.organization"
-            defaultMessage="Organization/Institution"
-          />
-        ),
+         title: "Organization/Institution",
         dataIndex: "organization",
       },
       {
-        //title: "Grade",
-        title: <FormattedMessage id="app.grade" defaultMessage="Grade" />,
+        title: "Grade",
         dataIndex: "grade",
       },
       {
-        //title: "Marks Secured",
-        title: (
-          <FormattedMessage
-            id="app.type"
-            defaultMessage="Type"
-          />
-        ),
+        title: "Marks Secured",
         // dataIndex: "marksSecured",
       },
       {
