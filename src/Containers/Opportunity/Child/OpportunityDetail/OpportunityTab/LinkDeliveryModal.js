@@ -9,11 +9,7 @@ const LinkDeliveryModal = props => {
   return (
     <>
       <StyledModal
-        //title="Link Delivery"
-        title={<FormattedMessage
-          id="app.linkdelivery"
-          defaultMessage="Link Delivery"
-        />}
+        title="Link Delivery"
         width="40vw"
         visible={visible}
         maskClosable={false}

@@ -202,9 +202,7 @@ function MonsterForm(props) {
                   htmlType="submit"
                   loading={props.linkingMonster}
                 >
-                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
-                  {/*                     
-                    Create */}
+                 Submit
                 </Button>
               </div>
                                            

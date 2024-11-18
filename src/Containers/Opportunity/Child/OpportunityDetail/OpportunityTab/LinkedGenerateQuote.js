@@ -29,11 +29,7 @@ function LinkedGenerateQuote(props) {
   return (
     <>
       <StyledModal
-        // title="Send to"
-        title={<FormattedMessage
-          id="app.sendto"
-          defaultMessage="Send to"
-        />}
+        title="Send to"
         width="25%"
         visible={visibleModal}
         maskClosable={false}
@@ -80,11 +76,8 @@ function LinkedGenerateQuote(props) {
                 {/* <FlexContainer justifyContent="flex-end"> */}
                   <div>
                     <Button type="primary" htmlType="submit" Loading={false}>
-                      <FormattedMessage
-                        id="app.add"
-                        defaultMessage="Add"
-                      />
-                      {/* Add */}
+                     
+                      Add
                     </Button>
                   </div>
                   {/* </FlexContainer> */}

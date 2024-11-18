@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 
 import { bindActionCreators } from "redux";
 import { Button, Tooltip, } from "antd";
-import { FormattedMessage, } from "react-intl";
+import { FormattedMessage } from 'react-intl';
 import { Formik, Form, Field, FastField } from "formik";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import * as Yup from "yup";
