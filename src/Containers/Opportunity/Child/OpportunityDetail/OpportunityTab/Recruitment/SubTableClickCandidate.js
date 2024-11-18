@@ -273,10 +273,7 @@ class SubTableClickCandidate extends Component {
   },
     {
         title: "Stages",
-        // title: <FormattedMessage
-        //   id="app.callType"
-        //   defaultMessage="Stages"
-        // />,
+       
         dataIndex: "callType",
         width: "7%",
         render: (name, item, i) => {
@@ -370,10 +367,8 @@ class SubTableClickCandidate extends Component {
                   {item.approveInd&&item.recruitOwner ? (
                     <>
                       <Tooltip //title={"Offer rolled out"}
-                        title={<FormattedMessage
-                          id="app.selected"
-                          defaultMessage="Selected"
-                        />}
+                        title="Selected"
+                    
 
                       >
                         <CheckCircleTwoTone
@@ -405,10 +400,8 @@ class SubTableClickCandidate extends Component {
                   ) : (
                     <>
                       <Tooltip //title={"Offer"}
-                        title={<FormattedMessage
-                          id="app.select"
-                          defaultMessage="Select"
-                        />}
+                        title="Select"
+                       
 
                       >
                         <CheckCircleTwoTone
@@ -452,11 +445,9 @@ class SubTableClickCandidate extends Component {
                       </Tooltip>
 
                       &nbsp; &nbsp;
-                      <Tooltip //title={"Drop"}
-                        title={<FormattedMessage
-                          id="app.drop"
-                          defaultMessage="Drop"
-                        />}
+                      <Tooltip 
+                      title={"Drop"}
+                      
 
                       >
                         <StopTwoTone
@@ -572,7 +563,7 @@ class SubTableClickCandidate extends Component {
   // },
 
   {
-    title: <FormattedMessage id="app.doucumentsAwaited" defaultMessage="Documents Awaited"  />,
+    title:"Documents Awaited" ,
     // dataIndex: "documentSetList",
     width: "17%",
     // ...getColumnSearchProps("documentSetList"),
@@ -644,11 +635,9 @@ class SubTableClickCandidate extends Component {
           {/* {item.candidateName ? ( */}
             <>
               {close ? (
-                <Tooltip //title="Close Details"
-                  title={<FormattedMessage
-                    id="app.closedetails"
-                    defaultMessage="Close Details"
-                  />}
+                <Tooltip 
+                title="Close Details"
+                
                 >
                   <EyeInvisibleTwoTone
                     type="eye-invisible"
@@ -686,11 +675,9 @@ class SubTableClickCandidate extends Component {
                 >{user.pulseAccessInd ===true && (
                     <PulseIcon></PulseIcon>
                     )}          
-                  <Tooltip //title="Access Details"
-                    title={<FormattedMessage
-                      id="app.accessdetails"
-                      defaultMessage="Access Details"
-                    />}
+                  <Tooltip 
+                  title="Access Details"
+                
                   >                  
                   </Tooltip>                
                   </span>

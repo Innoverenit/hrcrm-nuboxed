@@ -51,23 +51,11 @@ function PerformanceManList(props) {
   <div class="rounded-lg m-5 p-2 w-[97%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
           <div className=" md:w-[17.5rem]">
-        <FormattedMessage
-                  id="app.name"
-                  defaultMessage="Name"
-                /></div>
+        Name</div>
  
-        <div className="md:w-[10.1rem]"><FormattedMessage
-                  id="app.Frequency"
-                  defaultMessage="Frequency"
-                /></div>
-                 <div className="md:w-[10.1rem]"><FormattedMessage
-                  id="app.completedValue"
-                  defaultMessage="Completed Value"
-                /></div>
-                       <div className=" md:w-[8.1rem]"><FormattedMessage
-                  id="app.assignedValue"
-                  defaultMessage="Assigned Value"
-                /></div>
+        <div className="md:w-[10.1rem]">Frequency</div>
+                 <div className="md:w-[10.1rem]">Completed Value</div>
+                       <div className=" md:w-[8.1rem]">Assigned Value</div>
        
         
         {/* <div className="w-[10.2rem]"></div> */}

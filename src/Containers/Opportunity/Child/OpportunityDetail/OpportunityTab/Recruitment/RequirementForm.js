@@ -266,11 +266,8 @@ function RequirementForm(props) {
                     <div style={{ width: "47%" }}>
                       <Field
                         name="jobOrder"
-                        //  label="Sponsor"
-                        label={<FormattedMessage
-                          id="app.joborder"
-                          defaultMessage="Job ID"
-                        />}
+                         label="Sponsor"
+                       
                         isColumn
                         width={"100%"}
                         inlineLabel
@@ -298,10 +295,7 @@ function RequirementForm(props) {
                       <Field
                         name="number"
                         label="# Positions"
-                        // label={<FormattedMessage
-                        //   id="app.number"
-                        //   defaultMessage="# Positions"
-                        // />}
+                        
                         width={"100%"}
                         isRequired
                         isColumn
@@ -323,11 +317,8 @@ function RequirementForm(props) {
                       {" "}
                       <Field
                         name="avilableDate"
-                        // label="Start Date"
-                        label={<FormattedMessage
-                          id="app.avilableDate"
-                          defaultMessage="Start Date"
-                        />}
+                        label="Start Date"
+                       
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -353,11 +344,8 @@ function RequirementForm(props) {
                       {" "}
                       <Field
                         name="endDate"
-                        // label="Start Date"
-                        label={<FormattedMessage
-                          id="app.endate"
-                          defaultMessage="End Date"
-                        />}
+                        label="Start Date"
+                      
                         // isRequired
                         component={DatePicker}
                         isColumn
@@ -385,11 +373,8 @@ function RequirementForm(props) {
                     <div style={{ width: "47%" }}>
                       <Field
                         name="experience"
-                        //  label="Sponsor"
-                        label={<FormattedMessage
-                          id="app.joborder"
-                          defaultMessage="Experience (in Years)"
-                        />}
+                         label="Experience (in Years)"
+                     
                         isColumn
                         width={"100%"}
                         inlineLabel
@@ -402,13 +387,7 @@ function RequirementForm(props) {
                         // isRequired
                         // type="email"
                         name="workPreference"
-                        //label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.workpreference"
-                            defaultMessage="Work Preference"
-                          />
-                        }
+                        label="Work Preference"
                         className="field"
                         isColumn
                         width={"100%"}
@@ -442,13 +421,8 @@ function RequirementForm(props) {
                       <Field
                         name="role"
                         selectType="roleType"
-                        //label="Designation"
-                        label={
-                          <FormattedMessage
-                            id="app.role"
-                            defaultMessage="Role"
-                          />
-                        }
+                        label="Role"
+                      
                         isColumnWithoutNoCreate                        
                         isColumn
                         component={SearchSelect}
@@ -481,10 +455,7 @@ function RequirementForm(props) {
                           <Field
                             name="billing"
                             label={typeData ? "Salary" : "Rate/hr"}
-                            // label={<FormattedMessage
-                            //   id="app.billing"
-                            //   defaultMessage="Billing/hour"
-                            // />}
+                          
                             width={"100%"}
                             isRequired
                             isColumn
@@ -495,12 +466,8 @@ function RequirementForm(props) {
                         <Field
                           name="currency"
                           isColumnWithoutNoCreate
-                          label={
-                            <FormattedMessage
-                              id="app.currency"
-                              defaultMessage="Currency"
-                            />
-                          }
+                          label="Currency"
+                            
                           width="100%"
                           isColumn
                           selectType="currencyName"
@@ -521,10 +488,8 @@ function RequirementForm(props) {
                       <Field
                         name="sponserId"
                         //  label="Sponsor"
-                        label={<FormattedMessage
-                          id="app.sponserId"
-                          defaultMessage="Customer Contact"
-                        />}
+                        label="Customer Contact"
+                       
                         isColumn
                         width={"100%"}
                         inlineLabel
@@ -537,10 +502,6 @@ function RequirementForm(props) {
                       <Field
                         name="closeByDate"
                          label="Close By"
-                        // label={<FormattedMessage
-                        //   id="app.avilableDate"
-                        //   defaultMessage="Start Date"
-                        // />}
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -594,10 +555,6 @@ function RequirementForm(props) {
                       <Field
                         name="recruitmentProcessId"
                         label="Workflow"
-                        // label={<FormattedMessage
-                        //   id="app.recruitmentProcessId"
-                        //   defaultMessage="Workflow"
-                        // />}
                         isRequired
                         disabled
                         isColumn
@@ -635,10 +592,7 @@ function RequirementForm(props) {
                       // isColumnWithoutNoCreate
                       // label="Contact"
                       label={
-                        <FormattedMessage
-                          id="app.recruiter"
-                          defaultMessage="Recruiter"
-                        />
+                       
                       }
                       // isRequired
                       component={SelectComponent}
@@ -685,11 +639,7 @@ function RequirementForm(props) {
                     <div style={{ width: "100%" }}>
                       <Field
                         name="description"
-                        //label="Description"
-                        label={<FormattedMessage
-                          id="app.description"
-                          defaultMessage="Description"
-                        />}
+                        label="Description"
                         width={"100%"}
                         isColumn
                         component={TextareaComponent}
@@ -708,10 +658,7 @@ function RequirementForm(props) {
                   htmlType="submit"
                 //   Loading={props.linkingRecruitToOpportunity}
                 >
-                  <FormattedMessage
-                    id="app.update"
-                    defaultMessage="Update"
-                  />
+                  Update
                 
                 </Button>
               </FlexContainer>

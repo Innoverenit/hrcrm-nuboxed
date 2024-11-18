@@ -236,11 +236,7 @@ function CustomerForm(props) {
                     <div style={{ width: "47%" ,}}>
                     <Field
                         name="requirementName"
-                        //label="Name"
-                        label={<FormattedMessage
-                          id="app.name"
-                          defaultMessage="Name"
-                        />}
+                        label="Name"
                         width={"100%"}
                         // isRequired
                         isColumn
@@ -256,11 +252,8 @@ function CustomerForm(props) {
                     <div style={{ width: "47%" }}>
                     <Field
                         name="experience"
-                        //  label="Sponsor"
-                        label={<FormattedMessage
-                          id="app.joborder"
-                          defaultMessage="Experience (in Years)"
-                        />}
+                         label="Experience (in Years)"
+                     
                         isColumn
                         width={"100%"}
                         inlineLabel                       
@@ -271,11 +264,8 @@ function CustomerForm(props) {
                     <div style={{ width: "47%" ,}}>
                     <Field
                         name="location"
-                        //label="Name"
-                        label={<FormattedMessage
-                          id="app.location"
-                          defaultMessage="Location"
-                        />}
+                        label="Location"
+                      
                         width={"100%"}
                         // isRequired
                         isColumn
@@ -293,13 +283,8 @@ function CustomerForm(props) {
                         // isRequired
                         // type="email"
                         name="workpreference"
-                        //label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.workpreference"
-                            defaultMessage="Work Preference"
-                          />
-                        }
+                        label="Work Preference"
+                          
                         className="field"
                         isColumn
                         width={"100%"}
@@ -318,11 +303,8 @@ function CustomerForm(props) {
                   <div style={{ width: "47%" ,}}>
                     <Field
                         name="sponserId"
-                        //  label="Sponsor"
-                        label={<FormattedMessage
-                          id="app.customercontact"
-                          defaultMessage="Customer Contact"
-                        />}
+                         label="Customer Contact"
+
                         isColumn
                         width={"100%"}
                         inlineLabel
@@ -335,13 +317,8 @@ function CustomerForm(props) {
                       <Field
                         name="partnerId"
                         // isColumnWithoutNoCreate
-                        //label="Mobile #"
-                        label={
-                          <FormattedMessage
-                            id="app.vendor"
-                            defaultMessage="Vendor"
-                          />
-                        }
+                        label="Vendor"
+                         
                         placeholder="Select"
                         width={"100%"}
                          component={SelectComponent}
@@ -371,13 +348,8 @@ function CustomerForm(props) {
                       <Field
                         name="roleTypeId"
                         selectType="roleType"
-                        //label="Designation"
-                        label={
-                          <FormattedMessage
-                            id="app.role"
-                            defaultMessage="Role"
-                          />
-                        }
+                        label="Role"
+                         
                         isColumnWithoutNoCreate
                         // selectType="designationType"
                         // options={[
@@ -404,12 +376,8 @@ function CustomerForm(props) {
                     //  selectType="contactList"
                     // isColumnWithoutNoCreate
                     // label="Contact"
-                    label={
-                      <FormattedMessage
-                        id="app.recruiter"
-                        defaultMessage="Recruiter"
-                      />
-                    }
+                    label="Recruiter"
+                     
                   // mode
                     placeholder="Select"
                     width={"100%"}
@@ -428,11 +396,8 @@ function CustomerForm(props) {
                       {" "}
                       <Field
                         name="number"
-                        // label="# Positions"
-                        label={<FormattedMessage
-                          id="app.number"
-                          defaultMessage="# Positions"
-                        />}
+                        label="# Positions"
+                       
                         width={"100%"}
                         isRequired
                         isColumn
@@ -460,11 +425,8 @@ function CustomerForm(props) {
                   <div style={{ width: "47%" }}>
                   <Field
                     name="recruitmentProcessId"
-                    //label="Workflow"
-                    label={<FormattedMessage
-                      id="app.recruitmentProcessId"
-                      defaultMessage="Workflow"
-                    />}
+                    label="Workflow"
+                   
                     isRequired
                     isColumn
                     style={{
@@ -498,12 +460,7 @@ function CustomerForm(props) {
                         name="currency"
                         isColumnWithoutNoCreate
                     
-                        label={
-                          <FormattedMessage
-                            id="app.currency"
-                            defaultMessage="Currency"
-                          />
-                        }
+                        label="Currency"
                         width="100%"
                         isColumn
                         selectType="currencyName"
@@ -525,11 +482,7 @@ function CustomerForm(props) {
                       {" "}
                       <Field
                         name="avilableDate"
-                        // label="Start Date"
-                        label={<FormattedMessage
-                          id="app.avilableDate"
-                          defaultMessage="Start Date"
-                        />}
+                        label="Start Date"
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -556,12 +509,9 @@ function CustomerForm(props) {
                       {" "}
                       <Field
                         name="endDate"
-                        // label="Start Date"
-                        label={<FormattedMessage
-                          id="app.endate"
-                          defaultMessage="End Date"
-                        />}
-                        // isRequired
+                        label="End Date"
+                     
+                   // isRequired
                         component={DatePicker}
                         isColumn
                         width={"100%"}
@@ -614,11 +564,7 @@ function CustomerForm(props) {
                     <div style={{ width: "101%" }}>
                     <Field
                     name="description"
-                    //label="Description"
-                    label={<FormattedMessage
-                      id="app.description"
-                      defaultMessage="Description"
-                    />}
+                    label="Description"
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -641,11 +587,8 @@ function CustomerForm(props) {
                   htmlType="submit"
                   Loading={props.linkingRecruitToOpportunity}
                 >
-                  <FormattedMessage
-                    id="app.create"
-                    defaultMessage="Create"
-                  />
-                  {/* Create */}
+                
+                  Create
                 </Button>
               </div>
             </Form>

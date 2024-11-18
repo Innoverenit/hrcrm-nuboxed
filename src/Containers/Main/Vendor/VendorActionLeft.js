@@ -80,7 +80,7 @@ function VendorActionLeft (props) {
             <div class="flex items-center">
 
                 <Tooltip
-                    title={<FormattedMessage id="app.cardview" defaultMessage="Card View" />}>
+                    title="Card View">
 {/* <Badge
           size="small"
           count={(props.viewType === "card" && props.countSupplier.supplierCount) || 0}

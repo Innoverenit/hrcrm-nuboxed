@@ -55,11 +55,7 @@ class StagesSwitch extends Component {
     return (
       <div>
         <Popconfirm
-          //title="Do you wish to proceed?"
-          title={<FormattedMessage
-            id="app.doyouwishtoproceed?"
-            defaultMessage="Doyou wish to proceed?"
-          />}
+          title="Do you wish to proceed?"
           onConfirm={this.onChange}
           onCancel={null}
           okText="Ok"

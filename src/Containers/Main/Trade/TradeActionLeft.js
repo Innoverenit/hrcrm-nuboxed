@@ -121,7 +121,7 @@ const {
             <div class="flex items-center">
 
                 <Tooltip
-                    title={<FormattedMessage id="app.all" defaultMessage="ALL" />}>
+                    title="ALL">
 {/* <Badge
           size="small"
           count={(props.viewType === "table" && props.countSupplier.supplierCount) || 0}
