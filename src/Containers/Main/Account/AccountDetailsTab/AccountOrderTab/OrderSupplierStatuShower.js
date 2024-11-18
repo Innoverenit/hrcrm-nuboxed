@@ -5,6 +5,7 @@ import { Button, Rate, Steps } from 'antd';
 import {getProcureStatusItem} from "../../AccountAction";
 import dayjs from 'dayjs';
 import OrdrSuplrStatusItemCard from "./OrdrSuplrStatusItemCard";
+import OrderPieChart from "./OrderPieChart";
 
 function OrderSupplierStatuShower (props) {
 
@@ -12,13 +13,7 @@ function OrderSupplierStatuShower (props) {
     props.getProcureStatusItem(props.particularRowData.orderId);
       },[]);
 
-      const steps = [
-        { id: 1, label: "Select items", icon: "🛒" },
-        { id: 2, label: "Add to cart", icon: "🛍️" },
-        { id: 3, label: "Enter your address", icon: "📍" },
-        { id: 4, label: "Payment", icon: "💳" },
-        { id: 5, label: "Delivery to your home", icon: "🚚" },
-    ];
+
 
   return (
    <React.Fragment>
@@ -31,40 +26,67 @@ function OrderSupplierStatuShower (props) {
                  <div className="text-4xl mb-2">🛒</div>
                         
      
-                        <div className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
+                        <div className={`${props.statusItems.creationDate ? "bg-green-500  w-8 h-8 text-white rounded-full flex items-center justify-center":"bg-red-500 w-8 h-8 text-white rounded-full flex items-center justify-center"}`}>
                             1
                         </div>
                         
          <p className="mt-2 text-sm font-medium text-center">Order Created</p>
          <b> {dayjs(props.statusItems.creationDate).format("DD-MM-YYYY")} </b>
                     </div>
-            
                     <div className="relative z-10 flex flex-col items-center">
-                 <div className="text-4xl mb-2">🛍️</div>
-                        
-     
+                 <div className="text-4xl mb-2">🛒</div>
                         <div className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
                             2
                         </div>
-                        
+         <p className="mt-2 text-sm font-medium text-center">Invoice</p>
+         {/*  */} <OrderPieChart />
+                    </div>
+                    <div className="relative z-10 flex flex-col items-center">
+                 <div className="text-4xl mb-2">🛍️</div>
+                        <div className={`${props.statusItems.paymentType ? "w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center":"w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center"}`}>
+                            3
+                        </div>
          <p className="mt-2 text-sm font-medium text-center">Payment</p>
-         <b> {props.statusItems.paymentType} |{props.statusItems && props.statusItems.paymentDate ? 
+         <b> {`${props.statusItems.paymentType ? `${props.statusItems.paymentType} |` :""} ${props.statusItems && props.statusItems.paymentDate ? 
   dayjs(props.statusItems.paymentDate).format("DD-MM-YYYY") : 
   ""
-}</b>
+}`}</b>
+                    </div>
+                    <div className="relative z-10 flex flex-col items-center">
+                 <div className="text-4xl mb-2">🛒</div>
+                        <div className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
+                            4
+                        </div>
+         <p className="mt-2 text-sm font-medium text-center">Pack</p>
+         {/*  */}
+         <OrderPieChart/>
+                    </div>
+                    <div className="relative z-10 flex flex-col items-center">
+                 <div className="text-4xl mb-2">🛒</div>
+                        <div className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
+                            5
+                        </div>
+         <p className="mt-2 text-sm font-medium text-center">Order Pick Up</p>
+         {/* <OrdrSuplrStatusItemCard statusItems={props.statusItems} particularRowData={props.particularRowData}/> */}
+         <OrderPieChart/>
+                    </div>
+                    <div className="relative z-10 flex flex-col items-center">
+                 <div className="text-4xl mb-2">📍</div>
+                        <div className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
+                            6
+                        </div>
+         <p className="mt-2 text-sm font-medium text-center">Ship</p>
+         {/*  */}   <OrderPieChart/>
                     </div>
 
                     <div className="relative z-10 flex flex-col items-center">
-                 <div className="text-4xl mb-2">🛒</div>
-                        
-     
+                 <div className="text-4xl mb-2">🚚</div>
                         <div className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
-                            3
+                            7
                         </div>
-                        
-         <p className="mt-2 text-sm font-medium text-center">Order Pick Up</p>
-         {/* <OrdrSuplrStatusItemCard statusItems={props.statusItems} particularRowData={props.particularRowData}/> */}
-                    </div>
+         <p className="mt-2 text-sm font-medium text-center">Delevered</p>
+         {/*  */}   <OrderPieChart/>
+                    </div>  
             </div>
         </div>
 

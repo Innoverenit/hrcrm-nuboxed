@@ -838,7 +838,15 @@ function AccountDetailsTab(props) {
               selectedLanguage={props.selectedLanguage}
               translateText={props.translateText}
                 addDistributorActivityModal={props.addDistributorActivityModal}
-                handleDistributorActivityModal={props.handleDistributorActivityModal} />
+                handleDistributorActivityModal={props.handleDistributorActivityModal}
+                defaultValue={[{ label: props.distributorData.name, value: props.distributorData.distributorId }]}
+                distributorId={{ value: props.distributorData.distributorId }}
+                uniqueId={props.distributorData.distributorId}
+                distributor={props.distributorData}
+              name={props.distributorData.name}
+                />
+           
+           
             <CatalogueOrderModal
               selectedLanguage={props.selectedLanguage}
               translateText={props.translateText}

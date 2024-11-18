@@ -29,6 +29,7 @@ import AddSupplierDocumentModal from "../../../Suppliers/Child/SupplierDetails/S
 import ShipperAwbTable from "./ShipperActivityTab/ShipperAwbTable";
 import ErpNote from "../../../ErpNote/ErpNote";
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
+import AddShipperActivityModal from "./ShipperActivityTab/AddShipperActivityModal";
 
 const ShipperDocumentTable = lazy(() =>
   import("./ShipperDocumentTab/ShipperDocumentTable")
@@ -79,8 +80,8 @@ class ShipperDetailsTab extends Component {
        "316",// "Notes" 2
        "138",  // Document 3
        "73",  // Contact 4
-       "1219",// Cost
-       
+       "1219",// Cost 5
+       "104",//Create 6
             ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -218,7 +219,17 @@ class ShipperDetailsTab extends Component {
                   </span>
                   {activeKey === "1" && (
                     <>
-                
+                <Tooltip title= {this.state.translatedMenuItems[6]}                                        >
+                                            <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                                               
+                                                tooltipTitle= {this.state.translatedMenuItems[6]}
+                                                onClick={() => {
+                                                    this.props.handleShipperActivityModal(true);
+                                                }}
+                                              
+                                            />
+                                        </Tooltip>
                     </>
                   )}
                 </>
@@ -440,10 +451,7 @@ class ShipperDetailsTab extends Component {
             }
             handleGenerateOrderInShipper={this.handleGenerateOrderInShipper}
           />
-          <AddShipperActivityModal
-            addShipperActivityModal={this.props.addShipperActivityModal}
-            handleShipperActivityModal={this.props.handleShipperActivityModal}
-          />*/}
+        */}
           {/* <AddShipperDocumentModal
             shipperDocumentUploadModal={this.props.shipperDocumentUploadModal}
             handleShipperDocumentUploadModal={
@@ -456,11 +464,21 @@ class ShipperDetailsTab extends Component {
             shipperId={this.props.shipper.shipperId}
             supplierDocumentUploadModal={this.props.supplierDocumentUploadModal}
             handleSupplierDocumentUploadModal={
-              this.props.handleSupplierDocumentUploadModal
-              
-            }
+              this.props.handleSupplierDocumentUploadModal}
           />
 
+<AddShipperActivityModal
+ translateText={this.props.translateText}
+ selectedLanguage={this.props.selectedLanguage}
+            addShipperActivityModal={this.props.addShipperActivityModal}
+            handleShipperActivityModal={this.props.handleShipperActivityModal}
+            defaultValue={[{ label: this.props.shipper.name, value: this.props.shipper.shipperId }]}
+            shipperId={{ value: this.props.shipper.shipperId }}
+            uniqueId={this.props.shipper.shipperId}
+            shipper={this.props.shipper}
+          name={this.props.shipper.name}
+          
+          />
 
 
 <AddShipperCostModal

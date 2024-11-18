@@ -181,42 +181,42 @@ const handleSelectChange = (value, key, dataIndex) => {
                                                 <div>
                                                     <div key={item.itemId}
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
-                                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            <div className=" flex font-medium   md:w-[6rem] max-sm:flex-row max-sm:justify-between  ">
+                                                         <div class="flex max-sm:justify-between max-sm:w-wk border-green-500 bg-[#eef2f9] items-center">
+                                                            <div className=" flex font-medium h-8  bg-[#eef2f9]  md:w-[6rem] max-sm:flex-row max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.productFullName}
                                                                 </div>
                                                             </div>
 
-                                                            <div className=" flex font-medium   md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium  h-8 ml-gap  bg-[#eef2f9] md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.category}
                                                                 </div>
 
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium h-8 ml-gap  bg-[#eef2f9]  md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.attribute}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium  h-8 ml-gap  bg-[#eef2f9] md:w-[rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
-                                                                    {item.itemId}
+                                                                    {item.newProductId}
                                                                 </div>
                                                             </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium h-8 ml-gap  bg-[#eef2f9]  md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.unit}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium h-8 ml-gap  bg-[#eef2f9]  md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                 {date}
                                                              
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium  h-8 ml-gap  bg-[#eef2f9] md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                  {editsuppliesId === item.itemId ? (
                                                                 <input
@@ -233,7 +233,7 @@ const handleSelectChange = (value, key, dataIndex) => {
           )}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium  h-8 ml-gap  bg-[#eef2f9]  md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                 {editsuppliesId === item.itemId ? (
                        <Input
@@ -266,7 +266,7 @@ const handleSelectChange = (value, key, dataIndex) => {
                                                                      
                                                                 </div>
                                                             </div> */}
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium h-8 ml-gap  bg-[#eef2f9]  md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                 {editsuppliesId === item.itemId ? (
                        <Select
@@ -290,7 +290,7 @@ const handleSelectChange = (value, key, dataIndex) => {
                                                                 </div>
                                                             </div>
                                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                            <div className=" flex font-medium h-8 ml-gap  bg-[#eef2f9] md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
     {editsuppliesId === item.itemId ? (
                         <>
                       <Button 
