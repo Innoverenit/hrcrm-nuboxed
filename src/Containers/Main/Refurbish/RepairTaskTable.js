@@ -87,6 +87,9 @@ const RepairTaskTable = (props) => {
                                         value={dayjs(item.creationDate).format("HH:mm")} />
 
                                 </span> */}
+                                <span className="digital-clock">
+    {dayjs(item.creationDate).format("HH:mm")}
+</span>
                                 {!item.completeTaskInd && <Popconfirm
                                     title="Do you want to delete?"
                                     onConfirm={() => props.deleteTaskList({
