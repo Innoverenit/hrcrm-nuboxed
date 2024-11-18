@@ -349,6 +349,10 @@ class SupplierDetailsTab extends Component {
           handleSuppliersActivityModal={this.props.handleSuppliersActivityModal}
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
+          defaultValue={[{ label: this.props.supplier && this.props.supplier.name, value: this.props.supplier && this.props.supplier.supplierId }]}
+          supplierId={this.props.supplier && this.props.supplier.supplierId}
+          uniqueId={this.props.supplier && this.props.supplier.supplierId}
+          name={this.props.supplier && this.props.supplier.name}
         />
         <AddSupplierInventoryImportModal
         handleSupplierInventoryImportModal={this.props.handleSupplierInventoryImportModal}

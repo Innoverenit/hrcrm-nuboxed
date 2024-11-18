@@ -47,8 +47,15 @@ function ActivityForm (props) {
                    name={props.name}
                    defaultValue={props.defaultValue}
                      defaultCustomers={props.defaultCustomers}
-                     customerId={props. customerId }
-                  customer={props.customer} {...formProps}
+                     customerId={props. customerId}
+                  customer={props.customer} 
+                  distributorId={props. distributorId}
+                  distributor={props.distributor}
+                  supplierId={props. supplierId}
+                  supplier={props.supplier}
+                  shipper={props.shipper}
+                  shipperId={props. shipperId}
+                  {...formProps}
                   translateText={props.translateText}
                   selectedLanguage={props.selectedLanguage}
                 translatedMenuItems={props.translatedMenuItems}
@@ -78,7 +85,14 @@ function ActivityForm (props) {
                    investor={props.investor}
                     defaultCustomers={props.defaultCustomers}
                     customerId={props. customerId }
-                  customer={props.customer} {...formProps}
+                  customer={props.customer}
+                  distributorId={props. distributorId}
+                  distributor={props.distributor}
+                  supplierId={props. supplierId}
+                  supplier={props.supplier}
+                  shipper={props.shipper}
+                  shipperId={props. shipperId}
+                   {...formProps}
                   translateText={props.translateText}
                   selectedLanguage={props.selectedLanguage}
                 translatedMenuItems={props.translatedMenuItems}
@@ -106,7 +120,14 @@ function ActivityForm (props) {
                    name={props.name}
                     defaultCustomers={props.defaultCustomers}
                     customerId={props. customerId }
-                  customer={props.customer} {...formProps}
+                  customer={props.customer}        
+                   distributorId={props. distributorId}
+                  distributor={props.distributor}
+                  supplierId={props. supplierId}
+                  supplier={props.supplier}
+                  shipper={props.shipper}
+                  shipperId={props. shipperId}
+                  {...formProps}
                   translateText={props.translateText}
                   selectedLanguage={props.selectedLanguage}
                 translatedMenuItems={props.translatedMenuItems}

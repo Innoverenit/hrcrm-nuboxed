@@ -425,7 +425,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                         <>
                      <Select
                                                                 classNames="w-32"
-                                                                value={SelectedOrder}
+                                                                value={SelectedOrder} 
                                                                 onChange={(value) => { handleSelectedOrderDropDown(value,item)}}
                                                             >
                                                                     <Option value={"closedOrder"}>Closed Order</Option>

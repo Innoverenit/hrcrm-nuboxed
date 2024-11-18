@@ -1,20 +1,20 @@
 import React, {  lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { BundleLoader } from "../../../../../Components/Placeholder";
-import { StyledDrawer } from "../../../../../Components/UI/Antd";
-import { StyledTabs } from "../../../../../Components/UI/Antd";
-import ActivityForm from "../../../../Activity/ActivityForm";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
+import { StyledDrawer } from "../../../../../../Components/UI/Antd";
+import { StyledTabs } from "../../../../../../Components/UI/Antd";
+import ActivityForm from "../../../../../Activity/ActivityForm";
 // const AcitivityCallForm = lazy(() => import("./AcitivityCallForm"));
 // const ActivityEventForm = lazy(() => import("./ActivityEventForm"));
 // const ActivityTaskForm = lazy(() => import("./ActivityTaskForm"));
 
 const TabPane = StyledTabs.TabPane;
-function AccountActivityModal (props) {
-
+function AddShipperActivityModal (props) {
+   
         const {
-            addDistributorActivityModal,
-            handleDistributorActivityModal,
+            addShipperActivityModal,
+            handleShipperActivityModal,
         } = props;
         const isSmallScreen = window.innerWidth <= 600;
         const drawerWidth = isSmallScreen ? "90%" : "60%";
@@ -24,12 +24,12 @@ function AccountActivityModal (props) {
                 <StyledDrawer
                     title="Schedule"
                   width={drawerWidth}
-                    visible={addDistributorActivityModal}
+                    visible={addShipperActivityModal}
                     destroyOnClose
                     maskClosable={false}
                     maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
                     style={{ top: 40 }}
-                    onClose={() => handleDistributorActivityModal(false)}
+                    onClose={() => handleShipperActivityModal(false)}
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
@@ -52,10 +52,10 @@ function AccountActivityModal (props) {
                         </StyledTabs> */}
                         <ActivityForm
            defaultValue={props.defaultValue}
-           distributorId={props. distributorId }
            uniqueId={props.uniqueId}
            name={props.name}
-           distributor={props.distributor}
+           shipper={props.shipper}
+           shipperId={props. shipperId}
           translateText={props.translateText}
           selectedLanguage={props.selectedLanguage}
         translatedMenuItems={props.translatedMenuItems}/>
@@ -70,4 +70,4 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(AccountActivityModal);
+)(AddShipperActivityModal);
