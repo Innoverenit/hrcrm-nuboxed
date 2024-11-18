@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { getProductRepurbish } from "../../../InventoryAction";
-
+import { FormattedMessage } from 'react-intl';
 
 const CatalogueInventoryTable = (props) => {
 

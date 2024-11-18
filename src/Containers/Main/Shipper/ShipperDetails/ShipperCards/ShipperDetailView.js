@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { FlexContainer } from "../../../../../Components/UI/Layout";
-
+apexcharts
 
 class ShipperDetailView extends Component {
   render() {

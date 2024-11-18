@@ -3,6 +3,7 @@ import React, { useEffect, useState,lazy, Suspense} from "react";
 import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { FormattedMessage } from 'react-intl';
 import dayjs from "dayjs";
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import ExploreIcon from "@mui/icons-material/Explore";

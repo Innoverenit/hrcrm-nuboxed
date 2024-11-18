@@ -513,12 +513,8 @@ props.getInvestorCurrency();
                    <Field
                         name="vatNo"
                         type="text"
-                        label={
-                          <FormattedMessage
-                            id="app.vatNumber"
-                            defaultMessage="vatNumber"
-                          />
-                        }
+                        label="vatNumber"
+                        
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -535,12 +531,7 @@ props.getInvestorCurrency();
                         name="businessRegistration"
                         type="text"
                         label="URL"
-                        // Label={
-                        //   <FormattedMessage
-                        //     id="app.businessregistration"
-                        //     defaultMessage=" businessregistration"
-                        //   />
-                        // }
+                       
                         isColumn
                         width={"100%"}
                         component={InputComponent}

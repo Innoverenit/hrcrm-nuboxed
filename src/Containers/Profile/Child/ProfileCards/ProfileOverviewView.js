@@ -1,5 +1,6 @@
 import React, { Component,lazy } from "react";
 import { Formik, Form, Field } from "formik";
+import { FormattedMessage } from 'react-intl';
 
 import { Button } from "antd";
 import { handleMapModal } from "../../ProfileAction";

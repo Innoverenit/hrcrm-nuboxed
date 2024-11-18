@@ -47,9 +47,7 @@ const ProductionActionLeft = (props) => {
                 </Tooltip>
   
       <Tooltip
-          title={
-            <FormattedMessage id="app.stageview" defaultMessage="Stage View" />
-          }
+          title="Stage View" 
         >
              <Badge
         size="small"

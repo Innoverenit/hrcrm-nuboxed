@@ -8,13 +8,7 @@ const PlannerActionLeft = (props) => {
             <ActionIcon
                 style={{ marginRight: '0.3rem', color: props.viewType === 'table' && '#1890ff' }}
                 iconType='appstore-o'
-                // tooltipTitle='Back'
-                tooltipTitle={
-                    <FormattedMessage
-                      id="app.back"
-                      defaultMessage="Back"
-                    />
-                  }
+                tooltipTitle='Back'
                
                 handleIconClick={() => props.setPlannerViewType('table')}
             />        

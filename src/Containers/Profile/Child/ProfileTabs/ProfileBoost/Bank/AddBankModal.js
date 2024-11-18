@@ -11,8 +11,7 @@ class AddBankModal extends Component {
     return (
       <>
         <StyledDrawer
-          //title="Bank"
-          title={<FormattedMessage id="app.bank" defaultMessage="Bank" />}
+          title="Bank"
           width="25%"
           visible={addBankModal}
           destroyOnClose

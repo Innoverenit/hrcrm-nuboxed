@@ -29,6 +29,7 @@ import { getAssignedToList } from "../../../Employees/EmployeeAction";
 import { getEvents } from "../../../Settings/Event/EventAction";
 import { setClearbitCandidateData } from "../../../Candidate/CandidateAction";
 import { Listbox } from '@headlessui/react'
+import { FormattedMessage } from 'react-intl';
 
 // yup validation scheme for creating a opportunity
 const EventSchema = Yup.object().shape({

@@ -46,12 +46,8 @@ function StatusPitchToggle(props) {
         <>
             <div>
                 <Popconfirm
-                   title={
-                    <FormattedMessage
-                            id="app.confirmStatusChange"
-                            defaultMessage="Confirm status change?"
-                          />
-                  }
+                   title="Confirm status change?"
+                          
                     // title="Confirm status change?"
                     onConfirm={() => handleToggleCollection()}
                     onCancel={handleCancel}

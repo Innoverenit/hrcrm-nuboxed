@@ -192,15 +192,11 @@ function CreateProductionCard(props) {
                                                                 onClick={() => {
                                                                     handleSubmitRoomRack(item.manufactureId)
                                                                 }} >
-                                                                <FormattedMessage
-                                                                    id="app.save"
-                                                                    defaultMessage="Save"
-                                                                />
+                                                               Save
                                                             </Button>
-                                                            <Button onClick={() => handleCancelStore()}><FormattedMessage
-                                                                id="app.cancel"
-                                                                defaultMessage="Cancel"
-                                                            /></Button>
+                                                            <Button onClick={() => handleCancelStore()}>
+                                                                Cancel
+                                                            </Button>
                                                         </>
                                                         :
                                                         <>

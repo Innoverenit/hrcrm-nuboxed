@@ -254,11 +254,7 @@ const PitchActionLeft = (props) => {
           }}
         >
            <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
-            <FormattedMessage
-            class=" text-white !text-icon"
-                        id="app.all"
-                        defaultMessage="ALL"
-                      />
+          ALL
         </Avatar>
         </span>
         </Badge>
@@ -310,7 +306,7 @@ const PitchActionLeft = (props) => {
             props.handleClear();
           }}
         >
-          <FormattedMessage id="app.clear" defaultMessage="Clear" />
+      >
       
         </Button> */}
           <div class=" w-2/5  ml-2">

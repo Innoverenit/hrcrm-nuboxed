@@ -80,7 +80,7 @@ const MaterialReceivedTableOut = (props) => {
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[100%] font-poppins  text-xs  p-1 bg-transparent font-bold sticky items-end z-10">
                        
-                        <div className="text-[#00A2E8] text-base w-[19.5rem]"><FormattedMessage id="app.po" defaultMessage="PO ID" /></div>
+                        <div className="text-[#00A2E8] text-base w-[19.5rem]">PO ID</div>
                         <div className=" w-[15.52rem]">
                             {/* Created" */}
                             {props.translatedMenuItems[21]}

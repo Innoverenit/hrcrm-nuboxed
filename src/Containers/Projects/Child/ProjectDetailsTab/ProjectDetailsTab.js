@@ -86,10 +86,7 @@ class ProjectDetailsTab extends Component {
                 <>
                   <FactCheckIcon style={{fontSize:"1.1rem"}}/>
                   <span class=" ml-1">
-                    <FormattedMessage
-                      id="app.team"
-                      defaultMessage="Team"
-                    />
+                  Team
                   </span>
                 </>
               }

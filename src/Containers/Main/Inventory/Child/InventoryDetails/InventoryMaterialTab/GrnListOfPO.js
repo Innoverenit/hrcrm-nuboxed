@@ -78,7 +78,7 @@ const GrnListOfPO = (props) => {
                         <div className=" w-[10rem]">
                             {/* <FormattedMessage id="app.remark" defaultMessage="Remark" /> */}{props.translatedMenuItems[21]}
                             </div>
-                        <div className=" w-[10.04rem]"><FormattedMessage id="app.grn" defaultMessage="GRN #" /></div>
+                        <div className=" w-[10.04rem]">GRN #</div>
                         <div className=" w-[15rem]"></div>
                         <div className=" w-[5rem]">
                             {/* <FormattedMessage id="app.stock" defaultMessage="To Stock" /> */}{props.translatedMenuItems[14]}

@@ -3,6 +3,7 @@ import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
+import { FormattedMessage } from 'react-intl';
 import {
   MultiAvatar2,
 } from "../../../Components/UI/Elements";

@@ -10,10 +10,8 @@ const AddPartnerOpportunityModal = (props) => {
   return (
     <>
       <StyledModal
-        // title="Opportunity"
-        title={
-          <FormattedMessage id="app.opportunity" defaultMessage="Opportunity" />
-        }
+        title="Opportunity"
+        
         width="45%"
         visible={props.addPartnerOpportunityModal}
         maskClosable={false}

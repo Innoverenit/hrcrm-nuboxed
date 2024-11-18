@@ -16,10 +16,8 @@ class FormChooserModal extends React.Component {
     return (
       <>
         <StyledDrawer
-          title={<FormattedMessage
-            id="app.schedule"
-            defaultMessage="Schedule"
-          />}
+          title="Schedule"
+         
           visible={chooserModal}
           width={"60%"}
           style={{ overflow: "visible"}}

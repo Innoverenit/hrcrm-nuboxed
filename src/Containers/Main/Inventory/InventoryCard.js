@@ -54,8 +54,7 @@ const InventoryCard = (props) => {
             <div className=" w-[2.8rem] font-poppins font-bold text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{props.translatedMenuItems[1]}</div>
             <div className="w-[6.6rem] font-poppins font-bold text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]">{props.translatedMenuItems[2]}</div>
             <div className="w-[5.8rem] font-poppins font-bold text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{props.translatedMenuItems[3]}</div>
-            {/* <div className="w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]"><FormattedMessage id="app.zone" defaultMessage="#Zone" /></div> */}
-            <div className="w-[4.3rem]"></div>
+          <div className="w-[4.3rem]"></div>
           </div>
           <InfiniteScroll
             dataLength={filteredData.length}

@@ -107,7 +107,7 @@ const GrnListOfPO = (props) => {
                         <div className=" md:w-[4.25rem]">
                        {/* cell  {props.translatedMenuItems[7]} */}
                         </div>
-                        <div className=" md:w-[6.10rem]"><FormattedMessage id="app.hsn" defaultMessage="HSN" /></div>
+                        <div className=" md:w-[6.10rem]">HSN</div>
                         <div className=" md:w-[6.10rem]">
                             {/* in stock  */}
                              {props.translatedMenuItems[29]}
