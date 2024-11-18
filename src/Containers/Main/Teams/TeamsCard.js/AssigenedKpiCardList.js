@@ -81,40 +81,34 @@ function AssigenedKpiCardList(props) {
          <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
            <div className="flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
              <div className="md:w-[9.5rem]">
-               <FormattedMessage id="app.kpi" defaultMessage="KPI" />
+             KPI
              </div>
              <div className="md:w-[7.5rem]">
-               <FormattedMessage id="app.lob" defaultMessage="LOB" />
+             LOB
              </div>
-             {/* <div className="md:w-[7.5rem]">
-               <FormattedMessage id="app.lob" defaultMessage="Currency" />
-             </div> */}
              <div className="md:w-[9.1rem]">
-               <FormattedMessage id="app.assigned" defaultMessage="Assigned" />
+             Assigned
              </div>
              <div className="md:w-[7.11rem]">
-               <FormattedMessage id="app.assigned" defaultMessage=" Total" />
+             Total
              </div>
          
              <div className="md:w-[10.11rem]">
-               <FormattedMessage id="app.achieved" defaultMessage="Achieved" />
+             Achieved
              </div>
              <div className="md:w-[6.51rem]">
-               <FormattedMessage id="app.achieved" defaultMessage=" Total" />
+             Total
              </div>
              <div class="w-[2rem]"></div>
              <div className="md:w-[8.01rem]">
-        <FormattedMessage id="app.actual" defaultMessage="Actual" />
+             Actual
       </div>
              <div className="md:w-[1.1rem]">
-               <FormattedMessage id="app.actual" defaultMessage="Total" />
+             Total
 
              </div>
              <div class="w-[2rem]"></div>
-             <div className="md:w-[2.1rem]"><FormattedMessage
-                id="app.weightage"
-                defaultMessage="Weightage"
-              /></div>
+             <div className="md:w-[2.1rem]">Weightage</div>
                <div className="w-[1rem]"></div>
            </div>
  
