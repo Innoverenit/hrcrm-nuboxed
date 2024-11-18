@@ -68,7 +68,9 @@ function SuppliersDeletedCardList(props) {
             <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>  {props.translatedMenuItems[1]}
             </div>
             <div className=" w-[11.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> 
-            <MailOutlineIcon className="!text-icon  text-[#4f5d75]"/> <FormattedMessage id="app.email" defaultMessage="Email" /></div>
+            <MailOutlineIcon className="!text-icon  text-[#4f5d75]"/> 
+           Email
+            </div>
                <div className=" w-[10.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* url */}
                <LinkIcon  className="!text-icon  text-[#4f5d75]"/>   {props.translatedMenuItems[41]}
