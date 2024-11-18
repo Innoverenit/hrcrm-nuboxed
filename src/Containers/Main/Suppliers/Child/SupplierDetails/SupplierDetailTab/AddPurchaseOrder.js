@@ -294,7 +294,10 @@ const AddPurchaseOrder = (props) => {
                     )}
                 </Formik>}
             <Suspense fallback={"Loading"}>
-                <AddedSuppliesTable />
+                <AddedSuppliesTable
+                      translateText={props.translateText}
+                      selectedLanguage={props.selectedLanguage}
+                />
             </Suspense>
         </>
     )

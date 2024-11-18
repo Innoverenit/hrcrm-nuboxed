@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
-import { Formik, Form, Field, FastField } from "formik";
+import { Formik, Form, Field } from "formik";
 import { FlexContainer } from "../../../../../../../Components/UI/Layout";
 
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
@@ -27,8 +27,36 @@ class AddSupplierDocumentForm extends Component {
       ownerAbove: "Specific",
       selectedownerAbove: "Specific",
       data: [1],
+      translatedMenuItems: [],
     };
   }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "71",//0 type
+        "110",//1 name
+        "147",//2 description
+       // 3 submit
+       
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   handleButtonClick = () => {
     console.log(length);
     let length = this.state.data.length;
@@ -130,11 +158,8 @@ class AddSupplierDocumentForm extends Component {
           }) => (
             <Form>
               <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <div
-                  style={{
-                    height: "100%",
-                    width: "45%",
-                  }}
+                <div class="h-[100%] w-[45%]"
+                 
                 >
                   <Field
                     name="documentId"
@@ -148,10 +173,11 @@ class AddSupplierDocumentForm extends Component {
                     </p>
                   )}
                   <div class=" mt-3" />
+                  <div class="font-bold font-poppiins text-xs">{this.state.translatedMenuItems[0]}</div>
                   <Field
                     name="documentId"
                     selectType="documentTypeName"
-                    label="Type"
+                  
                     component={SearchSelect}
                     isColumn
                     margintop={"0.25em"}
@@ -161,30 +187,22 @@ class AddSupplierDocumentForm extends Component {
                     style={{ flexBasis: "80%" }}
                   />
                 </div>
-                <div
-                  style={{
-                    height: "100%",
-                    width: "45%",
-                  }}
-                >
+                <div class="h-[100%] w-[45%]"
+                ><div class="font-bold font-poppiins text-xs">{this.state.translatedMenuItems[1]}</div>
                   <Field
                     name="documentName"
-                    label="Name"
-                    //   label={
-                    //     <FormattedMessage
-                    //       id="app.documentName"
-                    //       defaultMessage="Name"
-                    //     />
-                    //   }
+                
+                 
                     width={"100%"}
                     isColumn
                     component={InputComponent}
                     style={{ height: "2em", marginTop: "0.25em" }}
                   />
                   <div class=" mt-3" />
+                  <div class="font-bold font-poppiins text-xs">{this.state.translatedMenuItems[2]}</div>
                   <Field
                     name="documentDescription"
-                    label="Description"
+              
                     //   label={
                     //     <FormattedMessage
                     //       id="app.documentDescription"
@@ -209,6 +227,7 @@ class AddSupplierDocumentForm extends Component {
                   Loading={addingDocumentBySupplierId}
                 >
                   {/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
+                  {/* {this.state.translatedMenuItems[3]} */}
                   Submit
                 </Button>
               </FlexContainer>

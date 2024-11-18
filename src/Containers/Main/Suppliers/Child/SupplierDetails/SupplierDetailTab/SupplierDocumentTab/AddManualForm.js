@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Button, Input, Select } from "antd";
-import { CloseOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { addProcureDetails, getBrand, getModel } from "../../../../../Account/AccountAction";
+import { getBrand, getModel } from "../../../../../Account/AccountAction";
 import {addManual,getCategorylist} from "../../../../SuppliersAction";
 import {getSaleCurrency} from "../../../../../../Auth/AuthAction";
 import {getAllProductList,getLocationList} from "../../../../../Account/AccountAction";
 import InventoryTableList from "./InventoryTableList";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 const { Option } = Select;
 
 function AddManualForm(props) {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+
   useEffect(() => {
      props.getBrand();
     props.getSaleCurrency();
@@ -19,6 +21,32 @@ function AddManualForm(props) {
      props.getAllProductList();
     props.getLocationList(props.orgId)
   }, []);
+  useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          const itemsToTranslate = [
+          
+           
+            "14",//0 Category
+            "264",//1 Brand
+            "265",//2 Model
+            "259",//3 Attribute
+            "71",//4 type
+            "241",//5 currency
+            "788",//6 Price/ Units
+            "260",//7 Units
+           "85",//Add
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+        } catch (error) {
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
 
   const [rows, setRows] = useState([{ brand: '', model: '', modelId: '', unit: '', spces: '',price:'',quality:'',saleCurrencies:'',id:'',currencyId:'' }]);
   
@@ -179,13 +207,15 @@ function AddManualForm(props) {
     <>
 
     <div className="flex justify-between">
-      <div class="w-[30%] box-content p-2 border-blue border-4">
+      <div class="w-[22%] box-content p-2 border-blue border-4">
         {rows.map((row, index) => (
           <div key={index}>
             <div className="flex justify-around  flex-col">
 
             <div>
-                <div class="font-bold text-xs font-poppins text-black">Category</div>
+                <div class="font-bold text-xs font-poppins text-black"> {translatedMenuItems[0]}
+                  {/* Category */}
+                  </div>
                 <div className="w-full">
                   <Select
                    
@@ -201,7 +231,9 @@ function AddManualForm(props) {
               </div>
 
               <div>
-                <div class="font-bold text-xs font-poppins text-black">Brand</div>
+                <div class="font-bold text-xs mt-1 font-poppins text-black"> {translatedMenuItems[1]}
+                  {/* Brand */}
+                  </div>
                 <div className="w-full">
                   <Select
                    
@@ -216,7 +248,9 @@ function AddManualForm(props) {
                 </div>
               </div>
               <div>
-                <div class="font-bold text-xs font-poppins text-black">Model</div>
+                <div class="font-bold text-xs mt-1 font-poppins text-black"> {translatedMenuItems[2]}
+                  {/* Model */}
+                  </div>
                 <div className="w-full">
                   <Select
                  
@@ -231,7 +265,9 @@ function AddManualForm(props) {
                 </div>
               </div>
               <div>
-                <div class="font-bold text-xs font-poppins text-black">Attribute</div>
+                <div class="font-bold text-xs mt-1 font-poppins text-black"> {translatedMenuItems[3]}
+                  {/* Attribute */}
+                  </div>
                 <div className="">
                   <Select
                  
@@ -239,49 +275,17 @@ function AddManualForm(props) {
                     onChange={(value) => handleAttributeChange(value, index)}
                   //  disabled={!fieldEnabled.attribute}
                  >
-                    {/* {props.allProduct.map((a) => (
-                      <Option key={a.attribute} value={a.attribute}>{a.attributeName}</Option>
-                    ))} */}
+                  
                      <Option value="SADG84650329032252024">SADG84650329032252024</Option>
                     
                   </Select>
                 </div>
               </div>
-              {/* <div>
-                <div class="font-bold text-xs font-poppins text-black">Specs</div>
-                <div className="w-28 ">
-                  <Select
-                    style={{ width: 100 }}
-                    value={row.spces}
-                    onChange={(value) => handleSpecsChange(value, index)}
-                    //disabled={!fieldEnabled.specs}
-                 >
-                    <Option value="US">US</Option>
-                    <Option value="CE">CE</Option>
-                    <Option value="IND">IND</Option>
-                    <Option value="HK">HK</Option>
-                  </Select>
-                </div>
-              </div> */}
-              {/* <div>
-                <div class="font-bold text-xs font-poppins text-black">Grade</div>
-                <div className="w-28">
-                <Select
-                    style={{ width: 100 }}
-                    value={row.quality}
-                    onChange={(value) => handleQualityChange(value, index)}
-                   // disabled={!fieldEnabled.quality}
-                  >
-                     <Option value="A+">A+</Option>
-                    <Option value="A">A</Option>
-                    <Option value="B">B</Option>
-                    <Option value="C">C</Option>
-                    <Option value="D">D</Option>
-                  </Select>
-                </div>
-              </div> */}
+        
               <div>
-                <div class="font-bold text-xs font-poppins text-black">Type</div>
+                <div class="font-bold text-xs mt-1 font-poppins text-black"> {translatedMenuItems[4]}
+                  {/* Type */}
+                  </div>
                 <div className="w-full">
                   <Select
                    
@@ -295,23 +299,11 @@ function AddManualForm(props) {
                 </div>
               </div>
               
-              {/* <div>
-                <div class="font-bold text-xs font-poppins text-black">Location</div>
-                <div className="w-[7rem]">
-                  <Select
-                    style={{ width: 100 }}
-                    value={row.locationId}
-                    onChange={(value) => handleLocationChange(value, index)}
-                    //disabled={!fieldEnabled.locationId}
-                 >
-                    {props.locationlist.map((a) => (
-                      <Option key={a.locationDetailsId} value={a.locationDetailsId}>{a.locationName}</Option>
-                    ))}
-                  </Select>
-                </div>
-              </div> */}
+         
               <div>
-                <div class="font-bold text-xs font-poppins text-black">Currency</div>
+                <div class="font-bold text-xs mt-1 font-poppins text-black"> {translatedMenuItems[5]}
+                  {/* Currency */}
+                  </div>
                 <div className="">
                   <Select
                    
@@ -325,8 +317,11 @@ function AddManualForm(props) {
                   </Select>
                 </div>
               </div>
-              <div>
-                <div class="font-bold text-xs font-poppins text-black">Price / Unit</div>
+              <div class="flex justify-between mt-1 w-[100%]">
+              <div className="w-1/2">
+                <div class="font-bold text-xs mt-1  font-poppins text-black"> {translatedMenuItems[6]}
+                  {/* Price / Unit */}
+                  </div>
                 <div className="w-full">
                   <Input
                     type="text"
@@ -338,8 +333,10 @@ function AddManualForm(props) {
                 </div>
               </div>
              
-              <div>
-                <div class="font-bold text-xs font-poppins text-black">Units</div>
+              <div className="w-1/2 ml-gap mb-2">
+                <div class="font-bold text-xs mt-1  font-poppins text-black">{translatedMenuItems[7]}
+                  {/* Units */}
+                  </div>
                 <div className="w-full">
                   <Input
                     type="text"
@@ -350,15 +347,18 @@ function AddManualForm(props) {
                   />
                 </div>
               </div>
+              </div>
 
-              {/* <div className="w-4 mt-[1.5rem]">
-                <CloseOutlined onClick={() => handleRemoveRow(index)} />
-              </div> */}
             </div>
           </div>
         ))}
         {/* <Button type="primary" onClick={handleAddRow}>Add</Button> */}
-        <Button type="primary" loading={props.addingManual} onClick={handleSubmit}>Add</Button>
+        <div class="flex justify-end ">
+        
+        <Button type="primary" loading={props.addingManual} onClick={handleSubmit}> <DataSaverOnIcon className="!text-icon"/>{translatedMenuItems[8]}
+          {/* Add */}
+          </Button>
+        </div>
       </div>
 
       <InventoryTableList

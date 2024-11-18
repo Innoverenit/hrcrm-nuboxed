@@ -26,7 +26,8 @@ class AddSupplierExcleModal extends Component {
     return (
       <>
         <StyledDrawer
-          title="Add Inventory"
+          title=" Add Inventory"      
+          // {this.props.translatedMenuItems[12]}       
           width="90%"
           visible={supplierExcleUploadModal}
           destroyOnClose
@@ -53,7 +54,8 @@ class AddSupplierExcleModal extends Component {
            <AddManualForm  translateText={this.props.translateText}
            selectedLanguage={this.props.selectedLanguage}/>
           ) : (
-            <AddSupplierExcleForm />
+            <AddSupplierExcleForm 
+            selectedLanguage={this.props.selectedLanguage}/>
           )}
         </Suspense>
       </div>
