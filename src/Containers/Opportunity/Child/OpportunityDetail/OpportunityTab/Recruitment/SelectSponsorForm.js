@@ -83,11 +83,8 @@ function SelectSponsorForm(props) {
                     <>
                       <Field
                         name="sponserId"
-                        //label="Sponsor"
-                        label={<FormattedMessage
-                          id="app.sponserId"
-                          defaultMessage="Sponsor"
-                        />}
+                        label="Sponsor"
+                        
                         isColumn
                         style={{
                           flexBasis: "80%",
@@ -125,11 +122,8 @@ function SelectSponsorForm(props) {
                       htmlType="submit"
                       Loading={props.updatingRecruitment}
                     >
-                      <FormattedMessage
-                        id="app.update"
-                        defaultMessage="Update"
-                      />
-                      {/* Update */}
+                     
+                      Update
                     </Button>
                   </FlexContainer>
                 </>

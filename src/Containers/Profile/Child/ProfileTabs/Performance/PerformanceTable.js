@@ -156,38 +156,35 @@ const PerformanceTable = (props) => {
         <div className="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className="flex justify-between w-[100%] p-1 bg-transparent font-bold sticky  z-10">
             <div className="md:w-[11.5rem]">
-            {translatedMenuItems[0]}   {/* <FormattedMessage id="app.kpi" defaultMessage="KPI" /> */}
+            {translatedMenuItems[0]}  
             </div>
             <div className="md:w-[7.5rem]">
-            {translatedMenuItems[1]} {/* <FormattedMessage id="app.lob" defaultMessage="LOB" /> */}
+            {translatedMenuItems[1]} 
             </div>
             <div className="md:w-[10.1rem]">
-            {translatedMenuItems[2]} {/* <FormattedMessage id="app.assigned" defaultMessage="Assigned" /> */}
+            {translatedMenuItems[2]}
             </div>
             <div className="md:w-[9.11rem]">
-            {translatedMenuItems[3]} {/* <FormattedMessage id="app.assigned" defaultMessage=" Total" /> */}
+            {translatedMenuItems[3]} 
             </div>
         
             <div className="md:w-[9.11rem]">
-            {translatedMenuItems[4]} {/* <FormattedMessage id="app.achieved" defaultMessage="Achieved" /> */}
+            {translatedMenuItems[4]} 
             </div>
             <div className="md:w-[5.51rem]">
-            {translatedMenuItems[3]} {/* <FormattedMessage id="app.achieved" defaultMessage=" Total" /> */}
+            {translatedMenuItems[3]} 
             </div>
             <div class="w-[2rem]"></div>
             <div className="md:w-[5.01rem]">
-            {translatedMenuItems[5]} {/* <FormattedMessage id="app.actual" defaultMessage="Actual" /> */}
+            {translatedMenuItems[5]} 
             </div>
             <div className="md:w-[3.1rem]">
-            {translatedMenuItems[3]} {/* <FormattedMessage id="app.actual" defaultMessage="Total" /> */}
+            {translatedMenuItems[3]} 
 
             </div>
             <div class="w-[2rem]"></div>
             <div className="md:w-[4.1rem]">
-            {translatedMenuItems[6]} {/* <FormattedMessage
-               id="app.weightage"
-               defaultMessage="Weightage"
-             /> */}
+            {translatedMenuItems[6]}
              </div>
               {/* <div className="w-[2rem]"></div> */}
           </div>

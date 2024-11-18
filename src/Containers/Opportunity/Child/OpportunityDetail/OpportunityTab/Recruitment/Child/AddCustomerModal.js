@@ -8,11 +8,7 @@ const AddCustomerModal = (props) => {
   return (
     <>
       <StyledDrawer
-        // title="Requirement"
-        title={<FormattedMessage
-          id="app.requirement"
-          defaultMessage="Requirement"
-        />}
+        title="Requirement"
 
         width="58%"
         visible={props.addCustomerModal}

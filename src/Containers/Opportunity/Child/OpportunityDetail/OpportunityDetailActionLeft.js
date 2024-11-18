@@ -27,11 +27,7 @@ const OpportunityDetailActionLeft = (props) => {
           <RollbackOutlined
             style={{ marginRight: "0.3rem", color: "#1890ff", fontSize: "1.5625em" }}
             //iconType="rollback"
-            //tooltipTitle="Back"
-            tooltiptitle={<FormattedMessage
-              id="app.back"
-              defaultMessage="Back"
-            />}
+            tooltipTitle="Back"
          
             onClick={() => {
               props.history.goBack();
