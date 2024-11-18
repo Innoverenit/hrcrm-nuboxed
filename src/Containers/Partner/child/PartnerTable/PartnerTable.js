@@ -7,9 +7,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { bindActionCreators } from "redux";
 import StatusToggle from "./StatusToggle";
 import dayjs from "dayjs";
-import {
-  MailOutlined,
-} from "@ant-design/icons";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import SearchIcon from '@mui/icons-material/Search';
 import Highlighter from "react-highlight-words";
 import { StyledTable } from "../../../../Components/UI/Antd";
@@ -577,7 +575,7 @@ function PartnerTable(props) {
         return (
           <>
             <Tooltip title={item.email}>
-              <MailOutlined type="mail"
+              <MailOutlineIcon type="mail"
                style={{ cursor: "pointer" }} 
                onClick={() => {
                props.getPartnerDetailsById(item.partnerId );

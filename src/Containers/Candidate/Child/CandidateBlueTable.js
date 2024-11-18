@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import SearchIcon from '@mui/icons-material/Search';;
+import SearchIcon from '@mui/icons-material/Search';
 import { StyledTable } from "../../../Components/UI/Antd";
 import { Tooltip, Button, Input } from "antd";
 import Highlighter from "react-highlight-words";

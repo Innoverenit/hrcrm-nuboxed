@@ -4,10 +4,8 @@ import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import {
-  EyeInvisibleOutlined, MailOutlined,
-
-  
-} from '@ant-design/icons';
+  EyeInvisibleOutlined,} from '@ant-design/icons';
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { bindActionCreators } from "redux";
 import RecruitCommunicationForm from "./RecruitCommunicationForm";
 
@@ -20,7 +18,7 @@ function RecruitCommunicationTab(props) {
         <StyledTabs defaultActiveKey="1" type="card">
           <TabPane
             tab={
-              <MailOutlined
+              <MailOutlineIcon
                 type="mail"
                 style={{
                   marginTop: "0.375em",

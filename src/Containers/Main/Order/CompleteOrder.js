@@ -8,7 +8,7 @@ import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { handleOrderDetailsModal } from "../Account/AccountAction";
 import PaidIcon from '@mui/icons-material/Paid';
-import dayjs from dayjs;
+import dayjs from "dayjs";
 import {
     getCompleteOrders,
     handleNotesModalInOrder,

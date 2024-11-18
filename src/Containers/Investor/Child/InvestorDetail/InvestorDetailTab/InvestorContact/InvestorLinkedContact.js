@@ -11,7 +11,7 @@ import {
 } from "../../../../../../Components/UI/Antd";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import Highlighter from "react-highlight-words";
-import SearchIcon from '@mui/icons-material/Search';;
+import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 import { ActionIcon } from "../../../../../../Components/Utils";
 import {getContactListByInvestorId,handleUpdateInvestorContactModal,

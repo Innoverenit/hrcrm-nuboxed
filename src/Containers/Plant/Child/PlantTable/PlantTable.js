@@ -11,7 +11,7 @@ import {
   handleUpdatePlantModal,
 } from "../../PlantAction";
 import Highlighter from "react-highlight-words";
-import SearchIcon from '@mui/icons-material/Search';;
+import SearchIcon from '@mui/icons-material/Search';
 import dayjs from "dayjs";
 
 class PlantTable extends Component {
