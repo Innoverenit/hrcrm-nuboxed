@@ -16,7 +16,7 @@ class AddShipperDocumentModal extends Component {
     return (
       <>
         <StyledModal
-          title={<FormattedMessage id="app.document" defaultMessage="Document" />}
+          title="Document" 
           width="65vw"
           visible={shipperDocumentUploadModal}
           destroyOnClose

@@ -131,7 +131,7 @@ class UserAdminForm extends Component {
                   htmlType="submit"
                    Loading={this.props.userAdmin}
                 >
-                  {/* <FormattedMessage id="app.update" defaultMessage="Update" /> */}
+                 
                   {this.state.translatedMenuItems[3]}
                 </Button>
               </div>

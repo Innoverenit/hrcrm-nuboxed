@@ -13,9 +13,7 @@ class AddSupplierContactModal extends Component {
         return (
             <>
                 <StyledDrawer
-                    title={
-                        <FormattedMessage id="app.Contact" defaultMessage="Contact" />
-                    }
+                    title="Contact" 
                     width="60%"
                     visible={addSupplierContactModal}
                     destroyOnClose

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
+import { FormattedMessage } from 'react-intl';
 import { Link } from 'react-router-dom';
 apexcharts
 import { bindActionCreators } from "redux";
