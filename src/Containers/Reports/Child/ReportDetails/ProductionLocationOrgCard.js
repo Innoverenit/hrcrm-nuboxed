@@ -1,23 +1,9 @@
-import React, { useState,lazy,useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import {
-  CheckCircleOutlined,
-  CloseCircleOutlined,
-  UploadOutlined,
-} from "@ant-design/icons";
 import dayjs from "dayjs";
-import FeedbackIcon from '@mui/icons-material/Feedback';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
-import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { Tooltip, Button,  } from "antd";
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { StyledPopconfirm, } from "../../../../Components/UI/Antd";
-import StairsIcon from '@mui/icons-material/Stairs';
-import { MultiAvatar, } from "../../../../Components/UI/Elements";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
+import { Button,  } from "antd";
 import axios from 'axios';
 import {base_url2} from "../../../../Config/Auth";
 import InfiniteScroll from "react-infinite-scroll-component";

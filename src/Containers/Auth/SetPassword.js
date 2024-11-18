@@ -4,9 +4,10 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { Button } from "antd";
-import { EyeOutlined, EyeInvisibleOutlined, CheckCircleOutlined } from '@ant-design/icons';
+import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
 import * as Yup from "yup";
 import { Input } from "./styled";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import {
   ValidationError,
  } from "../../Components/UI/Elements";
@@ -143,7 +144,7 @@ class SetPassword extends Component {
                       )}
                       {values.password.length &&
                         values.password === values.confirmPassword ? (
-                        <CheckCircleOutlined  className=" !text-icon "
+                        <CheckCircleOutlineIcon  className=" !text-icon "
                           theme="twoTone"
                           twoToneColor="#52c41a"
                         

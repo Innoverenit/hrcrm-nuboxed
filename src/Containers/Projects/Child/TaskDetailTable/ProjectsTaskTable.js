@@ -8,8 +8,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import {getProjectsTaskListById} from "../../ProjectsAction"
 import Highlighter from 'react-highlight-words';
 import "jspdf-autotable";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import {
-  CheckCircleOutlined,
   CloseCircleOutlined,
 } from '@ant-design/icons';
 import { MultiAvatar } from "../../../../Components/UI/Elements";
@@ -343,7 +343,7 @@ function ProjectsTaskTable (props)  {
                 ) : (
                     <>
                       {item.approvedInd === "Approved" ? (
-                        <CheckCircleOutlined
+                        <CheckCircleOutlineIcon
                           type="check-circle"
                           theme="twoTone"
                           twoToneColor="#52c41a"

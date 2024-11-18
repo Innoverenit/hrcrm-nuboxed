@@ -6,8 +6,8 @@ import dayjs from "dayjs";
 import SearchIcon from '@mui/icons-material/Search';
 import { getActivityListByCandidateId } from "../../../../../CandidateAction";
 import Highlighter from "react-highlight-words";
-import { CheckCircleOutlined, FileDoneOutlined, PhoneOutlined, ScheduleOutlined,  } from "@ant-design/icons";
-
+import { FileDoneOutlined, PhoneOutlined, ScheduleOutlined,  } from "@ant-design/icons";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 const ButtonGroup = Button.Group;
 class LinkedCandidateActivity extends Component {
  
@@ -204,7 +204,7 @@ class LinkedCandidateActivity extends Component {
                             <div class=" font-normal text-[0.82rem]  font-poppins">
                             <span>
             {item.completionInd === true && (
-              <CheckCircleOutlined
+              <CheckCircleOutlineIcon
                 type="check-circle"
                 theme="twoTone"
                 twoToneColor="#52c41a"
@@ -343,7 +343,7 @@ export default connect(
 //       return (
 //         <span>
 //           {item.completionInd === true && (
-//             <CheckCircleOutlined
+//             <CheckCircleOutlineIcon
 //               type="check-circle"
 //               theme="twoTone"
 //               twoToneColor="#52c41a"

@@ -1,9 +1,8 @@
-import React, { useState,lazy,useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import {
-  CheckCircleOutlined,
   CloseCircleOutlined,
   UploadOutlined,
 } from "@ant-design/icons";
@@ -427,7 +426,7 @@ const ReportTaskList = (props) => {
   ) : (
     <>
       {item.approvedInd === "Approved" ? (
-        <CheckCircleOutlined
+        <CheckCircleOutlineIcon
           type="check-circle"
           theme="twoTone"
           twoToneColor="#52c41a"

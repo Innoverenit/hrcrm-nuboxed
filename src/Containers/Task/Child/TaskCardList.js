@@ -3,10 +3,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import MergeTypeIcon from '@mui/icons-material/MergeType';
 import relativeTime from 'dayjs/plugin/relativeTime';
-
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import {
-  CheckCircleOutlined,
   CloseCircleOutlined,
   
 } from "@ant-design/icons";
@@ -516,7 +515,7 @@ Reject
   ) : (
     <>
       {item.approvedInd === "Approved" ? (
-        <CheckCircleOutlined
+        <CheckCircleOutlineIcon
           type="check-circle"
           theme="twoTone"
           twoToneColor="#52c41a"
@@ -939,7 +938,7 @@ taskStatus: "To Start",
 ) : (
 <>
 {item.approvedInd === "Approved" ? (
- <CheckCircleOutlined
+ <CheckCircleOutlineIcon
    type="check-circle"
    theme="twoTone"
    twoToneColor="#52c41a"
@@ -1360,7 +1359,7 @@ taskStatus: "To Start",
 ) : (
 <>
 {item.approvedInd === "Approved" ? (
- <CheckCircleOutlined
+ <CheckCircleOutlineIcon
    type="check-circle"
    theme="twoTone"
    twoToneColor="#52c41a"

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { CheckCircleOutlined } from "@ant-design/icons";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { StyledTable } from "../../../../../../Components/UI/Antd";
 import { Input, Tooltip, Button, Form, DatePicker } from "antd";
 import dayjs from "dayjs";
@@ -285,7 +285,7 @@ function DispatchTable(props) {
       dataIndex: "pickupStatusInd",
       render: (name, item, i) => {
         return item.pickupStatusInd === true ? (
-          <CheckCircleOutlined
+          <CheckCircleOutlineIcon
             theme="twoTone"
             twoToneColor="#00FF00"
             size={180}

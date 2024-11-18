@@ -2,7 +2,7 @@ import React from "react";
 import { message, Upload } from "antd";
 import { base_url } from "../../../Config/Auth";
 import axios from "axios";
-import { CheckCircleOutlined } from '@ant-design/icons';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 import InboxIcon from '@mui/icons-material/Inbox';
 
@@ -88,7 +88,7 @@ class DragableUpload extends React.Component {
         </Dragger>
         {uploadSuccess && (
           <div className="mt-2 flex">
-            <CheckCircleOutlined style={{ fontSize: '24px', color: 'green' }} />
+            <CheckCircleOutlineIcon style={{ fontSize: '24px', color: 'green' }} />
             <span style={{ marginLeft: '8px', color: 'green', fontWeight: 600 }}>Document uploaded successfully!</span>
           </div>
         )}

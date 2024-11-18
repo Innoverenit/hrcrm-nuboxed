@@ -8,7 +8,8 @@ import ProspectQuotationSectorLostData from "./ProspectQuotationSectorLostData"
 import { Tabs } from 'antd';
 import ProspectQuotationSectorWonData from "./ProspectQuotationSectorWonData"
 import ProspectQuotationWonData from "./ProspectQuotationWonData"
-import { CheckCircleOutlined, CloseCircleOutlined,  } from '@ant-design/icons';
+import { CloseCircleOutlined,  } from '@ant-design/icons';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ProspectQuotationClosedData from "./ProspectQuotationClosedData"
 import ProspectQuotationSourceWonData from "./ProspectQuotationSourceWonData"
 import ProspectQuotationSourceLostData from "./ProspectQuotationSourceLostData"
@@ -88,7 +89,7 @@ const handleViewSourceChange = (view) => {
               {/* Quotation */}{translatedMenuItems[0]}
             </span>
             {/* Won Icon */}
-            <CheckCircleOutlined  className=' cursor-pointer ml-2 text-green-600'
+            <CheckCircleOutlineIcon  className=' cursor-pointer ml-2 text-green-600'
               onClick={() => handleViewChange('won')}
               title="Won"
             />
@@ -160,7 +161,7 @@ const handleViewSourceChange = (view) => {
               {/* Quotation */}{translatedMenuItems[0]}
             </span>
             {/* Won Icon */}
-            <CheckCircleOutlined
+            <CheckCircleOutlineIcon
               style={{ color: 'green', marginLeft: 8, cursor: 'pointer' }}
               onClick={() => handleViewSectorChange('won')}
               title="Won"
@@ -240,7 +241,7 @@ const handleViewSourceChange = (view) => {
               Quotation
             </span>
             {/* Won Icon */}
-            <CheckCircleOutlined
+            <CheckCircleOutlineIcon
               style={{ color: 'green', marginLeft: 8, cursor: 'pointer' }}
               onClick={() => handleViewSourceChange('won')}
               title="Won"

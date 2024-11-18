@@ -6,8 +6,9 @@ import { message, Input} from "antd";
 import { withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { CheckCircleOutlined, EyeInvisibleOutlined, EyeOutlined,
+import { EyeInvisibleOutlined, EyeOutlined,
 } from "@ant-design/icons";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { ValidationError } from "../../Components/UI/Elements";
 import Button from "antd/lib/button";
 import { changePassword, generateOtpByEmail, validateOtp } from "./AuthAction";
@@ -138,7 +139,7 @@ class ChangePassword extends Component {
                       </div>
                       {values.password.length &&
                         values.password === values.confirmPassword ? (
-                        <CheckCircleOutlined className="!text-icon"
+                        <CheckCircleOutlineIcon className="!text-icon"
                           type="check-circle"
                           theme="twoTone"
                           twoToneColor="#52c41a"
