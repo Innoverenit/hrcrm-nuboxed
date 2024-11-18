@@ -11,11 +11,8 @@ const AddMonsterModal = (props) => {
   return (
     <>
       <StyledModal
-        // title="Opportunity"
-        title={<FormattedMessage
-          id="app.monsterModal"
-          defaultMessage="Monster Modal"
-        />}
+        title="Monster Modal"
+       
         width="50%"
         visible={props.addMonsterModal}
         maskClosable={false}

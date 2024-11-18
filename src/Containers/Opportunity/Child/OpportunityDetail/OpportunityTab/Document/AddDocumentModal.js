@@ -99,10 +99,7 @@ class AddDocumentModal extends Component {
     return (
       <>
         <StyledDrawer
-          // title="Document"
-          title={
-            <FormattedMessage id="app.document" defaultMessage="Document" />
-          }
+          title="Document"
           width="65vw"
           visible={documentUploadModal}
           destroyOnClose
@@ -172,13 +169,7 @@ class AddDocumentModal extends Component {
                         name="documentTypeId"
                         selectType="documentTypeName"
                         isColumnWithoutNoCreate
-                        // label="Type"
-                        label={
-                          <FormattedMessage
-                            id="app.documentType"
-                            defaultMessage="Type"
-                          />
-                        }
+                        label="Type"
                         // isRequired
                         component={SearchSelect}
                         isColumn
@@ -206,13 +197,8 @@ class AddDocumentModal extends Component {
                     >
                       <Field
                         name="documentTitle"
-                        //label="Name"
-                        label={
-                          <FormattedMessage
-                            id="app.documentName"
-                            defaultMessage="Name"
-                          />
-                        }
+                        label="Name"
+                       
                         width={"100%"}
                         isColumn
                         component={InputComponent}
@@ -221,13 +207,7 @@ class AddDocumentModal extends Component {
                       <div class="mt-3" />
                       <Field
                         name="documentDescription"
-                        //label="Description"
-                        label={
-                          <FormattedMessage
-                            id="app.documentDescription"
-                            defaultMessage="Description"
-                          />
-                        }
+                        label="Description"
                         isRequired
                         isColumn
                         width={"100%"}

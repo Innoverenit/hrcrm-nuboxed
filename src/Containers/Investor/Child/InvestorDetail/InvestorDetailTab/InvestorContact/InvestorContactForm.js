@@ -321,11 +321,7 @@ class InvestorContactForm extends Component {
                         name="phoneNumber"
                         // placeholder="Phone #"
                         label={
-                          <FormattedMessage
-                            id="app.phoneNumber"
-                            defaultMessage="Phone #"
-                          />
-                        }
+                         
                         isColumn
                         component={InputComponent}
                         inlineLabel

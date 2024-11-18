@@ -8,11 +8,7 @@ const AddRecruitModal = (props) => {
   return (
     <>
       <StyledDrawer
-        // title="Requirement"
-        title={<FormattedMessage
-          id="app.requirement"
-          defaultMessage="Requirement"
-        />}
+        title="Requirement"
 
         width="58%"
         style={{marginTop:"5rem"}}

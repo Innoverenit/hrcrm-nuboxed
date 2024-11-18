@@ -26,11 +26,8 @@ const AddRecruiterModal = (props) => {
   return (
     <>
       <StyledDrawer
-        // title="Partner"
-        title={<FormattedMessage
-          id="app.candidate"
-          defaultMessage="Candidate"
-        />}
+        title="Candidate"
+      
         width="95%"
         visible={props.addRecruiterModal}
         maskClosable={false}

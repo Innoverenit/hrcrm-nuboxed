@@ -40,11 +40,7 @@ class RecruitmentSwitchSponsor extends Component {
     return (
       <div>
         <Popconfirm
-          // title="Do you wish to proceed?"
-          title={<FormattedMessage
-            id="app.doyouwishtoproceed?"
-            defaultMessage="Do you wish to proceed?"
-          />}
+          title="Do you wish to proceed?"
           onConfirm={
             this.props.sponserId
               ? this.onChange

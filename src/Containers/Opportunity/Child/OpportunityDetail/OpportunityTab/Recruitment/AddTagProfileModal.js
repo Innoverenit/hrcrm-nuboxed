@@ -8,11 +8,7 @@ const AddTagProfileModal = (props) => {
   return (
     <>
       <StyledModal
-        // title="Tag Position"
-        title={<FormattedMessage
-          id="app.tagposition"
-          defaultMessage="Tag Position"
-        />}
+        title="Tag Position"
         width="24%"
         visible={props.addTagProfileModal}
         maskClosable={false}
