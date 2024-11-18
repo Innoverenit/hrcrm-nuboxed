@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  Input, Button, } from "antd";
-import {  SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';
 import Highlighter from "react-highlight-words";
 import dayjs from "dayjs";
 import {
@@ -79,7 +79,7 @@ function ShftLocsTable(props) {
                         <Button
                             type="primary"
                             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                            icon={<SearchOutlined />}
+                            icon={<SearchIcon />}
                             size="small"
                             style={{ width: 90 }}
                         >
@@ -107,7 +107,7 @@ function ShftLocsTable(props) {
                 </div>
             ),
             filterIcon: (filtered) => (
-                <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+                <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
             ),
             onFilter: (value, record) =>
                 record[dataIndex]

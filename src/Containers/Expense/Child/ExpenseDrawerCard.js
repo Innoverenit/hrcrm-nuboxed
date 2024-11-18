@@ -8,8 +8,9 @@ import DownloadIcon from '@mui/icons-material/Download';
 import dayjs from "dayjs";
 import { base_url } from "../../../Config/Auth";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { DeleteOutlined, UploadOutlined } from "@ant-design/icons";
+import {  UploadOutlined } from "@ant-design/icons";
 import EditUpload from "../../../Components/Forms/Edit/EditUpload";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const AddDocumentModal = lazy(() => import("./AddDocumentModal"));
 const UpdateExpenseModal = lazy(() => import("./UpdateExpense/UpdateExpenseModal"));
@@ -314,7 +315,7 @@ style={{border:"1px solid lightgrey",marginRight:"0.25rem"}}
                       <div class="ml-2" >
                       {item.status !== 'Approved' && (
                          <Tooltip title="Delete">
-            <DeleteOutlined
+            <DeleteOutlineIcon
               type="delete"
               style={{ cursor: "pointer",fontSize:"1rem" }}
               onClick={() => {

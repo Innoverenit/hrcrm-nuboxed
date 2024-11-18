@@ -5,7 +5,7 @@ import AddBoxIcon from '@mui/icons-material/AddBox';
 import { getTaskByPhoneId, deleteTaskList,handleSpareProcess } from "./RefurbishAction"
 import { Button, Popconfirm, Tooltip,Modal } from "antd";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
-import {  DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import ProcessSpareDrawer from "./ProcessSpareDrawer";
 import { BundleLoader } from "../../../Components/Placeholder";
 import AddSpareInRepair from "./AddSpareInRepair";
@@ -52,7 +52,7 @@ function QCPhoneTaskList(props) {
                                     title="Do you want to delete?"
                                     onConfirm={() => props.deleteTaskList({}, item.phoneTaskId)}
                                 >
-                                    <DeleteOutlined
+                                    <DeleteOutlineIcon
                                         className=" !text-base cursor-pointer text-[red]"
                                     />
                                 </Popconfirm>

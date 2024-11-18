@@ -17,7 +17,7 @@ import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import {
   MultiAvatar,
   MultiAvatar2 } from "../../../../Components/UI/Elements";
-import {  DeleteOutlined } from "@ant-design/icons";
+  import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Link } from 'react-router-dom';
 import {
   updateOwnercustomerById,
@@ -615,7 +615,7 @@ function InvestorTeamCardList(props) {
                         }
                       >
                          <Tooltip title={translatedMenuItems[14]}>                      
-                          <DeleteOutlined
+                          <DeleteOutlineIcon
                             type="delete"
                             className="!text-icon text-[red] cursor-pointer max-sm:!text-xl"
                           />                      

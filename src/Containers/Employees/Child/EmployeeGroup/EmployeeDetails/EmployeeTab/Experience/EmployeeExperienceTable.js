@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTable } from '../../../../../../../Components/UI/Antd';
-import {EditOutlined} from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import {  getTopicsByUserId } from "../../../../../../Employees/EmployeeAction";
 import { Popconfirm, Form, Input, Typography, Button,Tooltip } from 'antd';
 import { Select } from "../../../../../../../Components/UI/Elements";
@@ -240,7 +240,7 @@ function handleExpertClick (skillSetDetailsId) {
               </span>
             ) :
               <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
-                 <EditOutlined/>
+                 <VisibilityIcon/>
               </Typography.Link>
           },
         },

@@ -2,8 +2,10 @@ import React, {  useEffect, useState, useMemo, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
+
+import SearchIcon from '@mui/icons-material/Search';
 import {
-  SearchOutlined,
+  
   UpCircleOutlined,
 } from "@ant-design/icons";
 import { Link } from 'react-router-dom';
@@ -241,7 +243,7 @@ function CandidateTable(props) {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             //icon="search"
             size="small"
             style={{ width: 90 }}
@@ -269,7 +271,7 @@ function CandidateTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />

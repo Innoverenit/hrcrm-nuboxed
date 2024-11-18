@@ -16,7 +16,9 @@ import { deleteTrainingTable } from "../../../../ProfileAction";
 import dayjs from "dayjs";
 import { base_url } from "../../../../../../Config/Auth";
 import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility'; 
+
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 const UpdateTrainingModal = lazy(() => import("./UpdateTrainingModal"));
 
 class TrainingTable extends Component {
@@ -98,7 +100,7 @@ class TrainingTable extends Component {
         render: (name, item, i) => {
           //debugger
           return (
-            <EditOutlined
+            <VisibilityIcon
               type="edit"
               style={{ cursor: "pointer" }}
               // onClick={() => handleUpdateTrainingModal(true)}
@@ -120,7 +122,7 @@ class TrainingTable extends Component {
               title="Do you want to delete?"
               onConfirm={() => deleteTrainingTable(item.id)}
             >
-              <DeleteOutlined type="delete" style={{ cursor: "pointer", color: "red" }} />
+              <DeleteOutlineIcon type="delete" style={{ cursor: "pointer", color: "red" }} />
               {/* <Button type="primary" className='edit_hover_class' icon="delete"  /> */}
             </StyledPopconfirm>
           );

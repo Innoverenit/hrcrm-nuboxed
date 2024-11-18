@@ -5,7 +5,8 @@ import { bindActionCreators } from "redux";
 import { Tooltip } from "antd";
 import {StyledPopconfirm } from "../../../Components/UI/Antd";
 import { getMileageByUserId,getPendingMileage,deleteMileageVoucher,handleMileageVoucherIdDrwer } from "../MileageAction";
-import { DeleteOutlined, } from "@ant-design/icons";
+
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const MileageVoucherIdDrawer = lazy(() => import("./MileageVoucherIdDrawer"))
 
@@ -106,7 +107,7 @@ class MileagePendingStatusCard extends React.Component {
                      title="Do you want to delete?"                   
                      onConfirm={() =>   this.props.deleteMileageVoucher(item.voucherId)}
                    >
-              <DeleteOutlined
+              <DeleteOutlineIcon
                 type="delete"
                 style={{ cursor: "pointer" }}
                 // onClick={() => {

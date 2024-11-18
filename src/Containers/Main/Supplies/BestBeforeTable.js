@@ -1,39 +1,18 @@
-import React, { useState, useEffect,Suspense, lazy,useRef } from "react";
+import React, { useState, useEffect,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import AddSuppliesRowImageModal from "./AddSuppliesRowImageModal"
-import DescriptionIcon from '@mui/icons-material/Description';
 import QrCodeIcon from '@mui/icons-material/QrCode';
-import FWLogo1 from "../../../Assets/Images/smallLogo.png"
 import PinIcon from '@mui/icons-material/Pin';
 import {
   getBestBeforeJumpList,
 } from "./SuppliesAction";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { Tooltip, Popconfirm,Button } from "antd";
-import {
-  DeleteOutlined,
-  PhoneFilled,
-  UploadOutlined,
-} from "@ant-design/icons";
-
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
-import CategoryIcon from '@mui/icons-material/Category';
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
 import AttractionsIcon from '@mui/icons-material/Attractions'; 
 import ContactsIcon from '@mui/icons-material/Contacts';
 import dayjs from "dayjs";
-import InventoryIcon from '@mui/icons-material/Inventory';
-import { BundleLoader } from "../../../Components/Placeholder";
-import { JumpStartBox, MultiAvatar } from "../../../Components/UI/Elements";
-import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
-import InfiniteScroll from "react-infinite-scroll-component";
-import MaterialStatusToggle from "./MaterialStatusToggle";
-import ReactToPrint from "react-to-print";
-import AddDocumentErpModals from "./AddDocumentErpModals";
-
-import SuppliesSearchedData from "./SuppliesSearchedData";
+import {  MultiAvatar } from "../../../Components/UI/Elements";
 import EmptyPage from "../EmptyPage";
 
 

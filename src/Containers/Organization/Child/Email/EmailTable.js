@@ -7,7 +7,7 @@ import { Switch } from "antd";
 import { getEmailCredentials } from "../Email/EmailAction";
 import { handleUpdateEmailModal } from "../../../Settings/SettingsAction";
 import { setEditEmail } from "../../../Settings/SettingsAction";
-import { EditOutlined } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 const UpdateEmailModal = lazy(() => import('./UpdateEmailModal'))
 class EmailTable extends Component {
   componentDidMount() {
@@ -76,7 +76,7 @@ class EmailTable extends Component {
         render: (name, item, i) => {
           //debugger
           return (
-            <EditOutlined
+            <VisibilityIcon
               type="edit"
               style={{ cursor: "pointer" }}
               onClick={() => {

@@ -11,7 +11,7 @@ import { getExpenseById,
   deleteExpense } from "../ExpenseAction";
 import { BundleLoader } from "../../../Components/Placeholder";
 import dayjs from "dayjs";
-import { DeleteOutlined, } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 const ExpenseVoucherIdDrawer=lazy(()=>import("./ExpenseVoucherIdDrawer"));
 const ExpenseStatusDrawer=lazy(()=>import("./UpdateExpense/ExpenseStatusDrawer"));
 
@@ -122,7 +122,7 @@ className="!text-base cursor-pointer text-[grey] p-[2px]"/>
           title="Do you want to delete?"
           onConfirm={() => props.deleteExpense(item.voucherId)}
         >
-              <DeleteOutlined
+              <DeleteOutlineIcon
                 type="delete"
                 className="!text-icon cursor-pointer text-[red]" 
                 // onClick={() => {

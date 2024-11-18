@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Icon } from "antd";
-import { DownOutlined, UpOutlined } from "@ant-design/icons";
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 class ShowOrCollapse extends Component {
   constructor(props) {
     super(props);
@@ -27,9 +27,9 @@ class ShowOrCollapse extends Component {
           onClick={this.toggleCollapse}
           style={{ textDecoration: "none", fontSize: 15 }}
         >
-          {isCollapsed && <DownOutlined type="down" />}
+          {isCollapsed && <KeyboardArrowDownIcon type="down" className=" !text-icon"/>}
           {isCollapsed && " Show more "}
-          {!isCollapsed && <UpOutlined type="up" style={{ fontSize: 11 }} />}
+          {!isCollapsed && <KeyboardArrowUpIcon className=" !text-icon"  type="up"  />}
           {!isCollapsed && " Show less "}
         </a>
         <div style={{ marginTop: 15 }}>

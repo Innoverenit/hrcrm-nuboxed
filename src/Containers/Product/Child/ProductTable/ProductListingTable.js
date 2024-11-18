@@ -20,11 +20,13 @@ import { handleCurrencyPriceModal } from "../../../Main/Supplies/SuppliesAction"
 import { CurrencySymbol } from "../../../../Components/Common";
 import { Tooltip, Button, Popconfirm, Switch } from "antd";
 import {
-  EditOutlined,
+
   HistoryOutlined,
-  DeleteOutlined,
+ 
   MoneyCollectOutlined,
 } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {
   MultiAvatar,
   SubTitle,
@@ -827,7 +829,7 @@ function ProductListingTable(props) {
                 (user.functionName !== "Sales" ||
                   user.designation !== "Manager") && (
                   <Tooltip title="Edit">
-                    <EditOutlined
+                    <VisibilityIcon
                       style={{ cursor: "pointer", fontSize: "12px" }}
                       onClick={() => {
                         props.setEditProducts(item);
@@ -869,7 +871,7 @@ function ProductListingTable(props) {
                       title="Do you want to delete?"
                       onConfirm={() => props.deleteProductData(item.productId)}
                     >
-                      <DeleteOutlined
+                      <DeleteOutlineIcon
                         style={{ cursor: "pointer", color: "red" }}
                       />
                     </Popconfirm>

@@ -22,12 +22,6 @@ import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import EuroIcon from '@mui/icons-material/Euro';
 import ReInstateProductToggle from "./ReInstateProductToggle";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import CategoryIcon from '@mui/icons-material/Category'
-import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
-import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
-import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
-import AttractionsIcon from '@mui/icons-material/Attractions'; 
-import ExploreIcon from "@mui/icons-material/Explore";
 const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
 const PriceDrawer = lazy(() => import("./PriceDrawer"));
 const ProductBuilderDrawer = lazy(() => import("./ProductBuilderDrawer"));
@@ -126,32 +120,32 @@ function ProductDeleteList(props) {
 
       <div className=' flex sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between max-sm:hidden w-[92%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">  
-          <div className="w-[5.9rem]"></div>        
-          <div className=" w-[11rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
+          <div className=" flex justify-between max-sm:hidden w-[86%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">  
+          <div className="w-[3.51rem]"></div>        
+          <div className=" w-[5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
             {translatedMenuItems[0]} {/* Article # */}
               </div>
-            <div className=" w-[17.9rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[7.11rem]">
-            <CategoryIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[1]}  {/* Name */}
+            <div className=" w-[13.71rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[7.11rem]">
+            {translatedMenuItems[1]}  {/* Name */}
               </div>
-            <div className=" w-[11.21rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[2.21rem] max-lg:w-[3.21rem] ">
-            <FormatListNumberedIcon className='!text-icon  mr-1   text-[#42858c]' />  {translatedMenuItems[2]}
+            <div className=" w-[4.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[2.21rem] max-lg:w-[3.21rem] ">
+            {translatedMenuItems[2]}
             {/* Category */}
               </div>
-            <div className=" w-[10.511rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem]">
-            <AttractionsIcon className="  !text-icon" /> {translatedMenuItems[3]} {/* Attribute */}
+            <div className=" w-[5.511rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem]">
+            {translatedMenuItems[3]} {/* Attribute */}
               </div>
-            <div className=" w-[12.51rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.51rem]">
-            <BrandingWatermarkIcon className="!text-icon  mr-1" /> {translatedMenuItems[4]}{/* Brand */}
+            <div className=" w-[7.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.51rem]">
+            {translatedMenuItems[4]}{/* Brand */}
               </div>
-            <div className=" w-[12.51rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.51rem]">
-            <ModelTrainingIcon className=" !text-icon" /> {translatedMenuItems[5]} {/* Model */}
+            <div className=" w-[8.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.51rem]">
+            {translatedMenuItems[5]} {/* Model */}
             
             </div>
-            <div className=" w-[9.22rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
-            <ExploreIcon className=" !text-icon cursor-pointer text-[green]"/> {translatedMenuItems[6]}  {/* Website */}
+            <div className=" w-[3.22rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+            {translatedMenuItems[6]}  {/* Website */}
               </div>
-            <div className=" w-[6.23rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+            <div className=" w-[2.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
             {translatedMenuItems[7]} {/* Reinstate */}
               </div>
             
@@ -167,9 +161,9 @@ function ProductDeleteList(props) {
             {props.deleteproducts.map((item) => {
               return (
                 <div>
-                  <div className="flex rounded justify-between mt-1 bg-white  items-center py-ygap max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                  <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex w-[4.5rem]  items-center  border-l-2 border-green-500 bg-[#eef2f9] h-8 max-sm:w-auto   ">
+                      <div className=" flex w-[4.5rem] max-sm:w-auto   ">
                         <SubTitle>
                           {item.imageId ? (
                             <MultiAvatar
@@ -179,21 +173,21 @@ function ProductDeleteList(props) {
                             
                             />
                           ) : (
-                            <div class="font-bold ml-gap text-[0.6rem]" >
+                            <div class="font-bold text-[0.6rem]" >
                               No Image
                             </div>
                           )}
                         </SubTitle>
                       </div>
-                      <div className=" flex w-[8.1rem] h-8 items-center ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
-                        <div class="text-xs ml-gap  font-semibold max-sm:text-sm  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                      <div className=" flex w-[8.1rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
+                        <div class="text-xs  font-semibold max-sm:text-sm  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.articleNo}
                         </div>
                       </div>
 
-                      <div className=" flex w-[14.1rem] h-8 items-center ml-gap bg-[#eef2f9] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex w-[14.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
-                        <div class=" text-xs ml-gap max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.name}
                         </div>
 
@@ -201,31 +195,31 @@ function ProductDeleteList(props) {
 
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex w-[9.1rem] h-8 items-center ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                      <div class=" text-xs ml-gap  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                    <div className=" flex w-[7.1rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                      <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.categoryName} {item.subCategoryName}
                       </div>
                     </div>
                    
 
-                    <div className=" flex w-[8.5rem] h-8 items-center ml-gap bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flex w-[5.5rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
-                      <div class=" text-xs ml-gap  max-sm:text-sm   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                      <div class=" text-xs  max-sm:text-sm   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         {item.attributeName}{item.subAttributeName}
                       </div>
                     </div>
 </div>
 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-<div className=" flex w-[9.51rem] h-8 items-center ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                      <div class=" text-xs ml-gap  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+<div className=" flex w-[9.51rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                      <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.brand}
                       </div>
                     </div>
-                    <div className=" flex w-[9.8rem] h-8 items-center ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                      <div class=" text-xs  ml-gap max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                    <div className=" flex w-[8.8rem] max-xl:w-[5.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                      <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 
                         {item.model}
                       </div>
@@ -239,17 +233,17 @@ function ProductDeleteList(props) {
                                 <div class="max-sm:text-sm"> Print QR Code</div>
                                 </Button>
                       </div> */}
-                      <div className=" flex ml-gap w-[6.9rem] h-8 items-center justify-center ml-gap bg-[#eef2f9] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex w-[5.9rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
                         <ProductPublishToggle item={item} />
 
                       </div>
-                      <div className=" flex w-[5.7rem] h-8 items-center justify-center ml-gap bg-[#eef2f9] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex w-[3.7rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
 <ReInstateProductToggle item={item} />
 
 </div>
-<div className=" flex  w-[5.8rem] h-8 items-center justify-end ml-gap bg-[#eef2f9] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  "> 
+<div className=" flex  w-[6.8rem] max-xl:w-[6.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  "></div>  
                       <div>
                      
                         <Tooltip title="Add Price">
@@ -301,20 +295,7 @@ function ProductDeleteList(props) {
 
 
                     </div>
-                    </div> 
-                    {/* <div className="mt-1 ml-2">
-                          <StyledPopconfirm
-                            title="Do you want to delete?"
-                            onConfirm={() => deleteCatalogData(item.productId,props.orgId)}
-                          >
-                            
-                            <DeleteOutlined
-                              type="delete"
-                              className=" !text-xl cursor-pointer text-[red]"
-                            />
-                         
-                          </StyledPopconfirm>
-                        </div> */}
+                  
                     </div>
                    
                   </div>

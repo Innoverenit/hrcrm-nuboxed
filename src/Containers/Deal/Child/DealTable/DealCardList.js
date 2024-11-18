@@ -5,7 +5,7 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
-import {  DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { BundleLoader} from "../../../../Components/Placeholder";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip,  Menu, Dropdown, Progress } from "antd";
@@ -406,7 +406,7 @@ function DealCardList(props) {
                       >
                          <Tooltip title={translatedMenuItems[15]}>
                         {user.imInd === true && user.dealDeleteInd === true && (
-                          <DeleteOutlined
+                          <DeleteOutlineIcon
                             type="delete"
                             className="!text-icon text-[red] cursor-pointer"
                           />

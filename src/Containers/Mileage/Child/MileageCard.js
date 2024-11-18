@@ -11,7 +11,7 @@ import { getMileageByUserId,
 
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import AssistantIcon from '@mui/icons-material/Assistant';
-import { DeleteOutlined, } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { BundleLoader } from "../../../Components/Placeholder";
 
 const StatusMileageDrawer = lazy(() => import("./StatusMileageDrawer"));
@@ -123,7 +123,7 @@ this.handleExpand(item.voucherId)
               title="Do you want to delete?"
               onConfirm={() =>   this.props.deleteMileageVoucher(item.voucherId)}
             >
-              <DeleteOutlined
+              <DeleteOutlineIcon
                 type="delete"
                 className="!text-[1.2rem] cursor-pointer text-[red]" 
                 // onClick={() => {

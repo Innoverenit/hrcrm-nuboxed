@@ -1,8 +1,8 @@
 import React, {  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { SearchOutlined,  
-} from '@ant-design/icons';
+
+import SearchIcon from '@mui/icons-material/Search';
 import {  Tooltip,Input, Button, Avatar } from "antd";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
@@ -61,7 +61,7 @@ class LinkedCustomerProjectTaskTable extends React.Component {
           <Button
             type="primary"
             onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-             icon={<SearchOutlined />}
+             icon={<SearchIcon />}
             //icon="search"
             size="small"
             style={{ width: 90 }}
@@ -92,7 +92,7 @@ class LinkedCustomerProjectTaskTable extends React.Component {
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+      <SearchIcon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]

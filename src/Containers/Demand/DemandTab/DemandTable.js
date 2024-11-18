@@ -4,16 +4,15 @@ import { bindActionCreators } from "redux";
 
 import PsychologyAltIcon from '@mui/icons-material/PsychologyAlt';
 import AddRequirementModal from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/AddRequirementModal"
-import RecruitmentStages from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/RecruitmentStages";
 import {
   StyledTable,
   StyledPopconfirm,
   StyledModal,
 } from "../../../Components/UI/Antd";
+import { Tooltip } from "antd";
 import HelpIcon from '@mui/icons-material/Help';
 import RecruitmentFilter from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/RecruitmentFilter";
 import AddRecruiterModal from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/AddRecruiterModal"
-import RecruitmentContact from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/RecruitmentContact";
 import {
   getRecruitByRecruiterId,
   LinkSkillsRecruit,
@@ -35,28 +34,6 @@ import {
   emailSendStage,
 } from "../../Opportunity/OpportunityAction";
 import { BundleLoader } from "../../../Components/Placeholder";
-import {
-
-  Popconfirm,
-  Tooltip,
-  Dropdown,
-  Menu,
-  Progress,
-  Table, Input, Button,
-  message,
-  Icon,
-} from "antd";
-// import { Table, Input, Button, Icon } from 'antd';
-import Highlighter from 'react-highlight-words';
-
-// import { 
-//   CheckCircleOutlined,
-//   StopOutlined,
-//   EditOutlined,
-//   CopyOutlined,
-//   EyeOutlined,
-//   EyeInvisibleOutlined
-// } from '@ant-design/icons';
 import RecruitmentDetails from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/Child/RecruitmentDetails";
 import {
   getCandidateById,
@@ -64,16 +41,14 @@ import {
   //   getContactDocument,
 } from "../../Candidate/CandidateAction";
 import dayjs from "dayjs";
-import { CurrencySymbol } from "../../../Components/Common";
 import EditRecruitForm from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/EditRecruitForm";
 import { Suspense } from "react";
 import { elipsize } from "../../../Helpers/Function/Functions";
 import RecruitmentSwitch from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/RecruitmentSwitch";
-import RecruitmentSwitchSponsor from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/RecruitmentSwitchSponsor";
 import SelectSponsorForm from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/SelectSponsorForm";
 import { addRecruitProProfile, deleteRequirementData } from "../../Opportunity/OpportunityAction";
-import { map } from "lodash";
-import { CheckCircleOutlined, CheckCircleTwoTone, DeleteOutlined, EyeInvisibleOutlined, EyeOutlined, StopTwoTone } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { CheckCircleOutlined, CheckCircleTwoTone, EyeInvisibleOutlined, EyeOutlined, StopTwoTone } from "@ant-design/icons";
 class DemandTable extends Component {
   constructor(props) {
     super(props);
@@ -749,7 +724,7 @@ class DemandTable extends Component {
               }
             >
               {/* {user.userType !== "USER" && user.department !== "Recruiter" && (  */}
-              <DeleteOutlined type="delete"
+              <DeleteOutlineIcon type="delete"
                 // onClick={() =>
                 //   this.props.deleteRequirementData(
                 //     item.profileId,

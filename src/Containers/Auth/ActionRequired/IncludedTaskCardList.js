@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component";
-
-import {  DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip,  Menu, Dropdown, Progress } from "antd";
 import { Link } from 'react-router-dom';
@@ -262,7 +261,7 @@ function IncludedTaskCardList(props) {
                       >
                          <Tooltip title="Delete">
                         {user.imInd === true && user.dealDeleteInd === true && (
-                          <DeleteOutlined
+                          <DeleteOutlineIcon
                             type="delete"
                             style={{
                               cursor: "pointer",

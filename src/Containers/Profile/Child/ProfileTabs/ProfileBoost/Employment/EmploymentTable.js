@@ -17,7 +17,8 @@ import dayjs from "dayjs";
 import { base_url } from "../../../../../../Config/Auth";
 import { deleteEmploymentTable } from "../../../../ProfileAction";
 import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 const UpdateEmploymentModal = lazy(() => import("../Employment/UpdateEmploymentModal"));
 class EmploymentTable extends Component {
   // constructor(props) {
@@ -145,7 +146,7 @@ class EmploymentTable extends Component {
               title="Do you want to delete?"
               onConfirm={() => deleteEmploymentTable(item.id)}
             >
-              <DeleteOutlined type="delete" style={{ cursor: "pointer", color: "red" }} />
+              <DeleteOutlineIcon type="delete" style={{ cursor: "pointer", color: "red" }} />
               {/* <Button type="primary" className='edit_hover_class' icon="delete"  /> */}
             </StyledPopconfirm>
           );
@@ -158,7 +159,7 @@ class EmploymentTable extends Component {
         render: (name, item, i) => {
           //debugger
           return (
-            <EditOutlined
+            <VisibilityIcon
               type="edit"
               style={{ cursor: "pointer" }}
               onClick={() => {

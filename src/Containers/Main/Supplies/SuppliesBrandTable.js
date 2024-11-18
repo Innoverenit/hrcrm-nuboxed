@@ -1,23 +1,23 @@
-import React, { useEffect, useState, lazy,Suspense } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import EditUpload from "../../../Components/Forms/Edit/EditUpload";
 import MaterialBrandModal from "./MaterialBrandModal"
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
-import { Formik, Form, FastField, Field, FieldArray } from "formik";
+import { Formik, Form, FastField } from "formik";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
-import { Tooltip, Select,Input, Button, Popconfirm } from "antd";
+import { Tooltip, Select,Input, Button} from "antd";
 import LiveTvIcon from '@mui/icons-material/LiveTv';
 import FWLogo1 from "../../../Assets/Images/smallLogo.png"
 import ToggleOffIcon from '@mui/icons-material/ToggleOff';
 
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {
   MultiAvatar,
-  MultiAvatar2,
 } from "../../../Components/UI/Elements";
 import {addSuppliesBrand,
     getBrandSupplies,
@@ -27,7 +27,6 @@ import {addSuppliesBrand,
 } from 
     "./SuppliesAction"
     import { StyledPopconfirm } from "../../../Components/UI/Antd";
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 
 
@@ -229,7 +228,7 @@ const handleSave = (item) => {
             <div className="font-bold font-poppins text-xs w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
               
    {/* Delete */}
-  < DeleteOutlined
+  < DeleteOutlineIcon
    />{translatedMenuItems[10]}
             </div>
                
@@ -385,7 +384,7 @@ onConfirm={() => props.deleteSuppliesBrandData({active:false},item.brand)}
 >
 
 
-<DeleteOutlined
+<DeleteOutlineIcon
 
 type="delete" className="!text-icon cursor-pointer text-[red]" />
 

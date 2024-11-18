@@ -1,5 +1,7 @@
 import React, { useState,useEffect,useRef } from 'react';
-import { EditOutlined, DeleteOutlined,MinusCircleOutlined } from '@ant-design/icons';
+import { MinusCircleOutlined } from '@ant-design/icons';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import { connect } from "react-redux";
 import {  Input,Tooltip,Popconfirm} from "antd";
 import dayjs from "dayjs";
@@ -214,7 +216,7 @@ if (props.fetchingRegions) {
                           <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                       </div>
                   ) : (
-                      <EditOutlined className=" cursor-pointer !text-icon text-red-600" onClick={() => editRegion(region.regionsId, region.regions,region)} />
+                      <VisibilityIcon className=" cursor-pointer !text-icon text-red-600" onClick={() => editRegion(region.regionsId, region.regions,region)} />
                   )}
 
                   {/* Delete button */}
@@ -224,7 +226,7 @@ if (props.fetchingRegions) {
                           cancelText="No"
                           onConfirm={() =>  props.removeRegions(region.regionsId,props.orgId)}
                         >
-                  <DeleteOutlined className=" cursor-pointer !text-icon text-red-600"
+                  <DeleteOutlineIcon className=" cursor-pointer !text-icon text-red-600"
                    
                  
                 // onClick={() => 

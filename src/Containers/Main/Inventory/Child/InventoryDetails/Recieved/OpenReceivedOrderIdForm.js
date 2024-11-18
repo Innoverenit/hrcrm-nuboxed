@@ -22,7 +22,8 @@ import {
 } from "../../../InventoryAction";
 import { useDispatch } from 'react-redux';
 import ReceivedOrderIdPhoneNoteModal from "./ReceivedOrderIdPhoneNoteModal";
-import { EditOutlined, FileDoneOutlined,  } from "@ant-design/icons";
+import { FileDoneOutlined,  } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { MultiAvatar2 } from "../../../../../../Components/UI/Elements";
 import ReceiveValidationToggle from "./ReceiveValidationToggle";
@@ -533,7 +534,7 @@ console.log(selectedItems)
                       <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[3.09rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
                           {item.inspectionInd === 1 && item.receivePhoneInd && !item.cannotRepairInd && (
-                            <EditOutlined
+                            <VisibilityIcon
                             className="!text-icon cursor-pointer text-[orange]"
                               onClick={() => {
                                 props.setEditPhoneData(item);

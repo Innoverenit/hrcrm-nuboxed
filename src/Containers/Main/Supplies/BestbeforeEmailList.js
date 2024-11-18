@@ -1,8 +1,8 @@
 import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {  DeleteOutlined } from "@ant-design/icons";
-import { Tooltip, Select,Checkbox } from "antd";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { Tooltip} from "antd";
 import dayjs from "dayjs";
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import {getBestBeforeEmailList,
@@ -159,7 +159,7 @@ function BestbeforeEmailList(props) {
                       >
                          <Tooltip title="Delete" >
                        
-                          <DeleteOutlined
+                          <DeleteOutlineIcon
                             type="delete"
                             className="!text-icon text-[red] cursor-pointer max-sm:!text-xl"
                           />

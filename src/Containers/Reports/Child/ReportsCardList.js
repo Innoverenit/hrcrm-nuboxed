@@ -6,7 +6,6 @@ import "jspdf-autotable";
 import { RotatingCircleLoader    } from 'react-loaders-kit';
 import dayjs from "dayjs";
 import Highlighter from 'react-highlight-words';
-import { SearchOutlined,} from '@ant-design/icons';
 import { Button,  Tooltip, Input} from "antd";
 import { Link } from 'react-router-dom';
 

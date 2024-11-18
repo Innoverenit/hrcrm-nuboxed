@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip } from "antd";
-import { EditOutlined, FileDoneOutlined, PhoneOutlined, ScheduleOutlined } from "@ant-design/icons";
+import { FileDoneOutlined, PhoneOutlined, ScheduleOutlined } from "@ant-design/icons";
 import {  StyledTable } from "../../../../../../../Components/UI/Antd";
 import dayjs from "dayjs";
 import {getActivityListBySupplierId} from "../../../../SuppliersAction";
-
+import VisibilityIcon from '@mui/icons-material/Visibility';
 class SuppliersActivityTable extends Component {
 
     constructor(props) {
@@ -126,7 +126,7 @@ class SuppliersActivityTable extends Component {
                     return (
                         <Tooltip title="Edit">
                             {item.activity === "Event" && (
-                                <EditOutlined className="cursor-pointer text-12px"
+                                <VisibilityIcon className="cursor-pointer text-12px"
                                     // type="edit"                                
                                     onClick={() => {
                                         // this.props.setEditEvents(item);
@@ -135,7 +135,7 @@ class SuppliersActivityTable extends Component {
                                 />
                             )}
                             {item.activity === "Call" && (
-                                <EditOutlined className="cursor-pointer text-12px"
+                                <VisibilityIcon className="cursor-pointer text-12px"
                                     // type="edit"                                
                                     onClick={() => {
                                         // this.props.setEditCall(item);
@@ -145,7 +145,7 @@ class SuppliersActivityTable extends Component {
                                 />
                             )}
                             {item.activity === "Task" && (
-                                <EditOutlined className="cursor-pointer text-12px"
+                                <VisibilityIcon className="cursor-pointer text-12px"
                                     // type="edit"                               
                                     onClick={() => {
                                         // this.props.setEditTask(item);

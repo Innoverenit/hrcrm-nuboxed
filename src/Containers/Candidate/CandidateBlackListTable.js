@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import styled from "styled-components";
-import { SearchOutlined, UpCircleOutlined } from "@ant-design/icons";
-
+import {  UpCircleOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';
 import { StyledTable, StyledPopconfirm } from "../../Components/UI/Antd";
 import { Button, Select, Tooltip, Input } from "antd";
 import { MultiAvatar, SubTitle } from "../../Components/UI/Elements";
@@ -122,7 +122,7 @@ function CandidateBlackListTable(props) {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             size="small"
             style={{ width: 90 }}
           >
@@ -149,7 +149,7 @@ function CandidateBlackListTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />

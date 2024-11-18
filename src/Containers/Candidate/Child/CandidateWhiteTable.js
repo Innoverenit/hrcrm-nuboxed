@@ -1,9 +1,8 @@
 import React, { useEffect, useState,useMemo,lazy } from "react";
 import { connect } from "react-redux";
 
+import SearchIcon from '@mui/icons-material/Search';
 import { bindActionCreators } from "redux";
-import { SearchOutlined,
-  } from '@ant-design/icons';
 import dayjs from "dayjs";
 import { StyledTable } from "../../../Components/UI/Antd";
 import { Tooltip,Button,Input } from "antd";
@@ -83,7 +82,7 @@ function CandidateWhiteTable(props) {
             <Button
               type="primary"
               onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-               icon={<SearchOutlined />}
+               icon={<SearchIcon />}
               //icon="search"
               size="small"
               style={{ width: 90 }}
@@ -112,7 +111,7 @@ function CandidateWhiteTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        <SearchIcon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
       ),
       onFilter: (value, record) =>
         record[dataIndex]

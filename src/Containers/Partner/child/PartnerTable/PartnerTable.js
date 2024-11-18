@@ -8,12 +8,12 @@ import { bindActionCreators } from "redux";
 import StatusToggle from "./StatusToggle";
 import dayjs from "dayjs";
 import {
-  SearchOutlined,
   MailOutlined,
 } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';
 import Highlighter from "react-highlight-words";
 import { StyledTable } from "../../../../Components/UI/Antd";
-import { Tooltip, Icon, Button, Input, Select } from "antd";
+import { Tooltip,  Button, Input, Select } from "antd";
 import { MultiAvatar, MultiAvatar2, SubTitle } from "../../../../Components/UI/Elements";
 import {
   getPartnerListByUserId,
@@ -196,7 +196,7 @@ function PartnerTable(props) {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             //icon="search"
             size="small"
             style={{ width: 90 }}
@@ -224,7 +224,7 @@ function PartnerTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />

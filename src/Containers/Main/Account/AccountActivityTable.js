@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Icon, Tooltip } from "antd";
-import { EditOutlined, FileDoneOutlined, PhoneOutlined, ScheduleOutlined } from "@ant-design/icons";
+import {  FileDoneOutlined, PhoneOutlined, ScheduleOutlined } from "@ant-design/icons";
 import { StyledTable } from "../../../Components/UI/Antd";
 import {
     getActivityListByDistributorId,

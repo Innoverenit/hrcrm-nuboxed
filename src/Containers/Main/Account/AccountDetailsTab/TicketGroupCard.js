@@ -1,13 +1,5 @@
 import React from "react";
-import {  Popconfirm,Tooltip } from "antd";
-
-import { StopTwoTone, DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { CheckCircleTwoTone } from "@ant-design/icons";
-import {
-  MultiAvatar,
-} from "../../../../Components/UI/Elements";
-import { StyledPopconfirm } from "../../../../Components/UI/Antd";
-import { CurrencySymbol } from "../../../../Components/Common";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const BussinessCard = (props) => {
   const {
@@ -116,7 +108,7 @@ const BussinessCard = (props) => {
           >
            
              {user.opportunityDeleteInd ===true && user.crmInd === true && (
-            <DeleteOutlined
+            <DeleteOutlineIcon
             type="delete" className=" !text-icon cursor-pointer text-red-600 "  />
              )}
           </StyledPopconfirm> */}
@@ -125,11 +117,7 @@ const BussinessCard = (props) => {
           <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
             
           </div>
-          {/* <div >
-          <EditOutlined  className=" !text-icon text-[#337df4bf]"
-          onClick={props.handleEdit}
-          />
-        </div> */}
+        
         </div>
 
        

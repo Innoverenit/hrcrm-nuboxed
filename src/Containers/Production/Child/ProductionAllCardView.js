@@ -354,35 +354,9 @@ function ProductionAllCardView(props) {
                                                         {/* <MoveToggleProduction item={item} /> */}
                                                     </div>
                                                 </div>
-                                                {/* <div className=" flex font-medium flex-col md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs  font-semibold  font-poppins">
-                                                        <Tooltip title="Print QR Code">
-                                                           <Button type="primary">
-                                                            Print QR 
-                                                           </Button>
-                                                        </Tooltip>
-                                                    </div>
-                                                </div> */}
+                                           
 
-                                                {/* {(user.productionDeleteInd === true || user.role === "ADMIN") && (
-                                                    <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                        <div class=" text-xs  font-poppins">
-                                                            <Tooltip title="Delete">
-                                                                <Popconfirm
-                                                                    title="Do you want to delete?"
-                                                                //   onConfirm={() => props.deleteShipperData(item.shipperId)}
-                                                                >
-                                                                    <DeleteOutlined
-                                                                        className=" !text-base cursor-pointer text-[red]"
-
-                                                                    />
-                                                                </Popconfirm>
-                                                            </Tooltip>
-                                                        </div>
-
-
-                                                    </div>
-                                                )} */}
+                                              
                                             </div>
                                         </div>
                                     );

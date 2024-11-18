@@ -1,16 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {
-  DeleteOutlined,
-  EditOutlined,
-  SearchOutlined,
-  ShoppingOutlined,
-} from "@ant-design/icons";
-import { InputNumber, Popconfirm, Form, Input, Typography, Button, Space, DatePicker } from 'antd';
-
-import { StyledModal, StyledTable } from "../../../../../Components/UI/Antd";
-import { getCommissionTable,setEditCommission, handleCommission} from "../../../../Settings/SettingsAction";
+import {  StyledTable } from "../../../../../Components/UI/Antd";
+import { getCommissionTable} from "../../../../Settings/SettingsAction";
 // import CommissionUpdateModal from "./CommissionUpdateModal";
 import dayjs from "dayjs";
 

@@ -140,21 +140,8 @@ function CourseTable(props) {
             </Tooltip>
             </div>
 
-{/* <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-<h4 class=" text-xs  font-poppins">
-<Tooltip title="Edit">
-                                        <EditOutlined
-                                    style={{ cursor: "pointer", fontSize: "12px" }}
-                                            // onClick={() => {
-                                            //     props.setEditProducts(item);
-                                            //     handleUpdateProductModal(true);
-                                            // }}
-                                        />
-                                    </Tooltip>
-</h4>
 
 
-</div> */}
 </div>
 </div>
           );

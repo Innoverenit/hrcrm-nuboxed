@@ -1,4 +1,4 @@
-import { EditOutlined } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import { Input, Popconfirm ,Button, Form,Typography } from "antd";
 import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
@@ -183,7 +183,7 @@ function OneTimeTable (props) {
                         </span>
                     ) : (
                         <Typography.Link disabled={editingKey !== ''} onClick={() => edit(record)}>
-                            <EditOutlined />
+                            <VisibilityIcon />
                         </Typography.Link>
                     )
                 },

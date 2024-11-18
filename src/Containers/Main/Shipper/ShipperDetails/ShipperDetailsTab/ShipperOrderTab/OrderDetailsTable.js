@@ -10,7 +10,7 @@ import {
 } from "../../../../ShipperAction";
 import { CurrencySymbol } from "../../../../../../Components/Common";
 import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
-import { EditOutlined } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import UpdateProductDetailModal from "./UpdateProductDetailModal";
 
 
@@ -84,7 +84,7 @@ class OrderDetailsTable extends Component {
         render: (name, item, i) => {
           return (
             <Tooltip title="Edit">
-              <EditOutlined 
+              <VisibilityIcon 
                 style={{ cursor: "pointer" }}
                 onClick={() => {
                   this.props.setEditOrderDetail(item);

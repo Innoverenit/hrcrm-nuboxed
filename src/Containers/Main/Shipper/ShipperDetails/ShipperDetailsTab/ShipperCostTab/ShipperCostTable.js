@@ -10,7 +10,8 @@ import {
 import {  } from "../../../../Suppliers/SuppliersAction"
 import { Input ,Button} from "antd";
 import { OnlyWrapCard } from '../../../../../../Components/UI/Layout';
-import { CloseOutlined, EditOutlined, SaveOutlined } from "@ant-design/icons";
+import { CloseOutlined, SaveOutlined } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import SourceIcon from '@mui/icons-material/Source';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 
@@ -238,7 +239,7 @@ class ShipperCostTable extends Component {
                     </>
                   ) : (
                     <Button
-                      icon={<EditOutlined />}
+                      icon={<VisibilityIcon />}
                       size="small"
                       onClick={() => this.handleEdit(item)}
                     />

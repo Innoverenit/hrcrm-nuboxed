@@ -4,7 +4,8 @@ import {
 } from "../../../../Components/UI/Elements";
 import { StyledCollapse } from "../../../../Components/UI/Antd";
 import dayjs from "dayjs";
-import { CaretRightOutlined, EditOutlined } from "@ant-design/icons";
+import { CaretRightOutlined} from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 const Panel = StyledCollapse.Panel;
 class PersonalView extends Component {
   render() {
@@ -16,7 +17,7 @@ class PersonalView extends Component {
     return (
       <>
         <div class=" flex justify-end" >
-          <EditOutlined
+          <VisibilityIcon
             tooltipTitle="Edit"
             iconType="edit"
             handleIconClick={toggleViewType}

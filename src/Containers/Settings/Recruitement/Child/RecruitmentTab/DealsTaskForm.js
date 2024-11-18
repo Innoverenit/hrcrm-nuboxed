@@ -8,7 +8,7 @@ import { bindActionCreators } from "redux";
 import MoveToggleTaskStage from "../../Child/RecruitmentTab/MoveToggleTaskStage";
 import { addProcessTaskStage, getProcessTaskStage, deleteTaskStageData,updateProcessTaskStage } from "../../../SettingsAction";
 import { StyledPopconfirm } from '../../../../../Components/UI/Antd';
-import { DeleteOutlined } from '@ant-design/icons';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const { Option } = Select;
 
@@ -230,7 +230,7 @@ const MyForm = (props) => {
                             title="Do you want to delete?"
                             onConfirm={() => props.deleteTaskStageData(item.stagesTaskId, false)}
                           >
-                            <DeleteOutlined className="!text-icon cursor-pointer text-[red]" />
+                            <DeleteOutlineIcon className="!text-icon cursor-pointer text-[red]" />
                           </StyledPopconfirm>
                         </div>
                       </div>

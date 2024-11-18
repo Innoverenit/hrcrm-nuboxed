@@ -8,7 +8,8 @@ import { Tooltip, Badge, Avatar } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
-import { DeleteOutlined, AudioOutlined } from "@ant-design/icons";
+import {AudioOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -368,7 +369,7 @@ const CustomerActionLeft = (props) => {
                         <Avatar style={{ background: props.viewType === "dashboard1" ? "#f279ab" : "#28a355",
                boxShadow: props.viewType === "dashboard1" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
                   transform: props.viewType === "dashboard1" ? "scale(1.05)" : "scale(1)" }}>
-                            <DeleteOutlined className="text-white !text-icon " /></Avatar>
+                            <DeleteOutlineIcon className="text-white !text-icon " /></Avatar>
 
                     </span>
                 </Badge>

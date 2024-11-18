@@ -5,9 +5,10 @@ import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component"
 import {
   MailOutlined,
-  SearchOutlined,
+
   UpCircleOutlined,
 } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
@@ -166,7 +167,7 @@ function CandidateDollarTable(props) {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             //icon="search"
             size="small"
             style={{ width: 90 }}
@@ -194,8 +195,8 @@ function CandidateDollarTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-        <SearchOutlined
+        // <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />

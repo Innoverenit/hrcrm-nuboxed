@@ -27,10 +27,10 @@ import {getUOM} from "../../Settings/SettingsAction"
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip, Popconfirm,Button } from "antd";
 import {
-  DeleteOutlined,
   PhoneFilled,
   UploadOutlined,
 } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
@@ -594,7 +594,7 @@ function SuppliesTable(props) {
                                 title={translatedMenuItems[21]}
                                 onConfirm={() => props.deletePurchaseData(item.suppliesId)}
                               >
-                                <DeleteOutlined className=" !text-icon cursor-pointer text-[red]" />
+                                <DeleteOutlineIcon className=" !text-icon cursor-pointer text-[red]" />
                               </Popconfirm>
                             </div>                                      
                           </div>                                              

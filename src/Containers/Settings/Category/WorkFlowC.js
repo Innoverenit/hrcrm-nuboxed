@@ -1,11 +1,9 @@
 import React, { useEffect,lazy,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import DownloadIcon from '@mui/icons-material/Download';
 import { base_url } from "../../../Config/Auth";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Popconfirm,Switch, Input,message,Tooltip,Select,Button } from "antd";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import { Popconfirm,Switch, message,Select,Button } from "antd";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
@@ -309,7 +307,7 @@ return <div><BundleLoader/></div>;
                                       </span> : null}</div>
             )}
 <div>
-  <EditOutlined/>
+  <VisibilityIcon/>
 </div>
            
             <div>

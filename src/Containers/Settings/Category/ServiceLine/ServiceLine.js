@@ -1,5 +1,6 @@
 import React, { useState,useEffect } from 'react';
-import { EditOutlined, DeleteOutlined, } from '@ant-design/icons';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import DownloadIcon from '@mui/icons-material/Download';
@@ -232,7 +233,7 @@ if (props.fetchingServiceLine) {
                           <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                       </div>
                   ) : (
-                      <EditOutlined  className=" cursor-pointer !text-icon text-red-600" onClick={() => editRegion(region.serviceLineId, region.serviceLineName)} 
+                      <VisibilityIcon  className=" cursor-pointer !text-icon text-red-600" onClick={() => editRegion(region.serviceLineId, region.serviceLineName)} 
                       
                       />
                   )}
@@ -244,7 +245,7 @@ if (props.fetchingServiceLine) {
                           cancelText="No"
                           onConfirm={() =>  props.removeServiceLine(region.serviceLineId,props.orgId)}
                         >
-                  <DeleteOutlined className=" cursor-pointer !text-icon text-red-600"
+                  <DeleteOutlineIcon className=" cursor-pointer !text-icon text-red-600"
                     
                 // onClick={() => 
                 //     props.removeServiceLine(region.serviceLineId)

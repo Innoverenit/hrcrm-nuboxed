@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Tooltip, Popconfirm,Switch } from "antd";
 import {
   getAllShipperList,
@@ -221,7 +221,7 @@ function AllShipperList(props) {
                               onConfirm={() => props.deleteShipperData(item.shipperId)}
                             >
                                <div class="items-center justify-center h-8 bg-[#eef2f9] flex">
-                              <DeleteOutlined
+                              <DeleteOutlineIcon
                                 className=" !text-icon cursor-pointer text-[red]"
 
                               />

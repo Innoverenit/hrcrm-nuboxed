@@ -1,25 +1,16 @@
-import React, { useEffect,useState,lazy } from "react";
+import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Highlighter from "react-highlight-words";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Link } from 'react-router-dom';
-import dayjs from "dayjs";
-import InfoIcon from '@mui/icons-material/Info';
 import {
   MultiAvatar,
 } from "../../Components/UI/Elements";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import {
-  SearchOutlined,
-} from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';
 import {getProspectSourceOppWonData} from "./DataRoomAction"
-import { CurrencySymbol } from "../../Components/Common";
-
-import { Tooltip,Button,Input,Progress } from "antd";
+import { Button,Input } from "antd";
 import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../Components/Placeholder";
-//const AddCustomerUpdateOpportunityModal =lazy(()=>import("../Customer/Child/CustomerDetail/CustomerTab/OpportunityTab/AddCustomerUpdateOpportunityModal")); 
 function ProspectQuotationSourceWonData(props) {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(0);
@@ -88,7 +79,7 @@ function ProspectQuotationSourceWonData(props) {
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
             // icon="search"
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             size="small"
             style={{ width: 90 }}
           >
@@ -115,7 +106,7 @@ function ProspectQuotationSourceWonData(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />

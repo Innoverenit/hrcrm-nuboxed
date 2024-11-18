@@ -10,7 +10,8 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {
   StyledPopconfirm,
 } from "../../../../../../Components/UI/Antd";
-import { SearchOutlined, DeleteOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {
   Tooltip,
   Button,
@@ -79,7 +80,7 @@ const InvestorLinkedDocuments = (props) => {
         <Button
           type="primary"
           onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-          icon={<SearchOutlined />}
+          icon={<SearchIcon />}
           size="small"
           style={{ width: 90, marginRight: 8 }}
         >
@@ -95,7 +96,7 @@ const InvestorLinkedDocuments = (props) => {
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+      <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]
@@ -230,7 +231,7 @@ const InvestorLinkedDocuments = (props) => {
             title="Do you want to delete?"
           //   onConfirm={() => deleteDocument(item.documentId)}
          >
-            <DeleteOutlined className="!text-icon text-[red] cursor-pointer"
+            <DeleteOutlineIcon className="!text-icon text-[red] cursor-pointer"
             type="delete"
              />
           </StyledPopconfirm>

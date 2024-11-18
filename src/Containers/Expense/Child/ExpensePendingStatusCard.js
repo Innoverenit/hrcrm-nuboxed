@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  Tooltip } from "antd";
 import { getExpenseById,handlePExpenseVoucherIdDrawer,getPendingExpense,deleteExpense } from "../ExpenseAction";
-import { DeleteOutlined, } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
 
@@ -123,7 +123,7 @@ return <BundleLoader/>
            title="Do you want to delete?"
            onConfirm={() =>   props.deleteExpense(item.voucherId)}
          >
-              <DeleteOutlined
+              <DeleteOutlineIcon
                 type="delete"
                 style={{ cursor: "pointer" }}
                 // onClick={() => {

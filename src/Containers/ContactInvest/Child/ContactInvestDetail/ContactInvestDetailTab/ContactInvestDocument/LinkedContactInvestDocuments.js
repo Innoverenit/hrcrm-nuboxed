@@ -9,7 +9,7 @@ import {  StyledPopconfirm,} from "../../../../../../Components/UI/Antd";
 import DownloadIcon from '@mui/icons-material/Download';
 import {deleteDocument } from "../../../../../Contact/ContactAction";
 import {  getContactDocument } from "../../../../../Customer/CustomerAction";
-import { DeleteOutlined} from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import MergeTypeIcon from '@mui/icons-material/MergeType';
@@ -140,7 +140,7 @@ class LinkedContactInvestDocuments extends Component {
                                       <StyledPopconfirm
               title="Do you want to delete?"
            >
-            <DeleteOutlined className="!text-icon cursor-pointer text-red-600" type="delete" />
+            <DeleteOutlineIcon className="!text-icon cursor-pointer text-red-600" type="delete" />
             </StyledPopconfirm>
 
                                       </div>

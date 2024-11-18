@@ -5,7 +5,8 @@ import { Tooltip, Badge, Avatar, Input } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { inputDataSearch,ClearSearchedDataOfAccount,getAllDistributorsList, getRecords,getCustomerByUser, getAccountRecords, getAllRecords, getDistributorCount ,} from "./AccountAction";
-import { DeleteOutlined, AudioOutlined } from "@ant-design/icons";
+import { AudioOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const AccountActionLeft = (props) => {
     const [currentData, setCurrentData] = useState("");
@@ -200,7 +201,7 @@ const AccountActionLeft = (props) => {
                         <Avatar   style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#28a355",
                                     boxShadow: props.viewType === "dashboard" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
                                       transform: props.viewType === "dashboard" ? "scale(1.05)" : "scale(1)"}}>
-                            <DeleteOutlined className="text-white !text-icon" /></Avatar>
+                            <DeleteOutlineIcon className="text-white !text-icon" /></Avatar>
 
                     </span>
                 </Badge>
