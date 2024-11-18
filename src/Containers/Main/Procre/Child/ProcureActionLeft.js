@@ -76,7 +76,7 @@ const {
             <div class="flex items-center">
 
                 <Tooltip
-                    title={<FormattedMessage id="app.cardview" defaultMessage="Active Orders" />}>
+                    title="Active Orders" >
 <Badge
           size="small"
           count={(props.viewType === "card" && props.recordData.order) || 0}

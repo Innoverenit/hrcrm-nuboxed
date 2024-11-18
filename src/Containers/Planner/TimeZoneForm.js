@@ -66,10 +66,7 @@ class TimeZoneForm extends Component {
                       htmlType="submit"
                       //   Loading={addingProcess}
                     >
-                      <FormattedMessage
-                        id="app.complete"
-                        defaultMessage="Complete"
-                      />
+                     Complete
                       {/* Complete */}
                     </Button>
                   </div>

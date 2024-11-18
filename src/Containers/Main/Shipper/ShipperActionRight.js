@@ -25,7 +25,7 @@ class ShipperActionRight extends React.Component {
           :null}
         <Tooltip title={this.props.translatedMenuItems[15]}>
           <Button type="primary" onClick={() => handleShipperModal(true)}>
-           {/* <FormattedMessage id="app.add" defaultMessage="Add" />  */}        <DataSaverOnIcon className="!text-icon"/> {this.props.translatedMenuItems[22]}
+        <DataSaverOnIcon className="!text-icon"/> {this.props.translatedMenuItems[22]}
           </Button>
         </Tooltip>
       </FlexContainer>

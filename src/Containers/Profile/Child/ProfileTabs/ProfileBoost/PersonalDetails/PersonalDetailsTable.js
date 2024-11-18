@@ -5,6 +5,7 @@ import {
   StyledTable,
   StyledPopconfirm,
 } from "../../../../../../Components/UI/Antd";
+import { FormattedMessage } from 'react-intl';
 import DownloadIcon from '@mui/icons-material/Download';
 import { base_url } from "../../../../../../Config/Auth";
 import { BundleLoader } from "../../../../../../Components/Placeholder";

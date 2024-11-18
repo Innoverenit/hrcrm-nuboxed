@@ -9,11 +9,7 @@ const AddProjectModal = (props) => {
   return (
     <>
       <StyledModal
-        // title="Schedule Project"
-        title={<FormattedMessage
-          id="app.scheduleproject"
-          defaultMessage="Schedule Project"
-        />}
+        title="Schedule Project"
         width="55vw"
         visible={addProjectModal}
         maskClosable={false}

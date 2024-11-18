@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import { FormattedMessage } from 'react-intl';
 
 class ProjectDetailsView extends Component {
   render() {

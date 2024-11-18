@@ -9,7 +9,8 @@ const ShipperFeedbackModal = (props) => {
   return (
     <>
       <StyledModal
-        title={<FormattedMessage id="app.feedback" defaultMessage="Feedback"/>}
+        title="Feedback"
+        
         width="55vw"
         visible={props.feedbackModal}
         maskClosable={false}

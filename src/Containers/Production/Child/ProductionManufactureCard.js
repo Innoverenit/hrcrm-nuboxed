@@ -2,6 +2,7 @@ import React,{ useEffect, useState, lazy }  from 'react'
 import { connect } from "react-redux";
 import dayjs from "dayjs";
 //import {getReportsProductivityData} from "../../ReportAction"
+import { FormattedMessage } from 'react-intl';
 
 import { bindActionCreators } from "redux";
 import ManufactureListData from "../Child/ManufactureListData"

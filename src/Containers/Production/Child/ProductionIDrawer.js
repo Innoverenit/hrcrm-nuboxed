@@ -12,10 +12,7 @@ class ProductionIDrawer extends Component {
     return (
       <>
         <StyledDrawer
-          title={<FormattedMessage
-            id="app.production"
-            defaultMessage="MFG ID"
-          />}
+          title="MFG ID"
           destroyOnClose
           closable
           width={drawerWidth}

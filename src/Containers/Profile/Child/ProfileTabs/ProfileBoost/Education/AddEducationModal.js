@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
+import { FormattedMessage } from 'react-intl';
 
 const EducationDocumentForm = lazy(() =>
   import("../Education/EducationDocumentForm")

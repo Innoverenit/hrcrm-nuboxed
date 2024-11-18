@@ -8,10 +8,7 @@ const AddProjectsModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.project"
-          defaultMessage="Project"
-        />}
+        title="Project"
         width="60%"
         style={{marginTop:"3rem"}}
         visible={props.addProjectsModal}

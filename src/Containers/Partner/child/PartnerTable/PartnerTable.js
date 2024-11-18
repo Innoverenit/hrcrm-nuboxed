@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo, lazy } from "react";
 import { connect } from "react-redux";
+import { FormattedMessage } from 'react-intl';
 
 import ExploreIcon from '@mui/icons-material/Explore';
 import InfiniteScroll from "react-infinite-scroll-component";

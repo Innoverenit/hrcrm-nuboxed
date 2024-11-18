@@ -23,9 +23,8 @@ const PartNoListItemWise = (props) => {
                     <div className=" flex  w-[95%] p-1 bg-transparent font-bold sticky text-xs font-poppins z-10">
                         <div className=""></div>
 
-                        {/* <div className=" md:w-[22.12rem]"><FormattedMessage id="app.name" defaultMessage="Name" /></div> */}
-                        <div className=" md:w-[22.12rem]"><FormattedMessage id="app.id" defaultMessage="System ID" /></div>
-                        <div className=" md:w-[15.5rem]"><FormattedMessage id="app.part" defaultMessage="Part #" /></div>
+                        <div className=" md:w-[22.12rem]">"System ID</div>
+                        <div className=" md:w-[15.5rem]">Part #</div>
                         <div className=""></div>
                     </div>
                     <InfiniteScroll

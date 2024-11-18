@@ -107,7 +107,7 @@ const MaterialStockTableOut = (props) => {
                             <AttractionsIcon className="  !text-icon" />  {props.translatedMenuItems[25]}
                             </div>
                      
-                        <div className="w-[7.11rem] md:w-[4.11rem]"><FormattedMessage id="app.hsn" defaultMessage="HSN" /></div>
+                        <div className="w-[7.11rem] md:w-[4.11rem]">HSN</div>
                         <div className="w-[7.11rem] md:w-[4.11rem]">Zone</div>
                         <div className="w-[7.11rem] md:w-[4.11rem]">Room</div>
                         <div className="w-[7.11rem] md:w-[4.11rem]">Rack</div>

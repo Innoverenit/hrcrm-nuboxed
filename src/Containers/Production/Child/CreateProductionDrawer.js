@@ -12,10 +12,7 @@ class CreateProductionDrawer extends Component {
     return (
       <>
         <StyledDrawer
-          title={<FormattedMessage
-            id="app.production"
-            defaultMessage="Production"
-          />}
+          title="Production"
 
           width={drawerWidth}
           visible={openProductiondrawer}

@@ -39,7 +39,7 @@ class PitchActionRight extends React.Component {
               onMouseOver={(e) => (e.target.style.backgroundColor = 'rgba(142, 202, 154, 0.95)')}
              onMouseOut={(e) => (e.target.style.backgroundColor = 'rgba(255, 113, 88, 0.75)')}
             >
-            <DataSaverOnIcon className=" !text-icon"/><FormattedMessage id="app.add" defaultMessage="Add"  />
+            <DataSaverOnIcon className=" !text-icon"/>Add
                         </Button>
           </div>
           <div><Tooltip placement="left" title="Create">

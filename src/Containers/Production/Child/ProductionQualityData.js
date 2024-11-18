@@ -3,6 +3,7 @@ import { Form, Input, Button,Switch } from 'antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
+import { FormattedMessage } from 'react-intl';
 //import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 
 

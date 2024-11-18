@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 
+import { FormattedMessage } from 'react-intl';
 import { StyledSelect } from "../../../Components/UI/Antd";
 import ExploreIcon from '@mui/icons-material/Explore';
 import PersonIcon from '@mui/icons-material/Person';

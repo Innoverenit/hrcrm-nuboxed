@@ -14,12 +14,7 @@ class UpdatePersonalModal extends Component {
       <>
         <StyledDrawer
           //title="Emergency Contact "
-          title={
-            <FormattedMessage
-              id="app.emergencycontact"
-              defaultMessage="Emergency Contact"
-            />
-          }
+          title="Emergency Contact"
           width="35%"
           visible={updatePersonalModal}
           destroyOnClose

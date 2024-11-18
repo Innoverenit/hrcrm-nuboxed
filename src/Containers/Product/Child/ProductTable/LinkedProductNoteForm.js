@@ -120,10 +120,8 @@ class LinkedProductNoteForm extends Component {
                       marginTop: "1.3125em",
                     }}
                   >
-                    <FormattedMessage
-                      id="app.post"
-                      defaultMessage="Post"
-                    />
+                   Post
+                    
                   </Button>
                 </div>
               </Form>

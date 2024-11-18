@@ -11,10 +11,7 @@ const AddProgramModal = (props) => {
   
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.program"
-          defaultMessage="Program"
-        />}
+        title="Program"
         width="60%"
         style={{marginTop:"5rem"}}
         visible={props.addProgramModal}

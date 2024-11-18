@@ -75,9 +75,9 @@ const MaterialReceivedTable = (props) => {
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky z-10">
                         <div className=""></div>
-                        <div className=" w-[15.5rem]"><FormattedMessage id="app.po" defaultMessage="PO ID" /></div>
+                        <div className=" w-[15.5rem]">PO ID</div>
                         <div className=" w-[13.52rem]">
-                            {/* <FormattedMessage id="app.created" defaultMessage="Created" /> */}
+                          
                             {props.translatedMenuItems[11]}
                         </div>
                         <div className=" w-[11.122rem]">        {props.translatedMenuItems[12]} 

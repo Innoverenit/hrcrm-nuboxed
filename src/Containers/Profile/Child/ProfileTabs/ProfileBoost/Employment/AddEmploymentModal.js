@@ -16,10 +16,7 @@ class AddEmploymentModal extends Component {
     return (
       <>
         <StyledDrawer
-          // title="Employment"
-          title={
-            <FormattedMessage id="app.employment" defaultMessage="Employment" />
-          }
+          title="Employment"
           width="60%"
           visible={addEmploymentModal}
           destroyOnClose
