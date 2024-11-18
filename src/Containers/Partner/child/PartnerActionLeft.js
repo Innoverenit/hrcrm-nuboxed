@@ -15,6 +15,7 @@ import {
 from "../PartnerAction";
 import { Button, Input,Badge,Tooltip } from "antd";
 
+import { FormattedMessage } from 'react-intl';
 
 const { Search } = Input;
 const suffix = (

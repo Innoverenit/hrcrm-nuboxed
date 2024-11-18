@@ -13,7 +13,7 @@ const AddContactModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage id="app.contact" defaultMessage="Contact" />}
+        title="Contact"
         width="55%"
         visible={addPartnerContactModal}
         closable

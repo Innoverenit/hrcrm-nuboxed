@@ -351,12 +351,8 @@ handleSetCurrentOpportunityId(item.opportunityName);
                     <div>
                        <Tooltip
                       placement="right"
-                      title={
-                        <FormattedMessage
-                          id="app.edit"
-                          defaultMessage="Edit"
-                        />
-                      }
+                      title="Edit"
+                       
                     >
                       {user.opportunityUpdateInd ===true && (
             
@@ -388,12 +384,8 @@ handleSetCurrentOpportunityId(item.opportunityName);
                     >
                          <Tooltip
                     
-                      title={
-                        <FormattedMessage
-                          id="app.Delete"
-                          defaultMessage="Delete"
-                        />
-                      }
+                      title="Delete"
+                        
                     >
                         {user.opportunityDeleteInd ===true && (
                       

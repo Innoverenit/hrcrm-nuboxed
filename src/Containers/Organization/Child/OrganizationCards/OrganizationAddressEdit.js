@@ -123,17 +123,11 @@ class OrganizationAddressEdit extends Component {
              loading={this.props.editingOrganizationDetails}
              onClick={this.handleUpdate}
           >
-            <FormattedMessage
-                 id="app.save"
-                 defaultMessage="Save"
-                />
+          Save
           </Button>
           &nbsp;
           <Button type="ghost" onClick={() => toggleViewType()}>
-          <FormattedMessage
-                 id="app.cancel"
-                 defaultMessage="Cancel"
-                />
+         Cancel
           </Button>
         </div>
       </>

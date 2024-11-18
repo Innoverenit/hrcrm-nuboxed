@@ -8,10 +8,8 @@ const AddPartnerModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.vendor"
-          defaultMessage="Vendor"
-        />}
+        title="Vendor"
+       
         width="60%"
         height="50%"
         visible={props.addPartnerModal}
