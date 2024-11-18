@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { FormattedMessage } from 'react-intl';
 import { FlexContainer } from "../../../../../Components/UI/Layout";
 apexcharts
 

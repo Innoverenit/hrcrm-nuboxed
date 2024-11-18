@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { FormattedMessage } from 'react-intl';
 import { withRouter } from "react-router";
 
 import { getItemHistoryInstock } from "../../../InventoryAction"

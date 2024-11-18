@@ -8,10 +8,8 @@ const AddPoModal = (props) => {
     return (
         <>
             <StyledDrawer
-                title={<FormattedMessage
-                    id="app.purchaseorder"
-                    defaultMessage="Purchase Order"
-                />}
+                title="Purchase Order"
+               
 
                 width="65%"
                 visible={addLinkSuppliersOrderConfigureModal}
