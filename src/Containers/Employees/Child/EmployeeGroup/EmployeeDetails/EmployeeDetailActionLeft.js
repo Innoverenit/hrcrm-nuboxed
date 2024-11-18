@@ -12,10 +12,8 @@ class EmployeeDetailActionLeft extends React.Component {
         <RollbackOutlined
           style={{ marginRight: "0.3rem",color: "#1890ff" }}
           iconType="rollback"
-          tooltiptitle={<FormattedMessage
-            id="app.back"
-            defaultMessage="Back"
-          />}
+          tooltiptitle="Back"
+
          
           onClick={() => this.props.history.goBack()}
         />{" "}

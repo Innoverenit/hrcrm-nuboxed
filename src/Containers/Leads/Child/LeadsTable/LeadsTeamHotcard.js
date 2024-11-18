@@ -230,13 +230,7 @@ const LeadsTeamHotcard = (props) => {
                           className="!text-icon"
                           type="Hot"
                           iconType="fas fa-mug-hot"
-                          // tooltip="Hot"
-                          tooltip={
-                            <FormattedMessage
-                              id="app.hot"
-                              defaultMessage="Hot"
-                            />
-                          }
+                          tooltip="Hot"
                           role={item.type}
                             onClick={() => {
                             const typ = "Hot";
@@ -251,13 +245,7 @@ const LeadsTeamHotcard = (props) => {
                           className="!text-icon"
                           type="Warm"
                           iconType="	fas fa-burn"
-                          // tooltip="Warm"
-                          tooltip={
-                            <FormattedMessage
-                              id="app.warm"
-                              defaultMessage="Warm"
-                            />
-                          }
+                          tooltip="Warm"
                           role={item.type}
                             onClick={() => {
                             const typ = "Warm";
@@ -272,13 +260,7 @@ const LeadsTeamHotcard = (props) => {
                           className="!text-icon"
                           type="Cold"
                           iconType="far fa-snowflake"
-                          // tooltip="Cold"
-                          tooltip={
-                            <FormattedMessage
-                              id="app.cold"
-                              defaultMessage="Cold"
-                            />
-                          }
+                          tooltip="Cold"
                           role={item.type}
                             onClick={() => {
                             const typ = "Cold";

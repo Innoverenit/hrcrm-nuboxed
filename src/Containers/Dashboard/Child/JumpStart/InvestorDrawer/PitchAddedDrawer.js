@@ -9,10 +9,8 @@ const PitchAddedDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-      title={<FormattedMessage
-        id="app.pitchAdded"
-        defaultMessage="Pitch Added"
-      />}
+      title="Pitch Added"
+    
         width="60%"
         visible={props.openPitchAdded}
         onClose={()  => props.handlePitchAddedDrawer(false)}

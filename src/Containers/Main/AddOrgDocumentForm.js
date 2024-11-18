@@ -194,10 +194,7 @@ class AddOrgDocumentForm extends Component {
                       <Field
                     name="documentType"
                     type="text"
-                    //label="Type"
-                    label={
-                      <FormattedMessage id="app.type" defaultMessage="Type" />
-                    }
+                    label="Type"
                     
                     options={
                       Array.isArray(documentNameOption)
@@ -212,13 +209,7 @@ class AddOrgDocumentForm extends Component {
                   <div class=" mt-3" />
                         <Field
                         name="description"
-                        //label="Description"
-                        label={
-                          <FormattedMessage
-                            id="app.documentDescription"
-                            defaultMessage="Description"
-                          />
-                        }
+                        label="Description"
                         isRequired
                         isColumn
                         width={"100%"}
@@ -234,13 +225,7 @@ class AddOrgDocumentForm extends Component {
                     >
                       <Field
                         name="name"
-                        //label="Name"
-                        label={
-                          <FormattedMessage
-                            id="app.documentName"
-                            defaultMessage="Name"
-                          />
-                        }
+                        label="Name"
                         width={"100%"}
                         isColumn
                         component={InputComponent}
@@ -290,13 +275,7 @@ class AddOrgDocumentForm extends Component {
           <div class="mt-1">
           <Field
             name="included"
-            // label="Include"
-            label={
-              <FormattedMessage
-                id="app.include"
-                defaultMessage="include"
-              />
-            }
+            label="Include"
             mode
             placeholder="Select"
             component={SelectComponent}

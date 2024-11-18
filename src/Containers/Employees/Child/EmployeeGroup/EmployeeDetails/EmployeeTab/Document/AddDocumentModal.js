@@ -88,10 +88,7 @@ class AddDocumentModal extends Component {
     return (
       <>
         <StyledDrawer
-          // title="Document"
-          title={
-            <FormattedMessage id="app.document" defaultMessage="Document" />
-          }
+          title="Document"
           width="65vw"
           visible={documentUploadModal}
           destroyOnClose
@@ -166,13 +163,7 @@ class AddDocumentModal extends Component {
                       <Field
                         name="documentTypeId"
                         selectType="documentTypeName"
-                        // label="Type"
-                        label={
-                          <FormattedMessage
-                            id="app.type"
-                            defaultMessage="Type"
-                          />
-                        }
+                        label="Type"
                         // isRequired
                         component={SearchSelect}
                         isColumn
@@ -191,13 +182,7 @@ class AddDocumentModal extends Component {
                     >
                       <Field
                         name="documentTitle"
-                        //label="Name"
-                        label={
-                          <FormattedMessage
-                            id="app.documentTitle"
-                            defaultMessage="Name"
-                          />
-                        }
+                        label="Name"
                         width={"100%"}
                         isColumn
                         component={InputComponent}
@@ -206,13 +191,7 @@ class AddDocumentModal extends Component {
                       <mt-3 />
                       <Field
                         name="documentDescription"
-                        //label="Description"
-                        label={
-                          <FormattedMessage
-                            id="app.documentDescription"
-                            defaultMessage="Description"
-                          />
-                        }
+                        label="Description"
                         isRequired
                         isColumn
                         width={"100%"}
@@ -229,11 +208,7 @@ class AddDocumentModal extends Component {
                       htmlType="submit"
                       type="primary"
               
-                    >
-                      <FormattedMessage
-                        id="app.submit"
-                        defaultMessage="Submit"
-                      />
+                    >Submit
                     </Button>
                   </div>
                 </Form>

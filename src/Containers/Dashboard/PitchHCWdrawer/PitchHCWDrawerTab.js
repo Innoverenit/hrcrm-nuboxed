@@ -37,10 +37,7 @@ class PitchHCWDrawerTab extends Component {
                  
                  
                <span class=" ml-1">
-               <FormattedMessage
-              id="app.hot"
-              defaultMessage="Hot"
-            /></span>
+             Hot</span>
               
 
                   {activeKey === "1" && (
@@ -61,10 +58,7 @@ class PitchHCWDrawerTab extends Component {
                 <>
                   
                  
-               <span class=" ml-1">    <FormattedMessage
-              id="app.cold"
-              defaultMessage="Cold"
-            /></span>
+               <span class=" ml-1">   Cold</span>
               
 
                   {activeKey === "2" && (
@@ -85,10 +79,7 @@ class PitchHCWDrawerTab extends Component {
                 <>
                  
                  
-               <span class=" ml-1">   <FormattedMessage
-              id="app.warm"
-              defaultMessage="Warm"
-            /></span>
+               <span class=" ml-1"> Warm</span>
               
 
                   {activeKey === "3" && (

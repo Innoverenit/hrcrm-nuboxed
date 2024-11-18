@@ -15,11 +15,7 @@ class UpdateTrainingModal extends Component {
     return (
       <>
         <StyledDrawer
-          //title="Training"
-          title={<FormattedMessage
-            id="app.training"
-            defaultMessage="Training"
-          />}
+          title="Training"
           width="30%"
           visible={updateTrainingModal}
           onClose={() => handleUpdateTrainingModal(false)}

@@ -42,10 +42,8 @@ function DashboardCustomerOrgJumpstart (props){
           <JumpStartBox
             bgColor="linear-gradient(270deg,#F15753,orange)"
             noProgress
-            title={<FormattedMessage
-              id="app.leadsQualified"
-              defaultMessage="Leads Qualified"
-            />}
+            title="Leads Qualified"
+          
            
             jumpstartClick={()=>handleLeadQualifiedDrawer(true)}
             cursorData={"pointer"}
@@ -56,10 +54,8 @@ function DashboardCustomerOrgJumpstart (props){
           <JumpStartBox
                       bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
             noProgress
-            title={<FormattedMessage
-              id="app.leadsAdded"
-              defaultMessage="Leads Added"
-            />}
+            title="Leads Added"
+          
           
             jumpstartClick={()=>handleLeadAddedDrawer(true)}
             cursorData={"pointer"}
@@ -72,10 +68,8 @@ function DashboardCustomerOrgJumpstart (props){
           <JumpStartBox
  bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
             noProgress
-            title={<FormattedMessage
-              id="app.opportunitiesAdded"
-              defaultMessage="Opportunities Added"
-            />}
+            title="Opportunities Added"
+         
             jumpstartClick={()=>handleOppoAddedDrawer(true)}
             cursorData={"pointer"}
             value={props.jumpstrtCUSTOCount.opportunityAdded}
@@ -85,10 +79,8 @@ function DashboardCustomerOrgJumpstart (props){
           <JumpStartBox
             bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
             noProgress
-            title={<FormattedMessage
-              id="app.opportunitiesClosed"
-              defaultMessage="Opportunities Closed"
-            />}
+            title="Opportunities Closed"
+          
             // title="Opportunities Closed"
             jumpstartClick={()=>handleOppoClosedDrawer(true)}
             cursorData={"pointer"}

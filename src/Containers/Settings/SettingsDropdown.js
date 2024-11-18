@@ -26,11 +26,7 @@ const SettingsMenu = ({ history, pathName, recruitmentInd }) => (
             }}
             onClick={() => history.push("/recruite")}
           >
-            <FormattedMessage
-              id="app.configure"
-              defaultMessage="Configure"
-            />
-      {/* RecruitPro */}
+          Configure
           </a>
         </StyledMenuItem>
         <StyledMenuItem key="2">
@@ -42,11 +38,7 @@ const SettingsMenu = ({ history, pathName, recruitmentInd }) => (
             }}
             onClick={() => history.push("/categoryTab")}
           >
-            <FormattedMessage
-              id="app.category"
-              defaultMessage="Category"
-            />
-      {/* Category */}
+            Category
           </a>
         </StyledMenuItem>
         <StyledMenuItem key="3">
@@ -60,11 +52,8 @@ const SettingsMenu = ({ history, pathName, recruitmentInd }) => (
             }}
             onClick={() => history.push("/organization")}
           >
-            <FormattedMessage
-              id="app.organization"
-              defaultMessage="Organization"
-            />
-      {/* Organization */}
+           
+      Organization
           </a>
         </StyledMenuItem>
         {/* <StyledMenuItem key="0">
@@ -75,10 +64,7 @@ const SettingsMenu = ({ history, pathName, recruitmentInd }) => (
             }}
             onClick={() => history.push("/rules")}
           >
-            <FormattedMessage
-              id="app.rules"
-              defaultMessage="Rules"
-            />
+          
       
           </a>
         </StyledMenuItem> */}
@@ -92,10 +78,7 @@ const SettingsMenu = ({ history, pathName, recruitmentInd }) => (
             }}
             onClick={() => history.push("/template")}
           >
-            <FormattedMessage
-              id="app.templates"
-              defaultMessage="Templates"
-            />
+           
           </a>
         </StyledMenuItem>  */}
     

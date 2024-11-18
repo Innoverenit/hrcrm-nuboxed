@@ -184,12 +184,8 @@ const DealActionLeft = (props) => {
         overflowCount={999}
       >
         <Tooltip
-          title={
-            <FormattedMessage
-              id="app.listView"
-              defaultMessage=" My Deals"
-            />
-          }
+          title=" My Deals"
+           
         >
           <span
             class=" mr-1 text-sm cursor-pointer"
@@ -205,9 +201,7 @@ const DealActionLeft = (props) => {
         </Tooltip>
       </Badge>
       <Tooltip
-          title={
-            <FormattedMessage id="app.stageview" defaultMessage=" My Deals-Stage View" />
-          }
+          title=" My Deals-Stage View" 
         >
         <Badge
         size="small"
@@ -229,10 +223,8 @@ const DealActionLeft = (props) => {
           </Badge>
         </Tooltip>
         <Tooltip 
-        title={   <FormattedMessage
-          id="app.won"
-          defaultMessage="My Deals-Won"
-        />}
+        title="My Deals-Won"
+     
    >
       <Badge
           size="small"     
@@ -255,10 +247,8 @@ const DealActionLeft = (props) => {
       </Tooltip>
        
       <Tooltip 
-        title={   <FormattedMessage
-          id="app.lost"
-          defaultMessage="My Deals-Lost"
-        />}>
+        title="My Deals-Lost"
+       >
         <Badge
           size="small"
           count={
@@ -287,10 +277,8 @@ const DealActionLeft = (props) => {
    
       {user.teamsAccessInd === true && (
         <Tooltip
-          title={   <FormattedMessage
-            id="app.teams"
-            defaultMessage="My Deals-Teams"
-          />}
+          title="My Deals-Teams"
+        
         >
            <Badge
           size="small"
@@ -319,10 +307,7 @@ const DealActionLeft = (props) => {
            )}
         {(props.dealFullListInd===true || props.user.role==="ADMIN") && (
         <Tooltip
-          title={   <FormattedMessage
-            id="app.all"
-            defaultMessage="ALL"
-          />}
+          title="ALL"
         >
      <Badge
         size="small"
@@ -340,22 +325,15 @@ const DealActionLeft = (props) => {
             onClick={() => props.setDealViewType("all")}
           >
              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
-            <FormattedMessage
-                        id="app.all"
-                        defaultMessage="ALL" className="text-white !text-icon cursor:pointer"
-                      />
+          ALL
                       </Avatar>
           </span>
           </Badge>
         </Tooltip>
      )}
       <Tooltip
-        title={
-          <FormattedMessage
-            id="app.deletedDeal"
-            defaultMessage=" My Deals-Deleted"
-          />
-        }
+        title=" My Deals-Deleted"
+        
       >
         {" "}
         <Badge

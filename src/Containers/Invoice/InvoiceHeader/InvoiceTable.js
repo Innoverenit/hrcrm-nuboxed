@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import {getListOfInvoice} from "../../Invoice/InvoiceAction"
-import { FormattedMessage } from 'react-intl';
 import {Button,Input, Tooltip } from "antd";
 import SearchIcon from '@mui/icons-material/Search';
 import Highlighter from 'react-highlight-words';

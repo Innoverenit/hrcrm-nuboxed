@@ -181,10 +181,7 @@ function OpportunityTable(props) {
       }
    },
     {
-      //title: "Start Date",
-      title: (
-        <FormattedMessage id="app.startDate" defaultMessage="Start Date" />
-      ),
+      title: "Start Date",
       dataIndex: "startDate",
       width: "20%",
       defaultSortOrder: "descend",
@@ -206,8 +203,7 @@ function OpportunityTable(props) {
       },
     },
     {
-      //title: "End Date",
-      title: <FormattedMessage id="app.endDate" defaultMessage="End Date" />,
+      title: "End Date",
       dataIndex: "endDate",
       width: "20%",
       defaultSortOrder: "descend",
@@ -229,13 +225,7 @@ function OpportunityTable(props) {
       },
     },
     {
-      //title: "Value",
-      title: (
-        <FormattedMessage
-          id="app.proposalAmount"
-          defaultMessage="Value"
-        />
-      ),
+      title: "Value",
       dataIndex: "proposalAmount",
       width: "20%",
       onFilter: (value, record) => record.proposalAmount.indexOf(value) === 0,
@@ -254,13 +244,7 @@ function OpportunityTable(props) {
 
 
     {
-      //title: "sponsor",
-      title: (
-        <FormattedMessage
-          id="app.sponsor"
-          defaultMessage="Sponsor"
-        />
-      ),
+      title: "sponsor",
       dataIndex: "contactName",
       width: "10%",
       onFilter: (value, record) => record.contactName.indexOf(value) === 0,

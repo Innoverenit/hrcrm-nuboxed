@@ -10,10 +10,8 @@ const LocationSupplierDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.createVirtualLocation"
-          defaultMessage="Create Virtual Location"
-        />}
+        title="Create Virtual Location"
+      
         width={drawerWidth}
         destroyOnClose
           closable

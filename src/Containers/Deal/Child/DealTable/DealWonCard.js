@@ -138,10 +138,7 @@ function DealWonCard(props) {
        {/* startdate" */}       
                 </div>
         <div className=" font-bold font-poppins text-xs w-[8.16rem] max-xl:w-[9.16rem] max-xl:text-xs] max-lg:text-[0.45rem]">
-          <FormattedMessage
-                  id="app.proposalamt"
-                  defaultMessage="proposalamt"
-                />
+         proposalamt
                 </div>
         <div className=" font-bold font-poppins text-xs w-[8.14rem] max-xl:w-[6.14rem] max-xl:text-xs] max-lg:text-[0.45rem]">
         {translatedMenuItems[5]}

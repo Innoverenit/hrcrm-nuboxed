@@ -219,12 +219,10 @@ class Department extends Component {
                     loading={addingDepartments}
                     onClick={this.handleAddDepartment}
                   // style={{ marginRight: "0.125em" }}
-                  >
-                  <FormattedMessage id="app.save" defaultMessage="Save" />
+                  >Save
                   </Button>
                   &nbsp;
-                  <Button type="cancel"  onClick={this.toggleInput}>
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                  <Button type="cancel"  onClick={this.toggleInput}>Cancel
                   </Button>
               </div>
             ) : (

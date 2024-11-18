@@ -281,10 +281,7 @@ console.log(isLastNameVisible)
                     isRequired
                     name="name"
                     type="text"
-                    //label="Name"
-                    label={
-                      <FormattedMessage id="app.name" defaultMessage="Name" />
-                    }
+                    label="Name"
                     isColumn
                     width={"100%"}
                     setClearbitData={props.setClearbitData}
@@ -304,8 +301,7 @@ console.log(isLastNameVisible)
                   <Field
                     name="url"
                     type="text"
-                    // label="URL"
-                    label={<FormattedMessage id="app." defaultMessage="URL" />}
+                    label="URL"
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -315,18 +311,7 @@ console.log(isLastNameVisible)
 
 
               
-                  {/* <Field
-                    name="email"
-                    type="text"
-                    // label="Email"
-                    label={
-                      <FormattedMessage id="app.email" defaultMessage="Email" />
-                    }
-                    isColumn
-                    width={"100%"}
-                    component={InputComponent}
-                    inlineLabel
-                  />                   */}
+                        
                    <div class=" flex justify-between mt-4">
                     <div class=" w-3/12 max-sm:w-[30%]">
                          {/* {!isLastNameVisible&&( */}
@@ -335,12 +320,8 @@ console.log(isLastNameVisible)
                         selectType="dialCode"
                         isColumnWithoutNoCreate
                         // label="Phone #"
-                        label={
-                          <FormattedMessage
-                            id="app.phone"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        label="Dial Code"
+                          
                         isColumn
                         component={SearchSelect}
                         value={values.countryDialCode1}
@@ -383,12 +364,8 @@ console.log(isLastNameVisible)
                   <Field             
                   placeholder="Sector"        
                             name="sectorId"
-                            label={
-                              <FormattedMessage
-                                id="app.sector"
-                                defaultMessage="Sector"
-                              />
-                            }
+                            label="Sector"
+                             
                             isColumn
                             component={SelectComponent}
                             value={values.sectorId}
@@ -410,12 +387,8 @@ console.log(isLastNameVisible)
                     <FastField
                             name="source"
                             type="text"
-                            label={
-                              <FormattedMessage
-                                id="app.source"
-                                defaultMessage="Source"
-                              />
-                            }
+                            label="Source"
+                              
                             isColumnWithoutNoCreate
                             selectType="sourceName"
                             component={SearchSelect}
@@ -439,12 +412,8 @@ console.log(isLastNameVisible)
     <div class="w-24">
       <Field
         name="potentialValue"
-        label={
-          <FormattedMessage
-            id="app.potential"
-            defaultMessage="Potential"
-          />
-        }
+        label="Potential"
+        
         isColumn
         width={"100%"}
         component={InputComponent}
@@ -488,12 +457,8 @@ console.log(isLastNameVisible)
   <div class="w-w47.5 ">
     <Field
       name="type"
-      label={
-        <FormattedMessage
-          id="app.type"
-          defaultMessage="Type"
-        />
-      }
+      label="Type"
+       
       isColumn
       width={"100%"}
       component={SelectComponent}
@@ -525,11 +490,8 @@ console.log(isLastNameVisible)
                   {/* {!isNotesVisible&&( */}
                   <Field
                     name="notes"
-                    // label="Notes"
-                    label={
-                      <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                    }
-                    width={"100%"}
+                    label="Notes"
+                    h={"100%"}
                     isColumn
                     component={TextareaComponent}
                   />
@@ -635,13 +597,7 @@ console.log(isLastNameVisible)
                       <Field
                         name="vatNo"
                         type="text"
-                        // label="VAT Number"
-                        label={
-                          <FormattedMessage
-                            id="app.vatNumber"
-                            defaultMessage="VAT Number"
-                          />
-                        }
+                        label="VAT Number"
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -663,12 +619,7 @@ console.log(isLastNameVisible)
                         name="businessRegistration"
                         type="text"
                         // label="URL"
-                        label={
-                          <FormattedMessage
-                            id="app.businessregistration"
-                            defaultMessage=" Business Registration#"
-                          />
-                        }
+                        label="Business Registration#"
                         isColumn
                         width={"100%"}
                         component={InputComponent}

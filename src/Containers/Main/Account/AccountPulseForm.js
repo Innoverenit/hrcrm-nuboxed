@@ -84,12 +84,8 @@ class AccountPulseForm extends React.Component {
                               <JumpStartBox
                         noProgress
                         bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
-                        title={
-                            <FormattedMessage
-                                id="app.#Contacts"
-                                defaultMessage="#Contacts "
-                            />
-                        }
+                        title="#Contacts "
+                           
    />
                           </div>
                       </div>

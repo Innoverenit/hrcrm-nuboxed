@@ -37,10 +37,7 @@ class LeadHCWDrawerTab extends Component {
                  
                  
                <span class=" ml-1">
-               <FormattedMessage
-          id="app.hot"
-          defaultMessage="Hot"
-        />
+             Hot
                 </span>
               
 
@@ -63,10 +60,7 @@ class LeadHCWDrawerTab extends Component {
                   
                  
                <span class=" ml-1">
-               <FormattedMessage
-          id="app.cold"
-          defaultMessage="Cold"
-        />
+               Cold
                 </span>
               
 
@@ -89,10 +83,7 @@ class LeadHCWDrawerTab extends Component {
                  
                  
                <span class=" ml-1">
-               <FormattedMessage
-          id="app.warm"
-          defaultMessage="Warm"
-        />
+               Warm
                 </span>
               
 

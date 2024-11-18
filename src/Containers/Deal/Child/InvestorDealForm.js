@@ -353,11 +353,9 @@ function InvestorDealForm(props) {
                   isRequired
                   name="opportunityName"
                   type="text"
-                  //label="Name"
+                  label="Name"
 
-                  label={
-                    <FormattedMessage id="app.name" defaultMessage="name" />
-                  }
+                  
                   isColumn
                   width={"100%"}
                   component={InputComponent}
@@ -369,13 +367,7 @@ function InvestorDealForm(props) {
                 <div class=" w-w47.5 max-sm:w-wk">
                     <Field
                       name="startDate"
-                      //label="Start "
-                      label={
-                        <FormattedMessage
-                          id="app.startdate"
-                          defaultMessage="startdate"
-                        />
-                      }
+                      label="Start "
                       component={DatePicker}
                       value={values.startDate}
                       isColumn
@@ -386,13 +378,8 @@ function InvestorDealForm(props) {
                     <Field
                       // isRequired
                       name="endDate"
-                      // label="End Date"
-                      label={
-                        <FormattedMessage
-                          id="app.enddate"
-                          defaultMessage="enddate"
-                        />
-                      }
+                      label="End Date"
+                 
                       isColumn
                       component={DatePicker}
                       value={values.endDate || values.startDate}
@@ -416,14 +403,9 @@ function InvestorDealForm(props) {
                 <div class="  w-w47.5 max-sm:w-wk">
                     <Field
                       name="proposalAmount"
-                      //label="Value"
+                      label=" Fund Value"
 
-                      label={
-                        <FormattedMessage
-                          id="app.fundValue"
-                          defaultMessage="fundValue"
-                        />
-                      }
+                   
                       isColumn
                       width={"100%"}
                       component={InputComponent}
@@ -436,12 +418,8 @@ function InvestorDealForm(props) {
                       // defaultValue={{
                       //   value: props.user.currency,
                       // }}
-                      label={
-                        <FormattedMessage
-                          id="app.currency"
-                          defaultMessage="Currency"
-                        />
-                      }
+                      label="Currency"
+                       
                       width="100%"
                       isColumn
                       // selectType="currencyName"
@@ -456,10 +434,7 @@ function InvestorDealForm(props) {
                   </div>
                 </div>
                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">
-                  <FormattedMessage
-                          id="app.description"
-                          defaultMessage="Description (up to 150 characters)"
-                        /></div>
+                Description (up to 150 characters)</div>
                 <div>
                   <div>
                     <span onClick={SpeechRecognition.startListening}>
@@ -510,10 +485,7 @@ function InvestorDealForm(props) {
         {({ open }) => (
           <>
             <Listbox.Label className="block font-semibold text-[0.75rem] mt-[0.6rem]">
-             <FormattedMessage
-                          id="app.assignedto"
-                          defaultMessage="assignedto"
-                        />
+           assignedto
             </Listbox.Label>
             <div className="relative ">
               <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} >
@@ -580,13 +552,8 @@ function InvestorDealForm(props) {
 <div class=" mt-[0.25rem]">
 <Field
                     name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.include"
-                        defaultMessage="include"
-                      />
-                    }
+                    label="Include"
+                    
                     mode
                     placeholder="Select"
                     component={SelectComponent}
@@ -606,12 +573,8 @@ function InvestorDealForm(props) {
                     name="investorId"
                     // selectType="customerList"
                     isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.investor"
-                        defaultMessage="investor"
-                      />
-                    }
+                    label="investor"
+                    
                     //component={SearchSelect}
                     component={SelectComponent}
                     options={
@@ -631,12 +594,8 @@ function InvestorDealForm(props) {
                     name="contactId"
                     // selectType="contactListFilter"
                     isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.contact"
-                        defaultMessage="contact"
-                      />
-                    }
+                    label="contact"
+                     
                     // component={SearchSelect}
                     component={SelectComponent}
                     options={
@@ -662,12 +621,8 @@ function InvestorDealForm(props) {
                         <div class=" w-w47.5 max-sm:w-wk">
                         <Field
                             name="source"
-                             label={
-                              <FormattedMessage
-                                id="app.source"
-                                defaultMessage="source"
-                              />
-                            }
+                             label="source"
+                             
                             isColumnWithoutNoCreate
                             component={SelectComponent}
                     options={
@@ -685,10 +640,7 @@ function InvestorDealForm(props) {
                     //selectType="initiativeName"
                     isColumnWithoutNoCreate
                     label={
-                      <FormattedMessage
-                        id="app.initiative"
-                        defaultMessage="Initiative"
-                      />
+                    
                     }
                     component={SelectComponent}
                     options={
@@ -719,12 +671,9 @@ function InvestorDealForm(props) {
                         isColumnWithoutNoCreate
                         isRequired
                         placeolder="Select type"
-                        label={
-                          <FormattedMessage
-                            id="app.workflow"
-                            defaultMessage="workflow"
-                          />
-                        }
+                        label=
+                        "workflow"
+                         
                         // component={SearchSelect}
                         component={SelectComponent}
                         options={
@@ -743,12 +692,8 @@ function InvestorDealForm(props) {
                         name="oppStage"
                         isRequired
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.stages"
-                            defaultMessage="stages"
-                          />
-                        }
+                        label="stages"
+                        
                         component={SelectComponent}
                         options={
                           Array.isArray(
@@ -781,8 +726,8 @@ function InvestorDealForm(props) {
                 htmlType="submit"
                 loading={creatingInvestorDeal}
               >
-                <FormattedMessage id="app.create" defaultMessage="create" />
-                {/* Create */}
+              
+                Create
               </Button>
             </div>
           </Form>

@@ -188,11 +188,7 @@ class DemandTable extends Component {
         width: "5%",
       },
       {
-        //title: "Requirement",
-        title: <FormattedMessage
-          id="app.requirementName"
-          defaultMessage="Requirement"
-        />,
+        title: "Requirement",
         dataIndex: "requirementName",
         width: "13%",
         render: (name, item, i) => {
@@ -255,11 +251,7 @@ class DemandTable extends Component {
         dataIndex: "number"
       },
       {
-        //title: "Start",
-        title: <FormattedMessage
-          id="app.processName"
-          defaultMessage="Start"
-        />,
+        title: "Start",
         dataIndex: "processName",
         width: "9%",
         render: (name, item, i) => {
@@ -278,10 +270,8 @@ class DemandTable extends Component {
       },
       {
         //title: "Rate/hr",
-        title: <FormattedMessage
-          id="app.billing"
-          defaultMessage="Billing"
-        />,
+        title: "Billing"
+      ,
         dataIndex: "billing",
         width: "8%",
         defaultSortOrder: "descend",
@@ -307,10 +297,8 @@ class DemandTable extends Component {
                   {item.approveInd ? (
                     <>
                       <Tooltip //title={"Offer rolled out"}
-                        title={<FormattedMessage
-                          id="app.selected"
-                          defaultMessage="Selected"
-                        />}
+                        title="Selected"
+                      
 
                       >
                         <CheckCircleOutlined
@@ -336,10 +324,8 @@ class DemandTable extends Component {
                   ) : (
                     <>
                       <Tooltip //title={"Offer"}
-                        title={<FormattedMessage
-                          id="app.select"
-                          defaultMessage="Select"
-                        />}
+                        title="Select"
+                      
                       >
                         <CheckCircleTwoTone
                           type="check-circle"
@@ -370,12 +356,9 @@ class DemandTable extends Component {
                       </Tooltip>
 
                       &nbsp; &nbsp;
-                      <Tooltip //title={"Drop"}
-                        title={<FormattedMessage
-                          id="app.drop"
-                          defaultMessage="Drop"
-                        />}
-                      >
+                      <Tooltip 
+                      title={"Drop"}
+                        >
                         <StopTwoTone
                           type="stop"
                           theme="twoTone"
@@ -477,11 +460,7 @@ class DemandTable extends Component {
         },
       },
       {
-        //title: "Skill Set",
-        title: <FormattedMessage
-          id="app.callType"
-          defaultMessage="Skill Set"
-        />,
+        title: "Skill Set",
 
         width: "15%",
         render: (name, item, i) => {
@@ -586,7 +565,7 @@ class DemandTable extends Component {
 
       // {
       //   //title: "Candidate",
-      //   title: <FormattedMessage
+      //   title: <
       //     id="app.callType"
       //     defaultMessage="Candidate"
       //   />,
@@ -640,9 +619,7 @@ class DemandTable extends Component {
       },
     //   {
     //     //title: "Sponsor",
-    //     title: <FormattedMessage
-    //       id="app.callType"
-    //       defaultMessage="Sponsors"
+    //     title:"Sponsors"
     //     />,
     //     dataIndex: "callType",
     //     width: "7%",
@@ -671,9 +648,7 @@ class DemandTable extends Component {
       //     return (
       //       <Tooltip
       //         //title={"Copy"}
-      //         title={<FormattedMessage
-      //           id="app.copy"
-      //           defaultMessage="Copy"
+      //         title=Copy"
       //         />}
       //       >
       //         <Icon
@@ -706,10 +681,8 @@ class DemandTable extends Component {
                 <>
                   {close ? (
                     <Tooltip //title="Close Details"
-                      title={<FormattedMessage
-                        id="app.closedetails"
-                        defaultMessage="Close Details"
-                      />}
+                      title="Close Details"
+                   
                     >
                       <EyeInvisibleOutlined
                         type="eye-invisible"
@@ -726,11 +699,8 @@ class DemandTable extends Component {
                     </Tooltip>
                   ) : (
                     <>
-                      <Tooltip //title="Access Details"
-                        title={<FormattedMessage
-                          id="app.accessdetails"
-                          defaultMessage="Access Details"
-                        />}
+                      <Tooltip 
+                      title="Access Details"
                       >
                         <EyeOutlined
                           type="eye"
@@ -886,11 +856,7 @@ class DemandTable extends Component {
         )}
 
         <StyledModal
-          //title="Position"
-          title={<FormattedMessage
-            id="app.position"
-            defaultMessage="Position"
-          />}
+          title="Position"
           width="24%"
           visible={this.state.editModal}
           maskClosable={false}
@@ -906,11 +872,8 @@ class DemandTable extends Component {
           </Suspense>
         </StyledModal>
         <StyledModal
-          // title="Select Sponsor"
-          title={<FormattedMessage
-            id="app.selectsponsor"
-            // defaultMessage="Select Sponsor"
-          />}
+          title="Select Sponsor"
+        
           width="20%"
           visible={this.props.addSponsorModal}
           maskClosable={false}

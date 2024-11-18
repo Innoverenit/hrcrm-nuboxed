@@ -10,11 +10,7 @@ const AddLeavesModal = (props) => {
   return (
     <>
       <StyledDrawer
-        //title="Apply for Leaves"
-        title={<FormattedMessage
-          id="app.applyforleaves"
-          defaultMessage="Apply for Leaves"
-        />}
+        title="Apply for Leaves"
         width={drawerWidth}
         visible={addLeaveModal}    
         onClose={() => handleLeavesModal(false)}

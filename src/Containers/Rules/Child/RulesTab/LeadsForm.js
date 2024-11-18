@@ -51,11 +51,7 @@ country:props.countryId,
                 <Field
                   isRequired
                   name="maximumLeaves"
-                  // label="Max leaves (in days)"
-                  label={<div class="w-60"><FormattedMessage
-                    id="app.#Leaves"
-                    defaultMessage=" #leaves (in days)"
-                  /></div>}
+                  label="Max leaves (in days)"
                   width={"50%"}
                   component={InputComponent}
                   inlineLabel
@@ -66,11 +62,7 @@ country:props.countryId,
                 <Field
                   isRequired
                   name="carryForward"
-                  //label="Carry Forward(%)"
-                  label={<div class="w-60"><FormattedMessage
-                    id="app.carryForward"
-                    defaultMessage="Carry Forward(%)"
-                  /></div>}
+                  label="Carry Forward(%)"
                   inlineLabel
                   width={"50%"}
                   component={InputComponent}
@@ -82,11 +74,7 @@ country:props.countryId,
                 <Field
                   isRequired
                   name="leavesCappedTimesAnnualy"
-                  //label="Max Carry Forward(%)"
-                  label={<div class="w-60"><FormattedMessage
-                    id="app.leavesCappedTimesAnnualy"
-                    defaultMessage="Leaves Capped at times Annual Leave"
-                  /></div>}
+                  label="Max Carry Forward(%)"
                   inlineLabel
                   width={"50%"}
                   component={InputComponent}
@@ -99,11 +87,7 @@ country:props.countryId,
                 <Field
                   isRequired
                   name="mileageRate"
-                  // label="Max leaves (in days)"
-                  label={<div class="w-60"><FormattedMessage
-                    id="app.mileageRate"
-                    defaultMessage="Mileage Rate (ur/km)"
-                  /></div>}
+                  label="Max leaves (in days)"
                   width={"50%"}
                   component={InputComponent}
                   inlineLabel

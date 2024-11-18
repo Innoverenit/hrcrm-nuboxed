@@ -10,10 +10,7 @@ const AddEventModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.scheduleevent"
-          defaultMessage="Schedule Event"
-        />}
+        title="Schedule Event"
         width={drawerWidth}
         visible={addEventModal}
         onClose={() => handleEventModal(false)}

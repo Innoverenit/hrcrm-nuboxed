@@ -11,10 +11,8 @@ const AddInvoiceModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.invoice"
-          defaultMessage="Invoice"
-        />}
+        title="Invoice"
+      
         width="60%"
         style={{marginTop:"5rem"}}
         visible={props.addInvoiceModal}

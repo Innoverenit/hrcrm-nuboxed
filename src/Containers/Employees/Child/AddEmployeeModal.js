@@ -12,11 +12,8 @@ class AddEmployeeModal extends Component {
     return (
       <>
         <StyledDrawer
-          title={<FormattedMessage
-            id="app.newjoinee"
-            defaultMessage="New Joinee"
-          />}
-
+          title="New Joinee"
+       
           width={drawerWidth}
           visible={addEmployeeModal}
           onClose={() => handleEmployeeModal(false)}

@@ -213,7 +213,7 @@ const UserCellMachineCrd = (props) => {
           <div className="flex w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
             <div className=""></div>
             <div className="md:w-[22.12rem]">
-              <FormattedMessage id="app.equipment" defaultMessage="Equipment" />
+          Equipment
             </div>
           </div>
           {props.userMachineCard.map((item, index) => (

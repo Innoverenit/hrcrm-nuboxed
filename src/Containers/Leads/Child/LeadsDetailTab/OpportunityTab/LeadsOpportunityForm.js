@@ -285,12 +285,7 @@ function LeadsOpportunityForm (props) {
                     isRequired
                     name="opportunityName"
                     type="text"
-                    label={
-                      <FormattedMessage
-                        id="app.name"
-                        defaultMessage="Name"
-                      />
-                    }
+                    label="Name"
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -302,13 +297,7 @@ function LeadsOpportunityForm (props) {
                       <Field
                         isRequired
                         name="startDate"
-                        //label="Start "
-                        label={
-                          <FormattedMessage
-                            id="app.startdate"
-                            defaultMessage="Start Date"
-                          />
-                        }
+                        label="Start "
                         component={DatePicker}
                         value={values.startDate}
                         isColumn
@@ -319,12 +308,7 @@ function LeadsOpportunityForm (props) {
                       <Field
                         isRequired
                         name="endDate"
-                        label={
-                          <FormattedMessage
-                            id="app.enddate"
-                            defaultMessage="End Date"
-                          />
-                        }
+                        label="End Date"
                         isColumn
                         component={DatePicker}
                         value={values.endDate || values.startDate}
@@ -350,12 +334,7 @@ function LeadsOpportunityForm (props) {
                   <div class=" w-2/4">
                       <Field
                         name="proposalAmount"
-                        label={
-                          <FormattedMessage
-                            id="app.proposalAmount"
-                            defaultMessage="Value"
-                          />
-                        }
+                        label="Value"
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -368,12 +347,7 @@ function LeadsOpportunityForm (props) {
                         defaultValue={{
                           value: props.user.currency,
                         }}
-                        label={
-                          <FormattedMessage
-                            id="app.currency"
-                            defaultMessage="Currency"
-                          />
-                        }
+                        label="Currency"
                         width="100%"
                         isColumn
                         selectType="currencyName"
@@ -389,9 +363,7 @@ function LeadsOpportunityForm (props) {
                     <div class=" w-full">
                      <Field
                     name="description"
-                    label={
-                      <FormattedMessage id="app.description" defaultMessage="Description" />
-                    }
+                    label="Description" 
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -403,12 +375,8 @@ function LeadsOpportunityForm (props) {
                   <Field
                     name="salesUserIds"
                     isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.assignedto"
-                        defaultMessage="Assigned"
-                      />
-                    }
+                    label="Assigned"
+                     
                     component={SelectComponent}
                     options={Array.isArray(salesNameOption) ? salesNameOption : []}
                     isColumn
@@ -418,12 +386,8 @@ function LeadsOpportunityForm (props) {
                   <Field
                     name="customerId"
                     isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.customer"
-                        defaultMessage="Customer"
-                      />
-                    }
+                    label="Customer"
+                      
                     component={SelectComponent}
                     options={Array.isArray(customerNameOption) ? customerNameOption : []}
                     isColumn
@@ -436,13 +400,7 @@ function LeadsOpportunityForm (props) {
                     name="contactId"
                     isColumnWithoutNoCreate
                     selectType="contactOpportunityList"
-                    // label="Contact"
-                    label={
-                      <FormattedMessage
-                        id="app.contact"
-                        defaultMessage="Contact"
-                      />
-                    }
+                    label="Contact"
                     // isRequired
                     component={SelectComponent}
                     options={
@@ -463,12 +421,7 @@ function LeadsOpportunityForm (props) {
                     <Field
                       name="oppInnitiative"
                     isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.initiative"
-                        defaultMessage="Initiative"
-                      />
-                    }
+                    label="Initiative"
                     component={SelectComponent}
                     options={
                       Array.isArray(getInitiativeOptions("customerId", values.customerId))
@@ -489,12 +442,7 @@ function LeadsOpportunityForm (props) {
                    <Field
                     name="oppWorkflow"
                     isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.workflow"
-                        defaultMessage="Workflow"
-                      />
-                    }
+                    label="Workflow"
                     // isRequired
                     component={SelectComponent}
                    options={Array.isArray(WorkflowOptions) ? WorkflowOptions : []}
@@ -507,12 +455,7 @@ function LeadsOpportunityForm (props) {
                       <Field
                     name="oppStage"
                     isColumnWithoutNoCreate               
-                    label={
-                      <FormattedMessage
-                         id="app.stages"
-                        defaultMessage="Stages"
-                      />
-                    }
+                    label="Stages"
                     // isRequired
                     component={SelectComponent}
                     options={
@@ -540,8 +483,7 @@ function LeadsOpportunityForm (props) {
                   htmlType="submit"
                   Loading={props.addingLeadsOpportunity}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
-                  {/* Create */}
+                Create
                 </Button>
               </div>
             </Form>

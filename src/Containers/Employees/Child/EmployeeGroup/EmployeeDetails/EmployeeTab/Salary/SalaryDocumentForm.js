@@ -69,13 +69,7 @@ class SalaryDocumentForm extends Component {
                       type="text"
                       isColumn
                       width={"100%"}
-                      //label="Gross Amount"
-                      label={
-                        <FormattedMessage
-                          id="app.grossMonthlySalary"
-                          defaultMessage="Gross Amount"
-                        />
-                      }
+                      label="Gross Amount"
                       component={InputComponent}
                       inlineLabel
                       style={{
@@ -87,13 +81,7 @@ class SalaryDocumentForm extends Component {
                   <div class=" mt-3">
                   <Field
                     name="netSalary"
-                    //label="Net Salary"
-                    label={
-                      <FormattedMessage
-                        id="app.netSalary"
-                        defaultMessage="Net Salary"
-                      />
-                    }
+                    label="Net Salary"
                     width={"100%"}
                     isRequired
                     isColumn
@@ -109,13 +97,7 @@ class SalaryDocumentForm extends Component {
         
                       <Field
                         name="startingDate"
-                        // label="From"
-                        label={
-                          <FormattedMessage
-                            id="app.startingDate"
-                            defaultMessage="From"
-                          />
-                        }
+                        label="From"
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -166,7 +148,7 @@ class SalaryDocumentForm extends Component {
                   type="primary"
                   // Loading={adddingDocumentByOpportunityId}
                 >
-                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
+              Submit
                 </Button>
               </div>
             </Form>

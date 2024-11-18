@@ -219,19 +219,11 @@ class EmployeeStatusEdit extends Component {
             Loading={updatingEmployeeById}
             onClick={this.handleUpdate}
           >
-            <FormattedMessage
-              id="app.save"
-              defaultMessage="Save"
-            />
-            {/* Save */}
+           Save
           </Button>
      <div class=" ml-2">
           <Button type="ghost" onClick={() => toggleViewType()}>
-            <FormattedMessage
-              id="app.cancel"
-              defaultMessage="Cancel"
-            />
-            {/* Cancel */}
+            Cancel
           </Button>
           </div>
         </div>

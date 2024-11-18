@@ -9,10 +9,8 @@ const OppoClosedDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-    title={<FormattedMessage
-      id="app.opportunitiesClosed"
-      defaultMessage="Opportunities Closed"
-    />}
+    title="Opportunities Closed"
+
         width="60%"
         visible={props.clickOppoClosed}
         onClose={()  => props.handleOppoClosedDrawer(false)}

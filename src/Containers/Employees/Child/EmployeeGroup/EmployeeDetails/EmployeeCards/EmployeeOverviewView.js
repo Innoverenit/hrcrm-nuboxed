@@ -126,119 +126,65 @@ class AddressField extends Component {
               <Form className="form-background">
                 <Field
                   name={`address`}
-                  // label="Work place"
-                  label={
-                    <FormattedMessage
-                      id="app.address"
-                      defaultMessage="Work place"
-                    />
-                  }
+                  label="Work place"
                   component={FormikPlacesAutoComplete}
                   options={{}}
                 />
                 <Field
-                  //label="Address1"
-                  label={
-                    <FormattedMessage
-                      id="app.address.address1"
-                      defaultMessage="Address1"
-                    />
-                  }
+                  label="Address1"
                   name="address.address1"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  //label="address2"
-                  label={
-                    <FormattedMessage
-                      id="app.address.address2"
-                      defaultMessage="address2"
-                    />
-                  }
+                  label="address2"
                   name="address.address2"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  //label="street"
-                  label={
-                    <FormattedMessage
-                      id="app.address.street"
-                      defaultMessage="street"
-                    />
-                  }
+                  label="street"
                   name="address.street"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  // label="town"
-                  label={
-                    <FormattedMessage
-                      id="app.address.town"
-                      defaultMessage="town"
-                    />
-                  }
+                  label="town"
                   name="address.town"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  // label="city"
-                  label={
-                    <FormattedMessage
-                      id="app.address.city"
-                      defaultMessage="city"
-                    />
-                  }
+                  label="city"
                   name="address.city"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  //label="state"
-                  label={
-                    <FormattedMessage
-                      id="app.address.state"
-                      defaultMessage="state"
-                    />
-                  }
+                  label="state"
                   name="address.state"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  //label="country"
-                  label={
-                    <FormattedMessage
-                      id="app.address.country"
-                      defaultMessage="country"
-                    />
-                  }
+                  label="country"
                   name="address.country"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  //  label="postalCode"
-                  label={
-                    <FormattedMessage
-                      id="app.address.postalCode"
-                      defaultMessage="postalCode"
-                    />
-                  }
+                   label="postalCode"
                   name="address.postalCode"
                   component={InputComponent}
                 // defaultValue='low'
                 />
 
                 <Button type="primary" htmlType="submit">
-                  <FormattedMessage id="app.save" defaultMessage="Save" />
+                 Save
                 </Button>
                 <Button type="default" onClick={handleAddAddressVisible}>
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
-                  {/* Cancel */}
+                
+                  Cancel
                 </Button>
               </Form>
             )}

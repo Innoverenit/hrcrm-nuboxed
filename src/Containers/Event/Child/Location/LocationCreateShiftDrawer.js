@@ -12,10 +12,8 @@ const LocationCreateShiftDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.create"
-          defaultMessage="Create"
-        />}
+        title="Create"
+     
         width={drawerWidth}
         visible={createShiftDrawer}
         onClose={() => handleCreateShiftDrawer(false)}

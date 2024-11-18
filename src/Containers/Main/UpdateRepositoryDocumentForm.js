@@ -199,10 +199,7 @@ class UpdateRepositoryDocumentForm extends Component {
                       <Field
                     name="documentType"
                     type="text"
-                    //label="Type"
-                    label={
-                      <FormattedMessage id="app.type" defaultMessage="Type" />
-                    }
+                    label="Type"
                     // options={[
                     //   "Aadhar Card",
                     //   "Voter-Id Card",
@@ -223,13 +220,7 @@ class UpdateRepositoryDocumentForm extends Component {
                   <div class=" mt-3" />
                         <Field
                         name="description"
-                        //label="Description"
-                        label={
-                          <FormattedMessage
-                            id="app.documentDescription"
-                            defaultMessage="Description"
-                          />
-                        }
+                        label="Description"
                         isRequired
                         isColumn
                         width={"100%"}
@@ -245,13 +236,7 @@ class UpdateRepositoryDocumentForm extends Component {
                     >
                       <Field
                         name="name"
-                        //label="Name"
-                        label={
-                          <FormattedMessage
-                            id="app.documentName"
-                            defaultMessage="Name"
-                          />
-                        }
+                        label="Name"
                         width={"100%"}
                         isColumn
                         component={InputComponent}

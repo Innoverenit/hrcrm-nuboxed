@@ -19,10 +19,7 @@ const AddInvestorContactModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.contact"
-          defaultMessage="Contact"
-        />}
+        title="Contact"
         width="60%"
         visible={openInvestorContactModal}
         closable

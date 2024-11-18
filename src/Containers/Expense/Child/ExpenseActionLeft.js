@@ -127,7 +127,7 @@ setSearchOnEnter(true);
             }}
           >
             <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
-              <FormattedMessage id="app.all" defaultMessage="ALL" />
+         ALL
 
             </Avatar>
           </span>

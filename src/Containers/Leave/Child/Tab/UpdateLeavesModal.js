@@ -9,11 +9,7 @@ const UpdateLeavesModal = (props) => {
   return (
     <>
       <StyledDrawer
-        //title="Apply for Leaves"
-        title={<FormattedMessage
-          id="app.applyforleaves"
-          defaultMessage="Update Leaves"
-        />}
+        title="Update Leaves"
         width="60%"
         visible={updateLeaveModal}
         onClose={() => handleUpdateLeaveModal(false)}

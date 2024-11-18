@@ -99,12 +99,7 @@ class CustomOption extends Component {
                   //loading={updateCandidateById}
                 >
                Talent
-                  {/* Update */}
-                  {/* <FormattedMessage id="app.talent" defaultMessage="Talent" /> */}
-
-                  {/* {data1.map((item) => {
-              return <Option value={item.value}>{item.lable} </Option>;
-            })} */}
+                
              </Button>
              &nbsp;&nbsp; &nbsp;
           
@@ -117,8 +112,7 @@ class CustomOption extends Component {
                  // onClick={updateCandidateById}
                   //loading={updateCandidateById}
                 >
-                  {/* Update */}
-                  <FormattedMessage id="app.customer" defaultMessage="Customer" />
+                  Customer
              </Button>
              &nbsp;&nbsp; &nbsp;
           
@@ -130,8 +124,7 @@ class CustomOption extends Component {
                   }
                   //loading={updateCandidateById}
                 >
-                  {/* Update */}
-                  <FormattedMessage id="app.contact" defaultMessage="Contact" />
+                 Contact
              </Button>
              &nbsp;&nbsp;
           
@@ -140,8 +133,7 @@ class CustomOption extends Component {
                   htmlType="submit"
                   //loading={updateCandidateById}
                 >
-                  {/* Update */}
-                  <FormattedMessage id="app.vendorContact" defaultMessage="Vendor Contact" />
+                 Vendor Contact
              </Button>
              &nbsp;&nbsp; &nbsp;
           
@@ -153,8 +145,7 @@ class CustomOption extends Component {
                   }
                   //loading={updateCandidateById}
                 >
-                  {/* Update */}
-                  <FormattedMessage id="app.opportunity" defaultMessage="Opportunity" />
+              Opportunity
              </Button>
              &nbsp;&nbsp; &nbsp;
           
@@ -166,8 +157,7 @@ class CustomOption extends Component {
                   }
                   //loading={updateCandidateById}
                 >
-                  {/* Update */}
-                  <FormattedMessage id="app.signature" defaultMessage="Signature" />
+                 Signature
              </Button>
              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             

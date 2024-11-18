@@ -74,12 +74,8 @@ class EmployeeAboutEdit extends Component {
               defaultValue={designation}
               handleChange={this.handleChange}
               name={"designation"}
-              label={
-                <FormattedMessage
-                  id="app.designation"
-                  defaultMessage="Designation"
-                />
-              }
+              label="Designation"
+               
               placeholder={"Designation"}
               options={[
                 "Board",
@@ -102,12 +98,8 @@ class EmployeeAboutEdit extends Component {
                 defaultValue={department}
                 handleChange={this.handleChange}
                 name={"department"}
-                label={
-                  <FormattedMessage
-                    id="app.department"
-                    defaultMessage="Department"
-                  />
-                }
+                label="Department"
+                 
                 disabled
                 placeholder={"Department"}
                 style={{ width: "100%" }}
@@ -133,12 +125,8 @@ class EmployeeAboutEdit extends Component {
                 defaultValue={departmentDetails}
                 handleChange={this.handleChange}
                 name={"departmentDetails"}
-                label={
-                  <FormattedMessage
-                    id="app.departmentDetails"
-                    defaultMessage="Department Details"
-                  />
-                }
+                label="Department Details"
+                 
                 placeholder={"Department Details"}
                 value={this.state.fields.departmentDetails}
                 width="100%"
@@ -159,12 +147,8 @@ class EmployeeAboutEdit extends Component {
               defaultValue={`${firstName} `}
               handleChange={this.handleChange}
               name={"reportingManager"}
-              label={
-                <FormattedMessage
-                  id="app.reportingmanager"
-                  defaultMessage="Reporting Manager"
-                />
-              }
+              label="Reporting Manager"
+               
               placeholder={"Reports to"}
               options={Array.isArray(ReportingData) ? ReportingData : []}
               value={this.state.fields.reportingManager}
@@ -179,9 +163,7 @@ class EmployeeAboutEdit extends Component {
                 defaultValue={label}
                 handleChange={this.handleChange}
                 name={"label"}
-                label={
-                  <FormattedMessage id="app.level" defaultMessage="Level" />
-                }
+                label="Level"
                 disabled
                 placeholder={"Label"}
                 options={[
@@ -212,11 +194,11 @@ class EmployeeAboutEdit extends Component {
             Loading={updatingEmployeeById}
             onClick={this.handleUpdate}
           >
-            <FormattedMessage id="app.save" defaultMessage="Save" />
+          Save
           </Button>
         <div class=" ml-2">
           <Button type="ghost" onClick={() => toggleViewType()}>
-            <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+       Cancel
           </Button>
           </div>
         </div>

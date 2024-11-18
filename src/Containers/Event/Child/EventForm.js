@@ -1243,10 +1243,7 @@ Investor
                         htmlType="submit"
                         Loading={deletingEvent}
                       >
-                        <FormattedMessage
-                          id="app.delete"
-                          defaultMessage="delete"
-                        />
+                        delete
                       </Button>
                     </StyledPopconfirm>
                   </>
@@ -1260,8 +1257,8 @@ Investor
                   {isEditing ? (
                     "Update"
                   ) : (
-                    // "Create"
-                    <FormattedMessage id="app.create" defaultMessage="create" />
+                    "Create"
+                 
                   )}
                 </Button>
               </div>

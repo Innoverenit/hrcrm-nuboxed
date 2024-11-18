@@ -9,10 +9,8 @@ const PitchQualifiedDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-  title={<FormattedMessage
-    id="app.pitchQualified"
-    defaultMessage="Pitch Qualified"
-  />}
+  title="Pitch Qualified"
+  
         width="60%"
         visible={props.openPitchQualified}
         onClose={()  => props.handlePitchQualifiedDrawer(false)}

@@ -13,10 +13,8 @@ const UpdateLeadsInitiativeModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.updateleads"
-          defaultMessage="Update Leads"
-        />}
+        title="Update Leads"
+      
         width="60%"
         visible={props.updateLeadsInitiativeModal}
         // maskClosable={false}

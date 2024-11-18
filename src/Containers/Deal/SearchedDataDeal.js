@@ -87,39 +87,15 @@ const DealsTeamCardList = (props) => {
   
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10">
-          <div className=" md:w-[14.5rem]"><FormattedMessage
-            id="app.name"
-            defaultMessage="name"
-          /></div>
-          <div className=" md:w-[13.13rem]"><FormattedMessage
-            id="app.investor"
-            defaultMessage="investor"
-          /></div>
-          <div className=" md:w-[9.2rem] "><FormattedMessage
-            id="app.sponsor"
-            defaultMessage="sponsor"
-          /></div>
-          <div className="md:w-[6.12rem]"><FormattedMessage
-            id="app.startdate"
-            defaultMessage="startdate"
-          /></div>
-          <div className="md:w-[7.2rem]"><FormattedMessage
-            id="app.value"
-            defaultMessage="Value"
-          /></div>
-          <div className="md:w-[4.2rem]"><FormattedMessage
-            id="app.stages"
-            defaultMessage="stages"
-          /></div>
+          <div className=" md:w-[14.5rem]">name</div>
+          <div className=" md:w-[13.13rem]">investor</div>
+          <div className=" md:w-[9.2rem] ">sponsor</div>
+          <div className="md:w-[6.12rem]">startdate</div>
+          <div className="md:w-[7.2rem]">Value</div>
+          <div className="md:w-[4.2rem]">stages</div>
           <div className="md:w-[5.26rem]">Status</div>
-          <div className="md:w-[7.21rem]"><FormattedMessage
-            id="app.assignto"
-            defaultMessage="Assign To"
-          /></div>
-          <div className="md:w-[3rem]"><FormattedMessage
-            id="app.owner"
-            defaultMessage="owner"
-          /></div>
+          <div className="md:w-[7.21rem]">Assign To</div>
+          <div className="md:w-[3rem]">owner</div>
 
         </div>
        

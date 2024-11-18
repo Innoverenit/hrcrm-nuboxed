@@ -91,11 +91,7 @@ class SingleExpenses extends Component {
                                     disabled={!value}
                                     onClick={() => handleUpdateExpense(expenseTypeId, value, toggleViewType())}
                                 >
-                                    {/* Save */}
-                                    <FormattedMessage
-                                       id="app.update"
-                                       defaultMessage="Update"
-                                    />
+                                    Save
                                 </Button>
                                 <Button
                                     type='cancel'
@@ -103,11 +99,7 @@ class SingleExpenses extends Component {
                                   
                                     onClick={() => toggleViewType()}
                                 >
-                                    {/* Cancel */}
-                                    <FormattedMessage
-                                        id="app.cancel"
-                                        defaultMessage="Cancel"
-                                    />
+                                    Cancel
                                 </Button>
                                 </div>
                             </div>

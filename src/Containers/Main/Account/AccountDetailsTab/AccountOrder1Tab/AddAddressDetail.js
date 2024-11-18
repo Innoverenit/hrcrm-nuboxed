@@ -10,7 +10,6 @@ import { InputComponent } from "../../../../../Components/Forms/Formik/InputComp
 import { TextareaComponent } from '../../../../../Components/Forms/Formik/TextareaComponent';
 import { Button, Tooltip, message } from 'antd';
 import { getSaleCurrency } from "../../../../Auth/AuthAction";
-import { FormattedMessage } from 'react-intl';
 import { createOrderForProduction } from '../../AccountAction'
 import { getContactDistributorList } from "../../../Suppliers/SuppliersAction"
 import { ExclamationCircleOutlined } from '@ant-design/icons';
@@ -123,10 +122,8 @@ function AddAddressDetail(props) {
                     <Form>
                         <div class="w-wk flex justify-between">
                             <div class="w-[47.5%]">
-                                <div class=" text-xs font-bold font-poppins text-black"><h3> <FormattedMessage
-                                    id="app.pickupaddress"
-                                    defaultMessage="Pickup Address"
-                                /></h3></div>
+                                <div class=" text-xs font-bold font-poppins text-black"><h3>Pickup Address
+                               </h3></div>
 
                                 <FieldArray
                                     name="loadingAddress"
@@ -219,12 +216,8 @@ function AddAddressDetail(props) {
                                     {values.paymentInTerms === "Custom" &&
                                         <div class="w-[45%]">
                                             <Field
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.Custom Payment"
-                                                        defaultMessage="Custom Payment"
-                                                    />
-                                                }
+                                                label="Custom Payment"
+                                                  
                                                 name="customPayment"
                                                 component={InputComponent}
                                                 inlineLabel
@@ -299,16 +292,10 @@ function AddAddressDetail(props) {
                                     </div>
                                 <div class="justify-between flex mt-2 items-center">
                                     <div class="w-[47.5%]  ">
-                                        <div class=" text-xs font-bold font-poppins text-black"><FormattedMessage
-                                            id="app.priority"
-                                            defaultMessage="Priority"
-                                        /></div>
+                                        <div class=" text-xs font-bold font-poppins text-black">Priority</div>
                                         <div class="justify-between flex">
                                             <div>
-                                                <Tooltip title={<FormattedMessage
-                                                    id="app.high"
-                                                    defaultMessage="High"
-                                                />}>
+                                                <Tooltip title="High">
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
@@ -326,7 +313,7 @@ function AddAddressDetail(props) {
                                                     />
                                                 </Tooltip>
                                               
-                                                {/* <Tooltip title={<FormattedMessage
+                                                {/* <Tooltip title={<
                                                     id="app.medium"
                                                     defaultMessage="Medium"
                                                 />}>
@@ -347,10 +334,8 @@ function AddAddressDetail(props) {
                                                     />
                                                 </Tooltip> */}
                                                 &nbsp;
-                                                <Tooltip title={<FormattedMessage
-                                                    id="app.low"
-                                                    defaultMessage="Low"
-                                                />}>
+                                                <Tooltip title="Low"
+                                               >
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
@@ -377,10 +362,7 @@ function AddAddressDetail(props) {
                                             htmlType="Submit"
                                             loading={props.creatingOrderForProduction}
                                         >
-                                            <FormattedMessage
-                                                id="app.save"
-                                                defaultMessage="Save"
-                                            />
+                                           Save
 
                                         </Button>
 

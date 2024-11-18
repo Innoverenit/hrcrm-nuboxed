@@ -60,12 +60,7 @@ class EmailForm extends Component {
                   >
                     <Field
                       name="email"
-                      //label="Email Id"
-                      label={<FormattedMessage
-                        id="app.email"
-                        defaultMessage="Email Id"
-                      />}
-                      inlineLabel
+                      label="Email Id"
                       isRequired
                       component={InputComponent}
                       style={{ flexBasis: "80%" }}
@@ -76,11 +71,7 @@ class EmailForm extends Component {
                       type="password"
                       isRequired
                       name="password"
-                      //label="Password"
-                      label={<FormattedMessage
-                        id="app.password"
-                        defaultMessage="Password"
-                      />}
+                      label="Password"
                       inlineLabel
                       width={"100%"}
                       component={InputComponent}
@@ -92,11 +83,7 @@ class EmailForm extends Component {
                       isMulti
                       isRequired
                       name="host"
-                      // label="Host Name"
-                      label={<FormattedMessage
-                        id="app.host"
-                        defaultMessage="Host Name"
-                      />}
+                      label="Host Name"
                       component={InputComponent}
                       inlineLabel
                       width={"100%"}
@@ -108,11 +95,7 @@ class EmailForm extends Component {
                     <mt-3 />
                     <Field
                       name="port"
-                      //label="Port"
-                      label={<FormattedMessage
-                        id="app.port"
-                        defaultMessage="Port"
-                      />}
+                      label="Port"
                       inlineLabel
                       isRequired
                       width={"100%"}
@@ -131,11 +114,8 @@ class EmailForm extends Component {
                     Loading={addingEmailCredential}
                   >
 
-                    <FormattedMessage
-                      id="app.create"
-                      defaultMessage="Create"
-                    />
-                    {/* Create */}
+                   
+                    Create
                   </Button>
                 </div>
               </Form>

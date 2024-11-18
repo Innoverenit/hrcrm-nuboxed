@@ -17,11 +17,7 @@ class UpdateEducationModal extends Component {
     return (
       <>
         <StyledDrawer
-          //title="Education"
-          title={<FormattedMessage
-            id="app.education"
-            defaultMessage="Education"
-          />}
+          title="Education"
           width="30%"
           visible={updateEducationModal}
           onClose={() => handleUpdateEducationModal(false)}

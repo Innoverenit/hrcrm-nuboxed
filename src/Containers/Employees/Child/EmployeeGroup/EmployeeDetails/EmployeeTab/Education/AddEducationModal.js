@@ -17,10 +17,8 @@ class AddEducationModal extends Component {
     return (
       <>
         <StyledDrawer
-          title={<FormattedMessage
-            id="app.education"
-            defaultMessage="Education"
-          />}
+          title="Education"
+       
           width="60%"
           visible={addEducationModal}
           onClose={() => handleEducationModal(false)}

@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import QRCodeModal from "../../../../../Components/UI/Elements/QRCodeModal";
 import { SubTitle } from "../../../../../Components/UI/Elements";
 import { getSubOrderPhone } from "../../AccountAction"
-
+import { FormattedMessage } from 'react-intl';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 

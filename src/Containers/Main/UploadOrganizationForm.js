@@ -163,13 +163,7 @@ class UploadOrganizationForm extends Component {
                     
                         <Field
                         name="description"
-                        //label="Description"
-                        label={
-                          <FormattedMessage
-                            id="app.documentDescription"
-                            defaultMessage="Description"
-                          />
-                        }
+                        label="Description"
                         isRequired
                         isColumn
                         width={"100%"}
@@ -185,13 +179,7 @@ class UploadOrganizationForm extends Component {
                     >
                       <Field
                         name="name"
-                        //label="Name"
-                        label={
-                          <FormattedMessage
-                            id="app.documentName"
-                            defaultMessage="Name"
-                          />
-                        }
+                        label="Name"
                         width={"100%"}
                         isColumn
                         component={InputComponent}

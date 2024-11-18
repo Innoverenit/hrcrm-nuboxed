@@ -119,13 +119,7 @@ className="!text-base cursor-pointer text-[grey] p-[2px]"/>
    </div>
                {item.status === "Pending" && (
           <StyledPopconfirm
-          // title="Do you want to delete?"
-          title={
-            <FormattedMessage
-              id="app.doyouwanttodelete?"
-              defaultMessage="Do you want to delete?"
-            />
-          }
+          title="Do you want to delete?"
           onConfirm={() => props.deleteExpense(item.voucherId)}
         >
               <DeleteOutlined

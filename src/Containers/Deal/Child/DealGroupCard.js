@@ -56,10 +56,8 @@ const DealGroupCard = (props) => {
   cancelText="No"
 >
   <Tooltip 
-    title={<FormattedMessage
-      id="app.won"
-      defaultMessage="Won"
-    />}
+    title="Won"
+ 
 
   >
     <CheckCircleTwoTone
@@ -83,9 +81,7 @@ const DealGroupCard = (props) => {
   cancelText="No"
 >
  <Tooltip
-        title={
-          <FormattedMessage id="app.lost" defaultMessage="lost" />
-        }
+        title="lost" 
       >
  
   <StopTwoTone

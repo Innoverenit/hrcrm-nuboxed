@@ -142,32 +142,20 @@ const TaskDataCardList = (props) => {
           <div className=' flex justify-end sticky top-28 z-auto'>
           <div class="rounded-lg max-sm:m-1 m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]"><FormattedMessage
-                          id="app.type"
-                          defaultMessage="type"
-                        /></div>
-        <div className=" w-[8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]"><FormattedMessage
-                          id="app.name"
-                          defaultMessage="name"
-                        /></div>
-             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] "><FormattedMessage
-                          id="app.end"
-                          defaultMessage="end"
-                        /></div>
+        <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">type
+                       </div>
+        <div className=" w-[8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
+                        name</div>
+             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
+                        end</div>
              <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
-        <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]"><FormattedMessage
-                          id="app.ageing"
-                          defaultMessage="Ageing"
-                        /></div>
+        <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
+                         Ageing</div>
                         <div className="w-[18.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">Info</div>
-        <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]"><FormattedMessage
-                          id="app.assignedto"
-                          defaultMessage="assignedto"
-                        /></div>
-        <div className="w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]"><FormattedMessage
-                          id="app.owner"
-                          defaultMessage="owner"
-                        /></div>
+        <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">assignedto
+                       </div>
+        <div className="w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">owner"
+                       </div>
         <div className="w-[6.01rem]"></div>
         <div className="w-[3%]"></div>
         <div className="w-[5%]"></div>
@@ -508,7 +496,7 @@ const TaskDataCardList = (props) => {
         onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
           style={{ backgroundColor: "teal", color: "white" }}
         >
-          <FormattedMessage id="app.approve" defaultMessage="Approve" />
+         Approve
         </Button>
         <Button
           style={{
@@ -517,7 +505,7 @@ const TaskDataCardList = (props) => {
           }}
           onClick={() => rejectTaskByTaskId(item.taskId)}
         >
-          <FormattedMessage id="app.reject" defaultMessage="Reject" />
+          Reject
         </Button>
       </div>
     </>
@@ -603,13 +591,7 @@ const TaskDataCardList = (props) => {
            
             {item.complitionStatus !== "completed" && (
                           <StyledPopconfirm
-                            // title="Do you want to delete?"
-                            title={
-                              <FormattedMessage
-                                id="app.doyouwishtodelete?"
-                                defaultMessage="Do you wish to delete?"
-                              />
-                            }
+                            title="Do you want to delete?"
                             onConfirm={() => deleteTask(item.taskId, employeeId)}
                           >
                                 <Tooltip title="Delete">

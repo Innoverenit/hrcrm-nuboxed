@@ -290,10 +290,7 @@ function ActivityEventForm(props) {
                                     <Field
                                         isRequired
                                         name="eventTypeId"
-                                        //label="Type"
-                                        label={
-                                            <FormattedMessage id="app.type" defaultMessage="Type" />
-                                        }
+                                        label="Type"
                                         component={SearchSelect}
                                         isColumnWithoutNoCreate
                                         selectType="eventType"
@@ -305,12 +302,7 @@ function ActivityEventForm(props) {
                                         isRequired
                                         name="eventSubject"
                                         //label="Topic"
-                                        label={
-                                            <FormattedMessage
-                                                id="app.subject"
-                                                defaultMessage="Subject"
-                                            />
-                                        }
+                                        label="Subject"
                                         isColumn
                                         width={"100%"}
                                         component={InputComponent}
@@ -324,12 +316,7 @@ function ActivityEventForm(props) {
                                                     isRequired
                                                     name="startDate"
                                                     //label="Start "
-                                                    label={
-                                                        <FormattedMessage
-                                                            id="app.startDate"
-                                                            defaultMessage="Start Date"
-                                                        />
-                                                    }
+                                                    label="Start Date"
                                                     isColumn
                                                     component={DatePicker}
                                                     value={values.startDate}
@@ -344,12 +331,7 @@ function ActivityEventForm(props) {
                                                     isRequired
                                                     name="startTime"
                                                     // label="Start Time"
-                                                    label={
-                                                        <FormattedMessage
-                                                            id="app.startTime"
-                                                            defaultMessage="Start Time"
-                                                        />
-                                                    }
+                                                    label="Start Time"
                                                     isColumn
                                                     component={TimePicker}
                                                     use12Hours
@@ -368,12 +350,7 @@ function ActivityEventForm(props) {
                                                 isRequired
                                                 name="endDate"
                                                 // label="End "
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.enddate"
-                                                        defaultMessage="End Date"
-                                                    />
-                                                }
+                                                label="End Date"
                                                 component={DatePicker}
                                                 isColumn
                                                 value={values.endDate || values.startDate}
@@ -401,13 +378,7 @@ function ActivityEventForm(props) {
                                             <Field
                                                 isRequired
                                                 name="endTime"
-                                                //label="End Time"
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.endtime"
-                                                        defaultMessage="End Time"
-                                                    />
-                                                }
+                                                label="End Time"
                                                 isColumn
                                                 component={TimePicker}
                                                 use12Hours
@@ -424,13 +395,7 @@ function ActivityEventForm(props) {
                                         defaultValue={{ label: timeZone, value: userId }}
                                         isColumnWithoutNoCreate
                                         name="timeZone"
-                                        //label="TimeZone "
-                                        label={
-                                            <FormattedMessage
-                                                id="app.timeZone"
-                                                defaultMessage="Time Zone"
-                                            />
-                                        }
+                                        label="TimeZone "
                                         selectType="timeZone"
                                         isColumn
                                         value={values.timeZone}
@@ -507,13 +472,7 @@ function ActivityEventForm(props) {
                                     < div class="mt-3" />
                                     <Field
                                         name="included"
-                                        // label="Include"
-                                        label={
-                                            <FormattedMessage
-                                                id="app.include"
-                                                defaultMessage="Include"
-                                            />
-                                        }
+                                        label="Include"
                                         mode
                                         placeholder="Select"
                                         component={SelectComponent}
@@ -531,13 +490,7 @@ function ActivityEventForm(props) {
                                                 name="contactId"
                                                 //selectType="contactList"
                                                 isColumnWithoutNoCreate
-                                                // label="Contact"
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.contact"
-                                                        defaultMessage="Contact"
-                                                    />
-                                                }
+                                                label="Contact"
                                                 component={SelectComponent}
                                                 isColumn
                                                 options={Array.isArray(ContactData) ? ContactData : []}
@@ -558,12 +511,7 @@ function ActivityEventForm(props) {
                                                 name="customerId"
                                                 // selectType="customerList"
                                                 isColumnWithoutNoCreate
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.customer"
-                                                        defaultMessage="Customer"
-                                                    />
-                                                }
+                                                label="Customer"
                                                 //component={SearchSelect}
                                                 component={SelectComponent}
                                                 options={
@@ -585,12 +533,7 @@ function ActivityEventForm(props) {
                                                 name="opportunityId"
                                                 // selectType="customerList"
                                                 isColumnWithoutNoCreate
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.opportunity"
-                                                        defaultMessage="Opportunity"
-                                                    />
-                                                }
+                                                label="Opportunity"
                                                 //component={SearchSelect}
                                                 component={SelectComponent}
                                                 options={
@@ -622,10 +565,7 @@ function ActivityEventForm(props) {
                                     < div class="mt-3" />
                                     <Field
                                         name="eventDescription"
-                                        //label="Notes"
-                                        label={
-                                            <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                                        }
+                                        label="Notes"
                                         isColumn
                                         width={"100%"}
                                         component={TextareaComponent}
@@ -648,10 +588,7 @@ function ActivityEventForm(props) {
                                                 htmlType="submit"
                                                 Loading={deletingEvent}
                                             >
-                                                <FormattedMessage
-                                                    id="app.delete"
-                                                    defaultMessage="Delete"
-                                                />
+                                              Delete
                                             </Button>
                                         </StyledPopconfirm>
                                     </>
@@ -665,8 +602,7 @@ function ActivityEventForm(props) {
                                     {isEditing ? (
                                         "Update"
                                     ) : (
-                                        // "Create"
-                                        <FormattedMessage id="app.create" defaultMessage="Create" />
+                                        "Create"
                                     )}
                                 </Button>
                             </div>

@@ -14,10 +14,7 @@ class AddVisaModal extends Component {
     return (
       <>
         <StyledDrawer
-          title={<FormattedMessage
-            id="app.visa"
-            defaultMessage="Visa"
-          />}
+          title="Visa"
           width="60%"
           visible={addVisaModal}
           onClose={() => handleVisaModal(false)}

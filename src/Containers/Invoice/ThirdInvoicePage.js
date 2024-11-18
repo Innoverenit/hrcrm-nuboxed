@@ -19,12 +19,10 @@ function ThirdInvoicePage() {
                           isRequired
                           name="billingAddress"
                           //label="Start "
-                          label={
-                            <FormattedMessage
-                              id="app.billingAddress"
-                              defaultMessage="Billing Address"
-                            />
-                          }
+                          label=
+                            "Billing Address"
+                            
+                          
                           isColumn
                           component={InputComponent}
                           style={{
@@ -38,12 +36,7 @@ function ThirdInvoicePage() {
                           isRequired
                           name="contactPerson"
                           //label="Start "
-                          label={
-                            <FormattedMessage
-                              id="app.projectName"
-                              defaultMessage="Contact Person"
-                            />
-                          }
+                          label="Contact Person"
                           isColumn
                           component={InputComponent}
                           style={{

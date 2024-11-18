@@ -57,10 +57,8 @@ class DealActionRight extends React.Component {
     } = this.props;
     return (
       <div class=" flex items-center">
-        <Tooltip placement={"left"} title={<FormattedMessage
-                id="app.create"
-                defaultMessage="Create"
-              />}>
+        <Tooltip placement={"left"} title="Create"
+             >
   
            {viewType === "table" && user.imInd === true  && user.opportunityCreateInd ===true && (
           <Button

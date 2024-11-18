@@ -103,9 +103,8 @@ function LeadsInitiativeForm(props) {
                   <div class=" h-full w-1/2">
                   <Field
                      name="notes"
-                    label={
-                      <FormattedMessage id="app.description" defaultMessage="Description" />
-                    }
+                    label="Description" 
+                    
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -119,7 +118,7 @@ function LeadsInitiativeForm(props) {
                   htmlType="submit"
                   loading={props.addingInitiativeByLeadsId}
                 >
-                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
+                Submit
                 </Button>
               </div>
               </MainWrapper>

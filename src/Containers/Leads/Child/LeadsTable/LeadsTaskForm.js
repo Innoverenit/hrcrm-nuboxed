@@ -529,11 +529,8 @@ const [priority,setpriority]=useState(props.selectedTask
                
                       <div class=" flex justify-between flex-col w-full">
                         
-                      <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                            <FormattedMessage
-                              id="app.priority"
-                              defaultMessage="Priority"
-                            /> 
+                      <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Priority"
+                           
                           </div>
                         
                           <div class="flex">
@@ -731,10 +728,7 @@ const [priority,setpriority]=useState(props.selectedTask
                   <div class="w-[24%]">
                      
                   <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                       <FormattedMessage
-                         id="app.status"
-                         defaultMessage="Status"
-                       />
+                     Status
                      </div>
 
                      <div class="w-full">
@@ -744,12 +738,8 @@ const [priority,setpriority]=useState(props.selectedTask
                            type="To Start"
                            iconType="fa-hourglass-start"
                            tooltip="To Start"
-                           tooltipTitle={
-                             <FormattedMessage
-                               id="app.tostart"
-                               defaultMessage="To Start"
-                             />
-                           }
+                           tooltipTitle="To Start"
+                          
                            status={active}
                            onClick={() => glassButtoClick("To Start")}
                          />
@@ -758,12 +748,8 @@ const [priority,setpriority]=useState(props.selectedTask
                            type="In Progress"
                            iconType="fa-hourglass-half"
                            tooltip="In Progress"
-                           tooltipTitle={
-                             <FormattedMessage
-                               id="app.inprogress"
-                               defaultMessage="In Progress"
-                             />
-                           }
+                           tooltipTitle="In Progress"
+                        
                            status={active}
                            onClick={() => glassButtoClick("In Progress")}
                          />
@@ -772,12 +758,8 @@ const [priority,setpriority]=useState(props.selectedTask
                            type="Completed"
                            iconType="fa-hourglass"
                            tooltip="Completed"
-                           tooltipTitle={
-                             <FormattedMessage
-                               id="app.completed"
-                               defaultMessage="Completed"
-                             />
-                           }
+                           tooltipTitle="Completed"
+                          
                            status={active}
                            onClick={() => glassButtoClick("Completed")}
                            //  status={item.taskStatus}
@@ -794,12 +776,7 @@ const [priority,setpriority]=useState(props.selectedTask
                             name="taskName"
                             //label="Name"
                             // value={values.taskName}
-                            label={
-                              <FormattedMessage
-                                id="app.name"
-                                defaultMessage="Name"
-                              />
-                            }
+                            label="Name"
                             component={InputComponent}
                             isColumn
                             width={"100%"}
@@ -840,12 +817,7 @@ const [priority,setpriority]=useState(props.selectedTask
                         isRequired
                         name="endDate"
                         // label="End "
-                        label={
-                          <FormattedMessage
-                            id="app.endDate"
-                            defaultMessage="End Date"
-                          />
-                        }
+                        label="End Date"
                         component={DatePicker}
                         isColumn
                         value={values.endDate || values.startDate}
@@ -1209,10 +1181,7 @@ const [priority,setpriority]=useState(props.selectedTask
               <div class=" mt-4">
                   <Field
                     name="taskDescription"
-                    //label="Notes"
-                    label={
-                      <FormattedMessage id="app.description" defaultMessage="Description" />
-                    }
+                    label="Notes"
                     width={"21.875em"}
                     isColumn
                     component={TextareaComponent}
@@ -1225,12 +1194,7 @@ const [priority,setpriority]=useState(props.selectedTask
                             name="link"
                             //label="Name"
                             // value={values.taskName}
-                            label={
-                              <FormattedMessage
-                                id="app.link"
-                                defaultMessage="Link"
-                              />
-                            }
+                            label="Link"
                             component={InputComponent}
                             isColumn
                             width={"100%"}
@@ -1293,13 +1257,7 @@ const [priority,setpriority]=useState(props.selectedTask
                 {isEditing && (
                   <>
                     <StyledPopconfirm
-                      //title="Do you want to delete?"
-                      title={
-                        <FormattedMessage
-                          id="app.doyouwanttodelete?"
-                          defaultMessage="Do you want to delete?"
-                        />
-                      }
+                      title="Do you want to delete?"
                       onConfirm={() => deleteTask(prefillTask.taskId)}
                     >
                       <Button
@@ -1307,11 +1265,7 @@ const [priority,setpriority]=useState(props.selectedTask
                         htmlType="submit"
                         Loading={deletingTask}
                       >
-                        <FormattedMessage
-                          id="app.delete"
-                          defaultMessage="Delete"
-                        />
-                        {/* Delete */}
+                        Delete
                       </Button>
                     </StyledPopconfirm>
                   </>
@@ -1324,8 +1278,8 @@ const [priority,setpriority]=useState(props.selectedTask
                   {isEditing ? (
                     "Update"
                   ) : (
-                    // "Create"
-                    <FormattedMessage id="app.create" defaultMessage="Create" />
+                    "Create"
+                   
                   )}
                 </Button>
               </div>

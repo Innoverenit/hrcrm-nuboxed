@@ -154,12 +154,7 @@ function NotifyDrawerForm(props) {
                         <Field
                           isRequired
                           name="startDate"
-                          // label={
-                          //   <FormattedMessage
-                          //     id="app.startdate"
-                          //     defaultMessage="Start Date"
-                          //   />
-                          // }
+                         
                           component={DatePicker}
                           value={values.startDate}
                           isColumn
@@ -176,12 +171,7 @@ function NotifyDrawerForm(props) {
                         <Field
                           isRequired
                           name="endDate"
-                          // label={
-                          //   <FormattedMessage
-                          //     id="app.enddate"
-                          //     defaultMessage="End Date"
-                          //   />
-                          // }
+                         
                           component={DatePicker}
                           value={values.endDate || values.startDate}
                           isColumn

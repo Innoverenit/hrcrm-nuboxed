@@ -327,22 +327,10 @@ const InvestorLinkedContact = (props) => {
                                   <div class=" text-xs  font-poppins text-center">
                                   <StyledPopconfirm
             placement="bottom"
-            //title="Do you wish to detach?"
-            title={
-              <FormattedMessage
-                id="app.doyouwishtodetach?"
-                defaultMessage="Do you wish to detach?"
-              />
-            }         
+            title="Do you wish to detach?"       
           >
             <ActionIcon
-              //tooltipTitle="Detach Contact"
-              tooltiptitle={
-                <FormattedMessage
-                  id="app.detachcontact"
-                  defaultMessage="Detach Contact"
-                />
-              }
+              tooltipTitle="Detach Contact"
               iconType="api"
               onClick={null}
               size="1em"

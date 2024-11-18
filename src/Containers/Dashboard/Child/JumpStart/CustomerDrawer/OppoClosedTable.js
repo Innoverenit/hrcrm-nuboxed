@@ -16,19 +16,15 @@ function OppoClosedTable (props) {
     },[props.userId,props.endDate,props.startDate]);
     const columns = [
       {
-        title: <FormattedMessage
-          id="app.name"
-          defaultMessage="Name"
-        />,
+        title:"Name"
+        ,
         width: "30%",
         dataIndex: "opportunityName",
       },
      
       {
-        title: <FormattedMessage
-          id="app.proposalvalue"
-          defaultMessage="Proposal Value"
-        />,
+        title: "Proposal Value"
+      ,
         width: "22%",
         dataIndex: "proposalAmount",
         defaultSortOrder: 'descend',
@@ -44,11 +40,7 @@ function OppoClosedTable (props) {
         // },
       },
       {
-        // title: "Status",
-        title: <FormattedMessage
-          id="app.status"
-          defaultMessage="Status"
-        />,
+        title: "Status",
         width: "25%",
         dataIndex: "stageName",
         // sorter: (a, b) => {

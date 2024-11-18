@@ -1,7 +1,6 @@
 import React, { useState, useEffect, lazy, Suspense, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from 'react-intl';
 import { getPhonelistById, handlePhoneNotesOrderModal,searchimeiNamePhone,ClearPhoneDataOfrefurbish } from "../../AccountAction";
 import { Button, Tooltip,Input } from "antd";
 import QRCode from "qrcode.react";
@@ -383,10 +382,8 @@ function DistributorPauseForm(props) {
                                                             <div class="flex items-center">
                                                             <div className=" flex   md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
-                                                                    <Tooltip title={<FormattedMessage
-                                                                        id="app.spare"
-                                                                        defaultMessage="Spare"
-                                                                    />}>
+                                                                    <Tooltip title="Spare"
+                                                                  >
                                                                         <PrecisionManufacturingIcon
                                                                             style={{ color: spares && item.phoneId === RowData.phoneId ? "red" : "black" }}
                                                                             className="!text-icon cursor-pointer"
@@ -401,10 +398,8 @@ function DistributorPauseForm(props) {
                                                             </div>
                                                             <div className=" flex    md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
-                                                                    <Tooltip title={<FormattedMessage
-                                                                        id="app.task"
-                                                                        defaultMessage="Task"
-                                                                    />}>
+                                                                    <Tooltip title="Task"
+                                                                  >
                                                                         <FormatListBulletedIcon
                                                                             className="!text-icon cursor-pointer"
                                                                             style={{ color: expand && item.phoneId === RowData.phoneId ? "red" : "black" }}
@@ -419,10 +414,8 @@ function DistributorPauseForm(props) {
                                                             </div>
                                                             <div className=" flex   md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs text-green-600   font-poppins">
-                                                                    <Tooltip title={<FormattedMessage
-                                                                        id="app.Notes"
-                                                                        defaultMessage="Notes"
-                                                                    />}>
+                                                                    <Tooltip title="Notes"
+                                                                  >
                                                                         <NoteAltIcon
                                                                             className="!text-icon cursor-pointer"
                                                                             onClick={() => {
@@ -437,11 +430,9 @@ function DistributorPauseForm(props) {
                                                             </div>
                                                             <div className=" flex  items-center  md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
-                                                                    <Tooltip title={<FormattedMessage
-                                                                        id="app.Print"
-                                                                        defaultMessage="Print"
+                                                                    <Tooltip title="Print"
                                                                         
-                                                                    />}>
+                                                                  >
                                                                          {/* <div class="ml-1"><QrCodeIcon/></div> */}
                                                                         {/* <PrintOutlined
                                                                             // onClick={handlePrint}

@@ -44,11 +44,9 @@ class EmployeeStatusView extends Component {
                </Tooltip>
         </div>
   
-        <ProfileItemRow //label="Phone #" 
-          label={<FormattedMessage
-            id="app.phone"
-            defaultMessage="Phone #"
-          />}
+        <ProfileItemRow 
+        label="Phone #" 
+         
           value={phone} />
         <ProfileItemRow label="Mobile #" value={mobile} />
         <ProfileItemRow label="Linkedin" value={linkedinPublicUrl || ""} />

@@ -131,7 +131,7 @@ function WonForm(props) {
                   htmlType="submit"
                   loading={sendingCardWon}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="create" />
+                  create
                 </Button>
               </div>
             </Form>

@@ -134,13 +134,11 @@ class Function extends Component {
                   onClick={this.handleAddFunctions}
                   style={{ marginRight: "0.125em" }}
                 >
-                  {/* Save */}
-                  <FormattedMessage id="app.save" defaultMessage="Save" />
+                  Save
                 </Button>
                 &nbsp;
                 <Button type="primary" ghost onClick={this.toggleInput}>
-                  {/* Cancel */}
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                  Cancel
                 </Button>
               </div>
             ) : (
@@ -154,11 +152,7 @@ class Function extends Component {
                     Loading={addingFunctions}
                     onClick={this.toggleInput}
                   >
-                    {/* Add More */}
-                    <FormattedMessage
-                      id="app.addmore"
-                      defaultMessage="Add More"
-                    />
+                    Add More
                   </Button>
                 </div>
               </>

@@ -79,11 +79,7 @@ function UpdateLeadsInititativeForm (props) {
                   <Field
                     name="initiativeName"
                     type="text"
-                    //label="Name"
-
-                    label={
-                      <FormattedMessage id="app.name" defaultMessage="Name" />
-                    }
+                    label="Name"
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -118,9 +114,7 @@ function UpdateLeadsInititativeForm (props) {
                   type="primary"
                   htmlType="submit"
                   Loading={props.updateLeadsInitiatives}
-                >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
-                  {/* Create */}
+                >Update
                 </Button>
               </div>
             </Form>

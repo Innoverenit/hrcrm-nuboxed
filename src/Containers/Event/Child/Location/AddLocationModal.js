@@ -12,10 +12,8 @@ const AddMileageModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.addLocations"
-          defaultMessage="Add Locations"
-        />}
+        title="Add Locations"
+     
         width={drawerWidth}
         visible={addlocationModal}
         onClose={() => handleLocationModal(false)}

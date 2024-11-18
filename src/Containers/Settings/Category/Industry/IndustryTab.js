@@ -72,10 +72,7 @@ class IndustryTab extends Component {
                   <span>
                     <LightbulbIcon  style={{fontSize:"1.1rem"}}/>
                     <span class=" ml-1">
-                      <FormattedMessage
-                        id="app.realestate"
-                        defaultMessage="Real Estate"
-                      />
+                     Real Estate
                     </span>
                   </span>
               
@@ -94,11 +91,7 @@ class IndustryTab extends Component {
                   <span>
  <ContactsIcon style={{fontSize:"1.1rem"}}/>
                     <span class=" ml-1">
-                      {/* Contacts */}
-                      <FormattedMessage
-                        id="app.manufacture"
-                        defaultMessage="Manufacturing"
-                      />
+                      Manufacturing
                     </span>
                   </span>
                
@@ -119,11 +112,7 @@ class IndustryTab extends Component {
                   <span>
  <ContactsIcon style={{fontSize:"1.1rem"}}/>
                     <span class=" ml-1">
-                      {/* Contacts */}
-                      <FormattedMessage
-                        id="app.refurbish"
-                        defaultMessage="Refurbish"
-                      />
+                     Refurbish
                     </span>
                   </span>
                

@@ -16,10 +16,8 @@ class SubscriptionConfirmationContent extends Component {
       <div>
         <>
           <HeaderText>
-            <FormattedMessage
-              id="app.changeinsubscriptionwillbeappliedforallyourusers"
-              defaultMessage="Change in Subscription will be applied for all your users"
-            />,
+           Change in Subscription will be applied for all your users
+        
       {/* Change in Subscription will be applied for all your users */}
           </HeaderText>
           <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
