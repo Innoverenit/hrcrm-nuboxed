@@ -226,41 +226,53 @@ function InventoryTable(props) {
             <div className=' flex justify-end sticky mt-3  z-auto'>
                 <div class="rounded m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[100%] p-1 bg-transparent font-bold font-poppins text-xs items-end sticky top-0 z-10">
-                    <div className="text-[#00A2E8] text-base w-[15.69rem]  truncate max-md: max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> <QrCodeIcon className=" !text-icon"/>{translatedMenuItems[0]}
+                    <div className="text-[#00A2E8] text-base w-[15.69rem]  truncate max-md: max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> 
+                      <QrCodeIcon className=" !text-icon"/>{translatedMenuItems[0]}
                             {/* Trade ID */}
                             </div>
-                            <div className=" w-[15.11rem]  truncate max-md: max-xl:text-[0.65rem] max-xl:w-[9.11rem]"><QrCodeIcon className=" !text-icon text-[#9ad5ca]"/> {translatedMenuItems[1]}
+                            <div className=" w-[15.11rem]  truncate max-md: max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
+                              <QrCodeIcon className=" !text-icon text-[#9ad5ca]"/> {translatedMenuItems[1]}
                             {/* Creation  */}
                         </div>
-                        <div className=" w-[21.1rem]  truncate max-md: max-xl:text-[0.65rem] max-xl:w-[21.1rem]"><WidgetsIcon className=" !text-icon text-[#9ad5ca]"/> {translatedMenuItems[2]}
+                        <div className=" w-[21.1rem]  truncate max-md: max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
+                          <WidgetsIcon className=" !text-icon text-[#9ad5ca]"/> {translatedMenuItems[2]}
                             {/* Category */}
                             </div>
-                        <div className=" w-[25.1rem]  truncate max-md: max-xl:text-[0.65rem] max-xl:w-[9.1rem]"><BrandingWatermarkIcon className=" !text-icon text-[#9ad5ca]"/> {translatedMenuItems[3]}
+                        <div className=" w-[25.1rem]  truncate max-md: max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
+                          <BrandingWatermarkIcon className=" !text-icon text-[#9ad5ca]"/> {translatedMenuItems[3]}
                             {/* Brand */}
                         </div>
-                        <div className=" w-[30.12rem]  truncate max-md: max-xl:text-[0.65rem] max-xl:w-[9.12rem]"><ModelTrainingIcon className=" !text-icon text-[#9ad5ca]"/> {translatedMenuItems[4]}
+                        <div className=" w-[30.12rem]  truncate max-md: max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
+                          <ModelTrainingIcon className=" !text-icon text-[#9ad5ca]"/> {translatedMenuItems[4]}
                            {/* Model */}
                         </div>
                        
-                        <div className=" w-[14.24rem]  truncate max-md: max-xl:text-[0.65rem] max-xl:w-[9.11rem]"><AttractionsIcon className=" !text-icon text-[#9ad5ca]"/> {translatedMenuItems[6]}
+                        <div className=" w-[14.24rem]  truncate max-md: max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
+                          <AttractionsIcon className=" !text-icon text-[#9ad5ca]"/> {translatedMenuItems[6]}
                           {/* Attribute */}
                         </div>
-                        <div className=" w-[10.11rem]  truncate max-md: max-xl:text-[0.65rem] max-xl:w-[9.11rem]"><VerifiedUserIcon className=" !text-icon text-[#9ad5ca]"/> {translatedMenuItems[7]}
+                        <div className=" w-[10.11rem]  truncate max-md: max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
+                          <VerifiedUserIcon className=" !text-icon text-[#9ad5ca]"/> {translatedMenuItems[7]}
                             {/* Quality */}
                         </div>
-                        <div className=" w-[10.13rem]  truncate max-md: max-xl:text-[0.65rem] max-xl:w-[16.13rem]"><QrCodeIcon className=" !text-icon text-[#9ad5ca]"/> {translatedMenuItems[8]}
+                        <div className=" w-[10.13rem]  truncate max-md: max-xl:text-[0.65rem] max-xl:w-[16.13rem]">
+                          <QrCodeIcon className=" !text-icon text-[#9ad5ca]"/> {translatedMenuItems[8]}
                             {/* Specs */}
                         </div>
-                        <div className=" w-[15.23rem]  truncate max-md: max-xl:text-[0.65rem] max-xl:w-[9.11rem]"><DateRangeIcon className='!text-icon text-[#9ad5ca]  '  /> {translatedMenuItems[5]}
+                        <div className=" w-[15.23rem]  truncate max-md: max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
+                          <DateRangeIcon className='!text-icon text-[#9ad5ca]  '  /> {translatedMenuItems[5]}
                           {/* Availability Date */}
                         </div>
-                        <div className="w-[9.9rem]  truncate  max-md:w-[7.9rem]"><QrCodeIcon className=" !text-icon text-[#9ad5ca]"/> {translatedMenuItems[9]}
+                        <div className="w-[9.9rem]  truncate  max-md:w-[7.9rem]">
+                          <QrCodeIcon className=" !text-icon text-[#9ad5ca]"/> {translatedMenuItems[9]}
                            {/* Unit */}
                         </div>
-                        <div className="w-[12.8rem]  truncate max-md:w-[15.8rem]"><QrCodeIcon className=" !text-icon text-[#9ad5ca]"/> {translatedMenuItems[10]}/{translatedMenuItems[9]}
+                        <div className="w-[12.8rem]  truncate max-md:w-[15.8rem]">
+                          <QrCodeIcon className=" !text-icon text-[#9ad5ca]"/> {translatedMenuItems[10]}/{translatedMenuItems[9]}
                          {/* Price */}
                         </div>
-                        <div className="w-[14.9rem]  truncate max-md:w-[15.9rem]"><PublishIcon className=" !text-icon text-[#9ad5ca]"/> {translatedMenuItems[11]}
+                        <div className="w-[14.9rem]  truncate max-md:w-[15.9rem]">
+                          <PublishIcon className=" !text-icon text-[#9ad5ca]"/> {translatedMenuItems[11]}
                          {/* Publish */}
                         </div>
                     </div>

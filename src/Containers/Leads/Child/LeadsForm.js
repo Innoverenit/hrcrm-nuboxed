@@ -6,7 +6,6 @@ import { base_url } from "../../../Config/Auth";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
-import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 import {
   addLeads, 
@@ -16,9 +15,6 @@ import {
 } from "../../Leads/LeadsAction";
 import {getCustomerConfigure} from "../../Settings/SettingsAction"
 import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
-import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-import RotateRightIcon from "@mui/icons-material/RotateRight";
-import StopCircleIcon from "@mui/icons-material/StopCircle";
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
@@ -614,8 +610,8 @@ props.emptyClearbit();
                   </div>
                    )}
                                         
-                  <div class=" flex  justify-between mt-2">
-                   <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
+                  <div class=" flex  justify-between mt-3">
+                   <div class="flex flex-col w-w47.5" >
                    {props.customerConfigure.sectorInd===true&&
                   <div className="font-bold text-xs">{translatedMenuItems[8]}</div>
 }
