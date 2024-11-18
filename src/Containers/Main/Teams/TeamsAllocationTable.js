@@ -7,7 +7,7 @@ import { StyledTable } from "../../../Components/UI/Antd";
 import dayjs from "dayjs";
 import { Tooltip, Button, Input, Space } from "antd";
 import Highlighter from "react-highlight-words";
-import SearchIcon from '@mui/icons-material/Search';;
+import SearchIcon from '@mui/icons-material/Search';
 import APIFailed from "../../../Helpers/ErrorBoundary/APIFailed";
 import {
   getProductionExecutiveAndManager,

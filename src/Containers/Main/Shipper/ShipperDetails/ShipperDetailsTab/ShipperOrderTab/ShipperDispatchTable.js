@@ -6,7 +6,7 @@ import { StyledTable } from "../../../../../../Components/UI/Antd";
 import { Input, Tooltip, Button, Form, DatePicker } from "antd";
 import dayjs from "dayjs";
 import Highlighter from "react-highlight-words";
-import SearchIcon from '@mui/icons-material/Search';;
+import SearchIcon from '@mui/icons-material/Search';
 import { withRouter } from "react-router";
 import { getShipperDispatch } from "../../../ShipperAction";
 

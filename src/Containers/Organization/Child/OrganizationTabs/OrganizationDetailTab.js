@@ -1,8 +1,7 @@
 import React, { Component,lazy,  Suspense } from "react";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
-import { MailOutlined,
-} from '@ant-design/icons';
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { handleEmailModal,handleWebsiteModal } from "../../../Settings/SettingsAction";
 import { connect } from "react-redux";
@@ -96,7 +95,7 @@ class OrganizationDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <MailOutlined type="mail" className="!text-icon"/>
+                    <MailOutlineIcon type="mail" className="!text-icon"/>
                     {this.state.translatedMenuItems[1]} {/* Email */}
                   </span>
                   {activeKey === "2" && (
@@ -143,7 +142,7 @@ class OrganizationDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <MailOutlined type="mail" />
+                    <MailOutlineIcon type="mail" />
                     Website
                   </span>
                   {activeKey === "3" && (

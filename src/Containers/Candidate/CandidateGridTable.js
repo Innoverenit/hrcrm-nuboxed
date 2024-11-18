@@ -3,10 +3,11 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import {
-  MailOutlined,
+  
   UpCircleOutlined,
 } from "@ant-design/icons";
 
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import SearchIcon from '@mui/icons-material/Search';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import EditIcon from '@mui/icons-material/Edit';
@@ -706,7 +707,7 @@ function CandidateGridTable(props) {
         return (
           <>
             {user.talentUpdateInd === true && (
-              <MailOutlined
+              <MailOutlineIcon
                 type="mail"
                 style={{ cursor: "pointer" }}
                 onClick={() => {

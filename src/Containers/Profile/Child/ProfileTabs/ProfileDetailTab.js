@@ -10,7 +10,6 @@ import { handlePersonalModal } from "../../ProfileAction";
 import { handlePersonalDetailsModal } from "../../ProfileAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { MailOutlined} from '@ant-design/icons';
 import CommitIcon from '@mui/icons-material/Commit';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import SchoolIcon from '@mui/icons-material/School';
@@ -386,7 +385,7 @@ class ProfileDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <MailOutlined type="mail" className="!text-icon"/>
+                    <MailOutlineIcon type="mail" className="!text-icon"/>
                     <span class=" ml-[0.1rem]"> 
                     {this.state.translatedMenuItems[8]} {/* Email */}
                   </span>

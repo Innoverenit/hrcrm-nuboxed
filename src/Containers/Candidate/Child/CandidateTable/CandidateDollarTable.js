@@ -3,11 +3,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component"
-import {
-  MailOutlined,
-
-  UpCircleOutlined,
+import {UpCircleOutlined,
 } from "@ant-design/icons";
+
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -647,7 +646,7 @@ width:"1%"
         return (
           <>
             {user.talentUpdateInd === true && (
-              <MailOutlined
+              <MailOutlineIcon
                 type="mail"
                 style={{ cursor: "pointer" }}
                 onClick={() => {
