@@ -153,7 +153,7 @@ class NewSupploesForm extends Component {
             ...rest
           }) => (
             <div class="w-[30%] box-content p-2 border-blue border-4">
-            <Form class="form-background">
+            <Form class="form-background h-[24vh]">
               <div class="flex justify-between">
                 <div class="h-full w-[100%]">
                   
@@ -188,7 +188,7 @@ class NewSupploesForm extends Component {
               </div>
                   
               <div>
-                <div class="font-bold text-xs font-poppins text-black">Brand</div>
+                <div class="font-bold text-xs mt-1 font-poppins text-black">Brand</div>
                 <div className="w-[9rem]">
                   <Select
                     style={{ width: 200 }}

@@ -90,31 +90,31 @@ function SuppliersCardList(props) {
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex font-poppins text-xs justify-between w-[96%]  p-1 bg-transparent font-bold sticky items-end z-10 max-sm:hidden">
-          <div className=" w-[7.91rem] text-[#00A2E8] max-md:text-[0.65rem] max-lg:text-[0.45rem] max-md:w-[14.9rem] text-base "> 
+          <div className=" w-[9.91rem] truncate text-[#00A2E8] max-md:text-[0.65rem] max-lg:text-[0.45rem] max-md:w-[14.9rem] text-base "> 
                {/* Supplier ID */}
               <CategoryIcon className=" text-base"/> {props.translatedMenuItems[40]} ID
                </div>
-            <div className=" w-[9.4rem] max-md:text-[0.65rem] max-lg:text-[0.45rem] max-md:w-[11.8rem]">  
+            <div className=" w-[11.4rem] truncate max-md:text-[0.65rem] max-lg:text-[0.45rem] max-md:w-[11.8rem]">  
             {/* "Name" */}
             <ApartmentIcon className="!text-icon text-[#4f5d75] "/>  {props.translatedMenuItems[0]}
             </div>
-            <div className=" w-[6.8rem] max-md:text-[0.65rem] max-lg:text-[0.45rem] max-md:w-[9.8rem]">
+            <div className=" w-[10.8rem] truncate max-md:text-[0.65rem] max-lg:text-[0.45rem] max-md:w-[9.8rem]">
               {/* Phone  */}
               <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/> {props.translatedMenuItems[1]}
             </div>
-            <div className=" w-[12.92rem] max-md:text-[0.65rem] max-lg:text-[0.45rem] max-md:w-[14.9rem] "> 
+            <div className=" w-[13.92rem] truncate max-md:text-[0.65rem] max-lg:text-[0.45rem] max-md:w-[14.9rem] "> 
             <MailOutlineIcon className="!text-icon  text-[#4f5d75]"/> {/* Email */}
                {props.translatedMenuItems[2]}
                </div>
-               <div className=" w-[8.93rem] max-md:text-[0.65rem] max-lg:text-[0.45rem] max-md:w-[14.9rem] "> 
+               <div className=" w-[18.93rem]  truncate max-md:text-[0.65rem] max-lg:text-[0.45rem] max-md:w-[14.9rem] "> 
                {/* URL */}
                <LinkIcon  className="!text-icon  text-[#4f5d75]"/>    {props.translatedMenuItems[41]}
                </div>
-               <div className=" w-[5.50rem] max-md:text-[0.65rem] max-lg:text-[0.45rem] max-md:w-[14.9rem] "> 
+               <div className=" w-[8.5rem] truncate max-md:text-[0.65rem] max-lg:text-[0.45rem] max-md:w-[14.9rem] "> 
                {/* Email */} <ConnectWithoutContactIcon className="!text-icon  text-[blue]" />
                {/* {props.translatedMenuItems[17]} */}Disqualify
                </div>     
-            <div className=" w-[7.1rem] max-md:text-[0.65rem] max-lg:text-[0.45rem] max-md:w-[14.9rem] "> <PublishIcon className="!text-icon  text-[#4f5d75]"/> {props.translatedMenuItems[38]}</div>
+            <div className=" w-[8.1rem] truncate max-md:text-[0.65rem] max-lg:text-[0.45rem] max-md:w-[14.9rem] "> <PublishIcon className="!text-icon  text-[#4f5d75]"/> {props.translatedMenuItems[38]}</div>
           </div>
           <div class="overflow-x-auto h-[83vh]">
             <InfiniteScroll
