@@ -14,7 +14,7 @@ import {
   getAllProductList,
   getLocationList
 } from "../AccountAction";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import dayjs from "dayjs";
 
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -342,14 +342,7 @@ function QuotationDetailsCardList(props) {
                     onConfirm={() => props.deleteProcureData(item.id)}
                   >
                     <Tooltip title="Delete">
-                      <DeleteOutlined
-                        type="delete"
-                        style={{
-                          cursor: "pointer",
-                          color: "red",
-                          fontSize: "1rem",
-                        }}
-                      />
+                    <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                     </Tooltip>
                   </StyledPopconfirm>
                 </div>

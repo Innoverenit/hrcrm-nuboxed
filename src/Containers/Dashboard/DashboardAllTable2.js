@@ -16,7 +16,7 @@ import {
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import {getCandidateRequirement} from "../Opportunity/OpportunityAction"
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
 const AddJobDetailModal=lazy(() => import("../Dashboard/Child/AddJobDetailModal"));
 
 function onChange(pagination, filters, sorter) {
@@ -97,12 +97,11 @@ function DashboardAllTable2(props) {
             <Button
               type="primary"
               onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-               icon={<SearchOutlined />}
-              //icon="search"
+             
               size="small"
               style={{ width: 90 }}
             >
-              Search
+            <SearchIcon ClassName="!text-icon" />  Search
             </Button>
             <Button
               onClick={() => handleReset(clearFilters)}
@@ -126,8 +125,8 @@ function DashboardAllTable2(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-        <SearchOutlined type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        // <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
+        <SearchIcon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
       ),
       onFilter: (value, record) =>
         record[dataIndex]

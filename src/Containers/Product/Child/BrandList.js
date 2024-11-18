@@ -21,7 +21,7 @@ import {addProductBrand,getBrandProduct,
 } from "../ProductAction"
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import EmptyPage from "../../Main/EmptyPage";
 
 
@@ -411,8 +411,7 @@ const handleSave = (item) => {
             onConfirm={() => props.deleteProductBrandData({active:false},item.brand)}
           >
            
-            <DeleteOutlined         
-            type="delete" className="!text-icon cursor-pointer text-[red]" />
+           <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
           
           </StyledPopconfirm>
           

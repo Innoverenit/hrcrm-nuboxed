@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import dayjs from "dayjs";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Tooltip, Avatar,Button } from "antd";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -288,8 +288,8 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
                     </div>
                     <div>
                     <Tooltip title={props.translatedMenuItems[15]}>
-                    <DeleteOutlined  type="delete" 
-                    className="!text-icon cursor-pointer text-[red]"
+                    <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  
+                  
                 onClick={() => deleteCall(item.callId, employeeId)}
               />
                 </Tooltip>

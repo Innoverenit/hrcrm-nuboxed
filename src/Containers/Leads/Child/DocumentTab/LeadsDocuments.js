@@ -9,7 +9,7 @@ import {
   StyledTable,
   StyledPopconfirm,
 } from "../../../../Components/UI/Antd";
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
 import {
   Tooltip,
   Input,
@@ -26,7 +26,7 @@ import {
 import DownloadIcon from '@mui/icons-material/Download';
 import { elipsize } from "../../../../Helpers/Function/Functions";
 
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 class LeadsDocuments extends Component {
   constructor(props) {
@@ -70,11 +70,11 @@ class LeadsDocuments extends Component {
         <Button
           type="primary"
           onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-          icon={<SearchOutlined />}
+         
           size="small"
           style={{ width: 90, marginRight: 8 }}
         >
-          Search
+<SearchIcon ClassName="!text-icon" />Search
         </Button>
         <Button
           onClick={() => this.handleReset(clearFilters)}
@@ -86,7 +86,7 @@ class LeadsDocuments extends Component {
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+      <SearchIcon ClassName="!text-icon" style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]
@@ -219,10 +219,7 @@ class LeadsDocuments extends Component {
               title="Do you want to delete?"
               onConfirm={() => deleteLeadsDocument(item.documentId)}
             >
-              <DeleteOutlined
-                type="delete"
-                style={{ cursor: "pointer", color: "red" }}
-              />
+             <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
             </StyledPopconfirm>
           );
         },

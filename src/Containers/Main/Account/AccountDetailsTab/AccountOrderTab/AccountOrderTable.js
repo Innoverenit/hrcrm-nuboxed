@@ -8,7 +8,7 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddPickupModal from "./AddPickupModal"
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
@@ -596,8 +596,7 @@ const AccountOrderTable = (props) => {
                                                             //     defaultMessage="Detele"
                                                             // />}
                                                             >
-                                                                <DeleteOutlined
-                                                                    className="!text-icon cursor-pointer text-[red]"
+                                                                <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  
                                                                     onClick={() => { props.removeOrderAcc(item.orderId) }}
                                                                 />
                                                             </Tooltip>
@@ -1065,10 +1064,7 @@ const AccountOrderTable = (props) => {
                                                             //     defaultMessage="Detele"
                                                             // />}
                                                             >
-                                                                <DeleteOutlined
-                                                                    className="!text-icon cursor-pointer text-[red]"
-                                                                    onClick={() => { props.removeOrderAcc(item.orderId) }}
-                                                                />
+                                                               <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                                                             </Tooltip>
 
                                                         </div>

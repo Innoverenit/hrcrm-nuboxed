@@ -3,7 +3,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 import { Badge, Tooltip,Avatar } from "antd";
 //import {getLocationRecords,getLocationDeletedCount} from "./LocationAction";

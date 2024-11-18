@@ -10,7 +10,7 @@ import { Tooltip, Button, Input, } from "antd";
 import Highlighter from 'react-highlight-words';
 import { MultiAvatar, SubTitle } from "../../../../../../Components/UI/Elements";
 import RecruiterSkillLoadMore from "./RecruiterSkillLoadMore";
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
 import { CurrencySymbol } from "../../../../../../Components/Common";
 
 const includesMulti = (elements, inArray) => {
@@ -159,12 +159,11 @@ function RecruiterTable(props) {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-             icon={<SearchOutlined />}
-            //icon="search"
+           
             size="small"
             style={{ width: 90 }}
           >
-            Search
+           <SearchIcon ClassName="!text-icon" /> Search
           </Button>
           &nbsp;
           <Button
@@ -190,8 +189,7 @@ function RecruiterTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-        <SearchOutlined type="search" style={{ color: filtered ? 'tomato' : '1890ff' }} />
+        <SearchIcon ClassName="!text-icon" type="search" style={{ color: filtered ? 'tomato' : '1890ff' }} />
       ),
       onFilter: (value, record) =>
         record[dataIndex]
@@ -767,7 +765,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(RecruiterTable);
 //             <Button
 //               type="primary"
 //               onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-//               // icon={<SearchOutlined />}
+//               // icon={<SearchIcon ClassName="!text-icon" />}
 //               icon="search"
 //               size="small"
 //               style={{ width: 90 }}
@@ -798,7 +796,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(RecruiterTable);
 //         </div>
 //       ),
 //       filterIcon: (filtered) => (
-//         // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+//         // <SearchIcon ClassName="!text-icon" style={{ color: filtered ? "#1890ff" : undefined }} />
 //         <Icon type="search" style={{ color: filtered ? 'tomato' : '1890ff' }} />
 //       ),
 //       onFilter: (value, record) =>

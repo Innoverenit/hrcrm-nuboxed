@@ -19,7 +19,7 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Tooltip, Button,  } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { StyledPopconfirm, } from "../../../Components/UI/Antd";
  import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
  import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
@@ -649,7 +649,7 @@ Reject
                             onConfirm={() => deleteTask(item.taskId, employeeId)}
                           >
                                 <Tooltip title="Delete">
-                            <DeleteOutlined
+                           <DeleteOutlineIcon 
                               type="delete"
                               className="!text-icon cursor-pointer text-[red]"
                               
@@ -1073,7 +1073,7 @@ taskStatus: "To Start",
                      onConfirm={() => deleteTask(item.taskId, employeeId)}
                    >
                          <Tooltip title="Delete">
-                     <DeleteOutlined
+                    <DeleteOutlineIcon 
                        type="delete"
                        className="!text-icon cursor-pointer text-[red]"
                        
@@ -1493,7 +1493,7 @@ taskStatus: "To Start",
                      onConfirm={() => deleteTask(item.taskId, employeeId)}
                    >
                          <Tooltip title="Delete">
-                     <DeleteOutlined
+                    <DeleteOutlineIcon 
                        type="delete"
                        className="!text-icon cursor-pointer text-[red]"
                        

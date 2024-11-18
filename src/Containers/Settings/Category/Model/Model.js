@@ -2,7 +2,7 @@ import React, { useEffect,lazy,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Popconfirm,Tooltip, Input } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { base_url } from "../../../../Config/Auth";
 import DownloadIcon from '@mui/icons-material/Download';
@@ -252,16 +252,7 @@ return <div><BundleLoader/></div>;
                         cancelText="No"
                         // onConfirm={() =>  props.removeRole(region.roleTypeId,props.orgId)}
                       >
-                <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                    cursor:"pointer"
-                  }}
-              // onClick={() => 
-              //     props.removeServiceLine(item.roleTypeId)
-              //  }
-                 />
+                <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                  </Popconfirm>
             </div>
         </div>

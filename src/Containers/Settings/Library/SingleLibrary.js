@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { Button,Tooltip } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { TextInput } from "../../../Components/UI/Elements";
 import ViewEditCard from "../../../Components/UI/Elements/ViewEditCard";
@@ -57,8 +57,7 @@ class SingleLibrary extends Component {
               title="Do you want to delete?"
               onConfirm={() => handleDeleteSkill(definationId)}
             >
-                    <DeleteOutlined className="items-center ml-1 text-red-600 !text-icon"                               
-                    />
+                    <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                      </StyledPopconfirm>
                   </Tooltip>             
                 </div>

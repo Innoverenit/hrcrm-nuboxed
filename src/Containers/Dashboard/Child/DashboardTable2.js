@@ -21,7 +21,7 @@
  import SchoolIcon from '@mui/icons-material/School';
  import AccountBoxIcon from '@mui/icons-material/AccountBox';
  import {getCandidateRequirement} from "../../Opportunity/OpportunityAction"
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
 const AddJobDetailModal = lazy(() => import("../Child/AddJobDetailModal"));
  
  function onChange(pagination, filters, sorter) {
@@ -78,12 +78,11 @@ const AddJobDetailModal = lazy(() => import("../Child/AddJobDetailModal"));
             <Button
               type="primary"
               onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-               icon={<SearchOutlined />}
-              //icon="search"
+              
               size="small"
               style={{ width: 90 }}
             >
-              Search
+             <SearchIcon ClassName="!text-icon" /> Search
             </Button>
             <Button
               onClick={() => handleReset(clearFilters)}
@@ -107,8 +106,8 @@ const AddJobDetailModal = lazy(() => import("../Child/AddJobDetailModal"));
         </div>
       ),
       filterIcon: (filtered) => (
-        // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-        <SearchOutlined type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        // <SearchIcon ClassName="!text-icon" style={{ color: filtered ? "#1890ff" : undefined }} />
+        <SearchIcon ClassName="!text-icon" type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
       ),
       onFilter: (value, record) =>
         record[dataIndex]

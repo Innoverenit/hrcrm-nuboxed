@@ -5,7 +5,7 @@ import { Popconfirm,Input,Tooltip } from "antd";
 import { base_url } from "../../../Config/Auth";
 import DownloadIcon from '@mui/icons-material/Download';
 import { BundleLoader } from "../../../Components/Placeholder";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import dayjs from "dayjs";
 import {
@@ -205,12 +205,7 @@ return <div><BundleLoader/></div>;
                         cancelText="No"
                         onConfirm={() =>  props.removeDesignations(region.designationTypeId,props.orgId)}
                       >
-                <DeleteOutlined 
-                 className=" !text-icon text-red-600 cursor-pointer " 
-              // onClick={() => 
-              //     props.removeServiceLine(item.designationTypeId)
-              //  }
-                 />
+              <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                  </Popconfirm>
             </div>
         </div>

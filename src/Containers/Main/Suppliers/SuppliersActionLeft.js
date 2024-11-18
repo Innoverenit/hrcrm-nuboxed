@@ -2,7 +2,7 @@ import React,{useEffect,useState,useRef} from "react";
 import TocIcon from '@mui/icons-material/Toc';
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {
     inputDataSearch, setSuppliersDashboardType, setSelectedTimeInterval,
     setTimeRange,getSupplierCount,getSupplierAllCount,getSupplierCountNot,
@@ -226,7 +226,7 @@ const {
                         <Avatar style={{ background: viewType === "delete" ? "#f279ab" : "#28a355",
                boxShadow: props.viewType === "delete" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
                   transform: props.viewType === "delete" ? "scale(1.05)" : "scale(1)" }}>
-                        <DeleteOutlined className="text-white" /></Avatar>
+                      <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  /></Avatar>
                     </span>
                     </Badge>
                 </Tooltip>

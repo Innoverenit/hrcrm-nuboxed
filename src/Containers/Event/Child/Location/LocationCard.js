@@ -13,7 +13,7 @@ import TokenIcon from '@mui/icons-material/Token';
 import {  Tooltip } from "antd";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import FilterTiltShiftIcon from "@mui/icons-material/FilterTiltShift";
@@ -326,10 +326,7 @@ const LocationCard = (props) => {
                           onConfirm={() => props.deleteLocation(item.locationDetailsId, props.orgId)}
                         >
                           <Tooltip title={translatedMenuItems[15]} >
-                            <DeleteOutlined
-                              type="delete"
-                              className="!text-icon cursor-pointer text-red-500"
-                            />
+                          <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                           </Tooltip>
                         </StyledPopconfirm>
 

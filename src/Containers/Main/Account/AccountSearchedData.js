@@ -26,7 +26,7 @@ import dayjs from "dayjs";
 import AccountPulseModal from "./AccountPulseModal";
 import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import ExploreIcon from "@mui/icons-material/Explore";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { BundleLoader } from "../../../Components/Placeholder";
 import AccountModal from "./AccountModal";
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
@@ -461,9 +461,7 @@ function AccountSearchedData(props) {
                                   // Do you want to delete?"
                                   onConfirm={() => props.deleteDistributor({}, item.distributorId,props.userId)}
                                 >
-                                  <DeleteOutlined
-                                    className=" !text-icon cursor-pointer text-[red]"
-                                  />
+                                  <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                                 </Popconfirm>
  </Tooltip>
                               </div>

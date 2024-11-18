@@ -7,7 +7,7 @@ import { bindActionCreators } from "redux";
 import {removeExpense} from "../Expense/ExpenseAction"
 import { TextInput } from "../../../Components/UI/Elements";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import ViewEditCard from "../../../Components/UI/Elements/ViewEditCard";
 
 class SingleExpenses extends Component {
@@ -56,17 +56,7 @@ class SingleExpenses extends Component {
                           cancelText="No"
                           onConfirm={() => this.props.removeExpense(expenseTypeId )}
                         >
-                    <DeleteOutlined
-
-                    //   onClick={() => handleDeleteExpense(expenseTypeId)}
-                  
-                      style={{
-                        verticalAlign: "center",
-                        marginLeft: "1rem",
-                        fontSize:"1rem",
-                        color: "red",
-                      }}
-                    />
+                    <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                        </Popconfirm>
                   </Tooltip>
                             

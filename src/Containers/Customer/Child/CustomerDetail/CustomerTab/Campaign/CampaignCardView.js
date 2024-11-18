@@ -6,7 +6,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Tooltip,Input,Button,Avatar,Select } from "antd";
 import { StyledPopconfirm } from "../../../../../../Components/UI/Antd";
 import LocationCityIcon from '@mui/icons-material/LocationCity';
@@ -292,9 +292,7 @@ if(fetchingCustomerCampaign){
                onConfirm={() => deleteEvent(item.eventId, employeeId)}
              >
                 <Tooltip title={translatedMenuItems[16]}>
-               <DeleteOutlined  type="delete"
-                 className="!text-icon cursor-pointer text-[red]"
-               />
+                <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                </Tooltip>
              </StyledPopconfirm>
        

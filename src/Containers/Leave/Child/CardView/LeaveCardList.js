@@ -3,7 +3,7 @@ import { Button, Tooltip } from 'antd'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Select } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -190,11 +190,8 @@ function LeaveCardList(props) {
                         <div >
                           {item.status === "Pending" ? (
                             <Tooltip title="Delete">
-                              <DeleteOutlined
-                                type="delete"
-                                className="!text-icon cursor-pointer text-[red]"                          
-                              >
-                              </DeleteOutlined>
+                            <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+                           
                             </Tooltip>
                           ) : null}
                           {item.status === "Rejected" && (

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from "redux";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Tooltip, Popconfirm, Switch } from "antd";
 import {
   getShipperByUserId,
@@ -237,8 +237,8 @@ function ShipperCardList(props) {
                               title={`${props.translatedMenuItems[10]}?`}
                               onConfirm={() => props.deleteShipperData(item.shipperId, props.userId)}
                             >
-                              <DeleteOutlined
-                                className=" !text-icon cursor-pointer text-[red] max-sm:!text-2xl"
+                             <DeleteOutlineIcon 
+                                className=" !text-icon cursor-pointer text-[red] "
 
                               />
                             </Popconfirm>

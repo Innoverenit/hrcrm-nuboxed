@@ -7,7 +7,7 @@ import { Popconfirm, Input,Tooltip } from "antd";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {
   getShipperCategory,
   //getSectorCount,
@@ -194,7 +194,7 @@ return <div><BundleLoader/></div>;
                         cancelText="No"
                         onConfirm={() =>  props.removeShipper(region.shipperCategoryId)}
                       >
-                <DeleteOutlined   className=" !text-icon text-red-600 cursor-pointer "/>
+             <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                
             
                 

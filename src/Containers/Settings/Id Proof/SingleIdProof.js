@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {removeIdProof} from "../Id Proof/IdProofAction"
 import { TextInput } from "../../../Components/UI/Elements";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import ViewEditCard from "../../../Components/UI/Elements/ViewEditCard";
 
@@ -65,17 +65,7 @@ class SingleIdProof extends Component {
                           cancelText="No"
                           onConfirm={() => this.props.removeIdProof(IdProofTypeId )}
                         >
-                    <DeleteOutlined
-                    
-                      // onClick={() => handleDeleteIdProof(IdProofTypeId)}
-                    
-                      style={{
-                        verticalAlign: "center",
-                        marginLeft: "1rem",
-                        fontSize:"1rem",
-                        color: "red",
-                      }}
-                    />
+                 <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                        </Popconfirm>
                   </Tooltip>
                

@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { Tooltip, Badge, Select ,Popconfirm} from "antd";
 import dayjs from "dayjs";
 import PaidIcon from '@mui/icons-material/Paid';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import { handleOrderDetailsModal, handleLeadModal,
@@ -387,7 +387,7 @@ const handleLoadMoreLow = () => {
                               title="Do you want to delete?"
                                onConfirm={() => props.deleteOrderRepairData(item.orderId,props.userId)}
                             >
-                              <DeleteOutlined
+                             <DeleteOutlineIcon 
                                 className=" !text-icon cursor-pointer text-[red] max-sm:!text-2xl"
 
                               />

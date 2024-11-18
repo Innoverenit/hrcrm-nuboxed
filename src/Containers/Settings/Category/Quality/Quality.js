@@ -1,7 +1,7 @@
 import React, { useEffect,lazy,useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Popconfirm, message, Input } from "antd";
 import { MainWrapper } from "../../../../Components/UI/Layout";
@@ -223,12 +223,7 @@ const Quality = (props) => {
                           cancelText="No"
                            onConfirm={() =>  props.removeQuality(region.qualityId)}
                         >
-                  <DeleteOutlined  className=" !text-icon text-red-600 cursor-pointer"
-                   
-                // onClick={() => 
-                //     props.removeServiceLine(item.qualityId)
-                //  }
-                   />
+               <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                    </Popconfirm>
               </div>
           </div>

@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import dayjs from "dayjs";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {Popconfirm,Tooltip } from "antd";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Link } from 'react-router-dom';
@@ -192,10 +192,7 @@ function VendorCardList(props) {
               title="Do you want to delete?"
              onConfirm={() => props.deleteSupplierData(item.supplierId)}
             >
-              <DeleteOutlined
-
-className=" !text-[1rem] cursor-pointer text-[red]"
-              />
+             <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
             </Popconfirm>
             </div>
             </div> 

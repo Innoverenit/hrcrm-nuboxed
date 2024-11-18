@@ -35,7 +35,7 @@ import dayjs from "dayjs";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import ExploreIcon from "@mui/icons-material/Explore";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import MergeTypeIcon from '@mui/icons-material/MergeType';
 import ApartmentIcon from '@mui/icons-material/Apartment';
@@ -521,9 +521,7 @@ function AccountTable(props) {
                                   // Do you want to delete?"
                                   onConfirm={() => props.deleteDistributor({}, item.distributorId,props.userId)}
                                 >
-                                  <DeleteOutlined
-                                    className=" !text-icon cursor-pointer text-[red]"
-                                  />
+                                  <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                                 </Popconfirm>
  </Tooltip>
                               </div>

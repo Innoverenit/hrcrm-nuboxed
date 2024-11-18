@@ -16,7 +16,7 @@ import {
 } from "../AccountAction";
 import { getSaleCurrency } from "../../../Auth/AuthAction";
 import {getCategorylist,getSupplierSuppliesQuality} from "../../Suppliers/SuppliersAction"
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { base_url, base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
 import Swal from 'sweetalert2';
@@ -519,15 +519,7 @@ const handleGenerateInvoice= async () => {
                     onConfirm={() => props.deleteProcureData(item.id)}
                   >
                     <Tooltip title="Delete">
-                      <DeleteOutlined 
-                        type="delete"
-                        className="cursor-pointer !text-icon text-red-600"
-                        // style={{
-                        //   cursor: "pointer",
-                        //   color: "red",
-                        //   fontSize: "1%",
-                        // }}
-                      />
+                    <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                     </Tooltip>
                   </StyledPopconfirm>
                 </div>

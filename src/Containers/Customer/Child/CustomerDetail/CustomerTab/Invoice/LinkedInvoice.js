@@ -8,7 +8,7 @@ import {
 } from "../../../../../../Components/UI/Antd";
 import DownloadIcon from '@mui/icons-material/Download';
 
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 class LinkedInvoice extends Component {
   constructor(props) {
@@ -119,7 +119,7 @@ class LinkedInvoice extends Component {
     //           />}
             
     //         >
-    //           <DeleteOutlined type="delete" className="cursor-pointer text-red-600 text-[1.25rem]"/>
+    //          <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
     //         </StyledPopconfirm>
     //       );
     //     },

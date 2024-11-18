@@ -16,7 +16,7 @@ updateContactAddress,
   addContactMand,
   removeAddressData
 } from "../../Containers/Contact/ContactAction";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const AddressTable = (props) => {
   const [activeSwitchIndex, setActiveSwitchIndex] = useState(null);
@@ -289,7 +289,7 @@ const AddressTable = (props) => {
               okText={translatedMenuItems[10]}
               cancelText={translatedMenuItems[7]}
           >
-                    <DeleteOutlined className="text-[tomato]" />
+                    <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                     </Popconfirm>
                   </>
                

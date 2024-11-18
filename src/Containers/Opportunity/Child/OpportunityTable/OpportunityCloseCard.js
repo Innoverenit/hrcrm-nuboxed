@@ -258,11 +258,9 @@ function OpportunityCloseCard(props) {
             title="Do you want to delete?"
             onConfirm={() => deleteCloseOpportunity(item.opportunityId)}
           >
-             {/* {user.userType !== "USER" && user.department !== "Recruiter" && (  */}
-             {user.opportunityDeleteInd ===true && (
-            <DeleteOutlined
-            type="delete" className=" !text-base cursor-pointer text-[red]" />
-             )}
+      
+             {/* {user.opportunityDeleteInd ===true && ( */}
+            <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
           </StyledPopconfirm>
                            </div>
               </div>           

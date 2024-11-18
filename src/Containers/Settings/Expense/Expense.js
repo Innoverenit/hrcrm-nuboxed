@@ -1,7 +1,7 @@
 import React, { useEffect,useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Popconfirm,Input ,Tooltip} from "antd";
 import { base_url } from "../../../Config/Auth";
@@ -204,12 +204,7 @@ return <div><BundleLoader/></div>;
                         cancelText="No"
                         onConfirm={() =>  props.removeExpense(region.expenseTypeId,props.orgId)}
                       >
-                <DeleteOutlined className=" cursor-pointer !text-icon text-red-600"
-                 
-              // onClick={() => 
-              //     props.removeServiceLine(item.expenseTypeId)
-              //  }
-                 />
+             <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                  </Popconfirm>
             </div>
         </div>

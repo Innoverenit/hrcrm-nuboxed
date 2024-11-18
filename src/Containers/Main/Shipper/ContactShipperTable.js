@@ -8,7 +8,7 @@ import {
   setEditShipperContact,
 } from "./ShipperAction";
 import { Tooltip, Input, Button, Space } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 // import UpdateShipperContactModal from "./UpdateShipperContactModal";
 import Highlighter from "react-highlight-words";
@@ -50,11 +50,11 @@ class ShipperContactTable extends Component {
           <Button
             type="primary"
             onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+         
             size="small"
             style={{ width: 90 }}
           >
-            Search
+<SearchIcon ClassName="!text-icon" />Search
           </Button>
           <Button
             onClick={() => this.handleReset(clearFilters)}
@@ -80,7 +80,7 @@ class ShipperContactTable extends Component {
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+      <SearchIcon ClassName="!text-icon" style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]

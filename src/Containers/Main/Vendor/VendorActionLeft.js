@@ -2,11 +2,7 @@ import React,{useEffect,useState} from "react";
 import TocIcon from '@mui/icons-material/Toc';
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
-// import {
-//     inputDataSearch, setSuppliersDashboardType, setSelectedTimeInterval,
-//     setTimeRange,getSupplierCount,getSupplierAllCount
-// } from "./SuppliersAction";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { connect } from "react-redux";
 import { Avatar, Input, Tooltip,Badge } from "antd";
@@ -131,7 +127,7 @@ function VendorActionLeft (props) {
                         }}
                     >
                         <Avatar style={{ background: viewType === "delete" ? "#f279ab" : "#28a355" }}>
-                        <DeleteOutlined className="text-white" /></Avatar>
+                        <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  /></Avatar>
 
                     </span>
                     {/* </Badge> */}

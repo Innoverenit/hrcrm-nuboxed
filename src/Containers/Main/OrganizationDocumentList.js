@@ -7,7 +7,7 @@ import { getRepositoryDocuments ,setEditRepositoryList,deleteOrgDocata,LinkOrgDo
 import { base_url } from "../../Config/Auth";
 import {  Button,Avatar,Tooltip} from "antd";
 import DownloadIcon from "@mui/icons-material/Download";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import dayjs from "dayjs";
 import { getDepartments } from "../../Containers/Settings/Department/DepartmentAction";
 import { BundleLoader } from '../../Components/Placeholder';
@@ -246,14 +246,7 @@ return (
              onConfirm={() => this.props.deleteOrgDocata(item.documentId)}
           >
            {(user.repositoryCreateInd ===true || user.role === "ADMIN") && (
-            <DeleteOutlined
-            style={{
-              verticalAlign: "center",
-              marginLeft: "1rem",
-              fontSize:"1rem",
-              color: "red",
-            }}
-            />
+           <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
             )} 
           </StyledPopconfirm>
                         </div>

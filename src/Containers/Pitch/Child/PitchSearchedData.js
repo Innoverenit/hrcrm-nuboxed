@@ -7,7 +7,7 @@ import { FormattedMessage } from 'react-intl';
 import dayjs from "dayjs";
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import ExploreIcon from "@mui/icons-material/Explore";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import "jspdf-autotable";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
@@ -526,11 +526,7 @@ const countryCode = item.countryAlpha2Code
             onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
           > <Tooltip title="Delete">
              {user.imInd === true  &&  user.plantDeleteInd === true && ( 
-            <DeleteOutlined
-              type="delete"
-              className="!text-icon text-[red] cursor-pointer"
-              
-            />
+           <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
              )} 
              </Tooltip>
           </StyledPopconfirm>

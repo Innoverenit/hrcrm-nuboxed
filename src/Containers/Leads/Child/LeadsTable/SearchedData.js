@@ -12,7 +12,7 @@ import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact
 import LanguageIcon from '@mui/icons-material/Language';
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 // import { getCountries } from "../../../Auth/AuthAction";
 import {
     getTeamLeads,
@@ -584,10 +584,7 @@ const LeadsTeamCardList = (props) => {
                           title="Do you want to delete?"
                           onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
                      <Tooltip title="Delete">
-                          <DeleteOutlined
-                            type="delete"
-                            className=" !text-icon cursor-pointer text-[red]"
-                          />
+                     <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                        </Tooltip>
                         </StyledPopconfirm>
                       </div>

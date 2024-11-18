@@ -7,7 +7,7 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 import InfiniteScroll from "react-infinite-scroll-component";
 import PhoneDisabledIcon from "@mui/icons-material/PhoneDisabled";
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
 import Highlighter from "react-highlight-words";
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 import { getAllSalesList } from "../../../Opportunity/OpportunityAction";
@@ -125,7 +125,7 @@ function ContactTable(props) {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             //icon="search"
             size="small"
             style={{ width: 90 }}
@@ -155,7 +155,7 @@ function ContactTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "tomato" : "1890ff" }}
         />

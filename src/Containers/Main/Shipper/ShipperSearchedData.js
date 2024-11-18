@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Tooltip, Popconfirm, Switch } from "antd";
 import {
   getShipperByUserId,
@@ -201,9 +201,7 @@ function ShipperSearchedData(props) {
                               title="Do you want to delete?"
                               onConfirm={() => props.deleteShipperData(item.shipperId, props.userId)}
                             >
-                              <DeleteOutlined
-                                className=" !text-icon cursor-pointer text-[red]"
-                              />
+                              <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                             </Popconfirm>
                           </div>
                         </div>

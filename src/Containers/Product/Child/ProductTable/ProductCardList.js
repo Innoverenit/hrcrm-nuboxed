@@ -2,7 +2,7 @@ import React, { useState, useEffect, lazy, Suspense, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
@@ -478,10 +478,7 @@ useEffect(() => {
                             title={translatedMenuItems[17]}  
                             onConfirm={() => handleDelete(item)}
                             >
-                            <DeleteOutlined
-                              type="delete"
-                              className=" !text-icon cursor-pointer text-[red]"
-                            />
+                           <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                          
                           </StyledPopconfirm>
                         </div>

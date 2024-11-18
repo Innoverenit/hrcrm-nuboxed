@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import DownloadIcon from '@mui/icons-material/Download';
 import { base_url } from "../../../Config/Auth";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Popconfirm, Input,Tooltip } from "antd";
 import dayjs from "dayjs";
@@ -201,7 +201,7 @@ return <div><BundleLoader/></div>;
                         cancelText="No"
                         onConfirm={() =>  props.removeSectors(region.sectorId,props.orgId)}
                       >
-                <DeleteOutlined className=" !text-icon text-red-600 cursor-pointer"
+             <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  
 
               // onClick={() => 
               //     props.removeServiceLine(item.sectorId)

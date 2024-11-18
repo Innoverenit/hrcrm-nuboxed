@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { base_url } from "../../../Config/Auth";
 import { Tooltip } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Popconfirm,Input } from "antd";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -205,12 +205,7 @@ const {
                         cancelText="No"
                         onConfirm={() =>  props.removeEvents(region.eventTypeId,props.orgId)}
                       >
-                <DeleteOutlined 
-                  className=" !text-icon text-red-600 cursor-pointer "
-              // onClick={() => 
-              //     props.removeServiceLine(item.eventTypeId)
-              //  }
-                 />
+              <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                  </Popconfirm>
             </div>
         </div>

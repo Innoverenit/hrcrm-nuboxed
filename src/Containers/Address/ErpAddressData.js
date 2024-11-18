@@ -16,7 +16,7 @@ updateContactAddress,
   addContactMand,
   removeAddressData
 } from "../../Containers/Main/Suppliers/SuppliersAction";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const ErpAddressData = (props) => {
   const [activeSwitchIndex, setActiveSwitchIndex] = useState(null);
@@ -251,9 +251,7 @@ const ErpAddressData = (props) => {
               okText="Ok"
               cancelText="Cancel"
           >
-                    <DeleteOutlined
-                    style={{color:"tomato"}}
-                    />
+                    <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                     </Popconfirm>
                   </>
                

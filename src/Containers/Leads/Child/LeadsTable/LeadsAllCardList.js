@@ -18,7 +18,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {
   //getAllLeads,
   getAllLeadsHot,
@@ -645,10 +645,8 @@ const LeadsAllCardList = (props) => {
                         title={translatedMenuItems[19]}
                         onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
                    <Tooltip title= {translatedMenuItems[27]}>
-                        <DeleteOutlined
-                          type="delete"
-                          className=" !text-icon cursor-pointer text-[red]"
-                        />
+                       
+                   <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                      </Tooltip>
                       </StyledPopconfirm>
                     </div>
@@ -1076,10 +1074,7 @@ const LeadsAllCardList = (props) => {
                         title={translatedMenuItems[19]}
                         onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
                    <Tooltip title= {translatedMenuItems[27]}>
-                        <DeleteOutlined
-                          type="delete"
-                          className=" !text-icon cursor-pointer text-[red]"
-                        />
+                   <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                      </Tooltip>
                       </StyledPopconfirm>
                     </div>
@@ -1505,10 +1500,7 @@ const LeadsAllCardList = (props) => {
                         title={translatedMenuItems[19]}
                         onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
                    <Tooltip title= {translatedMenuItems[27]}>
-                        <DeleteOutlined
-                          type="delete"
-                          className=" !text-icon cursor-pointer text-[red]"
-                        />
+                   <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                      </Tooltip>
                       </StyledPopconfirm>
                     </div>

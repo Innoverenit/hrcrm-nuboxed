@@ -2,10 +2,10 @@ import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import DownloadIcon from '@mui/icons-material/Download';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import Highlighter from "react-highlight-words";
 import { base_url } from "../../../../../../Config/Auth";
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';
 import {
   Tooltip,
   Button,
@@ -104,7 +104,7 @@ class LinkedDocuments extends Component {
         <Button className="w-[90%] mr-8"
           type="primary"
           onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-          icon={<SearchOutlined />}
+          icon={<SearchIcon />}
           size="small"
         
         >
@@ -120,7 +120,7 @@ class LinkedDocuments extends Component {
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+      <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]
@@ -313,8 +313,7 @@ class LinkedDocuments extends Component {
                       >
                          <Tooltip title= {this.state.translatedMenuItems[11]}>
       
-            <DeleteOutlined className="cursor-pointer !text-icon text-[red]"
-            />
+                         <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
             </Tooltip>
           </Popconfirm>
             </div>

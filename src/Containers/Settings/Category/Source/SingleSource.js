@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { TextInput } from "../../../../Components/UI/Elements";
 import { Select } from "../../../../Components/UI/Elements";
@@ -70,16 +70,7 @@ class SingleSource extends Component {
                           cancelText="No"
                           onConfirm={() => this.props.removeSource(sourceId )}
                         >
-                    <DeleteOutlined
-                        // onClick={() => handleDeleteSource(sourceId)}
-                    
-                      style={{
-                        verticalAlign: "center",
-                        marginLeft: "1rem",
-                        fontSize:"1rem",
-                        color: "red",
-                      }}
-                    />
+                    <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                        </Popconfirm>
                   </Tooltip>
                 </div>

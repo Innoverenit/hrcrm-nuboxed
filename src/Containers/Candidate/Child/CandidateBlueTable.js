@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
 import { StyledTable } from "../../../Components/UI/Antd";
 import { Tooltip, Button, Input } from "antd";
 import Highlighter from "react-highlight-words";
@@ -81,7 +81,7 @@ function CandidateBlueTable(props) {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             //icon="search"
             size="small"
             style={{ width: 90 }}
@@ -109,7 +109,7 @@ function CandidateBlueTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />
