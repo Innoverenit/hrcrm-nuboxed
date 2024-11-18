@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormattedMessage } from 'react-intl';
+
 import { connect } from "react-redux";
 
 import { bindActionCreators } from "redux";
@@ -274,14 +274,9 @@ class SupplierContactForm extends Component {
                           isColumnWithoutNoCreate
                           placeholder='+31'
                           selectType="dialCode"
-                          //label="Available from"
+                          label="Dial Code"
 
-                          label={
-                            <FormattedMessage
-                              id="app.#whatsApp"
-                              defaultMessage="Dial Code "
-                            />
-                          }
+                        
                           component={SearchSelect}
                           isColumn
                           // value={values.availableDate}
@@ -297,11 +292,8 @@ class SupplierContactForm extends Component {
                           width={"100%"}
                           style={{ flexBasis: "30%" }}
                           component={InputComponent}
-                          label={
-                            <FormattedMessage
-                              id="app.phoneNumber"
-                              defaultMessage="Whatsapp #"
-                            />}
+                          label="Whatsapp #"
+                         
                           inlineLabel
                         />
                       )}

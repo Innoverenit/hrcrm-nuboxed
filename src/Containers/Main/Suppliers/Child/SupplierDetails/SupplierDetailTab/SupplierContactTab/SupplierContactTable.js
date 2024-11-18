@@ -151,7 +151,8 @@ function SupplierContactTable(props) {
               
             )
         }}
-    ><FormattedMessage id="app.applyforlogin" defaultMessage="Apply For Login" /></Button>
+    > Apply for log in
+    </Button>
 </div> : item.accessInd === 2 ? <b>Login Applied</b> : <b className="text-[#32CD32] text-xs">Login Approved</b>
 
 }

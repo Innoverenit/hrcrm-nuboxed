@@ -1,4 +1,15 @@
 
+import React, { useState, useEffect } from 'react';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import dayjs from "dayjs";
+import { JumpStartBox, } from "../../../../Components/UI/Elements";
+import {
+  getDateWiseList, getSalesDateWiseList, getJumpBulblist, getJumpBulblist2,
+  getJumpBulblist3, getavgHour, getJumpTasklist, getTasklist, getJumpTask2list
+} from "../../DashboardAction";
+import FactCheckIcon from '@mui/icons-material/FactCheck';
+import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 const DashboardTaskOrganizationJumpstart = (props) => {
   const [date, setDate] = useState(() => {
     const today = new Date();

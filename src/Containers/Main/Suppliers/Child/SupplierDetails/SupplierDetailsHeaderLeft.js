@@ -11,7 +11,7 @@ class SupplierDetailsHeaderLeft extends React.Component {
     return (
       <div class="items-center">
         <Tooltip 
-        title={<FormattedMessage id="app.back" defaultMessage="Back" />}
+       title="Back"
       >
           <RollbackOutlined
             style={{ marginRight: "0.3rem",color: "#1890ff" }}

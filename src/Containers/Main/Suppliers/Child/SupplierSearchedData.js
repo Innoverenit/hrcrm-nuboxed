@@ -74,18 +74,20 @@ function SupplierSearchedData(props) {
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[20.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  <FormattedMessage
-              id="app.name"
-              defaultMessage="Name"
-            /></div>
+            <div className=" w-[20.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  
+           Name
+            </div>
             <div className=" w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
-              <FormattedMessage id="app.phoneNo" defaultMessage="Phone " />
+             Phone
             </div>
             <div className=" w-[22.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
-               <FormattedMessage id="app.email" defaultMessage="Email" /></div>
+               {/* <FormattedMessage id="app.email" defaultMessage="Email" /> */}
+               Email
+               </div>
             
             <div className="w-[10.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.5rem]">
-              <FormattedMessage id="app.country" defaultMessage="Country" />
+              {/* <FormattedMessage id="app.country" defaultMessage="Country" /> */}
+              Country
 
             </div>
             <div className="w-[10.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.5rem]">

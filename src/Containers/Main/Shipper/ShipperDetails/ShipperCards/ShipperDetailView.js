@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { FormattedMessage } from 'react-intl';
+
 import { FlexContainer } from "../../../../../Components/UI/Layout";
-apexcharts
+
 
 class ShipperDetailView extends Component {
   render() {
@@ -12,9 +12,18 @@ class ShipperDetailView extends Component {
 
     return (
       <>
-        <ShipperItemRow label={<FormattedMessage id="app.phone" defaultMessage="Phone #"/>} value={phoneNo} />
-        <ShipperItemRow label={<FormattedMessage id="app.email" defaultMessage="Email"/>} value={emailId} />
-        <ShipperItemRow label={<FormattedMessage id="app.shipby" defaultMessage="Ship By"/>} value={shipByName} />
+        <ShipperItemRow 
+        label="Phone"
+        // label={<FormattedMessage id="app.phone" defaultMessage="Phone #"/>} 
+        value={phoneNo} />
+        <ShipperItemRow 
+        label="Email"
+        // label={<FormattedMessage id="app.email" defaultMessage="Email"/>} 
+        value={emailId} />
+        <ShipperItemRow 
+        label="Ship By"
+        // label={<FormattedMessage id="app.shipby" defaultMessage="Ship By"/>} 
+        value={shipByName} />
       </>
     );
   }
