@@ -16,7 +16,7 @@ const AddCustomerModal = (props) => {
         try {
           setLoading(true); 
           const itemsToTranslate = [ 
-           "248", //  customer",//0
+           "97", //  prospect",//0
            
           ];
   

@@ -283,7 +283,7 @@ class UpdateContactForm extends Component {
             phoneNumber: this.props.setEditingContact.phoneNumber || "",
             mobileNumber: this.props.setEditingContact.mobileNumber || "",
             emailId: this.props.setEditingContact.emailId || "",
-            alternateEmail: this.props.setEditingContact.alternateEmail || "",
+            alternateEmailId: this.props.setEditingContact.alternateEmailId || "",
             
             customerId:this.props.setEditingContact.customerId||"",
             linkedinPublicUrl:
@@ -404,7 +404,7 @@ class UpdateContactForm extends Component {
                     {translatedMenuItems[4]}
                       <FastField
                         type="email"
-                        name="alternateEmail"
+                        name="alternateEmailId"
                         //label="Email"
                       
                         className="field"
@@ -470,7 +470,7 @@ class UpdateContactForm extends Component {
                   </div>
                  
                   
-                  <div class="mt-3 text-xs font-bold font-poppins">
+                  {/* <div class="mt-3 text-xs font-bold font-poppins">
                   {translatedMenuItems[13]}
                   <Field
                     name="notes"
@@ -480,7 +480,7 @@ class UpdateContactForm extends Component {
                     isColumn
                     component={TextareaComponent}
                   />                 
-                  </div>
+                  </div> */}
                 </div>
                 
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "

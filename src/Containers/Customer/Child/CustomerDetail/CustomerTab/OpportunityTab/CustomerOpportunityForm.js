@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button } from "antd";
+import { Button ,Select} from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import {getCurrency} from "../../../../../Auth/AuthAction"
@@ -16,17 +16,33 @@ import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker
 import dayjs from "dayjs";
 import { getCrm} from "../../../../../Leads/LeadsAction";
 import { Listbox, } from '@headlessui/react'
+import { base_url } from "../../../../../../Config/Auth";
 /**
  * yup validation scheme for creating a opportunity
  */
-
+const { Option } = Select; 
 const OpportunitySchema = Yup.object().shape({
   opportunityName: Yup.string().required("Please provide Opportunity name"),
   currency: Yup.string().required("Currency needed!"),
-  oppWorkflow: Yup.string().required("Input needed!"),
-  oppStage: Yup.string().required("Input needed!"),
+  //oppWorkflow: Yup.string().required("Input needed!"),
+  //oppStage: Yup.string().required("Input needed!"),
 });
 function CustomerOpportunityForm(props) {
+
+
+
+  const [isLoadingWorkflow, setIsLoadingWorkflow] = useState(false);
+
+  const [workflow, setWorkflow] = useState([]);
+
+  const [selectedWorkFlowType, setSelectedWorkFlowType] = useState(null);
+  const [isLoadingWorkflowType, setIsLoadingWorkflowType] = useState(false);
+  const [touchedWorkFlowType, setTouchedWorkFlowType] = useState(false);
+  const [selectedWorkflow, setSelectedWorkflow] = useState(null);
+
+  const[stage,setStage]=useState([])
+  const [isLoadingStage, setIsLoadingStage] = useState(false);
+  const [selectedStage, setSelectedStage] = useState(null);
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]); 
   const handleReset = (resetForm) => {
@@ -147,6 +163,77 @@ function CustomerOpportunityForm(props) {
       value: item.currency_name,
     };
   });
+
+
+
+
+  const handleSelectWorkflowTypeFocus = () => {
+    if (!touchedWorkFlowType) {
+      fetchWorkFlowType();
+      // fetchSector();
+  
+      setTouchedWorkFlowType(true);
+    }
+  };
+
+
+  const handleWorkflowChange=(workflowDetailsId)=>{
+    setSelectedWorkflow(workflowDetailsId);
+    fetchStage(workflowDetailsId)
+  }
+
+  const fetchStage= async (workflowId) => {
+    setIsLoadingStage(true);
+    try {
+      // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
+      // setContacts(response.data);
+      const apiEndpoint = `${base_url}/workflow/stages/for_dropdown/${props.orgId}/${workflowId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setStage(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingStage(false);
+    }
+  };
+
+
+
+  const handleStageChange=(value)=>{
+    setSelectedStage(value);
+  }
+
+
+  const fetchWorkFlowType = async () => {
+    setIsLoadingWorkflowType(true);
+    try {
+      // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
+      // setCustomers(response.data);
+      const apiEndpoint = `${base_url}/workflow/publish/for_dropdown/${props.organizationId}/Quotation`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setWorkflow(data);
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      setIsLoadingWorkflowType(false);
+    }
+  };
   
 
 
@@ -266,6 +353,8 @@ function CustomerOpportunityForm(props) {
               endDate: `${newEndDate}T00:00:00Z`,
               customerId: props.customerId,
               userId: props.userId,
+              oppWorkflow:selectedWorkflow,
+              oppStage:selectedStage,
               salesUserIds: selectedOption ? selectedOption.employeeId:userId,
             },
             props.userId,
@@ -496,49 +585,46 @@ function CustomerOpportunityForm(props) {
                   inlineLabel
                 />
 </div>
-                <div class=" flex justify-between mt-3">
-                  <div class=" w-2/4">
-                  <div class="text-xs font-bold w-full max-sm:w-full">
-                  {translatedMenuItems[10]} 
-                      <Field
-                        name="oppWorkflow"
-                        // selectType="contactListFilter"
-                        isColumnWithoutNoCreate                 
-                        // component={SearchSelect}
-                        component={SelectComponent}
-                        options={Array.isArray(WorkflowOptions) ? WorkflowOptions : []}
-                        value={values.oppWorkflow}
-                        isColumn
-                        inlineLabel
-                      />
-                    </div>
+<div class="flex justify-between max-sm:flex-col mt-3">
+     
+                  <div class=" w-w47.5 max-sm:w-wk">
+                   
+<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Workflow</label>
+      <Select
+       
+        placeholder="Select Workflow"
+      loading={isLoadingWorkflowType}
+        onChange={handleWorkflowChange}
+        onFocus={handleSelectWorkflowTypeFocus}
+        // disabled={!selectedWorkFlowType}
+      >
+        {workflow.map(work => (
+          <Option key={work.workflowDetailsId} value={work.workflowDetailsId}>
+            {work.workflowName}
+          </Option>
+        ))}
+      </Select>
                   </div>
-                
-                  <div class=" w-2/5 ">
-                  <div class="text-xs font-bold w-full max-sm:w-full">
-                  {translatedMenuItems[12]} 
-                      <Field
-                        name="oppStage"
-                        //selectType="initiativeName"
-                        isColumnWithoutNoCreate
-                       //stages
-                        component={SelectComponent}
-                        options={
-                          Array.isArray(getStagesOptions("oppWorkflow", values.oppWorkflow))
-                            ? getStagesOptions("oppWorkflow", values.oppWorkflow)
-                            : []
-                        }
-                        value={values.oppStage}
-                        filterOption={{
-                          filterType: "oppWorkflow",
-                          filterValue: values.oppWorkflow,
-                        }}
-                        disabled={!values.oppWorkflow}
-                        isColumn
-                        inlineLabel
-                      />
-                    </div>
+
+
+                 
+                  <div class=" w-w47.5 max-sm:w-wk ">
+                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Stage</label>
+      <Select
+       
+        placeholder="Select Stage"
+        loading={isLoadingStage}
+        onChange={handleStageChange}
+      disabled={!selectedWorkflow}
+      >
+        {stage.map(stage => (
+          <Option key={stage.stagesId} value={stage.stagesId}>
+            {stage.stageName}
+          </Option>
+        ))}
+      </Select>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -577,6 +663,7 @@ const mapStateToProps = ({ auth, opportunity, currency, customer,leads }) => ({
   orgId: auth.userDetails.organizationId,
   fullName: auth.userDetails.fullName,
   crmAllData:leads.crmAllData,
+  token:auth.token,
 });
 
 const mapDispatchToProps = (dispatch) =>

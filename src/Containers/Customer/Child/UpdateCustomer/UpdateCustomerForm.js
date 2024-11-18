@@ -62,7 +62,7 @@ function UpdateCustomerForm (props) {
     const [selected, setSelected] = useState(defaultOption);
     const selectedOption = props.crmAllData.find((item) => item.empName === selected);
     
-    const srcnme=setEditingCustomer.source
+    const srcnme=setEditingCustomer.sourceId
 
     useEffect(() => {
       const fetchMenuTranslations = async () => {
@@ -188,7 +188,7 @@ function UpdateCustomerForm (props) {
             countryDialCode: setEditingCustomer.countryDialCode || user.countryDialCode,
             phoneNumber: setEditingCustomer.phoneNumber || "",
             userId: userId,
-            source:setEditingCustomer.source  || "",
+            sourceId:setEditingCustomer.sourceId  || "",
             currencyId: setEditingCustomer.currency || "",
             assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingCustomer.employeeId,
             notes: setEditingCustomer.notes || "",
@@ -362,7 +362,7 @@ function UpdateCustomerForm (props) {
                     <div class="font-bold text-xs"> {translatedMenuItems[5]}  </div>
                     <FastField
                      style={{ width: "11.5rem" }}
-                          name="source"
+                          name="sourceId"
                           isColumnWithoutNoCreate                    
                           selectType="sourceName"
                           component={SearchSelect}
@@ -429,7 +429,7 @@ function UpdateCustomerForm (props) {
   </div>
   
 </div>            
-           <div class=" mt-3">
+           {/* <div class=" mt-3">
            <div class="font-bold text-xs"> {translatedMenuItems[9]}  </div>
                   <Field
                     name="notes"
@@ -438,7 +438,7 @@ function UpdateCustomerForm (props) {
                     isColumn
                     component={TextareaComponent}
                     />  
-                    </div> 
+                    </div>  */}
                  </div>
                  <div class=" h-3/4 w-w47.5 max-sm:w-wk "
                 >               

@@ -29,10 +29,17 @@ const InventoryMaterialBestBefore = (props) => {
     const [rack, setRack] = useState([]);
     const [isLoadingZone, setIsLoadingZone] = useState(false);
     const [isLoadingRack, setIsLoadingRack] = useState(false);
+    const[selectedAisle,setSelectedAisle]= useState(false)
     const [selectedRack, setSelectedRack] = useState(null);
     const [selectedZone, setSelectedZone] = useState(null);
     const [touchedZone, setTouchedZone] = useState(false)
     const [row, setRow] = useState({})
+
+
+
+    const [aisle, setAisle] = useState([]);
+    const [isLoadingAisle, setIsLoadingAisle] = useState(false);
+    
     useEffect(() => {
         props.getMaterialBestBefore(props.locationId);
         //props.getRoomRackByLocId(props.locationId, props.orgId);
@@ -73,6 +80,7 @@ const InventoryMaterialBestBefore = (props) => {
   
       // Find the corresponding aisle for the selected zone
       const selectedZoneData = zone.find((zone) => zone.roomRackId === selectedZone);
+      fetchAisle(value)
       fetchRack(value)
       // Update the rows state for the specific row at index
       const updatedRows = rowsBest.map((row, i) => {
@@ -131,6 +139,19 @@ const InventoryMaterialBestBefore = (props) => {
       };
 
 
+
+      const handleAisleChange=(value,poSupplierSuppliesId)=>{
+        setSelectedAisle(value);
+        console.log(rowsBest)
+        console.log(rowDetails)
+        // let data={
+        //   roomRackId:rowDetails.roomRackId,
+        //   roomRackChamberLinkId:value
+        // }
+        // props.addAsileInbest(data,poSupplierSuppliesId)
+      }
+
+
       const handleRackChange=(value,poSupplierSuppliesId)=>{
         setSelectedRack(value);
         console.log(rowsBest)
@@ -141,12 +162,37 @@ const InventoryMaterialBestBefore = (props) => {
         }
         props.addAsileInbest(data,poSupplierSuppliesId)
       }
+console.log(aisle)
+      const fetchAisle = async (roomRackId) => {
+        //setIsLoadingAisle(true);
+        try {
+         
+          const apiEndpoint = `${base_url2}/roomrack/notUesedAisle/${roomRackId}`;
+          const response = await fetch(apiEndpoint,{
+            method: 'GET',
+            headers: {
+              'Authorization': `Bearer ${props.token}`,
+              'Content-Type': 'application/json',
+              // Add any other headers if needed
+            },
+          });
+          const data = await response.json();
+          setAisle(data);
+        } catch (error) {
+          console.error('Error fetching contacts:', error);
+        } finally {
+          //setIsLoadingAisle(false);
+        }
+      };
+
+
+
 
       const fetchRack = async (roomRackId) => {
         setIsLoadingRack(true);
         try {
          
-          const apiEndpoint = `${base_url2}/roomrack/${roomRackId}`;
+          const apiEndpoint = `${base_url2}/roomrack/notUesedChamber/${roomRackId}`;
           const response = await fetch(apiEndpoint,{
             method: 'GET',
             headers: {
@@ -330,12 +376,28 @@ console.log(selectedZones)
         ))}
       </Select>
 
-    <Input
+    {/* <Input
         placeholder="Aisle"
         style={{ width: 100 }}
         value={item.aisle}
         disabled
-      />
+      /> */}
+
+
+<Select placeholder="Select zone" 
+                                                    style={{ width: 119 }}
+                                                    //loading={isLoadingAisle}
+                                                    value={item.aisle}
+                                                   
+                                                   onChange={(value) => handleAisleChange( value, item.poSupplierSuppliesId)}
+                                                    >
+      
+        {aisle.map((aisle) => (
+          <Option key={aisle.roomRackChamberLinkId} value={aisle.roomRackChamberLinkId}>
+            {aisle.chamber}
+          </Option>
+        ))}
+      </Select>
 
     <Select placeholder="Select rack" 
       style={{ width: 119 }}

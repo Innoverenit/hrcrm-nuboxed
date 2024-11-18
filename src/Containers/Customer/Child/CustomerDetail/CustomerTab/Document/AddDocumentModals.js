@@ -332,7 +332,7 @@ function AddDocumentModal (props){
           defaultValue={selectedIncludeValues}
           mode="multiple"
         >
-          {props.selectDrop.map((includes) => (
+          {include.map((includes) => (
             <Option key={includes.employeeId} value={includes.employeeId}>
               {includes.empName}
             </Option>
