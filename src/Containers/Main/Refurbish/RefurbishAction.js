@@ -81,6 +81,31 @@ export const updatePauseStatus = (data) => (dispatch) => {
       });
     });
 };
+
+export const getToExchange = (data,phoneId) => (dispatch) => {
+  // debugger;
+  dispatch({ type: types.GET_TO_EXCHANGE_REQUEST });
+  axios
+    .put(`${base_url2}/get/exchange/${phoneId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_TO_EXCHANGE_SUCCESS,
+        payload: res.data,
+      });
+
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_TO_EXCHANGE_FAILURE,
+      });
+    });
+};
+
 export const getTomorrowProduction = () => (dispatch) => {
   dispatch({
     type: types.GET_TOMORROW_PRODUCTION_REQUEST,
@@ -972,6 +997,32 @@ export const getRepairOrderByUser = (userId) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_REPAIR_ORDER_BY_USER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getTabSpareList = (pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_TAB_SPARE_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneSpare/spareDetails/allSpares/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_TAB_SPARE_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_TAB_SPARE_LIST_FAILURE,
         payload: err,
       });
     });

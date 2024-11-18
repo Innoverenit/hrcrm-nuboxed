@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { BundleLoader } from '../../../Components/Placeholder';
 import HandymanIcon from '@mui/icons-material/Handyman';
+import SpareNewList from './SpareNewList';
 
 const AddCatalogueInProduction = lazy(() => import('./ProductionTab/AddCatalogueInProduction'));
 const OpenRepairTable = lazy(() => import('./OpenRepairTable'));
@@ -82,7 +83,11 @@ const OrderPhoneTab = (props) => {
             openRepair ? <OpenRepairTable 
             translateText={props.translateText}
             selectedLanguage={props.selectedLanguage}/> : null)}</div>;
-        
+            case "4":
+                return  <div>
+                    <SpareNewList
+                translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}/> </div>;
             
           default:
             return null;

@@ -221,6 +221,32 @@ export const getBestBeforeJumpListCount = (orgId) => (dispatch) => {
       });
     });
 };
+export const getReorderCount = () => (dispatch) => {
+  dispatch({
+    type: types.GET_REORDER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getReorder/all/count/material`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REORDER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REORDER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 /**
  *  delete modal
  */
