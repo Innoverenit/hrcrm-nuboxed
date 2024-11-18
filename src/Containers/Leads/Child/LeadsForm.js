@@ -680,7 +680,7 @@ props.emptyClearbit();
       </Select>
 }
                     </div>
-                    <div class=" w-w47.5 max-sm:w-wk">
+                    <div class="flex items-center justify-center w-w47.5 max-sm:w-wk">
                     {props.customerConfigure.typeInd===true&&
                     <div class="flex">
                        <Tooltip title="Hot">

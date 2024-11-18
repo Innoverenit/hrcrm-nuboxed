@@ -473,7 +473,7 @@ function MainApp(props) {
                  type="primary"        
                  onClick
                 >Data Room</Button> */}
-     <Link to="/dataroom">
+     <Link to="/dataroom" style={{display:"flex"}}>
       <Button type="primary">
       <MeetingRoomIcon  className=" !text-icon"/>  Data Room
       </Button>

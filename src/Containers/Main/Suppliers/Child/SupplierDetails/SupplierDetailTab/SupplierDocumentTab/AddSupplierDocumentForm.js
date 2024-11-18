@@ -46,7 +46,7 @@ class AddSupplierDocumentForm extends Component {
         "71",//0 type
         "110",//1 name
         "147",//2 description
-       // 3 submit
+          "154" // 3 submit
        
         
       ];
@@ -172,8 +172,9 @@ class AddSupplierDocumentForm extends Component {
                       {errors.documentId}
                     </p>
                   )}
-                  <div class=" mt-3" />
-                  <div class="font-bold font-poppiins text-xs">{this.state.translatedMenuItems[0]}</div>
+               
+               
+                  <div class="font-bold font-poppins text-xs">{this.state.translatedMenuItems[0]}</div>
                   <Field
                     name="documentId"
                     selectType="documentTypeName"
@@ -188,7 +189,7 @@ class AddSupplierDocumentForm extends Component {
                   />
                 </div>
                 <div class="h-[100%] w-[45%]"
-                ><div class="font-bold font-poppiins text-xs">{this.state.translatedMenuItems[1]}</div>
+                ><div class="font-bold font-poppins text-xs">{this.state.translatedMenuItems[1]}</div>
                   <Field
                     name="documentName"
                 
@@ -199,7 +200,7 @@ class AddSupplierDocumentForm extends Component {
                     style={{ height: "2em", marginTop: "0.25em" }}
                   />
                   <div class=" mt-3" />
-                  <div class="font-bold font-poppiins text-xs">{this.state.translatedMenuItems[2]}</div>
+                  <div class="font-bold font-poppins text-xs">{this.state.translatedMenuItems[2]}</div>
                   <Field
                     name="documentDescription"
               
@@ -227,8 +228,8 @@ class AddSupplierDocumentForm extends Component {
                   Loading={addingDocumentBySupplierId}
                 >
                   {/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
-                  {/* {this.state.translatedMenuItems[3]} */}
-                  Submit
+                  <div class="font-bold font-poppins text-xs"> {this.state.translatedMenuItems[3]}</div>
+                  {/* Submit */}
                 </Button>
               </FlexContainer>
             </Form>
