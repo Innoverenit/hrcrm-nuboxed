@@ -81,12 +81,12 @@ function SupplierSearchedData(props) {
              Phone
             </div>
             <div className=" w-[22.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
-               {/* <FormattedMessage id="app.email" defaultMessage="Email" /> */}
+   
                Email
                </div>
             
             <div className="w-[10.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.5rem]">
-              {/* <FormattedMessage id="app.country" defaultMessage="Country" /> */}
+        
               Country
 
             </div>
