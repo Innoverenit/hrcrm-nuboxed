@@ -1,30 +1,17 @@
 import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import dayjs from "dayjs";
-import DownloadIcon from '@mui/icons-material/Download';
 import Highlighter from "react-highlight-words";
 
 import { getDocuments } from "../../Settings/Documents/DocumentsAction";
-import {
-  StyledPopconfirm,
-} from "../../../Components/UI/Antd";
-import { SearchOutlined, DeleteOutlined } from "@ant-design/icons";
-import {
-  Tooltip,
+import SearchIcon from '@mui/icons-material/Search';
+ import {
   Button,
   Input
 } from "antd";
 import {
-  MultiAvatar,
-  SubTitle,
-} from "../../../Components/UI/Elements";
-import {
     getSuppliesDocument,
   deleteSuppliesData } from "./SuppliesAction";
-import { BundleLoader } from "../../../Components/Placeholder";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import { base_url } from "../../../Config/Auth";
 
 const LinkedDocumentsSupplies = (props) => {
   const [searchText, setSearchText] = useState("");
@@ -77,7 +64,7 @@ const LinkedDocumentsSupplies = (props) => {
         <Button
           type="primary"
           onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-          icon={<SearchOutlined />}
+          icon={<SearchIcon />}
           size="small"
           style={{ width: 90, marginRight: 8 }}
         >
@@ -93,7 +80,7 @@ const LinkedDocumentsSupplies = (props) => {
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+      <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]
@@ -221,7 +208,7 @@ const LinkedDocumentsSupplies = (props) => {
             title="Do you want to delete?"
             onConfirm={() => deleteSuppliesData(item.documentId)}
          >
-            <DeleteOutlined type="delete"
+            <DeleteOutlineIcon type="delete"
             class=" cursor-pointer !text-icon  bg-red-600 " />
           </StyledPopconfirm>
 

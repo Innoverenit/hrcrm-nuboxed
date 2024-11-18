@@ -2,16 +2,11 @@ import React, { useEffect,useState,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Highlighter from "react-highlight-words";
-import { Link } from 'react-router-dom';
-import dayjs from "dayjs";
-import InfoIcon from '@mui/icons-material/Info';
 import {
   MultiAvatar,
 } from "../../Components/UI/Elements";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import {
-  SearchOutlined,
-} from "@ant-design/icons";
+
+import SearchIcon from '@mui/icons-material/Search';
 import {getProspectOppCloseTask} from "./DataRoomAction"
 import { CurrencySymbol } from "../../Components/Common";
 import { getOpportunityListByCustomerId,handleUpdateCustomerOpportunityModal,
@@ -85,7 +80,7 @@ function ProspectQuotationClosedData(props) {
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
             // icon="search"
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             size="small"
             style={{ width: 90 }}
           >
@@ -112,7 +107,7 @@ function ProspectQuotationClosedData(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />

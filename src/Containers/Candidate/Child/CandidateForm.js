@@ -1173,7 +1173,7 @@ onChange={this.NumericOnly}
                 <Button
                   type="primary"
                   htmlType="submit"
-                  // icon={<PoweroffOutlined />}
+               
                   Loading={addingCandidate}
                 >
                  

@@ -6,7 +6,8 @@ import PlacementDetails from "./PlacementDetails"
 import {  Menu,Dropdown,Button,
   Progress,Tooltip,Input } from "antd";
   import Highlighter from 'react-highlight-words';
-import { SearchOutlined } from '@ant-design/icons';
+
+  import SearchIcon from '@mui/icons-material/Search';
 import dayjs from "dayjs";
 
 import {
@@ -45,7 +46,7 @@ class PlacementTable extends Component {
         <Button
           type="primary"
           onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-          icon={<SearchOutlined />}
+          icon={<SearchIcon />}
           size="small"
           style={{ width: 90, marginRight: 8 }}
         >
@@ -56,7 +57,7 @@ class PlacementTable extends Component {
         </Button>
       </div>
     ),
-    filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+    filterIcon: filtered => <SearchIcon style={{ color: filtered ? '#1890ff' : undefined }} />,
     onFilter: (value, record) =>
       record[dataIndex]
         .toString()

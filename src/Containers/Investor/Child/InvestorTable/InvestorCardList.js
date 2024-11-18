@@ -5,7 +5,7 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import ExploreIcon from "@mui/icons-material/Explore";
-import {  DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import ArticleIcon from '@mui/icons-material/Article';
@@ -581,7 +581,7 @@ function InvestorCardList(props) {
                       >
                          <Tooltip title={translatedMenuItems[19]} >
                        
-                          <DeleteOutlined
+                          <DeleteOutlineIcon
                             type="delete"
                             className="!text-icon text-[red] cursor-pointer max-sm:!text-xl"
                           />

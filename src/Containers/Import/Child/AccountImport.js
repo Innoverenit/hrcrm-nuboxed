@@ -10,7 +10,11 @@ import { Title, HeaderText } from "../../../Components/UI/Elements";
 import { SelectComponent } from "../ImportSelect";
 import ImportHeader from "./ImportHeader";
 import ImportHelpGuide from "./ImportHelpGuide";
-import { LoadingOutlined, InboxOutlined } from '@ant-design/icons';
+import { LoadingOutlined
+  
+} from '@ant-design/icons';
+import InboxIcon from '@mui/icons-material/Inbox';
+
 import {
   importExcel,
   getExcelHeaders,
@@ -120,7 +124,7 @@ class AccountImport extends Component {
                         onChange={this.handleChange}
                       >
                         <p className="ant-upload-drag-icon">
-                          <InboxOutlined />
+                           < InboxIcon  className="!text-icon" />
                           {/* type="inbox" */}
                         </p>
                         <p className="ant-upload-text">

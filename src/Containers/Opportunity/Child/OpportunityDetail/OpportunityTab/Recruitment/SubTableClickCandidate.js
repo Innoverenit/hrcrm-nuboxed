@@ -14,7 +14,7 @@ import dayjs from "dayjs";
 import AddCandidateDateModal from "../Recruitment/AddCandidateDateModal"
 import RecruitmentDetails from "./Child/RecruitmentDetails";
 import RecruitmentStages from "./RecruitmentStages";
-import { SearchOutlined } from '@ant-design/icons';
+import SearchIcon from '@mui/icons-material/Search';
 import Highlighter from 'react-highlight-words';
 import {
   Tooltip,
@@ -77,7 +77,7 @@ class SubTableClickCandidate extends Component {
         <Button
           type="primary"
           onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-          icon={<SearchOutlined />}
+          icon={<SearchIcon />}
           size="small"
           style={{ width: 90, marginRight: 8 }}
         >
@@ -88,7 +88,7 @@ class SubTableClickCandidate extends Component {
         </Button>
       </div>
     ),
-    filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+    filterIcon: filtered => <SearchIcon style={{ color: filtered ? '#1890ff' : undefined }} />,
     onFilter: (value, record) =>
       record[dataIndex]
         .toString()

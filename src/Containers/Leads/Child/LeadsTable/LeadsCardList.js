@@ -14,10 +14,11 @@ import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
 import SourceIcon from '@mui/icons-material/Source';
 import FactoryIcon from '@mui/icons-material/Factory';
 import ScoreIcon from '@mui/icons-material/Score';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import { DeleteOutlined, Html5Outlined } from "@ant-design/icons";
+import { Html5Outlined } from "@ant-design/icons";
 import {
   getLeadsCold,
   getLeadsWarm,
@@ -665,7 +666,7 @@ const LeadsCardList = (props) => {
                           title={translatedMenuItems[20]}
                           onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
                      <Tooltip title={translatedMenuItems[27]}>
-                          <DeleteOutlined
+                          <DeleteOutlineIcon
                             type="delete"
                             className=" !text-icon cursor-pointer text-[red]"
                           />
@@ -1105,7 +1106,7 @@ const LeadsCardList = (props) => {
                         title={translatedMenuItems[20]}
                         onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
                    <Tooltip title={translatedMenuItems[27]}>
-                        <DeleteOutlined
+                        <DeleteOutlineIcon
                           type="delete"
                           className=" !text-icon cursor-pointer text-[red]"
                         />
@@ -1533,7 +1534,7 @@ const LeadsCardList = (props) => {
                         title={translatedMenuItems[20]}
                         onConfirm={() => deleteLeadsData(item.leadsId,props.userId)}>
                    <Tooltip title={translatedMenuItems[27]}>
-                        <DeleteOutlined
+                        <DeleteOutlineIcon
                           type="delete"
                           className=" !text-icon cursor-pointer text-[red]"
                         />

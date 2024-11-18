@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import QuestionForm from "../QuestionForm";
 import { getQuestionsListByAssId,deleteQuestionsById } from "../../../../../AccessmentAction";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 function QuestionsGroup(props) {
   const { assessmentId } = props;
   useEffect(() => {
@@ -39,12 +39,12 @@ function QuestionsGroup(props) {
                     <div class="h-8 font-bold font-poppins text-xs overflow-hidden whitespace-nowrap">{item.option4}</div>
                     <div style={{justifyContent:"space-between"}}>
                     <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
-                      <EditOutlined 
+                      <VisibilityIcon 
                       onClick={()=>{
                        // props.deleteQuestionsById(item.id,props.assessmentId)
                       }}
                       />
-                      <DeleteOutlined
+                      <DeleteOutlineIcon
                       onClick={()=>{
                         props.deleteQuestionsById(item.id,props.assessmentId)
                       }}

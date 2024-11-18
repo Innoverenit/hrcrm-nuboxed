@@ -45,7 +45,7 @@ import {getAllInvestorsbyId,handleInvestorNotesDrawerModal,emptyInvestor,
   getAllEmployeelist,
   getInvestorsbyId
 } from "../../InvestorAction";
-import {  DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import EmptyPage from "../../../Main/EmptyPage";
@@ -681,7 +681,7 @@ handleCurrentRowData(item);
                             >
                                <Tooltip title="Delete">
                              
-                                <DeleteOutlined
+                                <DeleteOutlineIcon
                                   type="delete"
                                   className="!text-icon text-[red] cursor-pointer max-sm:!text-xl"
                                 />
@@ -1096,7 +1096,7 @@ handleCurrentRowData(item);
                       >
                          <Tooltip title="Delete">
                        
-                          <DeleteOutlined
+                          <DeleteOutlineIcon
                             type="delete"
                             className="!text-icon text-[red] cursor-pointer max-sm:!text-xl"
                           />

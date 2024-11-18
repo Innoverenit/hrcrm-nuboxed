@@ -5,7 +5,8 @@ import { StopTwoTone} from "@ant-design/icons";
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { MainWrapper } from "../../../Components/UI/Layout";
 import { MultiAvatar} from "../../../Components/UI/Elements";
-import { CheckCircleTwoTone,DeleteOutlined } from "@ant-design/icons";
+import { CheckCircleTwoTone } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { CurrencySymbol } from "../../../Components/Common";
 
 
@@ -102,7 +103,7 @@ const DealGroupCard = (props) => {
                         }
                       >
                         {user.imInd === true && user.dealDeleteInd === true && (
-                          <DeleteOutlined
+                          <DeleteOutlineIcon
                             type="delete"
                             style={{
                               cursor: "pointer",

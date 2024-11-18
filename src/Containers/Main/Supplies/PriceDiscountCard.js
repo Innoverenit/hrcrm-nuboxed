@@ -363,7 +363,7 @@ function PriceDiscountCard(props) {
 
                           >
                      <Tooltip title="Delete">
-                     <DeleteOutlined
+                     <DeleteOutlineIcon
                       style={{ color: 'red' }}
                           className="!text-xl cursor-pointer  flex justify-center items-center mt-1 ml-1"
                           />

@@ -14,7 +14,7 @@ StyledPopconfirm,
 import { MultiAvatar} from "../../../../../Components/UI/Elements";
 import { ActionIcon } from "../../../../../Components/Utils";
 import Highlighter from "react-highlight-words";
-import {SearchOutlined}  from '@ant-design/icons';
+import SearchIcon from '@mui/icons-material/Search';
 import EmptyPage from "../../../../Main/EmptyPage";
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import MobileFriendlyIcon from '@mui/icons-material/MobileFriendly';
@@ -127,7 +127,7 @@ class LinkedContact extends Component {
           <Button
             type="primary"
             onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-             icon={<SearchOutlined />}
+             icon={<SearchIcon />}
             //icon="search"
             size="small"
             style={{ width: 90 }}
@@ -158,7 +158,7 @@ class LinkedContact extends Component {
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+      <SearchIcon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]

@@ -17,7 +17,8 @@ import {
 } from "../../../../ProfileAction";
 import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
 
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 const UpdatePersonalDetailsModal = lazy(() => import("./UpdatePersonalDetailsModal"));
 class EducationTable extends Component {
   componentDidMount() {
@@ -80,7 +81,7 @@ class EducationTable extends Component {
         render: (name, item, i) => {
           //debugger
           return (
-            <EditOutlined
+            <VisibilityIcon
               tooltipTitle="Edit"
               iconType="edit"
               style={{ fontSize: 16 }}
@@ -102,7 +103,7 @@ class EducationTable extends Component {
               title="Do you want to delete?"
               onConfirm={() => deletePersonalTable(item.id)}
             >
-              <DeleteOutlined type="delete" style={{ cursor: "pointer", color: "red" }} />
+              <DeleteOutlineIcon type="delete" style={{ cursor: "pointer", color: "red" }} />
               {/* <Button type="primary" className='edit_hover_class' icon="delete"  /> */}
             </StyledPopconfirm>
           );

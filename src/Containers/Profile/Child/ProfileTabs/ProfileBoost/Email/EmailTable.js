@@ -6,7 +6,7 @@ import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { getEmailProfileCredentials } from "../../../../ProfileAction";
 import { handleUpdateEmailModal } from "../../../../../Profile/ProfileAction";
 import { setEditEmail } from "../../../../../Profile/ProfileAction";
-import { EditOutlined } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 const UpdateEmailModal = lazy(() => import("./UpdateEmailModal"));
 const EmailStatusToggle = lazy(() => import("./EmailStatusToggle"));
 class EmailTable extends Component {
@@ -52,7 +52,7 @@ class EmailTable extends Component {
         render: (name, item, i) => {
           //debugger
           return (
-            <EditOutlined
+            <VisibilityIcon
               type="edit"
               style={{ cursor: "pointer" }}
               onClick={() => {

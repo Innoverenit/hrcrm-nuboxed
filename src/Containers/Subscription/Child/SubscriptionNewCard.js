@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { base_url } from "../../../Config/Auth";
 import {addSuscrptions,removeSubscriptionRules,removeSubscriptionData,getSubscrptions,addSubRules} from "../SubscriptionAction"
 import { Card, Button, Popconfirm,Input, Switch,Select, Form } from 'antd';
-import { DeleteOutlined } from '@ant-design/icons';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 
 const { Option } = Select;
@@ -348,7 +348,7 @@ useEffect(() => {
               okText="Ok"
               cancelText="Cancel"
           >
-                    <DeleteOutlined style={{color:"tomato",marginLeft:"7px",marginTop:"-8px"}}/>
+                    <DeleteOutlineIcon style={{color:"tomato",marginLeft:"7px",marginTop:"-8px"}}/>
                     </Popconfirm>
                   </div>
                 ))}

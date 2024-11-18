@@ -431,7 +431,7 @@ function OrderActionLeft (props) {
                   transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"
  }}>
                 
-<DeleteOutlined className="text-white !text-icon" /></Avatar>
+<DeleteOutlineIcon className="text-white !text-icon" /></Avatar>
                 
             </span>
           {/* </Badge> */}

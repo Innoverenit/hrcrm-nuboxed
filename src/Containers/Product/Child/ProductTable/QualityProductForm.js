@@ -8,7 +8,8 @@ import MoveToggleQualityProduct from "../ProductTable/MoveToggleQualityProduct"
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import {createQualityProduct,getQualityProducts,deleteQualityProductData,addDragQuality,updateQualityProduct} from "../../ProductAction"
-import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const QualityProductForm = (props) => {
   const [qualityProducts, setQualityProducts] = useState(props.qualityProducts);
@@ -236,7 +237,7 @@ useEffect(() => {
                   <Button type="link" onClick={handleCancelClick}>{translatedMenuItems[4]}</Button>
                 </>
               ) : (
-                <EditOutlined onClick={() => handleEditClick(index, item.qualityName)} />
+                <VisibilityIcon onClick={() => handleEditClick(index, item.qualityName)} />
               )} 
                           </div>
                         </div>
@@ -250,7 +251,7 @@ useEffect(() => {
             title={translatedMenuItems[5]}
             onConfirm={() => props.deleteQualityProductData(item.qualityCheckBuilderId)}
           >
-   <DeleteOutlined/>
+   <DeleteOutlineIcon/>
    </StyledPopconfirm>
                           </div>
                         </div>
@@ -318,14 +319,14 @@ useEffect(() => {
                           <div className="  text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
                             {/* {item.steps} */}
 
-   {/* <EditOutlined/> */}
+   {/* <VisibilityIcon/> */}
    {editingIndex === index ? (
                 <>
                   <Button type="link" onClick={() => handleSaveClick(index,item)}>{translatedMenuItems[3]}</Button>
                   <Button type="link" onClick={handleCancelClick}>{translatedMenuItems[4]}</Button>
                 </>
               ) : (
-                <EditOutlined onClick={() => handleEditClick(index, item.qualityName)} />
+                <VisibilityIcon onClick={() => handleEditClick(index, item.qualityName)} />
               )}
                           </div>
                         </div>
@@ -339,7 +340,7 @@ useEffect(() => {
             title={translatedMenuItems[5]}
             onConfirm={() => props.deleteQualityProductData(item.qualityCheckBuilderId,props.particularDiscountData.productId)}
           >
-   <DeleteOutlined className='!text-icon text-red-600'/>
+   <DeleteOutlineIcon className='!text-icon text-red-600'/>
    </StyledPopconfirm>
                           </div>
                         </div>

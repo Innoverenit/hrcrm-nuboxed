@@ -7,7 +7,8 @@ import { getExpenses } from "../../Settings/Expense/ExpenseAction";
 import DownloadIcon from '@mui/icons-material/Download';
 import dayjs from "dayjs";
 import { base_url } from "../../../Config/Auth";
-import { DeleteOutlined,UploadOutlined } from "@ant-design/icons";
+import { UploadOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import EditUpload from "../../../Components/Forms/Edit/EditUpload";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -283,16 +284,7 @@ style={{ border: "1px solid grey" }}
           </Tooltip>
                                 </div>
                   <div class="flex items-center ml-[0.25rem]">
-                    {/* <EditOutlined
-                      //  style={{ color: "blue" ,display:"flex",justifyItems:"center",justifyContent:"center",fontSize:"0.75rem",marginTop:"0.25rem",marginLeft:"0.25rem"}}
-                      type="edit"
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                this.props.setEditExpense(item);
-                handleUpdateExpenseModal(true);
-        }} 
-                      /> */}
-                                <button onClick={() => toggleEdit(index)}>
+                <button onClick={() => toggleEdit(index)}>
           {editStates[index] ? 'Cancel' : 'Edit'}
         </button>
         {editStates[index] && (
@@ -303,7 +295,7 @@ style={{ border: "1px solid grey" }}
                       <div >
                          {/* {item.status === "Pending" ? ( */}
                          <Tooltip title="Delete">
-            <DeleteOutlined
+            <DeleteOutlineIcon
               type="delete"
               style={{ cursor: "pointer",fontSize:"1rem" }}
               onClick={() => {

@@ -5,7 +5,7 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
-import {  DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import dayjs from "dayjs";
 import ArticleIcon from '@mui/icons-material/Article';
@@ -510,7 +510,7 @@ function InvestorSearchedData(props) {
                       >
                          <Tooltip title="Delete">
                        
-                          <DeleteOutlined
+                          <DeleteOutlineIcon
                             type="delete"
                             className="!text-icon text-[red] cursor-pointer"
                           />

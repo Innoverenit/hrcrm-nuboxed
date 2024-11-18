@@ -2,7 +2,7 @@ import React, {  useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Popconfirm, Form, Input, Typography, Button,  DatePicker} from "antd";
-import {  SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';
 import Highlighter from "react-highlight-words";
 import dayjs from "dayjs";
 import {
@@ -89,7 +89,7 @@ function ALoctionTable(props) {
                         <Button
                             type="primary"
                             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                            icon={<SearchOutlined />}
+                            icon={<SearchIcon />}
                             size="small"
                             style={{ width: 90 }}
                         >
@@ -117,7 +117,7 @@ function ALoctionTable(props) {
                 </div>
             ),
             filterIcon: (filtered) => (
-                <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+                <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
             ),
             onFilter: (value, record) =>
                 record[dataIndex]

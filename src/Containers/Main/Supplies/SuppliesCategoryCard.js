@@ -4,13 +4,13 @@ import { bindActionCreators } from "redux";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import { Button, Tooltip,Input,Popconfirm } from "antd";
 import SuppliesQualityCheckModal from "./SuppliesQualityCheckModal"
-import AddCircleIcon from '@mui/icons-material/AddCircle';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { getMaterialCategory } from "./SuppliesAction";
 import { base_url2 } from "../../../Config/Auth";
 import axios from "axios";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import EditUpload from "../../../Components/Forms/Edit/EditUpload";
-import { BellOutlined, DeleteOutlined, EditOutlined, GifOutlined, PullRequestOutlined } from "@ant-design/icons";
+import { BellOutlined,  PullRequestOutlined } from "@ant-design/icons";
 import SuppliesCategoryPUnblishToggle from "./SuppliesCategoryPUnblishToggle";
 import SuppliesAddQualityCheckModal from "./SuppliesAddQualityCheckModal"
 
@@ -352,7 +352,7 @@ console.log("drb2",data)
                                 // onConfirm={() => DeleteOnClick(item)}
                               >
 
-                                <DeleteOutlined className=" !text-icon cursor-pointer text-[red]" />
+                                <DeleteOutlineIcon className=" !text-icon cursor-pointer text-[red]" />
                               </Popconfirm>
                             </div>}
                     </div>

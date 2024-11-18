@@ -73,21 +73,6 @@ function ProgramTable (props)  {
                     </div>
     </div>
 
-{/* <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-<div class=" text-xs  font-poppins">
-<Tooltip title="Edit">
-                                        <EditOutlined
-                                    style={{ cursor: "pointer", fontSize: "12px" }}
-                                            // onClick={() => {
-                                            //     props.setEditProducts(item);
-                                            //     handleUpdateProductModal(true);
-                                            // }}
-                                        />
-                                    </Tooltip>
-</div>
-
-
-</div> */}
 </div>
 </div>
           );

@@ -1,7 +1,8 @@
 import React from "react";
 import {  Popconfirm,Tooltip } from "antd";
-
-import { StopTwoTone, DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import { StopTwoTone,   } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { CheckCircleTwoTone } from "@ant-design/icons";
 import {
   MultiAvatar,
@@ -124,7 +125,7 @@ const BussinessCard = (props) => {
           >
            
              {user.opportunityDeleteInd ===true && user.crmInd === true && (
-            <DeleteOutlined
+            <DeleteOutlineIcon
             type="delete" className=" !text-icon cursor-pointer text-red-600 "  />
              )}
           </StyledPopconfirm>
@@ -134,7 +135,7 @@ const BussinessCard = (props) => {
             
           </div>
           <div >
-          <EditOutlined  className=" !text-icon text-[#337df4bf]"
+          <VisibilityIcon  className=" !text-icon text-[#337df4bf]"
           onClick={props.handleEdit}
           />
         </div>

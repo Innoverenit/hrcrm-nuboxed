@@ -1,6 +1,6 @@
 import React from "react";
 import { message, Upload } from "antd";
-import { InboxOutlined } from "@ant-design/icons";
+import InboxIcon from '@mui/icons-material/Inbox';
 import { base_url } from "../../../Config/Auth";
 import axios from "axios";
 const { Dragger } = Upload;
@@ -74,7 +74,7 @@ class DraggableUpload1 extends React.Component {
                 >
                     <p className="ant-upload-drag-icon">
                         {/* <Icon type="inbox" /> */}
-                        <InboxOutlined />
+                         < InboxIcon  className="!text-icon" />
                     </p>
                     <p className="ant-upload-text">
 

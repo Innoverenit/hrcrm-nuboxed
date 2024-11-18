@@ -2,19 +2,13 @@
 import React, { Component, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Input, Popconfirm, Space, Button, Badge } from "antd";
-import { EditOutlined, SearchOutlined } from "@ant-design/icons";
-import Highlighter from "react-highlight-words";
+import { Tooltip,Badge } from "antd";
 import OnlyWrapCard from "../../../../Components/UI/Layout/OnlyWrapCard"
 import dayjs from "dayjs";
-
-import InfiniteScroll from "react-infinite-scroll-component";
-
 import PaidIcon from '@mui/icons-material/Paid';
 import {getOrderCancelList} from "../../DashboardAction"
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
-import { dashboardReducer } from "../../DashboardReducer";
 import { MultiAvatar2 } from "../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 

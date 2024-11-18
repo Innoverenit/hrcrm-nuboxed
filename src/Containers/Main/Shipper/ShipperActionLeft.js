@@ -17,8 +17,9 @@ import {
   ClearReducerDataOfShipper
 } from "./ShipperAction";
 import {
-  DeleteOutlined, AudioOutlined
+  AudioOutlined
 } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { StyledRangePicker } from "../../../Components/UI/Antd";
 import { TimeInterval } from "../../../Utils";
@@ -205,7 +206,7 @@ const ShipperActionLeft = (props) => {
                                     boxShadow: props.viewType === "grid" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
                                       transform: props.viewType === "grid" ? "scale(1.05)" : "scale(1)"
            }}>
-            <DeleteOutlined
+            <DeleteOutlineIcon
               className="!text-sm text-white cursor-pointer"
               style={{
                 color: props.viewType === "grid" && "red",

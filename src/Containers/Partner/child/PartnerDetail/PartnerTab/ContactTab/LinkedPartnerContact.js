@@ -17,7 +17,8 @@ import {
 } from "../../../../../../Components/UI/Antd";
 import { Link } from "../../../../../../Components/Common";
 import Highlighter from "react-highlight-words";
-import { ApiOutlined, EditOutlined, SearchOutlined } from "@ant-design/icons"
+import { ApiOutlined, } from "@ant-design/icons"
+import SearchIcon from '@mui/icons-material/Search';
 import PartnerContactActiveToggle from "./PartnerContactActiveToggle";
 
 // import { ApiOutlined } from "@ant-design/icons";
@@ -58,7 +59,7 @@ function LinkedContact(props) {
             <Button
               type="primary"
               onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-              icon={<SearchOutlined />}
+              icon={<SearchIcon />}
               size="small"
               style={{ width: 90 }}
             >
@@ -86,7 +87,7 @@ function LinkedContact(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+        <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
       ),
       onFilter: (value, record) =>
         record[dataIndex]

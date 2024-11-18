@@ -295,19 +295,7 @@ function ProductDeleteList(props) {
 
 
                     </div>
-                    {/* <div className="mt-1 ml-2">
-                          <StyledPopconfirm
-                            title="Do you want to delete?"
-                            onConfirm={() => deleteCatalogData(item.productId,props.orgId)}
-                          >
-                            
-                            <DeleteOutlined
-                              type="delete"
-                              className=" !text-xl cursor-pointer text-[red]"
-                            />
-                         
-                          </StyledPopconfirm>
-                        </div> */}
+                  
                     </div>
                    
                   </div>

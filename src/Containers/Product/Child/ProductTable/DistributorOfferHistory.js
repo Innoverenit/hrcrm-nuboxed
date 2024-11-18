@@ -5,7 +5,7 @@ import { StyledTable } from "../../../../Components/UI/Antd";
 import { getDistributorOfferHistory, handleUpdateDistributorOfferModal, setEditDistributorOffer } from "../../ProductAction";
 import dayjs from "dayjs";
 import { Tooltip } from "antd";
-import { EditOutlined } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 const UpdateDistributorOfferModal =lazy(()=>import("./UpdateDistributorOfferModal"));
 
 class DistributorOfferHistory extends Component {
@@ -84,7 +84,7 @@ class DistributorOfferHistory extends Component {
                     return (
                         <>
                             <Tooltip title="Edit">
-                                <EditOutlined
+                                <VisibilityIcon
                                     style={{ cursor: "pointer", fontSize: "12px" }}
                                     onClick={() => {
                                         this.props.setEditDistributorOffer(item);

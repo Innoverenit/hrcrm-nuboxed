@@ -1,8 +1,7 @@
 import React, { Suspense, useEffect,useMemo, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { SearchOutlined, 
-} from '@ant-design/icons';
+import SearchIcon from '@mui/icons-material/Search';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import CellTowerIcon from '@mui/icons-material/CellTower';
@@ -138,7 +137,7 @@ function EmployeeTable(props) {
             <Button
               type="primary"
               onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-               icon={<SearchOutlined />}
+               icon={<SearchIcon />}
               //icon="search"
               size="small"
               style={{ width: 90 }}
@@ -167,7 +166,7 @@ function EmployeeTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        <SearchIcon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
       ),
       onFilter: (value, record) =>
         record[dataIndex]

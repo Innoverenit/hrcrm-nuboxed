@@ -4,9 +4,10 @@ import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import {
   MailOutlined,
-  SearchOutlined,
   UpCircleOutlined,
 } from "@ant-design/icons";
+
+import SearchIcon from '@mui/icons-material/Search';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import EditIcon from '@mui/icons-material/Edit';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
@@ -191,7 +192,7 @@ function CandidateGridTable(props) {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             //icon="search"
             size="small"
             style={{ width: 90 }}
@@ -219,8 +220,8 @@ function CandidateGridTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-        <SearchOutlined
+        // <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />

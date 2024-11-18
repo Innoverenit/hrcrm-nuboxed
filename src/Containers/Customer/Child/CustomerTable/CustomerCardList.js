@@ -46,7 +46,7 @@ import {
   deleteCustomer,
   handleUpdateUserModal
 } from "../../CustomerAction";
-import { DeleteOutlined} from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
@@ -698,7 +698,7 @@ if (loading) {
                           title= "Do you want to delete?"
                           onConfirm={() =>  props.deleteCustomer(item.customerId)}>
                      <Tooltip title="Delete">
-                          <DeleteOutlined
+                          <DeleteOutlineIcon
                             type="delete"
                             className=" !text-icon cursor-pointer text-[red]"
                           />

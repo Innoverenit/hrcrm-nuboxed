@@ -1,16 +1,14 @@
 
-import React, { Component, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Input, Popconfirm, Space, Button, Badge } from "antd";
-import { EditOutlined, SearchOutlined } from "@ant-design/icons";
-import Highlighter from "react-highlight-words";
-import dayjs from "dayjs";
-import PaidIcon from '@mui/icons-material/Paid';
+import { Tooltip,  Badge } from "antd";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { handleOrderDetailsModal } from "../Account/AccountAction";
+import PaidIcon from '@mui/icons-material/Paid';
+import dayjs from dayjs;
 import {
     getCompleteOrders,
     handleNotesModalInOrder,

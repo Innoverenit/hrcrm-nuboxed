@@ -61,8 +61,8 @@ function ProjectsTeamTable (props)  {
                 <Button
                   type="primary"
                   onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                  // icon={<SearchOutlined />}
-                 // icon="search"
+               
+                  
                   size="small"
                   style={{ width: 90 }}
                 >
@@ -90,7 +90,7 @@ function ProjectsTeamTable (props)  {
             </div>
           ),
           filterIcon: (filtered) => (
-            // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+         
             <SearchIcon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
           ),
           onFilter: (value, record) =>

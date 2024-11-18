@@ -6,8 +6,10 @@ import TaskStatusToggle from "../Child/TaskStatusToggle";
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
-  SearchOutlined,
+ 
 } from "@ant-design/icons";
+
+import SearchIcon from '@mui/icons-material/Search';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import AddTaskProjectDrawerModal from "../Child/AddTaskProjectDrawerModal";
 import { Tooltip, Input, Button, Avatar,FloatButton } from "antd";
@@ -99,7 +101,7 @@ const TaskTable = (props) => {
         <Button
           type="primary"
           onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-          icon={<SearchOutlined />}
+          icon={<SearchIcon />}
           size="small"
           style={{ width: 90 }}
         >
@@ -126,7 +128,7 @@ const TaskTable = (props) => {
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined
+      <SearchIcon
         type="search"
         style={{ color: filtered ? "#1890ff" : undefined }}
       />

@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 
 import { bindActionCreators } from "redux";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { SearchOutlined,} from '@ant-design/icons';
+
+import SearchIcon from '@mui/icons-material/Search';
 import {getSectors} from "../../../Settings/Sectors/SectorsAction";
 import dayjs from "dayjs";
 import { getAllSalesList} from "../../../Opportunity/OpportunityAction";
@@ -79,7 +80,7 @@ function CustomerWhiteTable(props) {
             <Button
               type="primary"
               onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-               icon={<SearchOutlined />}
+               icon={<SearchIcon />}
               //icon="search"
               size="small"
               style={{ width: 90 }}
@@ -108,8 +109,8 @@ function CustomerWhiteTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-        <SearchOutlined type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        // <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
+        <SearchIcon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
       ),
       onFilter: (value, record) =>
         record[dataIndex]

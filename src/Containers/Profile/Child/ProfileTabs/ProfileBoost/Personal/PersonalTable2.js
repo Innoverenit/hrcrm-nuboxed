@@ -1,6 +1,7 @@
 import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { FormattedMessage } from 'react-intl';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 import { bindActionCreators } from "redux";
 import {
@@ -26,7 +27,8 @@ import FormikPlacesAutoComplete from "../../../../../../Components/Forms/Formik/
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { deleteEmergencyTable } from "../../../../ProfileAction";
 import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
-import { DeleteOutlined, EditOutlined, EnvironmentOutlined } from "@ant-design/icons";
+import {  EnvironmentOutlined } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 const UpdatePersonalModal = lazy(() => import("../Personal/UpdatePersonalModal"));
 class PersonalTable2 extends Component {
   constructor(props) {
@@ -157,7 +159,7 @@ class PersonalTable2 extends Component {
         render: (name, item, i) => {
           //debugger
           return (
-            <EditOutlined
+            <VisibilityIcon
               type="edit"
               style={{ cursor: "pointer" }}
               onClick={() => {
@@ -179,7 +181,7 @@ class PersonalTable2 extends Component {
               title="Do you want to delete?"
               onConfirm={() => deleteEmergencyTable(item.id)}
             >
-              <DeleteOutlined type="delete" style={{ cursor: "pointer", color: "red" }} />
+              <DeleteOutlineIcon type="delete" style={{ cursor: "pointer", color: "red" }} />
               {/* <Button type="primary" className='edit_hover_class' icon="delete"  /> */}
             </StyledPopconfirm>
           );

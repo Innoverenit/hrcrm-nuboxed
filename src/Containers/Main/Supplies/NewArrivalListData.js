@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Select,Checkbox } from "antd";
 import dayjs from "dayjs";
-import {  DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import {getNewArrivalList,
   deleteNewArrival,
@@ -120,7 +120,7 @@ function NewArrivalListData(props) {
                       >
                          <Tooltip title="Delete" >
                        
-                          <DeleteOutlined
+                          <DeleteOutlineIcon
                             type="delete"
                             className="!text-icon text-[red] cursor-pointer max-sm:!text-xl"
                           />

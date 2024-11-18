@@ -260,7 +260,7 @@ const ProductionTable = (props) => {
 <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <h4 class=" text-xs  font-poppins">
 <Tooltip title="Edit">
-                                        <EditOutlined
+                                        <VisibilityIcon
                                     style={{ cursor: "pointer", fontSize: "12px" }}
                                             onClick={() => {
                                                 props.setEditProducts(item);

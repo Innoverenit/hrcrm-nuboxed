@@ -4,11 +4,7 @@ import { bindActionCreators } from "redux";
 
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
-import {
-  SearchOutlined, MailOutlined
-} from "@ant-design/icons";
-import EditIcon from '@mui/icons-material/Edit';
-import styled from "styled-components";
+import SearchIcon from '@mui/icons-material/Search';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
@@ -181,7 +177,7 @@ function ContactTable(props) {
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
             // icon="search"
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             size="small"
             style={{ width: 90 }}
           >
@@ -208,7 +204,7 @@ function ContactTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />

@@ -9,7 +9,6 @@ import {
   getProductsByOpportunityId,
   deleteOppService,
 } from "../../../OpportunityAction";
-// import { DeleteOutlined} from '@ant-design/icons';
 import { Icon } from "antd";
 import { StyledTable } from "../../../../../Components/UI/Antd";
 

@@ -18,7 +18,9 @@ import {
 import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
 
 import { FormattedMessage } from 'react-intl';
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 const UpdateEducationModal = lazy(() => import("../../ProfileBoost/Education/UpdateEducationModal"));
 class EducationTable extends Component {
   componentDidMount() {    
@@ -140,7 +142,7 @@ class EducationTable extends Component {
         render: (name, item, i) => {
           //debugger
           return (
-            <EditOutlined
+            <VisibilityIcon
               type="edit"
               style={{ cursor: "pointer" }}
               onClick={() => {
@@ -163,7 +165,7 @@ class EducationTable extends Component {
               title="Do you want to delete?"
               onConfirm={() => deleteEducationTable(item.id)}
             >
-              <DeleteOutlined type="delete" style={{ cursor: "pointer", color: "red" }} />
+              <DeleteOutlineIcon type="delete" style={{ cursor: "pointer", color: "red" }} />
               {/* <Button type="primary" className='edit_hover_class' icon="delete"  /> */}
             </StyledPopconfirm>
           );

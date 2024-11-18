@@ -5,9 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { Button } from "antd";
 import { handleMapModal } from "../../ProfileAction";
 import axios from "axios";
-import {
-  EditOutlined,
-} from '@ant-design/icons';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import { base_url } from "../../../../Config/Auth";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import FormikPlacesAutoComplete from "../../../../Components/Forms/Formik/FormikPlacesAutoComplete";
@@ -136,7 +134,7 @@ class ProfileOverviewView extends Component {
               size="1em"
             />{" "} */}
           
-            <EditOutlined className=" !text-icon  ml-4"
+            <VisibilityIcon className=" !text-icon  ml-4"
               tooltipTitle="Edit"
               iconType="edit"
               onClick={toggleViewType}

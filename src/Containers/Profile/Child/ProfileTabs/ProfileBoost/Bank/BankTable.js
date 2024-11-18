@@ -12,7 +12,8 @@ import { deleteBankTable } from "../../../../ProfileAction";
 import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
 
 import { FormattedMessage } from 'react-intl';
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 const UpdateBankModal = lazy(() => import("../../ProfileBoost/Bank/UpdateBankModal"));
 class BankTable extends Component {
   // constructor(props) {
@@ -88,7 +89,7 @@ class BankTable extends Component {
         render: (name, item, i) => {
           //debugger
           return (
-            <EditOutlined
+            <VisibilityIcon
               type="edit"
               style={{ cursor: "pointer" }}
               onClick={() => {
@@ -109,7 +110,7 @@ class BankTable extends Component {
               title="Do you want to delete?"
               onConfirm={() => deleteBankTable(item.id)}
             >
-              <DeleteOutlined type="delete" style={{ cursor: "pointer", color: "red" }} />
+              <DeleteOutlineIcon type="delete" style={{ cursor: "pointer", color: "red" }} />
               {/* <Button type="primary" className='edit_hover_class' icon="delete"  /> */}
             </StyledPopconfirm>
           );

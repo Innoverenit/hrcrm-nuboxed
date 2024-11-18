@@ -45,17 +45,8 @@ import {
   message,
   Icon,
 } from "antd";
-// import { Table, Input, Button, Icon } from 'antd';
 import Highlighter from 'react-highlight-words';
 
-// import { 
-//   CheckCircleOutlined,
-//   StopOutlined,
-//   EditOutlined,
-//   CopyOutlined,
-//   EyeOutlined,
-//   EyeInvisibleOutlined
-// } from '@ant-design/icons';
 import RecruitmentDetails from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/Child/RecruitmentDetails";
 import {
   getCandidateById,

@@ -14,7 +14,7 @@ import {
   deleteDocument 
 } from "../../ContactAction";
 import { elipsize } from "../../../../Helpers/Function/Functions";
-import { DeleteOutlined, } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -144,7 +144,7 @@ class HospitalDocument extends Component {
                                       title="Do you want to delete?"
                                         onConfirm={() => deleteDocument(item.documentId)}
                                              >
-                                      <DeleteOutlined type="delete" class="cursor-pointer !text-icon bg-red-600" />
+                                      <DeleteOutlineIcon type="delete" class="cursor-pointer !text-icon bg-red-600" />
                                         </StyledPopconfirm>
 
                                     </div>

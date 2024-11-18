@@ -9,9 +9,8 @@ import {
   MultiAvatar,
 } from "../../../../../../Components/UI/Elements";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import {
-  SearchOutlined,
-} from "@ant-design/icons";
+
+import SearchIcon from '@mui/icons-material/Search';
 import { CurrencySymbol } from "../../../../../../Components/Common";
 import { getOpportunityListByCustomerId,handleUpdateCustomerOpportunityModal,
   setEditCustomerOpportunity} from "../../../../CustomerAction";
@@ -99,7 +98,7 @@ function OpportunityTable(props) {
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
             // icon="search"
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             size="small"
             style={{ width: 90 }}
           >
@@ -126,7 +125,7 @@ function OpportunityTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />

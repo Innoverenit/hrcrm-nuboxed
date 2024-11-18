@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useMemo,lazy } from 'react'
+import React, { useEffect, useState} from 'react'
 import { StyledTable } from '../../../../Components/UI/Antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -7,15 +7,11 @@ import { Tooltip,Button,Input,Avatar } from "antd";
 import SearchIcon from '@mui/icons-material/Search';
 import {getProjectsTaskListById} from "../../ProjectsAction"
 import Highlighter from 'react-highlight-words';
-import jsPDF from "jspdf";
 import "jspdf-autotable";
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
- SearchOutlined, 
- MailOutlined 
 } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
 import { MultiAvatar } from "../../../../Components/UI/Elements";
 import { FormattedMessage } from 'react-intl';
 const ButtonGroup = Button.Group;
@@ -67,7 +63,7 @@ function ProjectsTaskTable (props)  {
                 <Button
                   type="primary"
                   onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                  // icon={<SearchOutlined />}
+                  // icon={<SearchIcon />}
                  // icon="search"
                   size="small"
                   style={{ width: 90 }}
@@ -96,7 +92,7 @@ function ProjectsTaskTable (props)  {
             </div>
           ),
           filterIcon: (filtered) => (
-            // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+            // <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
             <SearchIcon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
           ),
           onFilter: (value, record) =>

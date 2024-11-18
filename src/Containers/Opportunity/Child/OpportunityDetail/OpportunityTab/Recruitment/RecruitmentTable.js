@@ -63,14 +63,14 @@ import SubTableClickCandidate from "../Recruitment/SubTableClickCandidate";
 import {
   EyeInvisibleOutlined,
   EyeOutlined,
-  SearchOutlined,
+
 } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import Highlighter from "react-highlight-words";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import RecruitmentEmailDrawerModal from "./Child/RecruitmentEmailDrawerModal";
 
-// const CandidateDetailsView =lazy(()=>import("../../../../../Candidate/Child/CandidateTable/CandidateDetails/CandidateDetailsView"));
 class RecruitmentTable extends Component {
   constructor(props) {
     super(props);
@@ -118,7 +118,7 @@ class RecruitmentTable extends Component {
         <Button
           type="primary"
           onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-          icon={<SearchOutlined />}
+          icon={<SearchIcon />}
           //icon="search"
           size="small"
           style={{ width: 90 }}
@@ -148,7 +148,7 @@ class RecruitmentTable extends Component {
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined
+      <SearchIcon
         type="search"
         style={{ color: filtered ? "#1890ff" : undefined }}
       />

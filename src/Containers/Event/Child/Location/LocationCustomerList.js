@@ -2,9 +2,7 @@ import React, {  useEffect,lazy, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  Input, Button, Space, } from "antd";
-import {
-  SearchOutlined,
-} from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';
 import InfiniteScroll from "react-infinite-scroll-component";
 import {
   getDistributorsByUserId,
@@ -98,7 +96,7 @@ function LocationCustomerList(props) {
             <Button
               type="primary"
               onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-              icon={<SearchOutlined />}
+              icon={<SearchIcon />}
               size="small"
               style={{ width: 90 }}
             >
@@ -126,7 +124,7 @@ function LocationCustomerList(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+        <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
       ),
       onFilter: (value, record) =>
         record[dataIndex]
