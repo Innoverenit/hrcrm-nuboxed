@@ -421,13 +421,9 @@ class InvestorContactForm extends Component {
                     <div class=" w-2/5">
                       <FastField
                         name="designationTypeId"
-                        //label="Designation"
-                        label={
-                          <FormattedMessage
-                            id="app.designation"
-                            defaultMessage="Designation"
-                          />
-                        }
+                        label="Designation"
+                       
+                        
                         selectType="designationType"
                         isColumn
                         component={SearchSelect}
@@ -440,13 +436,10 @@ class InvestorContactForm extends Component {
                   <div class=" w-full">
                     <FastField
                       name="departmentId"
-                      //label="Department"
-                      label={
-                        <FormattedMessage
-                          id="app.department"
-                          defaultMessage="Department"
-                        />
-                      }
+                      label="Department"
+
+              
+                      
                       isColumn
                       isColumnWithoutNoCreate
                       component={SearchSelect}

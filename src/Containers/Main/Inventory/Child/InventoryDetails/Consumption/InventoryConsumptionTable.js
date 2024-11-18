@@ -2,7 +2,8 @@ import React, { useEffect,lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import { Tooltip, Button } from "antd";
+import { Tooltip } from "antd";
+import { FormattedMessage, } from "react-intl";
 import {
   getInventoryConsumptionList,
   setEditInventory,
