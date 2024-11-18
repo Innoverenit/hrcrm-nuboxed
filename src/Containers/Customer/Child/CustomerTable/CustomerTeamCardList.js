@@ -329,9 +329,9 @@ const [rowdata, setrowdata] = useState("");
             </div>
             {props.user.aiInd && (
             <div className=" w-[4.71rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/> 
+            <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/>  {translatedMenuItems[19]}
             {/* Score */}
-            {translatedMenuItems[19]}
+           
             </div>
             )}         
             <div className=" w-[4.8rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">

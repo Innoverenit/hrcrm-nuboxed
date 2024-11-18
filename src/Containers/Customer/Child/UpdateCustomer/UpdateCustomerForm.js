@@ -349,7 +349,7 @@ function UpdateCustomerForm (props) {
                      <div class="w-w47.5 max-sm:w-w47.5">
                      <div class="font-bold text-xs"> {translatedMenuItems[4]}  </div>
                       <FastField  
-                       style={{ width: "11.5rem" }}                    
+                            
                         name="sectorId"
                         isColumnWithoutNoCreate
                         selectType="sectorName"                   
@@ -361,7 +361,7 @@ function UpdateCustomerForm (props) {
                     <div class=" w-w47.5">
                     <div class="font-bold text-xs"> {translatedMenuItems[5]}  </div>
                     <FastField
-                     style={{ width: "11.5rem" }}
+        
                           name="sourceId"
                           isColumnWithoutNoCreate                    
                           selectType="sourceName"
