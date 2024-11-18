@@ -61,10 +61,8 @@ const OpportunityActionRight = (props) => {
         {translatedMenuItems[1]}
         {/* Export */}
       </Button>
-      <Tooltip placement={"left"} title={<FormattedMessage
-              id="app.create"
-              defaultMessage="Create"
-            />}>
+      <Tooltip placement={"left"} title="Create"
+      >
          {user.opportunityCreateInd ===true && user.crmInd === true && (
         <Button
           type="primary"

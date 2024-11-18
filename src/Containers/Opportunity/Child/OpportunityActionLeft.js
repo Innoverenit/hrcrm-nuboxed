@@ -204,12 +204,8 @@ const OpportunityActionLeft = (props) => {
         overflowCount={999}
       >
         <Tooltip
-          title={
-            <FormattedMessage
-              id="app.myquotations"
-              defaultMessage="My Quotations"
-            />
-          }
+          title="My Quotations"
+           
         >
           <span
             class=" mr-1 text-sm cursor-pointer"
@@ -228,9 +224,8 @@ const OpportunityActionLeft = (props) => {
         </Tooltip>
       </Badge>
       <Tooltip
-          title={
-            <FormattedMessage id="app.myquotationsstageview" defaultMessage="My Quotations-Stage View" />
-          }
+          title="My Quotations-Stage View" 
+  
         >
              <Badge
         size="small"
@@ -400,12 +395,7 @@ const OpportunityActionLeft = (props) => {
      
 
       <Tooltip
-        title={
-          <FormattedMessage
-            id="app.deletedOpportunity"
-            defaultMessage=" My Deleted Quotations"
-          />
-        }
+        title=" My Deleted Quotations"
       >
         {" "}
         <Badge

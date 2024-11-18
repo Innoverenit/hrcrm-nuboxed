@@ -98,10 +98,7 @@ class OpportunityView extends Component {
                     </StyledPopconfirm>
                   ) : (
                     <Tooltip //title="Tag Customer"
-                      title={<FormattedMessage
-                        id="app.tagcustomer"
-                        defaultMessage="Tag Customer"
-                      />}
+                      title="Tag Customer"
                     >
                       <LinkOutlined class="text-[#fb8500] text-[0.8rem]"
                         tooltipTitle="Tag Customer"
@@ -113,10 +110,7 @@ class OpportunityView extends Component {
                   )}
               &nbsp;
                 <Tooltip 
-                  title={<FormattedMessage
-                    id="app.edit"
-                    defaultMessage="Edit"
-                  />}
+                  title="Edit"
                 >
                  <span
                     tooltipTitle="Edit"

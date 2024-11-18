@@ -16,10 +16,7 @@ const LinkTagContactModal = (props) => {
   return (
     <>
        <StyledModal
-          title={<FormattedMessage
-            id="app.tagcustomer"
-            defaultMessage="Tag Customer"
-          />}
+          title="Tag Customer"
           width="35%"
           visible={props.linkContactModalVisible}
           maskClosable={false}

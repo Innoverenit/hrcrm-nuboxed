@@ -55,19 +55,12 @@ class OpportunityOverviewEdit extends Component {
             onClick={this.handleUpdate}
             //  onClick={() => this.handleUpdate(this.props.opportunity.opportunityId)}
   >     
-            <FormattedMessage
-              id="app.save"
-              defaultMessage="Save"
-            />
-            {/* Save */}
+            Save
           </Button>
           &nbsp;
           <Button type="ghost" onClick={() => toggleViewType()}>
-            <FormattedMessage
-              id="app.cancel"
-              defaultMessage="Cancel"
-            />
-            {/* Cancel */}
+          
+            Cancel
           </Button>
         </div>
       </>

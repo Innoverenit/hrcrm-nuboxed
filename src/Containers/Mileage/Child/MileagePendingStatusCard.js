@@ -103,12 +103,7 @@ class MileagePendingStatusCard extends React.Component {
                            {item.status === "Pending" ? (
                      <StyledPopconfirm
                      // title="Do you want to delete?"
-                     title={
-                       <FormattedMessage
-                         id="app.doyouwanttodelete?"
-                         defaultMessage="Do you want to delete?"
-                       />
-                     }
+                     title="Do you want to delete?"                   
                      onConfirm={() =>   this.props.deleteMileageVoucher(item.voucherId)}
                    >
               <DeleteOutlined

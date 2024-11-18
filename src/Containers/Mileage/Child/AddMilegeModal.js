@@ -11,10 +11,7 @@ const AddMileageModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.Addvoucher"
-          defaultMessage="Add Voucher"
-        />}
+        title="Add Voucher"
         width={drawerWidth}
         visible={addMileageModal}
         onClose={() => handleMileageModal(false)}
