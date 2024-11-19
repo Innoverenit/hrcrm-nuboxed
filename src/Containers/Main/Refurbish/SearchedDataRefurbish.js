@@ -31,7 +31,6 @@ import dayjs from "dayjs";
 import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 
-import { HistoryOutlined } from "@ant-design/icons";
 import { BundleLoader } from "../../../Components/Placeholder";
 import CategoryIcon from '@mui/icons-material/Category'
 import InfiniteScroll from "react-infinite-scroll-component";

@@ -7,7 +7,7 @@ import { Tooltip, Badge, Avatar } from "antd";
 import {getReaasignProduct} from "../ProductionAction"
 import ArchiveIcon from '@mui/icons-material/Archive';
 import TokenIcon from '@mui/icons-material/Token';
-import { TableOutlined } from "@ant-design/icons";
+import GridOnIcon from '@mui/icons-material/GridOn';
 import {getProductRecords} from "../ProductionAction";
 import { TableBarOutlined } from "@mui/icons-material";
 
@@ -62,7 +62,7 @@ const ProductionActionLeft = (props) => {
             onClick={() => props.setProductionViewType("stage")}
           >
              <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#28a355" }}>
-           <TableOutlined className=" text-white !text-icon  cursor-pointer"/>
+           <GridOnIcon className=" text-white !text-icon  cursor-pointer"/>
            </Avatar>
           </span>
           </Badge>

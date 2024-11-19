@@ -5,8 +5,8 @@ import { withRouter } from "react-router-dom";
 import { Formik, Form, Field, FastField } from "formik";
 import { Input } from "./styled";
 import { ValidationError} from "../../Components/UI/Elements";
-import { EyeInvisibleOutlined,EyeOutlined,
-} from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import Button from "antd/lib/button";
 import { addOnboard, generateOtpByEmail, validateOtp } from "./AuthAction";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
@@ -216,14 +216,14 @@ class OnBoardOrganizationPage extends Component {
                         />
                       </div>
                       {this.state.show ? (
-                        <EyeOutlined
+                        <VisibilityIcon
                           type="eye"
                           onClick={this.handleClick}
                           style={{ marginLeft: "-1.25em",  }}
                           size="24"
                         />
                       ) : (
-                        <EyeInvisibleOutlined
+                        <VisibilityOffIcon
                           type="eye-invisible"
                           onClick={this.handleClick}
                           size="24"
@@ -245,7 +245,7 @@ class OnBoardOrganizationPage extends Component {
                           />
                         </div>
                         {this.state.show1 ? (
-                          <EyeOutlined
+                          <VisibilityIcon
                             type="eye"
                             onClick={this.handleClick1}
                             style={{
@@ -255,7 +255,7 @@ class OnBoardOrganizationPage extends Component {
                           // style={{ size: 24 }}
                           />
                         ) : (
-                          <EyeInvisibleOutlined
+                          <VisibilityOffIcon
                             type="eye-invisible"
                             onClick={this.handleClick1}
                             style={{

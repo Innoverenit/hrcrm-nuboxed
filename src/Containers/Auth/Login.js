@@ -10,9 +10,8 @@ import "./autoplaycarousel.scss";
 import { cardDetails } from "./carousel-config";
 import CarouselItem from "./CarouselItem";
 import { login, generateOtpByEmail, validateOtp } from "./AuthAction";
-import {
-  EyeInvisibleOutlined, EyeOutlined,
-} from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import FWLogo3 from "../../Assets/Images/dashbrdimg.jpg";
 import FWLogo1 from "../../Assets/Images/Screenshot (251).png";
 import FWLogo from "../../Assets/Images/name.jpg";//ct
@@ -126,14 +125,14 @@ class Login extends Component {
                           />
                         </div>
                         {this.state.show ? (
-                          <EyeOutlined
+                          <VisibilityIcon
                             type="eye"
                             onClick={this.handleClick}
                             style={{ alignSelf: "center", marginLeft: "-1.25rem" }}
                             size="24"
                           />
                         ) : (
-                          <EyeInvisibleOutlined
+                          <VisibilityOffIcon
                             type="eye-invisible"
                             onClick={this.handleClick}
                             size="24"

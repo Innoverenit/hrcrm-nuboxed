@@ -1,8 +1,7 @@
 import React, { useState,lazy,useEffect, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
-import {CloseCircleOutlined} from "@ant-design/icons";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -334,7 +333,7 @@ const TaskApproveTable = (props) => {
              
             />
           ) : item.filterTaskInd === true && item.approvedInd === "Rejected" ? (
-            <CloseCircleOutlined
+            <HighlightOffIcon
               type="close-circle"
               theme="twoTone"
               twoToneColor="red"

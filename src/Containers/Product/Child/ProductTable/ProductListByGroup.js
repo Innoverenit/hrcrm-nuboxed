@@ -784,7 +784,7 @@ function ProductHistoryTable(props) {
         //             children: (
         //                 <span>
         //                     <Tooltip title="Product History">
-        //                         <HistoryOutlined
+        //                         <HistoryIcon
         //                             onClick={() => {
         //                                 handleHistoryModal(true);
         //                                 handleParticularRowData(item);

@@ -4,7 +4,7 @@ import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { MainWrapper } from "../../../Components/UI/Layout";
 import { MultiAvatar} from "../../../Components/UI/Elements";
-import { CheckCircleTwoTone } from "@ant-design/icons";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { CurrencySymbol } from "../../../Components/Common";
 
@@ -60,7 +60,7 @@ const DealGroupCard = (props) => {
  
 
   >
-    <CheckCircleTwoTone
+    <CheckCircleOutlineIcon
       type="check-circle"
       theme="twoTone"
       twoToneColor="#24D8A7"

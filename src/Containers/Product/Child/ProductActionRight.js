@@ -13,7 +13,7 @@ import {
 import UploadImageModal from "../Child/UploadImageModal"
 import { BundleLoader } from "../../../Components/Placeholder";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
-import { FileExcelOutlined } from "@ant-design/icons";
+import FileCopyIcon from '@mui/icons-material/FileCopy';
 import UploadIcon from '@mui/icons-material/Upload';
 const UploadCatalogue=lazy(()=>import("./UploadCatalogue"));
 
@@ -73,7 +73,7 @@ class ProductActionRight extends React.Component {
               className="export"
               default
               href={`${base_url}/export/product?orgId=${organizationId}`}
-            ><FileExcelOutlined className="!text-icon" />
+            ><FileCopyIcon className="!text-icon" />
             </Button>
           </Tooltip>
 

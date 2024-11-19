@@ -22,7 +22,7 @@ import {
 } from "../../../InventoryAction";
 import { useDispatch } from 'react-redux';
 import ReceivedOrderIdPhoneNoteModal from "./ReceivedOrderIdPhoneNoteModal";
-import { FileDoneOutlined,  } from "@ant-design/icons";
+import TaskIcon from '@mui/icons-material/Task';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { MultiAvatar2 } from "../../../../../../Components/UI/Elements";
@@ -466,7 +466,7 @@ console.log(selectedItems)
                         {item.receivePhoneInd?(
                         <div class=" text-xs  font-poppins text-center">
                           <Tooltip title="Task">
-                            <FileDoneOutlined   className="!text-icon  text-[black]" type="file-done"
+                            <TaskIcon   className="!text-icon  text-[black]" type="file-done"
                               onClick={() => {
                                 handleSetParticularOrderData(item);
                                  handleExpand(item.phoneId);

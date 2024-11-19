@@ -9,7 +9,7 @@ import {
   getApprovalData,
   getDepartmentList
 } from "../../../../Settings/SettingsAction";
-import { CloseOutlined } from "@ant-design/icons";
+import CloseIcon from '@mui/icons-material/Close';
 const { Option } = Select;
 function StandardApprovalForm(props) {
        useEffect(() => {
@@ -89,7 +89,7 @@ function StandardApprovalForm(props) {
                                     </Select>
                                 </div>
                                 {rows.length > 1 && (row.id + 1 > row.id) ? (
-                                    <CloseOutlined onClick={() => handleDelete(row)} />
+                                    <CloseIcon onClick={() => handleDelete(row)} />
                                 ) : null}
                             </div>
                         );

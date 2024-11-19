@@ -6,8 +6,8 @@ import { message, Input} from "antd";
 import { withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { EyeInvisibleOutlined, EyeOutlined,
-} from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { ValidationError } from "../../Components/UI/Elements";
 import Button from "antd/lib/button";
@@ -96,13 +96,13 @@ class ChangePassword extends Component {
                         />
                       </div>
                       {this.state.show ? (
-                        <EyeOutlined className=" !text-icon  -ml-5"
+                        <VisibilityIcon className=" !text-icon  -ml-5"
                           type="eye"
                           onClick={this.handleClick}
                           
                         />
                       ) : (
-                        <EyeInvisibleOutlined className=" !text-icon  -ml-5"
+                        <VisibilityOffIcon className=" !text-icon  -ml-5"
                           type="eye-invisible"
                           onClick={this.handleClick}
                                                
@@ -124,13 +124,13 @@ class ChangePassword extends Component {
                           />
                         </div>
                         {this.state.show1 ? (
-                          <EyeOutlined  className=" !text-icon  -ml-5"
+                          <VisibilityIcon  className=" !text-icon  -ml-5"
                             type="eye"
                             onClick={this.handleClick1}
                       
                           />
                         ) : (
-                          <EyeInvisibleOutlined  className=" !text-icon  -ml-5"
+                          <VisibilityOffIcon  className=" !text-icon  -ml-5"
                             type="eye-invisible"
                             onClick={this.handleClick1}
                             />

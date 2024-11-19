@@ -9,7 +9,7 @@ import dayjs from "dayjs";
 import { getAllOpportunityData } from "../../../../Opportunity/OpportunityAction"
 import { getFilteredEmailContact } from "../../../../Candidate/CandidateAction";
 import { getAllCustomerData,addCustomerActivityTask } from "../../../../Customer/CustomerAction"
-import { ExclamationCircleOutlined } from "@ant-design/icons";
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import { getUnits } from "../../../../../Containers/Settings/Unit/UnitAction";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
@@ -497,7 +497,7 @@ function ActivityTaskForm(props) {
                                                     <Button
                                                         type="primary"
                                                         shape="circle"
-                                                        // icon={<ExclamationCircleOutlined />}
+                                                      
                                                         onClick={() => handleButtonClick("High")}
                                                         style={{
                                                             backgroundColor:
@@ -515,7 +515,7 @@ function ActivityTaskForm(props) {
                                                     <Button
                                                         type="primary"
                                                         shape="circle"
-                                                        // icon={<ExclamationCircleOutlined />}
+                                                   
                                                         onClick={() => handleButtonClick("Medium")}
                                                         style={{
                                                             backgroundColor:
@@ -533,7 +533,7 @@ function ActivityTaskForm(props) {
                                                     <Button
                                                         type="primary"
                                                         shape="circle"
-                                                        // icon={<ExclamationCircleOutlined />}
+                                                    
                                                         onClick={() => handleButtonClick("Low")}
                                                         style={{
                                                             backgroundColor:
@@ -788,7 +788,7 @@ function ActivityTaskForm(props) {
                                                                 <Button
                                                                     type="primary"
                                                                     shape="circle"
-                                                                    icon={<ExclamationCircleOutlined />}
+                                                                    icon={<ErrorOutlineIcon />}
                                                                     onClick={() =>
                                                                         handleComplexityClick("Easy")
                                                                     }
@@ -805,7 +805,7 @@ function ActivityTaskForm(props) {
                                                                 <Button
                                                                     type="primary"
                                                                     shape="circle"
-                                                                    icon={<ExclamationCircleOutlined />}
+                                                                    icon={<ErrorOutlineIcon />}
                                                                     onClick={() =>
                                                                         handleComplexityClick("Medium")
                                                                     }
@@ -822,7 +822,7 @@ function ActivityTaskForm(props) {
                                                                 <Button
                                                                     type="primary"
                                                                     shape="circle"
-                                                                    icon={<ExclamationCircleOutlined />}
+                                                                    icon={<ErrorOutlineIcon />}
                                                                     onClick={() =>
                                                                         handleComplexityClick("Hard")
                                                                     }

@@ -60,11 +60,8 @@ import {
 } from "../../../../OpportunityAction";
 import PsychologyAltIcon from "@mui/icons-material/PsychologyAlt";
 import SubTableClickCandidate from "../Recruitment/SubTableClickCandidate";
-import {
-  EyeInvisibleOutlined,
-  EyeOutlined,
-
-} from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+  import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import SearchIcon from '@mui/icons-material/Search';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import Highlighter from "react-highlight-words";
@@ -1026,7 +1023,7 @@ class RecruitmentTable extends Component {
                           />
                         }
                       >
-                        <EyeInvisibleOutlined
+                        <VisibilityOffIcon
                           type="eye-invisible"
                           onClick={() => this.handleCloseIconClick()}
                           style={{
@@ -1049,7 +1046,7 @@ class RecruitmentTable extends Component {
                             />
                           }
                         >
-                          <EyeOutlined
+                          <VisibilityIcon
                             type="eye"
                             onClick={() =>
                               this.handleIconClick(

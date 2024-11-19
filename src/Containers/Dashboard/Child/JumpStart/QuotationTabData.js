@@ -11,7 +11,7 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Link } from 'react-router-dom';
 import { Tooltip, Select, Menu, Dropdown, Progress ,Popconfirm} from "antd";
 import { CurrencySymbol, } from "../../../../Components/Common";
-import { CheckCircleTwoTone} from "@ant-design/icons";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { MultiAvatar, MultiAvatar2,  } from "../../../../Components/UI/Elements";
@@ -195,7 +195,7 @@ imgHeight={"1.8em"}
    
 
   >
-    <CheckCircleTwoTone
+    <CheckCircleOutlineIcon
       type="check-circle"
       theme="twoTone"
       twoToneColor="#24D8A7"
@@ -228,7 +228,7 @@ imgHeight={"1.8em"}
     title="Won"
   
   >
-    <CheckCircleTwoTone
+    <CheckCircleOutlineIcon
       type="check-circle"
       theme="twoTone"
       twoToneColor="#24D8A7"

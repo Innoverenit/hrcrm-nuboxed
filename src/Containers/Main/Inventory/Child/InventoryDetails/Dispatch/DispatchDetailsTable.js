@@ -12,7 +12,7 @@ import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Button, Tooltip } from "antd";
 import { MultiAvatar} from "../../../../../../Components/UI/Elements"
-import { FileDoneOutlined } from "@ant-design/icons";
+import TaskIcon from '@mui/icons-material/Task';
 import RejectedReasonModal from "./RejectedReasonModal";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import QCPhoneNotesOrderModal from "../../../../Refurbish/QCPhoneNotesOrderModal";
@@ -193,7 +193,7 @@ let buttonRendered = false;
                                             </div>
                                             <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
                                             <Tooltip title={translatedMenuItems[7]}>
-            <FileDoneOutlined type="file-done"  className=" cursor-pointer !text-icon text-black"
+            <TaskIcon type="file-done"  className=" cursor-pointer !text-icon text-black"
               onClick={() => {
                 handleRowData(item);
                 handlePhoneTask(item.phoneId);

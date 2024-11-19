@@ -10,7 +10,8 @@ import { base_url2 } from "../../../Config/Auth";
 import axios from "axios";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import EditUpload from "../../../Components/Forms/Edit/EditUpload";
-import { BellOutlined,  PullRequestOutlined } from "@ant-design/icons";
+import CableIcon from '@mui/icons-material/Cable';
+import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import SuppliesCategoryPUnblishToggle from "./SuppliesCategoryPUnblishToggle";
 import SuppliesAddQualityCheckModal from "./SuppliesAddQualityCheckModal"
 
@@ -292,7 +293,7 @@ console.log("drb2",data)
 
                             <div className=" flex  w-[10.03rem] h-8 ml-gap bg-[#eef2f9] justify-center   items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                              <BellOutlined
+                              <CircleNotificationsIcon
                                onClick={() => {
                                 handleSuppliesEditQualityModal();
                                 handleSetCurrentCategory(item);
@@ -304,7 +305,7 @@ console.log("drb2",data)
 
                             <div className=" flex  w-[10.04rem] h-8 ml-gap bg-[#eef2f9] justify-center   items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                              <PullRequestOutlined
+                              <CableIcon
                                onClick={() => {
                                 handleSuppliesQualityModal();
                                 handleSetCurrentCategory(item);

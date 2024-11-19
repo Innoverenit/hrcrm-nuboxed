@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Icon, Tooltip } from "antd";
 import { Formik, Form, Field } from "formik";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import * as Yup from "yup";
 import dayjs from "dayjs";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
@@ -226,7 +226,7 @@ class SuppliersTaskUpdateForm extends Component {
                                 type="primary"
                                 shape="circle"
                                 icon={
-                                  <ExclamationCircleOutlined
+                                  <ErrorOutlineIcon
                                     style={{ fontSize: "3px" }}
                                   />
                                 }
@@ -245,7 +245,7 @@ class SuppliersTaskUpdateForm extends Component {
                                 type="primary"
                                 shape="circle"
                                 icon={
-                                  <ExclamationCircleOutlined
+                                  <ErrorOutlineIcon
                                     style={{ fontSize: "3px" }}
                                   />
                                 }
@@ -264,7 +264,7 @@ class SuppliersTaskUpdateForm extends Component {
                                 type="primary"
                                 shape="circle"
                                 icon={
-                                  <ExclamationCircleOutlined
+                                  <ErrorOutlineIcon
                                     style={{ fontSize: "3px" }}
                                   />
                                 }

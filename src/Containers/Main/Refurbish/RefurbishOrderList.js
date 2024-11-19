@@ -17,7 +17,9 @@ import {
 import { withRouter } from "react-router";
 import dayjs from "dayjs";
 import ProductionNotesModal from "./ProductionNotesModal";
-import { EditFilled, HistoryOutlined, PhoneFilled } from "@ant-design/icons";
+
+import CallIcon from '@mui/icons-material/Call';
+import HistoryIcon from '@mui/icons-material/History';  
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import UserPhoneModal from "./UserPhoneModal";
 import AssignOrderModal from "./AssignOrderModal";
@@ -320,7 +322,7 @@ const RefurbishOrderList = (props) => {
                 //debugger
                 return (
                     <Tooltip title="History">
-                        <HistoryOutlined
+                        <HistoryIcon
                             onClick={() => {
                                 props.handleTechnicianModal(true)
                                 handleRowData(item);
@@ -337,7 +339,7 @@ const RefurbishOrderList = (props) => {
                 //debugger
                 return (
                     <Tooltip title="Phone List">
-                        <PhoneFilled
+                        <CallIcon
                             onClick={() => {
                                 props.handlePhoneByTechnician(true)
                                 handleRowData(item);

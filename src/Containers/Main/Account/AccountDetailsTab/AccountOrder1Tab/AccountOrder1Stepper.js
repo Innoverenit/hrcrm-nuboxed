@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
 import { StyledSteps } from "../../../../../Components/UI/Antd";
-import { UserOutlined } from "@ant-design/icons";
+import GroupsIcon from '@mui/icons-material/Groups';
 import CallIcon from '@mui/icons-material/Call';
 import { BundleLoader } from '../../../../../Components/Placeholder';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
@@ -46,7 +46,7 @@ class AccountOrder1Stepper extends Component {
             {
                 title: "Order"
                ,
-                icon: <UserOutlined />,
+                icon: <GroupsIcon />,
                 content:<Suspense fallback={<BundleLoader />}> <AddAddressDetail distributorId={this.props.distributorId} /></Suspense>,
             },
             {

@@ -7,9 +7,7 @@ import {
   StyledMenu,
   StyledMenuItem,
 } from "../../Components/UI/Antd";
-import {
- SettingOutlined
-} from '@ant-design/icons';
+import SettingsIcon from '@mui/icons-material/Settings';
 import { MainWrapper} from "../../Components/UI/Layout";
 let path = window.location.href.split("/")[3];
 const SettingsMenu = ({ history, pathName, recruitmentInd }) => (
@@ -118,7 +116,7 @@ class SettingsDropdown extends Component {
       >
         <a href="#" style={{ marginRight: 4 }}>
           <div class=" flex items-center" >
-            <SettingOutlined className="!text-icon cursor-pointer text-[blue] "
+            <SettingsIcon className="!text-icon cursor-pointer text-[blue] "
               type="setting"
               style={{
                 color:

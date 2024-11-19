@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import PeopleIcon from '@mui/icons-material/People';
-import { CheckCircleTwoTone } from "@ant-design/icons";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import {getdealsRecord,getdealsAllRecord,
@@ -16,7 +16,7 @@ import {getdealsRecord,getdealsAllRecord,
   getDealListbyUserId,getTeamsDeals,getAllDeals
 
 } from "../DealAction";
-import { TableOutlined } from "@ant-design/icons";
+import GridOnIcon from '@mui/icons-material/GridOn';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 const { Search } = Input;
 
@@ -218,7 +218,7 @@ const DealActionLeft = (props) => {
             onClick={() => props.setDealViewType("stage")}
           >
              <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#28a355" }}>
-           <TableOutlined  className="text-white !text-icon cursor:pointer"/>
+           <GridOnIcon  className="text-white !text-icon cursor:pointer"/>
            </Avatar>
           </span>
           </Badge>
@@ -241,7 +241,7 @@ const DealActionLeft = (props) => {
           >
             {" "}
             <Avatar style={{ background: props.viewType === "won" ? "#f279ab" : "#28a355" }}>
-            <CheckCircleTwoTone type="check-circle" theme="twoTone" twoToneColor="#24D8A7"  className=" !text-icon cursor:pointer" />
+            <CheckCircleOutlineIcon type="check-circle" theme="twoTone" twoToneColor="#24D8A7"  className=" !text-icon cursor:pointer" />
             </Avatar>
           </span>
           </Badge>

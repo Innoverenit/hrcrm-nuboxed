@@ -13,7 +13,7 @@ import {handleQCPhoneNotesOrderModal} from "../../../../Refurbish/RefurbishActio
 import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Button, Tooltip } from "antd";
-import { FileDoneOutlined } from "@ant-design/icons";
+import TaskIcon from '@mui/icons-material/Task';
 import { SubTitle } from "../../../../../../Components/UI/Elements";
 import RejectedReasonModal from "./RejectedReasonModal";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
@@ -125,7 +125,7 @@ function DispatchInventoryDetailsTable(props) {
   //       //debugger
   //       return (
   //         <Tooltip title="Task">
-  //           <FileDoneOutlined style={{ color: "black" }} type="file-done"
+  //           <TaskIcon style={{ color: "black" }} type="file-done"
   //             onClick={() => {
   //               handleRowData(item);
   //               handlePhoneTask(item.phoneId);
@@ -388,7 +388,7 @@ props.rowData.dispatchInspectionInd === 1 && itemValue === true &&
                                             </div>
                                             <div className="items-center justify-end h-8 ml-gap bg-[#eef2f9] ">
                                             <Tooltip title="Task">
-            <FileDoneOutlined style={{ color: "black" }} type="file-done"
+            <TaskIcon style={{ color: "black" }} type="file-done"
               onClick={() => {
                 handleRowData(item);
                 handlePhoneTask(item.phoneId);

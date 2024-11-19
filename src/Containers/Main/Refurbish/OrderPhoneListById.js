@@ -21,7 +21,8 @@ import {
     handleQcexpand,
     handleRefurbishLevelModal
 } from "./RefurbishAction";
-import { BarcodeOutlined } from '@ant-design/icons';
+
+import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import MicIcon from '@mui/icons-material/Mic';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Button, Tooltip, Progress,Input,Badge } from "antd";
@@ -628,7 +629,7 @@ function OrderPhoneListById(props) {
                                                                 handleSetRowData(item);
                                                                 handleExpand(item.phoneId);
                                                             }}
-                                                        ><FileDoneOutlined style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} />Tasks</Button>
+                                                        ><TaskIcon style={{ color: "white", height: "0.75rem", fontSize: "0.75rem" }} />Tasks</Button>
 
                                                     </Tooltip> */}
                                                         {/* <Tooltip title="Task">
@@ -730,7 +731,7 @@ function OrderPhoneListById(props) {
                                                               onClick={handlePrintBr}>
                                                             
                                                                 Print Bar
-                                                                <BarcodeOutlined className="!text-icon"/></Button>}
+                                                                <QrCodeScannerIcon className="!text-icon"/></Button>}
                                                                 content={() => componentBarRefs.current[index]}
                                                             />
                                                         </Tooltip>

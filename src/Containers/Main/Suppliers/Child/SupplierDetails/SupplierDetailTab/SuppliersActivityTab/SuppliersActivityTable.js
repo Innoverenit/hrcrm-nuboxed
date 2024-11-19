@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip } from "antd";
-import { FileDoneOutlined} from "@ant-design/icons";
+import TaskIcon from '@mui/icons-material/Task';
 import CallIcon from '@mui/icons-material/Call';
 import {  StyledTable } from "../../../../../../../Components/UI/Antd";
 import dayjs from "dayjs";
@@ -85,7 +85,7 @@ class SuppliersActivityTable extends Component {
                             )}
                             {item.activity === "Task" && (
                                 // <Icon type="file-done" />
-                                <FileDoneOutlined/>
+                                <TaskIcon/>
                             )}
                         </>
                     )

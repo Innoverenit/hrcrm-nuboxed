@@ -16,7 +16,7 @@ import AddRecruiterModal from "../AddRecruiterModal";
 import AddMonsterModal from "../AddMonsterModal";
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
 import { Button, Progress, Tooltip, Avatar } from "antd";
-import { FileExcelOutlined, } from "@ant-design/icons";
+import FileCopyIcon from '@mui/icons-material/FileCopy';
 import {
   MultiAvatar,
 } from "../../../../../../../Components/UI/Elements";
@@ -550,7 +550,7 @@ class SummaryTable extends Component {
                 }
               >
                 <Button
-                  icon={<FileExcelOutlined />}
+                  icon={<FileCopyIcon />}
                   type="primary"
                   //  href={`${base_url}/report/recruitment?oppId=${this.props.opportunityId}`}
                   style={{

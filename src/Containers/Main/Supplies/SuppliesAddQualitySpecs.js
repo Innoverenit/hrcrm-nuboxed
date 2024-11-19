@@ -4,8 +4,8 @@ import { bindActionCreators } from "redux";
 import { Formik, Field, Form } from 'formik';
 import { Input, Space, Button } from 'antd';
 import {addQualityCategory} from "./SuppliesAction";
-import { PlusOutlined, MinusCircleOutlined } from '@ant-design/icons';
-
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';  
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';  
 const QualitySpecForm = (props) => {
   
     const [loading, setLoading] = useState(false);
@@ -68,9 +68,9 @@ const QualitySpecForm = (props) => {
                   />
                   {index === qualityFields.length - 1 && (
                     <>
-                      <PlusOutlined onClick={addQualityField} style={{ fontSize: '20px', color: 'green' }} />
+                      <AddCircleOutlineIcon onClick={addQualityField} style={{ fontSize: '20px', color: 'green' }} />
                       {qualityFields.length > 1 && (
-                        <MinusCircleOutlined
+                        <RemoveCircleOutlineIcon
                           onClick={removeQualityField}
                           style={{ fontSize: '20px', color: 'red' }}
                         />
@@ -96,9 +96,9 @@ const QualitySpecForm = (props) => {
                   />
                   {index === specFields.length - 1 && (
                     <>
-                      <PlusOutlined onClick={addSpecField} style={{ fontSize: '20px', color: 'green' }} />
+                      <AddCircleOutlineIcon onClick={addSpecField} style={{ fontSize: '20px', color: 'green' }} />
                       {specFields.length > 1 && (
-                        <MinusCircleOutlined
+                        <RemoveCircleOutlineIcon
                           onClick={removeSpecField}
                           style={{ fontSize: '20px', color: 'red' }}
                         />

@@ -10,7 +10,8 @@ import {
 import {  } from "../../../../Suppliers/SuppliersAction"
 import { Input ,Button} from "antd";
 import { OnlyWrapCard } from '../../../../../../Components/UI/Layout';
-import { CloseOutlined, SaveOutlined } from "@ant-design/icons";
+import SaveIcon from '@mui/icons-material/Save';
+import CloseIcon from '@mui/icons-material/Close';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import SourceIcon from '@mui/icons-material/Source';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
@@ -225,14 +226,14 @@ class ShipperCostTable extends Component {
                   {isEditing ? (
                     <>
                       <Button
-                        icon={<SaveOutlined />}
+                        icon={<SaveIcon />}
                         size="small"
                         type="primary"
                         onClick={this.handleSave}
                         style={{ marginRight: 8 }}
                       />
                       <Button
-                        icon={<CloseOutlined />}
+                        icon={<CloseIcon />}
                         size="small"
                         onClick={this.handleCancel}
                       />

@@ -11,7 +11,7 @@ import { Button, Tooltip, message, Switch } from 'antd';
 import { getSaleCurrency } from "../../../../../Auth/AuthAction";
 import { updateOrderStep1, getLobList } from '../../../AccountAction'
 import { getContactDistributorList } from "../../../../Suppliers/SuppliersAction"
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import AddressFieldArray1 from '../../../../../../Components/Forms/Formik/AddressFieldArray1';
 import { FormattedMessage } from 'react-intl';
 
@@ -292,7 +292,7 @@ function OrderStep1(props) {
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
-                                                        icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
+                                                        icon={<ErrorOutlineIcon style={{ fontSize: '0.1875em' }} />}
                                                         onClick={() => handleButtonClick("High")}
                                                         style={{
                                                             backgroundColor:
@@ -313,7 +313,7 @@ function OrderStep1(props) {
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
-                                                        icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
+                                                        icon={<ErrorOutlineIcon style={{ fontSize: '0.1875em' }} />}
                                                         onClick={() => handleButtonClick("Medium")}
                                                         style={{
                                                             backgroundColor:
@@ -334,7 +334,7 @@ function OrderStep1(props) {
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
-                                                        icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
+                                                        icon={<ErrorOutlineIcon style={{ fontSize: '0.1875em' }} />}
                                                         onClick={() => handleButtonClick("Low")}
                                                         style={{
                                                             backgroundColor:

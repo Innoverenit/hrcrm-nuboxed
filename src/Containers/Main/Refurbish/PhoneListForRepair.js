@@ -22,7 +22,8 @@ import {
     getToExchange
 } from "./RefurbishAction";
 import { Button, Tooltip,  Progress,Input,Badge, Popconfirm } from "antd";
-import {  BarcodeOutlined} from "@ant-design/icons";
+
+import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import QRCode from "qrcode.react";
 import dayjs from "dayjs";
@@ -665,7 +666,7 @@ function PhoneListForRepair(props) {
                                                               onClick={handlePrintBr}>
                                                             
                                                                 Print Br
-                                                                <BarcodeOutlined className="!text-icon"/></Button>}
+                                                                <QrCodeScannerIcon className="!text-icon"/></Button>}
                                                                 content={() => componentBarRefs.current[index]}
                                                             />
                                                         </Tooltip>

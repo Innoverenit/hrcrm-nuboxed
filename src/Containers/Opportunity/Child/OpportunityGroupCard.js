@@ -3,7 +3,7 @@ import {  Popconfirm,Tooltip } from "antd";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { CheckCircleTwoTone } from "@ant-design/icons";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import {
   MultiAvatar,
 } from "../../../Components/UI/Elements";
@@ -88,7 +88,7 @@ const BussinessCard = (props) => {
     title="Won"
 
   >
-    <CheckCircleTwoTone
+    <CheckCircleOutlineIcon
       type="check-circle"
       theme="twoTone"
       twoToneColor="#24D8A7"

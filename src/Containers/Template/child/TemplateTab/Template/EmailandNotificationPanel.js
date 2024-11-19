@@ -3,12 +3,7 @@ import { StyledCollapse } from "../../../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Icon } from "antd";
-import {
-  CaretRightOutlined,
-  EyeInvisibleOutlined,
-
-  
-} from '@ant-design/icons';
+import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
 import TemplateTable from "./TemplateTable";
 import NotificationTable from "./NotificationTable";
 const Panel = StyledCollapse.Panel;
@@ -21,7 +16,7 @@ class EmailandNotificationPanel extends Component {
           bordered={false}
           //   defaultActiveKey={["1"]}
           expandIcon={({ isActive }) => (
-            <CaretRightOutlined type="caret-right" rotate={isActive ? 90 : 0} />
+            <ArrowDropDownCircleIcon type="caret-right" rotate={isActive ? 90 : 0} />
           )}
         >
           <Panel header="Email" key="1" style={{}}>

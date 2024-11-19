@@ -2,8 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import dayjs from "dayjs";
 import { SubTitle } from "../UI/Elements";
-import Link from "./Link";
-import { FrownOutlined, MehOutlined, SmileOutlined } from '@ant-design/icons';
+
 const NotesWrapper = styled.div``;
 export default function SingleFeedback(props) {
     console.log(props);

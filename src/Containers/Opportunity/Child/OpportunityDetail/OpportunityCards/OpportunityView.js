@@ -10,7 +10,7 @@ import {
 import {MultiAvatar} from "../../../../../Components/UI/Elements";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {linktagCustomer} from "../../../OpportunityAction";
-import {  LinkOutlined } from "@ant-design/icons";
+import AttachFileIcon from '@mui/icons-material/AttachFile';
 import styled from "styled-components";
 
 class OpportunityView extends Component {
@@ -100,7 +100,7 @@ class OpportunityView extends Component {
                     <Tooltip //title="Tag Customer"
                       title="Tag Customer"
                     >
-                      <LinkOutlined class="text-[#fb8500] text-[0.8rem]"
+                      <AttachFileIcon class="text-[#fb8500] text-[0.8rem]"
                         tooltipTitle="Tag Customer"
                         iconType="link"
                         onClick={this.handleLinkContactModalVisible}

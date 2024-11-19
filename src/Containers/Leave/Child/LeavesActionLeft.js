@@ -6,7 +6,7 @@ import { Input, Tooltip, Avatar } from "antd";
 
 import GridViewIcon from '@mui/icons-material/GridView';
 import CategoryIcon from '@mui/icons-material/Category';
-import { AreaChartOutlined } from '@ant-design/icons';
+import DonutSmallIcon from '@mui/icons-material/DonutSmall';
 
 const { Search } = Input;
 
@@ -69,7 +69,7 @@ const LeavesActionLeft = (props) => {
           }}
         >
           <Avatar style={{ background: props.viewType === "grant" ? "#f279ab" : "#28a355" }}>
-            <AreaChartOutlined className='text-white !text-icon'
+            <DonutSmallIcon className='text-white !text-icon'
             // icon={solid('users')}
             />
           </Avatar>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { StyledCollapse } from "../../../../../../Components/UI/Antd";
 import dayjs from "dayjs";
-import { CaretRightOutlined } from "@ant-design/icons";
+import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
 const Panel = StyledCollapse.Panel;
 class EmployeePersonalView extends Component {
     render() {
@@ -23,7 +23,7 @@ class EmployeePersonalView extends Component {
                     bordered={false}
                     defaultActiveKey={["0"]}
                     expandIcon={({ isActive }) => (
-                        <CaretRightOutlined type="caret-right" rotate={isActive ? 90 : 0} />
+                        <ArrowDropDownCircleIcon type="caret-right" rotate={isActive ? 90 : 0} />
                     )}
                 >
                     <Panel

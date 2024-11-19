@@ -10,9 +10,7 @@ import { Title, HeaderText } from "../../../Components/UI/Elements";
 import { SelectComponent } from "../ImportSelect";
 import ImportHeader from "./ImportHeader";
 import ImportHelpGuide from "./ImportHelpGuide";
-import { LoadingOutlined
-  
-} from '@ant-design/icons';
+
 import InboxIcon from '@mui/icons-material/Inbox';
 
 import {
@@ -21,6 +19,7 @@ import {
   getAccountMatchingFields,
   mapExcelToAccount,
 } from "../ImportAction";
+import { BundleLoader } from "../../../Components/Placeholder";
 
 const Step = StyledSteps.Step;
 const { Dragger } = Upload;
@@ -100,12 +99,12 @@ class AccountImport extends Component {
               <StyledSteps current={current} labelPlacement="vertical">
                 <Step
                   title={"Upload"}
-                  icon={exportingExcelFile && <LoadingOutlined />}
+                  icon={exportingExcelFile && <BundleLoader />}
                 // type="loading"
                 />
                 <Step
                   title={"Map"}
-                  icon={mappingExcelToAccount && <LoadingOutlined />}
+                  icon={mappingExcelToAccount && <BundleLoader />}
                 // type="loading" 
                 />
                 <Step title={"Finish"} icon={null} />

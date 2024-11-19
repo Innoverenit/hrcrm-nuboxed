@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { getTaggedSuppliesByBrand, addSpareList } from "../../AccountAction";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { CloseOutlined } from "@ant-design/icons";
+import CloseIcon from '@mui/icons-material/Close';
 import { FormattedMessage } from 'react-intl';
 import { getCurrency } from "../../../../Auth/AuthAction";
 const { Option } = Select;
@@ -190,7 +190,7 @@ const AddMultipleSpare = (props) => {
                             </div>
                             {rows.length > 1 && (row.id + 1 > row.id) ? (
                                 <div class="w-[5%] mt-[30px]">
-                                    <CloseOutlined
+                                    <CloseIcon
                                         onClick={() => handleDelete(row)}
                                         style={{ fontSize: "16px", color: "red" }} />
                                 </div>

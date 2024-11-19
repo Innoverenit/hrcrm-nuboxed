@@ -4,7 +4,7 @@ import { getTaggedSuppliesByBrand, addSpareList } from "../Account/AccountAction
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { message } from "antd";
-import { CloseOutlined } from "@ant-design/icons"
+import CloseIcon from '@mui/icons-material/Close';
 import { getCurrency } from "../../Auth/AuthAction";
 import { FormattedMessage } from 'react-intl';
 const { Option } = Select;
@@ -163,7 +163,7 @@ const AddMultipleQCSpare = (props) => {
 
                             {rows.length > 1 && (row.id + 1 > row.id) ? (
                                 <div class="w-[5%] mt-[30px]">
-                                    <CloseOutlined
+                                    <CloseIcon
                                         onClick={() => handleDelete(row)}
                                         style={{ fontSize: "16px", color: "red" }} />
                                 </div>

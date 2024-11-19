@@ -32,7 +32,8 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import SummarizeIcon from '@mui/icons-material/Summarize';
 import { BundleLoader } from '../../../../Components/Placeholder';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import { CompassFilled, HistoryOutlined } from "@ant-design/icons";
+import ExploreIcon from '@mui/icons-material/Explore';
+import HistoryIcon from '@mui/icons-material/History';  
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import ShopIcon from '@mui/icons-material/Shop'
 import CreditCardIcon from '@mui/icons-material/CreditCard';
@@ -330,7 +331,7 @@ function AccountDetailsTab(props) {
                                 &nbsp;
                                 {activeKey === "3" && (
                                     <Tooltip title={translatedMenuItems[16]}>
-                                        <HistoryOutlined
+                                        <HistoryIcon
                                             fontSize="small"
                                             onClick={handleOpenOrder}
                                         />
@@ -385,7 +386,7 @@ function AccountDetailsTab(props) {
                                 {activeKey === "4" && (
                                     <>
                                      <Tooltip title="Shipped Order">
-                                        <HistoryOutlined
+                                        <HistoryIcon
                                             fontSize="small"
                                             onClick={() => handleClickSideIcon("shipped")}
                                         />
@@ -749,7 +750,7 @@ function AccountDetailsTab(props) {
                                             />
                                         </Tooltip>
                                        
-                                            <CompassFilled className=" !text-icon  ml-1 items-center
+                                            <ExploreIcon className=" !text-icon  ml-1 items-center
  text-[#6f0080ad]"
                                                 //
                                                 onClick={() => handleView('Completed')}

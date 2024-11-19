@@ -6,7 +6,8 @@ import { Formik, Form, Field } from "formik";
 import { Input } from "./styled";
 import { ValidationError} from "../../Components/UI/Elements";
 import Button from "antd/lib/button";
-import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import FWLogo from "../../Assets/Images/name.jpg";  // for CT
 import { forgotUserPassword, validateOtpurL, verifyEmailurL } from "./AuthAction";
 
@@ -169,14 +170,14 @@ class ForgotPassword extends Component {
                               />
                             </div>
                             {this.state.show ? (
-                              <EyeOutlined
+                              <VisibilityIcon
                                 type="eye"
                                 onClick={this.handleClick}
                                 style={{ marginLeft: "-1.25em", marginTop: "-0.25em" }}
                                 size="24"
                               />
                             ) : (
-                              <EyeInvisibleOutlined
+                              <VisibilityOffIcon
                                 type="eye-invisible"
                                 onClick={this.handleClick}
                                 size="24"
@@ -197,12 +198,12 @@ class ForgotPassword extends Component {
                               />
                             </div>
                             {this.state.show1 ? (
-                              <EyeOutlined  className=" !text-icon  -ml-5 -mt-1"
+                              <VisibilityIcon  className=" !text-icon  -ml-5 -mt-1"
                                 type="eye"
                                 onClick={this.handleClick1}
                                 />
                             ) : (
-                              <EyeInvisibleOutlined  className=" !text-icon  -ml-5 -mt-1"
+                              <VisibilityOffIcon  className=" !text-icon  -ml-5 -mt-1"
                                 type="eye-invisible"
                                 onClick={this.handleClick1}
                               />

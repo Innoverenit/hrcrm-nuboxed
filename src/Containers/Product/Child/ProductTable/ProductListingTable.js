@@ -19,12 +19,8 @@ import {
 import { handleCurrencyPriceModal } from "../../../Main/Supplies/SuppliesAction";
 import { CurrencySymbol } from "../../../../Components/Common";
 import { Tooltip, Button, Popconfirm, Switch } from "antd";
-import {
-
-  HistoryOutlined,
- 
-  MoneyCollectOutlined,
-} from "@ant-design/icons";
+import PriceChangeIcon from '@mui/icons-material/PriceChange'; 
+import HistoryIcon from '@mui/icons-material/History';  
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {
@@ -401,7 +397,7 @@ function ProductListingTable(props) {
         return (
           <>
             <Tooltip title="Add price">
-              <MoneyCollectOutlined
+              <PriceChangeIcon
                 onClick={() => {
                   props.handleCurrencyPriceModal(true);
                   handleParticularRowData(item);
@@ -785,7 +781,7 @@ function ProductListingTable(props) {
           children: (
             <span>
               <Tooltip title="Product History">
-                <HistoryOutlined
+                <HistoryIcon
                   onClick={() => {
                     handleHistoryModal(true);
                     handleParticularRowData(item);

@@ -2,10 +2,6 @@ import React from "react";
 import { Select, Tooltip } from "antd";
 import styled from "styled-components";
 import ContentLoader from "react-content-loader";
-import {
-  CaretUpOutlined,
- 
-} from '@ant-design/icons';
 import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { CurrencySymbol, } from "../../Common";
@@ -152,7 +148,7 @@ const JumpStartDetail = ({
                 <Progress amount={progress || 0}>
                   {progress > 0 ? (
                     <>
-                      <CaretUpOutlined type="caret-up" />
+                      <ArrowDropDownCircleIcon type="caret-up" />
                       {`${(progress && progress.toFixed(0)) || 0}%`}
                     </>
                   ) : (

@@ -49,7 +49,7 @@ const BussinessCard = (props) => {
               {primaryTitle || ""}
             </Title>
             <SubTitle>
-              {/* <UserOutlined theme="filled" /> */}
+           
               {/* <i class="far fa-address-book"></i> */}
               &nbsp;&nbsp;
               {/* {currencyType && <CurrencySymbol currencyType={currencyType} />}

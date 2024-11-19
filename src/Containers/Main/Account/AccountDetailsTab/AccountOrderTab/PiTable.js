@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { addPi, getPibyItem, getPiFirststep } from "../../AccountAction";
 import { Input, Switch, Button, Checkbox } from 'antd';
-import {  CloseOutlined } from '@ant-design/icons';
 
 const PiTable = (props) => {
     const [editMode, setEditMode] = useState(false);

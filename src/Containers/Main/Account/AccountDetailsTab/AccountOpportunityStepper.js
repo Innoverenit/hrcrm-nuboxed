@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
 import { StyledSteps } from "../../../../Components/UI/Antd";
 import CallIcon from '@mui/icons-material/Call';
-import { UserOutlined } from "@ant-design/icons";
+import GroupsIcon from '@mui/icons-material/Groups';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import AccountOpportunityForm from "./AccountOpportunityForm";
 import AccountRepairSecondStep from "./AccountRepairSecondStep";
@@ -42,7 +42,7 @@ class AccountOpportunityStepper extends Component {
             {
                 title: "Order"
                 ,
-                icon: <UserOutlined />,
+                icon: <GroupsIcon />,
                 content: <AccountOpportunityForm distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
             },
             {

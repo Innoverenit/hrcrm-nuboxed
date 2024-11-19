@@ -2,11 +2,12 @@ import React, { lazy, Suspense, useEffect, useState, } from "react";
 import { Route, Switch } from "react-router-dom";
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
-import { CommentOutlined, CustomerServiceOutlined } from '@ant-design/icons'
 import {
   handleDistributorModal,
 
 } from "./Account/AccountAction";
+import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
+import HeadphonesIcon from '@mui/icons-material/Headphones';
 import PhoneMaterialScanner from "../Main/Scan/PhoneScanner/PhoneMaterialScanner"
 import QRCodeList from "../../Containers/Main/Refurbish/QrCodeList";
 import { connect } from "react-redux";
@@ -523,13 +524,13 @@ function MainApp(props) {
         insetInlineEnd: 20,
       }}
       icon={
-      <CustomerServiceOutlined className="!text-icon" />
+      <SubscriptionsIcon className="!text-icon" />
      
     }
     >
        <FloatButton 
       icon={
-        // <CommentOutlined />
+   
         <Tooltip title="Order">
            <DynamicFeedIcon
            
@@ -546,7 +547,7 @@ function MainApp(props) {
         } />
       <FloatButton 
       icon={
-        // <CommentOutlined />
+       
         <Tooltip title="Quotation">
         <LightbulbIcon
          style={{color:"blue"}}
@@ -563,7 +564,7 @@ function MainApp(props) {
       
       <FloatButton 
       icon={
-        // <CommentOutlined />
+    
         <Tooltip title="Customer">
         <ApartmentIcon
          style={{color:"blue"}}  

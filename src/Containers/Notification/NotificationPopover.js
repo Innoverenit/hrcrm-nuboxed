@@ -1,9 +1,8 @@
-import React, { Component, Suspense } from "react";
+import React, { Suspense } from "react";
 import { connect } from "react-redux";
-import { Badge, Tooltip, Popover } from "antd";
-import NotificationTab from "./NotificationTab";
+import { Tooltip,  } from "antd";
 import { bindActionCreators } from "redux";
-import { BellOutlined} from '@ant-design/icons';
+import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import { BundleLoader } from "../../Components/Placeholder";
 import { handlenotificationdrawer } from "./NotificationAction";
 import Notificationdrawermodal from "./Notificationdrawermodal";
@@ -26,7 +25,7 @@ import Notificationdrawermodal from "./Notificationdrawermodal";
       <>
       <div>
       <Tooltip title="Notifications">
-         <BellOutlined type="bell" className="!text-icon cursor-pointer text-[#1890ff]"
+         <CircleNotificationsIcon type="bell" className="!text-icon cursor-pointer text-[#1890ff]"
          onClick={() => {
           props.handlenotificationdrawer(true);
          
@@ -47,7 +46,7 @@ import Notificationdrawermodal from "./Notificationdrawermodal";
             count={this.props.notificationCount}
             style={{ fontSize: 8, boxSizing: 8 }}
           >
-            <BellOutlined type="bell" className="!text-icon cursor-pointer text-[#1890ff]" 
+            <CircleNotificationsIcon type="bell" className="!text-icon cursor-pointer text-[#1890ff]" 
             onClick={() => this.props.handlenotificationdrawer(true)}/>
           </Badge>
         </Popover> */}

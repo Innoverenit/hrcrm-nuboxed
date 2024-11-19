@@ -2,9 +2,7 @@ import React, { lazy} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import {
-  CloseCircleOutlined,
-} from '@ant-design/icons';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import SearchIcon from '@mui/icons-material/Search';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import AddTaskProjectDrawerModal from "../Child/AddTaskProjectDrawerModal"
@@ -514,7 +512,7 @@ class TaskDeletedTable extends React.Component {
                         style={{ fontSize: "1.5625em" }}
                       />
                     ) : data.approvedInd === "Rejected" ? (
-                      <CloseCircleOutlined
+                      <HighlightOffIcon
                         type="close-circle"
                         theme="twoTone"
                         twoToneColor="red"

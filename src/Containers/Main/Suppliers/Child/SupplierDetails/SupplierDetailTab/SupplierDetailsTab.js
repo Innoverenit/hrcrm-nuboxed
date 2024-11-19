@@ -15,7 +15,7 @@ import {
   handleSupplierDocumentUploadModal, handleSupplierInventoryImportModal,handleSuppliersActivityModal,handleSupplierExcleUploadModal
 } from "../../../SuppliersAction";
 import ContactsIcon from '@mui/icons-material/Contacts';
-import { FileExcelOutlined,  } from "@ant-design/icons";
+import FileCopyIcon from '@mui/icons-material/FileCopy';
 import { Tooltip } from "antd";
 import Shop2Icon from '@mui/icons-material/Shop2'; 
 import InventoryIcon from '@mui/icons-material/Inventory';
@@ -167,7 +167,7 @@ class SupplierDetailsTab extends Component {
                           onClick={() => this.props.handleSupplierExcleUploadModal(true)}                                               
                         />
                       </Tooltip>
-                      <FileExcelOutlined
+                      <FileCopyIcon
                        onClick={() => this.props.handleSupplierInventoryImportModal(true)}
                        //onClick={() => this.props.handleSupplierInventoryImportModal(true)}
                       />                     

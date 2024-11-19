@@ -5,7 +5,7 @@ import { Button, Input, Badge, Tooltip, Avatar } from "antd";
 import { bindActionCreators } from "redux";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import {  HistoryOutlined } from "@ant-design/icons";
+import HistoryIcon from '@mui/icons-material/History';  
 import MicIcon from '@mui/icons-material/Mic';
 import { getOrderCount, getAllOrderCount,inputOrderNoSearch,getAllHighOrderList,ClearSearchedOrder,
   getAllMediumOrderList,getAllLowOrderList, getCompletedHighOrderList,
@@ -209,7 +209,7 @@ function OrderActionLeft (props) {
                  boxShadow: props.viewType === "card" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
                   transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"
                }}>
-                <HistoryOutlined className="text-white !text-icon" /></Avatar>
+                <HistoryIcon className="text-white !text-icon" /></Avatar>
 
             </span>
           </Badge>
@@ -290,7 +290,7 @@ function OrderActionLeft (props) {
                     boxShadow: props.viewType === "card" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
                   transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"
                }}>
-                <HistoryOutlined className="text-white !text-icon" /></Avatar>
+                <HistoryIcon className="text-white !text-icon" /></Avatar>
 
             </span>
           </Badge>
@@ -407,7 +407,7 @@ function OrderActionLeft (props) {
                   transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"
 }}>
                 
-<HistoryOutlined  className="text-white !text-icon" /> </Avatar>
+<HistoryIcon  className="text-white !text-icon" /> </Avatar>
                 
             </span>
           {/* </Badge> */}

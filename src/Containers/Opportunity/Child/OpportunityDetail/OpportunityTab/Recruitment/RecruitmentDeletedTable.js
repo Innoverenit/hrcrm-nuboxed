@@ -61,7 +61,8 @@ import SelectSponsorForm from "./SelectSponsorForm";
 import { addRecruitProProfile, deleteRequirementData } from "../../../../OpportunityAction";
 import SubTableClickCandidate from "../Recruitment/SubTableClickCandidate";
 import PsychologyAltIcon from '@mui/icons-material/PsychologyAlt';
-import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 class RecruitmentDeletedTable extends Component {
  
   constructor(props) {
@@ -1489,7 +1490,7 @@ const date=diff+1
                           defaultMessage="Close Details"
                         />}
                       >
-                        <EyeInvisibleOutlined
+                        <VisibilityOffIcon
                           type="eye-invisible"
                           onClick={() => this.handleCloseIconClick()}
                           style={{
@@ -1510,7 +1511,7 @@ const date=diff+1
                             defaultMessage="Access Details"
                           />}
                         >
-                          <EyeOutlined
+                          <VisibilityIcon
                             type="eye"
                             onClick={() =>
                               this.handleIconClick(

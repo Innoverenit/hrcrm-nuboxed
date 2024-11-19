@@ -17,11 +17,10 @@ import {
 } from "../../../../../../Components/UI/Antd";
 import { Link } from "../../../../../../Components/Common";
 import Highlighter from "react-highlight-words";
-import { ApiOutlined, } from "@ant-design/icons"
+import ApiIcon from '@mui/icons-material/Api';
 import SearchIcon from '@mui/icons-material/Search';
 import PartnerContactActiveToggle from "./PartnerContactActiveToggle";
 
-// import { ApiOutlined } from "@ant-design/icons";
 const ButtonGroup = Button.Group;
 function LinkedContact(props) {
   useEffect(() =>{
@@ -311,7 +310,7 @@ function LinkedContact(props) {
               title={<FormattedMessage id="app.doyouwishtodetach" defaultMessage="Do you wish to detach?" />}
             >
                {user.userType !== "USER" && user.department !== "Recruiter" && ( 
-              <ApiOutlined
+              <ApiIcon
                 tooltipTitle="Detach Contact"
                 //iconType="api"
                 onClick={null}

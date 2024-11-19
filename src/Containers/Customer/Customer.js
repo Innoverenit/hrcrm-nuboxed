@@ -300,7 +300,7 @@ class Customer extends Component {
       
     >
       <FloatButton />
-      <FloatButton icon={<CommentOutlined />} />
+     
     </FloatButton.Group> */}
      <AddCustomerImportModal
         handleCustomerImportModal={this.props.handleCustomerImportModal}

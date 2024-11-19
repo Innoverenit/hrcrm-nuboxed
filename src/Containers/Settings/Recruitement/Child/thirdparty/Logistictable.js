@@ -18,18 +18,25 @@ function Logistictable(props) {
           />
           </div>
       <div> <Input
-              placeholder="First Name"
+              placeholder="Auth Key"
+              name="firstName"
+              className="-ml-2"
+              // style={{marginLeft:"-6px"}}
+          
+            /></div>
+                  
+      <div> <Input
+              placeholder="Test Key"
               name="firstName"
               style={{marginLeft:"-6px"}}
-            //   value="NAme"
-            //   onChange={handleInputChange}
+          
             /></div>
       <div> <Button
                 type="primary"
                 htmlType="submit"
                 // loading={props.addingCustomerConfig}
               >
-                <div class="font-bold font-poppins text-xs"> Create</div>
+                <div class="font-bold font-poppins text-xs"> Submit</div>
              
               </Button></div>
         </div>
@@ -45,18 +52,24 @@ function Logistictable(props) {
           />
           </div>
       <div> <Input
-              placeholder="First Name"
+              placeholder="Auth Key"
               name="firstName"
               style={{marginLeft:"-6px"}}
             //   value="NAme"
             //   onChange={handleInputChange}
+            /></div>
+            <div> <Input
+              placeholder="Test Key"
+              name="firstName"
+              style={{marginLeft:"-6px"}}
+          
             /></div>
       <div> <Button
                 type="primary"
                 htmlType="submit"
                 // loading={props.addingCustomerConfig}
               >
-                <div class="font-bold font-poppins text-xs"> Create</div>
+                <div class="font-bold font-poppins text-xs"> Submit</div>
              
               </Button></div>
         </div>
@@ -72,18 +85,24 @@ function Logistictable(props) {
           />
           </div>
       <div> <Input
-              placeholder="First Name"
+              placeholder="Auth Key"
               name="firstName"
               style={{marginLeft:"-6px"}}
             //   value="NAme"
             //   onChange={handleInputChange}
+            /></div>
+            <div> <Input
+              placeholder="Test Key"
+              name="firstName"
+              style={{marginLeft:"-6px"}}
+          
             /></div>
       <div> <Button
                 type="primary"
                 htmlType="submit"
                 // loading={props.addingCustomerConfig}
               >
-                <div class="font-bold font-poppins text-xs"> Create</div>
+                <div class="font-bold font-poppins text-xs"> Submit</div>
              
               </Button></div>
         </div>
@@ -99,18 +118,24 @@ function Logistictable(props) {
           />
           </div>
       <div> <Input
-              placeholder="First Name"
+              placeholder="Auth Key"
               name="firstName"
               style={{marginLeft:"-6px"}}
             //   value="NAme"
             //   onChange={handleInputChange}
+            /></div>
+            <div> <Input
+              placeholder="Test Key"
+              name="firstName"
+              style={{marginLeft:"-6px"}}
+          
             /></div>
       <div> <Button
                 type="primary"
                 htmlType="submit"
                 // loading={props.addingCustomerConfig}
               >
-                <div class="font-bold font-poppins text-xs"> Create</div>
+                <div class="font-bold font-poppins text-xs"> Submit</div>
              
               </Button></div>
         </div>
@@ -126,18 +151,24 @@ function Logistictable(props) {
           />
           </div>
       <div> <Input
-              placeholder="First Name"
+              placeholder=" Auth Key"
               name="firstName"
               style={{marginLeft:"-6px"}}
             //   value="NAme"
             //   onChange={handleInputChange}
+            /></div>
+            <div> <Input
+              placeholder="Test Key"
+              name="firstName"
+              style={{marginLeft:"-6px"}}
+          
             /></div>
       <div> <Button
                 type="primary"
                 htmlType="submit"
                 // loading={props.addingCustomerConfig}
               >
-                <div class="font-bold font-poppins text-xs"> Create</div>
+                <div class="font-bold font-poppins text-xs"> Submit</div>
              
               </Button></div>
         </div>

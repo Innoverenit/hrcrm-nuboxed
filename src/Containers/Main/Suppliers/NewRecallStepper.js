@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "antd";
-import {  UserOutlined } from "@ant-design/icons";
+import GroupsIcon from '@mui/icons-material/Groups';
 import CallIcon from '@mui/icons-material/Call';
 import { StyledSteps } from "../../../Components/UI/Antd";
 import Swal from "sweetalert2";
@@ -54,7 +54,7 @@ const NewRecallStepper = (props) => {
     const steps = [
         {
             title: "Item Info",
-            icon: <UserOutlined className="text-green-600" style={{ backgroundColor: "green" }} />,
+            icon: <GroupsIcon className="text-green-600" style={{ backgroundColor: "green" }} />,
             content: (
                 <NewRecallListStep1
                     selectedItems={selectedItemsStep1}

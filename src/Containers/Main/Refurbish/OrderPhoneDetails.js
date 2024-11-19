@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../Components/UI/Antd";
 // import { getPhonelistById } from "../../../Distributor/DistributorAction";
 import { Tooltip } from "antd";
-import { FileDoneOutlined } from "@ant-design/icons";
+import TaskIcon from '@mui/icons-material/Task';
 // import QRCodeModal from "../../../Components/UI/Elements/QRCodeModal";
 import { SubTitle } from "../../../Components/UI/Elements";
 // import ReceiveValidationToggle from "../../../Inventory/Child/InventoryDetails/Received/ReceiveValidationToggle"
@@ -87,7 +87,7 @@ function DistributorPauseForm(props) {
                 //debugger
                 return (
                     <Tooltip title="Task">
-                        <FileDoneOutlined style={{ color: "black" }} type="file-done"
+                        <TaskIcon style={{ color: "black" }} type="file-done"
 
                         //   onClick={() => {
                         //     handleSetParticularOrderData(item);
@@ -106,7 +106,7 @@ function DistributorPauseForm(props) {
                 //debugger
                 return (
                     <Tooltip title="Notes">
-                        <FileDoneOutlined 
+                        <TaskIcon 
                             style={{ cursor: "pointer", fontSize: "13px" }}
                         //   onClick={() => {
                         //     handleSetParticularOrderData(item);

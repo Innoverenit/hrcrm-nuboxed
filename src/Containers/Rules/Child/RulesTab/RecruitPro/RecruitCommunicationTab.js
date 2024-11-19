@@ -3,8 +3,6 @@ import { Icon } from "antd";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import { connect } from "react-redux";
-import {
-  EyeInvisibleOutlined,} from '@ant-design/icons';
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { bindActionCreators } from "redux";
 import RecruitCommunicationForm from "./RecruitCommunicationForm";

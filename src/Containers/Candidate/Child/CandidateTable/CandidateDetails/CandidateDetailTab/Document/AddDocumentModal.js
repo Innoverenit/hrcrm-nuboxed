@@ -15,7 +15,7 @@ import {
 import DragableUpload from "../../../../../../../Components/Forms/Formik/DragableUpload";
 
 import { getDocuments } from "../../../../../../../Containers/Settings/Documents/DocumentsAction";
-import { RightSquareOutlined } from "@ant-design/icons";
+import InputIcon from '@mui/icons-material/Input';
 import VerticalAlignTopIcon from '@mui/icons-material/VerticalAlignTop';
 const ButtonGroup = Button.Group;
 const { Option } = Select;
@@ -353,7 +353,7 @@ handleContract = (checked) => {
                                                 : "rgba(0, 0, 0, 0.65)",
                                           }}
                                         >
-                                          <RightSquareOutlined type="right-square" />
+                                          <InputIcon type="right-square" />
                                         </Button>
                                       </Tooltip>
                                       <Tooltip title="Above">

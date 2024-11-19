@@ -26,10 +26,7 @@ import {
 import {getUOM} from "../../Settings/SettingsAction"
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip, Popconfirm,Button } from "antd";
-import {
-  PhoneFilled,
-
-} from "@ant-design/icons";
+import CallIcon from '@mui/icons-material/Call';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import UploadIcon from '@mui/icons-material/Upload';
 import WidgetsIcon from '@mui/icons-material/Widgets';
@@ -535,7 +532,7 @@ function SuppliesTable(props) {
                             </div>
                             <div className="h-8  bg-[#eef2f9] justify-center items-center flex"> 
                               {props.repairInd && <Tooltip title={translatedMenuItems[20]}>
-                                <PhoneFilled
+                                <CallIcon
                                   onClick={() => {
                                     props.handleBrandModel(true);
                                     handleParticularRowData(item);

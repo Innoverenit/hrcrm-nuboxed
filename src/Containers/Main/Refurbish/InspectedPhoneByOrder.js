@@ -20,7 +20,7 @@ import {
 } from "./RefurbishAction";
 import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
 import ContactsIcon from '@mui/icons-material/Contacts';
-import { BarcodeOutlined } from '@ant-design/icons';
+import QrCodeScannerIcon from '@mui/icons-material/QrCodeScanner';
 import MicIcon from '@mui/icons-material/Mic';
 import ReceivedSpareList from "./ProductionTab/ReceivedSpareList";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -403,7 +403,7 @@ function InspectedPhoneByOrder(props) {
                                                               onClick={handlePrintBr}>
                                                             
                                                                 Print Br
-                                                                <BarcodeOutlined className="!text-icon"/></Button>}
+                                                                <QrCodeScannerIcon className="!text-icon"/></Button>}
                                                                 content={() => componentBarRefs.current[index]}
                                                             />
                                                         </Tooltip>

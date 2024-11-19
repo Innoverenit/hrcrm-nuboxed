@@ -8,8 +8,7 @@ import { getActivityListByCandidateId } from "../../../../../CandidateAction";
 import Highlighter from "react-highlight-words";
 import ChecklistIcon from '@mui/icons-material/Checklist';
 import CallIcon from '@mui/icons-material/Call';
-import { FileDoneOutlined } from "@ant-design/icons";
-
+import TaskIcon from '@mui/icons-material/Task';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 const ButtonGroup = Button.Group;
 class LinkedCandidateActivity extends Component {
@@ -157,7 +156,7 @@ class LinkedCandidateActivity extends Component {
                             <div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
                             {item.activity === "Call" && <CallIcon type="phone" />}
             {item.activity === "Event" && <ChecklistIcon type="schedule" />}
-            {item.activity === "Task" && <FileDoneOutlined type="file-done" />}
+            {item.activity === "Task" && <TaskIcon type="file-done" />}
                             </div>
                          
        
@@ -293,7 +292,7 @@ export default connect(
 //         <>
 //           {item.activity === "Call" && <CallIcon type="phone" />}
 //           {item.activity === "Event" && <ChecklistIcon type="schedule" />}
-//           {item.activity === "Task" && <FileDoneOutlined type="file-done" />}
+//           {item.activity === "Task" && <TaskIcon type="file-done" />}
 //         </>
 //       );
 //     },

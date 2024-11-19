@@ -7,7 +7,7 @@ import {
     addCustomerConfigure,
     getCustomerConfigure
 } from "../../../SettingsAction"
-import { CheckOutlined } from "@ant-design/icons";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { base_url } from "../../../../../Config/Auth";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field, FieldArray, FastField,setFieldValue  } from "formik";
@@ -824,7 +824,7 @@ props.emptyClearbit();
                                  height: "31px"
                            }}
                          >
-                          {priority === "hot" && <CheckOutlined style={{ color: "white" }} />}
+                          {priority === "hot" && <CheckCircleOutlineIcon style={{ color: "white" }} />}
                           </Button>
                        </Tooltip>
                        &nbsp;
@@ -841,7 +841,7 @@ props.emptyClearbit();
                                  height: "31px",
                            }}
                          >
-                          {priority === "warm" && <CheckOutlined style={{ color: "white" }} />}
+                          {priority === "warm" && <CheckCircleOutlineIcon style={{ color: "white" }} />}
                           </Button>
                        </Tooltip>
                        &nbsp;
@@ -856,7 +856,7 @@ props.emptyClearbit();
                                  height: "31px"
                            }}
                            >
-                           {priority === "cold" && <CheckOutlined style={{ color: "white" }} />}
+                           {priority === "cold" && <CheckCircleOutlineIcon style={{ color: "white" }} />}
                            </Button>
                        </Tooltip>
                      </div>

@@ -7,7 +7,7 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip,  Menu, Dropdown, Progress } from "antd";
 import { Link } from 'react-router-dom';
 import { CurrencySymbol, } from "../../../Components/Common";
-import { CheckCircleTwoTone} from "@ant-design/icons";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import {
@@ -204,7 +204,7 @@ function IncludedDealCardList(props) {
                             title="Own"
                              
                           >
-                            <CheckCircleTwoTone
+                            <CheckCircleOutlineIcon
                               type="check-circle"
                               theme="twoTone"
                               twoToneColor="#24D8A7"
@@ -233,7 +233,7 @@ function IncludedDealCardList(props) {
                             title="Won"
                              
                           >
-                            <CheckCircleTwoTone
+                            <CheckCircleOutlineIcon
                               type="check-circle"
                               theme="twoTone"
                               twoToneColor="#24D8A7"
