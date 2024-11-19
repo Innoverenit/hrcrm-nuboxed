@@ -6,8 +6,7 @@ import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition
 import { connect } from "react-redux";
 import {getRecords} from "../ProcreAction"
 import { Avatar, Tooltip,Badge } from "antd";
-
-import { AudioOutlined } from "@ant-design/icons"
+import MicIcon from '@mui/icons-material/Mic';
 
 const Option = StyledSelect.Option;
 
@@ -62,7 +61,7 @@ const {
             }
           };
           const suffix = (
-            <AudioOutlined
+            <MicIcon
               onClick={SpeechRecognition.startListening}
               style={{
                 fontSize: 16,

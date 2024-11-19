@@ -1,15 +1,9 @@
-import React,{useEffect,useState,useRef} from "react";
-import TocIcon from '@mui/icons-material/Toc';
+import React,{useState,useRef} from "react";
 import { StyledSelect } from "../../Components/UI/Antd";
 import { bindActionCreators } from "redux";
-// import {
-//     inputTradeSearch,ClearReducerDataOfTrade,getInventoryAlllist
-// } from "./TradeAction";
-import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { connect } from "react-redux";
-import { Avatar, Input, Tooltip,Badge, Button } from "antd";
+import {  Tooltip,Button } from "antd";
 
-import { AudioOutlined } from "@ant-design/icons"
 
 const Option = StyledSelect.Option;
 
@@ -82,7 +76,7 @@ function QulityActionLeft (props) {
 //             }, minRecordingTime);
 //           };
 //           const suffix = (
-//             <AudioOutlined
+//             <MicIcon
 //             onClick={handleStartListening}
 //               style={{
 //                 fontSize: 16,

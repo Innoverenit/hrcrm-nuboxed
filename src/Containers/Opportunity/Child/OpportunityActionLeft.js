@@ -7,7 +7,7 @@ import { withRouter } from "react-router-dom";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { CheckCircleTwoTone } from "@ant-design/icons";
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import {
@@ -26,7 +26,8 @@ import {
 
 } from "../OpportunityAction";
 import PeopleIcon from '@mui/icons-material/People';
-import { StopTwoTone, TableOutlined } from "@ant-design/icons";
+import {  TableOutlined } from "@ant-design/icons";
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 const { Search } = Input;
 
 const OpportunityActionLeft = (props) => {
@@ -134,7 +135,7 @@ const OpportunityActionLeft = (props) => {
     };
 
     const suffix = (
-      <AudioOutlined
+      <MicIcon
         onClick={handleStartListening}
         style={{
           fontSize: 16,
@@ -329,7 +330,7 @@ const OpportunityActionLeft = (props) => {
             <Avatar style={{ background: props.viewType === "lost" ? "#f279ab" : "#28a355",
                boxShadow: props.viewType === "lost" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
                   transform: props.viewType === "lost" ? "scale(1.05)" : "scale(1)" }}>
-            <StopTwoTone type="stop" theme="twoTone" twoToneColor="red" className="text-white !text-icon" />
+            <DoDisturbIcon type="stop" theme="twoTone" twoToneColor="red" className="text-white !text-icon" />
             </Avatar>
           </span>
         </Badge>

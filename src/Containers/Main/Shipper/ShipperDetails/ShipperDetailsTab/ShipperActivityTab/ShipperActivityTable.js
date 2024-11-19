@@ -4,9 +4,9 @@ import { bindActionCreators } from "redux";
 import { Tooltip } from "antd";
 import {
   FileDoneOutlined,
-  PhoneOutlined,
-  ScheduleOutlined,
 } from "@ant-design/icons";
+import CallIcon from '@mui/icons-material/Call';
+import ChecklistIcon from '@mui/icons-material/Checklist';
 import {
   getActivityListByShipperId,
   handleUpdateEventModal,
@@ -113,8 +113,8 @@ class ShipperActivityTable extends Component {
                                                 <Tooltip>
                                                     <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                                         <h4 class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
-                                                        {item.activity === "Call" && <PhoneOutlined />}
-              {item.activity === "Event" && <ScheduleOutlined />}
+                                                        {item.activity === "Call" && <CallIcon />}
+              {item.activity === "Event" && <ChecklistIcon />}
               {item.activity === "Task" && <FileDoneOutlined />}
 
                                                         </h4>
@@ -156,7 +156,7 @@ class ShipperActivityTable extends Component {
                                             <h4 class=" text-xs  font-poppins">
                                             <Tooltip title="Edit">
               {item.activity === "Event" && (
-               <ScheduleOutlined
+               <ChecklistIcon
                className=" !text-xl cursor-pointer "
                 
                   onClick={() => {
@@ -166,7 +166,7 @@ class ShipperActivityTable extends Component {
                 />
               )}
               {item.activity === "Call" && (
-               <PhoneOutlined
+               <CallIcon
                className=" !text-xl cursor-pointer "
                   onClick={() => {
                     // this.props.setEditCall(item);
@@ -239,8 +239,8 @@ export default connect(
 // import { Tooltip } from "antd";
 // import {
 //   FileDoneOutlined,
-//   PhoneOutlined,
-//   ScheduleOutlined,
+//   CallIcon,
+//   ChecklistIcon,
 // } from "@ant-design/icons";
 // import { StyledTable } from "../../../../../../Components/UI/Antd";
 // import {
@@ -279,8 +279,8 @@ export default connect(
 //         render: (name, item, i) => {
 //           return (
 //             <>
-//               {item.activity === "Call" && <PhoneOutlined />}
-//               {item.activity === "Event" && <ScheduleOutlined />}
+//               {item.activity === "Call" && <CallIcon />}
+//               {item.activity === "Event" && <ChecklistIcon />}
 //               {item.activity === "Task" && <FileDoneOutlined />}
 //             </>
 //           );
@@ -322,7 +322,7 @@ export default connect(
 //           return (
 //             <Tooltip title="Edit">
 //               {item.activity === "Event" && (
-//                <ScheduleOutlined
+//                <ChecklistIcon
 //                   style={{ cursor: "pointer", fontSize: "12px" }}
 //                   onClick={() => {
 //                     // this.props.setEditEvents(item);
@@ -331,7 +331,7 @@ export default connect(
 //                 />
 //               )}
 //               {item.activity === "Call" && (
-//                <PhoneOutlined
+//                <CallIcon
 //                   style={{ cursor: "pointer", fontSize: "12px" }}
 //                   onClick={() => {
 //                     // this.props.setEditCall(item);

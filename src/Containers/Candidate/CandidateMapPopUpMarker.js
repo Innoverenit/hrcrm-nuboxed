@@ -1,19 +1,9 @@
 import React from "react";
 import {  Marker, Popup } from "react-leaflet";
-import { Avatar } from "antd";
-import SkillsLoadMore from "../Candidate/Child/CandidateTable/SkillsLoadMore"
 import dayjs from "dayjs";
 import { Link } from "../../Components/Common";
-import {
-  MultiAvatar,
-  Title,
-  SubTitle,
-  JumpStartBox,
-} from "../../Components/UI/Elements";
-import { AddressComponent, CurrencySymbol } from "../../Components/Common";
+import {  Title} from "../../Components/UI/Elements";
 import L from "leaflet";
-import CurrencyCompressor from "../../Components/Common/CurrencyCompressor";
-import { CompassOutlined } from "@ant-design/icons";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({

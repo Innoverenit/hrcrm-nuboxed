@@ -32,13 +32,13 @@ import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { getAssignedToList } from "../../Employees/EmployeeAction";
 import { setClearbitCandidateData } from "../../Candidate/CandidateAction";
 import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import { Listbox } from '@headlessui/react'
 const { Option } = Select;  
 const ButtonGroup = Button.Group;
 
 const suffix = (
-  <AudioOutlined className=" !text-icon  text-[#1890ff]"
+  <MicIcon className=" !text-icon  text-[#1890ff]"
     onClick={SpeechRecognition.startListening}
    
   />

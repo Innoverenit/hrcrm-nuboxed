@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FullscreenOutlined } from '@ant-design/icons';
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import { bindActionCreators } from "redux";
 import { PieChart, Pie, } from "recharts";
 
@@ -86,7 +86,7 @@ class SourceMainChart extends Component {
       <div>
         
           <div style={{ position: "relative" }}>
-            <FullscreenOutlined
+            <FullscreenIcon
               // type="fullscreen"
               style={{
                 fontSize: "1em",

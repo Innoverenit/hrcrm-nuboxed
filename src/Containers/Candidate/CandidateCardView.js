@@ -34,7 +34,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Select } from "antd";
 import { StyledPopconfirm  } from '../../Components/UI/Antd';
-import { UpCircleOutlined } from '@ant-design/icons';
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import { BundleLoader } from "../../Components/Placeholder";
 const AddCandidatesTasksDrawerModal = lazy(() =>import("./AddCandidatesTasksDrawerModal"));
 const AddPlayerModal = lazy(() =>import("./Child/CandidateTable/AddPlayerModal"));
@@ -237,7 +237,7 @@ function handleSetCurrentCandidateId(candidateId) {
             title="Do you want to blacklist?"
             onConfirm={() => props.getBlackListCandidate(item.candidateId)}
           >
-            <UpCircleOutlined
+            <ArrowCircleUpIcon
               type="up-circle"
               theme="filled"
               className=" cursor-pointer !text-icon text-gray-600"  />

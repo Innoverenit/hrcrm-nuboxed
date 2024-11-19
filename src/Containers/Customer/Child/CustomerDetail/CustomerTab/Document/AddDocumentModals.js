@@ -17,7 +17,8 @@ import {
   // getselectdrop,
 } from "../../../../CustomerAction";
 import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
-import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
+import { RightSquareOutlined,} from "@ant-design/icons";
+import VerticalAlignTopIcon from '@mui/icons-material/VerticalAlignTop';
 import {base_url} from "../../../../../../Config/Auth";
 const { Option } = Select;
 const ButtonGroup = Button.Group;
@@ -394,7 +395,7 @@ function AddDocumentModal (props){
                                           color: selectedOwnerAbove === "Above" ? "white" : "rgba(0, 0, 0, 0.65)",
                                         }}
                                       >
-                                        <ToTopOutlined type="ToTopOutlined" />
+                                        <VerticalAlignTopIcon type="VerticalAlignTopIcon" />
                                       </Button>
                                     </Tooltip>{" "}
                                   </ButtonGroup>

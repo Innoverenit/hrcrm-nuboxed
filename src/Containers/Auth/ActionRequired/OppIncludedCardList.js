@@ -10,7 +10,8 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Link } from 'react-router-dom';
 import { CurrencySymbol, } from "../../../Components/Common";
 import OpportunitySelectStages from "../../Opportunity/Child/OpportunityTable/OpportunitySelectStages"
-import { CheckCircleTwoTone, StopTwoTone } from "@ant-design/icons";
+import { CheckCircleTwoTone} from "@ant-design/icons";
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { MultiAvatar, MultiAvatar2,  } from "../../../Components/UI/Elements";
 import {
     getIncludedOpportunityList,
@@ -268,7 +269,7 @@ imgHeight={"1.8em"}
 <>
   <Tooltip title={"Lost"}>
     {" "}
-    <StopTwoTone
+    <DoDisturbIcon
       type="stop"
       theme="twoTone"
       twoToneColor="red"         
@@ -312,7 +313,7 @@ imgHeight={"1.8em"}
        
       >
  
-  <StopTwoTone
+  <DoDisturbIcon
           type="stop"
           theme="twoTone"
           twoToneColor="red"

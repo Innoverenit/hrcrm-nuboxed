@@ -6,7 +6,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 import TableViewIcon from '@mui/icons-material/TableView';
 import { withRouter } from "react-router-dom";
 import SpeechRecognition, {  } from 'react-speech-recognition';
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import {
    inputPartnerDataSearch ,
    getRecords,
@@ -19,7 +19,7 @@ import { FormattedMessage } from 'react-intl';
 
 const { Search } = Input;
 const suffix = (
-  <AudioOutlined
+  <MicIcon
     onClick={SpeechRecognition.startListening}
     style={{
       fontSize: 16,

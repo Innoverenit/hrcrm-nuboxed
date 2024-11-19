@@ -28,7 +28,7 @@ import {
 } from "./RefurbishAction";
 import { withRouter } from "react-router";
 import dayjs from "dayjs";
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 
 import { HistoryOutlined } from "@ant-design/icons";
@@ -117,7 +117,7 @@ const SearchedDataRefurbish = (props) => {
         }, minRecordingTime);
       };
       const suffix = (
-        <AudioOutlined
+        <MicIcon
           onClick={handleStartListening}
           style={{
             fontSize: 16,

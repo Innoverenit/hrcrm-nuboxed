@@ -5,7 +5,7 @@ import { StyledSelect } from "../../../Components/UI/Antd";
 import { withRouter } from "react-router-dom";
 import { inputEmployeeDataSearch,getEmployeelist,ClearReducerDataOfEmployee, getRecords } from "../EmployeeAction";
 import {  Input, Tooltip, Badge,Avatar } from "antd";
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 
 import {getDepartments} from "../../Settings/Department/DepartmentAction"
 import { getlocation } from "../../Event/Child/Location/LocationAction";
@@ -98,7 +98,7 @@ const EmployeesActionLeft = (props) => {
     }, minRecordingTime);
   };
   const suffix = (
-    <AudioOutlined
+    <MicIcon
       onClick={handleStartListening}
       style={{
         fontSize: 16,

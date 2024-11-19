@@ -7,7 +7,7 @@ import { getExpenses } from "../../Settings/Expense/ExpenseAction";
 import DownloadIcon from '@mui/icons-material/Download';
 import dayjs from "dayjs";
 import { base_url } from "../../../Config/Auth";
-import { UploadOutlined } from "@ant-design/icons";
+import UploadIcon from '@mui/icons-material/Upload';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import EditUpload from "../../../Components/Forms/Edit/EditUpload";
@@ -261,7 +261,7 @@ style={{ border: "1px solid grey" }}
                               <div class="flex flex-row items-center w-[10%]">
                                 <div class="flex items-center">
                                 <Tooltip title="Upload Document">
-            <UploadOutlined
+            <UploadIcon
               type="upload"
               style={{ cursor: "pointer",fontSize:"1rem" }}
               onClick={() => {

@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import styled from "styled-components";
-import {  UpCircleOutlined } from "@ant-design/icons";
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import SearchIcon from '@mui/icons-material/Search';
 import { StyledTable, StyledPopconfirm } from "../../Components/UI/Antd";
 import { Button, Select, Tooltip, Input } from "antd";
@@ -458,7 +458,7 @@ function CandidateBlackListTable(props) {
             title="Do you want to blacklist?"
             onConfirm={() => props.getBlackListCandidate(item.candidateId)}
           >
-            <UpCircleOutlined
+            <ArrowCircleUpIcon
               type="up-circle"
               theme="filled"
               // type="edit"

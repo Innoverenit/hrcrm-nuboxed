@@ -15,9 +15,7 @@ function DispatchValidationToggle(props) {
     return (
         <>
             <div>
-                {/* <InfoCircleOutlined
-                // onClick={props.handlePickupModal(true)}
-                /> */}
+               
                 <Switch
                     disabled={props.item.dispatchReceivedInd || props.item.awbCount === 0}
                     checked={props.item.dispatchReceivedInd}

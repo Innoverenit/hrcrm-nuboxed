@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { DashOutlined} from '@ant-design/icons';
-const StyledIcon = styled(DashOutlined)`
+import PowerInputIcon from '@mui/icons-material/PowerInput';
+const StyledIcon = styled(PowerInputIcon)`
   position: absolute;
   top: ${props => props.top};
   background-color: #fff;

@@ -1,13 +1,11 @@
-import React,{useEffect,useState} from "react";
+import React,{useState} from "react";
 import TocIcon from '@mui/icons-material/Toc';
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { bindActionCreators } from "redux";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { connect } from "react-redux";
-import { Avatar, Input, Tooltip,Badge } from "antd";
+import { Avatar,  Tooltip } from "antd";
 
-import { AudioOutlined } from "@ant-design/icons"
 
 const Option = StyledSelect.Option;
 
@@ -62,7 +60,7 @@ function VendorActionLeft (props) {
 //             }
 //           };
 //           const suffix = (
-//             <AudioOutlined
+//             <MicIcon
 //               onClick={SpeechRecognition.startListening}
 //               style={{
 //                 fontSize: 16,

@@ -16,7 +16,8 @@ import {
   getPartnerDocument,
 } from "../../../../PartnerAction";
 import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
-import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
+import { RightSquareOutlined } from "@ant-design/icons";
+import VerticalAlignTopIcon from '@mui/icons-material/VerticalAlignTop';
 
 const ButtonGroup = Button.Group;
 const documentSchema = Yup.object().shape({
@@ -296,7 +297,7 @@ class AddDocumentModal extends Component {
                                                 : "rgba(0, 0, 0, 0.65)",
                                           }}
                                         >
-                                          <ToTopOutlined type="ToTopOutlined" />
+                                          <VerticalAlignTopIcon type="VerticalAlignTopIcon" />
                                         </Button>
                                       </Tooltip>{" "}
                                     </ButtonGroup>

@@ -8,7 +8,7 @@ import DownloadIcon from '@mui/icons-material/Download';
 import dayjs from "dayjs";
 import { base_url } from "../../../Config/Auth";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import {  UploadOutlined } from "@ant-design/icons";
+import UploadIcon from '@mui/icons-material/Upload';
 import EditUpload from "../../../Components/Forms/Edit/EditUpload";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
@@ -287,7 +287,7 @@ style={{border:"1px solid lightgrey",marginRight:"0.25rem"}}
                                 <div class="flex items-center flex-col ml-2">
                                 {item.status !== 'Approved' && (
                                 <Tooltip title="Upload Document">
-            <UploadOutlined
+            <UploadIcon
               type="upload"
               style={{ cursor: "pointer",fontSize:"1rem" }}
               onClick={() => {

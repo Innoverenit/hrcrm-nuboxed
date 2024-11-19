@@ -6,13 +6,9 @@ import { Input } from "antd";
 
 import {
     inputJobOrderSearch,
-    // inputCandidateSkillDataSearch,
-    // getRecords,
-    //  getAllRecords,
   } from "../Opportunity/OpportunityAction";
 import { StyledSelect } from "../../Components/UI/Antd";
-import { AudioOutlined } from '@ant-design/icons';
-import { Button,Tooltip } from "antd";
+import { Button} from "antd";
 const Option = StyledSelect.Option;
 const item = [{ type: "Hot" }, { type: "Warm" }, { type: "Cold" }];
 const { Search } = Input;

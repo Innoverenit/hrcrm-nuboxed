@@ -8,7 +8,7 @@ import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import PeopleIcon from '@mui/icons-material/People';
 import { CheckCircleTwoTone } from "@ant-design/icons";
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import {getdealsRecord,getdealsAllRecord,
   getdealsTeamRecord,getlostRecords,
@@ -16,7 +16,8 @@ import {getdealsRecord,getdealsAllRecord,
   getDealListbyUserId,getTeamsDeals,getAllDeals
 
 } from "../DealAction";
-import { StopTwoTone, TableOutlined } from "@ant-design/icons";
+import { TableOutlined } from "@ant-design/icons";
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 const { Search } = Input;
 
 const DealActionLeft = (props) => {
@@ -116,7 +117,7 @@ const DealActionLeft = (props) => {
     };
 
     const suffix = (
-      <AudioOutlined
+      <MicIcon
         onClick={handleStartListening}
         style={{
           fontSize: 16,
@@ -269,7 +270,7 @@ const DealActionLeft = (props) => {
           >
             {" "}
             <Avatar style={{ background: props.viewType === "lost" ? "#f279ab" : "#28a355" }}>
-            <StopTwoTone type="stop" theme="twoTone" twoToneColor="red"  className=" !text-icon cursor:pointer" />
+            <DoDisturbIcon type="stop" theme="twoTone" twoToneColor="red"  className=" !text-icon cursor:pointer" />
             </Avatar>
           </span>
         </Badge>

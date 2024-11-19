@@ -4,7 +4,8 @@ import { bindActionCreators } from "redux";
 import { Tooltip, Button,Badge,Input } from "antd";
 import { getAllShipper } from "../Shipper/ShipperAction";
 import dayjs from "dayjs";
-import { AudioOutlined, BarcodeOutlined } from '@ant-design/icons';
+import {  BarcodeOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import {
@@ -919,7 +920,7 @@ useEffect(() => {
     }, minRecordingTime);
   };
   const suffix = (
-    <AudioOutlined
+    <MicIcon
       onClick={handleStartListening}
       style={{
         fontSize: 16,

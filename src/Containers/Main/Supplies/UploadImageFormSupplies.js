@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Upload, Button, message } from 'antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { UploadOutlined } from '@ant-design/icons';
+import UploadIcon from '@mui/icons-material/Upload';
 import { base_url, base_url2, login_url } from '../../../Config/Auth';
 //import 'antd/dist/antd.css';
 const token = sessionStorage.getItem("token");
@@ -86,7 +86,7 @@ const UploadImageFormSupplies = (props) => {
         showUploadList={{ showRemoveIcon: true }} // Show remove icon
       >
         <p className="ant-upload-drag-icon">
-          <UploadOutlined />
+          <UploadIcon />
         </p>
         <p className="ant-upload-text">
           Drag & drop images here, or click to select files
@@ -95,7 +95,7 @@ const UploadImageFormSupplies = (props) => {
 
       <Button
         type="primary"
-        icon={<UploadOutlined />}
+        icon={<UploadIcon />}
         onClick={handleUpload}
         style={{ marginTop: '16px' }}
       >

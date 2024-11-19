@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Checkbox, } from "antd";
-import { ScheduleOutlined, } from '@ant-design/icons';
+import ChecklistIcon from '@mui/icons-material/Checklist';
 import dayjs from "dayjs";
 import {
   SubTitle,
@@ -104,7 +104,7 @@ class TodoItem extends Component {
               <SubTitle
                 style={{ fontSize: 14, color: "#93a6c4", width: "auto" }}
               >
-                <ScheduleOutlined
+                <ChecklistIcon
                   // type={todo.title === "Call" ? "phone" : "schedule"}
                   theme="twoTone"
                 />{" "}

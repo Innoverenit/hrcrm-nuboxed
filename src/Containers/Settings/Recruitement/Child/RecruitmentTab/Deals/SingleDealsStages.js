@@ -11,7 +11,7 @@ import { ViewEditCard } from "../../../../../../Components/UI/Elements";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import AddDealsStagesModal from "../AddDealsStagesModal"
-import { EnvironmentOutlined } from "@ant-design/icons";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 const { Option } = Select;
 
 class SingleDealsStages extends Component {
@@ -199,7 +199,7 @@ class SingleDealsStages extends Component {
                                </Button> 
                                } */}
 
-                               <EnvironmentOutlined
+                               <AddLocationAltIcon
                                 onClick={() => {
                                   this.props.handledealStagesModal(true)
                                   this.props.handleSetCurrentItem(dealsProcessStages)

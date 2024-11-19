@@ -24,7 +24,7 @@ import {
 } from "../CandidateAction";
 import GroupsIcon from '@mui/icons-material/Groups';
 import { StyledSelect } from "../../../Components/UI/Antd";
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 const Option = StyledSelect.Option;
 const item = [{ type: "Hot" }, { type: "Warm" }, { type: "Cold" }];
 const { Search } = Input;
@@ -56,7 +56,7 @@ const CandidateActionLeft = (props) => {
 
 
   const suffix = (
-    <AudioOutlined
+    <MicIcon
       onClick={SpeechRecognition.startListening}
 
       // onClick={() => {

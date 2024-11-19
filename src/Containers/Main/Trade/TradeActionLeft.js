@@ -8,8 +8,7 @@ import {
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { connect } from "react-redux";
 import { Avatar, Input, Tooltip,Badge } from "antd";
-
-import { AudioOutlined } from "@ant-design/icons"
+import MicIcon from '@mui/icons-material/Mic';
 
 const Option = StyledSelect.Option;
 
@@ -82,7 +81,7 @@ const {
             }, minRecordingTime);
           };
           const suffix = (
-            <AudioOutlined
+            <MicIcon
             onClick={handleStartListening}
               style={{
                 fontSize: 16,

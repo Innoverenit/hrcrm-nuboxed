@@ -7,15 +7,12 @@ import {
   MainWrapper,
 } from "../../../../../../Components/UI/Layout";
 import {
-  EnvironmentOutlined,
-  EyeInvisibleOutlined,
-  LeftCircleFilled,
+
   LeftCircleTwoTone,
   RightCircleTwoTone,
- 
-  
 } from '@ant-design/icons';
-import { Leaflet, OpenTripPlanner } from "../../../../../../Components/Utils";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import { Leaflet} from "../../../../../../Components/Utils";
 
 import { AddressComponent } from "../../../../../../Components/Common";
 import { CarouselIcon } from "../../../../../../Components/UI/Elements";
@@ -107,7 +104,7 @@ class EmployeeDetailMap extends Component {
       <>
         <MainWrapper style={{ padding: 0, position: "relative" }}>
           <Tooltip title="View and update customer addresses">
-            <EnvironmentOutlined
+            <AddLocationAltIcon
               type="environment"
               onClick={this.handleMapModalVisible}
               style={{

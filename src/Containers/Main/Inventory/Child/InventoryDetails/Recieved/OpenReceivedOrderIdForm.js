@@ -38,7 +38,7 @@ import OpenReceivedPlusCard from "./OpenReceivedPlusCard";
 import InventoryExpandListModal from "./InventoryExpandListModal";
 import NodataFoundPageAccount from "../../../../Account/AccountDetailsTab/AccountOrderTab/NodataFoundPageAccount";
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 
 const { Search } = Input;
@@ -226,7 +226,7 @@ function OpenReceivedOrderIdForm(props) {
           }, minRecordingTime);
         };
         const suffix = (
-          <AudioOutlined
+          <MicIcon
             onClick={handleStartListening}
             style={{
               fontSize: 16,

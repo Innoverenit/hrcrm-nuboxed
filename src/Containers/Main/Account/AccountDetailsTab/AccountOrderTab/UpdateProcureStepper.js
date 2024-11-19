@@ -5,7 +5,7 @@ import { Button } from "antd";
 import { bindActionCreators } from "redux";
 import { StyledSteps } from "../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../Components/Placeholder";
-import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
 
@@ -80,7 +80,7 @@ class UpdateProcureStepper extends Component {
             //         id="app.phonedetails"
             //         defaultMessage="Phone details"
             //     />,
-            //     icon: <PhoneOutlined
+            //     icon: <CallIcon
             //         style={{ color: "blue" }}
             //     />,
             //     content: <OrderStep2 orderId={this.props.particularRowData.orderId} distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,

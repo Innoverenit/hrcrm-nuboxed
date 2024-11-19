@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
 import { StyledSteps } from "../../../../../Components/UI/Antd";
-import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
+import CallIcon from '@mui/icons-material/Call';
 import { FormattedMessage } from 'react-intl';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
@@ -55,7 +56,7 @@ class ProcurementStepper extends Component {
                     id="app.phonedetails"
                     defaultMessage="Phone details"
                 />,
-                icon: <PhoneOutlined
+                icon: <CallIcon
                     style={{ color: "blue" }}
                 />,
                 content: <AccountProcureSecondStep distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd}

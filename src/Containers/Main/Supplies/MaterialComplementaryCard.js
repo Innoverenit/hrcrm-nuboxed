@@ -13,7 +13,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import ComplementaryToggle from "./ComplementaryToggle";
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 
 
 const { Search } = Input;
@@ -168,7 +168,7 @@ function MaterialComplementaryCard(props) {
           }, minRecordingTime);
         };
         const suffix = (
-          <AudioOutlined
+          <MicIcon
             onClick={handleStartListening}
             style={{
               fontSize: 16,

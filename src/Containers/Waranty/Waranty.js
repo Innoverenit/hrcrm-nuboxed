@@ -2,13 +2,10 @@ import React,{useEffect,useState} from 'react'
 import { connect } from 'react-redux'
 
 import AddWarantyDrawerModal from "../Waranty/AddWarantyDrawerModal"
-import ButtonGroup from "antd/lib/button/button-group";
-import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
- import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
-import { Tooltip, Button,message, Popconfirm, Select,Switch } from "antd";
+import { Select } from "antd";
 import dayjs from "dayjs";
 import { bindActionCreators } from "redux";
-import { HeartOutlined } from '@ant-design/icons';
+import LanguageIcon from '@mui/icons-material/Language';
 import {handleWarantyDrawerModal} from "../Waranty/WarantyAction"
 
 
@@ -181,7 +178,7 @@ export const Waranty = (props) => {
 
                                 <div className="flex md:w-[22rem] max-sm:justify-between max-sm:flex-row">
                                     <div className="text-xs text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
-                                    <HeartOutlined
+                                    <LanguageIcon
                                      onClick={() => {
               
                                        props.handleWarantyDrawerModal(true);

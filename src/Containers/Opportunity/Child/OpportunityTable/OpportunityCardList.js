@@ -12,7 +12,8 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Link } from 'react-router-dom';
 import { Tooltip, Select, Menu, Dropdown, Progress ,Popconfirm} from "antd";
 import { CurrencySymbol, } from "../../../../Components/Common";
-import { CheckCircleTwoTone, StopTwoTone } from "@ant-design/icons";
+import { CheckCircleTwoTone } from "@ant-design/icons";
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { MultiAvatar, MultiAvatar2,  } from "../../../../Components/UI/Elements";
@@ -419,7 +420,7 @@ imgHeight={"1.8rem"}
 <>
   <Tooltip title={"Lost"}>
     {" "}
-    <StopTwoTone
+    <DoDisturbIcon
       type="stop"
       theme="twoTone"
       twoToneColor="red"         
@@ -467,7 +468,7 @@ imgHeight={"1.8rem"}
         }
       >
  
-  <StopTwoTone
+  <DoDisturbIcon
           type="stop"
           theme="twoTone"
           twoToneColor="red"

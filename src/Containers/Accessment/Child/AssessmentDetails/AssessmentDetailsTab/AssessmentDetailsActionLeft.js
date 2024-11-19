@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { RollbackOutlined } from "@ant-design/icons";
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import StatusToggleID from './AssessmentCards/StatusToggleID';
 
 function AssessmentDetailsActionLeft(props) {
@@ -15,7 +15,7 @@ function AssessmentDetailsActionLeft(props) {
     
         <div style={{display:"flex",flexDirection:"row",justifyContent:"space-between" }}>
           <div style={{margin:"auto"}}>
-        <RollbackOutlined
+        <KeyboardReturnIcon
           class="mr-[0.3rem]" 
             iconType="rollback"
            tooltipTitle="Back"

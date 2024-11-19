@@ -21,7 +21,8 @@ import {
     handleQcexpand,
     handleRefurbishLevelModal
 } from "./RefurbishAction";
-import { AudioOutlined, BarcodeOutlined } from '@ant-design/icons';
+import { BarcodeOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Button, Tooltip, Progress,Input,Badge } from "antd";
 import dayjs from "dayjs";
@@ -178,7 +179,7 @@ function OrderPhoneListById(props) {
         }, minRecordingTime);
       };
       const suffix = (
-        <AudioOutlined
+        <MicIcon
           onClick={handleStartListening}
           style={{
             fontSize: 16,

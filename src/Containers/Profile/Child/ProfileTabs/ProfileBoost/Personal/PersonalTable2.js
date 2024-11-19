@@ -27,7 +27,7 @@ import FormikPlacesAutoComplete from "../../../../../../Components/Forms/Formik/
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { deleteEmergencyTable } from "../../../../ProfileAction";
 import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
-import {  EnvironmentOutlined } from "@ant-design/icons";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 const UpdatePersonalModal = lazy(() => import("../Personal/UpdatePersonalModal"));
 class PersonalTable2 extends Component {
@@ -141,7 +141,7 @@ class PersonalTable2 extends Component {
         render: (name, item, i) => {
           //debugger
           return (
-            <EnvironmentOutlined
+            <AddLocationAltIcon
               tooltipTitle="Address"
               iconType="environment"
               handleIconClick={() => {

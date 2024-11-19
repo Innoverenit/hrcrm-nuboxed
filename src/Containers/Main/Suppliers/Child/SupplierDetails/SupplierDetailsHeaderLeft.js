@@ -3,7 +3,7 @@ import { withRouter } from "react-router";
 import { Tooltip } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { RollbackOutlined } from "@ant-design/icons";
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 
 
 class SupplierDetailsHeaderLeft extends React.Component {
@@ -13,7 +13,7 @@ class SupplierDetailsHeaderLeft extends React.Component {
         <Tooltip 
        title="Back"
       >
-          <RollbackOutlined
+          <KeyboardReturnIcon
             style={{ marginRight: "0.3rem",color: "#1890ff" }}
             onClick={() => this.props.history.goBack()}
           />

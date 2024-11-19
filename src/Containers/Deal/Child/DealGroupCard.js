@@ -1,7 +1,6 @@
 import React from "react";
 import { Tooltip, Popconfirm } from "antd";
-
-import { StopTwoTone} from "@ant-design/icons";
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { MainWrapper } from "../../../Components/UI/Layout";
 import { MultiAvatar} from "../../../Components/UI/Elements";
@@ -85,7 +84,7 @@ const DealGroupCard = (props) => {
         title="lost" 
       >
  
-  <StopTwoTone
+  <DoDisturbIcon
           type="stop"
           theme="twoTone"
           twoToneColor="red"

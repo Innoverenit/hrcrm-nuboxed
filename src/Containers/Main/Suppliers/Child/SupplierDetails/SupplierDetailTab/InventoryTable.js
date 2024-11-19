@@ -8,7 +8,7 @@ import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition
 import { Input, Select, Button } from 'antd';
 import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { AudioOutlined } from "@ant-design/icons"
+import MicIcon from '@mui/icons-material/Mic';
 import SuplierInventoryPublishToggle from "./SuplierInventoryPublishToggle";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { base_url2 } from "../../../../../../Config/Auth";
@@ -161,7 +161,7 @@ function InventoryTable(props) {
             }
           };
           const suffix = (
-            <AudioOutlined
+            <MicIcon
               onClick={SpeechRecognition.startListening}
               style={{
                 fontSize: 16,

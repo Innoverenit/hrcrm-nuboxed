@@ -27,7 +27,7 @@ import {  StyledTabs } from "../../../../../Components/UI/Antd";
 import {  Select } from "../../../../../Components/UI/Elements";
 import { elipsize } from "../../../../../Helpers/Function/Functions";
 import SingleDealsStages from "./Deals/SingleDealsStages";
-import { GlobalOutlined } from "@ant-design/icons";
+import LanguageIcon from '@mui/icons-material/Language';
 import { base_url } from "../../../../../Config/Auth";
 //const SingleDealsStages = lazy(() => import("./SingleDealsStages"));
 const { Option } = Select;
@@ -395,7 +395,7 @@ fetchType = async () => {
                           
                         </span>
                         {/* Hello */}                    
-                        {item.globalInd && <GlobalOutlined style={{ marginLeft: 8 }} />}
+                        {item.globalInd && <LanguageIcon style={{ marginLeft: 8 }} />}
                         </>
                       }
                       
@@ -565,7 +565,7 @@ fetchType = async () => {
 {this.state.currentProcess.workflowName && (
            <>
                       {this.props.primaryOrgType === 'Parent' && (
-                      <GlobalOutlined
+                      <LanguageIcon
                       style={{ color:this.state.currentProcess.
                         global_ind? "blue":"white",marginLeft:"1rem"}}
                        onClick={this.handlePublishGlobalClick}

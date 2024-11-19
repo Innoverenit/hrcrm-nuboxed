@@ -1,8 +1,7 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
-import { AudioOutlined } from "@ant-design/icons";
+import MicIcon from '@mui/icons-material/Mic';
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import SpeechRecognition, {
   useSpeechRecognition,
@@ -69,7 +68,7 @@ const ContactActionLeft = (props) => {
     }
   };
   const suffix = (
-    <AudioOutlined
+    <MicIcon
       onClick={SpeechRecognition.startListening}
       style={{
         fontSize: 16,

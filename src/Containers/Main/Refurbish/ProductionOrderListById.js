@@ -6,8 +6,7 @@ import { getOrderByUser, handleOrderPhoneModal, qcInspectionButton,
 import { Button, Badge ,Input, Tooltip} from "antd";
 import dayjs from "dayjs";
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
-import { AudioOutlined } from '@ant-design/icons';
-import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
+import MicIcon from '@mui/icons-material/Mic';import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { BundleLoader } from '../../../Components/Placeholder';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import RefurbishNoteAll from './RefurbishNoteAll';
@@ -83,7 +82,7 @@ function ProductionOrderListById(props) {
         }, minRecordingTime);
       };
       const suffix = (
-        <AudioOutlined
+        <MicIcon
           onClick={handleStartListening}
           style={{
             fontSize: 16,

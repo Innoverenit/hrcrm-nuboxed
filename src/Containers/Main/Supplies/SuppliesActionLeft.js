@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Tooltip, Badge, Avatar,Input } from "antd";
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {materialCategorySearch,getMaterialCategory, getSuppliesCount,getSuppliesDeletedCount,getSuppliesList,ClearReducerDataOfMaterial,inputSuppliesDataSearch } from "./SuppliesAction";
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
@@ -89,7 +89,7 @@ function SuppliesActionLeft (props) {
             }, minRecordingTime);
           };
           const suffix = (
-            <AudioOutlined
+            <MicIcon
               onClick={handleStartListening}
               style={{
                 fontSize: 16,

@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component"
-import {UpCircleOutlined,
-} from "@ant-design/icons";
-
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
@@ -761,7 +759,7 @@ width:"1%"
             title="Do you want to blacklist?"
             onConfirm={() => props.getBlackListCandidate(item.candidateId)}
           >
-            <UpCircleOutlined
+            <ArrowCircleUpIcon
               type="up-circle"
               theme="filled"
               style={{ cursor: "pointer" }}

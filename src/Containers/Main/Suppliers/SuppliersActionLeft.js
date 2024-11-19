@@ -13,7 +13,7 @@ import {
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { connect } from "react-redux";
 import { Avatar, Input, Tooltip,Badge } from "antd";
-import { AudioOutlined } from "@ant-design/icons"
+import MicIcon from '@mui/icons-material/Mic';
 import ChecklistIcon from '@mui/icons-material/Checklist';
 
 const Option = StyledSelect.Option;
@@ -102,7 +102,7 @@ const {
         }, minRecordingTime);
       };
       const suffix = (
-        <AudioOutlined
+        <MicIcon
           onClick={handleStartListening}
           style={{
             fontSize: 16,

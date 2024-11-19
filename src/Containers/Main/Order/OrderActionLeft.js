@@ -5,7 +5,8 @@ import { Button, Input, Badge, Tooltip, Avatar } from "antd";
 import { bindActionCreators } from "redux";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import { AudioOutlined, HistoryOutlined } from "@ant-design/icons";
+import {  HistoryOutlined } from "@ant-design/icons";
+import MicIcon from '@mui/icons-material/Mic';
 import { getOrderCount, getAllOrderCount,inputOrderNoSearch,getAllHighOrderList,ClearSearchedOrder,
   getAllMediumOrderList,getAllLowOrderList, getCompletedHighOrderList,
   getCompletedMediumOrderList,
@@ -130,7 +131,7 @@ function OrderActionLeft (props) {
     }, minRecordingTime);
   };
   const suffix = (
-    <AudioOutlined
+    <MicIcon
       onClick={handleStartListening}
       style={{
         fontSize: 16,

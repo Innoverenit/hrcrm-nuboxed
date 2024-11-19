@@ -1,21 +1,18 @@
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { useDispatch } from 'react-redux';
 import { bindActionCreators } from "redux";
 import {
     getGeneratedInvoiveList,
 } from "../AccountAction";
-import { AudioOutlined } from '@ant-design/icons';
-import {  Select, Tooltip,Input,Button } from 'antd';
+import {  Select,Button } from 'antd';
 import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import { BundleLoader } from "../../../../Components/Placeholder";
 import { MultiAvatar } from "../../../../Components/UI/Elements";
 import { base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
 import Swal from 'sweetalert2';
-import jsPDF from "jspdf";
 import "jspdf-autotable";
 
 

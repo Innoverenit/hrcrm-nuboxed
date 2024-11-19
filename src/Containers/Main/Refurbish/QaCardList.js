@@ -8,7 +8,7 @@ import { Button, Badge ,Input, Tooltip} from "antd";
 import dayjs from "dayjs";
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import {handlePickupDateModal} from "../../../Containers/Main/Inventory/InventoryAction"
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { BundleLoader } from '../../../Components/Placeholder';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -117,7 +117,7 @@ function QaCardList(props) {
         }, minRecordingTime);
       };
       const suffix = (
-        <AudioOutlined
+        <MicIcon
           onClick={handleStartListening}
           style={{
             fontSize: 16,

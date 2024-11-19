@@ -28,10 +28,10 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip, Popconfirm,Button } from "antd";
 import {
   PhoneFilled,
-  UploadOutlined,
+
 } from "@ant-design/icons";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-
+import UploadIcon from '@mui/icons-material/Upload';
 import WidgetsIcon from '@mui/icons-material/Widgets';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import CategoryIcon from '@mui/icons-material/Category';
@@ -496,7 +496,7 @@ function SuppliesTable(props) {
 
                             <div className=" flex w-[1.25rem] h-8 ml-gap bg-[#eef2f9] justify-center items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                              <UploadOutlined
+                              <UploadIcon
                                onClick={() => {
                                 handleParticularRowData(item)
                                 props.handleUploadSuppliesModal(true)

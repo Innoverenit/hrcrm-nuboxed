@@ -19,7 +19,7 @@ import { MultiAvatar } from "../../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import { base_url2 } from "../../../../../Config/Auth";
 import axios from "axios";
 const { Option } = Select;
@@ -172,7 +172,7 @@ const handleInfiniteScroll = () => {
       }, minRecordingTime);
     };
     const suffix = (
-      <AudioOutlined
+      <MicIcon
         onClick={handleStartListening}
         style={{
           fontSize: 16,

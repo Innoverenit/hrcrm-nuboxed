@@ -7,7 +7,7 @@ import {
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { Select, Button } from 'antd';
 import dayjs from "dayjs";
-import { AudioOutlined } from "@ant-design/icons"
+import MicIcon from '@mui/icons-material/Mic';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import axios from "axios";
@@ -161,7 +161,7 @@ function InventoryTableList(props) {
             }
           };
           const suffix = (
-            <AudioOutlined
+            <MicIcon
               onClick={SpeechRecognition.startListening}
               style={{
                 fontSize: 16,

@@ -14,8 +14,9 @@ import {
   getCandidateDocument,
 } from "../../../../../../Candidate/CandidateAction";
 import DragableUpload from "../../../../../../../Components/Forms/Formik/DragableUpload";
+import VerticalAlignTopIcon from '@mui/icons-material/VerticalAlignTop';
+import { RightSquareOutlined} from "@ant-design/icons";
 
-import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
 const ButtonGroup = Button.Group;
 const documentSchema = Yup.object().shape({
 documentId: Yup.string().required("Input needed !"),
@@ -326,7 +327,7 @@ class AddDocumentModal extends Component {
                                                 : "rgba(0, 0, 0, 0.65)",
                                           }}
                                         >
-                                          <ToTopOutlined type="ToTopOutlined" />
+                                          <VerticalAlignTopIcon type="VerticalAlignTopIcon" />
                                         </Button>
                                       </Tooltip>{" "}
                                     </ButtonGroup>

@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
 import { StyledSteps } from "../../../../../../Components/UI/Antd";
-import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
+import CallIcon from '@mui/icons-material/Call';
 import OrderStep1 from "./OrderStep1";
 import OrderStep2 from "./OrderStep2";
 import { FormattedMessage } from 'react-intl';
@@ -53,7 +54,7 @@ class UpdateOrderStepper extends Component {
                     id="app.phonedetails"
                     defaultMessage="Phone details"
                 />,
-                icon: <PhoneOutlined
+                icon: <CallIcon
                     style={{ color: "blue" }}
                 />,
                 content: <OrderStep2 orderId={this.props.particularRowData.orderId} distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
