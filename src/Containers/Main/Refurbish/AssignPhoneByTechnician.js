@@ -199,6 +199,7 @@ const AssignPhoneByTechnician = (props) => {
                             defaultQcDepartmentId: department
                         },
                             props.rowData.orderPhoneId,
+                            props.userId,
                             props.locationId,
                             handleCallback()
                         )}>

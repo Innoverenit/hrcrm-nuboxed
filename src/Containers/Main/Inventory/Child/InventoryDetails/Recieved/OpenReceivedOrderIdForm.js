@@ -207,7 +207,7 @@ function OpenReceivedOrderIdForm(props) {
         const handleSearch = () => {
           if (currentData.trim() !== "") {
             // Perform the search
-             props.searchOpenOrdeReceived(currentData);
+             props.searchOpenOrdeReceived(currentData,props.rowData.orderPhoneId);
             setSearchOnEnter(true);  //Code for Search
           } else {
             console.error("Input is empty. Please provide a value.");
@@ -241,7 +241,7 @@ function OpenReceivedOrderIdForm(props) {
           setIsRecording(false);
           if (transcript.trim() !== "") {
             setCurrentData(transcript);
-            props.searchOpenOrdeReceived(transcript);
+            props.searchOpenOrdeReceived(transcript,props.rowData.orderPhoneId);
             setSearchOnEnter(true);
           }
         };

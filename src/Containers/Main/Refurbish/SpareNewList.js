@@ -251,7 +251,7 @@ function SpareNewList(props) {
                                                                 handleRowData(item);
                                                                 props.handleRepairPhone(true)
                                                             }}>
-                                                            {item.newOrderNo}
+                                                            {item.imei}
                                                         </span>
                                                     </Badge>
                                                     &nbsp;&nbsp;

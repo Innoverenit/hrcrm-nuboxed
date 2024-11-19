@@ -26,7 +26,12 @@ export const handleScanModal = (modalProps) => (dispatch) => {
   });
 };
 
-
+export const handleStockUpload = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_STOCK_MODAL,
+    payload: modalProps,
+  });
+};
 
 export const emptyQualityManufactureData = () => (dispatch) => {
   dispatch({
@@ -2400,12 +2405,12 @@ export const handleInventoryTask = (modalProps) => (dispatch) => {
   });
 };
 
-export const searchOpenOrdeReceived = (imei) => (dispatch) => {
+export const searchOpenOrdeReceived = (imei,orderPhoneId) => (dispatch) => {
   dispatch({
     type: types.SEARCH_OPEN_ORDER_RECEIVED_REQUEST,
   });
   axios
-    .get(`${base_url2}/phone/search/${imei}`, {
+    .get(`${base_url2}/phone/search/${imei}/${orderPhoneId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2842,5 +2847,38 @@ export const addScandata = (data) => (dispatch) => {
         type: types.ADD_SCAN_DATA_FAILURE,
         payload: err,
       });
+    });
+};
+
+
+export const uploadStockList =(customer, userId) => (dispatch, getState) => {
+  dispatch({
+    type: types.ADD_STOCK_IMPORT_FORM_REQUEST,
+  });
+
+  axios
+    .post(`${base_url2}/excel/posupplier-supplies-details`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+
+     window.location.reload()
+      // dispatch(getRecords(userId));
+      dispatch({
+        type: types.ADD_STOCK_IMPORT_FORM_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_STOCK_IMPORT_FORM_FAILURE,
+        payload: err,
+      });
+      // cb && cb();
     });
 };

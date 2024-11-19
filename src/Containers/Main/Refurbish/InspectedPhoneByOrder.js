@@ -176,7 +176,7 @@ function InspectedPhoneByOrder(props) {
             setIsRecording(false);
             if (transcript.trim() !== "") {
               setCurrentData(transcript);
-              props.searchimeiNamePhone(transcript);
+              props.searchimeiNamePhone(transcript,props.rowData.orderPhoneId);
               setSearchOnEnter(true);
             }
           };
@@ -475,10 +475,10 @@ function InspectedPhoneByOrder(props) {
 }
 
 const mapStateToProps = ({ inventory,refurbish }) => ({
-    updateDispatchList: inventory.updateDispatchList,
+    updateDispatchList: refurbish.updateDispatchList,
     allTaskModal:refurbish.allTaskModal,
     phoNotesRepairOrderModal: refurbish.phoNotesRepairOrderModal,
-    fetchingUpdateDispatchList: inventory.fetchingUpdateDispatchList
+    fetchingUpdateDispatchList: refurbish.fetchingUpdateDispatchList
 });
 
 const mapDispatchToProps = (dispatch) =>

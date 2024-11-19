@@ -44,7 +44,7 @@ export const updateQCStatus = (data, phoneId, userId) => (dispatch) => {
       },
     })
     .then((res) => {
-      //dispatch(getOrderByUser(userId))
+      dispatch(getOrderByUser(userId))
       dispatch({
         type: types.UPDATE_QC_STATUS_SUCCESS,
         payload: res.data,
@@ -582,7 +582,7 @@ export const emptyRefurbish = () => (dispatch) => {
   });
 };
 
-export const UpdateTechnicianByPhone = (data, id, locationDetailsId) => (dispatch) => {
+export const UpdateTechnicianByPhone = (data, id,userId, locationDetailsId) => (dispatch) => {
   // debugger;
   dispatch({
     type: types.UPDATE_TECHNICIAN_BY_PHONE_REQUEST,
@@ -595,6 +595,9 @@ export const UpdateTechnicianByPhone = (data, id, locationDetailsId) => (dispatc
     })
     .then((res) => {
       dispatch(getNoOfPhoneById(id));
+      dispatch(getProductionUrgent(userId,0,"High"));
+      dispatch(getProductionHigh(userId,0,"Medium"));
+      dispatch(getProductionNormal(userId,0,"Low"));
       // dispatch(getProductionOrderId(locationDetailsId))
       Swal.fire({
         icon: 'success',
@@ -618,7 +621,7 @@ export const UpdateTechnicianByPhone = (data, id, locationDetailsId) => (dispatc
     });
 };
 
-export const UpdateTechnicianForRepairPhone = (data, id, locationDetailsId) => (dispatch) => {
+export const UpdateTechnicianForRepairPhone = (data, id,userId, locationDetailsId) => (dispatch) => {
   // debugger;
   dispatch({
     type: types.UPDATE_TECHNICIAN_FOR_REPAIR_PHONE_REQUEST,
@@ -631,6 +634,9 @@ export const UpdateTechnicianForRepairPhone = (data, id, locationDetailsId) => (
     })
     .then((res) => {
       dispatch(getRepairPhoneById(id))
+      dispatch(getProductionUrgent(userId,0,"High"));
+      dispatch(getProductionHigh(userId,0,"Medium"));
+      dispatch(getProductionNormal(userId,0,"Low"));
       // dispatch(getProductionOrderId(locationDetailsId))
       Swal.fire({
         icon: 'success',
@@ -1126,8 +1132,8 @@ export const updaterepairStatus = (data,orderPhoneId, phoneId, userId, cb) => (d
       },
     })
     .then((res) => {
-     //dispatch(getRepairPhoneByUser(orderPhoneId, userId))
-      //dispatch(getRepairOrderByUser(userId))
+    //  dispatch(getRepairPhoneByUser(orderPhoneId, userId))
+       dispatch(getRepairOrderByUser(userId))
       dispatch({
         type: types.UPDATE_REPAIR_STATUS_SUCCESS,
         payload: res.data,

@@ -6,6 +6,8 @@ import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import InventoryMaterialBestBefore from "../Inventory/InventoryMaterialBestBefore"//5
 import { withRouter } from "react-router";
+import {handleStockUpload} from "../Inventory/InventoryAction"
+import UploadIcon from '@mui/icons-material/Upload';
 import TokenIcon from '@mui/icons-material/Token';
 import WarehouseIcon from '@mui/icons-material/Warehouse';
 import MaterialReceivedTableOut from "./MaterialReceivedTableOut";//1
@@ -17,6 +19,7 @@ import MaterialCellCardViewOut from "./MaterialCellCardViewOut";
 import CookieIcon from '@mui/icons-material/Cookie';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import FolderDeleteIcon from '@mui/icons-material/FolderDelete';
+import StockUploadModal from "./StockUploadModal";
 
 const TabPane = StyledTabs.TabPane;
 class InventoryMaterialTabO extends PureComponent {
@@ -178,9 +181,10 @@ class InventoryMaterialTabO extends PureComponent {
                           >
                           <WarehouseIcon className=" !text-icon text-red-600"/>
                           </span>
+                         
                         </>
                       )}
-
+                      
                                 </>
                             }
                             key="2"
@@ -225,7 +229,15 @@ class InventoryMaterialTabO extends PureComponent {
                           </span>
                         </>
                       )}
-
+ {activeKey === "3" && (
+                        <>
+ <span
+                           onClick={() => {
+                            this.props.handleStockUpload(true);
+                          }}
+                          ><UploadIcon/></span>
+                              </>
+                      )}
                                 </>
                             }
                             key="3"
@@ -432,6 +444,13 @@ class InventoryMaterialTabO extends PureComponent {
                     </StyledTabs>
                     <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
                 {renderTabContent(activeKey)}
+                <StockUploadModal
+              selectedLanguage={this.props.selectedLanguage}
+              translateText={this.props.translateText}
+              addStockModal={this.props.addStockModal}
+            handleStockUpload={this.props.handleStockUpload}
+            locationDetailsId={this.props.user.locationId}
+        />
               </Suspense>
                 </TabsWrapper>
 
@@ -443,12 +462,13 @@ const mapStateToProps = ({ inventory, auth }) => ({
     productionInd:auth.userDetails.userDetails,
     erpInd:auth.userDetails.erpInd,
     user: auth.userDetails,
+    addStockModal:inventory.addStockModal
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-
+          handleStockUpload
         },
         dispatch
     );
