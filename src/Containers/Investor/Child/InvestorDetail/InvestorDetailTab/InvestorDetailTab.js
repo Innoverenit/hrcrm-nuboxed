@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback ,lazy, Suspense} from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Badge, Tooltip } from "antd";
+import CreateInvestorDealModal from "./CreateInvestorDealModal"
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 
 import AddBoxIcon from '@mui/icons-material/AddBox';
@@ -446,7 +447,7 @@ investorDetails={props.investorDetails}
           investorId={investorId}
           id={investorId}
         />
-        <CreateDealModal 
+        <CreateInvestorDealModal 
         translateText={props.translateText}
         selectedLanguage={props.selectedLanguage}
           investorDetails={props.investorDetails}

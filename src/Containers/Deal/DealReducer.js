@@ -210,8 +210,8 @@ export const dealReducer = (state = initialState, action) => {
             ...state,
             creatingDeal: false,
             opencreateDealModal: false,
-           dealsByuserId :[action.payload,...state.dealsByuserId],
-           allDealsData :[action.payload,...state.allDealsData],
+            investorDealsData :[action.payload,...state.investorDealsData],
+          //  allDealsData :[action.payload,...state.allDealsData],
           //  investorDealsData:[action.payload,...state.investorDealsData],
           };
         case types.CREATE_DEAL_FAILURE:
