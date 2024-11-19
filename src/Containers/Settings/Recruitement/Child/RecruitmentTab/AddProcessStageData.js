@@ -1,6 +1,7 @@
 import React, { useState,useEffect } from "react";
 import { Button, Input } from "antd";
 import {addProcessStageForDeals,
+  updateStageForDeals
    
      } from "../../../SettingsAction"
 
@@ -97,6 +98,18 @@ const handleInputChange = (stagesId, field, value) => {
       )
     );
   };
+
+  const handleEdit = (stagesId) => {
+    const savedStage1 = stages.find((stage) => stage.stagesId === stagesId);
+    console.log("Saved Stage:", savedStage1); // Log the saved stage values
+    let result={
+      stageName:savedStage1.stageName,
+      stagesId:savedStage1.stagesId,
+    }
+    props.updateStageForDeals(result,savedStage1.stagesId)
+    setEditingStageId(stagesId);
+    setShowAddButton(false);
+  };
   console.log(stages)
   return (
     <div style={{ padding: "20px" }}>
@@ -157,7 +170,9 @@ const handleInputChange = (stagesId, field, value) => {
               <p><strong>Stage:</strong> {stage.stageName}</p>
               <p><strong>Weightage:</strong> {stage.probability}%</p>
               <p><strong>Days:</strong> {stage.days}</p>
-              <EditOutlined/>
+              <EditOutlined
+               onClick={() => handleEdit(stage.stagesId)}
+              />
             </div>
            
           )}
@@ -180,6 +195,7 @@ const mapStateToProps = ({ settings, auth }) => ({
         {
          
         addProcessStageForDeals,
+        updateStageForDeals
          
        
         },
