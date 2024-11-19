@@ -27,6 +27,9 @@ fetchingCompleteDispatchSearchError: false,
   fetchingPackTrackError: false,
   packTrack:[],
 
+  addingStockImportForm: false,
+  addingStockImportFormError:false,
+
   fetchingCompleteDispatchList: false,
   fetchingCompleteDispatchListError: false,
   completeDispatchList:[],
@@ -414,6 +417,8 @@ fetchingCompleteDispatchSearchError: false,
 
   addScanModal:false,
 
+  addStockModal:false,
+
   roomRackbyLoc: [],
   fetchingRoomRack: false,
   fetchingRoomRackByIdError: false,
@@ -785,6 +790,8 @@ export const inventoryReducer = (state = initialState, action) => {
       case types.HANDLE_SCAN_MODAL:
         return { ...state, addScanModal: action.payload };
 
+        case types.HANDLE_STOCK_MODAL:
+          return { ...state, addStockModal: action.payload };
 
     case types.UPDATE_QUALITY_STATUS_REQUEST:
       return { ...state,updateQualityStatus: true };
@@ -2243,6 +2250,22 @@ export const inventoryReducer = (state = initialState, action) => {
               ...state,
               completeDispatchList: [],
             };
+
+            case types.ADD_STOCK_IMPORT_FORM_REQUEST:
+              return { ...state, addingStockImportForm: true };
+            case types.ADD_STOCK_IMPORT_FORM_SUCCESS:
+              return {
+                ...state,
+                addingStockImportForm: false,
+                addStockModal: false,
+               
+              };
+            case types.ADD_STOCK_IMPORT_FORM_FAILURE:
+              return {
+                ...state,
+                addingStockImportForm: false,
+                addingStockImportFormError:true,
+              }; 
 
     default:
       return state;

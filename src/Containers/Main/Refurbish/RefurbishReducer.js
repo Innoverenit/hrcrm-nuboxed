@@ -1844,7 +1844,9 @@ export const refurbishReducer = (state = initialState, action) => {
          
         };
       case types.GET_SEARCH_IMEIPHONE_FAILURE:
-        return { ...state, fetchingimeiSearchPhoneDataError: true };
+        return { ...state, 
+          fetchingimeiSearchPhoneData: false,
+          fetchingimeiSearchPhoneDataError: true };
 
         case types.HANDLE_CLAER_PHONEREDUCER_DATA_REFURBISH:
                   return { ...state, 

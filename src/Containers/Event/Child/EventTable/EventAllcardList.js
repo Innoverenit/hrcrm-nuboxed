@@ -2,11 +2,12 @@ import React, { useEffect, useState, lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import InfiniteScroll from "react-infinite-scroll-component";
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { Tooltip,  Avatar,Button,message } from "antd";
+import { Tooltip,  Avatar,Button,message,Select } from "antd";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import {
@@ -16,6 +17,7 @@ import {
   setEditEvents,
   addeventLocation,
 } from "../../EventAction";
+import {getEvents} from "../../../Settings/Event/EventAction";
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
@@ -27,6 +29,7 @@ import MergeTypeIcon from '@mui/icons-material/MergeType';
 import InfoIcon from '@mui/icons-material/Info';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 const UpdateEventModal = lazy(() => import("../UpdateEventModal"));
+const { Option } = Select;
 dayjs.extend(relativeTime);
 
 const getRelativeTime = (creationDate) => {
@@ -46,15 +49,18 @@ function EventAllcardList (props) {
     const [loading, setLoading] = useState(true);
     const [page, setPage] = useState(0);
     const [hasMore, setHasMore] = useState(true);
-
-
+    const [isOpen, setIsOpen] = useState(false);
+    const [hovering, setHovering] = useState(false);
+    const [searchValue, setSearchValue] = useState("");
+    const [selectedLocation, setSelectedLocation] = useState();
+    let hoverTimer = null;
 
 
     useEffect(() => {
       
            props.getEventAllListRangeByUserId(props.orgId,page);
           setPage(page + 1);
-  
+          props.getEvents(); 
     }, []);
    
     useEffect(() => {
@@ -87,8 +93,37 @@ function EventAllcardList (props) {
       fetchMenuTranslations();
     }, [props.selectedLanguage]);
 
-
-
+    const toggleSelect = () => {
+      setIsOpen(!isOpen);
+    };
+  
+    const handleHover = () => {
+      clearTimeout(hoverTimer); // Clear any previous hover timers
+      setHovering(true); // Set the hovering state to true
+      setIsOpen(true); // Open the Select immediately on hover
+    };
+  
+    const handleLeave = () => {
+      // Set a delay before closing the Select dropdown after hover ends
+      hoverTimer = setTimeout(() => {
+        setHovering(false);
+        setIsOpen(false); // Close the Select after a short delay
+      }, 20000); // You can adjust the delay time as needed (200ms is an example)
+    };
+    // Function to filter options based on the search input
+    const handleSearch = (value) => {
+      setSearchValue(value);
+    };
+  
+    // Function to filter option list based on the search value
+    const filterLocationOptions = (input, option) => {
+      return option.children.toLowerCase().includes(input.toLowerCase());
+    };
+    const handleLocationChange = (locationDetailsId) => {
+      setSelectedLocation(locationDetailsId); 
+  
+      // props.getWasteMaterialLocation(locationDetailsId); 
+    };
     const handleLoadMore = () => {
     
      
@@ -130,7 +165,36 @@ function EventAllcardList (props) {
          <div className=" flex  w-[93%]  max-sm:hidden p-1 bg-transparent font-bold sticky  z-10">
           <div className=" flex justify-between text-xs font-poppins w-[93%]">
         <div className="flex truncate w-[15.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.2rem]">
-        {/* Type */}     < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[0]}
+        {/* Type */}     < MergeTypeIcon className='!text-icon text-[#c42847] '/>
+       
+       {translatedMenuItems[0]}
+       <div className="flex flex-col">
+          <div>
+        <FilterAltIcon onClick={toggleSelect} // Open/close Select on click
+         onMouseEnter={handleHover} // Open Select on hover
+         onMouseLeave={handleLeave} // Optionally close on hover leave
+         />
+         </div>
+         <div>
+         {isOpen && (
+          <Select
+          style={{ width: "12rem" }}
+           onChange={handleLocationChange}
+          placeholder="Select EventType"
+          showSearch
+          onSearch={handleSearch} // This is to handle search input
+          filterOption={filterLocationOptions} // This is to apply custom filtering
+          value={searchValue}
+        >
+          {props.events.map((shipper) => (
+            <Option key={shipper.eventTypeId} value={shipper.eventTypeId}>
+              {shipper.eventType}
+            </Option>
+          ))}
+        </Select>
+         )}
+         </div>
+         </div>
                 </div>
         <div className="flex truncate w-[14.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.23rem]">
       {/* Subject */}  <InfoIcon className='!text-icon mr-1 text-[#e4eb2f]' />{translatedMenuItems[1]}
@@ -407,7 +471,7 @@ function EventAllcardList (props) {
 }
 
 
-const mapStateToProps = ({ auth, event, employee,opportunity}) => ({
+const mapStateToProps = ({ auth, event,events, employee,opportunity}) => ({
   userDetails: auth.userDetails,
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,
@@ -416,6 +480,7 @@ const mapStateToProps = ({ auth, event, employee,opportunity}) => ({
     event.fetchingEventListRangeByUserIdError,
     eventallListRangeByUserId: event.eventallListRangeByUserId,
   updateEventModal: event.updateEventModal,
+  events:events.events
 
 });
 const mapDispatchToProps = (dispatch) =>
@@ -425,7 +490,8 @@ const mapDispatchToProps = (dispatch) =>
       deleteEvent,
       handleUpdateEventModal,
       setEditEvents,
-      addeventLocation
+      addeventLocation,
+      getEvents
 
     },
     dispatch
