@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { ReadOutlined, 
-} from '@ant-design/icons';
+import MarkUnreadChatAltIcon from '@mui/icons-material/MarkUnreadChatAlt';
 import { message, Tooltip, Popover, } from "antd";
 import StagesSwitch from "./StagesSwitch";
 
@@ -220,7 +219,7 @@ function StageStatus({
                                 handleSetCurrentStage(stage.stageId);
                               }}
                             >
-                              <ReadOutlined
+                              <MarkUnreadChatAltIcon
                                 type="read"
                                 style={{
                                   color: "#fb8500",

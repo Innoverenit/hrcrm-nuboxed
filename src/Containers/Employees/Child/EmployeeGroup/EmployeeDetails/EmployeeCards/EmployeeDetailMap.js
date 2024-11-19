@@ -6,11 +6,9 @@ import { StyledModal } from "../../../../../../Components/UI/Antd";
 import {
   MainWrapper,
 } from "../../../../../../Components/UI/Layout";
-import {
 
-  LeftCircleTwoTone,
-  RightCircleTwoTone,
-} from '@ant-design/icons';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { Leaflet} from "../../../../../../Components/Utils";
 
@@ -155,14 +153,14 @@ class EmployeeDetailMap extends Component {
               <div class=" flex flex-row flex-wrap items-start self-start justify-between w-[220px] grow shrink h-auto mr-auto relative">
                   <CarouselIcon
                     //type="left-circle"
-                    icon={<LeftCircleTwoTone/>}
+                    icon={<ArrowCircleLeftIcon/>}
                     onClick={this.previous}
                     theme="twoTone"
                     style={{ position: "absolute", left: -5, top: 40 }}
                   />
                   <CarouselIcon
                     //type="right-circle"
-                    icon={<RightCircleTwoTone/>}
+                    icon={<ArrowCircleRightIcon/>}
                     onClick={this.next}
                     theme="twoTone"
                     style={{ position: "absolute", right: -66, top: 40 }}

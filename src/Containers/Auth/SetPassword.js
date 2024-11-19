@@ -4,7 +4,8 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { Button } from "antd";
-import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import * as Yup from "yup";
 import { Input } from "./styled";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
@@ -110,11 +111,11 @@ class SetPassword extends Component {
                         />
                       </div>
                       {this.state.show ? (
-                        <EyeOutlined className=" !text-icon  -ml-5"
+                        <VisibilityIcon className=" !text-icon  -ml-5"
                           // type="eye"
                           onClick={this.handleClick} />
                       ) : (
-                        <EyeInvisibleOutlined className=" !text-icon  -ml-5"
+                        <VisibilityOffIcon className=" !text-icon  -ml-5"
                           // type="eye-invisible"
                           onClick={this.handleClick}
                           />
@@ -133,12 +134,12 @@ class SetPassword extends Component {
                         />
                       </div>
                       {this.state.show1 ? (
-                        <EyeOutlined  className=" !text-icon  -ml-5"
+                        <VisibilityIcon  className=" !text-icon  -ml-5"
                           onClick={this.handleClick1}
                          
                         />
                       ) : (
-                        <EyeInvisibleOutlined  className=" !text-icon  -ml-5"
+                        <VisibilityOffIcon  className=" !text-icon  -ml-5"
                           onClick={this.handleClick1}
                                                  />
                       )}

@@ -2,7 +2,7 @@ import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
-import {  UserOutlined } from "@ant-design/icons";
+import GroupsIcon from '@mui/icons-material/Groups';
 import { FormattedMessage } from 'react-intl';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import CallIcon from '@mui/icons-material/Call';
@@ -54,7 +54,7 @@ class OpportunityUpdateStepper extends Component {
                     id="app.order"
                     defaultMessage="Order"
                 />,
-                icon: <UserOutlined />,
+                icon: <GroupsIcon />,
                 content: <UpdateOpportunityForm
                 opportunityId={this.props.opportunityId}
                 translateText={this.props.translateText}

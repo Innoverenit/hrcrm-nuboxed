@@ -61,10 +61,8 @@ import {
   deleteRequirementData,
 } from "../../../OpportunityAction";
 import SubTableClickCandidate from "../OpportunityTab/Recruitment/SubTableClickCandidate";
-import {
-  EyeInvisibleOutlined,
-  EyeOutlined,
-} from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 class RecruitmentClosedTable extends Component {
   constructor(props) {
@@ -1116,7 +1114,7 @@ class RecruitmentClosedTable extends Component {
                           />
                         }
                       >
-                        <EyeInvisibleOutlined
+                        <VisibilityOffIcon
                           type="eye-invisible"
                           onClick={() => this.handleCloseIconClick()}
                           style={{
@@ -1139,7 +1137,7 @@ class RecruitmentClosedTable extends Component {
                             />
                           }
                         >
-                          <EyeOutlined
+                          <VisibilityIcon
                             type="eye"
                             onClick={() =>
                               this.handleIconClick(

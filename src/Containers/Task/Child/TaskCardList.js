@@ -5,10 +5,7 @@ import MergeTypeIcon from '@mui/icons-material/MergeType';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
-import {
-  CloseCircleOutlined,
-  
-} from "@ant-design/icons";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import EscalatorIcon from '@mui/icons-material/Escalator';
 import UploadIcon from '@mui/icons-material/Upload';
 import dayjs from "dayjs";
@@ -523,7 +520,7 @@ Reject
           style={{ fontSize: "1rem" }}
         />
       ) : item.approvedInd === "Rejected" ? (
-        <CloseCircleOutlined
+        <HighlightOffIcon
           type="close-circle"
           theme="twoTone"
           twoToneColor="red"
@@ -946,7 +943,7 @@ taskStatus: "To Start",
    style={{ fontSize: "1rem" }}
  />
 ) : item.approvedInd === "Rejected" ? (
- <CloseCircleOutlined
+ <HighlightOffIcon
    type="close-circle"
    theme="twoTone"
    twoToneColor="red"
@@ -1367,7 +1364,7 @@ taskStatus: "To Start",
    style={{ fontSize: "1rem" }}
  />
 ) : item.approvedInd === "Rejected" ? (
- <CloseCircleOutlined
+ <HighlightOffIcon
    type="close-circle"
    theme="twoTone"
    twoToneColor="red"

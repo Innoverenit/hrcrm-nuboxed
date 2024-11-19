@@ -18,7 +18,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-import { Html5Outlined } from "@ant-design/icons";
+import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 import {
   getLeadsCold,
   getLeadsWarm,
@@ -580,7 +580,7 @@ const LeadsCardList = (props) => {
                   <div >
                       <Tooltip title={translatedMenuItems[15]}>
                       
-                        <Html5Outlined
+                        <SubscriptionsIcon
                          className=" !text-icon cursor-pointer text-green-800"
                          onClick={() => {
                           handleSetCurrentLeadsId(true);
@@ -1019,7 +1019,7 @@ const LeadsCardList = (props) => {
      <div>
                       <Tooltip title={translatedMenuItems[15]}>
                       
-                        <Html5Outlined
+                        <SubscriptionsIcon
                          className=" !text-icon cursor-pointer text-green-800"
                             onClick={() => {
                             //handleRowData(item);
@@ -1464,7 +1464,7 @@ const LeadsCardList = (props) => {
                 <div >
                       <Tooltip title={translatedMenuItems[15]}>
                       
-                        <Html5Outlined
+                        <SubscriptionsIcon
                          className=" !text-icon cursor-pointer text-green-800"
                             onClick={() => {
                             //handleRowData(item);

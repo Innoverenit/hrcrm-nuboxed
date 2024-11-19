@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Icon, Tooltip } from "antd";
-import {  FileDoneOutlined} from "@ant-design/icons";
+import TaskIcon from '@mui/icons-material/Task';
 import CallIcon from '@mui/icons-material/Call';
 import ChecklistIcon from '@mui/icons-material/Checklist';
 import { StyledTable } from "../../../Components/UI/Antd";
@@ -47,7 +47,7 @@ class AccountActivityTable extends Component {
                                 <ChecklistIcon />
                             )}
                             {item.activity === "Task" && (
-                                <FileDoneOutlined />
+                                <TaskIcon />
                             )}
                         </>
                     )

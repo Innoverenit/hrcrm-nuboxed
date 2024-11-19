@@ -8,7 +8,7 @@ import ProspectQuotationSectorLostData from "./ProspectQuotationSectorLostData"
 import { Tabs } from 'antd';
 import ProspectQuotationSectorWonData from "./ProspectQuotationSectorWonData"
 import ProspectQuotationWonData from "./ProspectQuotationWonData"
-import { CloseCircleOutlined,  } from '@ant-design/icons';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import ProspectQuotationClosedData from "./ProspectQuotationClosedData"
 import ProspectQuotationSourceWonData from "./ProspectQuotationSourceWonData"
@@ -94,7 +94,7 @@ const handleViewSourceChange = (view) => {
               title="Won"
             />
             {/* Lost Icon */}
-            <CloseCircleOutlined  className=' cursor-pointer ml-1 text-red-600'
+            <HighlightOffIcon  className=' cursor-pointer ml-1 text-red-600'
               onClick={() => handleViewChange('lost')}
               title="Lost"
             />
@@ -167,7 +167,7 @@ const handleViewSourceChange = (view) => {
               title="Won"
             />
             {/* Lost Icon */}
-            <CloseCircleOutlined
+            <HighlightOffIcon
               style={{ color: 'red', marginLeft: 4, cursor: 'pointer' }}
               onClick={() => handleViewSectorChange('lost')}
               title="Lost"
@@ -247,7 +247,7 @@ const handleViewSourceChange = (view) => {
               title="Won"
             />
             {/* Lost Icon */}
-            <CloseCircleOutlined
+            <HighlightOffIcon
               style={{ color: 'red', marginLeft: 4, cursor: 'pointer' }}
               onClick={() => handleViewSourceChange('lost')}
               title="Lost"

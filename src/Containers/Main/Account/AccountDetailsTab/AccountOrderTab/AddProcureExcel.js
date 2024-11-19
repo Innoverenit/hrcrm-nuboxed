@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Input, Select } from "antd";
-import { CloseOutlined } from "@ant-design/icons";
+import CloseIcon from '@mui/icons-material/Close';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getSaleCurrency } from "../../../../Auth/AuthAction";
@@ -270,7 +270,7 @@ function AddProcureExcel(props) {
               </div>
              
               <div className="w-4 mt-[1.5rem]">
-                <CloseOutlined onClick={() => handleRemoveRow(index)} />
+                <CloseIcon onClick={() => handleRemoveRow(index)} />
               </div>
             </div>
           </div>

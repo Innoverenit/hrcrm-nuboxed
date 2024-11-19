@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Checkbox, Tooltip } from "antd";
-import {  UserOutlined } from "@ant-design/icons";
+import GroupsIcon from '@mui/icons-material/Groups';
 import CallIcon from '@mui/icons-material/Call';
 import { StyledSteps } from "../../../Components/UI/Antd";
 import { getBestBefore } from "./SuppliesAction";
@@ -64,7 +64,7 @@ const BestBeforeStepper = (props) => {
     const steps = [
         {
             title: "Item Info ",
-            icon: <UserOutlined className="text-green-600" style={{ backgroundColor: "green" }} />,
+            icon: <GroupsIcon className="text-green-600" style={{ backgroundColor: "green" }} />,
             content: (
                 <BestbeforeStep1
                     selectedItems={selectedItemsStep1}

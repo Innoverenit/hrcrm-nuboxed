@@ -8,7 +8,7 @@ import "jspdf-autotable";
 import {
   getTeamsDeals
 } from "./DealAction";
-import { CheckCircleTwoTone  } from "@ant-design/icons";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { Button, Tooltip, Dropdown, Menu, Progress } from "antd";
 import { Link } from "react-router-dom/cjs/react-router-dom";
@@ -107,7 +107,7 @@ const DealsTeamCardList = (props) => {
             });
             const currentdate = dayjs().format("DD/MM/YYYY");
             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-           const myIndicator = (item.wonInd) ? <CheckCircleTwoTone/> : (item.lostInd ? <DoDisturbIcon/> : null);
+           const myIndicator = (item.wonInd) ? <CheckCircleOutlineIcon/> : (item.lostInd ? <DoDisturbIcon/> : null);
             const diff = Math.abs(
               dayjs().diff(dayjs(item.lastRequirementOn), "days")
             );

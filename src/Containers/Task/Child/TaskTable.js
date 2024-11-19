@@ -3,10 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import TaskStatusToggle from "../Child/TaskStatusToggle";
-import {
-  CloseCircleOutlined,
- 
-} from "@ant-design/icons";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import SearchIcon from '@mui/icons-material/Search';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -516,7 +513,7 @@ return (
                     style={{ fontSize: "1rem" }}
                   />
                 ) : item.approvedInd === "Rejected" ? (
-                  <CloseCircleOutlined
+                  <HighlightOffIcon
                     type="close-circle"
                     theme="twoTone"
                     twoToneColor="red"

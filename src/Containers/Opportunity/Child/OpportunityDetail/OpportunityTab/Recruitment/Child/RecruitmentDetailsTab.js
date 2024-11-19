@@ -174,7 +174,7 @@ class RecruitmentDetailsTab extends Component {
               tab={
                 <>
                   <span>
-                    <CustomerServiceOutlined type="customer-service" />
+                    <SubscriptionsIcon type="customer-service" />
                     Training
                   </span>
                   {activeKey === "6" && (

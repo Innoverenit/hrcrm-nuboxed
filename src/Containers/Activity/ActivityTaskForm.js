@@ -11,7 +11,7 @@ import dayjs from "dayjs";
 //     getOpportunityListByCustomerId,
 //   } from "../../Containers/Customer/CustomerAction";
 import {getAllCustomerData} from "../../Containers/Customer/CustomerAction"
-import { ExclamationCircleOutlined } from "@ant-design/icons";
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import { getUnits } from "../../Containers/Settings/Unit/UnitAction";
 import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
@@ -913,7 +913,7 @@ const [priority,setpriority]=useState(props.selectedTask
                                 <Button
                                   type="primary"
                                   shape="circle"
-                                  icon={<ExclamationCircleOutlined />}
+                                  icon={<ErrorOutlineIcon />}
                                   onClick={() =>
                                     handleComplexityClick("Easy")
                                   }
@@ -930,7 +930,7 @@ const [priority,setpriority]=useState(props.selectedTask
                                 <Button
                                   type="primary"
                                   shape="circle"
-                                  icon={<ExclamationCircleOutlined />}
+                                  icon={<ErrorOutlineIcon />}
                                   onClick={() =>
                                     handleComplexityClick("Medium")
                                   }
@@ -947,7 +947,7 @@ const [priority,setpriority]=useState(props.selectedTask
                                 <Button
                                   type="primary"
                                   shape="circle"
-                                  icon={<ExclamationCircleOutlined />}
+                                  icon={<ErrorOutlineIcon />}
                                   onClick={() =>
                                     handleComplexityClick("Hard")
                                   }

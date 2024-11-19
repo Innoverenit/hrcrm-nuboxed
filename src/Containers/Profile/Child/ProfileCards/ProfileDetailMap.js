@@ -1,12 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
-import {
-
-  EyeInvisibleOutlined,
-  LeftCircleTwoTone,
-  RightCircleTwoTone,
-} from '@ant-design/icons';
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import {  Carousel, Tooltip } from "antd";
 import { StyledModal } from "../../../../Components/UI/Antd";
@@ -152,14 +148,14 @@ class ProfileDetailMap extends Component {
               <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-[220px] relative ">
                   <CarouselIcon
                     //type="left-circle"
-                    icon={<LeftCircleTwoTone />}
+                    icon={<ArrowCircleLeftIcon />}
                     onClick={this.previous}
                     theme="twoTone"
                     style={{ position: "absolute", left: -5, top: 40 }}
                   />
                   <CarouselIcon
                     //type="right-circle"
-                    icon={<RightCircleTwoTone />}
+                    icon={<ArrowCircleRightIcon />}
                     onClick={this.next}
                     theme="twoTone"
                     style={{ position: "absolute", right: -66, top: 40 }}

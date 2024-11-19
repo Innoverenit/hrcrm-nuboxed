@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux";
 import { TabsWrapper } from "../../../../../../../Components/UI/Layout";
 import RemarksTable from "../Child/RemarksTable";
 import { Tooltip } from "antd";
-import { FileOutlined,  } from "@ant-design/icons";
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 
 const TabPane = StyledTabs.TabPane;
 
@@ -66,8 +66,8 @@ class RecruitmentDetailsTab extends Component {
               tab={
                 <>
                   <span>
-                    <FileOutlined type="file" />
-                    {/* <FileOutlined /> */}
+                    <TextSnippetIcon type="file" />
+                
                   
                     Documents
                   </span>

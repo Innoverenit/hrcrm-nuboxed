@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import { FileFilled
-} from '@ant-design/icons';
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 
 import { Title, SubTitle } from "./";
@@ -14,7 +13,7 @@ class NoData extends Component {
         <div class=" p-1 bg-light-gray ">
         <div class=" flex flex-row flex-wrap items-center  self-start justify-center grow shrink h-[80vh] mr-auto ">
           
-              <FileFilled  type="file"  style={{ fontSize: "3.125em" }} />           
+              <TextSnippetIcon  type="file"  style={{ fontSize: "3.125em" }} />           
               <Title style={{ textAlign: "center" }}>
                 Welcome to the {this.props.content || "Data"} tab.
               </Title>

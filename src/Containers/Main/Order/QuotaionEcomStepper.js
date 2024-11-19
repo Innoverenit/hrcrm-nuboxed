@@ -4,7 +4,7 @@ import { Button } from "antd";
 import { bindActionCreators } from "redux";
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
 import { StyledSteps } from "../../../Components/UI/Antd";
-import {  UserOutlined } from "@ant-design/icons";
+import GroupsIcon from '@mui/icons-material/Groups';
 import CallIcon from '@mui/icons-material/Call';
 import { FormattedMessage } from 'react-intl';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
@@ -45,7 +45,7 @@ class QuotaionEcomStepper extends Component {
                     id="app.order"
                     defaultMessage="Order"
                 />,
-                icon: <UserOutlined />,
+                icon: <GroupsIcon />,
                 content: <QuotaionStepperFormStep1  inspectionRequiredInd={this.props.inspectionRequiredInd} />,
             },
             {

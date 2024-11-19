@@ -9,9 +9,7 @@ import {getProjectsTaskListById} from "../../ProjectsAction"
 import Highlighter from 'react-highlight-words';
 import "jspdf-autotable";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
-import {
-  CloseCircleOutlined,
-} from '@ant-design/icons';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { MultiAvatar } from "../../../../Components/UI/Elements";
 import { FormattedMessage } from 'react-intl';
 const ButtonGroup = Button.Group;
@@ -351,7 +349,7 @@ function ProjectsTaskTable (props)  {
                           style={{ fontSize: "1.5625em" }}
                         />
                       ) : item.approvedInd === "Rejected" ? (
-                        <CloseCircleOutlined
+                        <HighlightOffIcon
                           type="close-circle"
                           theme="twoTone"
                           twoToneColor="red"

@@ -1,5 +1,5 @@
 import React, { useState,useEffect,useRef } from 'react';
-import { MinusCircleOutlined } from '@ant-design/icons';
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline'; 
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { connect } from "react-redux";
@@ -202,7 +202,7 @@ if (props.fetchingRegions) {
               {/* Action buttons */}
               <div className="actions">
                   {/* Edit button */}
-                  <MinusCircleOutlined
+                  <RemoveCircleOutlineIcon
                    onClick={() => {
                     handleSetCurrentRegionId(region.regionsId)
                     props.handleRegionDrawerModal(true);

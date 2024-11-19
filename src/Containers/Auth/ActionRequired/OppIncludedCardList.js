@@ -10,7 +10,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Link } from 'react-router-dom';
 import { CurrencySymbol, } from "../../../Components/Common";
 import OpportunitySelectStages from "../../Opportunity/Child/OpportunityTable/OpportunitySelectStages"
-import { CheckCircleTwoTone} from "@ant-design/icons";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { MultiAvatar, MultiAvatar2,  } from "../../../Components/UI/Elements";
 import {
@@ -256,7 +256,7 @@ imgHeight={"1.8em"}
     title="Own"
    
   >
-    <CheckCircleTwoTone
+    <CheckCircleOutlineIcon
       type="check-circle"
       theme="twoTone"
       twoToneColor="#24D8A7"
@@ -289,7 +289,7 @@ imgHeight={"1.8em"}
     title="Won"
    
   >
-    <CheckCircleTwoTone
+    <CheckCircleOutlineIcon
       type="check-circle"
       theme="twoTone"
       twoToneColor="#24D8A7"

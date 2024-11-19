@@ -13,7 +13,8 @@ import { Button, Tooltip, message, Switch } from 'antd';
 import { getSaleCurrency } from "../../../Auth/AuthAction";
 import { getContactDistributorList } from "../../Suppliers/SuppliersAction"
 import { addQuotationOrderForm, getLobList } from '../AccountAction'
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+
 import ValidationAddressField from '../../../../Components/Forms/Formik/ValidationAddressField';
 import dayjs from "dayjs";
 
@@ -191,7 +192,7 @@ const handleOnSelectType =(ontype)=> {
                 <Button
                     // type="primary"
                     shape="circle"
-                    icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
+                    icon={<ErrorOutlineIcon style={{ fontSize: '0.1875em' }} />}
                     onClick={() => handleButtonClick("High")}
                     style={{
                         backgroundColor:
@@ -212,7 +213,7 @@ const handleOnSelectType =(ontype)=> {
                 <Button
                     // type="primary"
                     shape="circle"
-                    icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
+                    icon={<ErrorOutlineIcon style={{ fontSize: '0.1875em' }} />}
                     onClick={() => handleButtonClick("Low")}
                     style={{
                         backgroundColor:

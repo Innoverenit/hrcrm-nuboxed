@@ -13,7 +13,7 @@ import { Button, Tooltip, message} from 'antd';
 import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import { getContactDistributorList } from "../../../Suppliers/SuppliersAction"
 import { addOrderProcurementForm, getLobList } from '../../AccountAction'
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import AddressFieldArray1 from '../../../../../Components/Forms/Formik/AddressFieldArray1';
 import dayjs from "dayjs";
 import { BundleLoader } from '../../../../../Components/Placeholder';
@@ -356,7 +356,7 @@ function AddProcurementInAccount(props) {
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
-                                                        icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
+                                                        icon={<ErrorOutlineIcon style={{ fontSize: '0.1875em' }} />}
                                                         onClick={() => handleButtonClick("High")}
                                                         style={{
                                                             backgroundColor:
@@ -377,7 +377,7 @@ function AddProcurementInAccount(props) {
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
-                                                        icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
+                                                        icon={<ErrorOutlineIcon style={{ fontSize: '0.1875em' }} />}
                                                         onClick={() => handleButtonClick("Low")}
                                                         style={{
                                                             backgroundColor:

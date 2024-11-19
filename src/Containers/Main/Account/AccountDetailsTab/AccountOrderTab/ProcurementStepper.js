@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
 import { StyledSteps } from "../../../../../Components/UI/Antd";
-import { UserOutlined } from "@ant-design/icons";
+import GroupsIcon from '@mui/icons-material/Groups';
 import CallIcon from '@mui/icons-material/Call';
 import { FormattedMessage } from 'react-intl';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
@@ -45,7 +45,7 @@ class ProcurementStepper extends Component {
                     id="app.order"
                     defaultMessage="Order"
                 />,
-                icon: <UserOutlined />,
+                icon: <GroupsIcon />,
                 content: <AddProcurementInAccount distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd}
                 selectedLanguage={this.props.selectedLanguage}
                 translateText={this.props.translateText}

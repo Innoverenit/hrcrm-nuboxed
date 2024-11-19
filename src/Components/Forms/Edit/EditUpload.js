@@ -4,7 +4,7 @@ import { StyledUpload, StyledModal } from "../../UI/Antd";
 import { base_url } from "../../../Config/Auth";
 import axios from "axios";
 import { ProgressiveImage } from "../../Utils";
-import { FormOutlined,  } from "@ant-design/icons";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 import AddBoxIcon from '@mui/icons-material/AddBox';
 const token = sessionStorage.getItem("token");
 
@@ -82,7 +82,7 @@ class EditUpload extends React.Component {
         imageId ? (
           <div style={{ borderRadius: 24, textAlign: "right" }}>
             <span>
-              <FormOutlined type="form" />
+              <BorderColorIcon type="form" />
             </span>
             <ProgressiveImage
               // preview={ProfilePreview}

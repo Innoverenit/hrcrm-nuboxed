@@ -69,7 +69,7 @@ const BussinessCard = (props) => {
     />}
 
   >
-    <CheckCircleTwoTone
+    <CheckCircleOutlineIcon
       type="check-circle"
       theme="twoTone"
       twoToneColor="#24D8A7"

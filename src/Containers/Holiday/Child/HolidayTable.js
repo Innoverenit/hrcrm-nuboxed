@@ -1,14 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { StyledTable, StyledModal } from "../../../Components/UI/Antd";
-import { BundleLoader } from "../../../Components/Placeholder";
-import { Icon } from "antd";
-import {
-  EyeInvisibleOutlined,
- 
-  
-} from '@ant-design/icons';
+import { StyledTable } from "../../../Components/UI/Antd";
+
 import APIFailed from "../../../Helpers/ErrorBoundary/APIFailed";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 class HolidayTable extends Component {

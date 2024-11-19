@@ -25,8 +25,9 @@ import {
 } from "antd";
 import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../../../../Components/UI/Antd";
- import {getCandidateRequirement,LinkStatusRecruit,LinkStageRecruit,handleCandidateDateModal} from "../../../../OpportunityAction"
-import { CheckCircleTwoTone, EyeInvisibleTwoTone} from "@ant-design/icons";
+ import {LinkStatusRecruit,LinkStageRecruit,handleCandidateDateModal} from "../../../../OpportunityAction"
+ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { MultiAvatar } from "../../../../../../Components/UI/Elements";
 import DocumentsLoadMore from "../DocumentsLoadMore";
@@ -371,7 +372,7 @@ class SubTableClickCandidate extends Component {
                     
 
                       >
-                        <CheckCircleTwoTone
+                        <CheckCircleOutlineIcon
                           type="check-circle"
                           theme="twoTone"
                           twoToneColor="#24D8A7"
@@ -404,7 +405,7 @@ class SubTableClickCandidate extends Component {
                        
 
                       >
-                        <CheckCircleTwoTone
+                        <CheckCircleOutlineIcon
                           type="check-circle"
                           theme="twoTone"
                           twoToneColor="#24D8A7"
@@ -639,7 +640,7 @@ class SubTableClickCandidate extends Component {
                 title="Close Details"
                 
                 >
-                  <EyeInvisibleTwoTone
+                  <VisibilityOffIcon
                     type="eye-invisible"
                     onClick={() => this.handleCloseIconClick()}
                     style={{

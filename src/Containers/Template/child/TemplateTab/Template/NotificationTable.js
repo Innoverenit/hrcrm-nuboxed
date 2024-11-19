@@ -6,11 +6,8 @@ import {
   StyledTable,
   StyledPopconfirm,
 } from "../../../../../Components/UI/Antd";
-import {
-  EyeInvisibleOutlined, EyeOutlined,
-
-  
-} from '@ant-design/icons';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { withRouter } from "react-router-dom";
 import NotificationView from "./NotificationView";
 import { getNotificationTemplate,setCurrentNotification } from "../../../../Rules/RulesAction";
@@ -66,7 +63,7 @@ class NotificationTable extends React.Component {
             <>
               {close ? (
                 <Tooltip title="Close Template">
-                  <EyeInvisibleOutlined
+                  <VisibilityOffIcon
                     type="eye-invisible"
                     onClick={this.handleCloseIconClick}
                   
@@ -79,7 +76,7 @@ class NotificationTable extends React.Component {
                 </Tooltip>
               ) : (
                   <Tooltip title="View Template">
-                    <EyeOutlined
+                    <VisibilityIcon
                       type="eye"
                       onClick={() =>{
                         this.handleIconClick(

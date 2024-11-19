@@ -16,7 +16,7 @@ import {
   getPartnerDocument,
 } from "../../../../PartnerAction";
 import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
-import { RightSquareOutlined } from "@ant-design/icons";
+import InputIcon from '@mui/icons-material/Input';
 import VerticalAlignTopIcon from '@mui/icons-material/VerticalAlignTop';
 
 const ButtonGroup = Button.Group;
@@ -273,7 +273,7 @@ class AddDocumentModal extends Component {
                                                 : "rgba(0, 0, 0, 0.65)",
                                           }}
                                         >
-                                          <RightSquareOutlined type="right-square" />
+                                          <InputIcon type="right-square" />
                                         </Button>
                                       </Tooltip>
                                       <Tooltip title="Above">

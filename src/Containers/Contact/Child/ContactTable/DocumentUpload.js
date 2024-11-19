@@ -15,7 +15,7 @@ import {
   getselectdrop,
 } from "../../../Customer/CustomerAction";
 import DragableUpload from "../../../../Components/Forms/Formik/DragableUpload";
-import { RightSquareOutlined} from "@ant-design/icons";
+import InputIcon from '@mui/icons-material/Input';
 import VerticalAlignTopIcon from '@mui/icons-material/VerticalAlignTop';
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import HospitalDocument from "./HospitalDocument";
@@ -297,7 +297,7 @@ console.log(props.currentContactId.contactId)
                                           color: selectedOwnerAbove === "Specific" ? "white" : "rgba(0, 0, 0, 0.65)",
                                         }}
                                       >
-                                        <RightSquareOutlined type="right-square" />
+                                        <InputIcon type="right-square" />
                                       </Button>
                                     </Tooltip>
                                     <Tooltip title="Above">

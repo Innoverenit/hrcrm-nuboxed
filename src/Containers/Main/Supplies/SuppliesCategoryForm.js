@@ -7,8 +7,8 @@ import { InputComponent } from "../../../Components/Forms/Formik/InputComponent"
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 import * as Yup from "yup";
 import {addMaterialCategory} from "./SuppliesAction";
-import { MinusCircleOutlined, PlusOutlined } from "@ant-design/icons";
-
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';  
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 // async function addSuppliesCategory(values, setLoading,callback) {
 //     try {
 //         setLoading(true);
@@ -184,9 +184,9 @@ function SuppliesCategoryForm (props) {
                   />
                   {index === qualityFields.length - 1 && (
                     <>
-                      <PlusOutlined onClick={addQualityField} style={{ fontSize: '20px', color: 'green' }} />
+                      <AddCircleOutlineIcon onClick={addQualityField} style={{ fontSize: '20px', color: 'green' }} />
                       {qualityFields.length > 1 && (
-                        <MinusCircleOutlined
+                        <RemoveCircleOutlineIcon
                           onClick={removeQualityField}
                           style={{ fontSize: '20px', color: 'red' }}
                         />
@@ -219,9 +219,9 @@ function SuppliesCategoryForm (props) {
                   />
                   {index === specFields.length - 1 && (
                     <>
-                      <PlusOutlined onClick={addSpecField} style={{ fontSize: '20px', color: 'green' }} />
+                      <AddCircleOutlineIcon onClick={addSpecField} style={{ fontSize: '20px', color: 'green' }} />
                       {specFields.length > 1 && (
-                        <MinusCircleOutlined
+                        <RemoveCircleOutlineIcon
                           onClick={removeSpecField}
                           style={{ fontSize: '20px', color: 'red' }}
                         />

@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
-import { 
-  CloseCircleOutlined,
-} from "@ant-design/icons";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import UploadIcon from '@mui/icons-material/Upload';
 import InfiniteScroll from "react-infinite-scroll-component";
 import FeedbackIcon from '@mui/icons-material/Feedback';
@@ -519,7 +517,7 @@ const TaskDataCardList = (props) => {
           style={{ fontSize: "1rem" }}
         />
       ) : item.approvedInd === "Rejected" ? (
-        <CloseCircleOutlined
+        <HighlightOffIcon
           type="close-circle"
           theme="twoTone"
           twoToneColor="red"

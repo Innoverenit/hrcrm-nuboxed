@@ -49,7 +49,8 @@ import RecruitmentSwitch from "../../Opportunity/Child/OpportunityDetail/Opportu
 import SelectSponsorForm from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/SelectSponsorForm";
 import { addRecruitProProfile, deleteRequirementData } from "../../Opportunity/OpportunityAction";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import {  CheckCircleTwoTone, EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 class DemandTable extends Component {
   constructor(props) {
@@ -304,7 +305,7 @@ class DemandTable extends Component {
                         title="Select"
                       
                       >
-                        <CheckCircleTwoTone
+                        <CheckCircleOutlineIcon
                           type="check-circle"
                           theme="twoTone"
                           twoToneColor="#52c41a"
@@ -661,7 +662,7 @@ class DemandTable extends Component {
                       title="Close Details"
                    
                     >
-                      <EyeInvisibleOutlined
+                      <VisibilityOffIcon
                         type="eye-invisible"
                         onClick={() => this.handleCloseIconClick()}
                         style={{
@@ -679,7 +680,7 @@ class DemandTable extends Component {
                       <Tooltip 
                       title="Access Details"
                       >
-                        <EyeOutlined
+                        <VisibilityIcon
                           type="eye"
                           onClick={() =>
                             this.handleIconClick(

@@ -10,7 +10,7 @@ import { BundleLoader} from "../../../../Components/Placeholder";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip,  Menu, Dropdown, Progress } from "antd";
 import { CurrencySymbol, } from "../../../../Components/Common";
-import { CheckCircleTwoTone} from "@ant-design/icons";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
@@ -292,7 +292,7 @@ function DealCardList(props) {
                           <Tooltip
                             title=
                             {translatedMenuItems[10]} >
-                            <CheckCircleTwoTone
+                            <CheckCircleOutlineIcon
                               type="check-circle"
                               theme="twoTone"
                               twoToneColor="#24D8A7"
@@ -320,7 +320,7 @@ function DealCardList(props) {
                           <Tooltip
                             title= {translatedMenuItems[10]}
                           >
-                            <CheckCircleTwoTone
+                            <CheckCircleOutlineIcon
                                className="!text-icon text-[#24D8A7] cursor-pointer"
                               type="check-circle"
                               theme="twoTone"

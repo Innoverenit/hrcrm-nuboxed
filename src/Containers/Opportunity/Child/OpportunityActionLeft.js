@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { CheckCircleTwoTone } from "@ant-design/icons";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import LockOpenIcon from "@mui/icons-material/LockOpen";
@@ -26,7 +26,7 @@ import {
 
 } from "../OpportunityAction";
 import PeopleIcon from '@mui/icons-material/People';
-import {  TableOutlined } from "@ant-design/icons";
+import GridOnIcon from '@mui/icons-material/GridOn';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 const { Search } = Input;
 
@@ -233,7 +233,7 @@ const OpportunityActionLeft = (props) => {
         count={(viewType === "stage" && recordData.opportunityDetails) || 0}
         overflowCount={999}
       >
-          {/*<TableOutlined*/}
+          {/*<GridOnIcon*/}
           <span
             style={{
               fontSize: "1.56em",
@@ -248,7 +248,7 @@ const OpportunityActionLeft = (props) => {
              <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#28a355",
                boxShadow: props.viewType === "stage" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
                   transform: props.viewType === "stage" ? "scale(1.05)" : "scale(1)" }}>
-           <TableOutlined className="text-white !text-icon"/>
+           <GridOnIcon className="text-white !text-icon"/>
            </Avatar>
           </span>
           </Badge>
@@ -275,7 +275,7 @@ const OpportunityActionLeft = (props) => {
             <Avatar style={{ background: props.viewType === "won" ? "#f279ab" : "#28a355",
                boxShadow: props.viewType === "won" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
                   transform: props.viewType === "won" ? "scale(1.05)" : "scale(1)" }}>
-            <CheckCircleTwoTone type="check-circle" theme="twoTone" twoToneColor="#24D8A7" className="text-white !text-icon"/>
+            <CheckCircleOutlineIcon type="check-circle" theme="twoTone" twoToneColor="#24D8A7" className="text-white !text-icon"/>
             </Avatar>
           </span>
           </Badge>

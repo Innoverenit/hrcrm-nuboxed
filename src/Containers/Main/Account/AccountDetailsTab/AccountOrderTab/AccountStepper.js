@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
 import { StyledSteps } from "../../../../../Components/UI/Antd";
-import { UserOutlined } from "@ant-design/icons";
+import GroupsIcon from '@mui/icons-material/Groups';
 import CallIcon from '@mui/icons-material/Call';
 import AddOrderInAccount from "./AddOrderInAccount";
 import { FormattedMessage } from 'react-intl';
@@ -46,7 +46,7 @@ class AccountStepper extends Component {
                     id="app.order"
                     defaultMessage="Order"
                 />,
-                icon: <UserOutlined />,
+                icon: <GroupsIcon />,
                 content: <AddOrderInAccount distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
             },
             {

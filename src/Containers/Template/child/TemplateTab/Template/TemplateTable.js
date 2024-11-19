@@ -10,8 +10,7 @@ import { withRouter } from "react-router-dom";
 import { getTemplate } from "../../../../Rules/RulesAction";
 import dayjs from "dayjs";
 import { setCurrentEmail,handleTemplateViewModal } from "../../../../Rules/RulesAction";
-
-import { EyeInvisibleOutlined } from "@ant-design/icons";
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 const ButtonGroup = Button.Group;
 
 // const data = [{ templateName: "Birthday", date: "29-10-20" }];
@@ -114,7 +113,7 @@ class EmployeeTable extends React.Component {
                   title="Close Template"
                 
                 >
-                  <EyeInvisibleOutlined
+                  <VisibilityOffIcon
                     type="eye-invisible"
                     onClick={() => {
                      

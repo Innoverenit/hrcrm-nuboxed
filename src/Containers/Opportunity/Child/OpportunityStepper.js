@@ -2,7 +2,7 @@ import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
-import { UserOutlined } from "@ant-design/icons";
+import GroupsIcon from '@mui/icons-material/Groups';
 import CallIcon from '@mui/icons-material/Call';
 import { FormattedMessage } from 'react-intl';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
@@ -114,7 +114,7 @@ handleEmailInd = (checked) => {
                     id="app.order"
                     defaultMessage="Order"
                 />,
-                icon: <UserOutlined className=" text-green-600" 
+                icon: <GroupsIcon className=" text-green-600" 
                 style={{ backgroundColor:"green"}} />,
                 content: <OpportunityForm {...formProps}/>,
             },

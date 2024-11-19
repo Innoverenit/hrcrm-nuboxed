@@ -12,7 +12,7 @@ import { getSaleCurrency } from "../../../../Auth/AuthAction";
 import { FormattedMessage } from 'react-intl';
 import { getContactDistributorList } from "../../../Suppliers/SuppliersAction"
 import { updateProcureStep1, getLobList } from '../../AccountAction'
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import dayjs from "dayjs";
 const FormSchema = Yup.object().shape({
     lobDetsilsId: Yup.string().required("Input needed!"),
@@ -294,7 +294,7 @@ function ProcureStep1(props) {
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
-                                                        icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
+                                                        icon={<ErrorOutlineIcon style={{ fontSize: '0.1875em' }} />}
                                                         onClick={() => handleButtonClick("High")}
                                                         style={{
                                                             backgroundColor:
@@ -315,7 +315,7 @@ function ProcureStep1(props) {
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
-                                                        icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
+                                                        icon={<ErrorOutlineIcon style={{ fontSize: '0.1875em' }} />}
                                                         onClick={() => handleButtonClick("Medium")}
                                                         style={{
                                                             backgroundColor:
@@ -336,7 +336,7 @@ function ProcureStep1(props) {
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
-                                                        icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
+                                                        icon={<ErrorOutlineIcon style={{ fontSize: '0.1875em' }} />}
                                                         onClick={() => handleButtonClick("Low")}
                                                         style={{
                                                             backgroundColor:

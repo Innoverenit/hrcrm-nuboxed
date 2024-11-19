@@ -4,7 +4,7 @@ import {
 } from "../../../../Components/UI/Elements";
 import { StyledCollapse } from "../../../../Components/UI/Antd";
 import dayjs from "dayjs";
-import { CaretRightOutlined} from "@ant-design/icons";
+import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 const Panel = StyledCollapse.Panel;
 class PersonalView extends Component {
@@ -28,7 +28,7 @@ class PersonalView extends Component {
           bordered={false}
           defaultActiveKey={["0"]}
           expandIcon={({ isActive }) => (
-            <CaretRightOutlined type="caret-right" rotate={isActive ? 90 : 0} />
+            <ArrowDropDownCircleIcon type="caret-right" rotate={isActive ? 90 : 0} />
           )}
         >
           <Panel header={"Personal"} key="1" style={{}}>
