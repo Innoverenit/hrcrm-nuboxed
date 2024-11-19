@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
-
+import PinIcon from '@mui/icons-material/Pin';
 import { Tooltip, Select } from "antd";
 import { getRoomRackByLocId, getRackList } from "./InventoryAction";
 import { getMaterialUnitsData, handleSTockItemModal, handleStockUsedDrawer, trnasferGrnItemToStock } from "./InventoryAction"
@@ -93,25 +93,25 @@ const MaterialStockTableOut = (props) => {
                     <div className=" flex justify-between  w-[100%]  p-1 bg-transparent font-bold font-poppins items-end text-xs sticky  z-10">
                         <div className="w-[9.5rem]"></div>
                    {/* po # */}
-                        <div className="text-[#00A2E8] w-[8.21rem] text-base md:w-[11.21rem]">
+                        <div className="text-[#00A2E8] w-[8.21rem] truncate text-base max-md:w-[11.21rem]">
                    {/* name */}
                    <LocationCityIcon className='!text-icon  '  />  {props.translatedMenuItems[0]}
                             </div>
-                        <div className="w-[6.82rem] md:w-[9.82rem]">
+                        <div className="w-[6.82rem] truncate max-md:w-[9.82rem]">
                             {/* Category */}
                             <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {props.translatedMenuItems[24]}
                             </div>
                     {/* price */}
-                        <div className="w-[5.25rem] md:w-[9.25rem]">
+                        <div className="w-[5.25rem] truncate max-md:w-[9.25rem]">
                             {/* attribute */}
                             <AttractionsIcon className="  !text-icon" />  {props.translatedMenuItems[25]}
                             </div>
                      
-                        <div className="w-[7.11rem] md:w-[4.11rem]">HSN</div>
-                        <div className="w-[7.11rem] md:w-[4.11rem]">Zone</div>
-                        <div className="w-[7.11rem] md:w-[4.11rem]">Room</div>
-                        <div className="w-[7.11rem] md:w-[4.11rem]">Rack</div>
-                        <div className="w-[6.10rem] md:w-[6.10rem]">
+                        <div className="w-[7.11rem] truncate max-md:w-[4.11rem]">< PinIcon className=" !text-base"/>HSN</div>
+                        <div className="w-[7.11rem] truncate max-md:md:w-[4.11rem]">Zone</div>
+                        <div className="w-[7.11rem] truncate max-md:md:w-[4.11rem]">Room</div>
+                        <div className="w-[7.11rem] truncate max-md:md:w-[4.11rem]">Rack</div>
+                        <div className="w-[6.10rem] truncate max-md:md:w-[6.10rem]">
                             {/* in stock  */}
                              {props.translatedMenuItems[29]}
                         </div>
@@ -129,7 +129,7 @@ const MaterialStockTableOut = (props) => {
                         {!props.fetchingMaterialUnitsData  && props.materialUnitsData.length===  0 ? <EmptyPage/>: props.materialUnitsData.map((item, index) => {
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white py-1 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                                    <div className="flex rounded  mt-1 bg-white py-ygap items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                         <div class="flex">
                                             <div className=" flex md:w-[2.1rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
                                                 <div class="flex justify-between text-xs items-center  font-semibold  font-poppins ">
