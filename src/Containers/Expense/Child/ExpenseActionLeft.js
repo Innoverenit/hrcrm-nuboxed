@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import GridViewIcon from '@mui/icons-material/GridView';
 import ViewWeekIcon from '@mui/icons-material/ViewWeek';
-
-import { AudioOutlined } from "@ant-design/icons";
+import MicIcon from '@mui/icons-material/Mic';
 import {Input, Tooltip, Avatar } from "antd";
 import { withRouter } from "react-router-dom";
 import SpeechRecognition, {
@@ -45,7 +44,7 @@ setSearchOnEnter(true);
   };
 
   const suffix = (
-    <AudioOutlined
+    <MicIcon
       onClick={SpeechRecognition.startListening}
       style={{
         fontSize: 16,

@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Tooltip, Avatar,Badge,Input } from "antd";
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import MenuIcon from '@mui/icons-material/Menu';
 import { getRecords,getCategory,getDeletedProductRecords,catalogueCategorySearch} from "../ProductAction";
 import CategoryIcon from '@mui/icons-material/Category';
@@ -106,7 +106,7 @@ const ProductActionLeft = (props) => {
         }, minRecordingTime);
       };
       const suffix = (
-        <AudioOutlined
+        <MicIcon
           onClick={handleStartListening}
           style={{
             fontSize: 16,

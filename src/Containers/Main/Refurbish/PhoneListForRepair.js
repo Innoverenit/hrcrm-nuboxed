@@ -22,14 +22,15 @@ import {
     getToExchange
 } from "./RefurbishAction";
 import { Button, Tooltip,  Progress,Input,Badge, Popconfirm } from "antd";
-import {  BarcodeOutlined, RollbackOutlined } from "@ant-design/icons";
+import {  BarcodeOutlined} from "@ant-design/icons";
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import QRCode from "qrcode.react";
 import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import {  PauseCircleFilled,  PlayCircleFilledSharp } from "@mui/icons-material";
 import InfiniteScroll from "react-infinite-scroll-component";
 import AddSpareInRepair from "./AddSpareInRepair";
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import ReactToPrint from "react-to-print";
 import PhoneDetailsModal from "./ProductionTab/PhoneDetailsModal";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -161,7 +162,7 @@ function PhoneListForRepair(props) {
         }, minRecordingTime);
       };
       const suffix = (
-        <AudioOutlined
+        <MicIcon
           onClick={handleStartListening}
           style={{
             fontSize: 16,
@@ -514,7 +515,7 @@ function PhoneListForRepair(props) {
                                                         }}
                                                     />}
                                                     {item.repairStatus === "Complete" &&
-                                                        <RollbackOutlined />}
+                                                        <KeyboardReturnIcon />}
                                                     {/* </ButtonGroup> */}
 
                                                 </div>

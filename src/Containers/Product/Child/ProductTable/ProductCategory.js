@@ -291,7 +291,7 @@ const breakPoints = [
                                                                 cursor: "pointer",
                                                               }}
                                                             >
-                                                              <InfoCircleTwoTone class=" flex items-center"/>
+                                                       
                                                             </span>
                                                           </Tooltip>
                                                         )}

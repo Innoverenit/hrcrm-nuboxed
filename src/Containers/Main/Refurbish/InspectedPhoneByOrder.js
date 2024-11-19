@@ -20,7 +20,8 @@ import {
 } from "./RefurbishAction";
 import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
 import ContactsIcon from '@mui/icons-material/Contacts';
-import { AudioOutlined, BarcodeOutlined } from '@ant-design/icons';
+import { BarcodeOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import ReceivedSpareList from "./ProductionTab/ReceivedSpareList";
 import { BundleLoader } from "../../../Components/Placeholder";
 import PhoneListOrderTaskTable from "./PhoneListOrderTaskTable";
@@ -161,7 +162,7 @@ function InspectedPhoneByOrder(props) {
             }, minRecordingTime);
           };
           const suffix = (
-            <AudioOutlined
+            <MicIcon
             onClick={handleStartListening}
               style={{
                 fontSize: 16,

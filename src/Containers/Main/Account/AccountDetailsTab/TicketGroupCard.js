@@ -93,7 +93,7 @@ const BussinessCard = (props) => {
         }
       >
  
-  <StopTwoTone
+  <DoDisturbIcon
           type="stop"
           theme="twoTone"
           twoToneColor="red"

@@ -26,11 +26,11 @@ import {
 import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../../../../Components/UI/Antd";
  import {getCandidateRequirement,LinkStatusRecruit,LinkStageRecruit,handleCandidateDateModal} from "../../../../OpportunityAction"
-import { CheckCircleTwoTone, EyeInvisibleTwoTone,  StopTwoTone } from "@ant-design/icons";
+import { CheckCircleTwoTone, EyeInvisibleTwoTone} from "@ant-design/icons";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { MultiAvatar } from "../../../../../../Components/UI/Elements";
 import DocumentsLoadMore from "../DocumentsLoadMore";
-
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 class SubTableClickCandidate extends Component {
   constructor(props) {
     super(props);
@@ -389,7 +389,7 @@ class SubTableClickCandidate extends Component {
                     <>
                       <Tooltip title={"Dropped"}>
                         {" "}
-                        <StopTwoTone
+                        <DoDisturbIcon
                           type="stop"
                           theme="twoTone"
                           twoToneColor="red"         
@@ -450,7 +450,7 @@ class SubTableClickCandidate extends Component {
                       
 
                       >
-                        <StopTwoTone
+                        <DoDisturbIcon
                           type="stop"
                           theme="twoTone"
                           twoToneColor="red"

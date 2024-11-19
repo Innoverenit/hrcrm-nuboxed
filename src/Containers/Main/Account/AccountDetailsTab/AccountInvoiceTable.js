@@ -12,7 +12,7 @@ import {
     handlePaidModal,
     getInvoiceCount
 } from "../AccountAction";
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import {  Select, Tooltip,Input,Button } from 'antd';
 import dayjs from "dayjs";
@@ -214,7 +214,7 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
             }, minRecordingTime);
           };
           const suffix = (
-            <AudioOutlined
+            <MicIcon
               onClick={handleStartListening}
               style={{
                 fontSize: 16,

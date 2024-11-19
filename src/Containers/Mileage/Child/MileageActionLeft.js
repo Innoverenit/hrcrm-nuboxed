@@ -6,7 +6,7 @@ import { Tooltip,Input, Avatar, Badge } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
-import { AudioOutlined } from "@ant-design/icons";
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -45,7 +45,7 @@ setSearchOnEnter(true);
   };
 
   const suffix = (
-    <AudioOutlined
+    <MicIcon
       onClick={SpeechRecognition.startListening}
       style={{
         fontSize: 16,

@@ -6,36 +6,24 @@ import { getAllSalesList } from "../Opportunity/OpportunityAction"
 import { Button, Switch, Tooltip ,Select} from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
-//import { handleCallNotesModal } from "../../../Call/CallAction";
-// import {
-//     getContactListByCustomerId,
-//     getOpportunityListByCustomerId,
-//   } from "../Customer/CustomerAction";
 import dayjs from "dayjs";
 import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../Components/Forms/Formik/DatePicker";
 import { TimePicker } from "../../Components/Forms/Formik/TimePicker";
-// import {
-//   updateCall,
-//   deleteCall,
-//   handleCallModal,
-// } from "../../../Call/CallAction";
 import {addActivityCall} from "./ActivityAction"
 import {getAllCustomerData} from "../Customer/CustomerAction"
-//import { handleChooserModal } from "../../../Planner/PlannerAction";
 import { StyledPopconfirm } from "../../Components/UI/Antd";
-//import { setClearbitCandidateData } from "../../../Candidate/CandidateAction";
 import SpeechRecognition, { } from 'react-speech-recognition';
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import { Listbox } from '@headlessui/react'
 import { BundleLoader } from "../../Components/Placeholder";
 import { base_url } from "../../Config/Auth";
 const ButtonGroup = Button.Group;
 const { Option } = Select;
 const suffix = (
-  <AudioOutlined
+  <MicIcon
     onClick={SpeechRecognition.startListening}
     style={{
       fontSize: 16,

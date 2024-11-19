@@ -1,7 +1,7 @@
 import React from "react";
 import {  Popconfirm,Tooltip } from "antd";
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { StopTwoTone,   } from "@ant-design/icons";
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { CheckCircleTwoTone } from "@ant-design/icons";
 import {
@@ -110,7 +110,7 @@ const BussinessCard = (props) => {
         title="Lost"
       >
  
-  <StopTwoTone
+  <DoDisturbIcon
           type="stop"
           theme="twoTone"
           twoToneColor="red"

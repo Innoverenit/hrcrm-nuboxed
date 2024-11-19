@@ -8,12 +8,11 @@ import "jspdf-autotable";
 import {
   getTeamsDeals
 } from "./DealAction";
-import { CheckCircleTwoTone, StopTwoTone } from "@ant-design/icons";
+import { CheckCircleTwoTone  } from "@ant-design/icons";
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { Button, Tooltip, Dropdown, Menu, Progress } from "antd";
-
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { CurrencySymbol } from "../../Components/Common";
-import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
 
 const ButtonGroup = Button.Group;
 
@@ -108,7 +107,7 @@ const DealsTeamCardList = (props) => {
             });
             const currentdate = dayjs().format("DD/MM/YYYY");
             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-           const myIndicator = (item.wonInd) ? <CheckCircleTwoTone/> : (item.lostInd ? <StopTwoTone/> : null);
+           const myIndicator = (item.wonInd) ? <CheckCircleTwoTone/> : (item.lostInd ? <DoDisturbIcon/> : null);
             const diff = Math.abs(
               dayjs().diff(dayjs(item.lastRequirementOn), "days")
             );

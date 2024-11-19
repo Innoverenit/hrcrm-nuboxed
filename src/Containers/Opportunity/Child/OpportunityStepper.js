@@ -2,7 +2,8 @@ import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
-import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
+import CallIcon from '@mui/icons-material/Call';
 import { FormattedMessage } from 'react-intl';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
@@ -122,7 +123,7 @@ handleEmailInd = (checked) => {
                     id="app.catalogue"
                     defaultMessage="Catalogue List"
                 />,
-                icon: <PhoneOutlined className=" text-green-500"/>,
+                icon: <CallIcon className=" text-green-500"/>,
                 content: <AddCatalogueForm
                 // handleChooseCatalogue={this.handleChooseCatalogue}
                 // catalogueId={this.state.catalogueId}

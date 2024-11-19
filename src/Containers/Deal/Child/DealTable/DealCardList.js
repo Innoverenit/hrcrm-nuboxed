@@ -9,9 +9,9 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { BundleLoader} from "../../../../Components/Placeholder";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip,  Menu, Dropdown, Progress } from "antd";
-import { Link } from 'react-router-dom';
 import { CurrencySymbol, } from "../../../../Components/Common";
-import { CheckCircleTwoTone, StopTwoTone } from "@ant-design/icons";
+import { CheckCircleTwoTone} from "@ant-design/icons";
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
   MultiAvatar,
@@ -304,7 +304,7 @@ function DealCardList(props) {
                         <>
                           <Tooltip title= {translatedMenuItems[9]}>
                             {" "}
-                            <StopTwoTone
+                            <DoDisturbIcon
                               type="stop"
                               theme="twoTone"
                               twoToneColor="red"
@@ -334,7 +334,7 @@ function DealCardList(props) {
                         
                           <Tooltip
                             title= {translatedMenuItems[9]}>
-                            <StopTwoTone
+                            <DoDisturbIcon
                             className="!text-icon text-[red] cursor-pointer ml-2"
                               type="stop"
                               theme="twoTone"

@@ -5,7 +5,7 @@ import { getPhonelistById, handlePhoneNotesOrderModal,searchimeiNamePhone,ClearP
 import { Button, Tooltip,Input } from "antd";
 import QRCode from "qrcode.react";
 import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import ButtonGroup from "antd/lib/button/button-group";
 import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
@@ -125,7 +125,7 @@ function DistributorPauseForm(props) {
             }, minRecordingTime);
           };
           const suffix = (
-            <AudioOutlined
+            <MicIcon
             onClick={handleStartListening}
               style={{
                 fontSize: 16,

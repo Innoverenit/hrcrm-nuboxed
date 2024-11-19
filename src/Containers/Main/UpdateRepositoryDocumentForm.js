@@ -6,17 +6,12 @@ import { getDepartments } from "../../Containers/Settings/Department/DepartmentA
 import {updateRepositoryDocument} from "../Auth/AuthAction"
 import { Formik, Form, Field, FieldArray,FastField } from "formik";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
-import DocumentUpload from "../../Components/Forms/Formik/DocumentUpload";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from "../../Components/Forms/Formik/TextareaComponent";
 import {getAssignedToList}  from "../Employees/EmployeeAction"
 import * as Yup from "yup";
 import {getDocuments} from "../Settings/Documents/DocumentsAction"
 import DragableUpload from "../../Components/Forms/Formik/DragableUpload";
-import LazySelect from "../../Components/Forms/Formik/LazySelect";
-
-
-import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
 const ButtonGroup = Button.Group;
 
 const { Option } = Select;

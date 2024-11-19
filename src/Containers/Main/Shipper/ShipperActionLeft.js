@@ -16,9 +16,7 @@ import {
   getShipperByUserId,
   ClearReducerDataOfShipper
 } from "./ShipperAction";
-import {
-  AudioOutlined
-} from "@ant-design/icons";
+import MicIcon from '@mui/icons-material/Mic';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { StyledRangePicker } from "../../../Components/UI/Antd";
@@ -112,7 +110,7 @@ const ShipperActionLeft = (props) => {
     }, minRecordingTime);
   };
   const suffix = (
-    <AudioOutlined
+    <MicIcon
       onClick={handleStartListening}
       style={{
         fontSize: 16,

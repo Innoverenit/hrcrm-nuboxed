@@ -2,7 +2,7 @@ import React,{useEffect,useState,useRef} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Avatar, Tooltip,Badge,Input } from "antd";
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import {
   getRefurbishAllCount,
@@ -84,7 +84,7 @@ function RefurbishActionLeft (props) {
         }, minRecordingTime);
       };
       const suffix = (
-        <AudioOutlined
+        <MicIcon
           onClick={handleStartListening}
           style={{
             fontSize: 16,

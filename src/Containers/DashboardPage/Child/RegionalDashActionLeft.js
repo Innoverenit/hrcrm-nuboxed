@@ -5,7 +5,7 @@ import TimeInterval from "../../../Utils/TimeInterval";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
-import { AudioOutlined } from "@ant-design/icons";
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -26,7 +26,7 @@ const RegionalDashActionLeft = (props) => {
   const dummy = ["cloud", "azure", "fgfdg"];
 
   const suffix = (
-    <AudioOutlined
+    <MicIcon
       onClick={SpeechRecognition.startListening}
       style={{
         fontSize: 16,

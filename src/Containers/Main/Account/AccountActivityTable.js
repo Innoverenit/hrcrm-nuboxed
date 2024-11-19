@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Icon, Tooltip } from "antd";
-import {  FileDoneOutlined, PhoneOutlined, ScheduleOutlined } from "@ant-design/icons";
+import {  FileDoneOutlined} from "@ant-design/icons";
+import CallIcon from '@mui/icons-material/Call';
+import ChecklistIcon from '@mui/icons-material/Checklist';
 import { StyledTable } from "../../../Components/UI/Antd";
 import {
     getActivityListByDistributorId,
@@ -39,10 +41,10 @@ class AccountActivityTable extends Component {
                     return (
                         <>
                             {item.activity === "Call" && (
-                                <PhoneOutlined />
+                                <CallIcon />
                             )}
                             {item.activity === "Event" && (
-                                <ScheduleOutlined />
+                                <ChecklistIcon />
                             )}
                             {item.activity === "Task" && (
                                 <FileDoneOutlined />

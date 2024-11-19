@@ -4,10 +4,7 @@ import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 
 import SearchIcon from '@mui/icons-material/Search';
-import {
-  
-  UpCircleOutlined,
-} from "@ant-design/icons";
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import { Link } from 'react-router-dom';
 import { translateText, } from '../../../Translate/TranslateService';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
@@ -854,7 +851,7 @@ function CandidateTable(props) {
             title="Do you want to blacklist?"
             onConfirm={() => props.getBlackListCandidate(item.candidateId)}
           >
-            <UpCircleOutlined
+            <ArrowCircleUpIcon
               type="up-circle"
               theme="filled"
               style={{ cursor: "pointer" }}

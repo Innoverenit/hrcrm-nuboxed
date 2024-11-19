@@ -2,11 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip } from "antd";
-import { FileDoneOutlined, PhoneOutlined, ScheduleOutlined } from "@ant-design/icons";
+import { FileDoneOutlined} from "@ant-design/icons";
+import CallIcon from '@mui/icons-material/Call';
 import {  StyledTable } from "../../../../../../../Components/UI/Antd";
 import dayjs from "dayjs";
 import {getActivityListBySupplierId} from "../../../../SuppliersAction";
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import ChecklistIcon from '@mui/icons-material/Checklist';
 class SuppliersActivityTable extends Component {
 
     constructor(props) {
@@ -75,11 +77,11 @@ class SuppliersActivityTable extends Component {
                         <>
                             {item.activity === "Call" && (
                                 // <Icon type="phone" />
-                                <PhoneOutlined className=""/>
+                                <CallIcon className=""/>
                             )}
                             {item.activity === "Event" && (
                                 // <Icon type="schedule" />
-                                <ScheduleOutlined/>
+                                <ChecklistIcon/>
                             )}
                             {item.activity === "Task" && (
                                 // <Icon type="file-done" />

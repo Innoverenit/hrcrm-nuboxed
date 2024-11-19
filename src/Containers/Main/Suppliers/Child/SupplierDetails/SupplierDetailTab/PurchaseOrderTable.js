@@ -13,7 +13,7 @@ import {
 } from "../../../SuppliersAction"
 import { Button, Select, Tooltip,Input } from 'antd';
 import dayjs from "dayjs";
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { MultiAvatar } from "../../../../../../Components/UI/Elements";
@@ -185,7 +185,7 @@ const timerRef = useRef(null);
       }, minRecordingTime);
     };
     const suffix = (
-      <AudioOutlined
+      <MicIcon
         onClick={handleStartListening}
         style={{
           fontSize: 16,

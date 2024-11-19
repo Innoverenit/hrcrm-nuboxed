@@ -5,7 +5,8 @@ import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { MultiAvatar, MultiAvatar2, SubTitle } from "../../../../../Components/UI/Elements";
 import "jspdf-autotable";
-import { CheckCircleTwoTone, StopTwoTone } from "@ant-design/icons";
+import { CheckCircleTwoTone  } from "@ant-design/icons";
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import {
   getAllDeals
 } from "../../../DealAction";
@@ -209,7 +210,7 @@ const DealsAllCardList = (props) => {
             });
             const currentdate = dayjs().format("DD/MM/YYYY");
             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-            const myIndicator = (item.wonInd) ? <CheckCircleTwoTone/> : (item.lostInd ? <StopTwoTone/> : null);
+            const myIndicator = (item.wonInd) ? <CheckCircleTwoTone/> : (item.lostInd ? <DoDisturbIcon/> : null);
             const diff = Math.abs(
               dayjs().diff(dayjs(item.lastRequirementOn), "days")
             );

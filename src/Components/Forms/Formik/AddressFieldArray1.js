@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import {Tooltip } from "antd";
 import { Field } from "formik";
-import { EnvironmentOutlined } from '@ant-design/icons';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import FormikPlacesAutoComplete from "./FormikPlacesAutoComplete";
 import { InputComponent } from "../Formik/InputComponent";
 class AddressFieldArray1 extends Component {
@@ -16,7 +16,7 @@ class AddressFieldArray1 extends Component {
                     values.loadingAddress.map((loadingAddress, index) => (
                         <div>
                             <div key={index} style={{ display: "flex", width: "100%" }}>
-                                <EnvironmentOutlined
+                                <AddLocationAltIcon
                                     // type="environment"
                                     style={{
                                         fontSize: "1.2em",

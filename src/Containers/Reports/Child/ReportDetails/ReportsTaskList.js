@@ -4,8 +4,9 @@ import { bindActionCreators } from "redux";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import {
   CloseCircleOutlined,
-  UploadOutlined,
+ 
 } from "@ant-design/icons";
+import UploadIcon from '@mui/icons-material/Upload';
 import dayjs from "dayjs";
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -375,7 +376,7 @@ const ReportTaskList = (props) => {
      <div className="flex   w-[1.7rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
                       
-          <UploadOutlined
+          <UploadIcon
             //   onClick={() => {
             //     props.handleUpdateDocumentDrawerModal(true);
             //     handleSetTaskNameId(item);

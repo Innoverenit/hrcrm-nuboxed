@@ -5,7 +5,7 @@ import { StyledSelect } from "../../../Components/UI/Antd";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import PeopleIcon from '@mui/icons-material/People';
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
 import { Input, Tooltip,Badge,Avatar,Button,Select } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
@@ -83,7 +83,7 @@ const PitchActionLeft = (props) => {
     }, minRecordingTime);
   };
   const suffix = (
-    <AudioOutlined
+    <MicIcon
       onClick={handleStartListening}
       style={{
         fontSize: 16,

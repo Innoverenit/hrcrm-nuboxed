@@ -2,7 +2,7 @@ import React, { useState, useEffect, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Input } from "antd";
-import { AudioOutlined } from "@ant-design/icons";
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, {
 } from "react-speech-recognition";
 import { MainWrapper } from "../../../Components/UI/Layout";
@@ -127,7 +127,7 @@ const Library = ({
               placeholder="Search by Name"
             
               suffix={
-                <AudioOutlined
+                <MicIcon
                   onClick={SpeechRecognition.startListening}
                   style={{
                     fontSize: 16,

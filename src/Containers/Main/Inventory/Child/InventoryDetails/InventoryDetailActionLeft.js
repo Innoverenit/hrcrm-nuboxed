@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip } from "antd";
 import { emptyInventory } from "../../InventoryAction"
-import { RollbackOutlined } from "@ant-design/icons";
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import { Link } from 'react-router-dom';
 class InventoryDetailActionLeft extends Component {
   constructor(props) {
@@ -27,7 +27,7 @@ class InventoryDetailActionLeft extends Component {
           {/* {user.designation === "Manager" && */}
           <Link to="/inventory">
           <Tooltip title={this.props.translatedMenuItems[3]}>
-                        <RollbackOutlined
+                        <KeyboardReturnIcon
                             style={{ marginRight: "0.3rem", color: "#1890ff" }}
                             // onClick={() => {
                             //     this.this.props.history.goBack();

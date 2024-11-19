@@ -11,7 +11,7 @@ import {
     ClearSearchedInvoice
 } from "../AccountAction";
 
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import {  Select,Popconfirm, Tooltip,Input,Button } from 'antd';
@@ -109,7 +109,7 @@ function Invoicesearch(props) {
             }, minRecordingTime);
           };
           const suffix = (
-            <AudioOutlined
+            <MicIcon
               onClick={handleStartListening}
               style={{
                 fontSize: 16,

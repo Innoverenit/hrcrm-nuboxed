@@ -8,7 +8,8 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip,  Menu, Dropdown, Progress } from "antd";
 import { Link } from 'react-router-dom';
 import { CurrencySymbol, } from "../../../Components/Common";
-import { CheckCircleTwoTone, StopTwoTone } from "@ant-design/icons";
+import { CheckCircleTwoTone } from "@ant-design/icons";
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import {
   MultiAvatar,
@@ -159,7 +160,7 @@ function IncludedTaskCardList(props) {
                         <>
                           <Tooltip title={"Lost"}>
                             {" "}
-                            <StopTwoTone
+                            <DoDisturbIcon
                               type="stop"
                               theme="twoTone"
                               twoToneColor="red"
@@ -198,7 +199,7 @@ function IncludedTaskCardList(props) {
                             title="Lost"
                              
                           >
-                            <StopTwoTone
+                            <DoDisturbIcon
                               type="stop"
                               theme="twoTone"
                               twoToneColor="red"

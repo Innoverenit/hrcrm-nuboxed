@@ -2,11 +2,7 @@ import React, { useEffect, useState, useMemo, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import {
-  
-  UpCircleOutlined,
-} from "@ant-design/icons";
-
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import SearchIcon from '@mui/icons-material/Search';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
@@ -840,7 +836,7 @@ function CandidateGridTable(props) {
             title="Do you want to blacklist?"
             onConfirm={() => props.getBlackListCandidate(data.candidateId)}
           >
-            <UpCircleOutlined
+            <ArrowCircleUpIcon
               type="up-circle"
               theme="filled"
               style={{ cursor: "pointer" }}

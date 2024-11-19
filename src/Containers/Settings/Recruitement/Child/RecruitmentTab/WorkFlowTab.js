@@ -4,7 +4,7 @@
 
 
 
-import React,{lazy,Suspense,useEffect,useState} from "react";
+import React,{Suspense,useEffect,useState} from "react";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import { connect } from "react-redux";
@@ -16,7 +16,8 @@ import {
   
 } from "../../../SettingsAction";
 import TabContentComponent from "../RecruitmentTab/TabContentComponent"
-import { GlobalOutlined } from "@ant-design/icons";
+import LanguageIcon from '@mui/icons-material/Language';
+
 
 
 const { TabPane } = Tabs;
@@ -89,7 +90,7 @@ useEffect(() => {
             tab={
               <>
                 <span className="ml-1">{tab.name}</span>
-                 {tab.globalInd && <GlobalOutlined style={{ marginLeft: 8 }} />}
+                 {tab.globalInd && <LanguageIcon style={{ marginLeft: 8 }} />}
                 {/* <Badge count={countMapping[tab.name]} overflowCount={999} /> */}
               </>
             }

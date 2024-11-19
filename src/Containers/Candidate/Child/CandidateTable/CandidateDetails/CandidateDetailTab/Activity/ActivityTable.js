@@ -6,7 +6,10 @@ import dayjs from "dayjs";
 import SearchIcon from '@mui/icons-material/Search';
 import { getActivityListByCandidateId } from "../../../../../CandidateAction";
 import Highlighter from "react-highlight-words";
-import { FileDoneOutlined, PhoneOutlined, ScheduleOutlined,  } from "@ant-design/icons";
+import ChecklistIcon from '@mui/icons-material/Checklist';
+import CallIcon from '@mui/icons-material/Call';
+import { FileDoneOutlined } from "@ant-design/icons";
+
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 const ButtonGroup = Button.Group;
 class LinkedCandidateActivity extends Component {
@@ -152,8 +155,8 @@ class LinkedCandidateActivity extends Component {
                             </div> */}
        
                             <div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
-                            {item.activity === "Call" && <PhoneOutlined type="phone" />}
-            {item.activity === "Event" && <ScheduleOutlined type="schedule" />}
+                            {item.activity === "Call" && <CallIcon type="phone" />}
+            {item.activity === "Event" && <ChecklistIcon type="schedule" />}
             {item.activity === "Task" && <FileDoneOutlined type="file-done" />}
                             </div>
                          
@@ -288,8 +291,8 @@ export default connect(
 //     render: (name, item, i) => {
 //       return (
 //         <>
-//           {item.activity === "Call" && <PhoneOutlined type="phone" />}
-//           {item.activity === "Event" && <ScheduleOutlined type="schedule" />}
+//           {item.activity === "Call" && <CallIcon type="phone" />}
+//           {item.activity === "Event" && <ChecklistIcon type="schedule" />}
 //           {item.activity === "Task" && <FileDoneOutlined type="file-done" />}
 //         </>
 //       );

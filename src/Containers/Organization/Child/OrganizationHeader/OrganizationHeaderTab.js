@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Tabs } from 'antd';
 import { bindActionCreators } from "redux";
 import {getOrganizationList} from "../../../Auth/AuthAction"
-import { GlobalOutlined } from "@ant-design/icons";
+import LanguageIcon from '@mui/icons-material/Language';
 
 // const TabPane = StyledTabs.TabPane;
 const { TabPane } = Tabs;
@@ -67,7 +67,7 @@ class OrganizationHeaderTab extends Component {
           tab={
             <>
             {item.organizationName}
-            {item.type==="Parent" && <GlobalOutlined className=" !text-icon ml-2" />}
+            {item.type==="Parent" && <LanguageIcon className=" !text-icon ml-2" />}
             </>
             }>
             {/* <Card>

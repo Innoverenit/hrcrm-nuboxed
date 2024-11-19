@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Checkbox, Tooltip } from "antd";
-import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
+import {  UserOutlined } from "@ant-design/icons";
+import CallIcon from '@mui/icons-material/Call';
 import { StyledSteps } from "../../../Components/UI/Antd";
 import { getBestBefore } from "./SuppliesAction";
 import { getContactDistributor } from "../../Contact/ContactAction";
@@ -80,7 +81,7 @@ const BestBeforeStepper = (props) => {
         },
         {
             title: "Mailling List",
-            icon: <PhoneOutlined className="text-green-500" />,
+            icon: <CallIcon className="text-green-500" />,
             content: (
                 <BestbeforeStep2
                     selectedItems={selectedItemsStep2}

@@ -2,14 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
 import {
-  EnvironmentOutlined,
+
   EyeInvisibleOutlined,
   LeftCircleTwoTone,
   RightCircleTwoTone,
-  
-
-  
 } from '@ant-design/icons';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import {  Carousel, Tooltip } from "antd";
 import { StyledModal } from "../../../../Components/UI/Antd";
 import { MainWrapper} from "../../../../Components/UI/Layout";
@@ -103,7 +101,7 @@ class ProfileDetailMap extends Component {
       <>
         <MainWrapper style={{ padding: 0, position: "relative" }}>
           <Tooltip title="View and update customer addresses">
-            <EnvironmentOutlined
+            <AddLocationAltIcon
               type="environment"
               onClick={this.handleMapModalVisible}
               style={{

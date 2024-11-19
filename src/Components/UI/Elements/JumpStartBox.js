@@ -3,10 +3,10 @@ import { Select, Tooltip } from "antd";
 import styled from "styled-components";
 import ContentLoader from "react-content-loader";
 import {
-  CaretDownOutlined,
   CaretUpOutlined,
-  InfoCircleOutlined,
+ 
 } from '@ant-design/icons';
+import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { CurrencySymbol, } from "../../Common";
 const { Option } = Select;
@@ -90,7 +90,7 @@ const JumpStartDetail = ({
             {title || "N/A"}{" "}
             <Tooltip title={tooltipData}>
               <InfoIcon>
-                <InfoCircleOutlined
+                <ArrowDropDownCircleIcon
                   type="info-circle"
                 
                 />
@@ -157,7 +157,7 @@ const JumpStartDetail = ({
                     </>
                   ) : (
                       <>
-                        <CaretDownOutlined type="caret-down" />
+                        <ArrowDropDownCircleIcon type="caret-down" />
                         {`${(progress && progress.toFixed(0)) || 0}%`}
                       </>
                     )}

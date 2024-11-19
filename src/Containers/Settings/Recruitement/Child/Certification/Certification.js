@@ -3,7 +3,7 @@ import React, { useState, useEffect, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Input } from "antd";
-import { AudioOutlined } from "@ant-design/icons";
+import MicIcon from '@mui/icons-material/Mic';
 import {getCertificationRecords} from "../../../Library/LibraryAction"
 import { MainWrapper } from "../../../../../Components/UI/Layout";
 import { TextInput } from "../../../../../Components/UI/Elements";
@@ -124,7 +124,7 @@ const Certification = ({
             <Input
               placeholder="Search by Name"
               suffix={
-                <AudioOutlined
+                <MicIcon
                   onClick={SpeechRecognition.startListening}
                   style={{
                     fontSize: 16,

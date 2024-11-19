@@ -2,9 +2,10 @@ import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
-import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
+import {  UserOutlined } from "@ant-design/icons";
 import { FormattedMessage } from 'react-intl';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import CallIcon from '@mui/icons-material/Call';
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
 import { StyledSteps } from "../../../../Components/UI/Antd";
 import AddCatalogueForm from "../AddCatalogueForm";
@@ -67,7 +68,7 @@ class OpportunityUpdateStepper extends Component {
                     id="app.catalogue"
                     defaultMessage="Catalogue List"
                 />,
-                icon: <PhoneOutlined style={{ color: "blue" }}/>,
+                icon: <CallIcon style={{ color: "blue" }}/>,
                 content: <AddCatalogueForm/>,
             },
 

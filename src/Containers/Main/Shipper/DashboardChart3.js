@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Empty, Button, Tooltip, Icon, Popover } from "antd";
-import { FullscreenOutlined } from "@ant-design/icons";
+import FullscreenIcon from '@mui/icons-material/Fullscreen';
 import { FlexContainer } from "../../../Components/UI/Layout";
 import { BarChart_ } from "../../../Components/Charts";
 
@@ -37,7 +36,7 @@ class DashboardChart3 extends Component {
         return (
             <div>
                 <div style={{ position: "relative" }}>
-                    <FullscreenOutlined
+                    <FullscreenIcon
 
                         style={{
                             fontSize: "16px",

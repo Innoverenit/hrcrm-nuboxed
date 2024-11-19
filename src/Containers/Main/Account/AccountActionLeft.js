@@ -5,7 +5,7 @@ import { Tooltip, Badge, Avatar, Input } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { inputDataSearch,ClearSearchedDataOfAccount,getAllDistributorsList, getRecords,getCustomerByUser, getAccountRecords, getAllRecords, getDistributorCount ,} from "./AccountAction";
-import { AudioOutlined } from "@ant-design/icons";
+import MicIcon from '@mui/icons-material/Mic';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const AccountActionLeft = (props) => {
@@ -88,7 +88,7 @@ const AccountActionLeft = (props) => {
         }, minRecordingTime);
       };
       const suffix = (
-        <AudioOutlined
+        <MicIcon
           onClick={handleStartListening}
           style={{
             fontSize: 16,

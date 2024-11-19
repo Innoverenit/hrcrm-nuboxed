@@ -8,7 +8,7 @@ import { Tooltip, Badge, Avatar } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
-import {AudioOutlined } from "@ant-design/icons";
+import MicIcon from '@mui/icons-material/Mic';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SpeechRecognition, {
   useSpeechRecognition,
@@ -144,7 +144,7 @@ const CustomerActionLeft = (props) => {
     }, minRecordingTime);
   };
   const suffix = (
-    <AudioOutlined
+    <MicIcon
       onClick={handleStartListening}
       style={{
         fontSize: 16,

@@ -3,13 +3,13 @@ import { withRouter } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { RollbackOutlined } from "@ant-design/icons";
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 
 class CandidateDetailActionLeft extends React.Component {
   render() {
     return (
       <div class=" flex items-center" >
-        <RollbackOutlined
+        <KeyboardReturnIcon
           style={{ marginRight: "0.3rem",color: "#1890ff" }}
           iconType="rollback"
           tooltipTitle="Back"

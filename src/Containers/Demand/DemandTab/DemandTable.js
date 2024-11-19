@@ -49,7 +49,8 @@ import RecruitmentSwitch from "../../Opportunity/Child/OpportunityDetail/Opportu
 import SelectSponsorForm from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/SelectSponsorForm";
 import { addRecruitProProfile, deleteRequirementData } from "../../Opportunity/OpportunityAction";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import {  CheckCircleTwoTone, EyeInvisibleOutlined, EyeOutlined, StopTwoTone } from "@ant-design/icons";
+import {  CheckCircleTwoTone, EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 class DemandTable extends Component {
   constructor(props) {
     super(props);
@@ -290,7 +291,7 @@ class DemandTable extends Component {
                     <>
                       <Tooltip title={"Dropped"}>
                         {" "}
-                        <StopTwoTone
+                        <DoDisturbIcon
                           type="stop"
                           size={140}
                           style={{ fontSize: "1.2em", marginLeft: "0.875em" }}
@@ -335,7 +336,7 @@ class DemandTable extends Component {
                       <Tooltip 
                       title={"Drop"}
                         >
-                        <StopTwoTone
+                        <DoDisturbIcon
                           type="stop"
                           theme="twoTone"
                           twoToneColor="red"

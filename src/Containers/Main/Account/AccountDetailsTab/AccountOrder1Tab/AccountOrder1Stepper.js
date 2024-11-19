@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
 import { StyledSteps } from "../../../../../Components/UI/Antd";
-import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
+import CallIcon from '@mui/icons-material/Call';
 import { BundleLoader } from '../../../../../Components/Placeholder';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
@@ -51,7 +52,7 @@ class AccountOrder1Stepper extends Component {
             {
                 title: "Catalogue List"
               ,
-                icon: <PhoneOutlined
+                icon: <CallIcon
                     style={{ color: "blue" }}
                 />,
                 content: <Suspense fallback={<BundleLoader />}><AddCatalogueForm distributorId={this.props.distributorId} /></Suspense>,

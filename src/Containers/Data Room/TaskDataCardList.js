@@ -3,11 +3,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
-import {
- 
+import { 
   CloseCircleOutlined,
-  UploadOutlined,
 } from "@ant-design/icons";
+import UploadIcon from '@mui/icons-material/Upload';
 import InfiniteScroll from "react-infinite-scroll-component";
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -461,7 +460,7 @@ const TaskDataCardList = (props) => {
      <div className="flex font-medium flex-col w-[1.7rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
                       
-          <UploadOutlined
+          <UploadIcon
               onClick={() => {
                 props.handleUpdateDocumentDrawerModal(true);
                 handleSetTaskNameId(item);

@@ -6,7 +6,7 @@ import {
 } from "../Suppliers/SuppliersAction"
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { Input, Select } from 'antd';
-import { AudioOutlined } from "@ant-design/icons"
+import MicIcon from '@mui/icons-material/Mic';
 import axios from "axios";
 import { base_url2 } from "../../../Config/Auth";
 
@@ -137,7 +137,7 @@ function InventorySupplierTable(props) {
             }
           };
           const suffix = (
-            <AudioOutlined
+            <MicIcon
               onClick={SpeechRecognition.startListening}
               style={{
                 fontSize: 16,

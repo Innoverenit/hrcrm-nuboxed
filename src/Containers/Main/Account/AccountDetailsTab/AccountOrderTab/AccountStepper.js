@@ -3,7 +3,8 @@ import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
 import { StyledSteps } from "../../../../../Components/UI/Antd";
-import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
+import { UserOutlined } from "@ant-design/icons";
+import CallIcon from '@mui/icons-material/Call';
 import AddOrderInAccount from "./AddOrderInAccount";
 import { FormattedMessage } from 'react-intl';
 import { BundleLoader } from '../../../../../Components/Placeholder';
@@ -53,7 +54,7 @@ class AccountStepper extends Component {
                     id="app.phonedetails"
                     defaultMessage="Phone details"
                 />,
-                icon: <PhoneOutlined
+                icon: <CallIcon
                     style={{ color: "blue" }}
                 />,
                 content:  <Suspense fallback={<BundleLoader />}><AccountOrderSecondStep distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} /></Suspense> ,

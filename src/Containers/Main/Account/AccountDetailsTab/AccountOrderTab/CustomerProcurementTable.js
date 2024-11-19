@@ -26,11 +26,10 @@ import { MultiAvatar } from "../../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import { base_url2 } from "../../../../../Config/Auth";
 import axios from "axios";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import jsPDF from "jspdf";
 import "jspdf-autotable";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
@@ -224,7 +223,7 @@ const handleSelectedOrderDropDown =  async (value,item) => {
       }, minRecordingTime);
     };
     const suffix = (
-      <AudioOutlined
+      <MicIcon
         onClick={handleStartListening}
         style={{
           fontSize: 16,

@@ -296,7 +296,7 @@ const ProductBrandModelList = (props) => {
                                                                 cursor: "pointer",
                                                               }}
                                                             >
-                                                              <InfoCircleTwoTone class=" flex items-center"/>
+                                                             
                                                             </span>
                                                           </Tooltip>
                                                         )}

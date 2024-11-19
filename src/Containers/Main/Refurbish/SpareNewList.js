@@ -14,7 +14,7 @@ import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import UpdateIcon from '@mui/icons-material/Update';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import InfiniteScroll from "react-infinite-scroll-component";
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import RefurbishNoteAll from "./RefurbishNoteAll";
 
@@ -120,7 +120,7 @@ function SpareNewList(props) {
         }, minRecordingTime);
       };
       const suffix = (
-        <AudioOutlined
+        <MicIcon
           onClick={handleStartListening}
           style={{
             fontSize: 16,
