@@ -42,12 +42,12 @@ const MaterialIntransitList = (props) => {
         <>
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[100%] font-poppins  text-xs items-end p-1 bg-transparent font-bold sticky z-10">
+                    <div className=" flex  w-[100%] font-poppins  text-xs items-end p-1 bg-transparent font-bold items-end sticky z-10">
                         <div className=""></div>
-                        <div className="text-[#00A2E8] text-base w-[15.5rem]">
+                        <div className="text-[#00A2E8] truncate text-base w-[15.5rem] max-md:w-[15.5rem]">
                             Po Id
                             </div>
-                        <div className=" w-[23.52rem]">
+                        <div className="truncate w-[23.52rem] max-md:w-[23.52rem]">
                         <CategoryIcon
               className='!text-base  text-[#e4eb2f]'
               /> Supplies
@@ -70,7 +70,7 @@ const MaterialIntransitList = (props) => {
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white py-1 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                                    <div className="flex rounded  mt-1 bg-white py-ygap items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                         <div class="flex">
 
                                             <div className=" flex  w-[16.1rem] h-8  border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">

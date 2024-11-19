@@ -15,6 +15,7 @@ import { withRouter } from "react-router";
 import {  Select, Button } from "antd";
 import CategoryIcon from '@mui/icons-material/Category'
 import FactoryIcon from '@mui/icons-material/Factory';
+import PinIcon from '@mui/icons-material/Pin';
 
 const { Option } = Select;
 
@@ -83,7 +84,7 @@ const InventoryMaterialDamagedData = (props) => {
                         </div>
 
                         <div className=" w-[6.13rem]">       
-                      HSN
+                        < PinIcon className=" !text-base"/> HSN
 
                         </div>
 

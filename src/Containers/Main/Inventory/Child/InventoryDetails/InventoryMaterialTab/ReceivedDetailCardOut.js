@@ -15,6 +15,9 @@ import { trnasferGrnItemToStock } from "../../../InventoryAction"
 import AllowGrnToggle from './AllowGrnToggle';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { MultiAvatar } from '../../../../../../Components/UI/Elements';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import AttractionsIcon from '@mui/icons-material/Attractions'; 
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 
 const { Option } = Select;
 
@@ -170,39 +173,37 @@ console.log(formData)
         <>
             <div className=' flex  sticky z-auto'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
+                    <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs items-end sticky  z-10">
                         <div className=""></div>
-                        <div className=" w-[29.51rem]">
-                            {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */} {props.translatedMenuItems[0]}
+                        <div className=" w-[18.01rem] truncate max-md:w-[29.51rem]">
+                            {/*Name" /> */}   <InventoryIcon className='!text-icon  mr-1 text-[#e4eb2f]'/>{props.translatedMenuItems[0]}
                         </div>
-                        <div className=" w-[23.02rem]">
-                            {/* <FormattedMessage id="app.Category" defaultMessage="Category" /> */} {props.translatedMenuItems[24]}
+                        <div className=" w-[14.3rem] truncate max-md:w-[23.02rem]">
+                            {/* Category" /> */}   <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {props.translatedMenuItems[24]}
                             </div>
-                        <div className=" w-[13.01rem]">
-                            {/* <FormattedMessage id="app.Attribute" defaultMessage="Attribute" /> */} {props.translatedMenuItems[25]}
+                        <div className=" w-[8.6rem] truncate max-md:w-[13.01rem]">
+                            {/* Attribute" /> */}   <AttractionsIcon className="  !text-icon" /> {props.translatedMenuItems[25]}
                         </div>
-                        {/* <div className=" w-[10.12rem]"><FormattedMessage id="app.Price" defaultMessage="Price" /></div> */}
-                        <div className=" w-[12.02rem]">
-                            {/* <FormattedMessage id="app.Unit" defaultMessage="Units" /> */} {props.translatedMenuItems[26]}
+                      
+                        <div className=" w-[6.8rem] truncate max-md:w-[12.02rem]">
+                            {/* "Units" /> */} {props.translatedMenuItems[26]}
                         </div>
-                        <div className=" w-[18.12rem]">
-                            {/* <FormattedMessage id="app.Received" defaultMessage="Received" /> */}
+                        <div className=" w-[11.02rem] truncate max-md:w-[18.12rem]">
+                            {/*Received" /> */}
                             {props.translatedMenuItems[17]}
                         </div>
-                        <div className=" w-[15.21rem]">
-                            {/* <FormattedMessage id="app.Received" defaultMessage="Receive" /> */} {props.translatedMenuItems[27]}
+                        <div className=" w-[10.21rem] truncate max-md:w-[15.21rem]">
+                            {/* Receive" /> */} {props.translatedMenuItems[27]}
                         </div>
-                        {/* <div className=" w-[15.17rem]">
-                            <FormattedMessage id="app.Damaged" defaultMessage="Damaged" /> {props.translatedMenuItems[20]}
-                        </div> */}
-                        <div className=" w-[28.47rem]">
-                            {/* <FormattedMessage id="app.Remark" defaultMessage="Remark" /> */}
+                      
+                        <div className=" w-[44.47rem] truncate max-md:w-[28.47rem]">
+                            {/* "Remark" /> */}
                         {props.translatedMenuItems[28]}
                         </div>
 
                         <div className=""></div>
-                        <div className=" w-[15.19rem]">
-                            {/* <FormattedMessage id="app.creategrn" defaultMessage="Create GRN" />*/}
+                        <div className=" w-[7.19rem] truncate max-md:w-[15.19rem]">
+                            {/*Create GRN" />*/}
                             GRN {props.translatedMenuItems[21]}
                             </div>
                         
@@ -213,29 +214,29 @@ console.log(formData)
                         next={handleLoadMore}
                         hasMore={hasMore} 
                         loader={props.fetchingMaterialReceiveDetailData ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div> : null}
-                        height={"79vh"}
+                        height={"87vh"}
                         style={{ scrollbarWidth:"thin"}}
                     >
                         {receivedData.map((item,index) => {
 
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 ">
+                                    <div className="flex rounded  mt-1 bg-white  items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                         <div class="flex">
-                                            <div className=" flex  w-[12.422rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-xs  font-semibold  font-poppins ">
+                                            <div className=" flex  w-[12.422rem] max-md:w-[12.422rem] h-8 border-l-2 border-green-500 bg-[#eef2f9]  max-sm:w-full  ">
+                                                <div class="flex items-center ml-gap justify-between text-xs  font-semibold  font-poppins ">
                                                     {item.suppliesFullName.substring(0, 20)}
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className=" flex  w-[10.22rem] max-sm:flex-row  max-sm:justify-between  ">
-                                            <div class=" text-xs  font-poppins">
+                                        <div className=" flex  w-[10.22rem] bg-[#eef2f9] h-8 ml-gap items-center justify-center max-sm:flex-row  max-sm:justify-between  ">
+                                            <div class=" text-xs ml-gap font-poppins">
                                                 {item.categoryName} {item.subCategoryName}
                                             </div>
 
                                         </div>
-                                        <div className=" flex  w-[6.13rem] max-sm:flex-row  max-sm:justify-between  ">
-                                            <div class=" text-xs  font-poppins">
+                                        <div className=" flex  w-[6.13rem] bg-[#eef2f9] h-8 ml-gap items-center justify-center max-sm:flex-row  max-sm:justify-between  ">
+                                            <div class=" text-xs ml-gap font-poppins">
                                                 {item.attributeName} {item.subAttributeName}
                                             </div>
                                         </div>
@@ -244,12 +245,12 @@ console.log(formData)
                                                 {item.price}
                                             </div>
                                         </div> */}
-                                        <div className=" flex  w-[5.10rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  w-[5.10rem] bg-[#eef2f9] h-8 ml-gap items-center justify-center max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.unit}
                                             </div>
                                         </div>
-                                        <div className=" flex   w-[8.03rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex   w-[8.03rem] bg-[#eef2f9] h-8 ml-gap items-center justify-center max-sm:flex-row  max-sm:justify-between  ">
                                             <div class="flex items-center">
                                             <div class=" text-xs  font-poppins mr-1">
                                                 <PoReceiveToggle
@@ -271,7 +272,7 @@ console.log(formData)
                                                 {item.userName}
                                             </div>
                                         </div> */}
-                                        <div className=" flex  w-[7.12rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  w-[7.12rem] bg-[#eef2f9] h-8 ml-gap items-center justify-center max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {showEdit && rowData.poSupplierSuppliesId === item.poSupplierSuppliesId ?
                                                      <Input
@@ -283,7 +284,7 @@ console.log(formData)
                                                     : item.unitReceived}
                                             </div>
                                         </div>
-                                        <div className=" flex  w-[6.12rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  w-[6.12rem] bg-[#eef2f9] h-8 ml-gap items-center justify-center max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {showEdit && rowData.poSupplierSuppliesId === item.poSupplierSuppliesId ?
                                                     <Input
@@ -295,8 +296,8 @@ console.log(formData)
                                                     : item.unitDamaged}
                                             </div>
                                         </div>
-                                        <div className=" flex w-[6.22rem] max-sm:flex-row  max-sm:justify-between  ">
-                                            <div class=" text-xs  font-poppins">
+                                        <div className=" flex w-[6.20rem] bg-[#eef2f9] h-8 ml-gap items-center justify-start max-sm:flex-row  max-sm:justify-between  ">
+                                            <div class=" text-xs ml-gap font-poppins">
                                                 {showEdit && rowData.poSupplierSuppliesId === item.poSupplierSuppliesId ?
                                                     <Input
                                                     name="remark"
@@ -310,7 +311,7 @@ console.log(formData)
 
 
 
-                                        <div className=" flex w-[6.22rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex w-[6.21rem] bg-[#eef2f9] h-8 ml-gap items-center justify-center max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {showEdit && rowData.poSupplierSuppliesId === item.poSupplierSuppliesId ?
                                                     <Input
@@ -326,7 +327,7 @@ console.log(formData)
 
 
 
-                                        <div className=" flex w-[6.22rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex w-[6.22rem] bg-[#eef2f9] h-8 ml-gap items-center justify-center max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {showEdit && rowData.poSupplierSuppliesId === item.poSupplierSuppliesId ?
                                                     //   <DatePicker
@@ -346,7 +347,7 @@ console.log(formData)
                                             </div>
                                         </div>
 
-                                        <div className=" flex  w-[7.32rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex  w-[7.32rem] bg-[#eef2f9] h-8 ml-gap items-center justify-center max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {showEdit && rowData.poSupplierSuppliesId === item.poSupplierSuppliesId ?
                                                     <>
@@ -393,7 +394,7 @@ console.log(formData)
                                                 }
                                             </div>
                                         </div>
-                                        <div className=" flex w-[5.52rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex w-[5.52rem] bg-[#eef2f9] h-8 ml-gap items-center justify-center max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.unitReceiveInd && !item.grnReceivedInd ? <Tooltip 
                                                 // title="Check for grn"

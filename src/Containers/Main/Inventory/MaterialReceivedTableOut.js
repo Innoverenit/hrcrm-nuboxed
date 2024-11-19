@@ -20,6 +20,7 @@ import GrnListOfPOModal from "./Child/InventoryDetails/InventoryMaterialTab/GrnL
 import ReceivedDetailModalOut from "./ReceivedDetailModalOut";
 import TermsnConditionModal from "../Suppliers/Child/SupplierDetails/SupplierDetailTab/TermsnConditionModal";
 import EmptyPage from "../EmptyPage";
+import DateRangeIcon from '@mui/icons-material/DateRange';
 
 const { Option } = Select;
 
@@ -80,12 +81,12 @@ const MaterialReceivedTableOut = (props) => {
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[100%] font-poppins  text-xs  p-1 bg-transparent font-bold sticky items-end z-10">
                        
-                        <div className="text-[#00A2E8] text-base w-[19.5rem]">PO ID</div>
-                        <div className=" w-[15.52rem]">
+                        <div className="text-[#00A2E8] truncate text-base w-[19.5rem] max-md:w-[19.5rem]">PO ID</div>
+                        <div className=" w-[15.52rem] max-md:w-[15.52rem] truncate">
                             {/* Created" */}
-                            {props.translatedMenuItems[21]}
+                            <DateRangeIcon className="!text-icon "/>{props.translatedMenuItems[21]}
                         </div>
-                        <div className=" w-[11.122rem]">       
+                        <div className=" w-[11.122rem] max-md:w-[11.122rem] max-md: truncate">       
                         <FactoryIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[22]} 
                             {/* Supplier */}
 
@@ -106,7 +107,7 @@ const MaterialReceivedTableOut = (props) => {
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded py-1 mt-1 bg-white items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
+                                    <div className="flex rounded py-ygap mt-1 bg-white items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                                         <div class="flex">
 
                                             <div className=" flex  w-[18.1rem] items-center  h-8 border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
