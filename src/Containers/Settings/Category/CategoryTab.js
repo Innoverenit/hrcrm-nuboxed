@@ -13,6 +13,7 @@ import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import LocationCityIcon from '@mui/icons-material/LocationCity';// corporate
 import ExplicitIcon from '@mui/icons-material/Explicit';//words
+import FactoryIcon from '@mui/icons-material/Factory';
 import GroupsIcon from '@mui/icons-material/Groups';
 const PerformanceManagementTab = lazy(() =>
   import("./PerformanceManagementTab/PerformanceManagementTab")
@@ -86,7 +87,7 @@ function CategoryTab (props) {
               {
             rulesName :(
               <span>
-                <ViewModuleIcon className=" !text-icon" /> Module
+                <ViewModuleIcon className="!text-icon mr-1 text-[#1E88E5]" /> Module
               </span>
             ),
             ruleId: "1",
@@ -98,7 +99,7 @@ function CategoryTab (props) {
         
             rulesName:(
               <span>
-                <SettingsAccessibilityIcon className="text-blue-500 !text-icon" />Role
+                <SettingsAccessibilityIcon className="text-blue-500 !text-icon text-[#8E44AD]" />Role
               </span>
             ),
             ruleId: "2",
@@ -109,7 +110,7 @@ function CategoryTab (props) {
             {
               rulesName:(
                 <span>
-                  <HourglassFullIcon className="text-blue-500 !text-icon" />Activity
+                  <HourglassFullIcon className="text-blue-500 !text-icon text-[#D35400]" />Activity
                 </span>
               ),
               ruleId: "3",
@@ -120,7 +121,7 @@ function CategoryTab (props) {
             {
               rulesName:(
                 <span>
-                <LocationCityIcon className='!text-icon mr-1 text-[#e4eb2f]'/>Corporate
+                <LocationCityIcon className='!text-icon mr-1 text-[#2E4053]'/>Corporate
                 </span>
               ), 
        
@@ -132,7 +133,7 @@ function CategoryTab (props) {
             {
               rulesName:(
                 <span>
-                <ApartmentIcon className='!text-icon mr-1 text-[#e4eb2f]'/>Customer
+                <ApartmentIcon className='!text-icon mr-1 text-[#27AE60]'/>Customer
                 </span>
               ), 
               ruleId: "5",
@@ -143,7 +144,7 @@ function CategoryTab (props) {
             {  
                rulesName:(
                 <span>
-                <ApartmentIcon className='!text-icon mr-1 text-[#e4eb2f]'/>Suppliers
+              <FactoryIcon className='!text-base mr-1 text-[#F39C12]'/>   Suppliers
                 </span>
               ), 
               ruleId: "6",
@@ -154,7 +155,7 @@ function CategoryTab (props) {
             {
               rulesName:(
                 <span>
-                  <LocalShippingIcon className='!text-icon mr-1 text-[#e4eb2f]'/>Shipper
+                  <LocalShippingIcon className='!text-icon mr-1 text-[#2980B9]'/>Shipper
                 </span>
               ),
           
@@ -166,7 +167,7 @@ function CategoryTab (props) {
             {
               rulesName:(
                 <span>
-                  <LocationCityIcon className='!text-icon mr-1 text-[#e4eb2f]'  />Investor
+                  <LocationCityIcon className='!text-icon mr-1 text-[#6C3483]'  />Investor
                 </span>
               ),
          
@@ -178,7 +179,7 @@ function CategoryTab (props) {
             {
             rulesName:(
               <span>
-              <DynamicFeedIcon className='!text-icon mr-1 text-[#e4eb2f]'/>Order
+              <DynamicFeedIcon className='!text-icon mr-1 text-[#16A085]'/>Order
               </span>
             ),        
               ruleId: "9",
@@ -189,7 +190,7 @@ function CategoryTab (props) {
             {
               rulesName:(
                 <span>
-                <ExplicitIcon className='!text-icon mr-1 text-[#e4eb2f]'/>Performance Management
+                <ExplicitIcon className='!text-icon mr-1 text-[#7D3C98]'/>Performance Management
                 </span>
               ), 
             
@@ -201,7 +202,7 @@ function CategoryTab (props) {
             {
               rulesName:(
                 <span>
-                <ExplicitIcon className='!text-icon mr-1 text-[#e4eb2f]'/>Words
+                <ExplicitIcon className='!text-icon mr-1 text-[#E67E22]'/>Words
                 </span>
               ), 
               
@@ -213,7 +214,7 @@ function CategoryTab (props) {
             {
               rulesName:(
                 <span>
-                 <GroupsIcon className='!text-base  text-[#e4eb2f]'/>Employee
+                 <GroupsIcon className='!text-base mr-1 text-[#34495E]'/>Employee
                 </span>
               ), 
             

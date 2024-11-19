@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Menu,  } from "antd";
-
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import { withRouter } from "react-router-dom";
+import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
+import ToggleOnIcon from '@mui/icons-material/ToggleOn';
 import {
   StyledDropdown,
   StyledMenu,
@@ -24,7 +26,7 @@ const SettingsMenu = ({ history, pathName, recruitmentInd }) => (
             }}
             onClick={() => history.push("/recruite")}
           >
-          Configure
+          <ToggleOnIcon className="!text-icon  text-[#7D3C98]"/> Configure
           </a>
         </StyledMenuItem>
         <StyledMenuItem key="2">
@@ -36,7 +38,7 @@ const SettingsMenu = ({ history, pathName, recruitmentInd }) => (
             }}
             onClick={() => history.push("/categoryTab")}
           >
-            Category
+         <FormatListNumberedIcon className='!text-icon    text-[#42858c]' />   Category
           </a>
         </StyledMenuItem>
         <StyledMenuItem key="3">
@@ -51,7 +53,7 @@ const SettingsMenu = ({ history, pathName, recruitmentInd }) => (
             onClick={() => history.push("/organization")}
           >
            
-      Organization
+           <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/> Organization
           </a>
         </StyledMenuItem>
         {/* <StyledMenuItem key="0">
