@@ -1,7 +1,6 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import CustomerSectorPieChart from "../JumpStart/CustomerSectorPieChart"
 import CustomerSourcesPieChart from "../JumpStart/CustomerSourcesPieChart"
 import dayjs from "dayjs";
 import {getFinaceOrderDetails,
@@ -16,12 +15,13 @@ import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import axios from 'axios';
 import {base_url2} from "../../../../Config/Auth";
-const OrdersClosedModal=lazy(()=>import("./OrdersClosedModal"));
-const OrdersAddedModal=lazy(()=>import("./OrdersAddedModal"));
-const ContactAddedModal=lazy(()=>import("./ContactAddedModal"));
-const CustomerAddedModal=lazy(()=>import("./CustomerAddedModal"));
+import DynamicPieChart from './DynamicPieChart';
+// const OrdersClosedModal=lazy(()=>import("./OrdersClosedModal"));
+// const OrdersAddedModal=lazy(()=>import("./OrdersAddedModal"));
+// const ContactAddedModal=lazy(()=>import("./ContactAddedModal"));
+// const CustomerAddedModal=lazy(()=>import("./CustomerAddedModal"));
 const CustomerJumpStartDrawer=lazy(()=>import("./CustomerJumpStartDrawer"));
-const CustomerPieChart=lazy(()=>import("./CustomerPieChart"));
+// const CustomerPieChart=lazy(()=>import("./CustomerPieChart"));
 
 function CustomerDashboardJumpStart (props) {
 
@@ -267,13 +267,15 @@ function CustomerDashboardJumpStart (props) {
         <div>
         <div class=" font-poppins font-bold text-base ">By Sector</div>
         <Suspense fallback={<BundleLoader />}>
-        <CustomerSectorPieChart/>
+        <DynamicPieChart dtype={"Sector"} 
+        userId={props.userId} timeRangeType={props.timeRangeType}/>
         </Suspense>
         </div>
         <div>
         <div class=" font-poppins font-bold text-base ">By Source</div>
         <Suspense fallback={<BundleLoader />}>
-        <CustomerSourcesPieChart/>
+        <DynamicPieChart dtype={"Source"} 
+        userId={props.userId} timeRangeType={props.timeRangeType}/>
         </Suspense>
         </div>
         </div>
@@ -289,52 +291,18 @@ viewType={props.viewType}
  title={currentOrderType}
 />
         
-         <CustomerAddedModal
-       customerAddedModal={props.customerAddedModal}
-       handleCustomerAddedModal={props.handleCustomerAddedModal}
-      />
+        
 
-<ContactAddedModal
-       contactAddedModal={props.contactAddedModal}
-       handleContactAddedModal={props.handleContactAddedModal}
-      />
-        <OrdersAddedModal
-       orderAddedModal={props.orderAddedModal}
-       handleOrderAddedModal={props.handleOrderAddedModal}
-      />
-      <OrdersClosedModal
-       orderClosedModal={props.orderClosedModal}
-       handleOrderClosedModal={props.handleOrderClosedModal}
-      />
       </Suspense>
      
    </>
   ); 
 }
 const mapStateToProps = ({ dashboard,auth ,leave}) => ({
-  user: auth.userDetails,
-  role: auth.userDetails.role,
-  leaveFetching:leave.leaveFetching,
-  showDatelist:dashboard.showDatelist,
   orgId:auth.userDetails.organizationId,
-  showSalesDatelist:dashboard.showSalesDatelist,
-  fetchingSalesDatewiseReport:dashboard.fetchingSalesDatewiseReport,
-  fetchingSalesDatewiseReportError:dashboard.fetchingSalesDatewiseReportError,
-  fetchingDatewiseReport:dashboard.fetchingDatewiseReport,
-  fetchingDatewiseReportError:dashboard.fetchingDatewiseReportError,
-  recruiterId:auth.userDetails.userId,
-  fetchingTaskper:dashboard.fetchingTaskper,
-  userId: auth.userDetails.employeeId,
-  dateOfJoining: auth.userDetails && auth.userDetails.dateOfJoining,
-  taskperCount:dashboard.taskperCount,
-  avgHour:dashboard.avgHour,
-  fetchingAvgHour:dashboard.fetchingAvgHour,
+  userId:auth.userDetails.userId,
   timeRangeType: dashboard.timeRangeType,
   finaceOrderinDashboard:dashboard.finaceOrderinDashboard,
-  customerAddedModal:dashboard.customerAddedModal,
-  contactAddedModal:dashboard.contactAddedModal,
-  orderAddedModal:dashboard.orderAddedModal,
-  orderClosedModal:dashboard.orderClosedModal,
   contactAddedList:dashboard.contactAddedList,
   customerAddedList:dashboard.customerAddedList,
   orderAddedList:dashboard.orderAddedList,
@@ -352,10 +320,6 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   getContactAddedList,
   getOrderAddedList,
   getOrderClosedList
-//   getSalesDateWiseList,
-//   getTasklist,
-//   getavgHour,
-//   getleaveLeftSideDetails
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(CustomerDashboardJumpStart);

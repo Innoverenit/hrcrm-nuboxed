@@ -19,7 +19,7 @@ const[error,setError]=useState(null);
 
   const fetchDashbysectorChart = async () => {
     try {
-      const response = await axios.get(`${base_url2}/dashboard/customerBySector/${props.userId}/${props.timeRangeType}`,{
+      const response = await axios.get(`${base_url2}/dashboard/customerBySector/${props.userId}/${props.timeRangeType}/${dtype}`,{
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -31,6 +31,7 @@ const[error,setError]=useState(null);
       setLoading(false);
     }
   };
+  
   const series = Object.values(dashSectorChart);
   const options = {
      labels: Object.keys(dashSectorChart),  // Use keys from chartData as labels

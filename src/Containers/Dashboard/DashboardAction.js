@@ -3055,11 +3055,11 @@ export const getQuotationDashboardCount = (userId) => (dispatch) => {
 
 
 
-export const getRepairVolumeChart = (userId,type) => (dispatch) => {
+export const getRepairVolumeChart = (userId,type,dtype) => (dispatch) => {
   dispatch({ type: types.GET_REPAIR_VOLUME_CHART_REQUEST });
   axios
     .get(
-      `${base_url2}/dashboard/volumePieChart/${userId}/${type}`,
+      `${base_url2}/dashboard/piecht/${userId}/${type}/${dtype}`,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",

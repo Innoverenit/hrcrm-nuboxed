@@ -19,6 +19,7 @@ import OrdersOpenDrawer from "./OrdersOpenDrawer";
 import CustomerPieChart from "./CustomerPieChart"
 import axios from 'axios';
 import {base_url2} from "../../../../Config/Auth";
+import DynamicPieChart from "./DynamicPieChart";
 
 
 function DashRepairOrdrLeftJumstartbox(props) {
@@ -280,7 +281,8 @@ function DashRepairOrdrLeftJumstartbox(props) {
         </div>
         <div className=" mt-1">
         <div class=" font-poppins font-bold text-base ">By Process</div>
-        <RepairProcessPieChart/>
+        <DynamicPieChart dtype={"RepairApproveOrder"} 
+        userId={props.userId} timeRangeType={props.timeRangeType}/>
         </div>
       </div>
         {/* <OrdersCancelModal

@@ -381,6 +381,8 @@ const handleSelectedOrderDropDown =  async (value,item) => {
                           </div>
                           <div className="w-[2.1rem] md:w-[4.4rem]">
                             {/* {translatedMenuItems[5]} */} Shipping
+                          </div> <div className="w-[2.1rem] md:w-[4.4rem]">
+                            {/*  Track */} {translatedMenuItems[18]}
                           </div>
                           <div className="w-[2.2rem] md:w-[3.8rem]"> <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' />
                         {translatedMenuItems[7]} {/*Status"/> */}
@@ -538,6 +540,13 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                        
                                         >
                                               {item.shipping}
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row md:w-[6rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class=" font-poppins text-xs cursor-pointer text-black"
+                                       
+                                        >
+                                              {item.track}
                                             </div>
                                         </div>
                                         <div class="flex flex-row  md:w-[10.03rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">

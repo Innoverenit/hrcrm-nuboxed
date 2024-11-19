@@ -12,6 +12,7 @@ import {
 import FinaceRapairDrawer from "./FinaceRapairDrawer";
 import CustomerPieChart from "./CustomerPieChart";
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import DynamicPieChart from "./DynamicPieChart";
 
 
 function DashboardFinanceJumpstart(props) {
@@ -243,11 +244,13 @@ function DashboardFinanceJumpstart(props) {
         <div class=" mt-1 flex flex-row justify-between" >
         <div>
         <div class=" font-poppins font-bold text-base ">By Order Value</div>
-        <RepairValuePieChart/>
+        <DynamicPieChart dtype={"orderValue"} 
+        userId={props.userId} timeRangeType={props.timeRangeType}/>
         </div>
         <div>
         <div class=" font-poppins font-bold text-base ">By Order Volume</div>
-        <RepairVolumePieChart/>
+        <DynamicPieChart dtype={"RepairOrder"}
+         userId={props.userId} timeRangeType={props.timeRangeType}/>
         </div>
       </div>
       </div>
