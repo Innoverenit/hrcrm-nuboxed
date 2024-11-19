@@ -6,6 +6,10 @@ const initialState = {
 
   addInvestorActivityJumpstartModal:false,
 
+
+  creatingDeal:false,
+  creatingDealError:false,
+
   fetchingInvestors: false,
   fetchingInvestorsError: false,
   investorsbyId: [],
@@ -357,6 +361,26 @@ export const investorReducer = (state = initialState, action) => {
         fetchingsInvestorContact: false,
         fetchingsInvestorContactError: true,
       };
+
+
+
+      case types.CREATE_DEAL_REQUEST:
+        return { ...state, creatingDeal: true };
+      case types.CREATE_DEAL_SUCCESS:
+        return {
+          ...state,
+          creatingDeal: false,
+          opencreateDealModal: false,
+         dealsByuserId :[action.payload,...state.dealsByuserId],
+         allDealsData :[action.payload,...state.allDealsData],
+        //  investorDealsData:[action.payload,...state.investorDealsData],
+        };
+      case types.CREATE_DEAL_FAILURE:
+        return {
+          ...state,
+          creatingDeal: false,
+          creatingDealError: true,
+        };
 
     case types.GET_INVESTOR_DOCUMENTS_REQUEST:
       return {

@@ -420,6 +420,46 @@ export const getInvestorDetailsById = (investorId) => (dispatch) => {
         });
       });
   };
+
+
+
+  export const createDeals = (deal, cb) => (dispatch,getState) => {
+    const userId = getState().auth.userDetails.userId;
+    dispatch({
+      type: types.CREATE_DEAL_REQUEST,
+    });
+    axios
+      .post(`${base_url}/investorOpportunity`, deal, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        const startDate = dayjs()
+          .startOf("month")
+          .toISOString();
+        const endDate = dayjs()
+          .endOf("month")
+          .toISOString();
+        // dispatch(getdealsRecord(userId));
+        // dispatch(getOpportunityRecord(userId));
+        // dispatch(getLatestOpportunities(userId, startDate, endDate));
+        // dispatch(getOpportunitiesByPrice(userId));
+        dispatch({
+          type: types.CREATE_DEAL_SUCCESS,
+          payload: res.data,
+        });
+      
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.CREATE_DEAL_FAILURE,
+          payload: err,
+        });
+      });
+  };
   
   export const handleInvestorDocumentUploadModal =(modalProps)=> (dispatch) => {
     dispatch({
