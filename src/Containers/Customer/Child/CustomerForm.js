@@ -645,7 +645,7 @@ country_dial_code
                       {props.customerConfigure.sectorInd===true&&
 <Select
         showSearch
-        style={{ width: "11.5rem" }}
+    
         placeholder={translatedMenuItems[17]}
         optionFilterProp="children"
         loading={isLoadingSector}
@@ -671,7 +671,7 @@ country_dial_code
 {props.customerConfigure.sourceInd===true&&
 <Select
         showSearch
-        style={{  width: "11.5rem" }}
+      
         placeholder= {translatedMenuItems[16]}
         optionFilterProp="children"
         loading={isLoading}

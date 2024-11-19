@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { getSectors } from "../../../Settings/Sectors/SectorsAction";
 import dayjs from "dayjs";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import SearchIcon from '@mui/icons-material/Search';;
+import SearchIcon from '@mui/icons-material/Search';
 import { getAllSalesList } from "../../../Opportunity/OpportunityAction";
 import { StyledTable } from "../../../../Components/UI/Antd";
 import { Tooltip, Button, Input } from "antd";
