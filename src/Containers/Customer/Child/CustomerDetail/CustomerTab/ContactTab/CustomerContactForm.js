@@ -290,7 +290,7 @@ class ContactForm extends Component {
             addCustomerContact(
               {
                 ...values,
-                customerId:this.props.customer.customerId?this.props.customer.customerId:null,
+                customerId:this.props.customer?this.props.customer.customerId:null,
                   reportsTo:this.state.selectedContact,
                 
                 opportunityId:this.props.opportunityId,

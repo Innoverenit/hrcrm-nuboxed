@@ -553,7 +553,7 @@ const [priority,setpriority]=useState(props.selectedTask
               : addActivityTask(
                   {
                     ...values,
-                    contactId:props.contact?props.contact:null,
+                    contact:props.contact?props.contact:null,
                     customer: props.customer ? props.customer.customerId : null,
                     investorId:props.investor?props.investor.investorId:null,
                     distributorId:props.distributor?props.distributor.distributorId:null,
