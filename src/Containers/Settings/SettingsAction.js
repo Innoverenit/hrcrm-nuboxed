@@ -4054,22 +4054,19 @@ export const updateProcessNameForDeals = (process, workflowDetailsId,cb) => (dis
 };
 
 export const updateStageForDeals = (
+  data,
   stagesId,
-  // responsible,
-  stageName,
-
-  probability,
-  days,
+  
   cb
 ) => (dispatch) => {
-  console.log(stageName, probability);
+  // console.log(stageName, probability);
   dispatch({
     type: types.UPDATE_STAGE_FOR_DEALS_REQUEST,
   });
   axios
     .put(
       `${base_url}/workflow/stages/${stagesId}`,
-      { stagesId, stageName, probability, days },
+      data,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
