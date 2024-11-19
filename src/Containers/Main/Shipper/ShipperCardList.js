@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { bindActionCreators } from "redux";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { Tooltip, Popconfirm, Switch } from "antd";
+import { Tooltip, Popconfirm, Switch,Select } from "antd";
 import {
   getShipperByUserId,
   setEditShipper,
@@ -27,6 +27,10 @@ import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
 import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import ApiIcon from '@mui/icons-material/Api';
+import { base_url2 } from "../../../Config/Auth";
+import axios from "axios";
+
+const { Option } = Select;
 
 function ShipperCardList(props) {
 
@@ -35,15 +39,27 @@ function ShipperCardList(props) {
   const [page, setPage] = useState(0);
 
   const { handleUpdateShipperModal, updateShipperModal } = props;
-
+  const [dataShipper, setdataShipper] = useState([]);
   const [currentShipperId, setCurrentShipperId] = useState("");
   const [rowdata, setrowData] = useState({});
-
+  const [toggleYes, settoggleYes] = useState({});
+  const [tempToggleState, setTempToggleState] = useState({});
+  const [SelectedApi,setSelectedApi] =useState("");
+  const [editedFields, setEditedFields] = useState({});
+  const [editsuppliesId, setEditsuppliesId] = useState(null);
+const[storedApiKey,setstoredApiKey]=useState([{apikeyId:"api1",apikeyName:"apiOne"},{apikeyId:"api2",apikeyName:"apiTwos"}]);
+const[ErrorFetchApiKey,setErrorFetchApiKey]=useState(null);
 
   useEffect(() => {
     setPage(page + 1);
     props.getShipperByUserId(props.userId, page);
+    fetchApiKeyList();
   }, []);
+
+  useEffect(() => {
+    setdataShipper(props.shipperByUserId);
+}, [props.shipperByUserId]);
+
 
   const handleRowData = (data) => {
     setrowData(data);
@@ -52,15 +68,82 @@ function ShipperCardList(props) {
   function handleSetCurrentShipperId(shipperId) {
     setCurrentShipperId(shipperId);
   }
+  const handleInputChange = (value, key, dataIndex) => {
+    const updatedData = dataShipper.map((item) =>
+        item.orderId === key ? { ...item, [dataIndex]: value } : item
+    );
+    setdataShipper(updatedData);
+
+};
+const handleEditClick = (orderId) => {
+  setEditsuppliesId(orderId);
+};
+const handleCancelClick = (orderId) => {
+  setEditedFields((prevFields) => ({ ...prevFields, [orderId]: undefined }));
+  setEditsuppliesId(null);
+};
+
+const handleToggleClick = (checked, shipperId) => {
+  setTempToggleState(prevState => ({
+    ...prevState,
+    [shipperId]: checked, 
+  }));
+};
+const handleToggleConfirm = (shipperId) => {
+  settoggleYes(prevState => ({
+    ...prevState,
+    [shipperId]: tempToggleState[shipperId], 
+  }));
+  setEditsuppliesId(shipperId); 
+};
+
+const fetchApiKeyList = async () => {
+  try {
+    const response = await axios.get(`${base_url2}/DUMMY`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    });
+    setstoredApiKey(response.data);
+    // setLoading(false);
+  } catch (error) {
+    setErrorFetchApiKey(error);
+    // setLoading(false);
+  }
+};
+  const handleSelectedApiDropDown =  async (value,item) => {
+    setSelectedApi(value);
+    let payload={
+      apiKey: value,
+      shipperId:item.shipperId,
+  }
+    try {
+      const response = await axios.put(`${base_url2}/change-toggle/DUMMY/${item.shipperId}`,payload,{  
+          headers: {
+              Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+          },
+       });
+       if (response.dataShipper === 'Successfully order created..') {
+        const updatedOrderItems = dataShipper.filter(itm => itm.shipperId !== item.shipperId);
+        setdataShipper(updatedOrderItems);
+      } else {
+        console.log(response.dataShipper);
+      }
+        setEditsuppliesId(null);
+      } catch (error) {
+        console.error("Error updating item:", error);
+        setEditsuppliesId(null);
+      }
+  }
 
   const handleLoadMore = () => {
-    const PageMapd = props.shipperByUserId && props.shipperByUserId.length && props.shipperByUserId[0].pageCount
+    const PageMapd = dataShipper && dataShipper.length && dataShipper[0].pageCount
     setTimeout(() => {
       const {
         getShipperByUserId,
         userId
       } = props;
-      if (props.shipperByUserId) {
+      if (dataShipper) {
         if (page < PageMapd) {
           setPage(page + 1);
           getShipperByUserId(userId, page);
@@ -95,7 +178,7 @@ function ShipperCardList(props) {
               </div>
             <div className="font-poppins font-bold text-xs w-[10.8rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
              {/* Email */}
-             <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '  />{props.translatedMenuItems[2]}
+             <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c]'  />{props.translatedMenuItems[2]}
               </div>
             <div className="font-poppins font-bold text-xs w-[6.1rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Ship By */}
@@ -117,14 +200,14 @@ function ShipperCardList(props) {
             <ApiIcon className='!text-base  text-[#e4eb2f]'/> API</div>
           </div>
           <InfiniteScroll
-            dataLength={props.shipperByUserId.length}
+            dataLength={dataShipper.length}
             next={handleLoadMore}
             hasMore={hasMore}
             loader={props.fetchingShipperByUserId ? <div className="flex justify-center" >{props.translatedMenuItems[8]}...</div> : null}
             height={"88vh"}
           >
-            {props.shipperByUserId.length ? <>
-              {props.shipperByUserId.map((item) => {
+            {dataShipper.length ? <>
+              {dataShipper.map((item) => {
                 return (
                   <>
                     <div  >
@@ -197,13 +280,33 @@ function ShipperCardList(props) {
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                           <div className=" flex items-center justify-center w-[10rem] h-8 ml-gap  bg-[#eef2f9]">
-                            <Switch
-                              className="toggle-clr"
-                              //checked={item.productionInd}
-                              isLoading={true}
-                              checkedChildren="Yes"
-                              unCheckedChildren="No"
-                            />
+                          <Popconfirm
+          title={`Do you want to change ${tempToggleState[item.shipperId] ? "No" : "Yes"}`}
+          onConfirm={() => handleToggleConfirm(item.shipperId)} 
+          okText="Yes"
+          cancelText="No"
+        >
+          <Switch
+           className="toggle-clr"
+           checked={toggleYes[item.shipperId] || false}
+           onChange={(checked) => handleToggleClick(checked, item.shipperId)}
+            checkedChildren="Yes"
+            unCheckedChildren="No"
+          />
+        </Popconfirm>
+        {toggleYes[item.shipperId] && editsuppliesId === item.shipperId ? (
+          <Select
+           classNames="w-32"
+         value={SelectedApi} 
+          onChange={(value) => { handleSelectedApiDropDown(value,item)}}
+          >
+            {storedApiKey.map((item) => {
+                                    return <Option value={item.apikeyId}>{item.apikeyName}</Option>;
+                                })}
+          {/* <Option value={"closedOrder"}>Opt1</Option>
+          <Option value={"createRemainingOrder"}>Opt2</Option> */}
+           </Select>
+        ) : ""}   
                           </div>
                           <div class="flex justify-end max-sm:w-wk items-center">
                           <div class="flex max-sm:flex-row w-[8rem]  justify-end md:w-[3rem] max-sm:w-[25%] ">
@@ -251,7 +354,7 @@ function ShipperCardList(props) {
                   </>
                 )
               })}
-            </> : !props.shipperByUserId.length
+            </> : !dataShipper.length
               && !props.fetchingShipperByUserId ? <NodataFoundPage /> : null}
 
           </InfiniteScroll>

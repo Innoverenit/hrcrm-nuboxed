@@ -39,6 +39,8 @@ import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import UpdateIcon from '@mui/icons-material/Update';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import CommerceOpenTrackDrawer from "./CommerceOpenTrackDrawer";
+
 // Repair -Dis-2
 
 
@@ -51,6 +53,8 @@ function CommerceTableOut(props) {
   const [searchOnEnter, setSearchOnEnter] = useState(false); 
   const [startTime, setStartTime] = useState(null);
   const [isRecording, setIsRecording] = useState(false);
+  const[OpenTrack,setOpenTrack]=useState(false);
+
   const minRecordingTime = 3000; // 3 seconds
 const timerRef = useRef(null);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -74,8 +78,8 @@ const timerRef = useRef(null);
 '772', // 4
 '887', // 5
 "1606",// 'Pick up', // 6
-'1486', // 6 Track
-'142', // 6 status
+'1486', // 7 Track
+'142', // 8 status
 
 
             
@@ -127,6 +131,7 @@ const timerRef = useRef(null);
   const handleCheckAwb = () => {
       setCheckAwb(!checkAwb)
   }
+
 const AWBtst=[
   {
       "userId": "EMP16818052295222021",
@@ -970,7 +975,7 @@ useEffect(() => {
         </div>
         <div className=' flex  sticky  z-auto'>
           <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <div className=" flex max-sm:hidden justify-between w-[86%]  p-1 bg-transparent font-bold text-xs font-poppins sticky  z-10">
+            <div className=" flex max-sm:hidden justify-between w-[90%]  p-1 bg-transparent font-bold text-xs font-poppins sticky  z-10">
               <div className=" w-[6.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]">
               <DynamicFeedIcon className='!text-base  text-[#3ac427]'/>  {translatedMenuItems[0]}
                 </div>
@@ -999,11 +1004,15 @@ useEffect(() => {
               {/* <FormattedMessage id="app.pickup" defaultMessage="pickup" /> */}
               {translatedMenuItems[6]}
               </div>
-           
+              <div className="w-[2.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.5rem]">
+               
+               {/*   Track */} {translatedMenuItems[7]}
+               </div>
               <div className=" w-[4.20rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.20rem]">
                 {/* <FormattedMessage id="app.status" defaultMessage="Status" /> */}
                 <UpdateIcon className='!text-icon text-[#ff66b3]' /> {translatedMenuItems[8]}
                 </div>
+               
               <div className="w-[2.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.5rem]">
                 {/* <FormattedMessage id="app.pickup" defaultMessage="Pick Up" /> */}
                 {translatedMenuItems[9]}
@@ -1133,7 +1142,16 @@ useEffect(() => {
                             </div>
                           </div>
                           <div  className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9]  w-[8.78rem]" >Shhiper name usd$</div>
-                                                    <div>
+                                                   
+                                                                   <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.51rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm cursor-pointer text-blue-600"  onClick={() => {
+                                                                  setOpenTrack(true);
+                                                                  handleRowData(item);              
+                                                              }}>
+                              "HHHHH"
+                            </div>
+                          </div>
+                          <div>
                                                                <GpsFixedIcon className="!cursor-pointer text-[#42bfdd]"
                                                                 onClick={() => {
                                                                   props.handlepackId(true);
@@ -1147,6 +1165,7 @@ useEffect(() => {
                             </div>
                           </div>
                         </div>
+                        
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                        
                           <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.01rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
@@ -1165,6 +1184,7 @@ useEffect(() => {
                               {item.status === "null" ? "" : item.status}
                             </div>
                           </div>
+
                           <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dispatchInspectionInd === 4 && item.newAwbNo &&
@@ -1242,6 +1262,13 @@ useEffect(() => {
         rowData={rowData}
         handlepackId={props.handlepackId}
         addPackDataID={props.addPackDataID}
+      />
+      <CommerceOpenTrackDrawer
+             rowData={rowData}
+      OpenTrack={OpenTrack}
+      setOpenTrack={setOpenTrack}
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}
       />
     </>
   );

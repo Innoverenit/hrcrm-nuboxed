@@ -5,5 +5,9 @@
     "search.exclude": {
         "": true,
         "search.exclude": true
-    }
+    },
+    "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "eslint.validate": ["javascript"]
 }

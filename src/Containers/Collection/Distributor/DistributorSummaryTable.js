@@ -12,6 +12,7 @@ import ReconcileModePaymentChart from "./ReconcileModePaymentChart";
 import ReconcileTypePaymentChart from "./ReconcileTypePaymentChart";
 import CreditMemoUtilizedChart from "./CreditMemoUtilizedChart";
 import BarChartCustomer from "./BarChartCustomer";
+import DynamicPieChart from "../../Dashboard/Child/JumpStart/DynamicPieChart";
 
 function DistributorSummaryTable(props) {
 
@@ -26,21 +27,21 @@ function DistributorSummaryTable(props) {
          <div className="flex justify-between w-wk">
         <div>
         <div class=" font-poppins font-bold text-base ">Collection Value by Payment Mode</div>
-          <CollectionModePaymentChart/>
+          <DynamicPieChart dtype={"NotApprovePayment"} userId={props.userId} timeRangeType={props.timeRangeType} />
         </div>
 
         <div>
         <div class=" font-poppins font-bold text-base ">Reconcile Value by Payment Mode</div>
-          <ReconcileModePaymentChart/>
+          <DynamicPieChart dtype={"ApprovePayment"} userId={props.userId} timeRangeType={props.timeRangeType}/>
           </div>
 
           <div>
         <div class=" font-poppins font-bold text-base ">Reconcile by Payment Type </div>
-          <ReconcileTypePaymentChart/>
+          <DynamicPieChart dtype={"Approve"} userId={props.userId} timeRangeType={props.timeRangeType}/>
           </div>
           {/* <div>
         <div class="font-poppins font-bold text-base">Credit memo utilized</div>
-          <CreditMemoUtilizedChart/>
+          <CreditMemoUtilizedChart dtype={"NotApprove"}/>
           </div> */}
 
          
@@ -49,13 +50,13 @@ function DistributorSummaryTable(props) {
 <div className="flex justify-between w-wk">
 <div>  
         <div class=" font-poppins font-bold text-base ">Collection by Payment Type</div>
-          <CollectionTypePaymentChart/>
+          <DynamicPieChart dtype={"NotApprove"} userId={props.userId} timeRangeType={props.timeRangeType}/>
         </div>
         
         
        <div class="w-wk"> 
        <div class="font-poppins font-bold text-base">Bar chart by Customer</div>
-        <BarChartCustomer/>
+        <DynamicPieChart dtype={"customer"} userId={props.userId} timeRangeType={props.timeRangeType}/>
         </div>
 
         </div>
@@ -68,6 +69,7 @@ const mapStateToProps = ({ collection, auth,dashboard }) => ({
     viewType: collection.viewType,
     userId: auth.userDetails.userId,
     dateRangeList: dashboard.dateRangeList,
+    timeRangeType: dashboard.timeRangeType,
   });
   
   const mapDispatchToProps = (dispatch) =>

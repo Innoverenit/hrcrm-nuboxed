@@ -50,7 +50,7 @@ export const addShipper = (shipper, userId) => (dispatch) => {
     })
     .then((res) => {
       console.log(res);
-      dispatch(getShipperByUserId(userId));
+      // dispatch(getShipperByUserId(userId));
       dispatch({
         type: types.ADD_SHIPPER_SUCCESS,
         payload: res.data,
