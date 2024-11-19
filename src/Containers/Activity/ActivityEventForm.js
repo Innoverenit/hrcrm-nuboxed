@@ -385,7 +385,7 @@ const {
               : addActivityEvent(
                   {
                     ...values,
-                    contactId:props.contact?props.contact:null,
+                    contact:props.contact?props.contact:null,
                     contacts:selectedContact,
                     opportunity:selectedOpportunity,
                     customer: props.customer ? props.customer.customerId : null,

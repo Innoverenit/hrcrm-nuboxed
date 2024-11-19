@@ -1,6 +1,7 @@
 import React, { useState,useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+
 import {  Tooltip, Button,Select,Switch } from "antd";
 import { getSectors } from "../../../Containers/Settings/Sectors/SectorsAction";
 
@@ -100,24 +101,7 @@ function InvesterForm(props) {
       AddInvestor,
       clearbit,
     } = props;
-    const sortedSector =props.sectors.sort((a, b) => {
-      const nameA = a.sectorName.toLowerCase();
-      const nameB = b.sectorName.toLowerCase();
-      // Compare department names
-      if (nameA < nameB) {
-        return -1;
-      }
-      if (nameA > nameB) {
-        return 1;
-      }
-      return 0;
-    });
-    const sectorOption = sortedSector.map((item) => {
-      return {
-        label: `${item.sectorName}`,
-        value: item.sectorId,
-      };
-    });
+ 
 
     const sortedInvest =props.investorListData.sort((a, b) => {
       const nameA = a.name.toLowerCase();
@@ -289,6 +273,20 @@ function InvesterForm(props) {
             department: "",
             firstMeetingDate: endDate || null,
             category: whiteblue ? "White" : "Blue" || "Both",
+            address: [
+              {
+                addressType: "",
+                address1: "",
+                address2: "",
+                town: "",
+                street: "",
+                city: "",
+                postalCode: "",
+                country: props.user.country,
+                latitude: "",
+                longitude: "",
+              },
+            ],
           }}
           validationSchema={InvestorSchema}
           onSubmit={(values, { resetForm }) => {
@@ -557,35 +555,33 @@ function InvesterForm(props) {
                     </div> 
                  <div class="flex justify-between mt-2">
                  <div class=" flex flex-col items-center  mt-2">
-                    <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    {/* <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                     {translatedMenuItems[7]} 
-                      {/* UBO */}
-                      </div>
-                    <Switch
+                  
+                      </div> */}
+                    {/* <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
-                      //onChange={handleContract}
-                      //checked={contract}
+                     
                       checkedChildren="Yes"
                       unCheckedChildren="No"
-                    />
+                    /> */}
                   </div>
-                  <div class=" flex flex-col items-center  mt-2">
+                  {/* <div class=" flex flex-col items-center  mt-2">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                     {translatedMenuItems[8]} 
-                    {/* Identification */}
+                   
                       </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
-                      //onChange={handleContract}
-                      //checked={contract}
+                    
                       checkedChildren="Yes"
                       unCheckedChildren="No"
                     />
-                  </div>
+                  </div> */}
                   
                  </div>
                  
-                  <div class=" flex flex-col   mt-2">
+                  {/* <div class=" flex flex-col   mt-2">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                                         Inofocit
                       </div>
@@ -596,7 +592,7 @@ function InvesterForm(props) {
                       checkedChildren="Yes"
                       unCheckedChildren="No"
                     />
-                  </div>
+                  </div> */}
                   <div class=" w-w47.5 max-sm:w-wk font-bold font-poppins text-xs mt-2">
                   {translatedMenuItems[9]}  
                   {/* Date */}
@@ -762,7 +758,21 @@ function InvesterForm(props) {
                 </div>
                   </div>
                 </div>
+            
               </div>
+              <div class=" mt-3">
+                  <div class="font-bold text-xs"> {translatedMenuItems[10]}  </div>
+                    <FieldArray
+                      name="address"
+                      // label="Address"                 
+                      render={(arrayHelpers) => (
+                        <AddressFieldArray
+                          arrayHelpers={arrayHelpers}
+                          values={values}
+                        />
+                      )}
+                    />
+                  </div>
            
              
               <div class="flex justify-end w-wk bottom-2 mr-2 md:absolute mt-3 ">

@@ -10,6 +10,7 @@ import styled from "styled-components";
 import {
   TextInput,
 } from "../../../../../Components/UI/Elements";
+import AddProcessStageData from "./AddProcessStageData"
 import {addProcessForDeals,
 //   getProcessForDeals,
  addProcessStageForDeals,
@@ -580,7 +581,7 @@ fetchType = async () => {
               )}
             </div>
 
-            {this.props.dealsProcessStages.map((dealsProcessStages, i) => (
+            {/* {this.props.dealsProcessStages.map((dealsProcessStages, i) => (
               <SingleDealsStages
                 key={i}
                 currentItem={this.state.currentItem}
@@ -603,9 +604,9 @@ fetchType = async () => {
                 className="scrollbar"
                 id="style-3"
               />
-            ))}   
+            ))}    */}
         
-            {this.state.isTextInputOpen ? (
+            {/* {this.state.isTextInputOpen ? (
               <div class=" flex justify-center"
               >
                 <TextInput
@@ -664,7 +665,11 @@ fetchType = async () => {
                   </Button>
                 </div>
               </>
-            ):null}
+            ):null} */}
+            <AddProcessStageData
+            currentProcess={this.state.currentProcess}
+            dealsProcessStages={this.props.dealsProcessStages}
+            />
           </div>
         </StageWrapper>
 
