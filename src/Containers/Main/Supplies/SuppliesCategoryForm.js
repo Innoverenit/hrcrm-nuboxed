@@ -135,9 +135,10 @@ function SuppliesCategoryForm (props) {
                   <div class=" flex  flex-nowrap">
                     <div> <FastField name="imageId" component={PostImageUpld} /></div>
                     <div>
-                      <div class=" flex justify-between flex-col ml-2">
-                        <div class="  max-sm:w-full flex flex-col">
+                      <div class=" flex justify-between flex-col ml-4">
+                        <div class=" flex flex-col">
                           <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[0]}</div>
+                       
                           <Field
                             name="categoryName"
                              label="Category"
@@ -148,9 +149,11 @@ function SuppliesCategoryForm (props) {
                             component={InputComponent}
 
                           />
+                       
                         </div>
-                        <div class="">
+                        <div class=" flex flex-col">
                   <div class="font-bold text-xs font-poppins text-black">Alert in days</div>
+                
                       <Field
                         name="alert"
                         //label="HSN"
@@ -160,6 +163,7 @@ function SuppliesCategoryForm (props) {
                         inlineLabel
                         component={InputComponent}
                       />
+                    
                     </div>
                     <div class="">
                   <div class="font-bold text-xs font-poppins text-black">Quality</div>
@@ -179,7 +183,7 @@ function SuppliesCategoryForm (props) {
                   <Field
                     name={`qualityList[${index}]`}
                     render={({ field }) => (
-                      <Input {...field} placeholder="Enter Quality" style={{ width: 200 }} />
+                      <Input {...field} placeholder="Enter Quality" style={{ width: 100 }} />
                     )}
                   />
                   {index === qualityFields.length - 1 && (
@@ -214,7 +218,7 @@ function SuppliesCategoryForm (props) {
                   <Field
                     name={`specsList[${index}]`}
                     render={({ field }) => (
-                      <Input {...field} placeholder="Enter Spec" style={{ width: 200 }} />
+                      <Input {...field} placeholder="Enter Spec" style={{ width: 100 }} />
                     )}
                   />
                   {index === specFields.length - 1 && (

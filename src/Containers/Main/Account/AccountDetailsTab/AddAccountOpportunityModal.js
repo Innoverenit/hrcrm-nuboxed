@@ -17,7 +17,7 @@ const AddAccountOpportunityModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <AccountOpportunityStepper {...formProps} />{" "}
+          <AccountOpportunityStepper handleAccountOpportunityModal={props.handleAccountOpportunityModal}{...formProps} />{" "}
         </Suspense>
       </StyledDrawer>
     </>

@@ -1,12 +1,14 @@
 import React, { useState,useEffect } from "react";
 import { Button,Select, Input,Popconfirm } from "antd";
 import {addProcessStageForDeals,
+
   updateStageForDeals,
   deleteDealsStagesData,
-  LinkDealsStagePublish
+  LinkDealsStagePublish,
+        updateStageForDeals
    
      } from "../../../SettingsAction"
-     import DeleteIcon from '@mui/icons-material/Delete';
+    
 
 
      import { connect } from "react-redux";
@@ -15,6 +17,12 @@ import { bindActionCreators } from "redux";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
 
+
+
+import { connect } from "react-redux";
+
+import { bindActionCreators } from "redux";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 const { Option } = Select;
 
 const AddStageComponent = (props) => {
@@ -238,7 +246,7 @@ const handleInputChange = (stagesId, field, value) => {
               <p><strong>Stage:</strong> {stage.stageName}</p>
               <p><strong>Weightage:</strong> {stage.probability}%</p>
               <p><strong>Days:</strong> {stage.days}</p>
-              <EditOutlined
+              <BorderColorIcon
                onClick={() => handleEdit(stage.stagesId)}
               />
                                  <Popconfirm

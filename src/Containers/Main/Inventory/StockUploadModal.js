@@ -12,7 +12,7 @@ class StockUploadModal extends Component {
       <div>
  <StyledDrawer
           title="Import"
-          width={"60%"}
+          width={"30%"}
           visible={this.props.addStockModal}
         onClose={() => this.props.handleStockUpload(false)} >
           <Suspense fallback={<BundleLoader />}>

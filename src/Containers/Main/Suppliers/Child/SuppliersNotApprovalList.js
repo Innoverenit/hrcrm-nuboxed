@@ -20,7 +20,7 @@ import { Link } from 'react-router-dom';
 import SupplierSearchedData from "./SupplierSearchedData";
 import AddSuppliersAdressModal from "./AddSuppliersAdressModal";
 import EmptyPage from "../../EmptyPage";
-
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 function SuppliersNotApprovalList(props) {
 
   const [hasMore, setHasMore] = useState(true);
@@ -175,7 +175,17 @@ function SuppliersNotApprovalList(props) {
             handleRowData(item);
           }}
           
-        />                   </div>
+        />     
+         <BorderColorIcon
+                                className=" !text-icon cursor-pointer text-[tomato]"
+
+                                // onClick={() => {
+                                //   props.setEditCustomer(item);
+                                //   handleUpdateCustomerModal(true);
+                                //   handleSetCurrentCustomerId(item.customerId);
+
+                                // }}
+                              />              </div>
 
                           
                            

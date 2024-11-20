@@ -30,6 +30,7 @@ import ShipperAwbTable from "./ShipperActivityTab/ShipperAwbTable";
 import ErpNote from "../../../ErpNote/ErpNote";
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import AddShipperActivityModal from "./ShipperActivityTab/AddShipperActivityModal";
+import DynamicShipTabs from "./ShipperActivityTab/DynamicShipTabs";
 
 const ShipperDocumentTable = lazy(() =>
   import("./ShipperDocumentTab/ShipperDocumentTable")
@@ -161,7 +162,7 @@ class ShipperDetailsTab extends Component {
                 />
               </div>;
         case "2":
-          return  <div>  <ShipperAwbTable
+          return  <div>  <DynamicShipTabs
           shipperId={this.props.shipper.shipperId}
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}

@@ -161,20 +161,22 @@ import { getPackData,  getPackAndTrack } from "../Inventory/InventoryAction";
 const { Option } = Select;
 
 const AddPackFormID = (props) => {
-  const [isMultiple, setIsMultiple] = useState(false); // Toggle between single and multiple
-  const [trackIds, setTrackIds] = useState([]); // Store multiple Track IDs
-  const [singleTrackId, setSingleTrackId] = useState(""); // Store single Track ID for single mode
+  const [isMultiple, setIsMultiple] = useState(false); 
+  const [trackIds, setTrackIds] = useState([]); 
+  const [singleTrackId, setSingleTrackId] = useState("");
   const dispatch = useDispatch();
   const [selectedShipper, setSelectedShipper] = useState("Select UOM");
+  const [isTyping, setIsTyping] = useState(false); 
+  // const [typingTimeout, setTypingTimeout] = useState(null); 
 
-  // Fetch pack data on component mount
+
   useEffect(() => {
     props.getPackData(props.orderPhoneId);
     props.getPackAndTrack(props.orderPhoneId)
     props.getAllShipper(props.orgId)
   }, []);
 
-  // Function to send data to server when blur occurs
+ 
   const sendDataToServer = async (item) => {
     try {
       const response = await axios.post(
@@ -196,7 +198,7 @@ const AddPackFormID = (props) => {
     }
   };
 
-  // Handle trackId blur for single mode
+
   const handleSingleTrackIdBlur = (e) => {
     const value = e.target.value;
     setSingleTrackId(value);
@@ -206,9 +208,9 @@ const AddPackFormID = (props) => {
       userId: props.userId,
       orgId: props.orgId,
       type: "single",
-      packingNo: 0 // Sending 0 packingNo for single mode
+      packingNo: 0
     };
-    sendDataToServer(payload); // Send data on blur
+    sendDataToServer(payload); 
   };
   const handleShipperChange = (shipperId) => {
     setSelectedShipper(shipperId); // Set selected shipper ID
@@ -223,7 +225,6 @@ const AddPackFormID = (props) => {
   
     sendDataToServer(payload); // Send data on selection
   };
-  // Handle trackId blur for multiple mode (individual submissions for each input)
   const handleTrackIdBlur = (index, packingNo,dispatchPackingId) => (e) => {
     const value = e.target.value;
     const newTrackIds = [...trackIds];
@@ -236,22 +237,34 @@ const AddPackFormID = (props) => {
       userId: props.userId,
       orgId: props.orgId,
       type: "multiple",
-      packingNo: packingNo, // Send corresponding packingNo
+      packingNo: packingNo,
       dispatchPackingId:dispatchPackingId
     };
-    sendDataToServer(payload); // Send data on blur
+    sendDataToServer(payload); 
   };
 
-  // Toggle between single and multiple mode
+
   const handleToggle = (checked) => {
     setIsMultiple(checked);
-    setTrackIds([]); // Reset the inputs when toggling
-    setSingleTrackId(""); // Reset single input
+    setTrackIds([]); 
+    setSingleTrackId("");
   };
-
+  const handleTrackIdChange = () => {
+    setIsTyping(true);
+    // if (typingTimeout) {
+    //   clearTimeout(typingTimeout);
+    // }
+    // setTypingTimeout(setTimeout(() => {
+    //   setIsTyping(false); 
+    // }, 1000)); 
+  };
+  const handleTrackIdInputBlur = () => {
+    setIsTyping(false);
+  };
   return (
     <>
    <div className="p-5">
+   {!isTyping && (
                  <Select
                     style={{ width: "12rem" }}
                     onChange={handleShipperChange}
@@ -263,6 +276,7 @@ const AddPackFormID = (props) => {
                       </Option>
                     ))}
                   </Select>
+   )}
    </div>
     <div className="p-5">
       <div className="font-semibold text-sm">Tag Track ID ?</div>
@@ -306,6 +320,7 @@ const AddPackFormID = (props) => {
                 <Input
                   placeholder={`Enter Track ID ${index + 1}`}
                   onBlur={handleTrackIdBlur(index, item.packingNo,item.dispatchPackingId)} // Send individual trackId on blur
+                  onChange={handleTrackIdChange} 
                   className="border p-2 w-full"
                 />
               </div>
@@ -330,6 +345,7 @@ const AddPackFormID = (props) => {
             <Input
               placeholder="Enter Track ID"
               onBlur={handleSingleTrackIdBlur} // Send individual trackId for single mode
+              onChange={handleTrackIdChange} 
               className="border p-2 w-full"
             />
           </div>

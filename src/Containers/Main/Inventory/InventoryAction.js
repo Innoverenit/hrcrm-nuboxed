@@ -2865,7 +2865,7 @@ export const uploadStockList =(customer, userId) => (dispatch, getState) => {
     .then((res) => {
       console.log(res);
 
-     window.location.reload()
+    //  window.location.reload()
       // dispatch(getRecords(userId));
       dispatch({
         type: types.ADD_STOCK_IMPORT_FORM_SUCCESS,

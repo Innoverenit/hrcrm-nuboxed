@@ -78,16 +78,22 @@ class ShipperAwbTable extends Component {
             <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs items-end sticky  z-10">
                         <div className=" md:w-[0.5rem]"></div>
                         <div className=" text-[#00A2E8] text-base w-[7.4rem] max-md:w-[7.4rem]">  
-                        <RocketLaunchIcon className=" !text-tab text-[#bdd358] mr-2"/>  {this.state.translatedMenuItems[0]}</div>
+                        <RocketLaunchIcon className=" !text-tab text-[#bdd358] mr-2"/>  Pallete</div>
                         {/* AWB# */}
                         <div className="w-[10.1rem] max-md:w-[10.1rem]"> 
-                        <DateRangeIcon className="!text-icon "/> {this.state.translatedMenuItems[1]}</div>
+                        <DateRangeIcon className="!text-icon "/> LDM </div>
                         {/* Created */}
-                        <div className="w-[8.8rem] max-md:w-[8.8rem] ">  {this.state.translatedMenuItems[2]}</div>
+                        <div className="w-[8.8rem] max-md:w-[8.8rem] ">  Weight</div>
                         {/* pickUp */}
                         <div className="w-[4.8rem] max-md:w-[4.8rem]"> 
                         <LocalShippingIcon className='!text-base  text-[#e4eb2f]'
-              /> {this.state.translatedMenuItems[3]}</div>
+              /> Value</div>
+              <div className="w-[4.8rem] max-md:w-[4.8rem]"> 
+                        <LocalShippingIcon className='!text-base  text-[#e4eb2f]'
+              /> Zone</div>
+               <div className="w-[4.8rem] max-md:w-[4.8rem]"> 
+                        <LocalShippingIcon className='!text-base  text-[#e4eb2f]'
+              /> Postcode</div>
                         {/* Delivery */}
                         <div className="w-[6.12rem] max-md:w-[6.12rem]"></div>                     
                     </div>

@@ -32,6 +32,7 @@ import SupplierSearchedData from "./SupplierSearchedData";
 import SuplierNotApprovalPublish from "./SuplierNotApprovalPublish";
 import AddSuppliersAdressModal from "./AddSuppliersAdressModal";
 import EmptyPage from "../../EmptyPage";
+import BorderColorIcon from "@mui/icons-material/BorderColor"; 
 
 function SuppliersCardList(props) {
 
@@ -257,7 +258,17 @@ function SuppliersCardList(props) {
           }}
           
         />      
-               </Tooltip>                
+               </Tooltip> 
+               <div>   <BorderColorIcon
+                                className=" !text-icon cursor-pointer text-[tomato]"
+
+                                // onClick={() => {
+                                //   props.setEditCustomer(item);
+                                //   handleUpdateCustomerModal(true);
+                                //   handleSetCurrentCustomerId(item.customerId);
+
+                                // }}
+                              />   </div>               
                               <div>
                                 <Tooltip title={props.translatedMenuItems[21]}>
                                   <Popconfirm
@@ -268,6 +279,7 @@ function SuppliersCardList(props) {
                                   </Popconfirm>
                                 </Tooltip>
                               </div>
+                             
                             </div>
                           </div>
                         </div>
