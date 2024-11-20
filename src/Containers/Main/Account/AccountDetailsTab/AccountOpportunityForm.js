@@ -374,14 +374,18 @@ const handleAddContact = () => {
                                 </div>
                                 <div class="justify-between flex mt-3">
                                     <div class="w-[45%]">
-                                 
+                                    <div class="flex items-center">
+                                    <div class="font-bold font-poppins text-xs">
+                                        Contact</div>
+                                        <div>
 <AddCircleIcon
   onClick={handleAddContact}
   style={{color:"red"}}
 />
-
+</div>
+</div>
                                         <Field
-                                            label="Contact"
+                                            // label="Contact"
                                             style={{ borderRight: "3px red solid" }}
                                             name="contactPersonId"
                                             placeholder="Value"

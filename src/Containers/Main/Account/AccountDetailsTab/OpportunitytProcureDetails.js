@@ -17,7 +17,8 @@ import {
 import { getSaleCurrency } from "../../../Auth/AuthAction";
 import {getCategorylist,getSupplierSuppliesQuality} from "../../Suppliers/SuppliersAction"
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-
+import AddIcon from '@mui/icons-material/Add';
+import ExtendOpportunityProductList from "./ExtendOpportunityProductList";
 
 const { Option } = Select;
 
@@ -34,6 +35,8 @@ function OpportunitytProcureDetails(props) {
   const [location, setLocation] = useState("");
   const [currency, setCurrency] = useState("");
   const [newPrice, setPrice] = useState('');
+  const [showPay, setShowPay] = useState(false);
+const [RowItem,setRowItem]=useState({});
 
   const [rows, setRows] = useState([{ brand: '', model: '', modelId: '', unit: '', spces: '',price:'',quality:'',saleCurrencies:'',id:'',currencyId:'' }]);
   const [fieldEnabled, setFieldEnabled] = useState({
@@ -99,8 +102,14 @@ function OpportunitytProcureDetails(props) {
   };
   const handleQualityChange = async (value) => {
     setQuality(value);
-   
   };
+
+  const handleShowPay = () => {
+    setShowPay(!showPay)
+}
+const handleRowItem = (item) => {
+  setRowItem(item);
+};
 
   const handleEditClick = (id,itemCategory, itemBrand, itemModel,itemAttribute, itemQuality,itemLocation,unit, itemSpecs,itemCurrency,price) => {
     setEditContactId(id);
@@ -187,6 +196,7 @@ function OpportunitytProcureDetails(props) {
     <>
       <div className="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className="flex justify-between  w-[100%]  p-1 bg-transparent font-bold sticky z-10">
+        <div className=" md:w-[4rem] font-semibold  font-poppins"></div>
         <div className="md:w-[7.4rem] text-[#00A2E8] text-base font-bold font-poppins">
         {translatedMenuItems[0]} {/* Category" /> */}
           </div>
@@ -223,9 +233,23 @@ function OpportunitytProcureDetails(props) {
       >
         {props.quotationPhoneDetails.map((item, index) => {
           return (
+            <div>
             <div key={index} className="flex rounded justify-between bg-white mt-1 h-8 items-center ">
 
 <div className="flex  md:w-[17rem] h-8  border-l-2 border-green-500 bg-[#eef2f9] items-center justify-center max-sm:flex-row w-full max-sm:justify-between">
+<div className=" flex   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                        
+                                                         <div class=" text-xs  font-poppins text-center">
+                                                                 <AddIcon
+                                                                     onClick={() => {
+                                                                         handleShowPay();
+                                                                         handleRowItem(item);
+                                                                     }
+                                                                     }
+                                                                 />
+                                                              
+                                                         </div>
+                                                   </div>
                 <div className="text-xs  font-poppins">
                 {editContactId === item.id ? (
                     <select
@@ -451,6 +475,18 @@ function OpportunitytProcureDetails(props) {
               
               </div>
             </div>
+            
+            {showPay && (RowItem.orderPhoneId === item.orderPhoneId) &&
+              <ExtendOpportunityProductList
+             //  newOrderNo={props.newOrderNo}
+             //  row={row}
+             //  paymentId={item.paymentId}
+             selectedLanguage={props.selectedLanguage}
+             particularRowItem={props.particularRowItem}
+             translateText={props.translateText} 
+                               />
+         }
+           </div>
           );
         })}
           </InfiniteScroll>

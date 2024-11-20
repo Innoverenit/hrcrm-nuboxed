@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-const OpportunitytProcureDetails =lazy(()=> import("./OpportunitytProcureDetails"));
+const AddQuotationProduct =lazy(()=> import("./AddQuotationProduct"));
 
 const OpportunitytProcureDetailsModal = (props) => {
     const isSmallScreen = window.innerWidth <= 600;
@@ -12,8 +12,8 @@ const OpportunitytProcureDetailsModal = (props) => {
     return (
         <>
             <StyledDrawer  
-                title={`Order : ${props.particularRowItem.newOrderNo}`}
-                width={drawerWidth}
+                title={`Quotation : ${props.particularRowItem.newOrderNo}`}
+                width={"75%"}
                 visible={props.addProcureDetailsModal}
                 closable
                 destroyOnClose
@@ -22,13 +22,12 @@ const OpportunitytProcureDetailsModal = (props) => {
                 placement="right"
             >
                 <Suspense fallback={<BundleLoader />}>
-                
-               <OpportunitytProcureDetails  
-               particularRowItem={props.particularRowItem}
-               selectedLanguage={props.selectedLanguage}
-               translateText={props.translateText}
-               
-               />                  
+ 
+                <AddQuotationProduct 
+                 particularRowItem={props.particularRowItem}
+                 selectedLanguage={props.selectedLanguage}
+                 translateText={props.translateText}
+                />       
                 </Suspense>
             </StyledDrawer>
         </>
