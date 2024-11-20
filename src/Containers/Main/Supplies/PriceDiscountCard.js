@@ -44,8 +44,8 @@ function PriceDiscountCard(props) {
       "85",  //  "Add ",//0
       "1369",  //   "Volume",//1
        "218", //   "Value",
-       "126", //   "Start Date",
-       "154", //   "End Date",
+       "176", //   "Start Date",
+       "126", //   "End Date",
       "154",  //   "Submit",
      "1078",   //   "Save",
       "1079",  //   "Cancel"
@@ -111,6 +111,13 @@ function PriceDiscountCard(props) {
   const handleSave = (index) => {
     const row = rows[index];
     // const targetRow = data.find((row) => row.key === key);
+    if (!row.allowedDiscount || isNaN(row.allowedDiscount)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        [`allowedDiscount${index}`]: 'Input required',
+      }));
+      return;
+    }
     // if (targetRow) {
       console.log('Submitting Row:', row);
       const result = {
@@ -191,8 +198,8 @@ function PriceDiscountCard(props) {
 
               <div>
               <div>
-                <div class="font-bold text-xs font-poppins text-black">
-                {translatedMenuItems[2]}{/* Value */}
+                <div class="font-bold w-28 text-xs font-poppins text-black">
+                {translatedMenuItems[2]} in %{/* Value */}
                    </div>
                 <div>
                 <Input className="w-[5rem]"
@@ -217,7 +224,7 @@ function PriceDiscountCard(props) {
         </div>
       </div>
       <div>
-        <div class="font-bold text-xs font-poppins text-black">End Date</div>
+        <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[4]}</div>
         <div >
           <DatePicker className="w-[7rem]"
             value={row.endDate ? dayjs(row.endDate) : null}
@@ -227,7 +234,7 @@ function PriceDiscountCard(props) {
       </div>
       <div class="flex items-center">    
       <Button type="primary" onClick={() => handleSave(index)}>
-            {translatedMenuItems[3]} {/* Submit */}
+            {translatedMenuItems[5]} {/* Submit */}
             </Button>
 </div>
             </div>         
@@ -239,8 +246,8 @@ function PriceDiscountCard(props) {
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">         
             <div className="font-poppins font-bold text-xs md:w-[21rem]"> {translatedMenuItems[1]} </div>
             <div className="font-poppins font-bold text-xs md:w-[11.1rem]"> {translatedMenuItems[2]} </div>
-            <div className="font-poppins font-bold text-xs md:w-[6.2rem] "> {translatedMenuItems[3]} </div>
-            <div className="font-poppins font-bold text-xs md:w-[6.2rem] "> {translatedMenuItems[4]} </div>
+            <div className="font-poppins font-bold text-xs md:w-[10.2rem] "> {translatedMenuItems[3]} </div>
+            <div className="font-poppins font-bold text-xs md:w-[8.2rem] "> {translatedMenuItems[4]} </div>
             <div className="w-12"></div>           
               </div>
 <div className="h-[23vh] overflow-x-auto">

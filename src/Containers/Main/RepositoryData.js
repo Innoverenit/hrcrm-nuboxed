@@ -23,7 +23,7 @@ function RepositoryData(props) {
           />
         </Tooltip>
       </div>
-      <Suspense fallback={<BundleLoader />}>
+      <Suspense >
       <RepositoryOrganizationModal
         repositoryOrganizationModal={props.repositoryOrganizationModal}
         handleRepositoryOrganizationModal={props.handleRepositoryOrganizationModal}

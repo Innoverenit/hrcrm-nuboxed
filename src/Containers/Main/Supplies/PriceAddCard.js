@@ -6,7 +6,7 @@ import {
   getCategory,
  
 } from "../../Settings/Category/CategoryList/CategoryListAction";
-
+import axios from "axios";
 import { Button, Input, Select,Switch, Popconfirm,message } from "antd";
 import { getMaterialCurrency, createMaterialCurrency,materialPricetype
  } from "./SuppliesAction";
@@ -14,6 +14,7 @@ import {getSaleCurrency} from "../../Auth/AuthAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import EmptyPage from "../EmptyPage";
+import { base_url2 } from "../../../Config/Auth";
 
 
 const { Option } = Select;
@@ -30,7 +31,9 @@ function PriceAddCard(props) {
   const [errors, setErrors] = useState({});
   const [isBestSeller, setIsBestSeller] = useState(false); 
   const [rowToggleStates, setRowToggleStates] = useState({});
-
+  const [inputValue, setInputValue] = useState(props.packingNo || '');
+  const [inputValue2, setInputValue2] = useState(props.packingNo || '');
+  const [inputValue3, setInputValue3] = useState(props.packingNo || '');
   useEffect(() => {
     props.getMaterialCurrency(props.particularDiscountData.suppliesId);
     props.getSaleCurrency()
@@ -56,6 +59,7 @@ function PriceAddCard(props) {
        "1079", //      "Cancel"  
      "14", //  Catagory
      "110", //name
+      "771",//Final
 
         ];
 
@@ -95,6 +99,57 @@ function PriceAddCard(props) {
     };
     setRows([...rows, newRow]);
   };
+  const sendInputPutRequest =  async (item) => {
+    
+    try {
+        const response = await axios.put(`${base_url2}/dummy`,item, {  
+          headers: {
+              Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+          },
+       });
+      
+       if (response.data === 'Successfully !!!!') {
+      } else {
+        console.log(response.data);
+      }
+      } catch (error) {
+        console.error("Error updating item:", error);
+      }
+  };
+
+  const handleInputBlur = (e) => {
+    const value = e.target.value === '' ? '0' : e.target.value; 
+    setInputValue(value);
+    sendInputPutRequest({ packingUnits: value,
+userId:props.userId,
+orgId:props.orgId,
+
+     });
+  };
+
+  const handleInputBlur2 = (e) => {
+    const value = e.target.value === '' ? '0' : e.target.value; 
+    setInputValue2(value);
+    sendInputPutRequest({ packingUnits2: value,
+userId:props.userId,
+orgId:props.orgId,
+
+     });
+  };
+  const handleInputBlur3 = (e) => {
+    const value = e.target.value === '' ? '0' : e.target.value; 
+    setInputValue3(value);
+    sendInputPutRequest({ packingUnits3: value,
+userId:props.userId,
+orgId:props.orgId,
+
+     });
+  };
+
+
+
+
+
   const handleChange = (index, key, value) => {
     if (key === 'suppliesPrice' || key === 'suppliesPriceB2C' || key === 'vat') {
       if (!isNaN(value)) {
@@ -149,7 +204,7 @@ function PriceAddCard(props) {
         suppliesId: props.particularDiscountData.suppliesId,
         userId: props.userId,
         orgId: props.orgId,
-        SCategory:row.catagoryId,
+        sCategory:row.catagoryId,
          type:"mrp"
       };
       props.createMaterialCurrency(result)
@@ -275,12 +330,14 @@ function PriceAddCard(props) {
       <div className=' flex sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">      
-            <div className="font-poppins font-bold text-xs md:w-[7%]">  {translatedMenuItems[1]}</div>
+            <div className="font-poppins font-bold text-xs md:w-[7rem]">  {translatedMenuItems[1]}</div>
             <div className="font-poppins font-bold text-xs md:w-[6.1rem]">  {translatedMenuItems[2]}(B2B)</div>
+            <div className="md:w-[5.8rem] font-poppins font-bold text-xs">  {translatedMenuItems[9]}</div>
             <div className="font-poppins font-bold text-xs md:w-[7.2rem] "> {translatedMenuItems[7]}
               {/* Catagory name */}
               </div>
             <div className="md:w-[5.8rem] font-poppins font-bold text-xs">  {translatedMenuItems[3]}</div>
+           
             <div className="w-12"></div>         
             </div>
             <div className="h-[23vh] overflow-x-auto">
@@ -332,7 +389,7 @@ function PriceAddCard(props) {
                   </div>
 
                   <div className=" text-xs  font-poppins">
-                      <div> {item.SCategoryName}</div>
+                      <div> {item.sCategoryName}</div>
                     </div>
                     
                   
@@ -419,7 +476,48 @@ function PriceAddCard(props) {
 
         </div>
       </div>
-
+<div>
+  <div className="flex justify-between mt-2">
+  <div class="text-base font-semibold w-40 ">P-1</div>
+  <div class="text-base font-semibold w-40 ">P-2</div>
+  <div class="text-base font-semibold w-40 ">P-3</div>
+  </div>
+  <div className="flex justify-between mt-1">
+<div className="w-36" >
+                                           <input
+            id="packingUnits"
+            type="text"
+            className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+            defaultValue={inputValue}
+            onBlur={(e) => handleInputBlur(e)}
+            onChange={(e) => setInputValue(e.target.value)}
+           placeholder="Enter number of P-1"
+          />
+          </div> 
+          <div className="w-36" >
+                                           <input
+            id="packingUnits2"
+            type="text"
+            className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+            defaultValue={inputValue2}
+            onBlur={(e) => handleInputBlur2(e)}
+            onChange={(e) => setInputValue2(e.target.value)}
+           placeholder="Enter number of P-2"
+          />
+          </div> 
+          <div className="w-36" >
+                                           <input
+            id="packingUnits3"
+            type="text"
+            className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+            defaultValue={inputValue3}
+            onBlur={(e) => handleInputBlur3(e)}
+            onChange={(e) => setInputValue3(e.target.value)}
+           placeholder="Enter number of P-3"
+          />
+          </div> 
+          </div>
+</div>
     </div>
   );
 
