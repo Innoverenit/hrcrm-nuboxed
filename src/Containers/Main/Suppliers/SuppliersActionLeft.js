@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 import { Avatar, Input, Tooltip,Badge } from "antd";
 import MicIcon from '@mui/icons-material/Mic';
 import ChecklistIcon from '@mui/icons-material/Checklist';
+import Shop2Icon from '@mui/icons-material/Shop2'; 
 
 const Option = StyledSelect.Option;
 
@@ -74,8 +75,11 @@ const {
         if (currentData.trim() !== "") {
           // Perform the search
           //props.inputDataSearch(currentData);
-          if (props.viewType === "card") {
+          if (props.viewType === "table") {
             props.inputDataSearch(currentData,'user');
+          }
+          else if (props.viewType === "card") {
+            props.inputDataSearch(currentData,'Card');
           } else if (props.viewType === "all") {
             props.inputDataSearch(currentData,'All');
           } 
@@ -116,7 +120,9 @@ const {
         setIsRecording(false);
         if (transcript.trim() !== "") {
           setCurrentData(transcript);
-          if (props.viewType === "card") {
+          if (props.viewType === "table") {
+            props.inputDataSearch(transcript,'table');
+          } else if (props.viewType === "card") {
             props.inputDataSearch(transcript,'card');
           } else if (props.viewType === "all") {
             props.inputDataSearch(transcript,'all');
@@ -147,6 +153,26 @@ const {
       }, [listening, isRecording, startTime]);
         return (
             <div class="flex items-center">
+     <Tooltip
+                    title={props.translatedMenuItems[42]}>
+<Badge
+          size="small"
+          count={(props.viewType === "table" && props.countSupplier.supplierCount) || 0}
+          overflowCount={999}
+        >
+                    <span class=" mr-1 text-sm cursor-pointer"
+                        onClick={() => setSuppliersViewType("table")}
+                        style={{
+                            color: viewType === "table" && "#1890ff",
+                        }}
+                    >
+                        <Avatar style={{ background: viewType === "table" ? "#f279ab" : "#28a355" ,
+               boxShadow: props.viewType === "table" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "table" ? "scale(1.05)" : "scale(1)"}}>
+                            < Shop2Icon className="text-white !text-icon" /></Avatar>
+
+                    </span></Badge>
+                </Tooltip>
 
                 <Tooltip
                     title={props.translatedMenuItems[4]}>

@@ -1,15 +1,11 @@
 import React, { useState,useEffect } from "react";
 import { Button, Input } from "antd";
 import {addProcessStageForDeals,
-  updateStageForDeals
-   
-     } from "../../../SettingsAction"
-
-
-     import { connect } from "react-redux";
+  updateStageForDeals } from "../../../SettingsAction"
+import { connect } from "react-redux";
 
 import { bindActionCreators } from "redux";
-import { EditOutlined } from "@ant-design/icons";
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 
 const AddStageComponent = (props) => {
 
@@ -170,7 +166,7 @@ const handleInputChange = (stagesId, field, value) => {
               <p><strong>Stage:</strong> {stage.stageName}</p>
               <p><strong>Weightage:</strong> {stage.probability}%</p>
               <p><strong>Days:</strong> {stage.days}</p>
-              <EditOutlined
+              <BorderColorIcon
                onClick={() => handleEdit(stage.stagesId)}
               />
             </div>

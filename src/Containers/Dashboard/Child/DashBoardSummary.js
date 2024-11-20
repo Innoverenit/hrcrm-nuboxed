@@ -26,6 +26,7 @@ import { getQuotationDashboard,getReorderdata,getQuotationDashboardCount ,
   getTaskDashboard,getTasklist,getDealDashboard,getDealDashboardCount,
   getOrderDashboard,getOrderDashboardCount,getBestDashboardCount
 } from "../../Dashboard/DashboardAction";
+import { BundleLoader } from "../../../Components/Placeholder";
 
 const ButtonGroup = Button.Group;
 const DashBoardSummary=(props) =>{
@@ -131,7 +132,7 @@ const DashBoardSummary=(props) =>{
       <div class="flex flex-col  w-[14rem] items-center">
         <h2 className="text-xl font-bold font-poppins mb-2 uppercase">  <FactCheckIcon className='!text-icon mr-1 text-[#b02e0c]'/>{translatedMenuItems[0]}<span  className="font-bold text-[tomato] ml-1"> 
           {`${props.taskperCount.totalTask  ?? ""} `}</span></h2>
-          <div className="h-[89vh]">
+          <div className=" overflow-x-auto overflow-y-hidden h-[89vh]">
         <InfiniteScroll
         dataLength={props.taskDashboard.length}
         next={handleLoadMore}
@@ -142,8 +143,8 @@ const DashBoardSummary=(props) =>{
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
       >
       {props.fetchingTaskDashboard ? (
-        <div className="flex justify-center items-center h-full">
-          <Spin color="#00008b" size={50} /> 
+        <div className="flex justify-center items-center h-full min-w-[11rem]">
+          <BundleLoader/> 
           <div>{translatedMenuItems[1]}</div>
           {/* Spinner component */} 
         </div>
@@ -154,7 +155,7 @@ const DashBoardSummary=(props) =>{
           const endDate = dayjs(deal.endDate);
         const difference = currentDate.diff(endDate, 'days');
         return (
-          <div key={index} className="mb-2  p-1 ml-2 box-content h-16 min-h-[5.25rem]  border-2 border-[#00008b23] w-[11rem]">
+          <div key={index} className="mb-2  p-1 ml-2 box-content h-16 min-h-[5.25rem]  border-2 border-[#00008b23] w-[11rem] min-w-[11rem]">
             <div className="flex justify-between">
               <div>
                 <div className="font-semibold font-poppins truncate ">{deal.taskName}</div>
@@ -242,7 +243,7 @@ const DashBoardSummary=(props) =>{
       >
   {props.quotationDashboard.length === 0 &&props.fetchingQuotationDashboard? (
     <>
-     <Spin color="#00008b" size={50} /> 
+     <BundleLoader/> 
      <div>{translatedMenuItems[1]}</div>
     </>
    
@@ -296,7 +297,7 @@ const DashBoardSummary=(props) =>{
         <div className="overflow-y-hidden max-h-[78vh]">
       {props.fetchingMaterialBestBefore ? (
         <div className="flex justify-center items-center h-full">
-          <Spin color="#00008b" size={50} /> {/* Spinner component */}
+          <BundleLoader /> {/* Spinner component */}
         </div>
       ) : (
         props.materialBestBefore.map((colleague, index) => (

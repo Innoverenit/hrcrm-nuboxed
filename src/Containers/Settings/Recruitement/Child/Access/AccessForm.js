@@ -5689,6 +5689,24 @@ const onCheckAllWarrentyChange = (e) => {
                         />
                       </div>
                     </div>
+                    <div class="flex justify-between mt-4">
+                      <div>
+                        <div class="text-sm font-semibold">Price and Discount</div>
+                        <Checkbox
+                          indeterminate={indeterminateProcurement}
+                          onChange={onCheckAllProcurementChange}
+                          checked={checkAllProcurement}
+                        >
+                          <div class="text-xs"> Check all</div>
+                        </Checkbox>
+                        <Divider />
+                        <CheckboxGroup
+                          options={plainOptions}
+                          value={checkedProcurementList}
+                          onChange={onProcurementChange}
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
 

@@ -130,13 +130,15 @@ class Login extends Component {
                             onClick={this.handleClick}
                             style={{ alignSelf: "center", marginLeft: "-1.25rem" }}
                             size="24"
+                            className=" text-xs"
                           />
                         ) : (
                           <VisibilityOffIcon
                             type="eye-invisible"
                             onClick={this.handleClick}
-                            size="24"
+                            // size="24"
                             style={{ alignSelf: "center", marginLeft: "-1.25rem" }}
+                                  className=" text-xs"
                           />
                         )}
                       </div>           

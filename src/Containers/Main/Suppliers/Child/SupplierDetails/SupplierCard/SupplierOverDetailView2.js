@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class SupplierOverDetailView extends Component {
+class SupplierOverDetailView2 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -44,7 +44,7 @@ class SupplierOverDetailView extends Component {
 
     return (
       <>
-        <ShipperItemRow
+        {/* <ShipperItemRow
             label={this.state.translatedMenuItems[4]}
             // {
             //   <FormattedMessage id="app.street" defaultMessage="Street" />
@@ -62,28 +62,28 @@ class SupplierOverDetailView extends Component {
         //  {
         //   <FormattedMessage id="app.state" defaultMessage="State" />
         // }
-          value={addresses && addresses[0].state} />
-        {/* <ShipperItemRow
+          value={addresses && addresses[0].state} /> */}
+        <ShipperItemRow
             label=
             {this.state.translatedMenuItems[2]}
             // {
             //   <FormattedMessage id="app.pincode" defaultMessage="Pincode" />
             // }
             value={addresses && addresses[0].pinCode}
-        /> */}
-        {/* <ShipperItemRow
+        />
+        <ShipperItemRow
              label={this.state.translatedMenuItems[3]}
             //  {
             //   <FormattedMessage id="app.country" defaultMessage="Country" />
             // }
      
           value={addresses && addresses[0].country}
-        /> */}
+        />
       </>
     );
   }
 }
-export default SupplierOverDetailView;
+export default SupplierOverDetailView2;
 
 const ShipperItemRow = ({ label, value }) => {
   return (
