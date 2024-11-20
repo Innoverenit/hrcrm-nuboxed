@@ -21,7 +21,7 @@ class SuppliesHeader extends Component {
                         /></Suspense>
                     }
                     rightComponent={
-                        <Suspense fallback={<BundleLoader />}>
+                        <Suspense >
                             <SuppliesActionRight 
                         viewType={viewType}
                         translateText={this.props.translateText}

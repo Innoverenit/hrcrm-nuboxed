@@ -2907,6 +2907,7 @@ const newCallCheckedList = ["Access"];
 const downloadCheckedList = ["All"];
 const calculateCheckedList = ["Calculator"];
 const warrentyCheckedList = ["Access" , "Update"]
+const priceDiscountCheckedList = ["Access" , "Create", "Update"]
 
 const AccessForm = (props) => {
   const [checkedCustomerList, setCheckedCustomerList] = useState(
@@ -3338,7 +3339,13 @@ const [checkedWarrentyList, setCheckedWarrentyList] = useState(
 const [indeterminateWarrenty, setIndeterminateWarrenty] = useState(true);
 const [checkAllWarrenty, setCheckAllWarrenty] = useState(false);
 
+//Price and Discount
 
+const [checkedPriceDiscountList, setCheckedPriceDiscountList] = useState(
+  props.departmentAcces.pnd || []
+);
+const [indeterminatePriceDiscount, setIndeterminatePriceDiscount] = useState(true);
+const [checkAllPriceDiscount, setCheckAllPriceDiscount] = useState(false);
 
   useEffect(() => {
     console.log(props.roleTypeId);
@@ -3412,6 +3419,7 @@ useEffect(() => {
     setCheckedVendorList( props.departmentAcces.vendor || []);
     setCheckedCalculateList(props.departmentAcces.calculator || [])
     setCheckedWarrentyList(props.departmentAcces.warrenty || [])
+    setCheckedPriceDiscountList(props.departmentAcces.pnd || [])
 }, [props.departmentAcces]);
 
   const updateAccessForCategory = (category, selectedList) => {
@@ -3481,7 +3489,8 @@ useEffect(() => {
       event: eventCheckedList || [],
       planner: plannerCheckedList || [],
       calculator : calculateCheckedList || [],
-      warrenty : warrentyCheckedList || []
+      warrenty : warrentyCheckedList || [],
+      pnd : priceDiscountCheckedList || []
     };
   
     // Update only the specified category with the selectedList
@@ -4693,6 +4702,26 @@ const onCheckAllWarrentyChange = (e) => {
 };
 
 
+ //Price And Discount
+
+
+ const onePriceDiscountChange = (list) => {
+  setCheckedPriceDiscountList(list);
+  setIndeterminatePriceDiscount(
+    !!list.length && list.length < priceDiscountCheckedList.length
+  );
+  setCheckAllPriceDiscount(list.length === priceDiscountCheckedList.length);
+  updateAccessForCategory('pnd', list);
+};
+
+const onCheckAllePriceDiscountChange = (e) => {
+  const checked = e.target.checked ? priceDiscountCheckedList : [];
+  setCheckedPriceDiscountList(checked);
+  setIndeterminatePriceDiscount(false);
+  setCheckAllPriceDiscount(e.target.checked);
+  updateAccessForCategory('pnd', checked);
+};
+
   console.log(checkedMaterialList)
   console.log("departmentData", props.departmentData);
   console.log(props.departmentAcces.vendor);
@@ -5693,17 +5722,17 @@ const onCheckAllWarrentyChange = (e) => {
                       <div>
                         <div class="text-sm font-semibold">Price and Discount</div>
                         <Checkbox
-                          indeterminate={indeterminateProcurement}
-                          onChange={onCheckAllProcurementChange}
-                          checked={checkAllProcurement}
+                          indeterminate={indeterminatePriceDiscount}
+                          onChange={onCheckAllePriceDiscountChange}
+                          checked={checkAllPriceDiscount}
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
                         <Divider />
                         <CheckboxGroup
-                          options={plainOptions}
-                          value={checkedProcurementList}
-                          onChange={onProcurementChange}
+                          options={priceDiscountCheckedList}
+                          value={checkedPriceDiscountList}
+                          onChange={onePriceDiscountChange}
                         />
                       </div>
                     </div>
