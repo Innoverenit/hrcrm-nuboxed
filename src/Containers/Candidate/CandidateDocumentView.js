@@ -11,7 +11,7 @@ class CandidateDocumentView extends Component {
                {this.props.documentsByCandidateId.map((item) => { 
                   return (                        
                     <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
-                  <div class="rounded shadow-[0em 0.25em 0.625em -0.125em] border-solid text-black m-1 p-1 w-full font-poppins overflow-auto"> 
+                  <div class="rounded border-[#0000001f]  border  shadow-[#a3abb980] border-solid text-black m-1 p-1 w-full font-poppins overflow-auto"> 
                       <div class="w-7 h-7" >
                       <a
               href={`${base_url}/document/${item.documentId}`}

@@ -16,5 +16,5 @@ const MainWrapper = styled.div`
     overflow: auto;
 `
 export default MainWrapper;
-{/* <div class="rounded shadow-[0em 0.25em 0.625em -0.125em] border-solid text-black m-1 p-1 w-full font-poppins overflow-auto">  */}
+{/* <div class="rounded border-[#0000001f]  border  shadow-[#a3abb980] border-solid text-black m-1 p-1 w-full font-poppins overflow-auto">  */}
                                       

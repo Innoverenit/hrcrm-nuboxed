@@ -152,11 +152,11 @@ return <div><BundleLoader/></div>;
           </div>
           <div class=" flex flex-col w-wk" >
          
-         <div className="!h-[69vh] !mt-2 rounded  shadow-[0em 0.25em 0.625em -0.125em] border-solid text-black m-1 p-1 w-full font-poppins overflow-auto" >
+         <div className="!h-[69vh] !mt-2 rounded  border-[#0000001f]  border  shadow-[#a3abb980] border-solid text-black  p-1 w-full font-poppins overflow-auto" >
 
           
           {!props.fetchingTasks && tasks.length === 0 ? <NodataFoundPage /> : tasks.slice().sort((a, b) => a.taskType.localeCompare(b.taskType)).map((region, index) => (
-            <div className="flex rounded ml-1  font-bold shadow shadow-gray-300 shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.taskTypeId}>
+            <div className="flex rounded ml-1  font-bold  border-[#0000001f]  border  shadow-[#a3abb980] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.taskTypeId}>
             {/* Region name display or input field */}
             
             {editingId === region.taskTypeId ? (

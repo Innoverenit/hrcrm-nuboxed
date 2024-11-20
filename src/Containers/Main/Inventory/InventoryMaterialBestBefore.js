@@ -219,8 +219,8 @@ console.log(selectedZones)
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs items-end sticky z-10">
                         <div className=""></div>
-                        <div className="text-[#00A2E8] text-base w-[19.5rem]">PO ID</div>
-                        <div className=" w-[11.52rem]" >
+                        
+                        <div className="text-[#00A2E8] text-base w-[11.52rem]" >
                          Item 
                         </div>
              
@@ -264,7 +264,7 @@ console.log(selectedZones)
                         </div>
                    
 
-                        <div className=" w-[3.22rem]"></div>
+                        <div className=" w-[3.22rem]">Discount</div>
                     </div>
                     {/* <InfiniteScroll
                         dataLength={props.materialReceiveData.length}
@@ -282,27 +282,19 @@ console.log(selectedZones)
                                     <div className="flex rounded py-1 mt-1 bg-white  items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                       
 
-                                            <div className=" flex items-center border-l-2  h-8 border-green-500 bg-[#eef2f9] w-[10.1rem] max-sm:w-full ">
+                                            {/* <div className=" flex items-center  w-[10.1rem] max-sm:w-full ">
                                                 <div class="flex ml-gap text-xs font-bold  font-poppins cursor-pointer underline text-blue-600 border-l-2 border-green-500 bg-[#eef2f9]">
                                                     <div
-                                                        // onClick={() => {
-                                                        //     handleRow(item);
-                                                        //     props.handleMaterialReceived(true);
-                                                        // }}
+                                                     
                                                     >
                                                         {item.newPoNumber}
                                                     </div>
-                                                    {/* {date === currentdate ? (
-                                                        <div class="text-xs font-poppins font-bold text-[tomato]">
-                                                          {props.translatedMenuItems[13]}  
-                                                         
-                                                        </div>
-                                                    ) : null} */}
+                                                  
                                                 </div>
-                                            </div>
+                                            </div> */}
                                      
 
-                                        <div className=" flex w-[18.12rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex w-[18.12rem] items-center border-l-2  h-8 border-green-500 bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
 
                                             <div class=" text-xs  ml-gap font-poppins" >
                                                

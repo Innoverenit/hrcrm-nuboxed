@@ -186,7 +186,7 @@ return <div><BundleLoader/></div>;
           <div class=" flex flex-col" >
           <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingModels && modelList.length === 0 ? <NodataFoundPage /> : modelList.slice().sort((a, b) => a.roleType.localeCompare(b.roleType)).map((region, index) => (
-            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center " key={region.roleTypeId}>
+            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  border-[#0000001f]  border  shadow-[#a3abb980] bg-white text-[#444] mt-1  p-2 justify-between items-center " key={region.roleTypeId}>
             {/* Region name display or input field */}
             
           

@@ -130,7 +130,7 @@ const ReceivedTableOut = (props) => {
       
         <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <div className=" flex justify-between max-sm:hidden  w-[94%]  p-1 bg-transparent font-bold text-xs font-poppins  z-10">
+            <div className=" flex justify-between max-sm:hidden  w-[94%]  p-1 bg-transparent font-bold text-[0.65rem] font-poppins  z-10">
               <div className=" w-[8.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               <DynamicFeedIcon className='!text-base  text-[#3ac427]'/>{translatedMenuItems[0]}
                 </div>
@@ -139,7 +139,7 @@ const ReceivedTableOut = (props) => {
               <div className=" w-[9.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
               <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>   {translatedMenuItems[1]}
                 </div>
-              <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
               {translatedMenuItems[2]}
                 </div>
               </>
@@ -302,7 +302,7 @@ const ReceivedTableOut = (props) => {
                           
                           <div
   className={`flex items-center justify-center h-8 ml-gap w-[13rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ${
-    item.inspectionInd !== 0 &&  item.inspectionInd !== 1 && item.inspectionInd !== 2 && item.inventoryReceiveInd   ? 'bg-[green]' : 'bg-[#eef2f9]'
+    item.inspectionInd !== 0 &&  item.inspectionInd !== 1 && item.inspectionInd !== 2 && item.inventoryReceiveInd   ? 'bg-[#92f672]' : 'bg-[#eef2f9]'
   }`}
 >
                             <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -346,7 +346,7 @@ const ReceivedTableOut = (props) => {
                                       type="primary"
                                       onClick={handlePauseResume}>
                                       {pause ? "Resume Inspection" : "Pause Inspection"}
-                                    </Button> : item.inventoryReceiveInd ? <label class="text-white">Sent To Facility</label> : null}
+                                    </Button> : item.inventoryReceiveInd ? <div class="text-[#1b911a] ">Sent To Facility</div> : null}
                             </div>
                           </div>
                                     </div>

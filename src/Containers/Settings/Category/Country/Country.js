@@ -90,7 +90,7 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
          
          <MainWrapper className="!h-[77vh] !mt-2" >
           {!fetchingCountry && country.length === 0 ? <NodataFoundPage /> : country.slice().sort((a, b) => a.country_name.localeCompare(b.country_name)).map((region, index) => (
-            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.country_id}>
+            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  border-[#0000001f]  border  shadow-[#a3abb980] bg-white text-[#444] mt-1  p-2 justify-between items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.country_id}>
             {/* Region name display or input field */}
             
             

@@ -7,10 +7,10 @@ const BundleLoader = () => {
 //     <div className="loader !block "> </div>
 // <div className="flex items-center justify-center flex-col" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
 // </div></div>
-<div className="flex justify-center items-center h-full w-full">
+<div className="flex justify-center items-center h-[83vh] w-full max-md:h-[23vh]">
       <div className="relative w-20 h-20">
         {/* Spinning border */}
-        <div style={{ borderStyle: 'inset' }} className="absolute w-full h-full border-4 border-t-4 border-blue-500  rounded-full animate-spin"></div>
+        <div style={{ borderStyle: 'inset' }} className="absolute w-full h-full border-4 border-t-4 border-blue-300  rounded-full animate-spin"></div>
         
         {/* Image inside the loader */}
         <img 

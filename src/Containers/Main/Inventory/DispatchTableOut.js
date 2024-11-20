@@ -494,11 +494,11 @@ const AWBtst=[
                 </div>
               <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem]">
                 {/*Delivery" /> */}
-                <LocalShippingIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[4]}
+                <LocalShippingIcon className='!text-base  text-[#832161]'/> {translatedMenuItems[4]}
                 </div>
               <div className=" w-[5.04rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.03rem]">
                 {/* Shipper" /> */}
-                <LocalShippingIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[5]}
+                <LocalShippingIcon className='!text-base  text-[#6ba368]'/>{translatedMenuItems[5]}
                 </div>
               < div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]">
               {/*pickup" /> */}
