@@ -10,7 +10,7 @@ import { SelectComponent } from '../../../../Components/Forms/Formik/SelectCompo
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from '../../../../Components/Forms/Formik/TextareaComponent'; 
 import { Button, Tooltip, Select,Input } from 'antd';
-import { getSaleCurrency } from "../../../Auth/AuthAction";
+import { getSaleCurrency, getAllDialCodeList, } from "../../../Auth/AuthAction";
 import { getContactDistributorList } from "../../Suppliers/SuppliersAction"
 import { addQuotationOrderForm, getLobList } from '../AccountAction'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
@@ -113,10 +113,11 @@ const handleAddContact = () => {
     });
 
     useEffect(() => {
-        props.getContactDistributorList(props.distributorId)
-        props.getSaleCurrency()
-        props.getLobList(props.orgId)
+        props.getContactDistributorList(props.distributorId);
+        props.getSaleCurrency();
+        props.getLobList(props.orgId);
         props.getBrandCategoryData(props.orgId);
+        props.getAllDialCodeList();
     }, [])
 
     const [priority, setPriority] = useState("High")
@@ -131,6 +132,7 @@ const handleAddContact = () => {
             value: item.currency_id,
         };
     });
+
     const categoryOption = props.BrandCategoryData.map((item) => {
         return {
             label: item.name || "",
@@ -457,9 +459,9 @@ const handleAddContact = () => {
       value={newContact.dialCode}
        
       >
-        {currencyOption.map(contact => (
-          <Option key= {contact.value} value= {`+${contact.value}`}>
-           {`+${contact.label}`}
+        {props.dialcodeList.map(contact => (
+          <Option key= {`+${contact.country_dial_code}`} value= {`+${contact.country_dial_code}`}>
+           {`+${contact.country_dial_code}`}
           </Option>
         ))}
       </Select>   
@@ -630,7 +632,8 @@ const mapDispatchToProps = (dispatch) =>
             getSaleCurrency,
             getLobList,
             getContactDistributorList,
-            getBrandCategoryData
+            getBrandCategoryData,
+            getAllDialCodeList,
         },
         dispatch
     );
