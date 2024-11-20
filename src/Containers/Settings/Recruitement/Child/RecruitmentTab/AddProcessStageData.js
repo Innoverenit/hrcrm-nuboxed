@@ -5,22 +5,10 @@ import {addProcessStageForDeals,
   updateStageForDeals,
   deleteDealsStagesData,
   LinkDealsStagePublish,
-        updateStageForDeals
    
-     } from "../../../SettingsAction"
-    
-
-
-     import { connect } from "react-redux";
-
-import { bindActionCreators } from "redux";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-
-
-
-
+     } from "../../../SettingsAction";
+import DeleteIcon from '@mui/icons-material/Delete';
 import { connect } from "react-redux";
-
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 const { Option } = Select;
