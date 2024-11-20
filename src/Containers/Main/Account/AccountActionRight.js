@@ -45,17 +45,7 @@ class AccountActionRight extends React.Component {
         const { handleDistributorModal, viewType,user } = this.props;
         return (
           <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
-                {viewType === "list" ? (
-                    <Tooltip title="Create">
-                        {user.accountCreateInd === true && user.erpInd === true &&(
-                        <Button
-                            type="primary"  onClick={() => handleDistributorModal(true)}>
-                            <DataSaverOnIcon className=" !text-icon" /> 
-                            {this.state.translatedMenuItems[0]} {/* Add  */}
-                        </Button>
-                        )}
-                    </Tooltip>
-                ) : null}
+               
                  <div className="max-sm:hidden">
           <Button type="primary"  
         onClick={() => this.props.handleAccountImportModal(true)}
@@ -64,6 +54,17 @@ class AccountActionRight extends React.Component {
           {this.state.translatedMenuItems[1]} {/* Import */}
           </Button>
           </div>
+           {viewType === "list" ? (
+            <Tooltip title="Create">
+                {user.accountCreateInd === true && user.erpInd === true &&(
+                <Button
+                    type="primary"  onClick={() => handleDistributorModal(true)}>
+                    <DataSaverOnIcon className=" !text-icon" /> 
+                    {this.state.translatedMenuItems[0]} {/* Add  */}
+                </Button>
+                )}
+            </Tooltip>
+        ) : null}
             </div>
         );
     }

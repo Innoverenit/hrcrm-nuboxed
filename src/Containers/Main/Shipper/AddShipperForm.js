@@ -119,13 +119,14 @@ function AddShipperForm(props) {
                     isColumn
                     inlineLabel
                   />
-                  <div class=" flex justify-between">
+                  {/* Phone */}
+                   <div className="font-bold text-xs">{props.translatedMenuItems[1]}</div>
+                   <div class=" flex justify-between shadow-[0_0.15em_0.3em_#aaa] border border-[#bfbebb] h-8">
                   {props.customerConfigure.dailCodeInd===true&&
-                    <div class="w-[30%] max-sm:w-[40%] ">
+                    <div class=" w-3/12 max-sm:w-[35%]"> 
                       <FastField
                         name="dialCode2"
                         selectType="dialCode"
-                        label={props.translatedMenuItems[12]}
                         isColumn
                         component={SearchSelect}
                         defaultValue={{
@@ -137,24 +138,27 @@ function AddShipperForm(props) {
                       />
 
                     </div>
-}
+}           <div class="w-[1px] h-full bg-gray-300">
+  <div class="w-full h-[75%]"></div>
+</div>
 
-                    <div class="w-[68%] max-sm:w-[50%]">
+                   <div class=" w-[76%]">
+                    <div class="text-xs flex flex-col font-bold "> 
                     {props.customerConfigure.phoneNoInd===true&&
-                      <FastField
+                      <FastField 
                         name="phoneNo"
-                        label={`${props.translatedMenuItems[1]} #`}
                         placeholder="Phone #"
                         isColumn
                         component={InputComponent}
                         inlineLabel
                         width={"100%"}
+                        height={"1.85rem"}
                       />
                     }
                     </div>
-
+</div>
                   </div>
-                  <div class="w-full">
+                  <div class="w-full mt-2">
                     <FastField
                       type="email"
                       name="emailId"
@@ -183,11 +187,9 @@ function AddShipperForm(props) {
 
                   </div>
                   {props.customerConfigure.apiInd===true&&
-                  <div class=" mt-2">
-                    <b> 
+                  <div class=" mt-3 font-bold font-poppins mr-2 text-xs">                  
                       {/* API Integrated  */}
-                      API {props.translatedMenuItems[13]}
-                    </b>
+                      API {props.translatedMenuItems[13]}                
                     <Switch
                       checked={apiInd}
                       onChange={handleApiToggle}
@@ -204,10 +206,10 @@ function AddShipperForm(props) {
                     <Listbox value={selected} onChange={setSelected}>
                       {({ open }) => (
                         <>
-                         <Listbox.Label className="block font-semibold text-[0.75rem] ">
+                         <div className=" font-bold font-poppins text-[0.75rem] ">
                          {props.translatedMenuItems[14]}
                          {/* Assigned */}
-                          </Listbox.Label>
+                          </div>
                           <div className="relative ">
                             <Listbox.Button style={{ boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em" }} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                               {selected}
@@ -270,6 +272,14 @@ function AddShipperForm(props) {
                   </div>
 }
                   <div>
+                  <div class="mt-8 w-full" style={{ backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
+                    <div>
+                      <div class=" text-[white] text-xs" >
+                      {props.translatedMenuItems[23]} 
+
+                      </div>
+                    </div>
+                  </div>
                   {props.customerConfigure.addressInd===true&&
                 <div class="mt-3">
                     <FieldArray

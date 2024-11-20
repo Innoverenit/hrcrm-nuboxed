@@ -10,7 +10,8 @@ const AddOpportunityModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title="Quotation" 
+       title={`${props.translatedMenuItems[0]}`}
+      //  quotation
         width="60%"
         visible={props.addCustomerOpportunityModal}
         onClose={() => props.handleCustomerOpportunityModal(false)}

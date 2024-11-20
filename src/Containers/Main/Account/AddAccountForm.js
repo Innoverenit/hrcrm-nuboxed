@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Tooltip } from "antd";
+import { Button} from "antd";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
@@ -13,15 +13,11 @@ import { getCustomer } from "../../Settings/Category/Customer/CustomerAction";
 import { Listbox } from '@headlessui/react'
 import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
-import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { addDistributor, setClearbitData ,emptyClearbit} from "./AccountAction";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { getSaleCurrency, getCategory } from "../../Auth/AuthAction";
 import { ProgressiveImage } from "../../../Components/Utils";
-import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-import RotateRightIcon from "@mui/icons-material/RotateRight";
-import StopCircleIcon from "@mui/icons-material/StopCircle";
-import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
+import  { useSpeechRecognition,} from 'react-speech-recognition';
 import { InputComponent1 } from "../../../Components/Forms/Formik/InputComponent1";
 import SearchSelect1 from "../../../Components/Forms/Formik/SearchSelect1";
 
