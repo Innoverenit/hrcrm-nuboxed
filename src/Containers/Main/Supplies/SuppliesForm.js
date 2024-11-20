@@ -136,7 +136,6 @@ class Suppliesform extends Component {
               seoTitle:"",
               seoDescription:"",
               tag:"",
-              msku:"",
           }}
           validationSchema={SuppliesSchema}
           onSubmit={(values, { resetForm }) => {
@@ -560,18 +559,7 @@ class Suppliesform extends Component {
                         component={InputComponent}
                       />
                     </div>
-                    <div class="w-[47%]">
-                    <div class="font-bold text-xs font-poppins text-black">MSKU</div>
-                    <Field
-                        name="msku"
-                        //label="Name"
-                        isColumn
-                        width={"100%"}
-                        inlineLabel
-                        component={InputComponent}
-                        // isRequired
-                      />
-                    </div>
+                   
                   </div>  
                  <div class="flex justify-between">
                  <div class="w-[47%]">

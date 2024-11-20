@@ -22,6 +22,8 @@ import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
 import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
+import { InputComponent1 } from "../../../Components/Forms/Formik/InputComponent1";
+import SearchSelect1 from "../../../Components/Forms/Formik/SearchSelect1";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const CustomerSchema = Yup.object().shape({
@@ -205,7 +207,7 @@ const AddAccountForm = ({
               street: "",
               city: "",
               postalCode: "",
-              assignedTo: selectedOption ? selectedOption.employeeId : userId,
+              assignTo: selectedOption ? selectedOption.employeeId : userId,
               country: user.countryName,
               latitude: "",
               state: "",
@@ -221,7 +223,7 @@ const AddAccountForm = ({
               orgId: orgId,
               vatInd: values.vatInd ? true : false,
               payment: values.payment === "Custom" ? values.customPayment : values.payment,
-              assignedTo: selectedOption ? selectedOption.employeeId : userId,
+              assignTo: selectedOption ? selectedOption.employeeId : userId,
             },
             userId,
             resetForm()
@@ -285,7 +287,7 @@ const AddAccountForm = ({
                     style={{ borderRight: "3px red solid" }}
                   />
                 </div>
-                <div class=" flex justify-between mt-4">
+                {/* <div class=" flex justify-between mt-4">
                   <div class=" w-2/6">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[1]}</div>
                   
@@ -324,8 +326,39 @@ const AddAccountForm = ({
                       isColumn
                     />
                   </div>
-                </div>
-                <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[3]}</div>
+                </div> */}
+                 <div className="font-bold text-xs">{translatedMenuItems[2]}</div>
+<div class=" flex justify-between shadow-[0_0.15em_0.3em_#aaa] border border-[#bfbebb] h-8">
+                     <div class=" w-3/12 max-sm:w-[35%]">     
+                     <FastField
+                      name="dialCode"
+                      isColumnWithoutNoCreate
+                      isColumn
+                      value={countryDialCode1}
+                      selectType="dialCode"
+                      component={SearchSelect1}
+                      inlineLabel
+                    />           
+                    </div>
+                    <div class="w-[1px] h-full bg-gray-300">
+  <div class="w-full h-[75%]"></div>
+</div>
+                    <div class=" w-[76%]">
+                    <div class="text-xs flex flex-col font-bold "> 
+                    <FastField
+                      name="phoneNo"
+                      placeholder="Mobile #"
+                      component={InputComponent1}
+                      inlineLabel
+                      width={"100%"}
+                      isColumn
+                    />
+                      </div>
+
+                    </div>
+                  
+                  </div> 
+                <div class=" text-xs font-bold font-poppins mt-2"> {translatedMenuItems[3]}</div>
                 <Field
                   // isRequired
                   name="url"
@@ -419,7 +452,7 @@ const AddAccountForm = ({
                     />
                   </div>
                 </div>
-                <div class="flex justify-between mt-4" >
+                <div class="flex justify-between w-w47.5 mt-4" >
                
                   <div class="w-w47.5">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[8]}</div>

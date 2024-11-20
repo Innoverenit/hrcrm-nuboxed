@@ -96,6 +96,7 @@ console.log(props.UOMListData)
         {isEditingName ? (
         <input
           type="text"
+          className="h-10 w-[30rem] text-xl"
           value={sName}
           onChange={(e) => setsName(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleUpdateName()} // Trigger update on 'Enter'
@@ -187,7 +188,8 @@ console.log(props.UOMListData)
           autoFocus // Focus the input automatically when editing
         />
       ) : (
-        <div onClick={() => setIsEditingDesc(true)} className="cursor-pointer text-sm font-[Poppins]"><div dangerouslySetInnerHTML={{ __html: `<p>${sDesc}</p>` }} /></div> // Click to enter edit mode
+        <div onClick={() => setIsEditingDesc(true)} className="cursor-pointer border overflow-x-auto h-[6rem] mt-2 w-1/2 text-sm font-[Poppins]" title=
+        {sDesc}><div dangerouslySetInnerHTML={{ __html: `<p>${sDesc}</p>` }} /></div> // Click to enter edit mode
       )}
     {/* <div dangerouslySetInnerHTML={{ __html: `<p>${props.materialsBySuppliesId.description}</p>` }} /> */}
     

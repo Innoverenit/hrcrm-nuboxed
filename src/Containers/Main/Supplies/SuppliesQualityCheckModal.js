@@ -14,7 +14,7 @@ const SuppliesQualityCheckModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title="Quality Spec"
+        title={<div className="truncate w-40"title={props.currentCategory.categoryName}>{props.currentCategory.categoryName}</div>}
         width="60%"
         visible={props.modalVisible1}
         maskClosable={false}
