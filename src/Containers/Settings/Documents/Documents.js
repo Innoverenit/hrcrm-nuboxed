@@ -196,7 +196,7 @@ return <div><BundleLoader/></div>;
                   <Select
   style={{ width: "50%" }}
   onChange={(value) => handleStageType(value, region.documentTypeId)} // Pass region.documentTypeId here
-  // value={region.userType}
+  value={region.userType}
   placeholder="Select Entity"
   mode="multiple"
 >
