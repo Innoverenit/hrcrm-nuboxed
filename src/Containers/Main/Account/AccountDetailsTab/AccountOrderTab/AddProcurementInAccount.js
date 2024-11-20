@@ -9,14 +9,21 @@ import {getBrandCategoryData} from "../../../../../Containers/Settings/Category/
 import { SelectComponent } from '../../../../../Components/Forms/Formik/SelectComponent';
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from '../../../../../Components/Forms/Formik/TextareaComponent';
-import { Button, Tooltip, message} from 'antd';
-import { getSaleCurrency } from "../../../../Auth/AuthAction";
+import { Button, Tooltip, message,Select,Input} from 'antd';
+import { getSaleCurrency,getAllDialCodeList } from "../../../../Auth/AuthAction";
 import { getContactDistributorList } from "../../../Suppliers/SuppliersAction"
 import { addOrderProcurementForm, getLobList } from '../../AccountAction'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import AddressFieldArray1 from '../../../../../Components/Forms/Formik/AddressFieldArray1';
 import dayjs from "dayjs";
 import { BundleLoader } from '../../../../../Components/Placeholder';
+import { base_url2 } from '../../../../../Config/Auth';
+import axios from 'axios';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
+
+const { Option } = Select; 
+
 const FormSchema = Yup.object().shape({
     lobDetsilsId: Yup.string().required("Input needed!"),
     advancePayment: Yup.string().required("Input needed!"),
@@ -26,6 +33,65 @@ const FormSchema = Yup.object().shape({
 function AddProcurementInAccount(props) {
     const [loading, setLoading] = useState(true);
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [isAddingContact, setIsAddingContact] = useState(false);
+    const [newContact, setNewContact] = useState({
+        firstName: '',
+        lastName: '',
+        emailId: '',
+        phoneNumber: '',
+        countryDialCode:"",
+       
+      });
+      const handleAddContact = () => {
+        setIsAddingContact(true);
+      };
+      const handleMobileKeyPress = async (e) => {
+        if (e.key === 'Enter') {
+          console.log('New Contact Added:', newContact);
+          let data = {
+            firstName: newContact.firstName,
+            lastName: newContact.lastName,
+            emailId: newContact.emailId,
+            phoneNumber: newContact.phoneNumber,
+            countryDialCode: newContact.countryDialCode,
+            distributorId: props.distributorId,
+            userId:props.userId,
+          };
+      
+          try {
+            // Await the addMoreContact function to ensure success before proceeding
+            const response = await axios.post(`${base_url2}/contactPerson`,data,{  
+                headers: {
+                    Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+                },
+             });
+      
+            setIsAddingContact(false);
+            setNewContact({ firstName: '', lastName: '', email: '', mobile: '', dialCode: '' });
+    
+          } catch (error) {
+            console.error('Error adding contact:', error);
+          }
+        }
+      };
+      const handleRemoveFields = () => {
+        setIsAddingContact(false);
+        setNewContact({  firstName: '',
+          lastName: '',
+          emailId: '',
+          phoneNumber: '',
+          countryDialCode:"",
+          distributorId:""
+        });
+      };
+      const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setNewContact((prev) => ({ ...prev, [name]: value }));
+      };
+      const handleDialCodeChange = (value) => {
+        setNewContact((prev) => ({ ...prev, countryDialCode: value }));
+      };
+
     const contactOption = props.contactDistributor.map((item) => {
         return {
             value: item.contactPersonId,
@@ -72,6 +138,7 @@ function AddProcurementInAccount(props) {
         props.getSaleCurrency()
         props.getLobList(props.orgId)
         props.getBrandCategoryData(props.orgId);
+
     }, [])
 
     const [priority, setPriority] = useState("High")
@@ -236,6 +303,11 @@ function AddProcurementInAccount(props) {
                                 <div class="justify-between flex mt-3">
                                 <div class="w-[45%] font-bold font-poppins text-xs">
                                 {translatedMenuItems[1]}
+
+                                <AddCircleIcon
+  onClick={handleAddContact}
+  style={{color:"red"}}
+/>
                                         <Field
                                             // label="Contact"
                                             style={{ borderRight: "3px red solid" }}
@@ -247,6 +319,106 @@ function AddProcurementInAccount(props) {
                                             width={"100%"}
                                             isColumn
                                         />
+                                        
+{isAddingContact && (
+                        <div class="flex  w-96 justify-between max-sm:flex-col mt-[0.75rem]">
+<div class=" w-w47.5 max-sm:w-wk">                
+<div className="font-bold text-xs">
+
+  {/* Customer */}
+  </div>
+  <Input
+              placeholder="First Name"
+              name="firstName"
+              style={{marginLeft:"-6px"}}
+              value={newContact.firstName}
+              onChange={handleInputChange}
+            />
+          
+            </div>
+
+            <div class=" w-w47.5 max-sm:w-wk">                
+<div className="font-bold text-xs">
+
+  {/* Customer */}
+  </div>
+  <Input
+              placeholder="Last Name"
+              name="lastName"
+              style={{marginLeft:"-4px"}}
+              value={newContact.lastName}
+              onChange={handleInputChange}
+            />
+          
+            </div>
+
+            <div class=" w-w47.5 max-sm:w-wk">                         
+
+<div className= "font-bold text-[0.75rem]">
+ 
+  {/* Contact */}
+  </div>
+  <Input
+              placeholder="Mobile No"
+              name="phoneNumber"
+              value={newContact.mobile}
+             
+              onChange={handleInputChange}
+             
+              style={{ flex: 1,marginLeft:"-1px" }} // Allow input to take full width
+            />    
+
+
+                </div>
+
+
+                <div class=" w-w47.5 max-sm:w-wk">                         
+
+<div className= "font-bold text-[0.75rem]">
+ 
+  {/* Contact */}
+  </div>
+  <Select
+        placeholder="Select dialcode"
+        name="countryDialCode"
+        style={{width:"80px"}}
+      onChange={handleDialCodeChange}
+      value={newContact.dialCode}
+       
+      >
+        {props.dialcodeList.map(contact => (
+          <Option key= {`+${contact.country_dial_code}`} value= {`+${contact.country_dial_code}`}>
+           {`+${contact.country_dial_code}`}
+          </Option>
+        ))}
+      </Select>   
+                </div>
+            <div class=" w-w47.5 max-sm:w-wk">                
+<div className="font-bold text-xs">
+  </div>
+  <Input
+              placeholder="Email"
+              name="emailId"
+              value={newContact.email}
+              onChange={handleInputChange}
+              onKeyPress={handleMobileKeyPress}
+            />
+
+
+<CancelIcon
+              onClick={handleRemoveFields}
+              style={{
+                marginLeft: 8,
+                cursor: 'pointer',
+                color: 'red', 
+              }}
+            />
+          
+            </div>
+            
+            
+                        </div>
+                        )}
                                     </div>
                                     <div class="w-[45%] font-bold font-poppins text-xs">
                                 {translatedMenuItems[2]}
@@ -427,6 +599,7 @@ const mapStateToProps = ({ homeStepper, auth, distributor,brandCategory, supplie
     lobList: distributor.lobList,
     BrandCategoryData: brandCategory.BrandCategoryData,
     orgId: auth.userDetails.organizationId,
+    dialcodeList: auth.dialcodeList,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -436,7 +609,8 @@ const mapDispatchToProps = (dispatch) =>
             getSaleCurrency,
             getLobList,
             getContactDistributorList,
-            getBrandCategoryData
+            getBrandCategoryData,
+            getAllDialCodeList,
         },
         dispatch
     );

@@ -118,7 +118,7 @@ const fetchApiKeyList = async () => {
       shipperId:item.shipperId,
   }
     try {
-      const response = await axios.put(`${base_url2}/change-toggle/DUMMY/${item.shipperId}`,payload,{  
+      const response = await axios.put(`${base_url2}/ApiKey/getBy/${props.orgId}`,payload,{  
           headers: {
               Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
           },
@@ -388,6 +388,7 @@ const fetchApiKeyList = async () => {
 const mapStateToProps = ({ shipper, auth }) => ({
   shipperByUserId: shipper.shipperByUserId,
   userId: auth.userDetails.userId,
+  orgId: auth.userDetails.organizationId,
   fetchingShipperByUserId: shipper.fetchingShipperByUserId,
   fetchingShipperByUserIdError: shipper.fetchingShipperByUserIdError,
   updateShipperModal: shipper.updateShipperModal,

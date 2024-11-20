@@ -6,7 +6,8 @@ const AccountRepairSecondStep = (props) => {
     return (
         <>
             <div>
-                <AddQuotationRepairExcel distributorId={props.distributorId} />
+                <AddQuotationRepairExcel distributorId={props.distributorId} 
+                handleAccountOpportunityModal={props.handleAccountOpportunityModal}/>
             </div>
 
         </>

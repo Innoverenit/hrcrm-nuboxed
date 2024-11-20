@@ -346,7 +346,7 @@ const handleConfirm = (quotationId) => {
                                         </div>
                                         <div class="flex flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
-                                              {item.budget}
+                                              {item.amount}
                                             </div>
                                         </div>
                                      
@@ -514,7 +514,7 @@ const handleConfirm = (quotationId) => {
                                         </div>
                                         <div class="flex flex-row items-center md:w-[7.03rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
-                                              {item.budget}
+                                              {item.amount}
                                             </div>
                                         </div>
                                      

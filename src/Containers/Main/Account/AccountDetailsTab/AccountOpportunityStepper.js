@@ -51,7 +51,10 @@ class AccountOpportunityStepper extends Component {
                 icon: <CallIcon
                     style={{ color: "blue" }}
                 />,
-                content: <AccountRepairSecondStep distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
+                content: <AccountRepairSecondStep distributorId={this.props.distributorId} 
+                inspectionRequiredInd={this.props.inspectionRequiredInd} 
+                handleAccountOpportunityModal={this.props.handleAccountOpportunityModal}
+                />,
             },
 
 
@@ -80,7 +83,7 @@ class AccountOpportunityStepper extends Component {
                             <>
                                 {current > 1 ? null : (
                                     <>
-                                        {this.props.quotationId && 
+                                         {/* {this.props.quotationId &&  */}
                                         <Button style={{ marginRight: "3rem", marginTop: "65px" }}
                                             className=" w-16 absolute top-3/4 right-0"
                                             type="primary"
@@ -88,7 +91,7 @@ class AccountOpportunityStepper extends Component {
                                         >
                                            Proceed
                                         </Button>
-                                        } 
+                                         {/* }  */}
                                     </>
                                 )}
                             </>

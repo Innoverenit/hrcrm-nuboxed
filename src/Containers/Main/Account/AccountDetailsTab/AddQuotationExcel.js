@@ -129,7 +129,8 @@ function AddQuotationExcel(props) {
             // modelId: "",
             orgId: props.orgId,
             userId: props.userId,
-            // unit: "",
+            unit: "",
+            discount:"",
             // spces: spces,
             // type: type,
             price: "",
@@ -314,9 +315,9 @@ function AddQuotationExcel(props) {
                 <div className="w-wk">
                 <Field
                 disabled
-                name="discount"
-                label="Discount"
-                placeholder="Discount"
+                name="maxDiscount"
+                label="Max Discount"
+                placeholder="Max Discount"
                 isColumn
                 width={"100%"}
                 component={InputComponent}
@@ -325,7 +326,7 @@ function AddQuotationExcel(props) {
                />
                 </div>
               </div>
-              <div className="mt-4 w-[22rem]">
+              <div class="flex w-wk justify-between mt-4">
               <div className="w-wk">
                 <Field
                 name="unit"
@@ -336,6 +337,18 @@ function AddQuotationExcel(props) {
                 component={InputComponent}
                 inlineLabel
                /></div>
+               <div className="w-wk">
+                <Field
+                name="discount"
+                label="Discount"
+                placeholder="Discount"
+                isColumn
+                width={"100%"}
+                component={InputComponent}
+                inlineLabel
+                style={{cursor:"not-allowed"}}
+               />
+                </div>
               </div>
         <Button htmlType="submit" type="primary" loading={props.addingQuotationPhoneDetails}>Submit</Button>
       </div>
