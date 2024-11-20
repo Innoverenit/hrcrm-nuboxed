@@ -117,6 +117,7 @@ class Suppliesform extends Component {
             currencyName: "",
             availabilityDate: "",
             weight: "",
+            modelName:"",
             width: "",
              length:"",
               height: "",
@@ -239,7 +240,18 @@ class Suppliesform extends Component {
                         inlineLabel
                         style={{ flexBasis: "80%" }}
                       />
-                    
+                     <div class="font-bold text-xs font-poppins text-black">Model</div>
+                      <Field
+                        name="modelName"
+                        placeholder="Start typing to search or create..."
+                        optionLabel="model"
+                        optionValue="model"
+                        url={`${base_url2}/masterlist/masterList`}
+                        component={LazySelect}
+                        isColumn
+                        inlineLabel
+                        style={{ flexBasis: "80%" }}
+                      />
 
                     <div className="relative  mx-auto mt-4">
       <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-[#F5F5F5] px-2">
@@ -670,7 +682,7 @@ class Suppliesform extends Component {
                   loading={this.props.addingPurchase}
                 >
                   {/* Create */}
-                  <div class="font-bold text-xs font-poppins text-black">{this.state.translatedMenuItems[11]}</div>
+                  <div class="font-bold text-xs font-poppins ">{this.state.translatedMenuItems[11]}</div>
                 </Button>
               </div>
             </Form>
