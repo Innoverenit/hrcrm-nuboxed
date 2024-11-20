@@ -53,6 +53,7 @@ function Inventory(props) {
        "1093" ,// 'Balance',//31
        "1077", // 'Zone',//32
        "1073",  // 'Rack',//33
+       "1559"
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

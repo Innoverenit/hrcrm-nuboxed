@@ -158,7 +158,7 @@ const DashBoardSummary=(props) =>{
           <div key={index} className="mb-2  p-1 ml-2 box-content h-16 min-h-[5.25rem]  border-2 border-[#00008b23] w-[11rem] min-w-[11rem]">
             <div className="flex justify-between">
               <div>
-                <div className="font-semibold font-poppins truncate ">{deal.taskName}</div>
+                <div className="font-semibold font-poppins truncate text-xs ">{deal.taskName}</div>
                 <div className="text-xs text-gray-500 font-poppins">
                   <ButtonGroup>
                     <StatusIcon
@@ -251,13 +251,13 @@ const DashBoardSummary=(props) =>{
     props.quotationDashboard.map((lead, index) => (
       <div key={index} className="mb-2  p-1 ml-2 h-16 min-h-[5.25rem]  box-content border-2 border-[#00008b23] w-[11rem] ">
         <div className="flex justify-between">
-          <div className=" font-semibold font-poppins">{lead.newOrderNo}</div>
+          <div className=" font-semibold font-poppins text-xs">{lead.newOrderNo}</div>
           <div className=" text-xs text-gray-500 font-poppins">{lead.time}</div>
           
         </div>
         <div className="text-xs text-gray-500 font-poppins">{lead.amount}</div>
         <div class="flex justify-between">
-        <div className="text-xs text-gray-500 font-poppins flex items-center   truncate ">{lead.contactPersonName}</div>
+        <div className=" text-gray-500 font-poppins flex items-center   truncate text-xs ">{lead.contactPersonName}</div>
         <Button style={{  fontSize: "0.75rem" }} type="primary">{translatedMenuItems[3]}</Button>
         </div>
       </div>
@@ -277,7 +277,7 @@ const DashBoardSummary=(props) =>{
         {props.reOrderData.map((colleague, index) => (
           <div key={index} className="mb-2  p-1 ml-2 h-16 min-h-[5.25rem]  box-content border-2 border-[#00008b23] w-[11rem]">
             <div className="flex justify-between">
-              <div className="font-semibold font-poppins  truncate ">{colleague.suppliesFullName} {colleague.batchNo}</div>
+              <div className="font-semibold font-poppins  truncate text-xs ">{colleague.suppliesFullName} {colleague.batchNo}</div>
               <div className="text-red-600 text-xs font-bold font-poppins bg-red-100 inline-block px-2 py-1 rounded">
              {colleague.reorderLevel}
                 </div>
@@ -302,8 +302,8 @@ const DashBoardSummary=(props) =>{
       ) : (
         props.materialBestBefore.map((colleague, index) => (
           <div key={index} className="mb-2  p-1  ml-2 h-16 min-h-[5.25rem]  box-content border-2 border-[#00008b23] w-[11rem]">
-            <div className="flex  w-full truncate">
-              <div className="font-semibold font-poppins  truncate ">{colleague.suppliesFullName} {colleague.batchNo}</div>
+            <div className="flex  w-full truncate text-xs">
+              <div className="font-semibold font-poppins  truncate text-xs ">{colleague.suppliesFullName} {colleague.batchNo}</div>
             
             </div>
             <div className="text-xs text-gray-500 font-poppins">    <Shop2Icon className=" !text-base"/>
@@ -361,7 +361,7 @@ const DashBoardSummary=(props) =>{
         {props.orderDashboard.map((contact, index) => (
           <div key={index} className="mb-2  p-1 ml-2 h-16 min-h-[5.25rem] box-content border-2 border-[#00008b23] w-[11rem]">
             <div className="flex justify-between">
-              <div className="font-semibold font-poppins">{contact.contactPersonName}</div>
+              <div className="font-semibold font-poppins text-xs">{contact.contactPersonName}</div>
               <div className="text-xs text-gray-500 font-poppins"> {`${dayjs(contact.creationDate).format("DD/MM/YYYY")}`}
               </div>
             </div>

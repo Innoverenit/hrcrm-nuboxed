@@ -264,7 +264,7 @@ console.log(selectedZones)
                         </div>
                    
 
-                        <div className=" w-[3.22rem]"></div>
+                        <div className=" w-[3.22rem]">Discount</div>
                     </div>
                     {/* <InfiniteScroll
                         dataLength={props.materialReceiveData.length}

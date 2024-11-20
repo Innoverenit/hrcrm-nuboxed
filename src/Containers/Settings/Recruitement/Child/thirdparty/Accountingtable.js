@@ -1,5 +1,6 @@
 import React from "react";
 import { Switch,Input, Button } from "antd";
+import { BundleLoader } from "../../../../../Components/Placeholder";
 
 function Accountingtable(props) {
 
@@ -61,6 +62,7 @@ function Accountingtable(props) {
               </Button></div>
         </div>
       
+      <div><BundleLoader/></div>
         </>
     );
 };

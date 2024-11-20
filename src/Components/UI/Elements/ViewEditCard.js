@@ -18,7 +18,7 @@ class ViewEditCard extends Component {
   };
   render() {
     return (
-      <div class="rounded shadow-[0em 0.25em 0.625em -0.125em] border-solid text-black m-1 p-1 w-full font-poppins overflow-auto" Height={this.props.Height}>
+      <div class="rounded border-[#0000001f]  border  shadow-[#a3abb980] border-solid text-black m-1 p-1 w-full font-poppins overflow-auto" Height={this.props.Height}>
         {this.props.children(this.state, this.toggleViewType)}
       </div>
     );

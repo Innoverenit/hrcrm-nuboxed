@@ -31,7 +31,7 @@ class ActionTab extends Component {
       <>
         <div class=" flex flex-no-wrap" >
         <div class=" w-full" >
-        <div class="m-1 w-[98%] bg-slate-500 rounded shadow-[0em 0.25em 0.625em -0.125em] h-[80vh]" >
+        <div class="m-1 w-[98%] bg-slate-500 rounded border-[#0000001f]  border  shadow-[#a3abb980] h-[80vh]" >
           <StyledTabs
             defaultActiveKey="1"
             onChange={this.handleTabChange}

@@ -1,4 +1,4 @@
-import React, { Component, lazy, PureComponent, Suspense } from "react";
+import React, { PureComponent, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import MaterialIntransitList from "../Inventory/MaterialIntransitList"//2
@@ -6,6 +6,7 @@ import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import InventoryMaterialBestBefore from "../Inventory/InventoryMaterialBestBefore"//5
 import { withRouter } from "react-router";
+import AppErrorBoundary from "../../../Helpers/ErrorBoundary/AppErrorBoundary";
 import {handleStockUpload} from "../Inventory/InventoryAction"
 import UploadIcon from '@mui/icons-material/Upload';
 import TokenIcon from '@mui/icons-material/Token';
@@ -20,7 +21,8 @@ import CookieIcon from '@mui/icons-material/Cookie';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import FolderDeleteIcon from '@mui/icons-material/FolderDelete';
 import StockUploadModal from "./StockUploadModal";
-
+import WaterDamageIcon from '@mui/icons-material/WaterDamage';
+ import CategoryIcon from '@mui/icons-material/Category';
 const TabPane = StyledTabs.TabPane;
 class InventoryMaterialTabO extends PureComponent {
     constructor(props) {
@@ -128,6 +130,7 @@ class InventoryMaterialTabO extends PureComponent {
         };
         return (
             <>
+              <AppErrorBoundary>
                 <TabsWrapper>
                     <StyledTabs
                         defaultActiveKey="1"
@@ -225,7 +228,7 @@ class InventoryMaterialTabO extends PureComponent {
                           }}
                           size="0.875em"                         
                           >
-                          <WarehouseIcon className=" !text-icon text-red-600"/>
+                          <CategoryIcon className=" !text-icon text-red-600"/>
                           </span>
                         </>
                       )}
@@ -295,7 +298,7 @@ class InventoryMaterialTabO extends PureComponent {
                             tab={
                                 <>
                                     <span onClick={this.handleRecruitClick} className=" !text-tab">
-                                    <FolderDeleteIcon className="!text-icon"/>&nbsp;
+                                    <WaterDamageIcon className="!text-icon"/>&nbsp;
                                         {/* Stock */} 
                                       Damaged
                                         {/* {this.props.translatedMenuItems[19]} */}
@@ -313,7 +316,7 @@ class InventoryMaterialTabO extends PureComponent {
                           }}
                           size="0.875em"                         
                           >
-                          <WarehouseIcon className=" !text-icon text-red-600" />
+                          <CategoryIcon className=" !text-icon text-red-600" />
                           </span>
                         </>
                       )}
@@ -453,7 +456,7 @@ class InventoryMaterialTabO extends PureComponent {
         />
               </Suspense>
                 </TabsWrapper>
-
+                </AppErrorBoundary>
             </>
         );
     }
