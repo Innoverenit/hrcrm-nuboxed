@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import { setSuppliersViewType } from "./SuppliersAction";
 import { getSuppliersList, getAllSuppliersList } from "./SuppliersAction";
 import { BundleLoader } from "../../../Components/Placeholder";
+import PurchaseOrderTable from "./Child/SupplierDetails/SupplierDetailTab/PurchaseOrderTable";
 const SuppliersHeader =lazy(()=>import("../../Main/Suppliers/SuppliersHeader"));
 const SuppliersDeletedCardList =lazy(()=>import("./Child/SuppliersDeletedCardList"));
 const SuppliersCardList =lazy(()=>import("./Child/SuppliersCardList"));
@@ -65,7 +66,7 @@ const SuppliersNotApprovalList =lazy(()=>import("./Child/SuppliersNotApprovalLis
           "880",//39 Invenntory
           "1083",//Supplier ID 40
           "302",//url 41
-    
+          "831", // "Purchase Order",
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -77,7 +78,7 @@ const SuppliersNotApprovalList =lazy(()=>import("./Child/SuppliersNotApprovalLis
 
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
-
+  const { supplier, fetchingSupplierDetailsBySupplierId } =props;
     const { setSuppliersViewType, viewType } = props;
     return (
       <React.Fragment>
@@ -92,9 +93,17 @@ const SuppliersNotApprovalList =lazy(()=>import("./Child/SuppliersNotApprovalLis
           translatedMenuItems={translatedMenuItems}
           selectedLanguage={props.selectedLanguage}
         />
-
+          {props.viewType === "table" ? (
+            <PurchaseOrderTable
+            supplier={supplier}
+            translateText={props.translateText}
+            translatedMenuItems={translatedMenuItems}
+            selectedLanguage={props.selectedLanguage}
+            />
+          ) 
+          : 
        
-          {props.viewType === "card" ? (
+          props.viewType === "card" ? (
             <SuppliersCardList 
             translateText={props.translateText}
             translatedMenuItems={translatedMenuItems}
@@ -131,6 +140,7 @@ const SuppliersNotApprovalList =lazy(()=>import("./Child/SuppliersNotApprovalLis
 const mapStateToProps = ({ suppliers, auth }) => ({
   viewType: suppliers.viewType,
   userId: auth.userDetails.userId,
+  supplier: suppliers.supplierDetailById,
 });
 
 const mapDispatchToProps = (dispatch) =>

@@ -7,6 +7,7 @@ import { BundleLoader } from "../../../../../Components/Placeholder";
 import SupplierOverViewCard from "./SupplierCard/SupplierOverViewCard";
 import SupplierDetailCard from "./SupplierCard/SupplierDetailCard";
 import SupplierOverViewDetailCard from "./SupplierCard/SupplierOverViewDetailCard";
+import SupplierOverViewDetailCard2 from "./SupplierCard/SupplierOverViewCard2";
 const  SupplierDetailsHeader =lazy(()=>import("../SupplierDetails/SupplierDetailsHeader"));
 const SupplierDetailsLeft =lazy(()=>import("./SupplierDetailsLeft"));
 const SupplierDetailsRight =lazy(()=>import("./SupplierDetailTab/SupplierDetailsRight"));
@@ -40,6 +41,11 @@ class SupplierDetails extends Component {
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage} />
             </div>
+            <div className="flex h-[4rem] w-[30%] box-border border-2 border-[#bfbdbd] overflow-x-auto ml-gap">
+            <SupplierOverViewDetailCard2 supplier={supplier}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage} />
+              </div>
         </Suspense>
         </div>
           </Suspense>

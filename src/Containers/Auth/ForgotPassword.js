@@ -178,7 +178,7 @@ class ForgotPassword extends Component {
                               />
                             ) : (
                               <VisibilityOffIcon
-                                type="eye-invisible"
+                                // type="eye-invisible"
                                 onClick={this.handleClick}
                                 size="24"
                                 style={{ marginLeft: "-1.25em", marginTop: "-0.25em" }}
