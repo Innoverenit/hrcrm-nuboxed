@@ -51,7 +51,6 @@ import BestJumpOpen from "./BestJumpOpen";
 import ReOrderOpen from "./ReOrderOpen";
 const MaterialInventoryDrawer = lazy(()=>import("./MaterialInventory/MaterialInventoryDrawer"));
 const MaterialBuilderDrawer = lazy(() => import("./MaterialBuilder/MaterialBuilderDrawer"));
-const UpdateSuppliesFormDrawer = lazy(() => import("./UpdateSuppliesFormDrawer"));
 const TagBrandModel = lazy(() => import("./TagBrandModel"));
 const SuppliersListDrawer = lazy(() => import("./SuppliesSupplierList/SuppliersListDrawer"));
 const MaterialDetailsDrawer=lazy(() => import("./MaterialById/MaterialDetailsDrawer"));
@@ -574,17 +573,7 @@ function SuppliesTable(props) {
                     />
                               </div>
                               
-                              <div className="h-8  bg-[#eef2f9] justify-center items-center flex"> 
-                              <Tooltip title={translatedMenuItems[14]}>
-                                <BorderColorIcon
-                                  onClick={() => {
-                                    handleUpdateSupplieDrawer(true);
-                                    handleParticularRowData(item);
-                                  }}
-                                  className=" !text-icon cursor-pointer text-[tomato]"
-                                />
-                              </Tooltip>
-                           </div>
+                            
                            <div className="h-8  bg-[#eef2f9] justify-center items-center flex"> 
                               <Popconfirm
                                 title={translatedMenuItems[21]}
@@ -615,13 +604,6 @@ function SuppliesTable(props) {
           addBrandModel={props.addBrandModel}
           handleBrandModel={props.handleBrandModel}
           particularDiscountData={particularDiscountData}
-        />
-        <UpdateSuppliesFormDrawer
-           translateText={props.translateText}
-           selectedLanguage={props.selectedLanguage}
-          particularDiscountData={particularDiscountData}
-          updateSuppliesDrawer={updateSuppliesDrawer}
-          handleUpdateSupplieDrawer={handleUpdateSupplieDrawer}
         />
          <AddDocumentErpModals
         suppliesId={particularDiscountData.suppliesId}

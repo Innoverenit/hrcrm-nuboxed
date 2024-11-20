@@ -60,7 +60,15 @@ class SuppliesActionRight extends React.Component {
     return (
       <>
       <div className="flex">
-    
+      {
+          viewType === "all" ?
+          <Tooltip title="Export Supplies">
+            <CloudDownloadIcon
+            className="cursor-pointer"
+              href={`${base_url2}/export/supplies`}
+            />     
+          </Tooltip>
+          : null}
           <Tooltip title= {this.state.translatedMenuItems[4]}>
             <Button
               className="export"
@@ -105,15 +113,7 @@ class SuppliesActionRight extends React.Component {
             New Arrivals
             </Button>  
           </Tooltip>
-        {
-          viewType === "all" ?
-          <Tooltip title="Export Supplies">
-            <CloudDownloadIcon
-            className="cursor-pointer"
-              href={`${base_url2}/export/supplies`}
-            />     
-          </Tooltip>
-          : null}
+  
         {viewType === "all" && (
           <Tooltip placement="left" title={this.state.translatedMenuItems[2]}>
             <Button

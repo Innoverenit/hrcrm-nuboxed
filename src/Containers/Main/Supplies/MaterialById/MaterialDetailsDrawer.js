@@ -1,10 +1,8 @@
 
-import React, { lazy, Component, Suspense,useState } from "react";
+import React, { lazy, Suspense,useState } from "react";
 import { StyledDrawer, StyledTabs } from "../../../../Components/UI/Antd";
-
 import TabPane from 'antd/lib/tabs/TabPane';
 import { BundleLoader } from "../../../../Components/Placeholder";
-import LocationSuppliesList from "../LocationSuppliesList";
 import MaterialComplementaryCard from "../MaterialComplementaryCard";
 import PriceDiscountCardB2C from "../PriceDiscountCardB2C";
 import PriceDiscountCard from "../PriceDiscountCard";
@@ -15,7 +13,7 @@ function MaterialDetailsDrawer(props) {
 
     const { modalVisible,closeModal,particularDiscountData, ...formProps } = props;
     const isSmallScreen = window.innerWidth <= 600;
-    const drawerWidth = isSmallScreen ? "90%" : "90%";
+    const drawerWidth = isSmallScreen ? "90%" : "65%";
     const [activeKey, setActiveKey] = useState("1");
     const handleTabChange = (key) => setActiveKey(key);
     const renderTabContent = (key) => {
@@ -47,11 +45,8 @@ function MaterialDetailsDrawer(props) {
             UOMListData={props.UOMListData}
             /> 
                 </div>;
-          // case "3":
-          // return  <div>  <LocationSuppliesList
-          // particularDiscountData={props.particularDiscountData}
-          // /></div>;
-          case "4":
+        
+          case "3":
           return  <div><MaterialComplementaryCard
           translateText={props.translateText}
           selectedLanguage={props.selectedLanguage}
@@ -115,20 +110,7 @@ console.log(props.UOMListData)
                     </TabPane>
              
 
-                    {/* <TabPane
-                        tab={
-                            <>
-                                <span>
-
-                               ReOrder
-                                </span>
-                            </>
-                        }
-                        key="3">
-                        
-
-
-                    </TabPane> */}
+                   
                     
                     <TabPane
                         tab={
@@ -139,7 +121,7 @@ console.log(props.UOMListData)
                                 </span>
                             </>
                         }
-                        key="4">
+                        key="3">
                         
 
 

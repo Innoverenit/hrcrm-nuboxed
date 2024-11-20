@@ -148,7 +148,7 @@ const UpdateAccountForm = ({
     setVatInd(!vatInd)
   }
  
-  const [defaultOption, setDefaultOption] = useState(setEditingDistributor.assignedTo);
+  const [defaultOption, setDefaultOption] = useState(setEditingDistributor.assignTo);
   const [selected, setSelected] = useState(defaultOption);
   const selectedOption = crmAllData.find((item) => item.fullName === selected);
   const [text, setText] = useState("");
@@ -180,7 +180,7 @@ const UpdateAccountForm = ({
           currency: setEditingDistributor.currency || "",
           phoneNo: setEditingDistributor.phoneNo || "",
           dcategory: setEditingDistributor.dCategory || "",
-          assignedTo:selectedOption ? selectedOption.employeeId:setEditingDistributor.employeeId,
+          assignTo:selectedOption ? selectedOption.employeeId:setEditingDistributor.employeeId,
           // assignedTo: selectedOption ? selectedOption.employeeId : userId,
           url: setEditingDistributor.url || "",
           description: setEditingDistributor.description || "",
@@ -218,7 +218,7 @@ const UpdateAccountForm = ({
               orgId: orgId,
               payment: values.payment === "Custom" ? values.customPayment : values.payment,
               // assignedTo: selectedOption ? selectedOption.employeeId : userId,
-              assignedTo:selectedOption ? selectedOption.employeeId:setEditingDistributor.employeeId,
+              assignTo:selectedOption ? selectedOption.employeeId:setEditingDistributor.employeeId,
             },
             setEditingDistributor.distributorId,
 
