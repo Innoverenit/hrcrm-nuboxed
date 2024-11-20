@@ -406,9 +406,9 @@ const handleConfirm = (quotationId) => {
         <div className=" flex justify-between w-full p-1 bg-transparent  sticky   z-10">
         <div className='flex   justify-between w-[81%] items-end text-xs font-bold font-poppins'>
 <div class="text-[#00A2E8] text-base w-[8.25rem]"> 
-
+<ShopIcon className="text-[#00A2E8] !text-icon" />
   {translatedMenuItems[9]}
-  <ShopIcon className="text-[#00A2E8] !text-icon" /></div>
+</div>
 <div className="w-[7.4rem] md:w-[7.4rem]"> 
 <LightbulbIcon className="!text-icon text-[#bfa89e]" />{translatedMenuItems[1]} ID</div>
            <div className="w-[8rem] md:w-[8rem]">

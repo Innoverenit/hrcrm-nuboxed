@@ -66,6 +66,7 @@ const handleClear = () => {
        "288",  //  'Search by Name or Sector',//20
         "1268", //  'Export Shipper',//21
        "85",  //  'Add',//22
+          "418"         //Corporate Address 23
           ];
   
           const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

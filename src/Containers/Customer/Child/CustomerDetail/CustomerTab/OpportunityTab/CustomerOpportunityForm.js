@@ -589,7 +589,9 @@ function CustomerOpportunityForm(props) {
      
                   <div class=" w-w47.5 max-sm:w-wk">
                    
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Workflow</label>
+                  <div class="font-bold text-xs font-poppins">     {translatedMenuItems[10]}
+                   {/* Workflow */}
+                    </div>
       <Select
        
         placeholder="Select Workflow"
@@ -609,13 +611,15 @@ function CustomerOpportunityForm(props) {
 
                  
                   <div class=" w-w47.5 max-sm:w-wk ">
-                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Stage</label>
+                  <div class="font-bold text-xs font-poppins">     {translatedMenuItems[12]}
+                    {/* Stage */}
+                    </div>
       <Select
        
         placeholder="Select Stage"
         loading={isLoadingStage}
         onChange={handleStageChange}
-      disabled={!selectedWorkflow}
+        disabled={!selectedWorkflow}
       >
         {stage.map(stage => (
           <Option key={stage.stagesId} value={stage.stagesId}>
