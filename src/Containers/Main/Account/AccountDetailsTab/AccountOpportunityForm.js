@@ -8,15 +8,20 @@ import * as Yup from "yup";
 import {getBrandCategoryData} from "../../../../Containers/Settings/Category/BrandCategory/BrandCategoryAction"
 import { SelectComponent } from '../../../../Components/Forms/Formik/SelectComponent';
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
-import { TextareaComponent } from '../../../../Components/Forms/Formik/TextareaComponent';
-import { Button, Tooltip, message, Switch } from 'antd';
+import { TextareaComponent } from '../../../../Components/Forms/Formik/TextareaComponent'; 
+import { Button, Tooltip, Select,Input } from 'antd';
 import { getSaleCurrency } from "../../../Auth/AuthAction";
 import { getContactDistributorList } from "../../Suppliers/SuppliersAction"
 import { addQuotationOrderForm, getLobList } from '../AccountAction'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
 import ValidationAddressField from '../../../../Components/Forms/Formik/ValidationAddressField';
 import dayjs from "dayjs";
+import { base_url2 } from '../../../../Config/Auth';
+import axios from 'axios';
+
+const { Option } = Select; 
 
 const addressSchema = Yup.object().shape({
     address1: Yup.string().required('Address is required'),
@@ -37,11 +42,69 @@ const FormSchema = Yup.object().shape({
 function AccountOpportunityForm(props) {
 
 const [selectOnType,setselectOnType]=useState("Commerce");
+const [isAddingContact, setIsAddingContact] = useState(false);
+const [newContact, setNewContact] = useState({
+    firstName: '',
+    lastName: '',
+    emailId: '',
+    phoneNumber: '',
+    countryDialCode:"",
+   
+  });
 
 const handleOnSelectType =(ontype)=> {
     setselectOnType(ontype)
 }
+const handleAddContact = () => {
+    setIsAddingContact(true);
+  };
+  const handleMobileKeyPress = async (e) => {
+    if (e.key === 'Enter') {
+      console.log('New Contact Added:', newContact);
+      let data = {
+        firstName: newContact.firstName,
+        lastName: newContact.lastName,
+        emailId: newContact.emailId,
+        phoneNumber: newContact.phoneNumber,
+        countryDialCode: newContact.countryDialCode,
+        distributorId: props.distributorId,
+        userId:props.userId,
+      };
+  
+      try {
+        // Await the addMoreContact function to ensure success before proceeding
+        const response = await axios.post(`${base_url2}/contactPerson`,data,{  
+            headers: {
+                Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+            },
+         });
+  
+        setIsAddingContact(false);
+        setNewContact({ firstName: '', lastName: '', email: '', mobile: '', dialCode: '' });
 
+      } catch (error) {
+        console.error('Error adding contact:', error);
+      }
+    }
+  };
+  const handleRemoveFields = () => {
+    setIsAddingContact(false);
+    setNewContact({  firstName: '',
+      lastName: '',
+      emailId: '',
+      phoneNumber: '',
+      countryDialCode:"",
+      distributorId:""
+    });
+  };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewContact((prev) => ({ ...prev, [name]: value }));
+  };
+  const handleDialCodeChange = (value) => {
+    setNewContact((prev) => ({ ...prev, countryDialCode: value }));
+  };
+ 
     const contactOption = props.contactDistributor.map((item) => {
         return {
             value: item.contactPersonId,
@@ -309,6 +372,12 @@ const handleOnSelectType =(ontype)=> {
                                 </div>
                                 <div class="justify-between flex mt-3">
                                     <div class="w-[45%]">
+                                 
+<AddCircleIcon
+  onClick={handleAddContact}
+  style={{color:"red"}}
+/>
+
                                         <Field
                                             label="Contact"
                                             style={{ borderRight: "3px red solid" }}
@@ -320,6 +389,107 @@ const handleOnSelectType =(ontype)=> {
                                             width={"100%"}
                                             isColumn
                                         />
+
+
+{isAddingContact && (
+                        <div class="flex  w-96 justify-between max-sm:flex-col mt-[0.75rem]">
+<div class=" w-w47.5 max-sm:w-wk">                
+<div className="font-bold text-xs">
+
+  {/* Customer */}
+  </div>
+  <Input
+              placeholder="First Name"
+              name="firstName"
+              style={{marginLeft:"-6px"}}
+              value={newContact.firstName}
+              onChange={handleInputChange}
+            />
+          
+            </div>
+
+            <div class=" w-w47.5 max-sm:w-wk">                
+<div className="font-bold text-xs">
+
+  {/* Customer */}
+  </div>
+  <Input
+              placeholder="Last Name"
+              name="lastName"
+              style={{marginLeft:"-4px"}}
+              value={newContact.lastName}
+              onChange={handleInputChange}
+            />
+          
+            </div>
+
+            <div class=" w-w47.5 max-sm:w-wk">                         
+
+<div className= "font-bold text-[0.75rem]">
+ 
+  {/* Contact */}
+  </div>
+  <Input
+              placeholder="Mobile No"
+              name="phoneNumber"
+              value={newContact.mobile}
+             
+              onChange={handleInputChange}
+             
+              style={{ flex: 1,marginLeft:"-1px" }} // Allow input to take full width
+            />    
+
+
+                </div>
+
+
+                <div class=" w-w47.5 max-sm:w-wk">                         
+
+<div className= "font-bold text-[0.75rem]">
+ 
+  {/* Contact */}
+  </div>
+  <Select
+        placeholder="Select dialcode"
+        name="countryDialCode"
+        style={{width:"80px"}}
+      onChange={handleDialCodeChange}
+      value={newContact.dialCode}
+       
+      >
+        {currencyOption.map(contact => (
+          <Option key= {contact.value} value= {`+${contact.value}`}>
+           {`+${contact.label}`}
+          </Option>
+        ))}
+      </Select>   
+                </div>
+            <div class=" w-w47.5 max-sm:w-wk">                
+<div className="font-bold text-xs">
+  </div>
+  <Input
+              placeholder="Email"
+              name="emailId"
+              value={newContact.email}
+              onChange={handleInputChange}
+              onKeyPress={handleMobileKeyPress}
+            />
+
+
+<CancelIcon
+              onClick={handleRemoveFields}
+              style={{
+                marginLeft: 8,
+                cursor: 'pointer',
+                color: 'red', 
+              }}
+            />
+          
+            </div>
+            
+            
+                        </div>
+                        )}
                                     </div>
                                     <div class="w-[45%]">
                                         <Field
@@ -449,7 +619,8 @@ const mapStateToProps = ({ homeStepper,brandCategory, auth, distributor, supplie
     lobList: distributor.lobList,
     orgId: auth.userDetails.organizationId,
     BrandCategoryData: brandCategory.BrandCategoryData,
-    moduleMapper:auth.userDetails.moduleMapper
+    moduleMapper:auth.userDetails.moduleMapper,
+    dialcodeList: auth.dialcodeList,
 });
 
 const mapDispatchToProps = (dispatch) =>
