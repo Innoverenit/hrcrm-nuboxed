@@ -52,7 +52,7 @@ function UploadInvestorForm(props) {
                                 </div>
 
                             </div>
-                            <div class="flex justify-between mt-4">
+                            <div class="flex mt-4 justify-end">
                                 <Button
                                     type="primary"
                                     htmlType="submit"
