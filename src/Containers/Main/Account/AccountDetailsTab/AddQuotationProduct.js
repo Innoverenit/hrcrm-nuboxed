@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,lazy } from "react";
 import { Button, Input, Select } from "antd";
-
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux"; 
 import { Formik, Form, Field } from "formik";
@@ -13,15 +12,14 @@ import {inputSuppliesDataSearch} from "../../../Main/Supplies/SuppliesAction";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
+const OpportunitytProcureDetails =lazy(()=> import("./OpportunitytProcureDetails"));
 
 const { Option } = Select;
 
-function AddQuotationExcel(props) {
+function AddQuotationProduct(props) {
 
   useEffect(() => {
-    // props.getCategorylist();
     props.getLocationList(props.orgId);
-    // props.getSupplierSuppliesQuality();
   }, []);
 
   const [searchTerm, setSearchTerm] = useState("");
@@ -148,7 +146,7 @@ function AddQuotationExcel(props) {
             // qPtype === "Material" ? "Material" :
             // qPtype === "Product" ? "Product" : "",
 
-            orderPhoneId:props.orderDetailsId.quotationId
+            orderPhoneId:props.particularRowItem.quotationId
           }}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
@@ -157,7 +155,7 @@ function AddQuotationExcel(props) {
                 ...values,
                 productId:SuppliesId,
               },
-              props.orderDetailsId.quotationId
+              props.particularRowItem.quotationId
             );
           }}
         >
@@ -346,13 +344,18 @@ function AddQuotationExcel(props) {
                 width={"100%"}
                 component={InputComponent}
                 inlineLabel
+               
                />
                 </div>
               </div>
         <Button htmlType="submit" type="primary" loading={props.addingQuotationPhoneDetails}>Submit</Button>
       </div>
       <div class="w-[55rem]">
-      <QuotationDetailsCardList />
+      <OpportunitytProcureDetails  
+               particularRowItem={props.particularRowItem}
+               selectedLanguage={props.selectedLanguage}
+               translateText={props.translateText}
+               />  
       </div>
       </div>
       </Form>
@@ -364,7 +367,6 @@ function AddQuotationExcel(props) {
 
 const mapStateToProps = ({ distributor,suppliers, brandmodel, auth }) => ({
   userId: auth.userDetails.userId,
-  orderDetailsId: distributor.orderDetailsId,
   addingQuotationPhoneDetails: distributor.addingQuotationPhoneDetails,
   orgId: auth.userDetails.organizationId,
   brand: distributor.brand,
@@ -388,4 +390,4 @@ const mapDispatchToProps = (dispatch) =>
     getSupplierSuppliesQuality
   }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddQuotationExcel);
+export default connect(mapStateToProps, mapDispatchToProps)(AddQuotationProduct);
