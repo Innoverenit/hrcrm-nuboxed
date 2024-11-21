@@ -244,7 +244,7 @@ function DashboardFinanceJumpstart(props) {
         <div class=" mt-1 flex flex-row justify-between" >
         <div>
         <div class=" font-poppins font-bold text-base ">By Order Value</div>
-        <DynamicPieChart dtype={"orderValue"} 
+        <DynamicPieChart dtype={"RepairOrderValue"} 
         userId={props.userId} timeRangeType={props.timeRangeType}/>
         </div>
         <div>

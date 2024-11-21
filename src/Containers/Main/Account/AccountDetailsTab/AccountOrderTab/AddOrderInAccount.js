@@ -8,15 +8,22 @@ import * as Yup from "yup";
 import { SelectComponent } from '../../../../../Components/Forms/Formik/SelectComponent';
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from '../../../../../Components/Forms/Formik/TextareaComponent';
-import { Button, Tooltip, message, } from 'antd';
+import { Button, Tooltip, message, Select,Input  } from 'antd';
 import {getBrandCategoryData} from "../../../../../Containers/Settings/Category/BrandCategory/BrandCategoryAction"
-import { getSaleCurrency } from "../../../../Auth/AuthAction";
+import { getSaleCurrency,getAllDialCodeList } from "../../../../Auth/AuthAction";
 import { FormattedMessage } from 'react-intl';
 import { getContactDistributorList } from "../../../Suppliers/SuppliersAction"
 import { addOrderForm, getLobList } from '../../AccountAction'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import AddressFieldArray1 from '../../../../../Components/Forms/Formik/AddressFieldArray1';
 import dayjs from "dayjs";
+import axios from 'axios';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
+import { base_url2 } from '../../../../../Config/Auth';
+
+const { Option } = Select; 
+
 const FormSchema = Yup.object().shape({
     lobDetsilsId: Yup.string().required("Input needed!"),
     advancePayment: Yup.number()
@@ -31,17 +38,78 @@ const FormSchema = Yup.object().shape({
     
 })
 function AddOrderInAccount(props) {
+
+    const [isAddingContact, setIsAddingContact] = useState(false);
+    const [newContact, setNewContact] = useState({
+        firstName: '',
+        lastName: '',
+        emailId: '',
+        phoneNumber: '',
+        countryDialCode:"",
+      });
+
+const handleAddContact = () => {
+    setIsAddingContact(true);
+  };
+  const handleMobileKeyPress = async (e) => {
+    if (e.key === 'Enter') {
+      console.log('New Contact Added:', newContact);
+      let data = {
+        firstName: newContact.firstName,
+        lastName: newContact.lastName,
+        emailId: newContact.emailId,
+        phoneNumber: newContact.phoneNumber,
+        countryDialCode: newContact.countryDialCode,
+        distributorId: props.distributorId,
+        userId:props.userId,
+      };
+  
+      try {
+        const response = await axios.post(`${base_url2}/contactPerson`,data,{  
+            headers: {
+                Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+            },
+         });
+        setIsAddingContact(false);
+        setNewContact({ firstName: '', lastName: '', email: '', mobile: '', dialCode: '' });
+        props.getContactDistributorList(props.distributorId);
+      } catch (error) {
+        console.error('Error adding contact:', error);
+      }
+    }
+  };
+  const handleRemoveFields = () => {
+    setIsAddingContact(false);
+    setNewContact({  firstName: '',
+      lastName: '',
+      emailId: '',
+      phoneNumber: '',
+      countryDialCode:"",
+      distributorId:""
+    });
+  };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewContact((prev) => ({ ...prev, [name]: value }));
+  };
+  const handleDialCodeChange = (value) => {
+    setNewContact((prev) => ({ ...prev, countryDialCode: value }));
+  };
+ 
     const contactOption = props.contactDistributor.map((item) => {
         return {
             value: item.contactPersonId,
             label: `${item.firstName || ""} ${item.lastName || ""}`
         }
-    })
+    });
+
+
     useEffect(() => {
         props.getContactDistributorList(props.distributorId)
         props.getSaleCurrency()
         props.getLobList(props.orgId)
         props.getBrandCategoryData(props.orgId);
+        props.getAllDialCodeList();
     }, [])
 
     const [priority, setPriority] = useState("High")
@@ -207,8 +275,18 @@ function AddOrderInAccount(props) {
                                 </div>
                                 <div class="justify-between flex mt-3">
                                     <div class="w-[45%]">
+                                    <div class="flex items-center">
+                                    <div class="font-bold font-poppins text-xs">
+                                        Contact</div>
+                                        <div>
+<AddCircleIcon
+  onClick={handleAddContact}
+  style={{color:"red"}}
+/>
+</div>
+</div>
                                         <Field
-                                            label="Contact"
+                                            // label="Contact"
                                             style={{ borderRight: "3px red solid" }}
                                             name="contactPersonId"
                                             placeholder="Value"
@@ -218,6 +296,103 @@ function AddOrderInAccount(props) {
                                             width={"100%"}
                                             isColumn
                                         />
+                                        {isAddingContact && (
+                        <div class="flex  w-96 justify-between max-sm:flex-col mt-[0.75rem]">
+<div class=" w-w47.5 max-sm:w-wk">                
+<div className="font-bold text-xs">
+
+  {/* Customer */}
+  </div>
+  <Input
+              placeholder="First Name"
+              name="firstName"
+              style={{marginLeft:"-6px"}}
+              value={newContact.firstName}
+              onChange={handleInputChange}
+            />
+          
+            </div>
+
+            <div class=" w-w47.5 max-sm:w-wk">                
+<div className="font-bold text-xs">
+
+  {/* Customer */}
+  </div>
+  <Input
+              placeholder="Last Name"
+              name="lastName"
+              style={{marginLeft:"-4px"}}
+              value={newContact.lastName}
+              onChange={handleInputChange}
+            />
+          
+            </div>
+
+            <div class=" w-w47.5 max-sm:w-wk">                         
+
+<div className= "font-bold text-[0.75rem]">
+  </div>
+  <Select
+        placeholder="Select dialcode"
+        name="countryDialCode"
+        style={{width:"80px"}}
+      onChange={handleDialCodeChange}
+      value={newContact.dialCode}
+       
+      >
+        {props.dialcodeList.map(contact => (
+          <Option key= {`+${contact.country_dial_code}`} value= {`+${contact.country_dial_code}`}>
+           {`+${contact.country_dial_code}`}
+          </Option>
+        ))}
+      </Select>   
+                </div>
+
+            <div class=" w-w47.5 max-sm:w-wk">                         
+
+<div className= "font-bold text-[0.75rem]">
+  </div>
+  <Input
+              placeholder="Mobile No"
+              name="phoneNumber"
+              value={newContact.mobile}
+             
+              onChange={handleInputChange}
+             
+              style={{ flex: 1,marginLeft:"-1px" }} // Allow input to take full width
+            />    
+
+
+                </div>
+
+
+             
+            <div class=" w-w47.5 max-sm:w-wk">                
+<div className="font-bold text-xs">
+  </div>
+  <Input
+              placeholder="Email"
+              name="emailId"
+              value={newContact.email}
+              onChange={handleInputChange}
+              onKeyPress={handleMobileKeyPress}
+            />
+
+
+<CancelIcon
+              onClick={handleRemoveFields}
+              style={{
+                marginLeft: 8,
+                cursor: 'pointer',
+                color: 'red', 
+              }}
+            />
+          
+            </div>
+            
+            
+                        </div>
+                        )}
                                     </div>
                                     <div class="w-[45%]">
                                         <Field
@@ -422,6 +597,7 @@ const mapStateToProps = ({ homeStepper, auth, distributor,brandCategory, supplie
     lobList: distributor.lobList,
     BrandCategoryData: brandCategory.BrandCategoryData,
     orgId: auth.userDetails.organizationId,
+    dialcodeList: auth.dialcodeList,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -431,7 +607,8 @@ const mapDispatchToProps = (dispatch) =>
             getSaleCurrency,
             getLobList,
             getContactDistributorList,
-            getBrandCategoryData
+            getBrandCategoryData,
+            getAllDialCodeList
         },
         dispatch
     );

@@ -22,14 +22,14 @@ function FinaceRapairDrawer({ isModalOpen,modalData,title, setIsModalOpen, type,
       maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
       
     >
-      <FinaceRapairDrawerCard
+       <FinaceRapairDrawerCard
         type={type}
         userId={userId}
         modalData={modalData}
         hasMore={hasMore}
         setHasMore={setHasMore}
         buttonName={buttonName}
-             />
+      />
     </StyledDrawer>
   );
 }

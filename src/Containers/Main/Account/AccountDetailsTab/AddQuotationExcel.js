@@ -13,6 +13,7 @@ import {inputSuppliesDataSearch} from "../../../Main/Supplies/SuppliesAction";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
+import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
 
 const { Option } = Select;
 
@@ -55,7 +56,7 @@ function AddQuotationExcel(props) {
     setFieldValue('attribute', item.attributeName || ''); 
     setFieldValue('category', item.categoryName || ''); 
     setFieldValue('price', item.price || '');
-  
+    setFieldValue('description', item.description || '');
   };
 
   const handleInventorySupplierSearch = async (value) => {
@@ -85,6 +86,8 @@ function AddQuotationExcel(props) {
     setFieldValue('attribute', item.attributeName || ''); 
     setFieldValue('category', item.categoryName || ''); 
     setFieldValue('price', item.price || '');
+    setFieldValue('description', item.description || '');
+    setFieldValue('allowedDiscount', item.discount && item.discount.length && item.discount[0].allowedDiscount || '');
   };
 
   const handleProductSearch = async (value) => {
@@ -114,7 +117,7 @@ function AddQuotationExcel(props) {
     setFieldValue('attribute', item.attributeName || ''); 
     setFieldValue('category', item.categoryName || ''); 
     setFieldValue('price', item.price || '');
-  
+    setFieldValue('description', item.description || '');
   };
 
  const qPtype="Product";
@@ -315,7 +318,7 @@ function AddQuotationExcel(props) {
                 <div className="w-wk">
                 <Field
                 disabled
-                name="maxDiscount"
+                name="allowedDiscount"
                 label="Max Discount"
                 placeholder="Max Discount"
                 isColumn
@@ -348,6 +351,18 @@ function AddQuotationExcel(props) {
                 inlineLabel
                />
                 </div>
+              </div>
+              <div class="flex w-wk justify-between mt-4">
+              <Field
+                disabled
+                name="description"
+                label="Description"
+                isColumn
+                width={"100%"}
+                component={TextareaComponent}
+                inlineLabel
+                style={{cursor:"not-allowed"}}
+               />
               </div>
         <Button htmlType="submit" type="primary" loading={props.addingQuotationPhoneDetails}>Submit</Button>
       </div>

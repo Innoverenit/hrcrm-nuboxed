@@ -68,7 +68,7 @@ function AddProcurementInAccount(props) {
       
             setIsAddingContact(false);
             setNewContact({ firstName: '', lastName: '', email: '', mobile: '', dialCode: '' });
-    
+            props.getContactDistributorList(props.distributorId);
           } catch (error) {
             console.error('Error adding contact:', error);
           }
@@ -106,7 +106,7 @@ function AddProcurementInAccount(props) {
             const itemsToTranslate = [
               '707', // 0 Payment terms
     '73', // 1 contact
-    '', // 2Advance Payment
+    '1699', // 2 Advance Payment
     '241', // 3 currency
     '280', // 4 lob
     '772', // 5 Delivery Date
@@ -115,7 +115,7 @@ function AddProcurementInAccount(props) {
     '107',//High 8
     '1603',//low 9
     '1078', // 10 save
-     '',  // 11'Delivery Address',9
+     '1700',  // 11 Delivery Address
      '316'   ,// 12  'Notes'
     
     
@@ -134,7 +134,7 @@ function AddProcurementInAccount(props) {
       }, [props.selectedLanguage]);
 
     useEffect(() => {
-        props.getContactDistributorList(props.distributorId)
+        props.getContactDistributorList(props.distributorId);
         props.getSaleCurrency()
         props.getLobList(props.orgId)
         props.getBrandCategoryData(props.orgId);

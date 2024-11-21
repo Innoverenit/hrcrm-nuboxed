@@ -40,6 +40,7 @@ import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import MergeTypeIcon from '@mui/icons-material/MergeType';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import ContactsIcon from '@mui/icons-material/Contacts';
+import AsignedOpenDrawer from "./AsignedOpenDrawer";
 const AddAccountAdressModal = lazy(() => import("./AddAccountAdressModal"));
 const AccountCreditToggle = lazy(() => import("./AccountCreditToggle"));
 const AccountSearchedData = lazy(() => import("./AccountSearchedData"));
@@ -55,6 +56,7 @@ function AccountTable(props) {
   const [particularRowData, setParticularRowData] = useState({});
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
+ const [asignedDrawer,setasignedDrawer] =useState(false);
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -294,18 +296,14 @@ function AccountTable(props) {
                             </div>
                           </div>
                           <div className=" flex  items-center justify-start h-8 ml-gap  bg-[#eef2f9] w-[7.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
-
-                            <div class="flex ml-gap text-xs items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-center max-sm:text-xs ">
+                            <div class="flex ml-gap text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-center max-sm:text-xs ">
                               {item.dialCode} {item.phoneNo}
                             </div>
-
                           </div>
-
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex items-center justify-start max-sm:w-auto w-[10.2rem] max-xl:w-[5.2rem] bg-[#eef2f9] h-8 ml-gap max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class="flex ml-gap text-xs items-center  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                              {/* {item.url} */}
                               {item.dcategoryName}
                             </div>
                           </div>
@@ -397,7 +395,7 @@ function AccountTable(props) {
                             <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>&nbsp;                            
                           </div>
                           <div class=" text-xs flex items-center justify-center font-poppins w-[6.021rem] bg-[#eef2f9] h-8   text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                              {item.currencyPrice}
+                              {item.curName} {item.currencyPrice}
 
                             </div>                  
                         </div>
@@ -405,7 +403,8 @@ function AccountTable(props) {
                         <div class=" text-xs items-center justify-center flex bg-[#eef2f9] h-8 ml-gap w-[2.5rem] font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   {/* Assigned */}
                                   {item.assignToUser?
-                                  <span>
+                                  <span onClick={()=>{handleCurrentRowData(item);
+                                    setasignedDrawer(true)}}>
                                   <MultiAvatar2
             primaryTitle={item.assignToUser}
             imgWidth={"1.8rem"}
@@ -577,6 +576,14 @@ function AccountTable(props) {
                  translateText={props.translateText}
             addAccountOpportunityModal={props.addAccountOpportunityModal}
             handleAccountOpportunityModal={props.handleAccountOpportunityModal}/>
+
+            <AsignedOpenDrawer 
+               RowData={RowData}
+               setasignedDrawer={setasignedDrawer}
+               asignedDrawer={asignedDrawer}
+               selectedLanguage={props.selectedLanguage}
+               translateText={props.translateText}
+            />
 </Suspense>
     </>  );
 }

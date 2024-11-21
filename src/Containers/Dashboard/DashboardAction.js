@@ -2866,7 +2866,7 @@ export const getRepairDashboardOrderCancelled = (userId, endDate,startDate,page)
     type: types.GET_REPAIR_DASHBOARD_ORDER_CANCELLED_REQUEST,
   });
   axios
-    .get(`${base_url2}/dashboard/CancelledDummy/${userId}/${startDate}/${endDate}/${page}`, {
+    .get(`${base_url2}/dashboard/allDeletelOrder/${userId}/${startDate}/${endDate}/${page}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

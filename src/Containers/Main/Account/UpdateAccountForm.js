@@ -190,23 +190,23 @@ const UpdateAccountForm = ({
           dialCode: setEditingDistributor.dialCode || "",
           clientId: setEditingDistributor.clientName || "",
           imageURL:setEditingDistributor.imageURL || "",
-          address: [
-            {
-              addressId: setEditingDistributor.address.length ? setEditingDistributor.address[0].addressId : "",
-              addressType: setEditingDistributor.address.length ? setEditingDistributor.address[0].addressType : "",
-              address1: setEditingDistributor.address.length ? setEditingDistributor.address[0].address1 : "",
-              address2: setEditingDistributor.address.length ? setEditingDistributor.address[0].address2 : "",
-              town: setEditingDistributor.address.length ? setEditingDistributor.address[0].town : "",
-              street: setEditingDistributor.address.length ? setEditingDistributor.address[0].street : "",
-              city: setEditingDistributor.address.length ? setEditingDistributor.address[0].city : "Null",
-              state: setEditingDistributor.address.length ? setEditingDistributor.address[0].state : "",
-              pinCode: setEditingDistributor.address.length ? setEditingDistributor.address[0].pinCode : "",
-              country: setEditingDistributor.address.length ? setEditingDistributor.address[0].country : "",
-              dialCode: setEditingDistributor.address.length ? setEditingDistributor.address[0].dialCode : "",
-              latitude: setEditingDistributor.address.length ? setEditingDistributor.address[0].latitude : "",
-              longitude: setEditingDistributor.address.length ? setEditingDistributor.address[0].longitude : "",
-            },
-          ],
+          // address: [
+          //   {
+          //     addressId: setEditingDistributor.address.length ? setEditingDistributor.address[0].addressId : "",
+          //     addressType: setEditingDistributor.address.length ? setEditingDistributor.address[0].addressType : "",
+          //     address1: setEditingDistributor.address.length ? setEditingDistributor.address[0].address1 : "",
+          //     address2: setEditingDistributor.address.length ? setEditingDistributor.address[0].address2 : "",
+          //     town: setEditingDistributor.address.length ? setEditingDistributor.address[0].town : "",
+          //     street: setEditingDistributor.address.length ? setEditingDistributor.address[0].street : "",
+          //     city: setEditingDistributor.address.length ? setEditingDistributor.address[0].city : "Null",
+          //     state: setEditingDistributor.address.length ? setEditingDistributor.address[0].state : "",
+          //     pinCode: setEditingDistributor.address.length ? setEditingDistributor.address[0].pinCode : "",
+          //     country: setEditingDistributor.address.length ? setEditingDistributor.address[0].country : "",
+          //     dialCode: setEditingDistributor.address.length ? setEditingDistributor.address[0].dialCode : "",
+          //     latitude: setEditingDistributor.address.length ? setEditingDistributor.address[0].latitude : "",
+          //     longitude: setEditingDistributor.address.length ? setEditingDistributor.address[0].longitude : "",
+          //   },
+          // ],
         }}
         validationSchema={DistributorSchema}
         onSubmit={(values, { resetForm }) => {
@@ -587,7 +587,7 @@ const UpdateAccountForm = ({
                   {translatedMenuItems[19]}   {/* Billing Address */}
                     </div>
                 </div>
-                <div>
+                {/* <div>
                   <FieldArray
                     name="address"
                     render={(arrayHelpers) => (
@@ -598,7 +598,7 @@ const UpdateAccountForm = ({
                       />
                     )}
                   />
-                </div>
+                </div> */}
                 
 
                 <div class="mt-4">

@@ -154,7 +154,9 @@ function QuotationDetailsCardList(props) {
           <div className="md:w-[6.8rem]">
           Discount
           </div>
-        
+          <div className="md:w-[6.8rem]">
+          Value
+          </div>
           <div className="md:w-[6.12rem]"></div>
         </div>
 
