@@ -195,7 +195,7 @@ if (loading) {
   return (
     <>
       <div className=" flex">
-      <div className=' flex rounded w-[15%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
+      <div className=' flex flex-col rounded w-[15%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
       <div class="flex flex-col rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[#eaedf1] mt-1  items-center shadow-[#a3abb980] ">
        <div> Search team Member</div>
         </div>

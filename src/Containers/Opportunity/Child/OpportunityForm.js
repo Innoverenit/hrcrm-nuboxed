@@ -136,10 +136,13 @@ const  handleEmailInd = (checked) => {
           '75', // 7
           '248', // 8
           '73', // 9
-          '141', // 10
-          '219', // 11
+          '141', // 10 Workflow
+          '219', // 11 Stage
           '46',//12
-
+       
+          '7',//Custom 13
+'147',//Description 14
+'104',//create
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -913,8 +916,8 @@ const handleStageChange=(value)=>{
                  {props.customerConfigure.customValue2Ind===true&&
                 <div class=" flex  w-w47.5 justify-between mt-4 max-sm:w-wk">
                   <div className=" w-w47.5 max-sm:w-wk">
-                <div class="font-bold text-xs">
-                Custom 1
+                <div class="font-bold text-xs">{translatedMenuItems[13]}1
+                {/* Custom 1 */}
                     </div>
                     <Field
                       name="customValue1"
@@ -968,8 +971,8 @@ const handleStageChange=(value)=>{
                   {props.customerConfigure.customValue1Ind===true&&
                   <div class=" flex  w-w47.5 justify-between mt-4 max-sm:flex-col max-sm:w-wk" >
                   <div class=" w-w47.5 max-sm:w-wk">
-                  <div class="font-bold text-xs">
-                    Custom 2
+                  <div class="font-bold text-xs">{translatedMenuItems[0]} 2
+                    {/* Custom 2 */}
                     {/* {translatedMenuItems[4]} */}
                     </div>
                     <Field
@@ -1348,7 +1351,9 @@ const handleStageChange=(value)=>{
       {props.customerConfigure.workFlowInd===true&&
                   <div class=" w-w47.5 max-sm:w-wk">
                    
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Workflow</label>
+<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[10]}
+  {/* Workflow */}
+  </label>
       <Select
        
         placeholder="Select Workflow"
@@ -1368,7 +1373,9 @@ const handleStageChange=(value)=>{
 {props.customerConfigure.stageInd===true&&
                  
                   <div class=" w-w47.5 max-sm:w-wk ">
-                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Stage</label>
+                  <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[11]}
+                  {/* Stage */}
+                  </label>
       <Select
        
         placeholder="Select Stage"
@@ -1421,7 +1428,9 @@ const handleStageChange=(value)=>{
                 htmlType="submit"
                 loading={addingOpportunity}
               >
-                <div class="font-bold font-poppins text-xs"> Create</div>
+                <div class="font-bold font-poppins text-xs">    {translatedMenuItems[15]}
+                   {/* Create */}
+                   </div>
              
               </Button>
             </div>

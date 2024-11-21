@@ -64,6 +64,8 @@ const CustomerActionLeft = (props) => {
    "288",// 'Search by Name or Sector" // 4
    "396",// ' Sort by Creation Date', // 5
    "289",// 'Creation Date', // 6
+  //  "",//Transfer
+   "1079",//Cancel7
   
         ];
 
@@ -409,8 +411,10 @@ const CustomerActionLeft = (props) => {
         <Button type="primary" 
         onClick={props.handleTransferClick}
         >
-         <MoveUpIcon className=" !text-icon  text-white"/> {props.isTransferMode ? 'Transfer' : 'Cancel'}
+         <MoveUpIcon className=" !text-icon  text-white"/> {props.isTransferMode ? 'Transfer' : translatedMenuItems[7]}
+
         </Button>
+        {/* Cancel */}
        {/* )} */}
         </div>
 
