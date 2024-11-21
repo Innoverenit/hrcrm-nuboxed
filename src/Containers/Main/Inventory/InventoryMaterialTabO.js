@@ -112,16 +112,19 @@ class InventoryMaterialTabO extends PureComponent {
                        case "5":
                           return  <div>  <InventoryMaterialDamagedData
                           locationDetailsId={this.props.user.locationId}
+                          translatedMenuItems={this.props.translatedMenuItems}
                           /></div>;
                           case "6":
                           return  <div> 
                            <InventoryMaterialBestBefore
                                    locationDetailsId={this.props.user.locationId}
+                                   translatedMenuItems={this.props.translatedMenuItems}
                                   />
                               </div>;
                                case "7":
                                 return  <div> 
-                                 <InventoryWastetab/>
+                                 <InventoryWastetab
+                                   translatedMenuItems={this.props.translatedMenuItems}/>
                                     </div>;
                       
             default:
@@ -349,9 +352,9 @@ class InventoryMaterialTabO extends PureComponent {
                                 <>
                                     <span onClick={this.handleRecruitClick} className=" !text-tab">
                                     <CookieIcon className=" !text-icon"/>&nbsp;
-                                      Best Before
+                                      {/* Best Before */}
                                      
-                                       
+                                      {this.props.translatedMenuItems[35]}  
 
                                     </span>
                                     {activeKey === "6" && (
@@ -366,8 +369,8 @@ class InventoryMaterialTabO extends PureComponent {
                           }}
                           size="0.875em"                         
                           >
-                          <WarehouseIcon
-                            style={{ color: "red", fontSize: "1rem" }}
+                          <WarehouseIcon className=" text-red-500 !text-icon"
+                      
                           
                           />
                           </span>
@@ -400,9 +403,9 @@ class InventoryMaterialTabO extends PureComponent {
                                 <>
                                     <span onClick={this.handleRecruitClick} className=" !text-tab">
                                     <FolderDeleteIcon className="!text-icon"/>&nbsp;
-                                        {/* Stock */} 
+                                     
                                       Waste
-                                        {/* {this.props.translatedMenuItems[19]} */}
+                                        {/* {this.props.translatedMenuItems[36]} */}
 
                                     </span>
                                     {activeKey === "7" && (

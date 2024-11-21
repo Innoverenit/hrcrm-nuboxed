@@ -108,9 +108,9 @@ const MaterialStockTableOut = (props) => {
                             </div>
                      
                         <div className="w-[7.11rem] truncate max-md:w-[4.11rem]">< PinIcon className=" !text-base"/>HSN</div>
-                        <div className="w-[7.11rem] truncate max-md:md:w-[4.11rem]">Zone</div>
+                        <div className="w-[7.11rem] truncate max-md:md:w-[4.11rem]">{props.translatedMenuItems[32]}</div>
                         <div className="w-[7.11rem] truncate max-md:md:w-[4.11rem]">Room</div>
-                        <div className="w-[7.11rem] truncate max-md:md:w-[4.11rem]">Rack</div>
+                        <div className="w-[7.11rem] truncate max-md:md:w-[4.11rem]">{props.translatedMenuItems[33]}</div>
                         <div className="w-[6.10rem] truncate max-md:md:w-[6.10rem]">
                             {/* in stock  */}
                              {props.translatedMenuItems[29]}

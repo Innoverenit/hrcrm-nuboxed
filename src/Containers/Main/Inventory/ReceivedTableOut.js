@@ -130,7 +130,7 @@ const ReceivedTableOut = (props) => {
       
         <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <div className=" flex justify-between max-sm:hidden  w-[94%]  p-1 bg-transparent font-bold text-[0.65rem] font-poppins  z-10">
+            <div className=" flex justify-between max-sm:hidden  w-[94%]  p-1 bg-transparent font-bold !text-lm font-poppins  z-10">
               <div className=" w-[8.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               <DynamicFeedIcon className='!text-base  text-[#3ac427]'/>{translatedMenuItems[0]}
                 </div>

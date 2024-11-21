@@ -221,13 +221,14 @@ console.log(selectedZones)
                         <div className=""></div>
                         
                         <div className="text-[#00A2E8] text-base w-[11.52rem]" >
-                         Item 
+                        {props.translatedMenuItems[38]}   {/* Item  */}
                         </div>
              
                        
                
                         <div className=" w-[12.122rem]" >       
-                        <FactoryIcon className='!text-base  text-[#e4eb2f]' />   Supplier Name
+                        <FactoryIcon className='!text-base  text-[#e4eb2f]' /> {props.translatedMenuItems[36]} {props.translatedMenuItems[0]}  
+                         {/* Supplier Name */}
                         </div>
 
                         <div className=" w-[4.122rem]">       
@@ -235,23 +236,24 @@ console.log(selectedZones)
                         </div>
 
                         <div className=" w-[8.12rem]">       
-                        <CategoryIcon className='!text-base  text-[#e4eb2f]'/> Supplies Id
+                        <CategoryIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[36]} Id
 
                         </div>   
                         <div className=" w-[5.12rem]" >       
-                   Country
+                   {/* Country */} {props.translatedMenuItems[1]} 
 
                         </div>
                         <div className=" w-[8.12rem]" >       
                    Best Use Date
+                   {/* {props.translatedMenuItems[1]}  */}
 
                         </div>               
                         <div className=" w-[5.12rem]" >       
-                    Units
+                    {/* Units */}{props.translatedMenuItems[26]} 
 
                         </div>
                         <div className=" w-[9.2rem]" >       
-                    Zone
+                    {/* Zone */}{props.translatedMenuItems[32]} 
 
                         </div>
                         <div className=" w-[13.2rem]">       
@@ -259,7 +261,7 @@ console.log(selectedZones)
 
                         </div>
                         <div className=" w-[7.12rem]">       
-                    Rack
+                    {/* Rack */}{props.translatedMenuItems[33]} 
 
                         </div>
                    

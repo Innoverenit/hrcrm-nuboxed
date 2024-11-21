@@ -175,7 +175,7 @@ console.log(selectedLocation)
                        
                
                         <div className=" w-[12.122rem]" >       
-                        <FactoryIcon className='!text-base  text-[#e4eb2f]' />   Supplier Name
+                        <FactoryIcon className='!text-base  text-[#e4eb2f]' />  {props.translatedMenuItems[36]} {props.translatedMenuItems[0]}  
                         </div>
 
                         <div className=" w-[4.122rem]">       
@@ -183,11 +183,12 @@ console.log(selectedLocation)
                         </div>
 
                         <div className=" w-[8.12rem]">       
-                        <CategoryIcon className='!text-base  text-[#e4eb2f]'/> Supplies Id
+                        <CategoryIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[36]} Id
 
                         </div>    
                         <div className=" w-[5.12rem]" >       
-                   Country
+                        {props.translatedMenuItems[1]} 
+
 
                         </div>
                         <div className=" w-[8.12rem]" >       
@@ -196,11 +197,11 @@ console.log(selectedLocation)
                         </div>
 
                         <div className=" w-[5.12rem]" >       
-                    Units
+                        {props.translatedMenuItems[26]} 
 
                         </div>
                         <div className=" w-[9.2rem]" >       
-                    Zone
+                        {props.translatedMenuItems[32]} 
 
                         </div>
                         <div className=" w-[13.2rem]">       
@@ -208,7 +209,7 @@ console.log(selectedLocation)
 
                         </div>
                         <div className=" w-[7.12rem]">       
-                    Rack
+                        {props.translatedMenuItems[33]} 
 
                         </div>
                    
