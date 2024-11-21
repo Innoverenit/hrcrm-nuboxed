@@ -21,11 +21,41 @@ const UpdateBankModal = lazy(() => import("../../../../../../Employees/Child/Emp
 
 
 class BankTable extends Component {
- 
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
   componentDidMount() {
     const { getBankDetails, employeeId } = this.props;
     getBankDetails(this.props.employeeId);
+    this.fetchMenuTranslations();
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "1186",//0 Account Holder
+        "1187",//1 Bank Name
+        "1188",//2  Branch Name
+        "1189",//3Account#
+        "1190",// SWIFT Code
+        "1259"// Do you want to delete?"
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
+
   render() {
     const {
       fetchingBankDetails,
@@ -48,16 +78,13 @@ class BankTable extends Component {
              <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
           <div className=" md:w-[6.5rem]">
-        Account Holder</div>
+          {this.state.translatedMenuItems[0]}</div>
  
-        <div className="md:w-[6.1rem]"> Bank Name</div>
-                 <div className="md:w-[10.1rem]">
-               Branch Name</div>
-                       <div className=" md:w-[8.1rem]">
-                     Account#</div>
+        <div className="md:w-[6.1rem]">   {this.state.translatedMenuItems[1]}</div>
+                 <div className="md:w-[10.1rem]">  {this.state.translatedMenuItems[2]}</div>
+                       <div className=" md:w-[8.1rem]">  {this.state.translatedMenuItems[3]}</div>
 
-                       <div className=" md:w-[8.1rem]">
-                    SWIFT Code</div>
+                       <div className=" md:w-[8.1rem]">  {this.state.translatedMenuItems[4]}</div>
        
         
         <div className="w-[10.2rem]"></div>
@@ -144,8 +171,8 @@ class BankTable extends Component {
                                     
 
                                     <div class="  text-xs  font-poppins text-center">
-                                    <BorderColorIcon 
-            style={{ cursor: "pointer", fontSize: "1rem" }}
+                                    <BorderColorIcon  className=" text-red-600 !text-icon cursor-pointer "
+
             onClick={() => {
               setEditBank(item);
               handleUpdateBankModal(true);
@@ -159,12 +186,12 @@ class BankTable extends Component {
 
                                     <div class="  text-xs  font-poppins text-center">
                                     <StyledPopconfirm
-            title="Do you want to delete?"
+            title={this.state.translatedMenuItems[5]}
             onConfirm={() => deleteBankTable(item.id)}
           >
             <DeleteIcon
               type="delete"
-              style={{ cursor: "pointer", fontSize: "1rem", color: "red" }}
+             className=" text-red-600 !text-icon cursor-pointer "
             />
           </StyledPopconfirm>
 

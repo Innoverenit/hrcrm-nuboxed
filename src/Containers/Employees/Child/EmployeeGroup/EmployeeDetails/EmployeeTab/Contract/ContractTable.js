@@ -14,10 +14,41 @@ import EmptyPage from "../../../../../../Main/EmptyPage";
 const UpdateContractModal = lazy(() => import("./UpdateContractModal"));
 
 class ContractTable extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
   componentDidMount() {
     const { getContractDetails, employeeId } = this.props;
     getContractDetails(this.props.employeeId);
+    this.fetchMenuTranslations();
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        
+        "176",//0 Start Date
+        "126",//1  End Date
+        "1205",//2Contract 
+        "71",//3 Type
+        "316"// Note
+  
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   render() {
     const {
       fetchingContractDetails,
@@ -38,14 +69,14 @@ class ContractTable extends Component {
          <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
           <div className=" md:w-[12.5rem]">
-       Start Date</div>
+          {this.state.translatedMenuItems[0]}</div>
  
         <div className="md:w-[10.1rem]">
-           End Date</div>
+        {this.state.translatedMenuItems[1]}</div>
                  <div className="md:w-[10.1rem]">
-                Contract Type</div>
+                 {this.state.translatedMenuItems[2]} {this.state.translatedMenuItems[3]}</div>
                        <div className=" md:w-[8.1rem]">
-                   Note</div>
+                       {this.state.translatedMenuItems[4]}</div>
 
                      
         

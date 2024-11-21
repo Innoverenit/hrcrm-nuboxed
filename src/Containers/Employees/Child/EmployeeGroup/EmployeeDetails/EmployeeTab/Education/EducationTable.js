@@ -97,8 +97,7 @@ class EducationTable extends Component {
 
                        <div className=" md:w-[8.1rem]"> {this.state.translatedMenuItems[5]}</div>
        
-        a
-        <div className="w-[10.2rem]"></div>
+                <div className="w-[10.2rem]"></div>
 
       </div>
    
