@@ -1782,7 +1782,7 @@ export const approveSpare = (data, phoneSpareId) => (dispatch) => {
       message.error("Something went wrong");
     });
 };
-export const updateProcessTask = (data, phoneTaskId) => (dispatch) => {
+export const updateProcessTask = (data, phoneTaskId,orderPhoneId, technicianId) => (dispatch) => {
   dispatch({
     type: types.UPDATE_PROCESS_TASK_REQUEST,
   });
@@ -1793,6 +1793,7 @@ export const updateProcessTask = (data, phoneTaskId) => (dispatch) => {
       },
     })
     .then((res) => {
+      dispatch(getRepairPhoneByUser(orderPhoneId, technicianId))
       dispatch({
         type: types.UPDATE_PROCESS_TASK_SUCCESS,
         payload: res.data,

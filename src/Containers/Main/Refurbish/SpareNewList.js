@@ -9,6 +9,7 @@ import { getTabSpareList, handleRepairPhone,
     import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import { Button, Badge,Input, Tooltip } from "antd";
 import dayjs from "dayjs";
+import BuildIcon from '@mui/icons-material/Build';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import UpdateIcon from '@mui/icons-material/Update';
@@ -17,12 +18,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import RefurbishNoteAll from "./RefurbishNoteAll";
+import SpareDrawerOpen from "./SpareDrawerOpen";
 
 
 
 function SpareNewList(props) {
 
     const [page, setPage] = useState(0);
+    const [spareOpen , setSpareOpen]= useState(false)
     const [currentData, setCurrentData] = useState("");
     const [searchOnEnter, setSearchOnEnter] = useState(false);
     const [pageNo, setPageNo] = useState(0);
@@ -192,7 +195,7 @@ function SpareNewList(props) {
                 <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div class=" w-64 max-sm:w-40">
         <Input
-          placeholder="Search By Imei"
+          placeholder="Search By Imei & OrderId"
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleSearch}
@@ -205,10 +208,12 @@ function SpareNewList(props) {
                         <div className=" w-[18.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/>  Imei
                           </div>
+                          <div className="w-[10.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">OrderID</div>
+                       
                         <div className=" w-[16.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                         <DateRangeIcon className='!text-icon  '  /> Submitted
                          {/* Due Date/> */}
-                        </div>
+                        </div>               
                         <div className=" w-[14.1rem] ">
                         <ContactsIcon className='!text-base mr-1  text-[#e4eb2f]'/>Approved
                         {/* (Date&Multiavtar) */}
@@ -245,7 +250,7 @@ function SpareNewList(props) {
                     )}
                     </div>
                                             <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[15.01rem] max-xl:w-[17.8rem] max-lg:w-[14rem] max-sm:w-auto  ">
-                                                    <Badge size="small" count={`${item.repairCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
+                                                   
                                                         <span class="underline text-xs text-[#1890ff] font-bold cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
                                                             onClick={() => {
                                                                 handleRowData(item);
@@ -253,7 +258,7 @@ function SpareNewList(props) {
                                                             }}>
                                                             {item.imei}
                                                         </span>
-                                                    </Badge>
+                                                  
                                                     &nbsp;&nbsp;
                                                     {date === currentdate ? (
                                                         <span class="text-[tomato] font-bold text-xs">
@@ -288,6 +293,15 @@ function SpareNewList(props) {
                                                         {item.reason}
                                                     </div>
                                                 </div>
+                                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                       < BuildIcon onClick={() => {
+                              setSpareOpen(true);
+                              handleRowData(item);
+                            }}/>
+                                                    </div>
+                                                </div>
+                                               
                                             </div>
                                             <div className=" flex  items-center w-wk h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row max-sm:w-auto max-sm:justify-between justify-end ">
                                                 <div class="  text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-2xl">
@@ -318,6 +332,13 @@ function SpareNewList(props) {
                      rowData={rowData}
                      productioNoteModal={props.productioNoteModal}
                     handleProductionNotesModal={props.handleProductionNotesModal}
+                    />
+                     <SpareDrawerOpen
+                 translateText={props.translateText} 
+                 selectedLanguage={props.selectedLanguage}
+                     rowData={rowData}
+                     spareOpen={spareOpen}
+                     setSpareOpen={setSpareOpen}
                     />
             </div>
         </>

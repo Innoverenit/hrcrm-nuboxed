@@ -2001,3 +2001,30 @@ export const addQualityCategory = (product, categoryId,cb) => (dispatch) => {
       cb();
     });
 };
+
+export const getPriceFactor = (suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRICE_FACTOR_REQUEST,
+  });
+  axios
+  .get(`${base_url2}/supplies/suppliesFactor/${suppliesId}`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRICE_FACTOR_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRICE_FACTOR_FAILURE,
+        payload: err,
+      });
+    });
+};

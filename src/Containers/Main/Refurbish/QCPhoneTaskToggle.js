@@ -12,7 +12,7 @@ function QCPhoneTaskToggle(props) {
                 completeTaskInd: props.item.completeTaskInd ? false : true,
                 completeTaskUserId: props.userId
             },
-            props.item.phoneTaskId,
+            props.item.phoneTaskId,props.orderPhoneId, props.userId
         );
     }
 

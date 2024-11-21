@@ -55,6 +55,7 @@ const RepairTaskTable = (props) => {
                             <div class="w-[70%] flex justify-between">
                                 <QCPhoneTaskToggle item={item}  
                                   RowData={props.RowData}
+                                  orderPhoneId={props.rowData.orderPhoneId} 
                                 />
                                 <QcTaskNwToggle 
                                 item={item} 
