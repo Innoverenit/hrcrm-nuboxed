@@ -24,6 +24,7 @@ function General(props) {
     oppTimePeriod: props.requirementDuration.oppTimePeriod === 0 ? "Not Applicable" : props.requirementDuration.oppTimePeriod || "",
     ordDelvry: props.requirementDuration.ordDelvry === 0 ? "Not Applicable" : props.requirementDuration.ordDelvry || "",
     qtionInclItem: props.requirementDuration.qtionInclItem === 0 ? "Not Applicable" : props.requirementDuration.qtionInclItem || "",
+    matPrc: props.requirementDuration.matPrc === 0 ? "Not Applicable" : props.requirementDuration.matPrc || "",
     jobAniEmailInd: props.requirementDuration.jobAniEmailInd,
     birthdayEmailInd: props.requirementDuration.birthdayEmailInd,
     trnsfrEvthngToErpInd: props.requirementDuration.trnsfrEvthngToErpInd,
@@ -39,6 +40,7 @@ function General(props) {
     leadsToCustInd: props.requirementDuration.leadsToCustInd,
     partNoInd: props.requirementDuration.partNoInd,
     inniInspectInd: props.requirementDuration.inniInspectInd,
+    mfaInd: props.requirementDuration.mfaInd,
     typeInd: props.requirementDuration.typeInd,
     repairOrdInd: props.requirementDuration.repairOrdInd,
     qcInd: props.requirementDuration.qcInd,
@@ -87,6 +89,7 @@ function General(props) {
     oppTimePeriod: props.requirementDuration.oppTimePeriod === 0 ? "Not Applicable" : props.requirementDuration.oppTimePeriod || "",
     ordDelvry: props.requirementDuration.ordDelvry === 0 ? "Not Applicable" : props.requirementDuration.ordDelvry || "",
     qtionInclItem: props.requirementDuration.qtionInclItem === 0 ? "Not Applicable" : props.requirementDuration.qtionInclItem || "",
+    matPrc: props.requirementDuration.matPrc === 0 ? "Not Applicable" : props.requirementDuration.matPrc || "",
     jobAniEmailInd: props.requirementDuration.jobAniEmailInd,
     birthdayEmailInd: props.requirementDuration.birthdayEmailInd,
     trnsfrEvthngToErpInd: props.requirementDuration.trnsfrEvthngToErpInd,
@@ -102,6 +105,7 @@ function General(props) {
     leadsToCustInd: props.requirementDuration.leadsToCustInd,
     partNoInd: props.requirementDuration.partNoInd,
     inniInspectInd: props.requirementDuration.inniInspectInd,
+    mfaInd: props.requirementDuration.mfaInd,
     typeInd: props.requirementDuration.typeInd,
     repairOrdInd: props.requirementDuration.repairOrdInd,
     qcInd: props.requirementDuration.qcInd,
@@ -164,6 +168,7 @@ function General(props) {
           oppTimePeriod: formValues.oppTimePeriod === 0 ? "Not Applicable" : props.requirementDuration.oppTimePeriod || "",
           ordDelvry: formValues.ordDelvry === 0 ? "Not Applicable" : props.requirementDuration.ordDelvry || "",
           qtionInclItem: formValues.qtionInclItem === 0 ? "Not Applicable" : props.requirementDuration.qtionInclItem || "",
+          matPrc: formValues.matPrc === 0 ? "Not Applicable" : props.requirementDuration.matPrc || "",
           userId: props.userId,
           orgId: props.orgId,
           jobAniEmailInd: formValues.jobAniEmailInd,
@@ -181,6 +186,7 @@ function General(props) {
           leadsToCustInd:formValues.leadsToCustInd,
           partNoInd:formValues.partNoInd,
           inniInspectInd:formValues.inniInspectInd,
+          mfaInd:formValues.mfaInd,
           typeInd: formValues.typeInd,
           repairOrdInd: formValues.repairOrdInd,
           qcInd: formValues.qcInd,
@@ -496,6 +502,40 @@ function General(props) {
                       </div>
                     </div>
 
+                    <div class=" flex justify-between ] mt-2">           
+                        <div class=" text-xs  ">Material / Pricing</div>    
+                        <div className="w-[10rem]">
+                      <Select
+  value={formValues.matPrc}
+  onChange={(value) => handleDropdownChange("matPrc", value)}
+>
+<Option value="simpleMarkup">Simple markup</Option>
+  <Option value="averageOfStock">Average of stock</Option>
+</Select>
+                      </div>
+                    </div>
+
+                    <div class=" flex justify-between   mt-2">                
+                    <div class=" text-xs  ">Mfa Needed</div>
+                      <div>
+                      <div>
+                    <Popconfirm
+                      title="Are you sure to change ?"
+                      onConfirm={() => handleConfirm("Mfa Needed")}
+                      okText="Yes"
+                      cancelText="No"
+                    >
+                      <Switch
+                        checked={formValues.mfaInd}
+                        checkedChildren={"Yes"}
+                        unCheckedChildren={"No"}
+                        onChange={(checked) => handleToggleChange("mfaInd", checked)}
+                      />
+                    </Popconfirm>
+                  </div>
+   
+                      </div>
+                    </div>
                 <div class=" flex  mt-2">
                       <div class=" text-sm  font-bold">Inventory</div>
                       </div>

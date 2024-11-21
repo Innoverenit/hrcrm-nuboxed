@@ -107,6 +107,14 @@ function PoSupplierDetailsTable(props) {
                         <ModelTrainingIcon className=" !text-icon"/> {translatedMenuItems[2]} 
                          {/* Attribute */}
                         </div>
+                        <div className="w-[13.13rem] ">
+                        <QrCodeIcon className=" !text-icon"/> {translatedMenuItems[3]}  
+                        {/* Unit */}
+                        </div>
+                        <div className="w-[9.14rem]">
+                        <QrCodeIcon className=" !text-icon"/> {translatedMenuItems[4]}  
+                        {/* Price/Unit */}
+                        </div>
                         <div className="w-[6.14rem] ">
                         {/* {translatedMenuItems[4]}   */}
                         <BatchPredictionIcon className=" !text-icon"/>  Batch No
@@ -119,14 +127,7 @@ function PoSupplierDetailsTable(props) {
                         {/* {translatedMenuItems[4]}   */}
                         <PublicIcon className=" !text-icon"/>Origin
                         </div>
-                        <div className="w-[13.13rem] ">
-                        <QrCodeIcon className=" !text-icon"/> {translatedMenuItems[3]}  
-                        {/* Unit */}
-                        </div>
-                        <div className="w-[9.14rem]">
-                        <QrCodeIcon className=" !text-icon"/> {translatedMenuItems[4]}  
-                        {/* Price/Unit */}
-                        </div>
+                      
 
                     </div>
                     <InfiniteScroll

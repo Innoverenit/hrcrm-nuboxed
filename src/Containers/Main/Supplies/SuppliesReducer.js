@@ -11,6 +11,10 @@ const initialState = {
     fetchingbestBeforeEmailListError: false,
     bestBeforeEmailList:[],
 
+    fetchingPriceFactor: false,
+    fetchingPriceFactorError: false,
+    priceFactorData:{},
+
     fetchingReOrder: false,
     fetchingReOrderError: false,
     reOrderCount:{},
@@ -1573,6 +1577,20 @@ export const suppliesReducer = (state = initialState, action) => {
                 };
     
 
+                case types.GET_PRICE_FACTOR_REQUEST:
+                  return { ...state,  fetchingPriceFactor: true };
+                case types.GET_PRICE_FACTOR_SUCCESS:
+                  return {
+                    ...state,
+                    fetchingPriceFactor: false,
+                    priceFactorData: action.payload,
+                  };
+                case types.GET_PRICE_FACTOR_FAILURE:
+                  return {
+                    ...state,
+                    fetchingPriceFactor: false,
+                    fetchingPriceFactorError: true,
+                  };
 
         default:
             return state;

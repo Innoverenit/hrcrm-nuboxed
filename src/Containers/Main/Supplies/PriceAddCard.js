@@ -4,11 +4,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
   getCategory,
- 
 } from "../../Settings/Category/CategoryList/CategoryListAction";
 import axios from "axios";
 import { Button, Input, Select,Switch, Popconfirm,message } from "antd";
-import { getMaterialCurrency, createMaterialCurrency,materialPricetype
+import { getMaterialCurrency, createMaterialCurrency,materialPricetype,getPriceFactor
  } from "./SuppliesAction";
 import {getSaleCurrency} from "../../Auth/AuthAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -41,7 +40,7 @@ function PriceAddCard(props) {
 
   useEffect(() => {
     props.getCategory(props.orgId); 
-   
+   props.getPriceFactor(props.particularDiscountData.suppliesId)
 }, [])
 
  
@@ -102,7 +101,7 @@ function PriceAddCard(props) {
   const sendInputPutRequest =  async (item) => {
     
     try {
-        const response = await axios.put(`${base_url2}/dummy`,item, {  
+        const response = await axios.put(`${base_url2}/supplies/suppliesFactor`,item, {  
           headers: {
               Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
           },
@@ -120,9 +119,10 @@ function PriceAddCard(props) {
   const handleInputBlur = (e) => {
     const value = e.target.value === '' ? '0' : e.target.value; 
     setInputValue(value);
-    sendInputPutRequest({ packingUnits: value,
+    sendInputPutRequest({ p1: value,
 userId:props.userId,
 orgId:props.orgId,
+suppliesId:props.particularDiscountData.suppliesId
 
      });
   };
@@ -130,19 +130,19 @@ orgId:props.orgId,
   const handleInputBlur2 = (e) => {
     const value = e.target.value === '' ? '0' : e.target.value; 
     setInputValue2(value);
-    sendInputPutRequest({ packingUnits2: value,
+    sendInputPutRequest({ p2: value,
 userId:props.userId,
 orgId:props.orgId,
-
+suppliesId:props.particularDiscountData.suppliesId
      });
   };
   const handleInputBlur3 = (e) => {
     const value = e.target.value === '' ? '0' : e.target.value; 
     setInputValue3(value);
-    sendInputPutRequest({ packingUnits3: value,
+    sendInputPutRequest({ p3: value,
 userId:props.userId,
 orgId:props.orgId,
-
+suppliesId:props.particularDiscountData.suppliesId
      });
   };
 
@@ -485,7 +485,7 @@ orgId:props.orgId,
   <div className="flex justify-between mt-1">
 <div className="w-36" >
                                            <input
-            id="packingUnits"
+            id="p1"
             type="text"
             className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             defaultValue={inputValue}
@@ -496,7 +496,7 @@ orgId:props.orgId,
           </div> 
           <div className="w-36" >
                                            <input
-            id="packingUnits2"
+            id="p2"
             type="text"
             className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             defaultValue={inputValue2}
@@ -507,7 +507,7 @@ orgId:props.orgId,
           </div> 
           <div className="w-36" >
                                            <input
-            id="packingUnits3"
+            id="p3"
             type="text"
             className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             defaultValue={inputValue3}
@@ -535,6 +535,7 @@ const mapStateToProps = ({ product,categoryList, auth,supplies }) => ({
   fetchingSaleCurrency:auth.fetchingSaleCurrency,
   saleCurrencies:auth.saleCurrencies,
   orgId: auth.userDetails.organizationId,
+  priceFactorData:supplies.priceFactorData
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -547,6 +548,7 @@ const mapDispatchToProps = (dispatch) =>
     //   handleOfferModal,
     //   getCurrency,
       getSaleCurrency,
+      getPriceFactor
      
     //   removeProductPrice
     },
