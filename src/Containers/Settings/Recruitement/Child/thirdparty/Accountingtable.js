@@ -62,7 +62,6 @@ function Accountingtable(props) {
               </Button></div>
         </div>
       
-      <div><BundleLoader/></div>
         </>
     );
 };

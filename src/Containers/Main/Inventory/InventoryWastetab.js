@@ -48,7 +48,7 @@ console.log(selectedLocation)
  <>
   <div className=' flex sticky  z-auto h-[79vh]'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs items-end sticky z-10">
+                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm items-end sticky z-10">
                         <div className=""></div>
                         <div className="text-[#00A2E8] text-base w-[19.5rem]">PO ID</div>
                         <div className=" w-[11.52rem]" >
@@ -164,7 +164,7 @@ console.log(selectedLocation)
 :
             <div className=' flex sticky  z-auto h-[79vh]'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs items-end sticky z-10">
+                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm items-end sticky z-10">
                         <div className=""></div>
                         <div className="text-[#00A2E8] text-base w-[19.5rem]">PO ID</div>
                         <div className=" w-[11.52rem]" >

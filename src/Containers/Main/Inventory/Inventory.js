@@ -54,10 +54,11 @@ function Inventory(props) {
        "1077", // 'Zone',//32
        "1073",  // 'Rack',//33
        "1559",
-       "1703",//  Best Before
-       "1083",//Supplier
-       "771", //  Final
+       "1703",//  Best Before35
+       "1083",//Supplier36
+       "771", //  Final37
        "1044",
+       "800"
       //  ""//  Waste
         ];
 
