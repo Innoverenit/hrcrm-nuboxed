@@ -188,9 +188,9 @@ function ContactCardList(props) {
       
       
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" max-sm:hidden flex justify-between w-[97%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent font-bold sticky  z-10">
+      <div className=" max-sm:hidden flex justify-between w-[97%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent font-poppins !text-lm font-bold sticky  z-10">
       <div class=" flex justify-between w-[100%] font-bold  font-poppins text-xs items-end ">
-        <div className=" w-[27.9rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+        <div className=" w-[27.9rem] text-[#00A2E8]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         <ContactsIcon className="!text-icon mr-1 "/>
         {translatedMenuItems[0]}</div>
         <div className=" w-[26.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
@@ -213,7 +213,7 @@ function ContactCardList(props) {
         <RadioButtonCheckedIcon className="!text-icon  text-[#f28482]"/> {translatedMenuItems[6]}</div>
            {/* Portal Access */}
         {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[13.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className=" w-[13.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
                      {/* Score */}      <ScoreIcon className="!text-icon  text-[#f28482]"/>  {translatedMenuItems[7]} 
           
             </div>

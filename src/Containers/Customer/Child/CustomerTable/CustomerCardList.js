@@ -268,34 +268,34 @@ if (loading) {
   ) : (
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky z-10">
+          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-poppins font-bold  !text-lm  sticky z-10">
             <div class=" flex justify-between font-poppins w-[89%] items-end">
          
-            <div className="font-poppins font-bold truncate text-[#00A2E8] text-base w-[14.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            <div className="truncate text-[#00A2E8]  w-[14.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             <ApartmentIcon className="!text-icon  "/>
             {translatedMenuItems[0]}
            {/* name */}
             </div>
-            <div className="font-poppins  font-bold text-xs truncate w-[9.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className=" truncate w-[9.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
                 <WifiCalling3Icon className="!text-icon mr-1 text-[#4f5d75]"/>
             {translatedMenuItems[1]}
              {/* work */}
             </div>
             <div className=" w-[3.8rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             </div>
-            <div className="font-poppins font-bold text-xs truncate w-[10.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className=" truncate w-[10.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
             <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> 
             {translatedMenuItems[2]}
               {/* "Sector" */}
           
             </div>
-            <div className="font-poppins font-bold text-xs truncate w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            <div className=" truncate w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
             <SourceIcon className="!text-icon mr-1 text-[#094074]"/> 
             {translatedMenuItems[3]}
              {/* "Source" */}
          
             </div>         
-            <div className="font-poppins font-bold text-xs truncate w-[11.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <div className=" truncate w-[11.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             <LightbulbIcon className="!text-icon text-[#84a59d]"/> 
             {translatedMenuItems[4]} 
               {/* Quotation" */}
@@ -307,17 +307,17 @@ if (loading) {
              Pipeline"
             </div>    */}
             {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs truncate w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className=" truncate w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
             {/* Score */}      <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/> 
             {translatedMenuItems[18]}
             </div>
             )}    
-            <div className="font-poppins font-bold text-xs truncate w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <div className="truncate w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
             <AccountCircleIcon className="!text-icon mr-1 text-[#d64933]"/> 
             {translatedMenuItems[6]}   
             {/* Assigned */}
             </div>          
-            <div className="font-poppins font-bold text-xs truncate w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className=" truncate w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
             <AcUnitIcon className="!text-icon  text-[#667761]"/> 
             {translatedMenuItems[7]}
               {/* Customer" */}

@@ -207,8 +207,8 @@ function OpportunityWonCard(props) {
   <>
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
   <div className="flex max-sm:hidden  w-[95%]  max-xl:w-[87%] p-1 bg-transparent font-bold sticky items-end z-10">
-  <div className="   flex justify-between w-[93%] font-bold font-poppins  items-end text-xs">
-        <div className=" w-[13.8rem] truncate text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] ">
+  <div className="   flex justify-between w-[93%]  items-end font-poppins font-bold  !text-lm ">
+        <div className=" w-[13.8rem] truncate text-[#00A2E8] !text-lm max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] ">
         <LightbulbIcon className="!text-icon  text-[#84a59d]"/>{translatedMenuItems[12]} ID</div>
         <div className=" w-[12.1rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
         <ApartmentIcon className="!text-icon  text-[#d66853] "/> {translatedMenuItems[1]}</div>
