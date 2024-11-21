@@ -146,6 +146,9 @@ fetchingCompleteDispatchSearchError: false,
   addingReceivedUser: false,
   addingReceivedUserError: false,
   receivedModal: false,
+
+
+  addReceivedScanModal:false,
   //addrecivedAwb:{},
 
   //file damaged
@@ -483,6 +486,10 @@ export const inventoryReducer = (state = initialState, action) => {
         addingInventoryError: true,
         addInventoryModal: false,
       };
+
+
+      case types.HANDLE_RECEIVE_SCAN_MODAL:
+        return { ...state, addReceivedScanModal: action.payload };
 
 
 

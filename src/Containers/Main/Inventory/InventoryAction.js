@@ -10,6 +10,15 @@ export const setInventoryViewType = (viewType) => (dispatch) =>
   dispatch({ type: types.SET_INVENTORY_VIEW_TYPE, payload: viewType });
 
 
+
+export const handleReceiveScanModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_RECEIVE_SCAN_MODAL,
+    payload: modalProps,
+  });
+};
+
+
 export const handleQualityManufactureModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_QUALITY_MANUFACTURE_DRAWER_MODAL,

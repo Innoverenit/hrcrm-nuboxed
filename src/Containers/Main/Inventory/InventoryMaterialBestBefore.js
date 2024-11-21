@@ -41,6 +41,7 @@ const InventoryMaterialBestBefore = (props) => {
     const [isLoadingAisle, setIsLoadingAisle] = useState(false);
     
     useEffect(() => {
+      fetchZone();
         props.getMaterialBestBefore(props.locationId);
         //props.getRoomRackByLocId(props.locationId, props.orgId);
     }, [])
@@ -79,9 +80,9 @@ const InventoryMaterialBestBefore = (props) => {
       const selectedZone = value;
   
       // Find the corresponding aisle for the selected zone
-      const selectedZoneData = zone.find((zone) => zone.roomRackId === selectedZone);
+    const selectedZoneData = zone.find((zone) => zone.roomRackId === selectedZone);
       fetchAisle(value)
-      fetchRack(value)
+
       // Update the rows state for the specific row at index
       const updatedRows = rowsBest.map((row, i) => {
         console.log(row)
@@ -108,14 +109,14 @@ const InventoryMaterialBestBefore = (props) => {
   
       setRowBest(updatedRows);
     };
-      const handleSelectZoneFocus = () => {
-        if (!touchedZone) {
-          fetchZone();
-          // fetchSector();
+      // const handleSelectZoneFocus = () => {
+      //   if (!touchedZone) {
+      //     fetchZone();
+      //     // fetchSector();
     
-          setTouchedZone(true);
-        }
-      };
+      //     setTouchedZone(true);
+      //   }
+      // };
       const fetchZone = async () => {
         setIsLoadingZone(true);
         try {
@@ -140,10 +141,17 @@ const InventoryMaterialBestBefore = (props) => {
 
 
 
-      const handleAisleChange=(value,poSupplierSuppliesId)=>{
-        setSelectedAisle(value);
-        console.log(rowsBest)
-        console.log(rowDetails)
+      const handleAisleChange=(value,index)=>{
+        fetchRack(value)
+
+        const selectedData = aisle.find((aisle) => aisle.roomRackChamberLinkId === value);
+        const updatedUserData = [...rowsBest];
+        //updatedUserData[index].fruit = selectedFruit.name;
+        updatedUserData[index].roomRackChamberLinkId = value;
+        setRowBest(updatedUserData);
+        // setSelectedAisle(value);
+        // console.log(rowsBest)
+        // console.log(rowDetails)
         // let data={
         //   roomRackId:rowDetails.roomRackId,
         //   roomRackChamberLinkId:value
@@ -358,8 +366,8 @@ console.log(selectedZones)
                                                     <Select placeholder="Select zone" 
                                                     style={{ width: 119 }}
                                                     loading={isLoadingZone}
-                                                    value={item.zone}
-                                                    onFocus={handleSelectZoneFocus}
+                                                    value={item.roomRackId}
+                                                    //onFocus={handleSelectZoneFocus}
                                                     onChange={(value) => handleZoneChange(value, index)}
                                                     >
       
@@ -381,14 +389,14 @@ console.log(selectedZones)
 <Select placeholder="Select zone" 
                                                     style={{ width: 119 }}
                                                     //loading={isLoadingAisle}
-                                                    value={item.aisle}
+                                                    value={item.roomRackChamberLinkId}
                                                    
-                                                   onChange={(value) => handleAisleChange( value, item.poSupplierSuppliesId)}
+                                                   onChange={(value) => handleAisleChange( value, index)}
                                                     >
       
         {aisle.map((aisle) => (
           <Option key={aisle.roomRackChamberLinkId} value={aisle.roomRackChamberLinkId}>
-            {aisle.chamber}
+            {aisle.aisel}
           </Option>
         ))}
       </Select>

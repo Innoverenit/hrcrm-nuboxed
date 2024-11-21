@@ -3,8 +3,10 @@ import {
     getMaterialReceivedDetailData,
     updateReceivedDamagedUnit,
     generateGrnForPo,
-    getGrnNoByPoId
+    getGrnNoByPoId,
+    handleReceiveScanModal
 } from "../../../InventoryAction"
+import AddReceiveScan from "./AddReceiveScan"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -171,7 +173,14 @@ console.log(formData)
       };
     return (
         <>
+           <Button
+             onClick={() => {
+                props.handleReceiveScanModal(true);
+            //   handleSetScandata(item);
+              }}
+           >Scan</Button>
             <div className=' flex  sticky z-auto'>
+             
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs items-end sticky  z-10">
                         <div className=""></div>
@@ -462,6 +471,10 @@ console.log(formData)
 
                 </Modal>
             </div>
+            <AddReceiveScan
+            handleReceiveScanModal={props.handleReceiveScanModal}
+            addReceivedScanModal={props.addReceivedScanModal}
+            />
 
         </>
     );
@@ -472,6 +485,7 @@ const mapStateToProps = ({ inventory, auth }) => ({
     receivedDetailData: inventory.receivedDetailData,
     userId: auth.userDetails.userId,
     grnNoByPo: inventory.grnNoByPo,
+    addReceivedScanModal:inventory.addReceivedScanModal,
     fetchingMaterialReceiveDetailData: inventory.fetchingMaterialReceiveDetailData
 });
 
@@ -482,7 +496,8 @@ const mapDispatchToProps = (dispatch) =>
             updateReceivedDamagedUnit,
             generateGrnForPo,
             trnasferGrnItemToStock,
-            getGrnNoByPoId
+            getGrnNoByPoId,
+            handleReceiveScanModal
         },
         dispatch
     );
