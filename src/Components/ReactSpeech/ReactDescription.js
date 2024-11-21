@@ -9,7 +9,7 @@ const SpeechRecognitionComponent = (props) => {
   const [transcript, setTranscript] = useState('');  // For speech recognition text
   const [isListening, setIsListening] = useState(false);  // To control listening state
   const recognitionRef = useRef(null);  // Store recognition instance
-  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);//
+
   useEffect(() => {
     // Check if the browser supports speech recognition
     if (!('webkitSpeechRecognition' in window)) {
@@ -84,8 +84,8 @@ const SpeechRecognitionComponent = (props) => {
     <div>
     <div>
                     <span class="font-bold font-poppins text-xs"> 
-                        {translatedMenuItems[14]} || Description
-                        {/* Description */}
+                        {/* {translatedMenuItems[1]} */}
+                        Description
                         </span>
                     
                   <span>

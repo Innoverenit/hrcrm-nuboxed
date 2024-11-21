@@ -304,8 +304,8 @@ function OpportunityAllCardList(props) {
    <div className=' flex  sticky  z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
 <div className="flex max-sm:hidden  w-[94%]  max-xl:w-[87%] p-1 bg-transparent font-bold sticky items-end   z-10">
-<div className="   flex justify-between w-[88%] font-bold  items-end font-poppins text-xs">
-   <div className=" w-[10.1rem] truncate text-[#00A2E8] text-base ">
+<div className="   flex justify-between w-[88%] font-bold  items-end font-poppins font-bold  !text-lm ">
+   <div className=" w-[10.1rem] truncate text-[#00A2E8]  ">
    <LightbulbIcon className="!text-icon  text-[#84a59d]"/>{translatedMenuItems[13]} ID</div>
         <div className=" w-[12.3rem] truncate max-md:w-[16.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[15.8rem] ">
           <RequestQuoteIcon className="!text-icon text-[#aa3e98] "/>
