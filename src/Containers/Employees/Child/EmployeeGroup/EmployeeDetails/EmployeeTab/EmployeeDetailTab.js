@@ -140,7 +140,7 @@ fetchMenuTranslations = async () => {
               tab={
                 <>
                  <DirectionsRunIcon className=" !text-icon"/>
-                <span class="  ml-1"> 
+                <span class="  !text-tab ml-1"> 
                 {this.state.translatedMenuItems[0]}   {/* Performance  */}
                    </span>
                   </>
@@ -160,9 +160,9 @@ fetchMenuTranslations = async () => {
               tab={
                 <>
                 <SchoolIcon  className=" !text-icon" />
-                  <span class=" font-poppins ml-1" >
+                  <span class=" font-poppins ml-1  !text-tab" >
                     
-                  Education
+                  {this.state.translatedMenuItems[1]}     {/* Education */}
                   </span>
                   {activeKey === "2" && user.userCreateInd === true &&(
                     <>
@@ -190,7 +190,7 @@ fetchMenuTranslations = async () => {
                   {/* <HeadphonesIcon   className=" !text-icon" 
                   /> */}
                   < ModelTrainingIcon className=" !text-icon" />
-                   <span class=" font-poppins ml-1" >
+                   <span class="  !text-tab font-poppins ml-1" >
                    {this.state.translatedMenuItems[2]} {/* Training */}
                     
                   </span>
@@ -219,7 +219,7 @@ fetchMenuTranslations = async () => {
                 <>
                   {/* <AccountBalanceIcon   className=" !text-icon"  /> */}
                   <AccountBalanceIcon className=" !text-icon"/>
-                  <span class=" font-poppins ml-1" >
+                  <span class="  !text-tab font-poppins ml-1" >
                   {this.state.translatedMenuItems[3]}
                     {/* <FormattedMessage
                       id="app.employment"
@@ -255,7 +255,7 @@ fetchMenuTranslations = async () => {
                 <PhoneIcon 
                  className=" !text-icon"
                  />
-                  <span class=" font-poppins ml-1">
+                  <span class="  !text-tab font-poppins ml-1">
                   {this.state.translatedMenuItems[4]}
                     {/* <FormattedMessage
                       id="app.emergency"
@@ -289,7 +289,7 @@ fetchMenuTranslations = async () => {
               tab={
                 <>
                 <AccountBalanceIcon  className=" !text-icon"/>
-                  <span class=" font-poppins ml-1">
+                  <span class=" font-poppins ml-1  !text-tab">
                   {this.state.translatedMenuItems[5]}  {/* Bank Details */}
                   </span>
                   {activeKey === "6" && user.userCreateInd === true && (
@@ -318,7 +318,7 @@ fetchMenuTranslations = async () => {
               tab={
                 <>
                 <RecentActorsIcon className=" !text-icon"/>
-                  <span class=" font-poppins ml-1">
+                  <span class=" font-poppins ml-1  !text-tab">
                   {this.state.translatedMenuItems[6]}  {/* Personal Details */}
                   </span>
                   {activeKey === "7" && user.userCreateInd === true && (
@@ -346,7 +346,7 @@ fetchMenuTranslations = async () => {
               tab={
                 <>
                 <NoteAltIcon  className=" !text-icon"/>
-                  <span class="ml-1">  
+                  <span class="ml-1  !text-tab">  
                   {this.state.translatedMenuItems[7]}  {/* <FormattedMessage id="app.notes" defaultMessage="Notes" /> */}
                   </span>
                   {activeKey === "8" && (
@@ -369,7 +369,7 @@ fetchMenuTranslations = async () => {
               tab={
                 <>
                  <PaymentIcon  className=" !text-icon"/>
-                  <span class=" font-poppins ml-1">
+                  <span class=" font-poppins ml-1  !text-tab">
                   {this.state.translatedMenuItems[8]} {/* Salary */}
                   </span>
                   {activeKey === "9" && user.userCreateInd === true && (
@@ -398,7 +398,7 @@ fetchMenuTranslations = async () => {
               tab={
                 <>
                 <FileCopyIcon   className=" !text-icon" />
-                  <span class=" font-poppins ml-1">
+                  <span class=" font-poppins ml-1  !text-tab">
                     
                   {this.state.translatedMenuItems[9]}    {/* <FormattedMessage
                       id="app.documents"
@@ -435,7 +435,7 @@ fetchMenuTranslations = async () => {
               tab={
                 <>
                 <ContrastIcon className=" !text-icon"/>
-                  <span class=" font-poppins ml-1">
+                  <span class=" font-poppins ml-1  !text-tab">
                     
                    
                   {this.state.translatedMenuItems[10]} {/* <FormattedMessage
@@ -469,7 +469,7 @@ fetchMenuTranslations = async () => {
               tab={
                 <>
                <i class="fas fa-portrait" aria-hidden="true"></i>
-                  <span class=" font-poppins ml-1">
+                  <span class=" font-poppins ml-1  !text-tab">
                     
                   {this.state.translatedMenuItems[11]}
                     {/* <FormattedMessage
@@ -495,7 +495,7 @@ fetchMenuTranslations = async () => {
               tab={
                 <>
                  <i class="far fa-lightbulb" aria-hidden="true"></i>
-                  <span class=" font-poppins ml-1" >
+                  <span class=" font-poppins ml-1  !text-tab" >
                   {/* <FormattedMessage
                 id="app.opportunity"
                 defaultMessage="Opportunity"
@@ -523,7 +523,7 @@ fetchMenuTranslations = async () => {
               tab={
                 <>
                  <ApartmentIcon className="!text-icon "/>
-                  <span class=" font-poppins ml-1">
+                  <span class=" font-poppins ml-1  !text-tab">
                   {/* <FormattedMessage
                 id="app.customer"
                 defaultMessage="Customer"
@@ -554,7 +554,7 @@ fetchMenuTranslations = async () => {
               tab={
                 <>
                 <ContactsIcon className=" !text-icon"/>
-                  <span class=" font-poppins ml-1">
+                  <span class=" font-poppins ml-1  !text-tab">
                   {this.state.translatedMenuItems[14]} {/* <FormattedMessage
                   id="app.requirement"
                   defaultMessage="Requirement"
@@ -576,7 +576,7 @@ fetchMenuTranslations = async () => {
               tab={
                 <>
                  <i class="far fa-handshake" aria-hidden="true"></i>
-                  <span class=" font-poppins ml-1">
+                  <span class=" font-poppins ml-1  !text-tab">
                   {this.state.translatedMenuItems[15]}    {/* <FormattedMessage
                 id="app.vendor"
                 defaultMessage="Vendor"
@@ -605,7 +605,7 @@ fetchMenuTranslations = async () => {
                 <>
                 
                <WorkspacePremiumIcon className=" !text-icon"/>
-                  <span class=" font-poppins ml-1">                  
+                  <span class=" font-poppins ml-1  !text-tab">                  
                   {this.state.translatedMenuItems[16]} {/* Experience */}
                   </span>                 
                 </>
@@ -626,7 +626,7 @@ fetchMenuTranslations = async () => {
               tab={
                 <>
                 <SchoolIcon  className=" !text-icon"/>
-                  <span class=" font-poppins ml-1">
+                  <span class=" font-poppins ml-1  !text-tab">
                     
                {this.state.translatedMenuItems[17]}  {/* Visa */}
                   </span>

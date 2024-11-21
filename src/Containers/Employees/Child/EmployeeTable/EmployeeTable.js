@@ -257,7 +257,7 @@ function EmployeeTable(props) {
      <div class=" h-h86 overflow-auto overflow-x-auto">
         <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky items-end z-10 max-sm:hidden">
+                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end z-10 max-sm:hidden">
                     <div className="w-[14rem] text-[#00A2E8] text-base font-bold font-poppins md:w-[13.5rem]"><LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}</div>
                     {/* Name */}
                     <div className=" md:w-[9.1rem] "><ApartmentIcon className='!text-icon text-[#f0386b] '  />  {translatedMenuItems[1]}</div>

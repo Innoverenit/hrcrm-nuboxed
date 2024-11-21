@@ -90,7 +90,7 @@ const MaterialStockTableOut = (props) => {
         <>
             <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between  w-[100%]  p-1 bg-transparent font-bold font-poppins items-end text-xs sticky  z-10">
+                    <div className=" flex justify-between  w-[100%]  p-1 bg-transparent font-bold font-poppins items-end !text-lm sticky  z-10">
                         <div className="w-[9.5rem]"></div>
                    {/* po # */}
                         <div className="text-[#00A2E8] w-[8.21rem] truncate text-base max-md:w-[11.21rem]">
