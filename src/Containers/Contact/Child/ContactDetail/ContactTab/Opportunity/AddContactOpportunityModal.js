@@ -9,7 +9,7 @@ const AddContactOpportunityModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={`${props.translatedMenuItems[0]}`
+        title={`${props.translatedMenuItems[1]}`
         }
         width="63%"
         visible={props.addContactOpportunityModal}

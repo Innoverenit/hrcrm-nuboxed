@@ -116,7 +116,8 @@ class ContactForm extends Component {
  '657',//14
   // 'Property Type',
   '104',//15
-  '73'//16
+  '73',//16
+  '995',//17
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
       this.setState({ translatedMenuItems: translations ,loading: false});
@@ -375,7 +376,7 @@ class ContactForm extends Component {
                
                             {/* name="salutation"
                            */}
-                        <div class=" w-wk max-sm:w-full">
+                        <div class=" w-[100%] max-sm:w-full">
                         <div class=" text-xs font-semibold font-poppins"> 
                          {translatedMenuItems[0]}             
                           </div>
@@ -508,26 +509,14 @@ class ContactForm extends Component {
                         isColumn
                       />
                     }
-                    </div>
-                    <div class=" w-1/4  flex flex-col" >
-                    {this.props.customerConfigure.whatsupInd===true&&
-                    <div class=" text-xs font-semibold font-poppins"> {translatedMenuItems[7]}</div>
-  }
-                    {this.props.customerConfigure.whatsupInd===true&&
-                      <Switch
-                        onChange={this.handleWhatsApp}
-                        checked={this.state.whatsapp}
-                        checkedChildren="Different"
-                        unCheckedChildren="Same"
-                      />
-                    }
-                    </div>
+                    </div>               
                   </div>
-             
-                    <div class=" text-xs font-semibold font-poppins"> {translatedMenuItems[7]}</div>
+                  <div class=" text-xs mt-2 font-semibold font-poppins"> {translatedMenuItems[7]}</div>
+             <div className="flex justify-between w-[100%]">
+                 
                       {" "}
                    
-                  <div class=" flex justify-between shadow-[0_0.15em_0.3em_#aaa] border border-[#bfbebb] h-8">
+                  <div class=" flex w-[77%] justify-between shadow-[0_0.15em_0.3em_#aaa] border border-[#bfbebb] h-8">
                   <div class=" w-3/12 max-sm:w-[35%]">   
                       {this.state.whatsapp && (
                         <FastField
@@ -566,7 +555,20 @@ class ContactForm extends Component {
                       </div>
                     </div>
                   </div>
-                 
+               
+                    {this.props.customerConfigure.whatsupInd===true&&
+                    <div class=" text-xs font-semibold font-poppins"> {translatedMenuItems[7]}</div>
+  }   <div class=" w-1/4  flex flex-col" >
+                    {this.props.customerConfigure.whatsupInd===true&&
+                      <Switch
+                        onChange={this.handleWhatsApp}
+                        checked={this.state.whatsapp}
+                        checkedChildren="Different"
+                        unCheckedChildren="Same"
+                      />
+                    }
+                    </div>
+                    </div>
                  
                   < div class=" flex flex-col justify-between mt-3">
                   {this.props.customerConfigure.linkedinInd===true&&
@@ -617,7 +619,9 @@ class ContactForm extends Component {
 
 <div class=" w-w47.5 ">
                     {this.props.customerConfigure.sourceInd===true&&
-                    <div class=" text-xs font-semibold font-poppins"> Reports To</div>
+                    <div class=" text-xs font-semibold font-poppins">{translatedMenuItems[17]}
+                       {/* Reports To */}
+                       </div>
                     
   }
                     {/* {this.props.customerConfigure.sourceInd===true&& */}
@@ -694,7 +698,7 @@ class ContactForm extends Component {
                       </div>
                   </div>
                  
-                  <div class="mt-6" style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
+                  <div class="mt-3 mb-3" style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div class="mt-3">
                       {this.props.customerConfigure.addressInd===true&&
                       <div class=" text-xs font-semibold font-poppins mt-2"> {translatedMenuItems[13]}</div>

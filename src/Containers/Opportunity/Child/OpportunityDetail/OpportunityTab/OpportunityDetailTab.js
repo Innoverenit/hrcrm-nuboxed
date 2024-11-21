@@ -90,7 +90,7 @@ class OpportunityDetailTab extends Component {
       const itemsToTranslate = [
        '73', // 0 contacts
        '1166', // 1 Document
-       "1255" // 'Version', // 2
+       '1255' // 'Version', // 2
 
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -466,7 +466,7 @@ return  <BundleLoader />
                 <>
                   <DynamicFeedIcon  className="!text-icon"/>
                   <span className="ml-[0.25rem] !text-tab">
-                    {translatedMenuItems[2]}
+                  {translatedMenuItems[2]} 
                   </span>
                
                 </>
