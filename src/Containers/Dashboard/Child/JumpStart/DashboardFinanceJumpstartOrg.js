@@ -12,6 +12,8 @@ import {
 import FinaceRapairDrawer from "./FinaceRapairDrawer";
 import CustomerPieChart from "./CustomerPieChart";
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import axios from "axios";
+import { base_url2 } from "../../../../Config/Auth";
 
 
 function DashboardFinanceJumpstart(props) {
@@ -20,10 +22,28 @@ function DashboardFinanceJumpstart(props) {
   const [currentOrderType, setCurrentOrderType] = useState("");
   const [modalData, setModalData] = useState([]);
   const [hasMore, setHasMore] = useState(true);
-
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
+  // Order states
+  const [repairOrders, setRepairOrders] = useState({
+    Added: [],
+    Open: [],
+    Closed: [],
+    Cancelled: [],
+  });
+  const [loadingState, setLoadingState] = useState({
+    Added: false,
+    Open: false,
+    Closed: false,
+    Cancelled: false,
+  });
+  const [errorState, setErrorState] = useState({
+    Added: null,
+    Open: null,
+    Closed: null,
+    Cancelled: null,
+  });
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
@@ -51,19 +71,13 @@ function DashboardFinanceJumpstart(props) {
   }, [props.selectedLanguage]);
 
   useEffect(() => {
-     props.getFinaceOrderDetails(props.orgId,props.timeRangeType)
-  }, [props.timeRangeType]);
-  console.log(props.timeRangeType)
+    props.getFinaceOrderDetails(
+      props.buttonName === "My View" ? props.userId : props.orgId,
+      props.timeRangeType
+    );
+  }, [props.buttonName, props.orgId, props.userId, props.timeRangeType]);
 
 
-  useEffect(() => {
-    if(props.buttonName==="My View"){
-      props.getFinaceOrderDetails(props.orgId,props.timeRangeType)
-
-    } else if(props.buttonName==="Enterprise"){
-    props.getFinaceOrderDetails(props.orgId,props.timeRangeType)
-    }
- }, [props.buttonName,props.orgId,props.userId,props.timeRangeType]);
 
 // const openModal = (type) => {
 //     setOrderType(type);
@@ -101,53 +115,136 @@ function DashboardFinanceJumpstart(props) {
   //         setHasMore(data.hasMore);
   //       });}
   // };
+  const fetchRepairOrders = async (type, url) => {
+    setLoadingState((prev) => ({ ...prev, [type]: true }));
+    try {
+      const response = await axios.get(url, {
+        headers: {
+          Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+        },
+      });
+      setRepairOrders((prev) => ({ ...prev, [type]: response.data }));
+      setModalData(response.data);
+    } catch (error) {
+      setErrorState((prev) => ({ ...prev, [type]: error }));
+    } finally {
+      setLoadingState((prev) => ({ ...prev, [type]: false }));
+    }
+  };
+
+  const [RepairOrderAdded, setRepairOrderAdded] = useState([]);
+  const [loading1, setLoading1] = useState(false);
+  const [error1,setError1]=useState(null);
+
+    const fetchRepairOrderAdded= async () => {
+      try {
+        const response = await axios.get(`${base_url2}/dashboard/allOrder/${props.orgId}/${props.startDate}/${props.endDate}/0`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setRepairOrderAdded(response.data);
+        setLoading1(false);
+      } catch (error) {
+        setError1(error);
+        setLoading1(false);
+      }
+    };
+
+    const [RepairOrderOpen, setRepairOrderOpen] = useState([]);
+    const [loading2, setLoading2] = useState(false);
+    const [error2,setError2]=useState(null);
   
-  
-  useEffect(() => {
-    if (props.repairDashboardOrderAdded) {
-      setModalData(props.repairDashboardOrderAdded);
-    }
-  }, [props.repairDashboardOrderAdded]);
+      const fetchRepairOrderOpen= async () => {
+        try {
+          const response = await axios.get(`${base_url2}/dashboard/inCompleteOrders/${props.orgId}/${props.startDate}/${props.endDate}/0`,{
+            headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+            },
+          });
+          setRepairOrderOpen(response.data);
+          setLoading2(false);
+        } catch (error) {
+          setError2(error);
+          setLoading2(false);
+        }
+      };
 
-  useEffect(() => {
-    if (props.repairDashboardOrderOpen) {
-      setModalData(props.repairDashboardOrderOpen);
-    }
-  }, [props.repairDashboardOrderOpen]);
+      const [RepairOrderClosed, setRepairOrderClosed] = useState([]);
+      const [loading3, setLoading3] = useState(false);
+      const [error3,setError3]=useState(null);
+    
+        const fetchRepairOrderClosed= async () => {
+          try {
+            const response = await axios.get(`${base_url2}/dashboard/completeOrders/${props.orgId}/${props.startDate}/${props.endDate}/0`,{
+              headers: {
+                Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+              },
+            });
+            setRepairOrderClosed(response.data);
+            setLoading3(false);
+          } catch (error) {
+            setError3(error);
+            setLoading3(false);
+          }
+        };
+        const [RepairOrderCancelled, setRepairOrderCancelled] = useState({});
+        const [loading4, setLoading4] = useState(false);
+        const [error4,setError4]=useState(null);
+      
+          const fetchRepairOrderCancelled= async () => {
+            try {
+              const response = await axios.get(`${base_url2}/dashboard/allDeletelOrder/${props.orgId}/${props.startDate}/${props.endDate}/0`,{
+                headers: {
+                  Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+                },
+              });
+              setRepairOrderCancelled(response.data);
+              setLoading4(false);
+            } catch (error) {
+              setError4(error);
+              setLoading4(false);
+            }
+          };
 
-  useEffect(() => {
-    if (props.repairDashboardOrderClose) {
-      setModalData(props.repairDashboardOrderClose);
-    }
-  }, [props.repairDashboardOrderClose]);
+  // useEffect(() => {
+  //   if (RepairOrderAdded) {
+  //     setModalData(RepairOrderAdded);
+  //   }
+  // }, [RepairOrderAdded]);
 
-  useEffect(() => {
-    if (props.repairDashboardOrderCancelled) {
-      setModalData(props.repairDashboardOrderCancelled);
-    }
-  }, [props.repairDashboardOrderCancelled]);
+  // useEffect(() => {
+  //   if (RepairOrderOpen) {
+  //     setModalData(RepairOrderOpen);
+  //   }
+  // }, [RepairOrderOpen]);
+
+  // useEffect(() => {
+  //   if (RepairOrderClosed) {
+  //     setModalData(RepairOrderClosed);
+  //   }
+  // }, [RepairOrderClosed]);
+
+  // useEffect(() => {
+  //   if (RepairOrderCancelled) {
+  //     setModalData(RepairOrderCancelled);
+  //   }
+  // }, [RepairOrderCancelled]);
 
   
   const handleClick = (type) => {
     setCurrentOrderType(type);
     setIsModalOpen(true);
 
-    switch(type) {
-      case 'Added':
-        props.getRepairDashboardOrderAdded(props.orgId,props.endDate,props.startDate,"0");
-        break;
-      case 'Open':
-        props.getRepairDashboardOrderOpen(props.orgId,props.endDate,props.startDate,"0");
-        break;
-      case 'Closed':
-        props.getRepairDashboardOrderClose(props.orgId,props.endDate,props.startDate,"0");
-        break;
-      case 'Cancelled':
-        props.getRepairDashboardOrderCancelled(props.orgId,props.endDate,props.startDate,"0");
-        break;
-      default:
-        break;
-    }
+    const baseURL = `${base_url2}/dashboard`;
+    const urlMap = {
+      Added: `${baseURL}/allOrder/${props.orgId}/${props.startDate}/${props.endDate}/0`,
+      Open: `${baseURL}/inCompleteOrders/${props.orgId}/${props.startDate}/${props.endDate}/0`,
+      Closed: `${baseURL}/completeOrders/${props.orgId}/${props.startDate}/${props.endDate}/0`,
+      Cancelled: `${baseURL}/allDeletelOrder/${props.orgId}/${props.startDate}/${props.endDate}/0`,
+    };
+
+    fetchRepairOrders(type, urlMap[type]);
   };
 
 
@@ -253,17 +350,17 @@ function DashboardFinanceJumpstart(props) {
       </div>
 
 
-<FinaceRapairDrawer
-     selectedLanguage={props.selectedLanguage}
-     translateText={props.translateText}
-     isModalOpen={isModalOpen}
-     setIsModalOpen={() => setIsModalOpen(false)}
-     modalData={modalData}
-     title={currentOrderType}
-        hasMore={hasMore}
-        setHasMore={setHasMore}
-        buttonName={props.buttonName}
-      />
+      <FinaceRapairDrawer
+          selectedLanguage={props.selectedLanguage}
+          translateText={props.translateText}
+          isModalOpen={isModalOpen}
+          setIsModalOpen={() => setIsModalOpen(false)}
+          modalData={modalData}
+          title={currentOrderType}
+          hasMore={hasMore}
+          setHasMore={setHasMore}
+          buttonName={props.buttonName}
+        />
     </>
 
   );

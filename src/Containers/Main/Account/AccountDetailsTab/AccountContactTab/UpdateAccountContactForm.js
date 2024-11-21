@@ -79,25 +79,25 @@ class UpdateAccountContactForm extends Component {
                         emailId: this.props.setEditingDistributorContact.emailId || "",
                         departmentId: this.props.setEditingDistributorContact.departmentId || "",
                         designationId: this.props.setEditingDistributorContact.designationId || "",
-                        address: [
-                            {
-                                addressId: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].addressId : "",
-                                addressType: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].addressType : "",
-                                address1: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].address1 : "",
-                                address2: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].address2 : "",
-                                date: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].date : "",
-                                street: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].street : "",
-                                city: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].city : "",
-                                state: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].state : "",
-                                pinCode: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].pinCode : "",
-                                country: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].country : "",
-                                county: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].county : "",
-                                state: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].state : "",
-                                location: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].location : "",
-                                latitude: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].latitude : "",
-                                longitude: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].longitude : "",
-                            },
-                        ],
+                        // address: [
+                        //     {
+                        //         addressId: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].addressId : "",
+                        //         addressType: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].addressType : "",
+                        //         address1: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].address1 : "",
+                        //         address2: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].address2 : "",
+                        //         date: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].date : "",
+                        //         street: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].street : "",
+                        //         city: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].city : "",
+                        //         state: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].state : "",
+                        //         pinCode: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].pinCode : "",
+                        //         country: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].country : "",
+                        //         county: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].county : "",
+                        //         state: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].state : "",
+                        //         location: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].location : "",
+                        //         latitude: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].latitude : "",
+                        //         longitude: this.props.setEditingDistributorContact.addresses.length ? this.props.setEditingDistributorContact.addresses[0].longitude : "",
+                        //     },
+                        // ],
 
                     }}
                     validationSchema={DistributorSchema}
@@ -264,7 +264,7 @@ class UpdateAccountContactForm extends Component {
                                         </div>
                                     </div>
                                     <div>
-                                        <div class="mt-3">
+                                        {/* <div class="mt-3">
                                             <FieldArray
                                                 name="address"
                                                 render={(arrayHelpers) => (
@@ -275,7 +275,7 @@ class UpdateAccountContactForm extends Component {
                                                     />
                                                 )}
                                             />
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
                             </div>

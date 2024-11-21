@@ -49,7 +49,6 @@ const [newContact, setNewContact] = useState({
     emailId: '',
     phoneNumber: '',
     countryDialCode:"",
-   
   });
 
 const handleOnSelectType =(ontype)=> {
@@ -72,16 +71,14 @@ const handleAddContact = () => {
       };
   
       try {
-        // Await the addMoreContact function to ensure success before proceeding
         const response = await axios.post(`${base_url2}/contactPerson`,data,{  
             headers: {
                 Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
             },
          });
-  
         setIsAddingContact(false);
         setNewContact({ firstName: '', lastName: '', email: '', mobile: '', dialCode: '' });
-
+        props.getContactDistributorList(props.distributorId);
       } catch (error) {
         console.error('Error adding contact:', error);
       }
@@ -432,28 +429,6 @@ const handleAddContact = () => {
             <div class=" w-w47.5 max-sm:w-wk">                         
 
 <div className= "font-bold text-[0.75rem]">
- 
-  {/* Contact */}
-  </div>
-  <Input
-              placeholder="Mobile No"
-              name="phoneNumber"
-              value={newContact.mobile}
-             
-              onChange={handleInputChange}
-             
-              style={{ flex: 1,marginLeft:"-1px" }} // Allow input to take full width
-            />    
-
-
-                </div>
-
-
-                <div class=" w-w47.5 max-sm:w-wk">                         
-
-<div className= "font-bold text-[0.75rem]">
- 
-  {/* Contact */}
   </div>
   <Select
         placeholder="Select dialcode"
@@ -470,6 +445,26 @@ const handleAddContact = () => {
         ))}
       </Select>   
                 </div>
+
+            <div class=" w-w47.5 max-sm:w-wk">                         
+
+<div className= "font-bold text-[0.75rem]">
+  </div>
+  <Input
+              placeholder="Mobile No"
+              name="phoneNumber"
+              value={newContact.mobile}
+             
+              onChange={handleInputChange}
+             
+              style={{ flex: 1,marginLeft:"-1px" }} // Allow input to take full width
+            />    
+
+
+                </div>
+
+
+             
             <div class=" w-w47.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
   </div>

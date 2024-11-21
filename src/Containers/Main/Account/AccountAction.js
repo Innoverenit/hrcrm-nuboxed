@@ -4388,7 +4388,7 @@ export const updateProcureDetails = (data, id,cb) => (dispatch) => {
   });
   axios
     .put(
-      `${base_url2}/phoneOrder/procure/order/update/${id}`,
+      `${base_url2}/quotation/procure/order/update/${id}`,
      data,
       {
         headers: {

@@ -64,9 +64,9 @@ const [RowItem,setRowItem]=useState({});
   '259', // 3
   '654', // 4
   '658', // 5
-  '655',
-  '260',
-  '657',
+  '655', //6
+  '260', //7
+  '657',//8
         ];
   
           const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -196,7 +196,7 @@ const handleRowItem = (item) => {
     <>
       <div className="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className="flex justify-between  w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-        <div className=" md:w-[4rem] font-semibold  font-poppins"></div>
+        <div className=" md:w-[2rem] font-semibold  font-poppins"></div>
         <div className="md:w-[7.4rem] text-[#00A2E8] text-base font-bold font-poppins">
         {translatedMenuItems[0]} {/* Category" /> */}
           </div>
@@ -212,9 +212,13 @@ const handleRowItem = (item) => {
           <div className="md:w-[7.1rem] text-xs font-bold font-poppins">
           {translatedMenuItems[4]} {/* "Quality" /> */}
           </div>
+          <div className="md:w-[7.1rem] text-xs font-bold font-poppins">
+          Speci {/* "Quality" /> */}
+          </div>
       
             <div className="w-[7rem] md:w-[5%] text-xs font-bold font-poppins">
-          Supplies ID
+            {translatedMenuItems[5]} 
+            {/* Location */}
           </div>
           <div className="md:w-[2.8rem] text-xs font-bold font-poppins">
           {translatedMenuItems[7]} {/* "Units" /> */}
@@ -237,7 +241,7 @@ const handleRowItem = (item) => {
             <div key={index} className="flex rounded justify-between bg-white mt-1 h-8 items-center ">
 
 <div className="flex  md:w-[17rem] h-8  border-l-2 border-green-500 bg-[#eef2f9] items-center justify-center max-sm:flex-row w-full max-sm:justify-between">
-<div className=" flex   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex   md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                         
                                                          <div class=" text-xs  font-poppins text-center">
                                                                  <AddIcon
@@ -254,7 +258,7 @@ const handleRowItem = (item) => {
                 {editContactId === item.id ? (
                     <select
                       className="customize-select"
-                      style={{ width: "70%" }}
+                      style={{ width: "5rem" }}
                       value={category}
                       onChange={(e) => handleCategoryChange(e.target.value)}
                     >
@@ -274,7 +278,7 @@ const handleRowItem = (item) => {
                   {editContactId === item.id ? (
                     <select
                       className="customize-select"
-                      style={{ width: "70%" }}
+                      style={{ width: "5rem" }}
                       value={brand}
                       onChange={(e) => handleBrandChange(e.target.value)}
                     >
@@ -293,7 +297,7 @@ const handleRowItem = (item) => {
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <Select
-                      className="w-32"
+                    style={{ width: "5rem" }}
                       value={model}
                       onChange={handleModelChange}
                     >
@@ -313,7 +317,7 @@ const handleRowItem = (item) => {
                   {editContactId === item.id ? (
                     <select
                       className="customize-select"
-                      style={{ width: "70%" }}
+                      style={{ width: "5rem" }}
                       value={attribute}
                       onChange={(e) => handleAttributeChange(e.target.value)}
                     >
@@ -333,7 +337,7 @@ const handleRowItem = (item) => {
                   {editContactId === item.id ? (
                     <select
                       className="customize-select"
-                      style={{ width: "70%" }}
+                      style={{ width: "5rem" }}
                       value={quality}
                       onChange={(e) => handleQualityChange(e.target.value)}
                     >
@@ -353,7 +357,7 @@ const handleRowItem = (item) => {
                   {editContactId === item.id ? (
                     <select
                       className="customize-select"
-                      style={{ width: "70%" }}
+                      style={{ width: "5rem" }}
                       value={location}
                       onChange={(e) => handleLocationChange(e.target.value)}
                     >
@@ -368,11 +372,11 @@ const handleRowItem = (item) => {
                   )}
                 </div>
               </div>
-              <div className="flex  md:w-[1rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  md:w-[7rem] ml-2 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <Select
-                      style={{ width: 100 }}
+                    style={{ width: "5rem" }}
                       value={specs}
                       onChange={handleSpecsChange}
                     >
@@ -388,7 +392,7 @@ const handleRowItem = (item) => {
               </div>
 
 
-              <div className="flex  ml-2 md:w-[16rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
+              <div className="flex  ml-2 md:w-[14rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <input
@@ -409,7 +413,7 @@ const handleRowItem = (item) => {
                   {editContactId === item.id ? (
                     <input
                       placeholder="Update Unit"
-                      style={{border:"2px solid black"}}
+                      style={{border:"2px solid black",width:"6rem"}}
                       type="text"
                       value={newUnitName}
                       onChange={(e) => setUnitName(e.target.value)}
@@ -419,12 +423,12 @@ const handleRowItem = (item) => {
                   )}
                 </div>
               </div>
-              <div className="flex  md:w-[1rem]  max-sm:flex-row w-full max-sm:justify-between">
+              {/* <div className="flex  md:w-[1rem]  max-sm:flex-row w-full max-sm:justify-between">
                 <div className="text-xs  font-poppins">
                   {editContactId === item.id ? (
                     <select
                       className="customize-select"
-                      style={{ width: "70%" }}
+                      style={{ width: "5rem" }}
                       value={currency}
                       onChange={(e) => handleCurrencyChange(e.target.value)}
                     >
@@ -439,7 +443,7 @@ const handleRowItem = (item) => {
                     <div className="font-normal text-xs  font-poppins"></div>
                   )}
                 </div>
-              </div>
+              </div> */}
              
 
               <div className="flex flex-col w-[8rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 ml-1 max-sm:flex-row max-sm:w-auto">
