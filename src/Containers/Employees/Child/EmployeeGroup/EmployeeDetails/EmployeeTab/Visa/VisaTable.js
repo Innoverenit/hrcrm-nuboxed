@@ -19,14 +19,43 @@ import { Tooltip } from "antd";
 const UpdateVisaModal =lazy(()=>import("./UpdateVisaModal"));
 
 class VisaTable extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
   componentDidMount() {
     // debugger;
     const { getVisaDetails, userId } = this.props;
     // console.log(employeeId);
     if (userId) {
       getVisaDetails(userId);
+      this.fetchMenuTranslations();
     }
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "1109",//0 Country
+        "71",//1 Type
+        "176",//2 Start Date
+        "126",//3  End Date
+        "1259"// Do you want to delete?"
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
 
   render() {
     console.log(this.props.userId);
@@ -57,14 +86,14 @@ class VisaTable extends Component {
 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
 <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
 <div className=" md:w-[6.5rem]">
-Country</div>
+{this.state.translatedMenuItems[0]}</div>
 
 <div className="md:w-[10.1rem]">
-   Type</div>
+{this.state.translatedMenuItems[1]}</div>
        <div className="md:w-[7.1rem]">
-     Start Date</div>
+       {this.state.translatedMenuItems[2]}</div>
              <div className=" md:w-[8.1rem]">
-        End Date</div>
+             {this.state.translatedMenuItems[3]}</div>
 
         
 
@@ -165,7 +194,7 @@ Country</div>
 
                           <div class=" text-xs  font-poppins text-center">
                           <StyledPopconfirm
-  title="Do you want to delete?"
+  title= {this.state.translatedMenuItems[4]}
   onConfirm={() => deleteVisa(item.visaId)}
 >
   <DeleteIcon className=" cursor-pointer !text-icon text-red-600"
