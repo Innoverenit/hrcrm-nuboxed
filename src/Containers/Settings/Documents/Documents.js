@@ -194,7 +194,7 @@ return <div><BundleLoader/></div>;
  {/* <div className="flex justify-between w-[34rem]"> */}
                   <div className="w-[30%]">
                   <Select
-  style={{ width: "50%" }}
+  style={{ width: "102%" }}
   onChange={(value) => handleStageType(value, region.documentTypeId)} // Pass region.documentTypeId here
   value={region.userType}
   placeholder="Select Entity"
