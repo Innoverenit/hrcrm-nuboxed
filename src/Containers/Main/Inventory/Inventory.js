@@ -46,14 +46,19 @@ function Inventory(props) {
        "14", // 'Category',//24
        "259" ,// 'Attribute',//25
        "260", // 'Units',//26
-       "1086", // '',//27
+       "1086", // 'Damaged',//27
        "1087" ,// 'Remark',//28
        "1091", // 'In Stock',//29
        "1092", // 'Ordered',//30
        "1093" ,// 'Balance',//31
        "1077", // 'Zone',//32
        "1073",  // 'Rack',//33
-       "1559"
+       "1559",
+       "1703",//  Best Before
+       "1083",//Supplier
+       "771", //  Final
+       "1044",
+      //  ""//  Waste
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);

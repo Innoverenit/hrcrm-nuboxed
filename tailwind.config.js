@@ -25,6 +25,7 @@ module.exports = {
 'ls':'0.8rem',
 'icon':'1.1rem',
 'tab':'0.8rem',
+'lm':'0.65rem',
             },
             colors: {
               "clr": "tomato",

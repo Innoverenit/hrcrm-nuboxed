@@ -74,12 +74,11 @@ const InventoryMaterialDamagedData = (props) => {
                     <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky items-end font-poppins text-xs z-10">
                         <div className=""></div>
                         <div className="text-[#00A2E8] text-base w-[17.5rem]">PO ID</div>
-                        <div className=" w-[12.52rem]">
-                            
-                        </div>
+                      
 
                         <div className=" w-[11.12rem]">       
-                        <FactoryIcon className='!text-base  text-[#e4eb2f]' /> Supplier Name
+                        <FactoryIcon className='!text-base  text-[#e4eb2f]' />{props.translatedMenuItems[36]} {props.translatedMenuItems[0]} 
+                        {/* Supplier Name */}
 
                         </div>
 
@@ -91,15 +90,15 @@ const InventoryMaterialDamagedData = (props) => {
                         <div className=" w-[9.14rem]">       
                         <CategoryIcon
               className='!text-base  text-[#e4eb2f]'
-              /> Supplies Id
+              /> {props.translatedMenuItems[36]} Id
 
                         </div>
                         <div className=" w-[9.14rem]">       
-              Received
+              {/* Received */}{props.translatedMenuItems[17]}
 
                         </div>
                         <div className=" w-[9.14rem]">       
-              Damaged
+              {/* Damaged */}{props.translatedMenuItems[27]}
 
                         </div>
                         <div className=" w-[15.15rem]">       
@@ -111,7 +110,7 @@ const InventoryMaterialDamagedData = (props) => {
 
                         </div>
                         <div className=" w-[4.17rem]">       
-                  Final
+                  {/* Final */}{props.translatedMenuItems[37]}
 
                         </div>                                 
                     </div>
