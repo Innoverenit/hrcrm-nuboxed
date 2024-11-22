@@ -57,6 +57,9 @@ fetchingCompleteDispatchSearchError: false,
 
   inventoryExpandTask:false,
 
+  fetchingScanReceivedData:false,
+  fetchingScanReceivedDataError:false,
+
   fetchingQualityManufactureData:false,
   fetchingQualityManufactureDataError:false,
   qualityManufactureData:[],
@@ -609,6 +612,23 @@ export const inventoryReducer = (state = initialState, action) => {
         fetchingInventoryById: false,
         fetchingInventoryByIdError: true,
       };
+
+
+      case types.ADD_SCAN_RECEIVED_DATA_REQUEST:
+        return { ...state, fetchingScanReceivedData: true };
+      case types.ADD_SCAN_RECEIVED_DATA_SUCCESS:
+        return {
+          ...state,
+          fetchingScanReceivedData: false,
+          addReceivedScanModal:false,
+          //subList: action.payload
+        };
+      case types.ADD_SCAN_RECEIVED_DATA_FAILURE:
+        return {
+          ...state,
+          fetchingScanReceivedData: false,
+          fetchingScanReceivedDataError: true,
+        };
     //add output
     case types.ADD_INVENTORY_OUTPUT_REQUEST:
       return { ...state, addingInventoryOutput: true };
