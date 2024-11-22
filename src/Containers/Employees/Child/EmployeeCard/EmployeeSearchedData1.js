@@ -386,7 +386,6 @@ const mapStateToProps = ({ auth,role, employee,designations,departments }) => ({
     fetchingEmployeeError: employee.fetchingEmployeeError,
     employeeDrawerVisibleForAdmin: employee.employeeDrawerVisibleForAdmin,
     openNotifydrwr:employee.openNotifydrwr,
-    employeeSerachedData: employee.employeeSerachedData,
     fetchingEmployeeInputSearchData: employee.fetchingEmployeeInputSearchData
 })
 
