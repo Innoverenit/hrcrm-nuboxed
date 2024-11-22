@@ -10,14 +10,14 @@ const AddAccountOpportunityModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title="Quotation" 
+        title="" 
         width="90%"
         visible={props.addAccountOpportunityModal}
         onClose={() => props.handleAccountOpportunityModal(false)}
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <AccountOpportunityStepper {...formProps}     RowData={props.RowData}    distributorId={props.RowData.distributorId}/>{" "}
+          <AccountOpportunityStepper {...formProps}     RowData={props.RowData}    distributorId={props.distributorId}/>{" "}
         </Suspense>
       </StyledDrawer>
     </>
