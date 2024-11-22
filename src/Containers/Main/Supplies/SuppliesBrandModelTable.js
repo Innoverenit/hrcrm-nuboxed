@@ -197,7 +197,7 @@ const SuppliesBrandModelList = (props) => {
          <MainWrapper className="!h-[69vh] !mt-2" >
             {!props.fetchingBrandModel && brandModel.length === 0 ? <NodataFoundPage /> : brandModel.map((region, index) => (
      
-              <div className="flex rounded ml-1 font-bold  font-poppins text-xs shadow shadow-gray-300  border-[#0000001f]  border  shadow-[#a3abb980] bg-white text-[#444] mt-1  p-2 justify-between items-center  h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.phoneMasterListId}>
+              <div className="flex rounded ml-1 font-bold  font-poppins text-xs   border-[#0000001f]  border  shadow-[#a3abb980] bg-white text-[#444] mt-1  p-2 justify-between items-center  h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.phoneMasterListId}>
               {/* Region name display or input field */}
               
               {editingId === region.phoneMasterListId ? (

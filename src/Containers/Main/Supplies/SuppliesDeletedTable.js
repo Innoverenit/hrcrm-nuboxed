@@ -51,37 +51,37 @@ function SuppliesDeletedTable(props) {
     <>
    <div className=" flex  sticky  z-auto">
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky font-poppins !text-lm max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
             <div className=" w-[1rem] max-xl:w-[2rem]"></div>
-            <div className="font-bold font-poppins text-xs w-[6.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[6.13rem] ">
               {/* HSN */}
               {translatedMenuItems[0]}
               </div>
-            <div className="font-bold font-poppins text-xs w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[5.1rem] ">
               {/* Name */}
               {translatedMenuItems[1]}
               </div>
-            <div className="font-bold font-poppins text-xs w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[6.2rem] ">
               {/* Category */}
               {translatedMenuItems[2]}
               </div>
-            <div className="font-bold font-poppins text-xs w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[6.1rem] ">
               {/* Sub Category */}
               {translatedMenuItems[3]}
               </div>
-            <div className="font-bold font-poppins text-xs w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[4.8rem] ">
               {/* Attribute */}
               {translatedMenuItems[4]}
               </div>
-            <div className="font-bold font-poppins text-xs w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[6.1rem] ">
               {/* Re-order level */}
               {translatedMenuItems[5]}
               </div>
-            <div className="font-bold font-poppins text-xs w-[4.23rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[4.23rem] ">
               {/* Created */}
               {translatedMenuItems[6]}
               </div>
-            <div className="font-bold font-poppins text-xs w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[7.2rem] ">
               {/* Reinstate */}
               {translatedMenuItems[7]}
               </div>

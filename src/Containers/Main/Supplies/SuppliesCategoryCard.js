@@ -201,13 +201,13 @@ console.log("drb2",data)
 
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 h-[87vh] max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky items-end z-10">          
-            <div className="font-bold font-poppins text-[#00A2E8] text-base w-[6.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
-            {translatedMenuItems[0]}   {/* Category */}
-              </div>
-            <div className=" w-[4.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[4.11rem]"></div>
+          <div className=" flex justify-between max-sm:hidden w-[100%] !text-lm p-1 bg-transparent  sticky items-end font-bold font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">          
+            <div className=" text-[#00A2E8] text-base w-[6.11rem]  max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
+              {translatedMenuItems[0]}   {/* Category */}
+            </div>
+            <div className=" w-[4.11rem]  max-xl:w-[5.11rem] max-lg:w-[4.11rem]"></div>
 
-            <div className="font-bold font-poppins text-xs w-[4.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[4.11rem]">Alert</div>
+            <div className=" w-[4.11rem]  max-xl:w-[5.11rem] max-lg:w-[4.11rem]">Alert</div>
             <div className=" flex  w-[9rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Add">
@@ -339,7 +339,7 @@ console.log("drb2",data)
                       
                     ) : (
                       <BorderColorIcon
-                      className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center h-8 ml-gap bg-[#eef2f9] justify-center   items-center mt-1"
+                      className="!text-xl cursor-pointer text-[tomato] flex  h-8 ml-gap bg-[#eef2f9] justify-center   items-center mt-1"
                         tooltipTitle="Edit"
                         iconType="edit"
                         onClick={() => handleEditClick(item.categoryId)}

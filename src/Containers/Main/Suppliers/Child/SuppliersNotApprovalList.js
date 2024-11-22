@@ -72,22 +72,24 @@ function SuppliersNotApprovalList(props) {
   ) : (
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between w-[97%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  items-end z-10">
-          <div className=" w-[9.91rem] truncate text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
+          <div className=" flex max-sm:hidden justify-between w-[97%]  p-1 bg-transparent font-bold font-poppins !text-lm text-xs sticky  max-xl:text-[0.65rem]  items-end z-10">
+          <div className=" w-[9.91rem] truncate text-[#00A2E8]  max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* Supplier ID */}
                <CategoryIcon className="!text-icon"/> {props.translatedMenuItems[40]} ID
                </div>
-            <div className=" w-[13.4rem] truncate max-xl:text-[0.65rem] max-lg:text-text-xs max-xl:w-[11.8rem]"> <ApartmentIcon className="!text-icon text-[#4f5d75] "/> {props.translatedMenuItems[0]} </div>
-            <div className=" w-[16.4rem] truncate max-xl:text-[0.65rem] max-lg:text-text-xs max-xl:w-[9.8rem]">
+            <div className=" w-[13.4rem] truncate max-lg:text-text-xs max-xl:w-[11.8rem]"> 
+              <ApartmentIcon className="!text-icon text-[#4f5d75] "/> {props.translatedMenuItems[0]} 
+              </div>
+            <div className=" w-[16.4rem] truncate max-lg:text-text-xs max-xl:w-[9.8rem]">
             <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>     {props.translatedMenuItems[1]}
             </div>
-            <div className=" w-[17.4rem] truncate max-xl:text-[0.65rem] max-lg:text-text-xs max-xl:w-[14.9rem] "> 
+            <div className=" w-[17.4rem] truncate max-lg:text-text-xs max-xl:w-[14.9rem] "> 
             <MailOutlineIcon className="!text-icon  text-[#4f5d75]"/>  {props.translatedMenuItems[2]}</div>
-            <div className=" w-[16.3rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
+            <div className=" w-[16.3rem] truncate max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
                {/* url */}
                <LinkIcon  className="!text-icon  text-[#4f5d75]"/>    {props.translatedMenuItems[41]}
                </div>
-            <div className="w-[6.9rem] truncate max-xl:text-[0.65rem] max-lg:text-text-xs max-xl:w-[9.5rem]">
+            <div className="w-[6.9rem] truncate max-lg:text-text-xs max-xl:w-[9.5rem]">
             <CheckCircleIcon className="!text-icon  text-[#4f5d75]"/>    {props.translatedMenuItems[17]}
             {/* Approve */}
             </div>
