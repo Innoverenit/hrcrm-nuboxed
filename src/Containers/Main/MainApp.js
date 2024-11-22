@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState, } from "react";
+import React, { lazy, Suspense, useEffect,useRef, useState, } from "react";
 import { Route, Switch } from "react-router-dom";
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
@@ -52,7 +52,6 @@ import FlashOnIcon from '@mui/icons-material/FlashOn';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { MultiAvatar } from "../../Components/UI/Elements";
 import AddActionModal from "./AddActionModal";
-import ApartmentIcon from '@mui/icons-material/Apartment';
 import EmptyPage from "./EmptyPage";
 import LanguageSelector from "../Translate/LanguageSelector";
 import FAQPage from "./FAQ/FAQPage";
@@ -61,7 +60,6 @@ import DataRoom from "../Data Room/DataRoom";
 import TagInDrawer from "./Refurbish/ProductionTab/TagInDrawer";
 import PhoneScanner from "./Scan/PhoneScanner/PhoneScanner";
 import Vendor from "./Vendor/Vendor";
-import ContactsIcon from '@mui/icons-material/Contacts';
 import Procre from "./Procre/Procre";
 import Trade from "./Trade/Trade";
 import {handleContactModal} from "../Contact/ContactAction"
@@ -298,7 +296,8 @@ function MainApp(props) {
   const [hovering, setHovering] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  let hoverTimer = null;
+  const hoverTimer = useRef(null);
+
   console.log(data)
 
   useEffect(() => {
@@ -333,20 +332,10 @@ function MainApp(props) {
     setVisible(true);
   };
   const toggleSelect = () => {
+    clearTimeout(hoverTimer.current);
     setIsOpen(!isOpen);
   };
-  const handleHover = () => {
-    clearTimeout(hoverTimer); // Clear any previous hover timers
-    setHovering(true); // Set the hovering state to true
-    setIsOpen(true); // Open the Select immediately on hover
-  };
-  const handleLeave = () => {
-    // Set a delay before closing the Select dropdown after hover ends
-    hoverTimer = setTimeout(() => {
-      setHovering(false);
-      setIsOpen(false); // Close the Select after a short delay
-    }, 20); // You can adjust the delay time as needed (200ms is an example)
-  };
+
   const filterLocationOptions = (input, option) => {
     return option.children.toLowerCase().includes(input.toLowerCase());
   };
@@ -581,7 +570,7 @@ function MainApp(props) {
           
   
         // }}
-        className="!text-icon text-[#e4eb2f] text-[blue]"
+        className="!text-icon  text-[blue]"
         />
         </Tooltip>
        
@@ -590,14 +579,12 @@ function MainApp(props) {
       icon={
        
         <Tooltip title="Quotation">
-        {!isOpen && (
+       
          <LightbulbIcon 
        className="!text-icon  text-[blue]"
          onClick={toggleSelect} // Open/close Select on click
-          onMouseEnter={handleHover} // Open Select on hover
-         onMouseLeave={handleLeave} // Optionally close on hover leave
          />
-   ) }
+
         </Tooltip>
         } />
       {/* <FloatButton 
