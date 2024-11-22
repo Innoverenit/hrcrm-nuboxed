@@ -179,51 +179,51 @@ function AccountTable(props) {
   ) : (
       <div className=' flex  sticky  z-auto'>
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-white" >
-          <div className=" flex max-sm:hidden   w-[91%]  justify-between p-1 bg-transparentsticky items-end z-10">
-           <div class=" flex justify-between text-xs font-poppins  font-bold  w-[100%]  ">
+          <div className=" flex max-sm:hidden   w-[91%]  justify-between p-1 bg-transparentsticky max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-end z-10">
+           <div class=" flex justify-between !text-lm font-poppins  font-bold  w-[100%]  ">
             <div className="w-1"></div>
-            <div className=" w-[12.1rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]"> 
+            <div className=" w-[12.1rem] text-[#00A2E8] text-sm max-md:w-[12.1rem]"> 
             <ContactsIcon className="!text-icon  "/> {translatedMenuItems[0]}
             {/* Name */}
             </div>
-            <div className=" w-[8.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.11rem] max-lg:w-[9.11rem]">
+            <div className=" w-[8.11rem] max-md:w-[8.11rem]">
             <ApartmentIcon className="!text-icon mr-1 "/>{translatedMenuItems[1]}
            {/* Work */}
             </div>
-            <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.1rem] max-lg:w-[8.1rem] ">
+            <div className=" w-[8.1rem] max-md:w-[8.1rem] ">
             <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[2]}
               {/* Category */}
               </div>
-            <div className="w-[6.02rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem]">
+            <div className="w-[6.02rem] max-md:w-[6.02rem]">
             < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[3]}
           {/* Type */}
              </div>
-             <div className="w-[4.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem]">
+             <div className="w-[4.01rem] max-md:w-[4.01rem] ">
              <DynamicFeedIcon
               className='!text-base  text-[#e4eb2f]'
               />  {translatedMenuItems[20]}
           {/* Orders */}
              </div>
-             <div className="w-[5.03rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]  max-xl:w-[6.1rem] max-lg:w-[4.1rem]">
+             <div className="w-[5.03rem] max-md:w-[5.03rem]">
              <LightbulbIcon className="!text-icon text-[#84a59d]"/>  {translatedMenuItems[21]}
           {/* Quotation*/}
              </div>
-             <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
+             <div className="w-[5.2rem] max-md:w-[5.2rem]">
             {/* Club */}  <GolfCourseIcon className='!text-base   text-[#f42c04]'/> {translatedMenuItems[17]}
          
             </div> 
 
-            <div className="w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
+            <div className="w-[9.2rem] max-md:w-[9.2rem]">
             <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[5]}
             {/* Payment % */}
        
             </div>
            {/* "billingaddress" */}
-           <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+           <div className="w-[5.2rem] max-md:w-[5.2rem]">
            <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {translatedMenuItems[8]}
             {/* Credit */}          
             </div>
-  <div className="w-[5.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+  <div className="w-[5.3rem] max-md:w-[5.3rem]">
   <AccountCircleIcon className="!text-icon  text-[#d64933]"/>   {translatedMenuItems[7]}
             {/* Assigned */}          
             </div>         
@@ -258,9 +258,9 @@ function AccountTable(props) {
             `;
                   return (
                     <div>
-                      <div className="flex  justify-between  bg-white mt-1 py-1 items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "                                >
+                      <div className="flex  justify-between  bg-white mt-1 py-gap items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "                                >
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
-                          <div className=" flex w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] border-l-2 border-green-500 bg-[#eef2f9]  max-sm:w-auto">
+                          <div className=" flex w-[12rem] max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] border-l-2 border-green-500 bg-[#eef2f9]  max-sm:w-auto">
                             <div className="flex max-sm:w-auto">
                               <div>
                                 <MultiAvatar
@@ -274,7 +274,7 @@ function AccountTable(props) {
                               <div class="w-[0.25rem]"></div>
                              
                                 <Tooltip>
-                                  <div class="flex max-sm:flex-row justify-between w-full md:">
+                                  <div class="flex max-sm:flex-row justify-between w-full ">
                                   <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer flex items-center">
 
                                       <Link
@@ -295,50 +295,50 @@ function AccountTable(props) {
                         
                             </div>
                           </div>
-                          <div className=" flex  items-center justify-start h-8 ml-gap  bg-[#eef2f9] w-[7.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
+                          <div className=" flex  items-center justify-start h-8 ml-gap  bg-[#eef2f9] w-[7.1rem] max-md:w-[7.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
                             <div class="flex ml-gap text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-center max-sm:text-xs ">
                               {item.dialCode} {item.phoneNo}
                             </div>
                           </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex items-center justify-start max-sm:w-auto w-[10.2rem] max-xl:w-[5.2rem] bg-[#eef2f9] h-8 ml-gap max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex items-center justify-start max-sm:w-auto w-[10.2rem] max-md:w-[10.2rem]  max-xl:w-[5.2rem] bg-[#eef2f9] h-8 ml-gap max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class="flex ml-gap text-xs items-center  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.dcategoryName}
                             </div>
                           </div>
-                          <div className=" flex items-center justify-start  max-sm:w-auto w-[8.2rem] max-xl:w-[6rem] max-lg:w-[5rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex items-center justify-start  max-sm:w-auto w-[8.2rem] max-md:w-[8rem] max-xl:w-[6rem] max-lg:w-[5rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" flex ml-gap text-xs items-center  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.clientName}
 
                             </div>
                           </div>
-                          <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  max-sm:w-auto w-[4.2rem] max-xl:w-[6rem] max-lg:w-[5rem]  max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  max-sm:w-auto w-[4.2rem] max-md:w-[4.2rem] max-xl:w-[6rem] max-lg:w-[5rem]  max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                              
                             {item.procureCount} 
 
                             </div>
                           </div>
-                          <div className=" flex items-center justify-center  max-sm:w-auto w-[5.21rem] max-xl:w-[6rem] max-lg:w-[5rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex items-center justify-center  max-sm:w-auto w-[5.21rem] max-md:w-[5.21rem] max-xl:w-[6rem] max-lg:w-[5rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                             {item.qtProcureCount} 
 
                             </div>
                           </div>
-                          <div className=" flex items-center justify-center  max-sm:w-auto w-[5rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[cadetblue] h-8 max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex items-center justify-center  max-sm:w-auto w-[5rem] max-md:w-[5rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[cadetblue] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.clubName}
 
                             </div>
                           </div>
-                          <div className=" flex  items-center justify-center max-sm:w-auto w-[10rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex  items-center justify-center max-sm:w-auto w-[12rem] max-md:w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.payment} days
 
                             </div>
                          
-                          <div className=" flex  items-center justify-center max-sm:w-auto w-[3rem] max-xl:w-[3rem] max-lg:w-[2rem]  bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex  items-center justify-center max-sm:w-auto w-[3rem] max-md:w-[3rem] max-xl:w-[3rem] max-lg:w-[2rem]  bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">       
                               {visible && (item.distributorId === particularRowData.distributorId) ?
                                                                 <Input
@@ -350,7 +350,7 @@ function AccountTable(props) {
                             </div>
                           </div>
                           
-                          <div className=" flex  items-center justify-center   md:w-[1.06rem] bg-[#eef2f9] h-8 max-sm:flex-row w-full  max-sm:justify-between  ">
+                          <div className=" flex  items-center justify-center  w-[1.06rem] max-md:w-[1.06rem] bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
 
                                                         {visible && (item.distributorId === particularRowData.distributorId) ? (
@@ -390,7 +390,7 @@ function AccountTable(props) {
                                                 </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">            
-                      <div className=" flex items-center justify-between bg-[#eef2f9] h-8 ml-gap max-sm:w-auto w-[9.01rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center justify-between bg-[#eef2f9] h-8 ml-gap max-sm:w-auto w-[9.01rem] max-md:w-[9.01rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <div className=" flex items-center max-sm:w-auto w-[2rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>&nbsp;                            
                           </div>
@@ -400,7 +400,7 @@ function AccountTable(props) {
                             </div>                  
                         </div>
 
-                        <div class=" text-xs items-center justify-center flex bg-[#eef2f9] h-8 ml-gap w-[2.5rem] font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                        <div class=" text-xs items-center justify-center flex bg-[#eef2f9] h-8 ml-gap w-[2.5rem] max-md:w-[2.5rem] font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   {/* Assigned */}
                                   {item.assignToUser?
                                   <span onClick={()=>{handleCurrentRowData(item);
