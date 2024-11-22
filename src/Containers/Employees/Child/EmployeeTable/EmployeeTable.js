@@ -256,21 +256,21 @@ function EmployeeTable(props) {
     <div>
      <div class=" h-h86 overflow-auto overflow-x-auto">
         <div className=' flex  sticky z-auto'>
-        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end z-10 max-sm:hidden">
-                    <div className="w-[14rem] text-[#00A2E8] text-base font-bold font-poppins md:w-[13.5rem]"><LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}</div>
+        <div class="rounded m-1 p-1  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div className=" flex  w-[100%] justify-between p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end z-10 max-sm:hidden">
+                    <div className="w-[14rem] text-[#00A2E8] text-sm font-bold  font-poppins max-md:w-[13.5rem]"><LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}</div>
                     {/* Name */}
-                    <div className=" md:w-[9.1rem] "><ApartmentIcon className='!text-icon text-[#f0386b] '  />  {translatedMenuItems[1]}</div>
+                    <div className=" max-md:w-[9.1rem] w-[9.1rem] "><ApartmentIcon className='!text-icon text-[#f0386b] '  />  {translatedMenuItems[1]}</div>
                     {/* Department */}
-                    <div className=" md:w-[6.8rem]  "><i className=" fab fa-artstation mr-1 text-[#b744b8]"></i>{translatedMenuItems[2]}</div>
+                    <div className=" max-md:w-[6.8rem]  w-[6.8rem]"><i className=" fab fa-artstation mr-1 text-[#b744b8]"></i>{translatedMenuItems[2]}</div>
                     {/* Role */}
-                    <div className="md:w-[9.7rem] "><LocalPhoneIcon className='!text-icon mr-1 text-[#ff9f1c] '  />{translatedMenuItems[3]}</div>
+                    <div className="max-md:w-[9.7rem] w-[9.7rem]"><LocalPhoneIcon className='!text-icon mr-1 text-[#ff9f1c] '  />{translatedMenuItems[3]}</div>
                     {/* Mobile # */}
-                    <div className="md:w-[13.9rem] "><MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '  />{translatedMenuItems[4]}</div>
+                    <div className="max-md:w-[13.9rem] w-[13.9rem]"><MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '  />{translatedMenuItems[4]}</div>
                     {/* Email # */}
-                    <div className="md:w-[10.2rem] "> <RadioButtonCheckedIcon className="!text-icon mr-1 text-[#f28482]"/>  {translatedMenuItems[5]}</div>
+                    <div className="max-md:w-[10.2rem] w-[10.2rem]"> <RadioButtonCheckedIcon className="!text-icon mr-1 text-[#f28482]"/>  {translatedMenuItems[5]}</div>
                     {/* Stop Access */}
-                    <div className="md:w-[11.4rem] "><BusinessIcon className="!text-icon mr-1 text-[#f28482]"/> {translatedMenuItems[6]}</div>
+                    <div className="max-md:w-[11.4rem] w-[11.4rem] "><BusinessIcon className="!text-icon mr-1 text-[#f28482]"/> {translatedMenuItems[6]}</div>
                     {/* Multi Org */}               
                 </div>
                 {props.employees.map((item) => {
@@ -278,10 +278,10 @@ function EmployeeTable(props) {
                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                     return (
                         <div>
-                            <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:justify-between   max-sm:bg-gradient-to-b max-sm:from-blue-200
+                            <div className="flex rounded justify-between mt-1 bg-white  items-center p-1 max-sm:justify-between   max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col   scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  " >
                               <div class="flex  max-sm:w-wk  items-center max-sm:items-center">
-                                    <div className="border-l-2 h-8 text-xs border-green-500 bg-[#eef2f9] items-center flex md:w-[12.6rem] max-sm:w-full ">
+                                    <div className="border-l-2 h-8 text-xs border-green-500 bg-[#eef2f9] items-center w-[12.6rem] flex max-md:w-[12.6rem] max-sm: ">
                                     <EmployeeDetailsView
           employeeId={item.employeeId}
           fullName={item.fullName}
@@ -295,13 +295,13 @@ function EmployeeTable(props) {
                                         ) : null}
                                     </div>
 
-                                    <div className=" flex justify-start items-center h-8 ml-gap bg-[#eef2f9] md:w-[7.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                    <div className=" flex  items-center h-8 ml-gap bg-[#eef2f9] max-md:w-[7.7rem] w-[7.7rem] max-sm:flex-row  max-sm:justify-between  ">
                                         <div class=" text-xs items-center ml-gap font-poppins">
                                             {item.department}
                                         </div>
 
                                     </div>
-                                    <div className=" flex justify-start items-center h-8 ml-gap bg-[#eef2f9] md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                    <div className=" flex  items-center h-8 ml-gap bg-[#eef2f9] max-md:w-[6.2rem] w-[6.2rem] max-sm:flex-row  max-sm:justify-between ">
 
 
 
@@ -313,19 +313,19 @@ function EmployeeTable(props) {
                                 </div>
 
                                 <div class="flex  h-8 ml-gap bg-[#eef2f9] max-sm:w-wk items-center max-sm:items-center max-sm:justify-evenly">
-                                <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9] md:w-[11.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] max-md:w-[11.2rem] max-sm:flex-row w-[11.2rem]  max-sm:justify-between ">
                                     <div class=" text-xs  items-center ml-gap font-poppins text-center">
                                     {item.countryDialCode} {item.mobileNo}
                                     </div>
                                 </div>
-                                <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] md:w-[12.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] max-md:w-[12.2rem] max-sm:flex-row  w-[12.2rem] max-sm:justify-between ">
                                     <div class=" text-xs items-center ml-gap  font-poppins text-center">
                                        {item.emailId}
                                     </div>
                                 </div>
                                 </div>
                                 <div class="flex  max-sm:w-wk items-center max-sm:items-center max-sm:justify-evenly">
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] max-md:w-[8.2rem] max-sm:flex-row w-[8.2rem] max-sm:justify-between ">
                                     <div class=" text-xs items-center ml-gap   font-poppins text-center">
                                     {props.user.userDeleteInd === true || user.role === "ADMIN" ? (
             <SuspendEmployee
@@ -338,7 +338,7 @@ function EmployeeTable(props) {
                                     </div>
                                 </div>
                                 {props.user.multyOrgLinkInd=== true && (
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.2rem] max-md:w-[5.2rem] max-sm:flex-row  max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                   
                             <MultiOrgEmployee
@@ -349,7 +349,7 @@ function EmployeeTable(props) {
                                     </div>
                                 </div>
                                 )}
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.21rem] max-md:w-[8.21rem] max-sm:flex-row  max-sm:justify-between ">
                                     <div class=" text-xs cursor-pointer items-center ml-gap  font-poppins text-center">
                                     {item.suspendInd !== true && ( 
               <Tooltip  title={item.role}>
@@ -376,7 +376,7 @@ function EmployeeTable(props) {
                )}
                                     </div>
                                 </div>
-                                <div className=" flex md:w-[15.12rem] items-center justify-end h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex max-md:w-[15.12rem] w-[15.12rem] items-center justify-end h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center ">
                                     <span className=" cursor-pointer max-sm:!text-2xl "
               onClick={() => {
@@ -391,7 +391,7 @@ function EmployeeTable(props) {
                 <MonitorHeartIcon className="!text-icon text-[#df9697] "  />  </span>
                                     </div>
                               
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[1.22rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] max-md:w-[1.22rem] w-[1.22rem] max-sm:flex-row  max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     <Tooltip title="Add as Admin">
            <CircleNotificationsIcon className=" cursor-pointer !text-icon max-sm:!text-2xl"
@@ -403,7 +403,7 @@ function EmployeeTable(props) {
            </Tooltip>
                                     </div>
                                 </div>
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] max-md:w-[1rem] w-[1rem] max-sm:flex-row  max-sm:justify-between ">
                                     <div class=" text-base  font-poppins text-center">
                                     {item.suspendInd === true && (
                  <StyledPopconfirm
