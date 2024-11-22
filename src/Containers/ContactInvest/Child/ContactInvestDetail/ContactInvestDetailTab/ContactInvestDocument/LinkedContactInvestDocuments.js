@@ -59,21 +59,21 @@ class LinkedContactInvestDocuments extends Component {
       <>
           <div className=' flex sticky z-auto'>          
 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                  <div className=" flex  w-[100%] font-bold font-poppins text-xs  p-1 bg-transparent text-xs sticky items-end z-10">
+                  <div className=" flex  w-[100%] font-bold font-poppins  p-1 bg-transparent !text-lm font-bold font-poppins  sticky items-end z-10">
                   
-                  <div className="md:w-[12.7rem] text-[#00A2E8] text-base">
+                  <div className=" w-[12.7rem] max-md:w-[12.7rem] truncate text-[#00A2E8] text-sm">
                   <DateRangeIcon className='!text-icon  '  /> {this.state.translatedMenuItems[0]}  
                   {/* Date */}
                     </div>
-                      <div className=" md:w-[16.12rem]">
+                      <div className="w-[16.12rem] truncate max-md:w-[16.12rem]">
                       <LocationCityIcon className='!text-icon  '  />  {this.state.translatedMenuItems[1]}  
                       {/* Name */}
                         </div>
-                      <div className=" md:w-[14.5rem]">
+                      <div className=" w-[14.5rem] truncate max-md:w-[14.5rem]">
                       < MergeTypeIcon className='!text-icon text-[#c42847] '  />  {this.state.translatedMenuItems[2]}  
                       {/* type*/}
                         </div>
-                      <div className=" md:w-[9.8rem] ">
+                      <div className="w-[9.8rem] truncate max-md:w-[9.8rem] ">
                       <  FileOpenIcon className='!text-icon text-[#7fb800] '  /> 
                       {this.state.translatedMenuItems[3]}  
                       {/* filename */}

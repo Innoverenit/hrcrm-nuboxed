@@ -140,26 +140,26 @@ const InvestorLinkedDocuments = (props) => {
     <>
         <div className=' flex  sticky  z-auto'>          
 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky items-end z-10">
+                <div className=" flex  w-[100%]  p-1 bg-transparent font-poppins font-bold !text-lm sticky items-end z-10">
                 
-                <div className=" font-poppins font-bold text-[#00A2E8] text-base  md:w-[15.7rem]">
+                <div className="w-[15.7rem]  text-[#00A2E8] text-sm  max-md:w-[15.7rem]">
 
                 <DateRangeIcon className='!text-icon  '  />  {translatedMenuItems[0]}   
                   {/* Date */}
                 </div>
-                    <div className="font-poppins font-bold text-xs md:w-[11.12rem]">
+                    <div className="w-[11.12rem] max-md:w-[11.12rem]">
                     <ArticleIcon className='!text-icon text-[#a379c9] '  />  {translatedMenuItems[1]}   
                       {/* Name */}
                       </div>
-                    <div className="font-poppins font-bold text-xs md:w-[12.122rem]">
+                    <div className="w-[12.122rem] max-md:w-[12.122rem]">
                     < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[2]}   
                       {/* Type */}
                       </div>
-                    <div className="font-poppins font-bold text-xs md:w-[9.5rem]">
+                    <div className="w-[9.5rem] max-md:w-[9.5rem]">
                     <DescriptionIcon className='!text-icon text-[#9ad5ca] '  />  {translatedMenuItems[3]}   
                       {/* Description */}
                       </div>
-                    <div className="font-poppins font-bold text-xs md:w-[9.81rem] ">
+                    <div className="w-[9.81rem]  max-md:w-[9.81rem] ">
                     <AccountCircleIcon className="!text-icon mr-1 text-[#f28482]"/> {translatedMenuItems[4]}   
                       {/* Uploaded By */}
                       </div>

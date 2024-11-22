@@ -74,28 +74,28 @@ function OpportunityTable(props) {
     <>
     <div class="rounded m-1 max-sm:m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
  <div className="flex max-sm:hidden  w-[100%]  max-xl:w-[100%]  p-1 bg-transparent font-bold font-poppins items-end !text-lm sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
-        <div className=" w-[15.8rem] text-[#00A2E8] text-sm  truncate max-xl:w-[16.8rem] "> 
-           <LightbulbIcon className="!text-icon text-[#84a59d]"/> {translatedMenuItems[0]} ID</div>
+        <div className=" w-[15.8rem] text-[#00A2E8] text-sm  truncate max-xl:w-[16.8rem] max-md:w-[15.8rem] "> 
+           <LightbulbIcon className="!text-icon  text-[#84a59d]"/> {translatedMenuItems[0]} ID</div>
         {/* Quotation ID */}
-        <div className=" w-[13.1rem] truncate">
+        <div className=" w-[13.1rem] truncate max-md:w-[13.1rem]">
         <ApartmentIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[1]}</div>
         {/* Prospect */}
-        <div className=" w-[10.12rem] truncate "> <ContactPageIcon className='!text-icon  '  /> 
+        <div className=" w-[10.12rem] truncate max-md: w-[10.12rem]"> <ContactPageIcon className='!text-icon  '  /> 
           {translatedMenuItems[2]}</div>
         {/* Sponsor */}
-        <div className="w-[12.8rem] truncate">
+        <div className="w-[12.8rem] truncate max-md:w-[12.8rem]">
         <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[3]}</div>
         {/* Start Date */}
-        <div className="w-[12.3rem] truncate">
+        <div className="w-[12.3rem] truncate max-md:w-[12.3rem]">
            <CurrencyExchangeIcon className='!text-icon mr-1 text-[#e4eb2f]' />{translatedMenuItems[4]}</div>
         {/* Value */}
-        <div className="w-[10.02rem] truncate ">  
+        <div className="w-[10.02rem] truncate max-md:w-[10.02rem]">  
           <StairsIcon className='!text-icon  '  /> 
           {translatedMenuItems[5]}</div>
         {/* Stages */}
-        <div className="w-[9.1rem] truncate">{translatedMenuItems[6]}</div>
+        <div className="w-[9.1rem] truncate max-md:w-[9.1rem]">{translatedMenuItems[6]}</div>
         {/* Sales Rep */}
-        <div className="w-[10.2rem]  max-lg:w-[0.2rem]">
+        <div className="w-[10.2rem]  max-lg:w-[0.2rem] max-md:w-[10.2rem] ">
         <ContactPageIcon className='!text-icon text-[#ffb400] '  />{translatedMenuItems[7]}</div>
         {/* Owner */}
         <div className="w-[2.8rem] truncate"></div>

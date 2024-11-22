@@ -103,8 +103,8 @@ class ContactInvestDetailTab extends Component {
               tab={
                 <>
                  
-                 <CurrencyExchangeIcon className="!text-icon text-[#fce762]"/>
-                    <span class=" ml-1 !text-tab">
+                 <CurrencyExchangeIcon className="!text-icon  text-[#fce762]"/>
+                    <span class=" ml-1 !text-tab text-sm">
                     {this.state.translatedMenuItems[0]}
                   
                   </span>
@@ -130,7 +130,7 @@ class ContactInvestDetailTab extends Component {
                 <i 
                   class="far fa-file  !text-icon text-[#41ead4]"
                   ></i>
-                  <span class=" ml-1 !text-tab">
+                  <span class=" ml-1 !text-tab text-sm">
                   {this.state.translatedMenuItems[1]}
                   
                   </span>
@@ -161,7 +161,7 @@ class ContactInvestDetailTab extends Component {
               tab={
                 <>
                <HourglassFullIcon className="text-blue-500  !text-icon" />
-                  <span class=" !text-tab">
+                  <span class=" text-sm !text-tab">
                     
                       {this.state.translatedMenuItems[3]}
                     
@@ -169,7 +169,7 @@ class ContactInvestDetailTab extends Component {
                   </span>
                   {activeKey === "3" && (
                     <>
-                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       <AddBoxIcon className=" !text-icon text-sm  ml-1 items-center text-[#6f0080ad]"
                   
                         title={this.state.translatedMenuItems[4]}
                          onClick={() => this.props.handleCallActivityModal(true)}

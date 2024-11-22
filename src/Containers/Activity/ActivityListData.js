@@ -5,8 +5,6 @@ import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import { Timeline, Button, Popconfirm, Tooltip,message } from 'antd';
 import { connect } from 'react-redux';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-//import {linkTaskStatus} from "../../../Task/TaskAction"
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { bindActionCreators } from 'redux';
 import dayjs from 'dayjs';
 import AddActivityNotesDrawerModal from "./AddActivityNotesDrawerModal"

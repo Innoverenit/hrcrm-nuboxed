@@ -2,7 +2,6 @@ import React, { lazy, Suspense,useEffect,useState } from "react";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
-import { TabsWrapper } from "../../../../../Components/UI/Layout";
 
 import ActivityForm from "../../../../Activity/ActivityForm";
 
