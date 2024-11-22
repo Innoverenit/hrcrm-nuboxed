@@ -61,7 +61,7 @@ const EmployeesActionLeft = (props) => {
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
-    if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
+    if (searchOnEnter && e.target.value.trim() === "") {  //Code for Search
       //setPage(pageNo + 1);
       if (props.viewType === "tile") {
         props.getEmployeelist("cretiondate","active");
@@ -72,6 +72,15 @@ const EmployeesActionLeft = (props) => {
       setSearchOnEnter(false);
     }
   };
+  // const handleChange = (e) => {
+  //   setCurrentData(e.target.value);
+
+  //   if (searchOnEnter && e.target.value.trim() === "") {
+  //     props.getEmployeelist("cretiondate","all");
+  //     props.ClearReducerDataOfEmployee()
+  //     setSearchOnEnter(false);
+  //   }
+  // };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
       // Perform the search

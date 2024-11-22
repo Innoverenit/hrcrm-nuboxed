@@ -49,14 +49,13 @@ function EmployeeSearchedData(props) {
       try {
         const itemsToTranslate = [
        
-          "Name",//0
-          "Department",//1
-          "Role",//2
-          "Mobile #",//3
-          "Email #",//4
-          "Stop Access",//5
-          "Multi Org"//6
-         
+          "110" ,// "Name",0
+          "326",  // "Department",//1
+           "980", // "Role",//2
+            "299",// "Mobile #",//3
+           "140", // "Email #",//4
+           "1142", // "Stop Access",//5
+           "1143" // "Multi Org"//6
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -85,7 +84,7 @@ function EmployeeSearchedData(props) {
         }
       }
     })
-    props.getEmployeelist("cretiondate","all");
+    // props.getEmployeelist("cretiondate","all");
     props.getRoles(props.organizationId);
     props.getDepartments();
   }, []);
@@ -467,7 +466,6 @@ const mapStateToProps = ({ auth,role, employee,designations,departments }) => ({
   fetchingEmployeeError: employee.fetchingEmployeeError,
   employeeDrawerVisibleForAdmin: employee.employeeDrawerVisibleForAdmin,
   openNotifydrwr:employee.openNotifydrwr,
-  employeeSerachedData: employee.employeeSerachedData,
   fetchingEmployeeInputSearchData: employee.fetchingEmployeeInputSearchData
 
 });
