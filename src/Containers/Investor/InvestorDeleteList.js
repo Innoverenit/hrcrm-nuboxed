@@ -6,7 +6,15 @@ import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import ExploreIcon from "@mui/icons-material/Explore";
 import ArticleIcon from '@mui/icons-material/Article';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import FactoryIcon from '@mui/icons-material/Factory';
+import SourceIcon from '@mui/icons-material/Source';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import GolfCourseIcon from '@mui/icons-material/GolfCourse';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import { Tooltip, Select, } from "antd";
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import dayjs from "dayjs";
 import {
   MultiAvatar,
@@ -170,57 +178,57 @@ function InvestorDeleteList(props) {
     />
   ) : (
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between max-sm:hidden  w-[89%]  p-1 bg-transparent font-bold sticky  z-10">
+        <div className=" flex justify-between max-sm:hidden  w-[89%]  p-1 bg-transparent font-bold font-poppins text-xs sticky max-xl:text-xs max-lg:text-[0.45rem] !text-lm z-10">
           <div className="w-2"></div>
-        <div className="font-bold font-poppins text-xs w-[11.6rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
-        {translatedMenuItems[0]} 
+        <div className=" w-[11.6rem] text-[#00A2E8] text-sm truncate max-md:w-[11.6rem]  max-xl:w-[14.4rem] ">
+        <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]} 
         {/* "Name" */}          
                      </div>
-        <div className=" font-bold font-poppins text-xs w-[7.55rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
-        {translatedMenuItems[1]}
+        <div className="  w-[7.55rem] truncate max-md:w-[7.55rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
+        <FactoryIcon className="!text-icon   text-[#84a59d]"/>  {translatedMenuItems[1]}
         {/* "Sector" */}
                     </div>
-        <div className="font-bold font-poppins text-xs w-[4.12rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">#
-        {translatedMenuItems[2]}
+        <div className=" w-[4.12rem] truncate max-md:w-[4.12rem]  max-xl:w-[5.12rem] max-lg:w-[8.12rem]">#
+        <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {translatedMenuItems[2]}
          {/* "Deals" */}          
                 </div>
-        <div className="font-bold font-poppins text-xs w-[5.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+        <div className=" w-[5.2rem] truncate max-md:w-[5.2rem] max-xl:w-[8.2rem]">
         {translatedMenuItems[3]}
         {/* "In Progress" */}           
           </div>
-          <div className="font-bold font-poppins text-xs w-[5.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <div className=" w-[5.2rem] truncate max-md:w-[5.2rem] max-xl:w-[8.2rem]">
           {translatedMenuItems[4]}
           {/* "Signed" */}            
           </div>
-          <div className="font-bold font-poppins text-xs w-[6.21rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {translatedMenuItems[5]}
+          <div className=" w-[6.21rem] truncate max-md:w-[6.21rem] max-xl:w-[8.2rem]">
+          <FormatListNumberedIcon className='!text-icon    text-[#42858c]' />  {translatedMenuItems[5]}
           {/* "Category" */}            
           </div>
-          <div className=" font-bold font-poppins text-xs w-[6.34rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
-        {translatedMenuItems[6]}
+          <div className=" w-[6.34rem] truncate max-md:w-[6.34rem]  max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
+          <SourceIcon className="!text-icon   text-[#4b5043]"/>  {translatedMenuItems[6]}
         {/* "Source"         */}
           </div>
-          <div className="font-bold font-poppins text-xs w-[8.22rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <div className=" w-[8.22rem] truncate max-md:w-[8.22rem] max-xl:w-[8.2rem]">
           {translatedMenuItems[7]}
       {/* First Meeting */}
           </div>
-          <div className="font-bold font-poppins text-xs w-[3.212rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {translatedMenuItems[8]}
+          <div className=" w-[3.212rem] truncate max-md:w-[3.212rem] max-xl:w-[8.2rem]">
+          <ShowChartIcon className='!text-icon    text-[#776871]' /> {translatedMenuItems[8]}
        {/* Shares # */}
           </div>         
-          <div className="font-bold font-poppins text-xs w-[6.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <div className=" w-[6.2rem] truncate max-md:w-[6.2rem]  max-xl:w-[8.2rem]">
           {translatedMenuItems[9]}
         {/* Value */}
           </div>
-          <div className="font-bold font-poppins text-xs w-[3.21rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          {translatedMenuItems[10]}
+          <div className=" w-[3.21rem] truncate max-md:w-[3.21rem] max-xl:w-[8.2rem]">
+          <GolfCourseIcon className='!text-base   text-[#f42c04]'/>  {translatedMenuItems[10]}
         {/* Club */}
           </div>
-        <div className="font-bold font-poppins text-xs w-[4.33rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
-        {translatedMenuItems[11]}
+        <div className=" w-[4.33rem] truncate max-md:w-[4.33rem]  max-xl:w-[10.3rem]">
+        <AccountCircleIcon className="!text-icon   text-[#d64933]"/>{translatedMenuItems[11]}
       {/* Assigned" */}         
          </div>
-        <div className=" font-bold font-poppins text-xs w-[3.13rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.21rem]">
+        <div className="  w-[3.13rem] truncate max-md:w-[3.13rem] max-xl:w-[8.21rem]">
         {translatedMenuItems[12]}
         {/* "owner" */}       
                 </div>
@@ -250,7 +258,7 @@ function InvestorDeleteList(props) {
                     return (
                         <div>
                             <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[10rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" 
+              className="flex rounded justify-between  bg-white mt-1 h-8 items-center  max-sm:rounded-lg max-xl:text-xs max-lg:text-[0.45rem]  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[10rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" 
             >
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
 
@@ -272,7 +280,7 @@ function InvestorDeleteList(props) {
                                             {/* Name */}
                                   
                                             <div class=" flex items-center   text-xs text-blue-500 ml-gap  font-poppins font-semibold cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] cursor-pointer max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
+                                            <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] cursor-pointer  max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
                                             {item.name}
                                         </Link>                                
                                               {/* {/* <Link */}
@@ -293,7 +301,7 @@ function InvestorDeleteList(props) {
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
                                 <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9]  w-[6.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                 {/* Sector                     */}
-                                    <div class="text-xs items-center ml-gap font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">   
+                                    <div class="text-xs items-center ml-gap font-poppins  max-sm:text-sm">   
                                     {item.sector}
                                     </div>
                                 </div>
@@ -301,7 +309,7 @@ function InvestorDeleteList(props) {
                                
                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3rem] max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">                              
                                {/* Country */}
-                                  <div class="text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">
+                                  <div class="text-xs  font-poppins  max-sm:text-xs">
                                               <ReactCountryFlag
                                     countryCode={item.countryAlpha2Code}
                                     svg
@@ -317,7 +325,7 @@ function InvestorDeleteList(props) {
                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Deals */}
 
-                                    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class="text-xs justify-center  font-poppins  max-sm:text-sm">
                                     {item.oppNo}
                                     </div>
                                 </div>   
@@ -328,7 +336,7 @@ function InvestorDeleteList(props) {
                                    {/* Pipeline Value */}
 
                                     {item.totalProposalValue && (
-      <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-xs max-lg:text-[0.45rem]">
+      <div class="text-xs  font-poppins max-sm:text-sm text-center ">
         {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}
       </div>
     )}
@@ -337,14 +345,14 @@ function InvestorDeleteList(props) {
                              
                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* # Signed */}
-                                    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class="text-xs justify-center  font-poppins  max-sm:text-sm">
                                     {item.signed}
                                     </div>
                                 </div>
                                 <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[5.113rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* # category */}
 
-                                    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class="text-xs justify-center  font-poppins  max-sm:text-sm">
                                     {item.category}
                                     </div>
                                 </div>
@@ -353,7 +361,7 @@ function InvestorDeleteList(props) {
                                 <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[7.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* >Source */}
 
-                                    <div class="text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class="text-xs  font-poppins  max-sm:text-sm">
                                     {item.source}
                                     </div>
                                 </div>
@@ -361,14 +369,14 @@ function InvestorDeleteList(props) {
                                     <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* Deals */}
-                                    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">                               
+                                    <div class="text-xs justify-center  font-poppins  max-sm:text-sm">                               
                                     {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
                                     </div>
                                 </div>
                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                              {/* Deals */}
 
-                                    <div class="text-xs text-[blue] cursor-pointer justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class="text-xs text-[blue] cursor-pointer justify-center  font-poppins  max-sm:text-sm">
                                   <div  onClick={() => {
                               props.handleInvestorPriceDrawer(true);
                               handleCurrentRowData(item);
@@ -379,7 +387,7 @@ function InvestorDeleteList(props) {
                               
                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.918rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* # Deals */}
-                                    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class="text-xs justify-center  font-poppins  max-sm:text-sm">
                                    {item.allTotalAmountOfShare}
                                     </div>
                                 </div>
@@ -387,13 +395,13 @@ function InvestorDeleteList(props) {
                                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.519rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Deals */}
-                                    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class="text-xs justify-center  font-poppins  max-sm:text-sm">
                                    {item.club}
                                     </div>
                                 </div>
                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Assigned */}
-                                    <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">                                    
+                                    <div class=" text-xs  font-poppins  max-sm:text-sm">                                    
                                     <span>
               {item.assignedTo === null ? (
                 "None"

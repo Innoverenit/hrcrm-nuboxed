@@ -88,8 +88,8 @@ class LinkedDocuments extends Component {
     return (
       <>
          <div class="rounded m-1 p-1 w-[99%] h-[78vh] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[100%] font-poppins font-bold text-xs p-1 bg-transparent !text-ln items-end font-bold sticky top-0 z-10">
-          <div className="w-[11.9rem] md:w-[11.9rem]"> 
+          <div className=" flex justify-between w-[100%] font-poppins font-bold text-xs p-1 bg-transparent !text-ln items-end  sticky top-0 z-10">
+          <div className="w-[11.9rem] text-[#00A2E8] text-sm  max-md:w-[11.9rem]"> 
             <DateRangeIcon className='!text-icon  '  />
           {this.state.translatedMenuItems[0]} </div>
           {/* Date */}

@@ -294,59 +294,59 @@ const [rowdata, setrowdata] = useState("");
         </div>
          <div className=' flex sticky  w-[85%] z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-         <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky items-end z-10">
-         <div class=" flex justify-between w-[82%] items-end font-poppins font-bold  !text-lm ">
-            <div className=" text-[#00A2E8] truncate  w-[11.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+         <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold !text-lm sticky items-end z-10">
+         <div class=" flex justify-between w-[82%] items-end font-poppins font-bold max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm ">
+            <div className=" text-[#00A2E8] truncate  w-[11.5rem] max-md:w-[11.5rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             <ApartmentIcon className="!text-icon  "/>
             {translatedMenuItems[0]}
            {/* name */}
             </div>
-            <div className=" w-[9.9rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className=" w-[9.9rem] truncate max-md:w-[9.9rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
             <WifiCalling3Icon className="!text-icon mr-1 text-[#4f5d75]"/>
             {translatedMenuItems[1]}
              {/* work */}
-             <div className=" w-[2.1rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+             <div className=" w-[2.1rem] truncate max-md:w-[2.1rem]  max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
            </div>
             </div>
-            <div className=" w-[7.2rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className=" w-[7.2rem] truncate max-md:w-[7.2rem]  max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
             <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> 
             {translatedMenuItems[2]}
              {/* sector */}
 
             </div>
-            {/* <div className=" w-[7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            {/* <div className=" w-[7rem]  max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
             <SourceIcon className="!text-icon mr-1 text-[#4b5043]"/> 
             {translatedMenuItems[3]}
            source
 
             </div> */}
            
-            <div className=" w-[6.4rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <div className=" w-[6.4rem] truncate max-md:w-[6.4rem]  max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             <LightbulbIcon className="!text-icon  text-[#84a59d]"/> 
             {translatedMenuItems[4]}
              {/* quotation */}
 
             </div>
             {props.user.aiInd && (
-            <div className=" w-[4.71rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className=" w-[4.71rem] truncate max-md:w-[4.71rem]   max-xl:w-[3.81rem]">
             <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/>  {translatedMenuItems[19]}
             {/* Score */}
            
             </div>
             )}         
-            <div className=" w-[4.8rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <div className=" w-[4.8rem] truncate max-md: w-[4.8rem]  max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
             <AccountCircleIcon className="!text-icon mr-1 text-[#d64933]"/> 
             {translatedMenuItems[6]}
             {/* Assigned" */}
           
             </div>
-            <div className=" w-[4.7rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <div className=" w-[4.7rem] truncate max-md:w-[4.7rem]  max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
             <AccountCircleIcon className="!text-icon mr-1 text-[#d64933]"/> 
             {translatedMenuItems[7]}
             {/* Assigned" */}
           
             </div>
-            <div className=" w-[6.8rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className=" w-[6.8rem] truncate  max-md:w-[6.8rem] max-xl:w-[3.81rem]">
             <AcUnitIcon className="!text-icon mr-1 text-[#667761]"/> 
             {translatedMenuItems[8]}
              {/* Customer" */}
@@ -388,12 +388,12 @@ const [rowdata, setrowdata] = useState("");
                     return (
                       <div>
                   <div
-                className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:rounded-lg max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                       <div className=" flex   w-[11.50rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  font-poppins max-sm:text-sm ">
                         {props.showCheckboxes && (
                         <Checkbox
                 onChange={() => props.handleCheckboxChange(item.customerId)}
@@ -419,7 +419,7 @@ const [rowdata, setrowdata] = useState("");
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                 <div class="flex text-xs text-blue-500 ml-1 font-poppins font-semibold  cursor-pointer">
 
-                                  <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
+                                  <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm  cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
                                     {item.name}
                                   </Link>
 
@@ -440,7 +440,7 @@ const [rowdata, setrowdata] = useState("");
                       <div className=" flex   max-sm:w-auto  w-[7.54rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-                        <div class=" text-xs ml-gap font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs ml-gap font-poppins max-sm:text-sm ">
                         {
   
   (item.countryDialCode !== null && item.countryDialCode !== undefined) && 
@@ -463,7 +463,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
                       <div className=" flex max-sm:w-auto w-[2.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                        {/* Country */}
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  font-poppins max-sm:text-sm ">
                           <CountryFlag1 countryCode={countryCode} />
                           {/* &nbsp;
                           {countryCode} */}
@@ -472,7 +472,7 @@ const [rowdata, setrowdata] = useState("");
                       <div className=" flex   max-sm:w-auto  w-[7.40rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
 
                        {/* Sector  */}
-                        <div class=" text-xs ml-gap font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs ml-gap font-poppins max-sm:text-sm ">
                           {item.sector}
                         </div>
 
@@ -482,7 +482,7 @@ const [rowdata, setrowdata] = useState("");
                       {/* <div className=" flex max-sm:w-auto    w-[7rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-                        <div class=" text-xs ml-gap font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs ml-gap font-poppins max-sm:text-sm ">
                           {item.source}
                         </div>
 
@@ -493,7 +493,7 @@ const [rowdata, setrowdata] = useState("");
                     <div className=" flex max-sm:w-auto w-[3rem] items-center justify-center max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                         {/* >Pipeline Value */}
 
-                        <div class=" text-xs  font-poppins items-center max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  font-poppins items-center max-sm:text-sm text-center ">
                           {item.oppNo}
 
                         </div>
@@ -502,7 +502,7 @@ const [rowdata, setrowdata] = useState("");
                        {/* Pipeline Value */}
                        
                             {item.totalProposalValue && (
-      <div class="text-xs flex font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+      <div class="text-xs flex font-poppins max-sm:text-sm text-center ">
 <div>
         <CurrencySymbol currencyType={item.userCurrency}/>     </div> 
         <div>
@@ -523,7 +523,7 @@ const [rowdata, setrowdata] = useState("");
                       <div className=" flex  max-sm:w-auto   w-[4.50rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                     {/* Assigned */}
 
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  font-poppins max-sm:text-sm ">
 
                           <div>
                             {item.assignedTo === null ? (
@@ -585,7 +585,7 @@ const [rowdata, setrowdata] = useState("");
                               style={{ width: "7rem", background: item.convertInd === 1 ? "tomato" : "linear-gradient(to right, #2BBCCF, #38C98D)" }}
                              
                               >
-                              <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex  items-center  w-wk" >
+                              <div class="text-xs  flex  items-center  w-wk" >
                               <NextPlanIcon className="!text-icon mr-1"  />
                               {item.convertInd === 0 && translatedMenuItems[17]}
                                 {item.convertInd === 1 && translatedMenuItems[16]}
