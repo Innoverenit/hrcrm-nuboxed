@@ -478,7 +478,7 @@ function AccountTable(props) {
                                 </Tooltip>
 
                               </div>
-                              <div className="bg-[#eef2f9] h-8  items-center justify-center flex">
+                              {/* <div className="bg-[#eef2f9] h-8  items-center justify-center flex">
                                 <Tooltip title="Quotation">
                                   
                                       <LightbulbIcon className="!text-icon text-[#bfa89e]"
@@ -490,7 +490,7 @@ function AccountTable(props) {
                                     />
                                 </Tooltip>
 
-                              </div>
+                              </div> */}
                               
 
                             <div className=" items-center justify-center flex bg-[#eef2f9] h-8  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
