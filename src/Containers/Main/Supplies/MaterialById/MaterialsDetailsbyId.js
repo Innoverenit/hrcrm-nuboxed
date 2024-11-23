@@ -90,7 +90,7 @@ console.log(props.UOMListData)
     
     <div className="bg-[#F7F8FC]">
       <div className="flex justify-between">
- <div className="flex justify-between items-center w-[44rem]">
+ <div className="flex justify-between items-center w-[30rem]">
       <div >
         <div>
         {isEditingName ? (
@@ -108,18 +108,18 @@ console.log(props.UOMListData)
       )}
           {/* {props.materialsBySuppliesId.suppliesName} */}
           </div>
-        <div>
+        <div class="mt-2">
           {props.materialsBySuppliesId.newSuppliesNo}
           </div>
 
-        <div className='flex items-center justify-center w-[w-wk]'>
-        <div className="flex items-center justify-center">
+        <div className='flex items-center mt-2 justify-center w-[w-wk]'>
+        <div className="flex items-center">
         <div class="text-sm text-black w-16">
          USD 
          {props.materialsBySuppliesId ?.discounts?.[0]?.allowedDiscount}
         </div>
       </div>
-      <div className="flex items-center justify-center">
+      <div className="flex items-center ">
         <div class="text-sm text-black">
         USD 
         {props.materialsBySuppliesId ?.suppliesPrices?.[0].suppliesPrice}
@@ -137,17 +137,19 @@ console.log(props.UOMListData)
       </div> */}
  
     </div>
-    <div className="flex">
-    <div className=" flex flex-col  w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between ml-2 max-sm:flex-row ">
-     <div className="text-base">Recommend</div>
+    <div className="flex flex-col"> 
+    <div className="flex items-center w-[30rem]">
+
+                            <div className=" flex flex-col w-[6.8rem] mr-[3rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className="text-base">Fast Moving</div>
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                <MaterialRecommendToggle
-                                  recomendInd={props.recomendInd}
-                                  suppliesId={props.suppliesId}
+                                <MaterialFastMovingToggle
+                                   maxOdU={props.materialsBySuppliesId.maxOdU}
+                                   suppliesId={props.particularDiscountData.suppliesId}
                                 />
                               </div>
                             </div>
-                            <div className=" flex flex-col  w-[4.8rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex flex-col  w-[4.8rem] mr-[3rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                             <div className="text-base">Fulfillment</div>
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <MaterialFifoToggle
@@ -156,7 +158,19 @@ console.log(props.UOMListData)
                                 />
                               </div>
                             </div>
-                            <div className=" flex flex-col w-[4.8rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            </div>
+                            <div className="flex items-center w-[30rem]">
+                            <div className=" flex flex-col w-[7.2rem] mr-[3rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+     <div className="text-base">Recommend</div>
+                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                <MaterialRecommendToggle
+                                  recomendInd={props.recomendInd}
+                                  suppliesId={props.suppliesId}
+                                />
+                              </div>
+                            </div>
+                          
+                            <div className=" flex flex-col mr-[3rem] w-[4.8rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                             <div className="text-base">Featured</div>
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <MaterialFeatureToggle
@@ -165,16 +179,6 @@ console.log(props.UOMListData)
                                 />
                               </div>
                             </div>
-
-
-                            <div className=" flex flex-col w-[6.8rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                            <div className="text-base">Fast Moving</div>
-                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                <MaterialFastMovingToggle
-                                   maxOdU={props.materialsBySuppliesId.maxOdU}
-                                   suppliesId={props.particularDiscountData.suppliesId}
-                                />
-                              </div>
                             </div>
                             </div>
                             </div>
