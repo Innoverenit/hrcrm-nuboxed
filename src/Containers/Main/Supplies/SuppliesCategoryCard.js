@@ -14,7 +14,7 @@ import CableIcon from '@mui/icons-material/Cable';
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
 import SuppliesCategoryPUnblishToggle from "./SuppliesCategoryPUnblishToggle";
 import SuppliesAddQualityCheckModal from "./SuppliesAddQualityCheckModal"
-
+import WidgetsIcon from '@mui/icons-material/Widgets';
 const SuppliesCategoryModal = lazy(() => import("./SuppliesCategoryModal"));
 
 
@@ -201,17 +201,18 @@ console.log("drb2",data)
 
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 h-[87vh] max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky items-end z-10">          
-            <div className="font-bold font-poppins text-[#00A2E8] text-base w-[6.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
-            {translatedMenuItems[0]}   {/* Category */}
+          <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end z-10"> 
+            <div class="w-[5rem]"></div>         
+            <div className=" text-[#00A2E8] text-sm w-[43.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
+            <WidgetsIcon className='!text-icon    text-[#42858c]' />   {translatedMenuItems[0]}   {/* Category */}
               </div>
-            <div className=" w-[4.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[4.11rem]"></div>
+            {/* <div className=" w-[4.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[4.11rem]"></div> */}
 
-            <div className="font-bold font-poppins text-xs w-[4.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[4.11rem]">Alert</div>
+            <div className="  w-[25.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[4.11rem]">Alert</div>  {/*{translatedMenuItems[1]} */}
             <div className=" flex  w-[9rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Add">
-                          <Button
+                          <Button type="primary"
                             className="!text-sm cursor-pointer text-[tomato]"
                             onClick={handleSuppliesCategoryModal}>+ Add Category</Button>
                         
@@ -225,7 +226,7 @@ console.log("drb2",data)
             {data.map((item) => {
               return (
                 <div>
-                  <div key={item.categoryId} className="flex rounded justify-between mt-1 bg-white  items-center py-1 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                  <div key={item.categoryId} className="flex rounded justify-between mt-1 bg-white  items-center py-ygap max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                  
                     <div className=" flex border-l-2 border-green-500 bg-[#eef2f9] h-8  w-[5.21rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 
@@ -281,7 +282,7 @@ console.log("drb2",data)
                     </div>
 
      <div className=" flex  w-[11.02rem] h-8 ml-gap bg-[#eef2f9] justify-center  items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class=" flex items-center text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <SuppliesCategoryPUnblishToggle
                                 
                                   publishInd={item.publishInd}
@@ -291,8 +292,8 @@ console.log("drb2",data)
                             </div>
 
 
-                            <div className=" flex  w-[10.03rem] h-8 ml-gap bg-[#eef2f9] justify-center   items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div className=" flex  w-[10.03rem] h-8 ml-gap bg-[#eef2f9] justify-center    items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class=" flex items-center text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               <CircleNotificationsIcon
                                onClick={() => {
                                 handleSuppliesEditQualityModal();
@@ -303,8 +304,8 @@ console.log("drb2",data)
                               </div>
                             </div>
 
-                            <div className=" flex  w-[10.04rem] h-8 ml-gap bg-[#eef2f9] justify-center   items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div className=" flex  w-[10.04rem] h-8 ml-gap bg-[#eef2f9] justify-center    items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class="flex items-center  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               <CableIcon
                                onClick={() => {
                                 handleSuppliesQualityModal();
@@ -339,7 +340,7 @@ console.log("drb2",data)
                       
                     ) : (
                       <BorderColorIcon
-                      className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center h-8 ml-gap bg-[#eef2f9] justify-center   items-center mt-1"
+                      className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center h-8 ml-gap bg-[#eef2f9] "
                         tooltipTitle="Edit"
                         iconType="edit"
                         onClick={() => handleEditClick(item.categoryId)}
@@ -347,7 +348,7 @@ console.log("drb2",data)
                     )}
    
     {item.categoryCount===1 &&
-    <div className="h-8 flex bg-[#eef2f9] justify-center   items-center">
+    <div className=" flex bg-[#eef2f9] justify-center   items-center">
                               <Popconfirm
                                 title="Do you want to delete?"
                                 // onConfirm={() => DeleteOnClick(item)}

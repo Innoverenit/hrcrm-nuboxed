@@ -11,10 +11,11 @@ import { getMaterialCurrency, createMaterialCurrency,materialPricetype,getPriceF
  } from "./SuppliesAction";
 import {getSaleCurrency} from "../../Auth/AuthAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import EmptyPage from "../EmptyPage";
 import { base_url2 } from "../../../Config/Auth";
-
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import MergeTypeIcon from '@mui/icons-material/MergeType';
 
 const { Option } = Select;
 
@@ -330,13 +331,13 @@ suppliesId:props.particularDiscountData.suppliesId
       <div className=' flex sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">      
-            <div className="font-poppins font-bold text-xs md:w-[7rem]">  {translatedMenuItems[1]}</div>
-            <div className="font-poppins font-bold text-xs md:w-[6.1rem]">  {translatedMenuItems[2]}(B2B)</div>
-            <div className="md:w-[5.8rem] font-poppins font-bold text-xs">  {translatedMenuItems[9]}</div>
-            <div className="font-poppins font-bold text-xs md:w-[7.2rem] "> {translatedMenuItems[7]}
+            <div className="font-poppins font-bold text-xs md:w-[6.3rem]"> <CurrencyExchangeIcon className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[1]}</div>
+            <div className="font-poppins font-bold text-xs md:w-[7.9rem]">  <CurrencyExchangeIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]}(B2B)</div>
+            <div className="md:w-[7.8rem] font-poppins font-bold text-xs">   {translatedMenuItems[9]}</div>
+            <div className="font-poppins font-bold text-xs md:w-[7.2rem] ">  <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[7]}
               {/* Catagory name */}
               </div>
-            <div className="md:w-[5.8rem] font-poppins font-bold text-xs">  {translatedMenuItems[3]}</div>
+            <div className="md:w-[4.8rem] font-poppins font-bold text-xs">   < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[3]}</div>
            
             <div className="w-12"></div>         
             </div>
@@ -344,10 +345,10 @@ suppliesId:props.particularDiscountData.suppliesId
           {data.length ? data.map((item) => {
             return (
               <div key={item.id}>
-                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "
+                <div className="flex rounded justify-between mt-1 bg-white  items-center py-ygap  hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
                 >
 
-                  <div className=" flex font-poppins flex-col md:w-[2.1rem] max-sm:w-full  ">
+                  <div className=" flex font-poppins items-center justify-start md:w-[6.2rem] border-l-2 h-8 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
                     <div class="text-xs font-semibold  font-poppins cursor-pointer">
                     {/* {editsuppliesId === item.id ? (
                       <Select
@@ -372,7 +373,7 @@ suppliesId:props.particularDiscountData.suppliesId
                     </div>
                   </div>
 
-                  <div className=" flex md:w-[3.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                  <div className=" flex items-center justify-start h-8 ml-gap  bg-[#eef2f9] md:w-[7.6rem] max-sm:flex-row w-full max-sm:justify-between  ">
                   {editsuppliesId === item.id ? (
                     <div class=" text-xs  font-poppins">
                       <Input
@@ -388,10 +389,16 @@ suppliesId:props.particularDiscountData.suppliesId
 )}
                   </div>
 
+                  <div className=" flex items-center justify-start h-8 ml-gap  bg-[#eef2f9] md:w-[7.3rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                  <div className=" text-xs  font-poppins">
+                     <div>  {/* Final */}</div> 
+                    </div>
+                    </div>
+                  <div className=" flex items-center justify-start h-8 ml-gap  bg-[#eef2f9] md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between  ">
                   <div className=" text-xs  font-poppins">
                       <div> {item.sCategoryName}</div>
                     </div>
-                    
+                    </div>
                   
                   {/* <div className=" flex md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
                   <Popconfirm
@@ -410,7 +417,7 @@ suppliesId:props.particularDiscountData.suppliesId
         />
       </Popconfirm>
                   </div> */}
-                   <div className="flex items-center ml-4">
+                   <div className="flex items-center justify-start h-8 ml-gap  bg-[#eef2f9] ml-4">
                    <Popconfirm
   title="Are you sure to change the toggle state?"
   onConfirm={() => handleToggleChange(item.key, true)}
@@ -428,7 +435,7 @@ suppliesId:props.particularDiscountData.suppliesId
 
         </div>
 
-                  <div class="flex md:items-center">
+                  <div class="flex items-center justify-start h-8 ml-gap  bg-[#eef2f9] md:items-center">
        
  {editsuppliesId === item.id ? (
                         <>
