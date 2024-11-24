@@ -334,7 +334,7 @@ const [rowdata, setrowdata] = useState("");
            
             </div>
             )}         
-            <div className=" w-[4.8rem] truncate max-md: w-[4.8rem]  max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <div className=" w-[4.8rem] truncate max-md:w-[4.8rem]  max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
             <AccountCircleIcon className="!text-icon mr-1 text-[#d64933]"/> 
             {translatedMenuItems[6]}
             {/* Assigned" */}

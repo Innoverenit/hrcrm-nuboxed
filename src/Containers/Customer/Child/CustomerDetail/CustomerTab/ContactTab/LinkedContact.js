@@ -120,32 +120,32 @@ function LinkedContact(props) {
       
      
       <div class="rounded m-1 p-1 w-[99%] h-[77vh] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%]  p-1 bg-transparent items-end font-bold sticky   z-10">
-        <div className="font-bold font-poppins text-[#00A2E8] text-base w-[16.5rem]  md:w-[16.5rem]">
+          <div className=" flex justify-between w-[99%]  p-1 bg-transparent items-end font-bold sticky !text-lm  z-10">
+        <div className="font-bold font-poppins text-[#00A2E8] text-sm w-[16.5rem]  max-md:w-[16.5rem]">
         <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}
           {/* Name */}
         </div>
-        <div className="font-bold font-poppins text-xs w-[10.1rem]  md:w-[9.1rem]">
+        <div className="font-bold font-poppins text-xs w-[10.1rem]  max-md:w-[9.1rem]">
         <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '  />
          {translatedMenuItems[1]}
 {/* Email */}
         </div>
-        <div className="font-bold font-poppins text-xs w-[10.1rem]  md:w-[8.1rem]">
+        <div className="font-bold font-poppins text-xs w-[8.1rem]  max-md:w-[8.1rem]">
         <MobileFriendlyIcon className='!text-icon text-[#41ead4] '  /> {translatedMenuItems[2]}
           {/* Mobile */}
         </div>
-        <div className="font-bold font-poppins text-xs  w-[10.2rem] md:w-[8.2rem]">
+        <div className="font-bold font-poppins text-xs  w-[8.2rem] max-md:w-[8.2rem]">
         <ApartmentIcon className='!text-icon text-[#f0386b] '  />   {translatedMenuItems[3]}
           {/* Department */}
         </div>
-                     <div className="font-bold font-poppins text-xs  w-[7.2rem] md:w-[7.2rem]">
+                     <div className="font-bold font-poppins text-xs  w-[7.2rem] max-md:w-[7.2rem]">
                      <i className=" fab fa-artstation mr-1 text-[#b744b8]"></i>{translatedMenuItems[4]}
                       {/* Designation */}
                      </div>
                 
         
         <div className="w-[4.21rem]"></div>
-        <div className="font-bold font-poppins text-xs w-[7.21rem] md:w-[7.21rem]">
+        <div className="font-bold font-poppins text-xs w-[7.21rem] max-md:w-[7.21rem]">
         <RadioButtonCheckedIcon className="!text-icon mr-1 text-[#f28482]"/>   {translatedMenuItems[5]}
 {/* Portal */}
         </div>
@@ -181,7 +181,7 @@ function LinkedContact(props) {
                            <div className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                   <div class="flex">
-                                            <div className=" flex justify-center  md:w-[2.1rem] max-sm:w-full  ">
+                                            <div className=" flex justify-center w-[2.1rem] max-md:w-[2.1rem] max-sm:  ">
                                                 <div class="flex justify-center  text-xs  font-semibold  font-poppins ">
                                                   <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                                                         onClick={() => {
@@ -192,8 +192,8 @@ function LinkedContact(props) {
                                                 </div>
                                             </div>
                                         </div>    
-                                <div className=" flex  md:w-[19rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
-<div className="flex max-sm:w-full items-center"> 
+                                <div className=" flex w-[19rem] max-md:w-[19rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
+<div className="flex max-sm: items-center"> 
 <div>
                                 <SubTitle>
             <MultiAvatar2
@@ -205,9 +205,9 @@ function LinkedContact(props) {
             />
           </SubTitle></div>
           &nbsp;
-          <div class="max-sm:w-full">
+          <div class="max-sm:">
                                         <Tooltip>
-                                          <div class=" flex max-sm:w-full justify-between flex-row md:flex-col">
+                                          <div class=" flex max-sm: justify-between flex-row">
                                           
                                             <div class="text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`/contact/${item.contactId}`} title={item.fullName}>
@@ -234,26 +234,26 @@ function LinkedContact(props) {
                                 <div class="flex">
 
                              
-                                <div className=" flex w-[9.2rem] md:w-[9.2rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex w-[9.2rem] max-md:w-[9.2rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                                    
                                     <div class="flex text-xs  items-center ml-gap font-poppins">
                                          {item.emailId}
                                     </div>
                                 </div>
-                                <div className=" flex w-[7.4rem] md:w-[7.3rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
+                                <div className=" flex w-[7.4rem] max-md:w-[7.3rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                                 
                                   <div class="flex items-center text-xs  font-poppins">
                                   {item.countryDialCode} {item.mobileNumber}
                                   </div>
                               </div>
                               </div>
-                              <div className="flex w-[12.1rem]  md:w-[13rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
+                              <div className="flex w-[12.1rem]  max-md:w-[13rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
 
   <div className="text-xs flex items-center ml-gap  font-poppins text-center">
     {item.department}
   </div>
 </div>
-<div className=" flex  md:w-[11rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
+<div className=" flex w-[11rem] max-md:w-[11rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                                     
 
                                     <div class=" text-xs flex items-center ml-gap  font-poppins text-center">
@@ -261,7 +261,7 @@ function LinkedContact(props) {
 
                                     </div>
                                 </div>
-                                <div className=" flex  md:w-[2.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex w-[2.1rem]  max-md:w-[2.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                                     
 
                                     <div class=" text-xs  font-poppins text-center">
@@ -275,7 +275,7 @@ function LinkedContact(props) {
 
                                     </div>
                                 </div>
-                                <div className=" flex  md:w-[2rem] items-center justify-center h-8  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex w-[2rem] max-md:w-[2rem] items-center justify-center h-8  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                                     {/* <NotAccessibleOutlined/> */}
 
                                     <div class=" text-xs  font-poppins text-center">
@@ -293,7 +293,7 @@ function LinkedContact(props) {
 
                                     </div>
                                 </div>
-                                <div className=" flex  md:w-[1.3rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex w-[1.3rem]  max-md:w-[1.3rem] max-sm:flex-row  max-sm:justify-between ">
                                     
 
                                     <div class=" text-xs flex  font-poppins text-center items-center justify-center h-8  bg-[#eef2f9]">
@@ -323,7 +323,7 @@ function LinkedContact(props) {
              
             >
               <ActionIcon
-               className=" !text-xl cursor-pointer text-[#fb8500]"
+               className=" !text-icon cursor-pointer text-[#fb8500]"
                 //tooltipTitle="Detach Contact"
                 tooltiptitle={translatedMenuItems[9]}
                
@@ -336,7 +336,7 @@ function LinkedContact(props) {
                                     </div>
                                    
                                 </div>
-                                <div className=" flex   md:w-[11.45rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
+                                <div className=" flex  w-[11.45rem] max-md:w-[11.45rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
 
 
 {item.accessInd === 0 ? <div class=" text-xs font-bold  font-poppins">
