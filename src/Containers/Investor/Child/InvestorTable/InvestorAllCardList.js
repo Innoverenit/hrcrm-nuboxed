@@ -393,14 +393,14 @@ console.log(selectedEmployee)
                           return (
                             <div>
                                   <div
-                    className="flex rounded justify-between  py-ygap  bg-white mt-1  items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                    className="flex rounded justify-between  py-ygap  bg-white mt-1  items-center max-sm:rounded-lg max-xl:text-xs max-lg:text-[0.45rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                   >
                                            <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                       <div className=" flex  w-[13.5rem]   max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto items-center ">
                                       <div className=" flex items-center   max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                           {/* >Source */}
       
-                                          <div class="text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                          <div class="text-xs  font-poppins  max-sm:text-sm">
                                           {props.showCheckboxes && (
                                           <Checkbox
                       onChange={() => props.handleCheckboxChange(item.investorId)}
@@ -429,7 +429,7 @@ console.log(selectedEmployee)
                                                   {/* Name */}
                                                  
                                                   <div class=" text-xs text-blue-500 flex  font-poppins font-semibold cursor-pointer">
-                                                  <Link class="overflow-ellipsis whitespace-nowrap   text-[#042E8A] cursor-pointer max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
+                                                  <Link class="overflow-ellipsis whitespace-nowrap   text-[#042E8A] cursor-pointer  max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
             {item.name}
         </Link>                                
             
@@ -450,7 +450,7 @@ console.log(selectedEmployee)
                                       <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                       <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9]  w-[8.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                                     {/* Sector  */}
-                                          <div class=" text-xs ml-gap font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">   
+                                          <div class=" text-xs ml-gap font-poppins  max-sm:text-xs">   
                                           {item.sector}
                                           </div>
                                       </div>
@@ -502,7 +502,7 @@ console.log(selectedEmployee)
 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[3.01rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
 {/* sHARES*/}
 
-    <div class="text-xs text-[blue] font-bold cursor-pointer justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+    <div class="text-xs text-[blue] font-bold cursor-pointer justify-center  font-poppins  max-sm:text-sm">
   <div    onClick={() => {
 props.handleInvestorPriceDrawer(true);
 handleCurrentRowData(item);
@@ -512,7 +512,7 @@ handleCurrentRowData(item);
 
 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.918rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
     {/* # Value */}
-    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+    <div class="text-xs justify-center  font-poppins  max-sm:text-sm">
    {item.allTotalAmountOfShare}
     </div>
 </div>
@@ -523,7 +523,7 @@ handleCurrentRowData(item);
        <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
       <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.519rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                          {/* Deals */}
-                                          <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                          <div class="text-xs justify-center  font-poppins  max-sm:text-sm">
                                          {item.club}
                                           </div>
                                       </div>
@@ -535,7 +535,7 @@ handleCurrentRowData(item);
                   )}  
                                       <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                          {/* Assigned */}
-                                          <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                          <div class=" text-xs  font-poppins  max-sm:text-sm">
                                           
                                           <span>
                     {item.assignedTo === null ? (
@@ -704,13 +704,13 @@ handleCurrentRowData(item);
      :
 
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-  <div className=" flex justify-between max-sm:hidden  w-[81%]  p-1 bg-transparent font-bold sticky items-end  z-10">
-        <div className="text-[#00A2E8] text-base w-[14.6rem] font-poppins font-bold max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
+  <div className=" flex justify-between max-sm:hidden  w-[81%]  p-1 bg-transparent font-bold sticky items-end max-xl:text-xs max-lg:text-[0.45rem] z-10">
+        <div className="text-[#00A2E8] text-sm w-[14.6rem] font-poppins font-bold  max-xl:w-[14.4rem] ">
         <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]}
      
         {/* "Name" */}           
                 </div>
-        <div className=" w-[8.1rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
+        <div className=" w-[8.1rem] font-poppins font-bold text-xs  max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
         <FactoryIcon className="!text-icon   text-[#84a59d]"/> {translatedMenuItems[1]}  
         {/* Sector" */}            
                 </div>
@@ -720,26 +720,26 @@ handleCurrentRowData(item);
           {/* "Category */}
           </div> 
 
-          <div className="  w-[5.34rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
+          <div className="  w-[5.34rem] font-poppins font-bold text-xs  max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
           <SourceIcon className="!text-icon   text-[#4b5043]"/>{translatedMenuItems[4]}      
         {/* Source */}               
         </div>  
-        <div className="  w-[6.12rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">
+        <div className="  w-[6.12rem] font-poppins font-bold text-xs  max-xl:w-[5.12rem] max-lg:w-[8.12rem]">
         <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[2]}
    
         {/* "Deals" */}          
                 </div>
-        {/* <div className=" w-[6.2rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+        {/* <div className=" w-[6.2rem] font-poppins font-bold text-xs  max-xl:w-[8.2rem]">
         {translatedMenuItems[3]}
          "Pipeline Value"
              
           </div> */}
         
-        <div className="  w-[7.212rem]  font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+        <div className="  w-[7.212rem]  font-poppins font-bold text-xs  max-xl:w-[8.2rem]">
         <ShowChartIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[9]}
        {/* Shares # */}
           </div> 
-          <div className=" w-[5.21rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <div className=" w-[5.21rem] font-poppins font-bold text-xs  max-xl:w-[8.2rem]">
           <GolfCourseIcon className='!text-base  text-[#f42c04]'/>  {translatedMenuItems[8]}
         {/* Club */}
           </div>
@@ -752,13 +752,13 @@ handleCurrentRowData(item);
             </div>
             )}
               
-        <div className="  w-[5.3rem] font-poppins font-bold text-xs max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
+        <div className="  w-[5.3rem] font-poppins font-bold text-xs  max-xl:w-[10.3rem]">
         <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[5]}
          {/* Assigned" */}
               
          </div>
 
-        {/* <div className=" w-[8.813rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.21rem]">
+        {/* <div className=" w-[8.813rem]  max-xl:w-[8.21rem]">
         {translatedMenuItems[6]}
         owner
            
@@ -799,14 +799,14 @@ handleCurrentRowData(item);
                     return (
                       <div>
                             <div
-              className="flex rounded justify-between  bg-white mt-1  py-ygap items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+              className="flex rounded justify-between  bg-white mt-1  py-ygap items-center max-sm:rounded-lg max-xl:text-xs max-lg:text-[0.45rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
             >
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                                 <div className=" flex  w-[10.5rem]   max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto items-center ">
                                 <div className=" flex items-center   max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* >Source */}
 
-                                    <div class="text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class="text-xs  font-poppins  max-sm:text-sm">
                                     {props.showCheckboxes && (
                                     <Checkbox
                 onChange={() => props.handleCheckboxChange(item.investorId)}
@@ -835,7 +835,7 @@ handleCurrentRowData(item);
                                             {/* Name */}
                                            
                                             <div class=" text-xs text-blue-500 flex  font-poppins font-semibold cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap   text-[#042E8A] cursor-pointer max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
+                                            <Link class="overflow-ellipsis whitespace-nowrap   text-[#042E8A] cursor-pointer  max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
       {item.name}
   </Link>                                
       
@@ -908,7 +908,7 @@ handleCurrentRowData(item);
                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[3.01rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                              {/* sHARES*/}
 
-                                    <div class="text-xs text-[blue] font-bold cursor-pointer justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class="text-xs text-[blue] font-bold cursor-pointer justify-center  font-poppins  max-sm:text-sm">
                                   <div    onClick={() => {
                               props.handleInvestorPriceDrawer(true);
                               handleCurrentRowData(item);
@@ -918,14 +918,14 @@ handleCurrentRowData(item);
 
                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.918rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* # Value */}
-                                    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class="text-xs justify-center  font-poppins  max-sm:text-sm">
                                    {item.allTotalAmountOfShare}
                                     </div>
                                 </div>
                                 </div>
                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.100rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Club */}
-                                    <div class="text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class="text-xs justify-center  font-poppins  max-sm:text-sm">
                                    {item.club}
                                     </div>
                                 </div>

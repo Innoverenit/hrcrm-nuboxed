@@ -5297,6 +5297,32 @@ export const getDistibutorBarChart = (distributorId,productId) => (dispatch) => 
     });
 };
 
+export const getSearchDistributor = (userId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SEARCH_DISTRIBUTIOR_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/distributor/drop-down/user/${userId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SEARCH_DISTRIBUTIOR_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_SEARCH_DISTRIBUTIOR_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const codInventoryOrder = (data,cb) => (dispatch) => {
   dispatch({ type: types.ADD_COD_INVENTORY_REQUEST });
 

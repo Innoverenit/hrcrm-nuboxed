@@ -60,6 +60,8 @@ function Accountingtable(props) {
                 <div class="font-bold font-poppins text-xs"> Submit</div>
              
               </Button></div>
+
+              <BundleLoader/>
         </div>
       
         </>

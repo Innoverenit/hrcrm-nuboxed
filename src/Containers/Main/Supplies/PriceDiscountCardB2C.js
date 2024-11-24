@@ -6,9 +6,10 @@ import { Button, DatePicker, Input, Select,} from "antd";
 import {createMaterialDiscountB2C,getMaterialDiscountB2C,
     //createMaterialDiscountB2CUpdate
 } from "./SuppliesAction";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import EmptyPage from "../EmptyPage";
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 
 const { Option } = Select;
 
@@ -248,16 +249,16 @@ function PriceDiscountCardB2C(props) {
       <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1 w-[100%]   overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">                
-            <div className="font-poppins font-bold text-xs md:w-[11.1rem]"> {translatedMenuItems[1]}</div>
-            <div className="font-poppins font-bold text-xs md:w-[6.2rem] "> {translatedMenuItems[2]}</div>
-            <div className="font-poppins font-bold text-xs md:w-[6.2rem] "> {translatedMenuItems[3]}</div>
+            <div className="font-poppins font-bold text-xs md:w-[11.1rem]">  <CurrencyExchangeIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[1]}</div>
+            <div className="font-poppins font-bold text-xs md:w-[6.2rem] "> <DateRangeIcon className="!text-icon "/> {translatedMenuItems[2]}</div>
+            <div className="font-poppins font-bold text-xs md:w-[6.2rem] "><DateRangeIcon className="!text-icon "/>  {translatedMenuItems[3]}</div>
             <div className="w-12"></div>           
               </div>
               <div className="h-[23vh] overflow-x-auto">
           {data.length ? data.map((item) => {
             return (
               <div key={item.suppliesId}>
-                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                <div className="flex rounded justify-between mt-1 bg-white  items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 >
 
                  
@@ -298,7 +299,7 @@ function PriceDiscountCardB2C(props) {
                   )}
                     </div>
                   </div> */}
-                  <div className=" flex   md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                  <div className=" flex border-b-4 border-[#16a34a87]  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                   {editsuppliesId === item.suppliesId ? (
                     <div class=" text-xs  font-poppins">
                       <Input
@@ -336,7 +337,7 @@ function PriceDiscountCardB2C(props) {
     <div>{dayjs(item.endDate).format('DD/MM/YY')}</div>
   </div>
 )}
-                  <div class="flex md:items-center">
+                  <div class="flex md:items-center  items-center  h-8 ml-gap bg-[#eef2f9] justify-center ">
 
  {editsuppliesId === item.suppliesId ? (
                         <>

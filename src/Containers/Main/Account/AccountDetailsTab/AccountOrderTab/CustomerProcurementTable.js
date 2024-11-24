@@ -39,7 +39,9 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import ItemListListDrawer from "./itemListListDrawer";
-
+import BackpackIcon from '@mui/icons-material/Backpack';
+import TrackChangesIcon from '@mui/icons-material/TrackChanges';
+import RocketLaunchIcon from '@mui/icons-material/RocketLaunch'; 
 const { Option } = Select;
 const { Search } = Input;
 const UpdateProcureModal = lazy(() => import('./UpdateProcureModal'));
@@ -352,11 +354,11 @@ const handleSelectedOrderDropDown =  async (value,item) => {
       </div>
 
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-[94%] p-1 bg-transparent font-bold sticky items-end text-xs font-poppins  z-10">
-        <div className=" md:w-[3.54rem] text-[white] truncate flex justify-center bg-[red]">
+        <div className=" flex justify-between w-[94%] p-1 bg-transparent font-bold sticky items-end !text-lm font-poppins  z-10">
+        <div className=" max-md:w-[3.54rem] w-[3.54rem] text-[white] truncate flex justify-center bg-[red]">
         {translatedMenuItems[0]} {/* Urgent */}
            </div>
-                        <div className=" text-[#00A2E8] truncate text-base w-[7.3rem] md:w-[7.4rem] ml-2">
+                        <div className=" text-[#00A2E8] truncate text-sm w-[7.3rem] max-md:w-[7.4rem]">
                         <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'/>   {translatedMenuItems[1]} ID{/*Order ID"/> */}
                           </div>
                           <div className="w-[5.5rem] truncate max-md:w-[7rem]">  
@@ -376,12 +378,13 @@ const handleSelectedOrderDropDown =  async (value,item) => {
                         {/* {translatedMenuItems[2]}  */}<AddShoppingCartIcon className='!text-icon'/>  Items
                           </div>
                           <div className="w-[2.1rem] truncate max-md:w-[4.4rem]">
-                            {/* {translatedMenuItems[5]} */} Packing
+                           <BackpackIcon className=" !text-Icon text-[#ba5624]"/> {/* {translatedMenuItems[5]} */} Packing
                           </div>
                           <div className="w-[2.1rem] truncate max-md:w-[4.4rem]">
-                            {/* {translatedMenuItems[5]} */} Shipping
+                          <RocketLaunchIcon className=" !text-Icon text-[#42bfdd]"/>  {/* {translatedMenuItems[5]} */} Shipping
                           </div> <div className="w-[2.1rem] truncate max-md:w-[4.4rem]">
-                            {/*  Track */} {translatedMenuItems[18]}
+
+                          <TrackChangesIcon className=" !text-Icon text-[#f26df9]" /> {/*  Track */} {translatedMenuItems[18]}
                           </div>
                           <div className="w-[2.2rem] truncate max-md:w-[3.8rem]"> <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' />
                         {translatedMenuItems[7]} {/*Status"/> */}
@@ -436,7 +439,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                       
                     ) : (
                                                                               <Tooltip>
-                                                                                  <div class="flex max-sm:flex-row justify-between w-full md:flex-col" onClick={() => handleEditClick(item.orderId)}>
+                                                                                  <div class="flex max-sm:flex-row justify-between w-full md:" onClick={() => handleEditClick(item.orderId)}>
                                                                                       <div class="  text-blue-500  font-poppins font-semibold  cursor-pointer">
                       
                                                                                           {item.priority === "High" && (
@@ -641,7 +644,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
         <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">
         {translatedMenuItems[8]} {/* Normal */}
            </div>
-                        <div className="w-[7.3rem] text-[#00A2E8] text-base truncate max-md:md:w-[7.4rem] ml-2">
+                        <div className="w-[7.3rem] text-[#00A2E8] text-base truncate max-md:w-[7.4rem] ml-2">
                         <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'
                         />   {translatedMenuItems[1]} ID{/* Order ID"/> */}
                           </div>
@@ -663,10 +666,10 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                         {/* {translatedMenuItems[2]}  */}<AddShoppingCartIcon className='!text-icon'/>  Items
                           </div>
                           <div className="w-[2.1rem] truncate max-md:md:w-[4.4rem]">
-                            {/* {translatedMenuItems[5]} */} Packing
+                          <BackpackIcon className=" !text-Icon text-[#ba5624]"/>   {/* {translatedMenuItems[5]} */} Packing
                           </div>
                           <div className="w-[2.1rem] truncate max-md:md:w-[4.4rem]">
-                            {/* {translatedMenuItems[5]} */} Shipping
+                          <RocketLaunchIcon className=" !text-Icon text-[#42bfdd]"/>    {/* {translatedMenuItems[5]} */} Shipping
                           </div>
                           <div className="w-[2.2rem] truncate max-md:md:w-[3.8rem]">
                           <UpdateIcon className='!text-icon text-[#ff66b3]' /> {translatedMenuItems[7]} {/*Status"/> */}
@@ -692,9 +695,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                       <div>
                <div className="flex rounded  mt-1 bg-white py-ygap items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                   <div class="flex">
-                    <div className=" flex  items-center   max-sm:w-full">
-                      <div className="flex items-center max-sm:w-full">
-                      <div className=" flex  items-center  md:w-[7rem]  border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
+                      <div className=" flex  items-center w-[4rem] max-md:w-[4rem]  border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
                       {editsuppliesId === item.orderId ? (
                         <>
                      <Select
@@ -709,7 +710,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                       
                     ) : (
                                                         <Tooltip>
-                                                            <div class="flex max-sm:flex-row justify-between w-full md:flex-col" onClick={() => handleEditClick(item.orderId)}>
+                                                            <div class="flex max-sm:flex-row justify-between w-full max-md:" onClick={() => handleEditClick(item.orderId)}>
                                                                 <div class="  text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
@@ -726,7 +727,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                                         </Tooltip>
                     )}
                                                     </div>
-                                                    </div>
+                                                    
 
                         <div class="flex max-sm:w-full items-center  md:w-[6.60rem] justify-start h-8 ml-gap  bg-[#eef2f9]">
                           <Tooltip>
@@ -759,7 +760,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
 </svg>
 {getRelativeTime(item.creationDate)}
 </span></div>
-                    </div>
+                    
 
                     <div class="flex flex-row  md:w-[8rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full text-xs max-sm:justify-between">
                   

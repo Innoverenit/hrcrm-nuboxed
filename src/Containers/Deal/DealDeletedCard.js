@@ -90,24 +90,24 @@ const DealDeletedCard = (props) => {
   return (
     <>
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
+        <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold font-poppins !text-lm sticky  z-10 max-sm:hidden">
         <div className=" flex justify-between w-[95%]">
-          <div className=" font-bold font-poppins text-xs w-[15.5rem] md:w-[11.5rem]">
+          <div className="  text-sm w-[15.5rem] max-md:w-[11.5rem]">
           {translatedMenuItems[0]} </div>
           {/* Name */}
-          <div className=" font-bold font-poppins text-xs w-[9.1rem] md:w-[7.1rem]">  {translatedMenuItems[1]} </div>
+          <div className="  w-[9.1rem] truncate max-md:w-[7.1rem]">  {translatedMenuItems[1]} </div>
           {/* investor */}
-          <div className="  font-bold font-poppins text-xs w-[15.2rem] md:w-[7.2rem] ">  {translatedMenuItems[2]}</div>
+          <div className="  w-[15.2rem] truncate max-md:w-[7.2rem] ">  {translatedMenuItems[2]}</div>
           {/* Sponsor */}
-          <div className=" font-bold font-poppins text-xs w-[11.1rem] md:w-[8.1rem]">  {translatedMenuItems[3]}</div>
+          <div className="  w-[11.1rem] truncate max-md:w-[8.1rem]">  {translatedMenuItems[3]}</div>
           {/* startDate */}
-          <div className=" font-bold font-poppins text-xs w-[7.5rem] md:w-[6.5rem]">  {translatedMenuItems[4]}</div>
+          <div className="  w-[7.5rem] truncate max- md:w-[6.5rem]">  {translatedMenuItems[4]}</div>
           {/* Value */}
-          <div className=" font-bold font-poppins text-xs md:w-[4.2rem]">  {translatedMenuItems[5]}</div>
+          <div className="w-[4.2rem] truncate max-md:w-[4.2rem]">  {translatedMenuItems[5]}</div>
           {/* Stages */}
-          <div className=" font-bold font-poppins text-xs md:w-[7.1rem]">  {translatedMenuItems[6]}</div>
+          <div className="w-[7.1rem] truncate max-md:w-[7.1rem]">  {translatedMenuItems[6]}</div>
           {/* assignedTo */}
-          <div className=" font-bold font-poppins text-xs md:w-[3rem]">  {translatedMenuItems[7]}</div>
+          <div className=" w-[3rem] truncate max-md:w-[3rem]">  {translatedMenuItems[7]}</div>
             {/* owner  */}
         </div>
         </div>
@@ -145,7 +145,7 @@ const DealDeletedCard = (props) => {
               } `;
             return (
               <div>
-                <div className="flex justify-between rounded  mt-2 bg-white h-8 items-center p-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                <div className="flex justify-between rounded  mt-2 bg-white  items-center py-ygap  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
           
                 >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">

@@ -14,7 +14,10 @@ import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 import ComplementaryToggle from "./ComplementaryToggle";
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import MicIcon from '@mui/icons-material/Mic';
-
+import PinIcon from '@mui/icons-material/Pin';
+import AttractionsIcon from '@mui/icons-material/Attractions'; 
+import ContactsIcon from '@mui/icons-material/Contacts';
+import WidgetsIcon from '@mui/icons-material/Widgets';
 
 const { Search } = Input;
 
@@ -215,36 +218,29 @@ function MaterialComplementaryCard(props) {
         />
 
 
-      <div className=" flex sticky z-auto">
-        <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between  p-1 bg-transparent font-poppins text-xs font-bold sticky  z-10">
+      <div className=" flex sticky z-auto mt-2">
+        <div class="rounded m-1 max-sm:m-1 p-1 h-[80vh] w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex max-sm:hidden justify-between  p-1 bg-transparent font-poppins !text-lm font-bold items-end sticky  z-10">
            
             
             
-            <div className=" w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[9.1rem] truncate max-md:w-[4rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Hsn*/}
-              {translatedMenuItems[0]}
+              < PinIcon className=" !text-icon"/>  {translatedMenuItems[0]}
               </div>
-              <div className=" w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <div className=" w-[14.2rem]  truncate max-md:w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Name */}
-              {translatedMenuItems[2]}
+              <ContactsIcon className="!text-icon mr-1 "/> {translatedMenuItems[2]}
               </div>
-              <div className=" w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <div className=" w-[13.3rem] truncate max-md:w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* category*/}
-              {translatedMenuItems[4]}
-              </div>
-              <div className=" w-[6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              {/* Sub category */}
-              {translatedMenuItems[5]}
-              </div>
-              <div className=" w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <WidgetsIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[4]}
+              </div>        
+              <div className=" w-[21.4rem] truncate max-md:w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Attribute */}
-              {translatedMenuItems[6]}
+              <AttractionsIcon className="  !text-icon" />  {translatedMenuItems[6]}
               </div>
-              <div className=" w-[6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              {/* Sub Attribute */}
-              {translatedMenuItems[7]}
-              </div>
+            
 
           </div>
 
@@ -253,7 +249,7 @@ function MaterialComplementaryCard(props) {
             next={handleLoadMore}
             hasMore={hasMore}
             loader={props.fetchingComplementaryList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-            height={"69vh"}
+            height={"75vh"}
             style={{ scrollbarWidth:"thin" }}
           >
             {props.complementaryList.length ?
@@ -263,18 +259,33 @@ function MaterialComplementaryCard(props) {
                   
                   return (
                     <>
-                      <div className="flex rounded justify-center bg-white mt-1  h-8  p-1 max-sm:h-[7.5rem] max-sm:flex-col">
+                      <div className="flex rounded justify-center bg-white mt-1    py-ygap max-sm:h-[7.5rem] max-sm:flex-col  hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                         <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                           
-                            <div className=" flex  w-[15rem] max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                {item.suppliesName}
+                          <div className=" flex  w-[9rem] items-center border-l-2 border-green-500 max-md:w-[12rem] bg-[#eef2f9] h-8 max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class="  text-xs max-sm:text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                {/* {item.HsnId} */}
+                              </div>
+                            </div>
+                            <div className=" flex  w-[15rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]  max-md:w-[15rem]  max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class="  text-xs max-sm:text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                {item.suppliesFullName}
+                              </div>
+                            </div>
+                            <div className=" flex  w-[13rem] items-center ml-gap max-md:w-[15rem] h-8 bg-[#eef2f9] max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class="  text-xs max-sm:text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                {/* {item.category} */}
+                              </div>
+                            </div>
+                            <div className=" flex  w-[14rem] items-center ml-gap max-md:w-[15rem] h-8 bg-[#eef2f9] max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class="  text-xs max-sm:text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                {/* {item.Attribute} */}
                               </div>
                             </div>
                           </div>
+
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className=" flex  w-[7.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex h-8 ml-gap bg-[#eef2f9] justify-center   items-center  w-[7.1rem]  max-md:w-[7.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs truncate max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                               <ComplementaryToggle
                                   complementaryInd={item.complementaryInd}

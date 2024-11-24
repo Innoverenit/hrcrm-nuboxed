@@ -223,26 +223,26 @@ class LinkedContact extends Component {
       <>
         <div className=' flex  sticky  z-auto'>          
 <div class="rounded m-1 p-1 h-[69vh] w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                  <div className=" flex  w-[100%]  p-1 bg-trandivrent font-bold font-poppins text-xs items-end sticky  z-10">
-                  <div className=" md:w-[5.12rem]"></div>
-                      <div className=" md:w-[18.12rem]">   <CategoryIcon
+                  <div className=" flex  w-[100%]  p-1 bg-trandivrent font-bold font-poppins !text-lm items-end sticky  z-10">
+                  <div className=" md:w-[3.6rem]"></div>
+                      <div className="w-[16.7rem] text-[#00A2E8] text-sm max-md:w-[18.12rem]">   <CategoryIcon
               className='!text-base  text-[#e4eb2f]'
               />  {translatedMenuItems[0]}    
                         {/* Name */}
                         </div>
-                      <div className=" md:w-[9.5rem]">  <i className="fab fa-artstation mr-1 text-[#b744b8]"></i>{translatedMenuItems[1]}    
+                      <div className="w-[10.2rem] max-md:w-[9.5rem]">  <i className="fab fa-artstation mr-1 text-[#b744b8]"></i>{translatedMenuItems[1]}    
                         {/* Designation */}
                         </div>
-                        <div className=" md:w-[10.01rem]">   <ApartmentIcon className="!text-icon text-[#f0386b] "/> {translatedMenuItems[5]}    
+                        <div className="w-[10.9rem] max-md:w-[10.01rem]">   <ApartmentIcon className="!text-icon text-[#f0386b] "/> {translatedMenuItems[5]}    
                         {/* Department*/}
                         </div>
-                      <div className=" md:w-[12.18rem] ">  {translatedMenuItems[2]}    
+                      <div className="w-[10.8rem] max-md:w-[12.18rem] ">  {translatedMenuItems[2]}    
                         {/* Function */}
                         </div>
-                      <div className="md:w-[10.4rem]">   <MarkEmailUnreadIcon className='!text-icon text-[#ff9f1c] '/> {translatedMenuItems[3]}    
+                      <div className=" w-[12.4rem] max-md:w-[10.4rem]">   <MarkEmailUnreadIcon className='!text-icon text-[#ff9f1c] '/> {translatedMenuItems[3]}    
                         {/* Email #" */}
                         </div>
-                      <div className="md:w-[6.8rem]">  <MobileFriendlyIcon className='!text-icon text-[#41ead4] '/> {translatedMenuItems[4]}    
+                      <div className="w-[8.8rem] max-md:w-[6.8rem]">  <MobileFriendlyIcon className='!text-icon text-[#41ead4] '/> {translatedMenuItems[4]}    
                         {/* Mobile #" */}
                         </div>
                      
@@ -253,7 +253,7 @@ class LinkedContact extends Component {
                       return (
                           <div >
                                <div
-                className="flex rounded justify-between  bg-white mt-1  items-center py-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1  items-center py-ygap max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                   <div class="flex">
                                       <div className="  flex  border-l-2 border-green-500 bg-[#eef2f9] items-center h-8  md:w-[3.1rem] max-sm:w-full  ">

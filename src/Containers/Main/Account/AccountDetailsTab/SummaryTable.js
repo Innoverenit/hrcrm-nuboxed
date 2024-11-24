@@ -2,6 +2,7 @@ import React, { lazy,Suspense } from 'react'
 import PieChart1 from '../../../../Components/Charts/PieChart1'
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { Flex, Progress } from 'antd';
+import StackedBarChart from '../../../Dashboard/Child/JumpStart/DashRepairBarClousreJumpstartUser';
 const AccountDonutChartByVolume = lazy(() => import("../AccountDetailsTab/AccountDonutChartByVolume"));
 const AccountDonutChartByValue = lazy(() => import("../AccountDetailsTab/AccountDonutChartByValue"));
 const PulseTable = lazy(() => import("./AccountDocumentTab/PulseTable"));
@@ -36,13 +37,14 @@ const SummaryTable = (props) => {
             LOB 1
             </div>
             <div class="w-wk">
-     <Flex gap="small" vertical>
+              <StackedBarChart/>
+     {/* <Flex gap="small" vertical>
     <Progress percent={30} />
     <Progress percent={50} status="active" />
     <Progress percent={70} status="exception" />
     <Progress percent={100} />
     <Progress percent={50} showInfo={false} />
-  </Flex>
+  </Flex> */}
   </div>
   </div>
   <div class="flex items-center mt-20">

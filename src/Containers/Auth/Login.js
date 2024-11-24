@@ -168,7 +168,13 @@ class Login extends Component {
 
 
           </div>
-          <div class="w-1/2 flex justify-center items-center max-sm:hidden  overflow-x-auto bg-blue-400">
+          <div class="w-1/2 flex justify-center flex-col items-center max-sm:hidden  overflow-x-auto bg-blue-400">
+          <div className=" flex flex-col mt-8">
+            <div class=" text-2xl text-white"> Simplify Your Workflow: Let Automation Drive Your Success 🚀</div>
+            <div class="flex mt-2  text-white justify-center text-base">Transform Your Lead Management with CRM Automation</div>
+            <div class=" flex mt-2  text-white justify-center text-base">Say goodbye to missed opportunities and manual task tracking</div>
+        </div>
+
             {/* <img
               className="big-logo h-[50%] w-[94%]"
               src={FWLogo3}

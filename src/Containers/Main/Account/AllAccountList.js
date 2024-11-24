@@ -129,34 +129,34 @@ const AllAccountList = (props) => {
   ) : (
       <div className=' flex  sticky z-auto'>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex max-sm:hidden  w-[90%]   justify-between p-1 bg-transparent  sticky items-end  z-10">
-        <div class=" flex justify-between text-xs font-poppins  font-bold  w-[94%]  ">
-            <div className=" w-[22.1rem] text-[#00A2E8] text-base max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]">  
+        <div className=" flex max-sm:hidden  w-[90%]   justify-between p-1 bg-transparent  sticky items-end  z-10 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]">
+        <div class=" flex justify-between !text-lm font-poppins  font-bold  w-[94%]  ">
+            <div className=" w-[22.1rem] text-[#00A2E8] text-sm max-md:w-[22.1rem] truncate ">  
             <ContactsIcon className="!text-icon  "/> {translatedMenuItems[0]}
             {/* Name */}
             </div>
-            <div className=" w-[10.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.11rem] max-lg:w-[9.11rem]">
+            <div className=" w-[10.11rem] max-md:w-[10.11rem] truncate">
             <ApartmentIcon className="!text-icon mr-1 "/>  {translatedMenuItems[1]}
              {/* Work */}</div>
-            <div className=" w-[12.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.1rem] max-lg:w-[8.1rem] ">
+            <div className=" w-[12.1rem] max-md:w-[12.1rem] truncate">
             <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[2]}
             {/*category */}</div>
-            <div className="w-[10.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem]">
+            <div className="w-[10.01rem] max-md:w-[10.01rem] truncate">
             < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[3]}
             {/* type % */}</div>
-            <div className="w-[12.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
+            <div className="w-[12.2rem] max-md:w-[12.2rem] truncate ">
             <DynamicFeedIcon
-              className='!text-base  text-[#e4eb2f]'
+              className='  text-[#e4eb2f]'
               /> {translatedMenuItems[4]}
             {/* Paymentdays % */}</div>
-            <div className="w-[12.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
+            <div className="w-[12.2rem] max-md:w-[12.2rem] truncate">
             <GolfCourseIcon className='!text-base   text-[#f42c04]'/>  {/* Club */}{translatedMenuItems[12]}
             </div>       
-                <div className="w-[7.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
+                <div className="w-[7.8rem] max-md:w-[7.8rem] truncate">
                 <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {translatedMenuItems[11]}
            {/* credit */}        
             </div>
-            <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <div className="w-[6.2rem] max-md:w-[6.2rem] truncate ">
             <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[10]}
             {/* Assigned */}          
             </div>      
@@ -224,7 +224,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                             </div>
                           </div>
                         </div>
-                        <div className=" flex   w-[9.1rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] h-8 max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
+                        <div className=" flex   w-[9.1rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]  max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
                           <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] justify-start max-sm:text-sm ml-gap ">
                             {item.dialCode} {item.phoneNo}
                           </div>
@@ -261,14 +261,14 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                           </div>
                       </div>
                    
-                      <div className=" flex items-center max-sm:w-auto w-[8rem] items-center justify-between h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center max-sm:w-auto w-[8rem]  justify-between h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>&nbsp; &nbsp;
                             <div class=" text-xs  items-center font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.currencyPrice}
 
                             </div>
                           </div>  
-                       <div className=" flex  items-center max-sm:w-auto flex-col w-[8rem] items-center justify-center ml-gap h-8 bg-[#eef2f9] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
+                       <div className=" flex  items-center max-sm:w-auto flex-col w-[8rem] justify-center ml-gap h-8 bg-[#eef2f9] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
                           <div class="max-sm:flex justify-end">
                           {item.salesExecutive?
                             <Tooltip title={item.salesExecutive}>
@@ -290,7 +290,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                             </Tooltip>:""}
                           </div>                      
                       </div>     
-                      <div className=" flex items-center w-[5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center w-[5rem]  justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
 <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[9rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>

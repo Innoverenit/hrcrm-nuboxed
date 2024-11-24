@@ -224,18 +224,18 @@ if (loading) {
         </div>
         </div>
       <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex  justify-between max-sm:hidden w-[94%]  p-1 bg-transparent font-bold sticky items-end  z-10">
+      <div className=" flex  justify-between max-sm:hidden w-[94%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end  z-10">
      
-      <div className=" font-bold font-poppins w-[20.32rem] text-[#00A2E8] text-base  md:w-[21.32rem]">
-        <ContactEmergencyIcon className='!text-base mr-1  '
+      <div className="  w-[20.32rem] text-[#00A2E8] text-sm  max-md:w-[21.32rem]">
+        <ContactEmergencyIcon className='!text-icon mr-1  '
               />{translatedMenuItems[0]}
         {/* name" */}         
                 </div>
-        <div className="font-bold font-poppins text-xs w-[12.72rem] md:w-[13.72rem]">
+        <div className="truncate w-[13.72rem] max-md:w-[13.72rem]">
         <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}
         {/* company */}             
                 </div>
-        <div className="font-bold font-poppins text-xs w-[12.6rem] md:w-[12.6rem] ">
+        <div className="truncate w-[12.6rem] max-md:w-[12.6rem] ">
         <i className="fab fa-artstation "></i> {translatedMenuItems[2]} 
         {/* designation */}             
                 </div>
@@ -243,11 +243,11 @@ if (loading) {
         <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[3]} 
         department               
                 </div> */}
-                  <div className="font-bold font-poppins text-xs w-[5.2rem] md:w-[11.2rem]">
+                  <div className=" w-[11.2rem] truncate max-md:w-[11.2rem]">
         <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[6]}
         {/* source" */}           
                 </div>
-        <div className="font-bold font-poppins text-xs w-[10.1rem] md:w-[10.1rem]">
+        <div className=" w-[10.1rem] truncate max-md:w-[10.1rem]">
         <CurrencyExchangeIcon className='!text-icon  mr-1  text-[#e4eb2f]' />{translatedMenuItems[4]}
         {/* deals" */}           
                 </div>
@@ -257,12 +257,12 @@ if (loading) {
                 </div> */}
       
                 {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.81rem]">
+            <div className="w-[5.81rem] truncate max-md:w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.81rem]">
                <ScoreIcon className="!text-icon  text-[#f28482]"/>  Score
           
             </div>
             )}
-        <div className=" font-bold font-poppins text-xs md:w-[9.8rem]">
+        <div className=" w-[9.8rem] truncate max-md:w-[9.8rem]">
         <AccountCircleIcon className="!text-icon   text-[#d64933]"/>    {translatedMenuItems[7]}
         {/* owner             */}
                 </div>

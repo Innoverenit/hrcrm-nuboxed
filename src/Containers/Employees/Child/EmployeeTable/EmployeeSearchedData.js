@@ -32,7 +32,12 @@ import EmployeePulseDrawerModal from "./EmployeePulseDrawerModal";
 import OpenNotifyDrawer from "../EmployeeCard/OpenNotifyDrawer";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import MultiOrgEmployee from "../MultiOrgEmployee";
-
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import BusinessIcon from '@mui/icons-material/Business';
 
 function EmployeeSearchedData(props) {
   const [page, setPage] = useState(0);
@@ -244,31 +249,31 @@ function EmployeeSearchedData(props) {
      <div class=" h-h86 overflow-auto overflow-x-auto">
         <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-                    <div className=" md:w-[15.5rem]">{translatedMenuItems[0]}</div>
+                <div className=" flex  w-[100%] justify-between  p-1 bg-transparent font-bold font-poppins items-end !text-lm sticky  z-10">
+                    <div className=" text-[#00A2E8] text-sm w-[15.5rem] max-md:w-[15.5rem]"><LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}</div>
                     {/* Name */}
-                    <div className=" md:w-[9.1rem]">{translatedMenuItems[1]}</div>
+                    <div className=" w-[9.1rem] max-md:w-[9.1rem]" > <ApartmentIcon className='!text-icon text-[#f0386b] '  /> {translatedMenuItems[1]}</div>
                     {/* Department */}
-                    <div className=" md:w-[6.8rem] ">{translatedMenuItems[2]}</div>
+                    <div className=" w-[6.8rem]  max-md:w-[6.8rem] "><i className=" fab fa-artstation mr-1 text-[#b744b8]"></i>{translatedMenuItems[2]}</div>
                     {/* Role */}
-                    <div className="md:w-[8.7rem]">{translatedMenuItems[3]}</div>
+                    <div className=" w-[9.7rem] max-md:w-[9.7rem]"><LocalPhoneIcon className='!text-icon mr-1 text-[#ff9f1c] '  />{translatedMenuItems[3]}</div>
                     {/* Mobile # */}
-                    <div className="md:w-[8.9rem]">{translatedMenuItems[4]}</div>
+                    <div className="w-[13.9rem] max-md:w-[13.9rem]"><MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '  />{translatedMenuItems[4]}</div>
                     {/* Email # */}
-                    <div className="md:w-[9.2rem]">{translatedMenuItems[5]}</div>
+                    <div className=" w-[10.2rem] max-md:w-[10.2rem]"><RadioButtonCheckedIcon className="!text-icon mr-1 text-[#f28482]"/> {translatedMenuItems[5]}</div>
                     {/* Stop Access */}
-                    <div className="md:w-[10.2rem]">{translatedMenuItems[6]}</div>
+                    <div className=" w-[11.4rem] max-md:w-[11.4rem]"><BusinessIcon className="!text-icon mr-1 text-[#f28482]"/> {translatedMenuItems[6]}</div>
                     {/* Multi Org */}
-                    <div className="md:w-[11.2rem]"></div>
+                    {/* <div className="md:w-[11.2rem]"></div> */}
                 </div>
                 {props.employeeSerachedData.map((item) => {
                     const currentdate = dayjs().format("DD/MM/YYYY");
                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                     return (
                         <div>
-                            <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  " >
+                            <div className="flex rounded  mt-1 bg-white  items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  " >
                                 <div class="flex">
-                                    <div className=" flex font-medium  md:w-[15.6rem] max-sm:w-full ">
+                                    <div className=" flex border-l-2 h-8 text-xs border-green-500 bg-[#eef2f9] items-center  w-[15.6rem] max-md:w-[15.6rem] max-sm:w-full ">
                                     <EmployeeDetailsView
           employeeId={item.employeeId}
           fullName={item.fullName}
@@ -282,17 +287,17 @@ function EmployeeSearchedData(props) {
                                         ) : null}
                                     </div>
 
-                                    <div className=" flex font-medium   md:w-[8.7rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                        <div class=" text-xs  font-poppins">
+                                    <div className=" flex justify-start items-center h-8 ml-gap bg-[#eef2f9]   max-md:w-[7.7rem] max-sm:flex-row w-[7.7rem] max-sm:justify-between  ">
+                                        <div class=" text-xs items-center ml-gap  font-poppins">
                                             {item.department}
                                         </div>
 
                                     </div>
-                                    <div className=" flex font-medium  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                    <div className=" flex justify-start items-center h-8 ml-gap bg-[#eef2f9]  max-md:w-[6.2rem] max-sm:flex-row w-[6.2rem] max-sm:justify-between ">
 
 
 
-                                        <div class=" text-sm  font-poppins">
+                                        <div class=" text-xs items-center ml-gap   font-poppins">
                                             
                                            {item.roleTypeName}
                                         </div>
@@ -300,17 +305,17 @@ function EmployeeSearchedData(props) {
                                 </div>
 
                                
-                                <div className=" flex font-medium  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9]  max-md:w-[10.2rem] max-sm:flex-row w-[10.2rem] max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     {item.countryDialCode} {item.mobileNo}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[14.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                    <div class=" text-xs  font-poppins text-center">
+                                <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9]   max-md:w-[14.2rem] max-sm:flex-row w-[14.2rem] max-sm:justify-between ">
+                                    <div class=" text-xs  ml-gap font-poppins text-center">
                                        {item.emailId}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex   items-center justify-start h-8 ml-gap bg-[#eef2f9]  max-md:w-[5.2rem] max-sm:flex-row w-[5.2rem] max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     {props.user.userDeleteInd === true || user.role === "ADMIN" ? (
             <SuspendEmployee
@@ -323,7 +328,7 @@ function EmployeeSearchedData(props) {
                                     </div>
                                 </div>
                                 {props.user.multyOrgLinkInd=== true && (
-                                <div className=" flex font-medium ml-8  md:w-[5.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] max-md:w-[5.2rem] max-sm:flex-row w-[5.2rem] max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                   
             <MultiOrgEmployee
@@ -334,7 +339,7 @@ function EmployeeSearchedData(props) {
                                     </div>
                                 </div>
                                 )}
-                                <div className=" flex font-medium  md:w-[8.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] max-md:w-[8.21rem] max-sm:flex-row w-[8.21rem] max-sm:justify-between ">
                                     <div class=" text-xs cursor-pointer  font-poppins text-center">
                                     {item.suspendInd !== true && ( 
               <Tooltip  title={item.role}>
@@ -365,10 +370,9 @@ function EmployeeSearchedData(props) {
                )}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[10.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex  items-center  justify-end h-8 ml-gap bg-[#eef2f9] w-[10.12rem] max-md:w-[10.12rem] max-sm:flex-row  max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
-                                    <span
-              style={{ cursor: "pointer" }}
+                                    <span className=" cursor-pointer"
               onClick={() => {
                 // props.getCandidateById(item.candidateId);
                  props.getEmployeeDocument(item.employeeId);
@@ -378,18 +382,15 @@ function EmployeeSearchedData(props) {
               }}
             >
     
-                <MonitorHeartIcon
-                  style={{ fontSize: "0.8rem", color: "#df9697" }}
+                <MonitorHeartIcon className=" cursor-pointer !text-icon text-[#df9697]"
                 />
          
             </span>
                                     </div>
-                                </div>
-                                <div className=" flex font-medium  md:w-[9.12rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-xs  font-poppins text-center">
                                     <Tooltip title="Add as Admin">
            <CircleNotificationsIcon
-           style={{ cursor: "pointer",fontSize: "1rem" }}
+           className=" cursor-pointer !text-icon"
            onClick={() => {
             handleSetCurrentEmployeeId(item);
             props.handleNotifyDrawer(true);
@@ -397,8 +398,6 @@ function EmployeeSearchedData(props) {
            />
            </Tooltip>
                                     </div>
-                                </div>
-                                <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
                                     <div class=" text-base  font-poppins text-center">
                                     {item.suspendInd === true && (
                  <StyledPopconfirm
@@ -412,7 +411,9 @@ function EmployeeSearchedData(props) {
            </StyledPopconfirm>
      )}
                                     </div>
+                                    
                                 </div>
+                             
                                 
 
                             </div>

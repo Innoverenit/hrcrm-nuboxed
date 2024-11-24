@@ -30,7 +30,9 @@ const initialState = {
 
   fetchingActivityTimelineStatus:false,
   fetchingActivityTimelineStatusError:false,
-  activityTimeline:[]
+  activityTimeline:[],
+
+  addActivityUpdateModal:false,
 
   
 };
@@ -39,7 +41,13 @@ export const activityReducer = (state = initialState, action) => {
   switch (action.type) {
     /**
      * handle Customer form modal
+     * 
+     * 
+     * 
      */
+
+    case types.HANDLE_ACTIVITY_UPDATE_MODAL:
+      return { ...state, addActivityUpdateModal: action.payload };
     case types.HANDLE_CALL_ACTIVITY_MODAL:
         return { ...state, callActivityModal: action.payload };
 

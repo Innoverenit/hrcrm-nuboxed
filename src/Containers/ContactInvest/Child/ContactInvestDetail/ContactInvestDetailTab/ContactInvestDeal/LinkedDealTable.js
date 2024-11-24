@@ -80,27 +80,27 @@ if (fetchingDealList) return <BundleLoader/>;
     <>
     <div className=' flex sticky z-auto h-[77vh]'>
     <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex justify-between w-[93%]  p-1 bg-transparent text-xs items-end font-bold sticky z-10">
-        <div className="text-[#00A2E8] text-base w-[24rem] md:w-[22rem]">
+      <div className=" flex justify-between w-[93%]  p-1 bg-transparent !text-lm items-end font-bold font-poppins sticky z-10">
+        <div className="text-[#00A2E8] text-sm truncate w-[22rem] max-md:w-[22rem]">
         <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]}  
         {/* Name */}
 
         </div>
-        <div className="font-poppins font-bold text-xs md:w-[7.2rem] w-[5.2rem]">
+        <div className="w-[7.2rem] max-md:w-[7.2rem] truncate ">
         <DateRangeIcon className='!text-icon mr-1 '  /> 
         {translatedMenuItems[2]}  
         {/* End Date */}
           </div>
-          <div className="font-poppins font-bold text-xs md:w-[5.02rem] w-[5.02rem]">
+          <div className="w-[5.02rem] truncate max-md:w-[5.02rem] ">
           <CurrencyExchangeIcon className='!text-icon mr-1 text-[#e4eb2f]' />
         {translatedMenuItems[3]}</div>
 
-        <div className="font-poppins font-bold text-xs md:w-[4.5rem] w-[4.5rem]">
+        <div className="w-[4.5rem] truncate max-md:w-[4.5rem] ">
            <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' />
         {translatedMenuItems[4]}  
         {/* Status */}
           </div>
-        <div className="font-poppins font-bold text-xs w-[3.8rem] md:w-[5.8rem]">
+        <div className=" truncate w-[5.8rem] max-md:w-[5.8rem]">
         <ContactsIcon className="!text-icon text-[#4f7cac] "/>{translatedMenuItems[5]}  
         {/*Sponser */}
           </div> 

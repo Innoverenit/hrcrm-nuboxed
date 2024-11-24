@@ -73,32 +73,32 @@ function OpportunityTable(props) {
   return (
     <>
     <div class="rounded m-1 max-sm:m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
- <div className="flex max-sm:hidden  w-[100%]  max-xl:w-[100%]  p-1 bg-transparent font-bold font-poppins items-end text-xs sticky  z-10">
-        <div className=" w-[15.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> 
-           <LightbulbIcon className="!text-icon text-[#84a59d]"/> {translatedMenuItems[0]} ID</div>
+ <div className="flex max-sm:hidden  w-[100%]  max-xl:w-[100%]  p-1 bg-transparent font-bold font-poppins items-end !text-lm sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
+        <div className=" w-[15.8rem] text-[#00A2E8] text-sm  truncate max-xl:w-[16.8rem] max-md:w-[15.8rem] "> 
+           <LightbulbIcon className="!text-icon  text-[#84a59d]"/> {translatedMenuItems[0]} ID</div>
         {/* Quotation ID */}
-        <div className=" w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <div className=" w-[13.1rem] truncate max-md:w-[13.1rem]">
         <ApartmentIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[1]}</div>
         {/* Prospect */}
-        <div className=" w-[10.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> <ContactPageIcon className='!text-icon  '  /> 
+        <div className=" w-[10.12rem] truncate max-md: w-[10.12rem]"> <ContactPageIcon className='!text-icon  '  /> 
           {translatedMenuItems[2]}</div>
         {/* Sponsor */}
-        <div className="w-[12.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <div className="w-[12.8rem] truncate max-md:w-[12.8rem]">
         <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[3]}</div>
         {/* Start Date */}
-        <div className="w-[12.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <div className="w-[12.3rem] truncate max-md:w-[12.3rem]">
            <CurrencyExchangeIcon className='!text-icon mr-1 text-[#e4eb2f]' />{translatedMenuItems[4]}</div>
         {/* Value */}
-        <div className="w-[10.02rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  
+        <div className="w-[10.02rem] truncate max-md:w-[10.02rem]">  
           <StairsIcon className='!text-icon  '  /> 
           {translatedMenuItems[5]}</div>
         {/* Stages */}
-        <div className="w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div>
+        <div className="w-[9.1rem] truncate max-md:w-[9.1rem]">{translatedMenuItems[6]}</div>
         {/* Sales Rep */}
-        <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]">
+        <div className="w-[10.2rem]  max-lg:w-[0.2rem] max-md:w-[10.2rem] ">
         <ContactPageIcon className='!text-icon text-[#ffb400] '  />{translatedMenuItems[7]}</div>
         {/* Owner */}
-        <div className="w-[2.8rem] "></div>
+        <div className="w-[2.8rem] truncate"></div>
         <div className="w-12"></div>
       </div>
 
@@ -123,7 +123,7 @@ function OpportunityTable(props) {
 
                   <div className="max-sm:w-wk">
                    <div
-                className="flex rounded justify-between  bg-white mt-1  items-center py-ygap max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                className="flex rounded justify-between  bg-white mt-1  items-center py-ygap max-sm:h-[9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex w-[8rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
                               <div className="ml-gap">
@@ -143,7 +143,7 @@ function OpportunityTable(props) {
         
                                           <div class="flex text-xs text-blue-500 ml-gap font-poppins font-semibold cursor-pointer">
                                               
-                                          <Link class="flex ml-gap overflow-ellipsis max-sm:text-sm whitespace-nowrap max-xl:text-[0.65rem] max-lg:text-[0.45rem] h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
+                                          <Link class="flex ml-gap overflow-ellipsis max-sm:text-sm whitespace-nowrap  h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>&nbsp;&nbsp;
      
@@ -155,7 +155,7 @@ function OpportunityTable(props) {
 
                               <div className=" flex  items-center justify-center  ml-gap bg-[#eef2f9] h-8 w-[8.01rem] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
-                                  <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
+                                  <div class=" text-xs  font-poppins  max-sm:text-sm">   
                                   
                                   {item.customer}
                   
@@ -168,7 +168,7 @@ function OpportunityTable(props) {
                               <div className=" flex w-[7rem] items-center justify-center  ml-gap bg-[#eef2f9] h-8 max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                 
 
-                                <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                <div class=" text-xs  font-poppins  max-sm:text-sm">
                                
                                 {item.contactName === null ? "None" :
           <MultiAvatar2
@@ -185,7 +185,7 @@ function OpportunityTable(props) {
                               <div className=" flex items-center justify-start  ml-gap bg-[#eef2f9] h-8  w-[8rem] max-xl:w-[5.51rem] max-lg:w-[3.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
-                                  <div class=" text-xs ml-gap justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-xs ml-gap justify-center  font-poppins  max-sm:text-sm">
                                   {dayjs(item.startDate).format("DD/MM/YYYY")}
                                   </div>
                               </div>
@@ -193,7 +193,7 @@ function OpportunityTable(props) {
                               <div className=" flex items-center justify-start  ml-gap bg-[#eef2f9] h-8  w-[6.01rem] max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
    
 
-                                  <div class=" text-xs ml-gap font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-xs ml-gap font-poppins text-center  max-sm:text-sm">
                                   <CurrencySymbol currencyType={item.currency} />
           &nbsp;
           {item.proposalAmount}
@@ -205,7 +205,7 @@ function OpportunityTable(props) {
                               <div className=" flex items-center justify-center  ml-gap bg-[#eef2f9] h-8  w-[7.02rem] max-xl:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
            
 
-                                  <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-xs  font-poppins text-center  max-sm:text-sm">
                                   <Dropdown
 overlay={
 <div>
@@ -241,7 +241,7 @@ strokeColor={"#005075"}
                               <div className=" flex items-center justify-center  ml-gap bg-[#eef2f9] h-8  w-[6.02rem] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                     
 
-                                  <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-xs  font-poppins  max-sm:text-sm">
                                   
                                   <span>
                                   <MultiAvatar2

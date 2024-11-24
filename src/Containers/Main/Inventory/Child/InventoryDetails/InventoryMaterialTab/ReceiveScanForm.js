@@ -3,7 +3,7 @@ import { Button } from 'antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { QrReader } from 'react-qr-reader';
-//import {addScandata} from "./InventoryAction";
+import {addScanReceivedata} from "../../../InventoryAction";
 
 
 const ReceiveScanForm = (props) => {
@@ -42,16 +42,15 @@ const handleScan = async (result) => {
   };
 
 
-//   const handleSubmit = () => {
-//     let result={
-//         orderId:props.orderId,
-//         itemId:props.scandata.productId,
-//         dispatchPackingId:props.dispatchPackingId,
-//         orgId:props.orgId,
-//         manualNo:data,
-//     }
-//     // props.addScandata(result)
-//   };
+  const handleSubmit = () => {
+    let result={
+      poReceivedInd:true,
+      userId:props.userId,
+
+
+    }
+  props.addScanReceivedata(result,props.poSupplierDetailsId,data)
+  };
 
   return (
     <>
@@ -79,7 +78,7 @@ const handleScan = async (result) => {
             )}
            
 <Button  
-// onClick={handleSubmit}
+onClick={handleSubmit}
 >Submit</Button>
           </div>
         {/* )} */}
@@ -90,11 +89,13 @@ const handleScan = async (result) => {
 
 const mapStateToProps = ({ inventory, auth }) => ({
     orgId: auth.userDetails.organizationId,
+    userId:auth.userDetails.userId,
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
+          addScanReceivedata
             // addScandata
         },
         dispatch

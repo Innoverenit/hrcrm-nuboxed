@@ -120,40 +120,40 @@ function DealWonCard(props) {
       return (    
   <>    
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" font-bold font-poppins text-xs w-[13.82rem] max-xl:w-[11.12rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+      <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins  max-xl:text-xs] max-lg:text-[0.45rem] !text-lm sticky  z-10">
+        <div className=" w-[13.82rem] max-md:w-[13.82rem] truncate max-xl:w-[11.12rem]">
         {translatedMenuItems[0]}
        {/* "name" */}
                 </div>
-        <div className=" font-bold font-poppins text-xs w-[8.21rem] max-xl:w-[7.21rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        <div className=" w-[8.21rem] max-md:w-[8.21rem]  truncate max-xl:w-[7.21rem]">
         {translatedMenuItems[1]}
          {/* investor"              */}
                 </div>
-        <div className="  font-bold font-poppins text-xs w-[7.21rem] max-xl:w-[6.21rem] max-xl:text-xs] max-lg:text-[0.45rem] ">
+        <div className=" truncate  w-[7.21rem] max-md:w-[7.21rem] max-xl:w-[6.21rem] ">
         {translatedMenuItems[2]}
         {/* "sponsor"          */}
                 </div>
-        <div className=" font-bold font-poppins text-xs w-[6.11rem] max-xl:w-[7.11rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        <div className=" truncate w-[6.11rem] max-md:w-[6.11rem] max-xl:w-[7.11rem]">
         {translatedMenuItems[3]}
        {/* startdate" */}       
                 </div>
-        <div className=" font-bold font-poppins text-xs w-[8.16rem] max-xl:w-[9.16rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        <div className=" truncate w-[8.16rem] max-md:w-[8.16rem] max-xl:w-[9.16rem]">
          proposalamt
                 </div>
-        <div className=" font-bold font-poppins text-xs w-[8.14rem] max-xl:w-[6.14rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        <div className=" truncate w-[8.14rem] max-md:w-[8.14rem] max-xl:w-[6.14rem]">
         {translatedMenuItems[5]}
          {/* "stages" */}             
                 </div> 
-        <div className="font-bold font-poppins text-xs w-[8.1rem] max-xl:w-[7.1rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        <div className="truncate w-[8.1rem] max-md:w-[8.1rem] max-xl:w-[7.1rem]">
         {translatedMenuItems[6]}
         {/* Assigned" */}      
                 </div>
-        <div className="font-bold font-poppins text-xs w-[5.22rem] max-xl:w-[5.21rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        <div className="truncate w-[5.22rem] max-md:w-[5.22rem] max-xl:w-[5.21rem]">
         {translatedMenuItems[7]} 
         {/* owner" */}
                 </div>
-        <div className="w-[2.71rem] max-xl:text-xs] max-lg:text-[0.45rem]"></div>
-        <div className="w-[3.01rem] max-xl:text-xs] max-lg:text-[0.45rem]">
+        <div className="w-[2.71rem]"></div>
+        <div className="w-[3.01rem]">
         {/* action" */}             
                 </div>
       </div>
@@ -176,7 +176,7 @@ function DealWonCard(props) {
                  return (
                     <div>
                     <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 h-8 items-center max-sm:rounded-lg  max-xl:text-xs] max-lg:text-[0.45rem]  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                       <div className=" flex border-l-2 border-green-500 bg-[#eef2f9] w-[14.1rem] max-xl:w-[8.1rem] max-lg:w-[6.1rem] max-sm:flex-row max-sm:w-auto  items-center">
@@ -195,7 +195,7 @@ function DealWonCard(props) {
                                         <div class=" flex max-sm:w-full  flex-row md:flex-col">                                   
                                            {/* Name */}                                   
                                          <div class=" text-xs text-blue-500  font-poppins font-semibold cursor-pointer">
-                                        <Link class="overflow-ellipsis whitespace-nowrap text-xs  text-[#042E8A] max-xl:text-xs] max-lg:text-[0.45rem] max-sm:text-sm cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
+                                        <Link class="overflow-ellipsis whitespace-nowrap text-xs  text-[#042E8A] max-sm:text-sm cursor-pointer"  to={`dealDetails/${item.invOpportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>                          
                       &nbsp;&nbsp;       
@@ -247,7 +247,7 @@ function DealWonCard(props) {
                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.1rem] max-xl:w-[8.11rem] max-lg:w-[6.11rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                {/* Value */}
 
-                                    <div class=" text-xs  font-poppins text-center max-xl:text-xs] max-lg:text-[0.45rem] max-sm:text-xs">
+                                    <div class=" text-xs  font-poppins text-center max-sm:text-xs">
                                     <Dropdown
               overlay={
                 <div>
@@ -280,7 +280,7 @@ function DealWonCard(props) {
                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.1rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* Assigned */}
 
-                                    <div class=" text-xs  font-poppins max-xl:text-xs] max-lg:text-[0.45rem] max-sm:text-xs">                                   
+                                    <div class=" text-xs  font-poppins max-sm:text-xs">                                   
                                     <span>
                                     <MultiAvatar2
               primaryTitle={item.assignedTo}

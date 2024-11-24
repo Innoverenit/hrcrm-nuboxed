@@ -176,7 +176,7 @@ console.log(formData)
            <Button
              onClick={() => {
                 props.handleReceiveScanModal(true);
-            //   handleSetScandata(item);
+            //  handleSetScandata(item);
               }}
            >Scan</Button>
             <div className=' flex  sticky z-auto'>
@@ -472,6 +472,7 @@ console.log(formData)
                 </Modal>
             </div>
             <AddReceiveScan
+            poSupplierDetailsId={props.row.poSupplierDetailsId}
             handleReceiveScanModal={props.handleReceiveScanModal}
             addReceivedScanModal={props.addReceivedScanModal}
             />
