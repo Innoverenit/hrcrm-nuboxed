@@ -72,19 +72,19 @@ function ShipperDeleteTable(props) {
 <div className=" flex justify-between w-[100%]  p-1 bg-transparent sticky items-end font-poppins font-bold !text-lm  z-10">
         <div className="  text-[#00A2E8] text-base md:w-[12.1rem]">
             <CategoryIcon className='!text-icon '/>   {props.translatedMenuItems[0]}</div>
-        <div className=" w-[10.1rem] max:w-[10.1rem]">
+        <div className=" w-[10.1rem] max-md:w-[10.1rem]">
         <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>{props.translatedMenuItems[1]} </div>
-        <div className=" w-[8.8rem] max:w-[8.8rem] ">   
+        <div className=" w-[8.8rem] max-md:w-[8.8rem] ">   
         <MailOutlineIcon className="!text-icon  text-[#4f5d75]"/>  {props.translatedMenuItems[2]}</div>
-        <div className=" w-[7.9rem] max:w-[7.9rem]"> 
+        <div className=" w-[7.9rem] max-md:w-[7.9rem]"> 
         <LocalShippingIcon className='!text-base mr-1 text-[#7dcfb6]'/>{props.translatedMenuItems[3]}</div>
-        <div className=" w-[7.8rem] max:w-[7.8rem]"> 
+        <div className=" w-[7.8rem] max-md:w-[7.8rem]"> 
         <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[4]}</div>
-        <div className=" w-[7.9rem] max:w-[7.9rem]">   
+        <div className=" w-[7.9rem] max-md:w-[7.9rem]">   
         <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[5]}</div>
-        <div className=" w-[9.2rem] max:w-[9.2rem]"> 
+        <div className=" w-[9.2rem] max-md:w-[9.2rem]"> 
              {props.translatedMenuItems[6]}</div>
-        <div className="  w-[4.8rem]">
+        <div className="  w-[4.8rem] max-md:w-[4.8rem]">
           {props.translatedMenuItems[7]}</div>
         </div>
         <InfiniteScroll
@@ -114,26 +114,26 @@ function ShipperDeleteTable(props) {
                               </div>
 </div>
 </div>
-<div className=" flex md:w-44 items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between w-full max-sm:flex-row ">
+<div className=" flex w-44 max-md:w-44 items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
 <div class="  text-xs ml-gap items-center  font-poppins">
 {item.dialCode} {item.phoneNo}
 </div>
 
 </div>
-<div className=" flex   md:w-44  items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between w-full max-sm:flex-row ">
+<div className=" flex  w-44 max-md:w-44  items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
 <div class="  text-xs  ml-gap items-center font-poppins">
 {item.emailId} 
 </div>
 
 </div>
 
-<div className=" flex  md:w-44   items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between w-full max-sm:flex-row ">
+<div className=" flex  max-md:w-44   w-44  items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between max-sm:flex-row ">
 <div class="  text-xs  ml-gap items-center font-poppins">
 {item.shipByName} 
 </div>
 
 </div>
-<div className=" flex  md:w-44  items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between w-full max-sm:flex-row ">
+<div className=" flex  max-md:w-44 w-44  items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
 
 <div class=" text-xs  ml-gap items-center font-poppins">
 {`${(item.address && item.address.length && item.address[0].address1) || ""}
@@ -142,7 +142,7 @@ function ShipperDeleteTable(props) {
         `}
 </div>
 </div>
-<div className=" flex  md:w-44  items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between w-full max-sm:flex-row ">
+<div className=" flex  max-md:w-44  w-44 items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
 
 <div class="  text-xs ml-gap items-center  font-poppins">
 {(item.address &&
@@ -151,7 +151,7 @@ function ShipperDeleteTable(props) {
                               ""}
 </div>
 </div>
-<div className=" flex  md:w-44 max-sm:justify-between  items-center justify-start h-8 ml-gap  bg-[#eef2f9] w-full max-sm:flex-row ">
+<div className=" flex max-md:w-44 w-44 max-sm:justify-between  items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row ">
 
 <div class="  text-xs  ml-gap items-center font-poppins">
 {(item.address &&
@@ -161,7 +161,7 @@ function ShipperDeleteTable(props) {
 </div>
 </div>
 
-<div className=" flex  w-[7.2rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+<div className=" flex  w-[7.2rem] max-md:w-[7.2rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                             <div class=" text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <ReInstateShipper shipperId={item.shipperId} />
                             </div>

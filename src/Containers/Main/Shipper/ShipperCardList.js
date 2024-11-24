@@ -172,31 +172,31 @@ const fetchApiKeyList = async () => {
               className='!text-icon'
               /> {props.translatedMenuItems[0]}
               </div>
-            <div className="  w-[7.2rem] truncate  ">
+            <div className="  w-[7.2rem] max-md:w-[7.2rem] truncate  ">
              {/* Phone */}
              <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>  {props.translatedMenuItems[1]} 
               </div>
-            <div className=" w-[10.8rem] truncate  ">
+            <div className=" w-[10.8rem]  max-md:w-[10.8rem] truncate  ">
              {/* Email */}
              <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c]'  />{props.translatedMenuItems[2]}
               </div>
-            <div className=" w-[6.1rem] truncate  ">
+            <div className=" w-[6.1rem] max-md:w-[6.1rem] truncate  ">
               {/* Ship By */}
               <LocalShippingIcon className='!text-base mr-1 text-[#7dcfb6]'/>{props.translatedMenuItems[3]}
             </div>
-            <div className="  w-[18.7rem] truncate  ">
+            <div className="  w-[18.7rem] max-md:w-[18.7rem] truncate  ">
              {/* Address */}
              <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[4]}
               </div>
-            <div className=" w-[12.4rem] truncate  ">
+            <div className=" w-[12.4rem] max-md:w-[12.4rem] truncate  ">
             {/* City */}
             <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[5]}
               </div>
-            <div className=" w-[5.9rem] truncate  ">
+            <div className=" w-[5.9rem] max-md:w-[5.9rem] truncate  ">
             {/* Pin Code */}
               {props.translatedMenuItems[6]}
               </div>
-            <div className=" w-[13.24rem] truncate  ">
+            <div className=" w-[13.24rem] max-md:w-[13.24rem] truncate  ">
             <ApiIcon className='!text-base  text-[#e4eb2f]'/> API</div>
           </div>
           <InfiniteScroll
@@ -234,14 +234,14 @@ const fetchApiKeyList = async () => {
 
 </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
-                          <div className=" flex   w-[10.3rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div className=" flex   w-[10.3rem] max-md:w-[10.3rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
                             <div class="flex  text-xs ml-gap  font-poppins   max-sm:text-xs">
                               {item.emailId}
                             </div>
                           </div>
 
-                          <div className=" flex  w-[6.12rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div className=" flex  w-[6.12rem] max-md:w-[6.12rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
                             <div class="  text-xs  font-poppins ml-gap   max-sm:text-xs">
                               {item.shipByName}
                             </div>
@@ -249,7 +249,7 @@ const fetchApiKeyList = async () => {
                           </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
-                          <div className=" flex  w-[18.31rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div className=" flex  w-[18.31rem] max-md:w-[18.31rem]  items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
                             <div class="  text-xs  ml-gap font-poppins   max-sm:text-xs">
                               {`${(item.address && item.address.length && item.address[0].address1) || ""}
@@ -259,7 +259,7 @@ const fetchApiKeyList = async () => {
                             </div>
                           </div>
                           
-                          <div className=" flex   w-[12.21rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[8.81rem] max-lg:w-[6.3rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div className=" flex   w-[12.21rem] max-md:w-[12.21rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[8.81rem] max-lg:w-[6.3rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
                             <div class="  text-xs  font-poppins ml-gap   max-sm:text-xs">
                               {(item.address &&
                                 item.address.length &&
@@ -268,7 +268,7 @@ const fetchApiKeyList = async () => {
                             </div>
                           </div>
                     
-                          <div className=" flex  w-[5.2rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                          <div className=" flex  w-[5.2rem] max-md:w-[5.2rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
                             <div class="  text-xs  ml-gap font-poppins   max-sm:text-xs">
                               {(item.address &&

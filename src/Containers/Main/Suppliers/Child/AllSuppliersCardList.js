@@ -16,7 +16,7 @@ import CategoryIcon from '@mui/icons-material/Category';
 import LinkIcon from '@mui/icons-material/Link'; 
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 
 import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 
@@ -131,22 +131,31 @@ return(
                {/* Supplier ID */}
                <CategoryIcon className=" !text-icon"/>  {props.translatedMenuItems[40]} ID
                </div>
-            <div className=" w-[16rem] truncate  max-xl:w-[11.8rem]">   <ApartmentIcon className="!text-icon text-[#4f5d75] "/>    {props.translatedMenuItems[0]}</div>
+            <div className=" w-[16rem] truncate  max-xl:w-[11.8rem]"> 
+                <ApartmentIcon className="!text-icon text-[#4f5d75] "/>   
+                 {props.translatedMenuItems[0]}
+                </div>
             <div className=" w-[8.1rem] truncate  max-xl:w-[9.8rem]">
-            <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>  {props.translatedMenuItems[1]}
+            <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/> 
+             {props.translatedMenuItems[1]}
             </div>
-            <div className=" w-[12.92rem] truncate  max-xl:w-[14.9rem] ">    <MailOutlineIcon className="!text-icon  text-[#4f5d75]"/>  {props.translatedMenuItems[2]}</div>  
+            <div className=" w-[12.92rem] truncate  max-xl:w-[14.9rem] ">    
+              <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] ' />
+               {props.translatedMenuItems[2]}</div>  
             <div className=" w-[16.94rem] truncate  max-xl:w-[14.9rem] "> 
                {/* Supplier ID */}
-               <LinkIcon  className="!text-icon  text-[#4f5d75]"/>   {props.translatedMenuItems[41]}
+               <LinkIcon  className="!text-icon  text-[#4f5d75]"/>  
+                {props.translatedMenuItems[41]}
                </div>   
-          <div className=" w-[11.91rem] truncate  max-xl:w-[14.9rem] "> <AccountCircleIcon className="!text-icon  text-[#f28482]"/>Owner</div>
+          <div className=" w-[11.91rem] truncate  max-xl:w-[14.9rem] "> 
+            <AccountCircleIcon className="!text-icon  text-[#f28482]"/>Owner</div>
           </div>
         <InfiniteScroll
         dataLength={props.allSupplierList.length}
         next={handleLoadMore}
         hasMore={hasMore}
-        loader={props.fetchingSupplierList?<div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div>:null}
+        loader={props.fetchingSupplierList?<div class="text-center font-semibold text-xs">
+          {props.translatedMenuItems[10]}...</div>:null}
         height={"83vh"}
         style={{scrollbarWidth:"thin"}}
       >
