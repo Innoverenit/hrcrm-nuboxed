@@ -56,39 +56,39 @@ function SuppliersDeletedCardList(props) {
   ) : (
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex ml-4 max-sm:hidden justify-between w-[98%]  p-1 bg-transparent font-bold font-poppins text-xs sticky items-end  z-10">
-          <div className=" w-[8.3rem] truncate max-xl:text-[0.65rem] text-[#00A2E8] max-lg:text-[0.45rem] max-xl:w-[10.9rem] "> 
+          <div className=" flex ml-4 max-sm:hidden justify-between w-[98%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end max-lg:text-[0.45rem] max-xl:text-[0.65rem] z-10">
+          <div className=" w-[8.3rem] truncate max-xl:text-[0.65rem] text-[#00A2E8]  max-xl:w-[10.9rem] "> 
                {/* Supplier ID */}
                <CategoryIcon className=" text-base"/> 
                {props.translatedMenuItems[40]} ID
                </div>
-            <div className=" w-[12.9rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> <ApartmentIcon className="!text-icon text-[#4f5d75] "/>  {props.translatedMenuItems[0]}
+            <div className=" w-[12.9rem] truncate  "> <ApartmentIcon className="!text-icon text-[#4f5d75] "/>  {props.translatedMenuItems[0]}
               </div>
-            <div className=" w-[9.8rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[9.8rem] truncate  ">
             <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>  {props.translatedMenuItems[1]}
             </div>
-            <div className=" w-[9.7rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> 
+            <div className=" w-[9.7rem] truncate   "> 
             <MailOutlineIcon className="!text-icon mr-1 text-[#4f5d75]"/> 
            Email
             </div>
-               <div className=" w-[7.91rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
+               <div className=" w-[7.91rem] truncate   max-xl:w-[14.9rem] "> 
                {/* url */}
                <LinkIcon  className="!text-icon  text-[#4f5d75]"/>   {props.translatedMenuItems[41]}
                </div>
-            <div className="w-[14.8rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="w-[14.8rem] truncate  ">
            <AddLocationAltIcon className="!text-icon  text-[#4f5d75]"/> {props.translatedMenuItems[34]}
 
             </div>
            
-            <div className="w-[13.9rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="w-[13.9rem] truncate  ">
            <LocationCityIcon className="!text-icon  text-[#4f5d75]" /> {props.translatedMenuItems[35]}
 
             </div>
-            <div className="w-[5.8rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="w-[5.8rem] truncate  ">
             <LocationCityIcon className="!text-icon  text-[#4f5d75]" /> {props.translatedMenuItems[36]}
 
             </div>
-            <div className="w-[5.81rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> <FlipCameraAndroidIcon className="!text-icon  text-[#4f5d75]" /> {props.translatedMenuItems[37]}</div>
+            <div className="w-[5.81rem] truncate  "> <FlipCameraAndroidIcon className="!text-icon  text-[#4f5d75]" /> {props.translatedMenuItems[37]}</div>
             
           </div>
           <div class="overflow-x-auto h-[83vh]">
