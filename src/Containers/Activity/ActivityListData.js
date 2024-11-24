@@ -4,13 +4,16 @@ import HourglassTopIcon from '@mui/icons-material/HourglassTop';
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import { Timeline, Button, Popconfirm, Tooltip,message } from 'antd';
 import { connect } from 'react-redux';
+import BorderColorIcon from "@mui/icons-material/BorderColor";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { bindActionCreators } from 'redux';
 import dayjs from 'dayjs';
+import UpdateActivityModal from "./UpdateActivityModal"
 import AddActivityNotesDrawerModal from "./AddActivityNotesDrawerModal"
 import { getActivityTimeline,
   addeventLocation,
   handleActivityNoteModal,
+  handleActivityUpdateModal,
   linkTaskStatus
    } from './ActivityAction';
 import { BundleLoader } from '../../Components/Placeholder';
@@ -31,7 +34,7 @@ const ActivityListData = (props) => {
 
   const handleEditClick = (status) => {
     setSelectedStatus(status);
-    props.handleCustomerActivityModal(true);
+    // props.handleCustomerActivityModal(true);
   };
 
   const handleNotesClick = (status) => {
@@ -201,16 +204,17 @@ const ActivityListData = (props) => {
                     <NoteAltIcon className=' !text-icon  text-green-600 cursor-pointer'/>
                   </div>
                 </div>
-                {/* <div >
+                <div >
                   <Tooltip title="Edit">
                     <BorderColorIcon
                       className="!text-icon cursor-pointer text-[tomato]"
-                    //   onClick={() => {handleEditClick(status)
-                    //     props.setEditActivityEvents(status)
-                    //   }}
+                      onClick={() => {
+                        handleEditClick(status)
+                        props.handleActivityUpdateModal(true)
+                      }}
                     />
                   </Tooltip>
-                </div> */}
+                </div>
             </div>
                 
               </div>
@@ -228,6 +232,15 @@ const ActivityListData = (props) => {
        
       
       />
+      <UpdateActivityModal
+      selectedStatus={selectedStatus}
+      uniqueId={props.uniqueId}
+      type={props.type}
+      translateText={props.translateText}
+      selectedLanguage={props.selectedLanguage}
+      handleActivityUpdateModal={props.handleActivityUpdateModal}
+      addActivityUpdateModal={props.addActivityUpdateModal}
+      />
     </div>
   );
 };
@@ -238,6 +251,7 @@ const mapStateToProps = ({ customer,activity, auth }) => ({
   fetchingActivityTimelineStatus:activity.fetchingActivityTimelineStatus,
   addCustomerNoteDrawerModal:customer.addCustomerNoteDrawerModal,
   activityTimeline: activity.activityTimeline,
+  addActivityUpdateModal:activity.addActivityUpdateModal,
   addActivityNotesModal:activity.addActivityNotesModal,
   customerActivityCount:customer.customerActivityCount,
   addCustomerActivityDrawerModal:customer.addCustomerActivityDrawerModal,
@@ -248,6 +262,7 @@ const mapDispatchToProps = (dispatch) =>
     {
     //   linkTaskStatus,
     getActivityTimeline,
+    handleActivityUpdateModal,
     addeventLocation,
     handleActivityNoteModal,
     linkTaskStatus
