@@ -36,7 +36,7 @@ import ReceiptIcon from '@mui/icons-material/Receipt';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import UpdateIcon from '@mui/icons-material/Update';
-import OnDeviceTrainingIcon from '@mui/icons-material/OnDeviceTraining';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import InvoiceMultipleDrawer from "./InvoiceMultipleDrawer";
 
 const { Option } = Select;
@@ -383,7 +383,7 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
       }
     return (
         <>
-         <div class=" w-[30vw] flex justify-end max-sm:w-24 ">
+         <div class=" w-[35vw] flex justify-end max-sm:w-24 ml-2">
      
         <Input 
           placeholder={translatedMenuItems[5]}
@@ -394,7 +394,7 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
         value={currentData}
         />
 
-<Button type="primary" onClick={()=> setmodalMultiple(true)}>
+<Button type="primary" onClick={()=> setmodalMultiple(true)} style={{ marginLeft:"2rem", fontSize:"0.65rem", width:"13rem"}}>
       Include multipule orders 
     </Button>
         </div>
@@ -413,22 +413,22 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
 
             <div className=' flex sticky  z-auto mt-3'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[86%] items-end p-1 bg-transparent font-bold font-poppins text-xs sticky z-10">
+                    <div className=" flex justify-between w-[86%] items-end p-1 bg-transparent font-bold !text-lm font-poppins text-xs sticky z-10">
                   
-                    <div class="text-[#00A2E8] text-base w-[8.5rem]">
+                    <div class="text-[#00A2E8] text-sm max-md:w-[8.5rem] w-[8.5rem]">
                     <ReceiptIcon className="!text-icon text-[#b91372]"/> {translatedMenuItems[0]} ID</div>
-                        <div className=" md:w-[7.4rem]">
-                        <OnDeviceTrainingIcon className="!text-icon text-[#157a6e] cursor-pointer"/>{translatedMenuItems[1]} ID</div>
+                        <div className=" w-[7.4rem] max-md:w-[7.4rem]">
+                        <DynamicFeedIcon className="!text-icon text-[#157a6e] cursor-pointer"/>{translatedMenuItems[1]} ID</div>
            
-                        <div className=" md:w-[7.1rem]">
+                        <div className="w-[7.107rem] max-md:w-[7.1rem]">
                         <CurrencyExchangeIcon className='!text-icon mr-1 text-[#e4eb2f]' />{translatedMenuItems[2]}</div>
                
-                        <div className=" md:w-[8rem]">{translatedMenuItems[6]}</div>
-                        <div className=" md:w-[8rem]">
+                        <div className="w-[8.09rem] max-md:w-[8rem]">{translatedMenuItems[6]}</div>
+                        <div className="w-[8.3rem] max-md:w-[8rem]">
                         <CreditCardIcon className="!text-icon text-[#edd382] mr-1"/>{translatedMenuItems[7]}</div>
                         {/* Credit Memo */}
-                        <div className=" md:w-[8rem]"></div>
-                        <div className=" md:w-[8rem]">
+                        <div className="w-[8.23rem] max-md:w-[8rem]"></div>
+                        <div className="w-[8.1rem] max-md:w-[8rem]">
                         <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' /> {translatedMenuItems[4]}</div>
                     </div>
                     <div class="h-[69vh]" style={{scrollbarWidth:"thin"}}>
@@ -439,10 +439,10 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <>
-                                            <div className="flex rounded justify-between mt-1 bg-white  items-center py-ygap" >
+                                            <div className="flex rounded justify-between mt-1 bg-white  items-center py-ygap  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:">
                                                     <div className=" flex w-[9.25rem] h-8  border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[16.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins  font-bold flex items-center">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins ml-gap font-bold flex items-center">
                                                         
                                                            <span
                                                                     class="underline cursor-pointer text-[#1890ff]"

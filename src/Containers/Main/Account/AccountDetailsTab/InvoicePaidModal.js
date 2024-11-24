@@ -14,7 +14,7 @@ class InvoicePaidModal extends Component {
         return (
             <>
                 <StyledDrawer
-                    title={`Collection - ${this.props.particularRowData.invoiceId}`}
+                    title={`Invoice - ${this.props.particularRowData.invoiceId}`}
                     width="90%"
                     visible={addPaidButtonModal}
                     destroyOnClose
@@ -23,8 +23,8 @@ class InvoicePaidModal extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                    <div class="flex">
-                        <div class="w-[20%]">
+                    <div class="flex flex-row justify-around">
+                        <div class="w-[22%]">
                     <DistributorPaidForm
                                  particularRowData={this.props.particularRowData}  
                                 distributorId={this.props.distributorId}
