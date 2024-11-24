@@ -8,7 +8,6 @@ import { StyledPopconfirm } from "../../../../../Components/UI/Antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { BundleLoader } from "../../../../../Components/Placeholder";
-import jsPDF from "jspdf";
 import "jspdf-autotable";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import { MultiAvatar } from "../../../../../Components/UI/Elements";
@@ -91,27 +90,27 @@ function OrderPaymentTable(props) {
     <>
 
       {props.fetchingPaymentHistory ? <BundleLoader /> : <div className=' flex sticky z-auto'>
-        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-          <div className=" md:w-[4rem] font-semibold  font-poppins"></div>
-            <div className=" md:w-[7rem] font-semibold  font-poppins">{translatedMenuItems[0]}  ID</div>
-            {/* <div className=" md:w-[4.21rem] ">Invoice Id</div>  */}
-            <div className=" md:w-[4.5rem] font-semibold  font-poppins">{translatedMenuItems[1]}</div>
-            <div className="md:w-[5.8rem] font-semibold  font-poppins">{translatedMenuItems[2]}</div>
-            <div className=" md:w-[4.2rem] font-semibold  font-poppins">{translatedMenuItems[3]}</div>  {/* 929 */}
-            <div className=" md:w-[4.2rem] font-semibold  font-poppins">{translatedMenuItems[4]}</div>
+        <div class="rounded m-1 p-1  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-semibold fonr-poppins items-end !text-lm sticky z-10">
+          <div className="w-[4.03rem] max-max-md:w-[4rem] "></div>
+            <div className="w-[7.09rem] max-max-md:w-[7rem] ">{translatedMenuItems[0]}  ID</div>
+            {/* <div className=" max-md:w-[4.21rem] ">Invoice Id</div>  */}
+            <div className="w-[4.5rem] max-max-md:w-[4.5rem] ">{translatedMenuItems[1]}</div>
+            <div className="w-[5.8rem] max-max-md:w-[5.8rem] ">{translatedMenuItems[2]}</div>
+            <div className="w-[4.25rem] max-max-md:w-[4.2rem] ">{translatedMenuItems[3]}</div>  {/* 929 */}
+            <div className="w-[4.24rem] max-max-md:w-[4.2rem] ">{translatedMenuItems[4]}</div>
             {/* 86 */}
-            <div className=" md:w-[4.2rem] font-semibold  font-poppins">{translatedMenuItems[5]}</div>
-            <div className=" md:w-[6.2rem] font-semibold  font-poppins">{translatedMenuItems[6]} </div>
-            <div className="md:w-[6rem]"></div>
+            <div className="w-[4.22rem] max-max-md:w-[4.2rem] ">{translatedMenuItems[5]}</div>
+            <div className="w-[6.21rem] max-max-md:w-[6.2rem] ">{translatedMenuItems[6]} </div>
+            <div className="w-[6rem] max-max-md:w-[6rem]"></div>
           </div>
 
           {props.paymentHistory.map((item) => {
             return (
               <div>
-                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "    >
+                <div className="flex rounded justify-between mt-1 bg-white items-center py-ygap  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "    >
                   <div class="flex">
-                  <div className=" flex   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex w-[4rem]  h-8  border-l-2 border-green-500 bg-[#eef2f9]  max-md:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
                                                          {item.approveByFinanceInd && (
                                                          <div class=" text-xs  font-poppins text-center">
                                                                  <AddIcon
@@ -125,19 +124,19 @@ function OrderPaymentTable(props) {
                                                               
                                                          </div>)}
                                                    </div>
-                    <div className=" flex  md:w-[7rem] max-sm:w-full  ">
-                      <div class="text-xs text-ellipsis overflow-hidden font-semibold  font-poppins cursor-pointer">
+                    <div className=" flex w-[7rem] max-md:w-[7rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:  ">
+                      <div class="text-xs text-ellipsis overflow-hidden  cursor-pointer">
                         {item.transactionNumber}
                       </div>
                     </div>
-                    {/* <div className=" flex  md:w-[6.12rem] max-sm:w-full  ">
-                      <div class="text-xs  font-semibold  font-poppins cursor-pointer">
+                    {/* <div className=" flex  max-md:w-[6.12rem] max-sm:  ">
+                      <div class="text-xs   cursor-pointer">
                         {item.invoiceId}
                       </div>
                     </div> */}
                   </div>
 
-                  <div className=" flex md:w-[6.5rem] max-sm:flex-row">
+                  <div className=" flex  max-md:w-[6.5rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row">
                   <div class=" text-xs  font-poppins">
                           <span>
                           <MultiAvatar
@@ -149,13 +148,13 @@ function OrderPaymentTable(props) {
                         </div>
                   
                   </div>
-                  <div className=" flex  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex w-[6.2rem] max-max-md:w-[6.2rem] max-sm:flex-row  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:justify-between ">
 
-                    <div class=" text-xs  font-semibold  font-poppins">
+                    <div class=" text-xs  ">
                       {dayjs(item.date).format("DD-MM-YY")}
                     </div>
                   </div>
-                  <div className=" flex  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  max-md:w-[6.5rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                     <div class=" text-xs  font-poppins">
                       {row.paymentId === item.paymentId && edit ? (
                         <Input
@@ -171,7 +170,7 @@ function OrderPaymentTable(props) {
                     </div>
                   </div>
 
-                  <div className=" flex  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  max-md:w-[6.5rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                     <div class=" text-xs  font-poppins">
                       {row.paymentId === item.paymentId && edit ? <Select onChange={handlePaymentMode}>
                         {props.paymentModee.map((a) => {
@@ -181,13 +180,13 @@ function OrderPaymentTable(props) {
                         item.paymentModeName}
                     </div>
                   </div>
-                  <div className=" flex  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  max-md:w-[6.5rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                     <div class=" text-xs  font-poppins">
 
                       {item.remarks}
                     </div>
                   </div>
-                  <div className=" flex  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  max-md:w-[6.5rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                     <div class=" text-xs  font-poppins">
                   
 
@@ -216,7 +215,7 @@ function OrderPaymentTable(props) {
             <PictureAsPdfIcon className="!text-icon"/>
                            </a>
           </div>
-                  <div class="flex  md:w-[6rem] max-sm:flex-row max-sm:w-[10%]">
+                  <div class="flex  max-md:w-[6rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row max-sm:w-[10%]">
                     <div>
                       {row.paymentId === item.paymentId && edit ? (
                         <>
