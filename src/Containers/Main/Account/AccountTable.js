@@ -41,6 +41,7 @@ import MergeTypeIcon from '@mui/icons-material/MergeType';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import AsignedOpenDrawer from "./AsignedOpenDrawer";
+import Opportunity from "../../Opportunity/Opportunity";
 const AddAccountAdressModal = lazy(() => import("./AddAccountAdressModal"));
 const AccountCreditToggle = lazy(() => import("./AccountCreditToggle"));
 const AccountSearchedData = lazy(() => import("./AccountSearchedData"));
@@ -179,8 +180,8 @@ function AccountTable(props) {
   ) : (
       <div className=' flex  sticky  z-auto'>
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-white" >
-          <div className=" flex max-sm:hidden   w-[91%]  justify-between p-1 bg-transparentsticky max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-end z-10">
-           <div class=" flex justify-between !text-lm font-poppins  font-bold  w-[100%]  ">
+          <div className=" flex max-sm:hidden   w-[91%]  justify-between p-1 bg-transparent sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
+           <div class=" flex justify-between items-end !text-lm font-poppins  font-bold  w-[100%]  ">
             <div className="w-1"></div>
             <div className=" w-[12.1rem] text-[#00A2E8] text-sm max-md:w-[12.1rem]"> 
             <ContactsIcon className="!text-icon  "/> {translatedMenuItems[0]}
@@ -208,7 +209,7 @@ function AccountTable(props) {
              <LightbulbIcon className="!text-icon text-[#84a59d]"/>  {translatedMenuItems[21]}
           {/* Quotation*/}
              </div>
-             <div className="w-[5.2rem] max-md:w-[5.2rem]">
+             <div className="w-[5.210rem] max-md:w-[5.2rem]">
             {/* Club */}  <GolfCourseIcon className='!text-base   text-[#f42c04]'/> {translatedMenuItems[17]}
          
             </div> 
@@ -258,7 +259,7 @@ function AccountTable(props) {
             `;
                   return (
                     <div>
-                      <div className="flex  justify-between  bg-white mt-1 py-gap items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "                                >
+                      <div className="flex  justify-between  bg-white mt-1 py-ygap items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "                                >
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
                           <div className=" flex w-[12rem] max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] border-l-2 border-green-500 bg-[#eef2f9]  max-sm:w-auto">
                             <div className="flex max-sm:w-auto">
@@ -302,12 +303,12 @@ function AccountTable(props) {
                           </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex items-center justify-start max-sm:w-auto w-[10.2rem] max-md:w-[10.2rem]  max-xl:w-[5.2rem] bg-[#eef2f9] h-8 ml-gap max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex items-center justify-start max-sm:w-auto max-md:w-[7.2rem] w-[7.2rem]  max-xl:w-[5.2rem] bg-[#eef2f9] h-8 ml-gap max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class="flex ml-gap text-xs items-center  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.dcategoryName}
                             </div>
                           </div>
-                          <div className=" flex items-center justify-start  max-sm:w-auto w-[8.2rem] max-md:w-[8rem] max-xl:w-[6rem] max-lg:w-[5rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex items-center justify-start  max-sm:w-auto w-[6.2rem] max-md:w-[6.2rem] max-xl:w-[6rem] max-lg:w-[5rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" flex ml-gap text-xs items-center  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.clientName}
 
@@ -322,6 +323,7 @@ function AccountTable(props) {
                           </div>
                           <div className=" flex items-center justify-center  max-sm:w-auto w-[5.21rem] max-md:w-[5.21rem] max-xl:w-[6rem] max-lg:w-[5rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                           
                             {item.qtProcureCount} 
 
                             </div>
@@ -332,7 +334,7 @@ function AccountTable(props) {
 
                             </div>
                           </div>
-                          <div className=" flex  items-center justify-center max-sm:w-auto w-[12rem] max-md:w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex  items-center justify-center max-sm:w-auto w-[8.2rem] max-md:w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.payment} days
 
@@ -390,7 +392,7 @@ function AccountTable(props) {
                                                 </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">            
-                      <div className=" flex items-center justify-between bg-[#eef2f9] h-8 ml-gap max-sm:w-auto w-[9.01rem] max-md:w-[9.01rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center justify-between bg-[#eef2f9] h-8 ml-gap max-sm:w-auto w-[15.01rem] max-md:w-[9.01rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <div className=" flex items-center max-sm:w-auto w-[2rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>&nbsp;                            
                           </div>
@@ -400,7 +402,7 @@ function AccountTable(props) {
                             </div>                  
                         </div>
 
-                        <div class=" text-xs items-center justify-center flex bg-[#eef2f9] h-8 ml-gap w-[2.5rem] max-md:w-[2.5rem] font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                        <div class=" text-xs items-center justify-center flex bg-[#eef2f9] h-8 ml-gap w-[3.5rem] max-md:w-[2.5rem] font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   {/* Assigned */}
                                   {item.assignToUser?
                                   <span onClick={()=>{handleCurrentRowData(item);
@@ -478,19 +480,24 @@ function AccountTable(props) {
                                 </Tooltip>
 
                               </div>
-                              {/* <div className="bg-[#eef2f9] h-8  items-center justify-center flex">
+                              <div className="bg-[#eef2f9] h-8  items-center justify-center flex">
                                 <Tooltip title="Quotation">
-                                  
+                                <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm  cursor-pointer" to={`Opportunity`}>
+                                   
+                                
                                       <LightbulbIcon className="!text-icon text-[#bfa89e]"
-                                      onClick={() => {
-                                        props.setEditDistributor(item)
-                                        props.handleAccountOpportunityModal(true);
-                                        handleCurrentRowData(item);
-                                      }}
+                                     
+                                      // onClick={() => {
+                                      //   props.setEditDistributor(item)
+                                      //   props.handleAccountOpportunityModal(true);
+                                      //   handleCurrentRowData(item);
+                                      // }}
                                     />
+                                     <Opportunity/>
+                                     </Link>
                                 </Tooltip>
 
-                              </div> */}
+                              </div>
                               
 
                             <div className=" items-center justify-center flex bg-[#eef2f9] h-8  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">

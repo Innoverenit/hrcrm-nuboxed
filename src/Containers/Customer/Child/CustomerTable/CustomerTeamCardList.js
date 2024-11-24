@@ -494,8 +494,8 @@ const [rowdata, setrowdata] = useState("");
                         {/* >Pipeline Value */}
 
                         <div class=" text-xs  font-poppins items-center max-sm:text-sm text-center ">
-                          {item.oppNo}
-
+                        <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm  cursor-pointer" to={`Opportunity`}>{item.oppNo}
+                        </Link>
                         </div>
                       </div>
                       <div className=" flex  max-sm:w-auto items-center  w-[3.5rem]  max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
@@ -695,7 +695,7 @@ const [rowdata, setrowdata] = useState("");
                             />
                           </Tooltip>
                         </div>
-                        <div class="">
+                        {/* <div class="">
                           <Tooltip title= {translatedMenuItems[11]}>
                             <LightbulbIcon
                               className=" !text-icon cursor-pointer text-[#AF5910]"
@@ -706,7 +706,7 @@ const [rowdata, setrowdata] = useState("");
                               }}
                             />
                           </Tooltip>
-                        </div>                                      
+                        </div>                                       */}
                                                
                       
                         <div class="">

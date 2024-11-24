@@ -178,7 +178,7 @@ const ReceivedTableOut = (props) => {
                   const isValidPercentage = !isNaN(percentage) && isFinite(percentage);
                   return (
                     <div>
-                      <div className="flex justify-between rounded  mt-1 bg-white  items-center py-1 max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                      <div className="flex justify-between rounded  mt-1 bg-white  items-center py-ygap max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex w-[9.62rem] border-l-2 items-center h-8 border-green-500 bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[5.5rem] max-sm:w-auto   ">
                           <span className="text-xs ml-gap font-bold max-sm:text-sm  font-poppins cursor-pointer underline text-blue-600 max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
