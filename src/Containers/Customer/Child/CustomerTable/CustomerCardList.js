@@ -461,7 +461,13 @@ if (loading) {
                       <div className=" flex   max-sm:w-auto w-[5.1rem] items-center justify-center h-8  bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                      {/* Pipeline Value */}
 
-                        <div class=" text-xs  font-poppins max-sm:text-sm text-center  ">
+                        <div class=" text-xs  cursor-pointer font-bold font-poppins  text-blue-600  max-sm:text-sm text-center  "
+                          onClick={() => {
+                                handleCustomerOpportunityDrawerModal(true);
+                                handleSetCurrentCustomer(item);
+                                handleRowData(item);
+                              }}
+                              >
                         {item.oppNo}
                         </div>
                       </div>
@@ -657,22 +663,17 @@ if (loading) {
                             />
                           </Tooltip>
                         </div>
-                        <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >
+                        {/* <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >
                           <Tooltip title={translatedMenuItems[10]}>
-                          <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm  cursor-pointer" to={`Opportunity`}>
-                            <LightbulbIcon
+                          <LightbulbIcon
                               className=" !text-icon cursor-pointer text-[#AF5910]"
-                              // onClick={() => {
-                              //   handleCustomerOpportunityDrawerModal(true);
-                              //   handleSetCurrentCustomer(item);
-                              //   handleRowData(item);
-                              // }}
+                            
 
                             />
-                          </Link>
+                        
                           </Tooltip>
 
-                        </div>                                       
+                        </div>                                        */}
                                                 
                        
                         <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >

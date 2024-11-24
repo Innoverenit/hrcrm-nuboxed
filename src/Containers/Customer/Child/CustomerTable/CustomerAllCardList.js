@@ -465,9 +465,15 @@ const [rowdata, setrowdata] = useState("");
 <div className=" flex  w-[6.82rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 
 <div className=" flex  w-[3rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
-<div class=" text-xs  max-sm:text-sm font-poppins text-center">
-<Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm  cursor-pointer" to={`Opportunity`}> {item.oppNo}
-</Link>
+<div class=" text-xs  cursor-pointer font-bold font-poppins  text-blue-600 max-sm:text-sm  text-center"
+ onClick={() => {
+  handleCustomerOpportunityDrawerModal(true);
+  handleSetCurrentCustomer(item);
+  handleRowData(item);
+ }}
+>
+   {item.oppNo}
+
                           </div>
                           </div>
 

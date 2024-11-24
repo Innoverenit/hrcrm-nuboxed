@@ -493,9 +493,15 @@ const [rowdata, setrowdata] = useState("");
                     <div className=" flex max-sm:w-auto w-[3rem] items-center justify-center max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                         {/* >Pipeline Value */}
 
-                        <div class=" text-xs  font-poppins items-center max-sm:text-sm text-center ">
-                        <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm  cursor-pointer" to={`Opportunity`}>{item.oppNo}
-                        </Link>
+                        <div class=" text-xs  cursor-pointer font-bold   text-blue-600 font-poppins items-center max-sm:text-sm text-center "
+                        onClick={() => {
+                          handleCustomerOpportunityDrawerModal(true);
+                          handleSetCurrentCustomer(item);
+                          handleRowData(item);
+                        }}
+                        >
+                       {item.oppNo}
+                        
                         </div>
                       </div>
                       <div className=" flex  max-sm:w-auto items-center  w-[3.5rem]  max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">

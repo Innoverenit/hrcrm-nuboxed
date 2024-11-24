@@ -322,7 +322,14 @@ function AccountTable(props) {
                             </div>
                           </div>
                           <div className=" flex items-center justify-center  max-sm:w-auto w-[5.21rem] max-md:w-[5.21rem] max-xl:w-[6rem] max-lg:w-[5rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
-                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                            <div class=" text-xs cursor-pointer font-bold font-poppins text-center text-blue-600  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+                            
+                               onClick={() => {
+                                        props.setEditDistributor(item)
+                                        props.handleAccountOpportunityModal(true);
+                                        handleCurrentRowData(item);
+                                      }}
+                       >
                            
                             {item.qtProcureCount} 
 
@@ -480,24 +487,24 @@ function AccountTable(props) {
                                 </Tooltip>
 
                               </div>
-                              <div className="bg-[#eef2f9] h-8  items-center justify-center flex">
+                              {/* <div className="bg-[#eef2f9] h-8  items-center justify-center flex">
                                 <Tooltip title="Quotation">
                                 <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm  cursor-pointer" to={`Opportunity`}>
                                    
                                 
                                       <LightbulbIcon className="!text-icon text-[#bfa89e]"
                                      
-                                      // onClick={() => {
-                                      //   props.setEditDistributor(item)
-                                      //   props.handleAccountOpportunityModal(true);
-                                      //   handleCurrentRowData(item);
-                                      // }}
+                                      onClick={() => {
+                                        props.setEditDistributor(item)
+                                        props.handleAccountOpportunityModal(true);
+                                        handleCurrentRowData(item);
+                                      }}
                                     />
                                      <Opportunity/>
                                      </Link>
                                 </Tooltip>
 
-                              </div>
+                              </div> */}
                               
 
                             <div className=" items-center justify-center flex bg-[#eef2f9] h-8  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
