@@ -207,32 +207,32 @@ const handleSave = (item) => {
  
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky items-end z-10">
-            <div class="w-[8rem]"></div>
-            <div className="font-poppins font-bold text-xs w-[23.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+          <div className=" flex max-sm:hidden  w-[99%]  justify-between p-1 bg-transparent font-poppins font-bold !text-lm sticky items-end z-10">
+            <div class="w-[5rem]"></div>
+            <div className=" w-[24.9rem] truncate max-md:w-[23.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
              {/* Name */}
              <ContactsIcon className="!text-icon mr-1 "/>  {translatedMenuItems[0]}
             </div>
-            <div className="font-bold font-poppins text-xs w-[20.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className=" w-[24.5rem] truncate max-md:w-[20.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
           {/* Brand Id */}
           <BrandingWatermarkIcon className="!text-icon" />   {`${translatedMenuItems[1]} ID`}
             </div>
-            <div className="font-bold font-poppins text-xs w-[5.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">    
+            <div className=" w-[7.63rem] truncate max-md:w-[5.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">    
             <LiveTvIcon className="!text-icon" />  {translatedMenuItems[2]}
             {/* Live */}
             </div>
-            <div className="font-bold font-poppins text-xs w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">      
+            <div className=" w-[8.12rem] truncate max-md:w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">      
              {/* Inactive */}
              <ToggleOffIcon className="!text-icon" />   {translatedMenuItems[3]}
             </div>
-            <div className="font-bold font-poppins text-xs w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
+            <div className="w-[8.2rem] truncate max-md:w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
               
    {/* Delete */}
   < DeleteOutlineIcon
    />{translatedMenuItems[10]}
             </div>
                
-            <div className="w-[4.12rem]"></div>
+            <div className="w-[2.12rem]"></div>
 
           </div>
        
@@ -242,7 +242,7 @@ const handleSave = (item) => {
               return (
                 <div>
                   <div
-                className="flex rounded justify-between  bg-white mt-1  items-center py-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1  items-center py-ygap max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">          
                         <div className="flex w-[5rem] items-center max-sm:w-auto  border-l-2 border-green-500 bg-[#eef2f9]">
@@ -305,7 +305,7 @@ const handleSave = (item) => {
                         </div>
                    
                     
-                      <div className=" flex  items-center justify-start max-sm:w-auto  h-8 ml-gap bg-[#eef2f9]   items-center w-[24.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex  items-center justify-start max-sm:w-auto  h-8 ml-gap bg-[#eef2f9]   items-center w-[25.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
                   
                         <div class="flex text-xs text-blue-500 ml-gap font-poppins font-semibold  cursor-pointer"
                           onClick={() => {

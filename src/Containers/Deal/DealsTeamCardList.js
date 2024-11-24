@@ -170,37 +170,37 @@ const DealsTeamCardList = (props) => {
         </div>
         </div>
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
+        <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold font-poppins !text-lm sticky  z-10 max-sm:hidden">
         <div className=" flex justify-between w-[100%]">
-          <div className=" md:w-[13.5rem] w-[16rem]font-bold font-poppins text-xs">
+          <div className=" w-[13.5rem] truncate text-sm max-md:w-[13.5rem]  ">
           {translatedMenuItems[0]}
            {/* "name" */}    
           </div>
-          <div className=" md:w-[8.13rem] w-[13.13rem] font-bold font-poppins text-xs">
+          <div className="w-[8.13rem] truncate max-md:w-[8.13rem]  ">
           {translatedMenuItems[1]}
          {/* investor" */}     
           </div>
-          <div className=" md:w-[1.2rem] w-[9.2rem] font-bold font-poppins text-xs">
+          <div className="w-[1.2rem] truncate max-md:w-[1.2rem]  ">
           {translatedMenuItems[2]}
                     {/* sponsor */}     
           </div>
-          <div className="md:w-[4.12rem]  w-[6.12rem] font-bold font-poppins text-xs">
+          <div className=" w-[4.12rem] truncate max-md:w-[4.12rem]  ">
           {translatedMenuItems[3]}
                 {/* startdate" */}
           </div>
-          <div className="md:w-[2.2rem]  w-[7.2rem] font-bold font-poppins text-xs">
+          <div className=" w-[2.2rem] truncate max-md:w-[2.2rem]  ">
           {translatedMenuItems[4]}
          {/* Value */} 
           </div>
-          <div className="md:w-[4.2rem] font-bold font-poppins text-xs">
+          <div className="w-[4.2rem] truncate max-md:w-[4.2rem] ">
           {translatedMenuItems[5]}
           {/* "stages" */}
           </div>
-          <div className="md:w-[5.26rem] font-bold font-poppins text-xs">
+          <div className=" w-[5.26rem] truncate max-md:w-[5.26rem] ">
           {translatedMenuItems[6]}
             {/* Status */}
             </div>
-          <div className="md:w-[7.21rem] font-bold font-poppins text-xs">
+          <div className=" w-[7.21rem] truncate max-md:w-[7.21rem] ">
           {translatedMenuItems[7]}
           {/* Assign To" */}  
           </div>
@@ -245,7 +245,7 @@ const DealsTeamCardList = (props) => {
             return (
               <div>
                  <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1  items-center py-ygap max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                   <div class="flex max-sm:justify-start max-sm:w-wk max-sm:items-center">
                   <div class="flex justify-between">

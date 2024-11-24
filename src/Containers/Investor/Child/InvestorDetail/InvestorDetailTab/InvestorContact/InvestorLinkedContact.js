@@ -162,25 +162,25 @@ const InvestorLinkedContact = (props) => {
   return (
     <>
       <div class="rounded m-1 p-1 w-[99%]   overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-[99%] truncate p-1 bg-transparent font-bold sticky items-end z-10">
-        <div className="text-[#00A2E8] text-base md:w-[16.1rem]">
+        <div className=" flex justify-between w-[99%] truncate p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end z-10">
+        <div className=" w-[16.1rem] text-[#00A2E8] truncate text-sm max-md:w-[16.1rem]">
         <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]}     
         {/* Name      */}
               </div>
-      <div className="font-poppins font-bold text-xs md:w-[12.1rem]">
+      <div className=" w-[12.1rem] truncate max-md:w-[12.1rem]">
       <MarkEmailUnreadIcon className='!text-icon text-[#ff9f1c] '  />  {translatedMenuItems[1]}  
        {/* Email */}
    
               </div>
-      <div className="font-poppins font-bold text-xs md:w-[8.1rem]">
+      <div className=" w-[8.1rem] truncate max-md:w-[8.1rem]">
        <MobileFriendlyIcon className='!text-icon text-[#41ead4] '  /> {translatedMenuItems[2]}  
         {/* Mobile #" */}
            </div>
-      <div className="font-poppins font-bold text-xs md:w-[8.2rem]">
+      <div className="w-[8.2rem] truncate max-md:w-[8.2rem]">
       <ApartmentIcon className='!text-icon text-[#f0386b] '  /> {translatedMenuItems[3]}  
         {/* Department" */}
               </div>
-                   <div className="font-poppins font-bold text-xs md:w-[9.2rem]">
+                   <div className="w-[9.2rem] truncate max-md:w-[9.2rem]">
                    <i className=" fab fa-artstation text-[#b744b8]"></i> {translatedMenuItems[4]}  
                                  {/* Designation" */}            
               </div>      

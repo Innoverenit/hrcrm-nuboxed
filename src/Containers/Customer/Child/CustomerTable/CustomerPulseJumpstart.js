@@ -139,8 +139,8 @@ render() {
     <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                      
                         <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
-                            <div class="flex flex-row items-center">
-                                <div class="flex-shrink pr-4">
+                            <div class="flex flex-row items-center text-xs">
+                                <div class="flex-shrink pr-3">
                                     <div class="rounded-full p-1 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
                                 </div>
                                 <JumpStartBox
@@ -171,8 +171,8 @@ render() {
                     <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                        
                         <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
-                            <div class="flex flex-row items-center">
-                                <div class="flex-shrink pr-4">
+                            <div class="flex flex-row items-center text-xs">
+                                <div class="flex-shrink pr-3">
                                     <div class="rounded-full p-1 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
                                 </div>
                                 <JumpStartBox
@@ -196,8 +196,8 @@ render() {
                     <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                        
                         <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
-                            <div class="flex flex-row items-center">
-                                <div class="flex-shrink pr-4">
+                            <div class="flex flex-row items-center text-xs">
+                                <div class="flex-shrink pr-3">
                                     <div class="rounded-full p-1 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
                                 </div>
                                 <JumpStartBox
@@ -231,12 +231,12 @@ render() {
                     <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                       
                         <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
-                            <div class="flex flex-row items-center">
-                                <div class="flex-shrink pr-4">
+                            <div class="flex flex-row items-center text-xs">
+                                <div class="flex-shrink pr-3">
                                     <div class="rounded-full p-1 bg-blue-600">
                                     <HourglassFullIcon className="text-blue-500  !text-icon" />
                                       </div>
-                                </div>
+                                </div>  
                                 <JumpStartBox
         noProgress
         title='Activity'
@@ -267,7 +267,7 @@ render() {
                     
                        <div class="bg-gradient-to-b from-red-200 to-red-100 border-b-4 border-red-500 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                             <div class="flex flex-row items-center">
-                                <div class="flex-shrink pr-4">
+                                <div class="flex-shrink pr-3">
                                     <div class="rounded-full p-3 bg-red-500"><i class="fas fa-tasks fa-2x fa-inverse"></i></div>
                                 </div>
                                 <JumpStartBox
@@ -306,10 +306,10 @@ render() {
         >
           {/* Front of the card */}
           <div
-            className="absolute inset-0 bg-gradient-to-b w-wk from-red-200 to-red-100 border-b-4 border-red-500 rounded-lg shadow-xl flex items-center p-1"
+            className="absolute inset-0 bg-gradient-to-b w-wk from-red-200 to-red-100 border-b-4 border-red-500 rounded-lg shadow-xl flex items-center p-1 text-xs"
             style={{ backfaceVisibility: 'hidden' }}
           >
-             <div class="flex-shrink pr-4">
+             <div class="flex-shrink pr-3">
                                     <div class="rounded-full p-1 bg-red-500"><ContactsIcon className="!text-3xl text-[#FFFF]"/></div>
                                 </div>
             {/* Replace with your actual JumpStartBox component */}
@@ -342,7 +342,7 @@ render() {
 
           {/* Back of the card */}
           <div
-            className="absolute inset-0 bg-gradient-to-b from-gray-200 to-gray-100 border-b-4 border-gray-500 rounded-lg shadow-xl flex flex-col items-center justify-center"
+            className="absolute inset-0 bg-gradient-to-b from-gray-200 to-gray-100 border-b-4 border-gray-500 rounded-lg shadow-xl flex flex-col items-center justify-center text-xs"
             style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
           >
             <h2 className="text-lg font-semibold">Additional Details</h2>

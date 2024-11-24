@@ -9,6 +9,10 @@ const initialState = {
   addingCODinventoryError: false,
   codInventryorDr:{},
 
+  fetchingSearchDistributor: false,
+            fetchingSearchDistributorError: false,
+            searchDistributor:[],
+
   updateAccountModal: false,
 
   addAccountAddressModal: false,
@@ -2306,6 +2310,21 @@ export const distributorReducer = (state = initialState, action) => {
           fetchingDistributorChartList: false,
           fetchingDistributorChartListError: true,
         };
+
+        case types.GET_SEARCH_DISTRIBUTIOR_REQUEST:
+          return { ...state, fetchingSearchDistributor: true };
+        case types.GET_SEARCH_DISTRIBUTIOR_SUCCESS:
+          return {
+            ...state,
+            fetchingSearchDistributor: false,
+            searchDistributor: action.payload,
+          };
+        case types.GET_SEARCH_DISTRIBUTIOR_FAILURE:
+          return {
+            ...state,
+            fetchingSearchDistributor: false,
+            fetchingSearchDistributorError: true,
+          };
 
     case types.GET_PRODUCT_BY_CURRENCY_REQUEST:
       return { ...state, fetchingProductByCurrency: true };

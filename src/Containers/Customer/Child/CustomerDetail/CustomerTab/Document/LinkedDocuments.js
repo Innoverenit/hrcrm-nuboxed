@@ -182,25 +182,25 @@ class LinkedDocuments extends Component {
     return (
       <>
         <div class="rounded m-1 p-1 w-[100%]  ">
-          <div className=" flex justify-between w-[100%]  p-1  font-bold sticky items-end z-10">
+          <div className=" flex justify-between w-[100%]  p-1 sticky font-bold font-poppins !text-lm items-end z-10">
           
-        <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[16.1rem]">
+        <div className="font-bold font-poppins text-[#00A2E8] w-[16.1rem] text-sm max-md:w-[16.1rem]">
         <DateRangeIcon className='!text-icon  '  />  {this.state.translatedMenuItems[0]}</div>
         {/* Date */}
-                <div className="font-bold font-poppins text-xs  md:w-[16.2rem]">
+                <div className=" w-[16.2rem] max-md:w-[16.2rem]">
                 <ArticleIcon className='!text-icon text-[#a379c9] '  />{this.state.translatedMenuItems[1]}</div>
                 {/* Name */}
-        <div className="font-bold font-poppins text-xs  md:w-[13.13rem]">
+        <div className=" w-[13.13rem] max-md:w-[13.13rem]">
         <DescriptionIcon className='!text-icon text-[#9ad5ca] '  /> {this.state.translatedMenuItems[2]}</div>
        
-        <div className="font-bold font-poppins text-xs  md:w-[15.1rem]">
+        <div className=" w-[15.1rem] max-md:w-[15.1rem]">
         <AccountCircleIcon className="!text-icon  text-[#f28482]"/> {this.state.translatedMenuItems[3]}</div>
      
-        <div className="font-bold font-poppins text-xs  md:w-[12.2rem]">
+        <div className=" w-[12.2rem] max-md:w-[12.2rem]">
         <  FileOpenIcon className='!text-icon text-[#7fb800] '  />  {this.state.translatedMenuItems[4]}</div>
           {/* fileName */}
         
-                     <div className="font-bold font-poppins text-xs  md:w-[9.2rem]">
+                     <div className=" w-[9.2rem] ">
                       {this.state.translatedMenuItems[5]}</div>
                      {/* Contract */}
         
@@ -218,12 +218,12 @@ class LinkedDocuments extends Component {
                 className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:h-[9.1rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                
-                          <div className=" flex  md:w-[9rem] h-8 border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
-<div className="flex max-sm:w-full items-center"> 
+                          <div className=" flex w-[9rem] maax-md:w-[9rem] h-8 border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
+<div className="flex  items-center"> 
 
-    <div class="max-sm:w-full">
+    <div class="">
     <Tooltip>
-                                          <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
+                                          <div class=" flex  justify-between flex-row md:flex-col w-[8rem]">
                                           
                                             <div class="flex text-xs ml-gap items-center   font-poppins   cursor-pointer">
                                                 
@@ -239,7 +239,7 @@ class LinkedDocuments extends Component {
                           <div class="flex">
 
                        
-                          <div className=" flex  md:w-[12.3rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div className=" flex w-[12.3rem] max-md:w-[12.3rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                              
                               <div class="flex text-xs ml-gap items-center  font-poppins">
                                    {item.documentTitle}
@@ -252,14 +252,14 @@ class LinkedDocuments extends Component {
         ) : null} 
                               </div>
                           </div>
-                          <div className=" flex   md:w-[12.4rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row w-full max-sm:justify-between">
+                          <div className=" flex w-[12.4rem]  max-md:w-[12.4rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row  max-sm:justify-between">
                           
                             <div class="text-xs  font-poppins">
                             {elipsize(item.documentDescription || "", 15)}
                             </div>
                         </div>
                         </div>
-                        <div className="flex   md:w-[9.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className="flex  w-[9.1rem] max-md:w-[9.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
 
 <div className="text-xs  font-poppins text-center">
 <div className="font-normal text-xs font-poppins">
@@ -275,13 +275,13 @@ class LinkedDocuments extends Component {
                      </div>
 </div>
 </div>
-<div className=" flex   md:w-[12.1rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex w-[12.1rem]  max-md:w-[12.1rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                               <div class="flex text-xs truncate ml-gap items-center font-poppins text-center">
                               {item.fileName}
 
                               </div>
                           </div>
-                          <div className=" flex   md:w-[5.22rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div className=" flex w-[5.22rem]  max-md:w-[5.22rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                               <div class=" text-xs  font-poppins text-center">
                               <ContractToggle
           contractInd={item.contractInd}

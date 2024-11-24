@@ -151,39 +151,39 @@ const DealsAllCardList = (props) => {
         </div>
         </div>
    <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
+      <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end z-10 max-sm:hidden">
       <div className=" flex justify-between w-[95%]">
-          <div className=" font-bold font-poppins text-xs w-[14.5rem] md:w-[11.5rem]">
+          <div className="  w-[11.5rem] truncate text-sm max-md:w-[11.5rem]">
           {translatedMenuItems[0]}
           {/* name */}
           </div>
-          <div className=" font-bold font-poppins text-xs w-[13.13rem] md:w-[9.13rem]">
+          <div className="  w-[9.13rem] truncate max-md:w-[9.13rem]">
           {translatedMenuItems[1]}
            {/* investor */}
           </div>
-          <div className="font-bold font-poppins text-xs w-[9.2rem] md:w-[2.2rem] ">
+          <div className=" w-[2.2rem] truncate max-md:w-[2.2rem] ">
           {translatedMenuItems[2]}
           {/* sponsor */}
          
           </div>
-          <div className=" font-bold font-poppins text-xs w-[6.12rem] md:w-[7.12rem]">
+          <div className=" w-[7.12rem] truncate max-md:w-[7.12rem]">
           {translatedMenuItems[3]}
                      {/* startdate   */}
           </div>
-          <div className="font-bold font-poppins text-xs md:w-[6.2rem]">
+          <div className="w-[6.2rem] truncate max-md:w-[6.2rem]">
           {translatedMenuItems[4]}
            {/* Value */}       
           </div>
-          <div className="font-bold font-poppins text-xs md:w-[4.2rem]">
+          <div className="w-[4.2rem] truncate max-md:w-[4.2rem]">
           {translatedMenuItems[5]}
           {/* stages" */}
          
           </div>
-          <div className="font-bold font-poppins text-xs w-[5.26rem] md:w-[7.1rem]">
+          <div className=" w-[7.1rem] truncate max-md:w-[7.1rem]">
           {translatedMenuItems[6]}
             {/* Status */}
             </div>
-          <div className="font-bold font-poppins text-xs w-[7.21rem] md:w-[3rem]">
+          <div className=" w-[3rem] truncate max-md:w-[3rem]">
           {translatedMenuItems[7]}
           {/* Assign To" */}
        

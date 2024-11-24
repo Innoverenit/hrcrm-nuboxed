@@ -55,6 +55,7 @@ import CustomerSearchedData from "./CustomerSearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddCustomerAdressModal from "./AddCustomerAdressModal";
 import EmptyPage from "../../../Main/EmptyPage";
+import Opportunity from "../../../Opportunity/Opportunity";
 //import UpdateUserModal from "./UpdateUserModal";
 const AddCustomerDrawerModal = lazy(() =>
   import("../../AddCustomerDrawerModal")
@@ -268,56 +269,56 @@ if (loading) {
   ) : (
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-poppins font-bold  !text-lm  sticky z-10">
+          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-poppins font-bold  !text-lm max-xl:text-[0.65rem]  sticky z-10">
             <div class=" flex justify-between font-poppins w-[89%] items-end">
          
-            <div className="truncate text-[#00A2E8]  w-[14.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            <div className="truncate text-[#00A2E8] text-sm  w-[14.5rem]   max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             <ApartmentIcon className="!text-icon  "/>
             {translatedMenuItems[0]}
            {/* name */}
             </div>
-            <div className=" truncate w-[9.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className=" truncate w-[9.9rem]   max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
                 <WifiCalling3Icon className="!text-icon mr-1 text-[#4f5d75]"/>
             {translatedMenuItems[1]}
              {/* work */}
             </div>
-            <div className=" w-[3.8rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <div className=" w-[3.8rem] truncate    max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             </div>
-            <div className=" truncate w-[10.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className=" truncate w-[10.3rem]   max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
             <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> 
             {translatedMenuItems[2]}
               {/* "Sector" */}
           
             </div>
-            <div className=" truncate w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            <div className=" truncate w-[8.1rem]   max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
             <SourceIcon className="!text-icon mr-1 text-[#094074]"/> 
             {translatedMenuItems[3]}
              {/* "Source" */}
          
             </div>         
-            <div className=" truncate w-[11.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <div className=" truncate w-[11.9rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             <LightbulbIcon className="!text-icon text-[#84a59d]"/> 
             {translatedMenuItems[4]} 
               {/* Quotation" */}
      
             </div>
-            {/* <div className="font-poppins font-bold text-xs  w-[7.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
+            {/* <div className="font-poppins font-bold text-xs  w-[7.1rem]   max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
             <FilterAltIcon className="!text-icon  text-[#ff66b3]"/> 
             {translatedMenuItems[5]}
              Pipeline"
             </div>    */}
             {props.user.aiInd && (
-            <div className=" truncate w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className=" truncate w-[7.81rem]   max-xl:w-[3.81rem]">
             {/* Score */}      <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/> 
             {translatedMenuItems[18]}
             </div>
             )}    
-            <div className="truncate w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <div className="truncate w-[8.2rem]   max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
             <AccountCircleIcon className="!text-icon mr-1 text-[#d64933]"/> 
             {translatedMenuItems[6]}   
             {/* Assigned */}
             </div>          
-            <div className=" truncate w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className=" truncate w-[7.81rem]   max-xl:w-[3.81rem]">
             <AcUnitIcon className="!text-icon  text-[#667761]"/> 
             {translatedMenuItems[7]}
               {/* Customer" */}
@@ -356,14 +357,14 @@ if (loading) {
               return (
                 <div>
                   <div
-                className="flex rounded justify-between  bg-white mt-1 items-center   max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 items-center   max-sm:rounded-lg  max-xl:text-[0.65rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                       <div className=" flex  w-[13rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
                         <div className=" flex  max-sm:w-auto   items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
                     {/* Sector  */}
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  font-poppins max-sm:text-sm  ">
                         {props.showCheckboxes && (
                         <Checkbox
                 onChange={() => props.handleCheckboxChange(item.customerId)}
@@ -391,9 +392,8 @@ if (loading) {
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                 <div class="flex text-xs ml-1 text-blue-500  font-poppins font-semibold  cursor-pointer">
 
-                                  <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
+                                
                                     {item.name}
-                                  </Link>
 
                                   &nbsp;&nbsp;
                                   {date === currentdate ? (
@@ -411,7 +411,7 @@ if (loading) {
                       <div className=" flex   max-sm:w-auto  w-[8.54rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] ml-gap max-lg:text-[0.45rem]">
+                        <div class=" text-xs  font-poppins max-sm:text-sm  ml-gap ">
                         {
   
   (item.countryDialCode !== null && item.countryDialCode !== undefined) && 
@@ -434,7 +434,7 @@ if (loading) {
                       </div>
                       <div className=" flex max-sm:w-auto  w-[3.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.1rem] max-lg:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                   {/* Country */}
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  font-poppins max-sm:text-sm  ">
                           <CountryFlag1 countryCode={countryCode} />
                           {/* &nbsp;
                           {countryCode} */}
@@ -442,7 +442,7 @@ if (loading) {
                       </div>
                       <div className=" flex   max-sm:w-auto  w-[9.21rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
                     {/* Sector  */}
-                        <div class=" text-xs ml-gap  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs ml-gap  font-poppins max-sm:text-sm  ">
                           {item.sector}
                         </div>
 
@@ -452,7 +452,7 @@ if (loading) {
                       <div className=" flex max-sm:w-auto  w-[7.215rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-                        <div class=" text-xs ml-gap font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs ml-gap font-poppins max-sm:text-sm  ">
                           {item.source}
                         </div>
 
@@ -461,9 +461,14 @@ if (loading) {
                       <div className=" flex   max-sm:w-auto w-[5.1rem] items-center justify-center h-8  bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                      {/* Pipeline Value */}
 
-                        <div class=" text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                          {item.oppNo}
-
+                        <div class=" text-xs  cursor-pointer font-bold font-poppins  text-blue-600  max-sm:text-sm text-center  "
+                          onClick={() => {
+                                handleCustomerOpportunityDrawerModal(true);
+                                handleSetCurrentCustomer(item);
+                                handleRowData(item);
+                              }}
+                              >
+                        {item.oppNo}
                         </div>
                       </div>
                     
@@ -472,12 +477,12 @@ if (loading) {
                        {/* Pipeline Value */}
 
                         {/* {item.totalProposalValue > 0 && (
-      <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+      <div class="text-xs  font-poppins max-sm:text-sm text-center  ">
         {`${item.userCurrency} ${item.totalProposalValue}`}
       </div>
     )} */}
                             {item.totalProposalValue && (
-      <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+      <div class="text-xs  font-poppins max-sm:text-sm text-center  ">
       {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}
       </div>
     )}
@@ -494,7 +499,7 @@ if (loading) {
                       <div className=" flex  max-sm:w-auto   w-[6.50rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[2.1rem] max-sm:max-sm:flex-row  max-sm:justify-between ">
                         {/* <div class=" text-sm  font-poppins max-sm:hidden">Assigned</div> */}
 
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  font-poppins max-sm:text-sm  ">
 
                           <div>
                             {item.assignedTo === null ? (
@@ -544,7 +549,7 @@ if (loading) {
                           {user.erpInd === true && (
                             <Button className="justify-start" type="primary"
                               style={{ width: "7rem", background: item.convertInd === 1 ? "tomato" :"linear-gradient(to right, #2BBCCF, #38C98D)" }}>
-                              <div class="text-xs max-xl:text-[0.65rem] max-lg:text-[0.45rem] flex items-center w-wk " >
+                              <div class="text-xs   flex items-center w-wk " >
                               <NextPlanIcon  className="!text-icon mr-1 "/>
                                 {item.convertInd === 0 && translatedMenuItems[17]}
                                 {item.convertInd === 1 && translatedMenuItems[16]}
@@ -658,20 +663,17 @@ if (loading) {
                             />
                           </Tooltip>
                         </div>
-                        <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >
+                        {/* <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >
                           <Tooltip title={translatedMenuItems[10]}>
-                            <LightbulbIcon
+                          <LightbulbIcon
                               className=" !text-icon cursor-pointer text-[#AF5910]"
-                              onClick={() => {
-                                handleCustomerOpportunityDrawerModal(true);
-                                handleSetCurrentCustomer(item);
-                                handleRowData(item);
-                              }}
+                            
 
                             />
+                        
                           </Tooltip>
 
-                        </div>                                       
+                        </div>                                        */}
                                                 
                        
                         <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >

@@ -6,6 +6,19 @@ import {
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
+import AspectRatioIcon from '@mui/icons-material/AspectRatio';
+import WorkHistoryIcon from '@mui/icons-material/WorkHistory'; 
+import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
+import EngineeringIcon from '@mui/icons-material/Engineering';
+import ShareIcon from '@mui/icons-material/Share';
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import PaymentsIcon from '@mui/icons-material/Payments';
+import SettingsInputCompositeIcon from '@mui/icons-material/SettingsInputComposite';
+import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
+import BrightnessAutoIcon from '@mui/icons-material/BrightnessAuto';
+import FormatShapesIcon from '@mui/icons-material/FormatShapes';
+import DesktopAccessDisabledIcon from '@mui/icons-material/DesktopAccessDisabled';
 import RecruitTab from "../../Rules/Child/RulesTab/RecruitPro/RecruitTab";
 const SalaryTab = lazy(() => import("./Child/Salary/SalaryTab"));
 const RecruitmentActionLeft = lazy(() => import("./RecruitmentActionLeft"));
@@ -34,7 +47,7 @@ function Recruitment(props) {
     {
        rulesName:(
         <span>
-          <HourglassFullIcon className=" !text-icon" />Access
+          <DesktopAccessDisabledIcon className=" !text-icon text-[#D00000]" />Access
         </span>
       ),
       ruleId: "1",
@@ -43,7 +56,7 @@ function Recruitment(props) {
     {
        rulesName:(
         <span>
-          <HourglassFullIcon className=" !text-icon" />Approval
+          <LibraryAddCheckIcon className=" !text-icon text-[#A7C957]" />Approval
         </span>
       ),
       ruleId: "2",
@@ -52,7 +65,7 @@ function Recruitment(props) {
     {
       rulesName:(
         <span>
-          <HourglassFullIcon className=" !text-icon" />Automation
+          <BrightnessAutoIcon className=" !text-icon text-[#B5E2FA]" />Automation
         </span>
       ),
      
@@ -62,7 +75,7 @@ function Recruitment(props) {
     {
       rulesName:(
         <span>
-          <HourglassFullIcon className=" !text-icon" />Form
+          <FormatShapesIcon className=" !text-icon text-[#0FA3B1]" />Form
         </span>
       ),
    
@@ -76,7 +89,7 @@ function Recruitment(props) {
     {
       rulesName:(
       <span>
-      <HourglassFullIcon className=" !text-icon" />General
+      <AspectRatioIcon className=" !text-icon text-[#432818]" />General
     </span>
   ),
      
@@ -86,7 +99,7 @@ function Recruitment(props) {
     {
       rulesName:(
         <span>
-        <i class="fas fa-luggage-cart mr-1 text-[#e4eb3f]"></i>Holidays & Leaves
+        <i class="fas fa-luggage-cart mr-1 text-[#e4eb3f] "></i>Holidays & Leaves
       </span>
     ),
       ruleId: "6",
@@ -101,7 +114,7 @@ function Recruitment(props) {
     {
       rulesName:(
         <span>
-        <HourglassFullIcon className=" !text-icon mr-1" />Report Scheduler
+        <WorkHistoryIcon className=" !text-icon mr-1 text-[#6F1D1B]" />Report Scheduler
       </span>
     ),
      
@@ -116,7 +129,7 @@ function Recruitment(props) {
     {
       rulesName:(
         <span>
-        <HourglassFullIcon className=" !text-icon" />Skills & Certification
+        <WorkspacePremiumIcon className=" !text-icon text-[#C9ADA7]" />Skills & Certification
       </span>
     ),
     
@@ -126,7 +139,7 @@ function Recruitment(props) {
     {
       rulesName:(
         <span>
-        <HourglassFullIcon className=" !text-icon" />Template
+        <SpaceDashboardIcon className=" !text-icon text-[#22223B]" />Template
       </span>
     ), 
       ruleId: "10",
@@ -135,7 +148,7 @@ function Recruitment(props) {
     {
    rulesName:(
         <span>
-        <HourglassFullIcon className=" !text-icon" />Workflow
+        <ShareIcon className=" !text-icon text-[#390099]" />Workflow
       </span>
     ), 
       ruleId: "11",
@@ -144,7 +157,7 @@ function Recruitment(props) {
     {
     rulesName:(
         <span>
-        <HourglassFullIcon className=" !text-icon" />Finance
+        <HourglassFullIcon className=" !text-icon text-[#DC2F02]" />Finance
       </span>
     ),
       ruleId: "12",
@@ -153,7 +166,7 @@ function Recruitment(props) {
     {
       rulesName:(
         <span>
-        <HourglassFullIcon className=" !text-icon" />Labour Cost
+        <EngineeringIcon className=" !text-icon text-[#6A994E]" />Labour Cost
       </span>
     ),
      
@@ -163,7 +176,7 @@ function Recruitment(props) {
    {
     rulesName:(
       <span>
-      <HourglassFullIcon className=" !text-icon" />Notification
+      <CircleNotificationsIcon className=" !text-icon text-[#FFD60A]" />Notification
     </span>
   ),
      
@@ -173,7 +186,7 @@ function Recruitment(props) {
     {
       rulesName:(
         <span>
-        <HourglassFullIcon className=" !text-icon" />Pay Roll(Only for GCC)
+        <PaymentsIcon className=" !text-icon text-[#003566]" />Pay Roll(Only for GCC)
       </span>
     ),
       ruleId: "15",
@@ -182,7 +195,7 @@ function Recruitment(props) {
      {
       rulesName:(
         <span>
-        <HourglassFullIcon className=" !text-icon" />Automation1
+        <HourglassFullIcon className=" !text-icon text-[#D8E2DC]" />Automation1
       </span>
     ),
       ruleId: "21",
@@ -192,7 +205,7 @@ function Recruitment(props) {
     {
       rulesName:(
         <span>
-        <HourglassFullIcon className=" !text-icon" />3rd Party Integration
+        <SettingsInputCompositeIcon className=" !text-icon text-[#9D8189] " />3rd Party Integration
       </span>
     ),
    

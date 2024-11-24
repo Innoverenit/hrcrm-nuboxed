@@ -2891,3 +2891,31 @@ export const uploadStockList =(customer, userId) => (dispatch, getState) => {
       // cb && cb();
     });
 };
+
+
+
+
+export const addScanReceivedata = (data,poSupplierDetailsId,qrCodeNo) => (dispatch) => {
+  dispatch({
+    type: types.ADD_SCAN_RECEIVED_DATA_REQUEST,
+  });
+  axios
+    .post(`${base_url2}/po/scannedUnitAndInd/${poSupplierDetailsId}/${qrCodeNo}`, data,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.ADD_SCAN_RECEIVED_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_SCAN_RECEIVED_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};

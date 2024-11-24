@@ -1,10 +1,12 @@
-import React, { lazy, Suspense, useEffect, useState, } from "react";
+import React, { lazy, Suspense, useEffect,useRef, useState, } from "react";
 import { Route, Switch } from "react-router-dom";
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import {
   handleDistributorModal,
-
+  handleAccountOpportunityModal,
+  getDistributorByDistributorId,
+  getSearchDistributor
 } from "./Account/AccountAction";
 import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
@@ -50,7 +52,6 @@ import FlashOnIcon from '@mui/icons-material/FlashOn';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { MultiAvatar } from "../../Components/UI/Elements";
 import AddActionModal from "./AddActionModal";
-import ApartmentIcon from '@mui/icons-material/Apartment';
 import EmptyPage from "./EmptyPage";
 import LanguageSelector from "../Translate/LanguageSelector";
 import FAQPage from "./FAQ/FAQPage";
@@ -59,7 +60,6 @@ import DataRoom from "../Data Room/DataRoom";
 import TagInDrawer from "./Refurbish/ProductionTab/TagInDrawer";
 import PhoneScanner from "./Scan/PhoneScanner/PhoneScanner";
 import Vendor from "./Vendor/Vendor";
-import ContactsIcon from '@mui/icons-material/Contacts';
 import Procre from "./Procre/Procre";
 import Trade from "./Trade/Trade";
 import {handleContactModal} from "../Contact/ContactAction"
@@ -73,6 +73,7 @@ import AddCustomerModal from "../Customer/Child/AddCustomerModal";
 import AddOpportunityModal from "../Opportunity/Child/AddOpportunityModal";
 import AddContactModal from "../Contact/Child/AddContactModal";
 import AddAccountModal from "./Account/AddAccountModal";
+import AddAccountOpportunityModal from "./Account/AccountDetailsTab/AccountQuotationDrawer";
 const NavMenu = lazy(() =>
   import("./NavMenu")
 );
@@ -290,12 +291,21 @@ function MainApp(props) {
   const [shouldRenderCamera, setShouldRenderCamera] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [rowData, setrowData] = useState({});
+  const [selectedLocation, setSelectedLocation] = useState();
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [hovering, setHovering] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const hoverTimer = useRef(null);
+
   console.log(data)
 
   useEffect(() => {
     props.getOpportunityRecord(props.userId);
     props.getActionRequiredCount(props.userId);
     props.getSuscrption(props.orgId)
+    props.getSearchDistributor(props.userId)
+   
   }, []);
 
   useEffect(() => {
@@ -321,7 +331,24 @@ function MainApp(props) {
   const showPopconfirm = () => {
     setVisible(true);
   };
+  const toggleSelect = () => {
+    clearTimeout(hoverTimer.current);
+    setIsOpen(!isOpen);
+  };
 
+  const filterLocationOptions = (input, option) => {
+    return option.children.toLowerCase().includes(input.toLowerCase());
+  };
+  const handleSearch = (value) => {
+    setSearchValue(value);
+  };
+  const handleLocationChange = (distributorId) => {
+    setSelectedLocation(distributorId); 
+    if (distributorId) {
+    props.getDistributorByDistributorId(distributorId)
+    props.handleAccountOpportunityModal(true);
+    }
+  };
   const handleOk = () => {
     setConfirmLoading(true);
     setTimeout(() => {
@@ -417,6 +444,8 @@ function MainApp(props) {
       setData(result.text);
     }
   };
+
+
   const Subscription = 
   props.suscrptionData.subscriptionType === "1" ? "Starter" :
   props.suscrptionData.subscriptionType === "2" ? "Professional" :
@@ -424,6 +453,7 @@ function MainApp(props) {
   props.suscrptionData.subscriptionType === "4" ? "Custom" :
   "Unknown";
   console.log(props.suscrptionData)
+  console.log(props.distributorId)
   return (
 
     <>
@@ -521,7 +551,7 @@ function MainApp(props) {
         shape="square"
       type="primary"
       style={{
-        insetInlineEnd: 20,
+        insetInlineEnd: 100,   
       }}
       icon={
       <SubscriptionsIcon className="!text-icon" />
@@ -540,7 +570,7 @@ function MainApp(props) {
           
   
         // }}
-        className="!text-icon text-[#e4eb2f] text-[blue]"
+        className="!text-icon  text-[blue]"
         />
         </Tooltip>
        
@@ -549,20 +579,15 @@ function MainApp(props) {
       icon={
        
         <Tooltip title="Quotation">
-        <LightbulbIcon
-         style={{color:"blue"}}
-        onClick={() => {
        
-          props.handleOpportunityModal(true);
-          
-  
-        }}
-        className='!text-icon  text-[#e4eb2f]'
-        />
+         <LightbulbIcon 
+       className="!text-icon  text-[blue]"
+         onClick={toggleSelect} // Open/close Select on click
+         />
+
         </Tooltip>
         } />
-      
-      <FloatButton 
+      {/* <FloatButton 
       icon={
     
         <Tooltip title="Customer">
@@ -577,9 +602,40 @@ function MainApp(props) {
         className='!text-icon  text-[#e4eb2f]'
         />
         </Tooltip>
-        } />
+        } /> */}
     </FloatButton.Group>
-
+    {isOpen && (
+    <FloatButton.Group
+      // trigger="hover"
+        shape="square"
+      type="primary"
+      style={{
+        insetInlineEnd: 140,   
+      }}
+      icon={
+      <SubscriptionsIcon className="!text-icon" />
+     
+    }
+    >
+    {isOpen && (
+          <Select
+          style={{ width: "12rem" }}
+          onChange={handleLocationChange}
+          showSearch
+          onSearch={handleSearch}
+          filterOption={filterLocationOptions}
+          placeholder="Select Location"
+          value={searchValue}
+        >
+          {props.searchDistributor.map((item) => (
+            <Option key={item.distributorId} value={item.distributorId}>
+              {item.distributorName}
+            </Option>
+          ))}
+        </Select>
+           )} 
+            </FloatButton.Group>
+              )} 
                 <div class="mr-3 flex items-center h-[2.5rem]">            
  {/* <div className="flex items-center">           
                 <Button
@@ -1765,6 +1821,15 @@ function MainApp(props) {
             selectedLanguage={selectedLanguage}
          // translatedMenuItems={props.translatedMenuItems}
       />
+       {props.addAccountOpportunityModal && props.distributorData?.distributorId && (
+  <AddAccountOpportunityModal
+    selectedLanguage={props.selectedLanguage}
+    translateText={props.translateText}
+    distributorId={props.distributorData.distributorId}
+    addAccountOpportunityModal={props.addAccountOpportunityModal}
+    handleAccountOpportunityModal={props.handleAccountOpportunityModal}
+  />
+)}
        <PromotionsDrawerr
         rowData={rowData}
         addPromotionnModal={props.addPromotionnModal}
@@ -1840,7 +1905,10 @@ const mapStateToProps = ({
   addOpportunityModal:opportunity.addOpportunityModal,
   clickTagInDrawr: refurbish.clickTagInDrawr,
   createSubscriptiondrawer: subscription.createSubscriptiondrawer,
-  addPromotionnModal: auth.addPromotionnModal
+  addPromotionnModal: auth.addPromotionnModal,
+  distributorData: distributor.distributorDetailsByDistributorId,
+  searchDistributor:distributor.searchDistributor,
+  addAccountOpportunityModal: distributor.addAccountOpportunityModal,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -1862,7 +1930,11 @@ const mapDispatchToProps = (dispatch) =>
       handleCreateSubscriptionDrawer,
       getSuscrption,
       handlePromotion,
-      handleDistributorModal
+      handleDistributorModal,
+      handleAccountOpportunityModal,
+      getDistributorByDistributorId,
+      getSearchDistributor
+    
     },
     dispatch
   );

@@ -97,7 +97,12 @@ export const addActivityCall = (call,customerId, cb) => (dispatch, getState) => 
   };
 
 
-
+  export const handleActivityUpdateModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_ACTIVITY_UPDATE_MODAL,
+      payload: modalProps,
+    });
+  };
 
   export const linkTaskStatus = (taskId,taskStatus ) => (
     dispatch,
