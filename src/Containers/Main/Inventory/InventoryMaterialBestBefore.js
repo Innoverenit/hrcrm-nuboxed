@@ -470,6 +470,306 @@
 
 
 
+// import React, { useEffect, useState } from "react";
+// import { connect } from "react-redux";
+// import { bindActionCreators } from "redux";
+// import {
+//   getMaterialBestBefore,
+//   addToWaste,
+//   addAsileInbest,
+// } from "../Inventory/InventoryAction";
+// import { handleTermsnConditionModal } from "../Suppliers/SuppliersAction";
+// import dayjs from "dayjs";
+// import { withRouter } from "react-router";
+// import { TerminalSharp } from "@mui/icons-material";
+// import { Tooltip, Select, Button, Input } from "antd";
+// import { base_url2 } from "../../../Config/Auth";
+// import CategoryIcon from "@mui/icons-material/Category";
+// import FactoryIcon from "@mui/icons-material/Factory";
+
+// const { Option } = Select;
+
+// const InventoryMaterialBestBefore = (props) => {
+//   const [rowsBest, setRowBest] = useState(props.materialBestBefore);
+//   const [zone, setZone] = useState([]);
+//   const [aisle, setAisle] = useState([]);
+//   const [rack, setRack] = useState([]);
+//   const [isLoadingZone, setIsLoadingZone] = useState(false);
+//   const [isLoadingAisle, setIsLoadingAisle] = useState(false);
+//   const [isLoadingRack, setIsLoadingRack] = useState(false);
+
+//   useEffect(() => {
+//     fetchZone();
+//     props.getMaterialBestBefore(props.locationId);
+//   }, []);
+
+//   useEffect(() => {
+//     if (props.materialBestBefore.length > 0) {
+//       setRowBest(props.materialBestBefore);
+//     }
+//   }, [props.materialBestBefore]);
+
+//   useEffect(() => {
+//     rowsBest.forEach((row, index) => {
+//       if (row.roomRackId) {
+//         // If roomrackId exists, fetch Aisle and Rack
+//         fetchAisle(row.roomRackId);
+//         fetchRack(row.roomRackId);
+//       }
+//     });
+//   }, [rowsBest]);
+
+//   const fetchZone = async () => {
+//     setIsLoadingZone(true);
+//     try {
+//       const apiEndpoint = `${base_url2}/roomrack/notUsed/roomAndRackDetails/${props.locationId}/${props.orgId}`;
+//       const response = await fetch(apiEndpoint, {
+//         method: "GET",
+//         headers: {
+//           Authorization: `Bearer ${props.token}`,
+//           "Content-Type": "application/json",
+//         },
+//       });
+//       const data = await response.json();
+//       setZone(data);
+//     } catch (error) {
+//       console.error("Error fetching customers:", error);
+//     } finally {
+//       setIsLoadingZone(false);
+//     }
+//   };
+
+//   const fetchAisle = async (roomRackId, index) => {
+//     setIsLoadingAisle(true);
+//     try {
+//       const apiEndpoint = `${base_url2}/roomrack/notUesedAisle/${roomRackId}`;
+//       const response = await fetch(apiEndpoint, {
+//         method: "GET",
+//         headers: {
+//           Authorization: `Bearer ${props.token}`,
+//           "Content-Type": "application/json",
+//         },
+//       });
+//       const data = await response.json();
+//       setAisle(data);
+//     } catch (error) {
+//       console.error("Error fetching aisle data:", error);
+//     } finally {
+//       setIsLoadingAisle(false);
+//     }
+//   };
+
+//   const fetchRack = async (roomRackId) => {
+//     setIsLoadingRack(true);
+//     try {
+//       const apiEndpoint = `${base_url2}/roomrack/notUesedChamber/${roomRackId}`;
+//       const response = await fetch(apiEndpoint, {
+//         method: "GET",
+//         headers: {
+//           Authorization: `Bearer ${props.token}`,
+//           "Content-Type": "application/json",
+//         },
+//       });
+//       const data = await response.json();
+//       setRack(data);
+//     } catch (error) {
+//       console.error("Error fetching rack data:", error);
+//     } finally {
+//       setIsLoadingRack(false);
+//     }
+//   };
+
+//   const handleZoneChange = (value, index) => {
+//     const updatedRows = [...rowsBest];
+//     updatedRows[index].roomRackId = value;
+//     setRowBest(updatedRows);
+//     // fetchAisle(value, index);
+//   };
+
+//   const handleAisleChange = (value, index) => {
+//     const updatedRows = [...rowsBest];
+//     updatedRows[index].aisle = value;
+//     setRowBest(updatedRows);
+//     console.log(updatedRows[index])
+
+//   };
+
+//   const handleRackChange = (value, index) => {
+//     const updatedRows = [...rowsBest];
+//     updatedRows[index].chamber = value;
+//     setRowBest(updatedRows);
+//     let data={
+//                 roomRackId:updatedRows[index].roomRackId,
+//                 roomRackChamberLinkId:updatedRows[index].roomRackChamberLinkId
+//               }
+//            props.addAsileInbest(data,updatedRows[index].poSupplierSuppliesId)
+//     console.log(`Zone at index ${index}:`, updatedRows[index]);
+//   };
+
+//   return (
+//     <div className="flex sticky z-auto h-[79vh]">
+//       <div className="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+//         <div className="flex w-[100%] p-1 bg-transparent font-bold font-poppins !text-lm items-end sticky z-10">
+//           <div className="text-[#00A2E8] text-base w-[11.52rem]">
+//             {props.translatedMenuItems[38]} {/* Item */}
+//           </div>
+//           <div className="w-[12.122rem]">
+//             <FactoryIcon className="!text-base text-[#e4eb2f]" /> {props.translatedMenuItems[36]} {props.translatedMenuItems[0]}
+//             {/* Supplier Name */}
+//           </div>
+//           <div className="w-[4.122rem]">HSN</div>
+//           <div className="w-[8.12rem]">
+//             <CategoryIcon className="!text-base text-[#e4eb2f]" /> {props.translatedMenuItems[36]} Id
+//           </div>
+//           <div className="w-[5.12rem]">
+//             {/* Country */} {props.translatedMenuItems[1]}
+//           </div>
+//           <div className="w-[8.12rem]">Best Use Date</div>
+//           <div className="w-[5.12rem]">{props.translatedMenuItems[26]}</div>
+//           <div className="w-[9.2rem]">{props.translatedMenuItems[32]}</div>
+//           <div className="w-[13.2rem]">Aisle</div>
+//           <div className="w-[7.12rem]">{props.translatedMenuItems[33]}</div>
+//           <div className="w-[3.22rem]">Discount</div>
+//         </div>
+
+//         {rowsBest.map((item, index) => {
+//           const currentdate = dayjs().format("DD/MM/YYYY");
+//           const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+//           return (
+//             <div
+//               key={item.poSupplierSuppliesId}
+//               className="flex rounded py-1 mt-1 bg-white items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow border-solid leading-3 hover:border hover:border-[#23A0BE] hover:shadow-[#23A0BE]"
+//             >
+//               <div className="flex w-[18.12rem] items-center border-l-2 h-8 border-green-500 bg-[#eef2f9] max-sm:flex-row max-sm:justify-between">
+//                 <div className="text-xs ml-gap font-poppins">{item.suppliesFullName}</div>
+//               </div>
+
+//               <div className="flex w-[11.02rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:justify-between">
+//                 <div className="text-xs ml-gap font-poppins">{item.supplierName}</div>
+//               </div>
+
+//               <div className="flex items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[4.25rem] max-sm:flex-row max-sm:justify-between">
+//                 <div className="text-xs ml-gap font-poppins">{item.hsn}</div>
+//               </div>
+
+//               <div className="flex md:w-[6.4rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+//                 <div className="text-xs ml-gap font-poppins">{item.newSuppliesNo}</div>
+//               </div>
+
+//               <div className="flex md:w-[3.8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+//                 <div className="text-xs font-poppins">{item.remainingCorrectUnit}</div>
+//               </div>
+
+//               <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.22rem] w-full max-sm:justify-between">
+//                 <div className="text-xs ml-gap font-poppins">{date}</div>
+//               </div>
+
+//               <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:justify-between w-[5.2rem]">
+//                 <div className="text-xs ml-gap font-poppins">{item.itemDiscount}%</div>
+//               </div>
+
+//               {/* Zone Dropdown */}
+//               <div className="w-[13.2rem]">
+//                 <Select
+//                   placeholder="Select Zone"
+//                   value={item.roomRackId}
+//                   onChange={(value) => handleZoneChange(value, index)}
+//                   loading={isLoadingZone}
+//                   style={{ width: "55%" }}
+//                 >
+//                   {zone.map((zoneItem) => (
+//                     <Option key={zoneItem.roomRackId} value={zoneItem.roomRackId}>
+//                       {zoneItem.zone}
+//                     </Option>
+//                   ))}
+//                 </Select>
+//               </div>
+
+//               {/* Aisle Dropdown */}
+//               <div className="w-[17.2rem]">
+//                 <Select
+//                   placeholder="Select Aisle"
+//                   value={item.aisle}
+//                   onChange={(value) => handleAisleChange(value, index)}
+//                   loading={isLoadingAisle}
+//                   style={{ width: "55%" }}
+//                 >
+//                   {aisle.map((aisleItem) => (
+//                     <Option key={aisleItem.aisel} value={aisleItem.aisel}>
+//                       {aisleItem.aisel}
+//                     </Option>
+//                   ))}
+//                 </Select>
+//               </div>
+
+//               {/* Rack Dropdown */}
+//               <div className="w-[13.22rem]">
+//                 <Select
+//                   placeholder="Select Rack"
+//                   value={item.chamber}
+//                   onChange={(value) => handleRackChange(value, index)}
+//                   loading={isLoadingRack}
+//                   style={{ width: "55%", }}
+//                 >
+//                   {rack.map((rackItem) => (
+//                     <Option key={rackItem.roomRackChamberLinkId} value={rackItem.roomRackChamberLinkId}>
+//                       {rackItem.chamber}
+//                     </Option>
+//                   ))}
+//                 </Select>
+//               </div>
+//               <div className=" flex  items-center justify-end h-8 ml-gap bg-[#eef2f9] w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
+//                                                         <div class=" cursor-pointer max-xl:text-[0.65rem] font-xl text-xs items-center font-poppins">
+//                                                             <Tooltip title="Terms and conditions">
+//                                                                 <TerminalSharp className="!text-icon text-[#c3b20b]"
+//                                                                     onClick={() => {
+//                                                                     // handleRow(item)
+//                                                                         props.handleTermsnConditionModal(true)
+//                                                                     }}
+//                                                                 />
+//                                                             </Tooltip>
+//                                                         </div>
+//                                                     </div>
+//             </div>
+//           );
+//         })}
+//       </div>
+//     </div>
+//   );
+// };
+
+// const mapStateToProps = ({ inventory,suppliers, auth }) => ({
+//     userId: auth.userDetails.userId,
+//     locationId: auth.userDetails.locationId,
+//     orgId: auth.userDetails.organizationId,
+//     token: auth.token,
+//     locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
+//     materialBestBefore:inventory.materialBestBefore,
+//     addTermsnCondition: suppliers.addTermsnCondition,
+// });
+
+// const mapDispatchToProps = (dispatch) =>
+//     bindActionCreators(
+//         {
+//             getMaterialBestBefore,
+//             handleTermsnConditionModal,
+//             addToWaste,
+//             addAsileInbest
+            
+//             // getMaterialReceiveData,
+//             // handleMaterialReceived,
+//             // handlegrnlistmodal,
+//             // getRackList,
+//             // getRoomRackByLocId,
+//         },
+//         dispatch
+//     );
+
+// export default withRouter(connect(mapStateToProps, mapDispatchToProps)(InventoryMaterialBestBefore));
+
+
+
+
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -481,24 +781,25 @@ import {
 import { handleTermsnConditionModal } from "../Suppliers/SuppliersAction";
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
-import { TerminalSharp } from "@mui/icons-material";
-import { Tooltip, Select, Button, Input } from "antd";
+import { Tooltip, Select, Button } from "antd";
 import { base_url2 } from "../../../Config/Auth";
 import CategoryIcon from "@mui/icons-material/Category";
 import FactoryIcon from "@mui/icons-material/Factory";
+import TerminalSharp from "@mui/icons-material/TerminalSharp";
 
 const { Option } = Select;
 
 const InventoryMaterialBestBefore = (props) => {
   const [rowsBest, setRowBest] = useState(props.materialBestBefore);
   const [zone, setZone] = useState([]);
-  const [aisle, setAisle] = useState([]);
-  const [rack, setRack] = useState([]);
+  const [aisleData, setAisleData] = useState([]);
+  const [rackData, setRackData] = useState([]);
   const [isLoadingZone, setIsLoadingZone] = useState(false);
   const [isLoadingAisle, setIsLoadingAisle] = useState(false);
   const [isLoadingRack, setIsLoadingRack] = useState(false);
 
   useEffect(() => {
+    // Fetch zones initially
     fetchZone();
     props.getMaterialBestBefore(props.locationId);
   }, []);
@@ -510,14 +811,14 @@ const InventoryMaterialBestBefore = (props) => {
   }, [props.materialBestBefore]);
 
   useEffect(() => {
-    rowsBest.forEach((row, index) => {
+    rowsBest.forEach((row) => {
       if (row.roomRackId) {
-        // If roomrackId exists, fetch Aisle and Rack
         fetchAisle(row.roomRackId);
         fetchRack(row.roomRackId);
       }
     });
   }, [rowsBest]);
+
 
   const fetchZone = async () => {
     setIsLoadingZone(true);
@@ -533,13 +834,13 @@ const InventoryMaterialBestBefore = (props) => {
       const data = await response.json();
       setZone(data);
     } catch (error) {
-      console.error("Error fetching customers:", error);
+      console.error("Error fetching zone data:", error);
     } finally {
       setIsLoadingZone(false);
     }
   };
 
-  const fetchAisle = async (roomRackId, index) => {
+  const fetchAisle = async (roomRackId) => {
     setIsLoadingAisle(true);
     try {
       const apiEndpoint = `${base_url2}/roomrack/notUesedAisle/${roomRackId}`;
@@ -551,7 +852,7 @@ const InventoryMaterialBestBefore = (props) => {
         },
       });
       const data = await response.json();
-      setAisle(data);
+      setAisleData(data);
     } catch (error) {
       console.error("Error fetching aisle data:", error);
     } finally {
@@ -571,7 +872,7 @@ const InventoryMaterialBestBefore = (props) => {
         },
       });
       const data = await response.json();
-      setRack(data);
+      setRackData(data);
     } catch (error) {
       console.error("Error fetching rack data:", error);
     } finally {
@@ -583,188 +884,132 @@ const InventoryMaterialBestBefore = (props) => {
     const updatedRows = [...rowsBest];
     updatedRows[index].roomRackId = value;
     setRowBest(updatedRows);
-    // fetchAisle(value, index);
+
+    // Fetch aisle and rack for the selected zone
+    // fetchAisle(value);
+    // fetchRack(value);
   };
 
   const handleAisleChange = (value, index) => {
     const updatedRows = [...rowsBest];
     updatedRows[index].aisle = value;
     setRowBest(updatedRows);
-    console.log(updatedRows[index])
-    // const zoneValue = updatedRows[index].roomRackId
-    // fetchRack(zoneValue);
   };
 
   const handleRackChange = (value, index) => {
     const updatedRows = [...rowsBest];
     updatedRows[index].chamber = value;
-    // setRowBest(updatedRows);
-    let data={
-                roomRackId:updatedRows[index].roomRackId,
-                roomRackChamberLinkId:updatedRows[index].roomRackChamberLinkId
-              }
-           props.addAsileInbest(data,updatedRows[index].poSupplierSuppliesId)
-    console.log(`Zone at index ${index}:`, updatedRows[index]);
+    setRowBest(updatedRows);
+
+    const payload = {
+      roomRackId: updatedRows[index].roomRackId,
+      roomRackChamberLinkId: value,
+    };
+    props.addAsileInbest(payload, updatedRows[index].poSupplierSuppliesId);
   };
 
   return (
     <div className="flex sticky z-auto h-[79vh]">
       <div className="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className="flex w-[100%] p-1 bg-transparent font-bold font-poppins !text-lm items-end sticky z-10">
-          <div className="text-[#00A2E8] text-base w-[11.52rem]">
-            {props.translatedMenuItems[38]} {/* Item */}
-          </div>
-          <div className="w-[12.122rem]">
-            <FactoryIcon className="!text-base text-[#e4eb2f]" /> {props.translatedMenuItems[36]} {props.translatedMenuItems[0]}
-            {/* Supplier Name */}
-          </div>
+        <div className="flex w-[100%] p-1 bg-transparent font-bold font-poppins items-end sticky z-10">
+          <div className="w-[11.52rem]">Item</div>
+          <div className="w-[12.122rem]">Supplier Name</div>
           <div className="w-[4.122rem]">HSN</div>
-          <div className="w-[8.12rem]">
-            <CategoryIcon className="!text-base text-[#e4eb2f]" /> {props.translatedMenuItems[36]} Id
-          </div>
-          <div className="w-[5.12rem]">
-            {/* Country */} {props.translatedMenuItems[1]}
-          </div>
+          <div className="w-[8.12rem]">Supplies Id</div>
+          <div className="w-[5.12rem]">Country</div>
           <div className="w-[8.12rem]">Best Use Date</div>
-          <div className="w-[5.12rem]">{props.translatedMenuItems[26]}</div>
-          <div className="w-[9.2rem]">{props.translatedMenuItems[32]}</div>
-          <div className="w-[13.2rem]">Aisle</div>
-          <div className="w-[7.12rem]">{props.translatedMenuItems[33]}</div>
+          <div className="w-[9.2rem]">Aisle</div>
+          <div className="w-[7.12rem]">Rack</div>
           <div className="w-[3.22rem]">Discount</div>
         </div>
 
-        {rowsBest.map((item, index) => {
-          const currentdate = dayjs().format("DD/MM/YYYY");
-          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
-          return (
-            <div
-              key={item.poSupplierSuppliesId}
-              className="flex rounded py-1 mt-1 bg-white items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow border-solid leading-3 hover:border hover:border-[#23A0BE] hover:shadow-[#23A0BE]"
-            >
-              <div className="flex w-[18.12rem] items-center border-l-2 h-8 border-green-500 bg-[#eef2f9] max-sm:flex-row max-sm:justify-between">
-                <div className="text-xs ml-gap font-poppins">{item.suppliesFullName}</div>
-              </div>
-
-              <div className="flex w-[11.02rem] items-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:justify-between">
-                <div className="text-xs ml-gap font-poppins">{item.supplierName}</div>
-              </div>
-
-              <div className="flex items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[4.25rem] max-sm:flex-row max-sm:justify-between">
-                <div className="text-xs ml-gap font-poppins">{item.hsn}</div>
-              </div>
-
-              <div className="flex md:w-[6.4rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-xs ml-gap font-poppins">{item.newSuppliesNo}</div>
-              </div>
-
-              <div className="flex md:w-[3.8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
-                <div className="text-xs font-poppins">{item.remainingCorrectUnit}</div>
-              </div>
-
-              <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.22rem] w-full max-sm:justify-between">
-                <div className="text-xs ml-gap font-poppins">{date}</div>
-              </div>
-
-              <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:justify-between w-[5.2rem]">
-                <div className="text-xs ml-gap font-poppins">{item.itemDiscount}%</div>
-              </div>
-
-              {/* Zone Dropdown */}
-              <div className="w-[13.2rem]">
-                <Select
-                  placeholder="Select Zone"
-                  value={item.roomRackId}
-                  onChange={(value) => handleZoneChange(value, index)}
-                  loading={isLoadingZone}
-                  style={{ width: "55%" }}
-                >
-                  {zone.map((zoneItem) => (
-                    <Option key={zoneItem.roomRackId} value={zoneItem.roomRackId}>
-                      {zoneItem.zone}
-                    </Option>
-                  ))}
-                </Select>
-              </div>
-
-              {/* Aisle Dropdown */}
-              <div className="w-[17.2rem]">
-                <Select
-                  placeholder="Select Aisle"
-                  value={item.aisle}
-                  onChange={(value) => handleAisleChange(value, index)}
-                  loading={isLoadingAisle}
-                  style={{ width: "55%" }}
-                >
-                  {aisle.map((aisleItem) => (
-                    <Option key={aisleItem.aisel} value={aisleItem.aisel}>
-                      {aisleItem.aisel}
-                    </Option>
-                  ))}
-                </Select>
-              </div>
-
-              {/* Rack Dropdown */}
-              <div className="w-[13.22rem]">
-                <Select
-                  placeholder="Select Rack"
-                  value={item.chamber}
-                  onChange={(value) => handleRackChange(value, index)}
-                  loading={isLoadingRack}
-                  style={{ width: "55%", }}
-                >
-                  {rack.map((rackItem) => (
-                    <Option key={rackItem.roomRackChamberLinkId} value={rackItem.roomRackChamberLinkId}>
-                      {rackItem.chamber}
-                    </Option>
-                  ))}
-                </Select>
-              </div>
-              <div className=" flex  items-center justify-end h-8 ml-gap bg-[#eef2f9] w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-xl text-xs items-center font-poppins">
-                                                            <Tooltip title="Terms and conditions">
-                                                                <TerminalSharp className="!text-icon text-[#c3b20b]"
-                                                                    onClick={() => {
-                                                                    // handleRow(item)
-                                                                        props.handleTermsnConditionModal(true)
-                                                                    }}
-                                                                />
-                                                            </Tooltip>
-                                                        </div>
-                                                    </div>
+        {rowsBest.map((item, index) => (
+          <div
+            key={item.poSupplierSuppliesId}
+            className="flex rounded py-1 mt-1 bg-white items-center"
+          >
+            <div className="w-[18.12rem]">{item.suppliesFullName}</div>
+            <div className="w-[11.02rem]">{item.supplierName}</div>
+            <div className="w-[4.25rem]">{item.hsn}</div>
+            <div className="w-[6.4rem]">{item.newSuppliesNo}</div>
+            <div className="w-[3.8rem]">{item.remainingCorrectUnit}</div>
+            <div className="w-[8.22rem]">{dayjs(item.creationDate).format("DD/MM/YYYY")}</div>
+            <div className="w-[13.2rem]">
+              <Select
+                placeholder="Select Zone"
+                value={item.roomRackId}
+                onChange={(value) => handleZoneChange(value, index)}
+                loading={isLoadingZone}
+                style={{ width: "55%" }}
+              >
+                {zone.map((zoneItem) => (
+                  <Option key={zoneItem.roomRackId} value={zoneItem.roomRackId}>
+                    {zoneItem.zone}
+                  </Option>
+                ))}
+              </Select>
             </div>
-          );
-        })}
+            <div className="w-[13.2rem]">
+              <Select
+                placeholder="Select Aisle"
+                value={item.aisle}
+                onChange={(value) => handleAisleChange(value, index)}
+                loading={isLoadingAisle}
+                style={{ width: "55%" }}
+              >
+                {aisleData.map((aisleItem) => (
+                  <Option key={aisleItem.aisel} value={aisleItem.aisel}>
+                    {aisleItem.aisel}
+                  </Option>
+                ))}
+              </Select>
+            </div>
+            <div className="w-[13.2rem]">
+              <Select
+                placeholder="Select Rack"
+                value={item.chamber}
+                onChange={(value) => handleRackChange(value, index)}
+                loading={isLoadingRack}
+                style={{ width: "55%" }}
+              >
+                {rackData.map((rackItem) => (
+                  <Option
+                    key={rackItem.roomRackChamberLinkId}
+                    value={rackItem.roomRackChamberLinkId}
+                  >
+                    {rackItem.chamber}
+                  </Option>
+                ))}
+              </Select>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
-const mapStateToProps = ({ inventory,suppliers, auth }) => ({
-    userId: auth.userDetails.userId,
-    locationId: auth.userDetails.locationId,
-    orgId: auth.userDetails.organizationId,
-    token: auth.token,
-    locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
-    materialBestBefore:inventory.materialBestBefore,
-    addTermsnCondition: suppliers.addTermsnCondition,
+const mapStateToProps = ({ inventory, suppliers, auth }) => ({
+  userId: auth.userDetails.userId,
+  locationId: auth.userDetails.locationId,
+  orgId: auth.userDetails.organizationId,
+  token: auth.token,
+  materialBestBefore: inventory.materialBestBefore,
 });
 
 const mapDispatchToProps = (dispatch) =>
-    bindActionCreators(
-        {
-            getMaterialBestBefore,
-            handleTermsnConditionModal,
-            addToWaste,
-            addAsileInbest
-            
-            // getMaterialReceiveData,
-            // handleMaterialReceived,
-            // handlegrnlistmodal,
-            // getRackList,
-            // getRoomRackByLocId,
-        },
-        dispatch
-    );
+  bindActionCreators(
+    {
+      getMaterialBestBefore,
+      handleTermsnConditionModal,
+      addToWaste,
+      addAsileInbest,
+    },
+    dispatch
+  );
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(InventoryMaterialBestBefore));
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(InventoryMaterialBestBefore)
+);
+
 
