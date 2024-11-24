@@ -55,6 +55,7 @@ import CustomerSearchedData from "./CustomerSearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddCustomerAdressModal from "./AddCustomerAdressModal";
 import EmptyPage from "../../../Main/EmptyPage";
+import Opportunity from "../../../Opportunity/Opportunity";
 //import UpdateUserModal from "./UpdateUserModal";
 const AddCustomerDrawerModal = lazy(() =>
   import("../../AddCustomerDrawerModal")
@@ -268,7 +269,7 @@ if (loading) {
   ) : (
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-poppins font-bold  !text-lm max-xl:text-[0.65rem] max-xl:text-[0.65rem]  sticky z-10">
+          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-poppins font-bold  !text-lm max-xl:text-[0.65rem]  sticky z-10">
             <div class=" flex justify-between font-poppins w-[89%] items-end">
          
             <div className="truncate text-[#00A2E8] text-sm  w-[14.5rem]   max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
@@ -356,7 +357,7 @@ if (loading) {
               return (
                 <div>
                   <div
-                className="flex rounded justify-between  bg-white mt-1 items-center   max-sm:rounded-lg max-xl:text-[0.65rem] max-xl:text-[0.65rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 items-center   max-sm:rounded-lg  max-xl:text-[0.65rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                       <div className=" flex  w-[13rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
@@ -391,9 +392,8 @@ if (loading) {
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
                                 <div class="flex text-xs ml-1 text-blue-500  font-poppins font-semibold  cursor-pointer">
 
-                                  <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm   cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
+                                
                                     {item.name}
-                                  </Link>
 
                                   &nbsp;&nbsp;
                                   {date === currentdate ? (
@@ -462,8 +462,7 @@ if (loading) {
                      {/* Pipeline Value */}
 
                         <div class=" text-xs  font-poppins max-sm:text-sm text-center  ">
-                          {item.oppNo}
-
+                        {item.oppNo}
                         </div>
                       </div>
                     
@@ -660,15 +659,17 @@ if (loading) {
                         </div>
                         <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >
                           <Tooltip title={translatedMenuItems[10]}>
+                          <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm  cursor-pointer" to={`Opportunity`}>
                             <LightbulbIcon
                               className=" !text-icon cursor-pointer text-[#AF5910]"
-                              onClick={() => {
-                                handleCustomerOpportunityDrawerModal(true);
-                                handleSetCurrentCustomer(item);
-                                handleRowData(item);
-                              }}
+                              // onClick={() => {
+                              //   handleCustomerOpportunityDrawerModal(true);
+                              //   handleSetCurrentCustomer(item);
+                              //   handleRowData(item);
+                              // }}
 
                             />
+                          </Link>
                           </Tooltip>
 
                         </div>                                       

@@ -72,17 +72,17 @@ function CustrOpenOpportunityJumpstartCardList(props) {
   <>
   <div class="flex flex-wrap w-[56vw]">
   <div class="rounded m-1 max-sm:m-1 p-1 w-[80%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex max-sm:hidden  w-[100%]  max-xl:w-[82%] p-1 bg-transparent font-semibold items-end text-xs font-poppins sticky top-0 z-10">
-        <div className=" w-[7.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[31.8rem] max-lg:w-[29.8rem]">{translatedMenuItems[0]} ID</div>
+      <div className=" flex max-sm:hidden  w-[100%]  max-xl:w-[82%] p-1 bg-transparent font-semibold items-end !text-lm font-poppins sticky  z-10">
+        <div className=" w-[6.8rem] text-sm ">{translatedMenuItems[0]} ID</div>
         {/* Quotation ID  */}
-        <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.2rem] max-lg:w-[11.2rem]">{translatedMenuItems[1]}</div>
+        <div className=" w-[8.2rem] ">{translatedMenuItems[1]}</div>
         {/* Sponsor */}
 
-        <div className=" w-[7.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[13.3rem]">{translatedMenuItems[3]}</div>
+        <div className=" w-[7.3rem] ">{translatedMenuItems[3]}</div>
         {/* Value */}
-        <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.1rem]">{translatedMenuItems[4]}</div>
+        <div className=" w-[6.1rem] ">{translatedMenuItems[4]}</div>
         {/* Assigned */}
-        <div className=" w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem]">{translatedMenuItems[5]}</div>
+        <div className=" w-[2.2rem] ">{translatedMenuItems[5]}</div>
         {/* Owner */}
       
       </div>

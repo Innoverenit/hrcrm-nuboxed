@@ -131,32 +131,32 @@ const AllAccountList = (props) => {
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex max-sm:hidden  w-[90%]   justify-between p-1 bg-transparent  sticky items-end  z-10 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]">
         <div class=" flex justify-between !text-lm font-poppins  font-bold  w-[94%]  ">
-            <div className=" w-[22.1rem] text-[#00A2E8] text-sm max-md:w-[22.1rem]  ">  
+            <div className=" w-[22.1rem] text-[#00A2E8] text-sm max-md:w-[22.1rem] truncate ">  
             <ContactsIcon className="!text-icon  "/> {translatedMenuItems[0]}
             {/* Name */}
             </div>
-            <div className=" w-[10.11rem] max-md:w-[10.11rem]">
+            <div className=" w-[10.11rem] max-md:w-[10.11rem] truncate">
             <ApartmentIcon className="!text-icon mr-1 "/>  {translatedMenuItems[1]}
              {/* Work */}</div>
-            <div className=" w-[12.1rem] max-md:w-[12.1rem]">
+            <div className=" w-[12.1rem] max-md:w-[12.1rem] truncate">
             <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[2]}
             {/*category */}</div>
-            <div className="w-[10.01rem] max-md:w-[10.01rem]">
+            <div className="w-[10.01rem] max-md:w-[10.01rem] truncate">
             < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[3]}
             {/* type % */}</div>
-            <div className="w-[12.2rem] max-md:w-[12.2rem] ">
+            <div className="w-[12.2rem] max-md:w-[12.2rem] truncate ">
             <DynamicFeedIcon
               className='  text-[#e4eb2f]'
               /> {translatedMenuItems[4]}
             {/* Paymentdays % */}</div>
-            <div className="w-[12.2rem] max-md:w-[12.2rem]">
+            <div className="w-[12.2rem] max-md:w-[12.2rem] truncate">
             <GolfCourseIcon className='!text-base   text-[#f42c04]'/>  {/* Club */}{translatedMenuItems[12]}
             </div>       
-                <div className="w-[7.8rem] max-md:w-[7.8rem]">
+                <div className="w-[7.8rem] max-md:w-[7.8rem] truncate">
                 <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {translatedMenuItems[11]}
            {/* credit */}        
             </div>
-            <div className="w-[6.2rem] max-md:w-[6.2rem] ">
+            <div className="w-[6.2rem] max-md:w-[6.2rem] truncate ">
             <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[10]}
             {/* Assigned */}          
             </div>      

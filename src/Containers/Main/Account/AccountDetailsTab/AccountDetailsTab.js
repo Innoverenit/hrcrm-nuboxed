@@ -419,10 +419,7 @@ function AccountDetailsTab(props) {
                   <span>
                     <LightbulbIcon className="!text-icon text-[#bfa89e]" />
                     <span class=" !text-tab font-poppins ">
-                      {/* <FormattedMessage
-                        id="app.quotation"
-                        defaultMessage="Quotation"
-                      /> */}
+                      {/* Quotation */}
                      {translatedMenuItems[3]}
 
                     </span>
@@ -431,20 +428,13 @@ function AccountDetailsTab(props) {
                     <>
                       <Tooltip 
                         title={translatedMenuItems[11]}
-                        // {
-                        //   <FormattedMessage
-                        //     id="app.create"
-                        //     defaultMessage="Create"
-                        //   />
-                        // }
+                        //  Create"  
                       >
                         {props.user.opportunityCreateInd === true && (
                            <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"                                                    
                             tooltiptitle={translatedMenuItems[11]}
-                            //   <FormattedMessage
-                            //     id="app.Create"
-                            //     defaultMessage="Create"
-                            //   />
+                           
+                            //     Create
                            
                             onClick={() => {
                               props.handleAccountOpportunityModal(true);

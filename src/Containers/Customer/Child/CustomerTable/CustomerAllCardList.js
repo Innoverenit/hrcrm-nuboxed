@@ -466,8 +466,8 @@ const [rowdata, setrowdata] = useState("");
 
 <div className=" flex  w-[3rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 <div class=" text-xs  max-sm:text-sm font-poppins text-center">
-                            {item.oppNo}
-
+<Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm  cursor-pointer" to={`Opportunity`}> {item.oppNo}
+</Link>
                           </div>
                           </div>
 
@@ -670,7 +670,7 @@ handleRowData(item);
                         </div>
                         </div>
                        
-                    <div>
+                    {/* <div>
                           <Tooltip title= {translatedMenuItems[11]}>
                             <LightbulbIcon
                               className=" !text-icon cursor-pointer text-[#AF5910]"
@@ -684,7 +684,7 @@ handleRowData(item);
                           </Tooltip>
                        
                      </div>
-                    
+                     */}
                     
                     
 
