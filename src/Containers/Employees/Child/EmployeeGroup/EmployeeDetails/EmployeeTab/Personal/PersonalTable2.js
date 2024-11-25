@@ -27,6 +27,8 @@ import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import EmptyPage from "../../../../../../Main/EmptyPage";
+import PhoneIcon from '@mui/icons-material/Phone';
+import ContactsIcon from '@mui/icons-material/Contacts';
 const UpdatePersonalModal = lazy(() => import("../Personal/UpdatePersonalModal"));
 
 class PersonalTable2 extends Component {
@@ -35,6 +37,7 @@ class PersonalTable2 extends Component {
     this.state = {
       mapModalVisible: false,
       addAddressVisible: false,
+      translatedMenuItems: [],
     };
   }
   handleMapModalVisible = () =>
@@ -47,7 +50,29 @@ class PersonalTable2 extends Component {
   componentDidMount() {
     const { getPersonalDetails, employeeId } = this.props;
     getPersonalDetails(employeeId);
+    this.fetchMenuTranslations();
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "110",//0 Name0
+      "546",  // "Mobile No"1
+      "300",  // "Phone No2
+      "154",  // Submit8
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   // }
   render() {
     const {
@@ -101,17 +126,14 @@ class PersonalTable2 extends Component {
     return (
       <>
         <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-          <div className=" md:w-[6.5rem]">
-       Name
-              </div>
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky z-10">
+          <div className=" max-md:w-[6.5rem] w-[6.5rem] text-sm"> {/* Name */}  <ContactsIcon className="!text-icon  "/> {this.state.translatedMenuItems[0]}</div>
  
-        <div className="md:w-[10.1rem]">  Mobile No</div>
-                 <div className="md:w-[10.1rem]">
-              Phone No</div>
+        <div className="max-md:w-[10.1rem] w-[10.1rem]"> <PhoneIcon className="!text-icon  "/> {this.state.translatedMenuItems[1]}</div>
+       <div className="max-md:w-[10.1rem] w-[10.1rem]"><PhoneIcon className="!text-icon  "/>{this.state.translatedMenuItems[2]}</div>
               
         
-        <div className="w-[10.2rem]"></div>
+        <div className="w-[10.2rem] max-md:w-[10.2rem]"></div>
 
       </div>
    
@@ -138,20 +160,20 @@ class PersonalTable2 extends Component {
                             <div className="flex rounded justify-between bg-white mt-[0.5rem] h-8 items-center p-1"
                                 >
                                      
-                                     <div className=" flex  md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
-<div className="flex max-sm:w-full items-center"> 
+                                     <div className=" flex w-[14rem] max-md:w-[14rem] max-sm:flex-row  max-sm:justify-between  ">
+                                      <div className="flex max-sm: items-center"> 
 
-          <div class="max-sm:w-full">
+                                        <div class="max-sm:">
                                         <Tooltip>
-                                          <div class=" flex max-sm:w-full justify-between flex-row md:  w-[8rem]">
+                                          <div class=" flex max-sm: justify-between w-[8rem] max-md:w-[8rem]">
                                           
                                             <div class="  text-blue-500  font-poppins font-semibold  cursor-pointer">
                                                 
                                             <span>{` ${item.contactSalutation} 
-              ${item.contactFirstName}
-              ${item.contactMiddleName}
-              ${item.contactLastName}`}</span>
-     
+                                                    ${item.contactFirstName}
+                                                    ${item.contactMiddleName}
+                                                    ${item.contactLastName}`}</span>
+                                          
        
                                             </div>
                                             </div>
@@ -160,17 +182,14 @@ class PersonalTable2 extends Component {
                                         </div>
                                 </div>
                                 <div class="flex">
-
-                             
-                              
-                                <div className=" flex  md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                                <div className=" flex  max-md:w-[12.3rem] w-[12.3rem] max-sm:flex-row  max-sm:justify-between">
                                 
                                   <div class="   font-poppins">
                                   {item.mobileNo}
                                   </div>
                               </div>
 
-                              <div className=" flex  md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                              <div className=" flex  max-md:w-[10.3rem] w-[10.3rem max-sm:flex-row  max-sm:justify-between">
                                 
                                 <div class="   font-poppins">
                                 {item.phoneNo}
@@ -184,22 +203,17 @@ class PersonalTable2 extends Component {
                               <Tooltip overlayStyle={{ maxWidth: "300px" }}
           title={dataLoc}>
 
-          <LocationOnIcon  style={{
-            cursor: "pointer",
-            fontSize: "0.8rem"}}
-            
-            iconType="environment"
+          <LocationOnIcon className=" cursor-pointer !text-icon" 
             // handleIconClick={() => {
             //   this.props.setCurrentPersonal(item);
             //   this.handleMapModalVisible();
             // }}
-            size="1em"
           />
            </Tooltip>
           </>
                  
                   </div>
-                                <div className=" flex ml-2 md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex ml-2 max-md:w-[2rem] w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                                     
 
                                     <div class="    font-poppins text-center">
@@ -214,7 +228,7 @@ class PersonalTable2 extends Component {
 
                                     </div>
                                 </div>
-                                <div className=" flex ml-2 md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex ml-2 max-md:w-[2rem] w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                                     
 
                                     <div class="    font-poppins text-center">
