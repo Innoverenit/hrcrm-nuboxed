@@ -67,7 +67,9 @@ console.log(props.UOMListData)
           closable
           width={drawerWidth}
           visible={modalVisible}
-          onClose={closeModal}
+          onClose={() => { closeModal(); 
+            // window.location.reload(); 
+          }}
           footer={null}
         >
 
@@ -141,4 +143,5 @@ console.log(props.UOMListData)
 }
 
 export default MaterialDetailsDrawer;
+
 

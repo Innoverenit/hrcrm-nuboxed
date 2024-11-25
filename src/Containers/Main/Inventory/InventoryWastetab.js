@@ -84,6 +84,7 @@ console.log(selectedLocation)
                     Units
 
                         </div>
+
                         <div className=" w-[9.2rem] truncate max-md:w-[9.2rem]" >       
                     Zone
 
@@ -94,6 +95,23 @@ console.log(selectedLocation)
                         </div>
                         <div className=" w-[7.12rem] truncate max-md:w-[7.12rem]">       
                     Rack
+
+                    </div>
+                        <div className=" w-[9.2rem]" >       
+                 Unit Price
+
+                        </div>
+                        <div className=" w-[13.2rem]">       
+                    Batch No
+
+                        </div>
+            
+                        <div className=" w-[7.12rem]">       
+                    Country
+
+                        </div>
+                        <div className=" w-[7.12rem]">       
+                  Total Value
 
                         </div>
                    

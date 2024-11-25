@@ -9,6 +9,7 @@ import CreditMemoList from "./CreditMemoList"
 import { getAllDistributorsList } from "../CollectionAction";
 import { connect } from "react-redux";
 import LockIcon from '@mui/icons-material/Lock';
+import SummarizeIcon from '@mui/icons-material/Summarize';
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
@@ -137,7 +138,7 @@ function CollectionDistributorTab(props) {
             tab={
               <>
                 <span class="!text-tab">
-                  <i class="fas fa-hand-holding-usd text-[#9e7682]"></i>&nbsp; 
+                  <SummarizeIcon className="!text-icon text-[#B23A48]"/>&nbsp; 
                   {translatedMenuItems[4]}   
                 </span>
                 &nbsp;

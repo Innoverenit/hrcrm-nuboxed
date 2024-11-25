@@ -196,20 +196,20 @@ function ProductionOrderListById(props) {
       </div>
 
                     <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
-                        <div className='w-[3.2rem]'></div>
-                        <div className=" w-[18.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
-                          <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[0]} ID</div>
-                        <div className=" w-[11.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        <DateRangeIcon className="!text-icon "/> {translatedMenuItems[1]}
+                        <div className='w-[3.2rem] max-md:w-[3.5rem] '></div>
+                        <div className=" w-[18.92rem] max-md:w-[18.92rem] "> 
+                          <DynamicFeedIcon className='!text-base mr-1  text-[#3F37C9]'/>{translatedMenuItems[0]} ID</div>
+                        <div className=" w-[11.121rem] max-md:w-[16.12rem]">
+                        <DateRangeIcon className="!text-icon  text-[#92dce5]"/> {translatedMenuItems[1]}
                         </div>
-                        <div className=" w-[12.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className=" w-[12.1rem] max-md:w-[14.1rem] ">
                         <ContactsIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]}
                         </div>
 
-                        <div className="w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[10.8rem] max-md:w-[10.8rem]">
                         <UpdateIcon className='!text-icon text-[#ff66b3]' /> {translatedMenuItems[3]}
                         </div>
-                        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+                        <div className=" w-[10.1rem] max-md:w-[10.1rem]"></div>
                     </div>
                     <div class="">
                         <InfiniteScroll
@@ -226,7 +226,7 @@ function ProductionOrderListById(props) {
                                 const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                 return (
                                     <div >
-                                        <div className="flex rounded  mt-1 bg-white  items-center py-ygap-1 max-sm:h-24 max-sm:justify-between max-sm:flex-col max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
+                                        <div className="flex rounded  mt-1 bg-white  items-center py-ygap max-sm:h-24 max-sm:justify-between max-sm:flex-col max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                           <div class="flex  max-sm:w-wk items-center">
                                             <div className=" flex border-l-2 h-8  border-green-500 bg-[#eef2f9] items-center md:w-[2.26rem] ">
@@ -242,7 +242,7 @@ function ProductionOrderListById(props) {
                                                 </div>
                                                 <div className=" flex w-[15.01rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                     <Badge size="small" count={`${item.qcCompletePhoneCount} / ${item.totalPhone}`} overflowCount={5000}>
-                                                        <span class="underline font-bold ml-gap text-xs text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+                                                        <span class="underline font-bold ml-gap text-xs text-[#1890ff] cursor-pointer w-[7rem] flex  max-sm:text-xs"
 
                                                             onClick={() => {
                                                                 handleRowData(item);
@@ -263,27 +263,27 @@ function ProductionOrderListById(props) {
                                               </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                             <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[14rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem]  max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs  font-poppins  max-sm:text-xs">
                                                         {item.dueDate === null ? "" : dayjs(item.dueDate).format("DD-MM-YYYY")}
                                                     </div>
 
                                                 </div>
                                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[5.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem]  max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs ml-gap font-poppins  max-sm:text-xs">
                                                         {item.lead}
                                                     </div>
 
                                                 </div>
 
                                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[18.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem]  max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs ml-gap font-poppins  max-sm:text-xs">
                                                         {item.qcInProgressPhoneCount} {translatedMenuItems[11]}
                                                         {/* In Progress */}
                                                     </div>
 
                                                 </div>
                                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-xs ml-gap font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs ml-gap font-poppins text-center  max-sm:text-xs">
                                                         {item.qcInspectionInd === 0 ?
                                                             <Button
                                                                 className="w-32"
@@ -308,7 +308,7 @@ function ProductionOrderListById(props) {
                                                 </div>
                                         
                                                 <div className=" flex  w-wk items-center  h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row max-sm:w-auto max-sm:justify-between  justify-end">
-                                                <div class="   text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-2xl">
+                                                <div class="   text-green-600 font-poppins text-center  max-sm:text-2xl">
                                                     <Tooltip title={translatedMenuItems[6]}>
                                                         <NoteAltIcon
                                                             className="!text-icon cursor-pointer max-sm:!text-2xl"

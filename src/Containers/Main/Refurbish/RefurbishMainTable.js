@@ -185,44 +185,44 @@ const ProductionOrderList = (props) => {
         <>
             <div className=' flex sticky  z-auto'>
                 <div class="rounded  max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                 <div className=" flex max-sm:hidden  justify-between w-[95%]  p-1 bg-transparent font-bold font-poppins text-xs sticky items-end z-10 ">
-                    <div className=" md:w-[3rem] text-[white] flex justify-center mr-1 bg-[red]"> {translatedMenuItems[6]} </div>
-                        <div className=" w-[10.2rem] flex justify-start max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                 <div className=" flex max-sm:hidden  justify-between w-[95%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end z-10 ">
+                    <div className=" max-md:w-[3rem] w-[3rem] text-[white] flex justify-center mr-1 bg-[red]"> {translatedMenuItems[6]} </div>
+                        <div className="max-md:w-[10.2rem]  w-[10.2rem] flex justify-start ">
                          
                         {/* orderid" */}
-                        <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/> {translatedMenuItems[0]}
+                        <DynamicFeedIcon className='!text-sm mr-1  text-[#3F37C9]'/> {translatedMenuItems[0]}
                         </div>
                         {props.accountInfoInd &&(
-                        <div className=" w-[7.71rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="max-md:w-[10.2rem] w-[7.71rem] ">
                            {/* customer  */}
                            <AcUnitIcon className='!text-base  text-[#92dce5]'
               /> {translatedMenuItems[1]}
                         </div>)}                                      
-                        <div className="w-[4.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> <LightbulbIcon
+                        <div className="w-[4.5rem] max-md:w-[4.5rem] "> <LightbulbIcon
               className='!text-base  text-[#84a59d]'
               /> {translatedMenuItems[5]}
                             {/* Quoted */}
                         </div>
-                        <div className="w-[3.6rem]">    <CurrencyExchangeIcon
-              className='!text-base  text-[#e4eb2f]'
+                        <div className="w-[3.6rem] max-md:w-[3.6rem]">    <CurrencyExchangeIcon
+              className='!text-base  text-[#4CC9F0]'
               /> {translatedMenuItems[9]}
                            {/* final */}
                         </div>
-                        <div className="w-[5.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[5.7rem] max-md:w-[5.7rem]">
                         <LocalShippingIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[7]}  {/* Delivery */}
                             </div>
-                            <div className="w-[27.2rem]"></div>
-                            <div className="w-[3.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div className="w-[27.2rem] max-md:w-[27.2rem]"></div>
+                            <div className="w-[3.01rem] max-md:w-[3.01rem]">
                                 {/* lead */}
-                                <GroupsIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]}
+                                <GroupsIcon className='!text-icon text-[#B23A48]'/> {translatedMenuItems[2]}
                         </div>
-                        <div className="w-[4.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[4.92rem] max-md:w-[4.92rem]">
                            {/* Assigned */}
                            <AccountCircleIcon className="!text-icon  text-[#d64933]"/>   {translatedMenuItems[3]}
                         </div>
-                        <div className="w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[4.81rem] max-md:w-[4.81rem]">
                            {/* Owner */}
-                           <AccountCircleIcon className="!text-icon  text-[#d64933]"/>   {translatedMenuItems[4]}
+                           <AccountCircleIcon className="!text-icon  text-[#FED0BB]"/>   {translatedMenuItems[4]}
                          </div>
 
                     
@@ -455,44 +455,44 @@ const ProductionOrderList = (props) => {
 
 <div className=' flex  sticky  z-auto'>
                 <div class="rounded  max-sm:m-1  py-ygap w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex max-sm:hidden  justify-between w-[95%]  p-1 bg-transparent font-bold font-poppins text-xs sticky items-end z-10">
-                    <div className=" md:w-[3.54rem] text-[white] flex justify-center mr-1 bg-[teal]"> {translatedMenuItems[8]} </div>
-                        <div className=" w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                <div className=" flex max-sm:hidden  justify-between w-[95%]  p-1 bg-transparent font-bold font-poppins text-lm sticky items-end z-10">
+                    <div className=" max-md:w-[3.54rem] w-[3.54rem] text-[white] flex justify-center mr-1 bg-[teal]"> {translatedMenuItems[8]} </div>
+                        <div className=" w-[10.2rem] max-md:w-[10.2rem] flex justify-start ">
                             {/* orderID */}
-                            <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[0]}
+                            <DynamicFeedIcon className='!text-base mr-1  text-[#3F37C9]'/>{translatedMenuItems[0]}
                         </div>
                         {props.accountInfoInd &&(
-                        <div className=" w-[7.71rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className=" w-[7.71rem] max-md:w-[10.2rem]">
                             {/* customer */}
                             <AcUnitIcon className='!text-base  text-[#92dce5]'
               /> {translatedMenuItems[1]}
                         </div>)}                                    
-                        <div className="w-[4.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> <LightbulbIcon
+                        <div className="w-[4.5rem] max-md:w-[4.5rem]"> <LightbulbIcon
               className='!text-base  text-[#84a59d]'
               /> {translatedMenuItems[5]}
                             {/* Quoted */}
                         </div>
-                        <div className="w-[3.6rem]">    <CurrencyExchangeIcon
-              className='!text-base  text-[#e4eb2f]'
+                        <div className="w-[3.6rem] max-md:w-[3.6rem]">    <CurrencyExchangeIcon
+              className='!text-base  text-[#4CC9F0]'
               /> {translatedMenuItems[9]}
                            {/* final */}
                         </div>
-                        <div className="w-[5.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[5.7rem] max-md:w-[5.7rem]">
                         <LocalShippingIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[7]}  {/* Delivery */}
                             </div>
-                            <div className="w-[27.2rem]"></div>
-                            <div className="w-[3.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div className="w-[27.2rem] max-md:w-[27.2rem]"></div>
+                            <div className="w-[3.01rem] max-md:w-[3.01rem]">
                           {/* lead */}
-                          <GroupsIcon className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[2]}
+                          <GroupsIcon className='!text-base  text-[#B23A48]'/>  {translatedMenuItems[2]}
                         </div>
-                        <div className="w-[4.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[4.92rem] max-md:w-[4.92rem]">
                           {/* Assigned */}
                           <AccountCircleIcon className="!text-icon  text-[#d64933]"/>   {translatedMenuItems[3]}
                         </div>
-                        <div className="w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div className="w-[4.81rem] max-md:w-[4.81rem]">
                            
                            {/* Owner  */}
-                           <AccountCircleIcon className="!text-icon  text-[#d64933]"/>   {translatedMenuItems[4]}
+                           <AccountCircleIcon className="!text-icon  text-[#FED0BB]"/>   {translatedMenuItems[4]}
                          </div>
              
                     </div>
