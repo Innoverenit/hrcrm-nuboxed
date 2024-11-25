@@ -1,6 +1,7 @@
 import React, { useState, useEffect,Suspense, lazy,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import QRCode from "qrcode.react";
 import AddSuppliesRowImageModal from "./AddSuppliesRowImageModal"
 import DescriptionIcon from '@mui/icons-material/Description';
 import QrCodeIcon from '@mui/icons-material/QrCode';
@@ -508,6 +509,24 @@ function SuppliesTable(props) {
 
                                                     </div>
                                                 </div>
+                                                <div style={{ display: "none", textAlign: "center" }}>
+
+<div
+    ref={(el) => (componentRefs.current[index] = el)}
+    style={{
+        fontSize: "16px",
+        marginBottom: "20px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+          height:"-webkit-fill-available",
+            justifyContent:"center"
+    }}
+>
+    <div class=" mt-8"><QRCode size={130} value={item.qrCodeNo} /></div>
+    <div style={{ fontSize: "2rem", marginTop: "10px" }}> {item.qrCodeNo}</div>
+</div>
+</div>
   <div className=" flex w-[1.25rem] h-8 ml-gap bg-[#eef2f9] justify-center items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins ">
                               <UploadIcon

@@ -259,7 +259,7 @@ export const addActivityCall = (call,customerId, cb) => (dispatch, getState) => 
 
 
 
-  export const updateActivityCall = (call,customerId, cb) => (dispatch, getState) => {
+  export const updateActivityCall = (call,callId, cb) => (dispatch, getState) => {
     ////debugger;
     console.log("inside addCall");
     const { userId } = getState("auth").auth.userDetails;
@@ -269,7 +269,7 @@ export const addActivityCall = (call,customerId, cb) => (dispatch, getState) => 
     });
   
     axios
-      .post(`${base_url}/activity/call/save`, call, {
+      .put(`${base_url}/call/activity/update/${callId}`, call, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -300,7 +300,7 @@ export const addActivityCall = (call,customerId, cb) => (dispatch, getState) => 
 
 
 
-  export const updateActivityEvent = (call,customerId, cb) => (dispatch, getState) => {
+  export const updateActivityEvent = (call,eventId, cb) => (dispatch, getState) => {
     ////debugger;
     console.log("inside addCall");
     const { userId } = getState("auth").auth.userDetails;
@@ -310,7 +310,7 @@ export const addActivityCall = (call,customerId, cb) => (dispatch, getState) => 
     });
   
     axios
-      .post(`${base_url}/activity/call/save`, call, {
+      .put(`${base_url}/event/activity/update/${eventId}`, call, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -341,7 +341,7 @@ export const addActivityCall = (call,customerId, cb) => (dispatch, getState) => 
 
 
   
-  export const updateActivityTask = (call,customerId, cb) => (dispatch, getState) => {
+  export const updateActivityTask = (call,taskId, cb) => (dispatch, getState) => {
     ////debugger;
     console.log("inside addCall");
     const { userId } = getState("auth").auth.userDetails;
@@ -351,7 +351,7 @@ export const addActivityCall = (call,customerId, cb) => (dispatch, getState) => 
     });
   
     axios
-      .post(`${base_url}/activity/call/save`, call, {
+      .put(`${base_url}/task/activity/update/${taskId}`, call, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },

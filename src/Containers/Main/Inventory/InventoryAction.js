@@ -2900,7 +2900,7 @@ export const addScanReceivedata = (data,poSupplierDetailsId,qrCodeNo) => (dispat
     type: types.ADD_SCAN_RECEIVED_DATA_REQUEST,
   });
   axios
-    .post(`${base_url2}/po/scannedUnitAndInd/${poSupplierDetailsId}/${qrCodeNo}`, data,{
+    .put(`${base_url2}/po/scannedUnitAndInd/${poSupplierDetailsId}/${qrCodeNo}`, data,{
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
