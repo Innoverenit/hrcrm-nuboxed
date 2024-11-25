@@ -189,7 +189,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                     <div>
                     <div className="flex rounded justify-between  bg-white mt-1 py-ygap items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex  w-[14rem] max-xl:w-[11rem] border-l-2 border-green-500 bg-[#eef2f9] max-lg:w-[8rem]   max-sm:w-auto">
+                        <div className=" flex  w-[14rem] max-md:w-[14rem] max-xl:w-[11rem] border-l-2 border-green-500 bg-[#eef2f9] max-lg:w-[8rem]   max-sm:w-auto">
                           <div className="flex max-sm:w-auto">
                             <div>
                               <MultiAvatar
@@ -224,7 +224,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                             </div>
                           </div>
                         </div>
-                        <div className=" flex   w-[9.1rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]  max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
+                        <div className=" flex max-md:w-[9.1rem]  w-[9.1rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]  max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
                           <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] justify-start max-sm:text-sm ml-gap ">
                             {item.dialCode} {item.phoneNo}
                           </div>
@@ -233,27 +233,27 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                        <div className=" flex  max-sm:w-auto w-[9.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex  max-sm:w-auto w-[9.2rem] max-md:w-[9.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
                           <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {/* {item.url} */}
                             {item.dCategoryName}
 
                           </div>
                         </div>
-                        <div className=" flex  max-sm:w-auto w-[8rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex  max-sm:w-auto w-[8rem] max-md:w-[8rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
                           <div class=" text-xs  font-poppins text-center ml-gap justify-start max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.clientName}
 
                           </div>
                         </div>
 
-                        <div className=" flex  max-sm:w-auto w-[9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex  max-sm:w-auto w-[9rem] max-md:w-[9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                           <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                             {item.payment}
 
                           </div>
                         </div>
-                        <div className=" flex  max-sm:w-auto w-[7rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex  max-sm:w-auto w-[7rem] max-md:w-[7rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.clubName}
 
@@ -261,14 +261,14 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                           </div>
                       </div>
                    
-                      <div className=" flex items-center max-sm:w-auto w-[8rem]  justify-between h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center max-sm:w-auto w-[8rem] max-md:w-[8rem] justify-between h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>&nbsp; &nbsp;
                             <div class=" text-xs  items-center font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.currencyPrice}
 
                             </div>
                           </div>  
-                       <div className=" flex  items-center max-sm:w-auto flex-col w-[8rem] justify-center ml-gap h-8 bg-[#eef2f9] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
+                       <div className=" flex  items-center max-sm:w-auto flex-col w-[8rem] max-md:w-[5rem]justify-center ml-gap h-8 bg-[#eef2f9] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
                           <div class="max-sm:flex justify-end">
                           {item.salesExecutive?
                             <Tooltip title={item.salesExecutive}>
@@ -290,7 +290,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                             </Tooltip>:""}
                           </div>                      
                       </div>     
-                      <div className=" flex items-center w-[5rem]  justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center w-[5rem] max-md:w-[5rem] justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
 <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[9rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
@@ -303,7 +303,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                      <div className=" flex    max-xl:w-[1.2rem] max-sm:flex-row items-center justify-center h-8 bg-[#eef2f9] max-sm:justify-between  ">
+                      <div className=" flex max-md:w-[1.2rem]  max-xl:w-[1.2rem] max-sm:flex-row items-center justify-center h-8 bg-[#eef2f9] max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins">
                             <Tooltip title=  {translatedMenuItems[8]}>
                             {/* "Pulse"> */}
@@ -378,7 +378,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                   )
                 })}
               </> : !props.allDistributors.length
-                && !props.fetchingAllDistributors ?
+          && !props.fetchingAllDistributors ?
                 <NodataFoundPage /> : null}
           </InfiniteScroll>
         </div>
