@@ -23,7 +23,7 @@ import { TimePicker } from "../../Components/Forms/Formik/TimePicker";
 //   updateEvent,
 //   handleEventModal,
 // } from "../../../Event/EventAction";
-import {addActivityEvent} from "../Activity/ActivityAction"
+import {updateActivityEvent} from "../Activity/ActivityAction"
 //import { handleChooserModal } from "../../../Planner/PlannerAction";
 import { TextareaComponent } from "../../Components/Forms/Formik/TextareaComponent";
 import { StyledPopconfirm } from "../../Components/UI/Antd";
@@ -364,25 +364,7 @@ const {
 
             let newEndTime = `${finalEndTime}${timeEndPart}`;
 
-            isEditing
-              ? updateEvent(
-                  prefillEvent.eventId,
-                  {
-                    ...values,
-                    //contact: values.contact,
-                    // contact: values.contactId,
-                    
-                    opportunity: values.opportunity,
-                    customer: props.customer.customerId,
-                    startDate: `${newStartDate}T${newStartTime}`,
-                    endDate: `${newEndDate}T${newEndTime}`,
-                    startTime: 0,
-                    endTime: 0,
-                    assignedTo: selectedOption ? selectedOption.employeeId:userId,
-                  },
-                  handleCallback
-                )
-              : addActivityEvent(
+          props.updateActivityEvent(
                   {
                     ...values,
                     contact:props.contact?props.contact:null,
@@ -822,14 +804,9 @@ const {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={isEditing ? updatingEvent : props.addingActivityEvent}
+                  loading={props.updatingActivityEvent}
                 >
-                  {isEditing ? (
-                    "Update"
-                  ) : (
-                    // "Create"
-                    <div className="font-bold font-poppins text-xs"> {translatedMenuItems[14]}  </div>
-                  )}
+                  Update
                 </Button>
               </div>
             </Form>
@@ -842,6 +819,7 @@ const {
 const mapStateToProps = ({ auth,activity, event,opportunity,customer, employee, events, candidate }) => ({
     addingActivityEvent: activity.addingActivityEvent,
   assignedToList:employee.assignedToList,
+  updatingActivityEvent:activity.updatingActivityEvent,
   opportunityByCustomerId: customer.opportunityByCustomerId,
   contactByCustomerId: customer.contactByCustomerId,
   allCustomerData:customer.allCustomerData,
@@ -858,7 +836,7 @@ const mapStateToProps = ({ auth,activity, event,opportunity,customer, employee, 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-        addActivityEvent,
+      updateActivityEvent,
     //   deleteEvent,
     //   updateEvent,
       getAssignedToList,

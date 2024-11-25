@@ -16,6 +16,7 @@ const initialState = {
 
 
   addingActivityEvent:false,
+  updatingActivityTask:false,
 
 
 
@@ -28,11 +29,16 @@ const initialState = {
   linkingTaskStatusError:false,
 
 
+  updatingActivityEvent:false,
+
+
   fetchingActivityTimelineStatus:false,
   fetchingActivityTimelineStatusError:false,
   activityTimeline:[],
 
   addActivityUpdateModal:false,
+
+  updatingActivityCall:false,
 
   
 };
@@ -76,6 +82,91 @@ export const activityReducer = (state = initialState, action) => {
 
 
 
+
+
+      case types.UPDATE_ACTIVITY_EVENT_REQUEST:
+        return { ...state, updatingActivityEvent: true };
+      case types.UPDATE_ACTIVITY_EVENT_SUCCESS:
+        return {
+          ...state,
+         // addDistributorActivityModal:false,
+         updatingActivityEvent: false,
+         addActivityUpdateModal: false,
+         activityTimeline: state.activityTimeline.map((event) =>
+          event.taskId === action.payload.taskId
+            ? action.payload
+            : event
+        ),
+        activityTimeline: state.activityTimeline.map((event) =>
+          event.eventId === action.payload.eventId
+            ? action.payload
+            : event
+        ),
+          
+        activityTimeline: state.activityTimeline.map((event) =>
+          event.callId === action.payload.callId
+            ? action.payload
+            : event
+        ),
+          // activityDistributor:action.payload,
+          // activityTimeline: [
+          //   action.payload,
+          //   ...state.activityTimeline,
+          // ],
+        };
+      case types.UPDATE_ACTIVITY_EVENT_FAILURE:
+        return {
+          ...state,
+          updatingActivityEvent: false,
+         // callActivityModal: false,
+        };
+
+
+
+
+
+
+        case types.UPDATE_ACTIVITY_TASK_REQUEST:
+        return { ...state, updatingActivityTask: true };
+      case types.UPDATE_ACTIVITY_TASK_SUCCESS:
+        return {
+          ...state,
+         // addDistributorActivityModal:false,
+         updatingActivityTask: false,
+         addActivityUpdateModal: false,
+         activityTimeline: state.activityTimeline.map((event) =>
+          event.taskId === action.payload.taskId
+            ? action.payload
+            : event
+        ),
+        activityTimeline: state.activityTimeline.map((event) =>
+          event.eventId === action.payload.eventId
+            ? action.payload
+            : event
+        ),
+          
+        activityTimeline: state.activityTimeline.map((event) =>
+          event.callId === action.payload.callId
+            ? action.payload
+            : event
+        ),
+          // activityDistributor:action.payload,
+          // activityTimeline: [
+          //   action.payload,
+          //   ...state.activityTimeline,
+          // ],
+        };
+      case types.UPDATE_ACTIVITY_TASK_FAILURE:
+        return {
+          ...state,
+          updatingActivityTask: false,
+         // callActivityModal: false,
+        };
+
+
+
+
+
       case types.LINK_TASK_STATUS_REQUEST:
       return { ...state, linkingTaskStatus: true };
     case types.LINK_TASK_STATUS_SUCCESS:
@@ -102,6 +193,40 @@ export const activityReducer = (state = initialState, action) => {
         linkingTaskStatus: false,
         linkingTaskStatusError: true,
       };
+
+
+
+      case types.UPDATE_ACTIVITY_CALL_REQUEST:
+        return { ...state, updatingActivityCall: true };
+      case types.UPDATE_ACTIVITY_CALL_SUCCESS:
+        return {
+          ...state,
+         // addDistributorActivityModal:false,
+         updatingActivityCall: false,
+         addActivityUpdateModal: false,
+         activityTimeline: state.activityTimeline.map((event) =>
+          event.taskId === action.payload.taskId
+            ? action.payload
+            : event
+        ),
+        activityTimeline: state.activityTimeline.map((event) =>
+          event.eventId === action.payload.eventId
+            ? action.payload
+            : event
+        ),
+          
+        activityTimeline: state.activityTimeline.map((event) =>
+          event.callId === action.payload.callId
+            ? action.payload
+            : event
+        ),
+        };
+      case types.UPDATE_ACTIVITY_CALL_FAILURE:
+        return {
+          ...state,
+          updatingActivityCall: false,
+         // callActivityModal: false,
+        };
 
     case types.ADD_ACTIVITY_EVENT_REQUEST:
       return { ...state, addingActivityEvent: true };
