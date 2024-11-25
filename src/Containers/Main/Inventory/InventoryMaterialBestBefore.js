@@ -773,6 +773,9 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import PinIcon from '@mui/icons-material/Pin';
+import CategoryIcon from '@mui/icons-material/Category'
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import {
   getMaterialBestBefore,
   addToWaste,
@@ -784,10 +787,9 @@ import dayjs from "dayjs";
 import { withRouter } from "react-router";
 import { Tooltip, Select, Button } from "antd";
 import { base_url2 } from "../../../Config/Auth";
-import CategoryIcon from "@mui/icons-material/Category";
-import FactoryIcon from "@mui/icons-material/Factory";
 import TerminalSharp from "@mui/icons-material/TerminalSharp";
-
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import FactoryIcon from '@mui/icons-material/Factory';
 const { Option } = Select;
 
 const InventoryMaterialBestBefore = (props) => {
@@ -916,17 +918,21 @@ const InventoryMaterialBestBefore = (props) => {
     <>
     <div className="flex sticky z-auto h-[79vh]">
       <div className="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className="flex w-[100%] p-1 bg-transparent font-bold font-poppins items-end sticky z-10">
-          <div className="w-[11.52rem]">Item</div>
-          <div className="w-[12.122rem]">Supplier Name</div>
-          <div className="w-[4.122rem]">HSN</div>
-          <div className="w-[8.12rem]">Supplies Id</div>
-          <div className="w-[5.12rem]">Country</div>
-          <div className="w-[8.12rem]">Best Use Date</div>
-          <div className="w-[9.2rem]">Zone</div>
-          <div className="w-[9.2rem]">Aisle</div>
-          <div className="w-[7.12rem]">Rack</div>
-          <div className="w-[3.22rem]">Discount</div>
+        <div className="flex w-[100%] p-1 bg-transparent font-bold font-poppins !text-lm items-end sticky z-10">
+          <div className="w-[11.52rem] text-sm text-[#00A2E8] truncate max-md:w-[11.52rem]"> 
+            <AddShoppingCartIcon className="!text-icon "/>Item</div>
+          <div className="w-[12.122rem] truncate max-md:w-[12.122rem]">
+              <FactoryIcon className='!text-base  text-[#e4eb2f]' />Supplier Name</div>
+          <div className="w-[4.122rem] truncate max-md:w-[4.122rem]">
+            <PinIcon className=" !text-base"/>HSN</div>
+          <div className="w-[8.12rem] truncate max-md:w-[8.12rem]"> 
+             <CategoryIcon className='!text-base  text-[#e4eb2f]'/>Supplies Id</div>
+          <div className="w-[5.12rem] truncate max-md:w-[5.12rem]">Country</div>
+          <div className="w-[8.12rem] truncate max-md:w-[8.12rem]"><DateRangeIcon className="!text-icon "/>Best Use Date</div>
+          <div className="w-[9.2rem] truncate max-md:w-[9.2rem]">Zone</div>
+          <div className="w-[9.2rem] truncate max-md:w-[9.2rem]">Aisle</div>
+          <div className="w-[7.12rem] truncate max-md:w-[7.12rem]">Rack</div>
+          <div className="w-[3.22rem] truncate max-md:w-[3.22rem]">Discount</div>
         </div>
 
         {rowsBest.map((item, index) => (

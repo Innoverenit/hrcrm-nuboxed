@@ -297,19 +297,19 @@ const [rowdata, setrowdata] = useState("");
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold !text-lm sticky items-end z-10">
          <div class=" flex justify-between w-[83%] items-end font-poppins font-bold max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm ">
-            <div className=" text-[#00A2E8] truncate text-sm  w-[12.5rem] max-md:w-[11.5rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            <div className=" text-[#00A2E8] truncate text-sm  w-[13.5rem] max-md:w-[11.5rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             <ApartmentIcon className="!text-icon  "/>
             {translatedMenuItems[0]}
            {/* name */}
             </div>
-            <div className=" w-[10.9rem] truncate max-md:w-[9.9rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className=" w-[8.9rem] truncate max-md:w-[9.9rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
             <WifiCalling3Icon className="!text-icon mr-1 text-[#4f5d75]"/>
             {translatedMenuItems[1]}
              {/* work */}
-             <div className=" w-[8.1rem] truncate max-md:w-[2.1rem]  max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+             <div className=" w-[10.1rem] truncate max-md:w-[2.1rem]  max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
            </div>
             </div>
-            <div className=" w-[9.2rem] truncate max-md:w-[7.2rem]  max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className=" w-[8.2rem] truncate max-md:w-[7.2rem]  max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
             <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> 
             {translatedMenuItems[2]}
              {/* sector */}
@@ -431,7 +431,7 @@ const [rowdata, setrowdata] = useState("");
                           </div>
                         </div>
                       </div>
-                      <div className=" flex   max-sm:w-auto  w-[7.54rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex   max-sm:w-auto  w-[8.54rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs ml-gap font-poppins max-sm:text-sm ">
@@ -463,7 +463,7 @@ const [rowdata, setrowdata] = useState("");
                           {countryCode} */}
                         </div>
                       </div>
-                      <div className=" flex   max-sm:w-auto  w-[8.40rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex   max-sm:w-auto  w-[9.6rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
 
                        {/* Sector  */}
                         <div class=" text-xs ml-gap font-poppins max-sm:text-sm ">
@@ -483,7 +483,7 @@ const [rowdata, setrowdata] = useState("");
                       </div> */}                    
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex  max-sm:w-auto w-[7.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flex  max-sm:w-auto w-[9.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
                     <div className=" flex max-sm:w-auto w-[3rem] items-center justify-center max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                         {/* >Pipeline Value */}
 
@@ -571,7 +571,7 @@ const [rowdata, setrowdata] = useState("");
                                     </div>
                       
 
-                      <div className=" flex  w-[7.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+                      <div className=" flex  w-[8.9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
 
                         <div class=" text-xs  font-poppins"></div>
                         <Popconfirm

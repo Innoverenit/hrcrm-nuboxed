@@ -8,7 +8,9 @@ import {
 import TermsnConditionModal from "../Suppliers/Child/SupplierDetails/SupplierDetailTab/TermsnConditionModal"
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
-
+import PinIcon from '@mui/icons-material/Pin';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { Tooltip, Select, Button,Input } from "antd";
 import CategoryIcon from '@mui/icons-material/Category'
 import FactoryIcon from '@mui/icons-material/Factory';
@@ -50,47 +52,47 @@ console.log(selectedLocation)
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm items-end sticky z-10">
                         <div className=""></div>
-                        <div className="text-[#00A2E8] text-base w-[19.5rem]">PO ID</div>
-                        <div className=" w-[11.52rem]" >
- Item 
+                        <div className="text-[#00A2E8] text-sm w-[19.5rem] truncate max-md:w-[19.5rem]">PO ID</div>
+                        <div className=" w-[11.52rem] truncate max-md:w-[11.52rem] " >
+                        <AddShoppingCartIcon className="!text-icon "/>Item 
                         </div>
              
                        
                
-                        <div className=" w-[12.122rem]" >       
-                        <FactoryIcon className='!text-base  text-[#e4eb2f]' />   Supplier Name
+                        <div className=" w-[12.122rem] truncate max-md:w-[12.122rem]" >       
+                        <FactoryIcon className='!text-icon   text-[#e4eb2f]' />   Supplier Name
                         </div>
 
-                        <div className=" w-[4.122rem]">       
-                      HSN
+                        <div className=" w-[4.122rem] truncate max-md:w-[4.122rem]">       
+                        <PinIcon className=" !text-icon"/>   HSN
                         </div>
 
-                        <div className=" w-[8.12rem]">       
-                        <CategoryIcon className='!text-base  text-[#e4eb2f]'/> Supplies Id
+                        <div className=" w-[8.12rem] truncate max-md:w-[8.12rem]">       
+                        <CategoryIcon className='!text-icon text-[#e4eb2f]'/> Supplies Id
 
                         </div>    
-                        <div className=" w-[5.12rem]" >       
+                        <div className=" w-[5.12rem] truncate max-md:w-[5.12rem]" >       
                    Country
 
                         </div>
-                        <div className=" w-[8.12rem]" >       
-                   Best Use Date
+                        <div className=" w-[8.12rem] truncate max-md:w-[8.12rem]" >       
+                        <DateRangeIcon className="!text-icon "/>  Best Use Date
 
                         </div>
 
-                        <div className=" w-[5.12rem]" >       
+                        <div className=" w-[5.12rem] truncate max-md:w-[5.12rem]" >       
                     Units
 
                         </div>
-                        <div className=" w-[9.2rem]" >       
+                        <div className=" w-[9.2rem] truncate max-md:w-[9.2rem]" >       
                     Zone
 
                         </div>
-                        <div className=" w-[13.2rem]">       
+                        <div className=" w-[13.2rem] truncate max-md:w-[13.2rem]">       
                     Aisle
 
                         </div>
-                        <div className=" w-[7.12rem]">       
+                        <div className=" w-[7.12rem] truncate max-md:w-[7.12rem]">       
                     Rack
 
                         </div>
@@ -104,7 +106,7 @@ console.log(selectedLocation)
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded py-1 mt-1 bg-white  items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                                    <div className="flex rounded py-ygap mt-1 bg-white  items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                       
 
                                             <div className=" flex items-center border-l-2  h-8 border-green-500 bg-[#eef2f9] w-[10.1rem] max-sm:w-full ">

@@ -273,17 +273,17 @@ if (loading) {
           <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-poppins font-bold  !text-lm max-xl:text-[0.65rem]  sticky z-10">
             <div class=" flex justify-between font-poppins w-[85%] items-end">
          
-            <div className="truncate text-[#00A2E8] text-sm  w-[15.5rem] max-md:w-[15.5rem]  max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            <div className="truncate text-[#00A2E8] text-sm  w-[16.1rem] max-md:w-[15.5rem]  max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             <ApartmentIcon className="!text-icon  "/>
             {translatedMenuItems[0]}
            {/* name */}
             </div>
-            <div className=" truncate w-[9.9rem] max-md:w-[9.9rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className=" truncate w-[12.9rem] max-md:w-[9.9rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
                 <WifiCalling3Icon className="!text-icon mr-1 text-[#4f5d75]"/>
             {translatedMenuItems[1]}
              {/* work */}
             </div>
-            <div className=" w-[4.8rem] truncate max-md:w-[4.8rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <div className=" w-[3.8rem] truncate max-md:w-[4.8rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
               {/* CountryFlag */}
             </div>
             <div className=" truncate w-[12.3rem] max-md:w-[12.3rem]  max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
@@ -292,7 +292,7 @@ if (loading) {
               {/* "Sector" */}
           
             </div>
-            <div className=" truncate w-[9.1rem] max-md:w-[9.1rem]  max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            <div className=" truncate w-[12.1rem] max-md:w-[9.1rem]  max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
             <SourceIcon className="!text-icon mr-1 text-[#094074]"/> 
             {translatedMenuItems[3]}
              {/* "Source" */}
@@ -406,7 +406,7 @@ if (loading) {
                           </div>
                         </div>
                       </div>
-                      <div className=" flex   max-sm:w-auto  w-[8.54rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex   max-sm:w-auto  w-[10.54rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs  font-poppins max-sm:text-sm  ml-gap ">
@@ -447,7 +447,7 @@ if (loading) {
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex max-sm:w-auto  w-[7.215rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex max-sm:w-auto  w-[10.215rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
                         <div class=" text-xs ml-gap font-poppins max-sm:text-sm  ">
