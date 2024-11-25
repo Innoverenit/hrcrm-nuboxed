@@ -68,7 +68,8 @@ console.log(props.UOMListData)
           width={drawerWidth}
           visible={modalVisible}
           onClose={() => { closeModal(); 
-            window.location.reload(); }}
+            // window.location.reload(); 
+          }}
           footer={null}
         >
 
