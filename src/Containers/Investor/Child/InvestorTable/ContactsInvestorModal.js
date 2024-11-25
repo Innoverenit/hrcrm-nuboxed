@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import InvestorLinkedContact from "../InvestorDetail/InvestorDetailTab/InvestorContact/InvestorLinkedContact";
+import LinkedContact from "../../../Customer/Child/CustomerDetail/CustomerTab/ContactTab/LinkedContact";
 // const UpdateInvestorForm = lazy(() => import("./UpdateInvestorForm.js"));
 
 const ContactsInvestorModal = (props) => {
@@ -23,9 +23,13 @@ const ContactsInvestorModal = (props) => {
            selectedLanguage={props.selectedLanguage}
            translatedMenuItems={props.translatedMenuItems}
           /> */}
-           <InvestorLinkedContact investorDetails={RowData}
-               translateText={props.translateText}
-               selectedLanguage={props.selectedLanguage}/>
+            <LinkedContact 
+          uniqueId={RowData.investorId}
+          type={"investor"}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
+          />
           {" "}
         </Suspense>
       </StyledDrawer>

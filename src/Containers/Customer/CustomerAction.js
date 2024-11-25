@@ -777,13 +777,12 @@ export const addCustomerContact = (contact,userId) => (dispatch, getState) => {
 };
 
 /*get all the contact of the customer */
-export const getContactListByCustomerId = (customerId) => (dispatch) => {
-  console.log(customerId);
+export const getContactListByCustomerId = (id,type) => (dispatch) => {
   dispatch({
     type: types.GET_CUSTOMER_CONTACT_REQUEST,
   });
   axios
-    .get(`${base_url}/customer/contacts/${customerId}`, {
+    .get(`${base_url}/contact/get/${id}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2549,6 +2548,34 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
       });
   };
 
+
+  export const getProspectContactCount = (id, type) => (dispatch) => {
+    dispatch({ type: types.GET_PROSPECT_CONTACT_COUNT_REQUEST });
+  
+    axios
+      .get(
+        `${base_url}/contact/count/${id}/${type}`,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+        // console.log(res)
+        dispatch({
+          type: types.GET_PROSPECT_CONTACT_COUNT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_PROSPECT_CONTACT_COUNT_FAILURE,
+          payload: err,
+        });
+      });
+  };
 
   export const getCustomerActivityRecords = (customerId) => (dispatch) => {
     dispatch({
