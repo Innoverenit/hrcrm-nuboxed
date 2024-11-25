@@ -378,13 +378,13 @@ const handleSelectedOrderDropDown =  async (value,item) => {
                         {/* {translatedMenuItems[2]}  */}<AddShoppingCartIcon className='!text-icon'/>  Items
                           </div>
                           <div className="w-[2.1rem] truncate max-md:w-[4.4rem]">
-                           <BackpackIcon className=" !text-Icon text-[#ba5624]"/> {/* {translatedMenuItems[5]} */} Packing
+                           <BackpackIcon className=" !text-icon text-[#ba5624]"/> {/* {translatedMenuItems[5]} */} Packing
                           </div>
                           <div className="w-[2.1rem] truncate max-md:w-[4.4rem]">
-                          <RocketLaunchIcon className=" !text-Icon text-[#42bfdd]"/>  {/* {translatedMenuItems[5]} */} Shipping
+                          <RocketLaunchIcon className=" !text-icon text-[#42bfdd]"/>  {/* {translatedMenuItems[5]} */} Shipping
                           </div> <div className="w-[2.1rem] truncate max-md:w-[4.4rem]">
 
-                          <TrackChangesIcon className=" !text-Icon text-[#f26df9]" /> {/*  Track */} {translatedMenuItems[18]}
+                          <TrackChangesIcon className=" !text-icon text-[#f26df9]" /> {/*  Track */} {translatedMenuItems[18]}
                           </div>
                           <div className="w-[2.2rem] truncate max-md:w-[3.8rem]"> <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' />
                         {translatedMenuItems[7]} {/*Status"/> */}
