@@ -235,24 +235,36 @@ const {handleProcureNotesDrawerModal,
     <>
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:hidden">
         <div className=" flex justify-between w-[79%]  p-1 bg-transparent font-poppins text-xs font-bold sticky items-end z-10">
-                        <div className="w-[6rem] max-md:w-[6.02rem] text-[#00A2E8] text-base"> <DynamicFeedIcon className='!text-base mr-1 '/>{translatedMenuItems[0]} ID</div>
-                        <div className="w-[5.14rem] max-md:w-[5.04rem]"><ContactsIcon className='!text-base mr-1 text-[#e4eb2f]'/>{translatedMenuItems[1]}</div>
-                        <div className="w-[9.4rem] max-md:w-[8.04rem] flex"><ApartmentIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[2]}</div>
+                        <div className="w-[6rem] max-md:w-[6.02rem] text-[#00A2E8] text-sm"> 
+                          <DynamicFeedIcon className='!text-base mr-1 '/>
+                          {translatedMenuItems[0]} ID</div>
+                        <div className="w-[5.14rem] max-md:w-[5.14rem]">
+                          <ContactsIcon className='!text-base mr-1 text-[#e4eb2f]'/>
+                          {translatedMenuItems[1]}</div>
+                        <div className="w-[9.4rem] max-md:w-[9.4rem] flex">
+                          <ApartmentIcon className='!text-base  text-[#606C38]'/>
+                          {translatedMenuItems[2]}</div>
                         {/* Customer */}
-                        <div className="w-[10.4rem] max-md:w-[12.14rem]">
-                        <LocationOnIcon className='!text-base  text-[#e4eb2f]'
-              />{translatedMenuItems[3]}</div>
+                        <div className="w-[10.4rem] max-md:w-[10.4rem]">
+                        <LocationOnIcon className='!text-base  text-[#2B2D42]'/>
+                        {translatedMenuItems[3]}</div>
                         {/* Shipping */}
-                        <div className="w-[11.04rem] max-md:w-[8.13rem]">  <TextSnippetIcon
-
-className='!text-base  text-[#e4eb2f]'
-/>{translatedMenuItems[4]}</div>
+                        <div className="w-[11.04rem] max-md:w-[11.04rem]">  
+                          <TextSnippetIcon className='!text-base  text-[#457B9D]'/>
+                      {translatedMenuItems[4]}</div>
                         {/* Billing */}
-                        <div className="w-[4.4rem] max-md:w-[5.12rem]"><AddShoppingCartIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[5]}</div>
+                        <div className="w-[4.4rem] max-md:w-[4.4rem]">
+                          <AddShoppingCartIcon className='!text-base  text-[#B23A48]'/>
+                          {translatedMenuItems[5]}
+                          </div>
                         {/* item */}              
-                        <div className="w-[5.8rem] max-md:w-[4.3rem]"> <UpdateIcon className='!text-icon text-[#ff66b3]' /> {translatedMenuItems[6]}</div>                 
+                        <div className="w-[5.8rem] max-md:w-[5.8rem]"> 
+                          <UpdateIcon className='!text-icon text-[#ff66b3]' /> 
+                          {translatedMenuItems[6]}
+                          </div>                 
                         <div className="w-[5.4rem] max-md:w-[5.4rem]"> 
-                        < MergeTypeIcon className='!text-icon text-[#c42847] '  />   {translatedMenuItems[10]}                       
+                        < MergeTypeIcon className='!text-icon text-[#c42847] '  /> 
+                          {translatedMenuItems[10]}                       
                           </div>                     
         </div>
         <InfiniteScroll
@@ -287,7 +299,7 @@ className="flex rounded justify-between  bg-white mt-1 py-ygap items-center   ma
                         </div>
                       
                         </div>
-                        <div className=" flex w-[4.9rem]  items-center max-md:w-[4.9rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex w-[4.9rem]  items-center max-md:w-[4.9rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
                           
                             <div class=" text-xs  items-center font-poppins ">
                             <MultiAvatar
@@ -351,7 +363,7 @@ className="flex rounded justify-between  bg-white mt-1 py-ygap items-center   ma
                   {translatedMenuItems[7]}
                   </Button>
                         </div>
-                        <div class="flex text-xs  items-center font-poppins items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
+                        <div class="flex text-xs  items-center font-poppins  justify-center h-8 ml-gap  bg-[#eef2f9]">
                             {/* {date} */}
                             <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">

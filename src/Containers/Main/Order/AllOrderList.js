@@ -233,7 +233,7 @@ const exportPDFAnnexure = async () => {
             <ApartmentIcon className='!text-base mr-1  text-[#e4eb2f]'/>
             {translatedMenuItems[2]}</div>
           <div className=" w-[4.051rem] max-md:w-[4.051rem] ">
-             <ContactsIcon className='!text-base mr-1 text-[#e4eb2f]'/>
+             <ContactsIcon className='!text-base mr-1 text-[#196820]'/>
              {translatedMenuItems[3]}</div>
           <div className=" w-[5.018rem]  max-md:w-[5.018rem]">
             {translatedMenuItems[4]}</div>
@@ -246,7 +246,7 @@ const exportPDFAnnexure = async () => {
           <div className="w-[5.2rem]  max-md:w-[5.2rem]"> 
              {translatedMenuItems[6]}</div>
           <div className="w-[9.76rem]  max-md:w-[9.76rem]">
-            <GroupsIcon className='!text-base mr-1  text-[#e4eb2f]'/>
+            <GroupsIcon className='!text-base mr-1  text-[#831f68]'/>
             {translatedMenuItems[7]}</div>
           
           <div className="w-[24rem] max-md:w-[24rem]"></div>
@@ -534,12 +534,12 @@ const exportPDFAnnexure = async () => {
       <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[7.31rem] ">
       <DynamicFeedIcon className='!text-base mr-1 '/>{translatedMenuItems[1]} ID</div>
           <div className="font-bold font-poppins text-xs md:w-[8.6rem]"><ApartmentIcon className='!text-base mr-1 text-[#e4eb2f]'/>{translatedMenuItems[2]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[4.051rem] "> <ContactsIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[3]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[4.051rem] "> <ContactsIcon className='!text-base   text-[#196820]'/>{translatedMenuItems[3]}</div>
           <div className="font-bold font-poppins text-xs md:w-[5.018rem]">{translatedMenuItems[4]}</div>
           <div className="font-bold font-poppins text-xs md:w-[5.03rem]"><DateRangeIcon className="!text-icon "/>{translatedMenuItems[8]}</div>
           <div className="font-bold font-poppins text-xs md:w-[5.031rem]"><AccountCircleIcon className="!text-icon  text-[#f28482]"/>{translatedMenuItems[5]}</div>
           <div className="font-bold font-poppins text-xs md:w-[5.2rem]">  {translatedMenuItems[6]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[9.76rem]"><GroupsIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[7]}</div>
+          <div className="font-bold font-poppins text-xs md:w-[9.76rem]"><GroupsIcon className='!text-base mr-1    text-[#831f68]'/>{translatedMenuItems[7]}</div>
           
           <div className="md:w-24"></div>
         </div>

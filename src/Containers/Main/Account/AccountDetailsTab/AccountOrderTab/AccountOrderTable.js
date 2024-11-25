@@ -219,7 +219,7 @@ const AccountOrderTable = (props) => {
                             /> */}
                         </div>
                         <div className=" max-md:w-[8.03rem] w-[8.03rem]">
-                        {translatedMenuItems[9]}   {/*Supervisor"
+                        {translatedMenuItems[9]}  {/*Supervisor"
                             /> */}
                         </div>
                         <div className=" max-md:w-[8.12rem] w-[8.12rem]">
