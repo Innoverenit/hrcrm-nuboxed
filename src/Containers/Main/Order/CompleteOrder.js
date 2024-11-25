@@ -56,12 +56,12 @@ function CompleteOrder(props) {
         <>
             <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
                 <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky z-10">
-                    <div className=" md:w-[12rem]">Order ID</div>
-                    <div className=" md:w-28">Customer</div>
-                    <div className=" md:w-28 ">Contact</div>
-                    <div className="md:w-32">#Phone</div>
-                    <div className="md:w-[16rem]">Creation Date</div>
-                    <div className="md:w-24"></div>
+                    <div className="w-[12rem] max-md:w-[12rem]">Order ID</div>
+                    <div className="w-[28rem] max-md:w-[28rem]">Customer</div>
+                    <div className="w-[28rem] max-md:w-[28rem] ">Contact</div>
+                    <div className="w-[32rem] max-md:w-[32rem]">#Phone</div>
+                    <div className="w-[16rem] max-md:w-[16rem]">Creation Date</div>
+                    <div className="w-[24rem] max-md:w-[24rem]"></div>
                 </div>
                 <InfiniteScroll
                     dataLength={props.comepletOrder.length}
