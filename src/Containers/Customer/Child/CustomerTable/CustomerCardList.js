@@ -389,7 +389,7 @@ if (loading) {
 
                           <div class="max-sm:w-full flex items-center">
                             <Tooltip>
-                              <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
+                              <div class="flex max-sm:flex-row justify-between w-full max-md:flex-col">
                                 <div class="flex text-xs ml-1 text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                 

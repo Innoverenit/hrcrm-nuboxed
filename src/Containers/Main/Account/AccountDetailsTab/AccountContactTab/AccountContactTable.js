@@ -122,49 +122,49 @@ const AccountContactTable = (props) => {
         <>
             <div className='flex sticky h-[79vh] z-auto'>
                 <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className="flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky items-end font-poppins text-xs z-10">
-                        <div className="w-[5.1rem] text-[#00A2E8] text-base md:w-[7.1rem]">
+                    <div className="flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky items-end font-poppins !text-lm z-10">
+                        <div className="w-[5.1rem] text-[#00A2E8] text-sm max-md:w-[7.1rem]">
                         <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}</div>
-                        <div className="w-[6.01rem] md:w-[11.01rem]">
+                        <div className="w-[6.01rem]  max-md:w-[11.01rem]">
                         <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '/>{translatedMenuItems[1]}</div>
-                        <div className="w-[4.8rem] md:w-[6.8rem]">
+                        <div className="w-[4.8rem]  max-md:w-[6.8rem]">
                               <MobileFriendlyIcon className='!text-icon text-[#41ead4] '/> {translatedMenuItems[2]}</div>
-                        <div className="w-[5.9rem] md:w-[7.9rem]">
+                        <div className="w-[5.9rem]  max-md:w-[7.9rem]">
                         <i className="fab fa-artstation mr-1 text-[#b744b8]"></i>{translatedMenuItems[3]}</div>
-                        <div className="w-[16.6rem] md:w-[19.6rem]">
+                        <div className="w-[16.6rem]  max-md:w-[19.6rem]">
                         <ApartmentIcon className="!text-icon text-[#f0386b] "/>{translatedMenuItems[4]}</div>
-                        <div className="w-[4.7rem] md:w-[10.7rem]">{translatedMenuItems[5]}</div>
-                        <div className=" w-[18.8rem] md:w-[18.8rem]">{translatedMenuItems[6]}</div>
+                        <div className="w-[4.7rem]  max-md:w-[10.7rem]">{translatedMenuItems[5]}</div>
+                        <div className=" w-[18.8rem]  max-md:w-[18.8rem]">{translatedMenuItems[6]}</div>
                     </div>
 
                     {props.contactDistributor.map((item) => (
                         <div key={item.contactPersonId}>
                             <div className="flex rounded justify-between mt-1 bg-white py-ygap items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow border-solid  leading-3 hover:border hover:border-[#23A0BE] hover:shadow-[#23A0BE]">
                                 <div className="flex">
-                                    <div className="flex font-bold items-center justify-start md:w-[6.8rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
-                                        <div className="flex text-xs ml-gap items-center flex font-poppins">
+                                    <div className="flex font-bold items-center justify-start max-md:w-[6.8rem] w-[6.8rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
+                                        <div className="flex text-xs ml-gap items-center  font-poppins">
                                             {`${item.salutation || ""} ${item.firstName || ""} ${item.middleName || ""} ${item.lastName || ""}`}
                                         </div>
                                     </div>
 
-                                    <div className="flex md:w-[11.23rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                    <div className="flex max-md:w-[11.23rem] w-[11.23rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                                         <div className="flex items-center ml-gap text-xs font-poppins">{item.emailId}</div>
                                     </div>
                                 </div>
 
-                                <div className="flex md:w-[19.023rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                <div className="flex max-md:w-[19.023rem] w-[19.023rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">{`${item.dialCode1 || ""} ${item.mobileNo || ""}`}</div>
                                 </div>
-                                <div className="flex md:w-[19.21rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                <div className="flex max-md:w-[19.21rem] w-[19.21rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">{item.designationName}</div>
                                 </div>
 
-                                <div className="flex md:w-[19.01rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                <div className="flex max-md:w-[19.01rem] w-[19.01rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">{item.departmentId}</div>
                                 </div>
                                                     
-                                <div className="flex justify-end items-center max-sm:flex-row w-full max-sm:justify-between">
-                                <div className="flex md:w-[6.27rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                <div className="flex justify-end items-center max-sm:flex-row  max-sm:justify-between">
+                                <div className="flex max-md:w-[6.27rem] w-[6.27rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">
                                         <div className="flex justify-evenly">
                                             <ButtonGroup>
@@ -199,7 +199,7 @@ const AccountContactTable = (props) => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="flex md:w-[8.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                <div className="flex max-md:w-[8.2rem] w-[8.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">
                                         <Select
                                             style={{ width: "8rem" }}
@@ -214,7 +214,8 @@ const AccountContactTable = (props) => {
                                     </div>
                                 </div>
 
-                                <div className="flex md:w-[6.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ml-2 mr-2">
+                                <div className="flex max-md:w-[6.2rem] w-[6.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row 
+                                 max-sm:justify-between  mr-2">
                                     <div className="text-xs font-poppins text-center">
                                         <Input
                                             onPressEnter={(e) => handleKeyPress(item.contactPersonId, e)}
@@ -227,7 +228,7 @@ const AccountContactTable = (props) => {
                                     </div>
                                 </div>
 
-                                <div className="flex md:w-[10.01rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
+                                <div className="flex max-md:w-[10.01rem] w-[10.01rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                                     <div className="text-xs font-poppins text-center">
                                         <Select
                                             style={{ width: "5rem" }}
@@ -283,10 +284,10 @@ const AccountContactTable = (props) => {
                 />
             </Tooltip>
             </div>
-            <div className="flex w-[2.01rem] max-sm:flex-row max-sm:justify-between">
-                                    <div className=" flex !text-icon font-poppins  items-center justify-center h-8 bg-[#eef2f9]">
+            <div className="flex max-sm:flex-row max-sm:justify-between">
+                                    <div className=" flex font-poppins  items-center justify-center h-8 bg-[#eef2f9]">
                                         <Tooltip title={translatedMenuItems[7]}>
-                                        {/* "Edit"> */}
+                                        {/* "Edit"> -*/}
                                             <BorderColorIcon
                                                 className="!text-icon cursor-pointer text-red-600"
                                                 onClick={() => {
@@ -296,10 +297,10 @@ const AccountContactTable = (props) => {
                                             />
                                         </Tooltip>
                                     </div>
-                                    <div className=" flex !text-icon font-poppins  items-center justify-center h-8 bg-[#eef2f9]">
+                                    <div className=" flex  font-poppins  items-center justify-center h-8 bg-[#eef2f9]">
                                         <Tooltip title={translatedMenuItems[7]}>
                                        
-                                            <EditNoteIcon
+                                          <EditNoteIcon
                                                 className="!text-icon cursor-pointer text-red-600"
                                                 onClick={() => {
                                                     handleChangeRow(item);

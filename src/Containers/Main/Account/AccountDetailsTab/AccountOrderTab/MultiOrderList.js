@@ -148,14 +148,14 @@ function MultiOrderList(props) {
         <>
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold sticky z-10">
+                    <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold !text-lm font-poppins sticky z-10">
                     {/* <div class=" w-[8.5rem]">{translatedMenuItems[0]} ID</div> */}
-                        <div className=" md:w-[7rem]">{translatedMenuItems[1]} ID</div>
-                        <div className=" md:w-[8rem]">{translatedMenuItems[2]}</div>
-                       <div className="md:w-[5rem]">{translatedMenuItems[3]}</div>
-                       <div className=" md:w-[14rem]">Remg.Total Approve</div>
-                       <div className="md:w-[12rem]">Remg.Total Value</div>
-                         <div className=" md:w-[22rem] ">{translatedMenuItems[4]}</div>
+                        <div className=" max-md:w-[7rem]  w-[7rem]">{translatedMenuItems[1]} ID</div>
+                        <div className=" max-md:w-[8rem] w-[8rem]">{translatedMenuItems[2]}</div>
+                       <div className="max-md:w-[5rem] w-[5rem]">{translatedMenuItems[3]}</div>
+                       <div className=" max-md:w-[14rem] w-[14rem]">Remg.Total Approve</div>
+                       <div className="max-md:w-[12rem] w-[12rem]">Remg.Total Value</div>
+                         <div className=" max-md:w-[22rem] w-[22rem]">{translatedMenuItems[4]}</div>
                       
                     </div>
                     <div class="overflow-x-auto ">
@@ -167,8 +167,8 @@ function MultiOrderList(props) {
                                     return (
                                         <>
                                             <div key={item.procureInvoiceId} 
-                                            className="flex rounded  mt-1 bg-white h-8 items-center p-1 " >
-                                                <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
+                                            className="flex rounded  mt-1 bg-white items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] " >
+                                                <div class=" flex flex-row  w-wk max-sm:flex-col">
                                                     {/* <div className=" flex font-medium justify-between  w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins flex items-center">
                                                           
@@ -181,7 +181,7 @@ function MultiOrderList(props) {
                                                                 </div>
                                                             ) : null} 
                                                     </div>  */}
-                                                    <div className=" flex  w-[7rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex justify-center items-center border-l-2 border-green-500 bg-[#eef2f9] h-8 max-md:w-[7rem] w-[7rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         <span
                                                                     class="underline cursor-pointer text-[#1890ff]"
@@ -194,29 +194,29 @@ function MultiOrderList(props) {
                                                                 </span>
                                                         </div>
                                                     </div>
-                                                    <div className=" flex   w-[7rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-md:w-[7rem] w-[7rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                          {item.totalValue}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex  w-[7rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8 max-md:w-[7rem] w-[7rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         {item.totalUnit}
                                                          
                                                         </div>
                                                     </div>
-                                                    <div className=" flex   w-[10rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  w-[10rem] max-md:w-[7rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                          {item.remainingApproveValue}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex  w-[7rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8 max-md:w-[7rem] w-[7rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         {item.remainingTotalValue}
                                                          
                                                         </div>
                                                     </div>
-                                                    <div className=" flex   w-[10rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-md:w-[10rem] w-[10rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
                                                         {editsuppliesId === item.procureInvoiceId ? (
@@ -233,7 +233,7 @@ function MultiOrderList(props) {
                     )}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex    md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                    <div className=" flex   items-center justify-center ml-gap bg-[#eef2f9] h-8 max-md:w-[7rem] w-[7rem] max-sm:flex-row  max-sm:justify-between ">
     {editsuppliesId === item.procureInvoiceId ? (
                         <>
                       <Button 
