@@ -12,7 +12,7 @@ import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../Components/Forms/Formik/DatePicker";
 import { TimePicker } from "../../Components/Forms/Formik/TimePicker";
-import {addActivityCall} from "./ActivityAction"
+import {updateActivityCall} from "./ActivityAction"
 import {getAllCustomerData} from "../Customer/CustomerAction"
 import { StyledPopconfirm } from "../../Components/UI/Antd";
 import SpeechRecognition, { } from 'react-speech-recognition';
@@ -325,7 +325,8 @@ function UpdateActivityCallForm(props) {
                 remindTime: "",
                 candidate: "",
                 complitionInd: "Incomplete",
-                startDate: startDate || dayjs(),
+                startDate:
+              dayjs(props.selectedStatus.startDate) || dayjs(),
                 startTime: startDate || null,
                 endDate: endDate || null,
                 endTime: endDate || null,
@@ -434,24 +435,7 @@ function UpdateActivityCallForm(props) {
               endTime: 0,
               assignedTo: selectedOption ? selectedOption.employeeId:userId,
             };
-            isEditing
-              ? updateCall(
-                prefillCall.callId,
-                {
-                  ...values,
-                
-                  callCategory: category,
-                  callType: Type,
-
-                  startDate: `${newStartDate}T${newStartTime}`,
-                  endDate: `${newEndDate}T${newEndTime}`,
-                  startTime: 0,
-                  endTime: 0,
-                  assignedTo: selectedOption ? selectedOption.employeeId:userId,
-                },
-                () => handleCallback(resetForm)
-              )
-              : props.addActivityCall(testVal,
+            props.updateActivityCall(testVal,
                 () => handleCallback(resetForm));
           }}
         >
@@ -944,13 +928,9 @@ inlineLabel
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={isEditing ? updatingCall : props.addingActivityCall}
+                  loading={props.updatingActivityCall}
                 >
-                  {isEditing ? (
-                    "Update"
-                  ) : (
-                    "Create"
-                  )}
+                 Update
                 </Button>
               </div>
             </Form>
@@ -963,6 +943,7 @@ inlineLabel
 
 const mapStateToProps = ({ auth, call,activity, employee,customer, opportunity, candidate }) => ({
     addingActivityCall: activity.addingActivityCall,
+    updatingActivityCall:activity.updatingActivityCall,
   allCustomerData:customer.allCustomerData,
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,
@@ -983,7 +964,7 @@ const mapStateToProps = ({ auth, call,activity, employee,customer, opportunity, 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-        addActivityCall,
+      updateActivityCall,
       getAllCustomerData,
      // handleChooserModal,
       getAllSalesList,

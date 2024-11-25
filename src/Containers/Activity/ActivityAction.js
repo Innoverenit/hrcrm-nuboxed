@@ -255,3 +255,124 @@ export const addActivityCall = (call,customerId, cb) => (dispatch, getState) => 
             });
         });
   };
+
+
+
+
+  export const updateActivityCall = (call,customerId, cb) => (dispatch, getState) => {
+    ////debugger;
+    console.log("inside addCall");
+    const { userId } = getState("auth").auth.userDetails;
+    // const { startDate, endDate } = getState("dashboard").dashboard;
+    dispatch({
+      type: types.UPDATE_ACTIVITY_CALL_REQUEST,
+    });
+  
+    axios
+      .post(`${base_url}/activity/call/save`, call, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        message.success("Call has been added successfully!");
+        ////debugger;
+        console.log(res);
+        //  dispatch(getCustomerActivityTimeline(customerId));
+        dispatch({
+          type: types.UPDATE_ACTIVITY_CALL_SUCCESS,
+          payload: res.data,
+        });
+        // cb();
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.UPDATE_ACTIVITY_CALL_FAILURE,
+          payload: err,
+        });
+        // cb();
+      });
+  };
+
+
+
+
+
+
+  export const updateActivityEvent = (call,customerId, cb) => (dispatch, getState) => {
+    ////debugger;
+    console.log("inside addCall");
+    const { userId } = getState("auth").auth.userDetails;
+    // const { startDate, endDate } = getState("dashboard").dashboard;
+    dispatch({
+      type: types.UPDATE_ACTIVITY_EVENT_REQUEST,
+    });
+  
+    axios
+      .post(`${base_url}/activity/call/save`, call, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        message.success("Call has been added successfully!");
+        ////debugger;
+        console.log(res);
+        //  dispatch(getCustomerActivityTimeline(customerId));
+        dispatch({
+          type: types.UPDATE_ACTIVITY_EVENT_SUCCESS,
+          payload: res.data,
+        });
+        // cb();
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.UPDATE_ACTIVITY_EVENT_FAILURE,
+          payload: err,
+        });
+        // cb();
+      });
+  };
+
+
+
+
+
+  
+  export const updateActivityTask = (call,customerId, cb) => (dispatch, getState) => {
+    ////debugger;
+    console.log("inside addCall");
+    const { userId } = getState("auth").auth.userDetails;
+    // const { startDate, endDate } = getState("dashboard").dashboard;
+    dispatch({
+      type: types.UPDATE_ACTIVITY_TASK_REQUEST,
+    });
+  
+    axios
+      .post(`${base_url}/activity/call/save`, call, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        message.success("Call has been added successfully!");
+        ////debugger;
+        console.log(res);
+        //  dispatch(getCustomerActivityTimeline(customerId));
+        dispatch({
+          type: types.UPDATE_ACTIVITY_TASK_SUCCESS,
+          payload: res.data,
+        });
+        // cb();
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.UPDATE_ACTIVITY_TASK_FAILURE,
+          payload: err,
+        });
+        // cb();
+      });
+  };

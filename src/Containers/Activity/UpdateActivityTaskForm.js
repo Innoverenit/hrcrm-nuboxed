@@ -26,7 +26,7 @@ import {
   getCandidateTaskFilterList,
   deleteTask,
 } from "../Task/TaskAction";
-import {addActivityTask} from "../Activity/ActivityAction"
+import {updateActivityTask} from "../Activity/ActivityAction"
 import {
   getTaskForStages,
   getTaskForWorkflow,
@@ -530,27 +530,7 @@ const [priority,setpriority]=useState(props.selectedTask
 
             let newEndTime = `${finalEndTime}${timeEndPart}`;
 
-            isEditing
-              ? updateTask(
-                  prefillTask.taskId,
-                  {
-                    ...values,
-                   
-                   
-                    // taskTypeId: "",
-                    taskStatus: active,
-                    priority: priority,
-                    complexity: complexity,
-
-                    startDate: `${newStartDate}T${newStartTime}`,
-                    endDate: `${newEndDate}T${newEndTime}`,
-                    startTime: 0,
-                    endTime: 0,
-                    assignedTo: selectedOption ? selectedOption.employeeId:userId,
-                  },
-                handleCallback
-                )
-              : addActivityTask(
+            props.updateActivityTask(
                   {
                     ...values,
                     contact:props.contact?props.contact:null,
@@ -1222,14 +1202,9 @@ const [priority,setpriority]=useState(props.selectedTask
                 <Button
                   type="primary"
                   htmlType="submit"
-                  loading={isEditing ? updatingTask : props.addingActivityTask}
+                  loading={props.updatingActivityTask}
                 >
-                  {isEditing ? (
-                    "Update"
-                  ) : (
-                    // "Create"
-                    <div className="font-poppins font-bold text-xs">   {translatedMenuItems[12]}</div>
-                  )}
+                 Update
                 </Button>
               </div>
             </Form>
@@ -1253,6 +1228,7 @@ const mapStateToProps = ({
   candidate,
 }) => ({
     addingActivityTask: activity.addingActivityTask,
+    updatingActivityTask:activity.updatingActivityTask,
   opportunityByCustomerId: customer.opportunityByCustomerId,
   contactByCustomerId: customer.contactByCustomerId,
   allCustomerData:customer.allCustomerData,
@@ -1278,7 +1254,7 @@ const mapStateToProps = ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-        addActivityTask,
+      updateActivityTask,
       getAllCustomerData,
       // getOpportunityListByCustomerId,
       // getContactListByCustomerId,
