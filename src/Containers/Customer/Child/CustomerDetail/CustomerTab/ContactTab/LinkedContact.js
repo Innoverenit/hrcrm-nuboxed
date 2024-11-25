@@ -71,7 +71,7 @@ function LinkedContact(props) {
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
   useEffect(() => {
-    props.getContactListByCustomerId(props.customerId,);
+    props.getContactListByCustomerId(props.uniqueId,props.type);
     // setPage(page + 1);
   }, []);
   const [contactId, setContactId] = useState("");
@@ -390,7 +390,7 @@ function LinkedContact(props) {
           addUpdateCustomerContactModal={addUpdateCustomerContactModal}
            contactId={contactId}
           defaultCustomers={props.defaultCustomers}
-          customerId={props.customerId}
+          customerId={props.uniqueId}
           handleUpdateCustomerContactModal={handleUpdateCustomerContactModal}
           translateText={props.translateText}
           selectedLanguage={props.selectedLanguage}

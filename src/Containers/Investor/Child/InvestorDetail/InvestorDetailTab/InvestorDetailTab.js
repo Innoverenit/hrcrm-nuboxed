@@ -12,17 +12,17 @@ import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import {getContactListByInvestorId,handleInvestorContactModal,  handleActivityModal,  handleDealModal} from "../../../InvestorAction";
 import {handleCallActivityModal} from "../../../../Activity/ActivityAction"
-import {  handleDocumentUploadModal,handleCustomerContactModal} from "../../../../Customer/CustomerAction";
+import {  handleDocumentUploadModal,handleCustomerContactModal,getProspectContactCount} from "../../../../Customer/CustomerAction";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import ActivityListData from '../../../../Activity/ActivityListData';
+import LinkedContact from '../../../../Customer/Child/CustomerDetail/CustomerTab/ContactTab/LinkedContact';
 const InvestorActivityModal=lazy(()=>import("../InvestorActivity/InvestorActivityModal"));
 const InvestorTimeLine=lazy(()=>import("../InvestorActivity/InvestorTimeLine"));
 const CreateDealModal=lazy(()=>import("../../../../Deal/Child/CreateDealModal"));
 const InvestorDeals=lazy(()=>import("./InvestorDeals"));
 const AddDocumentModals=lazy(()=>import("../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals"));
 const AddCustomerContactModal=lazy(()=>import("../../../../Customer/Child/CustomerDetail/CustomerTab/ContactTab/AddCustomerContactModal"));
-const InvestorLinkedContact =lazy(()=>import("./InvestorContact/InvestorLinkedContact"));
 const InvestorLinkedDocuments =lazy(()=>import("./InvestorDoc/InvestorLinkedDocuments"));
 const AddInvestorContactModal=lazy(()=>import("./InvestorContact/AddInvestorContactModal"));
 
@@ -54,7 +54,9 @@ const InvestorDetailTab = (props) => {
       setBreadCumb(false);
     };
   }, []);
-
+  useEffect(() => {
+    getProspectContactCount(props.investorDetails.investorId,"investor")
+  }, []);
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -102,9 +104,13 @@ const InvestorDetailTab = (props) => {
     switch (key) {
       case "1":
         return     <div> 
-           <InvestorLinkedContact investorDetails={props.investorDetails}
-               translateText={props.translateText}
-               selectedLanguage={props.selectedLanguage}/>
+          <LinkedContact 
+          uniqueId={props.investorDetails.investorId}
+          type={"investor"}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
+          />
             </div>;
       case "2":
         return  <div>
@@ -180,6 +186,12 @@ selectedLanguage={props.selectedLanguage}
                   {translatedMenuItems[0]}  
                   </span>
                 </span>
+                <Badge
+                                    size="small"
+                                    count={(props.contactCount.CustomerContactDetails) || 0}
+                                    overflowCount={999}
+                                    offset={[ 0, -16]}
+                                ></Badge>
                 {activeKey === "1" && (
                   <>
                     <Tooltip 
@@ -209,9 +221,6 @@ selectedLanguage={props.selectedLanguage}
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              {/* <InvestorLinkedContact investorDetails={props.investorDetails}
-               translateText={props.translateText}
-               selectedLanguage={props.selectedLanguage}/> */}
             </Suspense>
           </TabPane>
 
@@ -485,16 +494,18 @@ const mapStateToProps = ({ auth, investor,activity, customer, opportunity,deal }
   investorActivityCount:investor.investorActivityCount,
   investorActivityModal:investor.investorActivityModal,
 contactsbyInvestorId:investor.contactsbyInvestorId,
-opencreateDealModal:investor.opencreateDealModal
+opencreateDealModal:investor.opencreateDealModal,
+contactCount:customer.contactCount
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      
+       
       handleActivityModal,
       handleDealModal,
       handleInvestorContactModal,
       handleCustomerContactModal,
+      getProspectContactCount,
       // handleCustomerOpportunityModal,
 getContactListByInvestorId,
 handleDocumentUploadModal,

@@ -23,7 +23,7 @@ import {
   handlefileRecruitModal,
   handleTagProfileModal,
   handleInvoiceModal,
-
+  getProspectContactCount,
   handleCustomerReactSpeechModal,
   handleCampaignDrawer,
 } from "../../../CustomerAction";
@@ -83,6 +83,7 @@ class ContactDetailTab extends Component {
 
   componentDidMount() {
     this.fetchMenuTranslations();
+    this.props.getProspectContactCount(this.props.customer.customerId,"customer")
   }
 
   componentDidUpdate(prevProps) {
@@ -170,6 +171,8 @@ class ContactDetailTab extends Component {
               </div>;
         case "2":
           return  <div> <LinkedContact  defaultCustomers={[{ label: name, value: customerId }]}
+          uniqueId={this.props.customer.customerId}
+          type={"customer"}
           customerId={ customerId }
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
@@ -273,6 +276,13 @@ translatedMenuItems={this.props.translatedMenuItems}
                       {this.state.translatedMenuItems[1]}
                     </span>
                   </span>
+                  <Badge
+                                    size="small"
+                                    count={(this.props.contactCount.CustomerContactDetails) || 0}
+                                    overflowCount={999}
+                                    offset={[ 0, -16]}
+                                ></Badge>
+                                 &nbsp;
                   {activeKey === "2" && (
                     <>
                
@@ -604,7 +614,8 @@ const mapStateToProps = ({ auth, customer,activity }) => ({
   addTagProfileModal: customer.addTagProfileModal,
   addInvoiceModal: customer.addInvoiceModal,
   callActivityModal:activity.callActivityModal,
-  openCampaigndrwr:customer.openCampaigndrwr
+  openCampaigndrwr:customer.openCampaigndrwr,
+  contactCount:customer.contactCount
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -621,6 +632,7 @@ const mapDispatchToProps = (dispatch) =>
       handleCallActivityModal,
       handleCustomerProjectDrawer,
       handleCustomerReactSpeechModal,
+      getProspectContactCount,
       //handleCustomerCommercialsModal,
       handleCampaignDrawer
     },

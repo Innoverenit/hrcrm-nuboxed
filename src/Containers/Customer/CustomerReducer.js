@@ -10,6 +10,10 @@ const initialState = {
   fetchingTeamUserListError: false,
   teamUserList:[],
 
+  fetchingContactCount: false,
+  fetchingContactCountError: false,
+  contactCount:{},
+
   fetchingWonCusmWeightedValue: false,
   fetchingWonCusmWeightedValueError: false,
   WonCustomerWeighted: {},
@@ -2158,6 +2162,26 @@ export const customerReducer = (state = initialState, action) => {
         ...state,
         fetchingContactValue: false,
         fetchingContactValueError: true,
+      };
+
+      case types.GET_PROSPECT_CONTACT_COUNT_REQUEST:
+      return {
+        ...state,
+        fetchingContactCount: true,
+        fetchingContactCountError: false,
+      };
+    case types.GET_PROSPECT_CONTACT_COUNT_SUCCESS:
+      return {
+        ...state,
+        fetchingContactCount: false,
+        fetchingContactCountError: false,
+        contactCount: action.payload,
+      };
+    case types.GET_PROSPECT_CONTACT_COUNT_FAILURE:
+      return {
+        ...state,
+        fetchingContactCount: false,
+        fetchingContactCountError: true,
       };
 
     case types.GET_CUSTOMER_ACTIVITY_RECORDS_REQUEST:
