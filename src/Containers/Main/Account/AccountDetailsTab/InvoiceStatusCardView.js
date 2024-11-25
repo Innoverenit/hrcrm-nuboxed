@@ -5,13 +5,15 @@ import { bindActionCreators } from 'redux';
 import dayjs from 'dayjs';
 import { getStatusTimeline } from '../AccountAction';
 import { BundleLoader } from '../../../../Components/Placeholder';
+import EmptyPage from '../../EmptyPage';
 
 
 
 function StatusCardView (props) {
    
   useEffect(() => {
-      props.getStatusTimeline(props.particularRowData.orderPhoneId);
+      props.getStatusTimeline(props.particularRowData.orderPhoneId ? props.particularRowData.orderPhoneId:props.particularRowData.procureOrderInvoiceId);
+     
   }, []);
 
   const { statusActivityTimeline } = props;
@@ -23,7 +25,7 @@ function StatusCardView (props) {
   return (
     <div className="mt-4 ml-4 ">
       <Timeline>
-        {statusActivityTimeline &&
+        {!props.fetchingTimelineStatus && statusActivityTimeline.length === 0 ?<EmptyPage />:statusActivityTimeline &&
           statusActivityTimeline.map((status, index) => ( 
             <Timeline.Item key={index} > 
               <div className="flex flex-row justify-between items-center">           

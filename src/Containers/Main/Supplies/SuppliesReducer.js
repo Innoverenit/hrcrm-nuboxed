@@ -1159,6 +1159,13 @@ export const suppliesReducer = (state = initialState, action) => {
                           materialCategorys:[],
                           // deletedTruck: []
                         };   
+                        case types.HANDLE_CLAER_REDUCER_FACTOR:
+                          return {
+                            ...state,
+                            priceFactorData:{},
+                           
+                          }; 
+
                         case types.HANDLE_MATERIAL_INVENTORY:
                             return { ...state, materialInveDawer: action.payload };
 
