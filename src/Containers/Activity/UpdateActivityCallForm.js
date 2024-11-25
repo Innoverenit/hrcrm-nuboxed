@@ -435,7 +435,7 @@ function UpdateActivityCallForm(props) {
               endTime: 0,
               assignedTo: selectedOption ? selectedOption.employeeId:userId,
             };
-            props.updateActivityCall(testVal,
+            props.updateActivityCall(testVal,props.selectedStatus.callId,
                 () => handleCallback(resetForm));
           }}
         >

@@ -778,6 +778,7 @@ import {
   addToWaste,
   addAsileInbest,
 } from "../Inventory/InventoryAction";
+import TermsnConditionModal from "../Suppliers/Child/SupplierDetails/SupplierDetailTab/TermsnConditionModal"
 import { handleTermsnConditionModal } from "../Suppliers/SuppliersAction";
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
@@ -790,6 +791,7 @@ import TerminalSharp from "@mui/icons-material/TerminalSharp";
 const { Option } = Select;
 
 const InventoryMaterialBestBefore = (props) => {
+  const [row, setRow] = useState({})
   const [rowsBest, setRowBest] = useState(props.materialBestBefore);
   const [zone, setZone] = useState([]);
   const [aisleData, setAisleData] = useState([]);
@@ -819,7 +821,9 @@ const InventoryMaterialBestBefore = (props) => {
     });
   }, [rowsBest]);
 
-
+    const handleRow = (item) => {
+        setRow(item)
+    }
   const fetchZone = async () => {
     setIsLoadingZone(true);
     try {
@@ -909,6 +913,7 @@ const InventoryMaterialBestBefore = (props) => {
   };
 
   return (
+    <>
     <div className="flex sticky z-auto h-[79vh]">
       <div className="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className="flex w-[100%] p-1 bg-transparent font-bold font-poppins items-end sticky z-10">
@@ -918,6 +923,7 @@ const InventoryMaterialBestBefore = (props) => {
           <div className="w-[8.12rem]">Supplies Id</div>
           <div className="w-[5.12rem]">Country</div>
           <div className="w-[8.12rem]">Best Use Date</div>
+          <div className="w-[9.2rem]">Zone</div>
           <div className="w-[9.2rem]">Aisle</div>
           <div className="w-[7.12rem]">Rack</div>
           <div className="w-[3.22rem]">Discount</div>
@@ -934,6 +940,25 @@ const InventoryMaterialBestBefore = (props) => {
             <div className="w-[6.4rem]">{item.newSuppliesNo}</div>
             <div className="w-[3.8rem]">{item.remainingCorrectUnit}</div>
             <div className="w-[8.22rem]">{dayjs(item.creationDate).format("DD/MM/YYYY")}</div>
+            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.6rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                       <Button
+                                        onClick={() => {
+                                          props.addToWaste({
+                                            poSupplierSuppliesId:item.poSupplierSuppliesId,
+                                            poSupplierDetailsId:item.poSupplierDetailsId,
+                                            suppliesId:item.suppliesId,
+                                            userId:item.userId,
+                                            locationId:item.locationId,
+                                            orgId:props.orgId,
+                                            moveToWasteInd:true
+                                          },
+                                          item.poSupplierSuppliesId
+                                        );
+                                          
+                                        }}
+                         
+                                        >To Waste</Button>
+                                        </div>
             <div className="w-[13.2rem]">
               <Select
                 placeholder="Select Zone"
@@ -982,10 +1007,32 @@ const InventoryMaterialBestBefore = (props) => {
                 ))}
               </Select>
             </div>
+
+            <div className=" flex  items-center justify-end h-8 ml-gap bg-[#eef2f9] w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class=" cursor-pointer max-xl:text-[0.65rem] font-xl text-xs items-center font-poppins">
+                                                            <Tooltip title="Terms and conditions">
+                                                               <TerminalSharp className="!text-icon text-[#c3b20b]"
+                                                                    onClick={() => {
+                                                                    handleRow(item)
+                                                                        props.handleTermsnConditionModal(true)
+                                                                    }}
+                                                                />
+                                                            </Tooltip>
+                                                        </div>
+                                                    </div> 
           </div>
         ))}
       </div>
     </div>
+    <TermsnConditionModal
+                rowData={row}
+                addTermsnCondition={props.addTermsnCondition}
+                handleTermsnConditionModal={props.handleTermsnConditionModal}
+                translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}
+            />
+            </>
+
   );
 };
 

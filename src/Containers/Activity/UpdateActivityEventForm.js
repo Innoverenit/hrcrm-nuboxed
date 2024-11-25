@@ -67,6 +67,16 @@ function UpdateActivityEventForm (props) {
       const [selected, setSelected] = useState(defaultOption);
       const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
       const [loading, setLoading] = useState(true);
+      const [selectedUsers, setSelectedUsers] = useState([]);
+      useEffect(() => {
+        // Preselect user IDs from `initialData`
+        setSelectedUsers(props.selectedStatus.included.map((user) => user.employeeId));
+      }, []);
+
+      const handleChange = (value) => {
+        console.log('Selected user IDs:', value);
+        setSelectedUsers(value);
+      };
 
  function handleCallback  () {
     const { handleChooserModal, handleEventModal, callback }= props;
@@ -84,7 +94,7 @@ function UpdateActivityEventForm (props) {
   const handleOpportunityChange=(value)=>{
     setSelectedOpportunity(value);
   }
-
+console.log(props.sales)
   
   const fetchContacts = async () => {
     setIsLoadingContacts(true);
@@ -261,17 +271,19 @@ const {
             {
                   eventType: "",
                   eventTypeId: "",
-                  eventSubject: "",
+                  eventSubject:props.selectedStatus.activityType,
                   eventVenue: "",
                   remindAt: "",
                   // opportunity:"",
                    contacts:[],
                   notificationEmail: false,
-                  eventDescription: "",
+                  eventDescription: props.selectedStatus.description,
                   timeZone: timeZone,
-                  startDate: startDate || dayjs(),
+                  startDate:
+                  dayjs(props.selectedStatus.startDate) || dayjs(),
                   startTime: startDate || null,
-                  endDate: endDate || null,
+                  endDate:
+                  dayjs(props.selectedStatus.endDate) || dayjs(),
                   endTime: endDate || null,
                   assignedTo: selectedOption ? selectedOption.employeeId:userId,
                   note: "",
@@ -303,7 +315,7 @@ const {
                   // ownerIds: [],
                 }
           }
-          validationSchema={EventSchema}
+          // validationSchema={EventSchema}
           onSubmit={(values, { resetForm }) => {
             console.log(values);
             let timeZoneFirst = values.timeZone;
@@ -383,6 +395,7 @@ const {
                     remindInd: reminder ? true : false,
                     assignedTo: selectedOption ? selectedOption.employeeId:userId,
                   },
+                  props.selectedStatus.eventId,
                   handleCallback
                 );
             !isEditing && resetForm();
@@ -598,7 +611,7 @@ const {
       </Listbox>
       <div class=" mt-3">
       <div className="font-bold font-poppins text-xs"> {translatedMenuItems[8]}</div>
-                  <Field
+                  {/* <Field
                     name="included"
                     // label="Include"                  
                     mode
@@ -610,7 +623,20 @@ const {
                       label: `${fullName || ""} `,
                       value: employeeId,
                     }}
-                  />
+                  /> */}
+                    <Select
+        mode="multiple"
+        placeholder="Select users"
+        style={{ width: '100%' }}
+        onChange={handleChange}
+        value={selectedUsers} // Preselected values
+      >
+        {employeesData.map((user) => (
+          <Option key={user.employeeId} value={user.employeeId}>
+            {user.fullName}
+          </Option>
+        ))}
+      </Select>
                   </div>
                   {props.type!=="contact"&&(
                   <div class=" mt-3">
