@@ -1927,7 +1927,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={userOptions}
                           value={checkedUserList}
@@ -1948,7 +1948,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={plainOptions}
                           value={checkedPlantList}
@@ -1969,7 +1969,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={repositoryCheckedList}
                           value={checkedRepositoryList}
@@ -1990,7 +1990,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={settingsCheckedList}
                           value={checkedSettingsList}
@@ -2011,7 +2011,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={basicCheckedList}
                           value={checkedBasicList}
@@ -2032,7 +2032,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs">Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={defaultCheckedList}
                           value={checkedTasksList}
@@ -2054,7 +2054,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={dashboardCheckedList}
                           value={checkedDashboardList}
@@ -2103,7 +2103,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={plainOptions}
                           value={checkedTeamsList}
@@ -2125,7 +2125,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={defaultCheckedList}
                           value={checkedReportList}
@@ -2168,7 +2168,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all </div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={plannerCheckedList}
                           value={checkedPlanner}
@@ -2176,23 +2176,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         />
                       </div>
                     </div>
-                    {/* <div class="flex justify-between mt-4"> */}
-                    {/* <div>
-                        <div class="text-sm font-semibold">Calls</div>
-                        <Checkbox
-                          indeterminate={indeterminateCalls}
-                          onChange={onCheckAllCallsChange}
-                          checked={checkAllCalls}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={callCheckedList}
-                          value={checkedCalls}
-                          onChange={onCallsChange}
-                        />
-                      </div> */}
+                  
 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
                       <div className=" flex w-2/5">
                         abcd
@@ -2206,7 +2190,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all </div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={newCallCheckedList}
                           value={checkedCall}
@@ -2227,7 +2211,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all </div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={downloadCheckedList}
                           value={checkedDownload}
@@ -2248,7 +2232,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all </div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={eventCheckedList}
                           value={checkedEvents}
@@ -2261,291 +2245,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                 </div>
               </div>
          ) : null}
-          {/* {props.departmentData.hrInd === true ? ( */}
-            {/* <div class="flex flex-col">
-              <div class="text-clr flex justify-center text-base font-bold  mt-8">
-                General & Self Service
-              </div>
-
-              <div class="flex  ">
-                Left Box
-                <div class=" border border-gray-300  w-1/2 p-1">
-                  <div class="flex flex-col">
-                    <div class="flex justify-between mt-2">
-                      <div>
-                        <div class="text-sm font-semibold">Users</div>
-                        <Checkbox
-                          indeterminate={indeterminateUser}
-                          onChange={onCheckAllUserChange}
-                          checked={checkAllUser}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={userOptions}
-                          value={checkedUserList}
-                          onChange={onUserChange}
-                        />
-                      </div>
-                    </div>
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Facility</div>
-                        <Checkbox
-                          indeterminate={indeterminatePlant}
-                          onChange={onCheckAllPlantChange}
-                          checked={checkAllPlant}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={plainOptions}
-                          value={checkedPlantList}
-                          onChange={onPlantChange}
-                        />
-                      </div>
-                    </div>
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Repository</div>
-                        <Checkbox
-                          indeterminate={indeterminateRepository}
-                          onChange={onCheckAllRepositoryChange}
-                          checked={checkAllRepository}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={repositoryCheckedList}
-                          value={checkedRepositoryList}
-                          onChange={onRepositoryChange}
-                        />
-                      </div>
-
-                      <div>
-                        <div class="text-sm font-semibold">Settings</div>
-                        <Checkbox
-                          indeterminate={indeterminateSettings}
-                          onChange={onCheckAllSettingsChange}
-                          checked={checkAllSettings}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={settingsCheckedList}
-                          value={checkedSettingsList}
-                          onChange={onSettingsChange}
-                        />
-                      </div>
-
-                      <div>
-                        <div class="text-sm font-semibold">Basic</div>
-                        <Checkbox
-                          indeterminate={indeterminateBasic}
-                          onChange={onCheckAllBasicChange}
-                          checked={checkAllBasic}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={basicCheckedList}
-                          value={checkedBasicList}
-                          onChange={onBasicChange}
-                        />
-                      </div>
-                      <div>
-                        <div class="text-sm font-semibold">Tasks</div>
-                        <Checkbox
-                          indeterminate={indeterminateTasks}
-                          onChange={onCheckAllTasksChange}
-                          checked={checkAllTasks}
-                        >
-                          <div class="text-xs">Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={defaultCheckedList}
-                          value={checkedTasksList}
-                          onChange={onTasksChange}
-                        />
-                      </div>
-                    </div>
-
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Dashboard</div>
-                        <Checkbox
-                          indeterminate={indeterminateDashboard}
-                          onChange={onCheckAllDashboardChange}
-                          checked={checkAllDashboard}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={dashboardCheckedList}
-                          value={checkedDashboardList}
-                          onChange={onDashboardChange}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                Right Box
-                <div class="flex border border-gray-300  w-1/2  p-1">
-                  <div class="flex flex-col">
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Locations</div>
-                        <Checkbox
-                          indeterminate={indeterminateLocation}
-                          onChange={onCheckAllLocationChange}
-                          checked={checkAllLocation}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={plainOptions}
-                          value={checkedLocationList}
-                          onChange={onLocationChange}
-                        />
-                      </div>
-                    </div>
-
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Teams</div>
-                        <Checkbox
-                          indeterminate={indeterminateTeams}
-                          onChange={onCheckAllTeamsChange}
-                          checked={checkAllTeams}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={plainOptions}
-                          value={checkedTeamsList}
-                          onChange={onTeamsChange}
-                        />
-                      </div>
-                    </div>
-
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Reports</div>
-                        <Checkbox
-                          indeterminate={indeterminateReport}
-                          onChange={onCheckAllReportChange}
-                          checked={checkAllReport}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={defaultCheckedList}
-                          value={checkedReportList}
-                          onChange={onReportChange}
-                        />
-                      </div>
-
-                      <div>
-                        <div class="text-sm font-semibold">Language</div>
-                        <Checkbox
-                          indeterminate={indeterminatLanguage}
-                          onChange={onCheckAllLanguageChange}
-                          checked={checkAllLanguage}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={multiLanguageCheckedList}
-                          value={checkedLanguage}
-                          onChange={onLanguageChange}
-                        />
-                      </div>
-                      <div>
-                        <div class="text-sm font-semibold">Planner</div>
-                        <Checkbox
-                          indeterminate={indeterminatePlanner}
-                          onChange={onCheckAllPlannerChange}
-                          checked={checkAllPlanner}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={plannerCheckedList}
-                          value={checkedPlanner}
-                          onChange={onPlannerChange}
-                        />
-                      </div>
-                    </div>
-                    <div class="flex justify-between mt-4">
-                   
- <div>
-                        <div class="text-sm font-semibold">Calls</div>
-                        <Checkbox
-                          indeterminate={indeterminateCall}
-                          onChange={onCheckAllCallChange}
-                          checked={checkAllCall}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={newCallCheckedList}
-                          value={checkedCall}
-                          onChange={onCallChange}
-                        />
-                      </div>
-
-                      <div>
-                        <div class="text-sm font-semibold">Download</div>
-                        <Checkbox
-                          indeterminate={indeterminateDownload}
-                          onChange={onCheckAllDownloadChange}
-                          checked={checkAllDownload}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={downloadCheckedList}
-                          value={checkedDownload}
-                          onChange={onDownloadChange}
-                        />
-                      </div>
-                      <div>
-                        <div class="text-sm font-semibold">Events</div>
-                        <Checkbox
-                          indeterminate={indeterminateEvents}
-                          onChange={onCheckAllEventsChange}
-                          checked={checkAllEvents}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={eventCheckedList}
-                          value={checkedEvents}
-                          onChange={onEventsChange}
-                        />
-                      </div>
-                      </div>
-                  </div>
-                </div>
-              </div>
-            </div> */}
-          {/* ) : null} */}
+        
           {props.departmentData.hrInd === true ? (
           <div class="flex flex-col">
           <div class="text-clr flex  text-base font-bold  mt-8">
@@ -2566,7 +2266,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={melCheckedList}
                           value={checkedMileageList}
@@ -2589,7 +2289,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={melCheckedList}
                           value={checkedExpenseList}
@@ -2612,7 +2312,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={basicCheckedList}
                           value={checkedHolidayList}
@@ -2635,7 +2335,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs">Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={melCheckedList}
                           value={checkedLeavesList}
@@ -2648,97 +2348,7 @@ const onCheckAllePriceDiscountChange = (e) => {
 
             </div>
   ) : null}
-          {/* {props.departmentData.hrInd === true ? (
-            <div class="flex flex-col">
-              <div class="text-clr flex justify-center text-base font-bold  mt-8">
-                HR
-              </div>
-
-              <div class="flex  ">
-              
-                <div class=" border border-gray-300  w-1/2 p-1">
-                  <div class="flex flex-col">
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Mileage</div>
-                        <Checkbox
-                          indeterminate={indeterminateMileage}
-                          onChange={onCheckAllMileageChange}
-                          checked={checkAllMileage}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={melCheckedList}
-                          value={checkedMileageList}
-                          onChange={onMileageChange}
-                        />
-                      </div>
-
-                      <div>
-                        <div class="text-sm font-semibold">Expense</div>
-                        <Checkbox
-                          indeterminate={indeterminateExpense}
-                          onChange={onCheckAllExpenseChange}
-                          checked={checkAllExpense}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={melCheckedList}
-                          value={checkedExpenseList}
-                          onChange={onExpenseChange}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-               
-                <div class="flex border border-gray-300  w-1/2  p-1">
-                  <div class="flex flex-col">
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Holiday</div>
-                        <Checkbox
-                          indeterminate={indeterminateHoliday}
-                          onChange={onCheckAllHolidayChange}
-                          checked={checkAllHoliday}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={basicCheckedList}
-                          value={checkedHolidayList}
-                          onChange={onHolidayChange}
-                        />
-                      </div>
-
-                      <div>
-                        <div class="text-sm font-semibold">Leaves</div>
-                        <Checkbox
-                          indeterminate={indeterminateLeaves}
-                          onChange={onCheckAllLeavesChange}
-                          checked={checkAllLeaves}
-                        >
-                          <div class="text-xs">Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={melCheckedList}
-                          value={checkedLeavesList}
-                          onChange={onLeavesChange}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ) : null} */}
+       
    {props.departmentData.crmInd === true ? (
           <div class="flex flex-col">
           <div class="text-clr flex  text-base font-bold  mt-8">
@@ -2759,7 +2369,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all </div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={plainOptions}
                           value={checkedCustomerList}
@@ -2782,7 +2392,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all </div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={plainOptions}
                           value={checkedOpportunityList}
@@ -2805,7 +2415,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all </div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={plainOptions}
                           value={checkedLeadsList}
@@ -2828,7 +2438,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={plainOptions}
                           value={checkedContactList}
@@ -2851,7 +2461,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={junkCheckedList}
                           value={checkedJunkList}
@@ -2865,115 +2475,7 @@ const onCheckAllePriceDiscountChange = (e) => {
 
             </div>
   ) : null}
-          {/* {props.departmentData.crmInd === true ? (
-            <div class="flex flex-col ">
-              <div class=" text-clr mt-8 flex justify-center text-base  font-bold">
-                CRM
-              </div>
-              <div class="flex ">
-              
-                <div class="flex border border-gray-300  w-1/2 p-1">
-                  <div class="flex flex-col">
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Prospect</div>
-                        <Checkbox
-                          indeterminate={indeterminateCustomer}
-                          onChange={onCheckAllCustomerChange}
-                          checked={checkAllCustomer}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={plainOptions}
-                          value={checkedCustomerList}
-                          onChange={onCustomerChange}
-                        />
-                      </div>
-                    </div>
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Quotation</div>
-                        <Checkbox
-                          indeterminate={indeterminateOpportunity}
-                          onChange={onCheckAllOpportunityChange}
-                          checked={checkAllOpportunity}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={plainOptions}
-                          value={checkedOpportunityList}
-                          onChange={onOpportunityChange}
-                        />
-                      </div>
-                    </div>
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Leads</div>
-                        <Checkbox
-                          indeterminate={indeterminateLeads}
-                          onChange={onCheckAllLeadsChange}
-                          checked={checkAllLeads}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={plainOptions}
-                          value={checkedLeadsList}
-                          onChange={onLeadsChange}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-             
-                <div class="flex border border-gray-300  w-1/2 p-1">
-                  <div class="flex flex-col">
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Contact</div>
-                        <Checkbox
-                          indeterminate={indeterminateContact}
-                          onChange={onCheckAllContactChange}
-                          checked={checkAllContact}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={plainOptions}
-                          value={checkedContactList}
-                          onChange={onContactChange}
-                        />
-                      </div>
-                    </div>
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Junk Leads</div>
-                        <Checkbox
-                          indeterminate={indeterminateJunk}
-                          onChange={onCheckAllJunkChange}
-                          checked={checkAllJunk}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={junkCheckedList}
-                          value={checkedJunkList}
-                          onChange={onJunkChange}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ) : null} */}
+       
           {props.departmentData.erpInd === true ? (
           <div class="flex flex-col">
           <div class="text-clr flex justify-center text-base font-bold  mt-8">
@@ -2994,7 +2496,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={plainOptions}
                           value={checkedShipperList}
@@ -3017,7 +2519,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={plainOptions}
                           value={checkedOrderList}
@@ -3040,7 +2542,7 @@ const onCheckAllePriceDiscountChange = (e) => {
         >
           <div className="text-xs"> Check all </div>
         </Checkbox>
-        {/* <Divider /> */}
+       
         <Checkbox.Group
           options={materialNewOptions}
           value={checkedMaterialsList}
@@ -3063,7 +2565,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all </div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={inventoryNewOptions}
                           value={checkedInventoryList}
@@ -3086,7 +2588,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={plainOptions}
                           value={checkedProcurementList}
@@ -3109,7 +2611,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={materialOptions}
                           value={checkedProductionList}
@@ -3132,7 +2634,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={warrentyCheckedList}
                           value={checkedWarrentyList}
@@ -3155,7 +2657,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={priceDiscountCheckedList}
                           value={checkedPriceDiscountList}
@@ -3178,7 +2680,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={accountOptions}
                           value={checkedAccountList}
@@ -3201,7 +2703,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all </div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={materialOptions}
                           value={checkedCatalogList}
@@ -3224,7 +2726,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all </div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={supplierNewOptions}
                           value={checkedSupplierList}
@@ -3247,7 +2749,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all </div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={refurbishCheckedList}
                           value={checkedRefurbishList}
@@ -3270,7 +2772,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={materialOptions}
                           value={checkedSubscriptionList}
@@ -3293,7 +2795,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={settingsCheckedList}
                           value={checkedScannerList}
@@ -3316,7 +2818,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                       >
                         <div class="text-xs"> Check all</div>
                       </Checkbox>
-                      {/* <Divider /> */}
+                     
                       <CheckboxGroup
                         options={plainOptions}
                         value={checkedQualityList}
@@ -3329,295 +2831,7 @@ const onCheckAllePriceDiscountChange = (e) => {
 
             </div>
   ) : null}
-          {/* {props.departmentData.erpInd === true ? (
-            <div class="flex flex-col ">
-              <div class=" text-clr text-base flex justify-center mt-8 font-bold">
-                ERP
-              </div>
-
-              <div class="flex ">
-                Left Box
-                <div class="flex border border-gray-300  w-1/2 p-1">
-                  <div class="flex flex-col">
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Shipper</div>
-                        <Checkbox
-                          indeterminate={indeterminateShipper}
-                          onChange={onCheckAllShipperChange}
-                          checked={checkAllShipper}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={plainOptions}
-                          value={checkedShipperList}
-                          onChange={onShipperChange}
-                        />
-                      </div>
-                    </div>
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Order</div>
-                        <Checkbox
-                          indeterminate={indeterminateOrder}
-                          onChange={onCheckAllOrderChange}
-                          checked={checkAllOrder}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={plainOptions}
-                          value={checkedOrderList}
-                          onChange={onOrderChange}
-                        />
-                      </div>
-                    </div>
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Materials</div>
-                        <Checkbox
-          indeterminate={indeterminateMaterials}
-          onChange={onCheckAllMaterialsChange}
-          checked={checkAllMaterials}
-        >
-          <div className="text-xs"> Check all </div>
-        </Checkbox>
-        <Divider />
-        <Checkbox.Group
-          options={materialNewOptions}
-          value={checkedMaterialsList}
-          onChange={onMaterialsChange}
-        />
-                      </div>
-                    </div>
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Inventory</div>
-                        <Checkbox
-                          indeterminate={indeterminateInventory}
-                          onChange={onCheckAllInventoryChange}
-                          checked={checkAllInventory}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={inventoryNewOptions}
-                          value={checkedInventoryList}
-                          onChange={onInventoryChange}
-                        />
-                      </div>
-                    </div>
-
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Procurement</div>
-                        <Checkbox
-                          indeterminate={indeterminateProcurement}
-                          onChange={onCheckAllProcurementChange}
-                          checked={checkAllProcurement}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={plainOptions}
-                          value={checkedProcurementList}
-                          onChange={onProcurementChange}
-                        />
-                      </div>
-                    </div>
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Production</div>
-                        <Checkbox
-                          indeterminate={indeterminateProduction}
-                          onChange={onCheckAllProductionChange}
-                          checked={checkAllProduction}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={materialOptions}
-                          value={checkedProductionList}
-                          onChange={onProductionChange}
-                        />
-                      </div>
-                      <div>
-                        <div class="text-sm font-semibold">Warrenty</div>
-                        <Checkbox
-                          indeterminate={indeterminateWarrenty}
-                          onChange={onCheckAllWarrentyChange}
-                          checked={checkAllWarrenty}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={warrentyCheckedList}
-                          value={checkedWarrentyList}
-                          onChange={onWarrentyChange}
-                        />
-                      </div>
-                    </div>
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Price and Discount</div>
-                        <Checkbox
-                          indeterminate={indeterminatePriceDiscount}
-                          onChange={onCheckAllePriceDiscountChange}
-                          checked={checkAllPriceDiscount}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={priceDiscountCheckedList}
-                          value={checkedPriceDiscountList}
-                          onChange={onePriceDiscountChange}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                Right Box
-                <div class="flex border border-gray-300  w-1/2 p-1">
-                  <div class="flex flex-col">
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Customer</div>
-                        <Checkbox
-                          indeterminate={indeterminateAccount}
-                          onChange={onCheckAllAccountChange}
-                          checked={checkAllAccount}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={accountOptions}
-                          value={checkedAccountList}
-                          onChange={onAccountChange}
-                        />
-                      </div>
-                    </div>
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Catalogue</div>
-                        <Checkbox
-                          indeterminate={indeterminateCatalog}
-                          onChange={onCheckAllCatalogChange}
-                          checked={checkAllCatalog}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={materialOptions}
-                          value={checkedCatalogList}
-                          onChange={onCatalogChange}
-                        />
-                      </div>
-                    </div>
-
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Supplier</div>
-                        <Checkbox
-                          indeterminate={indeterminateSupplier}
-                          onChange={onCheckAllSupplierChange}
-                          checked={checkAllSupplier}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={supplierNewOptions}
-                          value={checkedSupplierList}
-                          onChange={onSupplierChange}
-                        />
-                      </div>
-                    </div>
-
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Refurbish</div>
-                        <Checkbox
-                          indeterminate={indeterminateRefurbish}
-                          onChange={onCheckAllRefurbishChange}
-                          checked={checkAllRefurbish}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={refurbishCheckedList}
-                          value={checkedRefurbishList}
-                          onChange={onRefurbishChange}
-                        />
-                      </div>
-                    
-                    </div>
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Subscription</div>
-                        <Checkbox
-                          indeterminate={indeterminateSubscription}
-                          onChange={onCheckAllSubscriptionChange}
-                          checked={checkAllSubscription}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={materialOptions}
-                          value={checkedSubscriptionList}
-                          onChange={onSubscriptionChange}
-                        />
-                      </div>
-                      <div>
-                        <div class="text-sm font-semibold">Scanner</div>
-                        <Checkbox
-                          indeterminate={indeterminateScanner}
-                          onChange={onCheckAllScannerChange}
-                          checked={checkAllScanner}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={settingsCheckedList}
-                          value={checkedScannerList}
-                          onChange={onScannerChange}
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <div class="text-sm font-semibold">Quality</div>
-                      <Checkbox
-                        indeterminate={indeterminateQuality}
-                        onChange={onCheckAllQualityChange}
-                        checked={checkAllQuality}
-                      >
-                        <div class="text-xs"> Check all</div>
-                      </Checkbox>
-                      <Divider />
-                      <CheckboxGroup
-                        options={plainOptions}
-                        value={checkedQualityList}
-                        onChange={onQualityChange}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ) : null} */}
+        
 
           {props.departmentData.financeInd === true ? (
             <div class="flex flex-col ">
@@ -3639,7 +2853,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={collectionCheckedList}
                           value={checkedCollectionList}
@@ -3662,7 +2876,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all </div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={accountingCheckedList}
                           value={checkedPaymentsList}
@@ -3685,7 +2899,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={plainOptions}
                           value={checkedShipperList}
@@ -3694,70 +2908,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                       </div>
                     </div>
                   </div>
-                {/* Left Box */}
-                {/* <div class="flex border border-gray-300  w-1/2 p-1">
-                  <div class="flex flex-col">
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Collections</div>
-                        <Checkbox
-                          indeterminate={indeterminateCollection}
-                          onChange={onCheckAllCollectionChange}
-                          checked={checkAllCollection}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={collectionCheckedList}
-                          value={checkedCollectionList}
-                          onChange={onCollectionChange}
-                        />
-                      </div>
-                      <div>
-                        <div class="text-sm font-semibold">BTW / VAT / GST</div>
-                        <Checkbox
-                          indeterminate={indeterminateCalculate}
-                          onChange={onCheckAllCalculateChange}
-                          checked={checkAllCalculate}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={calculateCheckedList}
-                          value={checkedCalculateList}
-                          onChange={onCalculateChange}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
-
-                {/* Right Box */}
-                {/* <div class="flex border border-gray-300  w-1/2 p-1">
-                  <div class="flex flex-col">
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Payments</div>
-                        <Checkbox
-                          indeterminate={indeterminatePayments}
-                          onChange={onCheckAllPaymentsChange}
-                          checked={checkAllPayments}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={accountingCheckedList}
-                          value={checkedPaymentsList}
-                          onChange={onPaymentsChange}
-                        />
-                      </div>
-                    </div>
-                    <div class="flex justify-between mt-4"></div>
-                  </div>
-                </div> */}
+                
               </div>
             </div>
           ) : null}
@@ -3781,7 +2932,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                       >
                         <div class="text-xs"> Check all</div>
                       </Checkbox>
-                      {/* <Divider /> */}
+                     
                       <CheckboxGroup
                         options={materialOptions}
                         value={checkedPromotionsList}
@@ -3791,30 +2942,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                     </div>
                   </div>
                   </div>
-            {/* <div class="flex  ">
-              <div class="flex border border-gray-300  w-1/2 p-1">
-                <div class="flex flex-col">
-                  <div class="flex justify-between mt-4">
-                    <div>
-                      <div class="text-sm font-semibold">Promotions</div>
-                      <Checkbox
-                        indeterminate={indeterminatePromotions}
-                        onChange={onCheckAllPromotionsChange}
-                        checked={checkAllPromotions}
-                      >
-                        <div class="text-xs"> Check all</div>
-                      </Checkbox>
-                      <Divider />
-                      <CheckboxGroup
-                        options={materialOptions}
-                        value={checkedPromotionsList}
-                        onChange={onPromotionsChange}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> */}
+            
           </div>
 
           {props.departmentData.recruitProInd === true ? (
@@ -3837,7 +2965,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all </div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={plainOptions}
                           value={checkedTalentList}
@@ -3860,7 +2988,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all </div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={requirementCheckedList}
                           value={checkedRequirementList}
@@ -3871,53 +2999,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
               </div>
               <div class="flex mt-4 ">
-                {/* Left Box */}
-                {/* <div class="flex border border-gray-300  w-1/2 p-1">
-                  <div class="flex flex-col">
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Talent</div>
-                        <Checkbox
-                          indeterminate={indeterminateTalent}
-                          onChange={onCheckAllTalentChange}
-                          checked={checkAllTalent}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={plainOptions}
-                          value={checkedTalentList}
-                          onChange={onTalentChange}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
-
-                {/* Right Box */}
-                {/* <div class="flex border border-gray-300  w-1/2 p-1">
-                  <div class="flex flex-col">
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Requirement</div>
-                        <Checkbox
-                          indeterminate={indeterminateRequirement}
-                          onChange={onCheckAllRequirementChange}
-                          checked={checkAllRequirement}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={requirementCheckedList}
-                          value={checkedRequirementList}
-                          onChange={onRequirementChange}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
+              
               </div>
             </div>
           ) : null}
@@ -3942,7 +3024,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all </div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={plainOptions}
                           value={checkedInvestorList}
@@ -3965,7 +3047,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all </div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={plainOptions}
                           value={checkedDealList}
@@ -3988,7 +3070,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all </div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={plainOptions}
                           value={checkedDataRoomList}
@@ -4013,7 +3095,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all</div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={plainOptions}
                           value={checkedInvestorContactList}
@@ -4036,7 +3118,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all </div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={plainOptions}
                           value={checkedPitchList}
@@ -4059,7 +3141,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         >
                           <div class="text-xs"> Check all </div>
                         </Checkbox>
-                        {/* <Divider /> */}
+                       
                         <CheckboxGroup
                           options={clubOption}
                           value={checkedClubList}
@@ -4068,127 +3150,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                       </div>
                     </div>
                   </div>
-                {/* <div class="flex border border-gray-300  w-1/2 p-1">
-                  <div class="flex flex-col">
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Investor</div>
-                        <Checkbox
-                          indeterminate={indeterminateInvestor}
-                          onChange={onCheckAllInvestorChange}
-                          checked={checkAllInvestor}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={plainOptions}
-                          value={checkedInvestorList}
-                          onChange={onInvestorChange}
-                        />
-                      </div>
-                    </div>
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Deals</div>
-                        <Checkbox
-                          indeterminate={indeterminateDeal}
-                          onChange={onCheckAllDealChange}
-                          checked={checkAllDeal}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={plainOptions}
-                          value={checkedDealList}
-                          onChange={onDealChange}
-                        />
-                      </div>
-                    </div>
-
-                    <div class=" flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Data Room</div>
-                        <Checkbox
-                          indeterminate={indeterminateDataRoom}
-                          onChange={onCheckAllDataRoomChange}
-                          checked={checkAllDataRoom}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={plainOptions}
-                          value={checkedDataRoomList}
-                          onChange={onDataRoomChange}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
-                {/* Right Box */}
-                {/* <div class="flex border border-gray-300  w-1/2 p-1">
-                  <div class="flex flex-col">
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">
-                          Investor Contact
-                        </div>
-                        <Checkbox
-                          indeterminate={indeterminateInvestorContact}
-                          onChange={onCheckAllInvestorContactChange}
-                          checked={checkAllInvestorContact}
-                        >
-                          <div class="text-xs"> Check all</div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={plainOptions}
-                          value={checkedInvestorContactList}
-                          onChange={onInvestorContactChange}
-                        />
-                      </div>
-                    </div>
-
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Pitch</div>
-                        <Checkbox
-                          indeterminate={indeterminatePitch}
-                          onChange={onCheckAllPitchChange}
-                          checked={checkAllPitch}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={plainOptions}
-                          value={checkedPitchList}
-                          onChange={onPitchChange}
-                        />
-                      </div>
-                    </div>
-                    <div class="flex justify-between mt-4">
-                      <div>
-                        <div class="text-sm font-semibold">Club</div>
-                        <Checkbox
-                          indeterminate={indeterminateClub}
-                          onChange={onCheckAllClubChange}
-                          checked={checkAllClub}
-                        >
-                          <div class="text-xs"> Check all </div>
-                        </Checkbox>
-                        <Divider />
-                        <CheckboxGroup
-                          options={clubOption}
-                          value={checkedClubList}
-                          onChange={onClubChange}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
+              
               </div>
             </div>
           ) : null}

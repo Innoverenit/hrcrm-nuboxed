@@ -20,6 +20,8 @@ const StyledSpan = styled.span`
     content: " | ";
   } */
 `;
+            
+{/* <div className=" font-poppins text-sm font-semibold " style={{color: `${(props) => (props.isSelected ? "#1890ff" : props.theme.color)}`, opacity: `${(props) => (props.disabled ? 0.3 : 1)}`,  cursor: ` ${(props) => (props.disabled ? "not-allowed" : "pointer")}`}} */}
 class TimeInterval extends Component {
   render() {
     const { times, handleClick } = this.props;

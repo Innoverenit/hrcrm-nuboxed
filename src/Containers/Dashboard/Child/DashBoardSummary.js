@@ -129,7 +129,7 @@ const DashBoardSummary=(props) =>{
   return (
     <div className=" container  mx-auto  p-2 flex rounded mt-1  bg-white h-[87vh]  overflow-x-auto overflow-y-hidden  ">
       {/* TASK */}
-      <div class="flex flex-col  w-[14rem] items-center">
+      <div class="flex flex-col  w-[14rem] items-center min-">
         <h2 className="text-xl font-bold font-poppins mb-2 uppercase">  <FactCheckIcon className='!text-icon mr-1 text-[#b02e0c]'/>{translatedMenuItems[0]}<span  className="font-bold text-[tomato] ml-1"> 
           {`${props.taskperCount.totalTask  ?? ""} `}</span></h2>
           <div className=" overflow-x-auto overflow-y-hidden h-[89vh]">
@@ -143,7 +143,7 @@ const DashBoardSummary=(props) =>{
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
       >
       {props.fetchingTaskDashboard ? (
-        <div className="flex justify-center items-center h-full min-w-[11rem]">
+        <div className="flex justify-center items-center h-full ">
           <BundleLoader/> 
           <div>{translatedMenuItems[1]}</div>
           {/* Spinner component */} 
@@ -249,7 +249,7 @@ const DashBoardSummary=(props) =>{
    
   ) : (
     props.quotationDashboard.map((lead, index) => (
-      <div key={index} className="mb-2  p-1 ml-2 h-16 min-h-[5.25rem]  box-content border-2 border-[#00008b23] w-[11rem] ">
+      <div key={index} className="mb-2  p-1 ml-2 h-16 min-h-[5.25rem]  box-content border-2 border-[#00008b23] w-[11rem] min-w-[11rem] ">
         <div className="flex justify-between">
           <div className=" font-semibold font-poppins text-xs">{lead.newOrderNo}</div>
           <div className=" text-xs text-gray-500 font-poppins">{lead.time}</div>
@@ -275,7 +275,7 @@ const DashBoardSummary=(props) =>{
         <h2 className="text-xl font-poppins font-bold mb-2 uppercase"> <DynamicFeedIcon className='!text-icon mr-1 text-[#ef6f6c]'/>
         {translatedMenuItems[4]}<span  className=" text-xl font-bold text-[tomato] ml-1">  0</span> </h2>
         {props.reOrderData.map((colleague, index) => (
-          <div key={index} className="mb-2  p-1 ml-2 h-16 min-h-[5.25rem]  box-content border-2 border-[#00008b23] w-[11rem]">
+          <div key={index} className="mb-2  p-1 ml-2 h-16 min-h-[5.25rem]  box-content border-2 border-[#00008b23] w-[11rem] min-w-[11rem]">
             <div className="flex justify-between">
               <div className="font-semibold font-poppins  truncate text-xs ">{colleague.suppliesFullName} {colleague.batchNo}</div>
               <div className="text-red-600 text-xs font-bold font-poppins bg-red-100 inline-block px-2 py-1 rounded">
@@ -301,7 +301,7 @@ const DashBoardSummary=(props) =>{
         </div>
       ) : (
         props.materialBestBefore.map((colleague, index) => (
-          <div key={index} className="mb-2  p-1  ml-2 h-16 min-h-[5.25rem]  box-content border-2 border-[#00008b23] w-[11rem]">
+          <div key={index} className="mb-2  p-1  ml-2 h-16 min-h-[5.25rem]  box-content border-2 border-[#00008b23] w-[11rem] min-w-[11rem]">
             <div className="flex  w-full truncate text-xs">
               <div className="font-semibold font-poppins  truncate text-xs ">{colleague.suppliesFullName} {colleague.batchNo}</div>
             
@@ -359,7 +359,7 @@ const DashBoardSummary=(props) =>{
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
       >
         {props.orderDashboard.map((contact, index) => (
-          <div key={index} className="mb-2  p-1 ml-2 h-16 min-h-[5.25rem] box-content border-2 border-[#00008b23] w-[11rem]">
+          <div key={index} className="mb-2  p-1 ml-2 h-16 min-h-[5.25rem] box-content border-2 border-[#00008b23] w-[11rem] min-w-[11rem]">
             <div className="flex justify-between">
               <div className="font-semibold font-poppins text-xs">{contact.contactPersonName}</div>
               <div className="text-xs text-gray-500 font-poppins"> {`${dayjs(contact.creationDate).format("DD/MM/YYYY")}`}
@@ -390,7 +390,7 @@ const DashBoardSummary=(props) =>{
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
       >
         {props.dealsDashboard.map((colleague, index) => (
-          <div key={index} className="mb-2  p-1 ml-2 box-content h-16 min-h-[5.25rem]  border-2 border-[#00008b23] w-[11rem] ">
+          <div key={index} className="mb-2  p-1 ml-2 box-content h-16 min-h-[5.25rem]  border-2 border-[#00008b23] w-[11rem] min-w-[11rem] ">
             <div className="flex justify-between">
               <div className="font-semibold">{colleague.name}  </div> 
               <div className="text-xs text-gray-500 font-poppins">
