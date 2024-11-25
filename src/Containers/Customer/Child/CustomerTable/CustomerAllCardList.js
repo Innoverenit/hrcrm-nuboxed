@@ -293,7 +293,7 @@ const [rowdata, setrowdata] = useState("");
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky items-end z-10">
          <div class=" flex justify-between w-[82%] items-end font-poppins font-bold max-lg:text-[0.45rem] max-xl:text-[0.65rem] !text-lm ">
-            <div className=" text-[#00A2E8] truncate text-sm  w-[11.5rem] max-md:w-[11.5rem]  max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            <div className=" text-[#00A2E8] truncate text-sm  w-[12.5rem] max-md:w-[11.5rem]  max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             <ApartmentIcon className="!text-icon  "/>
             {translatedMenuItems[0]}
            {/* name */}
@@ -318,7 +318,7 @@ const [rowdata, setrowdata] = useState("");
 
             </div> */}
            
-            <div className=" w-[6.4rem] truncate max-md:w-[6.4rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <div className=" w-[6.9rem] truncate max-md:w-[6.4rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             <LightbulbIcon className="!text-icon  text-[#84a59d]"/> 
             {translatedMenuItems[4]}
              {/* quotation */}
@@ -385,10 +385,10 @@ const [rowdata, setrowdata] = useState("");
                     return (
                         <div>
                               <div
-                className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:rounded-lg max-lg:text-[0.45rem] max-xl:text-[0.65rem]  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:rounded-lg max-lg:text-[0.45rem] w-[100%] max-xl:text-[0.65rem]  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                   <div className=" flex  w-[11.50rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[7rem]  max-sm:w-auto">
+                                   <div className=" flex  w-[12.50rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[7rem]  max-sm:w-auto">
                                    <div class=" text-xs  font-poppins max-sm:text-sm  ">
                         {props.showCheckboxes && (
                         <Checkbox

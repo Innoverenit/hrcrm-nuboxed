@@ -128,7 +128,7 @@ function ProductDeleteList(props) {
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between max-sm:hidden w-[97%]  p-1 bg-transparent font-bold font-poppins !text-lm  max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-end sticky  z-10">  
           <div className="w-[6.51rem]"></div>        
-          <div className=" w-[10rem] truncate text-[#00A2E8]  max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
+          <div className=" w-[10rem] truncate text-[#00A2E8] text-sm max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
             {translatedMenuItems[0]} {/* Article # */}
               </div>
             <div className=" w-[16.9rem] truncate  max-xl:w-[5.11rem] max-lg:w-[7.11rem]">

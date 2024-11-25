@@ -243,7 +243,7 @@ const handleSave = (item) => {
           <div className=" flex max-sm:hidden  w-[94%]  justify-between p-1 bg-transparent font-bold font-poppins  !text-lm sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">         
             <div className=" w-[9.5rem] truncate max-md:w-[4.5rem]  max-xl:w-[8.7rem] max-lg:w-[9.31rem]">         
             </div>
-            <div className="  w-[10.5rem] text-[#00A2E8] truncate max-md:w-[8.5rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className="  w-[10.5rem] text-[#00A2E8] text-sm  truncate max-md:w-[8.5rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
             <BrandingWatermarkIcon className="!text-icon  mr-1" />  {translatedMenuItems[0]}
              {/* Name */}
             </div>

@@ -237,28 +237,28 @@ const [rowdata, setrowdata] = useState("");
   ) : (
     <div className=" flex "> 
      
-      <div className=' flex rounded w-[15%]  flex-col border border-[#0000001f] items-center justify-center  '>
+      <div className=' flex rounded w-[13%]  flex-col border border-[#0000001f] items-center justify-center  '>
       <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[#eaedf1] mt-1  items-center shadow-[#a3abb980] ">
        <div> Search team Member</div>
         </div>
-        <div class="flex rounded  flex-col p-1 overflow-x-auto h-[78vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+        <div class="flex rounded  flex-col  overflow-x-auto w-[11vw] font-poppins h-[78vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
         {props.teamUserList.map((item,index) =>{
            return (
-         <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
-                  text-[#444444] m-1 w-[11.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-        <div class="flex items-center flex-no-wrap h-16">
-          <div class=" flex basis-[15%] mr-[0.2rem] h-15" >
+         <div class=" flex flex-col rounded border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
+                  text-[#444444] mt-1  max-sm:w-wk flex  scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+        <div class="flex items-center  h-16">
+          <div class=" flex  mr-[0.2rem] h-15" >
             <MultiAvatar
                primaryTitle={item.firstName}
-              imageId={item.imageId}
+              imageId={item.imageId}s
               imgWidth={"1.8rem"}
                 imgHeight={"1.8rem"}
             />
           </div>
           
-          <div class="flex basis-[100%] overflow-hidden">
+          <div class="flex  overflow-hidden">
           
-          <div class="font-semibold text-[#337df4] cursor-pointer text-xs " >
+          <div class="font-semibold  text-[#337df4] cursor-pointer text-xs " >
         
  {item.fullName}
 
@@ -292,49 +292,43 @@ const [rowdata, setrowdata] = useState("");
     })}
         </div>
         </div>
-         <div className=' flex sticky  w-[85%] z-auto'>
+         {/* Header */}
+         <div className=' flex sticky  w-[87%] z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold !text-lm sticky items-end z-10">
-         <div class=" flex justify-between w-[82%] items-end font-poppins font-bold max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm ">
-            <div className=" text-[#00A2E8] truncate  w-[11.5rem] max-md:w-[11.5rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+         <div class=" flex justify-between w-[83%] items-end font-poppins font-bold max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm ">
+            <div className=" text-[#00A2E8] truncate text-sm  w-[12.5rem] max-md:w-[11.5rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             <ApartmentIcon className="!text-icon  "/>
             {translatedMenuItems[0]}
            {/* name */}
             </div>
-            <div className=" w-[9.9rem] truncate max-md:w-[9.9rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className=" w-[10.9rem] truncate max-md:w-[9.9rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
             <WifiCalling3Icon className="!text-icon mr-1 text-[#4f5d75]"/>
             {translatedMenuItems[1]}
              {/* work */}
-             <div className=" w-[2.1rem] truncate max-md:w-[2.1rem]  max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+             <div className=" w-[8.1rem] truncate max-md:w-[2.1rem]  max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
            </div>
             </div>
-            <div className=" w-[7.2rem] truncate max-md:w-[7.2rem]  max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className=" w-[9.2rem] truncate max-md:w-[7.2rem]  max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
             <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> 
             {translatedMenuItems[2]}
              {/* sector */}
 
             </div>
-            {/* <div className=" w-[7rem]  max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
-            <SourceIcon className="!text-icon mr-1 text-[#4b5043]"/> 
-            {translatedMenuItems[3]}
-           source
-
-            </div> */}
-           
-            <div className=" w-[6.4rem] truncate max-md:w-[6.4rem]  max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <div className=" w-[7.4rem] truncate max-md:w-[6.4rem]  max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             <LightbulbIcon className="!text-icon  text-[#84a59d]"/> 
             {translatedMenuItems[4]}
              {/* quotation */}
 
             </div>
             {props.user.aiInd && (
-            <div className=" w-[4.71rem] truncate max-md:w-[4.71rem]   max-xl:w-[3.81rem]">
-            <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/>  {translatedMenuItems[19]}
+            <div className=" w-[6.71rem] truncate max-md:w-[4.71rem]   max-xl:w-[3.81rem]">
+            <ScoreIcon className="!text-icon  text-[#f28482]"/>  {translatedMenuItems[19]}
             {/* Score */}
            
             </div>
             )}         
-            <div className=" w-[4.8rem] truncate max-md:w-[4.8rem]  max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <div className=" w-[4.5rem] truncate max-md:w-[4.8rem]  max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
             <AccountCircleIcon className="!text-icon mr-1 text-[#d64933]"/> 
             {translatedMenuItems[6]}
             {/* Assigned" */}
@@ -388,10 +382,10 @@ const [rowdata, setrowdata] = useState("");
                     return (
                       <div>
                   <div
-                className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:rounded-lg max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 py-ygap items-center w-[100%] max-sm:rounded-lg max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      <div className=" flex   w-[11.50rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
+                      <div className=" flex   w-[12.50rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
                         <div className="flex max-sm:w-auto">
                         <div class=" text-xs  font-poppins max-sm:text-sm ">
                         {props.showCheckboxes && (
@@ -469,7 +463,7 @@ const [rowdata, setrowdata] = useState("");
                           {countryCode} */}
                         </div>
                       </div>
-                      <div className=" flex   max-sm:w-auto  w-[7.40rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex   max-sm:w-auto  w-[8.40rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
 
                        {/* Sector  */}
                         <div class=" text-xs ml-gap font-poppins max-sm:text-sm ">
@@ -489,7 +483,7 @@ const [rowdata, setrowdata] = useState("");
                       </div> */}                    
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex  max-sm:w-auto w-[6.82rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
+                    <div className=" flex  max-sm:w-auto w-[7.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.82rem] max-sm:flex-row  max-sm:justify-between ">
                     <div className=" flex max-sm:w-auto w-[3rem] items-center justify-center max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                         {/* >Pipeline Value */}
 
@@ -520,7 +514,7 @@ const [rowdata, setrowdata] = useState("");
                       </div>
 
                       {props.user.aiInd && (
-           <div className=" flex  w-[4.62rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           <div className=" flex  w-[6.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
          {item.noteScoreInd}
           
             </div>
@@ -588,7 +582,7 @@ const [rowdata, setrowdata] = useState("");
                         >
                           {user.erpInd === true && (
                             <Button className="justify-start" type="primary"
-                              style={{ width: "7rem", background: item.convertInd === 1 ? "tomato" : "linear-gradient(to right, #2BBCCF, #38C98D)" }}
+                              style={{ width: "7rem", background: item.convertInd === 1 ? "linear-gradient(to right, #2BBCCF, #38C98D)" :  "tomato" }}
                              
                               >
                               <div class="text-xs  flex  items-center  w-wk" >
@@ -610,9 +604,9 @@ const [rowdata, setrowdata] = useState("");
 {getRelativeTime(item.creationDate)}
 </span></div>
 </div>
-                      <div class="flex max-sm:justify-between max-sm:w-wk  items-center justify-end h-8 bg-[#eef2f9]">
+                      <div class="flex max-sm:justify-evenly max-sm:w-wk  items-center">
                      
-                      <div class=" ">
+                      <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >
                           <Tooltip title= {translatedMenuItems[12]}>
                             <MonitorHeartIcon
                               className=" !text-icon cursor-pointer text-[#df9697]"
@@ -624,7 +618,7 @@ const [rowdata, setrowdata] = useState("");
                           </Tooltip>
                         </div>
                       
-                        <div class=" ">
+                        <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >
                           <Tooltip title= {translatedMenuItems[13]}>
                             <NoteAltIcon
                               className=" !text-icon cursor-pointer text-green-800"
@@ -637,7 +631,7 @@ const [rowdata, setrowdata] = useState("");
                             />
                           </Tooltip>
                         </div> 
-                        <div class="">
+                        <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >
                         <Tooltip title= {translatedMenuItems[20]}>
                         <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
@@ -649,7 +643,7 @@ const [rowdata, setrowdata] = useState("");
         /> 
         </Tooltip>  
         </div>
-        <div class="">
+        <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >
                           <Tooltip title={item.url}>
                             {item.url !== "" ? (
                               <div
@@ -689,7 +683,7 @@ const [rowdata, setrowdata] = useState("");
                             />}
                           </div>
                                                        
-                          <div class="">
+                          <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >
                           <Tooltip title= {translatedMenuItems[15]}>
                             <ContactsIcon
                               className=" !text-icon cursor-pointer text-[#709ab3]"
@@ -715,7 +709,7 @@ const [rowdata, setrowdata] = useState("");
                         </div>                                       */}
                                                
                       
-                        <div class="">
+                                               <div class="items-center justify-center h-8 bg-[#eef2f9] flex" >
                           {props.user.customerUpdateInd === true && user.crmInd === true && (
                             <Tooltip title= {translatedMenuItems[14]}>
                               <BorderColorIcon

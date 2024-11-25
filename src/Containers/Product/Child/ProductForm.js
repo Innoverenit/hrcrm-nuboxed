@@ -64,7 +64,7 @@ class Productform extends Component {
         "1242",//Length 8
         "1243",//Width 9 
         "1244",//Height 10
-        "254",//Brand 11 
+        "254",//Unit 11 
         "265",//model12 
         "147",//Description 13 
         "104"//Create 14
@@ -248,14 +248,14 @@ brandName:"",
             values,
             ...rest
           }) => (
-            <Form>
+            <Form className="form-background h-[64vh]">
               <div class="flex justify-between">
                 <div class="h-full w-[45%]">
                   <div class=" flex  flex-nowrap">
                     <div> <FastField name="imageId" component={PostImageUpld} /></div>
                     <div>
                       <div class=" flex justify-between max-sm:flex-col">
-                        <div class=" w-2/5 max-sm:w-full">
+                        <div class=" w-2/5 max-sm:w-full ml-2">
                         <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[0]}#</div>
                           <Field
                             name="articleNo"
@@ -320,9 +320,9 @@ brandName:"",
                     </div>
                   </div>
 
-                  <div class="w-[47%]">
+                  {/* <div class="w-[47%]">
                     <div class=" text-xs font-bold font-poppins">
-                      {/* Brand */}
+                      Brand
                       </div>
                       <Field
                         name="brandName"
@@ -336,7 +336,7 @@ brandName:"",
                         inlineLabel
 
                       />
-                    </div>
+                    </div> */}
 
                   <div class="flex justify-between mt-5">
                     <div class="w-[48%]">
@@ -389,7 +389,7 @@ brandName:"",
                     </div>
               
  <div class="flex justify-between">
-                    <div class="w-[47%]">
+                    <div class="w-[47%] mt-3">
                        <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[7]}</div>
                       <Field
                         name="weight"
@@ -399,7 +399,7 @@ brandName:"",
                         component={InputComponent}
                       />
                     </div>
-                    <div class="w-[47%]">
+                    <div class="w-[47%] mt-3">
                     <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[8]}</div>
                       <Field
                         name="length"
@@ -443,8 +443,9 @@ brandName:"",
                 </div>
                 <div class="h-full w-[45%]">
                 <div class="flex justify-between ">
-                <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[11]}</div>
                 <div class="w-[48%]">
+                <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[11]}</div>
+                
                       <Field
                         name="brand"
                         // label="Brand"
@@ -462,6 +463,7 @@ brandName:"",
 
                     <div class="w-[47%]">
                     <div class=" text-xs font-bold font-poppins">{this.state.translatedMenuItems[12]}</div>
+                   
                       <Field
                         name="model"
                         // label="Model"

@@ -56,6 +56,7 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import AddCustomerAdressModal from "./AddCustomerAdressModal";
 import EmptyPage from "../../../Main/EmptyPage";
 import Opportunity from "../../../Opportunity/Opportunity";
+import { Header } from "antd/es/layout/layout";
 //import UpdateUserModal from "./UpdateUserModal";
 const AddCustomerDrawerModal = lazy(() =>
   import("../../AddCustomerDrawerModal")
@@ -266,59 +267,55 @@ if (loading) {
     customerSearch={props.customerSearch}
     fetchingCustomerInputSearchData={props.fetchingCustomerInputSearchData}
     />
-  ) : (
+  ) : (  // Header
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-poppins font-bold  !text-lm max-xl:text-[0.65rem]  sticky z-10">
-            <div class=" flex justify-between font-poppins w-[89%] items-end">
+            <div class=" flex justify-between font-poppins w-[85%] items-end">
          
-            <div className="truncate text-[#00A2E8] text-sm  w-[14.5rem]   max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            <div className="truncate text-[#00A2E8] text-sm  w-[15.5rem] max-md:w-[15.5rem]  max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
             <ApartmentIcon className="!text-icon  "/>
             {translatedMenuItems[0]}
            {/* name */}
             </div>
-            <div className=" truncate w-[9.9rem]   max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className=" truncate w-[9.9rem] max-md:w-[9.9rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
                 <WifiCalling3Icon className="!text-icon mr-1 text-[#4f5d75]"/>
             {translatedMenuItems[1]}
              {/* work */}
             </div>
-            <div className=" w-[3.8rem] truncate    max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <div className=" w-[4.8rem] truncate max-md:w-[4.8rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+              {/* CountryFlag */}
             </div>
-            <div className=" truncate w-[10.3rem]   max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
+            <div className=" truncate w-[12.3rem] max-md:w-[12.3rem]  max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
             <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> 
             {translatedMenuItems[2]}
               {/* "Sector" */}
           
             </div>
-            <div className=" truncate w-[8.1rem]   max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
+            <div className=" truncate w-[9.1rem] max-md:w-[9.1rem]  max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
             <SourceIcon className="!text-icon mr-1 text-[#094074]"/> 
             {translatedMenuItems[3]}
              {/* "Source" */}
          
             </div>         
-            <div className=" truncate w-[11.9rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
+            <div className=" truncate w-[14.9rem] max-md:w-[14.9rem]  max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             <LightbulbIcon className="!text-icon text-[#84a59d]"/> 
             {translatedMenuItems[4]} 
               {/* Quotation" */}
      
-            </div>
-            {/* <div className="font-poppins font-bold text-xs  w-[7.1rem]   max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
-            <FilterAltIcon className="!text-icon  text-[#ff66b3]"/> 
-            {translatedMenuItems[5]}
-             Pipeline"
-            </div>    */}
+            </div>           
             {props.user.aiInd && (
-            <div className=" truncate w-[7.81rem]   max-xl:w-[3.81rem]">
+            <div className=" truncate w-[5.81rem] max-md:w-[5.81rem]  max-xl:w-[3.81rem]">
             {/* Score */}      <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/> 
             {translatedMenuItems[18]}
             </div>
             )}    
-            <div className="truncate w-[8.2rem]   max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
+            <div className="truncate w-[7.2rem] max-md:w-[7.2rem]  max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
             <AccountCircleIcon className="!text-icon mr-1 text-[#d64933]"/> 
             {translatedMenuItems[6]}   
             {/* Assigned */}
             </div>          
-            <div className=" truncate w-[7.81rem]   max-xl:w-[3.81rem]">
+            <div className=" truncate w-[5.81rem] max-md:w-[5.81rem]  max-xl:w-[3.81rem]">
             <AcUnitIcon className="!text-icon  text-[#667761]"/> 
             {translatedMenuItems[7]}
               {/* Customer" */}
@@ -329,6 +326,7 @@ if (loading) {
            
 
           </div>
+         {/* </ Header> */}
           <InfiniteScroll
             dataLength={customerByUserId.length}
             next={handleLoadMore}
@@ -355,9 +353,9 @@ if (loading) {
            PostalCode : ${item.address && item.address.length && item.address[0].postalCode
                 } `;
               return (
-                <div>
+                <div>  {/* Data Row */}
                   <div
-                className="flex rounded justify-between  bg-white mt-1 items-center   max-sm:rounded-lg  max-xl:text-[0.65rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 items-center  w-[100%]  max-sm:rounded-lg  max-xl:text-[0.65rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                       <div className=" flex  w-[13rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[8rem] max-lg:w-[6rem]   max-sm:w-auto">
@@ -385,7 +383,7 @@ if (loading) {
                             />
                             {/* </Tooltip> */}
                           </div>
-                          <div class="w-[4%]"></div>
+
 
                           <div class="max-sm:w-full flex items-center">
                             <Tooltip>
@@ -440,7 +438,7 @@ if (loading) {
                           {countryCode} */}
                         </div>
                       </div>
-                      <div className=" flex   max-sm:w-auto  w-[9.21rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex   max-sm:w-auto  w-[10.21rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
                     {/* Sector  */}
                         <div class=" text-xs ml-gap  font-poppins max-sm:text-sm  ">
                           {item.sector}
@@ -457,7 +455,7 @@ if (loading) {
                         </div>
 
                       </div>
-                      <div className=" flex   max-sm:w-auto w-[11.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex   max-sm:w-auto w-[12.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                       <div className=" flex   max-sm:w-auto w-[5.1rem] items-center justify-center h-8  bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
                      {/* Pipeline Value */}
 
