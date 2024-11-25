@@ -51,38 +51,38 @@ function CloseCreditMemoList(props) {
       <div className=' flex  sticky  z-auto'>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[9.1rem] max-xl:w-[13.1rem]">
+            <div className=" w-[9.1rem] max-md:w-[9.1rem]">
             {translatedMenuItems[0]}  {/* Order Id */}
                
                 </div>
-                <div className="w-[6.12rem]">
+                <div className="w-[6.12rem] max-md:w-[6.12rem]">
                 {translatedMenuItems[1]} ID{/* Invoice Id */}
 
                 </div>
-            <div className=" w-[8.2rem] max-xl:w-[9.2rem]">
+            <div className=" w-[8.2rem] max-md:w-[8.2rem]">
             {translatedMenuItems[2]}  {/* Customer */}
               
                 </div>
-            <div className=" w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[8.2rem] max-md:w-[8.2rem] ">
             {translatedMenuItems[3]}  {/* Value */}
                 </div>
-            <div className=" w-[7.32rem] max-xl:w-[6.32rem] ">
+            <div className=" w-[7.32rem] max-md:w-[7.32rem] ">
             {translatedMenuItems[4]} {/* Generated */}
                
                 </div>
-                <div className=" w-[7.32rem] max-xl:w-[6.32rem] ">
+                <div className=" w-[7.32rem] max-md:w-[7.32rem] ">
                 {translatedMenuItems[5]}   {/* Set Up */}
                
                 </div>
-                <div className=" w-[7.32rem] max-xl:w-[6.32rem] ">
+                <div className=" w-[7.32rem] max-md:w-[7.32rem] ">
                 {translatedMenuItems[6]} {/* Date */}
                
                 </div>
-                <div className=" w-[7.32rem] max-xl:w-[6.32rem] ">
+                <div className=" w-[7.32rem] max-md:w-[7.32rem] ">
                 {/* UserId */}
                 {translatedMenuItems[7]} ID
                 </div>
-            <div className="w-[6.023rem]">
+            <div className="w-[6.023rem] max-md:w-[6.023rem]">
             {translatedMenuItems[8]}  {/* Applied */}
              
                 </div>
