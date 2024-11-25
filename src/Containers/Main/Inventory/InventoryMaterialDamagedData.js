@@ -71,45 +71,45 @@ const InventoryMaterialDamagedData = (props) => {
         <>
             <div className=' flex sticky  z-auto h-[79vh]'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky items-end font-poppins *:!text-lm z-10">
+                    <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky items-end font-poppins !text-lm z-10">
                         <div className=""></div>
-                        <div className="text-[#00A2E8] text-base w-[17.5rem]">PO ID</div>
+                        <div className="text-[#00A2E8] text-sm w-[17.5rem] truncate max-md:w-[17.5rem]">PO ID</div>
                       
 
-                        <div className=" w-[11.12rem]">       
-                        <FactoryIcon className='!text-base  text-[#e4eb2f]' />{props.translatedMenuItems[36]} {props.translatedMenuItems[0]} 
+                        <div className=" w-[11.12rem] truncate max-md:w-[11.12rem]">       
+                        <FactoryIcon className='!text-icon  text-[#e4eb2f]' />{props.translatedMenuItems[36]} {props.translatedMenuItems[0]} 
                         {/* Supplier Name */}
 
                         </div>
 
-                        <div className=" w-[6.13rem]">       
-                        < PinIcon className=" !text-base"/> HSN
+                        <div className=" w-[6.13rem] truncate max-md:w-[6.13rem]">       
+                        < PinIcon className=" !text-icon"/> HSN
 
                         </div>
 
-                        <div className=" w-[9.14rem]">       
+                        <div className=" w-[9.14rem] truncate max-md:w-[9.14rem]">       
                         <CategoryIcon
-              className='!text-base  text-[#e4eb2f]'
+              className='!text-icon  text-[#e4eb2f]'
               /> {props.translatedMenuItems[36]} Id
 
                         </div>
-                        <div className=" w-[9.14rem]">       
+                        <div className=" w-[9.14rem] truncate max-md:w-[9.14rem]">       
               {/* Received */}{props.translatedMenuItems[17]}
 
                         </div>
-                        <div className=" w-[9.14rem]">       
+                        <div className=" w-[9.14rem] truncate max-md:w-[9.14rem]">       
               {/* Damaged */}{props.translatedMenuItems[27]}
 
                         </div>
-                        <div className=" w-[15.15rem]">       
+                        <div className=" w-[15.15rem] truncate max-md:w-[15.15rem]">       
                       Repacked
 
                         </div>
-                        <div className=" w-[7.16rem]">       
+                        <div className=" w-[7.16rem] truncate max-md:w-[7.16rem]">       
                    
 
                         </div>
-                        <div className=" w-[4.17rem]">       
+                        <div className=" w-[4.17rem] truncate max-md:w-[4.17rem]">       
                   {/* Final */}{props.translatedMenuItems[37]}
 
                         </div>                                 
@@ -127,7 +127,7 @@ const InventoryMaterialDamagedData = (props) => {
                             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                             return (
                                 <div>
-                                    <div className="flex rounded  mt-1 bg-white py-1 items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
+                                    <div className="flex rounded  mt-1 bg-white py-ygap items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                                         <div class="flex">
 
                                             <div className=" flex  border-l-2 items-center h-8 border-green-500 bg-[#eef2f9] justify-start w-[9.1rem] max-sm:w-full  ">

@@ -79,15 +79,15 @@ const MaterialReceivedTableOut = (props) => {
         <>
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[100%] font-poppins  text-xs  p-1 bg-transparent font-bold sticky items-end z-10">
+                    <div className=" flex  w-[100%] font-poppins  text-xs  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end z-10">
                        
-                        <div className="text-[#00A2E8] truncate text-base w-[19.5rem] max-md:w-[19.5rem]">PO ID</div>
+                        <div className="text-[#00A2E8] truncate text-sm w-[18.1rem] max-md:w-[19.5rem]">PO ID</div>
                         <div className=" w-[15.52rem] max-md:w-[15.52rem] truncate">
                             {/* Created" */}
                             <DateRangeIcon className="!text-icon "/>{props.translatedMenuItems[21]}
                         </div>
-                        <div className=" w-[11.122rem] max-md:w-[11.122rem] max-md: truncate">       
-                        <FactoryIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[22]} 
+                        <div className=" w-[11.122rem] max-md:w-[11.122rem] truncate">       
+                        <FactoryIcon className='!text-icon  text-[#e4eb2f]'/> {props.translatedMenuItems[22]} 
                             {/* Supplier */}
 
                         </div>

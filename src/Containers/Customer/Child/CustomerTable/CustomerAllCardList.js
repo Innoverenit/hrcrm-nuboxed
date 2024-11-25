@@ -241,17 +241,17 @@ const [rowdata, setrowdata] = useState("");
   ) : (
         
     <div class="flex">
-       <div className=' flex rounded w-[15%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
+       <div className=' flex rounded w-[13%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
       <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[#eaedf1] mt-1  items-center shadow-[#a3abb980] ">
        <div className="w-[14vw]"  > Search team Member</div>
         </div>
-        <div class="flex flex-col rounded w-[92%]  p-1 h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+        <div class="flex flex-col rounded overflow-x-auto  w-[11vw] h-[78vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
         {props.crmAllData.map((item,index) =>{
            return (
-         <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
-                  text-[#444444] m-1 w-[11.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-        <div class="flex items-center flex-no-wrap h-16">
-          <div class=" flex basis-[15%] mr-[0.2rem] h-15" >
+         <div class=" flex flex-col rounded border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
+                  text-[#444444] mt-1 max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+        <div class="flex items-center  h-16">
+          <div class=" flex mr-[0.2rem] h-15" >
             <MultiAvatar
               // primaryTitle={item.opportunityName}
               // imageId={item.imageId}
@@ -260,7 +260,7 @@ const [rowdata, setrowdata] = useState("");
             />
           </div>
           
-          <div class="flex basis-[100%] overflow-hidden">
+          <div class="flex overflow-hidden">
           
           <div class="font-semibold text-[#337df4] cursor-pointer text-xs " 
              onClick={() => handleButtonClick(item.employeeId)} >
@@ -289,7 +289,7 @@ const [rowdata, setrowdata] = useState("");
 })}
         </div>
         </div>
-         <div className=' flex sticky w-[85%] z-auto'>
+         <div className=' flex sticky w-[87%] z-auto'>
          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky items-end z-10">
          <div class=" flex justify-between w-[82%] items-end font-poppins font-bold max-lg:text-[0.45rem] max-xl:text-[0.65rem] !text-lm ">
@@ -309,15 +309,7 @@ const [rowdata, setrowdata] = useState("");
             <FactoryIcon className="!text-icon mr-1 text-[#84a59d]"/> 
             {translatedMenuItems[2]}
              {/* sector */}
-
-            </div>
-            {/* <div className=" w-[7rem]   max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
-            <SourceIcon className="!text-icon mr-1 text-[#4b5043]"/> 
-            {translatedMenuItems[3]}
-           source
-
-            </div> */}
-           
+            </div>                
             <div className=" w-[6.9rem] truncate max-md:w-[6.4rem]   max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
             <LightbulbIcon className="!text-icon  text-[#84a59d]"/> 
             {translatedMenuItems[4]}
@@ -564,7 +556,7 @@ const [rowdata, setrowdata] = useState("");
                           )}
                         </Popconfirm>
                       </div>
-                       <div className=" flex  w-[5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                       <div className=" flex  w-[5.7rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                       <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
 <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>

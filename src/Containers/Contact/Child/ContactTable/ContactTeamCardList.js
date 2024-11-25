@@ -268,14 +268,14 @@ if (loading) {
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" max-sm:hidden flex justify-between w-[95%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent font-bold font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm  sticky  z-10">
         <div class=" flex justify-between w-[89%]  items-end ">
-        <div className=" w-[13.1rem] truncate text-[#00A2E8] text-sm max-md:w-[9.9rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+        <div className=" w-[22.1rem] truncate text-[#00A2E8] text-sm max-md:w-[9.9rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         <ContactsIcon className="!text-icon mr-1 "/>{translatedMenuItems[0]}</div>
         <div className=" w-[18.1rem] truncate max-md:w-[14.1rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
         <ApartmentIcon className="!text-icon "/> {translatedMenuItems[1]}</div>
-        <div className="  max-md:w-[10.1rem] truncate w-[14.1rem]  max-xl:w-[10.11rem]">
+        <div className="  max-md:w-[10.1rem] truncate w-[13.6rem]  max-xl:w-[10.11rem]">
         <i className="fab fa-artstation mr-1 text-[#b744b8]"></i>
             {translatedMenuItems[2]}</div>
-        <div className="   max-md:w-[9.1rem] truncate w-[12.1rem]  max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
+        <div className="   max-md:w-[9.1rem] truncate w-[11.8rem]  max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
         <ApartmentIcon className="!text-icon text-[#f0386b] "/>  {translatedMenuItems[3]}</div>
         <div className="  max-md:w-[9.2rem] truncate w-[11.2rem]  max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
         <LightbulbIcon className="!text-icon  text-[#84a59d]"/> {translatedMenuItems[4]}</div> 
@@ -290,7 +290,7 @@ if (loading) {
             </div>
             )}            
                <div className=" w-[6.1rem] max-md: w-[6.1rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">
-               <AccountCircleIcon className="!text-icon truncate mr-1 text-[#f28482]"/> {translatedMenuItems[7]} </div>
+               <AccountCircleIcon className="!text-icon truncate  text-[#f28482]"/> {translatedMenuItems[7]} </div>
       
         <div className="w-[4.2rem]"></div>
         </div>
