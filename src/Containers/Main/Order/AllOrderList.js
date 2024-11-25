@@ -223,19 +223,33 @@ const exportPDFAnnexure = async () => {
     <>
         <div className=' flex justify-end sticky  z-auto'>
        <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky items-end z-10 max-sm:hidden">
-      <div className="font-bold font-poppins text-xs md:w-[3rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
-      <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[7.31rem] ">
-      <DynamicFeedIcon className='!text-base mr-1 '/>{translatedMenuItems[1]} ID</div>
-          <div className="font-bold font-poppins text-xs md:w-[8.6rem]"><ApartmentIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[2]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[4.051rem] "> <ContactsIcon className='!text-base mr-1 text-[#e4eb2f]'/>{translatedMenuItems[3]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.018rem]">{translatedMenuItems[4]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.03rem]"><DateRangeIcon className="!text-icon "/>{translatedMenuItems[8]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.031rem]"><AccountCircleIcon className="!text-icon  text-[#f28482]"/>{translatedMenuItems[5]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.2rem]">  {translatedMenuItems[6]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[9.76rem]"><GroupsIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[7]}</div>
+      <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky items-end text-xs z-10 max-sm:hidden">
+      <div className=" w-[3rem]  max-md:w-[3rem] text-[white] flex justify-center bg-[red]">
+        {translatedMenuItems[0]} </div>
+      <div className=" w-[7.31rem] text-[#00A2E8] text-base max-md:w-[7.31rem] ">
+      <DynamicFeedIcon className='!text-base mr-1 '/>
+      {translatedMenuItems[1]} ID</div>
+          <div className="w-[8.6rem]  max-md:w-[8.6rem]">
+            <ApartmentIcon className='!text-base mr-1  text-[#e4eb2f]'/>
+            {translatedMenuItems[2]}</div>
+          <div className=" w-[4.051rem] max-md:w-[4.051rem] ">
+             <ContactsIcon className='!text-base mr-1 text-[#e4eb2f]'/>
+             {translatedMenuItems[3]}</div>
+          <div className=" w-[5.018rem]  max-md:w-[5.018rem]">
+            {translatedMenuItems[4]}</div>
+          <div className="w-[5.03rem]  max-md:w-[5.03rem]">
+            <DateRangeIcon className="!text-icon "/>
+            {translatedMenuItems[8]}</div>
+          <div className=" w-[5.031rem] max-md:w-[5.031rem]">
+            <AccountCircleIcon className="!text-icon  text-[#f28482]"/>
+            {translatedMenuItems[5]}</div>
+          <div className="w-[5.2rem]  max-md:w-[5.2rem]"> 
+             {translatedMenuItems[6]}</div>
+          <div className="w-[9.76rem]  max-md:w-[9.76rem]">
+            <GroupsIcon className='!text-base mr-1  text-[#e4eb2f]'/>
+            {translatedMenuItems[7]}</div>
           
-          <div className="md:w-24"></div>
+          <div className="w-[24rem] max-md:w-[24rem]"></div>
         </div>
         <InfiniteScroll
           dataLength={props.allHighCompleteOrder.length}
@@ -344,13 +358,13 @@ const exportPDFAnnexure = async () => {
 
                     </div>
                     <div class="flex">
-                    <div className=" flex  md:w-[6.32rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row items-center w-full max-sm:justify-between ">
+                    <div className=" flex  md:w-[6.32rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row items-center w-full max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
                         {item.noOfPhones}
                       </div>
                     </div>
 
-                    <div className=" flex text-xs md:w-[1.913rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] items-center max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex text-xs md:w-[1.913rem]  justify-center h-8 ml-gap  bg-[#eef2f9] items-center max-sm:flex-row w-full max-sm:justify-between ">
                     <span>{date}</span>
                   </div>
                   </div>
@@ -421,13 +435,13 @@ const exportPDFAnnexure = async () => {
                     </div>
                      </div>
                   
-                  <div className=" flex  md:w-[0.01rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row items-center w-full max-sm:justify-between ">
+                  <div className=" flex  md:w-[0.01rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row items-center w-full max-sm:justify-between ">
 
                       <div class=" text-xs  font-semibold  items-center font-poppins">
                         {item.noOfownerPhones}
                       </div>
                     </div>
-                    <div class="rounded-full text-xs items-center justify-center h-8 ml-gap  bg-[#eef2f9] bg-white items-center h-5 cursor-pointer w-8 justify-cente">
+                    <div class="rounded-full text-xs  justify-center  ml-gap  bg-[#eef2f9] items-center h-5 cursor-pointer w-8 justify-cente">
                       {item.orderStatus}
                     </div>
                     </div>
@@ -720,7 +734,7 @@ const exportPDFAnnexure = async () => {
                          {item.noOfownerPhones}
                        </div>
                      </div>
-                     <div class="rounded-full text-xs  items-center justify-center h-8  ml-gap bg-[#eef2f9] bg-white  h-5 cursor-pointer w-8 justify-cente">
+                     <div class="rounded-full text-xs  items-center justify-center   ml-gap bg-[#eef2f9]  h-5 cursor-pointer w-8 justify-cente">
                        {item.orderStatus}
                      </div>
                      </div>

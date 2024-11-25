@@ -204,18 +204,27 @@ const exportPDFAnnexure = async () => {
             <div className=' flex justify-end sticky  z-auto'>
             <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
               
-                <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
-                <div className="font-bold font-poppins text-xs md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
-                        <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
-          <div className="font-bold font-poppins text-xs md:w-[8.6rem]">{translatedMenuItems[2]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.018rem]">{translatedMenuItems[4]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.031rem]">{translatedMenuItems[8]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.2rem]">{translatedMenuItems[6]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[5.06rem]">{translatedMenuItems[7]}</div>
-          <div className="font-bold font-poppins text-xs md:w-[9.73rem]">{translatedMenuItems[5]}</div>
-          <div className="font-bold font-poppins text-xsmd:w-24"></div>
-        </div>
+                <div className=" flex justify-between w-full p-1 bg-transparent  sticky font-bold font-poppins z-10 max-sm:hidden">
+                        <div className="w-[3.54rem] max-md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
+                          {translatedMenuItems[0]} </div>
+                        <div className=" text-[#00A2E8] text-base  md:w-[10.31rem] ml-2">
+                          {translatedMenuItems[1]} ID</div>
+                        <div className=" w-[8.6rem]] text-xs  max-md:w-[8.6rem]">
+                          {translatedMenuItems[2]}</div>
+                        <div className=" w-[4.051rem]] text-xs  max-md:w-[4.051rem] ">
+                          {translatedMenuItems[3]}</div>
+                        <div className=" w-[5.018rem] text-xs  max-md:w-[5.018rem]">
+                          {translatedMenuItems[4]}</div>
+                        <div className=" w-[5.031rem] text-xs  max-md:w-[5.031rem]">
+                          {translatedMenuItems[8]}</div>
+                        <div className=" w-[5.2rem] text-xs  max-md:w-[5.2rem]">
+                          {translatedMenuItems[6]}</div>
+                        <div className=" w-[5.06rem] text-xs  max-md:w-[5.06rem]">
+                          {translatedMenuItems[7]}</div>
+                        <div className=" w-[9.73rem] text-xs  max-md:w-[9.73rem]">
+                          {translatedMenuItems[5]}</div>
+                        <div className=" w-[24rem] text-xs  max-md:w-[24rem]"></div>
+                      </div>
                     <InfiniteScroll
                         dataLength={props.deletedHighOrder.length}
                         next={handleLoadMore}
@@ -293,7 +302,7 @@ const exportPDFAnnexure = async () => {
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[3.23rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[3.23rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -317,7 +326,7 @@ const exportPDFAnnexure = async () => {
 
 
                   </div>
-                  <div class="flex flex-row items-center md:w-[5.03rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row  md:w-[5.03rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                   <div className=" flex text-xs  md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <span>{date}</span>
                   </div>
@@ -335,7 +344,7 @@ const exportPDFAnnexure = async () => {
 
                   </div>
                   <div class=" flex">
-                    <div class="flex flex-row items-center md:w-[3.02rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[3.02rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.supervisorUserName}
@@ -349,7 +358,7 @@ const exportPDFAnnexure = async () => {
 
 
                     </div>
-                    <div class="flex flex-row items-center md:w-[6.02rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row  md:w-[6.02rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         {show && (particularRowData.orderId === item.orderId) ?
                           <div class=" flex justify-between">
@@ -398,7 +407,7 @@ const exportPDFAnnexure = async () => {
                         {item.noOfownerPhones}
                       </div>
                     </div>
-                    <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
+                    <div class="rounded-full text-xs cursor-pointer w-8 items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
                       {item.orderStatus}
                     </div>
                     <div className=" flex   max-sm:flex-row  max-sm:justify-between  ">
@@ -577,7 +586,7 @@ const exportPDFAnnexure = async () => {
                       </div>
                     </div>
 
-                    <div class="flex flex-row items-center md:w-[3.23rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[3.23rem]   justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -601,7 +610,7 @@ const exportPDFAnnexure = async () => {
 
 
                   </div>
-                  <div class="flex flex-row items-center md:w-[5.03rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row items-center md:w-[5.03rem]   justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                   <div className=" flex text-xs  md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <span>{date}</span>
                   </div>
@@ -620,7 +629,7 @@ const exportPDFAnnexure = async () => {
 
                   </div>
                   <div class=" flex">
-                    <div class="flex flex-row items-center md:w-[3.02rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[3.02rem]  justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.supervisorUserName}
@@ -634,7 +643,7 @@ const exportPDFAnnexure = async () => {
 
 
                     </div>
-                    <div class="flex flex-row items-center md:w-[6.02rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex flex-row items-center md:w-[6.02rem]   justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row w-full max-sm:justify-between">
                       <div>
                         {show && (particularRowData.orderId === item.orderId) ?
                           <div class=" flex justify-between">
@@ -683,7 +692,7 @@ const exportPDFAnnexure = async () => {
                         {item.noOfownerPhones}
                       </div>
                     </div>
-                    <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8  items-center justify-center ml-gap bg-[#eef2f9] h-8 justify-cente">
+                    <div class="rounded-full text-xs cursor-pointer w-8  items-center justify-center ml-gap bg-[#eef2f9] h-8 justify-cente">
                       {item.orderStatus}
                     </div>
                     <div class="w-6  items-center justify-center  bg-[#eef2f9] h-8">
