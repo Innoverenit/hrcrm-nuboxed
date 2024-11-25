@@ -203,25 +203,25 @@ function SpareNewList(props) {
         value={currentData}
         />
       </div>
-                    <div className=" flex max-sm:hidden w-[100%] p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
-                        <div className="w-[3.5rem]"></div>
-                        <div className=" w-[18.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/>  Imei
+                    <div className=" flex max-sm:hidden w-[100%] p-1 bg-transparent font-bold font-poppins !text-lm sticky  z-10">
+                        <div className="w-[3.5rem] max-md:w-[3.5rem]"></div>
+                        <div className=" w-[18.92rem]  text-sm max-md:w-[18.92rem]">
+                        Imei
                           </div>
-                          <div className="w-[10.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">OrderID</div>
+                          <div className="w-[10.12rem] max-md:w-[16.12rem]"> <DynamicFeedIcon className='!text-icon mr-1  text-[#3F37C9]'/> OrderID</div>
                        
-                        <div className=" w-[16.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        <DateRangeIcon className='!text-icon  '  /> Submitted
+                        <div className=" w-[16.12rem] max-md:w-[14.1rem]">
+                        <DateRangeIcon className='!text-icon   text-[#92dce5]'  /> Submitted
                          {/* Due Date/> */}
                         </div>               
-                        <div className=" w-[14.1rem] ">
-                        <ContactsIcon className='!text-base mr-1  text-[#e4eb2f]'/>Approved
+                        <div className=" w-[14.1rem] max-md:w-[14.1rem]">
+                        <ContactsIcon className='!text-icon mr-1  text-[#e4eb2f]'/>Approved
                         {/* (Date&Multiavtar) */}
                         </div>
-                        <div className="w-[10.8rem]">
+                        <div className="w-[10.8rem] max-md:w-[10.8rem]">
                         <UpdateIcon className='!text-icon text-[#ff66b3]' />  Spares
                           </div>
-                        <div className="w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
+                        <div className="w-[10.1rem] max-md:w-[10.8rem]"></div>
                     </div>
                     <div class="">
                         <InfiniteScroll
@@ -251,7 +251,7 @@ function SpareNewList(props) {
                     </div>
                                             <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[15.01rem] max-xl:w-[17.8rem] max-lg:w-[14rem] max-sm:w-auto  ">
                                                    
-                                                        <span class="underline text-xs text-[#1890ff] font-bold cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+                                                        <span class="underline text-xs text-[#1890ff] font-bold cursor-pointer w-[7rem] flex  max-sm:text-xs"
                                                             onClick={() => {
                                                                 handleRowData(item);
                                                                 props.handleRepairPhone(true)
@@ -273,14 +273,14 @@ function SpareNewList(props) {
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                               
                                             <div className=" flex w-[14rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[15rem] max-lg:w-[9rem]  max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs  font-poppins  max-sm:text-xs">
                                                         {item.repairDueDate === null ? "" : dayjs(item.repairDueDate).format("DD-MM-YYYY")}
                                                     </div>
 
                                                 </div>
                                                 
                                                 <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[18.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs  font-poppins  max-sm:text-xs">
                                                         {item.repairInProgressPhoneCount} {item.repairStatus}
                                                     </div>
 
@@ -289,12 +289,12 @@ function SpareNewList(props) {
                                                 
 
                                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs  font-poppins  max-sm:text-xs">
                                                         {item.reason}
                                                     </div>
                                                 </div>
                                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <div class=" text-xs  font-poppins  max-sm:text-xs">
                                                        < BuildIcon onClick={() => {
                               setSpareOpen(true);
                               handleRowData(item);
@@ -304,7 +304,7 @@ function SpareNewList(props) {
                                                
                                             </div>
                                             <div className=" flex  items-center w-wk h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row max-sm:w-auto max-sm:justify-between justify-end ">
-                                                <div class="  text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-2xl">
+                                                <div class="  text-green-600 font-poppins text-center  max-sm:text-2xl">
                                                     <Tooltip title={translatedMenuItems[6]}>
                                                         <NoteAltIcon
                                                             className="!text-icon cursor-pointer  max-sm:!text-2xl"
