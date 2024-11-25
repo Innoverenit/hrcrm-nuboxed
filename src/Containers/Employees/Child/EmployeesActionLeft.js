@@ -22,12 +22,7 @@ const EmployeesActionLeft = (props) => {
   const [isRecording, setIsRecording] = useState(false);
   const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
-  const {
-    transcript,
-    listening,
-    resetTranscript,
-    browserSupportsSpeechRecognition
-  } = useSpeechRecognition();
+ 
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -57,30 +52,36 @@ const EmployeesActionLeft = (props) => {
 
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
- 
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition
+  } = useSpeechRecognition();
+  
+  useEffect(() => {
+    // props.getCustomerRecords();
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      setCurrentData(transcript);
+    }
+    }, [ transcript]);
+
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
     if (searchOnEnter && e.target.value.trim() === "") {  //Code for Search
-      //setPage(pageNo + 1);
+      // setPage(pageNo + 1);
       if (props.viewType === "tile") {
         props.getEmployeelist("cretiondate","active");
-      }else if (props.viewType === "table") {
+      } else if (props.viewType === "table") {
         props.getEmployeelist("cretiondate","all");
       }
       props.ClearReducerDataOfEmployee()
       setSearchOnEnter(false);
     }
   };
-  // const handleChange = (e) => {
-  //   setCurrentData(e.target.value);
 
-  //   if (searchOnEnter && e.target.value.trim() === "") {
-  //     props.getEmployeelist("cretiondate","all");
-  //     props.ClearReducerDataOfEmployee()
-  //     setSearchOnEnter(false);
-  //   }
-  // };
   const handleSearch = () => {
     if (currentData.trim() !== "") {
       // Perform the search
@@ -93,6 +94,7 @@ const EmployeesActionLeft = (props) => {
     } else {
       console.error("Input is empty. Please provide a value.");
     }
+    props.ClearReducerDataOfEmployee()
   };
   const handleStartListening = () => {
     setStartTime(Date.now());
@@ -219,7 +221,8 @@ const EmployeesActionLeft = (props) => {
      placeholder={translatedMenuItems[2]}
       width={"100%"}
             suffix={suffix}
-            onPressEnter={handleSearch}  
+             onBlur={handleSearch}  
+             onPressEnter={handleSearch}
             onChange={handleChange}
              value={currentData}
           />

@@ -862,6 +862,11 @@ export const ClearReducerDataOfMaterial = () => (dispatch) => {
   });
 };
 
+export const clearPriceFactor = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_REDUCER_FACTOR,
+  });
+};
 export const handleMaterialInventory = (modalProps) => (dispatch)=> {
   dispatch({
     type:types.HANDLE_MATERIAL_INVENTORY,

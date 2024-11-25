@@ -15,6 +15,8 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
 import Swal from 'sweetalert2';
+import EmptyPage from "../../EmptyPage";
+import InvouiceSTable from "./InvouiceSTable";
 
 const { Option } = Select;
 
@@ -29,6 +31,7 @@ function InvoiceMultipleDrawerCard(props) {
     const [trackId, settrackId] = useState('');
     const [editedFields, setEditedFields] = useState({});
     const [editsuppliesId, setEditsuppliesId] = useState(null);
+    const [plusOpen, setPlusOpen]=useState(false);
 
     useEffect(() => {
         const fetchMenuTranslations = async () => {
@@ -139,7 +142,9 @@ function InvoiceMultipleDrawerCard(props) {
         setShowIcon(false)
         setCurrency("")
     }
-
+    function handleClose() {
+      setPlusOpen(false);
+  }
     const [hasMore, setHasMore] = useState(true);
 
     if (loading) {
@@ -174,25 +179,13 @@ function InvoiceMultipleDrawerCard(props) {
                                         <>
                                             <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
-                                                    <div className=" flex font-medium justify-between  w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins flex items-center">
-                                                           {/* {item.distributorId} */}
-                                                           
-
-                                                        </div>
-                                                        {/* {date === currentdate ? (
-                                                                <div class="text-[0.65rem] font-bold text-[tomato] mr-4">
-                                                                    New
-                                                                </div>
-                                                            ) : null} */}
-                                                    </div>
                                                     <div className=" flex  w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
                                                         <span
                                                                     class="underline cursor-pointer text-[#1890ff]"
                                                                     onClick={() => {
-                                                                       // handleRowData(item);
-                                                                        props.handleInvoiceModal(true);
+                                                                        handleRowData(item);
+                                                                        setPlusOpen(true);
                                                                     }}
                                                                 > 
                                                                 {item.newOrderNo}
@@ -201,41 +194,36 @@ function InvoiceMultipleDrawerCard(props) {
                                                     </div>
                                                     <div className=" flex   w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                         {item.category}
+                                                         {item.totalValue}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-
-                                                            {item.brand}
-                                                        </div>
-                                                    </div>
-                                                    <div className=" flex   w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-
-                                                            {/* {item.model} */}
-                                                        </div>
-                                                    </div>
+                                                   
                                                     
                                                 </div>
                                             </div>
+                                            {plusOpen && item.procureInvoiceId === particularRowData.procureInvoiceId && 
+                                            <InvouiceSTable
+                          particularRowData={particularRowData}
+                          selectedLanguage={props.selectedLanguage}
+                            translateText={props.translateText} />
+                                            }
                                          </>
                                    )
                                 })}
                             </>
                                 : !data.length
-                                    && !props.fetchingOrderInvoice ? <NodataFoundPage /> : null}  
+                                    && !props.fetchingOrderInvoice ? <EmptyPage /> : null}  
                         {/* </InfiniteScroll> */}
                     </div>
                 </div>
             </div>
-            <InvoiceModal
+            {/* <InvoiceModal
                     particularRowData={particularRowData}
                     handleInvoiceModal={props.handleInvoiceModal}
                     invoiceO={props.invoiceO}
                     selectedLanguage={props.selectedLanguage}
                             translateText={props.translateText}
-                />  
+                />   */}
         </>
     )
 }

@@ -1,13 +1,14 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
   getCategory,
 } from "../../Settings/Category/CategoryList/CategoryListAction";
 import axios from "axios";
+import { useDispatch } from 'react-redux';
 import { Button, Input, Select,Switch, Popconfirm,message } from "antd";
-import { getMaterialCurrency, createMaterialCurrency,materialPricetype,getPriceFactor
+import { getMaterialCurrency, createMaterialCurrency,materialPricetype,getPriceFactor,clearPriceFactor
  } from "./SuppliesAction";
 import {getSaleCurrency} from "../../Auth/AuthAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -16,6 +17,7 @@ import EmptyPage from "../EmptyPage";
 import { base_url2 } from "../../../Config/Auth";
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import MergeTypeIcon from '@mui/icons-material/MergeType';
+import { BundleLoader } from "../../../Components/Placeholder";
 
 const { Option } = Select;
 
@@ -31,21 +33,35 @@ function PriceAddCard(props) {
   const [errors, setErrors] = useState({});
   const [isBestSeller, setIsBestSeller] = useState(false); 
   const [rowToggleStates, setRowToggleStates] = useState({});
-  const [inputValue, setInputValue] = useState(props.packingNo || '');
-  const [inputValue2, setInputValue2] = useState(props.packingNo || '');
-  const [inputValue3, setInputValue3] = useState(props.packingNo || '');
+ 
+  const dispatch = useDispatch();
+  const [inputValue, setInputValue] = useState(props.priceFactorData?.p1 || "");
+const [inputValue2, setInputValue2] = useState(props.priceFactorData?.p2 || "");
+const [inputValue3, setInputValue3] = useState(props.priceFactorData?.p3 || "");
+useEffect(() => {
+  if (props.priceFactorData) {
+    if (props.priceFactorData.p1) {
+      setInputValue(props.priceFactorData.p1);
+    }
+    if (props.priceFactorData.p2) {
+      setInputValue2(props.priceFactorData.p2);
+    }
+    if (props.priceFactorData.p3) {
+      setInputValue3(props.priceFactorData.p3);
+    }
+  }
+}, [props.priceFactorData]);
   useEffect(() => {
     props.getMaterialCurrency(props.particularDiscountData.suppliesId);
     props.getSaleCurrency()
+    props.getCategory(props.orgId); 
+    props.getPriceFactor(props.particularDiscountData.suppliesId)
+    props.clearPriceFactor()
   }, []);
 
-  useEffect(() => {
-    props.getCategory(props.orgId); 
-   props.getPriceFactor(props.particularDiscountData.suppliesId)
-}, [])
 
- 
-  
+
+
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
@@ -81,6 +97,7 @@ function PriceAddCard(props) {
     return () => {
       window.removeEventListener('resize', handleResize);
     };
+
   }, []);
 
   useEffect(() => {
@@ -102,12 +119,10 @@ function PriceAddCard(props) {
   const sendInputPutRequest =  async (item) => {
     
     try {
-        const response = await axios.put(`${base_url2}/supplies/suppliesFactor`,item, {  
-          headers: {
-              Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
-          },
+        const response = await axios.post(`${base_url2}/supplies/suppliesFactor`,item, {  
+        
        });
-      
+       dispatch(getPriceFactor(props.particularDiscountData.suppliesId));
        if (response.data === 'Successfully !!!!') {
       } else {
         console.log(response.data);
@@ -117,10 +132,12 @@ function PriceAddCard(props) {
       }
   };
 
-  const handleInputBlur = (e) => {
+  const handleInputBlur = (p2,p3,e) => {
     const value = e.target.value === '' ? '0' : e.target.value; 
     setInputValue(value);
     sendInputPutRequest({ p1: value,
+      p2:p2,
+      p3:p3,
 userId:props.userId,
 orgId:props.orgId,
 suppliesId:props.particularDiscountData.suppliesId
@@ -128,19 +145,23 @@ suppliesId:props.particularDiscountData.suppliesId
      });
   };
 
-  const handleInputBlur2 = (e) => {
+  const handleInputBlur2 = (p1,p3,e) => {
     const value = e.target.value === '' ? '0' : e.target.value; 
     setInputValue2(value);
     sendInputPutRequest({ p2: value,
+      p1:p1,
+      p3:p3,
 userId:props.userId,
 orgId:props.orgId,
 suppliesId:props.particularDiscountData.suppliesId
      });
   };
-  const handleInputBlur3 = (e) => {
+  const handleInputBlur3 = (p1,p2,e) => {
     const value = e.target.value === '' ? '0' : e.target.value; 
     setInputValue3(value);
     sendInputPutRequest({ p3: value,
+      p1:p1,
+      p2:p2,
 userId:props.userId,
 orgId:props.orgId,
 suppliesId:props.particularDiscountData.suppliesId
@@ -249,7 +270,10 @@ suppliesId:props.particularDiscountData.suppliesId
       message.info("Toggle action cancelled");
     }
   };
-  
+  console.log(inputValue)
+  if (props.fetchingPriceFactor) {
+    return <div><BundleLoader/></div>;
+  }
   return (
     <div>
       <div class="flex mb-8 flex-start ">
@@ -417,7 +441,7 @@ suppliesId:props.particularDiscountData.suppliesId
         />
       </Popconfirm>
                   </div> */}
-                   <div className="flex items-center justify-start h-8 ml-gap  bg-[#eef2f9] ml-4">
+                   <div className="flex items-center justify-start h-8 ml-gap  bg-[#eef2f9] ">
                    <Popconfirm
   title="Are you sure to change the toggle state?"
   onConfirm={() => handleToggleChange(item.key, true)}
@@ -483,12 +507,14 @@ suppliesId:props.particularDiscountData.suppliesId
 
         </div>
       </div>
+      <Suspense fallback={<BundleLoader/>}>
 <div>
   <div className="flex justify-between mt-2">
   <div class="text-base font-semibold w-40 ">P-1</div>
   <div class="text-base font-semibold w-40 ">P-2</div>
   <div class="text-base font-semibold w-40 ">P-3</div>
   </div>
+ 
   <div className="flex justify-between mt-1">
 <div className="w-36" >
                                            <input
@@ -496,7 +522,7 @@ suppliesId:props.particularDiscountData.suppliesId
             type="text"
             className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             defaultValue={inputValue}
-            onBlur={(e) => handleInputBlur(e)}
+            onBlur={(e) => handleInputBlur(props.priceFactorData.p2,props.priceFactorData.p3,e)}
             onChange={(e) => setInputValue(e.target.value)}
            placeholder="Enter number of P-1"
           />
@@ -507,7 +533,7 @@ suppliesId:props.particularDiscountData.suppliesId
             type="text"
             className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             defaultValue={inputValue2}
-            onBlur={(e) => handleInputBlur2(e)}
+            onBlur={(e) => handleInputBlur2(props.priceFactorData.p1,props.priceFactorData.p3,e)}
             onChange={(e) => setInputValue2(e.target.value)}
            placeholder="Enter number of P-2"
           />
@@ -518,13 +544,15 @@ suppliesId:props.particularDiscountData.suppliesId
             type="text"
             className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             defaultValue={inputValue3}
-            onBlur={(e) => handleInputBlur3(e)}
+            onBlur={(e) => handleInputBlur3(props.priceFactorData.p1,props.priceFactorData.p2,e)}
             onChange={(e) => setInputValue3(e.target.value)}
            placeholder="Enter number of P-3"
           />
           </div> 
           </div>
+               
 </div>
+</Suspense>
     </div>
   );
 
@@ -542,7 +570,8 @@ const mapStateToProps = ({ product,categoryList, auth,supplies }) => ({
   fetchingSaleCurrency:auth.fetchingSaleCurrency,
   saleCurrencies:auth.saleCurrencies,
   orgId: auth.userDetails.organizationId,
-  priceFactorData:supplies.priceFactorData
+  priceFactorData:supplies.priceFactorData,
+  fetchingPriceFactor:supplies.fetchingPriceFactor
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -555,7 +584,8 @@ const mapDispatchToProps = (dispatch) =>
     //   handleOfferModal,
     //   getCurrency,
       getSaleCurrency,
-      getPriceFactor
+      getPriceFactor,
+      clearPriceFactor
      
     //   removeProductPrice
     },
