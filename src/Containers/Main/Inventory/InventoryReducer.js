@@ -59,6 +59,7 @@ fetchingCompleteDispatchSearchError: false,
 
   fetchingScanReceivedData:false,
   fetchingScanReceivedDataError:false,
+  receivedScanData:{},
 
   fetchingQualityManufactureData:false,
   fetchingQualityManufactureDataError:false,
@@ -621,7 +622,7 @@ export const inventoryReducer = (state = initialState, action) => {
           ...state,
           fetchingScanReceivedData: false,
           addReceivedScanModal:false,
-          //subList: action.payload
+          receivedScanData: action.payload
         };
       case types.ADD_SCAN_RECEIVED_DATA_FAILURE:
         return {
