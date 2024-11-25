@@ -44,8 +44,25 @@ console.log(selectedLocation)
    
     return (
         <>
+         <div className=" flex  md:w-[13.8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs  font-poppins">
+                                        <Select
+                    style={{ width: "12rem" }}
+                    onChange={handleLocationChange}
+                    placeholder="Select Location"
+                  >
+                    {props.inventory.map((shipper) => (
+                      <Option key={shipper.locationDetailsId} value={shipper.locationDetailsId}>
+                        {shipper.locationName}
+                      </Option>
+                    ))}
+                  </Select>
+                                            </div>
+                                       
+                                        </div>
  {selectedLocation ?
  <>
+ 
   <div className=' flex sticky  z-auto h-[79vh]'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm items-end sticky z-10">
@@ -83,15 +100,20 @@ console.log(selectedLocation)
 
                         </div>
                         <div className=" w-[9.2rem]" >       
-                    Zone
+                 Unit Price
 
                         </div>
                         <div className=" w-[13.2rem]">       
-                    Aisle
+                    Batch No
+
+                        </div>
+            
+                        <div className=" w-[7.12rem]">       
+                    Country
 
                         </div>
                         <div className=" w-[7.12rem]">       
-                    Rack
+                  Total Value
 
                         </div>
                    
@@ -195,28 +217,53 @@ console.log(selectedLocation)
                    Best Use Date
 
                         </div>
-
-                        <div className=" w-[5.12rem]" >       
-                        {props.translatedMenuItems[26]} 
+                        
+                        <div className=" w-[9.2rem]" >       
+                 Unit 
 
                         </div>
+
                         <div className=" w-[9.2rem]" >       
-                        {props.translatedMenuItems[32]} 
+                 Unit Price
 
                         </div>
                         <div className=" w-[13.2rem]">       
-                    Aisle
+                    Batch No
+
+                        </div>
+            
+                        <div className=" w-[7.12rem]">       
+                    Country
 
                         </div>
                         <div className=" w-[7.12rem]">       
-                        {props.translatedMenuItems[33]} 
+                  Total Value
 
-                        </div>
+                        </div> 
+                        
+                     
+                       
                    
 
                         <div className=" w-[3.22rem]"></div>
                     </div>
-                    {/* <InfiniteScroll
+                    {/*   <div className=" w-[9.2rem]" >       
+                 Unit Price
+
+                        </div>
+                        <div className=" w-[13.2rem]">       
+                    Batch No
+
+                        </div>
+            
+                        <div className=" w-[7.12rem]">       
+                    Country
+
+                        </div>
+                        <div className=" w-[7.12rem]">       
+                  Total Value
+
+                        </div> <InfiniteScroll
                         dataLength={props.materialReceiveData.length}
                         next={handleLoadMore}
                         hasMore={hasMore}
@@ -274,22 +321,7 @@ console.log(selectedLocation)
                                             </div>
                                           
                                         </div>
-                                        <div className=" flex  md:w-[3.8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
-                                        <div class=" text-xs  font-poppins">
-                                        <Select
-                    style={{ width: "12rem" }}
-                    onChange={handleLocationChange}
-                    placeholder="Select Location"
-                  >
-                    {props.inventory.map((shipper) => (
-                      <Option key={shipper.locationDetailsId} value={shipper.locationDetailsId}>
-                        {shipper.locationName}
-                      </Option>
-                    ))}
-                  </Select>
-                                            </div>
                                        
-                                        </div>
 
                                                               
                                     </div>

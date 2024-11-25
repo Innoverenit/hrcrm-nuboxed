@@ -24,6 +24,11 @@ import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 const { Option } = Select;
 
 const ReceivedDetailCardOut = (props) => {
+    const [receivedData, setReceivedData] = useState(props.receivedDetailData);
+    const [existGrn, setExistGrn] = useState(false)
+    const [formData, setFormData] = useState({ unitReceived: "", unitDamaged: "", remark: "", bestBeforeUse:"",
+        batchNo:"",
+         });
     useEffect(() => {
         props.getMaterialReceivedDetailData(props.row.poSupplierDetailsId)
         props.getGrnNoByPoId(props.row.poSupplierDetailsId)
@@ -37,11 +42,20 @@ const ReceivedDetailCardOut = (props) => {
           setReceivedData(props.receivedDetailData);
         }
       }, [props.receivedDetailData]);
-      const [receivedData, setReceivedData] = useState(props.receivedDetailData);
-    const [existGrn, setExistGrn] = useState(false)
-    const [formData, setFormData] = useState({ unitReceived: "", unitDamaged: "", remark: "", bestBeforeUse:"",
-        batchNo:"",
-         });
+
+      useEffect(() => {
+        if (props.receivedScanData) {
+          updateRow(props.receivedScanData);
+        }
+      }, [props.receivedScanData]);
+    
+      const updateRow = (newData) => {
+        const updatedList = receivedData.map((list) =>
+          list.poSupplierSuppliesId === newData.poSupplierSuppliesId ? { ...list, ...newData } : list
+        );
+        setReceivedData(updatedList);
+      };
+    
     const handleChange = () => {
         setExistGrn(!existGrn)
     }
@@ -485,6 +499,7 @@ console.log(formData)
 const mapStateToProps = ({ inventory, auth }) => ({
     receivedDetailData: inventory.receivedDetailData,
     userId: auth.userDetails.userId,
+    receivedScanData:inventory.receivedScanData,
     grnNoByPo: inventory.grnNoByPo,
     addReceivedScanModal:inventory.addReceivedScanModal,
     fetchingMaterialReceiveDetailData: inventory.fetchingMaterialReceiveDetailData
