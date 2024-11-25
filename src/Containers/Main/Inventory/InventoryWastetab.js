@@ -186,7 +186,7 @@ console.log(selectedLocation)
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm items-end sticky z-10">
                         <div className=""></div>
-                        <div className="text-[#00A2E8] text-base w-[19.5rem]">PO ID</div>
+                        <div className="text-[#00A2E8] text-sm  w-[19.5rem] truncate max-md:w-[19.5rem]">PO ID</div>
                         <div className=" w-[11.52rem]" >
 
                          Item 
@@ -194,47 +194,52 @@ console.log(selectedLocation)
              
                        
                
-                        <div className=" w-[12.122rem]" >       
-                        <FactoryIcon className='!text-base  text-[#e4eb2f]' />  {props.translatedMenuItems[36]} {props.translatedMenuItems[0]}  
+                        <div className=" w-[12.122rem] truncate max-md:" >       
+                        <FactoryIcon className='!text-icon text-[#e4eb2f]' />  {props.translatedMenuItems[36]} {props.translatedMenuItems[0]}  
                         </div>
 
-                        <div className=" w-[4.122rem]">       
+                        <div className=" w-[4.122rem] truncate max-md:w-[4.122rem]">       
                       HSN
                         </div>
 
-                        <div className=" w-[8.12rem]">       
-                        <CategoryIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[36]} Id
+                        <div className=" w-[8.12rem] truncate max-md:w-[8.12rem]">       
+                        <CategoryIcon className='!text-icon `  text-[#e4eb2f]'/> {props.translatedMenuItems[36]} Id
 
                         </div>    
-                        <div className=" w-[5.12rem]" >       
+                        <div className=" w-[5.12rem] truncate max-md:w-[5.12rem]" >       
                         {props.translatedMenuItems[1]} 
 
 
                         </div>
-                        <div className=" w-[8.12rem]" >       
+                        <div className=" w-[8.12rem] truncate max-md: w-[8.12rem]" >       
                    Best Use Date
 
                         </div>
-
-                        <div className=" w-[5.12rem]" >       
-                        {props.translatedMenuItems[26]} 
-
-                        </div>
-                        <div className=" w-[9.2rem]" >       
-                        {props.translatedMenuItems[32]} 
+                        
+                        <div className=" w-[9.2rem] truncate max-md:w-[9.2rem]" >       
+                 Unit 
 
                         </div>
-                        <div className=" w-[13.2rem]">       
-                    Aisle
+
+                        <div className=" w-[9.2rem] truncate max-md:w-[9.2rem]" >       
+                 Unit Price
 
                         </div>
-                        <div className=" w-[7.12rem]">       
-                        {props.translatedMenuItems[33]} 
+                        <div className=" w-[13.2rem] truncate max-md:w-[13.2rem]">       
+                    Batch No
 
                         </div>
-                   
+            
+                        <div className=" w-[7.12rem] truncate max-md:w-[7.12rem]">       
+                    Country
 
-                        <div className=" w-[3.22rem]"></div>
+                        </div>
+                        <div className=" w-[7.12rem] truncate max-md:w-[7.12rem]">       
+                  Total Value
+
+                        </div> 
+        
+                        <div className=" w-[3.22rem] truncate max-md:w-[3.22rem]"></div>
                     </div>
                     {/* <InfiniteScroll
                         dataLength={props.materialReceiveData.length}
