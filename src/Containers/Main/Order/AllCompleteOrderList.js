@@ -246,17 +246,23 @@ const exportPDFAnnexure = async () => {
                         <div className=" text-[#00A2E8] text-base max-md:w-[8.31rem] ml-2">
                         <DynamicFeedIcon className='!text-base mr-1 '/>{translatedMenuItems[1]}  ID</div>
                       <div className=" w-[9.6rem]  max-md:w-[9.6rem]">
-                        <ApartmentIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[2]}</div>
+                        <ApartmentIcon className='!text-base    text-[#43e035]'/>{translatedMenuItems[2]}</div>
                       <div className=" w-[5.051rem]  max-md:w-[5.051rem] ">
-                        <ContactsIcon className='!text-base  text-[#e4eb2f]'/> 
+                        <ContactsIcon className='!text-base mr-1 text-[#9737c4]'/> 
                          {translatedMenuItems[3]}</div>
                       <div className="  w-[5.018rem] max-md:w-[5.018rem]">
                         {translatedMenuItems[4]}</div>
                       <div className="  w-[5.031rem] max-md:w-[5.031rem]">
-                        <DateRangeIcon className="!text-icon "/>{translatedMenuItems[8]}</div>
-                      <div className="  w-[3.2rem] max-md:w-[3.2rem]">{translatedMenuItems[6]}</div>
-                      <div className="  w-[5.06rem] max-md:w-[5.06rem]"><GroupsIcon className='!text-base mr-1 text-[#e4eb2f]'/>{translatedMenuItems[7]}</div>
-                      <div className="  w-[12.73rem] max-md:w-[12.73rem]">    <AccountCircleIcon className="!text-icon  text-[#f28482]"/> {translatedMenuItems[5]}</div>
+                        <DateRangeIcon className="!text-icon  mr-1"/>
+                        {translatedMenuItems[8]}</div>
+                      <div className="  w-[3.2rem] max-md:w-[3.2rem]">
+                        {translatedMenuItems[6]}</div>
+                      <div className="  w-[5.06rem] max-md:w-[5.06rem]">
+                        <GroupsIcon className='!text-base mr-1 text-[#e93aa3]'/>
+                        {translatedMenuItems[7]}</div>
+                      <div className="  w-[12.73rem] max-md:w-[12.73rem]">   
+                         <AccountCircleIcon className="!text-icon text-[#dd5738]"/>
+                          {translatedMenuItems[5]}</div>
          
         </div>
                     <InfiniteScroll
@@ -528,21 +534,24 @@ const exportPDFAnnexure = async () => {
             <div className=' flex  sticky  z-auto'>
             <div class="rounded  m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
               
-            <div className=" flex justify-between w-[94%] p-1 bg-transparent font-bold items-end sticky  z-10 max-sm:hidden">
+            <div className=" flex justify-between w-[94%] p-1 bg-transparent text-xs items-end sticky font-bold font-poppins  z-10 max-sm:hidden">
                   
-                  <div className="font-bold font-poppins text-xs w-[3.54rem] max-md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">{translatedMenuItems[9]} </div>
-                          <div className="font-bold font-poppins text-[#00A2E8] w-[8.31rem] text-base max-md:w-[8.31rem] ml-2">
+                  <div className=" text-xs w-[3.54rem] max-md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">
+                    {translatedMenuItems[9]} </div>
+                          <div className=" text-[#00A2E8] w-[8.31rem] text-base max-md:w-[8.31rem] ml-2">
                           <DynamicFeedIcon className='!text-base mr-1 '/>{translatedMenuItems[1]} ID</div>
-            <div className="font-bold font-poppins text-xs w-[9.6rem] max-md:w-[9.6rem]">
-            <ApartmentIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[2]}</div>
-            <div className="font-bold font-poppins text-xs w-[5.051rem] max-md:w-[5.051rem] ">
-            <ContactsIcon className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[3]}</div>
-            <div className="font-bold font-poppins text-xs w-[5.018rem] max-md:w-[5.018rem]">{translatedMenuItems[4]}</div>
-            <div className="font-bold font-poppins text-xs w-[5.031rem] max-md:w-[5.031rem]">
-            <DateRangeIcon className="!text-icon "/>{translatedMenuItems[8]}</div>
-            <div className="font-bold font-poppins text-xs w-[3.2rem] max-md:w-[3.2rem]">{translatedMenuItems[6]}</div>
-            <div className="font-bold font-poppins text-xs w-[5.06rem] max-md:w-[5.06rem]"><GroupsIcon className='!text-base mr-1 text-[#e4eb2f]'/>{translatedMenuItems[7]}</div>
-            <div className="font-bold font-poppins text-xs w-[12.73rem] max-md:w-[12.73rem]">    <AccountCircleIcon className="!text-icon  text-[#f28482]"/> {translatedMenuItems[5]}</div>
+                          <div className="  w-[9.6rem] max-md:w-[9.6rem]">
+                          <ApartmentIcon className='!text-base   text-[#43e035]'/>{translatedMenuItems[2]}</div>
+                          <div className="  w-[5.051rem] max-md:w-[5.051rem] ">
+                          <ContactsIcon className='!text-base  text-[#9737c4]'/>  {translatedMenuItems[3]}</div>
+                          <div className=" w-[5.018rem] max-md:w-[5.018rem]">{translatedMenuItems[4]}</div>
+                          <div className="  w-[5.031rem] max-md:w-[5.031rem]">
+                          <DateRangeIcon className="!text-icon  mr-1"/>{translatedMenuItems[8]}</div>
+                          <div className="  w-[3.2rem] max-md:w-[3.2rem]">{translatedMenuItems[6]}</div>
+                          <div className="  w-[5.06rem] max-md:w-[5.06rem]">
+                            <GroupsIcon className='!text-base mr-1 text-[#e93aa3]'/>{translatedMenuItems[7]}</div>
+                          <div className="  w-[12.73rem] max-md:w-[12.73rem]">   
+                             <AccountCircleIcon className="!text-icon mr-1  text-[#dd5738]"/> {translatedMenuItems[5]}</div>
            
           </div>
                     <InfiniteScroll
