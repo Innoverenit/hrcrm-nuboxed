@@ -22,7 +22,7 @@ function AccountPulseForm (props) {
 
     const fetchCutomerOrderCount = async () => {
       try {
-        const response = await axios.get(`${base_url2}/distributor/order/${props.RowData.distributorId}/${props.timeRangeType}`,{
+        const response = await axios.get(`${base_url2}/distributor/order/${props.RowData.distributorId}/year`,{
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },
@@ -40,7 +40,7 @@ function AccountPulseForm (props) {
 
     const fetchCutomerContactCount = async () => {
       try {
-        const response = await axios.get(`${base_url2}/distributor/contact/${props.RowData.distributorId}/${props.timeRangeType}`,{
+        const response = await axios.get(`${base_url2}/distributor/contact/${props.RowData.distributorId}/year`,{
           headers: {
             Authorization: "Bearer " + sessionStorage.getItem("token") || "",
           },
