@@ -1906,7 +1906,7 @@ const onCheckAllePriceDiscountChange = (e) => {
           <div>
           {props.departmentData.hrInd === true ? (
           <div class="flex flex-col">
-              <div class="text-clr flex text-base font-bold ml-2 mt-8">
+              <div class="text-clr flex text-base font-bold  ml-2 mt-8">
                 General & Self Service
               </div>
 
@@ -1916,11 +1916,11 @@ const onCheckAllePriceDiscountChange = (e) => {
                   <div class="flex flex-col ">
                     <div class="flex justify-between  border  mt-2 w-[100%] h-24">
                       <div className=" flex w-2/5 flex-col">
-                        <div className="text-sm font-semibold ml-2"> Users</div>
+                        <div className="text-sm font-semibold ml-2 mt-1"> Users</div>
                         <div className=" flex justify-evenly ml-2">Role-Based Access, Customizable Dashboards, Enhanced Collaboration, Multi departments and roles</div>
                       </div>
                       <div  className=" flex w-3/5 flex-col ml-4 mt-4">
-                        <div class="text-sm font-semibold"></div>
+                        
                         <Checkbox
                           indeterminate={indeterminateUser}
                           onChange={onCheckAllUserChange}
@@ -1938,7 +1938,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                     </div>
                     <div class="flex justify-between border  mt-2 w-[100%] h-24">
                     <div className=" flex w-2/5 flex-col">
-                        <div className="text-sm font-semibold ml-2">Facility</div>
+                        <div className="text-sm font-semibold ml-2 mt-1">Facility</div>
                         <div className=" flex justify-evenly ml-2">Space Allocation and Utilization, Stock Control, Automated Reordering, Workforce Scheduling and Resource Allocation.
                         </div>
                       </div>
@@ -1961,11 +1961,10 @@ const onCheckAllePriceDiscountChange = (e) => {
                     </div>
                     <div class="flex justify-between  border  mt-2 w-[100%] h-24">
                     <div className=" flex w-2/5 flex-col">
-                        <div className="text-sm font-semibold ml-2">Repository</div>
+                        <div className="text-sm font-semibold ml-2 mt-1">Repository</div>
                         <div className=" flex justify-evenly ml-2">Central location for storing data, resources or digital assets - managed and maintain efficiently and effectively.</div>
                       </div>
                       <div className=" flex w-3/5 flex-col ml-4 mt-4">
-                        {/* <div class="text-sm font-semibold">Repository</div> */}
                         <Checkbox
                           indeterminate={indeterminateRepository}
                           onChange={onCheckAllRepositoryChange}
@@ -1983,11 +1982,10 @@ const onCheckAllePriceDiscountChange = (e) => {
                         </div>
                         <div class="flex justify-between  border  mt-2 w-[100%] h-24">
                         <div className=" flex w-2/5 flex-col">
-                        <div className="text-sm font-semibold ml-2">Settings</div>
+                        <div className="text-sm font-semibold ml-2 mt-1">Settings</div>
                         <div className=" flex justify-evenly ml-2"></div>
                       </div>
                       <div className=" flex w-3/5 flex-col ml-4 mt-4">
-                        {/* <div class="text-sm font-semibold">Settings</div> */}
                         <Checkbox
                           indeterminate={indeterminateSettings}
                           onChange={onCheckAllSettingsChange}
@@ -2004,11 +2002,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                       </div>
 </div> 
 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-            <div className=" flex w-2/5">
-                        abcd
+            <div className="  flex w-2/5 flex-col">
+            <div className="text-sm font-semibold ml-2 mt-1">Basic</div>
+            <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div className=" flex w-3/5 flex-col">
-                        <div class="text-sm font-semibold">Basic</div>
+                      <div className=" flex w-3/5 flex-col ml-4 mt-4">
+                        
                         <Checkbox
                           indeterminate={indeterminateBasic}
                           onChange={onCheckAllBasicChange}
@@ -2026,12 +2025,11 @@ const onCheckAllePriceDiscountChange = (e) => {
                       </div>
                       <div class="flex justify-between  border  mt-2 w-[100%] h-24">
                       <div className=" flex w-2/5 flex-col">
-                      <div className="text-sm font-semibold ml-2">Tasks</div>
+                      <div className="text-sm font-semibold ml-2 mt-1">Tasks</div>
                       <div className=" flex justify-evenly ml-2">Quick Task Creation, Shared Tasks, Comments and Notes, Notify team members by tagging, Progress Indicators and audit trail.</div>
 
                       </div>
                       <div className=" flex w-3/5 flex-col ml-4 mt-4">
-                        {/* <div class="text-sm font-semibold">Tasks</div> */}
                         <Checkbox
                           indeterminate={indeterminateTasks}
                           onChange={onCheckAllTasksChange}
@@ -2049,11 +2047,11 @@ const onCheckAllePriceDiscountChange = (e) => {
                     </div>
 
                    <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                   <div className=" flex w-2/5">
-                        abcd
+                   <div className="  flex w-2/5 flex-col">
+                   <div className="text-sm font-semibold ml-2 mt-1">Dashboard</div>
+                   <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div className=" flex w-3/5 flex-col">
-                        <div class="text-sm font-semibold">Dashboard</div>
+                      <div className=" flex w-3/5 flex-col ml-4 mt-4">
                         <Checkbox
                           indeterminate={indeterminateDashboard}
                           onChange={onCheckAllDashboardChange}
@@ -2076,11 +2074,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                 <div class=" w-[100%]  p-1">
                   <div class="flex flex-col">
                   <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                  <div className=" flex w-2/5">
-                        abcd
+                  <div className="  flex w-2/5 flex-col">
+                  <div className="text-sm font-semibold ml-2 mt-1">Locations</div>
+                  <div className=" flex justify-evenly ml-2">Space Allocation and Utilization, Stock Control, Automated Reordering, Workforce Scheduling and Resource Allocation.
+                 </div>
                       </div>
-                      <div className=" flex w-3/5 flex-col">
-                        <div class="text-sm font-semibold">Locations</div>
+                      <div className=" flex w-3/5 flex-col ml-4 mt-4">
                         <Checkbox
                           indeterminate={indeterminateLocation}
                           onChange={onCheckAllLocationChange}
@@ -2098,11 +2097,11 @@ const onCheckAllePriceDiscountChange = (e) => {
                     </div>
 
                     <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                    <div className=" flex w-2/5">
-                        abcd
+                    <div className="  flex w-2/5 flex-col">
+                    <div className="text-sm font-semibold ml-2 mt-1">Teams</div>
+                    <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                        <div class="text-sm font-semibold">Teams</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
                         <Checkbox
                           indeterminate={indeterminateTeams}
                           onChange={onCheckAllTeamsChange}
@@ -2120,11 +2119,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                     </div>
 
                     <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                    <div className=" flex w-2/5">
-                        abcd
+                    <div className="  flex w-2/5 flex-col">
+                    <div className="text-sm font-semibold ml-2 mt-1">Reports</div>
+                    <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                        <div class="text-sm font-semibold">Reports</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                        
                         <Checkbox
                           indeterminate={indeterminateReport}
                           onChange={onCheckAllReportChange}
@@ -2142,11 +2142,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                       </div>
 
                       <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Language</div>
+                        <div className=" flex justify-evenly ml-2">Supports multi lingual, user can personalize, admin can edit the translated version of the words.</div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                        <div class="text-sm font-semibold">Language</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                        
                         <Checkbox
                           indeterminate={indeterminatLanguage}
                           onChange={onCheckAllLanguageChange}
@@ -2163,11 +2164,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                       </div>
                       </div>
                       <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Planner</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                        <div class="text-sm font-semibold">Planner</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                        
                         <Checkbox
                           indeterminate={indeterminatePlanner}
                           onChange={onCheckAllPlannerChange}
@@ -2185,11 +2187,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                     </div>
                   
 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Calls</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                        <div class="text-sm font-semibold">Calls</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                        
                         <Checkbox
                           indeterminate={indeterminateCall}
                           onChange={onCheckAllCallChange}
@@ -2206,11 +2209,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                       </div>
 </div>
 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-<div className=" flex w-2/5">
-                        abcd
+      <div className="  flex w-2/5 flex-col">
+                    <div className="text-sm font-semibold ml-2 mt-1">Download</div>
+                    <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                        <div class="text-sm font-semibold">Download</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                        
                         <Checkbox
                           indeterminate={indeterminateDownload}
                           onChange={onCheckAllDownloadChange}
@@ -2227,11 +2231,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                       </div>
                       </div>
                       <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Events</div>
+                        <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                        <div class="text-sm font-semibold">Events</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                        
                         <Checkbox
                           indeterminate={indeterminateEvents}
                           onChange={onCheckAllEventsChange}
@@ -2255,17 +2260,18 @@ const onCheckAllePriceDiscountChange = (e) => {
         
           {props.departmentData.hrInd === true ? (
           <div class="flex flex-col">
-          <div class="text-clr flex  text-base font-bold  mt-8">
+          <div class="text-clr flex  text-base font-bold   ml-2 mt-8">
                 HR
               </div>
               <div class="flex flex-col  ">
                 <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Mileage</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Mileage</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateMileage}
                           onChange={onCheckAllMileageChange}
@@ -2284,11 +2290,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Expense</div>
+                        <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Expense</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateExpense}
                           onChange={onCheckAllExpenseChange}
@@ -2307,11 +2314,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Holiday</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Holiday</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateHoliday}
                           onChange={onCheckAllHolidayChange}
@@ -2330,11 +2338,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Leaves</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Leaves</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateLeaves}
                           onChange={onCheckAllLeavesChange}
@@ -2358,17 +2367,18 @@ const onCheckAllePriceDiscountChange = (e) => {
        
    {props.departmentData.crmInd === true ? (
           <div class="flex flex-col">
-          <div class="text-clr flex  text-base font-bold  mt-8">
+          <div class="text-clr flex  text-base font-bold   ml-2 mt-8">
                CRM
               </div>
               <div class="flex flex-col  ">
                 <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Prospect</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Prospect</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateCustomer}
                           onChange={onCheckAllCustomerChange}
@@ -2387,11 +2397,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Quotation</div>
+                        <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Quotation</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateOpportunity}
                           onChange={onCheckAllOpportunityChange}
@@ -2410,11 +2421,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Leads</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Leads</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateLeads}
                           onChange={onCheckAllLeadsChange}
@@ -2433,11 +2445,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Contact</div>
+                        <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Contact</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateContact}
                           onChange={onCheckAllContactChange}
@@ -2456,11 +2469,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Junk Leads</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Junk Leads</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateJunk}
                           onChange={onCheckAllJunkChange}
@@ -2485,17 +2499,18 @@ const onCheckAllePriceDiscountChange = (e) => {
        
           {props.departmentData.erpInd === true ? (
           <div class="flex flex-col">
-          <div class="text-clr flex justify-center text-base font-bold  mt-8">
+          <div class="text-clr flex  text-base font-bold   ml-2 mt-8">
         ERP
               </div>
               <div class="flex flex-col  ">
                 <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Shipper</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Shipper</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateShipper}
                           onChange={onCheckAllShipperChange}
@@ -2514,11 +2529,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Order</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Order</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateOrder}
                           onChange={onCheckAllOrderChange}
@@ -2537,11 +2553,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Materials</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Materials</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
           indeterminate={indeterminateMaterials}
           onChange={onCheckAllMaterialsChange}
@@ -2560,11 +2577,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Inventory</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Inventory</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateInventory}
                           onChange={onCheckAllInventoryChange}
@@ -2583,11 +2601,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Procurement</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Procurement</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateProcurement}
                           onChange={onCheckAllProcurementChange}
@@ -2606,11 +2625,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Production</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Production</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateProduction}
                           onChange={onCheckAllProductionChange}
@@ -2629,11 +2649,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Warrenty</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Warrenty</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateWarrenty}
                           onChange={onCheckAllWarrentyChange}
@@ -2652,11 +2673,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Price and Discount</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Price and Discount</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminatePriceDiscount}
                           onChange={onCheckAllePriceDiscountChange}
@@ -2675,11 +2697,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Customer</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Customer</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateAccount}
                           onChange={onCheckAllAccountChange}
@@ -2698,11 +2721,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Catalogue</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Catalogue</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateCatalog}
                           onChange={onCheckAllCatalogChange}
@@ -2721,11 +2745,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Supplier</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Supplier</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateSupplier}
                           onChange={onCheckAllSupplierChange}
@@ -2744,11 +2769,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Refurbish</div>
+                        <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Refurbish</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateRefurbish}
                           onChange={onCheckAllRefurbishChange}
@@ -2767,11 +2793,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Subscription</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Subscription</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateSubscription}
                           onChange={onCheckAllSubscriptionChange}
@@ -2790,11 +2817,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Scanner</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Scanner</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateScanner}
                           onChange={onCheckAllScannerChange}
@@ -2813,11 +2841,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Quality</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Quality</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                       <Checkbox
                         indeterminate={indeterminateQuality}
                         onChange={onCheckAllQualityChange}
@@ -2842,17 +2871,17 @@ const onCheckAllePriceDiscountChange = (e) => {
 
           {props.departmentData.financeInd === true ? (
             <div class="flex flex-col ">
-              <div class=" text-clr text-base flex  mt-8 font-bold">
+              <div class=" text-clr text-base flex   ml-2 mt-8 font-bold">
                 Accounting
               </div>
               <div class="flex flex-col  ">
                 <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Collections</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Collections</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
                         <Checkbox
                           indeterminate={indeterminateCollection}
                           onChange={onCheckAllCollectionChange}
@@ -2871,11 +2900,11 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Payments</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Payments</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
                         <Checkbox
                           indeterminate={indeterminatePayments}
                           onChange={onCheckAllPaymentsChange}
@@ -2894,11 +2923,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Shipper</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Shipper</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                      
                         <Checkbox
                           indeterminate={indeterminateShipper}
                           onChange={onCheckAllShipperChange}
@@ -2921,17 +2951,17 @@ const onCheckAllePriceDiscountChange = (e) => {
           ) : null}
 
           <div class="flex flex-col ">
-            <div class=" text-clr text-base flex  mt-8 font-bold">
+            <div class=" text-clr text-base flex   ml-2 mt-8 font-bold">
               Ecom
             </div>
             <div class="flex flex-col  ">
                 <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Promotions</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Promotions</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
                       <Checkbox
                         indeterminate={indeterminatePromotions}
                         onChange={onCheckAllPromotionsChange}
@@ -2954,17 +2984,17 @@ const onCheckAllePriceDiscountChange = (e) => {
 
           {props.departmentData.recruitProInd === true ? (
             <div class="flex flex-col ">
-              <div class=" text-clr text-base flex justify-center mt-8 font-bold">
+              <div class=" text-clr text-base flex justify-center  ml-2 mt-8 font-bold">
                 RecruitPro
               </div>
               <div class="flex flex-col  ">
                 <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Talent</div>
+                        <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Talent</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
                         <Checkbox
                           indeterminate={indeterminateTalent}
                           onChange={onCheckAllTalentChange}
@@ -2983,11 +3013,11 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Requirement</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Requirement</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
                         <Checkbox
                           indeterminate={indeterminateRequirement}
                           onChange={onCheckAllRequirementChange}
@@ -3012,18 +3042,19 @@ const onCheckAllePriceDiscountChange = (e) => {
           ) : null}
           {props.departmentData.imInd === true ? (
             <div class="flex flex-col ">
-              <div class=" text-clr text-base mt-8 flex  font-bold">
+              <div class=" text-clr text-base  ml-2 mt-8 flex  font-bold">
                 IM
               </div>
               <div class="flex flex-col ">
                 {/* Left Box */}
                 <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Investor</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Investor</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                 
                         <Checkbox
                           indeterminate={indeterminateInvestor}
                           onChange={onCheckAllInvestorChange}
@@ -3042,11 +3073,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Deals</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Deals</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                
                         <Checkbox
                           indeterminate={indeterminateDeal}
                           onChange={onCheckAllDealChange}
@@ -3065,11 +3097,11 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Data Room</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Data Room</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
                         <Checkbox
                           indeterminate={indeterminateDataRoom}
                           onChange={onCheckAllDataRoomChange}
@@ -3088,13 +3120,11 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">  Investor Contact</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">
-                          Investor Contact
-                        </div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
                         <Checkbox
                           indeterminate={indeterminateInvestorContact}
                           onChange={onCheckAllInvestorContactChange}
@@ -3113,11 +3143,11 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Pitch</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Pitch</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
                         <Checkbox
                           indeterminate={indeterminatePitch}
                           onChange={onCheckAllPitchChange}
@@ -3136,11 +3166,11 @@ const onCheckAllePriceDiscountChange = (e) => {
                   </div>
                   <div class="flex flex-col w-[100%] p-1">
                 <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Club</div>
+                      <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                      <div class="text-sm font-semibold">Club</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
                         <Checkbox
                           indeterminate={indeterminateClub}
                           onChange={onCheckAllClubChange}
@@ -3164,7 +3194,7 @@ const onCheckAllePriceDiscountChange = (e) => {
 
           {props.departmentData.elearningInd === true ? (
             <div class="flex flex-col ">
-              <div class=" text-clr mt-8 text-base flex justify-center font-bold">
+              <div class=" text-clr  ml-2 mt-8 text-base flex justify-center font-bold">
                 E-Learning
               </div>
               <div class="flex  ">
