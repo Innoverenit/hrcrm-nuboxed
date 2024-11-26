@@ -135,7 +135,8 @@ const LocationCard = (props) => {
             <InventoryIcon className=" !text-icon"/> {translatedMenuItems[4]} {/* Inventory */}
               </div>
             <div className="max-md:w-[4.6rem] w-[4.6rem] ">
-            <i class="far fa-money-bill-alt " className="!text-icon"></i>
+            {/* <i class="far fa-money-bill-alt !text-icon" ></i> */}
+            <i class="far fa-money-bill-alt !text-icon" ></i>
             {translatedMenuItems[5]} {/* Billing */}
               </div>
             <div className="max-md:w-[5.52rem] w-[5.52rem]  ">
@@ -146,7 +147,7 @@ const LocationCard = (props) => {
             {translatedMenuItems[7]} {/* Project */}
               </div>
             <div className="max-md:w-[3.9rem] w-[3.9rem] ">
-            <i class="fas fa-money-check !text-icon" className="!text-icon"></i>
+            <i class="fas fa-money-check !text-icon"></i>
             {translatedMenuItems[8]}{/* Retail */}
               </div>
             <div className="max-md:w-[7.9rem] w-[7.9rem] ">
