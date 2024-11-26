@@ -385,6 +385,10 @@ const initialState = {
   updatePriceByPoListItem: false,
   updatePriceByPoListItemError: false,
 
+  fetchingBatchNo:false,
+  fetchingBatchNoError:false,
+  batchNo:[],
+
   updatingInStockSupplierSuppliesById: false,
   updatingInStockSupplierSuppliesByIdError: false,
 
@@ -1756,6 +1760,27 @@ export const suppliersReducer = (state = initialState, action) => {
 
     case types.SET_SUPPLIERS_EDIT:
       return { ...state, setEditingSuppliers: action.payload };
+
+
+
+
+      case types.GET_BATCH_NO_REQUEST:
+        return { ...state, fetchingBatchNo: true };
+      case types.GET_BATCH_NO_SUCCESS:
+        return {
+          ...state,
+          fetchingBatchNo: false,
+          batchNo:action.payload,
+          // opportunityByUserId: action.payload,
+  
+          //opportunityByUserId: [...state.opportunityByUserId, ...action.payload],
+        };
+      case types.GET_BATCH_NO_FAILURE:
+        return {
+          ...state,
+          fetchingBatchNo: false,
+          fetchingBatchNoError: true,
+        };
 
 
     case types.GET_SUPPLIERS_DELETED_LIST_REQUEST:

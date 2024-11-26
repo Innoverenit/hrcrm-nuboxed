@@ -2631,3 +2631,32 @@ export const addRecallData = (opportunity, cb) => (dispatch, getState) => {
       });
     });
 };
+
+
+
+
+export const getBatchNo = () => (dispatch) => {
+  dispatch({
+    type: types.GET_BATCH_NO_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/email/getAllBatchNo`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_BATCH_NO_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_BATCH_NO_FAILURE,
+        payload: err,
+      });
+    });
+};
