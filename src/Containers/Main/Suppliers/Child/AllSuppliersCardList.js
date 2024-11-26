@@ -126,28 +126,28 @@ return(
       </div>
 <div className=' flex  sticky  z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-<div className=" flex max-sm:hidden ml-4 justify-between w-[99%]  p-1 bg-transparent font-bold font-poppins text-xs  items-end sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
-<div className=" w-[6.91rem] truncate text-[#00A2E8]  max-xl:w-[14.9rem] "> 
+<div className=" flex max-sm:hidden ml-4 justify-between w-[99%]  p-1 bg-transparent font-bold font-poppins  !text-lm items-end sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
+<div className=" w-[6.91rem] truncate text-[#00A2E8]  max-xl:w-[14.9rem] text-sm  "> 
                {/* Supplier ID */}
                <CategoryIcon className=" !text-icon"/>  {props.translatedMenuItems[40]} ID
                </div>
-            <div className=" w-[16rem] truncate  max-xl:w-[11.8rem]"> 
+            <div className=" w-[16rem] truncate  max-xl:w-[11.8rem] "> 
                 <ApartmentIcon className="!text-icon text-[#4f5d75] "/>   
                  {props.translatedMenuItems[0]}
                 </div>
-            <div className=" w-[8.1rem] truncate  max-xl:w-[9.8rem]">
+            <div className=" w-[8.1rem] truncate  max-xl:w-[9.8rem] ">
             <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/> 
              {props.translatedMenuItems[1]}
             </div>
-            <div className=" w-[12.92rem] truncate  max-xl:w-[14.9rem] ">    
+            <div className=" w-[12.92rem] truncate  max-xl:w-[14.9rem]  ">    
               <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] ' />
                {props.translatedMenuItems[2]}</div>  
-            <div className=" w-[16.94rem] truncate  max-xl:w-[14.9rem] "> 
+            <div className=" w-[16.94rem] truncate  max-xl:w-[14.9rem]  "> 
                {/* Supplier ID */}
                <LinkIcon  className="!text-icon  text-[#4f5d75]"/>  
                 {props.translatedMenuItems[41]}
                </div>   
-          <div className=" w-[11.91rem] truncate  max-xl:w-[14.9rem] "> 
+          <div className=" w-[11.91rem] truncate  max-xl:w-[14.9rem]  "> 
             <AccountCircleIcon className="!text-icon  text-[#f28482]"/>Owner</div>
           </div>
         <InfiniteScroll
