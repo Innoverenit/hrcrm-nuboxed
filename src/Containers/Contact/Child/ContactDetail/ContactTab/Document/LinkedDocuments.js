@@ -88,25 +88,25 @@ class LinkedDocuments extends Component {
     return (
       <>
          <div class="rounded m-1 p-1 w-[99%] h-[78vh] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[100%] font-poppins font-bold text-xs p-1 bg-transparent !text-ln items-end  sticky top-0 z-10">
-          <div className="w-[11.9rem] text-[#00A2E8] text-sm  max-md:w-[11.9rem]"> 
+          <div className=" flex justify-between w-[100%] font-poppins font-bold text-xs p-1 bg-transparent !text-lm items-end  sticky top-0 z-10">
+          <div className="w-[11.9rem] text-[#00A2E8] truncate text-sm  max-md:w-[11.9rem]"> 
             <DateRangeIcon className='!text-icon  '  />
           {this.state.translatedMenuItems[0]} </div>
           {/* Date */}
-        <div className=" w-[6.1rem] max-md:w-[6.1rem]"> <LocationCityIcon className='!text-icon '  /> 
+        <div className=" w-[6.1rem] truncate max-md:w-[6.1rem]"> <LocationCityIcon className='!text-icon mr-1 '  /> 
          {this.state.translatedMenuItems[1]}      </div>
            {/* Name */}   
-        <div className="w-[5.2rem] max-md:w-[5.1rem]">
+        <div className="w-[5.2rem] truncate max-md:w-[5.1rem]">
           < MergeTypeIcon className='!text-icon text-[#c42847] '  />
          {this.state.translatedMenuItems[2]}</div>
           {/* type */}          
-        <div className=" w-[5.1rem] max-md:w-[5.1rem]"> <ShowChartIcon className='!text-icon    text-[#776871]' />
+        <div className=" w-[5.1rem] truncate max-md:w-[5.1rem]"> <ShowChartIcon className='!text-icon    text-[#776871]' />
            {this.state.translatedMenuItems[3]}</div>
           {/* Share */}      
-        <div className=" w-[8.12rem] max-md:w-[8.12rem]">     <DescriptionIcon className='!text-icon  '  /> 
+        <div className=" w-[8.12rem] truncate max-md:w-[8.12rem]">     <DescriptionIcon className='!text-icon  '  /> 
         {this.state.translatedMenuItems[4]}</div>
           {/* Description */}    
-        <div className="w-[7.1rem] max-md:w-[7.1rem]"> <ContactPageIcon className='!text-icon text-[#ffb400]  '  /> 
+        <div className="w-[7.1rem] truncate max-md:w-[7.1rem]"> <ContactPageIcon className='!text-icon text-[#ffb400]  '  /> 
          {this.state.translatedMenuItems[5]}</div>
           {/* UploadedBy */}       
         <div className="w-[4.2rem]"></div>

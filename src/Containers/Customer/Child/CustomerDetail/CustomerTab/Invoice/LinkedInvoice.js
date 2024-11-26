@@ -1,15 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { base_url } from "../../../../../../Config/Auth";
-import {
-  StyledTable,
-  StyledPopconfirm,
-} from "../../../../../../Components/UI/Antd";
-import DownloadIcon from '@mui/icons-material/Download';
-
-import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
+import DescriptionIcon from '@mui/icons-material/Description';
+import ArticleIcon from '@mui/icons-material/Article';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 class LinkedInvoice extends Component {
   constructor(props) {
     super(props);
@@ -49,19 +44,19 @@ class LinkedInvoice extends Component {
   render() {
     return (
       <>
-          <div className=" flex justify-between font-bold font-poppins text-xs  w-[100%]  p-1   sticky items-end z-10">
+          <div className=" flex justify-between font-bold font-poppins !text-lm  w-[100%]  p-1   sticky items-end z-10">
           
-          <div className=" text-[#00A2E8] text-base md:w-[16.1rem]">
- {this.state.translatedMenuItems[0]}</div>
+          <div className="w-[16.1rem] text-[#00A2E8] text-sm truncate md:w-[16.1rem]">
+          <DateRangeIcon className='!text-icon  '  /> {this.state.translatedMenuItems[0]}</div>
           {/* Date */}
-                  <div className=" md:w-[16.2rem]">
-                  {this.state.translatedMenuItems[1]}</div>
+                  <div className="w-[16.2rem] truncate  md:w-[16.2rem]">
+                  <ArticleIcon className='!text-icon text-[#a379c9] '  /> {this.state.translatedMenuItems[1]}</div>
                   {/* Name */}
-          <div className=" md:w-[13.13rem]">
-          {this.state.translatedMenuItems[2]}</div>
+          <div className="w-[13.13rem] truncate  md:w-[13.13rem]">
+          <DescriptionIcon className='!text-icon text-[#9ad5ca] '  />  {this.state.translatedMenuItems[2]}</div>
          
-          <div className=" md:w-[15.1rem]">
-         {this.state.translatedMenuItems[3]}</div>
+          <div className="w-[15.1rem] truncate  md:w-[15.1rem]">
+          <AccountCircleIcon className="!text-icon  text-[#f28482]"/>   {this.state.translatedMenuItems[3]}</div>
 
           
         </div>

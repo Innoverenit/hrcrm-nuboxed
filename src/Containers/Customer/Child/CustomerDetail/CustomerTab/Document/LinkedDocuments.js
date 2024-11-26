@@ -28,6 +28,8 @@ import ArticleIcon from '@mui/icons-material/Article';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import FileOpenIcon from '@mui/icons-material/FileOpen';
+import GavelIcon from '@mui/icons-material/Gavel';
+
 const ContractToggle =lazy(()=>import("./ContractToggle")); 
 const EmptyPage = lazy(() => import("../../../../../Main/EmptyPage"));
 class LinkedDocuments extends Component {
@@ -188,7 +190,7 @@ class LinkedDocuments extends Component {
         <DateRangeIcon className='!text-icon  '  />  {this.state.translatedMenuItems[0]}</div>
         {/* Date */}
                 <div className=" w-[15.2rem] truncate max-md:w-[16.2rem]">
-                <ArticleIcon className='!text-icon text-[#a379c9] '  />{this.state.translatedMenuItems[1]}</div>
+                <ArticleIcon className='!text-icon mr-1 text-[#a379c9] '  />{this.state.translatedMenuItems[1]}</div>
                 {/* Name */}
         <div className=" w-[15.4rem] truncate max-md:w-[13.13rem]">
         <DescriptionIcon className='!text-icon text-[#9ad5ca] '  /> {this.state.translatedMenuItems[2]}</div>
@@ -200,8 +202,8 @@ class LinkedDocuments extends Component {
         <  FileOpenIcon className='!text-icon text-[#7fb800] '  />  {this.state.translatedMenuItems[4]}</div>
           {/* fileName */}
         
-                     <div className=" w-[9.5rem] truncate ">
-                      {this.state.translatedMenuItems[5]}</div>
+                     <div className=" w-[9.5rem] truncate max-md:w-[9.5rem]">
+                     <  GavelIcon className='!text-icon text-[red] '  />        {this.state.translatedMenuItems[5]}</div>
                      {/* Contract */}
         
         
