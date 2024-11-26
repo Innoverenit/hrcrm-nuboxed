@@ -51,6 +51,7 @@ import SuppliesSearchedData from "./SuppliesSearchedData";
 import EmptyPage from "../EmptyPage";
 import BestJumpOpen from "./BestJumpOpen";
 import ReOrderOpen from "./ReOrderOpen";
+import MaterialBarCodeInput from "./MaterialBarCodeInput";
 const MaterialInventoryDrawer = lazy(()=>import("./MaterialInventory/MaterialInventoryDrawer"));
 const MaterialBuilderDrawer = lazy(() => import("./MaterialBuilder/MaterialBuilderDrawer"));
 const TagBrandModel = lazy(() => import("./TagBrandModel"));
@@ -64,7 +65,7 @@ function SuppliesTable(props) {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-
+  const [barCodeOpen,setbarCodeOpen]= useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [openComplementary,setopenComplementary] = useState(false);
   const [openStatus,setopenStatus] = useState(false);
@@ -489,7 +490,12 @@ function SuppliesTable(props) {
 
                           
                           </div> 
-
+                          <QrCodeIcon className="!text-icon cursor-pointer"
+                          onClick={() => {
+                            setbarCodeOpen(true);
+                            handleParticularRowData(item);
+                          }}
+                          />
                      <div class="flex max-sm:justify-between max-sm:w-wk items-center justify-end w-wk">
                      <div className=" flex   h-8 ml-gap bg-[#eef2f9] justify-center items-center w-[6.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins  max-sm:text-xs">
@@ -633,6 +639,13 @@ function SuppliesTable(props) {
           particularDiscountData={particularDiscountData}
           materialBuildrawer={materialBuildrawer}
           handleMaterialBuilderDrawer={handleMaterialBuilderDrawer}
+        />
+        <MaterialBarCodeInput
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+          particularDiscountData={particularDiscountData}
+          barCodeOpen={barCodeOpen}
+          setbarCodeOpen={setbarCodeOpen}
         />
         <SuppliersListDrawer
            translateText={props.translateText}

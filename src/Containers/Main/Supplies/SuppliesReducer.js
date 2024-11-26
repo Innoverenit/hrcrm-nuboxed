@@ -11,6 +11,10 @@ const initialState = {
     fetchingbestBeforeEmailListError: false,
     bestBeforeEmailList:[],
 
+    fetchingBarcodeViewer: false,
+    fetchingBarcodeViewerError: false,
+    barCodeViewer:[],
+
     fetchingPriceFactor: false,
     fetchingPriceFactorError: false,
     priceFactorData:{},
@@ -1598,6 +1602,21 @@ export const suppliesReducer = (state = initialState, action) => {
                     ...state,
                     fetchingPriceFactor: false,
                     fetchingPriceFactorError: true,
+                  };
+
+                  case types.GET_BAR_CODE_VIEWER_REQUEST:
+                  return { ...state,  fetchingBarcodeViewer: true };
+                case types.GET_BAR_CODE_VIEWER_SUCCESS:
+                  return {
+                    ...state,
+                    fetchingBarcodeViewer: false,
+                    barCodeViewer: action.payload,
+                  };
+                case types.GET_BAR_CODE_VIEWER_FAILURE:
+                  return {
+                    ...state,
+                    fetchingBarcodeViewer: false,
+                    fetchingBarcodeViewerError: true,
                   };
 
         default:
