@@ -485,6 +485,7 @@ const handleRowItem = (item) => {
              //  newOrderNo={props.newOrderNo}
              //  row={row}
              //  paymentId={item.paymentId}
+             RowItem={RowItem}
              selectedLanguage={props.selectedLanguage}
              particularRowItem={props.particularRowItem}
              translateText={props.translateText} 

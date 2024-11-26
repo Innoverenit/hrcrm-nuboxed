@@ -17,8 +17,8 @@ const SummaryTable = (props) => {
     <>
        <div class="font-bold"> {year}</div>
    
-    <div class="flex justify-between">
-    <div class="flex flex-col w-[33%]">
+    <div class="flex justify-between w-[48rem]">
+    <div class="flex flex-col w-[35rem]">
         <Suspense fallback={<BundleLoader />}>
         <PulseTable
          RowData={props.RowData}
@@ -28,12 +28,12 @@ const SummaryTable = (props) => {
             <div>
             <div class="font-poppins font-bold">Order By Value</div>
      <DynamicPieChart dtype={"value"} 
-        userId={props.RowData.distributorId} timeRangeType={props.timeRangeType}/>
+        userId={props.RowData.distributorId} timeRangeType={year}/>
      </div>
      <div>
      <div class="font-poppins font-bold">Order By Volume</div>
      <DynamicPieChart dtype={"volume"} 
-        userId={props.RowData.distributorId} timeRangeType={props.timeRangeType}/>
+        userId={props.RowData.distributorId} timeRangeType={year}/>
    
      </div>
      </div>
@@ -60,7 +60,7 @@ const SummaryTable = (props) => {
             </div>
             <div class="w-[50rem]">
               <StackedBarChart dtype={"Bar"} 
-        userId={props.RowData.distributorId} timeRangeType={props.timeRangeType}/>
+        userId={props.RowData.distributorId} timeRangeType={year}/>
      {/* <Flex gap="small" vertical>
     <Progress percent={30} />
     <Progress percent={50} status="active" />
