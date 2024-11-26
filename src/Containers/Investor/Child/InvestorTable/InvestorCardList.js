@@ -214,30 +214,30 @@ function InvestorCardList(props) {
     />
   ) : (
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between max-sm:hidden  w-[89%]  p-1 bg-transparent items-end font-bold !text-lm font-poppins max-xl:text-xs max-lg:text-[0.45rem] sticky  z-10">
+        <div className=" flex justify-between max-sm:hidden  w-[87%]  p-1 bg-transparent items-end font-bold !text-lm font-poppins max-xl:text-xs max-lg:text-[0.45rem] sticky  z-10">
           <div className="w-2"></div>
-        <div className="text-[#00A2E8] text-sm w-[18.6rem]  max-xl:w-[14.4rem] ">
+        <div className="text-[#00A2E8] text-sm w-[14.9rem] truncate max-md:w-[14.6rem] max-xl:w-[14.4rem] ">
         <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]} 
         {/* "Name" */}          
                      </div>
-        <div className=" w-[13.55rem]  max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
+        <div className=" w-[16.55rem]  truncate max-md:w-[16.55rem]  max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
         <FactoryIcon className="!text-icon   text-[#84a59d]"/>  {translatedMenuItems[1]}
         {/* "Sector" */}
                     </div>
-                    <div className=" w-[10.21rem]  max-xl:w-[8.2rem]">
+                    <div className=" w-[10.21rem]  truncate max-md:w-[10.21rem] max-xl:w-[8.2rem]">
           <FormatListNumberedIcon className='!text-icon    text-[#42858c]' />   {translatedMenuItems[5]}
           {/* "Category" */}            
           </div>
-          <div className=" w-[9.34rem]  max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
+          <div className=" w-[9.34rem]  truncate max-md:w-[9.34rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
           <SourceIcon className="!text-icon   text-[#4b5043]"/> {translatedMenuItems[6]}
         {/* "Source"         */}
           </div>
-          <div className=" w-[11.22rem]  max-xl:w-[8.2rem]">
+          <div className=" w-[9.22rem]  truncate max-md:w-[9.22rem] max-xl:w-[8.2rem]">
           {/* {translatedMenuItems[7]} */}
       {/* First Meeting */} <EventAvailableIcon className="!text-icon   text-[#4b5043]"/>  1st Meeting
           </div>
-        <div className="  w-[10.12rem]  max-xl:w-[5.12rem] max-lg:w-[8.12rem]">
-        <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />
+        <div className="  w-[10.12rem]  truncate max-md:w-[10.12rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">
+        <CurrencyExchangeIcon className='!text-icon mr-1   text-[#e4eb2f]' />
              {translatedMenuItems[2]}
          {/* "Deals" */}          
                 </div>
@@ -247,7 +247,7 @@ function InvestorCardList(props) {
           "Signed"            
           </div> */}
        
-          <div className="  w-[8.212rem]  max-xl:w-[8.2rem]">
+          <div className="  w-[12.212rem]  truncate max-md:w-[11.212rem] max-xl:w-[8.2rem]">
           <ShowChartIcon className='!text-icon    text-[#776871]' /> {translatedMenuItems[8]}
        {/* Shares # */}
           </div>         
@@ -256,18 +256,18 @@ function InvestorCardList(props) {
            {translatedMenuItems[9]}
         Value
           </div> */}
-          <div className=" w-[7.21rem]  max-xl:w-[8.2rem]">
+          <div className=" w-[8.21rem]  truncate max-md:w-[1.21rem]  max-xl:w-[8.2rem]">
           <GolfCourseIcon className='!text-base   text-[#f42c04]'/> {translatedMenuItems[10]}
         {/* Club */}
           </div>
       
          {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className=" w-[7.81rem]  truncate max-md:w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
              <ScoreIcon className="!text-icon   text-[#f28482]"/>  {translatedMenuItems[20]}
             {/* Score          */}
             </div>            
             )}
-         <div className=" w-[10.33rem]  max-xl:w-[10.3rem]">
+         <div className=" w-[6.33rem]  truncate max-md:w-[6.33rem]  max-xl:w-[10.3rem]">
          <AccountCircleIcon className="!text-icon   text-[#d64933]"/>  {translatedMenuItems[11]}
       {/* Assigned" */}         
          </div>

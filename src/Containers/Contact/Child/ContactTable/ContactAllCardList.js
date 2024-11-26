@@ -255,7 +255,7 @@ if (loading) {
         <ContactsIcon className="!text-icon mr-1 "/>{translatedMenuItems[0]}</div>
         <div className=" w-[23.4rem] truncate  max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
         <ApartmentIcon className="!text-icon "/> {translatedMenuItems[1]}</div>
-        <div className=" max-md:w-[10.1rem] truncate w-[17.1rem]  max-xl:w-[10.11rem]">
+        <div className=" max-md:w-[10.1rem] truncate w-[16.1rem]  max-xl:w-[10.11rem]">
         <i className="fab fa-artstation mr-1 text-[#b744b8]"></i>
             {translatedMenuItems[2]}</div>
         <div className="  max-md:w-[9.1rem]  truncate w-[14.3rem]  max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
@@ -272,11 +272,11 @@ if (loading) {
           
             </div>
             )}  
-            <div className=" w-[8.1rem] truncate max-md:w-[6.1rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">          
+            <div className=" w-[11.1rem] truncate max-md:w-[6.1rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">          
                <AccountCircleIcon className="!text-icon truncate mr-1 text-[#f28482]"/>
       {translatedMenuItems[7]} </div>
       
-        <div className="w-[4.2rem]"></div>
+        <div className="w-[2.2rem]"></div>
         </div>
       </div>
           <InfiniteScroll
