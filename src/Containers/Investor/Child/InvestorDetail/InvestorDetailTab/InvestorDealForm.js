@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getCustomerData,getInvestorData } from "../../../../Customer/CustomerAction";
 import { getdealsContactdata } from "../../../../Contact/ContactAction";
-
-import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -20,8 +18,6 @@ import {
   getStages,
 } from "../../../../Opportunity/OpportunityAction";
 import {getSources} from "../../../../Settings/Category/Source/SourceAction"
-import RotateRightIcon from "@mui/icons-material/RotateRight";
-import StopCircleIcon from "@mui/icons-material/StopCircle";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../../../../Components/Forms/Formik/DatePicker";
@@ -686,7 +682,7 @@ const [selectedStage, setSelectedStage] = useState(null);
                   />
                 </div>
             </div>
-                <div class=" w-w47.5 max-sm:w-wk">
+                <div class=" w-w47.5 max-sm:w-wk mt-1">
                 <Field
                             name="source"
                              label="source"                             
@@ -701,7 +697,7 @@ const [selectedStage, setSelectedStage] = useState(null);
                           />
                         </div>
                         </div>
-                        <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-2">
+                        <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">
                        {translatedMenuItems[9]} 
                   <Field
                     name="contactId"
@@ -763,7 +759,7 @@ const [selectedStage, setSelectedStage] = useState(null);
                     </div>
                   </div>
                   
-                  <div class=" w-w47.5 max-sm:w-wk ">
+                  <div class=" w-w47.5 max-sm:w-wk  mt-1">
                   <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                   {translatedMenuItems[11]} 
 

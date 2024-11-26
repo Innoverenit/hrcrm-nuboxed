@@ -165,13 +165,13 @@ const InvestorLinkedDocuments = (props) => {
                       </div>
                    
                 </div>
-                <div class="overflow-y-auto h-[69vh]">
+                <div class="overflow-y-auto h-[72vh]">
                 { !props.fetchingDocumentsByInvestorId && props.documentsByInvestorId.length === 0 ?<EmptyPage />:props.documentsByInvestorId.map((item,index) =>  {
                     
                     return (
                         <div >
                               <div
-            className="flex rounded justify-between  bg-white mt-1 py-1 items-center max-sm:h-[9rem] max-sm:flex-colscale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+            className="flex rounded justify-between  bg-white mt-1 py-ygap items-center max-sm:h-[9rem] max-sm:flex-colscale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
           >
                                 <div class="flex">
                                     <div className=" flex  md:w-[10.8rem] items-center h-8 border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">

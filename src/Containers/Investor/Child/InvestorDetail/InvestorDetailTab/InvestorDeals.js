@@ -89,37 +89,37 @@ if (loading) {
   return (
     <>
   <div class="rounded m-1 p-1 w-[99%] h-[77vh]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-    <div className=" flex  w-[100%]  justify-between truncate p-1 bg-transparent font-bold font-poppins text-xs sticky items-end  z-10">
-        <div className="text-[#00A2E8] text-base md:w-[15rem]">
+    <div className=" flex  w-[100%]  justify-between truncate p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end  z-10">
+        <div className="text-[#00A2E8] text-sm w-[12rem] truncate max-md:w-[15rem]">
         <LocationCityIcon className='!text-icon  '  />   {translatedMenuItems[0]} 
        {/* name */}             
                 </div>
-        <div className=" md:w-[13.2rem] ">
+        <div className="w-[9.9rem] max-md:w-[13.2rem] truncate ">
         <ContactPageIcon className='!text-icon text-[#ffb400] '  />    {translatedMenuItems[1]} 
          {/* sponsor */}               
                 </div>
-        <div className="md:w-[8.1rem]">
+        <div className=" w-[7.8rem] max-md:w-[8.1rem] truncate ">
         <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[2]} 
                {/* enddate */}
                 </div>
-        <div className="md:w-[5.5rem]">     
+        <div className=" w-[7.1rem] max-md:w-[5.5rem] truncate ">     
         <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[3]}   
                {/* Value */}            
                 </div>
-        <div className="md:w-[4.2rem]">
+        <div className=" w-[6.2rem] max-md:w-[4.2rem] truncate">
         <StairsIcon className='!text-icon  '  />   {translatedMenuItems[4]} 
          {/* stages               */}
                 </div> 
-        <div className="md:w-[4.2rem]">
+        <div className=" w-[6.2rem] max-md:w-[4.2rem] truncate ">
         <UpdateIcon className='!text-icon text-[#e4eb2f]' />  {translatedMenuItems[5]} 
        {/* status */}                           
                 </div> 
-        <div className="md:w-[7.1rem]">
+        <div className=" w-[5.1rem] max-md:w-[7.1rem] truncate ">
         <AccountCircleIcon className="!text-icon   text-[#d64933]"/>  {translatedMenuItems[6]} 
        {/* Assign To */}
               
                 </div>
-        <div className="md:w-[5.2rem]">
+        <div className=" w-[5.2rem] max-md:w-[5.2rem] truncate ">
         <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[7]}
         {/* owner  */}
                 </div>
@@ -164,7 +164,7 @@ if (loading) {
                     return (
                         <div>
                             <div
-              className="flex rounded justify-between  bg-white mt-1 items-center py-ygap max-sm:h-[9rem] max-sm:  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+              className="flex rounded justify-between  bg-white mt-1 items-center  max-sm:h-[9rem]  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
             >
                                      
                                 <div className=" flex h-8 border-l-2 border-green-500 bg-[#eef2f9]  w-[12rem]   max-sm:w-full">
@@ -203,7 +203,7 @@ if (loading) {
                                         </div>
                                         </div>
                                 </div>
-                                <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-start  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 <div class=" text-sm  font-poppins">   
 <Link to ="/investor">

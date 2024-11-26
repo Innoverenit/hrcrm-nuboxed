@@ -198,17 +198,17 @@ function InvestorTeamCardList(props) {
     />
   ) : (
     <div  className=" flex">
-       <div className=' flex rounded w-[15%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
+       <div className=' flex rounded w-[13%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
     <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[#eaedf1] mt-1  items-center shadow-[#a3abb980] ">
      <div> Search team Member</div>
       </div>
-      <div class="flex  flex-col rounded w-[92%]  p-1 h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+      <div class="flex  flex-col rounded w-[11vw]   h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
       {props.teamUserList.map((item,index) =>{
            return (
-             <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
-                text-[#444444] m-1 w-[11.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-      <div class="flex items-center flex-no-wrap h-16">
-        <div class=" flex basis-[15%] mr-[0.2rem] h-15" >
+             <div class="rounded border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
+                text-[#444444] mt-1  max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+      <div class="flex items-center  h-16">
+        <div class=" flex  mr-[0.2rem] h-15" >
           <MultiAvatar
            primaryTitle={item.empName}
           imageId={item.imageId}
@@ -217,8 +217,8 @@ function InvestorTeamCardList(props) {
           />
         </div>
         
-        <div class="flex basis-[100%] overflow-hidden">    
-        <div class="font-semibold text-[#337df4] cursor-pointer text-xs " >     
+        <div class="flex overflow-hidden">    
+        <div class="font-semibold text-[#337df4] font-poppins  truncate cursor-pointer text-lm " >    
        {item.empName}
       </div> 
       </div>        
@@ -226,14 +226,14 @@ function InvestorTeamCardList(props) {
 
       <div className="flex flex-col max-sm:justify-between ">
         
-            <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
-    {item.emailId}    
+      <div class="overflow-hidden text-ellipsis font-poppins cursor-pointer text-lm  flex items-center">
+      {item.dailCode1} {item.mobileNo} 
                 </div>
           
         <div>
         <div class="font-medium text-xs ">     
-            <div class="overflow-hidden  text-ellipsis cursor-pointer text-xs flex items-center">
-        {item.dailCode1} {item.mobileNo}
+        <div class="overflow-hidden text-ellipsis font-poppins cursor-pointer text-lm  flex items-center">
+      {item.emailId}    
             </div>                
         </div>
         </div>
@@ -243,56 +243,45 @@ function InvestorTeamCardList(props) {
 })}
       </div>
       </div>
+      <div className=' flex sticky  w-[87%] z-auto'>
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%] max-sm:bg-gradient-to-b from-white to-gray-100  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-  <div className=" flex justify-between max-sm:hidden  w-[83%]  p-1 bg-transparent font-bold sticky items-end !text-lm font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
-        <div className=" flex text-[#00A2E8] text-sm justify-center w-[6.6rem] max-xl:w-[14.4rem] ">
+  <div className=" flex justify-between max-sm:hidden  w-[80%]  p-1 bg-transparent font-bold sticky items-end !text-lm font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
+        <div className=" flex text-[#00A2E8] text-sm truncate w-[9.6rem] max-xl:w-[14.4rem] ">
         <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]}  
         {/* "Name" */}              
                 </div>
-        <div className="flex justify-center w-[13.1rem] max-md:w-[13.1rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
+        <div className="flex  w-[10.1rem] truncate max-md:w-[13.1rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
         <FactoryIcon className="!text-icon   text-[#84a59d]"/> {translatedMenuItems[1]}
         {/* Sector" */}          
                 </div>   
-                <div className=" w-[6.23rem] max-md:w-[6.23rem] max-xl:w-[8.2rem]">
+                <div className=" w-[5.23rem] truncate max-md:w-[6.23rem] max-xl:w-[8.2rem]">
           <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[5]}
           {/* "Category */}
           </div>
-          <div className=" w-[5.34rem] max-md:w-[5.34rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
+          <div className=" w-[5.34rem] truncate max-md:w-[5.34rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
           <SourceIcon className="!text-icon   text-[#4b5043]"/>{translatedMenuItems[6]}
          {/* Source" */}         
           </div> 
-        <div className=" w-[5.12rem] max-md:w-[5.12rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">
+        <div className=" w-[6.12rem] truncate max-md:w-[5.12rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">
         <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[2]}
          {/* Deals */}      
-                </div>
-        {/* <div className=" w-[4.25rem] max-xl:w-[8.2rem]">
-        {translatedMenuItems[3]}
-                   Discussion
-          </div> */}
-          {/* <div className="  w-[4.24rem] max-xl:w-[8.2rem]">
-          <SensorOccupiedIcon className='!text-icon    text-[#397367]' />  {translatedMenuItems[4]} 
-          "Signed"       
-          </div> */}
-       
-          <div className="  w-[6.212rem] max-md:w-[6.212rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          <ShowChartIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[16]}
+                </div>      
+          <div className="  w-[8.212rem] truncate max-md:w-[6.212rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          <ShowChartIcon className='!text-icon    text-[#776871]' /> {translatedMenuItems[16]}
        {/* Shares # */}
           </div>         
-          {/* <div className=" w-[4.2rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-          <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {translatedMenuItems[17]}
-        Value
-          </div> */}
-          <div className=" w-[4.21rem] max-md:w-[4.21rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+         
+          <div className=" w-[4.21rem] truncate max-md:w-[4.21rem] max-xl:text-xs max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
           <GolfCourseIcon className='!text-base  text-[#f42c04]'/>  {translatedMenuItems[18]}
         {/* Club */}
           </div>
           {props.user.aiInd && (
-            <div className=" w-[3.81rem] max-md:w-[3.81rem] max-xl:w-[3.81rem]">
+            <div className=" w-[3.81rem] truncate max-md:w-[3.81rem] max-xl:w-[3.81rem]">
             <ScoreIcon className="!text-icon   text-[#f28482]"/>  {translatedMenuItems[15]}
           {/* Score */}
             </div>
             )}
-        <div className=" w-[6.3rem] max-md:w-[6.3rem] max-xl:w-[10.3rem]">
+        <div className=" w-[4.3rem] truncate max-md:w-[6.3rem] max-xl:w-[10.3rem]">
         <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[7]}
         {/* Assigned" */}
              
@@ -417,7 +406,7 @@ function InvestorTeamCardList(props) {
                                     </div>
                                 </div>
                          
-                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                      {/*signed */}
 
                                     <div class=" text-xs justify-center  font-poppins max-sm:text-sm">
@@ -632,7 +621,7 @@ function InvestorTeamCardList(props) {
      </InfiniteScroll> 
      </div>
 </div>
-
+</div>
         )}  
 <Suspense fallback={<BundleLoader />}>
       <UpdateInvestorModal
