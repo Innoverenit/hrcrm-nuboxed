@@ -52,8 +52,9 @@ function ExtendOpportunityProductList(props) {
       }, [props.selectedLanguage]);
 
       const fetchData = async () => {
+        let suppliesId =props.RowItem.productId;
         try {
-          const response = await axios.get(`${base_url2}/invoice/procureFullInvoiceData`,{
+          const response = await axios.get(`${base_url2}/po/getStockAndTransitNo/${suppliesId}`,{
             headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
             },
