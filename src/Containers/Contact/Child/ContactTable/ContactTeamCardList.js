@@ -288,10 +288,9 @@ if (loading) {
              <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/>{translatedMenuItems[8]}   {/* Score */}
           
             </div>
-            )}  
-            <div className=" w-[8.1rem] truncate max-md:w-[6.1rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">          
-               <AccountCircleIcon className="!text-icon truncate mr-1 text-[#f28482]"/>
-      {translatedMenuItems[7]} </div>
+            )}            
+               <div className=" w-[6.1rem] max-md: w-[6.1rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">
+               <AccountCircleIcon className="!text-icon truncate  text-[#f28482]"/> {translatedMenuItems[7]} </div>
       
         <div className="w-[4.2rem]"></div>
         </div>

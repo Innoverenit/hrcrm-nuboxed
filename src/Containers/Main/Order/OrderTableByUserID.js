@@ -265,7 +265,7 @@ const exportPDFAnnexure = async () => {
                         <div className="flex items-center text-[#00A2E8] text-base w-[6rem] max-md:w-[6rem] ml-2">
                         <DynamicFeedIcon className='!text-base mr-1 '/>
                         {translatedMenuItems[1]} ID</div>
-                        <div className="flex items-center w-[10.6rem] max-md:w-[3.6rem]"> 
+                        <div className="flex items-center w-[10.6rem] max-md:w-[3.6rem] "> 
                           <ApartmentIcon className='!text-base mr-0  text-[#902089]'/>
                           {translatedMenuItems[2]}</div>
                         <div className="flex items-center w-[2.051rem] mr-1 max-md:w-[3.051rem] ">

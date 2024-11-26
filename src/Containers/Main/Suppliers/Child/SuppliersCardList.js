@@ -90,8 +90,8 @@ function SuppliersCardList(props) {
   ) : (
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex font-poppins text-xs justify-between w-[96%] max-md:text-[0.45rem] max-lg:text-[0.45rem]  p-1 bg-transparent font-bold sticky items-end z-10 max-sm:hidden">
-          <div className=" w-[9.91rem] truncate text-[#00A2E8]  max-md:w-[14.9rem] text-base "> 
+          <div className=" flex font-poppins text-xs justify-between w-[96%] max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm   p-1 bg-transparent font-bold sticky items-end z-10 max-sm:hidden">
+          <div className=" w-[9.91rem] truncate text-[#00A2E8]  max-md:w-[14.9rem]text-sm text-base "> 
                {/* Supplier ID */}
               <CategoryIcon className=" text-base"/> {props.translatedMenuItems[40]} ID
                </div>
