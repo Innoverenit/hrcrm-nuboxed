@@ -32,14 +32,9 @@ class EmployeeStatusView extends Component {
       <>
         <div class=" flex justify-end" >
         <Tooltip title="Edit">
-          <BorderColorIcon
+          <BorderColorIcon className=" text-red-500 cursor-pointer !text-icon"
           
             onClick={toggleViewType}
-            style={{
-              color: "grey",
-              cursor: "pointer",
-              fontSize: "1rem",
-            }}
           />
                </Tooltip>
         </div>

@@ -127,10 +127,10 @@ class PersonalTable2 extends Component {
       <>
         <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky z-10">
-          <div className=" max-md:w-[6.5rem] w-[6.5rem] text-sm"> {/* Name */}  <ContactsIcon className="!text-icon  "/> {this.state.translatedMenuItems[0]}</div>
+          <div className=" max-md:w-[6.5rem] w-[6.5rem] text-sm text-[#00A2E8]"> {/* Name */}  <ContactsIcon className="!text-icon  "/> {this.state.translatedMenuItems[0]}</div>
  
-        <div className="max-md:w-[10.1rem] w-[10.1rem]"> <PhoneIcon className="!text-icon  "/> {this.state.translatedMenuItems[1]}</div>
-       <div className="max-md:w-[10.1rem] w-[10.1rem]"><PhoneIcon className="!text-icon  "/>{this.state.translatedMenuItems[2]}</div>
+        <div className="max-md:w-[10.1rem] w-[10.1rem]"> <PhoneIcon className="!text-icon  text-[#4B2206]"/> {this.state.translatedMenuItems[1]}</div>
+       <div className="max-md:w-[10.1rem] w-[10.1rem]"><PhoneIcon className="!text-icon text-[#D64045] "/>{this.state.translatedMenuItems[2]}</div>
               
         
         <div className="w-[10.2rem] max-md:w-[10.2rem]"></div>

@@ -295,7 +295,7 @@ function SpareNewList(props) {
                                                 </div>
                                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins  max-sm:text-xs">
-                                                       < BuildIcon onClick={() => {
+                                                       < BuildIcon     className="!text-icon cursor-pointer  max-sm:!text-2xl" onClick={() => {
                               setSpareOpen(true);
                               handleRowData(item);
                             }}/>
@@ -308,7 +308,7 @@ function SpareNewList(props) {
                                                     <Tooltip title={translatedMenuItems[6]}>
                                                         <NoteAltIcon
                                                             className="!text-icon cursor-pointer  max-sm:!text-2xl"
-                                                            // style={{ cursor: "pointer" }}
+                                                          
                                                             onClick={() => {
                                                                 handleRowData(item);
                                                                 props.handleProductionNotesModal(true);

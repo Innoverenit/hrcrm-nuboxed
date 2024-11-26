@@ -22,7 +22,7 @@ function EmployeeSelect(props) {
 
   return (
     <div>
-      <Select style={{ width: "14rem" }} onChange={(e) => handleChange(e)}>
+      <Select style={{ width: "14rem", height:"1.1rem" }} onChange={(e) => handleChange(e)}>
         {/* <Option value={"item"}>"item" </Option>; */}
         {props.librarys.map((item, i) => {
           return <Option value={item.name}>{item.name}</Option>;

@@ -11,6 +11,10 @@ import {
 import { elipsize } from "../../../../../../../Helpers/Function/Functions";
 import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 import { Tooltip } from "antd";
+import ContactsIcon from '@mui/icons-material/Contacts';
+import DescriptionIcon from '@mui/icons-material/Description';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 
 class LinkedDocuments extends Component {
   constructor(props) {
@@ -73,17 +77,17 @@ class LinkedDocuments extends Component {
       <>
         {true && (
             <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-            <div className=" md:w-[6.5rem]">
-        {this.state.translatedmenuitems[0]}
+            <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins text-lm sticky z-10">
+            <div className=" max-md:w-[6.5rem] w-[6.5rem] text-sm text-[#00A2E8]">
+            <DateRangeIcon className=" !text-icon"/> {this.state.translatedMenuItems[0]}
                   </div>
    
-          <div className="md:w-[10.1rem]">
-          {this.state.translatedmenuitems[1]}</div>
-                   <div className="md:w-[5.1rem]">
-                   {this.state.translatedmenuitems[2]}</div>
-                         <div className=" md:w-[8.1rem]">
-                         {this.state.translatedmenuitems[3]}</div>
+          <div className="max-md:w-[10.1rem] w-[10.1rem]">
+        <ContactsIcon className=" !text-icon text-[#1E213D]"/>  {this.state.translatedMenuItems[1]}</div>
+                   <div className="max-md:w-[5.1rem] w-[5.1rem]">
+                   <DescriptionIcon  className=" !text-icon text-[#4B2206]"/> {this.state.translatedMenuItems[2]}</div>
+                         <div className=" max-md:w-[8.1rem] w-[8.1rem]">
+                         <DriveFolderUploadIcon className=" !text-icon text-[#D64045]"/>  {this.state.translatedMenuItems[3]}</div>
 
          
           

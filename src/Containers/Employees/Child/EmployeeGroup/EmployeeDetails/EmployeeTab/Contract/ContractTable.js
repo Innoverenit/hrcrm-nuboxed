@@ -10,7 +10,11 @@ import {
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import dayjs from "dayjs";
 import { Tooltip } from "antd";
+import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import DescriptionIcon from '@mui/icons-material/Description';
 import EmptyPage from "../../../../../../Main/EmptyPage";
+import MergeTypeIcon from '@mui/icons-material/MergeType';
 const UpdateContractModal = lazy(() => import("./UpdateContractModal"));
 
 class ContractTable extends Component {
@@ -67,20 +71,20 @@ class ContractTable extends Component {
     return (
       <>
          <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-          <div className=" md:w-[12.5rem]">
-          {this.state.translatedMenuItems[0]}</div>
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold text-lm font-poppins sticky z-10">
+          <div className=" max-md:w-[12.5rem] w-[12.5rem] text-sm text-[#00A2E8]">
+          <DateRangeIcon className=" !text-icon"/> {this.state.translatedMenuItems[0]}</div>
  
-        <div className="md:w-[10.1rem]">
-        {this.state.translatedMenuItems[1]}</div>
-                 <div className="md:w-[10.1rem]">
-                 {this.state.translatedMenuItems[2]} {this.state.translatedMenuItems[3]}</div>
-                       <div className=" md:w-[8.1rem]">
-                       {this.state.translatedMenuItems[4]}</div>
+        <div className="max-md:w-[10.1rem] w-[10.2rem]">
+        <InsertInvitationIcon  className=" !text-icon text-[#1E213D]"/> {this.state.translatedMenuItems[1]}</div>
+                 <div className="max-md:w-[10.1rem] w-[10.2rem]">
+                 <MergeTypeIcon className=" !text-icon text-[#4B2206]"/> {this.state.translatedMenuItems[2]} {this.state.translatedMenuItems[3]}</div>
+                       <div className=" max-md:w-[8.1rem] w-[8.2rem]">
+                       <DescriptionIcon  className=" !text-icon text-[#D64045]"/> {this.state.translatedMenuItems[4]}</div>
 
                      
         
-        <div className="w-[10.2rem]"></div>
+        <div className="max-md:w-[10.2rem] w-[10.2rem]"></div>
 
       </div>
    
