@@ -120,32 +120,32 @@ function LinkedContact(props) {
       
      
       <div class="rounded m-1 p-1 w-[99%] h-[77vh] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%]  p-1 bg-transparent items-end font-bold sticky !text-lm  z-10">
-        <div className="font-bold font-poppins text-[#00A2E8] text-sm w-[16.5rem]  max-md:w-[16.5rem]">
+          <div className=" flex justify-between w-[99%]  p-1 bg-transparent items-end font-bold font-poppins sticky !text-lm  z-10">
+        <div className="font-bold font-poppins text-[#00A2E8] text-sm w-[15.2rem]  max-md:w-[16.5rem]">
         <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}
           {/* Name */}
         </div>
-        <div className="font-bold font-poppins text-xs w-[10.1rem]  max-md:w-[9.1rem]">
+        <div className="  w-[8.5rem] truncate  max-md:w-[9.1rem]">
         <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '  />
          {translatedMenuItems[1]}
 {/* Email */}
         </div>
-        <div className="font-bold font-poppins text-xs w-[8.1rem]  max-md:w-[8.1rem]">
+        <div className=" w-[7.1rem] truncate  max-md:w-[8.1rem]">
         <MobileFriendlyIcon className='!text-icon text-[#41ead4] '  /> {translatedMenuItems[2]}
           {/* Mobile */}
         </div>
-        <div className="font-bold font-poppins text-xs  w-[8.2rem] max-md:w-[8.2rem]">
+        <div className=" w-[8.2rem]  truncate max-md:w-[8.2rem]">
         <ApartmentIcon className='!text-icon text-[#f0386b] '  />   {translatedMenuItems[3]}
           {/* Department */}
         </div>
-                     <div className="font-bold font-poppins text-xs  w-[7.2rem] max-md:w-[7.2rem]">
+                     <div className="  w-[7.2rem] truncate max-md:w-[7.2rem]">
                      <i className=" fab fa-artstation mr-1 text-[#b744b8]"></i>{translatedMenuItems[4]}
                       {/* Designation */}
                      </div>
                 
         
         <div className="w-[4.21rem]"></div>
-        <div className="font-bold font-poppins text-xs w-[7.21rem] max-md:w-[7.21rem]">
+        <div className="truncate w-[7.21rem] max-md:w-[7.21rem]">
         <RadioButtonCheckedIcon className="!text-icon mr-1 text-[#f28482]"/>   {translatedMenuItems[5]}
 {/* Portal */}
         </div>
