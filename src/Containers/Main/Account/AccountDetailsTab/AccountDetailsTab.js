@@ -24,7 +24,7 @@ import {
 } from "../AccountAction";
 import LayersIcon from '@mui/icons-material/Layers';// salesmap
 import DistributorChart from "../AccountDetailsTab/DistributorChart"
-import { handleSupplierDocumentUploadModal } from "../../Suppliers/SuppliersAction"
+import { handleSupplierDocumentUploadModal,getContactCount } from "../../Suppliers/SuppliersAction"
 import { handleSupplierContactModal } from "../../Suppliers/SuppliersAction";
 import { Tooltip, Badge } from "antd";
 import AddBoxIcon from '@mui/icons-material/AddBox';
@@ -75,7 +75,9 @@ function AccountDetailsTab(props) {
 
     const [clickSideIcon,setclickSideIcon]=useState(false);
 
-    
+    useEffect(() => {
+        props.getContactCount(props.distributorData.distributorId,"distributor")
+    }, [])
     useEffect(() => {
         const fetchMenuTranslations = async () => {
           try {
@@ -222,7 +224,8 @@ function AccountDetailsTab(props) {
                             /></div>;
                             case "10":
                                 return  <div>  
-                                   <AccountContactTable distributorId={props.distributorData.distributorId} 
+                                   <AccountContactTable uniqueId={props.distributorData.distributorId} 
+                                   type={"distributor"}
                               selectedLanguage={props.selectedLanguage}
                               translateText={props.translateText}/></div>;
                               case "11":
@@ -822,7 +825,7 @@ function AccountDetailsTab(props) {
               translateText={props.translateText}
                 addSupplierContactModal={props.addSupplierContactModal}
                 handleSupplierContactModal={props.handleSupplierContactModal}
-                type="distributor"
+                type="distributor" 
                 id={props.distributorData.distributorId}
             />
             <AccountActivityModal
@@ -880,7 +883,8 @@ const mapStateToProps = ({ distributor, auth, suppliers,customer }) => ({
     supplierDocumentUploadModal: suppliers.supplierDocumentUploadModal,
     procureRecordData:distributor.procureRecordData,
     addAccountOpportunityModal: distributor.addAccountOpportunityModal,
-    invoiceCount: distributor.invoiceCount
+    invoiceCount: distributor.invoiceCount,
+    erpContactCount: suppliers.erpContactCount
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -898,7 +902,7 @@ const mapDispatchToProps = (dispatch) =>
             handleSupplierContactModal,
             getOrderRecords,
             handleAccountOpportunityModal,
-            
+            getContactCount
         },
         dispatch
     );

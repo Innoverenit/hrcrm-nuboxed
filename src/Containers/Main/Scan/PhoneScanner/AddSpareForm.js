@@ -15,7 +15,7 @@ const AddSpareForm = (props) => {
         props.getTaggedSuppliesByBrand(props.phoneDetails.company, props.phoneDetails.model)
     }, [])
 
-    const [rows, setRows] = useState([{ suppliesId: "", noOfSpare: "", hours: "", extraCost: "", spareCurrency: "", id: 1 }]);
+    const [rows, setRows] = useState([{ suppliesId: "", noOfSpare: "", hours: "", extraCost: "", spareCurrency: "", id: 1 ,orgId:props.orgId}]);
     const [id, setId] = useState(1);
     const [level, setLevel] = useState(1);
 
@@ -197,6 +197,7 @@ const mapStateToProps = ({ inventory, auth, distributor }) => ({
     addingRoomAndRackInInventory: inventory.addingRoomAndRackInInventory,
     spareByBrand: distributor.spareByBrand,
     userId: auth.userDetails.userId,
+    orgId: auth.userDetails.organizationId,
     currencies: auth.currencies,
 });
 

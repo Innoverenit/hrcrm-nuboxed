@@ -401,7 +401,9 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
 
         {props.invoiceSearch.length > 0 ? (
     <Invoicesearch
+    distributorId={props.distributorId}
     invoiceSearch={props.invoiceSearch}
+    fetchingInputInvoiceData={props.fetchingInputInvoiceData}
     translateText={props.translateText}
     selectedLanguage={props.selectedLanguage}
   translatedMenuItems={props.translatedMenuItems}
@@ -630,6 +632,7 @@ const mapStateToProps = ({ distributor, auth }) => ({
     invoiceO: distributor.invoiceO,
     invoiceSearch: distributor.invoiceSearch,
     addPaidButtonModal: distributor.addPaidButtonModal,
+    fetchingInputInvoiceData:distributor.fetchingInputInvoiceData
 });
 
 const mapDispatchToProps = (dispatch) =>

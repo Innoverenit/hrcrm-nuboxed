@@ -33,7 +33,7 @@ const AccountContactTable = (props) => {
     const [modalContactHistory, setmodalContactHistory] =useState(false);
 
     useEffect(() => {
-        props.getContactDistributorList(props.distributorId);
+        props.getContactDistributorList(props.uniqueId,props.type);
         props.getLobList(props.orgId);
         props.getSaleCurrency();
         fetchMenuTranslations();
@@ -255,7 +255,7 @@ const AccountContactTable = (props) => {
                                 item.contactPersonId,
                                 props.userId,
                                 "Customer Contact To User",
-                                props.distributorId,
+                                props.uniqueId,
                             );
                         }}
                     >

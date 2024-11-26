@@ -1,29 +1,48 @@
 import React, { useEffect, useState,useRef } from "react";
 import { connect } from "react-redux";
+import { useDispatch } from 'react-redux';
 import { bindActionCreators } from "redux";
 import {
-    getAccountInvoiveList,
     handlenvoiceOrderModal,
     getGeneratedInvoiveList,
     upadtePayment,
     handleInvoiceModal,
     searchInoice,
-    ClearSearchedInvoice
+    ClearSearchedInvoice,
+    handlePaidModal,
+    getInvoiceCount
 } from "../AccountAction";
-
 import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
-import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
-import {  Select,Popconfirm, Tooltip,Input,Button } from 'antd';
+import {  Select, Tooltip,Input,Button } from 'antd';
 import dayjs from "dayjs";
-import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InvoiceOrderModal from "./InvoiceOrderModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import InvoiceModal from "./InvoiceModal";
+import PaidIcon from '@mui/icons-material/Paid';
+import InvoicePaidModal from "./InvoicePaidModal";
+import { base_url2 } from "../../../../Config/Auth";
+import axios from "axios";
+import Swal from 'sweetalert2';
+import InvoiceStatusDrawer from "./InvoiceStatusDrawer";
+import EventRepeatIcon from '@mui/icons-material/EventRepeat';
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import MultipleOrderDrawer from "./MultipleOrderDrawer";
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import CreditCardIcon from '@mui/icons-material/CreditCard';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import UpdateIcon from '@mui/icons-material/Update';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import InvoiceMultipleDrawer from "./InvoiceMultipleDrawer";
+import EmptyPage from "../../EmptyPage";
+
 const { Option } = Select;
 
 function Invoicesearch(props) {
+  const dispatch = useDispatch();
     const [pageNo, setPageNo] = useState(0);
     const [currentData, setCurrentData] = useState("");
     const [searchOnEnter, setSearchOnEnter] = useState(false); 
@@ -32,19 +51,31 @@ function Invoicesearch(props) {
     const minRecordingTime = 3000; // 3 seconds
     const timerRef = useRef(null);
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
-    const [particularRowData, setParticularRowData] = useState({});
+
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [data, setData] = useState(null);
+    const [openStatus,setopenStatus] = useState(false);
+const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
+
+
     useEffect(() => {
         const fetchMenuTranslations = async () => {
           try {
             setLoading(true); 
             const itemsToTranslate = [
-    'Invoice ', // 0
-    'Order', // 1
-    'Value', // 2
-    'Type', // 3
-    ' Status', // 4
-   
+    '1169', // 0
+    '660', // 1
+    '218', // 2
+    '71', // 3
+    '142', // 4
+    "1485",//5 Search by Invoice ID"
+   "1484", //6 Outstanding
+ "1357",  //7 Credit Memo
+  "100",  // New
+  "1089",  // Generate
+   "1483", // Payment link
+  "142",// Status
 
 
           ];
@@ -61,10 +92,83 @@ function Invoicesearch(props) {
         fetchMenuTranslations();
       }, [props.selectedLanguage]);
     useEffect(() => {
-        //setPageNo(pageNo + 1);
-        props.getAccountInvoiveList(props.distributorId)
-        props.getGeneratedInvoiveList(props.distributorId)
+      props.getInvoiceCount(props.distributorId)
+        // props.getAccountInvoiveList(props.distributorId)
+        props.getGeneratedInvoiveList(props.distributorId);
     }, []);
+
+    const exportPDFAnnexure = async () => {
+      var doc = new jsPDF();
+      // const {
+      //   userDetails:
+      //   {address},
+      //     imageId
+      // }=props
+     
+      // let cityd=`${address.city}`
+      // let countryd=`${address.country}`
+      // let addressde=`${address.state}`
+      // let cityde=`${address.street}`
+      // var imageUrl = `${base_url}/image/${imageId || ""}`;
+      var name1 = `East Repair Inc `
+      var name2 =`1912 Harvest Lane New York ,NY 12210 `
+      var name3 =`BILL TO`
+      var name4 = `SHIP TO`
+      var name5 = `INVOICE #`
+      var name6 = `INVOICE DATE`
+      var name7 = `P.O.#`
+      var name8 = `INVOICE Total`
+      var name9 = `QTY`
+      var name10 = `DESCRIPTION`
+      var name11 = `UNIT PRICE`
+      var name12 = `AMOUNT`
+      var name13= `TERM & CONDITIONS`
+      var name14= `Payement id due within 15 days`
+      var name15= `Please make checks payble to: East repair Inc. `
+    
+    
+      doc.setFont("Montserrat");
+      doc.setFillColor(62, 115, 185);
+      doc.rect(0, 0, 230, 13, 'F');
+      doc.setFontSize(25);
+      doc.setFontSize(14);
+      doc.setDrawColor(0, 0, 0)
+      // doc.addImage(imageUrl, 'JPEG', 20, 18, 165, 20);
+      doc.text(name1, 8, 25);
+      doc.setFontSize(10);
+      let yPosition = 32;
+    //   address.forEach(item => {
+    //     doc.text(` ${item.city}  ${item.country}  ${item.state}  ${item.street}`, 8, yPosition);
+    //     yPosition += 4
+    // });
+      // doc.text(name2, 8, 32);
+      doc.setFontSize(12);
+      doc.text(name3, 8, 50);
+      doc.text(name4, 60, 50);
+      doc.text(name5, 120, 50);
+      doc.text(name6, 120, 58);
+      doc.text(name7, 120, 66);
+      doc.line(8, 80, 200, 80);
+      doc.setFontSize(22);
+      doc.text(name8, 8, 90);
+      doc.line(8, 100, 200, 100);
+      doc.setFontSize(10);
+      doc.text(name9, 8, 110);
+      doc.text(name10, 30, 110);
+      doc.text(name11, 90, 110);
+      doc.text(name12, 140, 110);
+      doc.setFontSize(12);
+      doc.text(name13, 8, 250);
+      doc.setFontSize(9);
+      doc.text(name14, 8, 260);
+      doc.text(name15, 8, 270);
+      //footer
+      doc.setFillColor(62, 115, 185);
+      doc.rect(0, 276, 230, 15, 'F');
+    
+      doc.save("Invoice.pdf")
+    
+    }
 
     const {
         transcript,
@@ -83,7 +187,8 @@ function Invoicesearch(props) {
         const handleChanges = (e) => {
             setCurrentData(e.target.value);
         
-            if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search         
+            if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search  
+                props.getGeneratedInvoiveList(props.distributorId)       
               props.ClearSearchedInvoice()
               setSearchOnEnter(false);
             }
@@ -145,11 +250,6 @@ function Invoicesearch(props) {
             }
           }, [listening, isRecording, startTime]);
 
-
-    const [rowData, setRowData] = useState({})
-    const handleRowData = (item) => {
-        setRowData(item)
-    }
     const [currency, setCurrency] = useState("")
     const [showIcon, setShowIcon] = useState(false)
     const handleCurrencyField = () => {
@@ -163,6 +263,7 @@ function Invoicesearch(props) {
         setShowIcon(false)
         setCurrency("")
     }
+    const [particularRowData, setParticularRowData] = useState({});
     function handleSetParticularOrderData(item) {
         setParticularRowData(item);
     }
@@ -173,12 +274,6 @@ function Invoicesearch(props) {
     const [price, setPrice] = useState(particularRowData.invoiceId)
     const handleChange = (val) => {
           setPrice(val)
-        // if (!isNaN(val) && val > 0 && val < 101) {
-        //   setPrice(val);
-        // } else {
-        //   setPrice(''); // Reset the input if the value is not valid
-        // }
-    
     }
     const handleSubmitPrice = () => {
         props.upadtePayment(
@@ -193,167 +288,308 @@ function Invoicesearch(props) {
     }
     const [hasMore, setHasMore] = useState(true);
     
-    const handleLoadMore = () => {
-        const callPageMapd = props.accountInvoice && props.accountInvoice.length &&props.accountInvoice[0].pageCount
-        setTimeout(() => {
-          const {
-            getAccountInvoiveList,
-           // userDetails: { employeeId },
-          } = props;
-          if  (props.accountInvoice)
-          {
-            if (pageNo < callPageMapd) {
-                setPageNo(pageNo + 1);
-                getAccountInvoiveList(props.orgId,pageNo); 
-          }
-          if (pageNo === callPageMapd){
-            setHasMore(false)
-          }
+   const [modalMultiple,setmodalMultiple]=useState(false);
+
+      const sendCreditMemo= async (item) => {
+       
+        setLoading(true);
+        setError(null);
+        try {
+          const response = await axios.post(`${base_url2}/creditMemo/creditInd`,{
+          userId: props.userId,
+          distributorId:item.distributorId,
+          orgId: props.orgId,
+          invoiceId:item.procureOrderInvoiceId,
+          creditInd:true,
+          orderId:item.orderPhoneId,
+          },
+            {
+              headers: {
+                Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+              },
+            }  
+          );
+          dispatch(getGeneratedInvoiveList(props.distributorId));
+          setData(response.data);
+          Swal.fire({
+            title: 'Success!',
+            text: 'Generated successfully!',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            showConfirmButton: false,
+            timer: 1500,
+        });
+        } 
+        
+        catch (err) {
+          setError(err);
+          Swal.fire({
+            title: 'Error!',
+            text: 'There was an issue generating the invoice.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+            showConfirmButton: false,
+            timer: 1500,
+        });
+        } finally {
+          setLoading(false);
         }
-        }, 100);
+      }; 
+      
+      const executePayementLink= async () => {
+        setLoading(true);
+        setError(null);
+        try {
+          const response = await axios.post(`${base_url2}/invoice/paylinkDummy `,{
+          userId: props.userId,
+          distributorId:props.distributorId,
+            paylink: "",
+            orgId: props.orgId,
+          },
+            {
+              headers: {
+                Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+              },
+            }  
+          );
+          setData(response.data);
+          Swal.fire({
+            title: 'Success!',
+            text: 'Payment successfull',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            showConfirmButton: false,
+            timer: 1500,
+        });
+        } 
+        
+        catch (err) {
+          setError(err);
+          Swal.fire({
+            title: 'Error!',
+            text: 'There was an issue generating the invoice.',
+            icon: 'error',
+            confirmButtonText: 'OK',
+            showConfirmButton: false,
+            timer: 1500,
+        });
+        } finally {
+          setLoading(false);
+        }
       };
+
       if (loading) {
         return <div><BundleLoader/></div>;
       }
     return (
         <>
-        
-            <div className=' flex sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold sticky z-10">
-                    <div className=" md:w-[7rem] text-[white] flex justify-center bg-[red]">
-                 Type
-                         </div>
-                    <div class=" w-[8.5rem]">Payment ID</div>
-                        <div className=" md:w-[7.4rem]"> Date</div>
-                        <div className=" md:w-[7.4rem]">Value </div>
-                        <div className=" md:w-[7.1rem]">Mode</div>
-                        <div className="md:w-[3.8rem]">{translatedMenuItems[1]} ID</div>
-                        <div className="md:w-[3.81rem]">{translatedMenuItems[0]} ID</div>
-                      
-                    </div>
-                    <div class="h-[33vh]">
-                       
         <>
+        
+
+            <div className=' flex sticky  z-auto mt-3'>
+                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                    <div className=" flex justify-between w-[86%] items-end p-1 bg-transparent font-bold !text-lm font-poppins text-xs sticky z-10">
+                  
+                    <div class="text-[#00A2E8] text-sm max-md:w-[8.5rem] w-[8.5rem]">
+                    <ReceiptIcon className="!text-icon text-[#b91372]"/> {translatedMenuItems[0]} ID</div>
+                        <div className=" w-[7.4rem] max-md:w-[7.4rem]">
+                        <DynamicFeedIcon className="!text-icon text-[#157a6e] cursor-pointer"/>{translatedMenuItems[1]} ID</div>
+           
+                        <div className="w-[7.107rem] max-md:w-[7.1rem]">
+                        <CurrencyExchangeIcon className='!text-icon mr-1 text-[#e4eb2f]' />{translatedMenuItems[2]}</div>
+               
+                        <div className="w-[8.09rem] max-md:w-[8rem]">{translatedMenuItems[6]}</div>
+                        <div className="w-[8.3rem] max-md:w-[8rem]">
+                        <CreditCardIcon className="!text-icon text-[#edd382] mr-1"/>{translatedMenuItems[7]}</div>
+                        {/* Credit Memo */}
+                        <div className="w-[8.23rem] max-md:w-[8rem]"></div>
+                        <div className="w-[8.1rem] max-md:w-[8rem]">
+                        <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' /> {translatedMenuItems[4]}</div>
+                    </div>
+                    <div class="h-[69vh]" style={{scrollbarWidth:"thin"}}>
+                      
+                            {props.invoiceSearch.length ? <>
                                 {props.invoiceSearch.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
-                                    const date = dayjs(item.paymentDate).format("DD/MM/YYYY");
+                                    const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <>
-                                            <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
-                                                <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
-                                                    <div className=" flex font-medium justify-between  w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-[0.85rem]  font-poppins flex items-center">
-                                                           {item.paymentId}
-                                                           
-
-                                                        </div>
-                                                        {date === currentdate ? (
-                                                                <div class="text-[0.65rem] font-bold text-[tomato] mr-4">
-                                                                    New
-                                                                </div>
-                                                            ) : null}
-                                                    </div>
-                                                    <div className=" flex  w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                        {/* <span
+                                            <div className="flex rounded justify-between mt-1 bg-white  items-center py-ygap  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
+                                                <div class=" flex flex-row justify-between items-center w-wk max-sm:">
+                                                    <div className=" flex w-[9.25rem] h-8  border-l-2 border-green-500 bg-[#eef2f9]  max-xl:w-[16.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins ml-gap font-bold flex items-center">
+                                                        
+                                                           <span
                                                                     class="underline cursor-pointer text-[#1890ff]"
                                                                     onClick={() => {
-                                                                        handleRowData(item);
-                                                                        props.handlenvoiceOrderModal(true);
+                                                                      handleSetParticularOrderData(item);
+                                                                        props.handleInvoiceModal(true);
+                                                                        
                                                                     }}
-                                                                > {item.date}</span> */}
-                                                                 {date}
-                                                        </div>
-                                                    </div>
-                                                    <div className=" flex   w-[7.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-                                                         {item.orderType}
-                                                        </div>
-                                                    </div>
-                                                    <div className=" flex  w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                                                > 
+                                                                {item.invoiceId} 
+                                                                
+                                                                </span>
 
-                                                            {item.paymentModeName}
                                                         </div>
-                                                    </div>
-                                                    <div className=" flex   w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
-
-                                                            {item.newOrderNo}
-                                                        </div>
-                                                    </div>
-                                                    <div className=" flex  max-sm:w-auto w-[11rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
-                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">       
-                              {visible && (item.paymentId === particularRowData.paymentId) ?(
-                                                                <Input
-                                                                    type='text'
-                                                                    value={price}
-                                                                    onChange={(e) => handleChange(e.target.value)}
-                                                                />
-                                                            ) : item.invoiceId === "null" || item.invoiceId === null ? (
-                                                                "No Data"
-                                                            ) : (
-                                                              item.invoiceId
-                                                            )}                                                          
-                                                            
-                            </div>
-                          </div>
-                          <div className=" flex    md:w-[6.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                    <div class=" text-xs  font-poppins">
-
-                                                        {visible && (item.paymentId === particularRowData.paymentId) ? (
-                                                            <>
-                                                                <div className=" flex justify-between flex-col">
-                                                                    <Button onClick={() => {
-                                                                        handleSubmitPrice()
-                                                                    }} >
-                                                                       Save
-                                                                       
-                                                                    </Button>
-                                                                    <Button onClick={() => handleUpdateRevisePrice(false)}>Cancel
-                                                                    </Button>
+                                                        <div class="ml-1">
+                                                        {date === currentdate ? (
+                                                                <div class="text-[0.65rem] font-bold text-[tomato] mr-4">
+                                                                 {translatedMenuItems[8]}   {/* New */}
                                                                 </div>
-                                                            </>
-                                                        ) : <Tooltip title="Update Invoice">
-                                                            <PublishedWithChangesIcon
-                                                                onClick={() => {
-                                                                    handleUpdateRevisePrice()
-                                                                    handleSetParticularOrderData(item)
-                                                                }}
-                                                                className="!text-icon cursor-pointer text-[tomato]"
-                                                            />
-                                                        </Tooltip> }
-
+                                                            ) : null}</div>
                                                     </div>
+                                                    <div className=" flex  text-xs w-[20.1rem] max-xl:w-[10.1rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs underline cursor-pointer text-[#1890ff] font-poppins"
+                                                        onClick={() => {
+                                                          handleSetParticularOrderData(item);
+                                                              setopenMultipleDrawer(true)
+                                                            
+                                                        }}
+                                                        >
+                                                        
+                                                                {item.newOrderNo ? item.newOrderNo :"Multiple"}
+                                                        </div>
+                                                    </div>
+                                                 
+                                                    <div className=" flex text-xs w-[7.2rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
-                                                </div>
+                                                            {item.totalValue}
+                                                        </div>
+                                                    </div>
+                                                    <div className=" flex   w-[15rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+
+                                                    {item.remainingTotalValue} 
+
+                          </div> </div>
+                                                       <div className=" flex   w-[15.01rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        {item.creditInd  ? "" :(
+                                                        <Tooltip title="">
+                                                                <Button 
+                                                                    className="cursor-pointer"
+                                                                    onClick={() => {
+                                                                        sendCreditMemo(item);
+                                                                        handleSetParticularOrderData(item);
+                                                                    }}
+                                                                >{translatedMenuItems[9]}</Button>
+                                                            </Tooltip>)}
+
+                          </div>                  
+        </div>           
+                                                    <div className=" flex   w-[15.02rem] max-xl:w-[20.1rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:justify-between  max-sm:flex-row ">
+                                                        <Tooltip title="">
+                                                                <Button
+                                                                    className="cursor-pointer"
+                                                                    onClick={() => {
+                                                                        // executePayementLink();
+                                                                        handleSetParticularOrderData(item);
+                                                                    }}
+                                                                > {translatedMenuItems[10]}</Button>
+                                                            </Tooltip>
+                                                          </div>   
+                                                          <div className=" flex   w-[15.03rem] max-xl:w-[20.1rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+
+                                                   {item.paidInd=== true ? "Paid":"Unpaid"}
+
+                                               </div> </div>   
+                                                     <div className=" flex ml-1 items-center bg-[#eef2f9] h-8 justify-end  w-[15.04rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                       <div class="items-center justify-center  ">
+                                                        <Tooltip title="">
+                                                                <PaidIcon
+                                                                    className="!text-icon cursor-pointer text-[#e5625e]"
+                                                                    onClick={() => {
+                                                                        props.handlePaidModal(true);
+                                                                        handleSetParticularOrderData(item);
+                                                                    }}
+                                                                />
+                                                            </Tooltip>      
+                       </div>
+                       <div class="items-center justify-center  ">
+                          <Tooltip title={translatedMenuItems[11]}>
+                             <EventRepeatIcon
+                             className="!text-icon cursor-pointer text-[green]"
+                              onClick={()=>{
+                                setopenStatus(true);
+                                handleSetParticularOrderData(item);
+                              }}
+                             />
+                                  </Tooltip>
+                              </div>
+                              <div class="w-6 items-center justify-center  ">
+                              <a
+              href={`${base_url2}/customer/pdf/${item.invoiceId}`}
+            target="_blank"
+            >
+            <PictureAsPdfIcon className="!text-icon text-[red]"/>
+                           </a>
+          </div>
+                                                  
+                                                    </div>
                                                 </div>
                                             </div>
                                         </>
                                     )
                                 })}
                             </>
-                       
+                                : !props.invoiceSearch.length
+                                    && !props.fetchingInputInvoiceData ? <EmptyPage /> : null}
+                        {/* </InfiniteScroll> */}
                     </div>
                 </div>
             </div>
-
-            
+            </>
+          
             <InvoiceOrderModal
-                    rowData={rowData}
+                    particularRowData={particularRowData}
                     handlenvoiceOrderModal={props.handlenvoiceOrderModal}
                     invoiceOrders={props.invoiceOrders}
                     selectedLanguage={props.selectedLanguage}
                             translateText={props.translateText}
                 />  
                  <InvoiceModal
-                    rowData={rowData}
+                    particularRowData={particularRowData}
                     handleInvoiceModal={props.handleInvoiceModal}
                     invoiceO={props.invoiceO}
                     selectedLanguage={props.selectedLanguage}
                             translateText={props.translateText}
                 /> 
+                 <InvoicePaidModal
+                  particularRowData={particularRowData}
+                distributorId={props.distributorId}
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText} 
+                    type={props.type}
+                    addPaidButtonModal={props.addPaidButtonModal}
+                    handlePaidModal={props.handlePaidModal}   
+                />
+                <InvoiceStatusDrawer
+                   selectedLanguage={props.selectedLanguage}
+                   translateText={props.translateText} 
+                                  particularRowData={particularRowData}
+                 openStatus={openStatus}
+                 setopenStatus={setopenStatus}
+                />
+
+                <MultipleOrderDrawer
+                       particularRowData={particularRowData}
+                modalMultiple={modalMultiple}
+                setmodalMultiple={setmodalMultiple}
+                distributorId={props.distributorId}
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText} 
+                />
+                <InvoiceMultipleDrawer 
+                particularRowData={particularRowData}
+               openMultipleDrawer={openMultipleDrawer}
+                setopenMultipleDrawer={setopenMultipleDrawer}
+                distributorId={props.distributorId}
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText} 
+                />
         </>
     )
 }
@@ -367,20 +603,21 @@ const mapStateToProps = ({ distributor, auth }) => ({
     fetchingGeneratedInvoice: distributor.fetchingGeneratedInvoice,
     generatedInvoice: distributor.generatedInvoice,
     invoiceO: distributor.invoiceO,
-    invoiceSearch: distributor.invoiceSearch
+    addPaidButtonModal: distributor.addPaidButtonModal,
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getAccountInvoiveList,
+       
             getGeneratedInvoiveList,
             handlenvoiceOrderModal,
             upadtePayment,
             handleInvoiceModal,
             searchInoice,
-            ClearSearchedInvoice
-           
+            ClearSearchedInvoice,
+            handlePaidModal,
+            getInvoiceCount
         },
         dispatch
     );
