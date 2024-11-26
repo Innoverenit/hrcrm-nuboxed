@@ -1,16 +1,21 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Button } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import CloseIcon from '@mui/icons-material/Close';
 import { Formik, Form, Field } from "formik";
-import { addRecallData } from "./SuppliersAction";
+import { addRecallData,getBatchNo } from "./SuppliersAction";
 import LazySelect from "../../../Components/Forms/Formik/LazySelect";
 import { base_url2 } from "../../../Config/Auth";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 
 const NewRecallListStep1 = (props) => {
     const [fields, setFields] = useState([{ supplierId: "", suppliesFullName: "", batchNo: "" }]);
+
+
+    useEffect(() => {
+props.getBatchNo();
+      }, []);
 
     const addMoreFields = () => {
         setFields([...fields, { supplierId: "", suppliesFullName: "", batchNo: "" }]);
@@ -21,6 +26,14 @@ const NewRecallListStep1 = (props) => {
         newFields.splice(index, 1);
         setFields(newFields);
     };
+
+
+    const batchData = props.batchNo.map((item) => {
+        return {
+          label: `${item.fullName}`,
+          value: item.employeeId,
+        };
+      });
 
     return (
         <div>
@@ -74,7 +87,9 @@ const NewRecallListStep1 = (props) => {
                                         <Field
                                             isRequired
                                             name={`items[${index}].batchNo`}
-                                            options={["PassPort", "ID Card"]}
+                                            // options={["PassPort", "ID Card"]}
+                                            options={Array.isArray(batchData) ? batchData : []}
+                                            // value={values.included}
                                             component={SelectComponent}
                                             isColumn
                                             inlineLabel
@@ -110,11 +125,12 @@ const NewRecallListStep1 = (props) => {
 const mapStateToProps = ({ auth, suppliers }) => ({
     userId: auth.userDetails.userId,
     addingRecallData: suppliers.addingRecallData,
+    batchNo:suppliers.batchNo,
     token: auth.token,
     organizationId: auth.userDetails.organizationId,
 });
 
-const mapDispatchToProps = (dispatch) => bindActionCreators({ addRecallData }, dispatch);
+const mapDispatchToProps = (dispatch) => bindActionCreators({ addRecallData,getBatchNo }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewRecallListStep1);
 

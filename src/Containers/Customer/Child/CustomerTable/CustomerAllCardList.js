@@ -262,7 +262,7 @@ const [rowdata, setrowdata] = useState("");
           
           <div class="flex overflow-hidden">
           
-          <div class="font-semibold text-[#337df4] cursor-pointer text-xs " 
+          <div class="font-semibold text-[#337df4] font-poppins cursor-pointer text-lm truncate  " 
              onClick={() => handleButtonClick(item.employeeId)} >
         
           {item.empName}
@@ -271,14 +271,14 @@ const [rowdata, setrowdata] = useState("");
         </div>              
         </div>
         <div className="flex flex-col max-sm:justify-between ">       
-              <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
-              {item.email}
+              <div class="overflow-hidden text-ellipsis font-poppins cursor-pointer text-lm truncate  flex items-center">
+               {item.dailCode1} {item.mobileNo}
               </div>        
           <div>
           <div class="font-medium text-xs ">      
-              <div class="overflow-hidden  text-ellipsis cursor-pointer text-xs flex items-center">
-              {item.dailCode1} {item.mobileNo}
-              
+              <div class="overflow-hidden  text-ellipsis font-poppins cursor-pointer text-lm truncate  flex items-center">
+          
+              {item.email} 
               </div>                    
           </div>
           </div>
@@ -437,7 +437,7 @@ const [rowdata, setrowdata] = useState("");
   {item.countryAlpha2Code}
 </div>
 </div>
-                                <div className=" flex  max-sm:w-auto   w-[7.40rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                                <div className=" flex  max-sm:w-auto   w-[7.7rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
             {/* sector */}
                         <div class=" text-xs  max-sm:text-sm font-poppins   ml-gap">
                           {item.sector}
@@ -454,7 +454,7 @@ const [rowdata, setrowdata] = useState("");
 </div>
 
 </div> */}
-<div className=" flex  w-[6.82rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+<div className=" flex  w-[7.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 
 <div className=" flex  w-[3rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 <div class=" text-xs  cursor-pointer font-bold font-poppins  text-blue-600 max-sm:text-sm  text-center"

@@ -121,7 +121,7 @@ const CustomerActivityTable = (props) => {
       Complete
     </Button> */}
      {status.complitionInd===false&&(
-   <Button 
+   <Button  type='primary'
    //onClick={() => getLocation(item)}
    >
         Complete</Button>

@@ -16,6 +16,10 @@ import { base_url } from "../../../../../../../Config/Auth";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import dayjs from "dayjs";
 import { Tooltip } from "antd";
+import MergeTypeIcon from '@mui/icons-material/MergeType';
+import PublicIcon from '@mui/icons-material/Public';
+import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 const UpdateVisaModal =lazy(()=>import("./UpdateVisaModal"));
 
 class VisaTable extends Component {
@@ -84,20 +88,20 @@ class VisaTable extends Component {
       <>
 
 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-<div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-<div className=" md:w-[6.5rem]">
-{this.state.translatedMenuItems[0]}</div>
+<div className=" flex justify-between w-[100%] text-lm p-1 bg-transparent font-bold sticky  z-10">
+<div className=" max-md:w-[6.5rem] w-[6.5rem] text-sm text-[#00A2E8]">
+<PublicIcon className=" !text-icon text-[#1E213D] "/>{this.state.translatedMenuItems[0]}</div>
 
-<div className="md:w-[10.1rem]">
-{this.state.translatedMenuItems[1]}</div>
-       <div className="md:w-[7.1rem]">
-       {this.state.translatedMenuItems[2]}</div>
-             <div className=" md:w-[8.1rem]">
-             {this.state.translatedMenuItems[3]}</div>
+<div className="max-md:w-[10.1rem] w-[10.1rem]">
+<MergeTypeIcon className=" !text-icon  text-[#006600]"/>{this.state.translatedMenuItems[1]}</div>
+       <div className="max-md:w-[7.1rem] w-[7.1rem]">
+       <DateRangeIcon className=" !text-icon text-[#4B2206]"/>  {this.state.translatedMenuItems[2]}</div>
+             <div className=" max-md:w-[10.2rem] w-[10.2rem]">
+             <InsertInvitationIcon className=" !text-icon text-[#D64045]"/>  {this.state.translatedMenuItems[3]}</div>
 
         
 
-<div className="w-[10.2rem]"></div>
+<div className="max-md:w-[10.2rem] w-[10.2rem]"></div>
 
 </div>
 

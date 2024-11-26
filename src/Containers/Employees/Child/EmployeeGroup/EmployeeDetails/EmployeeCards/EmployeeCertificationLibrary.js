@@ -104,8 +104,8 @@ class EmployeeCertificationLibrary extends React.Component {
         {({ viewType }, toggleViewType) =>
           viewType === "view" ? (
             <div class=" h-[11rem]" >
-           <div class=" flex justify-between" >
-               <div class=" font-semibold mb-[0.2rem] text-[0.875em]"
+           <div class=" flex justify-between items-center" >
+               <div class=" flex items-center justify-center font-semibold mb-[0.2rem] text-xs"
               
               >
                 Certification{" "}
@@ -163,6 +163,7 @@ class EmployeeCertificationLibrary extends React.Component {
                   onPressEnter={this.handleInputConfirm}
                 />
               )}
+               <div className=" mt-1">
               {!inputVisible && (
                 <Tag
                   onClick={this.showInput}
@@ -172,6 +173,7 @@ class EmployeeCertificationLibrary extends React.Component {
                   <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" /> Certification
                 </Tag>
               )}
+              </div>
             </div>
           ) : null
         }

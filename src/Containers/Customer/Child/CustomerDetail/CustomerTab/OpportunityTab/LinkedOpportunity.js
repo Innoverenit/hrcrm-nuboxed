@@ -189,22 +189,22 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
     <div className=' flex  sticky z-auto'>
     <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] h-[79vh] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end  z-10">
-        <div className="font-bold font-poppins  text-[#00A2E8] text-sm max-md:w-[16rem] w-[16rem]">
-        <LightbulbIcon className="!text-icon text-[#84a59d]"/> {translatedMenuItems[0]} ID</div>
+        <div className="w-[16rem] font-bold font-poppins truncate text-[#00A2E8] text-sm max-md:w-[16rem] ">
+        <LightbulbIcon className="!text-icon text-[#84a59d] "/> {translatedMenuItems[0]} ID</div>
         {/* Quotation ID */}
         {/* <div className="font-bold font-poppins text-xs md:w-[7.1rem]">
           {translatedMenuItems[1]}</div> */}
         {/* Start Date         */}
-        <div className=" max-md:w-[6.21rem] w-[6.21rem] ">
+        <div className="w-[6.21rem] truncate max-md:w-[6.21rem]  ">
         <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[2]}</div>
         {/* End Date */}   
-        <div className=" max-md:w-[6.2rem] w-[6.2rem]">
+        <div className=" w-[6.2rem] truncate max-md:w-[6.2rem]">
         <CurrencyExchangeIcon className='!text-icon text-[#e4eb2f]' />  {translatedMenuItems[3]}</div>
         {/* Value */}  
-        <div className="  max-md:w-[5.51rem] w-[5.51rem]">
+        <div className="w-[5.51rem] truncate max-md:w-[5.51rem] ">
         <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' /> {translatedMenuItems[4]}</div>
           {/* Status */}      
-        <div className=" max-md:w-[8.8rem] w-[8.8rem]">
+        <div className="w-[8.8rem] truncate max-md:w-[8.8rem] ">
         <ContactPageIcon className='!text-icon  '  />
          {translatedMenuItems[5]}</div>
         {/* Sponsor */}

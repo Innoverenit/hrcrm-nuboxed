@@ -28,6 +28,8 @@ import ArticleIcon from '@mui/icons-material/Article';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import FileOpenIcon from '@mui/icons-material/FileOpen';
+import GavelIcon from '@mui/icons-material/Gavel';
+
 const ContractToggle =lazy(()=>import("./ContractToggle")); 
 const EmptyPage = lazy(() => import("../../../../../Main/EmptyPage"));
 class LinkedDocuments extends Component {
@@ -184,24 +186,24 @@ class LinkedDocuments extends Component {
         <div class="rounded m-1 p-1 w-[100%]  ">
           <div className=" flex justify-between w-[100%]  p-1 sticky font-bold font-poppins !text-lm items-end z-10">
           
-        <div className="font-bold font-poppins text-[#00A2E8] w-[16.1rem] text-sm max-md:w-[16.1rem]">
+        <div className=" text-[#00A2E8] truncate w-[10.8rem] text-sm max-md:w-[16.1rem]">
         <DateRangeIcon className='!text-icon  '  />  {this.state.translatedMenuItems[0]}</div>
         {/* Date */}
-                <div className=" w-[16.2rem] max-md:w-[16.2rem]">
-                <ArticleIcon className='!text-icon text-[#a379c9] '  />{this.state.translatedMenuItems[1]}</div>
+                <div className=" w-[15.2rem] truncate max-md:w-[16.2rem]">
+                <ArticleIcon className='!text-icon mr-1 text-[#a379c9] '  />{this.state.translatedMenuItems[1]}</div>
                 {/* Name */}
-        <div className=" w-[13.13rem] max-md:w-[13.13rem]">
+        <div className=" w-[15.4rem] truncate max-md:w-[13.13rem]">
         <DescriptionIcon className='!text-icon text-[#9ad5ca] '  /> {this.state.translatedMenuItems[2]}</div>
        
-        <div className=" w-[15.1rem] max-md:w-[15.1rem]">
+        <div className=" w-[10.7rem] truncate max-md:w-[15.1rem]">
         <AccountCircleIcon className="!text-icon  text-[#f28482]"/> {this.state.translatedMenuItems[3]}</div>
      
-        <div className=" w-[12.2rem] max-md:w-[12.2rem]">
+        <div className=" w-[14.2rem] truncate max-md:w-[12.2rem]">
         <  FileOpenIcon className='!text-icon text-[#7fb800] '  />  {this.state.translatedMenuItems[4]}</div>
           {/* fileName */}
         
-                     <div className=" w-[9.2rem] ">
-                      {this.state.translatedMenuItems[5]}</div>
+                     <div className=" w-[9.5rem] truncate max-md:w-[9.5rem]">
+                     <  GavelIcon className='!text-icon text-[red] '  />        {this.state.translatedMenuItems[5]}</div>
                      {/* Contract */}
         
         

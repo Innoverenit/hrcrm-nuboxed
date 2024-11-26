@@ -919,35 +919,51 @@ const InventoryMaterialBestBefore = (props) => {
     <div className="flex sticky z-auto h-[79vh]">
       <div className="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className="flex w-[100%] p-1 bg-transparent font-bold font-poppins !text-lm items-end sticky z-10">
-          <div className="w-[11.52rem] text-sm text-[#00A2E8] truncate max-md:w-[11.52rem]"> 
+          <div className="w-[14.9rem] text-sm text-[#00A2E8] truncate max-md:w-[11.52rem]"> 
             <AddShoppingCartIcon className="!text-icon "/>Item</div>
-          <div className="w-[12.122rem] truncate max-md:w-[12.122rem]">
+          <div className="w-[10.122rem] truncate max-md:w-[12.122rem]">
               <FactoryIcon className='!text-base  text-[#e4eb2f]' />Supplier Name</div>
-          <div className="w-[4.122rem] truncate max-md:w-[4.122rem]">
+          <div className="w-[5.122rem] truncate max-md:w-[4.122rem]">
             <PinIcon className=" !text-base"/>HSN</div>
-          <div className="w-[8.12rem] truncate max-md:w-[8.12rem]"> 
+          <div className="w-[6.12rem] truncate max-md:w-[8.12rem]"> 
              <CategoryIcon className='!text-base  text-[#e4eb2f]'/>Supplies Id</div>
-          <div className="w-[5.12rem] truncate max-md:w-[5.12rem]">Country</div>
-          <div className="w-[8.12rem] truncate max-md:w-[8.12rem]"><DateRangeIcon className="!text-icon "/>Best Use Date</div>
-          <div className="w-[9.2rem] truncate max-md:w-[9.2rem]">Zone</div>
-          <div className="w-[9.2rem] truncate max-md:w-[9.2rem]">Aisle</div>
+          <div className="w-[4.12rem] truncate max-md:w-[5.12rem]">Country</div>
+          <div className="w-[6.66rem] truncate max-md:w-[8.12rem]"><DateRangeIcon className="!text-icon "/>Best Use Date</div>
+          <div className="w-[5.6rem] truncate max-md:w-[8.12rem]"></div>
+          <div className="w-[7.7rem] truncate max-md:w-[9.2rem]">Zone</div>
+          <div className="w-[7.8rem] truncate max-md:w-[9.2rem]">Aisle</div>
           <div className="w-[7.12rem] truncate max-md:w-[7.12rem]">Rack</div>
-          <div className="w-[3.22rem] truncate max-md:w-[3.22rem]">Discount</div>
+          <div className="w-[7.22rem] truncate max-md:w-[3.22rem]">Discount</div>
         </div>
 
         {rowsBest.map((item, index) => (
           <div
             key={item.poSupplierSuppliesId}
-            className="flex rounded py-1 mt-1 bg-white items-center"
+            className="flex rounded py-ygap mt-1 bg-white items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
           >
-            <div className="w-[18.12rem]">{item.suppliesFullName}</div>
-            <div className="w-[11.02rem]">{item.supplierName}</div>
-            <div className="w-[4.25rem]">{item.hsn}</div>
-            <div className="w-[6.4rem]">{item.newSuppliesNo}</div>
-            <div className="w-[3.8rem]">{item.remainingCorrectUnit}</div>
-            <div className="w-[8.22rem]">{dayjs(item.creationDate).format("DD/MM/YYYY")}</div>
-            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.6rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                       <Button
+            <div className="flex w-[18.12rem] items-center justify-start truncate h-8 border-l-2 border-green-500 bg-[#eef2f9]">
+            <div class=" text-xs  font-poppins ml-gap max-sm:text-sm  ">
+              {item.suppliesFullName}
+              </div>
+              </div>
+            <div className=" flex w-[12.02rem] truncate items-center justify-start h-8 ml-gap bg-[#eef2f9]">
+            <div class=" text-xs  font-poppins ml-gap max-sm:text-sm  ">{item.supplierName}
+              </div>
+            </div>
+            <div className="flex w-[5.25rem] truncate items-center justify-start h-8 ml-gap bg-[#eef2f9]">
+            <div class=" text-xs  font-poppins ml-gap max-sm:text-sm  ">{item.hsn}
+              </div>
+            </div>
+            <div className="flex w-[7.4rem] truncate items-center justify-start h-8 ml-gap bg-[#eef2f9]">
+            <div class=" text-xs  font-poppins ml-gap max-sm:text-sm  ">{item.newSuppliesNo}</div></div>
+            <div className=" flex w-[4.8rem] truncate items-center justify-center h-8 ml-gap bg-[#eef2f9]">
+            <div class=" text-xs  font-poppins max-sm:text-sm  ">{item.remainingCorrectUnit}</div></div>
+            <div className="  flex w-[8.22rem] truncate items-center justify-start h-8 ml-gap bg-[#eef2f9]">
+            <div class=" text-xs  font-poppins max-sm:text-sm  ">{dayjs(item.creationDate).format("DD/MM/YYYY")}</div>
+            </div>
+            <div className=" flex items-center  justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.6rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                       <Button 
+                                       type="primary"
                                         onClick={() => {
                                           props.addToWaste({
                                             poSupplierSuppliesId:item.poSupplierSuppliesId,
@@ -965,7 +981,7 @@ const InventoryMaterialBestBefore = (props) => {
                          
                                         >To Waste</Button>
                                         </div>
-            <div className="w-[13.2rem]">
+            <div className=" flex w-[9.2rem] truncate items-center justify-center h-8 ml-gap bg-[#eef2f9]">
               <Select
                 placeholder="Select Zone"
                 value={item.roomRackId}
@@ -980,7 +996,7 @@ const InventoryMaterialBestBefore = (props) => {
                 ))}
               </Select>
             </div>
-            <div className="w-[13.2rem]">
+            <div className=" flex w-[9.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">
               <Select
                 placeholder="Select Aisle"
                 value={item.aisle}
@@ -995,7 +1011,7 @@ const InventoryMaterialBestBefore = (props) => {
                 ))}
               </Select>
             </div>
-            <div className="w-[13.2rem]">
+            <div className=" flex w-[9.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">
               <Select
                 placeholder="Select Rack"
                 value={item.chamber}
@@ -1013,8 +1029,10 @@ const InventoryMaterialBestBefore = (props) => {
                 ))}
               </Select>
             </div>
-
-            <div className=" flex  items-center justify-end h-8 ml-gap bg-[#eef2f9] w-[1.25rem] max-sm:justify-between  max-sm:flex-row ">
+            <div className=" flex w-[6.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">
+              {/* Discount */}
+              </div>
+            <div className=" flex  items-center justify-end h-8 ml-gap bg-[#eef2f9] truncate w-[2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class=" cursor-pointer max-xl:text-[0.65rem] font-xl text-xs items-center font-poppins">
                                                             <Tooltip title="Terms and conditions">
                                                                <TerminalSharp className="!text-icon text-[#c3b20b]"

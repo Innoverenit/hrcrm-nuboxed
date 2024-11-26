@@ -1906,7 +1906,7 @@ const onCheckAllePriceDiscountChange = (e) => {
           <div>
           {props.departmentData.hrInd === true ? (
           <div class="flex flex-col">
-              <div class="text-clr flex text-base font-bold  mt-8">
+              <div class="text-clr flex text-base font-bold ml-2 mt-8">
                 General & Self Service
               </div>
 
@@ -1915,11 +1915,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                 <div class=" w-[100%] p-1">
                   <div class="flex flex-col ">
                     <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className=" flex w-2/5 flex-col">
+                        <div className="text-sm font-semibold ml-2"> Users</div>
+                        <div className=" flex justify-evenly ml-2">Role-Based Access, Customizable Dashboards, Enhanced Collaboration, Multi departments and roles</div>
                       </div>
-                      <div  className=" flex w-3/5 flex-col">
-                        <div class="text-sm font-semibold">Users</div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                        <div class="text-sm font-semibold"></div>
                         <Checkbox
                           indeterminate={indeterminateUser}
                           onChange={onCheckAllUserChange}
@@ -1936,11 +1937,13 @@ const onCheckAllePriceDiscountChange = (e) => {
                       </div>
                     </div>
                     <div class="flex justify-between border  mt-2 w-[100%] h-24">
-                    <div className=" flex w-2/5">
-                        abcd
+                    <div className=" flex w-2/5 flex-col">
+                        <div className="text-sm font-semibold ml-2">Facility</div>
+                        <div className=" flex justify-evenly ml-2">Space Allocation and Utilization, Stock Control, Automated Reordering, Workforce Scheduling and Resource Allocation.
+                        </div>
                       </div>
-                      <div className=" flex w-3/5 flex-col">
-                        <div class="text-sm font-semibold">Facility</div>
+                      <div className=" flex w-3/5 flex-col ml-4 mt-4">
+                       
                         <Checkbox
                           indeterminate={indeterminatePlant}
                           onChange={onCheckAllPlantChange}
@@ -1957,11 +1960,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                       </div>
                     </div>
                     <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                    <div className=" flex w-2/5">
-                        abcd
+                    <div className=" flex w-2/5 flex-col">
+                        <div className="text-sm font-semibold ml-2">Repository</div>
+                        <div className=" flex justify-evenly ml-2">Central location for storing data, resources or digital assets - managed and maintain efficiently and effectively.</div>
                       </div>
-                      <div className=" flex w-3/5 flex-col">
-                        <div class="text-sm font-semibold">Repository</div>
+                      <div className=" flex w-3/5 flex-col ml-4 mt-4">
+                        {/* <div class="text-sm font-semibold">Repository</div> */}
                         <Checkbox
                           indeterminate={indeterminateRepository}
                           onChange={onCheckAllRepositoryChange}
@@ -1978,11 +1982,12 @@ const onCheckAllePriceDiscountChange = (e) => {
                       </div>
                         </div>
                         <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                        <div className=" flex w-2/5">
-                        abcd
+                        <div className=" flex w-2/5 flex-col">
+                        <div className="text-sm font-semibold ml-2">Settings</div>
+                        <div className=" flex justify-evenly ml-2"></div>
                       </div>
-                      <div className=" flex w-3/5 flex-col">
-                        <div class="text-sm font-semibold">Settings</div>
+                      <div className=" flex w-3/5 flex-col ml-4 mt-4">
+                        {/* <div class="text-sm font-semibold">Settings</div> */}
                         <Checkbox
                           indeterminate={indeterminateSettings}
                           onChange={onCheckAllSettingsChange}
@@ -2020,11 +2025,13 @@ const onCheckAllePriceDiscountChange = (e) => {
                       </div>
                       </div>
                       <div class="flex justify-between  border  mt-2 w-[100%] h-24">
-                      <div className=" flex w-2/5">
-                        abcd
+                      <div className=" flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2">Tasks</div>
+                      <div className=" flex justify-evenly ml-2">Quick Task Creation, Shared Tasks, Comments and Notes, Notify team members by tagging, Progress Indicators and audit trail.</div>
+
                       </div>
-                      <div className=" flex w-3/5 flex-col">
-                        <div class="text-sm font-semibold">Tasks</div>
+                      <div className=" flex w-3/5 flex-col ml-4 mt-4">
+                        {/* <div class="text-sm font-semibold">Tasks</div> */}
                         <Checkbox
                           indeterminate={indeterminateTasks}
                           onChange={onCheckAllTasksChange}

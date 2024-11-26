@@ -2910,6 +2910,7 @@ export const addScanReceivedata = (data,poSupplierDetailsId,qrCodeNo) => (dispat
         type: types.ADD_SCAN_RECEIVED_DATA_SUCCESS,
         payload: res.data,
       });
+      message.success(res.data.message);
     })
     .catch((err) => {
       console.log(err);

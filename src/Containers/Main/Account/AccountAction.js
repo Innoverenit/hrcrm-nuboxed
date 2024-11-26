@@ -2116,7 +2116,7 @@ export const getPulseList = (distributorId) => (dispatch) => {
     type: types.GET_PULSE_LIST_REQUEST,
   });
   axios
-    .get(`${base_url}/orderListByYear/${distributorId}`, {
+    .get(`${base_url2}/distributor/orderData/${distributorId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
