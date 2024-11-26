@@ -31,6 +31,7 @@ import ErpNote from "../../../ErpNote/ErpNote";
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import AddShipperActivityModal from "./ShipperActivityTab/AddShipperActivityModal";
 import DynamicShipTabs from "./ShipperActivityTab/DynamicShipTabs";
+import AccountContactTable from "../../../Account/AccountDetailsTab/AccountContactTab/AccountContactTable";
 
 const ShipperDocumentTable = lazy(() =>
   import("./ShipperDocumentTab/ShipperDocumentTable")
@@ -41,9 +42,6 @@ import ("./ShipperCostTab/ShipperCostTable")
 const ShipperActivityTable = lazy(() => import("./ShipperActivityTab/ShipperActivityTable")
 );
 
-const ContactShipperTable = lazy(() =>
-  import("./ShipperContactTab/ContactShipperTable")
-);
 const AddShipperDocumentModal = lazy(() =>
   import("./ShipperDocumentTab/AddShipperDocumentModal")
 );
@@ -183,10 +181,11 @@ class ShipperDetailsTab extends Component {
                 />
                       </div>;
                    case "5":
-                      return  <div> <ContactShipperTable shipperId={this.props.shipper.shipperId}
-                      translateText={this.props.translateText}
-                      selectedLanguage={this.props.selectedLanguage}
-                     /></div>;
+                      return  <div> <AccountContactTable
+                      uniqueId={this.props.shipper.shipperId} 
+                       type={"shipper"}
+                       selectedLanguage={this.props.selectedLanguage}
+                       translateText={this.props.translateText}/></div>;
                       case "6":
                       return  <div> 
                         <ShipperCostTable

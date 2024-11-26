@@ -125,21 +125,21 @@ const ActivityListData = (props) => {
         
                         </div>
                         )}
-          <div class="flex  items-end  justify-end">
+          <div class="flex  items-center  justify-end">
            {(status.category === "Call" || status.category === "Event") && (
         
   <div class="">
   
      {status.complitionInd===false&&(
-   <Button 
+   <Button type="primary"
    onClick={() => getLocation(status)}
    >
         Complete</Button>
                 )}
                               {status.complitionInd===true&&(
-   <CheckCircleIcon 
+   <CheckCircleIcon className='!text-icon text-[green]'
    onClick={() => getLocation(status)}
-   style={{color:"green"}}
+  
    />
        
                 )}
