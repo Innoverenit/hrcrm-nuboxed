@@ -10,9 +10,10 @@ class AccountPulseModal extends Component {
         return (
             <div>
                 <StyledDrawer
-                   
                     title={`${this.props.RowData.name}`}
                     width="90%"
+                    destroyOnClose
+          closable
                     visible={this.props.showPulseModal}
                     onClose={() => this.props.handleAccountPulse(false)}
                 >

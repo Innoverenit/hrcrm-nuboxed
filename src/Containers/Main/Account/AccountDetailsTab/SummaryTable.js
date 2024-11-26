@@ -3,6 +3,7 @@ import PieChart1 from '../../../../Components/Charts/PieChart1'
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { Flex, Progress } from 'antd';
 import StackedBarChart from '../../../Dashboard/Child/JumpStart/DashRepairBarClousreJumpstartUser';
+import DynamicPieChart from '../../../Dashboard/Child/JumpStart/DynamicPieChart';
 const AccountDonutChartByVolume = lazy(() => import("../AccountDetailsTab/AccountDonutChartByVolume"));
 const AccountDonutChartByValue = lazy(() => import("../AccountDetailsTab/AccountDonutChartByValue"));
 const PulseTable = lazy(() => import("./AccountDocumentTab/PulseTable"));
@@ -21,13 +22,14 @@ const SummaryTable = (props) => {
     <div class="flex justify-between">
         <div class="flex flex-col w-[25%]">
             <div>
-            Order By Value
-     <AccountDonutChartByValue/>
-    
+            <div class="font-poppins font-bold">Order By Value</div>
+     <DynamicPieChart dtype={"value"} 
+        userId={props.RowData.distributorId} timeRangeType={props.timeRangeType}/>
      </div>
      <div>
-     Order By Volume
-     <AccountDonutChartByVolume/>
+     <div class="font-poppins font-bold">Order By Volume</div>
+     <DynamicPieChart dtype={"volume"} 
+        userId={props.RowData.distributorId} timeRangeType={props.timeRangeType}/>
    
      </div>
      </div>
@@ -47,7 +49,7 @@ const SummaryTable = (props) => {
   </Flex> */}
   </div>
   </div>
-  <div class="flex items-center mt-20">
+  {/* <div class="flex items-center mt-20">
   <div class="w-16">
   LOB 2
   </div>
@@ -60,7 +62,7 @@ const SummaryTable = (props) => {
     <Progress percent={50} showInfo={false} />
   </Flex>
   </div>
-  </div>
+  </div> */}
         </div>
         <div class="flex flex-col w-[33%]">
         <Suspense fallback={<BundleLoader />}>
