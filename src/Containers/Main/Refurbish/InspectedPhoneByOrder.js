@@ -213,39 +213,39 @@ function InspectedPhoneByOrder(props) {
         
           />
         </div>
-                        <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky items-end max-sm:hidden z-10">
-                            <div className="text-[#00A2E8] text-base w-[6.6rem] md:w-[7.12rem]">
-                            <BrandingWatermarkIcon className="!text-icon" /> {translatedMenuItems[0]} {/* Brand */}
+                        <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end max-sm:hidden z-10">
+                            <div className="text-[#00A2E8] text-sm w-[6.6rem] max-md:w-[7.12rem] ">
+                            <BrandingWatermarkIcon className=" text-[#3F37C9] !text-icon" /> {translatedMenuItems[0]} {/* Brand */}
                                 </div>
-                            <div className=" md:w-[7.1rem]">
-                            <ModelTrainingIcon className=" !text-icon" /> {translatedMenuItems[1]}  
+                            <div className=" max-md:w-[7.1rem] w-[7.1rem]">
+                            <ModelTrainingIcon className=" !text-icon text-[#92dce5]" /> {translatedMenuItems[1]}  
                              {/*model" */}
                             </div>
-                            <div className=" md:w-[5.8rem] ">
+                            <div className=" max-md:w-[5.8rem] w-[5.8rem]">
                             IMEI
                                 {/* imei"*/}
                             </div>
-                            <div className="md:w-[7.6rem]">
-                            <ConfirmationNumberIcon className=" !text-icon" />       {translatedMenuItems[4]} {/* Issue  */}
+                            <div className="max-md:w-[7.6rem] w-[7.6rem]">
+                            <ConfirmationNumberIcon className=" !text-icon text-[#84a59d]" />       {translatedMenuItems[4]} {/* Issue  */}
                                 </div>
 
-                            <div className="md:w-[6.7rem]">
-                               <InfoIcon className='!text-base  text-[#e4eb2f]' />  {translatedMenuItems[5]} {/* Info */}
+                            <div className="max-md:w-[6.7rem] w-[6.7rem]">
+                               <InfoIcon className='!text-icon  text-[#d64933]' />  {translatedMenuItems[5]} {/* Info */}
                                 </div>
-                            <div className="md:w-[3.9rem]">
+                            <div className="max-md:w-[3.9rem]">
                             {translatedMenuItems[6]}  {/* conditions" */}
                             </div>
-                            <div className="md:w-[6rem]">
-                            <ContactsIcon className='!text-base  text-[#52a13d]' />   {translatedMenuItems[7]}  {/* Technician */}
+                            <div className="max-md:w-[6rem] w-[6rem]">
+                            <ContactsIcon className='!text-icon  text-[#52a13d]' />   {translatedMenuItems[7]}  {/* Technician */}
                                 </div> 
-                            <div className="md:w-[4rem]">
-                             < RuleIcon className=" !text-icon" />   QC  
+                            <div className="max-md:w-[4rem] w-[4rem]">
+                             < RuleIcon className=" !text-icon text-[#B23A48]" />   QC  
                                 </div>
-                            <div className="md:w-[16rem]">
+                            <div className="max-md:w-[16rem] w-[16rem]">
                             {translatedMenuItems[9]}  {/* Repair */}
                                 </div>
                             {/* <div className="md:w-[5rem]">Qa</div> */}
-                            <div className="md:w-[11.2rem]">
+                            <div className="max-md:w-[11.2rem] w-[11.2rem]">
                             <FactCheckIcon className='!text-base  text-[#a1a622]'/>  {translatedMenuItems[10]}  {/* Task */}
                                 </div>
                         </div>

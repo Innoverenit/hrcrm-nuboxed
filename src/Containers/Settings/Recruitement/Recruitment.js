@@ -47,7 +47,7 @@ function Recruitment(props) {
     {
        rulesName:(
         <span>
-          <DesktopAccessDisabledIcon className=" !text-icon text-[#D00000]" />Access
+          <DesktopAccessDisabledIcon className=" !text-icon text-[#D00000] mr-2" />Access
         </span>
       ),
       ruleId: "1",
@@ -56,7 +56,7 @@ function Recruitment(props) {
     {
        rulesName:(
         <span>
-          <LibraryAddCheckIcon className=" !text-icon text-[#A7C957]" />Approval
+          <LibraryAddCheckIcon className=" !text-icon text-[#A7C957] mr-2" />Approval
         </span>
       ),
       ruleId: "2",
@@ -65,7 +65,7 @@ function Recruitment(props) {
     {
       rulesName:(
         <span>
-          <BrightnessAutoIcon className=" !text-icon text-[#B5E2FA]" />Automation
+          <BrightnessAutoIcon className=" !text-icon text-[#B5E2FA] mr-2" />Automation
         </span>
       ),
      
@@ -75,7 +75,7 @@ function Recruitment(props) {
     {
       rulesName:(
         <span>
-          <FormatShapesIcon className=" !text-icon text-[#0FA3B1]" />Form
+          <FormatShapesIcon className=" !text-icon text-[#0FA3B1] mr-2" />Form
         </span>
       ),
    
@@ -89,7 +89,7 @@ function Recruitment(props) {
     {
       rulesName:(
       <span>
-      <AspectRatioIcon className=" !text-icon text-[#432818]" />General
+      <AspectRatioIcon className=" !text-icon text-[#432818] mr-2" />General
     </span>
   ),
      
@@ -99,7 +99,7 @@ function Recruitment(props) {
     {
       rulesName:(
         <span>
-        <i class="fas fa-luggage-cart mr-1 text-[#e4eb3f] "></i>Holidays & Leaves
+        <i class="fas fa-luggage-cart mr-2 text-[#e4eb3f] "></i>Holidays & Leaves
       </span>
     ),
       ruleId: "6",
@@ -114,7 +114,7 @@ function Recruitment(props) {
     {
       rulesName:(
         <span>
-        <WorkHistoryIcon className=" !text-icon mr-1 text-[#6F1D1B]" />Report Scheduler
+        <WorkHistoryIcon className=" !text-icon mr-2 text-[#6F1D1B]" />
       </span>
     ),
      
@@ -129,7 +129,7 @@ function Recruitment(props) {
     {
       rulesName:(
         <span>
-        <WorkspacePremiumIcon className=" !text-icon text-[#C9ADA7]" />Skills & Certification
+        <WorkspacePremiumIcon className=" !text-icon text-[#C9ADA7] mr-2" />Skills & Certification
       </span>
     ),
     
@@ -139,7 +139,7 @@ function Recruitment(props) {
     {
       rulesName:(
         <span>
-        <SpaceDashboardIcon className=" !text-icon text-[#22223B]" />Template
+        <SpaceDashboardIcon className=" !text-icon text-[#22223B] mr-2" />Template
       </span>
     ), 
       ruleId: "10",
@@ -148,7 +148,7 @@ function Recruitment(props) {
     {
    rulesName:(
         <span>
-        <ShareIcon className=" !text-icon text-[#390099]" />Workflow
+        <ShareIcon className=" !text-icon text-[#390099] mr-2" />Workflow
       </span>
     ), 
       ruleId: "11",
@@ -157,7 +157,7 @@ function Recruitment(props) {
     {
     rulesName:(
         <span>
-        <HourglassFullIcon className=" !text-icon text-[#DC2F02]" />Finance
+        <HourglassFullIcon className=" !text-icon text-[#DC2F02] mr-2" />Finance
       </span>
     ),
       ruleId: "12",
@@ -166,7 +166,7 @@ function Recruitment(props) {
     {
       rulesName:(
         <span>
-        <EngineeringIcon className=" !text-icon text-[#6A994E]" />Labour Cost
+        <EngineeringIcon className=" !text-icon text-[#6A994E] mr-2" />Labour Cost
       </span>
     ),
      
@@ -176,7 +176,7 @@ function Recruitment(props) {
    {
     rulesName:(
       <span>
-      <CircleNotificationsIcon className=" !text-icon text-[#FFD60A]" />Notification
+      <CircleNotificationsIcon className=" !text-icon text-[#FFD60A] mr-2" />Notification
     </span>
   ),
      
@@ -186,7 +186,7 @@ function Recruitment(props) {
     {
       rulesName:(
         <span>
-        <PaymentsIcon className=" !text-icon text-[#003566]" />Pay Roll(Only for GCC)
+        <PaymentsIcon className=" !text-icon text-[#003566] mr-2" />Pay Roll(Only for GCC)
       </span>
     ),
       ruleId: "15",
@@ -195,7 +195,7 @@ function Recruitment(props) {
      {
       rulesName:(
         <span>
-        <HourglassFullIcon className=" !text-icon text-[#D8E2DC]" />Automation1
+        <HourglassFullIcon className=" !text-icon text-[#D8E2DC] mr-2" />Automation1
       </span>
     ),
       ruleId: "21",
@@ -205,7 +205,7 @@ function Recruitment(props) {
     {
       rulesName:(
         <span>
-        <SettingsInputCompositeIcon className=" !text-icon text-[#9D8189] " />3rd Party Integration
+        <SettingsInputCompositeIcon className=" !text-icon text-[#9D8189] mr-2" />3rd Party Integration
       </span>
     ),
    

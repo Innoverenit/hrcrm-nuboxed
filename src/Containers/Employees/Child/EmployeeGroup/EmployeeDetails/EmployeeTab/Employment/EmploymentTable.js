@@ -16,7 +16,13 @@ import {
 } from "../../../../../../Profile/ProfileAction";
 import { CurrencySymbol } from "../../../../../../../Components/Common";
 import dayjs from "dayjs";
+import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 import { base_url } from "../../../../../../../Config/Auth";
+import StoreIcon from '@mui/icons-material/Store';
+import HailIcon from '@mui/icons-material/Hail';
+import DescriptionIcon from '@mui/icons-material/Description';
 import { deleteEmploymentTable } from "../../../../../../Profile/ProfileAction";
 import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 const UpdateEmploymentModal = lazy(() => import("../Employment/UpdateEmploymentModal"));
@@ -78,16 +84,16 @@ class EmploymentTable extends Component {
     return (
       <>
           <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-          <div className=" md:w-[8.5rem]">{this.state.translatedMenuItems[0]}</div>
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent text-lm font-bold sticky z-10">
+          <div className=" max-md:w-[8.5rem] w-[8.5rem] text-[#00A2E8] text-sm "><StoreIcon className=" !text-icon"/>{this.state.translatedMenuItems[0]}</div>
  
-        <div className="md:w-[10.1rem]"> {this.state.translatedMenuItems[1]}</div>
-                 <div className="md:w-[10.1rem]">{this.state.translatedMenuItems[2]}</div>
-                       <div className=" md:w-[8.1rem]">{this.state.translatedMenuItems[3]}</div>
+        <div className="max-md:w-[10.1rem] w-[10.1rem]"> <HailIcon className=" !text-icon text-[#699CA2]"/>{this.state.translatedMenuItems[1]}</div>
+                 <div className="max-md:w-[10.1rem] w-[10.1rem]"><DateRangeIcon className=" !text-icon text-[#1E213D]"/>{this.state.translatedMenuItems[2]}</div>
+                       <div className=" max-md:w-[8.1rem] w-[8.1rem]"> <InsertInvitationIcon className=" !text-icon text-[#006600]"/>{this.state.translatedMenuItems[3]}</div>
 
-                       <div className=" md:w-[8.1rem]">{this.state.translatedMenuItems[4]}</div>
+                       <div className=" max-md:w-[8.1rem] w-[8.1rem]"><MonetizationOnIcon  className=" !text-icon text-[#D64045]"/>{this.state.translatedMenuItems[4]}</div>
 
-                       <div className=" md:w-[8.1rem]">{this.state.translatedMenuItems[5]}</div>
+                       <div className=" max-md:w-[8.1rem] w-[8.1rem]"><DescriptionIcon className=" !text-icon text-[#4B2206]"/>{this.state.translatedMenuItems[5]}</div>
        
         
         <div className="w-[10.2rem]"></div>
