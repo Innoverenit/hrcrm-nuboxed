@@ -29,6 +29,10 @@ import RetailToggle from "./RetailToggle";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
+import AddLocationAltIcon from'@mui/icons-material/AddLocationAlt';
+import InventoryIcon from'@mui/icons-material/Inventory';
+import OnDeviceTrainingIcon from'@mui/icons-material/OnDeviceTraining';
+import LanguageIcon from'@mui/icons-material/Language';
 
 const LocationCellDrawer = lazy(() => import("./LocationCellDrawer"));
 const LocationCustomerDrawer = lazy(() => import("./LocationCustomerDrawer"));
@@ -108,45 +112,45 @@ const LocationCard = (props) => {
           loader={props.fetchingLocationData ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
           height={"83vh"}
         >
-          <div className=" flex  font-bold font-poppins  justify-between w-[97%] mt-3 p-1 bg-transparent  sticky  z-10 max-sm:hidden">
-            <div className=" md:w-[7.5rem] text-[#00A2E8] text-base ">
+          <div className=" flex  font-bold font-poppins items-end  justify-between w-[97%] mt-3 p-1 bg-transparent  sticky  text-lm z-10 max-sm:hidden">
+            <div className=" max-md:w-[7.5rem] w-[7.5rem] text-[#00A2E8] text-sm">
             <ContactsIcon className="!text-icon  "/>
             {translatedMenuItems[0]}</div>
-            <div className="   md:w-[9.1rem] font-bold font-poppins text-xs ">
+            <div className="   max-md:w-[9.1rem] w-[9.1rem] ">
               
             </div>
-            <div className=" md:w-[15.1rem] font-bold font-poppins text-xs ">
-            {translatedMenuItems[1]}
+            <div className=" max-md:w-[15.1rem] w-[15.1rem] ">
+            <AddLocationAltIcon className="!text-icon  "/>{translatedMenuItems[1]}
               {/* Address */}
               </div>
-            <div className=" md:w-[5.9rem] font-bold font-poppins text-xs ">
-            <PrecisionManufacturingIcon/>
+            <div className=" max-md:w-[5.9rem] w-[5.9rem] ">
+            <PrecisionManufacturingIcon className=" !text-icon"/>
             {translatedMenuItems[2]}
             {/* Production */}
             </div>
-            <div className=" md:w-[3.9rem] font-bold font-poppins text-xs  ">
-            {translatedMenuItems[3]}{/* Refurbish */}
+            <div className=" max-md:w-[3.9rem]  w-[3.9rem] ">
+            <OnDeviceTrainingIcon className=" !text-icon"/> {translatedMenuItems[3]}{/* Refurbish */}
             </div>
-            <div className="md:w-[4.5rem] font-bold font-poppins text-xs ">
-            {translatedMenuItems[4]} {/* Inventory */}
+            <div className="max-md:w-[4.5rem]  w-[4.5rem]">
+            <InventoryIcon className=" !text-icon"/> {translatedMenuItems[4]} {/* Inventory */}
               </div>
-            <div className="md:w-[4.6rem] font-bold font-poppins text-xs ">
-            <i class="far fa-money-bill-alt text-base"></i>
+            <div className="max-md:w-[4.6rem] w-[4.6rem] ">
+            <i class="far fa-money-bill-alt " className="!text-icon"></i>
             {translatedMenuItems[5]} {/* Billing */}
               </div>
-            <div className="md:w-[5.52rem] font-bold font-poppins text-xs ">
-            <ApartmentIcon className="!text-tab "/>
+            <div className="max-md:w-[5.52rem] w-[5.52rem]  ">
+            <ApartmentIcon className="!text-icon "/>
             {translatedMenuItems[6]} {/* Corporate */}
               </div>
-            <div className="md:w-[3.3rem] font-bold font-poppins text-xs ">
+            <div className="max-md:w-[3.3rem] w-[3.3rem] ">
             {translatedMenuItems[7]} {/* Project */}
               </div>
-            <div className="md:w-[3.9rem] font-bold font-poppins text-xs ">
-            <i class="fas fa-money-check text-base"></i>
+            <div className="max-md:w-[3.9rem] w-[3.9rem] ">
+            <i class="fas fa-money-check !text-icon" className="!text-icon"></i>
             {translatedMenuItems[8]}{/* Retail */}
               </div>
-            <div className="md:w-[7.9rem] font-bold font-poppins text-xs ">
-            {translatedMenuItems[9]}{/* Regions */}
+            <div className="max-md:w-[7.9rem] w-[7.9rem] ">
+            <LanguageIcon  className="!text-icon"/>{translatedMenuItems[9]}{/* Regions */}
               </div>
           </div>
           <div class="w-[99%]">
@@ -268,7 +272,7 @@ const LocationCard = (props) => {
                         {item.regions}
                       </div>
                     </div>
-                    <div class="flex   justify-end w-[6.2rem]  max-xl:w-[1.2rem] max-lg:w-[1rem]  items-center justify-start h-8  bg-[#eef2f9]  max-sm:w-[10%] ">
+                    <div class="flex   justify-end w-[6.2rem]  max-xl:w-[1.2rem] max-lg:w-[1rem]  items-center  h-8  bg-[#eef2f9]  max-sm:w-[10%] ">
                       <div>
                         <Tooltip title={translatedMenuItems[10]} >
                           <FilterTiltShiftIcon

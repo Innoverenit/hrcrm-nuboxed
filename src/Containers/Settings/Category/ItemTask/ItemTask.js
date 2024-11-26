@@ -176,7 +176,7 @@ return <div><BundleLoader/></div>;
          
          <div className="!h-[65vh] !mt-2 rounded border-[#0000001f]  border  shadow-[#a3abb980] border-solid text-black  p-1 w-full font-poppins overflow-auto"> 
           {!props.fetchingItemTask && itemTaskListData.length === 0 ? <NodataFoundPage /> : itemTaskListData.slice().sort((a, b) => a.name.localeCompare(b.name)).map((region, index) => (
-            <div className="flex rounded ml-1 w-7rem font-bold   border-[#0000001f]  border  shadow-[#a3abb980] bg-white text-[#444] mt-1  p-2 justify-between items-center  h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.itemTaskId}>
+            <div className="flex rounded ml-1 w-7rem font-bold   border-[#0000001f]  border  shadow-[#a3abb980] bg-white text-[#444] mt2  p-2 justify-between items-center  h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.itemTaskId}>
             {/* Region name display or input field */}
             {editingId === region.itemTaskId ? (
                 <input
