@@ -195,15 +195,15 @@ if (loading) {
   return (
     <>
       <div className=" flex">
-      <div className=' flex flex-col rounded w-[15%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
-      <div class="flex flex-col rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[#eaedf1] mt-1  items-center shadow-[#a3abb980] ">
+      <div className=' flex flex-col rounded w-[13%] h-[85vh]  border border-[#0000001f] items-center justify-center  '>
+      <div class="flex  rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[#eaedf1] mt-1  items-center shadow-[#a3abb980] ">
        <div> Search team Member</div>
         </div>
-        <div class="flex rounded w-[92%]  p-1 h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+        <div class="flex flex-col rounded w-[11vw] p-1 h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
         {props.crmAllData.map((item,index) =>{
            return (
          <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
-                  text-[#444444] m-1 w-[11.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                  text-[#444444] mt-1 max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
         <div class="flex items-center flex-no-wrap h-16">
           <div class=" flex basis-[15%] mr-[0.2rem] h-15" >
             <MultiAvatar
@@ -214,9 +214,9 @@ if (loading) {
             />
           </div>
           
-          <div class="flex basis-[100%] overflow-hidden">
+          <div class="flex overflow-hidden">
           
-          <div class="font-semibold text-[#337df4] cursor-pointer text-xs " >
+          <div class="font-semibold font-poppins text-[#337df4] text-lm truncate  cursor-pointer  " >
           {item.empName}
 
         </div> 
@@ -226,13 +226,13 @@ if (loading) {
         </div>
         <div className="flex flex-col max-sm:justify-between ">
           
-              <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
+              <div class="overflow-hidden font-poppins text-ellipsis text-lm truncate  cursor-pointer flex items-center">
                   </div>
                   {item.email} 
           <div>
           <div class="font-medium text-xs ">
        
-              <div class="overflow-hidden  text-ellipsis cursor-pointer text-xs flex items-center">
+              <div class="overflow-hidden font-poppins  text-ellipsis text-lm truncate cursor-pointer  flex items-center">
             {item.dailCode1} {item.mobileNo}  
               </div>
            
@@ -249,7 +249,7 @@ if (loading) {
         </div>
         </div>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" max-sm:hidden flex justify-between w-[96%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent   sticky  z-10">
+      <div className=" max-sm:hidden flex justify-between w-[94%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent   sticky  z-10">
         <div class=" flex justify-between w-[89%] font-bold font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm items-end ">
         <div className=" w-[29.7rem] truncate text-[#00A2E8] text-sm  max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         <ContactsIcon className="!text-icon mr-1 "/>{translatedMenuItems[0]}</div>
@@ -258,7 +258,7 @@ if (loading) {
         <div className=" max-md:w-[10.1rem] truncate w-[17.1rem]  max-xl:w-[10.11rem]">
         <i className="fab fa-artstation mr-1 text-[#b744b8]"></i>
             {translatedMenuItems[2]}</div>
-        <div className="  max-md:w-[9.1rem]  truncate w-[20.3rem]  max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
+        <div className="  max-md:w-[9.1rem]  truncate w-[14.3rem]  max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
         <ApartmentIcon className="!text-icon text-[#f0386b] "/>  {translatedMenuItems[3]}</div>
         <div className=" max-md:w-[10.2rem] truncate w-[16.2rem]  max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
         <LightbulbIcon className="!text-icon truncate  text-[#84a59d]"/> {translatedMenuItems[4]}</div> 
@@ -316,7 +316,7 @@ if (loading) {
                 className="flex rounded justify-between  bg-white mt-1 items-center  max-sm:rounded-lg max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                
-                          <div className=" flex  w-[14rem] max-sm:flex-row border-l-2 border-green-500 bg-[#eef2f9]  max-sm:justify-between max-sm:w-wk  ">
+                               <div className=" flex   w-[14rem] max-sm:flex-row border-l-2 border-green-500 bg-[#eef2f9]  max-sm:justify-between max-sm:w-wk  ">
 <div className="flex max-sm:w-full md:items-center max-lg:w-[7.2rem] max-xl:w-[9rem]"> 
 <div>
                          
@@ -324,26 +324,25 @@ if (loading) {
         primaryTitle={item.firstName}
         imageId={item.imageId}
         imageURL={item.imageURL}
-        imgWidth={"1.8em"}
-        imgHeight={"1.8em"}
+        imgWidth={"1.8rem"}
+        imgHeight={"1.8rem"}
       />
     </div>
     &nbsp;
     <div class="max-sm:w-full  flex items-center">
                                   <Tooltip>
-                                    <div class=" flex max-sm:w-full justify-between flex-row md:flex-col">
+                                  <div class=" flex max-sm:w-full justify-between  md:flex-col">
                                     
-                                      <div class="text-xs flex items-center text-blue-500  font-poppins  font-semibold  cursor-pointer">
-                                      <Link class=" flex  items-center overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-sm  text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
+                                      <div class="flex items-center text-xs  text-blue-500  font-poppins  font-semibold  cursor-pointer">
+                                      <Link class="flex  items-center overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-sm  text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
   
-  
   {date === currentdate ? (
- <div class="text-[0.65rem] text-[tomato] font-bold"
+ <div class="text-[0.65rem]  text-[tomato] font-bold"
                             
  >
-    {translatedMenuItems[9]}   {/* New */}
+    {translatedMenuItems[9]}  {/* New */}
     </div>
   ) : null}
  
@@ -355,19 +354,19 @@ if (loading) {
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk">
 
-                          <div className=" flex  max-sm:w-auto items-center  h-8 ml-gap bg-[#eef2f9] w-[11.01rem] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">
+                          <div className=" flex  max-sm:w-auto items-center  h-8 ml-gap bg-[#eef2f9] w-[10.01rem] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">
                              
                               <div class=" text-xs   ml-gap font-poppins max-sm:text-sm  max-lg:max-w-[10ch] truncate">   
                               {item.tagWithCompany}
                               </div>
                           </div>
-                          <div className=" flex max-sm:w-auto w-[8.2rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex max-sm:w-auto w-[7.2rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">
                              
                               <div class="text-xs ml-gap font-poppins max-sm:text-sm ">
                                    {item.designation}
                               </div>
                           </div>
-                          <div className=" flex  max-sm:w-auto w-[9.3rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
+                          <div className=" flex  max-sm:w-auto w-[6.3rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
                           
                             <div class="text-xs ml-gap  max-sm:text-sm font-poppins ">
                                  {item.department}

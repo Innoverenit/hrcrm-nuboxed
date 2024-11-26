@@ -322,15 +322,15 @@ if(fetchingCustomerCampaign){
       <div className=' flex  sticky  z-auto'>
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
    
-         <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky items-end  z-10">
-        <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[10.8rem]">
+         <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end  z-10">
+        <div className="w-[10.8rem] text-[#00A2E8] truncate text-sm max-md:w-[10.8rem]">
         <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]} </div>
         {/* Type */}
-        <div className="font-bold font-poppins text-xs md:w-[7.23rem]">{translatedMenuItems[1]} </div>
+        <div className="w-[7.23rem] truncate max-md:w-[7.23rem]">{translatedMenuItems[1]} </div>
         {/* Subject */}
-        <div className="font-bold font-poppins text-xs md:w-[6.25rem] "><DateRangeIcon className="!text-icon "/>{translatedMenuItems[2]} </div>
+        <div className="w-[6.25rem] truncate max-md:w-[6.25rem] "><DateRangeIcon className="!text-icon "/>{translatedMenuItems[2]} </div>
         {/* Start */}
-        <div className="font-bold font-poppins text-xs md:w-[5.43rem] ">
+        <div className="w-[5.43rem] truncate max-md:w-[5.43rem] ">
       <DateRangeIcon className="!text-icon "/>{translatedMenuItems[3]} </div>
         {/* End */}
      
@@ -339,7 +339,7 @@ if(fetchingCustomerCampaign){
         {/* <div className="font-bold font-poppins text-xs md:w-[6.15rem]">
           {translatedMenuItems[5]} </div> */}
         {/* phone no */}
-        <div className="font-bold font-poppins text-xs md:w-[24rem]">
+        <div className="w-[24rem] truncate max-md:w-[24rem]">
         <ApartmentIcon className="!text-icon mr-1 "/>{translatedMenuItems[4]} </div>
                 {/* company    */}
       </div>
@@ -354,10 +354,10 @@ if(fetchingCustomerCampaign){
                     return (
                         <div key={item.eventId}>
                              <div
-                className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 py-ygap  items-center  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                      <div class="flex ">
-                                <div className=" flex border-l-2 border-green-500 bg-[#eef2f9]  w-[7.98rem] max-sm:w-full ">
+                                <div className=" flex border-l-2 border-green-500 bg-[#eef2f9]  w-[9.98rem] max-md:[9.98rem] max-sm:w-full ">
 <div className="flex items-center max-sm:w-full"> 
           <div class="max-sm:w-full">
                                         <Tooltip>
@@ -375,7 +375,7 @@ if(fetchingCustomerCampaign){
                                         </div>
                                 </div>
 
-                                <div className=" flex    md:w-[9.26rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  w-full ">
+                                <div className=" flex w-[10.26rem]   max-md:w-[10.26rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  w-full ">
                                     {/* <div class=" text-[0.875rem]  font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
                                     <div class=" text-[0.82rem] ml-gap flex  font-poppins">   
                                     {item.eventSubject}
@@ -383,19 +383,19 @@ if(fetchingCustomerCampaign){
                                 </div>
                                 </div>
                                 <div class="flex  items-center ">
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[5.9rem] max-sm:flex-row  w-full">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.9rem]  max-md:w-[5.9rem] max-sm:flex-row  ">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Start</div> */}
                                     <div class="text-[0.82rem]  font-poppins">
                                     {` ${dayjs(item.startDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[5.32rem] max-sm:flex-row  w-full">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.32rem] max-md:w-[5.32rem] max-sm:flex-row ">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">End</div> */}
                                     <div class="text-[0.82rem]  font-poppins">
                                     {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[5.31rem] max-sm:flex-row  w-full ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.31rem] max-md:w-[5.31rem] max-sm:flex-row  ">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Include</div> */}
 
                                     <div class=" text-[0.82rem]  font-poppins">
@@ -425,7 +425,7 @@ if(fetchingCustomerCampaign){
             </Avatar.Group>
                                     </div>
                                 </div>
-                                <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[4.69rem] max-sm:flex-row  w-full ">                   
+                                <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.69rem]  max-md:w-[4.69rem] max-sm:flex-row  w-full ">                   
               <SubTitle>
               <span>
               {item.assignedTo === null ? (
@@ -448,7 +448,7 @@ if(fetchingCustomerCampaign){
               </SubTitle>
            
                                 </div>
-                                <div className="flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[4.12rem] max-sm:flex-row  w-full ">
+                                <div className="flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.12rem]   max-md:w-[4.12rem] max-sm:flex-row  ">
                    <div class="max-sm:flex justify-end">
 
             <SubTitle>
@@ -468,7 +468,7 @@ if(fetchingCustomerCampaign){
                                 <div class="flex ">
                                
                              
-                   <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[6.32rem] max-sm:flex-row  w-full">
+                   <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.32rem] max-md:w-[5.32rem] max-sm:flex-row  w-full">
                                     
                                     <div class="text-[0.82rem]  font-poppins">
                                     {/* {item.budgetValue} */}
@@ -478,7 +478,7 @@ if(fetchingCustomerCampaign){
 />
                     </div>
   </div>
-  <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[5.321rem] max-sm:flex-row  w-full">
+  <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.321rem]  max-md:w-[5.321rem] max-sm:flex-row  w-full">
                                     
                                     <div class="text-[0.82rem]  font-poppins">
                                     
@@ -495,7 +495,7 @@ if(fetchingCustomerCampaign){
                       </Select>
                     </div>
   </div>
-  <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+  <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.2rem] max-md:w-[4.2rem] max-sm:flex-row w-full max-sm:justify-between ">
   <Button type="primary" onClick={() => handleSave(item.key)}>
   {translatedMenuItems[7]}   {/* Save */}
         </Button>
