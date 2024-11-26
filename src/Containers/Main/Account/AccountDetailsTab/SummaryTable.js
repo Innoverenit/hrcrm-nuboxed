@@ -15,12 +15,16 @@ const SummaryTable = (props) => {
   const year = currentDate.getFullYear();
   return (
     <>
-     <div class="flex flex-col items-center ">
-      <div class="font-bold"> {year}</div>
-    </div>
+       <div class="font-bold"> {year}</div>
    
     <div class="flex justify-between">
-        <div class="flex flex-col w-[25%]">
+    <div class="flex flex-col w-[33%]">
+        <Suspense fallback={<BundleLoader />}>
+        <PulseTable
+         RowData={props.RowData}
+        /></Suspense>
+        </div>
+        <div class="flex  w-[25%]">
             <div>
             <div class="font-poppins font-bold">Order By Value</div>
      <DynamicPieChart dtype={"value"} 
@@ -33,22 +37,8 @@ const SummaryTable = (props) => {
    
      </div>
      </div>
-     <div class="flex flex-col mt-3 w-[30%] ml-36">
-        <div class="flex items-center">
-        <div class="w-16">
-            LOB 1
-            </div>
-            <div class="w-wk">
-              <StackedBarChart/>
-     {/* <Flex gap="small" vertical>
-    <Progress percent={30} />
-    <Progress percent={50} status="active" />
-    <Progress percent={70} status="exception" />
-    <Progress percent={100} />
-    <Progress percent={50} showInfo={false} />
-  </Flex> */}
-  </div>
-  </div>
+    
+    
   {/* <div class="flex items-center mt-20">
   <div class="w-16">
   LOB 2
@@ -63,14 +53,23 @@ const SummaryTable = (props) => {
   </Flex>
   </div>
   </div> */}
-        </div>
-        <div class="flex flex-col w-[33%]">
-        <Suspense fallback={<BundleLoader />}>
-        <PulseTable
-         RowData={props.RowData}
-        /></Suspense>
-        </div>
     </div>
+    <div class="flex items-center w-[50rem]">
+        <div class="w-16">
+            LOB 1
+            </div>
+            <div class="w-[50rem]">
+              <StackedBarChart dtype={"Bar"} 
+        userId={props.RowData.distributorId} timeRangeType={props.timeRangeType}/>
+     {/* <Flex gap="small" vertical>
+    <Progress percent={30} />
+    <Progress percent={50} status="active" />
+    <Progress percent={70} status="exception" />
+    <Progress percent={100} />
+    <Progress percent={50} showInfo={false} />
+  </Flex> */}
+  </div>
+  </div>
     </>
   )
 }

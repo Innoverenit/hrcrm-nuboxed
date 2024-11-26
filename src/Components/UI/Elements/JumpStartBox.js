@@ -94,7 +94,7 @@ const JumpStartDetail = ({
             </Tooltip>
           </div>
         ) : (
-            <div class=" font-normal font-poppins">{title || "N/A"}</div>
+            <div class=" font-normal font-poppins text-xs">{title || "N/A"}</div>
           )}
 
         {isLoading ? (
