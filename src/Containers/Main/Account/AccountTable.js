@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { BundleLoader } from "../../../Components/Placeholder";
-import { Popconfirm, Tooltip,Input,Button } from "antd";
+import { Popconfirm, Tooltip,Input,Button,Progress } from "antd";
 import { Link } from 'react-router-dom';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
@@ -245,6 +245,7 @@ function AccountTable(props) {
                 {props.customerListByUser.map((item) => {
                   const currentdate = dayjs().format("DD/MM/YYYY");
                   const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+                  const acivedPercentage = isNaN(Math.floor((item.outstanding / item.currencyPrice) * 100)) ? 0 : Math.floor((item.outstanding / item.currencyPrice) * 100)
                   const diff = Math.abs(
                     dayjs().diff(dayjs(item.lastRequirementOn), "days")
                   );
@@ -403,8 +404,18 @@ function AccountTable(props) {
                       <div className=" flex items-center max-sm:w-auto w-[2rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>&nbsp;                            
                           </div>
+                          <Tooltip title="">
+                                                 
+                                                 <Progress
+                                                percent={acivedPercentage}
+                                                success={{acivedPercentage}}
+                                               // strokeColor={getGradientStrokeColor(acivedPercentage)}
+                                                format={() => `${acivedPercentage}%`} 
+                                                 style={{width:"10rem",cursor:"pointer"}} 
+                                                      />                                                       
+                                                </Tooltip>
                           <div class=" text-xs flex items-center justify-center font-poppins w-[6.021rem] bg-[#eef2f9] h-8   text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                              {item.curName} {item.currencyPrice}
+                              {item.curName} {(item.currencyPrice / 1000).toFixed(0)}k
 
                             </div>                  
                         </div>
@@ -472,7 +483,7 @@ function AccountTable(props) {
                                       onClick={() => { }}
                                     >
                                       {" "}
-                                      <a href={`https://${item.url}`} target="_blank">
+                                      <a href={`https://${item.url}`} target="_blank" rel="noreferrer">
                                         <ExploreIcon
                                           className=" !text-icon cursor-pointer text-[green]"
 

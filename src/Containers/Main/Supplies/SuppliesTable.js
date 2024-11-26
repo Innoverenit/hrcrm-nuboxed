@@ -22,7 +22,8 @@ import {
   handleUploadSuppliesModal,
   handleErpDocumentUploadModal,
   getBestBeforeJumpListCount,
-  getReorderCount
+  getReorderCount,
+  getPriceFactor
 } from "./SuppliesAction";
 import {getUOM} from "../../Settings/SettingsAction"
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -92,26 +93,23 @@ function SuppliesTable(props) {
   }, []);
 
   const handleLoadMore = () => {
-    const PageMapd = props.purchaseList && props.purchaseList.length && props.purchaseList[0].pageCount
+    const callPageMapd = props.purchaseList && props.purchaseList.length &&props.purchaseList[0].pageCount
     setTimeout(() => {
       const {
-        getSuppliesList,
-
-        userId
+        getSuppliesList, 
       } = props;
-      if (props.purchaseList) {
-        if (page < PageMapd) {
+      if  (props.purchaseList)
+      {
+        if (page < callPageMapd) {
           setPage(page + 1);
           getSuppliesList(page);
-        }
-        if (page === PageMapd) {
-          setHasMore(false)
-        }
       }
-    }, 100);
+      if (page === callPageMapd){
+        setHasMore(false)
+      }
+    }
+    }, 1000);
   };
-
-
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -363,15 +361,13 @@ function SuppliesTable(props) {
             dataLength={props.purchaseList.length}
             next={handleLoadMore}
             hasMore={hasMore}
-            loader={props.fetchingPurchaseList ? <div style={{ textAlign: 'center' }}>
-              <BundleLoader/>
-            </div> : null}
-            height={"83vh"}
+            loader={props.fetchingPurchaseList ? <div  class="flex justify-center">Loading...</div>:null}
+            height={"68vh"}
             style={{ scrollbarWidth:"thin" }}
+            endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
           >
-            {props.purchaseList.length ?
-              <>
-                {props.purchaseList.map((item,index) => {
+           
+                {!props.fetchingPurchaseList && props.purchaseList.length === 0 ?<EmptyPage />:props.purchaseList.map((item,index) => {
                   const currentDate = dayjs().format("DD/MM/YYYY");
                   
                   return (
@@ -608,9 +604,7 @@ function SuppliesTable(props) {
                     </>
                   );
                 })}
-              </> :
-              !props.purchaseList.length
-                && !props.fetchingPurchaseList ? <EmptyPage/> : null}
+             
           </InfiniteScroll>
         </div>
       </div>
@@ -741,3 +735,7 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(SuppliesTable);
+
+
+
+

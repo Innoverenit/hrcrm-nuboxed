@@ -333,17 +333,18 @@ export const suppliesReducer = (state = initialState, action) => {
         case types.GET_SUPPLIES_LIST_REQUEST:
             return { ...state, fetchingPurchaseList: true };
         case types.GET_SUPPLIES_LIST_SUCCESS:
-          const newsupplieslist = action.payload.filter(
-            (item) =>
-              !state.purchaseList.some(
-                (existingItem) => existingItem.suppliesId === item.suppliesId
-              )
-          );
+          // const newsupplieslist = action.payload.filter(
+          //   (item) =>
+          //     !state.purchaseList.some(
+          //       (existingItem) => existingItem.suppliesId === item.suppliesId
+          //     )
+          // );
             return {
                 ...state,
                 fetchingPurchaseList: false,
-                purchaseList: [...state.purchaseList, ...newsupplieslist],
+                // purchaseList: [...state.purchaseList, ...newsupplieslist],
                 // purchaseList: action.payload,
+                purchaseList: [...state.purchaseList, ...action.payload],
             };
         case types.GET_SUPPLIES_LIST_FAILURE:
             return {
