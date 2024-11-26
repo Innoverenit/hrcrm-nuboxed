@@ -1,6 +1,7 @@
 import React, { useState, useEffect, lazy, Suspense, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import QrCodeIcon from '@mui/icons-material/QrCode';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import ContactsIcon from '@mui/icons-material/Contacts';
@@ -43,6 +44,7 @@ import EuroIcon from '@mui/icons-material/Euro';
 import FeatureProductToggle from "./FeatureProductToggle";
 import WarrentyProductToggle from "./WarrentyProductToggle";
 import EmptyPage from "../../../Main/EmptyPage";
+import MaterialBarCodeInput from "../../../Main/Supplies/MaterialBarCodeInput";
 const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
 const PriceDrawer = lazy(() => import("./PriceDrawer"));
 const ProductBuilderDrawer = lazy(() => import("./ProductBuilderDrawer"));
@@ -63,6 +65,7 @@ function ProductCardList(props) {
   const [modalVisible, setModalVisible] = useState(false);
   const [editedFields, setEditedFields] = useState({});
   const [editsuppliesId, setEditsuppliesId] = useState(null);
+  const [barCodeOpen,setbarCodeOpen]= useState(false);
   const [data, setData] = useState([]);
 
   const openModal = () => {
@@ -357,6 +360,12 @@ useEffect(() => {
 <WarrentyProductToggle item={item}    warrantyInd={item.warrantyInd}  productId={item.productId}/>
 
 </div>
+<QrCodeIcon className="!text-icon cursor-pointer"
+                          onClick={() => {
+                            setbarCodeOpen(true);
+                            handleParticularRowData(item);
+                          }}
+                          />
 <div className=" flex  w-[3.9rem] items-center max-xl:w-[6.9rem] h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
 {item.warrantyInd ? 
 <> 
@@ -512,6 +521,13 @@ useEffect(() => {
           handleProductBuilderDrawer={handleProductBuilderDrawer}
           translateText={props.translateText}
           selectedLanguage={props.selectedLanguage}
+        />
+        <MaterialBarCodeInput
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+          particularDiscountData={particularDiscountData}
+          barCodeOpen={barCodeOpen}
+          setbarCodeOpen={setbarCodeOpen}
         />
         <PriceDrawer
           translateText={props.translateText}

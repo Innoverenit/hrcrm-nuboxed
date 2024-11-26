@@ -2033,3 +2033,30 @@ export const getPriceFactor = (suppliesId) => (dispatch) => {
       });
     });
 };
+
+export const getBarcodeViewer = (suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_BAR_CODE_VIEWER_REQUEST,
+  });
+  axios
+  .get(`${base_url2}/supplies/multiBarCode/${suppliesId}`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_BAR_CODE_VIEWER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_BAR_CODE_VIEWER_FAILURE,
+        payload: err,
+      });
+    });
+};
