@@ -1,7 +1,7 @@
 import React, {Suspense, lazy, useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Rate, Steps } from 'antd';
+import { Button, Rate, Steps,Tooltip,Progress } from 'antd';
 import {getProcureStatusItem} from "../../AccountAction";
 import dayjs from 'dayjs';
 import OrdrSuplrStatusItemCard from "./OrdrSuplrStatusItemCard";
@@ -39,7 +39,16 @@ function OrderSupplierStatuShower (props) {
                             2
                         </div>
          <p className="mt-2 text-sm font-medium text-center">Invoice</p>
-         {/*  */} <OrderPieChart />
+         {/*  */} <Tooltip title="">
+{" "}
+<Progress
+type="circle"
+className=" !text-xl cursor-pointer text-[red]"
+percent={25}
+width={30}
+strokeColor={"#005075"}
+/>
+</Tooltip>
                     </div>
                     <div className="relative z-10 flex flex-col items-center">
                  <div className="text-4xl mb-2">🛍️</div>
@@ -59,7 +68,16 @@ function OrderSupplierStatuShower (props) {
                         </div>
          <p className="mt-2 text-sm font-medium text-center">Pack</p>
          {/*  */}
-         <OrderPieChart/>
+         <Tooltip title="">
+{" "}
+<Progress
+type="circle"
+className=" !text-xl cursor-pointer text-[red]"
+percent={50}
+width={30}
+strokeColor={"#005075"}
+/>
+</Tooltip>
                     </div>
                     <div className="relative z-10 flex flex-col items-center">
                  <div className="text-4xl mb-2">🛒</div>
@@ -68,7 +86,16 @@ function OrderSupplierStatuShower (props) {
                         </div>
          <p className="mt-2 text-sm font-medium text-center">Order Pick Up</p>
          {/* <OrdrSuplrStatusItemCard statusItems={props.statusItems} particularRowData={props.particularRowData}/> */}
-         <OrderPieChart/>
+         <Tooltip title="">
+{" "}
+<Progress
+type="circle"
+className=" !text-xl cursor-pointer text-[red]"
+percent={71}
+width={30}
+strokeColor={"#005075"}
+/>
+</Tooltip>
                     </div>
                     <div className="relative z-10 flex flex-col items-center">
                  <div className="text-4xl mb-2">📍</div>
@@ -76,7 +103,16 @@ function OrderSupplierStatuShower (props) {
                             6
                         </div>
          <p className="mt-2 text-sm font-medium text-center">Ship</p>
-         {/*  */}   <OrderPieChart/>
+         {/*  */}   <Tooltip title="">
+{" "}
+<Progress
+type="circle"
+className=" !text-xl cursor-pointer text-[red]"
+percent={57}
+width={30}
+strokeColor={"#005075"}
+/>
+</Tooltip>
                     </div>
 
                     <div className="relative z-10 flex flex-col items-center">
@@ -85,7 +121,16 @@ function OrderSupplierStatuShower (props) {
                             7
                         </div>
          <p className="mt-2 text-sm font-medium text-center">Delevered</p>
-         {/*  */}   <OrderPieChart/>
+         {/*  */}  <Tooltip title="">
+{" "}
+<Progress
+type="circle"
+className=" !text-xl cursor-pointer text-[red]"
+percent={88}
+width={30}
+strokeColor={"#005075"}
+/>
+</Tooltip>
                     </div>  
             </div>
         </div>
