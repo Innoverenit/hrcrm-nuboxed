@@ -109,10 +109,39 @@
 
 
 
-import React from 'react';
+import React,{useEffect,useState} from 'react';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import axios from 'axios';
+import { base_url2} from "../../../../Config/Auth";
 import ReactApexChart from 'react-apexcharts';
+import { BundleLoader } from '../../../../Components/Placeholder';
 
-const StackedBarChart = () => {
+const StackedBarChart = (props) => {
+  useEffect(()=>{
+    fetchDashbysectorChart();
+       }, [props.timeRangeType]);
+
+const [dashSectorChart,setdashSectorChart] = useState({});
+const[loading,setLoading]=useState(true);
+const[error,setError]=useState(null);
+
+  const fetchDashbysectorChart = async () => {
+    try {
+      const response = await axios.get(`${base_url2}/distributor/BarCht/${props.userId}/${props.timeRangeType}/${props.dtype}`,{
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      });
+      setdashSectorChart(response.data);
+      setLoading(false);
+    } catch (error) {
+      setError(error);
+      setLoading(false);
+    }
+  };
+  
+
   const options = {
     series: [
       {
