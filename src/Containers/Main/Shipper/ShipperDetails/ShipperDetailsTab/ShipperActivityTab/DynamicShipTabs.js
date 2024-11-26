@@ -5,7 +5,7 @@ import ShipperAwbTable from './ShipperAwbTable';
 import axios from 'axios';
 
 const DynamicShipTabs = (props) => {
-    const [tabsData, setTabsData] = useState([{"cName":"Nietherland","cId":"C1"},{"cName":"Italy","cId":"C2"}]);
+    const [tabsData, setTabsData] = useState([{"cName":"Nietherland","cId":"1"},{"cName":"Italy","cId":"2"}]);
     const [activeKey, setActiveKey] = useState('1');
   
     useEffect(() => {
@@ -40,7 +40,7 @@ const DynamicShipTabs = (props) => {
                 />
                 </div>;
           case "2":
-            return  <div> More to come</div>;
+            return  <div> Hello</div>;
             default:
                 return null;
             }
@@ -50,14 +50,14 @@ const DynamicShipTabs = (props) => {
         <Tabs defaultActiveKey="1" onChange={handleTabChange}>
             {tabsData.map((tab, index) => (
                 <Tabs.TabPane
-                    key={tab.key}
+                    key={tab.cId}
                     tab={
                         <span>
                             {/* Dynamically setting the tab name */}
                             <span className="ml-1 !text-tab font-poppins">{tab.cName}</span>
                             
                             {/* Conditional rendering of icons based on activeKey */}
-                            {activeKey === tab.key && (
+                            {activeKey === tab.cId && (
                                 <>
                                     {/* {tab.key === "1" && (
                                         <Tooltip title="Add to Order">

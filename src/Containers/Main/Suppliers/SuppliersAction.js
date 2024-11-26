@@ -1070,7 +1070,7 @@ export const addSupplierContact = (supplier, id, type) => (dispatch) => {
     type: types.ADD_SUPPLIER_CONTACT_REQUEST,
   });
   axios
-    .post(`${base_url2}/contactPerson`, supplier,
+    .post(`${base_url2}/contactPerson`, supplier, 
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -1138,12 +1138,12 @@ export const applyForLoginInContact = (data, contactPersonId, userId,type,suppli
     });
 };
 
-export const getContactDistributorList = (distributorId) => (dispatch) => {
+export const getContactDistributorList = (id,type) => (dispatch) => {
   dispatch({
     type: types.GET_CONTACT_DISTRIBUTORS_LIST_BY_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/distributor/contactPerson/${distributorId}`, {
+    .get(`${base_url2}/contactPerson/contact/get/${id}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2569,14 +2569,14 @@ export const ClearPoData = () => (dispatch) => {
   });
 };
 
-export const updateDistributorContact = (data, contactPersonId) => (
+export const updateDistributorContact = (data, id) => (
   dispatch
 ) => {
   dispatch({
     type: types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_REQUEST,
   });
   axios
-    .put(`${base_url2}/contactPerson/${contactPersonId}`, data, {
+    .put(`${base_url2}/contactPerson/${id}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2632,8 +2632,28 @@ export const addRecallData = (opportunity, cb) => (dispatch, getState) => {
     });
 };
 
-
-
+export const getContactCount =(id,type)=>(dispatch)=>{
+  dispatch({
+    type: types.GET_CONTACT_COUNT_REQUEST,
+  });
+  axios.get(`${base_url2}/contactPerson/contact/count/${id}/${type}`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+  .then((res)=>{
+    dispatch({
+      type:types.GET_CONTACT_COUNT_SUCCESS,
+      payload:res.data,
+    });
+  })
+  .catch((err)=>{
+    dispatch({
+  type:types.GET_CONTACT_COUNT_FAILURE,
+  payload:err,
+    });
+  });
+};
 
 export const getBatchNo = () => (dispatch) => {
   dispatch({

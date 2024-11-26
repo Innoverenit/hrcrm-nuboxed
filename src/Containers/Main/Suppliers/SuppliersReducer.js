@@ -284,6 +284,10 @@ const initialState = {
   addingDocumentBySupplierId: false,
   addingDocumentBySupplierIdError: false,
 
+  fetchingErpContactCount:false,
+  fetchingErpContactCountError: false,
+  erpContactCount:{},
+
   addDeleteSuppliesModal: false,
 
   updatePriceSupplierListItem: false,
@@ -2030,7 +2034,6 @@ export const suppliersReducer = (state = initialState, action) => {
                                             addingContactAddressError: true,
                                           };       
                                         
-                                          return { ...state, fetchingContactAddress: true };
                                           case types.GET_CONTACT_ADDRESS_DATA_SUCCESS:
                                             return {
                                               ...state,
@@ -2118,6 +2121,17 @@ export const suppliersReducer = (state = initialState, action) => {
                 };
               case types.INPUT_SEARCH_PO_FAILURE:
                 return { ...state, fetchingSearchPoError: true };
+
+                case types.GET_CONTACT_COUNT_REQUEST:
+                  return { ...state, fetchingErpContactCount: true };
+                case types.GET_CONTACT_COUNT_SUCCESS:
+                  return {
+                    ...state,
+                    fetchingErpContactCount: false,
+                    erpContactCount: action.payload,
+                  };
+                case types.GET_CONTACT_COUNT_FAILURE:
+                  return { ...state, fetchingErpContactCountError: true };
         
                 case types.HANDLE_CLAER_PO_DATA_PROCESS:
                   return { ...state, 

@@ -16,7 +16,7 @@ const AddMultipleQCSpare = (props) => {
         props.getTaggedSuppliesByBrand(props.RowData.company, props.RowData.model)
     }, [])
 
-    const [rows, setRows] = useState([{  phoneTaskId:props.phoneTaskId,suppliesId: "", noOfSpare: "", hours: "", extraCost: "", spareCurrency: "", id: 1 }]);
+    const [rows, setRows] = useState([{  phoneTaskId:props.phoneTaskId,suppliesId: "", noOfSpare: "", hours: "", extraCost: "", spareCurrency: "", id: 1,orgId:props.orgId }]);
     const [id, setId] = useState(1);
     const [level, setLevel] = useState(1);
 
@@ -208,7 +208,8 @@ const mapStateToProps = ({ inventory, auth, distributor }) => ({
     spareByBrand: distributor.spareByBrand,
     userId: auth.userDetails.userId,
     currencies: auth.currencies,
-    addingSpareList:distributor.addingSpareList
+    addingSpareList:distributor.addingSpareList,
+    orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>

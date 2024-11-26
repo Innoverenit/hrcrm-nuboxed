@@ -12,13 +12,15 @@ import {
 import {
   handleLinkSuppliersOrderConfigureModal, getTodayPurchaseOrder,
   handleSuppleirSuppliesDrawer, handleSupplierContactModal,
-  handleSupplierDocumentUploadModal, handleSupplierInventoryImportModal,handleSuppliersActivityModal,handleSupplierExcleUploadModal
+  handleSupplierDocumentUploadModal, handleSupplierInventoryImportModal,handleSuppliersActivityModal,handleSupplierExcleUploadModal,
+  getContactCount
 } from "../../../SuppliersAction";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import { Tooltip } from "antd";
 import Shop2Icon from '@mui/icons-material/Shop2'; 
 import InventoryIcon from '@mui/icons-material/Inventory';
+import AccountContactTable from "../../../../Account/AccountDetailsTab/AccountContactTab/AccountContactTable";
 const AddPoModal = lazy(() => import("./AddPoModal"));
 const AddSupplierInventoryImportModal = lazy(() => import("./SuppliersActivityTab/SuppliersActivityTable"));
 const PurchaseOrderTable = lazy(() => import("./PurchaseOrderTable"));//1
@@ -27,7 +29,6 @@ const InventoryTable = lazy(() => import("./InventoryTable"));//2
 const AddSupplierExcleModal = lazy(() => import("./SupplierDocumentTab/AddSupplierExcleModal"));
 const SupplierSuppliesCardTable = lazy(() => import("./SupplierSupplies/SupplierSuppliesCardTable"));//3
 const AddSupplierContactModal = lazy(() => import("./SupplierContactTab/AddSupplierContactModal"));
-const SupplierContactTable = lazy(() => import("./SupplierContactTab/SupplierContactTable"));
 const SupplierDocumentTable = lazy(() => import("./SupplierDocumentTab/SupplierDocumentTable"));
 const AddSupplierDocumentModal = lazy(() => import("./SupplierDocumentTab/AddSupplierDocumentModal"));
 const AddSuppliersActivityModal = lazy(() => import("./SuppliersActivityTab/AddSuppliersActivityModal"));
@@ -49,6 +50,7 @@ class SupplierDetailsTab extends Component {
 
   componentDidMount() {
     this.props.getTodayPurchaseOrder(this.props.supplier.supplierId)
+    this.props.getContactCount(this.props.supplier.supplierId,"supplier")
     this.fetchMenuTranslations();
   }
   componentDidUpdate(prevProps) {
@@ -98,10 +100,11 @@ class SupplierDetailsTab extends Component {
             /></div>;
               case "4":
                   return  <div> 
-                  <SupplierContactTable
-                  supplier={this.props.supplier}
-                  translateText={this.props.translateText}
-                  selectedLanguage={this.props.selectedLanguage}/>
+                  <AccountContactTable
+                   uniqueId={this.props.supplier.supplierId} 
+                    type={"supplier"}
+                    selectedLanguage={this.props.selectedLanguage}
+                    translateText={this.props.translateText}/>
                       </div>;
                    case "5":
                       return  <div> <SupplierDocumentTable supplier={this.props.supplier} 
@@ -374,7 +377,8 @@ const mapStateToProps = ({ auth, suppliers }) => ({
   addSupplierContactModal: suppliers.addSupplierContactModal,
   supplierDocumentUploadModal: suppliers.supplierDocumentUploadModal,
   addSuppliersActivityModal: suppliers.addSuppliersActivityModal,
-  supplierExcleUploadModal:suppliers.supplierExcleUploadModal
+  supplierExcleUploadModal:suppliers.supplierExcleUploadModal,
+  erpContactCount: suppliers.erpContactCount
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -387,7 +391,8 @@ const mapDispatchToProps = (dispatch) =>
       handleSupplierContactModal,
       handleSupplierDocumentUploadModal,
       handleSupplierExcleUploadModal,
-      handleSuppliersActivityModal
+      handleSuppliersActivityModal,
+      getContactCount
     },
     dispatch
   );

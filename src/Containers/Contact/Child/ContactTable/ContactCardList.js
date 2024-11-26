@@ -12,7 +12,6 @@ import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import ScoreIcon from '@mui/icons-material/Score';
-// import ArchitectureIcon from '@mui/icons-material/Architecture'; department
 import {
   getContactListByUserId,
   handleUpdateContactModal,
@@ -188,22 +187,22 @@ function ContactCardList(props) {
       
       
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" max-sm:hidden flex justify-between w-[97%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm font-bold sticky  z-10">
-      <div class=" flex justify-between w-[100%] font-bold  font-poppins text-xs items-end ">
-        <div className=" w-[29.9rem] text-[#00A2E8] truncate max-md:w-[21.9rem]  text-sm max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+      <div className=" max-sm:hidden flex justify-between w-[96%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm font-bold sticky  z-10">
+      <div class=" flex justify-between w-[99%] font-bold  font-poppins text-xs items-end ">
+        <div className=" w-[22.9rem] text-[#00A2E8] truncate max-md:w-[21.9rem]  text-sm max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         <ContactsIcon className="!text-icon mr-1 "/>
         {translatedMenuItems[0]}</div>
-        <div className=" w-[26.1rem] truncate max-md:w-[29.1rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
+        <div className=" w-[29.1rem] truncate max-md:w-[29.1rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
         <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}</div>
          {/* Company */}
-        <div className="w-[22.1rem] max-md:w-[24.1rem] truncate  max-xl:w-[10.11rem]">
+        <div className="w-[24.1rem] max-md:w-[24.1rem] truncate  max-xl:w-[10.11rem]">
         <i className="fab fa-artstation mr-1 text-[#b744b8]"></i>
         {translatedMenuItems[2]}</div>
         {/* Designation */}
-        <div className="w-[23.7rem] truncate max-md:w-[24.1rem]  max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
+        <div className="w-[26.7rem] truncate max-md:w-[24.1rem]  max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
         <ApartmentIcon className="!text-icon text-[#f0386b] "/> {translatedMenuItems[3]}</div>
         {/* Department */}
-        <div className="w-[14.2rem] max-md:w-[15.2rem] truncate max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
+        <div className="w-[15.2rem] max-md:w-[15.2rem] truncate max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
         <LightbulbIcon className="!text-icon text-[#84a59d]"/> {translatedMenuItems[4]}</div>
          {/* Quotation */}
         {/* <div className=" md:w-[12.3rem]  max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
@@ -213,7 +212,7 @@ function ContactCardList(props) {
         <RadioButtonCheckedIcon className="!text-icon  text-[#f28482]"/> {translatedMenuItems[6]}</div>
            {/* Portal Access */}
         {props.user.aiInd && (
-            <div className=" w-[13.81rem] truncate max-md:w-[13.81rem]  max-xl:w-[3.81rem]">
+            <div className=" w-[8.81rem] truncate max-md:w-[13.81rem]  max-xl:w-[3.81rem]">
                      {/* Score */}      <ScoreIcon className="!text-icon  text-[#f28482]"/>  {translatedMenuItems[7]} 
           
             </div>

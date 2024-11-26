@@ -262,7 +262,7 @@ const [rowdata, setrowdata] = useState("");
           
           <div class="flex overflow-hidden">
           
-          <div class="font-semibold text-[#337df4] cursor-pointer text-xs " 
+          <div class="font-semibold text-[#337df4] font-poppins cursor-pointer text-lm truncate  " 
              onClick={() => handleButtonClick(item.employeeId)} >
         
           {item.empName}
@@ -271,14 +271,14 @@ const [rowdata, setrowdata] = useState("");
         </div>              
         </div>
         <div className="flex flex-col max-sm:justify-between ">       
-              <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
-              {item.email}
+              <div class="overflow-hidden text-ellipsis font-poppins cursor-pointer text-lm truncate  flex items-center">
+               {item.dailCode1} {item.mobileNo}
               </div>        
           <div>
           <div class="font-medium text-xs ">      
-              <div class="overflow-hidden  text-ellipsis cursor-pointer text-xs flex items-center">
-              {item.dailCode1} {item.mobileNo}
-              
+              <div class="overflow-hidden  text-ellipsis font-poppins cursor-pointer text-lm truncate  flex items-center">
+          
+              {item.email} 
               </div>                    
           </div>
           </div>
