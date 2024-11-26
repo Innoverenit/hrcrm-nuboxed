@@ -368,6 +368,7 @@
 
 import React, { useEffect, useState,  } from "react";
 import { connect } from "react-redux";
+
 import { bindActionCreators } from "redux";
 import {
     getWasteMaterial,
@@ -539,6 +540,56 @@ console.log(selectedLocation)
                                             </div>
                                           
                                         </div>
+
+                                        <div className=" flex  md:w-[6.4rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs ml-gap font-poppins">
+                                       
+                                        {dayjs(item.bestBeforeUse).format("DD/MM/YYYY")}
+                                            </div>
+                                          
+                                        </div>
+
+
+                                        <div className=" flex  md:w-[6.4rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs ml-gap font-poppins">
+                                        {item.unitWasted}
+                                            </div>
+                                          
+                                        </div>
+
+                                       
+
+                                        <div className=" flex  md:w-[6.4rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs ml-gap font-poppins">
+                                        {item.price}
+                                            </div>
+                                          
+                                        </div>
+
+                                        <div className=" flex  md:w-[6.4rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs ml-gap font-poppins">
+                                        {item.batchNo}
+                                            </div>
+                                          
+                                        </div>
+                                        <div className=" flex  md:w-[6.4rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs ml-gap font-poppins">
+                                        {item.countryName}
+                                            </div>
+                                          
+                                        </div>
+
+
+
+
+
+
+                                        <div className=" flex  md:w-[6.4rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs ml-gap font-poppins">
+                                        {item.totWstVal}
+                                            </div>
+                                          
+                                        </div>
                                        
 
                                                               
@@ -576,11 +627,11 @@ console.log(selectedLocation)
                         <CategoryIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[36]} Id
 
                         </div>    
-                        <div className=" w-[5.12rem]" >       
+                        {/* <div className=" w-[5.12rem]" >       
                         {props.translatedMenuItems[1]} 
 
 
-                        </div>
+                        </div> */}
                         <div className=" w-[8.12rem]" >       
                    Best Use Date
 
@@ -686,6 +737,57 @@ console.log(selectedLocation)
                                         <div className=" flex  md:w-[6.4rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                                         <div class=" text-xs ml-gap font-poppins">
                                         {item.newSuppliesNo}
+                                            </div>
+                                          
+                                        </div>
+
+
+                                        <div className=" flex  md:w-[6.4rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs ml-gap font-poppins">
+                                       
+                                        {dayjs(item.bestBeforeUse).format("DD/MM/YYYY")}
+                                            </div>
+                                          
+                                        </div>
+
+
+                                        <div className=" flex  md:w-[6.4rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs ml-gap font-poppins">
+                                        {item.unitWasted}
+                                            </div>
+                                          
+                                        </div>
+
+                                       
+
+                                        <div className=" flex  md:w-[6.4rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs ml-gap font-poppins">
+                                        {item.price}
+                                            </div>
+                                          
+                                        </div>
+
+                                        <div className=" flex  md:w-[6.4rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs ml-gap font-poppins">
+                                        {item.batchNo}
+                                            </div>
+                                          
+                                        </div>
+                                        <div className=" flex  md:w-[6.4rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs ml-gap font-poppins">
+                                        {item.countryName}
+                                            </div>
+                                          
+                                        </div>
+
+
+
+
+
+
+                                        <div className=" flex  md:w-[6.4rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div class=" text-xs ml-gap font-poppins">
+                                        {item.totWstVal}
                                             </div>
                                           
                                         </div>
