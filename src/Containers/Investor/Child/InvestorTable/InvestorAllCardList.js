@@ -721,7 +721,7 @@ handleCurrentRowData(item);
           </div> 
 
           <div className="  w-[5.34rem] truncate max-md:w-[5.34rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
-          <SourceIcon className="!text-icon   text-[#4b5043]"/>{translatedMenuItems[4]}      
+          <SourceIcon className="!text-icon mr-1  text-[#4b5043]"/>{translatedMenuItems[4]}      
         {/* Source */}               
         </div>  
         <div className="  w-[4.2rem] truncate max-md:w-[6.12rem]  max-xl:w-[5.12rem] max-lg:w-[8.12rem]">

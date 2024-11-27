@@ -144,7 +144,7 @@ if (fetchingDealList) return <BundleLoader/>;
           return (
             <div>
               <div
-                className="flex rounded justify-between  py-ygap bg-white mt-[0.5rem]  items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                className="flex rounded justify-between  py-ygap bg-white mt-1  items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                 <div class="flex ">
                 <div className=" flex h-8 border-l-2 border-green-500 bg-[#eef2f9] w-[20rem]  max-md:w-[22rem] max-sm:flex-row  max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
