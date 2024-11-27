@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { getTabSpareList, handleRepairPhone,
      repairInspectionButton,
       getOrderIdForCatalogueItem ,
-      inputProcessDataSearch,ClearSearchedDataOfProcess,handleProductionNotesModal
+      searchSpareimeiName,ClearReducerSpare,handleProductionNotesModal
     } from "./RefurbishAction"
     import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import { Button, Badge,Input, Tooltip } from "antd";
@@ -70,7 +70,7 @@ function SpareNewList(props) {
     useEffect(() => {
         setPage(page + 1);
         props.getTabSpareList(page)
-        props.ClearSearchedDataOfProcess()
+        props.ClearReducerSpare()
     }, [])
     const [hasMore, setHasMore] = useState(true);
 
@@ -97,14 +97,14 @@ function SpareNewList(props) {
           //setPage(pageNo + 1);
           props.getTabSpareList(page)
           //props.ClearReducerDataOfLead()
-          props.ClearSearchedDataOfProcess()
+          props.ClearReducerSpare()
           setSearchOnEnter(false);
         }
       };
       const handleSearch = () => {
         if (currentData.trim() !== "") {
           // Perform the search
-          props.inputProcessDataSearch(props.userId,currentData);
+          props.searchSpareimeiName(currentData);
           setSearchOnEnter(true);  //Code for Search
         } else {
           console.error("Input is empty. Please provide a value.");
@@ -137,7 +137,7 @@ function SpareNewList(props) {
         setIsRecording(false);
         if (transcript.trim() !== "") {
           setCurrentData(transcript);
-          props.inputProcessDataSearch(props.userId,transcript);
+          props.searchSpareimeiName(transcript);
           setSearchOnEnter(true);
         }
       };
@@ -368,8 +368,8 @@ const mapDispatchToProps = (dispatch) =>
             handleRepairPhone,
             repairInspectionButton,
             getOrderIdForCatalogueItem,
-            inputProcessDataSearch,
-            ClearSearchedDataOfProcess,
+            searchSpareimeiName,
+            ClearReducerSpare,
             handleProductionNotesModal
         },
         dispatch

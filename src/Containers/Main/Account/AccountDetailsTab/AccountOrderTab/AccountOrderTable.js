@@ -597,7 +597,7 @@ const AccountOrderTable = (props) => {
                                                             // />}
                                                             >
                                                                 <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  
-                                                                    onClick={() => { props.removeOrderAcc(item.orderId) }}
+                                                                    onClick={() => { props.removeOrderAcc(item.orderId,props.distributorId, 0, "repair","High" )}}
                                                                 />
                                                             </Tooltip>
 
@@ -1064,7 +1064,9 @@ const AccountOrderTable = (props) => {
                                                             //     defaultMessage="Detele"
                                                             // />}
                                                             >
-                                                               <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+                                                               <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  
+                                                                    onClick={() => { props.removeOrderAcc(item.orderId,props.distributorId, 0, "repair","Low" )}}
+                                                                />
                                                             </Tooltip>
 
                                                         </div>

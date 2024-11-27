@@ -23,6 +23,7 @@ class AddCustomerProcurementModal extends Component {
                     <ProcurementStepper distributorId={this.props.distributorId}
                       selectedLanguage={this.props.selectedLanguage}
                       translateText={this.props.translateText}
+                      type={this.props.type}
                     />
 
                 </StyledDrawer>

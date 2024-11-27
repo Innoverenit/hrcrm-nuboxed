@@ -68,7 +68,7 @@ function AddProcurementInAccount(props) {
       
             setIsAddingContact(false);
             setNewContact({ firstName: '', lastName: '', email: '', mobile: '', dialCode: '' });
-            props.getContactDistributorList(props.distributorId);
+            props.getContactDistributorList(props.distributorId,props.type);
           } catch (error) {
             console.error('Error adding contact:', error);
           }
@@ -134,7 +134,7 @@ function AddProcurementInAccount(props) {
       }, [props.selectedLanguage]);
 
     useEffect(() => {
-        props.getContactDistributorList(props.distributorId);
+        props.getContactDistributorList(props.distributorId,props.type);
         props.getSaleCurrency()
         props.getLobList(props.orgId)
         props.getBrandCategoryData(props.orgId);

@@ -2293,6 +2293,37 @@ export const ClearReducerDataOfrefurbish = () => (dispatch) => {
   });
 };
 
+export const searchSpareimeiName = (name) => (dispatch) => {
+  dispatch({
+    type: types.GET_SEARCH_SPARE_IMEI_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneSpare/search/${name}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_SEARCH_SPARE_IMEI_SUCCESS,
+        payload: res.data,
+      });
+    }
+    )
+    .catch((err) => {
+      dispatch({
+        type: types.GET_SEARCH_SPARE_IMEI_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const ClearReducerSpare = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_REDUCER_SPARE_REFURBISH,
+  });
+};
+
 export const searchimeiNamePhone = (imei,orderPhoneId) => (dispatch) => {
   dispatch({
     type: types.GET_SEARCH_IMEIPHONE_REQUEST,

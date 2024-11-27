@@ -49,6 +49,7 @@ class ProcurementStepper extends Component {
                 content: <AddProcurementInAccount distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd}
                 selectedLanguage={this.props.selectedLanguage}
                 translateText={this.props.translateText}
+                type={this.props.type}
                 />,
             },
             {

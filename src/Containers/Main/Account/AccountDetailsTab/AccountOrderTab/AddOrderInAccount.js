@@ -72,7 +72,7 @@ const handleAddContact = () => {
          });
         setIsAddingContact(false);
         setNewContact({ firstName: '', lastName: '', email: '', mobile: '', dialCode: '' });
-        props.getContactDistributorList(props.distributorId);
+        props.getContactDistributorList(props.distributorId,"distributor");
       } catch (error) {
         console.error('Error adding contact:', error);
       }
@@ -105,7 +105,7 @@ const handleAddContact = () => {
 
 
     useEffect(() => {
-        props.getContactDistributorList(props.distributorId)
+        props.getContactDistributorList(props.distributorId,"distributor")
         props.getSaleCurrency()
         props.getLobList(props.orgId)
         props.getBrandCategoryData(props.orgId);

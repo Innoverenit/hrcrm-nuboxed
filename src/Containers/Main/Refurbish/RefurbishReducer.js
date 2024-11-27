@@ -1834,6 +1834,24 @@ export const refurbishReducer = (state = initialState, action) => {
                     orderPhoneList: [], 
                   };
 
+
+                  case types.GET_SEARCH_SPARE_IMEI_REQUEST:
+                    return { ...state, fetchingimeiSearchData: true };
+                  case types.GET_SEARCH_SPARE_IMEI_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingimeiSearchData: false,
+                      tabSpareList: action.payload,
+                     
+                    };
+                  case types.GET_SEARCH_SPARE_IMEI_FAILURE:
+                    return { ...state, fetchingimeiSearchDataError: true };
+            
+                    case types.HANDLE_CLAER_REDUCER_SPARE_REFURBISH:
+                              return { ...state, 
+                                tabSpareList: [], 
+                              };
+
                   case types.GET_SEARCH_IMEIPHONE_REQUEST:
         return { ...state, fetchingimeiSearchPhoneData: true };
       case types.GET_SEARCH_IMEIPHONE_SUCCESS:

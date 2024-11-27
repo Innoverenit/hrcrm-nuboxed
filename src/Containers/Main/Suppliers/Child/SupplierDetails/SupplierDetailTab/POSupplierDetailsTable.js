@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import axios from "axios";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { BundleLoader } from '../../../../../../Components/Placeholder';
+import {getCountries} from "../../../../../Auth/AuthAction"
 import { getPurchaseOrderDetailsList, updatePriceOfPoItem } from "../../../SuppliersAction"
-import { Button, Input } from "antd";
+import { Button, DatePicker, Input,message,Select } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import EventBusyIcon from '@mui/icons-material/EventBusy';
 import BatchPredictionIcon from '@mui/icons-material/BatchPrediction';
@@ -14,10 +16,19 @@ import PublicIcon from '@mui/icons-material/Public';
  import WidgetsIcon from '@mui/icons-material/Widgets';
  import PinIcon from '@mui/icons-material/Pin';
  import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
- 
+import { base_url2 } from "../../../../../../Config/Auth";
+import dayjs from "dayjs";
+import { StyledDatePicker } from "../../../../../../Components/UI/Antd";
+const { Option } = Select;
 function PoSupplierDetailsTable(props) {
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [isEditingBatch, setIsEditingBatch] = useState(false);
+    const [batchInput, setbatchInput] = useState();
+    const [isCountryDropdownVisible, setIsCountryDropdownVisible] = useState(false);
+    const [selectedCountry, setSelectedCountry] = useState("Select Country");
+    const [isEditingDate, setIsEditingDate] = useState(false); // Controls editing mode
+    const [selectedDate, setSelectedDate] = useState(null);
     useEffect(() => {
       const fetchMenuTranslations = async () => {
         try {
@@ -49,6 +60,7 @@ function PoSupplierDetailsTable(props) {
     
     useEffect(() => {
         props.getPurchaseOrderDetailsList(props.poSupplierDetailsId);
+        props.getCountries()
     }, []);
 
     const [price, setPrice] = useState("")
@@ -75,6 +87,67 @@ function PoSupplierDetailsTable(props) {
     const handleLoadMore = () => {
         setPage(page + 1);
     };
+
+    const sendPutRequest = async (item) => {
+        try {
+          const response = await axios.put(
+            `${base_url2}/po/updatebestBfr-cntry-BtcNo/${props.supplierId}`,
+            item,
+            {
+              headers: {
+                Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+              },
+            }
+          );
+          // dispatch(getPackNo(response.data));
+          if (response.data === 'Successfully !!!!') {
+            message.success('Update successful');
+          } else {
+            console.log(response.data);
+          }
+        } catch (error) {
+          console.error("Error updating item:", error);
+        }
+      };
+      const handleUpdateBatchNo = () => {
+        const updatedName = {
+            batchNo:batchInput,
+        };
+       sendPutRequest(updatedName);
+       setIsEditingBatch(false); // Close the input box after updating
+      };
+    const handleCountryChange = (countryId) => {
+        const updatedPayload = {
+          countryId:countryId // Use the selected country ID
+        };
+      
+        sendPutRequest(updatedPayload);
+        setIsCountryDropdownVisible(false); // Hide the dropdown after the request
+      };
+
+    //   const handleDateChange = (date, dateString) => {
+    //     setSelectedDate(dateString);
+    //     const updatedPayload = {
+    //         bestBeforeUse: dateString // Add the selected date to the payload
+    //     };
+    //     sendPutRequest(updatedPayload);
+    //     setIsEditingDate(false); // Close the date picker after the date is selected
+    // };
+    const handleDateChange = (date, dateString) => {
+        if (dateString) {
+            setSelectedDate(dateString); // Update the local state
+            const updatedPayload = {
+                bestBeforeUse: dateString, // Include the selected date in the payload
+            };
+            sendPutRequest(updatedPayload); // Send the updated payload
+            setIsEditingDate(false); // Exit edit mode
+        } else {
+            message.error("Invalid date selected"); // Optional: Notify the user of invalid input
+        }
+    };
+    
+      
+      
     return (
         <>
             {props.fetchingPoDetailsList ? <BundleLoader /> : <div className=' flex justify-end sticky z-auto'>
@@ -258,6 +331,87 @@ function PoSupplierDetailsTable(props) {
 
                                                 </div>
                                             </div>
+                                            <div>
+
+
+        {isEditingBatch ? (
+        <input
+          type="text"
+          className="h-7 w-[4rem] text-xl"
+          value={batchInput}
+          onChange={(e) => setbatchInput(e.target.value)}
+          onKeyDown={(e) => e.key === 'Enter' && handleUpdateBatchNo()} // Trigger update on 'Enter'
+          onBlur={handleUpdateBatchNo} // Optional: Update on blur as well
+          autoFocus // Focus the input automatically when editing
+        />
+      ) : (
+        <div onClick={() => setIsEditingBatch(true)} className="cursor-pointer text-xl font-[Poppins]">
+            {/* {batchInput} */}
+            edither
+            </div> // Click to enter edit mode
+      )}
+          </div>
+
+          <div>
+  {/* Dropdown trigger */}
+  <div 
+    onClick={() => setIsCountryDropdownVisible(!isCountryDropdownVisible)} 
+    className="cursor-pointer"
+  >
+    {/* {selectedCountry !== 'Select Country' ? props.countries.find(country => country.country_id === selectedCountry)?.country_name : "Select"} */}
+    Select
+  </div>
+
+  {/* Dropdown options */}
+  {isCountryDropdownVisible && (
+    <Select
+      style={{ width: "8rem" }}
+      value={selectedCountry}
+      onChange={(value) => {
+        setSelectedCountry(value); // Update the local state with the selected country
+        handleCountryChange(value); // Send the payload when the country is selected
+      }}
+      onBlur={() => setIsCountryDropdownVisible(false)} // Optionally hide dropdown on blur
+    >
+      {props.countries.map((country) => (
+        <Option key={country.country_id} value={country.country_id}>
+          {country.country_name}
+        </Option>
+      ))}
+    </Select>
+  )}
+</div>
+{/* {isEditingDate ? (
+                                        <DatePicker
+                                            className="h-7"
+                                            onChange={handleDateChange}
+                                            onBlur={() => handleDateChange()} // Optional: Close the date picker on blur
+                                            autoFocus // Focus the date picker automatically when editing
+                                        />
+                                    ) : (
+                                        <div onClick={() => setIsEditingDate(true)} className="cursor-pointer text-xl font-[Poppins]">
+                                            {selectedDate || "Select Date"}
+                                        </div> // Click to enter edit mode
+                                    )} */}
+
+{isEditingDate ? (
+    <DatePicker
+        className="h-7"
+        value={selectedDate ? dayjs(selectedDate) : null} // Convert `selectedDate` to dayjs format
+        onChange={handleDateChange} // Correctly handle date selection
+        autoFocus // Focus the picker when editing
+    />
+) : (
+    <div 
+        onClick={() => setIsEditingDate(true)} 
+        className="cursor-pointer text-xl font-[Poppins]"
+    >
+        {item.bestBeforeUse || "Select Date"} {/* Show selected date or prompt */}
+    </div>
+)}
+
+
+
                                             <div className=" flex  w-[1.5rem] max-sm:justify-between items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-sm:flex-row ">
                                                 <div class="  text-xs font-poppins">
                                                     <BorderColorIcon
@@ -284,6 +438,7 @@ function PoSupplierDetailsTable(props) {
 const mapStateToProps = ({ suppliers, auth }) => ({
     poDetails: suppliers.poDetails,
     userId: auth.userDetails.userId,
+    countries:auth.countries,
     fetchingPoDetailsList: suppliers.fetchingPoDetailsList
 });
 
@@ -291,7 +446,8 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
             getPurchaseOrderDetailsList,
-            updatePriceOfPoItem
+            updatePriceOfPoItem,
+            getCountries
         },
         dispatch
     );
