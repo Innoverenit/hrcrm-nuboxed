@@ -12,7 +12,14 @@ import { Button, Tooltip, Dropdown, Menu, Progress } from "antd";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { CurrencySymbol } from "../../../../Components/Common";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency'
+import EmptyPage from "../../../Main/EmptyPage";
+import StairsIcon from '@mui/icons-material/Stairs';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import LocationCityIcon from '@mui/icons-material/LocationCity'; 
+import DateRangeIcon from '@mui/icons-material/DateRange';
+
 const ButtonGroup = Button.Group;
 
 const DealContactCard = (props) => {
@@ -33,9 +40,9 @@ const DealContactCard = (props) => {
           "511",//1 Investor
           "216",//2 Sponsor
           "176",//3 Start Date
-          "1159",//4 Values
-          "219",//5 Stages
-          "220",//6 Sales Rep
+          "218",//4 Values
+          "1050",//5 Stage
+          "76",//6 Asigned
           "77",//7 Owner
           "9",//8 Action
         ];
@@ -111,44 +118,42 @@ const DealContactCard = (props) => {
     dealSerachedData={props.dealSerachedData}
     /></Suspense>
   ) : ( */}
-      <div class="rounded m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
-          <div className=" md:w-[14.5rem]font-bold font-poppins text-xs">
-          {translatedMenuItems[0]}
+      <div class="rounded m-1 p-1 w-[99%] h-[90vh]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end z-10 max-sm:hidden">
+          <div className=" w-[19.5rem] text-[#00A2E8] text-sm  truncate   max-md:w-[14.5rem]">
+          <ContactEmergencyIcon className='!text-icon mr-1  '
+              />  {translatedMenuItems[0]}
            {/* "name" */}    
           </div>
-          <div className=" md:w-[13.13rem] font-bold font-poppins text-xs">
-          {translatedMenuItems[1]}
+          <div className="  w-[17.13rem]   truncate   max-md:w-[13.13rem]">
+          <LocationCityIcon className='!text-icon  text-[#e4eb2f]'  /> {translatedMenuItems[1]}
          {/* investor" */}     
           </div>
-          <div className=" md:w-[9.2rem] font-bold font-poppins text-xs">
+          {/* <div className=" md:w-[9.2rem] font-bold font-poppins text-xs">
           {translatedMenuItems[2]}
-                    {/* sponsor */}     
-          </div>
-          <div className="md:w-[6.12rem] font-bold font-poppins text-xs">
-          {translatedMenuItems[3]}
+                    sponsor     
+          </div> */}
+          <div className="w-[7.12rem] truncate   max-md:w-[6.12rem] ">
+          <DateRangeIcon className="!text-icon "/>  {translatedMenuItems[3]}
                 {/* startdate" */}
           </div>
-          <div className="md:w-[7.2rem] font-bold font-poppins text-xs">
-          {translatedMenuItems[4]}
+          <div className="w-[6.2rem] truncate   max-md:w-[7.2rem] ">
+          <CurrencyExchangeIcon className='!text-icon text-[#4c0827]' />{translatedMenuItems[4]}
          {/* Value */} 
           </div>
-          <div className="md:w-[4.2rem] font-bold font-poppins text-xs">
-          {translatedMenuItems[5]}
-          {/* "stages" */}
+          <div className="w-[5.2rem] truncate   max-md:w-[4.2rem] ">
+          <StairsIcon className='!text-icon text-[#f19953] '  />  {translatedMenuItems[5]}
+          {/* "stage" */}
           </div>
-          <div className="md:w-[5.26rem] font-bold font-poppins text-xs">
-          {translatedMenuItems[6]}
-            {/* Status */}
+          <div className="w-[6.26rem] truncate   max-md:w-[5.26rem] ">
+          <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[6]}
+            {/*Assign To */}
             </div>
-          <div className="md:w-[7.21rem] font-bold font-poppins text-xs">
-          {translatedMenuItems[7]}
-          {/* Assign To" */}  
+          <div className="w-[6.21rem] truncate   max-md:w-[7.21rem] ">
+          <AccountCircleIcon className="!text-icon   text-[#d64933]"/> {translatedMenuItems[7]}
+          {/* Owner */}  
           </div>
-          <div className="md:w-[3rem] font-bold font-poppins text-xs">
-          {translatedMenuItems[8]}
-        {/* owner */}
-          </div>
+       
         </div>
         {/* <InfiniteScroll
           dataLength={props.contactdealAllList.length}
@@ -159,7 +164,7 @@ const DealContactCard = (props) => {
           endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
           style={{scrollbarWidth:"thin"}}
         > */}
-          {!fetchingContactDealList && props.contactdealAllList.length === 0 ? <NodataFoundPage /> : props.contactdealAllList.map((item, index) => {
+          {!fetchingContactDealList && props.contactdealAllList.length === 0 ? <EmptyPage />: props.contactdealAllList.map((item, index) => {
             var findProbability = item.probability;
             item.stageList.forEach((element) => {
               if (element.oppStage === item.oppStage) {
@@ -186,11 +191,11 @@ const DealContactCard = (props) => {
             return (
               <div>
                  <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 items-center py-ygap max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                   <div class="flex max-sm:justify-start max-sm:w-wk max-sm:items-center">
                   <div class="flex justify-between">
-                    <div className=" flex font-medium  w-[15rem]   max-sm:w-full">
+                    <div className=" flex font-medium  w-[16rem] border-l-2 border-green-500 bg-[#eef2f9]  max-md:w-[15rem]  max-sm:w-full">
                       <div className="flex max-sm:w-full items-center">
                         <div>
                           <SubTitle>
@@ -231,7 +236,7 @@ const DealContactCard = (props) => {
                       </div>
                     </div>
                     <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
-                    <div className=" flex   items-center  md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[14.1rem] max-md:w-[14.1rem] max-sm:flex-row  max-sm:justify-between ">
 
                       <div class=" text-xs  font-poppins">
                         <Link to="/investor">
@@ -239,7 +244,7 @@ const DealContactCard = (props) => {
                         </Link>
                       </div>
                     </div>
-                    <div className=" flex   items-center md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    {/* <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[5.01rem] max-md:w-[5.01rem] max-sm:flex-row  max-sm:justify-between ">
                       <div class=" text-xs  font-poppins">
                         <SubTitle>
                           {item.contactName === null ? "None" :
@@ -253,10 +258,10 @@ const DealContactCard = (props) => {
                           }
                         </SubTitle>
                       </div>
-                    </div>
+                    </div> */}
                
                   
-                    <div className=" flex  items-center  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[5.01rem] max-md:w-[7.01rem] max-sm:flex-row  max-sm:justify-between ">
                       <div class=" text-xs justify-center  font-poppins">
                         {dayjs(item.startDate).format("DD/MM/YYYY")}
                       </div>
@@ -264,7 +269,7 @@ const DealContactCard = (props) => {
                     </div>
 
                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
-                    <div className=" flex  items-center  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[5.1rem] max-md:w-[8.1rem] max-sm:flex-row  max-sm:justify-between ">
                       <div class=" text-xs font-poppins text-center">
                         <CurrencySymbol currencyType={item.currency} />
                         &nbsp;
@@ -272,7 +277,7 @@ const DealContactCard = (props) => {
                       </div>
                     </div>
 
-                    <div className=" flex items-center  md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.02rem] max-md:w-[5.02rem] max-sm:flex-row  max-sm:justify-between ">
                       <div class=" text-xs  font-poppins text-center">
                         <Dropdown
                           overlay={
@@ -305,12 +310,12 @@ const DealContactCard = (props) => {
 
                       </div>
                     </div>
-                    <div className=" flex  items-center  md:w-[5.051rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[5.051rem] max-md:w-[5.051rem] max-sm:flex-row  max-sm:justify-between ">
                     {myIndicator}
                     </div>
 </div>
 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                    <div className=" flex  items-center  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[5.01rem] max-md:w-[8.01rem] max-sm:flex-row  max-sm:justify-between ">
 
 
                       <div class=" text-xs  font-poppins">
@@ -336,7 +341,7 @@ const DealContactCard = (props) => {
 
                       </div>
                     </div>
-                    <div className=" flex  items-center  md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
+                    <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[0rem] max-md:w-20 max-sm:flex-row  mb-1 max-sm:justify-between ">
 
                       <span>
                         <MultiAvatar2

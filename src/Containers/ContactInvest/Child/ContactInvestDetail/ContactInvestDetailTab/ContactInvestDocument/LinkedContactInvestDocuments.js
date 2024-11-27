@@ -61,15 +61,15 @@ class LinkedContactInvestDocuments extends Component {
 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                   <div className=" flex  w-[100%] font-bold font-poppins  p-1 bg-transparent !text-lm font-bold font-poppins  sticky items-end z-10">
                   
-                  <div className=" w-[12.7rem] max-md:w-[12.7rem] truncate text-[#00A2E8] text-sm">
+                  <div className=" w-[10.1rem] max-md:w-[12.7rem] truncate text-[#00A2E8] text-sm">
                   <DateRangeIcon className='!text-icon  '  /> {this.state.translatedMenuItems[0]}  
                   {/* Date */}
                     </div>
-                      <div className="w-[16.12rem] truncate max-md:w-[16.12rem]">
+                      <div className="w-[14.12rem] truncate max-md:w-[16.12rem]">
                       <LocationCityIcon className='!text-icon  '  />  {this.state.translatedMenuItems[1]}  
                       {/* Name */}
                         </div>
-                      <div className=" w-[14.5rem] truncate max-md:w-[14.5rem]">
+                      <div className=" w-[17rem] truncate max-md:w-[14.5rem]">
                       < MergeTypeIcon className='!text-icon text-[#c42847] '  />  {this.state.translatedMenuItems[2]}  
                       {/* type*/}
                         </div>

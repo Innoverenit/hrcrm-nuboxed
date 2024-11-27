@@ -21,7 +21,6 @@ import jsPDF from "jspdf";
 import "jspdf-autotable";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
-import ApartmentIcon from '@mui/icons-material/Apartment';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import StairsIcon from '@mui/icons-material/Stairs';
@@ -267,20 +266,22 @@ function OpportunityTeamsCard(props) {
     {props.ooportunitySerachedData.length > 0 ? (
     <SearchedDataOpportunity
     ooportunitySerachedData={props.ooportunitySerachedData}
+    translateText={props.translateText}
+    selectedLanguage={props.selectedLanguage}
     />
   ) : (
     <div className=" flex">
        <div className=' flex rounded w-[13vw] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
       <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[#eaedf1] mt-1  items-center shadow-[#a3abb980] ">
-       <div class="w-[13vw]"> Search team Member</div>
+       <div class="w-[14vw]"> Search team Member</div>
         </div>
-        <div class="flex flex-col rounded w-[92%]  p-1 h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+        <div class="flex flex-col rounded w-[11vw]  h-[78vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
         {props.teamUserList.map((item,index) =>{
            return (
          <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
-                  text-[#444444] m-1 w-[11.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-        <div class="flex items-center flex-no-wrap h-16">
-          <div class=" flex basis-[15%] mr-[0.2rem] h-15" >
+                  text-[#444444] mt-1  max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+        <div class="flex items-center h-16">
+          <div class=" flex  mr-[0.2rem] h-15" >
             <MultiAvatar
               primaryTitle={item.opportunityName}
               imageId={item.imageId}
@@ -289,9 +290,9 @@ function OpportunityTeamsCard(props) {
             />
           </div>
           
-          <div class="flex basis-[100%] overflow-hidden">
+          <div class="flex  overflow-hidden">
           
-          <div class="font-semibold text-[#337df4] cursor-pointer text-xs " >
+          <div class="font-semibold text-[#337df4] cursor-pointer !text-lm font-poppins"  >
         
 
 
@@ -303,13 +304,13 @@ function OpportunityTeamsCard(props) {
         </div>
         <div className="flex flex-col max-sm:justify-between ">
           
-              <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
+        <div class="overflow-hidden text-ellipsis font-poppins cursor-pointer text-lm truncate  flex items-center">
               {item.mobileNo}    </div>
             
           <div>
           <div class="font-medium text-xs ">
        
-              <div class="overflow-hidden  text-ellipsis cursor-pointer text-xs flex items-center">
+          <div class="overflow-hidden  text-ellipsis font-poppins cursor-pointer text-lm truncate  flex items-center">
                 {item.emailId}  
               </div>
           </div>
@@ -326,25 +327,26 @@ function OpportunityTeamsCard(props) {
           {elipsize(item.emailId || "", 25)}
           </Tooltip>
           </div> */}
+  <div className=' flex  sticky  w-[87%] z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
  <div className="flex max-sm:hidden  w-[94%]  max-xl:w-[87%] p-1 bg-transparent font-bold sticky items-end z-10">
  <div className="   flex justify-between w-[88%] font-bold  items-end font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm">
-   <div className=" w-[11.1rem] truncate text-[#00A2E8] text-sm ">
+   <div className=" w-[10.1rem] truncate text-[#00A2E8] text-sm ">
    <LightbulbIcon className="!text-icon  text-[#84a59d]"/>{translatedMenuItems[12]} ID</div>
-        <div className=" w-[13.8rem] truncate max-md:w-[16.8rem]  max-xl:w-[15.8rem] ">
+        <div className=" w-[12.1rem] truncate max-md:w-[16.8rem]  max-xl:w-[15.8rem] ">
           <RequestQuoteIcon className="!text-icon text-[#aa3e98] "/>
         {translatedMenuItems[0]}</div>
         {/* <div className=" w-[14.11rem] truncate max-xl:text-[0.65rem]  max-md:w-[14.11rem] max-lg:text-[0.45rem]">
         <ApartmentIcon className="!text-icon text-[#d66853] "/> {translatedMenuItems[1]}</div>     */}
-        <div className=" w-[23.2rem] truncate max-md:w-[12.2rem]  "> 
+        <div className=" w-[16.5rem] truncate max-md:w-[12.2rem]  "> 
         <ContactPageIcon className='!text-icon text-[#f28482] '  />  {translatedMenuItems[13]}</div>
-        <div className=" w-[9.3rem] truncate max-md:w-[12.2rem] ">
+        <div className=" w-[8.2rem] truncate max-md:w-[12.2rem] ">
         <CurrencyExchangeIcon className='!text-icon text-[#4c0827]' /> {translatedMenuItems[4]}</div>
-        <div className=" w-[10.6rem] truncate max-md:w-[10.6rem]  ">
+        <div className=" w-[8.5rem] truncate max-md:w-[10.6rem]  ">
         <StairsIcon className='!text-icon text-[#f19953] '  />  {translatedMenuItems[5]}</div> 
-        <div className=" w-[8.12rem] truncate max-md:w-[11.12rem] "> 
+        <div className=" w-[6.12rem] truncate max-md:w-[11.12rem] "> 
         <AccountCircleIcon className="!text-icon mr-1 text-[#f28482]"/>{translatedMenuItems[6]}</div> 
-        <div className=" w-[7.1rem] truncate  max-md:w-[15.1rem] "> 
+        <div className=" w-[6.1rem] truncate  max-md:w-[15.1rem] "> 
         <AccountCircleIcon className="!text-icon mr-1 text-[#f28482]"/>{translatedMenuItems[7]}</div>      
         <div className="w-12"></div>
         </div>
@@ -375,7 +377,7 @@ function OpportunityTeamsCard(props) {
                    <div className="flex rounded justify-between  bg-white mt-1  items-center py-ygap max-sm:rounded-lg max-xl:text-[0.65rem] max-lg:text-[0.45rem]  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[8rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                   <div className=" flex   w-[7rem] items-center   border-l-2 border-green-500 h-8  bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                   <div className=" flex   w-[8.3rem] items-center   border-l-2 border-green-500 h-8  bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 <div class=" text-xs ml-gap items-center font-poppins  max-sm:text-sm">   
 
@@ -425,7 +427,7 @@ function OpportunityTeamsCard(props) {
                             
                               
                              
-                              <div className=" flex  w-[6rem] items-center justify-center  max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex  w-[5rem] items-center justify-center  max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                 
 
                                 <div class=" text-xs font-poppins  max-sm:text-sm">
@@ -657,6 +659,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
   
 
       </InfiniteScroll>
+      </div>
       </div>
       </div>
  )} 

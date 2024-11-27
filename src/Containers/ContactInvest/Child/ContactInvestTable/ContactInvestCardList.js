@@ -67,7 +67,8 @@ function ContactInvestCardList(props) {
            "392",//Pulse
            "316",// Notes
            "185",//Adress
-           "170",//Edit
+           "170",//Edit 10
+           "1581",//score 11
                  
         ];
 
@@ -157,41 +158,38 @@ function ContactInvestCardList(props) {
   return (
     <>     
       <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex  justify-between max-sm:hidden w-[94%]  p-1 bg-transparent  font-poppins font-bold !text-lm items-end sticky z-10">
-          <div className=" flex justify-between w-[96%]">
-        <div className="  w-[18.32rem] truncate text-[#00A2E8] text-sm max-md:w-[18.32rem]">
-        <ContactEmergencyIcon className='!text-base mr-1  text-[#00A2E8] '
+          <div className=" flex  justify-between max-sm:hidden w-[94%]  p-1 bg-transparent  font-poppins font-bold !text-lm sticky z-10">
+          <div className=" flex justify-between items-end  w-[97%]">
+        <div className="  w-[15.9rem] truncate text-[#00A2E8] text-sm max-md:w-[18.32rem]">
+        <ContactEmergencyIcon className='!text-icon mr-1  text-[#00A2E8] '
               />{translatedMenuItems[0]}
         {/* name" */}         
                 </div>
-        <div className=" w-[12.72rem] truncate max-md:w-[13.72rem]">
-        <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}
+        <div className=" w-[15.72rem] truncate max-md:w-[13.72rem]">
+        <ApartmentIcon className="!text-icon  text-[#f0386b]"/> {translatedMenuItems[1]}
         {/* company */}             
                 </div>
-        <div className=" w-[12.6rem] truncate max-md:w-[12.6rem] ">
-        <i className="fab fa-artstation "></i> {translatedMenuItems[2]} 
+        <div className=" w-[11.6rem] truncate max-md:w-[12.6rem] ">
+        <i className="fab fa-artstation  text-[#b744b8]"></i> {translatedMenuItems[2]} 
         {/* designation */}             
                 </div>
         {/* <div className=" font-bold font-poppins text-xs w-[11.3rem] md:w-[11.3rem]">
         <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[3]} 
         department               
                 </div> */}
-                    <div className=" w-[5.2rem] truncate max-md:w-[11.2rem]">
+                    <div className=" w-[13.2rem] truncate max-md:w-[11.2rem]">
         <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[6]}
         {/* source" */}           
                 </div>
-        <div className=" w-[12.1rem] truncate max-md:w-[10.1rem]">
-        <CurrencyExchangeIcon className='!text-icon  mr-1  text-[#e4eb2f]' />{translatedMenuItems[4]}
+        <div className=" w-[12.4rem] truncate max-md:w-[10.1rem]">
+        <CurrencyExchangeIcon className='!text-icon  mr-1  text-[#84a59d]' />{translatedMenuItems[4]}
         {/* deals" */}           
-                </div>
-        {/* <div className="font-bold font-poppins text-xs w-[7.21rem] md:w-[11.21rem]"> 
-        {translatedMenuItems[5]}
-         dealValue"              
-                </div> */}
-    
+                </div> 
                 {props.user.aiInd && (
-            <div className=" w-[5.81rem] truncate max-md:w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-               <ScoreIcon className="!text-icon  text-[#f28482]"/>  Score
+            <div className=" w-[9.81rem] truncate max-md:w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+               <ScoreIcon className="!text-icon  text-[#f28482]"/>
+               {translatedMenuItems[11]}
+                 {/* Score */}
           
             </div>
             )}
@@ -283,24 +281,18 @@ function ContactInvestCardList(props) {
                                          {item.designation}
                                     </div>
                                 </div>
-                           
-                                {/* <div className=" flex max-sm:w-full max-sm:justify-between    w-[8.2rem] items-center  h-8 ml-gap bg-[#eef2f9]">
-                                Department
-                                  <div class="text-xs  font-poppins">
-                                       {item.department}
-                                  </div>
-                              </div> */}
+                                                 
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center">
-                              <div className="flex max-sm:justify-between items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[12.81rem] max-sm:w-full ">
+                              <div className="flex w-[12.81rem] max-sm:justify-between items-center justify-center h-8 ml-gap bg-[#eef2f9] max-md:w-[12.81rem] max-sm:w-full ">
                                      {/* Source */}
 
                                     <div class="text-xs  ml-gap font-poppins">
 
                                     </div>
                                 </div>
-                              <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[12.22rem] max-sm:w-full  ">
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[7.22rem] max-sm:w-full  ">
+                              <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[11.8rem] max-md:w-[12.22rem] max-sm:w-full  ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.22rem] max-md:w-[7.22rem] max-sm:w-full  ">
                                     {/* Deals */}
                                     <div class=" text-xs text-blue-500 cursor-pointer  font-poppins"
                                         onClick={() => {
@@ -311,7 +303,7 @@ function ContactInvestCardList(props) {
                                      {item.oppNo}
                                     </div>
                                 </div>
-                                <div className=" flex   md:w-[7.05rem] max-sm:w-full items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
+                                <div className=" flex w-[7.05rem]  max-md:w-[7.05rem] max-sm:w-full items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
                                    {/* Deal Value */}
 
                                     <div class=" text-xs  font-poppins">
