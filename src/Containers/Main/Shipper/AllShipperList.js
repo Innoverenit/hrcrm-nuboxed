@@ -78,7 +78,7 @@ function AllShipperList(props) {
       <div className=' flex  sticky  z-auto'>
       <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent sticky items-end !text-lm font-poppins font-bold  max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
-            <div className=" text-[#00A2E8] text-base w-[10.5rem] max-md:w-[10.5rem] truncate ">  
+            <div className=" text-[#00A2E8] text-sm w-[10.5rem] max-md:w-[10.5rem] truncate ">  
                <CategoryIcon className='!text-icon '/> {props.translatedMenuItems[0]}</div>
             <div className="  w-[6.01rem]  max-md:w-[6.01rem]] truncate ">
             <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>   {props.translatedMenuItems[1]}</div>
@@ -87,13 +87,13 @@ function AllShipperList(props) {
             <div className="  w-[6.1rem] max-md:w-[6.1rem] truncate ">
             <LocalShippingIcon className='!text-base  text-[#7dcfb6]'/> {props.translatedMenuItems[3]}</div>
             <div className="  w-[18.7rem] max-md:w-[18.7rem] truncate "> 
-            <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[4]}</div>
+            <LocationOnIcon className='!text-base  text-[#42e23a]'/> {props.translatedMenuItems[4]}</div>
             <div className="  w-[12.4rem] max-md:w-[12.4rem] truncate ">
             <LocationOnIcon className='!text-base  text-[#e4eb2f]'/>{props.translatedMenuItems[5]}</div>
             <div className="  w-[5.9rem] max-md:w-[5.9rem] truncate ">
               {props.translatedMenuItems[6]}</div>
             <div className="  w-[13.24rem] max-md:w-[13.24rem] truncate ">
-                <ApiIcon className='!text-base  text-[#e4eb2f]'/>  API</div>
+                <ApiIcon className='!text-base  text-[#f45236]'/>  API</div>
           </div>
           <InfiniteScroll 
         dataLength={props.allShipper.length}

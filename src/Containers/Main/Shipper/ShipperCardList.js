@@ -186,18 +186,18 @@ const fetchApiKeyList = async () => {
             </div>
             <div className="  w-[18.7rem] max-md:w-[18.7rem] truncate  ">
              {/* Address */}
-             <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[4]}
+             <LocationOnIcon className='!text-base  text-[#7b36eb]'/> {props.translatedMenuItems[4]}
               </div>
             <div className=" w-[12.4rem] max-md:w-[12.4rem] truncate  ">
             {/* City */}
-            <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[5]}
+            <LocationOnIcon className='!text-base  text-[#7b36eb]'/> {props.translatedMenuItems[5]}
               </div>
             <div className=" w-[5.9rem] max-md:w-[5.9rem] truncate  ">
             {/* Pin Code */}
               {props.translatedMenuItems[6]}
               </div>
             <div className=" w-[13.24rem] max-md:w-[13.24rem] truncate  ">
-            <ApiIcon className='!text-base  text-[#e4eb2f]'/> API</div>
+            <ApiIcon className='!text-base  text-[#e74139]'/> API</div>
           </div>
           <InfiniteScroll
             dataLength={dataShipper.length}

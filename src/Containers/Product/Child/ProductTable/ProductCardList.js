@@ -36,6 +36,7 @@ import Token from '@mui/icons-material/Token';
 import ProductPublishToggle from "./ProductPublishToggle";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
+import NewspaperIcon from '@mui/icons-material/Newspaper'
 import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
 import {  Tooltip,Button,Input } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -212,14 +213,15 @@ useEffect(() => {
 
       <div className=' flex sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between max-sm:hidden w-[91%]  p-1 bg-transparent font-bold font-poppins text-xs sticky items-end max-lg:text-[0.45rem] max-xl:text-[0.65rem] z-10">  
+          <div className=" flex font-poppins text-xs justify-between w-[91%] max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm   p-1 bg-transparent font-bold sticky items-end z-10 max-sm:hidden">  
           <div className="w-[5.01rem]"></div>        
             <div className=" w-[4.5rem] truncate max-md:w-[4.5rem] text-sm text-[#00A2E8]   max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
+            <NewspaperIcon className='!text-base mr-1  text-[#00A2E8]'/>
              {translatedMenuItems[0]} {/* Article # */}
               </div>
               
             <div className=" w-[13.9rem]  truncate max-md:w-[14.71rem]   max-xl:w-[5.11rem] max-lg:w-[7.11rem]">
-            <ContactsIcon className="!text-icon mr-1 "/>
+            <ContactsIcon className="!text-icon mr-1 text-[#3af64a]"/>
             {translatedMenuItems[1]}  {/* Name */}
               </div>
             <div className=" w-[6.21rem] truncate max-md:w-[6.21rem]   max-xl:w-[2.21rem] max-lg:w-[3.21rem] ">
@@ -228,14 +230,14 @@ useEffect(() => {
             {/* Category */}
               </div>
             <div className=" w-[8.5rem] truncate max-md:w-[8.5rem]   max-xl:w-[11.51rem]">           
-            <AttractionsIcon className="  !text-icon" />   {translatedMenuItems[3]} {/* Attribute */}
+            <AttractionsIcon className="  !text-icon text-[#8e71ed]" />   {translatedMenuItems[3]} {/* Attribute */}
               </div>
             <div className=" w-[9rem] truncate max-md:w-[10rem]   max-xl:w-[5.51rem]">
-            <BrandingWatermarkIcon className="!text-icon  mr-1" />
+            <BrandingWatermarkIcon className="!text-icon text-[#0f3337]  mr-1" />
             {translatedMenuItems[4]}{/* Brand */}
               </div>
             <div className=" w-[6.51rem] truncate max-md:w-[6.51rem]   max-xl:w-[4.51rem]">
-            <ModelTrainingIcon className=" !text-icon" />
+            <ModelTrainingIcon className=" !text-icon text-[#e862cf]" />
             {translatedMenuItems[5]} {/* Model */}
             
             </div>
@@ -245,14 +247,14 @@ useEffect(() => {
               </div>
               <div className=" w-[4.9rem] truncate max-md:w-[4.9rem]   max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
               {/* Feature */}
-               <  PixIcon  className=" !text-icon" />   {translatedMenuItems[7]}  
+               <  PixIcon  className=" !text-icon text-[#124348]" />   {translatedMenuItems[7]}  
               </div>
-              <div className=" w-[4.8rem] truncate max-md: w-[4.8rem]   max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
-              < AddModeratorIcon className=" !text-icon" />   {translatedMenuItems[8]}  
+              <div className=" w-[4.8rem] truncate max-md:w-[4.8rem]   max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
+              < AddModeratorIcon className=" !text-icon text-[#e53838]" />   {translatedMenuItems[8]}  
             {/* Warranty */}
               </div>
               <div className=" w-[4.2rem] truncate max-md:w-[4.2rem]   max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
-              < WatchLaterIcon className=" !text-icon" />   {translatedMenuItems[9]}  
+              < WatchLaterIcon className=" !text-icon text-[#381b72]" />   {translatedMenuItems[9]}  
             {/* Year */}
               </div>
             {/* <div className="w-[7rem]"></div> */}
@@ -315,7 +317,7 @@ useEffect(() => {
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                     <div className=" flex w-[6.1rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[3.7rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-                      <div class=" text-xs  ml-gap  max-sm:text-sm font-poppins   ml-gap">
+                      <div class=" text-xs  ml-gap  max-sm:text-sm font-poppins ">
 
                         {item.categoryName}  {item.subCategoryName}
                       </div>
