@@ -10,7 +10,7 @@ import { base_url2 } from "../../../Config/Auth";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 
 const NewRecallListStep1 = (props) => {
-    const [fields, setFields] = useState([{ supplierId: "", suppliesFullName: "", batchNo: "" }]);
+    const [fields, setFields] = useState([{ suppliesId: "", suppliesFullName: "", batchNo: "" }]);
 
 
     useEffect(() => {
@@ -18,7 +18,7 @@ props.getBatchNo();
       }, []);
 
     const addMoreFields = () => {
-        setFields([...fields, { supplierId: "", suppliesFullName: "", batchNo: "" }]);
+        setFields([...fields, { suppliesId: "", suppliesFullName: "", batchNo: "" }]);
     };
 
     const removeField = (index) => {
@@ -30,15 +30,15 @@ props.getBatchNo();
 
     const batchData = props.batchNo.map((item) => {
         return {
-          label: `${item.fullName}`,
-          value: item.employeeId,
+          label: item.batchNo,
+          value: item.batchNo,
         };
       });
 
     return (
         <div>
             <Formik
-                initialValues={{ items: fields }}
+                initialValues={{ customerInfo: fields }}
                 onSubmit={(values, { resetForm }) => {
                     console.log("Saved form data:", values);
                     props.addRecallData({ ...values });
@@ -54,7 +54,7 @@ props.getBatchNo();
                                         <label className="font-bold text-xs font-poppins text-black">Supplier List</label>
                                         <Field
                                             isRequired
-                                            name={`items[${index}].supplierId`}
+                                            name={`customerInfo[${index}].suppliesId`}
                                             placeholder="Start typing to search or create..."
                                             optionLabel="name"
                                             optionValue="supplierId"
@@ -70,7 +70,7 @@ props.getBatchNo();
                                         <label className="font-bold text-xs font-poppins text-black">Material List</label>
                                         <Field
                                             isRequired
-                                            name={`items[${index}].suppliesFullName`}
+                                            name={`customerInfo[${index}].suppliesFullName`}
                                             placeholder="Start typing to search or create..."
                                             optionLabel="subCategoryName"
                                             optionValue="suppliesFullName"
@@ -86,7 +86,7 @@ props.getBatchNo();
                                         <label className="font-bold text-xs font-poppins text-black">Batch No</label>
                                         <Field
                                             isRequired
-                                            name={`items[${index}].batchNo`}
+                                            name={`customerInfo[${index}].batchNo`}
                                             // options={["PassPort", "ID Card"]}
                                             options={Array.isArray(batchData) ? batchData : []}
                                             // value={values.included}
