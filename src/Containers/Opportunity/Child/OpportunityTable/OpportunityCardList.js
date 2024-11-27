@@ -231,6 +231,8 @@ console.log(props.userDetails.imageId)
       {props.ooportunitySerachedData.length > 0 ? (
     <SearchedDataOpportunity
     ooportunitySerachedData={props.ooportunitySerachedData}
+    translateText={props.translateText}
+    selectedLanguage={props.selectedLanguage}
     />
   ) : (
        <InfiniteScroll

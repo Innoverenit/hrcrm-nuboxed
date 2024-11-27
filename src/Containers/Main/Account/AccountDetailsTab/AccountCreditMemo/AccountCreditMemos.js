@@ -183,7 +183,7 @@ function AccountCreditMemos(props) {
                 <div>
                   <div className="flex rounded justify-between mt-1 bg-white py-ygap items-center  max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex border-l-2 border-green-500 bg-[#eef2f9]   w-[19.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                    <div className=" flex border-l-2 border-green-500 bg-[#eef2f9]   h-8 w-[19.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                       <div class=" text-xs  font-poppins">
                         {item.newOrderNo}
                       </div>

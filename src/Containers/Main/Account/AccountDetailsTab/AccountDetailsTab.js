@@ -502,7 +502,7 @@ function AccountDetailsTab(props) {
                         tab={
                             <>
                             <span  class= "!text-tab font-poppins ">
-                                   <CreditCardIcon className="!text-icon text-[#edd382] mr-1"/>
+                                   <CreditCardIcon className="!text-icon text-[#386641] mr-1"/>
                                    {translatedMenuItems[14]}
                                 </span>
                             <Badge
@@ -528,7 +528,7 @@ function AccountDetailsTab(props) {
                             <>
 
                                 <span>
-                                <HourglassFullIcon className="text-[#edf67d] !text-icon" />
+                                <HourglassFullIcon className="text-blue-500 !text-icon" />
                                     <span class="ml-1 !text-tab font-poppins ">
                                     {translatedMenuItems[4]}
                                     {/* Activity */}

@@ -207,7 +207,7 @@ const AccountActionLeft = (props) => {
                 </Badge>
             </Tooltip>
 
-            <div class=" w-64 max-sm:w-24">
+            <div class=" w-64 max-sm:w-24 ml-2">
                 <Input
                     placeholder="Search by Name or Sector"
                     width={"100%"}

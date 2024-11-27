@@ -2,9 +2,13 @@ import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { Popconfirm, Tooltip,Input,Button } from "antd";
+import { Popconfirm, Tooltip,Input,Button,Progress } from "antd";
 import { Link } from 'react-router-dom';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
@@ -22,12 +26,15 @@ import {
   handleAccountPulse
 } from "./AccountAction";
 import dayjs from "dayjs";
-
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import MergeTypeIcon from '@mui/icons-material/MergeType';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import ContactsIcon from '@mui/icons-material/Contacts';
 import AccountPulseModal from "./AccountPulseModal";
 import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
 import ExploreIcon from "@mui/icons-material/Explore";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { BundleLoader } from "../../../Components/Placeholder";
+import GolfCourseIcon from '@mui/icons-material/GolfCourse';
 import AccountModal from "./AccountModal";
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 const AccountCreditToggle = lazy(() => import("./AccountCreditToggle"));
@@ -39,6 +46,7 @@ function AccountSearchedData(props) {
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [particularRowData, setParticularRowData] = useState({});
+  const [asignedDrawer,setasignedDrawer] =useState(false);
 
   useEffect(() => {
     props.getCustomerByUser(props.userId, page);
@@ -107,7 +115,8 @@ function AccountSearchedData(props) {
              "592",          // club 17
              "185",//Adress 18
              "84",//Delete 19
-
+             "202",//Orders
+             "213",//Quotation
         ];
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);
@@ -135,50 +144,56 @@ function AccountSearchedData(props) {
   return (
     <>
     
-    <div className=' flex  sticky  z-auto'>
+    <div className=' flex  sticky  z-auto h-[89vh]'>
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-white" >
-          <div className=" flex max-sm:hidden   w-[96%]  justify-between p-1 bg-transparentsticky  z-10">
+          <div className=" flex max-sm:hidden items-end  w-[96%]  justify-between p-1 bg-transparent sticky text-lm font-poppins font-bold z-10">
          
             <div className="w-1"></div>
-            <div className=" w-[15.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]"> 
-            {translatedMenuItems[0]}
+            <div className=" w-[12.1rem] max-md:w-[15.1rem] text-[#00A2E8] text-sm"> 
+            <ContactsIcon className="!text-icon  "/>{translatedMenuItems[0]}
             {/* Name */}
             </div>
-            <div className=" w-[9.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.11rem] max-lg:w-[9.11rem]">
-            {translatedMenuItems[1]}
+            <div className=" w-[8.11rem] max-md:w-[9.1rem]">
+            <ApartmentIcon className="!text-icon mr-1 text-[#5A189A] "/>{translatedMenuItems[1]}
            {/* Work */}
             </div>
-            <div className=" w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.1rem] max-lg:w-[8.1rem] ">
-            {translatedMenuItems[2]}
+            <div className=" w-[8.1rem]  max-md:w-[9.1rem]">
+            <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[2]}
               {/* Category */}
               </div>
-            <div className="w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem]">
-            {translatedMenuItems[3]}
+            <div className="w-[6.02rem] max-md:w-[5.1rem]">
+            < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[3]}
           {/* Type */}
              </div>
-            <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
-            {translatedMenuItems[4]}
+             <div className="w-[4.01rem] max-md:w-[4.01rem] ">
+             <DynamicFeedIcon
+              className='!text-icon  text-[#006D77]'
+              />  {translatedMenuItems[20]}
+          {/* Orders */}
+             </div>
+             <div className="w-[5.03rem] max-md:w-[5.03rem]">
+             <LightbulbIcon className="!text-icon text-[#84a59d]"/>  {translatedMenuItems[21]}
+          {/* Quotation*/}
+             </div>
+            {/* <div className="w-[10.2rem] max-md:w-[10.1rem]">
+            <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[4]}
           {/* Paymentdays   */}
-            </div>
-            <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
-            {/* Club */} {translatedMenuItems[17]}
+            {/* </div>  */}
+            <div className="w-[5.210rem] max-md:w-[5.1rem] ">
+           < GolfCourseIcon  className='!text-icon text-[#c42847] '/> {/* Club */} {translatedMenuItems[17]}
           {/*Club */}
             </div>
-            <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem] max-lg:w-[6.2rem]">
-            {translatedMenuItems[5]} (%)
+            <div className="w-[9.2rem] max-md:w-[10.1rem]">
+            <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[5]} (%)
               {/* Payment % */}
             </div>
-            {/* <div className="w-[4.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.24rem]">
-            {translatedMenuItems[6]} 
-              Tax
-              </div>    */}
-           {/* "billingaddress" */}
-           <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
-          {translatedMenuItems[8]}
+           
+           <div className="w-[5.2rem] max-md:w-[5.1rem]">
+           <CurrencyExchangeIcon className='!text-icon    text-[#FF7D00]' /> {translatedMenuItems[8]}
             {/* Credit */}          
             </div>
-  <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
-          {translatedMenuItems[7]}
+  <div className="w-[5.3rem] max-md:w-[10.2rem]">
+  <AccountCircleIcon className="!text-icon  text-[#d64933]"/>{translatedMenuItems[7]}
             {/* Assigned */}          
             </div>
             {/* <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] "> */}
@@ -199,6 +214,8 @@ function AccountSearchedData(props) {
                 {props.distributorSearch.map((item) => {
                   const currentdate = dayjs().format("DD/MM/YYYY");
                   const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+                  
+                  const acivedPercentage = isNaN(Math.floor((item.outstanding / item.currencyPrice) * 100)) ? 0 : Math.floor((item.outstanding / item.currencyPrice) * 100)
                   const diff = Math.abs(
                     dayjs().diff(dayjs(item.lastRequirementOn), "days")
                   );
@@ -213,9 +230,9 @@ function AccountSearchedData(props) {
             `;
                   return (
                     <div>
-                      <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-xl:p-1 max-sm:h-[9rem] max-sm: scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "                                >
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex w-[13rem] max-xl:w-[11rem] max-lg:w-[8rem]   max-sm:w-auto">
+                       <div className="flex  justify-between  bg-white mt-1 py-ygap items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "                                >
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
+                          <div className=" flex w-[12rem] h-8 max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] border-l-2 border-green-500 bg-[#eef2f9]  max-sm:w-auto">
                             <div className="flex max-sm:w-auto">
                               <div>
                                 <MultiAvatar
@@ -229,7 +246,7 @@ function AccountSearchedData(props) {
                               <div class="w-[0.25rem]"></div>
                              
                                 <Tooltip>
-                                  <div class="flex max-sm:flex-row justify-between w-full md:">
+                                  <div class="flex max-sm:flex-row justify-between  ">
                                   <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer flex items-center">
 
                                       <Link
@@ -250,55 +267,70 @@ function AccountSearchedData(props) {
                         
                             </div>
                           </div>
-                          <div className=" flex  items-center  w-[7.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
-
-                            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-center max-sm:text-xs ">
+                          <div className=" flex  items-center justify-start h-8 ml-gap  bg-[#eef2f9] w-[7.1rem] max-md:w-[7.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
+                            <div class="flex ml-gap text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-center max-sm:text-xs ">
                               {item.dialCode} {item.phoneNo}
                             </div>
-
                           </div>
-
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex max-sm:w-auto w-[10.2rem] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
-                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                              {/* {item.url} */}
+                          <div className=" flex items-center justify-start max-sm:w-auto max-md:w-[7.2rem] w-[7.2rem]  max-xl:w-[5.2rem] bg-[#eef2f9] h-8 ml-gap max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
+                            <div class="flex ml-gap text-xs items-center  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.dcategoryName}
                             </div>
                           </div>
-                          <div className=" flex  max-sm:w-auto w-[8.2rem] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
-                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                          <div className=" flex items-center justify-start  max-sm:w-auto w-[6.2rem] max-md:w-[6.2rem] max-xl:w-[6rem] max-lg:w-[5rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                            <div class=" flex ml-gap text-xs items-center  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.clientName}
 
                             </div>
                           </div>
-
-                          <div className=" flex  max-sm:w-auto w-[8rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  max-sm:w-auto w-[4.2rem] max-md:w-[4.2rem] max-xl:w-[6rem] max-lg:w-[5rem]  max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                              {item.payment}
+                             
+                            {item.procureCount} 
 
                             </div>
                           </div>
-                      
-                        <div className=" flex  max-sm:w-auto w-[5rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex items-center justify-center  max-sm:w-auto w-[5.21rem] max-md:w-[5.21rem] max-xl:w-[6rem] max-lg:w-[5rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                            <div class=" text-xs cursor-pointer font-bold font-poppins text-center text-blue-600  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+                            
+                               onClick={() => {
+                                        props.setEditDistributor(item)
+                                        props.handleAccountOpportunityModal(true);
+                                        handleCurrentRowData(item);
+                                      }}
+                       >
+                           
+                            {item.qtProcureCount} 
+
+                            </div>
+                          </div>
+                          <div className=" flex items-center justify-center  max-sm:w-auto w-[5rem] max-md:w-[5rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[cadetblue] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.clubName}
 
                             </div>
                           </div>
-                          <div className=" flex  max-sm:w-auto w-[3rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex  items-center justify-center max-sm:w-auto w-[8.2rem] max-md:w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                              {item.payment} days
+
+                            </div>
+                         
+                          <div className=" flex  items-center justify-center max-sm:w-auto w-[3rem] max-md:w-[3rem] max-xl:w-[3rem] max-lg:w-[2rem]  bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">       
                               {visible && (item.distributorId === particularRowData.distributorId) ?
                                                                 <Input
                                                                     type='text'
                                                                     value={price}
-                                                                    onChange={(e) => handleChange(e.target.value)}
+                                                                    onChange={(e) => handleChange(e.target.value)} 
                                                                 />
-                                                                : item.dispatchPaymentPercentage}
+                                                                : item.dispatchPaymentPercentage}%
                             </div>
                           </div>
                           
-                          <div className=" flex    md:w-[3.06rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                          <div className=" flex  items-center justify-center  w-[1.06rem] max-md:w-[1.06rem] bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
 
                                                         {visible && (item.distributorId === particularRowData.distributorId) ? (
@@ -335,41 +367,46 @@ function AccountSearchedData(props) {
                                                     </div>
 
                                                 </div>
+                                                </div>
                         </div>
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-{/* Tax
-                          <div className=" flex  max-sm:w-auto  w-[4.5rem] max-xl:w-[1.5rem] max-sm:flex-row  max-sm:justify-between  ">
-                            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                              {item.countryValue}
-                            </div>
-
-                          </div>                        */}
-                                        
-                      <div className=" flex items-center max-sm:w-auto w-[7rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
-                            <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>&nbsp;
-                            <div class=" text-xs items-center font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                              {item.currencyPrice}
-
-                            </div>
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">            
+                      <div className=" flex items-center justify-between bg-[#eef2f9] h-8 ml-gap max-sm:w-auto w-[15.01rem] max-md:w-[9.01rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center max-sm:w-auto w-[2rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                            <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>&nbsp;                            
                           </div>
+                          <Tooltip title="">
+                                                 
+                                                 <Progress
+                                                percent={acivedPercentage}
+                                                success={{acivedPercentage}}
+                                               // strokeColor={getGradientStrokeColor(acivedPercentage)}
+                                                format={() => `${acivedPercentage}%`} 
+                                                 style={{width:"10rem",cursor:"pointer"}} 
+                                                      />                                                       
+                                                </Tooltip>
+                          <div class=" text-xs flex items-center justify-center font-poppins w-[6.021rem] bg-[#eef2f9] h-8   text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                              {item.curName} {(item.currencyPrice / 1000).toFixed(0)}k
 
-                          <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            </div>                  
+                        </div>
+
+                        <div class=" text-xs items-center justify-center flex bg-[#eef2f9] h-8 ml-gap w-[3.5rem] max-md:w-[2.5rem] font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                   {/* Assigned */}
                                   {item.assignToUser?
-                                  <span>
+                                  <span 
+                                  // onClick={()=>{handleCurrentRowData(item);
+                                  //   setasignedDrawer(true)}}
+                                    >
                                   <MultiAvatar2
             primaryTitle={item.assignToUser}
             imgWidth={"1.8rem"}
             imgHeight={"1.8rem"}
           />
           </span>:""}
-           
-                                  </div>
+                      </div>
 
-                        </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">   
-
-                              <div className=" flex    max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
+                              <div className=" flex items-center justify-center bg-[#eef2f9] h-8  ml-gap  max-xl:w-[1.2rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs  font-poppins">
                                 <Tooltip title={translatedMenuItems[12]}>
                                 {/* "Pulse"> */}
@@ -383,6 +420,7 @@ function AccountSearchedData(props) {
                                 </Tooltip>
                               </div>
                             </div>
+                            <div className="bg-[#eef2f9] h-8  items-center justify-center flex">
                             <Tooltip title={translatedMenuItems[18]}>
                             <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0]"
@@ -392,8 +430,9 @@ function AccountSearchedData(props) {
           }}
           
         />  
-        </Tooltip>           
-<div className=" flex  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
+        </Tooltip>   
+        </div>        
+<div className=" items-center justify-center flex  bg-[#eef2f9] h-8  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
   <div class=" text-xs  font-poppins">
     <Tooltip title={translatedMenuItems[11]}>
     {/* "More Info With AI" */}
@@ -408,7 +447,7 @@ function AccountSearchedData(props) {
     </Tooltip>
   </div>
 </div>                                            
-                              <div>
+                              <div className="bg-[#eef2f9] h-8  items-center justify-center flex">
                                 <Tooltip title={item.url}>
                                   {item.url !== "" ? (
                                     <div
@@ -416,7 +455,7 @@ function AccountSearchedData(props) {
                                       onClick={() => { }}
                                     >
                                       {" "}
-                                      <a href={`https://${item.url}`} target="_blank">
+                                      <a href={`https://${item.url}`} target="_blank" rel="noreferrer">
                                         <ExploreIcon
                                           className=" !text-icon cursor-pointer text-[green]"
 
@@ -431,10 +470,27 @@ function AccountSearchedData(props) {
                                 </Tooltip>
 
                               </div>
-                           
-                        
+                              {/* <div className="bg-[#eef2f9] h-8  items-center justify-center flex">
+                                <Tooltip title="Quotation">
+                                <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm  cursor-pointer" to={`Opportunity`}>
+                                   
+                                
+                                      <LightbulbIcon className="!text-icon text-[#bfa89e]"
+                                     
+                                      onClick={() => {
+                                        props.setEditDistributor(item)
+                                        props.handleAccountOpportunityModal(true);
+                                        handleCurrentRowData(item);
+                                      }}
+                                    />
+                                     <Opportunity/>
+                                     </Link>
+                                </Tooltip>
 
-                            <div className=" flex   max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
+                              </div> */}
+                              
+
+                            <div className=" items-center justify-center flex bg-[#eef2f9] h-8  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs  font-poppins">
                                 <Tooltip title={translatedMenuItems[13]}>
                                 {/* "Edit"> */}
@@ -452,7 +508,7 @@ function AccountSearchedData(props) {
 
 
                             </div>
-                            <div className=" flex   max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
+                            <div className=" items-center justify-center flex bg-[#eef2f9] h-8  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs  font-poppins">
                               <Tooltip title={translatedMenuItems[19]}>
                                 <Popconfirm
@@ -471,6 +527,7 @@ function AccountSearchedData(props) {
                           </div>
                        
                       </div>
+                    </div>
                     </div>
 
                     
