@@ -35,13 +35,13 @@ import { BundleLoader } from "../../../../../Components/Placeholder";
 import ReactSpeechModal from "./ReactSpeechModal";
 import AddDocumentModals from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
 import AddCustomerContactModal from "../../../../Customer/Child/CustomerDetail/CustomerTab/ContactTab/AddCustomerContactModal";
+import LinkedContact from "../../../../Customer/Child/CustomerDetail/CustomerTab/ContactTab/LinkedContact";
 const RecruitmentTable = lazy(() => import("./Recruitment/RecruitmentTable"));
 const AddRecruitModal = lazy(() => import("./Recruitment/AddRecruitModal"));
 const AddTagProfileModal = lazy(() => import("./Recruitment/AddTagProfileModal"));
 const RecruitProJumpstart = lazy(() => import("../../RecruitProJumpstart/RecruitProJumpstart"));
 const SummaryTable = lazy(() => import("./Recruitment/Child/SummaryTable"));
 const AddDocumentModal = lazy(() => import("./Document/AddDocumentModal"));
-const LinkedContact = lazy(() => import("./LinkedContact"));
 const LinkedDocuments = lazy(() => import("./Document/LinkedDocuments"));
 const AddContactModal = lazy(() => import("../../../../Contact/Child/AddContactModal"));
 const LinkContactModal = lazy(() => import("../../../../Contact/Child/LinkContactModal"));
@@ -199,11 +199,13 @@ class OpportunityDetailTab extends Component {
                 )}
               </div>;
         case "2":
-          return  <div>    <LinkedContact
+          return  <div>   <LinkedContact 
+          uniqueId={opportunityId}
+          type={"oppertunity"}
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
-         translatedMenuItems={this.props.translatedMenuItems}
-         /></div>;
+        translatedMenuItems={this.props.translatedMenuItems}
+          /></div>;
          case "3":
           return  <div>     <LinkedDocuments opportunity={opportunity} 
           translateText={this.props.translateText}

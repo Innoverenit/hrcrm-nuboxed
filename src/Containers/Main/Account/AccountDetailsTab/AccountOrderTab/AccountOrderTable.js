@@ -247,9 +247,17 @@ const AccountOrderTable = (props) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
-                                        <div >
-                                            <div className="flex rounded  mt-1 bg-white  items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                                                <div class="flex ">
+                                   
+                                          <div>
+                                           <div 
+  className={`flex rounded mt-1  items-center bg-white py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow border-solid m-1 leading-3 hover:border-[#23A0BE] hover:shadow-[#23A0BE]
+`}
+>
+  <div 
+  className={`flex ${item.active ? '' : 'opacity-50 cursor-not-allowed pointer-events-none'}
+  `}
+>
+                                                <div class="flex w-[42rem] ">
                                                     <div className=" flex items-center border-l-2 border-green-500 bg-[#eef2f9] w-[2.56rem] max-md:w-[2.56rem] max-sm:  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between  max-md:flex-col">
@@ -405,12 +413,12 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex w-[15.1rem]  max-md:w-[15.1rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                                                <div className=" flex w-[4.1rem]  max-md:w-[15.1rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center">
                                                         {item.locationName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex w-[16.04rem] max-md:w-[16.04rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 text-xs max-sm:flex-row  max-sm:justify-between ">
+                                                <div className=" flex w-[7.04rem] max-md:w-[16.04rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 text-xs max-sm:flex-row  max-sm:justify-between ">
                                                     <div >
                                                     {item.supervisorUserName ? 
                                                     <MultiAvatar
@@ -426,17 +434,17 @@ const AccountOrderTable = (props) => {
                                                         </span> */}
                                                     </div>
                                                 </div>
-                                                <div class="flex flex-row w-[10.03rem] items-center  justify-center ml-gap bg-[#eef2f9] h-8 max-md:w-[10.03rem] max-sm:flex-row  max-sm:justify-between">
+                                                <div class="flex flex-row w-[6.03rem] items-center  justify-center ml-gap bg-[#eef2f9] h-8 max-md:w-[10.03rem] max-sm:flex-row  max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.shipById}
                                             </div>
                                         </div> 
-                                                <div className=" flex w-[17.05rem]  max-md:w-[17.05rem] max-sm:flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8  max-sm:justify-between ">
+                                                <div className=" flex w-[5.05rem]  max-md:w-[17.05rem] max-sm:flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8  max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center">
                                                         {item.productionLocationName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex w-[11.06rem] max-md:w-[11.06rem] max-sm:flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:justify-between  ">
+                                                <div className=" flex w-[4.06rem] max-md:w-[11.06rem] max-sm:flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:justify-between  ">
                                                     {item.inventoryReceiveInd ? null
                                                         :
                                                         <Tooltip title={translatedMenuItems[20]}
@@ -459,7 +467,7 @@ const AccountOrderTable = (props) => {
                                                             </Button>
                                                         </Tooltip>}
                                                 </div>
-                                                <div class="flex items-center  justify-end w-[8rem]  ml-gap bg-[#eef2f9] h-8">
+                                                <div class="flex items-center  justify-end w-[9rem]  ml-gap bg-[#eef2f9] h-8">
                                                     <div class="flex flex-row  max-sm:flex-row max-sm:w-[10%]">
                                                     <div>
                                                             <Tooltip title={translatedMenuItems[22]}
@@ -589,7 +597,12 @@ const AccountOrderTable = (props) => {
                                                                 />
                                                             </Tooltip>}
                                                         </div>
-                                                        <div>
+                                                        </div>
+                                                        </div>
+                                                        
+
+                                                    </div>
+                                                    <div>
                                                             <Tooltip title={translatedMenuItems[29]}
                                                             // {<FormattedMessage
                                                             //     id="app.delete"
@@ -597,15 +610,16 @@ const AccountOrderTable = (props) => {
                                                             // />}
                                                             >
                                                                 <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  
-                                                                    onClick={() => { props.removeOrderAcc(item.orderId,props.distributorId, 0, "repair","High" )}}
+                                                                    onClick={() => { props.removeOrderAcc({
+                                                                        active:item.active ? false : true},
+                                                                        item.orderId, props.distributorId, 0, "repair","High")
+                                                                      
+                                                                    }}
                                                                 />
                                                             </Tooltip>
 
                                                         </div>
-
-                                                    </div>
-                                             
-                                                    </div>
+                                                    
                                             </div>
 
                                             {checkAwb && (item.orderId === particularRowData.orderId) &&

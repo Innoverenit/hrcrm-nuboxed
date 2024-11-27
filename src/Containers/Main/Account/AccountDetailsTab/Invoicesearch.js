@@ -7,7 +7,6 @@ import {
     getGeneratedInvoiveList,
     upadtePayment,
     handleInvoiceModal,
-    searchInoice,
     ClearSearchedInvoice,
     handlePaidModal,
     getInvoiceCount
@@ -169,86 +168,6 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
       doc.save("Invoice.pdf")
     
     }
-
-    const {
-        transcript,
-        listening,
-        resetTranscript,
-        browserSupportsSpeechRecognition
-      } = useSpeechRecognition();
-    
-      useEffect(() => {
-        // props.getCustomerRecords();
-        if (transcript) {
-          console.log(">>>>>>>", transcript);
-          setCurrentData(transcript);
-        }
-        }, [ transcript]);
-        const handleChanges = (e) => {
-            setCurrentData(e.target.value);
-        
-            if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search  
-                props.getGeneratedInvoiveList(props.distributorId)       
-              props.ClearSearchedInvoice()
-              setSearchOnEnter(false);
-            }
-          };
-          const handleSearch = () => {
-            if (currentData.trim() !== "") {
-                props.searchInoice(currentData);
-              setSearchOnEnter(true);  // Code for Search
-            } else {
-              console.error("Input is empty. Please provide a value.");
-            }
-          };
-          const handleStartListening = () => {
-            setStartTime(Date.now());
-            setIsRecording(true);
-            SpeechRecognition.startListening();
-            if (timerRef.current) {
-              clearTimeout(timerRef.current);
-            }
-            timerRef.current = setTimeout(() => {
-              SpeechRecognition.stopListening();
-              setIsRecording(false);
-            }, minRecordingTime);
-          };
-          const suffix = (
-            <MicIcon
-              onClick={handleStartListening}
-              style={{
-                fontSize: 16,
-                color: '#1890ff',
-              }}
-        
-            />
-          );
-          const handleStopListening = () => {
-            SpeechRecognition.stopListening();
-            setIsRecording(false);
-            if (transcript.trim() !== "") {
-              setCurrentData(transcript);
-             
-              props.searchInoice(transcript);
-              setSearchOnEnter(true);
-            }
-          };
-          useEffect(() => {
-            if (!listening && isRecording) {
-              handleStopListening();
-            }
-          }, [listening]);
-          useEffect(() => {
-            if (isRecording && !listening) {
-              // If recording was stopped but less than 5 seconds have passed, restart listening
-              const elapsedTime = Date.now() - startTime;
-              if (elapsedTime < minRecordingTime) {
-                SpeechRecognition.startListening();
-              } else {
-                setIsRecording(false);
-              }
-            }
-          }, [listening, isRecording, startTime]);
 
     const [currency, setCurrency] = useState("")
     const [showIcon, setShowIcon] = useState(false)
@@ -614,7 +533,6 @@ const mapDispatchToProps = (dispatch) =>
             handlenvoiceOrderModal,
             upadtePayment,
             handleInvoiceModal,
-            searchInoice,
             ClearSearchedInvoice,
             handlePaidModal,
             getInvoiceCount

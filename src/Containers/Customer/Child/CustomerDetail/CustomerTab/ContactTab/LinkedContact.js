@@ -115,6 +115,7 @@ function LinkedContact(props) {
   } = props;
 
   if (fetchingCustomerContact) return <BundleLoader/>;
+  console.log(props.uniqueId)
   return (
     <>
       
@@ -183,12 +184,14 @@ function LinkedContact(props) {
                                   <div class="flex">
                                             <div className=" flex justify-center w-[2.1rem] max-md:w-[2.1rem] max-sm:  ">
                                                 <div class="flex justify-center  text-xs  font-semibold  font-poppins ">
+                                                  {item.reportsToId !== null &&
                                                   <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                                                         onClick={() => {
                                                             handleItemHistory()
                                                             handleSetCurrentContact(item)
                                                         }}
                                                     />
+                                                      }
                                                 </div>
                                             </div>
                                         </div>    
@@ -372,7 +375,7 @@ function LinkedContact(props) {
                                             selectedLanguage={props.selectedLanguage}
                                             translateText={props.translateText}
                                             currentContact={currentContact} 
-                                            
+                                            reportsToId={item.reportsToId}
                                           
 
                                             />}

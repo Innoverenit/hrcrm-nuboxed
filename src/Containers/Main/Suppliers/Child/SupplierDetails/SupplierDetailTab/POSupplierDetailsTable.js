@@ -88,10 +88,10 @@ function PoSupplierDetailsTable(props) {
         setPage(page + 1);
     };
 
-    const sendPutRequest = async (item) => {
+    const sendPutRequest = async (item,poSupplierSuppliesId) => {
         try {
           const response = await axios.put(
-            `${base_url2}/po/updatebestBfr-cntry-BtcNo/${props.supplierId}`,
+            `${base_url2}/po/updatebestBfr-cntry-BtcNo/${poSupplierSuppliesId}`,
             item,
             {
               headers: {
@@ -109,37 +109,29 @@ function PoSupplierDetailsTable(props) {
           console.error("Error updating item:", error);
         }
       };
-      const handleUpdateBatchNo = () => {
+      const handleUpdateBatchNo = (poSupplierSuppliesId) => {
         const updatedName = {
             batchNo:batchInput,
         };
-       sendPutRequest(updatedName);
+       sendPutRequest(updatedName,poSupplierSuppliesId);
        setIsEditingBatch(false); // Close the input box after updating
       };
-    const handleCountryChange = (countryId) => {
+    const handleCountryChange = (poSupplierSuppliesId,countryId) => {
         const updatedPayload = {
           countryId:countryId // Use the selected country ID
         };
       
-        sendPutRequest(updatedPayload);
+        sendPutRequest(updatedPayload,poSupplierSuppliesId);
         setIsCountryDropdownVisible(false); // Hide the dropdown after the request
       };
 
-    //   const handleDateChange = (date, dateString) => {
-    //     setSelectedDate(dateString);
-    //     const updatedPayload = {
-    //         bestBeforeUse: dateString // Add the selected date to the payload
-    //     };
-    //     sendPutRequest(updatedPayload);
-    //     setIsEditingDate(false); // Close the date picker after the date is selected
-    // };
-    const handleDateChange = (date, dateString) => {
+    const handleDateChange = (poSupplierSuppliesId, dateString) => {
         if (dateString) {
             setSelectedDate(dateString); // Update the local state
             const updatedPayload = {
                 bestBeforeUse: dateString, // Include the selected date in the payload
             };
-            sendPutRequest(updatedPayload); // Send the updated payload
+            sendPutRequest(updatedPayload,poSupplierSuppliesId); // Send the updated payload
             setIsEditingDate(false); // Exit edit mode
         } else {
             message.error("Invalid date selected"); // Optional: Notify the user of invalid input
@@ -212,6 +204,7 @@ function PoSupplierDetailsTable(props) {
                         style={{scrollbarWidth:"thin"}}                    
                     >
                         {props.poDetails.map((item) => {
+                           const date = dayjs(item.bestBefore).format("DD/MM/YYYY"); 
                             return (
                                 <>
                                     <div className="flex rounded justify-between mt-[0.5rem] bg-white items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
@@ -340,14 +333,17 @@ function PoSupplierDetailsTable(props) {
           className="h-7 w-[4rem] text-xl"
           value={batchInput}
           onChange={(e) => setbatchInput(e.target.value)}
-          onKeyDown={(e) => e.key === 'Enter' && handleUpdateBatchNo()} // Trigger update on 'Enter'
-          onBlur={handleUpdateBatchNo} // Optional: Update on blur as well
+          onKeyDown={(e) => e.key === "Enter" && handleUpdateBatchNo(item.poSupplierSuppliesId)}
+          onBlur={() => handleUpdateBatchNo(item.poSupplierSuppliesId)}
           autoFocus // Focus the input automatically when editing
         />
       ) : (
-        <div onClick={() => setIsEditingBatch(true)} className="cursor-pointer text-xl font-[Poppins]">
-            {/* {batchInput} */}
-            edither
+        <div onClick={() => {
+            setIsEditingBatch(true); // Enable editing mode
+            setbatchInput(item.batchNo); // Set the initial value from the batchNo of the item
+          }} className="cursor-pointer text-xl font-[Poppins]">
+            {item.batchNo || "Enter Batch No"}
+            
             </div> // Click to enter edit mode
       )}
           </div>
@@ -358,8 +354,8 @@ function PoSupplierDetailsTable(props) {
     onClick={() => setIsCountryDropdownVisible(!isCountryDropdownVisible)} 
     className="cursor-pointer"
   >
-    {/* {selectedCountry !== 'Select Country' ? props.countries.find(country => country.country_id === selectedCountry)?.country_name : "Select"} */}
-    Select
+    {selectedCountry ? item.countryName : "Select"}
+
   </div>
 
   {/* Dropdown options */}
@@ -369,7 +365,7 @@ function PoSupplierDetailsTable(props) {
       value={selectedCountry}
       onChange={(value) => {
         setSelectedCountry(value); // Update the local state with the selected country
-        handleCountryChange(value); // Send the payload when the country is selected
+        handleCountryChange(item.poSupplierSuppliesId,value); // Send the payload when the country is selected
       }}
       onBlur={() => setIsCountryDropdownVisible(false)} // Optionally hide dropdown on blur
     >
@@ -381,24 +377,12 @@ function PoSupplierDetailsTable(props) {
     </Select>
   )}
 </div>
-{/* {isEditingDate ? (
-                                        <DatePicker
-                                            className="h-7"
-                                            onChange={handleDateChange}
-                                            onBlur={() => handleDateChange()} // Optional: Close the date picker on blur
-                                            autoFocus // Focus the date picker automatically when editing
-                                        />
-                                    ) : (
-                                        <div onClick={() => setIsEditingDate(true)} className="cursor-pointer text-xl font-[Poppins]">
-                                            {selectedDate || "Select Date"}
-                                        </div> // Click to enter edit mode
-                                    )} */}
 
 {isEditingDate ? (
     <DatePicker
         className="h-7"
         value={selectedDate ? dayjs(selectedDate) : null} // Convert `selectedDate` to dayjs format
-        onChange={handleDateChange} // Correctly handle date selection
+        onChange={(date, dateString) => handleDateChange(item.poSupplierSuppliesId, dateString)} // Correctly handle date selection
         autoFocus // Focus the picker when editing
     />
 ) : (
@@ -406,7 +390,7 @@ function PoSupplierDetailsTable(props) {
         onClick={() => setIsEditingDate(true)} 
         className="cursor-pointer text-xl font-[Poppins]"
     >
-        {item.bestBeforeUse || "Select Date"} {/* Show selected date or prompt */}
+        {date || "Select Date"} {/* Show selected date or prompt */}
     </div>
 )}
 
