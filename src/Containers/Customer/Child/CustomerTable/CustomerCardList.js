@@ -266,6 +266,9 @@ if (loading) {
     <CustomerSearchedData
     customerSearch={props.customerSearch}
     fetchingCustomerInputSearchData={props.fetchingCustomerInputSearchData}
+    translateText={props.translateText}
+    selectedLanguage={props.selectedLanguage}
+  translatedMenuItems={props.translatedMenuItems}
     />
   ) : (  // Header
       <div className=' flex  sticky  z-auto'>

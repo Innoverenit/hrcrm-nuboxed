@@ -195,6 +195,9 @@ function InvestorTeamCardList(props) {
     <InvestorSearchedData
     investorSerachedData={props.investorSerachedData}
     fetchingInvestorSearchData={props.fetchingInvestorSearchData}
+    translateText={props.translateText}
+    selectedLanguage={props.selectedLanguage}
+  translatedMenuItems={props.translatedMenuItems}
     />
   ) : (
     <div  className=" flex">
