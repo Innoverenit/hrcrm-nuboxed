@@ -14,7 +14,9 @@ import { getDepartmentwiserUser } from "../../../Settings/SettingsAction"
 import { getRoles } from "../../../Settings/Category/Role/RoleAction"
 import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 import ApartmentIcon from '@mui/icons-material/Apartment';
-
+import LocalAtmIcon from '@mui/icons-material/LocalAtm';
+import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
+import InventoryIcon from'@mui/icons-material/Inventory';
 const { Option } = Select;
 
 class LocationForm extends Component {
@@ -235,7 +237,7 @@ class LocationForm extends Component {
                     <div class=" w-[47%] mt-2" >
                     <div class=" text-xs font-bold font-poppins">
                       {this.state.translatedMenuItems[2]}  {/* Inventory */}
-                         &nbsp;<i class="fas fa-warehouse text-base"></i></div>
+                         &nbsp;  <InventoryIcon className=" !text-icon text-[#480CA8]"/></div>
                       {/* inventory auto on when production on. if user wants to close inventory then ask what is inventory location */}
                       <div>
                         <Switch
@@ -252,7 +254,7 @@ class LocationForm extends Component {
                   <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs font-poppins">
                       {this.state.translatedMenuItems[3]}{/* Production */}
-                         &nbsp;<PrecisionManufacturingIcon/></div>
+                         &nbsp;<PrecisionManufacturingIcon className=" !text-icon text-[#4361EE]"/></div>
                       <div>
                       <Switch
                           style={{ width: "6.25em" }}
@@ -266,7 +268,7 @@ class LocationForm extends Component {
                     <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs font-poppins">
                        {this.state.translatedMenuItems[4]} {/* Corporate */}
-                         &nbsp; <ApartmentIcon className="!text-tab text-[#f0386b]"/></div>
+                         &nbsp; <ApartmentIcon className="!text-icon text-[#f0386b]"/></div>
                       <div>
                         <Switch
                           style={{ width: "6.25em" }}
@@ -282,7 +284,7 @@ class LocationForm extends Component {
                   <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs font-poppins">
                       {this.state.translatedMenuItems[5]}{/* Retail */}
-                        <i class="fas fa-money-check text-base"></i></div>
+                      <PointOfSaleIcon  className="!text-icon text-[#005F73]"/></div>
                       <div>
                         <Switch
                           style={{ width: "6.25em" }}
@@ -299,7 +301,7 @@ class LocationForm extends Component {
                   <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs font-poppins">
                       {this.state.translatedMenuItems[6]} {/* Billing  */}
-                       <i class="far fa-money-bill-alt text-base"></i></div>
+                      <LocalAtmIcon  className="!text-icon text-[#001219]"/></div>
                       <div>
                         <Switch
                           style={{ width: "6.25em" }}

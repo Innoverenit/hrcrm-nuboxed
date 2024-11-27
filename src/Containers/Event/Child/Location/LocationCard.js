@@ -33,6 +33,9 @@ import AddLocationAltIcon from'@mui/icons-material/AddLocationAlt';
 import InventoryIcon from'@mui/icons-material/Inventory';
 import OnDeviceTrainingIcon from'@mui/icons-material/OnDeviceTraining';
 import LanguageIcon from'@mui/icons-material/Language';
+import LocalAtmIcon from '@mui/icons-material/LocalAtm';
+import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
 
 const LocationCellDrawer = lazy(() => import("./LocationCellDrawer"));
 const LocationCustomerDrawer = lazy(() => import("./LocationCustomerDrawer"));
@@ -120,38 +123,38 @@ const LocationCard = (props) => {
               
             </div>
             <div className=" max-md:w-[15.1rem] w-[15.1rem] ">
-            <AddLocationAltIcon className="!text-icon  "/>{translatedMenuItems[1]}
+            <AddLocationAltIcon className="!text-icon  text-[#386641] "/>{translatedMenuItems[1]}
               {/* Address */}
               </div>
             <div className=" max-md:w-[5.9rem] w-[5.9rem] ">
-            <PrecisionManufacturingIcon className=" !text-icon"/>
+            <PrecisionManufacturingIcon className=" !text-icon text-[#4361EE]"/>
             {translatedMenuItems[2]}
             {/* Production */}
             </div>
             <div className=" max-md:w-[3.9rem]  w-[3.9rem] ">
-            <OnDeviceTrainingIcon className=" !text-icon"/> {translatedMenuItems[3]}{/* Refurbish */}
+            <OnDeviceTrainingIcon className=" !text-icon text-[#06D6A0]"/> {translatedMenuItems[3]}{/* Refurbish */}
             </div>
             <div className="max-md:w-[4.5rem]  w-[4.5rem]">
-            <InventoryIcon className=" !text-icon"/> {translatedMenuItems[4]} {/* Inventory */}
+            <InventoryIcon className=" !text-icon text-[#480CA8]"/> {translatedMenuItems[4]} {/* Inventory */}
               </div>
             <div className="max-md:w-[4.6rem] w-[4.6rem] ">
-            {/* <i class="far fa-money-bill-alt !text-icon" ></i> */}
-            <i class="far fa-money-bill-alt !text-icon" ></i>
+            <LocalAtmIcon  className="!text-icon text-[#001219]"/>
             {translatedMenuItems[5]} {/* Billing */}
               </div>
             <div className="max-md:w-[5.52rem] w-[5.52rem]  ">
-            <ApartmentIcon className="!text-icon "/>
+            <ApartmentIcon className="!text-icon text-[#9B2226] "/>
             {translatedMenuItems[6]} {/* Corporate */}
               </div>
             <div className="max-md:w-[3.3rem] w-[3.3rem] ">
+            < AccountTreeIcon  className="!text-icon text-[#EF476F]"/>
             {translatedMenuItems[7]} {/* Project */}
               </div>
             <div className="max-md:w-[3.9rem] w-[3.9rem] ">
-            <i class="fas fa-money-check !text-icon"></i>
+            <PointOfSaleIcon  className="!text-icon text-[#005F73]"/>
             {translatedMenuItems[8]}{/* Retail */}
               </div>
             <div className="max-md:w-[7.9rem] w-[7.9rem] ">
-            <LanguageIcon  className="!text-icon"/>{translatedMenuItems[9]}{/* Regions */}
+            <LanguageIcon  className="!text-icon text-[#BC4749]"/>{translatedMenuItems[9]}{/* Regions */}
               </div>
           </div>
           <div class="w-[99%]">

@@ -1,9 +1,12 @@
 import React, { useEffect, useState,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import InfiniteScroll from "react-infinite-scroll-component";
-
-import styled from "styled-components";
+import ContactPageIcon from '@mui/icons-material/ContactPage';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
+import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import StairsIcon from '@mui/icons-material/Stairs';
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { Tooltip, Menu, Dropdown, Progress } from "antd";
 import { CurrencySymbol, } from "../../../../Components/Common";
@@ -12,6 +15,7 @@ import dayjs from "dayjs";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LockIcon from "@mui/icons-material/Lock";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
   MultiAvatar,
@@ -41,6 +45,8 @@ function SearchedDataOpportunity(props) {
   const [hasMore, setHasMore] = useState(true);
   const [pageNo, setPageNo] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     if(props.role==="USER"&&user.department==="Recruiter"){
       props.getRecruiterList(props.recruiterId);     
@@ -63,6 +69,39 @@ function SearchedDataOpportunity(props) {
   //   setPage(page + 1);
   //     props. getTeamOpportunity(page);
   // }
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          '110', // 0name
+          '97', // 1 prospect
+          '216', // 2 sponcer
+          '176', // 3start date
+          '218', // 4 value
+          '219', // 5 stages
+          '76', // 6 Assigned
+          '77', // 7 owner
+         "232", // 'Click to Open'
+         "170", // "Edit"
+          "1259",// "Do you want to delete?"
+          "84",// Delete"
+          "1069",// reinstate
+          "213",// quotation ID
+          "73",// Contact14
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   const handleLoadMore = () => {
     const callPageMapd = props.teamOpportunity && props.teamOpportunity.length &&props.teamOpportunity[0].pageCount
     setTimeout(() => {
@@ -104,17 +143,17 @@ function SearchedDataOpportunity(props) {
       return (    
   <>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
- <div className="flex max-sm:hidden  w-[100%]  max-xl:w-[87%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[14.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] ">Name</div>
-        <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Prospect</div>
-        <div className=" w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">Sponsor</div>
-        <div className="w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Start Date</div>
-        <div className="w-[9.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Value</div>
-        <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Stages</div> 
-        <div className="w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Sales Rep</div>
-        <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]">Owner</div>
-        <div className="w-[4.1rem] "></div>
-        <div className="w-12"></div>
+ <div className="flex max-sm:hidden  w-[100%]  max-xl:w-[87%] p-1 bg-transparent font-bold font-poppins text-lm sticky  z-10">
+        <div className=" w-[14.8rem]  max-md:w-[14.8rem]  text-sm text-[#00A2E8] "><RequestQuoteIcon className="!text-icon text-[#aa3e98] "/>  {translatedMenuItems[0]}</div>
+        <div className=" w-[11.1rem] max-md:w-[11.8rem]"> <ApartmentIcon  className='!text-icon text-[#f19953] ' />{translatedMenuItems[1]}</div>
+        <div className=" w-[9.2rem]  max-md:w-[9.8rem]"><ContactPageIcon  className='!text-icon text-[#f19953] ' /> {translatedMenuItems[2]}</div>
+        <div className="w-[9.8rem] max-md:w-[9.8rem]"> <DateRangeIcon  className='!text-icon text-[#f19953] ' />{translatedMenuItems[3]}</div>
+        <div className="w-[9.3rem] max-md:w-[9.8rem]"> <CurrencyExchangeIcon className='!text-icon text-[#4c0827]' /> {translatedMenuItems[4]}</div>
+        <div className="w-[7.2rem] max-md:w-[7.2rem]"><StairsIcon className='!text-icon text-[#f19953] '  />  {translatedMenuItems[5]}</div> 
+        <div className="w-[9.1rem] max-md:w-[9.1rem]">   <AccountCircleIcon className="!text-icon mr-1 text-[#f28482]"/>{translatedMenuItems[6]}</div>
+        <div className="w-[7.2rem]  max-md:w-[7.2rem]">  <AccountCircleIcon className="!text-icon mr-1 text-[#f28482]"/> {translatedMenuItems[7]}</div>
+        <div className="w-[4.1rem] max-md:w-[4.8rem]"></div>
+        <div className="w-12 max-md:w-[3.8rem]"></div>
       </div>
 
       {/* <InfiniteScroll
@@ -138,10 +177,10 @@ function SearchedDataOpportunity(props) {
 
                   <div className="max-sm:w-wk">
                    <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 items-center py-ygap max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex font-medium  w-[13rem] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
+                    <div className=" flex items-center justify-center  border-l-2 border-green-500 h-8  bg-[#eef2f9]   w-[13rem] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
                               <div>
 
           <MultiAvatar
@@ -159,9 +198,9 @@ function SearchedDataOpportunity(props) {
                                       <Tooltip>
                                       <div class=" flex max-sm:w-full  flex-row items-center">
         
-                                          <div class=" text-sm text-blue-500  font-poppins font-semibold cursor-pointer">
+                                          <div class=" text-xs text-blue-500  font-poppins font-semibold cursor-pointer">
                                               
-                                          <Link class="overflow-ellipsis max-sm:text-sm whitespace-nowrap max-xl:text-[0.65rem] max-lg:text-[0.45rem] h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
+                                          <Link class="overflow-ellipsis  whitespace-nowrap  h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>&nbsp;&nbsp;
      
@@ -171,9 +210,9 @@ function SearchedDataOpportunity(props) {
                             
                               </div>
 
-                              <div className=" flex font-medium   w-44 max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex  items-center  justify-center h-8 ml-gap bg-[#eef2f9]    w-44 max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
-                                  <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
+                                  <div class=" text-xs  font-poppins  ">   
                                   
                                   {item.customer}
                   
@@ -183,10 +222,10 @@ function SearchedDataOpportunity(props) {
                             
                               
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex font-medium  w-[7rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex  items-center  justify-center h-8 ml-gap bg-[#eef2f9]   w-[7rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                 
 
-                                <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                <div class=" text-xs  font-poppins  ">
                                
                                 {item.contactName === null ? "None" :
           <MultiAvatar2
@@ -200,18 +239,18 @@ function SearchedDataOpportunity(props) {
        
                                 </div>
                             </div>
-                              <div className=" flex font-medium  w-[8.81rem] max-xl:w-[5.51rem] max-lg:w-[3.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   items-center  justify-center h-8 ml-gap bg-[#eef2f9]  w-[8.81rem] max-xl:w-[5.51rem] max-lg:w-[3.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
 
-                                  <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-xs justify-center  font-poppins  ">
                                   {dayjs(item.startDate).format("ll")}
                                   </div>
                               </div>
                            
-                              <div className=" flex font-medium  w-36 max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   items-center  justify-center h-8 ml-gap bg-[#eef2f9]  w-36 max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
    
 
-                                  <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-xs  font-poppins text-center  ">
                                   <CurrencySymbol currencyType={item.currency} />
           &nbsp;
           {item.proposalAmount}
@@ -220,10 +259,10 @@ function SearchedDataOpportunity(props) {
                               </div>
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex font-medium  w-[7.01rem] max-xl:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   items-center  justify-center h-8 ml-gap bg-[#eef2f9]  w-[7.01rem] max-xl:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
            
 
-                                  <div class=" text-sm  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-xs  font-poppins text-center  ">
                                   <Dropdown
 overlay={
 <div>
@@ -246,7 +285,7 @@ trigger={["click"]}
 {" "}
 <Progress
 type="circle"
-className=" !text-xl cursor-pointer text-[red]"
+className=" !text-icon cursor-pointer text-[red]"
 percent={findProbability}
 width={30}
 strokeColor={"#005075"}
@@ -256,10 +295,10 @@ strokeColor={"#005075"}
 
                                   </div>
                               </div>
-                              <div className=" flex font-medium  w-32 max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   items-center  justify-center h-8 ml-gap bg-[#eef2f9]  w-32 max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                     
 
-                                  <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-xs  font-poppins  ">
                                   
                                   <span>
                                   <MultiAvatar2
@@ -271,7 +310,7 @@ strokeColor={"#005075"}
            
                                   </div>
                               </div>
-                              <div className=" flex font-medium  w-20 max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
+                              <div className=" flex  items-center  justify-center h-8 ml-gap bg-[#eef2f9]   w-20 max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
                      
 
 
@@ -288,7 +327,7 @@ strokeColor={"#005075"}
           </Tooltip>
                  </div>
                  </div>
-                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                 <div class="flex max-sm:justify-between max-sm:w-wk items-center    justify-end h-8 ml-gap bg-[#eef2f9] ">
                  <div>
                   <ReinstateToggleForLost 
           opportunityId={item.opportunityId} 
@@ -326,7 +365,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
         
                  
                   <div>
-                  <Tooltip title='Click to Open'><span
+                  <Tooltip title={translatedMenuItems[8]}><span
        onClick={() => {
         props.LinkClosedOpportunity(
           item.opportunityId,
@@ -351,7 +390,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                     <div>
                        <Tooltip
                       placement="right"
-                      title="Edit"
+                      title= {translatedMenuItems[9]}
                        
                     >
                       {user.opportunityUpdateInd ===true && (
@@ -377,7 +416,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
                   
                     <div>
                     <StyledPopconfirm
-                      title="Do you want to delete?"
+                      title= {translatedMenuItems[10]}
                       onConfirm={() =>
                         deleteLostOpportunity(item.opportunityId)
                       }

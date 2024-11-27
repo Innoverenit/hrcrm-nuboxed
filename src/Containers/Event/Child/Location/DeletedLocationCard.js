@@ -6,7 +6,10 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import ReInstateLocation from "./ReInstateLocation";
-
+import LanguageIcon from'@mui/icons-material/Language';
+import AddLocationAltIcon from'@mui/icons-material/AddLocationAlt';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 
 const DeletedLocationCard = (props) => {
   const [hasMore, setHasMore] = useState(true);
@@ -59,32 +62,32 @@ const handleLoadMore = () => {
         height={"80vh"}
         style={{scrollbarWidth:"thin"}}
       >
-      <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" md:w-[14.5rem] text-[#00A2E8] text-base">
-        {translatedMenuItems[0]}
+      <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky font-poppins !text-lm z-10">
+        <div className=" max-md:w-[14.5rem] w-[14.5rem] text-[#00A2E8] text-sm">
+        <ContactsIcon className="!text-icon  "/> {translatedMenuItems[0]}
         {/* Name */}
         </div>
-        <div className="font-bold font-poppins text-xs md:w-[17.1rem]">
-        {translatedMenuItems[1]} {/* Country */}
+        <div className=" max-md:w-[17.1rem] w-[17.1rem]">
+        <LanguageIcon  className="!text-icon text-[#480CA8]"/> {translatedMenuItems[1]} {/* Country */}
           </div>
-        <div className="font-bold font-poppins text-xs md:w-[22.1rem] ">
-        {translatedMenuItems[2]} {/* Address */}
+        <div className=" max-md:w-[22.1rem] w-[22.1rem] ">
+        <AddLocationAltIcon className="!text-icon text-[#9B2226] "/> {translatedMenuItems[2]} {/* Address */}
           </div>
        
-        <div className="font-bold font-poppins text-xs md:w-[9.9rem]">
-        {translatedMenuItems[3]} {/* Regions */}
+        <div className=" max-md:w-[9.9rem] w-[9.9rem]">
+        <LanguageIcon  className="!text-icon text-[#005F73]"/> {translatedMenuItems[3]} {/* Regions */}
           </div>
-        <div className="font-bold font-poppins text-xs md:w-[5.9rem]">
-        {translatedMenuItems[4]}{/* Reinstate */}
+        <div className=" max-md:w-[5.9rem] w-[5.9rem]">
+        <ApartmentIcon className="!text-icon text-[#BC4749]"/> {translatedMenuItems[4]}{/* Reinstate */}
           </div>
       </div>
       <div class="">
           {props.deletedLocationHistory.map((item) => {
             return (
               <div >
-                <div class=" flex rounded justify-between  bg-white mt-[0.5rem] h-8 items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                <div class=" flex rounded justify-between  bg-white mt-[0.5rem]  items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                   <div class="flex">
-                  <div className=" flex font-medium items-center justify-start border-l-2 border-green-500 bg-[#eef2f9] md:w-[15.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                  <div className=" flex  items-center justify-start border-l-2 border-green-500 bg-[#eef2f9] max-md:w-[15.25rem] w-[15.25rem] max-sm:flex-row  mt-1 max-sm:justify-between">
                       
 
                       <div class=" font-normal items-center ml-gaptext-[0.82rem]  font-poppins">
@@ -95,7 +98,7 @@ const handleLoadMore = () => {
                     </div>
                    
 
-                    <div className=" flex font-medium  md:w-[7.25rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex  w-[7.25rem] max-md:w-[7.25rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  mt-1 max-sm:justify-between">
                       
 
                       <div class=" font-normal text-[0.82rem]  font-poppins">
@@ -104,7 +107,7 @@ const handleLoadMore = () => {
                         {item.countryAlpha2Code}
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col md:w-[34rem] justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex w-[34rem] max-md:w-[34rem] justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  mt-1 max-sm:justify-between">
                      
 
                       <div class=" font-normal text-[0.82rem]   ml-gap  font-poppins">
@@ -117,13 +120,13 @@ const handleLoadMore = () => {
   )}
 </span>            </div>
                     </div>
-                    <div className=" font-medium  items-center justify-start h-8 ml-gap  bg-[#eef2f9] flex-row md:w-[20.41rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className="   items-center justify-center h-8 ml-gap  bg-[#eef2f9] flex w-[14.41rem] max-md:w-[20.41rem] max-sm:flex-row  mt-1 max-sm:justify-between">
                       
                       <div class=" font-normal text-[0.82rem] items-center ml-gap font-poppins">
                        {item.regions}
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col w-[7.2rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                    <div className=" flex  w-[7.2rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                             <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <ReInstateLocation locationDetailsId={item.locationDetailsId} />
                             </div>

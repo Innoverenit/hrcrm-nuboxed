@@ -5,6 +5,8 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { Popconfirm, Tooltip,Input,Button,Progress } from "antd";
 import { Link } from 'react-router-dom';
+import {handleCustomerOpportunityDrawerModal
+} from "../../Customer/CustomerAction";
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -42,6 +44,7 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import AsignedOpenDrawer from "./AsignedOpenDrawer";
 import Opportunity from "../../Opportunity/Opportunity";
+import CustomerOpportunityDrawerModal from "../../Customer/Child/CustomerTable/CustomerOpportunityDrawerModal";
 const AddAccountAdressModal = lazy(() => import("./AddAccountAdressModal"));
 const AccountCreditToggle = lazy(() => import("./AccountCreditToggle"));
 const AccountSearchedData = lazy(() => import("./AccountSearchedData"));
@@ -160,6 +163,7 @@ function AccountTable(props) {
   const {
     handleUpdateAccountModal,
     handleAccountModal,
+    handleCustomerOpportunityDrawerModal,
   } = props;
   useEffect(() => {
     return () => props.emptyDistributor();
@@ -201,7 +205,7 @@ function AccountTable(props) {
              </div>
              <div className="w-[4.01rem] max-md:w-[4.01rem] ">
              <DynamicFeedIcon
-              className='!text-base  text-[#e4eb2f]'
+              className='!text-icon  text-[#5A189A]'
               />  {translatedMenuItems[20]}
           {/* Orders */}
              </div>
@@ -215,7 +219,7 @@ function AccountTable(props) {
             </div> 
 
             <div className="w-[9.2rem] max-md:w-[9.2rem]">
-            <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[5]}
+            <CurrencyExchangeIcon className='!text-icon    text-[#c42847]' /> {translatedMenuItems[5]}
             {/* Payment % */}
        
             </div>
@@ -262,7 +266,7 @@ function AccountTable(props) {
                     <div>
                       <div className="flex  justify-between  bg-white mt-1 py-ygap items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "                                >
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
-                          <div className=" flex w-[12rem] max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] border-l-2 border-green-500 bg-[#eef2f9]  max-sm:w-auto">
+                          <div className=" flex w-[12rem] h-8 max-md:w-[12rem] max-xl:w-[11rem] max-lg:w-[8rem] border-l-2 border-green-500 bg-[#eef2f9]  max-sm:w-auto">
                             <div className="flex max-sm:w-auto">
                               <div>
                                 <MultiAvatar
@@ -276,7 +280,7 @@ function AccountTable(props) {
                               <div class="w-[0.25rem]"></div>
                              
                                 <Tooltip>
-                                  <div class="flex max-sm:flex-row justify-between w-full ">
+                                  <div class="flex max-sm:flex-row justify-between  ">
                                   <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer flex items-center">
 
                                       <Link
@@ -325,11 +329,11 @@ function AccountTable(props) {
                           <div className=" flex items-center justify-center  max-sm:w-auto w-[5.21rem] max-md:w-[5.21rem] max-xl:w-[6rem] max-lg:w-[5rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs cursor-pointer font-bold font-poppins text-center text-blue-600  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
                             
-                               onClick={() => {
-                                        props.setEditDistributor(item)
-                                        props.handleAccountOpportunityModal(true);
-                                        handleCurrentRowData(item);
-                                      }}
+                              //  onClick={() => {
+                              //   handleCustomerOpportunityDrawerModal(true);
+                              //   handleSetCurrentCustomer(item);
+                              //           handleCurrentRowData(item);
+                              //         }}
                        >
                            
                             {item.qtProcureCount} 
@@ -609,10 +613,19 @@ function AccountTable(props) {
                selectedLanguage={props.selectedLanguage}
                translateText={props.translateText}
             />
+            {/* <CustomerOpportunityDrawerModal
+        RowData={RowData}
+        addDrawerCustomerOpportunityModal={addDrawerCustomerOpportunityModal}
+        handleCustomerOpportunityDrawerModal={props.handleCustomerOpportunityDrawerModal}
+        handleSetCurrentCustomer={handleSetCurrentCustomer}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
+      /> */}
 </Suspense>
     </>  );
 }
-const mapStateToProps = ({ distributor, auth }) => ({
+const mapStateToProps = ({ distributor, auth, customer }) => ({
   customerListByUser: distributor.customerListByUser,
   serachedData:distributor.serachedData,
   showPulseModal: distributor.showPulseModal,
@@ -630,6 +643,8 @@ const mapStateToProps = ({ distributor, auth }) => ({
   distributorSearch:distributor.distributorSearch,
   addAccountAddressModal:distributor.addAccountAddressModal,
   addAccountOpportunityModal: distributor.addAccountOpportunityModal,
+  addDrawerCustomerOpportunityModal: customer.addDrawerCustomerOpportunityModal,
+
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -649,6 +664,7 @@ const mapDispatchToProps = (dispatch) =>
       updateAccountPrice,
       handleAccountAddress,
       handleAccountOpportunityModal,
+      handleCustomerOpportunityDrawerModal,
     },
     dispatch
   );

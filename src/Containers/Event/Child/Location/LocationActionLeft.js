@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { Badge, Tooltip,Avatar } from "antd";
+import { Badge, Tooltip,Avatar, Input } from "antd";
 import {getLocationRecords,getLocationDeletedCount} from "./LocationAction";
 
 const LocationActionLeft = (props) => {
@@ -107,6 +107,15 @@ const LocationActionLeft = (props) => {
                         </span>
                     </Badge>
                 </Tooltip>
+                <div class=" w-64 max-sm:w-24">
+                <Input
+                    placeholder="Search by Name "
+                    width={"100%"}
+                    // suffix={suffix}
+                    // onPressEnter={handleSearch}
+                    // onChange={handleChange}
+                    // value={currentData}
+                /></div>    
 
         </div>
     )

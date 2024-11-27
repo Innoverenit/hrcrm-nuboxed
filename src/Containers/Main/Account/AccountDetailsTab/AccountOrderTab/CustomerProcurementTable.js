@@ -339,7 +339,7 @@ const handleSelectedOrderDropDown =  async (value,item) => {
           <div>
             <div>
             <Input
-          placeholder="Search by Name "
+          placeholder="Search by Order ID "
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleSearch}
@@ -423,7 +423,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                         <div class="flex">
                                           <div className=" flex  items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
-                                            <div className=" flex  items-center  md:w-[7rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
+                                            <div className=" flex  items-center  md:w-[7rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-sm:w-full  ">
 
                                             {editsuppliesId === item.orderId ? (
                         <>
