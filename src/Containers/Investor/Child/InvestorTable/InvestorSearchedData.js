@@ -10,8 +10,14 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import dayjs from "dayjs";
 import ArticleIcon from '@mui/icons-material/Article';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import InfiniteScroll from "react-infinite-scroll-component"; 
 import { Tooltip, Select, } from "antd";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import GolfCourseIcon from '@mui/icons-material/GolfCourse';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
+import EventAvailableIcon from '@mui/icons-material/EventAvailable';
+import FactoryIcon from '@mui/icons-material/Factory';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import {
   MultiAvatar,
   MultiAvatar2,
@@ -41,6 +47,7 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import InvestorPulseDrawerModal from "./InvestorPulseDrawerModal";
 import InventoryPriceDrawer from "./InventoryPriceDrawer";
 import InvestorDocumentDrawerModal from "./InvestorDocumentDrawerModal";
+import { BundleLoader } from "../../../../Components/Placeholder";
 const AddInvestorNotesDrawerModal = lazy(() => import("../InvestorDetail/AddInvestorNotesDrawerModal"));
 const ContactsInvestorModal = lazy(() => import("./ContactsInvestorModal"));
 const UpdateInvestorModal = lazy(() =>
@@ -56,6 +63,48 @@ function InvestorSearchedData(props) {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [         
+            "110",//0 Name
+            "278",//1Sector
+            "490",//2Deals
+            "144",//3In Progress
+            "579",//4signed
+            "14",//5 Category
+            "279",//6Source
+            "589",//7 First Meeting
+            "1161",//8 Shares
+            "218",//9Value
+            "592",//10Club
+            "76",//11 Assigned
+            "77",//12 Owner
+          "138",//  document     13  
+          "392", // pulse14 
+          "185", // 185ADDress 15
+          "316", // notes 16
+          "608",// investor contact 17 
+          "170",// 170edit  18 
+          "84", // 84delete 19
+          "1581", //Score
+       
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
     window.addEventListener('error', e => {
       if (e.message === 'ResizeObserver loop limit exceeded' || e.message === 'Script error.') {
@@ -121,48 +170,54 @@ function InvestorSearchedData(props) {
   // if (fetchingInvestors) {
   //   return <BundleLoader />;
   // }
-
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
   return (
     <>
   
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[11.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">"Name</div>
-        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">Sector</div>
-        <div className=" w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[8.2rem] "></div>
-        <div className="w-[3.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]"># Deals
-             </div>
-        <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-      In Progress
+        <div className=" flex justify-between max-sm:hidden  w-[89%]  p-1 bg-transparent items-end font-bold !text-lm font-poppins sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
+        <div className=" w-[12.8rem]  max-xl:w-[14.4rem] "> 
+          <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]} 
+        {/* "Name */}
+        </div>
+        <div className=" w-[10.1rem]  max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
+        <FactoryIcon className="!text-icon   text-[#84a59d]"/>{translatedMenuItems[1]}  {/* Sector */}
           </div>
-          <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-     Signed
+        <div className=" w-[2.2rem]  max-xl:w-[6.2rem] max-lg:w-[8.2rem] "></div>
+        <div className="w-[8.3rem]  max-xl:w-[8.2rem]">
+          <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[5]}   {/* Category */}
           </div>
-          <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-       Category
-          </div>
-          <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-      First Meeting
-          </div>
-          <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-       Shares #
-          </div>
-         
-          <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        Value
-          </div>
-          <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        Club
-          </div>
-        <div className="w-[4.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
-        Assigned
-         </div>
-        <div className="w-[2.813rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.21rem]">owner"
-               </div>
-        <div className="w-[5.34rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
-        "Source
+          <div className="w-[8.34rem]  max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
+             Source
            
           </div>
+          <div className="w-[5.2rem]  max-xl:w-[8.2rem]">
+          <EventAvailableIcon className="!text-icon   text-[#4b5043]"/>  1st Meeting  {/* First Meeting */}
+          </div>
+        <div className="w-[8.12rem]  max-xl:w-[5.12rem] max-lg:w-[8.12rem]">
+        <CurrencyExchangeIcon className='!text-icon mr-1   text-[#e4eb2f]' />  {translatedMenuItems[2]} {/* # Deals */}
+             </div>
+             <div className="w-[8.3rem]  max-xl:w-[8.2rem]">
+       {/* Shares # */}   <ShowChartIcon className='!text-icon    text-[#776871]' /> {translatedMenuItems[8]}
+          </div>
+        {/* <div className="w-[6.2rem]  max-xl:w-[8.2rem]">
+      In Progress
+          </div> */}
+       
+          {/* <div className="w-[3.2rem]  max-xl:w-[8.2rem]">
+        Value
+          </div> */}
+          <div className="w-[3.2rem]  max-xl:w-[8.2rem]">
+          <GolfCourseIcon className='!text-base   text-[#f42c04]'/> {translatedMenuItems[10]} {/* Club */}
+          </div>
+        <div className="w-[4.3rem]  max-xl:w-[10.3rem]">
+        <AccountCircleIcon className="!text-icon   text-[#d64933]"/>   {translatedMenuItems[11]}  {/* Assigned */}
+         </div>
+        <div className="w-[3.813rem]  max-xl:w-[8.21rem]">  <AccountCircleIcon className="!text-icon   text-[#d64933]"/>owner
+               </div>
+      
         {/* <div className="w-12">Action</div> */}
 
       </div>
@@ -196,10 +251,10 @@ function InvestorSearchedData(props) {
                     return (
                         <div>
                             <div
-              className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" 
+              className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 max-xl:text-[0.65rem] max-lg:text-[0.45rem] ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" 
             >
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex font-medium  w-[13.5rem] max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex   border-l-2 border-green-500 bg-[#eef2f9]  w-[12.5rem] max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto ">
                                 <div>
 
                                                    <MultiAvatar
@@ -221,7 +276,7 @@ function InvestorSearchedData(props) {
                                             Name
                                             </div> */}
                                             <div class=" text-sm text-blue-500 flex  font-poppins font-semibold cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
+                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer  max-sm:text-sm"  to={`investor/${item.investorId}`} title={item.name}>
                                             {item.name}
                                         </Link>                                
                                               {/* <Link
@@ -241,10 +296,10 @@ function InvestorSearchedData(props) {
                               
                                 </div>
 
-                                <div className=" flex font-medium items-center  w-[10.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                            
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
-                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
+                                    <div class=" text-sm  font-poppins  max-sm:text-sm">   
                                     {item.sector}
                                     </div>
                                 </div>
@@ -253,11 +308,11 @@ function InvestorSearchedData(props) {
                                 
                                 
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex font-medium items-center w-8 max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-8 max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   
 
                                   {/* <div class=" text-xs  font-poppins max-sm:hidden">Country</div> */}
-                                  <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-sm  font-poppins  max-sm:text-sm">
                                               <ReactCountryFlag
                                     countryCode={item.countryAlpha2Code}
                                     svg
@@ -270,73 +325,85 @@ function InvestorSearchedData(props) {
                                 {item.countryAlpha2Code}
                                               </div>
                                           </div>
-                                <div className=" flex font-medium items-center w-[3.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
-                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                    {item.oppNo}
-                                    </div>
-                                </div>
-                             
-                                <div className=" flex font-medium items-center w-[6.124rem] max-xl:w-[6.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
-
-                                    {item.totalProposalValue && (
-      <div class="text-xs  font-poppins max-sm:text-sm text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}
-      </div>
-    )}
-                                </div>
-                                <div className=" flex font-medium items-center w-[5.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
-
-                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                    {item.signed}
-                                    </div>
-                                </div>
-                                <div className=" flex font-medium items-center w-[6.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
-
-                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-sm justify-center  font-poppins  max-sm:text-sm">
                                     {item.category}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium items-center w-[5.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                          <div className=" flex font-medium items-center items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Source</div> */}
+
+                                    <div class=" text-sm  font-poppins  max-sm:text-sm">
+                                    {item.source}
+                                    </div>
+                                </div>
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
-                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-sm justify-center  font-poppins  max-sm:text-sm">
                                    
                                     {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium items-center w-[4.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center  w-[4.11rem]  ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
-                                    <div class=" text-sm text-[blue] cursor-pointer justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-sm justify-center  font-poppins  max-sm:text-sm">
+                                    {item.oppNo}
+                                    </div>
+                                </div>
+                             
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.124rem] max-xl:w-[6.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+
+                                    {item.totalProposalValue && (
+      <div class="text-xs  font-poppins max-sm:text-sm text-center ">
+        {`${item.userCurrency} ${Math.floor(item.totalProposalValue / 1000)}K`}
+      </div>
+    )}
+                                </div>
+                                </div>
+                                {/* <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                    <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div>
+
+                                    <div class=" text-sm justify-center  font-poppins  max-sm:text-sm">
+                                    {item.signed}
+                                    </div>
+                                </div> */}
+                               
+                               <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.117rem]">
+                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
+
+                                    <div class=" text-sm text-[blue] cursor-pointer justify-center  font-poppins  max-sm:text-sm">
                                   <div  onClick={() => {
                               props.handleInvestorPriceDrawer(true);
                               handleCurrentRowData(item);
                             }}>{item.allTotalQuantityOfShare}</div>
                                     </div>
                                 </div>
-                                <div className=" flex font-medium items-center w-[3.118rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.118rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
-                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-sm justify-center  font-poppins  max-sm:text-sm">
                                    {item.allTotalAmountOfShare}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium items-center w-[3.118rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                </div>
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.118rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
-                                    <div class=" text-sm justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-sm justify-center  font-poppins  max-sm:text-sm">
                                    {item.club}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium items-center w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden">Assigned</div> */}
 
-                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                    <div class=" text-xs  font-poppins  max-sm:text-sm">
                                     
                                     <span>
               {item.assignedTo === null ? (
@@ -361,7 +428,7 @@ function InvestorSearchedData(props) {
              
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col w-[2.12rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] flex-col w-[3.5rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
                        
                        {/* <div class=" text-xs  font-poppins max-sm:hidden">Owner</div> */}
 
@@ -382,14 +449,8 @@ function InvestorSearchedData(props) {
                    </div>
                    </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                   <div className=" flex font-medium items-center  w-[8.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Source</div> */}
-
-                                    <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                    {item.source}
-                                    </div>
-                                </div>
-                                <div class="flex items-center cursor-pointer justify-between">  
+                 
+                                <div class="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] cursor-pointer justify-between">  
                                   <div>
                                   <Tooltip title="Document">
                                     <ArticleIcon
@@ -536,6 +597,9 @@ function InvestorSearchedData(props) {
         updateInvestorModal={updateInvestorModal}
         handleUpdateInvestorModal={handleUpdateInvestorModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
 
 <ContactsInvestorModal
@@ -543,6 +607,9 @@ function InvestorSearchedData(props) {
         addDrawerInvestorContactModal={addDrawerInvestorContactModal}
         handleInvestorContModal={handleInvestorContModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
 
 <InvestorPulseDrawerModal
@@ -550,6 +617,9 @@ function InvestorSearchedData(props) {
         addDrawerInvestorPulseModal={addDrawerInvestorPulseModal}
         handleInvestorPulseDrawerModal={handleInvestorPulseDrawerModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
 
 <InvestorDocumentDrawerModal
@@ -557,18 +627,27 @@ function InvestorSearchedData(props) {
         addDrawerInvestorDocumentModal={addDrawerInvestorDocumentModal}
         handleInvestorDocumentModal={handleInvestorDocumentModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
            <AddInvestorNotesDrawerModal
         RowData={RowData}
         addDrawerInvestorNotesModal={props.addDrawerInvestorNotesModal}
         handleInvestorNotesDrawerModal={props.handleInvestorNotesDrawerModal}
         handleCurrentRowData={handleCurrentRowData}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <InventoryPriceDrawer
           RowData={RowData}
           handleInvestorPriceDrawer={handleInvestorPriceDrawer}
           priceInvestorDrawer={priceInvestorDrawer}
           key={priceInvestorDrawer ? 'open' : 'closed'}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
         />
       {/* <AddCustomerDrawerModal
         addDrawerCustomerModal={props.addDrawerCustomerModal}

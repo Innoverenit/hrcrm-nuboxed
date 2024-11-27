@@ -175,6 +175,9 @@ function InvestorDeleteList(props) {
     <InvestorSearchedData
     investorSerachedData={props.investorSerachedData}
     fetchingInvestorSearchData={props.fetchingInvestorSearchData}
+    translateText={props.translateText}
+    selectedLanguage={props.selectedLanguage}
+  translatedMenuItems={props.translatedMenuItems}
     />
   ) : (
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">

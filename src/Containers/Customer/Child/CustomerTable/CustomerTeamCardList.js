@@ -233,6 +233,9 @@ const [rowdata, setrowdata] = useState("");
     <CustomerSearchedData
     customerSearch={props.customerSearch}
     fetchingCustomerInputSearchData={props.fetchingCustomerInputSearchData}
+    translateText={props.translateText}
+    selectedLanguage={props.selectedLanguage}
+  translatedMenuItems={props.translatedMenuItems}
     />
   ) : (
     <div className=" flex "> 
