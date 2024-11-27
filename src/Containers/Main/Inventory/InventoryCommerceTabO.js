@@ -1,4 +1,4 @@
-import React, { Component, lazy, PureComponent, Suspense } from "react";
+import React, {  PureComponent, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
@@ -6,7 +6,7 @@ import { TabsWrapper } from "../../../Components/UI/Layout";
 import { withRouter } from "react-router";
 import CommerceTableOut from "./CommerceTableOut";
 import CompleteDispatchTable from "./CompleteDispatchTable";
-
+import SendAndArchiveIcon from '@mui/icons-material/SendAndArchive';
 
                                            
 const TabPane = StyledTabs.TabPane;
@@ -82,7 +82,8 @@ class InventoryCommerceDetailTabO extends PureComponent {
                   //    onClick={() => this.handleOrderCreateClick(false)}
                   > */}
                     <span class="!text-tab">
-                  <i class="fas fa-satellite-dish"></i>&nbsp;
+                     <SendAndArchiveIcon className=" !text-icon text-[#480CA8]"/>
+
                   {/* Receive */}  Dispatch
                   </span>
                   {/* {activeKey === "1" && (
@@ -109,7 +110,7 @@ class InventoryCommerceDetailTabO extends PureComponent {
               tab={
                 <>
                    <span class="!text-tab">
-                    <i class="far fa-share-square"></i>&nbsp;
+                    <i class="far fa-share-square text-[#9B2226]"></i>&nbsp;
                    Complete Dispatch  
 
                   </span>

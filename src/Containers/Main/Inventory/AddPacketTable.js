@@ -5,7 +5,7 @@ import { withRouter } from "react-router";
 import axios from "axios";
 import dayjs from "dayjs";
 import AddIcon from '@mui/icons-material/Add';
-import { Popconfirm, message, Switch } from 'antd';
+import { message} from 'antd';
 import {
   getPackData
 } from "./InventoryAction";
@@ -84,7 +84,7 @@ function AddPacketTable(props) {
                                     <div >
                                          <div key={item.key} className="flex rounded justify-between mt-1 bg-white items-center py-1 hover:shadow flex-col">
             <div className="flex justify-start w-wk">
-                <div className=" flex   md:w-[4.9rem] max-sm:flex-row w-full max-sm:justify-between ">
+                <div className=" flex   md:w-[2.9rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                          <div class=" text-xs  font-poppins text-center">
                                                         
                                                                  <AddIcon
@@ -103,7 +103,7 @@ function AddPacketTable(props) {
                   {item.packingNo}
                 </div>
               </div>
-              <div className="flex items-center ml-4">
+              <div className="flex items-center  justify-end h-8 ml-gap bg-[#eef2f9] ">
               <AddPackToggle
                 packingInd={item.packingInd}  
                 orderId={item.orderId}              

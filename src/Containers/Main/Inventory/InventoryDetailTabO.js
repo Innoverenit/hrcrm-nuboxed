@@ -11,6 +11,7 @@ import { TabsWrapper } from "../../../Components/UI/Layout";
 import DispatchTableOut from "./DispatchTableOut";
 import ReceivedTableOut from "./ReceivedTableOut";
 import CompleteDispatchTable from "./CompleteDispatchTable";
+import SendAndArchiveIcon from '@mui/icons-material/SendAndArchive';
 
                                            
 const TabPane = StyledTabs.TabPane;
@@ -85,7 +86,7 @@ class InventoryDetailTabO extends PureComponent {
                   {/* <span
                   //    onClick={() => this.handleOrderCreateClick(false)}
                   > */}  <span class="!text-tab">
-                  <i class="fas fa-satellite-dish"></i>&nbsp;
+                  <i class="fas fa-satellite-dish text-[#005F73]"></i>&nbsp;
                   {/* Receive */}  {this.props.translatedMenuItems[17]}
                   </span>
                   {/* {activeKey === "1" && (
@@ -110,7 +111,7 @@ class InventoryDetailTabO extends PureComponent {
               tab={
                 <>
                   <span class="!text-tab">
-                    <i class="far fa-share-square"></i>&nbsp;
+                  <SendAndArchiveIcon className=" !text-icon text-[#480CA8]"/>
                     {/* Dispatch */}  {this.props.translatedMenuItems[18]}
 
                   </span>
@@ -132,7 +133,7 @@ class InventoryDetailTabO extends PureComponent {
               tab={
                 <>
                    <span class="!text-tab">
-                    <i class="far fa-share-square"></i>&nbsp;
+                    <i class="far fa-share-square text-[#9B2226]"></i>&nbsp;
                    Complete Dispatch  
 
                   </span>

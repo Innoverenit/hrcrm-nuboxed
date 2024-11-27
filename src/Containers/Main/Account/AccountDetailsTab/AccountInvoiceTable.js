@@ -13,6 +13,7 @@ import {
     getInvoiceCount
 } from "../AccountAction";
 import MicIcon from '@mui/icons-material/Mic';
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import {  Select, Tooltip,Input,Button } from 'antd';
 import dayjs from "dayjs";
@@ -394,8 +395,8 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
         value={currentData}
         />
 
-<Button type="primary" onClick={()=> setmodalMultiple(true)} style={{ marginLeft:"2rem", fontSize:"0.65rem", width:"13rem"}}>
-      Include multipule orders 
+<Button type="primary" onClick={()=> setmodalMultiple(true)} style={{ marginLeft:"2rem", fontSize:"0.65rem", width:"15rem"}}>
+<DataSaverOnIcon className="!text-icon text-white"/> Include multipule orders 
     </Button>
         </div>
 
@@ -496,6 +497,7 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
                                                         {item.creditInd  ? "" :(
                                                         <Tooltip title="">
                                                                 <Button 
+                                                                type="primary"
                                                                     className="cursor-pointer"
                                                                     onClick={() => {
                                                                         sendCreditMemo(item);
@@ -509,6 +511,7 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
                                                     <div className=" flex   w-[15.02rem] max-xl:w-[20.1rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:justify-between  max-sm:flex-row ">
                                                         <Tooltip title="">
                                                                 <Button
+                                                                 type="primary"
                                                                     className="cursor-pointer"
                                                                     onClick={() => {
                                                                         // executePayementLink();

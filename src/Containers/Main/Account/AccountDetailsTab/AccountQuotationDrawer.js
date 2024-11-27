@@ -11,7 +11,7 @@ const AddAccountOpportunityModal = (props) => {
     <>
       <StyledDrawer
         title="" 
-        width="90%"
+        width="70%"
         visible={props.addAccountOpportunityModal}
         onClose={() => props.handleAccountOpportunityModal(false)}
         footer={null}

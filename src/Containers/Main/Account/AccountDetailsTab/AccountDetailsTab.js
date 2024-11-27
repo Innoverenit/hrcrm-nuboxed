@@ -442,11 +442,7 @@ function AccountDetailsTab(props) {
                             onClick={() => {
                               props.handleAccountOpportunityModal(true);
                             }}
-                            size="0.875em"
-                            style={{
-                              marginLeft: "0.3125em",
-                              verticalAlign: "center",
-                            }}
+                            
                           />
                         )}
                       </Tooltip>

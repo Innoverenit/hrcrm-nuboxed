@@ -12,6 +12,7 @@ import {
     handleItemViewDrawer
 } from "./OrderAction";
 import StackedBarChartIcon from '@mui/icons-material/StackedBarChart';
+import CalculateIcon from '@mui/icons-material/Calculate';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -398,7 +399,7 @@ className="flex rounded justify-between  bg-white mt-1 py-ygap items-center   ma
                         </div>
                         <div class=" items-center justify-center h-8   bg-[#eef2f9] flex">   
                         <Tooltip title="CBM">
-                        <StackedBarChartIcon
+                        <CalculateIcon className="!text-icon "
                          onClick={() => {
                           openCBM();
                            handleSetParticularOrderData(item);

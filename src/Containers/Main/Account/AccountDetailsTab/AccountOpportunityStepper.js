@@ -62,14 +62,14 @@ class AccountOpportunityStepper extends Component {
         const { current } = this.state;
         return (
             <>
-                <StyledSteps current={current}>
+                <StyledSteps current={current} style={{width:"70%"}}>
                     <Step
-                        title={<AddShoppingCartIcon style={{ fontSize: "1rem" }} />}
+                        title={<AddShoppingCartIcon className=" !text-icon"  />}
                         description="Quotation"
                        
                     />
                     <Step
-                        title={<ControlPointDuplicateIcon style={{ fontSize: "1rem" }} />}
+                        title={<ControlPointDuplicateIcon className=" !text-icon" />}
                         description="Item Info"
                     />
 
