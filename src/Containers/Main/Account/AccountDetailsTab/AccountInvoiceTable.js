@@ -196,7 +196,7 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
           };
           const handleSearch = () => {
             if (currentData.trim() !== "") {
-                props.searchInoice(currentData);
+                props.searchInoice(props.distributorId,currentData);
               setSearchOnEnter(true);  // Code for Search
             } else {
               console.error("Input is empty. Please provide a value.");
@@ -230,7 +230,7 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
             if (transcript.trim() !== "") {
               setCurrentData(transcript);
              
-              props.searchInoice(transcript);
+              props.searchInoice(props.distributorId,transcript);
               setSearchOnEnter(true);
             }
           };

@@ -7,8 +7,9 @@ import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import { BundleLoader } from '../../../../../../Components/Placeholder';
+import {getContactByContactId} from "../../../../../Contact/ContactAction"
 
-function ItemHistoryInStockData(props) {
+function ContactReportData(props) {
 
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -39,13 +40,14 @@ function ItemHistoryInStockData(props) {
         fetchMenuTranslations();
       }, [props.selectedLanguage]);
 
-    // useEffect(() => {
-    //     props.getItemHistoryDataInstock(props.inventory.locationDetailsId,props.row.suppliesId);
-    // }, [])
+    useEffect(() => {
+        props.getContactByContactId(props.reportsToId);
+    }, [])
     if (loading) {
         return <div><BundleLoader/></div>;
       }
-
+      const item = props.contact
+console.log(props.contactById)
   return (
     <div className=' flex justify-end sticky top-28 z-auto'>
                 <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
@@ -76,8 +78,8 @@ function ItemHistoryInStockData(props) {
                        
                     </div>
                    
-                        {/* {props.itemHistoryDataInStock.map((item, index) => {
-                            return (
+                        {/* {props.contactById.map((item, index) => {
+                            return ( */}
                                 <div>
                                     <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 ">
                                      
@@ -85,46 +87,33 @@ function ItemHistoryInStockData(props) {
                                         <div class="flex">
                                             <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
                                                 <div class="flex justify-between text-sm  font-semibold  font-poppins ">
-                                                    {item.newPoNumber}
+                                                    {item.fullName}
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="flex">
-                                            <div className=" flex font-medium flex-col md:w-[11.12rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-sm  font-semibold font-poppins cursor-pointer underline text-blue-600">
-                                                    <span                                                 
-                                                    >
-                                                        {item.suppliesFullName.substring(0, 20)}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
+                                      
 
                                      
                                         <div className=" flex font-medium flex-col  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
-                                                {item.unit}
+                                                {item.emailId}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium flex-col  md:w-[11.012rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
-                                                {item.unitReceived}
+                                                {item.mobileNumber}
                                             </div>
                                         </div>
                                         <div className=" flex font-medium flex-col  md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
-                                                {item.unitDamaged}
+                                                {item.tagWithCompany}
                                             </div>
                                         </div>
+                                        
                                         <div className=" flex font-medium flex-col  md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
-                                                {item.remainingCorrectUnit}
-                                            </div>
-                                        </div>
-                                        <div className=" flex font-medium flex-col  md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs  font-poppins">
-                                                {item.remark}
+                                                {item.contactType}
                                             </div>
                                         </div>
                                      
@@ -134,7 +123,7 @@ function ItemHistoryInStockData(props) {
                                     </div>
                                    
                                 </div>
-                            );
+                            {/* );
                         })} */}
                    
                 </div>
@@ -143,21 +132,21 @@ function ItemHistoryInStockData(props) {
 }
 
 
-const mapStateToProps = ({ inventory, auth }) => ({
-    itemHistoryDataInStock:inventory.itemHistoryDataInStock,
+const mapStateToProps = ({ contact, auth }) => ({
+    contact:contact.contact
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            // getItemHistoryDataInstock
+             getContactByContactId
             
         },
         dispatch
     );
 
 export default withRouter(
-    connect(mapStateToProps, mapDispatchToProps)(ItemHistoryInStockData)
+    connect(mapStateToProps, mapDispatchToProps)(ContactReportData)
 );
 
 

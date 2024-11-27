@@ -1156,12 +1156,12 @@ export const inputDataSearch = (name,type) => (dispatch) => {
     });
 };
 
-export const searchInoice = (id) => (dispatch) => {
+export const searchInoice = (distributorId,invoiceId) => (dispatch) => {
   dispatch({
     type: types.INPUT_SEARCH_INVOICE_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderPayment/search/${id}`,  {
+    .get(`${base_url2}/invoice/searchInvoiceList/${distributorId}/${invoiceId}`,  {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3749,18 +3749,19 @@ export const updateOrderPayment = (data, paymentId) => (
 };
 
 
-export const removeOrderAcc = (orderPhoneId,distributorId) => (dispatch) => {
+export const removeOrderAcc = (data,orderPhoneId,distributorId) => (dispatch) => {
   dispatch({
     type: types.REMOVE_ORDER_ACC_REQUEST,
   });
   axios
-    .put(`${base_url2}/phoneOrder/reinstate/${orderPhoneId}`,{}, {
+    .put(`${base_url2}/phoneOrder/reinstate/${orderPhoneId}`,data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
-    dispatch(getDistributorOrderOfHigh(distributorId, 0, "repair","High"))
-    dispatch(getDistributorOrderOfHigh(distributorId, 0, "repair","Low"))
+     window.location.reload()
+    // dispatch(getDistributorOrderOfHigh(distributorId, 0, "repair","High"))
+    // dispatch(getDistributorOrderOfHigh(distributorId, 0, "repair","Low"))
     .then((res) => {
       dispatch({
         type: types.REMOVE_ORDER_ACC_SUCCESS,
