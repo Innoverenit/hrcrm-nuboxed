@@ -1,15 +1,16 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { FormattedMessage } from 'react-intl';
-import { Badge, Button, Input } from "antd";
-import dayjs from "dayjs";
+import {  Button } from "antd";
 import axios from "axios";
 import { base_url2 } from "../../../Config/Auth";
 import AddScanModal from "./AddScanModal"
 import {getSubList,handleScanModal} from "./InventoryAction";
-
+import AvTimerIcon from '@mui/icons-material/AvTimer';
+import RepartitionIcon from '@mui/icons-material/Repartition';
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+import ShareLocationIcon from '@mui/icons-material/ShareLocation';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 
 function SubPackList(props) {
 
@@ -134,14 +135,14 @@ orgId:props.orgId,
         <>
             <div className='flex  sticky z-auto w-wk'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-                        <div className=" md:w-[12rem]">
-                            Product
+                    <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky font-poppins text-lm z-10">
+                        <div className=" md:w-[12rem] text-[#00A2E8]  text-sm">
+                         <AddShoppingCartIcon className=" !text-icon "/>  items
                         </div>
-                        <div className=" md:w-[10.1rem]">Units</div>
-                        <div className=" md:w-[8.1rem]">Zone</div>
-                        <div className=" md:w-[7.1rem]">Room</div>
-                        <div className=" md:w-[6.1rem]">Rack</div>
+                        <div className=" md:w-[10.1rem]"><AvTimerIcon className=" !text-icon text-[#14213D]"/> Units</div>
+                        <div className=" md:w-[8.1rem]"><ShareLocationIcon className=" !text-icon text-[#00B4D8]"/> Zone</div>
+                        <div className=" md:w-[7.1rem]"><MeetingRoomIcon className=" !text-icon text-[#F35B04]"/> Room</div>
+                        <div className=" md:w-[6.1rem]"><RepartitionIcon className=" !text-icon text-[#FB6F92]"/> Rack</div>
 
 
                     </div>
@@ -150,9 +151,9 @@ orgId:props.orgId,
                             {props.subList.map((item) => {
                                 return ( 
                                     <div>
-                                        <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 " >
-                                           <div className="w-[12.1rem]">{item.productFullName}</div> 
-                                           <div className="w-36" >
+                                        <div className="flex rounded  mt-1 bg-white items-center py-ygap  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
+                                           <div className="w-[12.1rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] ">{item.productFullName}</div> 
+                                           <div className=" flex w-36 items-center justify-center h-8 ml-gap bg-[#eef2f9]" >
                                            <input
             id="packingUnits"
             type="text"
@@ -163,10 +164,10 @@ orgId:props.orgId,
            placeholder="Enter number of packets"
           />
           </div>
-          <div className="w-28" ></div>
-          <div className="w-28" ></div>
-          <div className="w-[12rem]" ></div>
-          <div className="w-32" >
+          <div className="w-28 items-center justify-center h-8 ml-gap bg-[#eef2f9] flex" ></div>
+          <div className="w-28 items-center justify-center h-8 ml-gap bg-[#eef2f9] flex" ></div>
+          <div className="w-[12rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] flex" ></div>
+          <div className="w-32 flex items-center justify-center h-8 ml-gap bg-[#eef2f9]" >
            <input
             id="manualNo"
             type="text"
@@ -177,12 +178,14 @@ orgId:props.orgId,
            placeholder="Enter number "
           />
           </div>
+          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]">
                                             <Button
                                              onClick={() => {
                                               props.handleScanModal(true);
                                             handleSetScandata(item);
                                             }}
                                             >Scan</Button>
+                                            </div>
                                         </div>
                                     </div>
                                  )

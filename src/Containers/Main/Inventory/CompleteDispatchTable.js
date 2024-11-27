@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Button,Badge } from "antd";
+import { Tooltip } from "antd";
 import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import {
@@ -14,11 +14,6 @@ import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import UpdateIcon from '@mui/icons-material/Update';
 import EmptyPage from "../EmptyPage";
-
-// Repair -Dis-2
-
-
-
 
 function DispatchTableOut(props) {
   const [pageNo, setPageNo] = useState(0);

@@ -14,6 +14,10 @@ import { MultiAvatar } from "../../../../../Components/UI/Elements";
 import { base_url2 } from "../../../../../Config/Auth";
 import AddIcon from '@mui/icons-material/Add';
 import MultiOrderList from "./MultiOrderList";
+import ReadMoreIcon from '@mui/icons-material/ReadMore';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 
 const { Option } = Select;
 
@@ -92,17 +96,17 @@ function OrderPaymentTable(props) {
       {props.fetchingPaymentHistory ? <BundleLoader /> : <div className=' flex sticky z-auto'>
         <div class="rounded m-1 p-1  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-semibold fonr-poppins items-end !text-lm sticky z-10">
-          <div className="w-[4.03rem] max-max-md:w-[4rem] "></div>
-            <div className="w-[7.09rem] max-max-md:w-[7rem] ">{translatedMenuItems[0]}  ID</div>
+         
+            <div className="w-[7.09rem] max-max-md:w-[7rem] text-sm"> <ReadMoreIcon className=" !text-icon"/>{translatedMenuItems[0]}  ID</div>
             {/* <div className=" max-md:w-[4.21rem] ">Invoice Id</div>  */}
-            <div className="w-[4.5rem] max-max-md:w-[4.5rem] ">{translatedMenuItems[1]}</div>
-            <div className="w-[5.8rem] max-max-md:w-[5.8rem] ">{translatedMenuItems[2]}</div>
-            <div className="w-[4.25rem] max-max-md:w-[4.2rem] ">{translatedMenuItems[3]}</div>  {/* 929 */}
+            <div className="w-[4.5rem] max-max-md:w-[4.5rem] "><DateRangeIcon className=" !text-icon"/>{translatedMenuItems[1]}</div>
+            <div className="w-[5.8rem] max-max-md:w-[5.8rem] "><ArrowForwardIcon className=" !text-icon"/>{translatedMenuItems[2]}</div>
+            <div className="w-[4.25rem] max-max-md:w-[4.2rem] "><CurrencyExchangeIcon className=" !text-icon"/>{translatedMenuItems[3]}</div>  {/* 929 */}
             <div className="w-[4.24rem] max-max-md:w-[4.2rem] ">{translatedMenuItems[4]}</div>
             {/* 86 */}
             <div className="w-[4.22rem] max-max-md:w-[4.2rem] ">{translatedMenuItems[5]}</div>
-            <div className="w-[6.21rem] max-max-md:w-[6.2rem] ">{translatedMenuItems[6]} </div>
-            <div className="w-[6rem] max-max-md:w-[6rem]"></div>
+            <div className="w-[6.21rem] max-max-md:w-[6.2rem] ">{translatedMenuItems[6]}</div>
+         
           </div>
 
           {props.paymentHistory.map((item) => {

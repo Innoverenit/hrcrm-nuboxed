@@ -144,7 +144,7 @@ class InventoryMaterialTabO extends PureComponent {
                             tab={
                                 <>
                                  <span class="!text-tab">
-                                    <i class="fas fa-satellite-dish"></i>&nbsp; 
+                                    <i class="fas fa-satellite-dish text-[#480CA8]"></i>&nbsp; 
                                     {/* Receive */} {this.props.translatedMenuItems[17]}
                                     </span>
                                 </>
@@ -167,7 +167,7 @@ class InventoryMaterialTabO extends PureComponent {
                             tab={
                                 <>
                                     <span onClick={this.handleRecruitClick} className=" !text-tab">
-                                    <LocalShippingIcon className=" !text-icon"/>&nbsp;
+                                    <LocalShippingIcon className=" !text-icon text-[#BC4749]"/>&nbsp;
                                         {/* Stock */} 
                                         In transit
                                         {/* {this.props.translatedMenuItems[19]} */}
@@ -277,7 +277,7 @@ class InventoryMaterialTabO extends PureComponent {
                             tab={
                                 <>
                                    <span class="!text-tab">
-                                        <TokenIcon className=" !text-icon "/>&nbsp;
+                                        <TokenIcon className=" !text-icon text-[#2c754b]  "/>&nbsp;
                                         {/* Cell */}
                                         {this.props.translatedMenuItems[20]}
                                     </span>
@@ -301,7 +301,7 @@ class InventoryMaterialTabO extends PureComponent {
                             tab={
                                 <>
                                     <span onClick={this.handleRecruitClick} className=" !text-tab">
-                                    <WaterDamageIcon className="!text-icon"/>&nbsp;
+                                    <WaterDamageIcon className="!text-icon text-[#9B2226]"/>&nbsp;
                                         {/* Stock */} 
                                       Damaged
                                         {/* {this.props.translatedMenuItems[19]} */}
@@ -351,7 +351,7 @@ class InventoryMaterialTabO extends PureComponent {
                             tab={
                                 <>
                                     <span onClick={this.handleRecruitClick} className=" !text-tab">
-                                    <CookieIcon className=" !text-icon"/>&nbsp;
+                                    <CookieIcon className=" !text-icon text-[#042E8A]"/>&nbsp;
                                       {/* Best Before */}
                                      
                                       {this.props.translatedMenuItems[35]}  
@@ -402,7 +402,7 @@ class InventoryMaterialTabO extends PureComponent {
                             tab={
                                 <>
                                     <span onClick={this.handleRecruitClick} className=" !text-tab">
-                                    <FolderDeleteIcon className="!text-icon"/>&nbsp;
+                                    <FolderDeleteIcon className="!text-icon text-[#386641]"/>&nbsp;
                                      
                                       Waste
                                         {/* {this.props.translatedMenuItems[36]} */}

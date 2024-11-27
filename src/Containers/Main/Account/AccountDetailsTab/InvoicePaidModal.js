@@ -15,7 +15,7 @@ class InvoicePaidModal extends Component {
             <>
                 <StyledDrawer
                     title={`Invoice - ${this.props.particularRowData.invoiceId}`}
-                    width="90%"
+                    width="65%"
                     visible={addPaidButtonModal}
                     destroyOnClose
                     maskClosable={false}
@@ -23,15 +23,15 @@ class InvoicePaidModal extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                    <div class="flex flex-row justify-around">
-                        <div class="w-[22%]">
+                    <div class="flex  justify-around">
+                        <div class="w-[28%] flex  ">
                     <DistributorPaidForm
                                  particularRowData={this.props.particularRowData}  
                                 distributorId={this.props.distributorId}
                                 selectedLanguage={this.props.selectedLanguage}
                                 translateText={this.props.translateText}  />
 </div>
-<div class="w-[75%]">
+<div class="w-[75%] flex ml-2">
                                 <OrderPaymentTable 
                                 particularRowData={this.props.particularRowData}
                                    selectedLanguage={this.props.selectedLanguage}
