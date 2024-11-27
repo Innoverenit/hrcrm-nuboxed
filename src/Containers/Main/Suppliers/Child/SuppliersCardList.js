@@ -33,6 +33,7 @@ import AddSuppliersAdressModal from "./AddSuppliersAdressModal";
 import EmptyPage from "../../EmptyPage";
 import BorderColorIcon from "@mui/icons-material/BorderColor"; 
 import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
+import ExtensionOffIcon from '@mui/icons-material/ExtensionOff';
 
 function SuppliersCardList(props) {
 
@@ -91,9 +92,9 @@ function SuppliersCardList(props) {
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
           <div className=" flex font-poppins text-xs justify-between w-[96%] max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm   p-1 bg-transparent font-bold sticky items-end z-10 max-sm:hidden">
-          <div className=" w-[9.91rem] truncate text-[#00A2E8]  max-md:w-[14.9rem]text-sm text-base "> 
+          <div className=" w-[9.91rem] truncate text-[#00A2E8]  max-md:w-[14.9rem] text-sm  "> 
                {/* Supplier ID */}
-              <CategoryIcon className=" text-base"/> {props.translatedMenuItems[40]} ID
+              <CategoryIcon className=" text-base"/> {props.translatedMenuItems[40]} ID 
                </div>
             <div className=" w-[11.4rem] truncate   max-md:w-[11.8rem]">  
             {/* "Name" */}
@@ -112,7 +113,8 @@ function SuppliersCardList(props) {
                <LinkIcon  className="!text-icon  text-[#4f5d75]"/>    {props.translatedMenuItems[41]}
                </div>
                <div className=" w-[7.5rem] truncate  max-md:w-[7.5rem] "> 
-               {/* Email */} <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] ' />
+               {/* Email */} <ExtensionOffIcon className='!text-icon mr-1 text-[#3a2cda] ' />
+             
                {/* {props.translatedMenuItems[17]} */}Disqualify
                </div>     
             <div className=" w-[9.1rem] truncate  max-md:w-[9.1rem] "> 

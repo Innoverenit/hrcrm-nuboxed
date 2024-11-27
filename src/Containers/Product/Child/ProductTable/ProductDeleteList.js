@@ -22,6 +22,7 @@ import {
 } from "../../ProductAction";
 import ProductPublishToggle from "./ProductPublishToggle";
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
 import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
 import { Tooltip } from "antd";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
@@ -129,27 +130,28 @@ function ProductDeleteList(props) {
           <div className=" flex justify-between max-sm:hidden w-[97%]  p-1 bg-transparent font-bold font-poppins !text-lm  max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-end sticky  z-10">  
           <div className="w-[6.51rem]"></div>        
           <div className=" w-[10rem] truncate text-[#00A2E8] text-sm max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
+          <NewspaperIcon className='!text-base mr-1  text-[#00A2E8]'/>
             {translatedMenuItems[0]} {/* Article # */}
               </div>
             <div className=" w-[16.9rem] truncate  max-xl:w-[5.11rem] max-lg:w-[7.11rem]">
-            <ContactsIcon className="!text-icon mr-1 "/>  {translatedMenuItems[1]}  {/* Name */}
+            <ContactsIcon className="!text-icon mr-1 text-[#44ea44] "/>  {translatedMenuItems[1]}  {/* Name */}
               </div>
             <div className=" w-[12.21rem] truncate  max-xl:w-[2.21rem] max-lg:w-[3.21rem] ">
-            <FormatListNumberedIcon className='!text-icon  mr-1   text-[#42858c]' />  {translatedMenuItems[2]}
+            <FormatListNumberedIcon className='!text-icon  mr-1   text-[#6a49ec]' />  {translatedMenuItems[2]}
             {/* Category */}
               </div>
             <div className=" w-[12.8rem] truncate  max-xl:w-[11.51rem]">
-            <AttractionsIcon className="  !text-icon" />   {translatedMenuItems[3]} {/* Attribute */}
+            <AttractionsIcon className="  !text-icon text-[#c23150]" />   {translatedMenuItems[3]} {/* Attribute */}
               </div>
             <div className=" w-[11.7rem] truncate  max-xl:w-[5.51rem]">
-            <BrandingWatermarkIcon className="!text-icon  mr-1" />{translatedMenuItems[4]}{/* Brand */}
+            <BrandingWatermarkIcon className="!text-icon  mr-1 text-[#f33b3b]" />{translatedMenuItems[4]}{/* Brand */}
               </div>
             <div className=" w-[10.51rem] truncate  max-xl:w-[4.51rem]">
-            <ModelTrainingIcon className=" !text-icon" /> {translatedMenuItems[5]} {/* Model */}
+            <ModelTrainingIcon className=" !text-icon text-[#942cbd]" /> {translatedMenuItems[5]} {/* Model */}
             
             </div>
             <div className=" w-[9.22rem] truncate  max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
-            <ExploreIcon className=" !text-icon cursor-pointer text-[green]"/>{translatedMenuItems[6]}  {/* Website */}
+            <ExploreIcon className=" !text-icon cursor-pointer text-[#272d27]"/>{translatedMenuItems[6]}  {/* Website */}
               </div>
             <div className=" w-[8.23rem] truncate  max-xl:w-[1.22rem] max-lg:w-[3.22rem]">
             {translatedMenuItems[7]} {/* Reinstate */}

@@ -21,7 +21,10 @@ import UpdateSupplierModal from "./UpdateSupplierModal";
 import SupplierPriceModal from "./SupplierPriceModal";
 import SupplierAddListModal from "./SupplierAddListModal";
 import SuplierPublishToggle from "./SuplierPublishToggle";
-
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
+import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
+import PublishIcon from '@mui/icons-material/Publish';
 function SupplierSearchedData(props) {
 
   const [hasMore, setHasMore] = useState(true);
@@ -73,24 +76,28 @@ function SupplierSearchedData(props) {
    
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[20.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">  
+          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent  sticky items-end font-poppins font-bold !text-lm max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
+            <div className=" w-[6.4rem] max-mb:w-[13.4rem] text-[#34e2e5] text-sm">  
+            <ApartmentIcon className="!text-icon text-[#34e2e5] "/> 
            Name
             </div>
-            <div className=" w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.8rem]">
+            <div className=" w-[15.5rem] max-md:w-[15.5rem]">
+            <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/> 
              Phone
             </div>
-            <div className=" w-[22.91rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] "> 
+            <div className=" w-[16.91rem] max-md:w-[16.91rem] "> 
+            <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] ' />
    
                Email
                </div>
             
-            <div className="w-[10.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.5rem]">
+            <div className="w-[8.9rem] max-md:w-[8.9rem]">
         
               Country
 
             </div>
-            <div className="w-[10.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.5rem]">
+            <div className="w-[10.9rem] max-xl:w-[9.5rem]">
+            <PublishIcon className="!text-icon  text-[#4f5d75]"/>
               Publish
 
             </div>
@@ -107,43 +114,51 @@ function SupplierSearchedData(props) {
                     return (
                       <>
                         <div
-                          className="flex  rounded justify-between bg-white mt-1 h-8 items-center p-1  max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                          className="flex  rounded justify-between bg-white mt-1 h-8 items-center p-1 py-ygap  max-sm:h-[6rem] max-sm:rounded-lg max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500    ">
+                           
                           <div class=" flex flex-row justify-between mt-1 w-wk max-sm:flex-col">
-                            <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className="font-medium  flex items-center w-[14.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
-                                <div class=" font-semibold text-xs  font-poppins">
-                                  <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
+                            <div class="flex max-sm:justify-between max-sm:w-wk  w-[30.5rem]  max-sm:flex-row max-md:w-[10.1rem] max-lg:w-[8.06rem]">
+                            <div className=" border-l-2 border-green-500 bg-[#eef2f9] h-8 flex items-center w-[9.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
+                                <div class="flex justify-center items-center font-semibold text-[0.85rem] font-poppins h-8 ml-gap bg-[#eef2f9]">
+                                  <Link class="overflow-ellipsis whitespace-nowrap  h-8 text-xs p-1 underline text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-text-xs max-sm:text-sm"
                                     to={`supplier/${item.supplierId}`}
                                     title={`${item.shipperName}`}
                                   >{item.name}</Link>
                                 </div>
 
                                 {date === currentdate ? (
-                                  <div class="text-xs  text-[tomato] font-bold"
+                                  <div class="text-[0.65rem]  text-[tomato] font-bold"
                                   >
-                                    New
+                                    {/* New */} {props.translatedMenuItems[23]}
                                   </div>
                                 ) : null}
                               </div>
+                              <div className=" flex  items-center h-8 ml-gap bg-[#eef2f9] w-[19.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem] ">
 
-                              <div className=" flex items-center flex-col w-[8.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem] ">
-                                <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                <div class="text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-text-xs max-sm:text-sm">
                                   {item.dialCode} {item.phoneNo}
                                 </div>
 
                               </div>
                             </div>
+                            
                             <div class="flex items-center max-sm:justify-between max-sm:w-wk ">
-                              <div className=" flex  w-[18.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem] ">
+                              <div className=" flex items-center  justify-center h-8 ml-gap bg-[#eef2f9] w-[17.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem] ">
 
-                                <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                <div class="  text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-text-xs max-sm:text-sm">
                                   {item.emailId}
                                 </div>
-                              </div>
+                              </div>      
+                              <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[16.2rem]  max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
+
+
+
+</div>                    
+                             
                             </div>
 
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex  w-[9.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[8.05rem] max-lg:w-[6.02rem] ">
+                              <div className=" flex justify-center items-center w-[9.01rem] max-sm:justify-between max-sm:w-auto  h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-xl:w-[8.05rem] max-lg:w-[6.02rem] ">
                                 <div class="  text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 <CountryFlag1 countryCode={countryCode} />
                                  &nbsp;
@@ -152,7 +167,7 @@ function SupplierSearchedData(props) {
                               </div>
                             </div>
 
-                            <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex items-center justify-center  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem]  h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                 <SuplierPublishToggle
                                   publishInd={item.publishInd}
@@ -161,7 +176,7 @@ function SupplierSearchedData(props) {
                               </div>
                             </div>
 
-                            <div class="flex max-sm:justify-end max-sm:w-wk items-center">
+                            <div class=" flex items-center justify-center  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem]  h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-sm:justify-between  max-sm:flex-row">
                               <div>
                                 <Tooltip title="Purchase Order">
                                   <StoreIcon

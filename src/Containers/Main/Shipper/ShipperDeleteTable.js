@@ -69,19 +69,19 @@ function ShipperDeleteTable(props) {
   ) : (
 <div className=' flex  sticky z-auto'>
 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-<div className=" flex justify-between w-[100%]  p-1 bg-transparent sticky items-end font-poppins font-bold !text-lm  z-10">
-        <div className="  text-[#00A2E8] text-base md:w-[12.1rem]">
+<div className=" flex justify-between w-[100%]  p-1 bg-transparent sticky items-end font-poppins font-bold !text-lm max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
+        <div className="  text-[#00A2E8] text-sm  w-[12.1rem] max-md:w-[12.1rem]">
             <CategoryIcon className='!text-icon '/>   {props.translatedMenuItems[0]}</div>
         <div className=" w-[10.1rem] max-md:w-[10.1rem]">
         <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>{props.translatedMenuItems[1]} </div>
         <div className=" w-[8.8rem] max-md:w-[8.8rem] ">   
-        <MailOutlineIcon className="!text-icon  text-[#4f5d75]"/>  {props.translatedMenuItems[2]}</div>
+        <MailOutlineIcon className="!text-icon  text-[#32486e]"/>  {props.translatedMenuItems[2]}</div>
         <div className=" w-[7.9rem] max-md:w-[7.9rem]"> 
         <LocalShippingIcon className='!text-base mr-1 text-[#7dcfb6]'/>{props.translatedMenuItems[3]}</div>
         <div className=" w-[7.8rem] max-md:w-[7.8rem]"> 
         <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[4]}</div>
         <div className=" w-[7.9rem] max-md:w-[7.9rem]">   
-        <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {props.translatedMenuItems[5]}</div>
+        <LocationOnIcon className='!text-base  text-[#676a19]'/> {props.translatedMenuItems[5]}</div>
         <div className=" w-[9.2rem] max-md:w-[9.2rem]"> 
              {props.translatedMenuItems[6]}</div>
         <div className="  w-[4.8rem] max-md:w-[4.8rem]">

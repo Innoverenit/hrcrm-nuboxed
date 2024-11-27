@@ -276,6 +276,8 @@ const ProductActionLeft = (props) => {
 
         </div>
       </Tooltip>
+
+      
 <div class=" w-64 max-sm:w-24">
                 
 {props.viewType === "category" &&
@@ -291,7 +293,7 @@ const ProductActionLeft = (props) => {
     </div>
   );
 
-}
+} 
 const mapStateToProps = ({ product, auth }) => ({
   user: auth.userDetails,
   deletedProductCount:product.deletedProductCount,

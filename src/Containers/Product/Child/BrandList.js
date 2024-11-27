@@ -244,12 +244,12 @@ const handleSave = (item) => {
             <div className=" w-[9.5rem] truncate max-md:w-[4.5rem]  max-xl:w-[8.7rem] max-lg:w-[9.31rem]">         
             </div>
             <div className="  w-[10.5rem] text-[#00A2E8] text-sm  truncate max-md:w-[8.5rem]  max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
-            <BrandingWatermarkIcon className="!text-icon  mr-1" />  {translatedMenuItems[0]}
+            <BrandingWatermarkIcon className="!text-icon   mr-1" />  {translatedMenuItems[0]}
              {/* Name */}
             </div>
             <div className="  w-[21.63rem]  truncate max-md:w-[11.63rem]  max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
              {/* Brand Id */}
-             <BrandingWatermarkIcon className="!text-icon  mr-1" />  {`${translatedMenuItems[1]} ID`}
+             <BrandingWatermarkIcon className="!text-icon text-[#436e1b]  mr-1" />  {`${translatedMenuItems[1]} ID`}
               {/* "Sector" */}
             </div>
             <div className=" w-[10.12rem]  truncate max-md:w-[5.12rem]  max-xl:w-[4.12rem] max-lg:w-[2.34rem]">

@@ -119,11 +119,8 @@ function SuppliersNotApprovalList(props) {
                             <div className="border-l-2 border-green-500 bg-[#eef2f9] h-8 flex items-center w-[9.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
                             <div class=" text-xs ml-gap  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {item.newSuppNo}
-                            
-</div>
-
-
-</div>
+                            </div>
+                            </div>
                               <div className=" flex items-center h-8 ml-gap bg-[#eef2f9] w-[13.9rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
                                 <div class=" font-semibold text-[0.85rem] font-poppins">
                                   <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 underline text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-text-xs max-sm:text-sm"
