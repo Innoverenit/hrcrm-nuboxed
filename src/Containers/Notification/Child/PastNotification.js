@@ -91,6 +91,11 @@ class PastNotification extends Component {
                     cursor:
                       item.notificationReadInd === true ? "default" : "pointer"
                   }}
+                  onClick={
+                    item.notificationReadInd === false
+                      ? () => this.handleClick(item)
+                      : null
+                  }
                 >
                   <List.Item.Meta
                     // avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
@@ -100,6 +105,7 @@ class PastNotification extends Component {
                           color:
                             item.notificationReadInd === true ? "grey" : "white"
                         }}
+                        onClick={(event) => event.stopPropagation()}
                       >
                         {item.notificationMessage}
                       </h4>
@@ -114,11 +120,7 @@ class PastNotification extends Component {
                         {dayjs(item.notificationDate).format("MMM DD")}
                       </h4>
                     }
-                    onClick={
-                      item.notificationReadInd === false
-                        ? () => this.handleClick(item)
-                        : null
-                    }
+                  
                   />
              
                 </List.Item>
