@@ -281,7 +281,7 @@ selectedLanguage={props.selectedLanguage}
               overflowCount={999}
             > 
              </Badge>
-                <span class="!text-tab font-poppins ml-1">
+                <span class="!text-tab font-poppins ">
                 {translatedMenuItems[2]}  
                   {/* Activity */}
                 </span>

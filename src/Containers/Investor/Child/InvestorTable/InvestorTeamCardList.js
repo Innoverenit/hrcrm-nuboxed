@@ -250,8 +250,8 @@ function InvestorTeamCardList(props) {
         <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]}  
         {/* "Name" */}              
                 </div>
-        <div className="flex  w-[10.1rem] truncate max-md:w-[13.1rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
-        <FactoryIcon className="!text-icon   text-[#84a59d]"/> {translatedMenuItems[1]}
+        <div className="flex  w-[10.8rem] truncate max-md:w-[13.1rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
+        <FactoryIcon className="!text-icon mr-1  text-[#84a59d]"/> {translatedMenuItems[1]}
         {/* Sector" */}          
                 </div>   
                 <div className=" w-[5.23rem] truncate max-md:w-[6.23rem] max-xl:w-[8.2rem]">
@@ -259,7 +259,7 @@ function InvestorTeamCardList(props) {
           {/* "Category */}
           </div>
           <div className=" w-[5.34rem] truncate max-md:w-[5.34rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
-          <SourceIcon className="!text-icon   text-[#4b5043]"/>{translatedMenuItems[6]}
+          <SourceIcon className="!text-icon  mr-1 text-[#4b5043]"/>{translatedMenuItems[6]}
          {/* Source" */}         
           </div> 
         <div className=" w-[6.12rem] truncate max-md:w-[5.12rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]">

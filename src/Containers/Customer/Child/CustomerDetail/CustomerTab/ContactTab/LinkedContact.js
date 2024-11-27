@@ -131,7 +131,7 @@ function LinkedContact(props) {
 {/* Email */}
         </div>
         <div className=" w-[7.1rem] truncate  max-md:w-[8.1rem]">
-        <MobileFriendlyIcon className='!text-icon text-[#41ead4] '  /> {translatedMenuItems[2]}
+        <MobileFriendlyIcon className='!text-icon mr-1 text-[#41ead4] '  /> {translatedMenuItems[2]}
           {/* Mobile */}
         </div>
         <div className=" w-[8.2rem]  truncate max-md:w-[8.2rem]">

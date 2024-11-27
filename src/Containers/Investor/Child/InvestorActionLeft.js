@@ -13,7 +13,7 @@ import SpeechRecognition, {  useSpeechRecognition,} from "react-speech-recogniti
 import { getInvestor, ClearReducerDataOfInvestor, getInvestorsbyId, getInvestorTeam, searchInvestorName, getInvestorAll } from "../InvestorAction";
 import { Input } from "antd";
 import { base_url } from "../../../Config/Auth";
-
+import MoveUpIcon from '@mui/icons-material/MoveUp';
 const Option = StyledSelect.Option;
 const { Search } = Input;
 
@@ -359,7 +359,7 @@ const InvestorActionLeft = (props) => {
        {/* {!props.showCheckboxes && (  */}
         <Button type="primary" 
         onClick={props.handleTransferClick}
-        >
+        ><MoveUpIcon className="!text-icon"/>
           {props.isTransferMode ? 'Transfer' : 'Cancel'}
         </Button>
        {/* )} */}
