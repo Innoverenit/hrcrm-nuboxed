@@ -1017,7 +1017,7 @@ export const suppliersReducer = (state = initialState, action) => {
       return {
         ...state,
         addingRecallData: false,
-        //addOpportunityModal: false,
+        addRecallModal: false,
         //addedOpportunity:action.payload,
         //opportunityByUserId: [action.payload, ...state.opportunityByUserId],
         // clearbit: null,

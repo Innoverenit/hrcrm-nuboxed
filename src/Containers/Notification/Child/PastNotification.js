@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Link } from 'react-router-dom';
 import { List, Avatar, Spin, Button } from "antd";
 import dayjs from "dayjs";
 import { getPastNotifications, updateNotifcation } from "../NotificationAction";
@@ -107,7 +108,26 @@ class PastNotification extends Component {
                         }}
                         onClick={(event) => event.stopPropagation()}
                       >
+                           {/* <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm   cursor-pointer" to={`/${item.notificationProcess}/${item.uniqueId}`} title={item.notificationMessage}>
                         {item.notificationMessage}
+                        </Link> */}
+                        {item.uniqueId ? (
+  <Link
+    className="overflow-ellipsis whitespace-nowrap text-xs text-[#042E8A] max-sm:text-sm cursor-pointer"
+    to={`/${item.notificationProcess}/${item.uniqueId}`}
+    title={item.notificationMessage}
+  >
+    {item.notificationMessage}
+  </Link>
+) : (
+  <span
+    className="overflow-ellipsis whitespace-nowrap text-xs text-[#042E8A] max-sm:text-sm cursor-not-allowed"
+    title={item.notificationMessage}
+  >
+    {item.notificationMessage}
+  </span>
+)}
+
                       </h4>
                     }
                     description={

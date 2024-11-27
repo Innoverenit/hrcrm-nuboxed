@@ -2604,7 +2604,7 @@ export const addRecallData = (opportunity, cb) => (dispatch, getState) => {
     type: types.ADD_RECALL_DATA_REQUEST,
   });
   axios
-    .post(`${base_url}/opportunity`, opportunity, {
+    .post(`${base_url2}/api/v1/email/recallSupplier`, opportunity, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2660,7 +2660,7 @@ export const getBatchNo = () => (dispatch) => {
     type: types.GET_BATCH_NO_REQUEST,
   });
   axios
-    .get(`${base_url2}/email/getAllBatchNo`, {
+    .get(`${base_url2}/api/v1/email/getAllBatchNo`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
