@@ -816,6 +816,7 @@ function AccountDetailsTab(props) {
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText}
                 handleLinkCustomerProcurementModal={props.handleLinkCustomerProcurementModal}
+                type="distributor" 
                 addLinkCustomerProcurementModal={props.addLinkCustomerProcurementModal}
                 distributorId={props.distributorData.distributorId}
             />

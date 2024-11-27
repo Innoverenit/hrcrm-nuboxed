@@ -502,7 +502,7 @@ export const addOrderForm = (customer, distributorId) => (dispatch, getState) =>
         showConfirmButton: false,
    timer: 1500,
       })
-      dispatch(getOrderRecords(distributorId));
+      dispatch(getOrderRecords(distributorId,"repair"));
       // dispatch(getDistributorOrderOfHigh(distributorId,"0","repair","High"));
       // dispatch(getDistributorOrderOfMedium(distributorId,"0","repair","Medium"));
       // dispatch(getDistributorOrderOfLow(distributorId,"0","repair","Low"));
@@ -3749,20 +3749,22 @@ export const updateOrderPayment = (data, paymentId) => (
 };
 
 
-export const removeOrderAcc = (orderId) => (dispatch) => {
+export const removeOrderAcc = (orderPhoneId,distributorId) => (dispatch) => {
   dispatch({
     type: types.REMOVE_ORDER_ACC_REQUEST,
   });
   axios
-    .put(`${base_url2}/order/delete/${orderId}`,{}, {
+    .put(`${base_url2}/phoneOrder/reinstate/${orderPhoneId}`,{}, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
+    dispatch(getDistributorOrderOfHigh(distributorId, 0, "repair","High"))
+    dispatch(getDistributorOrderOfHigh(distributorId, 0, "repair","Low"))
     .then((res) => {
       dispatch({
         type: types.REMOVE_ORDER_ACC_SUCCESS,
-        payload: orderId,
+        payload: orderPhoneId,
       });
       message.success("Confirmation Successfull");
     })
