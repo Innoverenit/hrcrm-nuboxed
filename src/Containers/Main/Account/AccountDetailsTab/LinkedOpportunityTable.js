@@ -33,6 +33,7 @@ import { base_url2 } from "../../../../Config/Auth";
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import axios from "axios";
 const AccountProcureDetailsModal = lazy(() => import('../AccountDetailsTab/AccountProcureDetailsModal'));
 
 
@@ -124,7 +125,40 @@ const handleConfirm = (quotationId) => {
   props.quotationToOrder(quotationId,props.userId);
 };
 
-
+const downloadPdf= async (item) => {    
+  // setError(null);
+  try {
+    const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.quotationId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }  
+    );
+  //   Swal.fire({
+  //     title: 'Success!',
+  //     text: 'Generated successfully!',
+  //     icon: 'success',
+  //     confirmButtonText: 'OK',
+  //     showConfirmButton: false,
+  //     timer: 1500,
+  // });
+  } 
+  
+  catch (err) {
+    // setError(err);
+  //   Swal.fire({
+  //     title: 'Error!',
+  //     text: 'There was an issue generating the invoice.',
+  //     icon: 'error',
+  //     confirmButtonText: 'OK',
+  //     showConfirmButton: false,
+  //     timer: 1500,
+  // });
+  } finally {
+    // setLoading(false);
+  }
+}; 
 
 
   const exportPDFAnnexure = () => {
@@ -384,12 +418,16 @@ const handleConfirm = (quotationId) => {
                      
                   </div>
                   <div class="w-[14.40rem] items-center  ml-gap bg-[#eef2f9] h-8 justify-end flex">
-                  <a
-              href={`${base_url2}/customer/pdf/${item.quotationId}`}
+                  {/* <a
+              href={`${base_url2}/quotation/customer/pdf/${item.quotationId}`}
             target="_blank"
             >
-            <PictureAsPdfIcon className="!text-icon text-[red]"/>
-                           </a>
+            <PictureAsPdfIcon className="!text-icon text-[red]"
+            />       </a> */}
+<PictureAsPdfIcon className="!text-icon text-[red]"
+             onClick={()=> { 
+              downloadPdf(item)}}
+            />
           </div>            
                                       </div>
                                     </div>
@@ -549,12 +587,19 @@ const handleConfirm = (quotationId) => {
                       
                   </div>
                   <div class="w-[14.40rem] items-center  ml-gap bg-[#eef2f9] h-8 justify-end flex">
-                  <a
-              href={`${base_url2}/customer/pdf/${item.quotationId}`}
+                  {/* <a
+              href={`${base_url2}/quotation/customer/pdf/${item.quotationId}`}
             target="_blank"
             >
-            <PictureAsPdfIcon className="!text-icon text-[red]"/>
-                           </a>
+            <PictureAsPdfIcon className="!text-icon text-[red]"
+            onClick={()=> { 
+              downloadPdf(item)}}
+            />
+                           </a> */}
+                           <PictureAsPdfIcon className="!text-icon text-[red]"
+            onClick={()=> { 
+              downloadPdf(item)}}
+            />
           </div>
                          </div>
                           </div>  )

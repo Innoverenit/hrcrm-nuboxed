@@ -41,7 +41,7 @@ const FormSchema = Yup.object().shape({
 })
 function AccountOpportunityForm(props) {
 
-const [selectOnType,setselectOnType]=useState("Commerce");
+const [selectOnType,setselectOnType]=useState("Procure");
 const [isAddingContact, setIsAddingContact] = useState(false);
 const [newContact, setNewContact] = useState({
     firstName: '',
@@ -225,13 +225,13 @@ const handleAddContact = () => {
                                             component={SelectComponent}
                                             options={[
                                                 { label: "Repair", value: "Repair" },
-                                                { label: "Commerce", value: "Procure" },
+                                                { label: "Procure", value: "Procure" },
                                             ]}
                                         /> */}
                                        <div class="flex h-fit">
-                                        <div className={selectOnType === "Commerce" ? 
+                                        <div className={selectOnType === "Procure" ? 
                                         "bg-green-400 text-white border rounded-md":"bg-purple-400 text-black border rounded-md"}
-                                        onClick={() => handleOnSelectType("Commerce")}
+                                        onClick={() => handleOnSelectType("Procure")}
                                         >
                                             Commerce
                                         </div>

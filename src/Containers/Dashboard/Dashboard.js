@@ -64,8 +64,8 @@ const DashRepairOrdrLeftJumstartboxOrg =lazy(()=>import("./Child/JumpStart/DashR
 const DashRepairOrdRightJumstartbox =lazy(()=>import("./Child/JumpStart/DashRepairOrdRightJumstartbox"));
 const DashRepairOrdRightJumstartboxOrg =lazy(()=>import("./Child/JumpStart/DashRepairOrdRightJumstartboxOrg"));
 const InvestorDashboardJumpStart= lazy(()=>import("./Child/JumpStart/InvestorDashboardJumpStart"));
-const DashBoardSummary= lazy(()=>import("./Child/DashBoardSummary"));
-
+const DashBoardSummary = lazy(()=>import("./Child/DashBoardSummary"));
+const Totalists = lazy(()=>import("./Child/JumpStart/Totalists"));
 class Dashboard extends Component {
 
 
@@ -229,6 +229,13 @@ class Dashboard extends Component {
               translateText={this.props.translateText}
              />
               </div>
+              :
+              this.state.activeButton==="totaLists" ? 
+                (<Totalists  selectedLanguage={this.props.selectedLanguage}
+                 translateText={this.props.translateText}
+                 buttonName={buttonName} 
+                 />)
+              
              :
              <div> 
 
@@ -289,7 +296,7 @@ class Dashboard extends Component {
               selectedLanguage={this.props.selectedLanguage}
              translateText={this.props.translateText}
              />) 
- 
+             
            )
              :
              viewType==="bulb" ? (<DashboardBulbJumpstart

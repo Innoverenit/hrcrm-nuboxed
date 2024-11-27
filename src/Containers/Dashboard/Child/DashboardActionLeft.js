@@ -19,6 +19,8 @@ import AcUnitIcon from '@mui/icons-material/AcUnit';
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing'; 
 import ShopIcon from '@mui/icons-material/Shop';
 import SummarizeIcon from '@mui/icons-material/Summarize';
+import PriceCheckIcon from '@mui/icons-material/PriceCheck';
+
 const DashboardShareForm=lazy(()=>import("./DashboardShareForm"));
 const { TabPane } = Tabs;
 
@@ -278,6 +280,20 @@ const DashboardActionLeft = (props) => {
                   </span>
                
               )}
+
+<span class="cursor-pointer mr-1"
+                    onClick={() => handleButtonClick("totaLists")}
+                    style={{
+                      color: activeButton === "totaLists" && "tomato",
+
+                    }}
+                  >
+                    <Tooltip title={"Total"}>
+                      <Avatar style={{ background: activeButton === "totaLists" ? "#f279ab" : "#28a355" }}>
+                        <PriceCheckIcon className="text-white !text-icon"/>
+                      </Avatar>
+                    </Tooltip>
+                  </span>
   {/* {(user.taskAccessInd === true || user.role === "ADMIN") && (
             
                 <span
@@ -502,7 +518,19 @@ const DashboardActionLeft = (props) => {
                   </span>
                
               )}
+<span class="cursor-pointer mr-1"
+                    onClick={() => handleButtonClick("totaLists")}
+                    style={{
+                      color: activeButton === "totaLists" && "tomato",
 
+                    }}
+                  >
+                    <Tooltip title={"Total"}>
+                      <Avatar style={{ background: activeButton === "totaLists" ? "#f279ab" : "#28a355" }}>
+                        <PriceCheckIcon className="text-white !text-icon"/>
+                      </Avatar>
+                    </Tooltip>
+                  </span>
             </>
 
           )}

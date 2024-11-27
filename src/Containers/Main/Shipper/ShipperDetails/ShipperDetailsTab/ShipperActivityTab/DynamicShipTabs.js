@@ -11,7 +11,7 @@ const DynamicShipTabs = (props) => {
     useEffect(() => {
         const fetchTabsData = async () => {
             try {
-                const response = await axios.get(`${base_url2}/DUMMY`,{
+                const response = await axios.get(`${base_url2}/shipper/shippingTransferCost/${props.shipperId}`,{
                     headers: {
                       Authorization: "Bearer " + sessionStorage.getItem("token") || "",
                     },
