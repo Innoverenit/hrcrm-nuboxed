@@ -88,13 +88,14 @@ function ContactInvestAllCardList(props) {
            "326",//3Department
            "1160",//4 Deal
            "526",//5 Deal Value
-          "279",// Source
+          "279",//6 Source
            "77",//7     Owner    
            "1581",//Score  8
            "392",//Pulse 9
            "316",// Notes 10
            "185",//Adress 11 
-           "170",//Edit 12    
+           "170",//Edit 12   
+           "1581",//score  13
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -173,17 +174,17 @@ if (loading) {
   return (
     <>
     <div  className=" flex">
-    <div className=' flex rounded w-[15%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
+    <div className=' flex rounded w-[13%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
       <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[#eaedf1] mt-1  items-center shadow-[#a3abb980] ">
-       <div> Search team Member</div>
+      <div className="w-[14vw]"  > Search team Member</div>
         </div>
-        <div class="flex flex-col rounded w-[92%]  p-1 h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+        <div class="flex flex-col rounded w-[11vw]  h-[78vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
         {props.allEmployeeList.map((item,index) =>{
            return (
               <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
-                  text-[#444444] m-1 w-[11.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-        <div class="flex items-center flex-no-wrap h-16">
-          <div class=" flex basis-[15%] mr-[0.2rem] h-15" >
+                  text-[#444444] mt-1  max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+        <div class="flex items-center h-16">
+          <div class=" flex  mr-[0.2rem] h-15" >
             <MultiAvatar
               // primaryTitle={item.opportunityName}
               // imageId={item.imageId}
@@ -192,9 +193,9 @@ if (loading) {
             />
           </div>
           
-          <div class="flex basis-[100%] overflow-hidden">
+          <div class="flex  overflow-hidden">
           
-          <div class="font-semibold text-[#337df4] cursor-pointer text-xs " >
+          <div class="font-semibold text-[#337df4] font-poppins cursor-pointer text-lm truncate  "  >
         
           {item.empName}
 
@@ -205,14 +206,14 @@ if (loading) {
         </div>
         <div className="flex flex-col max-sm:justify-between ">
           
-              <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
-              {item.email}           </div>
+        <div class="overflow-hidden text-ellipsis font-poppins cursor-pointer text-lm truncate  flex items-center">
+           {item.dailCode1} {item.mobileNo}      </div>
             
           <div>
           <div class="font-medium text-xs ">
        
-              <div class="overflow-hidden  text-ellipsis cursor-pointer text-xs flex items-center">
-              {item.dailCode1} {item.mobileNo}
+          <div class="overflow-hidden  text-ellipsis font-poppins cursor-pointer text-lm truncate  flex items-center">
+              {item.email}  
               </div>
            
             
@@ -227,52 +228,47 @@ if (loading) {
   })}
         </div>
         </div>
+        <div className=' flex sticky w-[87%] z-auto'>
       <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
     
-      <div className=" flex  justify-between max-sm:hidden w-[94%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end  z-10">
+      <div className=" flex  justify-between max-sm:hidden w-[89%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end  z-10">
      
-     <div className="  w-[20.32rem] text-[#00A2E8] text-sm truncate max-md:w-[21.32rem]">
-       <ContactEmergencyIcon className='!text-base mr-1  '
+     <div className="  w-[18.1rem] text-[#00A2E8] text-sm truncate max-md:w-[21.32rem]">
+       <ContactEmergencyIcon className='!text-icon mr-1 text-[#00A2E8] '
              />{translatedMenuItems[0]}
        {/* name" */}         
                </div>
-       <div className=" w-[13.72rem] truncate max-md:w-[13.72rem]">
-       <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}
+               <div className="truncate w-[14.1rem] max-md:w-[13.72rem]">
+       <ApartmentIcon className="!text-icon text-[#f0386b] "/> {translatedMenuItems[1]}
        {/* company */}             
                </div>
-       <div className=" w-[12.6rem] truncate max-md:w-[12.6rem] ">
-       <i className="fab fa-artstation "></i> {translatedMenuItems[2]} 
+               <div className="truncate w-[11rem] max-md:w-[12.6rem] ">
+       <i className="fab fa-artstation text-[#b744b8] "></i> {translatedMenuItems[2]} 
        {/* designation */}             
                </div>
-       {/* <div className=" font-bold font-poppins text-xs w-[11.3rem] md:w-[11.3rem]">
-       <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[3]} 
-       department               
-               </div> */}
-                 <div className=" w-[11.2rem] truncate max-md:w-[11.2rem]">
+   
+                 <div className=" w-[9.9rem] truncate max-md:w-[11.2rem]">
        <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[6]}
        {/* source" */}           
                </div>
-       <div className=" w-[10.1rem] truncate max-md:w-[10.1rem]">
-       <CurrencyExchangeIcon className='!text-icon  mr-1  text-[#e4eb2f]' />{translatedMenuItems[4]}
+       <div className=" w-[10.9rem] truncate max-md:w-[10.1rem]">
+       <CurrencyExchangeIcon className='!text-icon  mr-1   text-[#84a59d]' />{translatedMenuItems[4]}
        {/* deals" */}           
                </div>
-       {/* <div className="font-bold font-poppins text-xs w-[7.21rem] md:w-[11.21rem]"> 
-       {translatedMenuItems[5]}
-        dealValue"              
-               </div> */}
+   
      
                {props.user.aiInd && (
-           <div className=" w-[5.81rem] truncate max-md:w-[5.81rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.81rem]">
-              <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/>  Score
-         
+           <div className=" w-[6.2rem] truncate max-md:w-[5.81rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.81rem]">
+              <ScoreIcon className="!text-icon  text-[#f28482]"/>   {translatedMenuItems[13]}
+              {/* Score  */}
            </div>
            )}
-       <div className="w-[9.8rem] truncate  max-md:w-[9.8rem]">
+       <div className="w-[5.1rem] truncate  max-md:w-[9.8rem]">
        <AccountCircleIcon className="!text-icon   text-[#d64933]"/>    {translatedMenuItems[7]}
        {/* owner             */}
                </div>
          
-       {/* <div className="w-12">Action</div> */}
+
 
    
      </div>
@@ -356,7 +352,7 @@ if (loading) {
                               {item.tagWithCompany}
                               </div>
                           </div>
-                          <div className=" flex max-sm:w-full max-sm:justify-between    w-[7.5rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]">
+                          <div className=" flex max-sm:w-full max-sm:justify-between    w-[9.5rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]">
                             {/* Designation */}
                               <div class="text-xs ml-gap font-poppins">
                                    {item.designation}
@@ -371,7 +367,7 @@ if (loading) {
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center">
                     
-                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[10.22rem] max-sm:w-full  ">
+                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[9.09rem] max-sm:w-full  ">
                             <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[7.22rem] max-sm:w-full  ">
                                 {/* Deals */}
                                 <div class=" text-xs text-blue-500 cursor-pointer  font-poppins"
@@ -399,7 +395,7 @@ if (loading) {
       
         </div>
         )}                   
-                      <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[4rem]  max-sm:w-full max-sm:justify-between">             
+                      <div className="flex items-center justify-center w-[4.5rem] h-8 ml-gap bg-[#eef2f9] max-md:w-[4.5rem]  max-sm:w-full max-sm:justify-between">             
            {/* Owner */}
          
     <Tooltip title={item.ownerName}>
@@ -416,7 +412,7 @@ if (loading) {
          </div>   
          </div> 
            
-             <div class=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9] w-wk max-sm:flex   max-sm:w-full">   
+             <div class=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9] max-sm:flex   max-sm:w-full">   
              <Tooltip title= {translatedMenuItems[9]}>
  <MonitorHeartIcon
  className=" !text-icon cursor-pointer text-[#df9697] max-sm:!text-xl"
@@ -497,6 +493,7 @@ if (loading) {
                     )
                 })}
        </InfiniteScroll>
+      </div>
       </div>
       </div>
       <UpdateContactInvestModal

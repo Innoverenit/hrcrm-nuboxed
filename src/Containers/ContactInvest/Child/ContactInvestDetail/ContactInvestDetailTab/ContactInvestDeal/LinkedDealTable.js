@@ -19,7 +19,7 @@ import { BundleLoader } from "../../../../../../Components/Placeholder";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-import LocationCityIcon from '@mui/icons-material/LocationCity';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
 import UpdateIcon from '@mui/icons-material/Update';
 import EmptyPage from "../../../../../Main/EmptyPage";
 function onChange(pagination, filters, sorter) {
@@ -78,30 +78,31 @@ if (fetchingDealList) return <BundleLoader/>;
 
   return (
     <>
-    <div className=' flex sticky z-auto h-[77vh]'>
+    <div className=' flex sticky z-auto h-[78vh]'>
     <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex justify-between w-[93%]  p-1 bg-transparent !text-lm items-end font-bold font-poppins sticky z-10">
-        <div className="text-[#00A2E8] text-sm truncate w-[22rem] max-md:w-[22rem]">
-        <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]}  
+      <div className=" flex justify-between w-[83%]  p-1 bg-transparent !text-lm items-end font-bold font-poppins sticky z-10">
+        <div className="text-[#00A2E8] text-sm truncate w-[20.2rem] max-md:w-[22rem]">
+        <ContactsIcon className="!text-icon text-[#4f7cac] "/>  {translatedMenuItems[0]}  
+  
         {/* Name */}
 
         </div>
-        <div className="w-[7.2rem] max-md:w-[7.2rem] truncate ">
+        <div className="w-[11.2rem] max-md:w-[7.2rem] truncate ">
         <DateRangeIcon className='!text-icon mr-1 '  /> 
         {translatedMenuItems[2]}  
         {/* End Date */}
           </div>
-          <div className="w-[5.02rem] truncate max-md:w-[5.02rem] ">
+          <div className="w-[9.5rem] truncate max-md:w-[5.02rem] ">
           <CurrencyExchangeIcon className='!text-icon mr-1 text-[#e4eb2f]' />
         {translatedMenuItems[3]}</div>
 
-        <div className="w-[4.5rem] truncate max-md:w-[4.5rem] ">
+        <div className="w-[5.6rem] truncate max-md:w-[4.5rem] ">
            <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' />
         {translatedMenuItems[4]}  
         {/* Status */}
           </div>
-        <div className=" truncate w-[5.8rem] max-md:w-[5.8rem]">
-        <ContactsIcon className="!text-icon text-[#4f7cac] "/>{translatedMenuItems[5]}  
+        <div className=" truncate w-[4.8rem] max-md:w-[5.8rem]">
+        <ContactPageIcon className='!text-icon  '  /> {translatedMenuItems[5]}  
         {/*Sponser */}
           </div> 
      
@@ -145,7 +146,7 @@ if (fetchingDealList) return <BundleLoader/>;
               <div
                 className="flex rounded justify-between  py-ygap bg-white mt-[0.5rem]  items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                 <div class="flex ">
-                <div className=" flex h-8 border-l-2 border-green-500 bg-[#eef2f9]  md:w-[22rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                <div className=" flex h-8 border-l-2 border-green-500 bg-[#eef2f9] w-[20rem]  max-md:w-[22rem] max-sm:flex-row  max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
           &nbsp;
           <div class="max-sm:w-full">
@@ -212,7 +213,7 @@ width={30}
        </div>
                 </div>
                 <div class="flex">
-                <div class=" flex w-[2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] basis-[15%]">
+                <div class=" flex w-[5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
                     <MultiAvatar
                       primaryTitle={item.opportunityName}
                       imageId={item.imageId}

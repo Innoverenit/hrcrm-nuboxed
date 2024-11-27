@@ -13,7 +13,7 @@ class AddContactInvestDealModal extends Component {
       <div>
         <StyledDrawer
           title={this.props.contactiData.fullName}
-          width="90%"
+          width="60%"
           visible={this.props.addDrawerDealModal}
           closable
           placement="right"

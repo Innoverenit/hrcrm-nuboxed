@@ -149,7 +149,7 @@ const ContactInvestActionLeft = (props) => {
              <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#28a355",
                boxShadow: props.viewType === "teams" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
                   transform: props.viewType === "teams" ? "scale(1.05)" : "scale(1)"  }}>
-           <PeopleIcon className=" !sr-only text-icon cursor-pointer"/>
+              <PeopleIcon  className="text-white !text-icon" />
            </Avatar>
           </div>
         </Badge>
