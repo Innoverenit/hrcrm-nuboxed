@@ -268,7 +268,7 @@ if (loading) {
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" max-sm:hidden flex justify-between w-[94%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent   sticky  z-10">
         <div class=" flex justify-between w-[89%] font-bold font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm items-end ">
-        <div className=" w-[28.7rem] truncate text-[#00A2E8] text-sm  max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+        <div className=" w-[28.1rem] truncate text-[#00A2E8] text-sm  max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
         <ContactsIcon className="!text-icon mr-1 "/>{translatedMenuItems[0]}</div>
         <div className=" w-[22.4rem] truncate  max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
         <ApartmentIcon className="!text-icon "/> {translatedMenuItems[1]}</div>
@@ -289,7 +289,7 @@ if (loading) {
           
             </div>
             )}            
-               <div className=" w-[6.1rem] max-md: w-[6.1rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">
+               <div className=" w-[8.1rem] max-md: w-[6.1rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">
                <AccountCircleIcon className="!text-icon truncate  text-[#f28482]"/> {translatedMenuItems[7]} </div>
       
         <div className="w-[4.2rem]"></div>

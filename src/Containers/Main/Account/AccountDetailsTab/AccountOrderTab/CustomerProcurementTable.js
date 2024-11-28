@@ -354,42 +354,42 @@ const handleSelectedOrderDropDown =  async (value,item) => {
       </div>
 
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-[94%] p-1 bg-transparent font-bold sticky items-end !text-lm font-poppins  z-10">
-        <div className=" max-md:w-[3.54rem] w-[3.54rem] text-[white] truncate flex justify-center bg-[red]">
+        <div className=" flex justify-between w-[97%] p-1 bg-transparent font-bold sticky items-end !text-lm font-poppins  z-10">
+        <div className=" max-md:w-[3.54rem] w-[4.2rem] text-[white] truncate flex justify-center bg-[red]">
         {translatedMenuItems[0]} {/* Urgent */}
            </div>
-                        <div className=" text-[#00A2E8] truncate text-sm w-[7.3rem] max-md:w-[7.4rem]">
+                        <div className=" text-[#00A2E8] truncate text-sm w-[67rem] max-md:w-[7.4rem]">
                         <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'/>   {translatedMenuItems[1]} ID{/*Order ID"/> */}
                           </div>
-                          <div className="w-[5.5rem] truncate max-md:w-[7rem]">  
+                          <div className="w-[8.1rem] truncate max-md:w-[7rem]">  
                           <DateRangeIcon className='!text-icon  '/> {translatedMenuItems[9]}
                           </div>
-                        <div className="w-[3.5rem] truncate max-md:w-[9.1rem]">
+                        <div className="w-[8.1rem] truncate max-md:w-[9.1rem]">
                         <LocalShippingIcon
                          className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]} {/* Delivery"/> */}
                           </div>
-                        <div className="w-[11.12rem] truncate max-md:w-[10.8rem] ">
+                        <div className="w-[10.1rem] truncate max-md:w-[10.8rem] ">
                         <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[3]} {/* Location"/> */}
                           </div>
-                          <div className="w-[2.1rem] truncate max-md:w-[4.4rem]">
+                          <div className="w-[7.6rem] truncate max-md:w-[4.4rem]">
                           <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[5]} {/* Contact"/> */}
                           </div>
-                          <div className="w-[4.8rem] truncate max-md:w-[4.1rem]">
+                          <div className="w-[4.9rem] truncate max-md:w-[4.1rem]">
                         {/* {translatedMenuItems[2]}  */}<AddShoppingCartIcon className='!text-icon'/>  Items
                           </div>
-                          <div className="w-[2.1rem] truncate max-md:w-[4.4rem]">
+                          <div className="w-[5.2rem] truncate max-md:w-[4.4rem]">
                            <BackpackIcon className=" !text-icon text-[#ba5624]"/> {/* {translatedMenuItems[5]} */} Packing
                           </div>
-                          <div className="w-[2.1rem] truncate max-md:w-[4.4rem]">
+                          <div className="w-[5.1rem] truncate max-md:w-[4.4rem]">
                           <RocketLaunchIcon className=" !text-icon text-[#42bfdd]"/>  {/* {translatedMenuItems[5]} */} Shipping
-                          </div> <div className="w-[2.1rem] truncate max-md:w-[4.4rem]">
+                          </div> <div className="w-[5.3rem] truncate max-md:w-[4.4rem]">
 
                           <TrackChangesIcon className=" !text-icon text-[#f26df9]" /> {/*  Track */} {translatedMenuItems[18]}
                           </div>
-                          <div className="w-[2.2rem] truncate max-md:w-[3.8rem]"> <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' />
+                          <div className="w-[7.5rem] truncate max-md:w-[3.8rem]"> <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' />
                         {translatedMenuItems[7]} {/*Status"/> */}
                           </div>
-                          <div className="w-[2rem] truncate max-md:w-[4.8rem]">
+                          <div className="w-[8.11rem] truncate max-md:w-[4.8rem]">
                         <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {translatedMenuItems[6]}{/* "Payment"/> */}
                           </div>
                        
@@ -423,7 +423,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                         <div class="flex">
                                           <div className=" flex  items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
-                                            <div className=" flex  items-center  md:w-[7rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-sm:w-full  ">
+                                            <div className=" flex  items-center w-[4rem]  max-md:w-[4rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-sm:w-full  ">
 
                                             {editsuppliesId === item.orderId ? (
                         <>
@@ -530,21 +530,21 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                               {item.itemCount}
                                             </div>
                                         </div>
-                                        <div class="flex flex-row md:w-[6rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row md:w-[7rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs cursor-pointer text-black"
                                        
                                         >
                                               {item.packing}
                                             </div>
                                         </div>
-                                        <div class="flex flex-row md:w-[6rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row md:w-[7rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs cursor-pointer text-black"
                                        
                                         >
                                               {item.shipping}
                                             </div>
                                         </div>
-                                        <div class="flex flex-row md:w-[6rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row md:w-[7rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs cursor-pointer text-black"
                                        
                                         >
@@ -640,43 +640,45 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
       </div>
      
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex justify-between w-[94%] p-1 bg-transparent font-bold sticky text-xs items-end font-poppins z-10">
-        <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">
-        {translatedMenuItems[8]} {/* Normal */}
+      <div className=" flex justify-between w-[97%] p-1 bg-transparent font-bold sticky items-end !text-lm font-poppins  z-10">
+        <div className=" max-md:w-[3.54rem] w-[4.2rem] text-[white] truncate flex justify-center bg-[teal]">
+        {translatedMenuItems[8]} {/* normal */}
            </div>
-                        <div className="w-[7.3rem] text-[#00A2E8] text-base truncate max-md:w-[7.4rem] ml-2">
-                        <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'
-                        />   {translatedMenuItems[1]} ID{/* Order ID"/> */}
+                        <div className=" text-[#00A2E8] truncate text-sm w-[67rem] max-md:w-[7.4rem]">
+                        <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'/>   {translatedMenuItems[1]} ID{/*Order ID"/> */}
                           </div>
-                          <div className="w-[5.5rem] truncate max-md:md:w-[7rem]">  
-                          <DateRangeIcon className='!text-icon  '  />{translatedMenuItems[9]}
+                          <div className="w-[8.1rem] truncate max-md:w-[7rem]">  
+                          <DateRangeIcon className='!text-icon  '/> {translatedMenuItems[9]}
                           </div>
-                          <div className="w-[3.5rem] truncate max-md:md:w-[9.1rem]">
-                          <LocalShippingIcon
-                         className='!text-base  text-[#e4eb2f]'/>   {translatedMenuItems[2]} {/* Delivery"/> */}
+                        <div className="w-[8.1rem] truncate max-md:w-[9.1rem]">
+                        <LocalShippingIcon
+                         className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]} {/* Delivery"/> */}
                           </div>
-                          <div className="w-[11.12rem] truncate max-md:md:w-[10.8rem] ">
-                          <LocationOnIcon
-              className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[3]} {/* Location"/> */}
+                        <div className="w-[10.1rem] truncate max-md:w-[10.8rem] ">
+                        <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[3]} {/* Location"/> */}
                           </div>
-                          <div className="w-[2.1rem] truncate max-md:md:w-[4.4rem]">
-                          <ContactPageIcon className='!text-icon  '  />   {translatedMenuItems[5]} {/* Contact"/> */}
+                          <div className="w-[7.6rem] truncate max-md:w-[4.4rem]">
+                          <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[5]} {/* Contact"/> */}
                           </div>
-                          <div className="w-[4.8rem] truncate max-md:md:w-[4.1rem]">
+                          <div className="w-[4.9rem] truncate max-md:w-[4.1rem]">
                         {/* {translatedMenuItems[2]}  */}<AddShoppingCartIcon className='!text-icon'/>  Items
                           </div>
-                          <div className="w-[2.1rem] truncate max-md:md:w-[4.4rem]">
-                          <BackpackIcon className=" !text-Icon text-[#ba5624]"/>   {/* {translatedMenuItems[5]} */} Packing
+                          <div className="w-[5.2rem] truncate max-md:w-[4.4rem]">
+                           <BackpackIcon className=" !text-icon text-[#ba5624]"/> {/* {translatedMenuItems[5]} */} Packing
                           </div>
-                          <div className="w-[2.1rem] truncate max-md:md:w-[4.4rem]">
-                          <RocketLaunchIcon className=" !text-Icon text-[#42bfdd]"/>    {/* {translatedMenuItems[5]} */} Shipping
+                          <div className="w-[5.1rem] truncate max-md:w-[4.4rem]">
+                          <RocketLaunchIcon className=" !text-icon text-[#42bfdd]"/>  {/* {translatedMenuItems[5]} */} Shipping
+                          </div> <div className="w-[5.3rem] truncate max-md:w-[4.4rem]">
+
+                          <TrackChangesIcon className=" !text-icon text-[#f26df9]" /> {/*  Track */} {translatedMenuItems[18]}
                           </div>
-                          <div className="w-[2.2rem] truncate max-md:md:w-[3.8rem]">
-                          <UpdateIcon className='!text-icon text-[#ff66b3]' /> {translatedMenuItems[7]} {/*Status"/> */}
+                          <div className="w-[7.5rem] truncate max-md:w-[3.8rem]"> <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' />
+                        {translatedMenuItems[7]} {/*Status"/> */}
                           </div>
-                        <div className="w-[2rem] truncate max-md:md:w-[4.8rem]">
+                          <div className="w-[8.11rem] truncate max-md:w-[4.8rem]">
                         <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {translatedMenuItems[6]}{/* "Payment"/> */}
                           </div>
+                       
                     </div>
                     <InfiniteScroll
                         dataLength={props.lowDistributorOrder.length}
@@ -803,18 +805,25 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                         {item.itemCount}
                       </div>
                   </div>
-                  <div class="flex flex-row md:w-[6rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex flex-row md:w-[7rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs cursor-pointer text-black"
                                        
                                         >
                                               {item.packing}
                                             </div>
                                         </div>
-                                        <div class="flex flex-row md:w-[6rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class="flex flex-row md:w-[7rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
                                         <div class=" font-poppins text-xs cursor-pointer text-black"
                                        
                                         >
                                               {item.shipping}
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-row md:w-[7rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">
+                                        <div class=" font-poppins text-xs cursor-pointer text-black"
+                                       
+                                        >
+                                              {item.track}
                                             </div>
                                         </div>
                   <div class="flex flex-row items-center md:w-[10.03rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between">

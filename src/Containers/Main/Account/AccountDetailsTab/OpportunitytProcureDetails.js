@@ -19,7 +19,11 @@ import {getCategorylist,getSupplierSuppliesQuality} from "../../Suppliers/Suppli
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddIcon from '@mui/icons-material/Add';
 import ExtendOpportunityProductList from "./ExtendOpportunityProductList";
-
+import WidgetsIcon from '@mui/icons-material/Widgets';
+import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
+import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
+import AttractionsIcon from '@mui/icons-material/Attractions'; 
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 const { Option } = Select;
 
 function OpportunitytProcureDetails(props) {
@@ -195,36 +199,36 @@ const handleRowItem = (item) => {
   return (
     <>
       <div className="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className="flex justify-between  w-[100%]  p-1 bg-transparent font-bold sticky z-10">
-        <div className=" md:w-[2rem] font-semibold  font-poppins"></div>
-        <div className="md:w-[7.4rem] text-[#00A2E8] text-base font-bold font-poppins">
-        {translatedMenuItems[0]} {/* Category" /> */}
+        <div className="flex justify-between  w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm items-end sticky z-10">
+ 
+        <div className="w-[7.4rem] truncate max-md:w-[7.4rem] text-[#00A2E8] text-sm">
+        <WidgetsIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[0]} {/* Category" /> */}
           </div>
-          <div className="md:w-[7.4rem] text-xs font-bold font-poppins">
-          {translatedMenuItems[1]}{/* "Brand" /> */}
+          <div className="w-[7.4rem] truncate max-md:w-[7.4rem] text-xs font-bold font-poppins">
+          <BrandingWatermarkIcon className="!text-icon" /> {translatedMenuItems[1]}{/* "Brand" /> */}
           </div>
-          <div className="md:w-[4.1rem] text-xs font-bold font-poppins">
-          {translatedMenuItems[2]} {/* "Model" /> */}
+          <div className="w-[4.1rem] truncate max-md:w-[4.1rem] text-xs font-bold font-poppins">
+          <ModelTrainingIcon className=" !text-icon" /> {translatedMenuItems[2]} {/* "Model" /> */}
           </div>
-          <div className="md:w-[4.1rem] text-xs font-bold font-poppins">
-          {translatedMenuItems[3]} {/* "Attribute" /> */}
+          <div className="w-[4.1rem] truncate max-md:w-[4.1rem] text-xs font-bold font-poppins">
+          <AttractionsIcon className="  !text-icon" />  {translatedMenuItems[3]} {/* "Attribute" /> */}
           </div>
-          <div className="md:w-[7.1rem] text-xs font-bold font-poppins">
+          <div className="w-[2.4rem] truncate max-md:w-[7.1rem] text-xs font-bold font-poppins">
           {translatedMenuItems[4]} {/* "Quality" /> */}
           </div>
-          <div className="md:w-[7.1rem] text-xs font-bold font-poppins">
+          <div className="w-[2.1rem] truncate max-md:w-[7.1rem] text-xs font-bold font-poppins">
           Speci {/* "Quality" /> */}
           </div>
       
-            <div className="w-[7rem] md:w-[5%] text-xs font-bold font-poppins">
-            {translatedMenuItems[5]} 
+            <div className="w-[7rem] truncate max-md:w-[5%] text-xs font-bold font-poppins">
+           <LocationOnIcon className="!text-icon"/>   {translatedMenuItems[5]} 
             {/* Location */}
           </div>
-          <div className="md:w-[2.8rem] text-xs font-bold font-poppins">
+          <div className="w-[2.8rem] truncate max-md:w-[2.8rem] text-xs font-bold font-poppins">
           {translatedMenuItems[7]} {/* "Units" /> */}
           </div>
              
-          <div className="md:w-[2rem]"></div>
+         
         </div>
         <InfiniteScroll
         dataLength={props.quotationPhoneDetails.length}

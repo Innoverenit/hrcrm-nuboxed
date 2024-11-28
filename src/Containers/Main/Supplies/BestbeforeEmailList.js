@@ -109,10 +109,10 @@ function BestbeforeEmailList(props) {
 
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between max-sm:hidden  w-[89%]  p-1 bg-transparent font-bold  items-end !text-lm font-poppins sticky  z-10">
-          <div className="w-2 truncate max-md:w-2">Date</div>
+          <div className="w-[20rem] text-[#00A2E8] text-sm truncate max-md:w-2">Date</div>
         
-          <div className="w-12 truncate max-md:w-12">Items</div>
-          <div className="w-20 truncate max-md:w-20">Contact #</div>
+          <div className="w-[21rem] truncate max-md:w-12">Items</div>
+          <div className="w-[22rem] truncate max-md:w-20">Contact #</div>
       </div>
       
    
@@ -126,11 +126,11 @@ function BestbeforeEmailList(props) {
               className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[10rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" 
             >
                                      <div class="flex max-sm:justify-between h-8 max-sm:w-wk max-sm:items-center">
-                                     <div className=" flex items-center w-[32rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                     <div className=" flex border-l-2 border-green-500 bg-[#eef2f9] w-[32rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   
                                    {date}
                                 </div>
-                                <div className=" flex items-center w-[33rem] max-xl:w-[5.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between "
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[33rem] max-xl:w-[5.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between "
                                 onClick={() => {
                                   handleOpen(true);
                                   handleCurrentRowData(item);
@@ -139,7 +139,7 @@ function BestbeforeEmailList(props) {
                                   
                                   {item.itmCnt}
                                </div>
-                               <div className=" flex items-center w-[33rem] max-xl:w-[5.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between "
+                               <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[33rem] max-xl:w-[5.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between "
                                 onClick={() => {
                                   handleContactOpen(true);
                                   handleCurrentRowData(item);
@@ -148,7 +148,7 @@ function BestbeforeEmailList(props) {
                                   
                                   {item.itmCnt}
                                </div>
-                               <div className=" flex items-center  max-xl:w-[5.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                               <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[5.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   
                                <div >
             <StyledPopconfirm
