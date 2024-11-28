@@ -43,7 +43,6 @@ import MergeTypeIcon from '@mui/icons-material/MergeType';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import AsignedOpenDrawer from "./AsignedOpenDrawer";
-import Opportunity from "../../Opportunity/Opportunity";
 import CustomerOpportunityDrawerModal from "../../Customer/Child/CustomerTable/CustomerOpportunityDrawerModal";
 const AddAccountAdressModal = lazy(() => import("./AddAccountAdressModal"));
 const AccountCreditToggle = lazy(() => import("./AccountCreditToggle"));

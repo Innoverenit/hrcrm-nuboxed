@@ -132,7 +132,7 @@ render() {
   return(
     <>
 <div className=" flex justify-between w-wk"> 
-<div class="flex flex-col w-[50%]">
+<div class="flex flex-col w-[50%] justify-between h-[68vh] max-md:h-[68vh]">
 <div className=" flex flex-wrap">
     <div class=" flex flex-row w-full" >     
     <div class="flex flex-wrap w-full" >
