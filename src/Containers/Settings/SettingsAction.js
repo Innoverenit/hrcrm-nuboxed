@@ -7051,3 +7051,71 @@ export const getUOMCount = () => (dispatch) => {
     });
 };
 
+
+
+
+
+export const getApikey = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_API_KEY_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/ApiKey/getBy/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_API_KEY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_API_KEY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const addApi = (opportunity, cb) => (dispatch, getState) => {
+  const userId = getState().auth.userDetails.userId;
+  dispatch({
+    type: types.ADD_API_REQUEST,
+  });
+  axios
+    .post(`${base_url2}/Apikey`, opportunity, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Api added Successfully!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      console.log(res);
+     
+      dispatch({
+        type: types.ADD_API_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_API_FAILURE,
+        payload: err,
+      });
+    });
+};
+
