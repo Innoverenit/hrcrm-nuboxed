@@ -12,7 +12,7 @@ import { TextareaComponent } from '../../../../Components/Forms/Formik/TextareaC
 import { Button, Tooltip, Select,Input } from 'antd';
 import { getSaleCurrency, getAllDialCodeList, } from "../../../Auth/AuthAction";
 import { getContactDistributorList } from "../../Suppliers/SuppliersAction"
-import { addQuotationOrderForm, getLobList } from '../AccountAction'
+import { addQuotationOrderForm,addOrderProcurementForm,addOrderForm, getLobList } from '../AccountAction'
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
@@ -78,7 +78,7 @@ const handleAddContact = () => {
          });
         setIsAddingContact(false);
         setNewContact({ firstName: '', lastName: '', email: '', mobile: '', dialCode: '' });
-        props.getContactDistributorList(props.distributorId);
+        props.getContactDistributorList(props.distributorId,props.type);
       } catch (error) {
         console.error('Error adding contact:', error);
       }
@@ -110,7 +110,7 @@ const handleAddContact = () => {
     });
 
     useEffect(() => {
-        props.getContactDistributorList(props.distributorId);
+        props.getContactDistributorList(props.distributorId,props.type);
         props.getSaleCurrency();
         props.getLobList(props.orgId);
         props.getBrandCategoryData(props.orgId);
@@ -155,7 +155,7 @@ const handleAddContact = () => {
                 paymentInTerms: "",
                 customPayment: "0",
                 comments: "",
-                orderType:selectOnType,
+                // orderType:selectOnType,
                 orderCurrencyId: "",
                 shipById:"",
                 totalPhoneCount: "",
@@ -181,9 +181,19 @@ const handleAddContact = () => {
                         country: "",
                     },
                 ],
-
-               
-
+                unloadingAddress: [
+                    {
+                        address1: "",
+                        addressId: "",
+                        state: "",
+                        city: "",
+                        pinCode: "",
+                        countryId: "",
+                        latitude: "",
+                        longitude: "",
+                        country: "",
+                    },
+                ],
             }}
 
             validationSchema={FormSchema}
@@ -191,6 +201,7 @@ const handleAddContact = () => {
                 console.log(priority)
 
                 // if (values.advancePayment < 100) {
+                if(props.currentOrderType==="Quotation"){
                     props.addQuotationOrderForm({
                         ...values,
                         orderSource: "B2B ERP",
@@ -199,6 +210,25 @@ const handleAddContact = () => {
                         paymentInTerms: values.paymentInTerms === "Custom" ? values.customPayment : values.paymentInTerms,
 
                     }, props.distributorId,);
+                }
+                else if(props.currentOrderType==="Commerce"){
+                    props.addOrderProcurementForm({
+                        ...values,
+                        orderSource: "erp",
+                        priority: priority || "",
+                        paymentInTerms: values.paymentInTerms === "Custom" ? values.customPayment : values.paymentInTerms,
+                        orderType:"Procure",
+                    }, props.distributorId);
+                }
+                else if(props.currentOrderType==="Repair"){
+                    props.addOrderForm({
+                        ...values,
+                        orderSource: "erp",
+                        priority: priority || "",
+                        paymentInTerms: values.paymentInTerms === "Custom" ? values.customPayment : values.paymentInTerms,
+                        orderType: "Repair",
+                    }, props.distributorId,);
+                }
                     // "0","High","Medium","Low"
                 // } else {
                 //     message.success("Advance payment should be less than 100")
@@ -229,6 +259,8 @@ const handleAddContact = () => {
                                             ]}
                                         /> */}
                                        <div class="flex h-fit">
+                                       {props.currentOrderType==="Quotation" && 
+                                       <>
                                         <div className={selectOnType === "Procure" ? 
                                         "bg-green-400 text-white border rounded-md":"bg-purple-400 text-black border rounded-md"}
                                         onClick={() => handleOnSelectType("Procure")}
@@ -242,6 +274,7 @@ const handleAddContact = () => {
                                         >
                                             Repair
                                         </div>
+                                        </>}
                                         </div>
                                    </div> 
 
@@ -595,7 +628,8 @@ const handleAddContact = () => {
                                         <Button
                                             className="bg-[#3695cd] text-white text-xs pt-0 pr-3"
                                             htmlType="Submit"
-                                            loading={props.addingQuotationOrder}
+                                            loading={props.currentOrderType==="Quotation" ? props.addingQuotationOrder 
+                                                :props.currentOrderType==="Commerce" ? props.addingOrderProcurement:props.addingOrder}
                                         >
                                            Save
                                         </Button>
@@ -622,6 +656,8 @@ const mapStateToProps = ({ homeStepper,brandCategory, auth, distributor, supplie
     BrandCategoryData: brandCategory.BrandCategoryData,
     moduleMapper:auth.userDetails.moduleMapper,
     dialcodeList: auth.dialcodeList,
+    addingOrderProcurement: distributor.addingOrderProcurement,
+    addingOrder: distributor.addingOrder,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -633,6 +669,8 @@ const mapDispatchToProps = (dispatch) =>
             getContactDistributorList,
             getBrandCategoryData,
             getAllDialCodeList,
+            addOrderProcurementForm,
+            addOrderForm,
         },
         dispatch
     );
