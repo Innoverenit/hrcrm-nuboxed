@@ -1,5 +1,4 @@
 import React, { useEffect,useState } from "react";
-import ImageGallery from 'react-image-gallery';
 import axios from 'axios';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -501,9 +500,9 @@ function MaterialsDetailsCardViewId (props) {
             <thead>
               <tr className="bg-gray-50">
                 <th className="p-2 text-left font-medium text-gray-600 border border-gray-200"></th>
-                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Retail</th>
-                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Inner</th>
-                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Master</th>
+                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200 bg-[#eef2f9]">Retail</th>
+                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200 bg-[#eef2f9]">Inner</th>
+                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200 bg-[#eef2f9]">Master</th>
               </tr>
             </thead>
             <tbody>
@@ -545,8 +544,8 @@ function MaterialsDetailsCardViewId (props) {
             <thead>
               <tr className="bg-gray-50">
                 <th className="p-2 text-left font-medium text-gray-600 border border-gray-200"></th>
-                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Dimension UOM</th>
-                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200">Weight UOM</th>
+                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200 bg-[#eef2f9]">Dimension UOM</th>
+                <th className="p-2 text-left font-medium text-gray-600 border border-gray-200 bg-[#eef2f9]">Weight UOM</th>
               </tr>
             </thead>
             <tbody>
@@ -635,6 +634,9 @@ function MaterialsDetailsCardViewId (props) {
     />
     <LocationSuppliesList
           particularDiscountData={props.particularDiscountData}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+         translatedMenuItems={props.translatedMenuItems}
           />
     </div>
       {/* <table className="min-w-full border-collapse border border-gray-200">

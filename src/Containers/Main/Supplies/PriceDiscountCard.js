@@ -9,7 +9,8 @@ import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import EmptyPage from "../EmptyPage";
-
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import EqualizerIcon from '@mui/icons-material/Equalizer';
 const { Option } = Select;
 
 function PriceDiscountCard(props) {
@@ -177,7 +178,7 @@ function PriceDiscountCard(props) {
       {/* //B2B */}
       <div className="flex w-[5rem]  items-center">
       <Button className="mb-16  w-[5rem]" type="primary" onClick={handleAddRow}>
-        {/* Add */}{translatedMenuItems[0]}
+      <DataSaverOnIcon className="!text-icon"/>  {/* Add */}{translatedMenuItems[0]}
       </Button>
       </div>
       {rows.map((row, index) => (
@@ -188,7 +189,7 @@ function PriceDiscountCard(props) {
                 <div class="font-bold text-xs font-poppins text-black">
                 {translatedMenuItems[1]} {/* Volume */}
                   </div>
-                <Input  className="w-[5rem]"
+                <Input  className="w-[4.5rem]"
                  inputMode="numeric"
                   
                         value={row.volume}
@@ -199,11 +200,11 @@ function PriceDiscountCard(props) {
 
               <div>
               <div>
-                <div class="font-bold w-28 text-xs font-poppins text-black">
+                <div class="font-bold w-[4rem] text-xs font-poppins text-black">
                {translatedMenuItems[2]} in %{/* Value */}
                    </div>
                 <div>
-                <Input className="w-[5rem]"
+                <Input className="w-[4rem]"
                  inputMode="numeric"
                     
                         value={row.allowedDiscount}
@@ -217,7 +218,7 @@ function PriceDiscountCard(props) {
           {/* Start Date */}{translatedMenuItems[3]}
           </div>
         <div >
-          <DatePicker className="w-[7rem]"
+          <DatePicker className="w-[6.5rem]"
  
             value={row.startDate ? dayjs(row.startDate) : null}
             onChange={(date, dateString) => handleChange(index, 'startDate', dateString)}
@@ -227,7 +228,7 @@ function PriceDiscountCard(props) {
       <div>
         <div class="font-bold text-xs font-poppins text-black"> {translatedMenuItems[4]}</div>
         <div >
-          <DatePicker className="w-[7rem]"
+          <DatePicker className="w-[6.5rem]"
             value={row.endDate ? dayjs(row.endDate) : null}
             onChange={(date, dateString) => handleChange(index, 'endDate', dateString)}
           />
@@ -244,11 +245,11 @@ function PriceDiscountCard(props) {
 </div>
       <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">         
-            <div className="font-poppins font-bold text-xs md:w-[21rem]"> {translatedMenuItems[1]} </div>
-            <div className="font-poppins font-bold text-xs md:w-[11.1rem]">   <CurrencyExchangeIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]} </div>
-            <div className="font-poppins font-bold text-xs md:w-[10.2rem] "><DateRangeIcon className="!text-icon "/> {translatedMenuItems[3]} </div>
-            <div className="font-poppins font-bold text-xs md:w-[9.2rem] "><DateRangeIcon className="!text-icon "/> {translatedMenuItems[4]} </div>
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-poppins font-bold !text-lm sticky  z-10">         
+            <div className=" w-[12.2rem]    truncate max-md:w-[21rem]"><EqualizerIcon className='!text-icon  text-[#e4eb2f]'/> {translatedMenuItems[1]}  </div>
+            <div className=" w-[11.1rem]  truncate max-md:w-[11.1rem]">   <CurrencyExchangeIcon className='!text-icon  text-[#84a59d]'/> {translatedMenuItems[2]} </div>
+            <div className=" w-[10.2rem]  truncate max-md:w-[10.2rem] "><DateRangeIcon className="!text-icon "/> {translatedMenuItems[3]} </div>
+            <div className=" w-[9.2rem]  truncate max-md:w-[9.2rem] "><DateRangeIcon className="!text-icon "/> {translatedMenuItems[4]} </div>
             <div className="w-12"></div>           
               </div>
 <div className="h-[23vh] overflow-x-auto">
@@ -259,9 +260,9 @@ function PriceDiscountCard(props) {
                 >
 
                  
- <div className=" flex  md:w-[6.5rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
+ <div className=" flex w-[7.5rem] items-center justify-center max-md:w-[6.5rem] border-l-2 border-green-500 bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                   {editsuppliesId === item.suppliesId ? (
-                    <div class=" text-xs  ml-gap font-poppins">
+                    <div class=" text-xs flex items-center justify-center ml-gap font-poppins">
                       <Input
                         className="w-32"
                         value={item.volume}
@@ -296,7 +297,7 @@ function PriceDiscountCard(props) {
                   )}
                     </div>
                   </div> */}
-                  <div className=" flex  items-center  h-8 ml-gap bg-[#eef2f9] justify-center  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                  <div className=" flex w-[7rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-center  max-md:w-[7.1rem] max-sm:flex-row  max-sm:justify-between  ">
                   {editsuppliesId === item.suppliesId ? (
                     <div class=" text-xs  font-poppins">
                       <Input
@@ -316,14 +317,15 @@ function PriceDiscountCard(props) {
 
                  
                   {editsuppliesId === item.suppliesId ? (
+                   
   <DatePicker
   style={{width:"9rem"}}
     value={item.startDate ? dayjs(item.startDate) : null}
     onChange={(startDate) => handleInputChange(startDate, item.key, 'startDate')}
   />
 ) : (
-  <div className=" text-xs font-poppins">
-    <div>{dayjs(item.startDate).format('DD/MM/YY')}</div>
+  <div className="flex w-[5.9rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-center ">
+    <div class=" text-xs font-poppins">{dayjs(item.startDate).format('DD/MM/YY')}</div>
   </div>
 )}
 
@@ -334,8 +336,9 @@ function PriceDiscountCard(props) {
     onChange={(endDate) => handleInputChange(endDate, item.key, 'endDate')}
   />
 ) : (
-  <div className=" text-xs font-poppins">
-    <div>{dayjs(item.endDate).format('DD/MM/YY')}</div>
+  <div className="flex w-[5.4rem]  items-center  h-8 ml-gap bg-[#eef2f9] justify-center">
+   
+    <div class=" text-xs font-poppins">{dayjs(item.endDate).format('DD/MM/YY')}</div>
   </div>
 )}
                   <div class="flex md:items-center  items-center  h-8 ml-gap bg-[#eef2f9] justify-center">

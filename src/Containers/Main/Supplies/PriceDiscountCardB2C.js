@@ -10,7 +10,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import EmptyPage from "../EmptyPage";
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import DateRangeIcon from '@mui/icons-material/DateRange';
-
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 const { Option } = Select;
 
 function PriceDiscountCardB2C(props) {
@@ -167,9 +167,9 @@ function PriceDiscountCardB2C(props) {
   return (
     <div>
           <div class="flex mb-8 flex-start ">
-        <div className="flex w-[5rem] items-center">
-      <Button className="mb-16  w-[8rem]" type="primary" onClick={handleAddRow} >
-      {translatedMenuItems[0]} {/* Add Row */}
+        <div className="flex w-[6rem] items-center">
+      <Button className="mb-16  w-[6rem]" type="primary" onClick={handleAddRow} >
+      <DataSaverOnIcon className="!text-icon"/> {translatedMenuItems[0]} {/* Add Row */}
       </Button>
       </div>
       {rows.map((row, index) => (
@@ -220,7 +220,7 @@ function PriceDiscountCardB2C(props) {
         <div class="font-bold text-xs font-poppins text-black"> {translatedMenuItems[2]}</div>
         <div >
           <DatePicker
-            style={{width:"9rem"}}
+            style={{width:"7rem"}}
             value={row.startDate ? dayjs(row.startDate) : null}
             onChange={(date, dateString) => handleChange(index, 'startDate', dateString)}
           />
@@ -230,7 +230,7 @@ function PriceDiscountCardB2C(props) {
         <div class="font-bold text-xs font-poppins text-black"> {translatedMenuItems[3]}</div>
         <div >
           <DatePicker
-            style={{width:"9rem"}}
+            style={{width:"7rem"}}
             value={row.endDate ? dayjs(row.endDate) : null}
             onChange={(date, dateString) => handleChange(index, 'endDate', dateString)}
           />
@@ -248,10 +248,10 @@ function PriceDiscountCardB2C(props) {
 </div>
       <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1 w-[100%]   overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">                
-            <div className="font-poppins font-bold text-xs md:w-[11.1rem]">  <CurrencyExchangeIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[1]}</div>
-            <div className="font-poppins font-bold text-xs md:w-[6.2rem] "> <DateRangeIcon className="!text-icon "/> {translatedMenuItems[2]}</div>
-            <div className="font-poppins font-bold text-xs md:w-[6.2rem] "><DateRangeIcon className="!text-icon "/>  {translatedMenuItems[3]}</div>
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky  z-10">                
+            <div className=" w-[11.1rem] truncate max-md:w-[11.1rem]">  <CurrencyExchangeIcon className='!text-icon  text-[#e4eb2f]'/>{translatedMenuItems[1]}</div>
+            <div className=" w-[7.2rem] truncate max-md:w-[6.2rem] "> <DateRangeIcon className="!text-icon "/> {translatedMenuItems[2]}</div>
+            <div className=" w-[6.2rem] truncate max-md:w-[6.2rem] "><DateRangeIcon className="!text-icon "/>  {translatedMenuItems[3]}</div>
             <div className="w-12"></div>           
               </div>
               <div className="h-[23vh] overflow-x-auto">
@@ -299,7 +299,7 @@ function PriceDiscountCardB2C(props) {
                   )}
                     </div>
                   </div> */}
-                  <div className=" flex border-b-4 border-[#16a34a87]  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                  <div className=" w-[11.5rem] flex border-l-2 h-8 border-green-500 bg-[#eef2f9] items-center justify-center max-md:w-[7.1rem] max-sm:flex-row max-sm:justify-between  ">
                   {editsuppliesId === item.suppliesId ? (
                     <div class=" text-xs  font-poppins">
                       <Input
@@ -321,8 +321,8 @@ function PriceDiscountCardB2C(props) {
     onChange={(startDate) => handleInputChange(startDate, item.key, 'startDate')}
   />
 ) : (
-  <div className=" text-xs font-poppins">
-    <div>{dayjs(item.startDate).format('DD/MM/YY')}</div>
+  <div className=" w-[7.5rem] flex items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
+    <div  className=" text-xs font-poppins">{dayjs(item.startDate).format('DD/MM/YY')}</div>
   </div>
 )}
 
@@ -333,8 +333,8 @@ function PriceDiscountCardB2C(props) {
     onChange={(endDate) => handleInputChange(endDate, item.key, 'endDate')}
   />
 ) : (
-  <div className=" text-xs font-poppins">
-    <div>{dayjs(item.endDate).format('DD/MM/YY')}</div>
+  <div className=" w-[6.9rem] flex items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
+    <div  className=" text-xs font-poppins">{dayjs(item.endDate).format('DD/MM/YY')}</div>
   </div>
 )}
                   <div class="flex md:items-center  items-center  h-8 ml-gap bg-[#eef2f9] justify-center ">

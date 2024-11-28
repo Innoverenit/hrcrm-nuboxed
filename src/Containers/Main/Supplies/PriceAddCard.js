@@ -18,7 +18,7 @@ import { base_url2 } from "../../../Config/Auth";
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import MergeTypeIcon from '@mui/icons-material/MergeType';
 import { BundleLoader } from "../../../Components/Placeholder";
-
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 const { Option } = Select;
 
 function PriceAddCard(props) {
@@ -38,6 +38,11 @@ function PriceAddCard(props) {
   const [inputValue, setInputValue] = useState(props.priceFactorData?.p1 || "");
 const [inputValue2, setInputValue2] = useState(props.priceFactorData?.p2 || "");
 const [inputValue3, setInputValue3] = useState(props.priceFactorData?.p3 || "");
+const [inputValue4, setInputValue4] = useState(props.priceFactorData?.p3 || "");
+const [inputValue5, setInputValue5] = useState(props.priceFactorData?.p3 || "");
+const [inputValue6, setInputValue6] = useState(props.priceFactorData?.p3 || "");
+const [inputValue7, setInputValue7] = useState(props.priceFactorData?.p3 || "");
+const [inputValue8, setInputValue8] = useState(props.priceFactorData?.p3 || "");
 useEffect(() => {
   if (props.priceFactorData) {
     if (props.priceFactorData.p1) {
@@ -49,6 +54,22 @@ useEffect(() => {
     if (props.priceFactorData.p3) {
       setInputValue3(props.priceFactorData.p3);
     }
+    if (props.priceFactorData.p3) {
+      setInputValue4(props.priceFactorData.p4);
+    }
+    if (props.priceFactorData.p3) {
+      setInputValue5(props.priceFactorData.p5);
+    }
+    if (props.priceFactorData.p3) {
+      setInputValue6(props.priceFactorData.p6);
+    }
+    if (props.priceFactorData.p3) {
+      setInputValue7(props.priceFactorData.p7);
+    }
+    if (props.priceFactorData.p3) {
+      setInputValue8(props.priceFactorData.p8);
+    }
+
   }
 }, [props.priceFactorData]);
   useEffect(() => {
@@ -167,10 +188,61 @@ orgId:props.orgId,
 suppliesId:props.particularDiscountData.suppliesId
      });
   };
-
-
-
-
+  const handleInputBlur4 = (p1,p2,e) => {
+    const value = e.target.value === '' ? '0' : e.target.value; 
+    setInputValue3(value);
+    sendInputPutRequest({ p3: value,
+      p1:p1,
+      p2:p2,
+userId:props.userId,
+orgId:props.orgId,
+suppliesId:props.particularDiscountData.suppliesId
+     });
+  };
+  const handleInputBlur5 = (p1,p2,e) => {
+    const value = e.target.value === '' ? '0' : e.target.value; 
+    setInputValue3(value);
+    sendInputPutRequest({ p3: value,
+      p1:p1,
+      p2:p2,
+userId:props.userId,
+orgId:props.orgId,
+suppliesId:props.particularDiscountData.suppliesId
+     });
+  };
+  const handleInputBlur6 = (p1,p2,e) => {
+    const value = e.target.value === '' ? '0' : e.target.value; 
+    setInputValue3(value);
+    sendInputPutRequest({ p3: value,
+      p1:p1,
+      p2:p2,
+userId:props.userId,
+orgId:props.orgId,
+suppliesId:props.particularDiscountData.suppliesId
+     });
+  };
+  const handleInputBlur7 = (p1,p2,e) => {
+    const value = e.target.value === '' ? '0' : e.target.value; 
+    setInputValue3(value);
+    sendInputPutRequest({ p3: value,
+      p1:p1,
+      p2:p2,
+userId:props.userId,
+orgId:props.orgId,
+suppliesId:props.particularDiscountData.suppliesId
+     });
+  };
+  const handleInputBlur8 = (p1,p2,e) => {
+    const value = e.target.value === '' ? '0' : e.target.value; 
+    setInputValue3(value);
+    sendInputPutRequest({ p3: value,
+      p1:p1,
+      p2:p2,
+userId:props.userId,
+orgId:props.orgId,
+suppliesId:props.particularDiscountData.suppliesId
+     });
+  };
 
   const handleChange = (index, key, value) => {
     if (key === 'suppliesPrice' || key === 'suppliesPriceB2C' || key === 'vat') {
@@ -279,7 +351,7 @@ suppliesId:props.particularDiscountData.suppliesId
       <div class="flex mb-8 flex-start ">
         <div className="flex w-[5rem] items-center">
      <Button  type="primary" onClick={handleAddRow} >
-      {translatedMenuItems[0]} {/* Add */}
+     <DataSaverOnIcon className="!text-icon"/> {translatedMenuItems[0]} {/* Add */}
       </Button>
       </div>
       {rows.map((row, index) => (
@@ -354,14 +426,14 @@ suppliesId:props.particularDiscountData.suppliesId
 </div>
       <div className=' flex sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">      
-            <div className="font-poppins font-bold text-xs md:w-[6.3rem]"> <CurrencyExchangeIcon className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[1]}</div>
-            <div className="font-poppins font-bold text-xs md:w-[7.9rem]">  <CurrencyExchangeIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]}(B2B)</div>
-            <div className="md:w-[7.8rem] font-poppins font-bold text-xs">   {translatedMenuItems[9]}</div>
-            <div className="font-poppins font-bold text-xs md:w-[7.2rem] ">  <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[7]}
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-poppins font-bold sticky !text-lm z-10">      
+            <div className="w-[7.3rem] text-[#00A2E8] text-sm truncate max-md:w-[6.3rem]"> <CurrencyExchangeIcon className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[1]}</div>
+            <div className=" w-[8.5rem] truncate max-md:w-[7.9rem]">  <CurrencyExchangeIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]}(B2B)</div>
+            <div className=" w-[7.8rem] truncate max-md:w-[7.8rem] ">   {translatedMenuItems[9]}</div>
+            <div className="w-[7.2rem] truncates max-md:w-[7.2rem] ">  <FormatListNumberedIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[7]}
               {/* Catagory name */}
               </div>
-            <div className="md:w-[4.8rem] font-poppins font-bold text-xs">   < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[3]}</div>
+            <div className="w-[4.8rem]  truncate max-md:w-[4.8rem] ">   < MergeTypeIcon className='!text-icon text-[#c42847] '  /> {translatedMenuItems[3]}</div>
            
             <div className="w-12"></div>         
             </div>
@@ -372,8 +444,8 @@ suppliesId:props.particularDiscountData.suppliesId
                 <div className="flex rounded justify-between mt-1 bg-white  items-center py-ygap  hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] "
                 >
 
-                  <div className=" flex font-poppins items-center justify-start md:w-[6.2rem] border-l-2 h-8 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
-                    <div class="text-xs font-semibold  font-poppins cursor-pointer">
+                  <div className=" flex font-poppins items-center justify-start md:w-[7.2rem] border-l-2 h-8 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
+                    <div class="text-xs font-semibold ml-gap font-poppins cursor-pointer">
                     {/* {editsuppliesId === item.id ? (
                       <Select
                         classNames="w-32"
@@ -418,7 +490,7 @@ suppliesId:props.particularDiscountData.suppliesId
                      <div>  {/* Final */}</div> 
                     </div>
                     </div>
-                  <div className=" flex items-center justify-start h-8 ml-gap  bg-[#eef2f9] md:w-[7.4rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                  <div className=" flex items-center justify-start h-8 ml-gap  bg-[#eef2f9] md:w-[6.4rem] max-sm:flex-row w-full max-sm:justify-between  ">
                   <div className=" text-xs  font-poppins">
                       <div> {item.sCategoryName}</div>
                     </div>
@@ -508,49 +580,112 @@ suppliesId:props.particularDiscountData.suppliesId
         </div>
       </div>
       <Suspense fallback={<BundleLoader/>}>
+
+  <div className="flex flex-col mt-2">
+  <div class=" flex w-[35%]">
 <div>
-  <div className="flex justify-between mt-2">
-  <div class="text-base font-semibold w-40 ">P-1</div>
-  <div class="text-base font-semibold w-40 ">P-2</div>
-  <div class="text-base font-semibold w-40 ">P-3</div>
-  </div>
- 
-  <div className="flex justify-between mt-1">
-<div className="w-36" >
-                                           <input
+<div class="text-base font-semibold w-40 ">P-1(%)</div>                       
+   <input
             id="p1"
             type="text"
             className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             defaultValue={inputValue}
             onBlur={(e) => handleInputBlur(props.priceFactorData.p2,props.priceFactorData.p3,e)}
             onChange={(e) => setInputValue(e.target.value)}
-           placeholder="Enter number of P-1"
+           placeholder="Input Factor"
           />
           </div> 
-          <div className="w-36" >
-                                           <input
+          <div >
+          <div class="text-base font-semibold w-40 ">P-2(%)</div>
+         <input
             id="p2"
             type="text"
             className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             defaultValue={inputValue2}
             onBlur={(e) => handleInputBlur2(props.priceFactorData.p1,props.priceFactorData.p3,e)}
             onChange={(e) => setInputValue2(e.target.value)}
-           placeholder="Enter number of P-2"
+           placeholder="Input Factor"
           />
           </div> 
-          <div className="w-36" >
-                                           <input
+          <div  >
+                                       
+          <div class="text-base font-semibold w-40 ">P-3(%)</div> 
+             <input
             id="p3"
             type="text"
             className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
             defaultValue={inputValue3}
             onBlur={(e) => handleInputBlur3(props.priceFactorData.p1,props.priceFactorData.p2,e)}
             onChange={(e) => setInputValue3(e.target.value)}
-           placeholder="Enter number of P-3"
+           placeholder="Input Factor"
           />
           </div> 
           </div>
-               
+          <div class=" flex mt-2 w-[35%]">
+          <div >
+          <div class="text-base font-semibold w-40 ">P-4(%)</div>     
+           <input
+            id="p4"
+            type="text"
+            className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+            defaultValue={inputValue4}
+            onBlur={(e) => handleInputBlur4(props.priceFactorData.p1,props.priceFactorData.p4,e)}
+            onChange={(e) => setInputValue4(e.target.value)}
+           placeholder="Input Factor"
+          />
+          </div> 
+          <div >
+          <div class="text-base font-semibold w-40 ">P-5(%)</div>   
+                      <input
+            id="p5"
+            type="text"
+            className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+            defaultValue={inputValue5}
+            onBlur={(e) => handleInputBlur5(props.priceFactorData.p1,props.priceFactorData.p5,e)}
+            onChange={(e) => setInputValue5(e.target.value)}
+           placeholder="Input Factor"
+          />
+          </div> 
+          <div>
+          <div class="text-base font-semibold w-40 ">P-6(%)</div>   
+             <input
+            id="p6"
+            type="text"
+            className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+            defaultValue={inputValue6}
+            onBlur={(e) => handleInputBlur6(props.priceFactorData.p1,props.priceFactorData.p6,e)}
+            onChange={(e) => setInputValue6(e.target.value)}
+           placeholder="Input Factor"
+          />
+          </div> 
+          </div>
+          <div class=" flex mt-2  w-[35%]">
+          <div >
+          <div class="text-base font-semibold w-40 ">P-7(%)</div>
+            <input
+            id="p7"
+            type="text"
+            className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+            defaultValue={inputValue7}
+            onBlur={(e) => handleInputBlur7(props.priceFactorData.p1,props.priceFactorData.p7,e)}
+            onChange={(e) => setInputValue7(e.target.value)}
+           placeholder="Input Factor"
+          />
+          </div> 
+          <div >
+          <div class="text-base font-semibold w-40 ">P-8(%)</div>    
+             <input
+            id="p8"
+            type="text"
+            className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
+            defaultValue={inputValue8}
+            onBlur={(e) => handleInputBlur8(props.priceFactorData.p1,props.priceFactorData.p8,e)}
+            onChange={(e) => setInputValue8(e.target.value)}
+           placeholder="Input Factor"
+          />
+          </div> 
+         
+             </div>  
 </div>
 </Suspense>
     </div>

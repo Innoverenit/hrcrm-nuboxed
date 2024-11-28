@@ -161,15 +161,15 @@ const handleSave = (item) => {
                 >
                   <div class=" flex  flex-nowrap justify-evenly">
                 
-                    <FastField name="imageId" component={PostImageUpld} />
+                    <FastField className="mr-2" name="imageId" component={PostImageUpld} />
                
                     <div>
-                      <div class=" flex justify-between max-sm:flex-col">
+                      <div class="ml-2 flex justify-between max-sm:flex-col">
                
                             {/* name="salutation"
                            */}
                         <div class=" w-wk max-sm:w-full">
-                        <div class=" text-xs font-bold font-poppins"> 
+                        <div class="ml-2 text-xs font-bold font-poppins"> 
                       {/* Name             */}
                       {translatedMenuItems[0]}
                           </div>
@@ -183,11 +183,8 @@ const handleSave = (item) => {
                             component={InputComponent}
                             inlineLabel
                           />
-                        </div>
-                      </div>                  
-                     
-                    </div>
-                    <Button
+                       
+                        <Button
                   type="primary"
                   htmlType="submit"
             loading={props.addingSuppliesBrand}
@@ -197,6 +194,12 @@ const handleSave = (item) => {
                   {/*                     
                     Create */}
                 </Button>
+                </div>
+
+                      </div>                  
+                     
+                    </div>
+                 
                   </div>                                                                                                                                                                            
                 </div>            
               </div>                            

@@ -1,16 +1,8 @@
 import React,{useEffect,useState} from 'react'
 import { connect } from 'react-redux'
-
 import {getLocationSupplies,addLocationSuppliesValue} from "../../Main/Supplies/SuppliesAction"
-//import AddWarantyDrawerModal from "../Waranty/AddWarantyDrawerModal"
-import ButtonGroup from "antd/lib/button/button-group";
-import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
- import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
-import { Tooltip, Button,Input,message, Popconfirm, Select,Switch } from "antd";
-import dayjs from "dayjs";
+import {  Button,Input, Select, } from "antd";
 import { bindActionCreators } from "redux";
-
-
 
 
 const { Option } = Select;
@@ -58,6 +50,25 @@ console.log(inputValues)
   };
 
   useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "658",//0 Location
+          "260",//1 Units
+           "154",//Submit
+        
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+  useEffect(() => {
     props.getLocationSupplies(props.orgId,props.particularDiscountData.suppliesId)
 }, []);
 
@@ -71,28 +82,20 @@ useEffect(() => {
   }
 }, [props.locationSupplies]);
 
-
-
- 
-
-
-
- 
-
   return (
     <>
     <div className='flex sticky z-auto w-[48%]'>
             <div className="rounded m-1 p-1 w-full  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className="flex w-[100%]  p-1 bg-transparent font-bold sticky text-xs font-poppins  z-10">
+                <div className="flex w-[100%]  p-1 bg-transparent font-bold sticky !text-lm font-poppins  z-10">
                     <div className=""></div>
-                    <div className="md:w-[13.12rem]">
+                    <div className="w-[13.12rem] text-[#00A2E8] text-sm truncate max-md:w-[13.12rem]">{translatedMenuItems[0]}
                     Location
-                      {/* <FormattedMessage id="app.manufactureid" defaultMessage="Manufacture ID" /> */}
+         
                       </div>
 
-                      <div className="md:w-[22.12rem]">
+                      <div className="w-[22.12rem]  truncate max-md:w-[22.12rem]">{translatedMenuItems[1]}
                    Units
-                      {/* <FormattedMessage id="app.manufactureid" defaultMessage="Manufacture ID" /> */}
+             
                       </div>
                 
                   
@@ -102,10 +105,10 @@ useEffect(() => {
                 {locationData.map((item, index) => {
                     return (
                         <div key={index}>
-                            <div className="flex rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                                <div className="flex  md:w-[12.1rem] max-sm:w-full ">
+                            <div className="flex rounded mt-1 bg-white  items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                <div className="flex w-[15rem] items-center border-l-2 border-green-500 bg-[#eef2f9] h-8 max-md:w-[12.1rem] max-sm:w-full ">
                                     <div 
-                                    className="flex justify-between text-xs text-[#1890ff] underline font-semibold font-poppins cursor-pointer"
+                                    className="flex justify-between ml-gap text-xs text-[#1890ff] underline font-semibold font-poppins cursor-pointer"
                                    
                                     >
                                         {item.locationName}
@@ -113,7 +116,7 @@ useEffect(() => {
                                 </div>
 
                               
-                                <div className="flex  md:w-[12.1rem] max-sm:w-full ">
+                                <div className="flex w-[12.1rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-center   max-md:w-[12.1rem] max-sm:w-full ">
                                     <div 
                                     className="flex justify-between text-xs text-[#1890ff] underline font-semibold font-poppins cursor-pointer"
                                    
@@ -132,31 +135,12 @@ useEffect(() => {
                 type="primary"
                 style={{ marginTop: "10px" }}
                 onClick={() => handleSubmit(item.locationDetailsId,item)}
-              >
-                Submit
+              >{translatedMenuItems[2]}
+                {/* Submit */}
               </Button>
             )}
             </div>
             </div>
-
-
-
-                              
-                              
-
-
-                                
-
-
-
-                              
-
-
-
-
-                                               
-
-                            
 
                             </div>
                         </div>
