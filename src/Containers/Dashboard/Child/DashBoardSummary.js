@@ -132,7 +132,7 @@ const DashBoardSummary=(props) =>{
       <div class="flex flex-col  w-[14rem] items-center min-">
         <h2 className="text-xl font-bold font-poppins mb-2 uppercase">  <FactCheckIcon className='!text-icon mr-1 text-[#b02e0c]'/>{translatedMenuItems[0]}<span  className="font-bold text-[tomato] ml-1"> 
           {`${props.taskperCount.totalTask  ?? ""} `}</span></h2>
-          <div className=" overflow-x-auto overflow-y-hidden h-[89vh]">
+          <div className=" overflow-x-auto overflow-y-hidden h-[89vh] min-w-[11rem]">
         <InfiniteScroll
         dataLength={props.taskDashboard.length}
         next={handleLoadMore}
@@ -143,7 +143,7 @@ const DashBoardSummary=(props) =>{
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
       >
       {props.fetchingTaskDashboard ? (
-        <div className="flex justify-center items-center h-full ">
+        <div className="flex justify-center items-center h-full min-w-[12rem]">
           <BundleLoader/> 
           <div>{translatedMenuItems[1]}</div>
           {/* Spinner component */} 

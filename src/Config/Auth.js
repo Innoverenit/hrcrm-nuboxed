@@ -1,5 +1,3 @@
-
-
 // Nubox
 // const login_url = "https://hrnuboxed.azurewebsites.net";
 // const base_url = "https://hrnuboxed.azurewebsites.net/api/v1";

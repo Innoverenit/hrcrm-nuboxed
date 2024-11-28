@@ -39,6 +39,7 @@ import ShopIcon from '@mui/icons-material/Shop'
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import OrderTableC from "./OrderTableC"; //4
 import ProcureCommerceShippedOrder from "./AccountOrderTab/ProcureCommerceShippedOrder";
+import AddAccountOpportunityModal from "./AccountQuotationDrawer";
 
 
 const CompleteOrderTable= lazy(() =>import("./AccountOrderTab/CompleteOrderTable"));
@@ -48,7 +49,6 @@ const AddSupplierDocumentModal = lazy(() => import("../../Suppliers/Child/Suppli
 const AddCustomerProcurementModal = lazy(() => import("./AccountOrderTab/AddCustomerProcurementModal"));
 const AccountInvoiceTable = lazy(() => import("./AccountInvoiceTable"));//5
 const ErpNote = lazy(() => import("../../ErpNote/ErpNote"));
-const AddAccountOpportunityModal = lazy(() => import("./AddAccountOpportunityModal"));
 const LinkedOpportunityTable = lazy(() => import("./LinkedOpportunityTable"));//3
 const CustomerProcurementTable = lazy(() => import("./AccountOrderTab/CustomerProcurementTable"));//2
 const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Table"));
