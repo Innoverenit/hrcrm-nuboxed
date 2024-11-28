@@ -14,6 +14,11 @@ const initialState = {
   fetchingContactCountError: false,
   contactCount:{},
 
+  fetchingDocumentsCount: false,
+  fetchingDocumentsCountError: false,
+  documentsByCount:{},
+
+
   fetchingWonCusmWeightedValue: false,
   fetchingWonCusmWeightedValueError: false,
   WonCustomerWeighted: {},
@@ -816,6 +821,24 @@ export const customerReducer = (state = initialState, action) => {
         fetchingDocumentsByCustomerIdError: true,
       };
 
+
+      case types.GET_DOCUMENTS_COUNT_REQUEST:
+      return {
+        ...state,
+        fetchingDocumentsCount: true,
+      };
+    case types.GET_DOCUMENTS_COUNT_SUCCESS:
+      return {
+        ...state,
+        fetchingDocumentsCount: false,
+        documentsByCount: action.payload,
+      };
+    case types.GET_DOCUMENTS_COUNT_FAILURE:
+      return {
+        ...state,
+        fetchingDocumentsCount: false,
+        fetchingDocumentsCountError: true,
+      };
 
       case types.HANDLE_UPDATE_USER_MODAL:
       return { ...state, updateUserModal: action.payload };

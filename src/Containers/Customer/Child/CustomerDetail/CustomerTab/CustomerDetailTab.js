@@ -180,6 +180,8 @@ class ContactDetailTab extends Component {
           /> </div>;
           case "3":
               return  <div>   <LinkedDocuments
+              uniqueId={this.props.customer.customerId}
+              type={"customer"}
               translateText={this.props.translateText}
               selectedLanguage={this.props.selectedLanguage}
             translatedMenuItems={this.props.translatedMenuItems}
@@ -329,6 +331,11 @@ translatedMenuItems={this.props.translatedMenuItems}
                   {this.state.translatedMenuItems[2]}
                     {/* Documents */}
                   </span>
+                  <Badge
+                count={this.props.documentsByCount.CustomerDocumentDetails}
+                overflowCount={999}
+              > 
+                   </Badge>
                   {activeKey === "3" && (
                     <>
                      <Tooltip //title="Create"
@@ -525,6 +532,8 @@ translatedMenuItems={this.props.translatedMenuItems}
 
           <AddDocumentModals
            customerId={customerId}
+           uniqueId={this.props.customer.customerId}
+           type={"customer"}
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
             selectedLanguage={this.props.selectedLanguage}
@@ -615,7 +624,8 @@ const mapStateToProps = ({ auth, customer,activity }) => ({
   addInvoiceModal: customer.addInvoiceModal,
   callActivityModal:activity.callActivityModal,
   openCampaigndrwr:customer.openCampaigndrwr,
-  contactCount:customer.contactCount
+  contactCount:customer.contactCount,
+  documentsByCount:customer.documentsByCount
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

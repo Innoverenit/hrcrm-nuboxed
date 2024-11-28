@@ -48,6 +48,7 @@ import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import CustomerContactDrawerModal from "./CustomerContactDrawerModal";
 import CustomerOpportunityDrawerModal from "./CustomerOpportunityDrawerModal";
+import EmptyPage from "../../../Main/EmptyPage";
 const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
 const AddCustomerEmailDrawerModal =lazy(()=> import("../UpdateCustomer/AddCustomerEmailDrawerModal"));
 const AddCustomerNotesDrawerModal =lazy(()=> import("../CustomerDetail/AddCustomerNotesDrawerModal"));
@@ -261,7 +262,7 @@ const [rowdata, setrowdata] = useState("");
         height={"80vh"}
       > */}
       
-      { !props.fetchingCustomerInputSearchData && props.customerSearch.length === 0 ?<NodataFoundPage />:props.customerSearch.map((item,index) =>  {
+      { !props.fetchingCustomerInputSearchData && props.customerSearch.length === 0 ?<EmptyPage/>:props.customerSearch.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const countryCode = item.countryAlpha2Code
@@ -733,7 +734,6 @@ const mapStateToProps = ({
   employees: employee.employees,
   countries: auth.countries,
   customerSearch: customer.customerSearch,
-  fetchingCustomerInputSearchData: customer.fetchingCustomerInputSearchData,
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
 });

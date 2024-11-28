@@ -17,13 +17,13 @@ import { BundleLoader } from "../../../../../Components/Placeholder";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import ActivityListData from '../../../../Activity/ActivityListData';
 import LinkedContact from '../../../../Customer/Child/CustomerDetail/CustomerTab/ContactTab/LinkedContact';
+import LinkedDocuments from '../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments';
 const InvestorActivityModal=lazy(()=>import("../InvestorActivity/InvestorActivityModal"));
 const InvestorTimeLine=lazy(()=>import("../InvestorActivity/InvestorTimeLine"));
 const CreateDealModal=lazy(()=>import("../../../../Deal/Child/CreateDealModal"));
 const InvestorDeals=lazy(()=>import("./InvestorDeals"));
 const AddDocumentModals=lazy(()=>import("../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals"));
 const AddCustomerContactModal=lazy(()=>import("../../../../Customer/Child/CustomerDetail/CustomerTab/ContactTab/AddCustomerContactModal"));
-const InvestorLinkedDocuments =lazy(()=>import("./InvestorDoc/InvestorLinkedDocuments"));
 const AddInvestorContactModal=lazy(()=>import("./InvestorContact/AddInvestorContactModal"));
 
 const TabPane = StyledTabs.TabPane;
@@ -114,9 +114,13 @@ const InvestorDetailTab = (props) => {
             </div>;
       case "2":
         return  <div>
-           <InvestorLinkedDocuments investorDetails={props.investorDetails}
-               translateText={props.translateText}
-               selectedLanguage={props.selectedLanguage}/>
+         <LinkedDocuments
+              uniqueId={props.investorDetails.investorId}
+              type={"investor"}
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}
+            translatedMenuItems={props.translatedMenuItems}
+             /> 
         </div>;
     case "3":
       return  <div>
@@ -248,6 +252,11 @@ selectedLanguage={props.selectedLanguage}
                 {translatedMenuItems[1]}  
                   {/* Documents */}
                 </span>
+                <Badge
+                count={props.documentsByCount.CustomerDocumentDetails}
+                overflowCount={999}
+              > 
+                   </Badge>
                 {activeKey === "2" && (
                   <>
                   
@@ -267,9 +276,7 @@ selectedLanguage={props.selectedLanguage}
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              {/* <InvestorLinkedDocuments investorDetails={props.investorDetails}
-               translateText={props.translateText}
-               selectedLanguage={props.selectedLanguage}/> */}
+             
             </Suspense>
           </TabPane>
           <TabPane
@@ -442,6 +449,8 @@ investorDetails={props.investorDetails}
       />
         <AddDocumentModals
         investorId={investorId}
+        uniqueId={investorId}
+        type={"investor"}
           documentUploadModal={documentUploadModal}
           handleDocumentUploadModal={handleDocumentUploadModal}
           translateText={props.translateText}
@@ -495,7 +504,8 @@ const mapStateToProps = ({ auth, investor,activity, customer, opportunity,deal }
   investorActivityModal:investor.investorActivityModal,
 contactsbyInvestorId:investor.contactsbyInvestorId,
 opencreateDealModal:investor.opencreateDealModal,
-contactCount:customer.contactCount
+contactCount:customer.contactCount,
+documentsByCount:customer.documentsByCount
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

@@ -93,7 +93,7 @@ function BarCodeViewer(props) {
                     <div class="text-xs font-semibold  font-poppins cursor-pointer">
                     
                   <div className=" text-xs  font-poppins">
-                      <div> {item.currencyName}</div>
+                      <div> {item.barCode}</div>
                     </div>
                     </div>
                   </div>
