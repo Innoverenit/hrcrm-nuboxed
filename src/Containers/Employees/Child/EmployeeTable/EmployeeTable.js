@@ -41,6 +41,7 @@ const EmployeeDrawerForAdmin =lazy(()=>import("./EmployeeDrawer/EmployeeDrawerFo
 
 function EmployeeTable(props) {
   const [page, setPage] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
   const [rowData, setRowData] = useState("");
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
@@ -72,7 +73,7 @@ function EmployeeTable(props) {
     };
    fetchMenuTranslations();
   }, [props.selectedLanguage]);
-  
+ 
   useEffect(() => {
     window.addEventListener('error', e => {
       if (e.message === 'ResizeObserver loop limit exceeded' || e.message === 'Script error.') {
@@ -254,7 +255,7 @@ function EmployeeTable(props) {
     />
   ) : (
     <div>
-     <div class=" h-h86 overflow-auto overflow-x-auto">
+     <div class=" ">
         <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                 <div className=" flex  w-[100%] justify-between p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end z-10 max-sm:hidden">
@@ -273,6 +274,7 @@ function EmployeeTable(props) {
                     <div className="max-md:w-[11.4rem] w-[11.4rem] "><BusinessIcon className="!text-icon mr-1 text-[#f28482]"/> {translatedMenuItems[6]}</div>
                     {/* Multi Org */}               
                 </div>
+              
                 {props.employees.map((item) => {
                     const currentdate = dayjs().format("DD/MM/YYYY");
                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -423,6 +425,7 @@ function EmployeeTable(props) {
                         </div>
                     )
                 })}
+             
             </div>
             <Suspense fallback={<BundleLoader/>}>
             <EmployeeDrawerForAdmin

@@ -152,10 +152,7 @@ const LeadsTeamHotcard = (props) => {
   } = props;
 
   if (loading) {
-    return   <div className="custom-loader">
-    <div className="loader !block"> </div>
-<div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
-</div>;
+    return <BundleLoader />;
   }
 
    return (

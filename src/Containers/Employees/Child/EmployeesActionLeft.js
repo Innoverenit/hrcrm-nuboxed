@@ -239,7 +239,7 @@ const EmployeesActionLeft = (props) => {
         </div>
         <div class=" flex items-center ml-4 border border-gray-400"   >
                   <select
-                  className=" w-auto h-[5vh] m-auto"
+                  className=" w-auto h-[3vh] m-auto"
                     // placeholder="Select Location"
                     //  defaultValue={partners}
                     // style={{ width: "auto",margin:"auto", height:"5vh" }}
@@ -257,7 +257,7 @@ const EmployeesActionLeft = (props) => {
                   </select>
                 </div>
                 <div class=" flex items-center ml-4 border border-gray-400" >
-                  <select  className=" w-auto h-[5vh] m-auto"
+                  <select  className=" w-auto h-[3vh] m-auto"
                     // placeholder="Select Location"
                     //  defaultValue={partners}
                     // style={{ width: "auto",margin:"auto"}}
