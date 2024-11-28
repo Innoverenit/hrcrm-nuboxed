@@ -302,7 +302,7 @@ const LeadsActionLeft = (props) => {
           </Tag>
         </Badge>
       </div>
-      <div class=" w-64 max-sm:w-24">
+      <div class="  w-[28rem] max-sm:w-28">
         <Input
           placeholder="Search by Name or Sector"
           width={"100%"}

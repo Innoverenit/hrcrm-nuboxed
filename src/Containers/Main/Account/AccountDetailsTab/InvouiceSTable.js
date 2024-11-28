@@ -12,6 +12,8 @@ import { base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import CategoryIcon from '@mui/icons-material/Category';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 const { Option } = Select;
 
 function InvouiceSTable(props) {
@@ -152,16 +154,35 @@ function InvouiceSTable(props) {
             <div className=' flex sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold !text-lm font-poppins sticky z-10">
-                    <div class="w-[8.5rem]">{translatedMenuItems[11]} </div>
-                    <div class="w-[8.5rem]">{translatedMenuItems[0]}</div>
-                    <div class="w-[8.5rem]">{translatedMenuItems[12]}</div>
-                    <div className=" md:w-[5.1rem]">{translatedMenuItems[4]}</div>
-                        <div className=" md:w-[5.1rem]">{translatedMenuItems[2]}</div>
-                        <div className=" md:w-[5.01rem] ">Additional</div>
-                        <div className="md:w-[13rem]">{translatedMenuItems[7]}</div>
+                    <div class="w-[8.5rem] text-[#00A2E8]">
+                   
+                    <CategoryIcon className="!text-icon text-[#00A2E8]  text-sm"  />
+                      {translatedMenuItems[11]} 
+                      </div>
+                    <div class="w-[8.5rem]">
+                    <ApartmentIcon className="!text-icon text-[#1e7a54]   "/> 
+                      {translatedMenuItems[0]}
+                      </div>
+                    <div class="w-[8.5rem]">
+                      {translatedMenuItems[12]}
+                      </div>
+                    <div className=" md:w-[5.1rem]">
+                      {translatedMenuItems[4]}
+                      </div>
+                        <div className=" md:w-[5.1rem]">
+                          {translatedMenuItems[2]}
+                          </div>
+                        <div className=" md:w-[5.01rem] ">
+                          Additional
+                          </div>
+                        <div className="md:w-[13rem]">
+                          {translatedMenuItems[7]}
+                          </div>
                        
-                        {/* <div className="md:w-[3.8rem]">{translatedMenuItems[9]} ID</div>
-                        <div className="md:w-[3.8rem]">{translatedMenuItems[8]}</div> */}
+                        {/* <div className="md:w-[3.8rem]">
+                        {translatedMenuItems[9]} ID</div>
+                        <div className="md:w-[3.8rem]">
+                        {translatedMenuItems[8]}</div> */}
                     </div>
                     <div class="">
                         {/* <InfiniteScroll
@@ -180,7 +201,7 @@ function InvouiceSTable(props) {
                                         <>
                                             <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1" >
                                                 <div class=" flex flex-row justify-between items-center w-wk max-sm:flex-col">
-                                                    <div className=" flex items-center font-medium justify-between  ml-gap bg-[#eef2f9] h-8 w-[10.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className=" flex items-center font-medium justify-between  ml-gap h-8  flex-row w-[6.2rem] border-l-2 border-green-500 bg-[#eef2f9] mt-1 ">
                                                         <div class=" font-normal max-xl:text-[0.65rem] text-xs  font-poppins flex items-center">
                                                            {item.newProductId}
                                                            
@@ -192,34 +213,34 @@ function InvouiceSTable(props) {
                                                                 </div>
                                                             ) : null} */}
                                                     </div>
-                                                    <div className="flex items-center ml-gap bg-[#eef2f9] h-8 w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
+                                                    <div className="flex items-center ml-gap mt-1 bg-[#eef2f9] h-8 w-[5.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins truncate">
 
                                                             {item.productFullName}
                                                         </div>
                                                     </div>
-                                                    <div className="flex items-center ml-gap bg-[#eef2f9] h-8 w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className="flex items-center ml-gap mt-1 bg-[#eef2f9] h-8 w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
                                                             {item.newOrderNo}
                                                         </div>
                                                     </div>
-                                                    <div className="flex items-center ml-gap bg-[#eef2f9] h-8  w-[7.21rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className="flex items-center ml-gap mt-1 bg-[#eef2f9] h-8  w-[7.21rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                     {item.unit}
                                                     </div>
-                                                    <div className="flex items-center ml-gap bg-[#eef2f9] h-8 w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className="flex items-center ml-gap mt-1 bg-[#eef2f9] h-8 w-[7.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
                                                             {item.price}
                                                         </div>
                                                     </div>
-                                                    <div className="flex items-center ml-gap bg-[#eef2f9] h-8  w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className="flex items-center ml-gap mt-1 bg-[#eef2f9] h-8  w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
                                                             {item.additional}
                                                         </div>
                                                     </div>
-                                                    <div className="flex items-center ml-gap bg-[#eef2f9] h-8  w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
+                                                    <div className="flex items-center ml-gap mt-1 bg-[#eef2f9] h-8  w-[14.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
                                                         <div class="  max-xl:text-[0.65rem] text-xs font-poppins">
 
                                                             {item.totalPrice}

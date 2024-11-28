@@ -214,20 +214,32 @@ const LeadsTeamCardList = (props) => {
     <>
     <div className=' flex  justify-center  sticky  z-auto'>
      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex  w-[92%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
-      <div className=" w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-white bg-red-600  justify-center "> {translatedMenuItems[0]}</div>
-        <div className=" w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[1]}</div>
-        <div className=" w-[6.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className=" w-[9.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[2]} #</div>
-        <div className=" w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[3]}</div>
-        <div className=" w-[21.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">{translatedMenuItems[4]}</div>
-        <div className=" w-[8.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[5]}</div> 
-        <div className= " w-[8.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[6]}</div> 
-        <div className= " w-[8.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
-        <div className=" w-[9.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[8]} </div>
-        <div className=" w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
-        <div className=" w-[5.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[10]}</div>
-        <div className=" w-[6.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[11]}</div>
+      <div className=" flex  w-[92%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
+      <div className=" w-[10.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem] text-sm   text-white bg-red-600  justify-center "> 
+        {translatedMenuItems[0]}</div>
+        <div className=" w-[7.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  ">
+          {translatedMenuItems[1]}</div>
+        <div className=" w-[6.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] "></div>
+        <div className=" w-[9.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem]  ">
+          {translatedMenuItems[2]} #</div>
+        <div className=" w-[6.8rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] ">
+          {translatedMenuItems[3]}</div>
+        <div className=" w-[21.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]   ">
+          {translatedMenuItems[4]}</div>
+        <div className=" w-[8.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] ">
+          {translatedMenuItems[5]}</div> 
+        <div className= " w-[8.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] ">
+          {translatedMenuItems[6]}</div> 
+        <div className= " w-[8.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] ">
+          {translatedMenuItems[7]}</div> 
+        <div className=" w-[9.2rem] max-xl:w-[6.2rem] ">
+          {translatedMenuItems[8]} </div>
+        <div className=" w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] ">
+          {translatedMenuItems[9]}</div>
+        <div className=" w-[5.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem] ">
+          {translatedMenuItems[10]}</div>
+        <div className=" w-[6.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] ">
+          {translatedMenuItems[11]}</div>
         <div className="w-12"></div>
 
       </div>
@@ -275,7 +287,7 @@ const LeadsTeamCardList = (props) => {
               <div
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-               <div class="flex flex-row items-center w-[6.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
+               <div class=" flex border-l-2 border-green-500 bg-[#eef2f9] h-8 mt-1  flex-row items-center w-[7.2rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[4.5rem] max-lg:w-[4.5rem]">                
                     <div>
                       <ButtonGroup>
                         <RoleButton
@@ -319,7 +331,7 @@ const LeadsTeamCardList = (props) => {
                       </ButtonGroup>
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col w-[9rem] max-xl:w-[9.5rem] max-lg:w-[5rem]   max-sm:w-auto">
+                  <div className=" flex  truncate bg-[#eef2f9] h-8 mt-1 ml-gap items-center font-medium flex-col w-[9rem] max-xl:w-[9.5rem] max-lg:w-[5rem]   max-sm:w-auto">
                     <div className="flex max-sm:w-full max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                       <div>
                        
@@ -357,7 +369,7 @@ const LeadsTeamCardList = (props) => {
                   
                 </div>
                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                  <div className=" flex font-medium flex-col w-[5.6rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
+                  <div className=" flex items-center truncate bg-[#eef2f9] h-8 mt-1 ml-gap font-medium flex-col w-[13.6rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[5.6rem] max-lg:w-[4.6rem] ">
          
                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                       {item.countryDialCode && item.phoneNumber
@@ -366,7 +378,7 @@ const LeadsTeamCardList = (props) => {
                  
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col w-[3.5rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-8 ">
+                  <div className=" flex items-center bg-[#eef2f9] h-8 mt-1 ml-gap font-medium flex-col w-[3.5rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-8 ">
                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                      
                        <CountryFlag1 countryCode={countryCode} />
@@ -375,15 +387,15 @@ const LeadsTeamCardList = (props) => {
                      
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col  w-[10rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[8rem] max-lg:w-[3.03rem] ">
+                  <div className=" flex items-center bg-[#eef2f9] h-8 mt-1 ml-gap font-medium flex-col  w-[10rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[8rem] max-lg:w-[3.03rem] ">
                     <div class=" text-xs    font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate max-sm:text-sm">
                       {item.companyName || "None"}
                     </div>
                   </div>
                 </div>
-                <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                <div class="flex  max-sm:justify-between max-sm:w-wk items-center">
                  
-                  <div class="rounded-full bg-white  h-5 cursor-pointer w-8 justify-cente">
+                  <div class=" flex items-center bg-[#eef2f9] h-8 mt-1 ml-gap    cursor-pointer w-8 ">
                     {item.url !== null ? (
                       <Tooltip title={item.url}>
                         <div class="cursor-pointer"
@@ -402,25 +414,25 @@ const LeadsTeamCardList = (props) => {
 
                   <div className=" flex font-medium flex-col  w-[5.01rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.01rem] max-lg:w-[3rem] max-lg:max-w-[10ch] truncate ">
            
-                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                    <div class="flex text-xs items-center  font-poppins bg-[#eef2f9] h-8 mt-1 ml-gap  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                       {item.sector}
                     </div>
                   </div>
                   <div className=" flex font-medium flex-col  w-[6rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3rem] max-lg:w-[3.01rem]">
            
-           <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+           <div class="flex items-center text-xs bg-[#eef2f9] h-8 mt-1 ml-gap   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
              {item.source}
            </div>
          </div>
-         <div className=" flex font-medium flex-col  w-[5.5rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.02rem] max-lg:w-[3.02rem]">
+         <div className=" flex items-center font-medium flex-col  bg-[#eef2f9] h-8 mt-1 ml-gap w-[5.5rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[3.02rem] max-lg:w-[3.02rem]">
            
-           <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+           <div class="flex items-center text-xs bg-[#eef2f9] h-8 mt-1 ml-gap   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
              {item.lob}
            </div>
          </div>
                 </div>
                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                  <div className=" flex font-medium flex-col w-[2.02rem] max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[2.5rem] max-lg:w-[2rem] ">
+                  <div className=" flex  items-centerfont-medium flex-col w-[2.02rem] bg-[#eef2f9] h-8 mt-1 ml-gap max-sm:flex-row  max-sm:w-auto max-sm:justify-between max-xl:w-[2.5rem] max-lg:w-[2rem] ">
                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                       <div>
                       {item.assignedTo === null ? (
@@ -443,7 +455,7 @@ const LeadsTeamCardList = (props) => {
                       </div>
                     </div>
                   </div>
-                     <div className=" flex font-medium flex-col w-[4rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
+                     <div className=" flex items-center font-medium flex-col w-[4rem] bg-[#eef2f9] h-8 mt-1 ml-gap   max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                       {item.assignedBy && (
                     <div>
                     {/* <Tooltip title={item.assignedBy}> */}
@@ -462,7 +474,7 @@ const LeadsTeamCardList = (props) => {
                     </div>
                     )}
                   </div>
-                  <div className=" flex font-medium flex-col w-[3.11rem]  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
+                  <div className=" flex items-center font-medium flex-col w-[3.11rem]  bg-[#eef2f9] h-8 mt-1 ml-gap  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2.75rem] max-lg:w-[2.75rem]">
                     <div>
                     {/* <Tooltip title={item.ownerName}> */}
                 <div class="max-sm:flex justify-end">
@@ -478,7 +490,7 @@ const LeadsTeamCardList = (props) => {
           {/* </Tooltip> */}
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col w-[2.1rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
+                  <div className=" flex items-center font-medium flex-col w-[2.1rem] bg-[#eef2f9] h-8 mt-1 ml-gap  max-sm:flex-row max-sm:w-auto  max-sm:justify-between max-xl:w-[2rem] max-lg:w-[2rem] ">
                     <div class=" text-xs  font-poppins"></div>
                     <div>
     {item.companyName ? (
@@ -501,9 +513,10 @@ const LeadsTeamCardList = (props) => {
   </div>
                   </div>
                   </div>
-                  <div class="flex max-sm:justify-end max-sm:w-wk items-center"> 
-                  
-                    <div >
+                  <div class="flex max-sm:justify-end max-sm:w-wk items-center "> 
+                  <div className="flex items-center bg-[#eef2f9] h-8 mt-1 ml-gap " >
+                    
+                  <div >
                       <Tooltip title="Notes">
                         <NoteAltIcon
                          className=" !text-icon cursor-pointer text-green-800"
@@ -530,13 +543,6 @@ const LeadsTeamCardList = (props) => {
                         />
                       </Tooltip>
                     </div>
-                 
-
-                 
-                    
-                    
-                 
-                 
                     <div >
                       <Tooltip
                         overlayStyle={{ maxWidth: "300px" }}
@@ -589,6 +595,7 @@ const LeadsTeamCardList = (props) => {
                         </StyledPopconfirm>
                       </div>
                     )}
+                  </div>
                   
                </div>
                
