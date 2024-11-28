@@ -130,8 +130,8 @@ const DashBoardSummary=(props) =>{
     <div className=" container  mx-auto  p-2 flex rounded mt-1  bg-white h-[87vh]  overflow-x-auto overflow-y-hidden  ">
       {/* TASK */}
       <div class="flex flex-col  w-[14rem] items-center min-">
-        <h2 className="text-xl font-bold font-poppins mb-2 uppercase">  <FactCheckIcon className='!text-icon mr-1 text-[#b02e0c]'/>{translatedMenuItems[0]}<span  className="font-bold text-[tomato] ml-1"> 
-          {`${props.taskperCount.totalTask  ?? ""} `}</span></h2>
+        <div className="text-xl font-bold font-poppins mb-2 uppercase">  <FactCheckIcon className='!text-icon mr-1 text-[#b02e0c]'/>{translatedMenuItems[0]}<span  className="font-bold text-[tomato] ml-1"> 
+          {`${props.taskperCount.totalTask  ?? ""} `}</span></div>
           <div className=" overflow-x-auto overflow-y-hidden h-[89vh] min-w-[11rem]">
         <InfiniteScroll
         dataLength={props.taskDashboard.length}
@@ -145,7 +145,7 @@ const DashBoardSummary=(props) =>{
       {props.fetchingTaskDashboard ? (
         <div className="flex justify-center items-center h-full min-w-[12rem]">
           <BundleLoader/> 
-          <div>{translatedMenuItems[1]}</div>
+          {/* <div>{translatedMenuItems[1]}</div> */}
           {/* Spinner component */} 
         </div>
       ) : (
@@ -223,14 +223,14 @@ const DashBoardSummary=(props) =>{
       </InfiniteScroll>
     </div>
       </div>
-      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-1"></div> 
+      <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
 
       {/* QUOTATION */}
       <div class="flex flex-col w-[14rem]  items-center">
-  <h2 className="text-xl font-poppins font-bold mb-2 uppercase">  <LightbulbIcon className='!text-icon mr-1 text-[#84a59d]'/>
+  <div className="text-xl font-poppins font-bold mb-2 uppercase">  <LightbulbIcon className='!text-icon mr-1 text-[#84a59d]'/>
   {translatedMenuItems[2]} <span  className=" font-bold text-[tomato] ml-1"> 
       {`${props.quotationDashboardCount.countByUserId  ?? ""} `}</span>
-</h2>
+</div>
 <div className="h-[89vh] overflow-y-hidden">
         <InfiniteScroll
         dataLength={props.taskDashboard.length}
@@ -243,8 +243,10 @@ const DashBoardSummary=(props) =>{
       >
   {props.quotationDashboard.length === 0 &&props.fetchingQuotationDashboard? (
     <>
-     <BundleLoader/> 
-     <div>{translatedMenuItems[1]}</div>
+   <div className="flex justify-center items-center h-full min-w-[12rem]">
+          <BundleLoader/> 
+   
+        </div>
     </>
    
   ) : (
@@ -267,13 +269,13 @@ const DashBoardSummary=(props) =>{
   </div>
 </div>
 
-<div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-1"></div> 
+<div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
     
 
   {/* Re Order */}
   <div class="flex flex-col min-h-[89vh] w-[14rem] items-center">
-        <h2 className="text-xl font-poppins font-bold mb-2 uppercase"> <DynamicFeedIcon className='!text-icon mr-1 text-[#ef6f6c]'/>
-        {translatedMenuItems[4]}<span  className=" text-xl font-bold text-[tomato] ml-1">  0</span> </h2>
+        <div className="text-xl font-poppins font-bold mb-2 uppercase"> <DynamicFeedIcon className='!text-icon mr-1 text-[#ef6f6c]'/>
+        {translatedMenuItems[4]}<span  className=" text-xl font-bold text-[tomato] ml-1">  0</span> </div>
         {props.reOrderData.map((colleague, index) => (
           <div key={index} className="mb-2  p-1 ml-2 h-16 min-h-[5.25rem]  box-content border-2 border-[#00008b23] w-[11rem] min-w-[11rem]">
             <div className="flex justify-between">
@@ -288,15 +290,15 @@ const DashBoardSummary=(props) =>{
           </div>
         ))}
       </div>
-      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-1"></div> 
+      <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
          {/* Best Before */}
          <div class="flex flex-col w-[14rem] items-center">
-        <h2 className="text-xl font-bold font-poppins mb-2 uppercase"> <CategoryIcon className='!text-icon mr-1 text-[#7dcfb6]'
+        <div className="text-xl font-bold font-poppins mb-2 uppercase"> <CategoryIcon className='!text-icon mr-1 text-[#7dcfb6]'
               /> {translatedMenuItems[6]} <span  className="font-bold text-[tomato] ml-1">
-        {`${props.bestDashboardCount.bbcnt ?? ""} `}</span> </h2>
+        {`${props.bestDashboardCount.bbcnt ?? ""} `}</span> </div>
         <div className="overflow-y-hidden max-h-[78vh]">
       {props.fetchingMaterialBestBefore ? (
-        <div className="flex justify-center items-center h-full">
+        <div className="flex justify-center items-center h-full  min-w-[12rem]">
           <BundleLoader /> {/* Spinner component */}
         </div>
       ) : (
@@ -342,12 +344,12 @@ const DashBoardSummary=(props) =>{
         </div>
       </div>
 
-      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-1"></div> 
+      <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
         {/* ORDER */}
         <div class="flex flex-col w-[14rem]  items-center">
-        <h2 className="text-xl font-bold font-poppins mb-2 uppercase">  <DynamicFeedIcon className='!text-icon mr-1 text-[#59c9a5]'/>{translatedMenuItems[8]} 
+        <div className="text-xl font-bold font-poppins mb-2 uppercase">  <DynamicFeedIcon className='!text-icon mr-1 text-[#59c9a5]'/>{translatedMenuItems[8]} 
         <span  className=" font-bold text-[tomato] ml-1">
-        {`${props.orderDashboardCount.count ?? ""} `}</span></h2>
+        {`${props.orderDashboardCount.count ?? ""} `}</span></div>
         <div className=" overflow-x-auto overflow-y-hidden h-[89vh]">
         <InfiniteScroll
         dataLength={props.taskDashboard.length}
@@ -358,7 +360,14 @@ const DashBoardSummary=(props) =>{
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
       >
-        {props.orderDashboard.map((contact, index) => (
+        {props.fetchingTaskDashboard ? (
+        <div className="flex justify-center items-center h-full min-w-[12rem]">
+          <BundleLoader/> 
+          {/* <div>{translatedMenuItems[1]}</div> */}
+          {/* Spinner component */} 
+        </div>
+      ) : (
+        props.orderDashboard.map((contact, index) => {
           <div key={index} className="mb-2  p-1 ml-2 h-16 min-h-[5.25rem] box-content border-2 border-[#00008b23] w-[11rem] min-w-[11rem]">
             <div className="flex justify-between">
               <div className="font-semibold font-poppins text-xs">{contact.contactPersonName}</div>
@@ -368,17 +377,18 @@ const DashBoardSummary=(props) =>{
             <div className="text-xs text-gray-500 font-poppins">{contact.status}</div>
             
           </div>
-        ))}
+  }  ))}
+      
               </InfiniteScroll>
         </div>
       </div>
-      <div className="md:h-[65vh] md:bg-[#ACB6FC]  w-[0.1rem] ml-1"></div> 
+      <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
       {/* DEALS */}
       <div class="flex flex-col w-[14rem]  items-center">
-        <h2 className="text-xl font-bold font-poppins mb-2 uppercase">
+        <div className="text-xl font-bold font-poppins mb-2 uppercase">
         <CurrencyExchangeIcon className='!text-icon  text-[#1d4e89]'/> {translatedMenuItems[9]}
          <span  className="font-bold text-[tomato] ml-1"> 
-        {`${props.dealsDashboardCount.countByUserId ?? ""} `}</span></h2>
+        {`${props.dealsDashboardCount.countByUserId ?? ""} `}</span></div>
         <div className=" overflow-x-auto overflow-y-hidden h-[89vh]">
         <InfiniteScroll
         dataLength={props.taskDashboard.length}

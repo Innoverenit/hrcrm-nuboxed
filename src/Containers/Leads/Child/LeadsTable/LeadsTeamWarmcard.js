@@ -45,6 +45,7 @@ import AddLeadsNotesDrawerModal from "../AddLeadsNotesDrawerModal";
 import AddConfirmLedsStatusModal from "./AddConfirmLedsStatusModal";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import EmptyPage from "../../../Main/EmptyPage";
+import { BundleLoader } from "../../../../Components/Placeholder";
 
 const ButtonGroup = Button.Group;
 
@@ -154,10 +155,7 @@ const LeadsTeamWarmcard = (props) => {
   } = props;
 
   if (loading) {
-    return  <div className="custom-loader">
-    <div className="loader !block"> </div>
-<div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
-</div>;
+    return 
   }
 
    return (
