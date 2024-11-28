@@ -165,7 +165,7 @@ function SuppliesCategoryForm (props) {
                       />
                     
                     </div>
-                    <div class="">
+                    <div class="mt-4">
                   <div class="font-bold text-xs font-poppins text-black">Quality</div>
                       {/* <Field
                         name="qualityList"
@@ -183,16 +183,16 @@ function SuppliesCategoryForm (props) {
                   <Field
                     name={`qualityList[${index}]`}
                     render={({ field }) => (
-                      <Input {...field} placeholder="Enter Quality" style={{ width: 100 }} />
+                      <Input {...field} placeholder="Input Value" style={{ width: 100 }} />
                     )}
                   />
                   {index === qualityFields.length - 1 && (
                     <>
-                      <AddCircleOutlineIcon onClick={addQualityField} style={{ fontSize: '20px', color: 'green' }} />
+                      <AddCircleOutlineIcon onClick={addQualityField} className="text-[green] !text-icon" />
                       {qualityFields.length > 1 && (
                         <RemoveCircleOutlineIcon
                           onClick={removeQualityField}
-                          style={{ fontSize: '20px', color: 'red' }}
+                          className="text-[red] !text-icon"
                         />
                       )}
                     </>
@@ -201,7 +201,7 @@ function SuppliesCategoryForm (props) {
               ))}
             </Space>
                     </div>
-                    <div class="">
+                    <div class="mt-2">
                   <div class="font-bold text-xs font-poppins text-black">Spec</div>
                       {/* <Field
                         name="specsList"
@@ -218,16 +218,17 @@ function SuppliesCategoryForm (props) {
                   <Field
                     name={`specsList[${index}]`}
                     render={({ field }) => (
-                      <Input {...field} placeholder="Enter Spec" style={{ width: 100 }} />
+                      <Input {...field} placeholder="Input Value" style={{ width: 100 }} />
                     )}
                   />
                   {index === specFields.length - 1 && (
                     <>
-                      <AddCircleOutlineIcon onClick={addSpecField} style={{ fontSize: '20px', color: 'green' }} />
+                      <AddCircleOutlineIcon className="text-[green] !text-icon"
+                       onClick={addSpecField}  />
                       {specFields.length > 1 && (
                         <RemoveCircleOutlineIcon
                           onClick={removeSpecField}
-                          style={{ fontSize: '20px', color: 'red' }}
+                          className="text-[red] !text-icon"
                         />
                       )}
                     </>

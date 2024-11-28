@@ -7,6 +7,9 @@ import DescriptionIcon from '@mui/icons-material/Description';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 import FWLogo1 from "../../../Assets/Images/smallLogo.png"
 import PinIcon from '@mui/icons-material/Pin';
+import ManageHistoryIcon from '@mui/icons-material/ManageHistory';
+import AutoDeleteIcon from '@mui/icons-material/AutoDelete'; 
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import {
   getSuppliesList,
   handleLocationuppliesModal,
@@ -39,14 +42,12 @@ import AttractionsIcon from '@mui/icons-material/Attractions'; 
 import ContactsIcon from '@mui/icons-material/Contacts';
 import dayjs from "dayjs";
 import InventoryIcon from '@mui/icons-material/Inventory';
-import { BundleLoader } from "../../../Components/Placeholder";
 import { JumpStartBox, MultiAvatar } from "../../../Components/UI/Elements";
 import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
 import InfiniteScroll from "react-infinite-scroll-component";
 import MaterialStatusToggle from "./MaterialStatusToggle";
 import ReactToPrint from "react-to-print";
 import AddDocumentErpModals from "./AddDocumentErpModals";
-import DateRangeIcon from '@mui/icons-material/DateRange';
 import SuppliesSearchedData from "./SuppliesSearchedData";
 import EmptyPage from "../EmptyPage";
 import BestJumpOpen from "./BestJumpOpen";
@@ -154,6 +155,7 @@ function SuppliesTable(props) {
        "815", //  "re-order", // 26
         "1231",//   "Orders Closed", // 27
         "1232",//  "Orders Cancelled"//28
+        //Price Update
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -182,14 +184,15 @@ function SuppliesTable(props) {
   return (
     <>
 
-     <div class=" flex w-full max-sm:flex-col mt-4" >
+     <div class=" flex w-full items-center justify-center max-sm:flex-col mt-4" >
           
-          <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+          <div class="w-[14rem] max-md:w-1/2 max-xl:w-1/3 p-2">
                      
                      <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center  text-xs">
                              <div class="flex-shrink pr-3">
-                                 <div class="rounded-full p-2 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                                 <div class="rounded-full p-2 bg-green-600"> <AutoDeleteIcon className="!text-icon" />
+                               </div>
                              </div>
                              <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
@@ -204,12 +207,12 @@ function SuppliesTable(props) {
                      </div>
                  
                  </div> 
-                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                 <div class="w-[14rem]  max-md:w-1/2 max-xl:w-1/3 p-2">
                        
                        <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center text-xs">
                                <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
+                                   <div class="rounded-full p-2 bg-pink-600"><ManageHistoryIcon className="!text-icon"/></div>
                                </div>
                                <JumpStartBox
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
@@ -225,7 +228,7 @@ function SuppliesTable(props) {
                     
                    </div>  
                     
-                <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                {/* <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                        
                        <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center text-xs">
@@ -245,9 +248,9 @@ function SuppliesTable(props) {
                            </div>
                        </div>
                      
-                   </div>  
+                   </div>   */}
                    
-                   <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                   {/* <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                       
                       <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                           <div class="flex flex-row items-center text-xs">
@@ -265,8 +268,8 @@ function SuppliesTable(props) {
                             />
                           </div>
                       </div>      
-                  </div>
-                  <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                  </div> */}
+                  {/* <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                      
                      <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center  text-xs">
@@ -285,18 +288,18 @@ function SuppliesTable(props) {
                          </div>
                      </div>
                  
-                 </div> 
-                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                 </div>  */}
+                 <div class="w-[14rem]  max-md:w-1/2 max-xl:w-1/3 p-2">
                       
                       <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                           <div class="flex flex-row items-center text-xs">
                               <div class="flex-shrink pr-3">
-                                  <div class="rounded-full p-2 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
+                                  <div class="rounded-full p-2 bg-blue-600"> <CurrencyExchangeIcon className='!text-icon  mr-1   text-[#84a59d]' /></div>
                               </div>
                               <JumpStartBox
                              bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                               noProgress
-                              title= {translatedMenuItems[28]} 
+                              title= "Price Update"
                              // jumpstartClick={()=> handleClick("Cancelled")}
                               cursorData={"pointer"}
                               value={"0"}
@@ -316,17 +319,17 @@ function SuppliesTable(props) {
   ) : (  
       <div className=" flex sticky z-auto mt-4">
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden  w-[64%] justify-between  p-1 bg-transparent font-bold font-poppins !text-lm sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-end z-10">
+          <div className=" flex max-sm:hidden  w-[68%] justify-between  p-1 bg-transparent font-bold font-poppins !text-lm sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-end z-10">
             <div className=" w-[3.25rem] max-xl:w-[2rem]"></div>
-            <div className="text-[#00A2E8] text-sm   w-[6.9rem] truncate max-md:w-[6.522rem] ">
+            <div className="text-[#00A2E8] text-sm   w-[8.5rem] truncate max-md:w-[6.522rem] ">
               {/* HSN */}
              < PinIcon className=" !text-icon"/>{translatedMenuItems[0]} ID
               </div>
-              <div className=" w-[8.2rem] truncate max-md:w-[9.53rem] ">
+              <div className=" w-[6.9rem] truncate max-md:w-[9.53rem] ">
               {/* Supplies */}
               <QrCodeIcon className="!text-icon text-[#b91372]"/>   {translatedMenuItems[24]} 
               </div>
-            <div className=" w-[9.3rem] truncate max-md:w-[9.1rem] ">
+            <div className=" w-[12.3rem] truncate max-md:w-[9.1rem] ">
               {/* Name */}
               <ContactsIcon className="!text-icon mr-1 "/> {translatedMenuItems[2]}
               </div>
@@ -343,7 +346,7 @@ function SuppliesTable(props) {
               {/* Model*/}
               <ModelTrainingIcon className=" !text-icon" />  {translatedMenuItems[16]}
               </div>
-            <div className=" w-[8.01rem] truncate max-md:w-[10.01rem] ">
+            <div className=" w-[7.01rem] truncate max-md:w-[10.01rem] ">
               {/* Attribute */}
               <AttractionsIcon className="  !text-icon" />  {translatedMenuItems[5]}
               </div>
@@ -388,7 +391,7 @@ function SuppliesTable(props) {
                                 </div>
                                 
 
-                                <div class="max-sm:w-auto flex   w-[5.22rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-center">
+                                <div class="max-sm:w-auto flex   w-[7.22rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-center">
 
                                   <div className=" flex  max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                                     <div class=" text-[0.65rem] ml-gap max-sm:text-xs  font-poppins ">
@@ -415,7 +418,7 @@ function SuppliesTable(props) {
                             </div>
                            
                                 </div>
-                                <div className=" flex h-8 ml-gap bg-[#eef2f9] justify-center   items-center w-[6.52rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                                <div className=" flex h-8 ml-gap bg-[#eef2f9] justify-center   items-center w-[5.52rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                                     <div class=" text-[0.65rem] ml-gap max-sm:text-xs  font-poppins ">
                                       {item.msku} 
                                     </div>
@@ -428,7 +431,7 @@ function SuppliesTable(props) {
                                       ) : null} </span>
                               </div>
 
-                            <div className=" flex  h-8 ml-gap bg-[#eef2f9] justify-start w-[46.1rem] items-center max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  h-8 ml-gap bg-[#eef2f9] justify-start w-[59.1rem] items-center max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs truncate max-w-[100px] ml-gap font-poppins  cursor-pointer text-blue-600" title={item.suppliesName}
                                onClick={() => {
                                 openModal();
@@ -452,12 +455,12 @@ function SuppliesTable(props) {
                                 {item.brandName}  
                               </div>
                             </div>
-                            <div className=" flex w-[7.19rem] h-8 ml-gap bg-[#eef2f9] justify-center items-center max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex w-[7.19rem] h-8 ml-gap bg-[#eef2f9] justify-start items-center max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs ml-gap font-poppins ">
                               {item.modelName}  
                               </div>
                             </div>
-                            <div className=" flex w-[6.19rem] h-8 ml-gap bg-[#eef2f9] justify-center items-center max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex w-[6.19rem] h-8 ml-gap bg-[#eef2f9] justify-start items-center max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs ml-gap  font-poppins ">
                                {item.attributeName} 
                               </div>
@@ -467,7 +470,7 @@ function SuppliesTable(props) {
                             
 
                            
-                            <div className=" flex  w-[6.9rem] h-8 ml-gap bg-[#eef2f9] justify-center items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  w-[3.9rem] h-8 ml-gap bg-[#eef2f9] justify-center items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins ">
                                 <MultiAvatar
                                   primaryTitle={item.userName}
@@ -478,7 +481,7 @@ function SuppliesTable(props) {
                                 {/* {`${dayjs(item.creationDate).format("DD/MM/YYYY")}`} */}
                               </div>
                             </div>
-                            <div className=" flex  w-[8.2rem] h-8 ml-gap bg-[#eef2f9] justify-center items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex  w-[6.2rem] h-8 ml-gap bg-[#eef2f9] justify-center items-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class="  text-xs max-sm:text-xs  font-poppins ">
                                 <MaterialStatusToggle
                                   publishInd={item.publishInd}
@@ -489,13 +492,14 @@ function SuppliesTable(props) {
                           
 
                           
-                          </div> 
+                          </div> <div className="flex items-center justify-center">
                           <QrCodeIcon className="!text-icon cursor-pointer"
                           onClick={() => {
                             setbarCodeOpen(true);
                             handleParticularRowData(item);
                           }}
                           />
+                          </div>
                      <div class="flex max-sm:justify-between max-sm:w-wk items-center justify-end w-wk">
                      <div className=" flex   h-8 ml-gap bg-[#eef2f9] justify-center items-center w-[6.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins  max-sm:text-xs">

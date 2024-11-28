@@ -95,8 +95,7 @@ function MaterialComplementaryCard(props) {
          "799",//0
           "800",//1
           "110",//2
-          "1283",//3"Search by HSN and Name "
-       
+          "1238",//3"Search by HSN and Name "       
          "14" , // category
          "1154" , //  Sub category 
          "259" ,//  Attribute 
@@ -228,15 +227,15 @@ function MaterialComplementaryCard(props) {
               {/* Hsn*/}
               < PinIcon className=" !text-icon"/>  {translatedMenuItems[0]}
               </div>
-              <div className=" w-[14.2rem]  truncate max-md:w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <div className=" w-[15.2rem]  truncate max-md:w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Name */}
               <ContactsIcon className="!text-icon mr-1 "/> {translatedMenuItems[2]}
               </div>
-              <div className=" w-[13.3rem] truncate max-md:w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <div className=" w-[13.1rem] truncate max-md:w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* category*/}
               <WidgetsIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[4]}
               </div>        
-              <div className=" w-[21.4rem] truncate max-md:w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <div className=" w-[22.4rem] truncate max-md:w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {/* Attribute */}
               <AttractionsIcon className="  !text-icon" />  {translatedMenuItems[6]}
               </div>

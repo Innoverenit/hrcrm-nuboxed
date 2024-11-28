@@ -113,40 +113,40 @@ function BestBeforeTable(props) {
    
       <div className=" flex sticky z-auto mt-4">
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden  w-[81%] justify-between  p-1 bg-transparent font-bold sticky items-end z-10">
+          <div className=" flex max-sm:hidden  w-[81%] justify-between  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end  max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
             <div className=" w-[4.25rem] max-xl:w-[2rem]"></div>
-            <div className="font-bold text-[#00A2E8] text-base font-poppins  w-[6.522rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" text-[#00A2E8] text-sm w-[6.522rem] truncate max-md:w-[6.522rem]">
               {/* HSN */}
-             < PinIcon className=" !text-base"/>{translatedMenuItems[0]} ID
+             < PinIcon className=" !text-icon"/>{translatedMenuItems[0]} ID
               </div>
-              <div className="font-bold font-poppins text-xs w-[9.53rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <div className="w-[9.53rem] truncate max-md:w-[9.53rem]">
               {/* Supplies */}
               <QrCodeIcon className="!text-icon text-[#b91372]"/>   {translatedMenuItems[24]} 
               </div>
-            <div className="font-bold font-poppins text-xs w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[9.1rem] truncate max-md:w-[9.1rem]">
               {/* Name */}
               <ContactsIcon className="!text-icon mr-1 "/> {translatedMenuItems[2]}
               </div>
-            <div className="font-bold font-poppins text-xs w-[11.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="w-[11.2rem] truncate max-md:w-[11.2rem]">
               {/* Category */}
               <WidgetsIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[3]}
               </div>
             
-              <div className="font-bold font-poppins text-xs w-[11.13rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <div className=" w-[11.13rem] truncate max-md:w-[11.13rem]">
               {/* Brand*/}
               <BrandingWatermarkIcon className="!text-icon" />   {translatedMenuItems[15]}
               </div>
-              <div className="font-bold font-poppins text-xs w-[8.135rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <div className="w-[8.135rem] truncate max-md:w-[8.135rem]">
               {/* Model*/}
               <ModelTrainingIcon className=" !text-icon" />  {translatedMenuItems[16]}
               </div>
-            <div className="font-bold font-poppins text-xs w-[10.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="w-[10.01rem] truncate max-md:w-[10.01rem]">
               {/* Attribute */}
               <AttractionsIcon className="  !text-icon" />  {translatedMenuItems[5]}
               </div>
            
             
-            <div className="font-bold font-poppins text-xs w-[15.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[15.24rem] truncate max-md:w-[15.24rem]">
               {/* Created */}
               {translatedMenuItems[7]}
               </div>
@@ -162,9 +162,9 @@ function BestBeforeTable(props) {
                   
                   return (
                     <>
-                      <div className="flex rounded  bg-white mt-1 py-1 max-sm:h-[7.5rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                      <div className="flex rounded  bg-white mt-1 py-ygap max-sm:h-[7.5rem] max-sm:flex-col scale-[0.99] hover:scale-100  max-xl:text-[0.65rem] max-lg:text-[0.45rem] ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                      <div className="flex max-sm:w-wk max-sm:justify-between ">
-                                <div className=" flex items-center w-[2rem] border-l-2 border-green-500 bg-[#eef2f9]">
+                                <div className=" flex items-center  w-[2rem] border-l-2 border-green-500 bg-[#eef2f9]">
                                   {item.imageId && (
                                     <span>
                                       <MultiAvatar
@@ -180,54 +180,40 @@ function BestBeforeTable(props) {
                                 <div class="max-sm:w-auto flex items-center  w-[5.22rem] h-8 ml-gap bg-[#eef2f9] justify-center">
 
                                   <div className=" flex  max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                                    <div class=" text-[0.65rem] max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                                      {item.hsn} 
-                                    
-                                      
-                                    </div>
-                                    
-                                  </div>
-                                  
-                              
+                                    <div class=" text-[0.65rem] ml-gap max-sm:text-xs  font-poppins">
+                                      {item.hsn}                                                        
+                                    </div>                                   
+                                  </div>                                                               
                                 </div>
                                 <div className=" flex h-8 ml-gap bg-[#eef2f9] justify-center   items-center w-[6.52rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                                    <div class=" text-[0.65rem] max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                                    <div class=" text-[0.65rem] max-sm:text-xs  font-poppins">
                                       {item.msku} 
                                     </div>
                                     
-                                  </div>
-                                
-                              </div>
-
-                          
-                          
+                                  </div>                             
+                              </div>                                                 
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                             <div className=" flex  h-8 ml-gap bg-[#eef2f9] justify-center items-center  w-[8.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class="  text-xs truncate max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class="  text-xs truncate max-sm:text-xs  font-poppins">
                                 {item.categoryName}  {item.subCategoryName}
                               </div>
-                            </div>
-
-                            
+                            </div>                           
                             <div className=" flex h-8 ml-gap bg-[#eef2f9] justify-center items-center w-[9.12rem] max-xl:w-[6.32rem] max-lg:w-[5.32rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class="  text-xs max-sm:text-xs  font-poppins">
                                 {item.brandName}  
                               </div>
                             </div>
                             <div className=" flex w-[7.19rem] h-8 ml-gap bg-[#eef2f9] justify-center items-center max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class="  text-xs max-sm:text-xs  font-poppins">
                                 
                               </div>
                             </div>
                             <div className=" flex w-[6.19rem] h-8 ml-gap bg-[#eef2f9] justify-center items-center max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class="  text-xs max-sm:text-xs  font-poppins">
                                 
                               </div>
                             </div>
-                          </div>
-                        
-
-                                                             
+                          </div>                                                                                    
                       </div>
                     </>
                   );
@@ -238,12 +224,6 @@ function BestBeforeTable(props) {
           
         </div>
       </div>
-
-
-
-      
-      
-
     </>
   );
 

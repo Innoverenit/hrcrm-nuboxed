@@ -11,7 +11,6 @@ import MaterialFastMovingToggle from "../MaterialById/MaterialFastMovingToggle"
 import MaterialsDetailsCardViewId from "./MaterialsDetailsCardViewId";
 import {getMaterialsBySuppliesId,UpdateMaterialIamge} from "../SuppliesAction";
 import "../Supplies.scss";
-import img from "../../../../Assets/Images/Erp.jpg";
 import MaterialRecommendToggle from "../MaterialRecommendToggle";
 import MaterialFifoToggle from "../MaterialFifoToggle";
 import MaterialFeatureToggle from "../MaterialFeatureToggle";
@@ -192,7 +191,7 @@ console.log(props.UOMListData)
           autoFocus // Focus the input automatically when editing
         />
       ) : (
-        <div onClick={() => setIsEditingDesc(true)} className="cursor-pointer border overflow-x-auto h-[6rem] mt-2 w-1/2 text-sm font-[Poppins]" title=
+        <div onClick={() => setIsEditingDesc(true)} className="cursor-pointer border overflow-x-auto h-[6rem] mt-2 w-[100%] text-sm font-[Poppins]" title=
         {sDesc}><div dangerouslySetInnerHTML={{ __html: `<p>${sDesc}</p>` }} /></div> // Click to enter edit mode
       )}
     {/* <div dangerouslySetInnerHTML={{ __html: `<p>${props.materialsBySuppliesId.description}</p>` }} /> */}
