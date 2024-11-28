@@ -26,7 +26,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function DistributorColletcionArchive(props) {
   useEffect(() => {
-    props.getTodayDistributor();
+    // props.getTodayDistributor();
   }, []);
 
   const [particularRowData, setParticularRowData] = useState({});

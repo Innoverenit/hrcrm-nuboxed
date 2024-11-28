@@ -24,7 +24,7 @@ import {
 } from "../AccountAction";
 import LayersIcon from '@mui/icons-material/Layers';// salesmap
 import DistributorChart from "../AccountDetailsTab/DistributorChart"
-import { handleSupplierDocumentUploadModal,getContactCount } from "../../Suppliers/SuppliersAction"
+import { handleSupplierDocumentUploadModal } from "../../Suppliers/SuppliersAction"
 import { handleSupplierContactModal } from "../../Suppliers/SuppliersAction";
 import { Tooltip, Badge } from "antd";
 import AddBoxIcon from '@mui/icons-material/AddBox';
@@ -40,6 +40,7 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import OrderTableC from "./OrderTableC"; //4
 import ProcureCommerceShippedOrder from "./AccountOrderTab/ProcureCommerceShippedOrder";
 import AddAccountOpportunityModal from "./AccountQuotationDrawer";
+import AccountOrderCreateDrawer from "./AccountOrderCreateDrawer";
 
 
 const CompleteOrderTable= lazy(() =>import("./AccountOrderTab/CompleteOrderTable"));
@@ -72,12 +73,11 @@ function AccountDetailsTab(props) {
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
     const [selectedHistory, setSelectedHistory] = useState("completed");
-
     const [clickSideIcon,setclickSideIcon]=useState(false);
 
-    useEffect(() => {
-        props.getContactCount(props.distributorData.distributorId,"distributor")
-    }, [])
+    const [currentOrderType, setCurrentOrderType] = useState("");
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
     useEffect(() => {
         const fetchMenuTranslations = async () => {
           try {
@@ -116,6 +116,12 @@ function AccountDetailsTab(props) {
     
         fetchMenuTranslations();
       }, [props.selectedLanguage]);
+
+      const handleClickOrderDrawer = (type) => {
+        setCurrentOrderType(type);
+        setIsModalOpen(true);
+      };
+
     const handleOrderCreateClick = () => {
         setBreadCumb(true);
     };
@@ -224,8 +230,7 @@ function AccountDetailsTab(props) {
                             /></div>;
                             case "10":
                                 return  <div>  
-                                   <AccountContactTable uniqueId={props.distributorData.distributorId} 
-                                   type={"distributor"}
+                                   <AccountContactTable distributorId={props.distributorData.distributorId} 
                               selectedLanguage={props.selectedLanguage}
                               translateText={props.translateText}/></div>;
                               case "11":
@@ -348,7 +353,8 @@ function AccountDetailsTab(props) {
                                                
                                                 tooltipTitle={translatedMenuItems[1]}
                                                 onClick={() => {
-                                                    props.handleLinkDistributorOrderConfigureModal(true);
+                                                    // props.handleLinkDistributorOrderConfigureModal(true);
+                                                    handleClickOrderDrawer("Repair");
                                                 }}
                                                className="!text-icon  ml-1 cursor-pointer "
                                             />
@@ -399,7 +405,8 @@ function AccountDetailsTab(props) {
                                                
                                                 tooltipTitle={translatedMenuItems[11]}
                                                 onClick={() => {
-                                                    props.handleLinkCustomerProcurementModal(true);
+                                                    // props.handleLinkCustomerProcurementModal(true);
+                                                    handleClickOrderDrawer("Commerce");
                                                 }}
                                                 className="!text-icon cursor-pointer "
                                             />
@@ -440,7 +447,8 @@ function AccountDetailsTab(props) {
                             //     Create
                            
                             onClick={() => {
-                              props.handleAccountOpportunityModal(true);
+                            //   props.handleAccountOpportunityModal(true);
+                            handleClickOrderDrawer("Quotation");
                             }}
                             
                           />
@@ -498,7 +506,7 @@ function AccountDetailsTab(props) {
                         tab={
                             <>
                             <span  class= "!text-tab font-poppins ">
-                                   <CreditCardIcon className="!text-icon text-[#386641] mr-1"/>
+                                   <CreditCardIcon className="!text-icon text-[#edd382] mr-1"/>
                                    {translatedMenuItems[14]}
                                 </span>
                             <Badge
@@ -524,7 +532,7 @@ function AccountDetailsTab(props) {
                             <>
 
                                 <span>
-                                <HourglassFullIcon className="text-blue-500 !text-icon" />
+                                <HourglassFullIcon className="text-[#edf67d] !text-icon" />
                                     <span class="ml-1 !text-tab font-poppins ">
                                     {translatedMenuItems[4]}
                                     {/* Activity */}
@@ -812,7 +820,6 @@ function AccountDetailsTab(props) {
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText}
                 handleLinkCustomerProcurementModal={props.handleLinkCustomerProcurementModal}
-                type="distributor" 
                 addLinkCustomerProcurementModal={props.addLinkCustomerProcurementModal}
                 distributorId={props.distributorData.distributorId}
             />
@@ -822,7 +829,7 @@ function AccountDetailsTab(props) {
               translateText={props.translateText}
                 addSupplierContactModal={props.addSupplierContactModal}
                 handleSupplierContactModal={props.handleSupplierContactModal}
-                type="distributor" 
+                type="distributor"
                 id={props.distributorData.distributorId}
             />
             <AccountActivityModal
@@ -859,6 +866,17 @@ distributorData={props.distributorData}
                 generateOrderModal={props.generateOrderModal}
                 handleOrderGenerateModal={props.handleOrderGenerateModal}
             /> */}
+
+            <AccountOrderCreateDrawer
+             selectedLanguage={props.selectedLanguage}
+             translateText={props.translateText}
+             isModalOpen={isModalOpen}
+             setIsModalOpen={() => setIsModalOpen(false)}
+             title={currentOrderType}
+             currentOrderType={currentOrderType}
+             distributorId={props.distributorData.distributorId}
+                 type="distributor"
+            />
         </>
     );
 }
@@ -880,8 +898,7 @@ const mapStateToProps = ({ distributor, auth, suppliers,customer }) => ({
     supplierDocumentUploadModal: suppliers.supplierDocumentUploadModal,
     procureRecordData:distributor.procureRecordData,
     addAccountOpportunityModal: distributor.addAccountOpportunityModal,
-    invoiceCount: distributor.invoiceCount,
-    erpContactCount: suppliers.erpContactCount
+    invoiceCount: distributor.invoiceCount
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -899,7 +916,7 @@ const mapDispatchToProps = (dispatch) =>
             handleSupplierContactModal,
             getOrderRecords,
             handleAccountOpportunityModal,
-            getContactCount
+            
         },
         dispatch
     );

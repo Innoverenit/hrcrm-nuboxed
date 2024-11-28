@@ -3,24 +3,30 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import AccountOpportunityStepper from "./AccountOpportunityStepper";
 
-const AddAccountOpportunityModal = (props) => {
+const AccountOrderCreateDrawer = (props) => {
   const { ...formProps } = props;
 
   return (
     <>
       <StyledDrawer
-        title="Quotation" 
+        title={`${props.title}`}
         width="75%"
-        visible={props.addAccountOpportunityModal}
-        onClose={() => props.handleAccountOpportunityModal(false)}
+        visible={props.isModalOpen}
+        onClose={props.setIsModalOpen}
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <AccountOpportunityStepper handleAccountOpportunityModal={props.handleAccountOpportunityModal}{...formProps} />{" "}
+          <AccountOpportunityStepper 
+          currentOrderType={props.currentOrderType}
+         isModalOpen={props.isModalOpen}
+         setIsModalOpen={props.setIsModalOpen}
+         type={props.type}
+         distributorId={props.distributorId}
+          />{" "}
         </Suspense>
       </StyledDrawer>
     </>
   );
 };
 
-export default AddAccountOpportunityModal;
+export default AccountOrderCreateDrawer;
