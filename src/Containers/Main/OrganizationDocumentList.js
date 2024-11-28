@@ -8,10 +8,12 @@ import { base_url } from "../../Config/Auth";
 import {  Button,Avatar,Tooltip} from "antd";
 import DownloadIcon from "@mui/icons-material/Download";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 import dayjs from "dayjs";
 import { getDepartments } from "../../Containers/Settings/Department/DepartmentAction";
 import { BundleLoader } from '../../Components/Placeholder';
-
+import CategoryIcon from '@mui/icons-material/Category';
+import DescriptionIcon from '@mui/icons-material/Description';
 class OrganizationDocumentList extends Component {
     constructor(props) {
         super(props);
@@ -128,20 +130,25 @@ return (
    
    <div className=' flex justify-center sticky  z-auto'>
       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
-          <div className=" w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[6.1rem]">
-          Name
+        <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky    font-poppins  !text-lm items-end max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
+          <div className=" w-[4.1rem] max-md:w-[4.1rem]  text-[#00A2E8]  text-sm ">
+          <ApartmentIcon className="!text-icon  text-[#00A2E8] "/> 
+          Name 
           </div>
-          <div className=" w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+          <div className=" w-[9.8rem] max-md:w-[9.8rem] ">
+          
+          <CategoryIcon className="!text-icon  text-[#5a2f15] " />
           Category
           </div>
-          <div className="w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]">
+          <div className="w-[6.6rem] max-md:w-[6.6rem] ">
           Department
           </div>
-          <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+          <div className="w-[5.8rem] max-md:w-[5.8rem]">
+          
+          < DescriptionIcon className="!text-icon  text-[#1c5f1f] " />
           Description
           </div>
-          <div className="w-[6.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.6rem] max-lg:w-[7.6rem]">
+          <div className="w-[6.6rem] max-md:w-[6.6rem] ">
           Include
           </div>
           <div className="w-[4.3rem]"></div>
@@ -160,7 +167,7 @@ return (
                 <div>
                   <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                      <div className=" flex  w-[8.2rem] max-xl:w-[9.2rem] max-lg:w-[7.8rem] max-sm:w-auto  ">                                  
+                      <div className=" flex border-l-2 border-green-500 bg-[#eef2f9] h-8  items-center  w-[8.2rem] mt-1 max-xl:w-[9.2rem] max-lg:w-[7.8rem] max-sm:w-auto  ">                                  
                             <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
                             {item.name}
                               {date === currentdate ? (
@@ -176,22 +183,22 @@ return (
                       </div>
 
 
-                      <div className=" flex  w-[9.2rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                      <div className=" flex items-center   bg-[#eef2f9] h-8  ml-gap w-[10.5rem] max-xl:w-[11.2rem] max-lg:w-[6.2rem] mt-1 max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                         <div class=" text-sm  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                         {item.catagory}
                         </div>
                       </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex  w-[10.5rem]    max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                    <div className=" flex  w-[16.5rem]   bg-[#eef2f9] h-8 ml-gap mt-1  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                       
 
-                      <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                      <div class="flex items-center  bg-[#eef2f9] h-8 ml-gap text-xs  font-poppins text-center max-xl:text-[0.65rem]  mt-1 max-lg:text-[0.45rem] max-sm:text-sm">
                       {item.department}
 
                       </div>
                     </div>
-                    <div className=" flex  w-[9.5rem] max-xl:w-[14.5rem] max-lg:w-[8.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                    <div className=" flex items-center  bg-[#eef2f9] h-8 ml-gap w-[11.5rem] max-xl:w-[14.5rem] max-lg:w-[8.5rem] mt-1 max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                     
 
                       <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
@@ -203,8 +210,8 @@ return (
 
                     
 
-                      <div className=" flex items-center justify-center  max-sm:flex-row  ">
-                      <div className=" flex  w-[5.5rem] max-xl:w-[14.5rem] max-lg:w-[8.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                      <div className=" flex items-center   max-sm:flex-row  ">
+                      <div className=" flex  justify-center items-center bg-[#eef2f9] h-8 ml-gap w-[5.5rem] max-xl:w-[14.5rem] max-lg:w-[8.5rem] mt-1 max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                       <Avatar.Group
                    maxCount={7}
                   maxStyle={{ color: "#f56a00", backgroundColor: "#fde3cf" }}
@@ -230,7 +237,7 @@ return (
             </div>
            
                  
-                  <div className=" flex flex-col  max-sm:flex-row w-[5rem] mt-1 max-sm:justify-between">
+                  <div className=" flex flex-col   items-center bg-[#eef2f9] h-8 ml-gap  max-sm:flex-row w-[5rem] mt-1 max-sm:justify-between">
                   {(item.userId === "EMP16818052295222021" && item.shareInd === true && user.repositoryCreateInd ===true || user.role === "ADMIN") ? (
                  <Button
                  onClick={() => this.handlePrivateClick(item)}
@@ -240,7 +247,9 @@ return (
                       ):null} 
                   </div>
                
-                  <div>
+                  <div className='flex bg-[#eef2f9] h-8 ml-gap   items-center  max-sm:flex-row  mt-1'>
+
+                  <div >
                         <StyledPopconfirm
             title="Do you want to delete?"
              onConfirm={() => this.props.deleteOrgDocata(item.documentId)}
@@ -250,7 +259,7 @@ return (
             )} 
           </StyledPopconfirm>
                         </div>
-                        <div>
+                        <div >
                         <a
                 href={`${base_url}/document/${item.documentId}`}
                 target="_self"
@@ -265,7 +274,7 @@ return (
             {/* )} */}
        
                         </div>
-                        <div style={{ flex: 1 }}>
+                        <div style={{ flex: 1 }} >
             
                 <button 
                 onClick={() => {
@@ -275,6 +284,7 @@ return (
                   >Edit</button>
               
             </div>
+                  </div>
                       </div>
                   
                     </div>

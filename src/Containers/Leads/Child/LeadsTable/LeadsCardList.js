@@ -247,27 +247,44 @@ const LeadsCardList = (props) => {
       <>
      <div className=' flex  sticky  z-auto'>
      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex  w-[100%] max-sm:hidden p-1 bg-transparent font-bold sticky z-10">
+      <div className=" flex  w-[100%] max-sm:hidden p-1 bg-transparent font-bold sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm z-10">
         <div className="   flex justify-between w-[90%] font-bold font-poppins text-xs">
-         <div className=" ml-1   text-white w-[8.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]  bg-red-600  justify-center "> 
+         <div className=" ml-1   text-white w-[8.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem] text-sm    bg-red-600  justify-center "> 
           {translatedMenuItems[0]}</div>
-        <div className=" ml-4 w-[7.1rem] text-[#00A2E8] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">    <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}</div>
-        <div className=" w-[10.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className=" w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">  <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>{translatedMenuItems[2]} #</div>
+        <div className=" ml-4 w-[7.1rem] text-[#00A2E8] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  "> 
+             <ApartmentIcon className="!text-icon  "/>
+              {translatedMenuItems[1]}</div>
+        <div className=" w-[10.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] "></div>
+        <div className=" w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem]  ">
+            <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
+            {translatedMenuItems[2]} #</div>
         {/* 333333 */}
-        <div className=" w-[15.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>{translatedMenuItems[4]}</div>
-        <div className=" w-[6.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  <FactoryIcon className="!text-icon  text-[#84a59d]"/> {translatedMenuItems[5]}</div> 
-        <div className= " w-[9.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[6]}</div> 
-        <div className= " w-[9.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
+        <div className=" w-[15.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]   "> 
+          <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
+          {translatedMenuItems[4]}</div>
+        <div className=" w-[6.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] ">
+            <FactoryIcon className="!text-icon  text-[#84a59d]"/>
+         {translatedMenuItems[5]}</div> 
+        <div className= " w-[9.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] ">
+           <SourceIcon className="!text-icon  text-[#4b5043]"/>
+         {translatedMenuItems[6]}</div> 
+        <div className= " w-[9.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] ">
+          {translatedMenuItems[7]}</div> 
         {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            <ScoreIcon className="!text-icon  text-[#f28482]"/>  {/* Score */}   {translatedMenuItems[22]}
+            <div className="font-poppins font-bold text-xs w-[7.81rem]  max-xl:w-[3.81rem]">
+            <ScoreIcon className="!text-icon  text-[#f28482]"/>  {/* Score */}  
+             {translatedMenuItems[22]}
           
             </div>
             )}
-        <div className=" w-[7.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  <AccountCircleIcon className="!text-icon  text-[#d64933]"/> {translatedMenuItems[8]} </div>
-        <div className=" w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
-        <div className=" w-[1.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><ConnectWithoutContactIcon className="!text-icon cursor-pointer text-[blue]"/>{translatedMenuItems[11]}</div>
+        <div className=" w-[7.2rem] max-xl:w-[6.2rem] "> 
+           <AccountCircleIcon className="!text-icon  text-[#d64933]"/> 
+           {translatedMenuItems[8]} </div>
+        <div className=" w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] ">
+          {translatedMenuItems[9]}</div>
+        <div className=" w-[1.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] ">
+          <ConnectWithoutContactIcon className="!text-icon cursor-pointer text-[blue]"/>
+          {translatedMenuItems[11]}</div>
       
         <div className="w-12"></div>
 </div>
@@ -686,26 +703,43 @@ const LeadsCardList = (props) => {
 
       <div className=' flex   sticky z-auto mt-1'>
      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-     <div className=" flex  w-[100%] p-1 bg-transparent  sticky top-0 z-10 max-sm:hidden">
+     <div className=" flex  w-[100%] p-1 bg-transparent  sticky top-0 max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm z-10 max-sm:hidden">
       <div class="  flex justify-between font-bold font-poppins text-xs w-[90%]">
-      <div className=" w-[8.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] bg-orange-400 text-white">{translatedMenuItems[12]}</div>
-      <div className=" ml-4 w-[7.1rem] text-[#00A2E8] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">    <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}</div>
-        <div className=" w-[10.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className=" w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">  <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>{translatedMenuItems[2]} #</div>
+      <div className=" w-[8.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]   bg-orange-400 text-white">
+        {translatedMenuItems[12]}</div>
+      <div className=" ml-4 w-[7.1rem] text-[#00A2E8] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  "> 
+           <ApartmentIcon className="!text-icon  "/> 
+      {translatedMenuItems[1]}</div>
+        <div className=" w-[10.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] "></div>
+        <div className=" w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem]  "> 
+           <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
+        {translatedMenuItems[2]} #</div>
         {/* 333333 */}
-        <div className=" w-[15.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>{translatedMenuItems[4]}</div>
-        <div className=" w-[6.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  <FactoryIcon className="!text-icon  text-[#84a59d]"/> {translatedMenuItems[5]}</div> 
-        <div className= " w-[9.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[6]}</div> 
-        <div className= " w-[9.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
+        <div className=" w-[15.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]   ">
+           <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
+        {translatedMenuItems[4]}</div>
+        <div className=" w-[6.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] ">
+            <FactoryIcon className="!text-icon  text-[#84a59d]"/> 
+        {translatedMenuItems[5]}</div> 
+        <div className= " w-[9.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] ">
+           <SourceIcon className="!text-icon  text-[#4b5043]"/> 
+        {translatedMenuItems[6]}</div> 
+        <div className= " w-[9.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] ">
+          {translatedMenuItems[7]}</div> 
         {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            <ScoreIcon className="!text-icon  text-[#f28482]"/>  {/* Score */}   {translatedMenuItems[22]}
+            <div className="font-poppins font-bold text-xs w-[7.81rem]  max-xl:w-[3.81rem]">
+            <ScoreIcon className="!text-icon  text-[#f28482]"/>  {/* Score */}   
+            {translatedMenuItems[22]}
           
             </div>
             )}
-        <div className=" w-[7.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  <AccountCircleIcon className="!text-icon  text-[#d64933]"/> {translatedMenuItems[8]} </div>
-        <div className=" w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
-        <div className=" w-[1.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  <ConnectWithoutContactIcon className="!text-icon cursor-pointer text-[blue]"/>{translatedMenuItems[11]}</div>
+        <div className=" w-[7.2rem] max-xl:w-[6.2rem] ">  <AccountCircleIcon className="!text-icon  text-[#d64933]"/> 
+        {translatedMenuItems[8]} </div>
+        <div className=" w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] ">
+          {translatedMenuItems[9]}</div>
+        <div className=" w-[1.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] ">  
+          <ConnectWithoutContactIcon className="!text-icon cursor-pointer text-[blue]"/>
+        {translatedMenuItems[11]}</div>
         <div className="w-12"></div>
             </div>
       </div>
@@ -1125,26 +1159,44 @@ const LeadsCardList = (props) => {
 
       <div className=' flex   sticky  z-auto mt-1'>
      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-     <div className=" flex  w-[100%] max-sm:hidden p-1 bg-transparent font-bold sticky top-0 z-10">
+     <div className=" flex  w-[100%] max-sm:hidden p-1 bg-transparent font-bold sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm top-0 z-10">
        <div class=" flex justify-between font-bold font-poppins text-xs w-[90%]">
-      <div className=" w-[8.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] bg-blue-600 text-white">{translatedMenuItems[13]}</div>
-        <div className=" ml-4 w-[7.1rem] text-[#00A2E8] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">    <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}</div>
-        <div className=" w-[10.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className=" w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">  <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>{translatedMenuItems[2]} #</div>
+      <div className=" w-[8.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem] text-sm   bg-blue-600 text-white">
+        {translatedMenuItems[13]}</div>
+        <div className=" ml-4 w-[7.1rem] text-[#00A2E8] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  ">   
+           <ApartmentIcon className="!text-icon  "/>
+            {translatedMenuItems[1]}</div>
+        <div className=" w-[10.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] "></div>
+        <div className=" w-[10.2rem] max-xl:w-[7.2rem] max-lg:w-[5.2rem]  "> 
+           <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
+           {translatedMenuItems[2]} #</div>
         {/* 333333 */}
-        <div className=" w-[15.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>{translatedMenuItems[4]}</div>
-        <div className=" w-[6.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  <FactoryIcon className="!text-icon  text-[#84a59d]"/> {translatedMenuItems[5]}</div> 
-        <div className= " w-[9.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[6]}</div> 
-        <div className= " w-[9.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[7]}</div> 
+        <div className=" w-[15.5rem] max-xl:w-[8.5rem] max-lg:w-[5.5rem]   ">
+           <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
+           {translatedMenuItems[4]}</div>
+        <div className=" w-[6.8rem] max-xl:w-[7.81rem] max-lg:w-[3.81rem] "> 
+           <FactoryIcon className="!text-icon  text-[#84a59d]"/> 
+           {translatedMenuItems[5]}</div> 
+        <div className= " w-[9.91rem] max-xl:w-[4.8rem] max-lg:w-[4.8rem] ">
+           <SourceIcon className="!text-icon  text-[#4b5043]"/>
+            {translatedMenuItems[6]}</div> 
+        <div className= " w-[9.82rem] max-xl:w-[7.82rem] max-lg:w-[8.8rem] ">
+          {translatedMenuItems[7]}</div> 
         {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[7.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-            <ScoreIcon className="!text-icon  text-[#f28482]"/>  {/* Score */}   {translatedMenuItems[22]}
+            <div className="font-poppins font-bold text-xs w-[7.81rem]  max-xl:w-[3.81rem]">
+            <ScoreIcon className="!text-icon  text-[#f28482]"/>  {/* Score */}  
+             {translatedMenuItems[22]}
           
             </div>
             )}
-        <div className=" w-[7.2rem] max-xl:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  <AccountCircleIcon className="!text-icon  text-[#d64933]"/> {translatedMenuItems[8]} </div>
-        <div className=" w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[9]}</div>
-        <div className=" w-[1.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><ConnectWithoutContactIcon className="!text-icon cursor-pointer text-[blue]"/>{translatedMenuItems[11]}</div>
+        <div className=" w-[7.2rem] max-xl:w-[6.2rem] "> 
+           <AccountCircleIcon className="!text-icon  text-[#d64933]"/>
+            {translatedMenuItems[8]} </div>
+        <div className=" w-[4.9rem] max-xl:w-[2.2rem] max-lg:w-[4.2rem] ">
+          {translatedMenuItems[9]}</div>
+        <div className=" w-[1.3rem] max-xl:w-[3.3rem] max-lg:w-[6.3rem] ">
+          <ConnectWithoutContactIcon className="!text-icon cursor-pointer text-[blue]"/>
+          {translatedMenuItems[11]}</div>
         <div className="w-12"></div>
         </div>
       </div>
