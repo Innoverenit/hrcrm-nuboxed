@@ -5,6 +5,7 @@ import {handleCallActivityModal} from "../../../../Activity/ActivityAction"
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import {handleContactInvestActivityModal} from "../../../ContactInvestAction"
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import { Badge, Tooltip } from "antd";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
@@ -170,6 +171,11 @@ class ContactInvestDetailTab extends Component {
                     
                     {/* Documents */}
                   </span>
+                  <Badge
+                count={this.props.documentsByCount.document}
+                overflowCount={999}
+              > 
+                   </Badge>
                   {activeKey === "3" && (
                     <>
                        <AddBoxIcon className=" !text-icon text-sm  ml-1 items-center text-[#6f0080ad]"
@@ -227,11 +233,12 @@ class ContactInvestDetailTab extends Component {
     );
   }
 }
-const mapStateToProps = ({ contact,contactinvest,activity }) => ({
+const mapStateToProps = ({ contact,contactinvest,activity,customer }) => ({
     documentUploadModal: contact.documentUploadModal,
     contactId:contact.contact.contactId,
     callActivityModal:activity.callActivityModal,
     contactInvestorActivityModal:contactinvest.contactInvestorActivityModal,
+    documentsByCount:customer.documentsByCount
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

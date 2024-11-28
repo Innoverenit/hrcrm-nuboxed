@@ -12,6 +12,7 @@ import ContrastIcon from '@mui/icons-material/Contrast';
 import { StyledTabs } from "../../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../../Components/UI/Layout";
 import SchoolIcon from '@mui/icons-material/School';
+import { Badge, Tooltip } from "antd";
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
@@ -29,6 +30,7 @@ import {
   handleContractModal,
 } from "../../../../../Profile/ProfileAction";
 import AddDocumentModals from "../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
+import LinkedDocuments from "../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments";
 
 const EmployeePerformanceTable =lazy(()=>import("./Performance/EmployeePerformanceTable"));
 const AddPersonalModal =lazy(()=>import("../EmployeeTab/Personal/AddPersonalModal"));
@@ -51,7 +53,6 @@ const EducationTable = lazy(() => import("./Education/EducationTable"));
 const EmploymentTable = lazy(() => import("./Employment/EmploymentTable"));
 const TrainingTable = lazy(() => import("./Training/TrainingTable"));
 const PersonalTable2 = lazy(() => import("./Personal/PersonalTable2"));
-const LinkedDocuments = lazy(() => import("./Document/LinkedDocuments"));
 const AddDocumentModal = lazy(() => import("./Document/AddDocumentModal"));
 const TabPane = StyledTabs.TabPane;
 
@@ -406,6 +407,11 @@ console.log(this.props.singleEmployee)
                       defaultMessage="Documents"
                     /> */}
                   </span>
+                  <Badge
+                count={this.props.documentsByCount.document}
+                overflowCount={999}
+              > 
+                   </Badge>
                   {activeKey === "10" && user.userCreateInd === true && (
                     <>
                          <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
@@ -733,7 +739,7 @@ console.log(this.props.singleEmployee)
     );
   }
 }
-const mapStateToProps = ({ profile,employee,auth }) => ({
+const mapStateToProps = ({ profile,employee,auth,customer }) => ({
   addEducationModal: profile.addEducationModal,
   addVisaModal:profile.addVisaModal,
   user:auth.userDetails,
@@ -746,6 +752,7 @@ const mapStateToProps = ({ profile,employee,auth }) => ({
   documentUploadModal: profile.documentUploadModal,
   addContractModal: profile.addContractModal,
   singleEmployee:employee.singleEmployee,
+  documentsByCount:customer.documentsByCount
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
