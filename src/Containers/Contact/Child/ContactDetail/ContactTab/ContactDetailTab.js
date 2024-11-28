@@ -1,7 +1,7 @@
 import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
+import { Badge, Tooltip } from "antd";
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import LinkedOpportunity from "../ContactTab/Opportunity/LinkedOpportunity"
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
@@ -13,8 +13,8 @@ import { getOpportunityListByContactId } from "../../../ContactAction";
 import AddDocumentModals from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import { BundleLoader } from "../../../../../Components/Placeholder";
+import LinkedDocuments from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments";
 
-const LinkedDocuments =lazy(()=>import("./Document/LinkedDocuments"));
 const ReactContactSpeechModal =lazy(()=>import("../ReactContactSpeechModal"));
 const AddContactOpportunityModal =lazy(()=>import("../../../Child/ContactDetail/ContactTab/Opportunity/AddContactOpportunityModal"));
 
@@ -62,11 +62,13 @@ class ContactDetailTab extends Component {
       switch (key) {
         case "1":
           return     <div> 
-                  <LinkedDocuments 
-                 translateText={this.props.translateText}
-                 selectedLanguage={this.props.selectedLanguage}
-               translatedMenuItems={this.props.translatedMenuItems}
-                />
+                <LinkedDocuments
+              uniqueId={contactId}
+              type={"contact"}
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
+             /> 
               </div>;
         case "2":
           return  <div>   <LinkedOpportunity
@@ -107,6 +109,11 @@ class ContactDetailTab extends Component {
                     {this.state.translatedMenuItems[0]} 
                     {/* Documents */}
                   </span>
+                  <Badge
+                count={this.props.documentsByCount.document}
+                overflowCount={999}
+              > 
+                   </Badge>
                   {activeKey === "1" && (
                     <>
                  <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
@@ -174,6 +181,8 @@ class ContactDetailTab extends Component {
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
             contactId={ contactId }
+            uniqueId={contactId}
+            type={"contact"}
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}
           translatedMenuItems={this.props.translatedMenuItems}
@@ -208,10 +217,11 @@ class ContactDetailTab extends Component {
     );
   }
 }
-const mapStateToProps = ({ contact }) => ({
+const mapStateToProps = ({ contact ,customer}) => ({
   addContactSpeechModal:contact.addContactSpeechModal,
   documentUploadModal: contact.documentUploadModal,
   addContactOpportunityModal: contact.addContactOpportunityModal,
+  documentsByCount:customer.documentsByCount
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

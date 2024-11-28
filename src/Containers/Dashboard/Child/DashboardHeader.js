@@ -6,7 +6,7 @@ class DashboardHeader extends Component {
   render() {
     return (
       <div>
-          <Suspense fallback={<BundleLoader />}>
+          <Suspense fallback={"Loading..."}>
         
         <ActionHeader
            leftComponent={<DashboardActionLeft 

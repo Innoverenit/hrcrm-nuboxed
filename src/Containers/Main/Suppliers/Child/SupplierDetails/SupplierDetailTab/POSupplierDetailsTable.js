@@ -350,16 +350,10 @@ function PoSupplierDetailsTable(props) {
 
           <div>
   {/* Dropdown trigger */}
-  <div 
-    onClick={() => setIsCountryDropdownVisible(!isCountryDropdownVisible)} 
-    className="cursor-pointer"
-  >
-    {selectedCountry ? item.countryName : "Select"}
-
-  </div>
+  
 
   {/* Dropdown options */}
-  {isCountryDropdownVisible && (
+  {isCountryDropdownVisible ? (
     <Select
       style={{ width: "8rem" }}
       value={selectedCountry}
@@ -375,7 +369,15 @@ function PoSupplierDetailsTable(props) {
         </Option>
       ))}
     </Select>
-  )}
+  ):(
+    <div 
+    onClick={() => setIsCountryDropdownVisible(!isCountryDropdownVisible)} 
+    className="cursor-pointer"
+  >
+    {item.countryName || "Select"}
+
+  </div>  
+                        )}
 </div>
 
 {isEditingDate ? (

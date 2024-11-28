@@ -131,7 +131,7 @@ function AddDocumentModal (props){
     try {
    
 
-      const apiEndpoint = `${base_url}/customer/contact/drop/${customer.customerId}`;
+      const apiEndpoint = `${base_url}/contact-list/drop-down/${props.uniqueId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -177,7 +177,7 @@ function AddDocumentModal (props){
   };
 
   const callback = () => {
-    getCustomerDocument(customer.customerId);
+    getCustomerDocument(props.uniqueId,props.type);
     handleDocumentUploadModal(false);
   };
 
@@ -197,7 +197,7 @@ function AddDocumentModal (props){
     getCustomerDocument,
   } = props;
 
-
+console.log(props.uniqueId)
   return (
     <>
       <StyledDrawer
@@ -213,17 +213,18 @@ function AddDocumentModal (props){
             documentDescription: "",
             contract: contract ? "true" : "false",
             documentId: "",
-            customerId: props.customerId,
-            contactId: props.contactId,
-            opportunityId: props.opportunityId,
-            invOpportunityId:props.invOpportunityId,
-            investorId:props.investorId
+            customerId: props.uniqueId,
+            contactId: props.uniqueId,
+            opportunityId: props.uniqueId,
+            invOpportunityId:props.uniqueId,
+            investorId:props.uniqueId
           }}
           validationSchema={documentSchema}
           onSubmit={(values, { resetForm }) => {
             addCustomerDocument({ ...values, 
               included:selectedIncludeValues, 
               contactId:selectedCustomer,
+              contactId: props.uniqueId,
               contract: contract ? "true" : "false" }, callback);
             resetForm();
           }}
@@ -263,6 +264,7 @@ function AddDocumentModal (props){
                     />
                   </div>
                   </div>
+                  {props.type !== "customer" || "investor" && 
                   <div class=" w-w47.5 max-sm:w-wk">                
 <div className="font-bold text-xs">
 {translatedMenuItems[7]}
@@ -283,7 +285,7 @@ function AddDocumentModal (props){
       </Select>
           
             </div>
-                 
+}  
                 </div>
                 <div class=" h-full w-[47.5%]">
                 <div className="font-bold font-poppins text-xs">{translatedMenuItems[2]}</div>

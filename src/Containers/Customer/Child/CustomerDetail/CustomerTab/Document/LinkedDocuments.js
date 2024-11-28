@@ -1,4 +1,4 @@
-import React, { Component,lazy } from "react";
+import React, { useState, useEffect, useRef,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import DownloadIcon from '@mui/icons-material/Download';
@@ -19,6 +19,7 @@ import {
 import {
   getCustomerDocument,
   deleteDocument,
+  getDocumentCount
 } from "../../../../CustomerAction";
 import { elipsize } from "../../../../../../Helpers/Function/Functions";
 import dayjs from "dayjs";
@@ -32,36 +33,23 @@ import GavelIcon from '@mui/icons-material/Gavel';
 
 const ContractToggle =lazy(()=>import("./ContractToggle")); 
 const EmptyPage = lazy(() => import("../../../../../Main/EmptyPage"));
-class LinkedDocuments extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      searchText: "",
-      searchedColumn: "",
-       translatedMenuItems: [],
-    };
-  }
-  componentDidMount() {
-    const {
-      customer: { customerId },
-      getCustomerDocument,
-    } = this.props;
-    this.fetchMenuTranslations();
-    getCustomerDocument(customerId);
-    // this.props.getDocuments();
-  }
+const LinkedDocuments = (props) => {
+  const [searchText, setSearchText] = useState("");
+  const [searchedColumn, setSearchedColumn] = useState("");
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const searchInput = useRef(null);
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
-      this.fetchMenuTranslations();
-    }
-  }
-
-  fetchMenuTranslations = async () => {
-    try {
-      const itemsToTranslate = [
-        
-           "74" ,  // "Date",//0
+  useEffect(() => {
+    props.getCustomerDocument(props.uniqueId,props.type);
+    props.getDocumentCount(props.uniqueId,props.type);
+  }, []);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          "74" ,  // "Date",//0
            "110" , // "Name",//1
            "147" ,   // "Description",//2
            "1207" ,   // "Uploaded By",//3
@@ -73,51 +61,46 @@ class LinkedDocuments extends Component {
            "1351" , // "Download"9
            "1259" ,  // Do you want to delete?10
             "84" , // "Delete"11
-      ];
+        ];
 
-      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-      this.setState({ translatedMenuItems: translations });
-    } catch (error) {
-      console.error('Error translating menu items:', error);
-    }
-  };
-  getColumnSearchProps = (dataIndex) => ({
-    filterDropdown: ({
-      setSelectedKeys,
-      selectedKeys,
-      confirm,
-      clearFilters,
-    }) => (
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+ 
+  const getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
       <div style={{ padding: 8 }}>
         <Input
-          ref={(node) => {
-            this.searchInput = node;
-          }}
+          ref={searchInput}
           placeholder={`Search ${dataIndex}`}
           value={selectedKeys[0]}
-          onChange={(e) =>
-            setSelectedKeys(e.target.value ? [e.target.value] : [])
-          }
-          onPressEnter={() =>
-            this.handleSearch(selectedKeys, confirm, dataIndex)
-          }
+          onChange={(e) => setSelectedKeys(e.target.value ? [e.target.value] : [])}
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
           style={{ width: 188, marginBottom: 8, display: "block" }}
         />
-        <Button className="w-[90%] mr-8"
+        <Button
           type="primary"
-          onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
+          onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
           icon={<SearchIcon />}
           size="small"
-        
+          style={{ width: 90, marginRight: 8 }}
         >
-          {this.state.translatedMenuItems[6]} {/* Search */}
+          Search
         </Button>
-        <Button className="w-[90%]"
-          onClick={() => this.handleReset(clearFilters)}
+        <Button
+          onClick={() => handleReset(clearFilters)}
           size="small"
-     
+          style={{ width: 90 }}
         >
-         {this.state.translatedMenuItems[7]}  {/* Reset */}
+          Reset
         </Button>
       </div>
     ),
@@ -131,54 +114,45 @@ class LinkedDocuments extends Component {
         .includes(value.toLowerCase()),
     onFilterDropdownVisibleChange: (visible) => {
       if (visible) {
-        setTimeout(() => this.searchInput.select());
+        setTimeout(() => searchInput.current.select());
       }
     },
     render: (text) =>
-      this.state.searchedColumn === dataIndex ? (
+      searchedColumn === dataIndex ? (
         <Highlighter
           highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
-          searchWords={[this.state.searchText]}
+          searchWords={[searchText]}
           autoEscape
-          textToHighlight={text.toString()}
+          textToHighlight={text ? text.toString() : ""}
         />
       ) : (
         text
       ),
   });
 
-  handleSearch = (selectedKeys, confirm, dataIndex) => {
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
     confirm();
-    this.setState({
-      searchText: selectedKeys[0],
-      searchedColumn: dataIndex,
-    });
+    setSearchText(selectedKeys[0]);
+    setSearchedColumn(dataIndex);
   };
 
-  handleReset = (clearFilters) => {
+  const handleReset = (clearFilters) => {
     clearFilters();
-    this.setState({ searchText: "" });
+    setSearchText("");
   };
-  render() {
-    const {
-      documentsByCustomerId,
-      fetchingDocumentsByCustomerId,
-      fetchingDocumentsByCustomerIdError,
-      deleteDocument,
-    } = this.props;
-    console.log(documentsByCustomerId)
 
-    const documentTypeOption = this.props.documents.map((item) => {
-      return {
-        text: item.documentTypeName,
-        value: item.documentTypeName,
-      };
-    });
 
-    if (fetchingDocumentsByCustomerId) return <BundleLoader/>;
-    // if (fetchingDocumentsByCustomerIdError) {
-    //   return <APIFailed />;
-    // }
+  const {
+    documentsByCustomerId,
+    fetchingDocumentsByCustomerId,
+    fetchingDocumentsByCustomerIdError,
+    deleteDocument,
+  } = props;
+
+
+    if (loading || fetchingDocumentsByCustomerId) {
+      return <BundleLoader />;
+    }
     const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;
     return (
@@ -187,23 +161,23 @@ class LinkedDocuments extends Component {
           <div className=" flex justify-between w-[100%]  p-1 sticky font-bold font-poppins !text-lm items-end z-10">
           
         <div className=" text-[#00A2E8] truncate w-[10.8rem] text-sm max-md:w-[16.1rem]">
-        <DateRangeIcon className='!text-icon  '  />  {this.state.translatedMenuItems[0]}</div>
+        <DateRangeIcon className='!text-icon  '  />  {translatedMenuItems[0]}</div>
         {/* Date */}
                 <div className=" w-[15.2rem] truncate max-md:w-[16.2rem]">
-                <ArticleIcon className='!text-icon mr-1 text-[#a379c9] '  />{this.state.translatedMenuItems[1]}</div>
+                <ArticleIcon className='!text-icon mr-1 text-[#a379c9] '  />{translatedMenuItems[1]}</div>
                 {/* Name */}
         <div className=" w-[15.4rem] truncate max-md:w-[13.13rem]">
-        <DescriptionIcon className='!text-icon text-[#9ad5ca] '  /> {this.state.translatedMenuItems[2]}</div>
+        <DescriptionIcon className='!text-icon text-[#9ad5ca] '  /> {translatedMenuItems[2]}</div>
        
         <div className=" w-[10.7rem] truncate max-md:w-[15.1rem]">
-        <AccountCircleIcon className="!text-icon  text-[#f28482]"/> {this.state.translatedMenuItems[3]}</div>
+        <AccountCircleIcon className="!text-icon  text-[#f28482]"/> {translatedMenuItems[3]}</div>
      
         <div className=" w-[14.2rem] truncate max-md:w-[12.2rem]">
-        <  FileOpenIcon className='!text-icon text-[#7fb800] '  />  {this.state.translatedMenuItems[4]}</div>
+        <  FileOpenIcon className='!text-icon text-[#7fb800] '  />  {translatedMenuItems[4]}</div>
           {/* fileName */}
         
                      <div className=" w-[9.5rem] truncate max-md:w-[9.5rem]">
-                     <  GavelIcon className='!text-icon text-[red] '  />        {this.state.translatedMenuItems[5]}</div>
+                     <  GavelIcon className='!text-icon text-[red] '  />        {translatedMenuItems[5]}</div>
                      {/* Contract */}
         
         
@@ -249,7 +223,7 @@ class LinkedDocuments extends Component {
         {date === currentdate ? (
     <span class="text-xs text-[tomato] font-bold"
     >
-             {this.state.translatedMenuItems[8]}{/* New */}
+             {translatedMenuItems[8]}{/* New */}
           </span>
         ) : null} 
                               </div>
@@ -299,7 +273,7 @@ class LinkedDocuments extends Component {
                               <a
             href={`${base_url}/document/${item.documentId}`}
             // target="_blank"
-          > <Tooltip title= {this.state.translatedMenuItems[9]}>
+          > <Tooltip title= {translatedMenuItems[9]}>
             <DownloadIcon
             className="cursor-pointer !text-icon"
             /></Tooltip>
@@ -308,12 +282,12 @@ class LinkedDocuments extends Component {
                  <div class="flex items-center justify-center h-8 bg-[#eef2f9]">
             
           <Popconfirm
-                        title= {this.state.translatedMenuItems[10]}
+                        title= {translatedMenuItems[10]}
                         okText="Yes"
                         cancelText="No"
                         onConfirm={() => deleteDocument(item.documentId)}
                       >
-                         <Tooltip title= {this.state.translatedMenuItems[11]}>
+                         <Tooltip title= {translatedMenuItems[11]}>
       
                          <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
             </Tooltip>
@@ -327,9 +301,9 @@ class LinkedDocuments extends Component {
                     
       </div>
       </>
-    );
-  }
-}
+    )
+  };
+
 
 const mapStateToProps = ({ customer, document }) => ({
   customer: customer.customer,
@@ -345,6 +319,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       getCustomerDocument,
       deleteDocument,
+      getDocumentCount
       // getDocuments,
     },
     dispatch

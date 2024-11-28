@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStation';
 import { bindActionCreators } from "redux";
 import RecruitmentDeletedTable from "../../OpportunityDetail/OpportunityTab/Recruitment/RecruitmentDeletedTable"
-import {Tooltip, } from "antd";
+import {Tooltip,Badge } from "antd";
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import { FormattedMessage } from 'react-intl';
 
@@ -36,13 +36,13 @@ import ReactSpeechModal from "./ReactSpeechModal";
 import AddDocumentModals from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
 import AddCustomerContactModal from "../../../../Customer/Child/CustomerDetail/CustomerTab/ContactTab/AddCustomerContactModal";
 import LinkedContact from "../../../../Customer/Child/CustomerDetail/CustomerTab/ContactTab/LinkedContact";
+import LinkedDocuments from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments";
 const RecruitmentTable = lazy(() => import("./Recruitment/RecruitmentTable"));
 const AddRecruitModal = lazy(() => import("./Recruitment/AddRecruitModal"));
 const AddTagProfileModal = lazy(() => import("./Recruitment/AddTagProfileModal"));
 const RecruitProJumpstart = lazy(() => import("../../RecruitProJumpstart/RecruitProJumpstart"));
 const SummaryTable = lazy(() => import("./Recruitment/Child/SummaryTable"));
 const AddDocumentModal = lazy(() => import("./Document/AddDocumentModal"));
-const LinkedDocuments = lazy(() => import("./Document/LinkedDocuments"));
 const AddContactModal = lazy(() => import("../../../../Contact/Child/AddContactModal"));
 const LinkContactModal = lazy(() => import("../../../../Contact/Child/LinkContactModal"));
 
@@ -207,11 +207,13 @@ class OpportunityDetailTab extends Component {
         translatedMenuItems={this.props.translatedMenuItems}
           /></div>;
          case "3":
-          return  <div>     <LinkedDocuments opportunity={opportunity} 
+          return  <div>     <LinkedDocuments
+          uniqueId={opportunityId}
+          type={"oppertunity"}
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
         translatedMenuItems={this.props.translatedMenuItems}
-          /></div>;
+         /> </div>;
           case "4":
             return  <div>    </div>;
         default:
@@ -428,6 +430,11 @@ return  <BundleLoader />
                                     {translatedMenuItems[1]}
                                     {/* Documents */}
                                         </span>
+                                        <Badge
+                count={this.props.documentsByCount.OpportunityDocumentDetails}
+                overflowCount={999}
+              > 
+                   </Badge>      
                   {activeKey === "3" && (
                     <>
                       <Tooltip 
@@ -568,6 +575,8 @@ return  <BundleLoader />
 
 <AddDocumentModals
 opportunityId={opportunityId}
+uniqueId={opportunityId}
+type={"oppertunity"}
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
             translateText={this.props.translateText}
@@ -613,6 +622,7 @@ const mapStateToProps = ({
   addRecruitModal: opportunity.addRecruitModal,
   addTagProfileModal: opportunity.addTagProfileModal,
   documentUploadModal: opportunity.documentUploadModal,
+  documentsByCount:customer.documentsByCount
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

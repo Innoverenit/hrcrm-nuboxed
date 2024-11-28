@@ -569,10 +569,10 @@ export const documentUpload = (data) => (dispatch) => {
 /**
  * get documents of an customer
  */
-export const getCustomerDocument = (customerId) => (dispatch) => {
+export const getCustomerDocument = (id,type) => (dispatch) => {
   dispatch({ type: types.GET_CUSTOMER_DOCUMENTS_REQUEST });
   axios
-    .get(`${base_url}/customer/document/${customerId}`, {
+    .get(`${base_url}/document/get/${id}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -589,6 +589,31 @@ export const getCustomerDocument = (customerId) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_CUSTOMER_DOCUMENTS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getDocumentCount = (id,type) => (dispatch) => {
+  dispatch({ type: types.GET_DOCUMENTS_COUNT_REQUEST });
+  axios
+    .get(`${base_url}/document/count/${id}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DOCUMENTS_COUNT_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DOCUMENTS_COUNT_FAILURE,
         payload: err,
       });
     });
