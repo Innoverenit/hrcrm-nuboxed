@@ -356,6 +356,10 @@ addingShipperCategoryError: false,
   fetchingProcessForRecruitError: false,
   recruitProcess: [],
 
+
+  addingApi:false,
+  addingApiError:false,
+
   updateProcessNameForRepair: false,
   updateProcessNameForRepairError: false,
 
@@ -438,6 +442,11 @@ addingShipperCategoryError: false,
   linkingDealsStagesPublish: false,
   linkingDealsStagesPublishError: false,
   dealsStagesPublish: [],
+
+
+  fetchingApiKey:false,
+  fetchingApiKeyError:false,
+  apikey:{},
 
   fetchingProcessStagesForProduction: false,
   fetchingProcessStagesForProductionError: false,
@@ -3558,6 +3567,27 @@ export const settingsReducer = (state = initialState, action) => {
 
 
 
+
+
+      case types.GET_API_KEY_REQUEST:
+        return { ...state, fetchingApiKey: true };
+      case types.GET_API_KEY_SUCCESS:
+        return {
+          ...state,
+          fetchingApiKey: false,
+          apikey: action.payload,
+        };
+      case types.GET_API_KEY_FAILURE:
+        return {
+          ...state,
+          fetchingApiKey: false,
+          fetchingApiKeyError: true,
+        };
+
+
+
+
+
       case types.LINK_DEALS_PROCESS_GLOBAL_REQUEST:
       return {
         ...state,
@@ -4114,6 +4144,28 @@ export const settingsReducer = (state = initialState, action) => {
               fetchingProcessStagesForSupplier: false,
               fetchingProcessStagesForSupplierError: true,
             };
+
+
+
+
+            case types.ADD_API_REQUEST:
+              return { ...state, addingApi: true };
+            case types.ADD_API_SUCCESS:
+              return {
+                ...state,
+                addingApi: false,
+            
+               
+                //opportunityByUserId: [action.payload, ...state.opportunityByUserId],
+                // clearbit: null,
+              };
+            case types.ADD_API_FAILURE:
+              return {
+                ...state,
+                addingApi: false,
+                addingApiError: true,
+                //addOpportunityModal: false,
+              };
 
             case types.UPDATE_STAGE_FOR_SUPPLIER_REQUEST:
               return { ...state, updatingStagesForSupplier: true };
