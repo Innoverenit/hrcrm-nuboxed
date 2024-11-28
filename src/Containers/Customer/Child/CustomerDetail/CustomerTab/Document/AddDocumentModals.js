@@ -197,7 +197,7 @@ function AddDocumentModal (props){
     getCustomerDocument,
   } = props;
 
-console.log(props.uniqueId)
+
   return (
     <>
       <StyledDrawer
@@ -213,18 +213,19 @@ console.log(props.uniqueId)
             documentDescription: "",
             contract: contract ? "true" : "false",
             documentId: "",
-            customerId: props.uniqueId,
-            contactId: props.uniqueId,
-            opportunityId: props.uniqueId,
-            invOpportunityId:props.uniqueId,
-            investorId:props.uniqueId
+            customerId: props.customerId,
+            contactId: props.contactId,
+            opportunityId: props.opportunityId,
+            invOpportunityId:props.invOpportunityId,
+            investorId:props.investorId,
+            employeeId:props.employeeId,
           }}
           validationSchema={documentSchema}
           onSubmit={(values, { resetForm }) => {
             addCustomerDocument({ ...values, 
               included:selectedIncludeValues, 
               contactId:selectedCustomer,
-              contactId: props.uniqueId,
+              contactId: props.contactId,
               contract: contract ? "true" : "false" }, callback);
             resetForm();
           }}

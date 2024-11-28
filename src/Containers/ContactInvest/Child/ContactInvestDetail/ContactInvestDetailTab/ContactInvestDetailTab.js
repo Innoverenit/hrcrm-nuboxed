@@ -13,10 +13,10 @@ import {
   handleContactReactSpeechModal,
   handleDocumentUploadModal,
 } from "../../../../Contact/ContactAction";
+import LinkedDocuments from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments";
 import AddDocumentModals from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
 import ActivityListData from "../../../../Activity/ActivityListData";
 const ContactInvestTimeLine =lazy(()=>import("../Activity/ContactInvestTimeLine"));
-const LinkedContactInvestDocuments =lazy(()=>import("./ContactInvestDocument/LinkedContactInvestDocuments"));
 const ContactInvestorActivityModal =lazy(()=>import("../Activity/ContactInvestorActivityModal"));
 const LinkedDealTable =lazy(()=>import("./ContactInvestDeal/LinkedDealTable"));
  const TabPane = StyledTabs.TabPane;
@@ -75,10 +75,13 @@ class ContactInvestDetailTab extends Component {
                 translateText={this.props.translateText}/>
               </div>;
         case "2":
-          return  <div>    <LinkedContactInvestDocuments contactInVestDetail={this.props.contactInVestDetail}
-          selectedLanguage={this.props.selectedLanguage}
+          return  <div>  <LinkedDocuments
+          uniqueId={this.props.contactInVestDetail.contactId}
+          type={"contact"}
           translateText={this.props.translateText}
-       /></div>;
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}
+         /> </div>;
           case "3":
               return  <div>  
                 {/* <ContactInvestTimeLine
@@ -204,6 +207,8 @@ class ContactInvestDetailTab extends Component {
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
             contactId={contactId}
+            uniqueId={this.props.contactInVestDetail.contactId}
+            type={"contact"}
           />
                <ContactInvestorActivityModal
                 contact={this.props.contactInVestDetail.contactId}

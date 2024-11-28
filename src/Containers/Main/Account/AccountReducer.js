@@ -3016,15 +3016,36 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         removingOrderAcc: false,
-        highDistributorOrder: state.highDistributorOrder.filter(
-          (item) => item.orderId !== action.payload.orderId
-        ),
-        mediumDistributorOrder: state.mediumDistributorOrder.filter(
-          (item) => item.orderId !== action.payload.orderId
-        ),
-        lowDistributorOrder: state.lowDistributorOrder.filter(
-          (item) => item.orderId !== action.payload.orderId
-        ),
+        highDistributorOrder: state.highDistributorOrder.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        mediumDistributorOrder: state.mediumDistributorOrder.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        lowDistributorOrder: state.lowDistributorOrder.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        // highDistributorOrder: state.highDistributorOrder.filter(
+        //   (item) => item.orderId !== action.payload.orderId
+        // ),
+        // mediumDistributorOrder: state.mediumDistributorOrder.filter(
+        //   (item) => item.orderId !== action.payload.orderId
+        // ),
+        // lowDistributorOrder: state.lowDistributorOrder.filter(
+        //   (item) => item.orderId !== action.payload.orderId
+        // ),
       };
     case types.REMOVE_ORDER_ACC_FAILURE:
       return {

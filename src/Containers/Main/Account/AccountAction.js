@@ -3760,8 +3760,8 @@ export const removeOrderAcc = (data,orderPhoneId,distributorId) => (dispatch) =>
       },
     })
     //  window.location.reload()
-    dispatch(getDistributorOrderOfHigh(distributorId, 0, "repair","High"))
-    dispatch(getDistributorOrderOfHigh(distributorId, 0, "repair","Low"))
+    // dispatch(getDistributorOrderOfHigh(distributorId, 0, "repair","High"))
+    // dispatch(getDistributorOrderOfHigh(distributorId, 0, "repair","Low"))
     .then((res) => {
       dispatch({
         type: types.REMOVE_ORDER_ACC_SUCCESS,

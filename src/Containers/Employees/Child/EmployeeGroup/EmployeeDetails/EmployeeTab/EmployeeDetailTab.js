@@ -28,6 +28,7 @@ import {
   handleDocumentUploadModal,
   handleContractModal,
 } from "../../../../../Profile/ProfileAction";
+import AddDocumentModals from "../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
 
 const EmployeePerformanceTable =lazy(()=>import("./Performance/EmployeePerformanceTable"));
 const AddPersonalModal =lazy(()=>import("../EmployeeTab/Personal/AddPersonalModal"));
@@ -130,7 +131,7 @@ fetchMenuTranslations = async () => {
       handleContractModal,
       user
     } = this.props;
-
+console.log(this.props.singleEmployee)
     return (
       <>
         <TabsWrapper>
@@ -405,7 +406,7 @@ fetchMenuTranslations = async () => {
                       defaultMessage="Documents"
                     /> */}
                   </span>
-                  {/* {activeKey === "9" && user.userCreateInd === true && (
+                  {activeKey === "10" && user.userCreateInd === true && (
                     <>
                          <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                        
@@ -418,16 +419,20 @@ fetchMenuTranslations = async () => {
                         }}
                       />
                     </>
-                  )} */}
+                  )}
                 </>
               }
               key="10"
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedDocuments 
-                 translateText={this.props.translateText}
-                 selectedLanguage={this.props.selectedLanguage}/>
+                <LinkedDocuments
+          uniqueId={this.props.singleEmployee.employeeId}
+          type={"employee"}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}
+         />
               </Suspense>
             </TabPane>
             ):null}
@@ -707,11 +712,15 @@ fetchMenuTranslations = async () => {
             handleSalaryModal={handleSalaryModal}
           />
 
-          <AddDocumentModal
-           translateText={this.props.translateText}
-           selectedLanguage={this.props.selectedLanguage}
+           <AddDocumentModals
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
+            employeeId={this.props.singleEmployee.employeeId}
+            uniqueId={this.props.singleEmployee.employeeId}
+            type={"employee"}
           />
           <AddContractModal
            translateText={this.props.translateText}
