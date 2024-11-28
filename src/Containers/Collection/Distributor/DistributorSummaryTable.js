@@ -24,7 +24,7 @@ function DistributorSummaryTable(props) {
                 />
 
 <div class="w-wk">
-         <div className="flex justify-between w-wk">
+         <div className="flex justify-between w-[95%] items-center">
         <div>
         <div class=" font-poppins font-bold text-base ">Collection Value by Payment Mode</div>
           <DynamicPieChart dtype={"NotApprovePayment"} userId={props.userId} timeRangeType={props.timeRangeType} />
@@ -47,7 +47,7 @@ function DistributorSummaryTable(props) {
          
 </div>
 
-<div className="flex justify-between w-wk">
+<div className="flex justify-between w-[95%] items-center">
 <div>  
         <div class=" font-poppins font-bold text-base ">Collection by Payment Type</div>
           <DynamicPieChart dtype={"NotApprove"} userId={props.userId} timeRangeType={props.timeRangeType}/>

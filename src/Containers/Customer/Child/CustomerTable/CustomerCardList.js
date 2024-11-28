@@ -25,7 +25,6 @@ import {
   MultiAvatar,
   MultiAvatar2,
 } from "../../../../Components/UI/Elements";
-import { Link } from 'react-router-dom';
 import {
   getCustomerListByUserId,
   handleUpdateCustomerModal,
@@ -55,9 +54,6 @@ import CustomerSearchedData from "./CustomerSearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddCustomerAdressModal from "./AddCustomerAdressModal";
 import EmptyPage from "../../../Main/EmptyPage";
-import Opportunity from "../../../Opportunity/Opportunity";
-import { Header } from "antd/es/layout/layout";
-//import UpdateUserModal from "./UpdateUserModal";
 const AddCustomerDrawerModal = lazy(() =>
   import("../../AddCustomerDrawerModal")
 );

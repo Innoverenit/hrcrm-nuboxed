@@ -61,7 +61,7 @@ componentDidMount() {
 render() {
    const weightedValue = `${this.props.InvWeightedValue.weightedValue} ${this.props.InvWeightedValue.tradeCurrency}`;
    const pipeLineValue = `${this.props.InvestorPipelineValue.pipeLineValue} ${this.props.InvestorPipelineValue.tradeCurrency}`;
- 
+  //const weightedValue  = isNaN(Math.floor((this.props.InvWeightedValue.weightedValue / this.props.InvWeightedValue.tradeCurrency) * 100)) ? 0 : Math.floor((this.props.InvWeightedValue.weightedValue/ this.props.InvWeightedValue.tradeCurrency) * 100)
   const { showDatelist, fetchingDatewiseReport } = this.props;
   console.log( this.props.taskperCount)
    const startDate = `${this.state.startDate.format("YYYY-MM-DD")}T20:00:00Z`
@@ -75,7 +75,8 @@ render() {
   } = this.props;
   return(
     <>
-    <div class="flex">
+     <div class="flex  h-[70vh]">
+    <div class="flex justify-between items-center h-[70vh]">
     <div className="w-1/2">
         <div class=" text-base flex  font-bold justify-center text-[blue]">Current</div>
     <div class=" flex flex-row w-full" >
@@ -118,7 +119,7 @@ render() {
             noProgress
             // bgColor="linear-gradient(270deg,#ad82f7,#3dcec7)"
             bgColor="#34495E "
-            title="Pipe line value"
+            title="Pipe line"
               
           
             value={
@@ -296,26 +297,28 @@ render() {
           </div>        
           </div>
 
-          <div class=" mt-1 flex flex-col w-1/2 h-[83vh] items-center" > 
-      <div className="font-bold font-poppins  text-lg">Deals</div>
-        <InvestorPieChart1/>
+          <div class=" mt-1 flex flex-col  items-center" > 
+          <div className="font-bold font-poppins  text-lg">Line Chart</div>
+          <CustomerPieLineChart/>
+     
        
+       
+        </div> 
+
+        </div>
+
+
+
+        <div class=" mt-1 flex justify-between items-center" > 
+          
+        <div className="font-bold font-poppins  text-lg">Deals</div>
+        <InvestorPieChart1/>
         <div className="font-bold font-poppins text-lg">Activity</div>
         <InvestorPieChart2/>
-        </div> 
-
-
-
-
-
-        <div class=" mt-1 flex flex-col w-1/2 h-[83vh] items-center" > 
-      <div className="font-bold font-poppins  text-lg">Line Chart</div>
-        <CustomerPieLineChart/>
-       
        
         </div> 
-        
-        </div>
+        </div> 
+       
           <AddInvestorActivityJumpstartModal
        RowData={this.props.RowData}
        addInvestorActivityJumpstartModal={addInvestorActivityJumpstartModal}

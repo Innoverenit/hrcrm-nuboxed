@@ -4,6 +4,10 @@ import { bindActionCreators } from "redux";
 import { Tooltip,} from "antd";
 import { Link } from 'react-router-dom';
 import dayjs from "dayjs";
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import ContactsIcon from '@mui/icons-material/Contacts';
 import {
   MultiAvatar,
   MultiAvatar2,
@@ -30,7 +34,7 @@ function CustrOpenOpportunityJumpstartCardList(props) {
         setLoading(true); 
         const itemsToTranslate = [
           "213",//0 Quotation ID 
-          "216",//1 Sponsor
+          "73",//1 Sponsor
           "176",//2 Start Date
           "218",//3 value
           "76",//4 Assigned
@@ -71,18 +75,18 @@ function CustrOpenOpportunityJumpstartCardList(props) {
       return (    
   <>
   <div class="flex flex-wrap w-[56vw]">
-  <div class="rounded m-1 max-sm:m-1 p-1 w-[80%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+  <div class="rounded m-1 max-sm:m-1 p-1   overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex max-sm:hidden  w-[100%]  max-xl:w-[82%] p-1 bg-transparent font-semibold items-end !text-lm font-poppins sticky  z-10">
-        <div className=" w-[6.8rem] text-sm ">{translatedMenuItems[0]} ID</div>
+        <div className=" w-[6.8rem] text-sm text-[#00A2E8]"><LightbulbIcon className="!text-icon"/>{translatedMenuItems[0]} ID</div>
         {/* Quotation ID  */}
-        <div className=" w-[8.2rem] ">{translatedMenuItems[1]}</div>
+        <div className=" w-[6.2rem] "><ContactsIcon className="!text-icon text-[#023E8A]"/>{translatedMenuItems[1]}</div>
         {/* Sponsor */}
 
-        <div className=" w-[7.3rem] ">{translatedMenuItems[3]}</div>
+        <div className=" w-[4.3rem] "><CurrencyExchangeIcon className="!text-icon text-[#588157]"/>{translatedMenuItems[3]}</div>
         {/* Value */}
-        <div className=" w-[6.1rem] ">{translatedMenuItems[4]}</div>
+        <div className=" w-[4.1rem] "><AccountCircleIcon className="!text-icon text-[#023047]"/>{translatedMenuItems[4]}</div>
         {/* Assigned */}
-        <div className=" w-[2.2rem] ">{translatedMenuItems[5]}</div>
+        <div className=" w-[3.2rem] "><AccountCircleIcon className="!text-icon text-[#FFB703]"/>{translatedMenuItems[5]}</div>
         {/* Owner */}
       
       </div>

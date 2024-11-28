@@ -15,10 +15,11 @@ import NodataFoundPage from '../../../Helpers/ErrorBoundary/NodataFoundPage';
 import { MultiAvatar } from '../../../Components/UI/Elements';
 import { BundleLoader } from "../../../Components/Placeholder";
 import { Link } from 'react-router-dom';
-import { Tooltip } from 'antd';
+import { Tooltip, Input,Button,Progress  } from 'antd';
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import dayjs from 'dayjs';
+import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import GolfCourseIcon from '@mui/icons-material/GolfCourse';
@@ -55,6 +56,7 @@ const AllAccountList = (props) => {
   const [RowData, setRowData] = useState("");
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [particularRowData, setParticularRowData] = useState({});
   useEffect(() => {
     props.getAllDistributorsList(props.orgId,page);
     setPage(page + 1);
@@ -79,6 +81,7 @@ const AllAccountList = (props) => {
           "592",          // club    12
           "185",//Address13
           "679",//Created14
+          "1171"
       ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -95,7 +98,35 @@ const AllAccountList = (props) => {
   function handleCurrentRowData(datas) {
     setRowData(datas);
   }
-  
+  function handleSetParticularOrderData(item) {
+    setParticularRowData(item);
+}
+  const [visible, setVisible] = useState(false)
+  const handleUpdateRevisePrice = () => {
+      setVisible(!visible)
+  }
+  const [price, setPrice] = useState(particularRowData.dispatchPaymentPercentage)
+ 
+  const handleSubmitPrice = () => {
+    props.updateAccountPrice(
+        {
+            dispatchPaymentPercentage: price,
+            
+        },
+        particularRowData.distributorId,
+
+    );
+    setVisible(false)
+}
+const handleChange = (val) => {
+  //  setPrice(val)
+  if (!isNaN(val) && val > 0 && val < 101) {
+    setPrice(val);
+  } else {
+    setPrice(''); // Reset the input if the value is not valid
+  }
+
+}
   const handleLoadMore = () => {
     const PageMapd = props.allDistributors && props.allDistributors.length && props.allDistributors[0].pageCount
     setTimeout(() => {  
@@ -151,13 +182,22 @@ const AllAccountList = (props) => {
             {/* Paymentdays % */}</div>
             <div className="w-[12.2rem] max-md:w-[12.2rem] truncate">
             <GolfCourseIcon className='!text-base   text-[#f42c04]'/>  {/* Club */}{translatedMenuItems[12]}
-            </div>       
+            </div>  
+            <div className="w-[9.2rem] max-md:w-[9.2rem]">
+            <CurrencyExchangeIcon className='!text-icon    text-[#c42847]' /> {translatedMenuItems[15]}
+            {/* Payment % */}
+       
+            </div>     
                 <div className="w-[7.8rem] max-md:w-[7.8rem] truncate">
                 <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {translatedMenuItems[11]}
            {/* credit */}        
             </div>
             <div className="w-[6.2rem] max-md:w-[6.2rem] truncate ">
             <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[10]}
+            {/* Assigned */}          
+            </div>  
+            <div className="w-[6.2rem] max-md:w-[6.2rem] truncate ">
+            <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[6]}
             {/* Assigned */}          
             </div>      
             </div>
@@ -176,6 +216,7 @@ const AllAccountList = (props) => {
                 {props.allDistributors.map((item) => {
                   const currentdate = dayjs().format("DD/MM/YYYY");
                   const date = dayjs(item.creationDate).format("DD/MM/YYYY");
+                  const acivedPercentage = isNaN(Math.floor((item.outstanding / item.currencyPrice) * 100)) ? 0 : Math.floor((item.outstanding / item.currencyPrice) * 100)
                   const dataLoc = `${item.address && item.address.length && item.address[0].address1
                     } 
 ${item.address && item.address.length && item.address[0].street
@@ -253,32 +294,118 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                           </div>
                         </div>
-                        <div className=" flex  max-sm:w-auto w-[7rem] max-md:w-[7rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className=" flex  max-sm:w-auto bg-[cadetblue]  w-[7rem] max-md:w-[7rem] items-center justify-center h-8 ml-gap  max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.clubName}
 
                             </div>
                           </div>
-                      </div>
-                   
-                      <div className=" flex items-center max-sm:w-auto w-[8rem] max-md:w-[8rem] justify-between h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
-                            <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>&nbsp; &nbsp;
-                            <div class=" text-xs  items-center font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                              {item.currencyPrice}
+                          <div className=" flex  items-center justify-center max-sm:w-auto w-[8.2rem] max-md:w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                              {item.payment} days
 
                             </div>
-                          </div>  
+                         
+                          <div className=" flex  items-center justify-center max-sm:w-auto w-[3rem] max-md:w-[3rem] max-xl:w-[3rem] max-lg:w-[2rem]  bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                            <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">       
+                              {visible && (item.distributorId === particularRowData.distributorId) ?
+                                                                <Input
+                                                                    type='text'
+                                                                    value={price}
+                                                                    onChange={(e) => handleChange(e.target.value)} 
+                                                                />
+                                                                : item.dispatchPaymentPercentage}%
+                            </div>
+                          </div>
+                          
+                          <div className=" flex  items-center justify-center  w-[1.06rem] max-md:w-[1.06rem] bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
+                                                    <div class=" text-xs  font-poppins">
+
+                                                        {visible && (item.distributorId === particularRowData.distributorId) ? (
+                                                            <>
+                                                                <div className=" flex justify-between ">
+                                                                    <Button onClick={() => {
+                                                                        handleSubmitPrice()
+                                                                    }} >{translatedMenuItems[10]}
+                                                                      
+                                                                            {/* defaultMessage="Save" */}
+                                                                        
+                                                                    </Button>
+                                                                    <Button onClick={() => handleUpdateRevisePrice(false)}>
+                                                                    {translatedMenuItems[15]} 
+                                                                        {/* defaultMessage="Cancel" */}
+                                                                   
+                                                                    </Button>
+                                                                </div>
+                                                            </>
+                                                        ) : <Tooltip title={translatedMenuItems[16]}
+                                                      
+                                                        //     defaultMessage="Update Revised Price"
+                                                         
+                                                        >
+                                                            <PublishedWithChangesIcon
+                                                                onClick={() => {
+                                                                    handleUpdateRevisePrice()
+                                                                    handleSetParticularOrderData(item)
+                                                                }}
+                                                                className="!text-icon cursor-pointer text-[tomato]"
+                                                            />
+                                                        </Tooltip> }
+
+                                                    </div>
+
+                                                </div>
+                                                </div>
+                      </div>
+                     
+                      <div className=" flex items-center justify-between bg-[#eef2f9] h-8 ml-gap max-sm:w-auto w-[15.01rem] max-md:w-[9.01rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <div className=" flex items-center max-sm:w-auto w-[2rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                            <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>&nbsp;                            
+                          </div>
+                          <Tooltip title="">
+                                                 
+                                                 <Progress
+                                                percent={acivedPercentage}
+                                                success={{acivedPercentage}}
+                                               // strokeColor={getGradientStrokeColor(acivedPercentage)}
+                                                format={() => `${acivedPercentage}%`} 
+                                                 style={{width:"10rem",cursor:"pointer"}} 
+                                                      />                                                       
+                                                </Tooltip>
+                          <div class=" text-xs flex items-center justify-center font-poppins w-[6.021rem] bg-[#eef2f9] h-8   text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                              {item.curName} {(item.currencyPrice / 1000).toFixed(0)}k
+
+                            </div>                  
+                        </div>
+                       
+                    
                        <div className=" flex  items-center max-sm:w-auto flex-col w-[8rem] max-md:w-[5rem]justify-center ml-gap h-8 bg-[#eef2f9] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
                           <div class="max-sm:flex justify-end">
-                          {item.salesExecutive?
-                            <Tooltip title={item.salesExecutive}>
-                                 <div
-                                  style={{cursor:"pointer"}}
-                                onClick={() => {
+                          {item.assignToUser?
+                            <Tooltip title={item.assignToUser}>
+                                 <div className=' cursor-pointer'
+                                  onClick={() => {
                                   //handleSetCurrentCustomerId(item.customerId)
                                   props.handleUpdateAccountUserModal(true);
                                   handleCurrentRowData(item);
-                                }}
+                                }} >
+                              <MultiAvatar
+                                primaryTitle={item.assignToUser}
+                                imageId={item.ownerImageId}
+                                imgWidth={"1.8rem"}
+                                imgHeight={"1.8rem"}
+                              />
+                              </div>
+                            </Tooltip>:""}
+                          </div>                      
+                      </div>    
+                      <div className=" flex  items-center max-sm:w-auto flex-col w-[8rem] max-md:w-[5rem]justify-center ml-gap h-8 bg-[#eef2f9] max-xl:w-[2rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between max-sm:mb-2 ">
+                          <div class="max-sm:flex justify-end">
+                          {item.salesExecutive?
+                            <Tooltip title={item.salesExecutive}>
+                                 <div className=' cursor-pointer' 
+                                  
+                               
                                 >
                               <MultiAvatar
                                 primaryTitle={item.salesExecutive}
@@ -289,7 +416,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                               </div>
                             </Tooltip>:""}
                           </div>                      
-                      </div>     
+                      </div>      
                       <div className=" flex items-center w-[5rem] max-md:w-[5rem] justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
 <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[9rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
 <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
