@@ -3024,7 +3024,32 @@ export const getQuotationDashboard = (userId) => (dispatch) => {
 
 
 
+export const getReorderDashboardCount = () => (dispatch) => {
+  dispatch({
+      type: types.GET_REORDER_DASHBOARD_COUNT_REQUEST,
+  });
 
+  axios
+      .get(`${base_url2}/po/getReorder/all/count/material`, {
+          headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+      })
+      .then((res) => {
+          console.log(res);
+          dispatch({
+              type: types.GET_REORDER_DASHBOARD_COUNT_SUCCESS,
+              payload: res.data,
+          });
+      })
+      .catch((err) => {
+          console.log(err);
+          dispatch({
+              type: types.GET_REORDER_DASHBOARD_COUNT_FAILURE,
+              payload: err,
+          });
+      });
+};
 
 export const getQuotationDashboardCount = (userId) => (dispatch) => {
   dispatch({

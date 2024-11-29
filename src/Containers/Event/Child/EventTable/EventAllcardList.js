@@ -229,6 +229,7 @@ function EventAllcardList (props) {
         loader={props.fetchingEventAllListRangeByUserId?<div class="flex justify-center">Loading...</div>:null}
         height={"88vh"}
         style={{scrollbarWidth:"thin"}}
+        endMessage={ <p class="flex  text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
       {props.eventallListRangeByUserId.map((item) => { 
             const handleCopyClick = () => {

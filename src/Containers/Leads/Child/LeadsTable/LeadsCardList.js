@@ -143,7 +143,7 @@ const LeadsCardList = (props) => {
     setTimeout(() => {
       const {
         getLeadsHot,
-        userDetails: { employeeId },
+        // userDetails: { employeeId },
       } = props;
       if  (props.leadsAllDataHot)
       {
@@ -167,7 +167,7 @@ const LeadsCardList = (props) => {
     setTimeout(() => {
       const {
         getLeadsWarm,
-        userDetails: { employeeId },
+       // userDetails: { employeeId },
       } = props;
       if  (props.leadsAllDataWarm)
       {
@@ -179,19 +179,19 @@ const LeadsCardList = (props) => {
             props.filter?props.filter:"creationdate",
             "warm"
           );
-      }
-      if (page === callPageMapd){
-        setHasMore(false)
-      }
+     }
+       if (page === callPageMapd){
+         setHasMore(false)
+       }
     }
-    }, 100);
+     }, 100);
   };
   const handleLoadMore2 = () => {
     const callPageMapd = props.leadsAllDataCold && props.leadsAllDataCold.length &&props.leadsAllDataCold[0].pageCount
     setTimeout(() => {
       const {
         getLeadsCold,
-        userDetails: { employeeId },
+       // userDetails: { employeeId },
       } = props;
       if  (props.leadsAllDataCold)
       {
@@ -203,12 +203,12 @@ const LeadsCardList = (props) => {
             props.filter?props.filter:"creationdate",
             "cold"
           );
-      }
-      if (page === callPageMapd){
+       }
+     if (page === callPageMapd){
         setHasMore(false)
-      }
+       }
     }
-    }, 100);
+     }, 100);
   };
 
   function handleSetCurrentLeadsId(item) {

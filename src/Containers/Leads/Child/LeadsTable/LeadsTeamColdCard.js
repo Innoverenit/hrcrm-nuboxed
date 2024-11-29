@@ -119,7 +119,7 @@ const LeadsTeamColdCard = (props) => {
     setTimeout(() => {
       const {
         getTeamLeadsCold,
-        userDetails: { employeeId },
+        // userDetails: { employeeId },
       } = props;
       if  (props.teamLeadsCold)
       {

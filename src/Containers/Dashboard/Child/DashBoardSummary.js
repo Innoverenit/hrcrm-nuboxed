@@ -6,7 +6,7 @@ import {linkTaskStatusDashboard} from "../DashboardAction"
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
-import {Button,Tooltip,Spin} from "antd"
+import {Button,Tooltip} from "antd"
 import dayjs from "dayjs";
 import PinIcon from '@mui/icons-material/Pin';
 import Shop2Icon from '@mui/icons-material/Shop2'; 
@@ -24,7 +24,7 @@ import {
 
 import { getQuotationDashboard,getReorderdata,getQuotationDashboardCount ,
   getTaskDashboard,getTasklist,getDealDashboard,getDealDashboardCount,
-  getOrderDashboard,getOrderDashboardCount,getBestDashboardCount
+  getOrderDashboard,getOrderDashboardCount,getBestDashboardCount,getReorderDashboardCount
 } from "../../Dashboard/DashboardAction";
 import { BundleLoader } from "../../../Components/Placeholder";
 
@@ -73,6 +73,7 @@ const DashBoardSummary=(props) =>{
     props.getTasklist(props.userId)
     props.getReorderdata()
     props.getDealDashboard(props.userId)
+    props.getReorderDashboardCount()
     props.getDealDashboardCount(props.userId)
     props.getOrderDashboard(props.userId,"procure")
     props.getOrderDashboardCount(props.userId,"procure")
@@ -275,7 +276,7 @@ const DashBoardSummary=(props) =>{
   {/* Re Order */}
   <div class="flex flex-col min-h-[89vh] w-[14rem] items-center">
         <div className="text-xl font-poppins font-bold mb-2 uppercase"> <DynamicFeedIcon className='!text-icon mr-1 text-[#ef6f6c]'/>
-        {translatedMenuItems[4]}<span  className=" text-xl font-bold text-[tomato] ml-1">  0</span> </div>
+        {translatedMenuItems[4]}<span  className=" text-xl font-bold text-[tomato] ml-1">   {`${props.ReorderDashboardCount.bbcnt ?? ""} `}</span> </div>
         {props.reOrderData.map((colleague, index) => (
           <div key={index} className="mb-2  p-1 ml-2 h-16 min-h-[5.25rem]  box-content border-2 border-[#00008b23] w-[11rem] min-w-[11rem]">
             <div className="flex justify-between">
@@ -430,6 +431,7 @@ const mapStateToProps = ({ dashboard,inventory, auth }) => ({
   quotationDashboard:dashboard.quotationDashboard,
   fetchingTaskDashboardGantt:dashboard.fetchingTaskDashboardGantt,
   quotationDashboardCount:dashboard.quotationDashboardCount,
+  ReorderDashboardCount:dashboard.ReorderDashboardCount,
   dealsDashboard:dashboard.dealsDashboard,
   dealsDashboardCount:dashboard.dealsDashboardCount,
   orderDashboard:dashboard.orderDashboard,
@@ -451,7 +453,8 @@ const mapDispatchToProps = (dispatch) => bindActionCreators({
   getDealDashboardCount,
   getOrderDashboard,
   getOrderDashboardCount,
-  getBestDashboardCount
+  getBestDashboardCount,
+  getReorderDashboardCount
 
 }, dispatch);
 export default connect(mapStateToProps, mapDispatchToProps)(DashBoardSummary);
