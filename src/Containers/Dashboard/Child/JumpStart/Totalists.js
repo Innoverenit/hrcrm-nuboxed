@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import DynamicBarChart from "./DynamicBarChart";
+import ExpenseBarChart from "./ExpenseBarChart";
+import MileageBarChart from "./MileageBarChart";
 
 function Totalists (props){
 
@@ -12,13 +14,13 @@ function Totalists (props){
          <div class=" mt-1 flex flex-row justify-between" >
          <div class="w-[35rem]">
         <div class=" font-poppins font-bold text-base ">Expenses</div>
-        <DynamicBarChart dtype={"Expenses"} 
+        <ExpenseBarChart dtype={"Expenses"} 
         userId={props.userId} timeRangeType={props.timeRangeType} buttonName={props.buttonName} />
         </div>
         
         <div class="w-[35rem]">
         <div class=" font-poppins font-bold text-base ">Mileage</div>
-        <DynamicBarChart dtype={"Mileage"} 
+        <MileageBarChart dtype={"Mileage"} 
         userId={props.userId} timeRangeType={props.timeRangeType}/>
         </div>
       </div>

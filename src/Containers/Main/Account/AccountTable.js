@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { BundleLoader } from "../../../Components/Placeholder";
-import { Popconfirm, Tooltip,Input,Button,Progress } from "antd";
+import { Popconfirm, Tooltip,Input,Button,Progress,Select } from "antd";
 import { Link } from 'react-router-dom';
 import {handleCustomerOpportunityDrawerModal
 } from "../../Customer/CustomerAction";
@@ -32,6 +32,7 @@ import {
   handleAccountAddress,
   handleAccountOpportunityModal
 } from "./AccountAction";
+import { getCustomer } from "../../Settings/Category/Customer/CustomerAction";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import dayjs from "dayjs";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -43,7 +44,12 @@ import MergeTypeIcon from '@mui/icons-material/MergeType';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import AsignedOpenDrawer from "./AsignedOpenDrawer";
+import Opportunity from "../../Opportunity/Opportunity";
+import Swal from 'sweetalert2'
 import CustomerOpportunityDrawerModal from "../../Customer/Child/CustomerTable/CustomerOpportunityDrawerModal";
+import { base_url2 } from "../../../Config/Auth";
+import { getSaleCurrency, getCategory } from "../../Auth/AuthAction";
+import axios from "axios";
 const AddAccountAdressModal = lazy(() => import("./AddAccountAdressModal"));
 const AccountCreditToggle = lazy(() => import("./AccountCreditToggle"));
 const AccountSearchedData = lazy(() => import("./AccountSearchedData"));
@@ -52,6 +58,8 @@ const  AccountPulseModal = lazy(() => import("./AccountPulseModal"));
 const AccountModal = lazy(() => import("./AccountModal"));
 const AccountQuotationDrawer =lazy(()=>import("./AccountDetailsTab/AccountQuotationDrawer"));
 
+const { Option } = Select;
+
 function AccountTable(props) {
   const [page, setPage] = useState(0);
   const [RowData, setRowData] = useState("");
@@ -59,7 +67,10 @@ function AccountTable(props) {
   const [particularRowData, setParticularRowData] = useState({});
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
- const [asignedDrawer,setasignedDrawer] =useState(false);
+  const [asignedDrawer,setasignedDrawer] =useState(false);
+  const [editableField, setEditableField] = useState(null); 
+ const [editingValue, setEditingValue] = useState(""); 
+ const [customerLists,setcustomerLists]=useState([]);
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
@@ -107,7 +118,14 @@ function AccountTable(props) {
   useEffect(() => {
         setPage(page + 1);
     props.getCustomerByUser(props.userId, page);
+    props.getCustomer(props.orgId);
+    props.getCategory(props.orgId);
+    props.getSaleCurrency();
   }, [props.userId]);
+
+  useEffect(() => {
+    setcustomerLists(props.customerListByUser);
+}, [props.customerListByUser]);
 
   function handleCurrentRowData(datas) {
     setRowData(datas);
@@ -157,6 +175,116 @@ function AccountTable(props) {
               }
             }
             }, 100);
+  };
+
+  const handleEditRowField = (distributorId, field, currentValue) => {
+    setEditableField({ distributorId, field });  
+    setEditingValue(currentValue);  
+  };
+  const handleChangeRowItem = (e) => {
+    setEditingValue(e.target.value);
+  };
+  const handleChangeRowSelectItem = async (value) => {
+    setEditingValue(value);
+
+      const { distributorId, field } = editableField;
+      const updatedData = {};
+      let mappedField = field;
+    
+      // Map the field to the correct key if needed
+      if (field === 'clientName') {
+        mappedField = 'clientId'; 
+      } else if (field === 'dcategoryName') {
+        mappedField = 'dcategory';
+      }
+      else if (field === 'curName') {
+        mappedField = 'currency';
+      }
+      updatedData[mappedField] = value; // Update the value with selected option
+    
+      try {
+        const response = await axios.put(
+          `${base_url2}/distributor/rowEdit/${distributorId}`,
+          updatedData,
+          {
+            headers: {
+              Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+            },
+          }
+        );
+    
+        // Update the customer list with the response data
+        setcustomerLists(prevData =>
+          prevData.map(cat =>
+            cat.distributorId === distributorId ? response.data : cat
+          )
+        );
+        setEditableField(null); // Reset editable field
+        setEditingValue(""); // Reset editing value
+    
+        // Show success message
+        Swal.fire({
+          icon: 'success',
+          title: 'Update successful',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+    
+      } catch (error) {
+        console.error("Error updating item:", error);
+        setEditableField(null); // Reset editable field on error
+      }
+    
+  };
+  const handleUpdateSubmit = async () => {
+    const { distributorId, field } = editableField;
+    // const updatedData = { [field]: editingValue };
+    const updatedData = {};
+    let mappedField = field;
+    if (field === 'clientName') {
+      mappedField = 'clientId'; 
+    } else if (field === 'dcategoryName') {
+      mappedField = 'dcategory';
+    }
+    updatedData[mappedField] = editingValue;
+
+    try {
+      const response = await axios.put(
+        `${base_url2}/distributor/rowEdit/${distributorId}`,
+        updatedData,
+        {
+          headers: {
+            Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+          },
+        }
+      );
+      setcustomerLists(prevData => 
+        prevData.map(cat =>
+          cat.distributorId === distributorId ? response.data : cat
+        )
+      );
+      setEditableField(null);
+      setEditingValue("");
+        Swal.fire({
+          icon: 'success',
+          title: 'Update successful',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+    } catch (error) {
+      console.error("Error updating item:", error);
+      setEditableField(null);
+    }
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleUpdateSubmit(); 
+    }
+  };
+  const handleCancel = () => {
+    setEditableField(null);  
+    setEditingValue("");     
   };
 
   const {
@@ -235,7 +363,7 @@ function AccountTable(props) {
           </div>
           </div>
           <InfiniteScroll
-            dataLength={props.customerListByUser.length}
+            dataLength={customerLists.length}
             next={handleLoadMore}
             hasMore={hasMore}
             loader={props.fetchingCustomerByUser ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
@@ -243,9 +371,9 @@ function AccountTable(props) {
             style={{ scrollbarWidth:"thin"}}
             endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
           >
-            {props.customerListByUser.length ?
+            {customerLists.length ?
               <>
-                {props.customerListByUser.map((item) => {
+                {customerLists.map((item) => {
                   const currentdate = dayjs().format("DD/MM/YYYY");
                   const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                   const acivedPercentage = isNaN(Math.floor((item.outstanding / item.currencyPrice) * 100)) ? 0 : Math.floor((item.outstanding / item.currencyPrice) * 100)
@@ -302,19 +430,100 @@ function AccountTable(props) {
                           </div>
                           <div className=" flex  items-center justify-start h-8 ml-gap  bg-[#eef2f9] w-[7.1rem] max-md:w-[7.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
                             <div class="flex ml-gap text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-center max-sm:text-xs ">
-                              {item.dialCode} {item.phoneNo}
+                             
+                            {editableField?.distributorId === item.distributorId && editableField?.field === 'dialCode' ? (
+                              <Input
+                                type="text"
+                                className="h-7 w-[4rem] text-xs"
+                                value={editingValue}
+                                onChange={handleChangeRowItem}
+                                onBlur={handleUpdateSubmit}
+                                onKeyDown={handleKeyDown} 
+                                autoFocus
+                              />
+                            ) : (
+                              <div className="cursor-pointer text-xs font-[Poppins]"
+                               onClick={() => handleEditRowField(item.distributorId, 'dialCode', item.dialCode)}>
+                                {item.dialCode || "Enter dialcode"}
+                              </div>
+                            )}
+                              <div>
+{editableField?.distributorId === item.distributorId &&
+   editableField?.field === 'phoneNo' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.distributorId, 'phoneNo', item.phoneNo)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.phoneNo || "Enter Mobile No"}
+    
+    </div> 
+)}
+  </div>
+
+                         
                             </div>
                           </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex items-center justify-start max-sm:w-auto max-md:w-[7.2rem] w-[7.2rem]  max-xl:w-[5.2rem] bg-[#eef2f9] h-8 ml-gap max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class="flex ml-gap text-xs items-center  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                              {item.dcategoryName}
+                            {editableField?.distributorId === item.distributorId &&
+   editableField?.field === 'dcategoryName' ? (
+<Select
+      style={{ width: "8rem" }}
+      value={editingValue}
+      onChange={handleChangeRowSelectItem} 
+      autoFocus
+    >
+      {props.category.map((ctg) => (
+        <Option key={ctg.categoryId} value={ctg.categoryId}>
+          {ctg.name}
+        </Option>
+      ))}
+    </Select>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.distributorId, 'dcategoryName', item.dcategoryName)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.dcategoryName || "Enter category"}
+    
+    </div> 
+)}
                             </div>
                           </div>
                           <div className=" flex items-center justify-start  max-sm:w-auto w-[6.2rem] max-md:w-[6.2rem] max-xl:w-[6rem] max-lg:w-[5rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" flex ml-gap text-xs items-center  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                              {item.clientName}
+                            {editableField?.distributorId === item.distributorId &&
+   editableField?.field === 'clientName' ? (
+<Select
+      style={{ width: "8rem" }}
+      value={editingValue}
+      onChange={handleChangeRowSelectItem} 
+      autoFocus
+    >
+      {props.customerListData.map((clnt) => (
+        <Option key={clnt.customerTypeId} value={clnt.customerTypeId}>
+          {clnt.name}
+        </Option>
+      ))}
+    </Select>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.distributorId, 'clientName', item.clientName)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.clientName || "Enter type"}
+    </div> 
+)}
+                            
 
                             </div>
                           </div>
@@ -341,14 +550,48 @@ function AccountTable(props) {
                           </div>
                           <div className=" flex items-center justify-center  max-sm:w-auto w-[5rem] max-md:w-[5rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[cadetblue] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                              {item.clubName}
-
+                           
+                              {editableField?.distributorId === item.distributorId &&
+   editableField?.field === 'clubName' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.distributorId, 'clubName', item.clubName)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.clubName || "Enter club"}
+    </div> 
+)}
                             </div>
                           </div>
                           <div className=" flex  items-center justify-center max-sm:w-auto w-[8.2rem] max-md:w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                              {item.payment} days
-
+                              {/* {item.payment} days */}
+                              {editableField?.distributorId === item.distributorId &&
+   editableField?.field === 'payment' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.distributorId, 'payment', item.payment)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.payment || "Enter payment"} days
+    </div> 
+)}
                             </div>
                          
                           <div className=" flex  items-center justify-center max-sm:w-auto w-[3rem] max-md:w-[3rem] max-xl:w-[3rem] max-lg:w-[2rem]  bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
@@ -418,8 +661,47 @@ function AccountTable(props) {
                                                       />                                                       
                                                 </Tooltip>
                           <div class=" text-xs flex items-center justify-center font-poppins w-[6.021rem] bg-[#eef2f9] h-8   text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                              {item.curName} {(item.currencyPrice / 1000).toFixed(0)}k
+                              {/* {item.curName}  */}
+                              {editableField?.distributorId === item.distributorId &&
+   editableField?.field === 'curName' ? (
+<Select
+      style={{ width: "8rem" }}
+      value={editingValue}
+      onChange={handleChangeRowSelectItem} 
+      autoFocus
+    >
+      {props.saleCurrencies.map((crr) => (
+        <Option key={crr.currency_id} value={crr.currency_id}>
+          {crr.currency_name}
+        </Option>
+      ))}
+    </Select>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.distributorId, 'curName', item.curName)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.curName || "Enter curname"} 
+    </div> 
+)}        
 
+                              {editableField?.distributorId === item.distributorId &&
+   editableField?.field === 'currencyPrice' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.distributorId, 'currencyPrice', item.currencyPrice)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {(item.currencyPrice / 1000).toFixed(0)}k  
+    </div> 
+)}
                             </div>                  
                         </div>
 
@@ -564,7 +846,7 @@ function AccountTable(props) {
                   )
                 })}
               </>
-              : !props.customerListByUser.length && !props.fetchingCustomerByUser ? <NodataFoundPage /> : ""}
+              : !customerLists.length && !props.fetchingCustomerByUser ? <NodataFoundPage /> : ""}
           </InfiniteScroll>
         </div>
       </div>
@@ -624,7 +906,7 @@ function AccountTable(props) {
 </Suspense>
     </>  );
 }
-const mapStateToProps = ({ distributor, auth, customer }) => ({
+const mapStateToProps = ({ distributor, auth,catgCustomer, customer }) => ({
   customerListByUser: distributor.customerListByUser,
   serachedData:distributor.serachedData,
   showPulseModal: distributor.showPulseModal,
@@ -632,6 +914,7 @@ const mapStateToProps = ({ distributor, auth, customer }) => ({
   fetchingDistributorsByUserIdError:
     distributor.fetchingDistributorsByUserIdError,
   userId: auth.userDetails.userId,
+  orgId: auth.userDetails.organizationId,
   updateAccountModal: distributor.updateAccountModal,
   addDistributorOrderModal: distributor.addDistributorOrderModal,
   addDistributorActivityTableModal:
@@ -643,7 +926,9 @@ const mapStateToProps = ({ distributor, auth, customer }) => ({
   addAccountAddressModal:distributor.addAccountAddressModal,
   addAccountOpportunityModal: distributor.addAccountOpportunityModal,
   addDrawerCustomerOpportunityModal: customer.addDrawerCustomerOpportunityModal,
-
+  category: auth.category,
+  customerListData: catgCustomer.customerListData,
+  saleCurrencies: auth.saleCurrencies,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -664,6 +949,9 @@ const mapDispatchToProps = (dispatch) =>
       handleAccountAddress,
       handleAccountOpportunityModal,
       handleCustomerOpportunityDrawerModal,
+      getCategory,
+      getCustomer,
+      getSaleCurrency,
     },
     dispatch
   );

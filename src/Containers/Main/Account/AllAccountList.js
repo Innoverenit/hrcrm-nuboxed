@@ -7,7 +7,7 @@ import {
   handleUpdateAccountModal,
   handleAccountAddress,
   handleUpdateAccountUserModal
-} from "./AccountAction"
+} from "./AccountAction";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ExploreIcon from "@mui/icons-material/Explore";
@@ -29,6 +29,10 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import { base_url2 } from "../../../Config/Auth";
+import axios from "axios";
+import Swal from 'sweetalert2'
+
 const AddAccountAdressModal = lazy(() => import("./AddAccountAdressModal"));
 const AccountSearchedData = lazy(() => import("./AccountSearchedData"));
 const AccountPulseModal = lazy(() => import("./AccountPulseModal"));
@@ -51,16 +55,25 @@ const getRelativeTime = (creationDate) => {
 };
 
 const AllAccountList = (props) => {
+
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
   const [RowData, setRowData] = useState("");
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [particularRowData, setParticularRowData] = useState({});
+  const [editableField, setEditableField] = useState(null); 
+  const [editingValue, setEditingValue] = useState(""); 
+  const [customerLists,setcustomerLists]=useState([]);
+
   useEffect(() => {
     props.getAllDistributorsList(props.orgId,page);
     setPage(page + 1);
   }, []);
+  useEffect(() => {
+    setcustomerLists(props.allDistributors);
+}, [props.allDistributors]);
+
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
@@ -142,6 +155,59 @@ const handleChange = (val) => {
             }
             }, 100);
   };
+const handleEditRowField = (distributorId, field, currentValue) => {
+    setEditableField({ distributorId, field });  
+    setEditingValue(currentValue);  
+  };
+  const handleChangeRowItem = (e) => {
+    setEditingValue(e.target.value);
+  };
+
+  const handleUpdateSubmit = async () => {
+    const { distributorId, field } = editableField;
+    const updatedData = { [field]: editingValue };
+
+    try {
+      const response = await axios.put(
+        `${base_url2}/distributor/rowEdit/${distributorId}`,
+        updatedData,
+        {
+          headers: {
+            Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+          },
+        }
+      );
+      setcustomerLists(prevData => 
+        prevData.map(cat =>
+          cat.distributorId === distributorId ? response.data : cat
+        )
+      );
+      if (response.data === "Successfully !!!!") {
+        Swal.fire({
+          icon: 'success',
+          title: 'Update successful',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        setEditableField(null); // Reset editable field after successful update
+      } else {
+        console.error(response.data);
+      }
+    } catch (error) {
+      console.error("Error updating item:", error);
+      setEditableField(null);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleUpdateSubmit(); 
+    }
+  };
+  const handleCancel = () => {
+    setEditableField(null);  
+    setEditingValue("");     
+  };
 
   const {
     handleUpdateAccountModal,
@@ -203,7 +269,7 @@ const handleChange = (val) => {
             </div>
           </div>
          <InfiniteScroll
-            dataLength={props.allDistributors.length}
+            dataLength={customerLists.length}
             next={handleLoadMore}
             hasMore={hasMore}
             loader={props.fetchingAllDistributors ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
@@ -211,9 +277,9 @@ const handleChange = (val) => {
             style={{scrollbarWidth:"thin"}}
             endMessage={ <p class="fles text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
         >
-            {props.allDistributors.length ?
+            {customerLists.length ?
               <>
-                {props.allDistributors.map((item) => {
+                {customerLists.map((item) => {
                   const currentdate = dayjs().format("DD/MM/YYYY");
                   const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                   const acivedPercentage = isNaN(Math.floor((item.outstanding / item.currencyPrice) * 100)) ? 0 : Math.floor((item.outstanding / item.currencyPrice) * 100)
@@ -267,7 +333,43 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                         </div>
                         <div className=" flex max-md:w-[9.1rem]  w-[9.1rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]  max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
                           <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] justify-start max-sm:text-sm ml-gap ">
-                            {item.dialCode} {item.phoneNo}
+                          {editableField?.distributorId === item.distributorId && editableField?.field === 'dialCode' ? (
+                              <Input
+                                type="text"
+                                className="h-7 w-[4rem] text-xs"
+                                value={editingValue}
+                                onChange={handleChangeRowItem}
+                                onBlur={handleUpdateSubmit}
+                                onKeyDown={handleKeyDown} 
+                                autoFocus
+                              />
+                            ) : (
+                              <div className="cursor-pointer text-xs font-[Poppins]"
+                               onClick={() => handleEditRowField(item.distributorId, 'dialCode', item.dialCode)}>
+                                {item.dialCode}
+                              </div>
+                            )}
+                              <div>
+{editableField?.distributorId === item.distributorId &&
+   editableField?.field === 'phoneNo' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.distributorId, 'phoneNo', item.phoneNo)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.phoneNo || "Enter Mobile No"}
+    
+    </div> 
+)}
+  </div>
                           </div>
 
                         </div>
@@ -276,33 +378,119 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                       <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         <div className=" flex  max-sm:w-auto w-[9.2rem] max-md:w-[9.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.2rem] max-lg:w-[4.2rem] max-sm:flex-row  max-sm:justify-between ">
                           <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {/* {item.url} */}
-                            {item.dCategoryName}
+                          {editableField?.distributorId === item.distributorId &&
+   editableField?.field === 'dcategoryName' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.distributorId, 'dcategoryName', item.dcategoryName)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.dcategoryName || "Enter category"}
+    
+    </div> 
+)}
 
                           </div>
                         </div>
                         <div className=" flex  max-sm:w-auto w-[8rem] max-md:w-[8rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[6rem] max-lg:w-[5rem] max-sm:flex-row  max-sm:justify-between ">
                           <div class=" text-xs  font-poppins text-center ml-gap justify-start max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {item.clientName}
+                          {editableField?.distributorId === item.distributorId &&
+   editableField?.field === 'clientName' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.distributorId, 'clientName', item.clientName)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.clientName || "Enter type"}
+    </div> 
+)}
+                            
 
                           </div>
                         </div>
 
                         <div className=" flex  max-sm:w-auto w-[9rem] max-md:w-[9rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                           <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {item.payment}
+                          {editableField?.distributorId === item.distributorId &&
+   editableField?.field === 'payment' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.distributorId, 'payment', item.payment)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.payment || "Enter payment"} 
+    </div> 
+)}
 
                           </div>
                         </div>
                         <div className=" flex  max-sm:w-auto bg-[cadetblue]  w-[7rem] max-md:w-[7rem] items-center justify-center h-8 ml-gap  max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                              {item.clubName}
+                            {editableField?.distributorId === item.distributorId &&
+   editableField?.field === 'clubName' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.distributorId, 'clubName', item.clubName)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.clubName || "Enter club"}
+    </div> 
+)}
 
                             </div>
                           </div>
                           <div className=" flex  items-center justify-center max-sm:w-auto w-[8.2rem] max-md:w-[12rem] max-xl:w-[3rem] max-lg:w-[2rem] ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                             <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                              {item.payment} days
+                            {editableField?.distributorId === item.distributorId &&
+   editableField?.field === 'payment' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.distributorId, 'payment', item.payment)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.payment || "Enter payment"} days
+    </div> 
+)}
 
                             </div>
                          
@@ -373,8 +561,45 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                                                       />                                                       
                                                 </Tooltip>
                           <div class=" text-xs flex items-center justify-center font-poppins w-[6.021rem] bg-[#eef2f9] h-8   text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                              {item.curName} {(item.currencyPrice / 1000).toFixed(0)}k
+                              {/* {item.curName} {(item.currencyPrice / 1000).toFixed(0)}k */}
+                              {editableField?.distributorId === item.distributorId &&
+   editableField?.field === 'curName' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.distributorId, 'curName', item.curName)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.curName || "Enter curname"} 
+    </div> 
+)}
+                              {item.curName}
 
+                              {editableField?.distributorId === item.distributorId &&
+   editableField?.field === 'currencyPrice' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.distributorId, 'currencyPrice', item.currencyPrice)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {(item.currencyPrice / 1000).toFixed(0)}k  
+    </div> 
+)}
                             </div>                  
                         </div>
                        
@@ -504,7 +729,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                   </div>
                   )
                 })}
-              </> : !props.allDistributors.length
+              </> : !customerLists.length
           && !props.fetchingAllDistributors ?
                 <NodataFoundPage /> : null}
           </InfiniteScroll>

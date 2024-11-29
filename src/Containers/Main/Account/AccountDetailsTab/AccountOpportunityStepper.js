@@ -60,7 +60,7 @@ class AccountOpportunityStepper extends Component {
                 <AccountRepairSecondStep distributorId={this.props.distributorId} 
                 inspectionRequiredInd={this.props.inspectionRequiredInd} 
                 handleAccountOpportunityModal={this.props.handleAccountOpportunityModal}
-                /> : this.props.currentOrderType==="Quotation" ? <AccountProcureSecondStep distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd}
+                /> : this.props.currentOrderType==="Commerce" ? <AccountProcureSecondStep distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd}
                 selectedLanguage={this.props.selectedLanguage}
                 translateText={this.props.translateText}
                 />:<AccountOrderSecondStep distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
