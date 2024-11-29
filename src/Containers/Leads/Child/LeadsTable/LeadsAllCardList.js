@@ -135,7 +135,7 @@ const LeadsAllCardList = (props) => {
     setTimeout(() => {
       const {
         getAllLeadsHot,
-        userDetails: { employeeId },
+        // userDetails: { employeeId },
       } = props;
       if  (props.allleadsInfoHot)
       {
@@ -155,7 +155,7 @@ const LeadsAllCardList = (props) => {
     setTimeout(() => {
       const {
         getAllLeadsWarm,
-        userDetails: { employeeId },
+        // userDetails: { employeeId },
       } = props;
       if  (props.allleadsInfoWarm)
       {
@@ -175,7 +175,7 @@ const LeadsAllCardList = (props) => {
     setTimeout(() => {
       const {
         getAllLeadsCold,
-        userDetails: { employeeId },
+        // userDetails: { employeeId },
       } = props;
       if  (props.allleadsInfoCold)
       {

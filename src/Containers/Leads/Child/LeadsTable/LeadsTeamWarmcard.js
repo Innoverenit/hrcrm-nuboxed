@@ -122,7 +122,7 @@ const LeadsTeamWarmcard = (props) => {
     setTimeout(() => {
       const {
         getTeamLeadsWarm,
-        userDetails: { employeeId },
+        // userDetails: { employeeId },
       } = props;
       if  (props.teamLeadsWarm)
       {
@@ -154,12 +154,12 @@ const LeadsTeamWarmcard = (props) => {
     user,
   } = props;
 
-  if (loading) {
-    return 
-  }
+  // if (loading) {
+  //   return 
+  // }
 
    return (
-    <div>
+   
  
     <>
     
@@ -576,8 +576,7 @@ const LeadsTeamWarmcard = (props) => {
       </div>
       </div>
 
-     
-      </>
+
 
       <UpdateLeadsModal
         item={currentLeadsId}
@@ -620,7 +619,12 @@ const LeadsTeamWarmcard = (props) => {
            selectedLanguage={props.selectedLanguage}
          translatedMenuItems={props.translatedMenuItems}
            />
-    </div>
+
+     
+      </>
+
+   
+   
   );
 };
 
@@ -740,3 +744,14 @@ function RoleButton2({ type, iconType, tooltip, role, size, onClick }) {
     </Tooltip>
   );
 }
+
+
+// import React from 'react'
+
+// function LeadsTeamWarmcard() {
+//   return (
+//     <div>LeadsTeamWarmcard</div>
+//   )
+// }
+
+// export default LeadsTeamWarmcard

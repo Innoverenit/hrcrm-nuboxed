@@ -342,12 +342,13 @@ case types.HANDLE_LEADS_MODAL:
         case types.GET_LEADS_HOT_REQUEST:
           return { ...state, fetchingLeadsHot: true };
         case types.GET_LEADS_HOT_SUCCESS:
-          const newHotData = action.payload.filter(item => !state.leadsAllDataHot.some(existingItem => existingItem.id === item.id));
+         // const newHotData = action.payload.filter(item => !state.leadsAllDataHot.some(existingItem => existingItem.id === item.id));
           return {
             ...state,
             fetchingLeadsHot: false,
-            leadsAllDataHot: [...state.leadsAllDataHot, ...newHotData],
-            clearbit:null
+            leadsAllDataHot: [...state.leadsAllDataHot, ...action.payload]
+            //leadsAllDataHot: [...state.leadsAllDataHot, ...newHotData],
+            // clearbit:null
           };
         case types.GET_LEADS_HOT_FAILURE:
           return {
@@ -359,11 +360,11 @@ case types.HANDLE_LEADS_MODAL:
           case types.GET_LEADS_WARM_REQUEST:
           return { ...state, fetchingLeadsWarm: true };
         case types.GET_LEADS_WARM_SUCCESS:
-          const newWarmData = action.payload.filter(item => !state.leadsAllDataWarm.some(existingItem => existingItem.id === item.id));
+          //const newWarmData = action.payload.filter(item => !state.leadsAllDataWarm.some(existingItem => existingItem.id === item.id));
           return {
             ...state,
             fetchingLeadsWarm: false,
-            leadsAllDataWarm: [...state.leadsAllDataWarm, ...newWarmData],
+            leadsAllDataWarm: [...state.leadsAllDataWarm, ...action.payload],
             clearbit:null
           };
         case types.GET_LEADS_WARM_FAILURE:
@@ -376,11 +377,11 @@ case types.HANDLE_LEADS_MODAL:
           case types.GET_LEADS_COLD_REQUEST:
           return { ...state, fetchingLeadsCold: true };
         case types.GET_LEADS_COLD_SUCCESS:
-          const newColdData = action.payload.filter(item => !state.leadsAllDataCold.some(existingItem => existingItem.id === item.id));
+          //const newColdData = action.payload.filter(item => !state.leadsAllDataCold.some(existingItem => existingItem.id === item.id));
           return {
             ...state,
             fetchingLeadsCold: false,
-            leadsAllDataCold:[...state.leadsAllDataCold, ...newColdData],
+            leadsAllDataCold:[...state.leadsAllDataCold, ...action.payload],
             clearbit:null
           };
         case types.GET_LEADS_COLD_FAILURE:
@@ -1257,12 +1258,12 @@ case types.HANDLE_LEADS_MODAL:
       case types.GET_ALL_LEADSHOT_REQUEST:
         return { ...state, fetchingAllLeadsHot: true };
       case types.GET_ALL_LEADSHOT_SUCCESS:
-        const newAllHotData = action.payload.filter(item => !state.allleadsInfoHot.some(existingItem => existingItem.id === item.id));
+        //const newAllHotData = action.payload.filter(item => !state.allleadsInfoHot.some(existingItem => existingItem.id === item.id));
         return {
           ...state,
           fetchingAllLeadsHot: false,
           // allleadsInfoHot: action.payload,
-          allleadsInfoHot: [...state.allleadsInfoHot, ...newAllHotData],
+          allleadsInfoHot: [...state.allleadsInfoHot, ...action.payload],
         };
       case types.GET_ALL_LEADSHOT_FAILURE:
         return {
@@ -1274,12 +1275,12 @@ case types.HANDLE_LEADS_MODAL:
         case types.GET_ALL_LEADSWARM_REQUEST:
       return { ...state, fetchingAllLeadsWarm: true };
     case types.GET_ALL_LEADSWARM_SUCCESS:
-      const newAllWarmData = action.payload.filter(item => !state.allleadsInfoWarm.some(existingItem => existingItem.id === item.id));
+      //const newAllWarmData = action.payload.filter(item => !state.allleadsInfoWarm.some(existingItem => existingItem.id === item.id));
       return {
         ...state,
         fetchingAllLeadsWarm: false,
         // allleadsInfoWarm: action.payload,
-        allleadsInfoWarm: [...state.allleadsInfoWarm, ...newAllWarmData],
+        allleadsInfoWarm: [...state.allleadsInfoWarm, ...action.payload],
         
       };
     case types.GET_ALL_LEADSWARM_FAILURE:
@@ -1312,12 +1313,12 @@ case types.HANDLE_LEADS_MODAL:
       case types.GET_ALL_LEADSCOLD_REQUEST:
       return { ...state, fetchingAllLeadsCold: true };
     case types.GET_ALL_LEADSCOLD_SUCCESS:
-      const newAllColdData = action.payload.filter(item => !state.allleadsInfoCold.some(existingItem => existingItem.id === item.id));
+      //const newAllColdData = action.payload.filter(item => !state.allleadsInfoCold.some(existingItem => existingItem.id === item.id));
       return {
         ...state,
         fetchingAllLeadsCold: false,
         // allleadsInfoCold: action.payload,
-        allleadsInfoCold: [...state.allleadsInfoCold, ...newAllColdData],
+        allleadsInfoCold: [...state.allleadsInfoCold, ...action.payload],
       };
     case types.GET_ALL_LEADSCOLD_FAILURE:
       return {
@@ -1390,12 +1391,12 @@ case types.HANDLE_LEADS_MODAL:
           case types.GET_TEAM_LEADSHOT_REQUEST:
           return { ...state, fetchingTeamLeadsHot: true };
         case types.GET_TEAM_LEADSHOT_SUCCESS:
-          const newteamlHotData = action.payload.filter(item => !state.teamLeadsHot.some(existingItem => existingItem.id === item.id));
+          //const newteamlHotData = action.payload.filter(item => !state.teamLeadsHot.some(existingItem => existingItem.id === item.id));
           return {
             ...state,
             fetchingTeamLeadsHot: false,
         // teamLeadsHot:action.payload,
-        teamLeadsHot: [...state.teamLeadsHot, ...newteamlHotData],
+        teamLeadsHot: [...state.teamLeadsHot, ...action.payload],
           };
         case types.GET_TEAM_LEADSHOT_FAILURE:
           return {
@@ -1407,12 +1408,12 @@ case types.HANDLE_LEADS_MODAL:
           case types.GET_TEAM_LEADSWARM_REQUEST:
           return { ...state, fetchingTeamLeadsWarm: true };
         case types.GET_TEAM_LEADSWARM_SUCCESS:
-          const newteamlWarmData = action.payload.filter(item => !state.teamLeadsWarm.some(existingItem => existingItem.id === item.id));
+          //const newteamlWarmData = action.payload.filter(item => !state.teamLeadsWarm.some(existingItem => existingItem.id === item.id));
           return {
             ...state,
             fetchingTeamLeadsWarm: false,
         // teamLeadsWarm:action.payload,
-        teamLeadsWarm: [...state.teamLeadsWarm, ...newteamlWarmData],
+        teamLeadsWarm: [...state.teamLeadsWarm, ...action.payload],
           };
         case types.GET_TEAM_LEADSWARM_FAILURE:
           return {
@@ -1424,12 +1425,12 @@ case types.HANDLE_LEADS_MODAL:
           case types.GET_TEAM_LEADSCOLD_REQUEST:
           return { ...state, fetchingTeamLeadsCold: true };
         case types.GET_TEAM_LEADSCOLD_SUCCESS:
-          const newteamlColdData = action.payload.filter(item => !state.teamLeadsCold.some(existingItem => existingItem.id === item.id));
+         // const newteamlColdData = action.payload.filter(item => !state.teamLeadsCold.some(existingItem => existingItem.id === item.id));
           return {
             ...state,
             fetchingTeamLeadsCold: false,
         // teamLeadsCold:action.payload,
-        teamLeadsCold: [...state.teamLeadsCold, ...newteamlColdData],
+        teamLeadsCold: [...state.teamLeadsCold, ...action.payload],
           };
         case types.GET_TEAM_LEADSCOLD_FAILURE:
           return {

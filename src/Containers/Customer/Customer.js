@@ -242,7 +242,7 @@ class Customer extends Component {
              selectedLanguage={this.props.selectedLanguage}
             translatedMenuItems={this.props.translatedMenuItems}
              />  }
-            {viewType === 'teams' && <CustomerTeamCardList
+            {viewType === 'teams' ?( <CustomerTeamCardList
              handleCheckboxChange={this.handleCheckboxChange}
               translateText={this.props.translateText}
               selectedUser={this.state.selectedUser}
@@ -250,7 +250,23 @@ class Customer extends Component {
               selectedDeals={this.state.selectedDeals}
               selectedLanguage={this.props.selectedLanguage}
              translatedMenuItems={this.props.translatedMenuItems}
-            /> }
+            /> 
+            ):(
+              <CustomerCardList
+              filter={this.state.filter}
+              handleCheckboxChange={this.handleCheckboxChange}
+              currentUser={this.state.currentUser} 
+              
+              showCheckboxes={this.state.showCheckboxes}
+              selectedDeals={this.state.selectedDeals}
+              viewType={this.props.viewType}
+              selectedUser={this.state.selectedUser}
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+            translatedMenuItems={this.props.translatedMenuItems}
+              />
+
+            )}
             { viewType === "dashboard1"  && <CustomerDeleteCard
             translateText={this.props.translateText}
             selectedLanguage={this.props.selectedLanguage}
