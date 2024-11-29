@@ -220,40 +220,49 @@ const handleLoadMore2 = () => {
     <>
   <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
     <div className=" flex justify-between max-sm:hidden w-[99%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
-    <div className=" w-[7.12rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white bg-red-600  justify-center ">Hot</div>
+    <div className=" w-[7.12rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white text-sm bg-red-600  justify-center ">Hot</div>
         <div className=" w-[10.1rem] truncate max-md:w-[10.1rem] max-xl:w-[9.6rem] ">
-        <CategoryIcon className='!text-icon   text-[#e4eb2f]'/> {translatedMenuItems[0]}  
+        <CategoryIcon className='!text-icon   text-[#e4eb2f]'/>
+         {translatedMenuItems[0]}   aaa
                 {/* name */}           
                </div>
         <div className=" w-[4.1rem] max-xl:w-[3rem]"></div>
         <div className=" w-[8.3rem] truncate max-md:w-[8.3rem] max-xl:w-[5.1rem]  ">
-        <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/> {translatedMenuItems[1]}
+        <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/> 
+        {translatedMenuItems[1]}
         {/* Mobile */}
                 </div>      
         <div className="w-[9.12rem]  truncate max-md:w-[9.12rem] max-xl:w-[5.122rem]  ">
-        <ApartmentIcon className="!text-icon mr-1 "/> {translatedMenuItems[2]} 
+        <ApartmentIcon className="!text-icon mr-1 "/> 
+        {translatedMenuItems[2]} 
         {/* company */}
                 </div>
                     <div className="w-[6.12rem]   truncate max-md:w-[6.12rem]">
-                    <SourceIcon className="!text-icon  text-[#4b5043]"/>   {translatedMenuItems[3]} 
+                    <SourceIcon className="!text-icon  text-[#4b5043]"/>  
+                     {translatedMenuItems[3]} 
                      {/* source */}
                 </div>
                      <div className="w-[5.121rem]  truncate max-md:w-[5.121rem]">
-                     <FactoryIcon className="!text-icon  text-[#84a59d]"/>   {translatedMenuItems[4]}  
+                     <FactoryIcon className="!text-icon  text-[#84a59d]"/> 
+                       {translatedMenuItems[4]}  
                      {/* sector */}
                 </div>
                  <div className="w-[7.23rem]  max-xl:w-[8.2rem]  truncate max-md:w-[7.23rem]">
-                 <FormatListNumberedIcon className='!text-icon text-[#42858c]' /> {translatedMenuItems[5]} 
+                 <FormatListNumberedIcon className='!text-icon text-[#42858c]' /> 
+                 {translatedMenuItems[5]} 
                  {/* Category */}
           </div>
           <div className="w-[5.236rem]  max-xl:w-[8.2rem]  truncate max-md:w-[5.236rem]">
-          <ShowChartIcon className='!text-icon    text-[#776871]' /> {translatedMenuItems[6]}   {/* Shares # */}      
+          <ShowChartIcon className='!text-icon    text-[#776871]' />
+           {translatedMenuItems[6]}   {/* Shares # */}      
           </div>
           <div className="w-[7.236rem]  max-xl:w-[8.2rem]   truncate max-md:w-[7.236rem]">     
-          <EventAvailableIcon className="!text-icon   text-[#4b5043]"/> 1st {translatedMenuItems[7]}  {/* First Meeting */}   
+          <EventAvailableIcon className="!text-icon   text-[#4b5043]"/> 1st
+           {translatedMenuItems[7]}  {/* First Meeting */}   
           </div>
           <div className="w-[4.238rem]  max-xl:w-[8.2rem]  truncate max-md:">
-          <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' /> {translatedMenuItems[8]}  
+          <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />
+           {translatedMenuItems[8]}  
          {/* Value */}  
           </div>
           {props.user.aiInd && (
@@ -264,7 +273,8 @@ const handleLoadMore2 = () => {
             )}
         <div className="w-[6.122rem]  truncate max-md:w-[6.122rem]">
           {/* Assigned */}
-          <AccountCircleIcon className="!text-icon  text-[#d64933]"/> {translatedMenuItems[9]}
+          <AccountCircleIcon className="!text-icon  text-[#d64933]"/> 
+          {translatedMenuItems[9]}
         </div> 
        
         <div className="w-[10.6rem]  max-xl:w-[7.4rem] truncate max-md:w-[10.6rem]">
@@ -653,7 +663,7 @@ const countryCode = item.countryAlpha2Code
       <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
     <div className=" flex justify-between max-sm:hidden w-[99%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
     <div className=" w-[7.12rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white bg-orange-600  justify-center ">Warm</div>
-        <div className=" w-[10.1rem] truncate max-md: w-[10.1rem]  max-xl:w-[9.6rem]  text-sm">
+        <div className=" w-[10.1rem] truncate max-md:w-[10.1rem]  max-xl:w-[9.6rem]  text-sm">
         <CategoryIcon className='!text-icon text-[#e4eb2f]'/> {translatedMenuItems[0]}  
                 {/* name */}           
                </div>
