@@ -156,11 +156,23 @@ function Pitch (props) {
              selectedLanguage={props.selectedLanguage}
              translatedMenuItems={props.translatedMenuItems}
             /> }
-            {viewType === 'teams' &&  <PitchTeamCardlist
+            {viewType === 'teams' ? ( <PitchTeamCardlist
              translateText={props.translateText}
              selectedLanguage={props.selectedLanguage}
              translatedMenuItems={props.translatedMenuItems}
-            />}
+            />
+            ):(
+<PitchCardList       filter={filter}
+             handleCheckboxChange={handleCheckboxChange}
+             selectedUser={selectedUser}
+             showCheckboxes={showCheckboxes}
+             selectedDeals={selectedDeals}
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+             translatedMenuItems={props.translatedMenuItems}
+            />
+
+            )}
           </>
         )}
             </Suspense> 
