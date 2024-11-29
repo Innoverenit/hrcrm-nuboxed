@@ -156,7 +156,7 @@ function CustomerDashboardJumpStart (props) {
           <div className="w-full md:w-1/2 xl:w-1/3 p-2">
             <div className="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
               <div className="flex flex-row items-center  text-xs">
-                <div className="flex-shrink pr-3">
+                <div className="flex-shrink pr-1">
                   <div className="rounded-full p-2 bg-green-600"><AcUnitIcon className='text-white'/></div>
                 </div>
                 <JumpStartBox
@@ -173,7 +173,7 @@ function CustomerDashboardJumpStart (props) {
           <div className="w-full md:w-1/2 xl:w-1/3 p-2">
             <div className="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
               <div className="flex flex-row items-center  text-xs">
-                <div className="flex-shrink pr-3">
+                <div className="flex-shrink pr-1">
                   <div className="rounded-full p-2 bg-pink-600"><ContactsIcon className='text-white'/></div>
                 </div>
                 <JumpStartBox
@@ -189,7 +189,7 @@ function CustomerDashboardJumpStart (props) {
           <div className="w-full md:w-1/2 xl:w-1/3 p-2">
             <div className="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
               <div className="flex flex-row items-center text-xs">
-                <div className="flex-shrink pr-3">
+                <div className="flex-shrink pr-1">
                   <div className="rounded-full p-2 bg-yellow-600"><DynamicFeedIcon className='text-white'/></div>
                 </div>
                 <JumpStartBox
@@ -206,7 +206,7 @@ function CustomerDashboardJumpStart (props) {
           <div className="w-full md:w-1/2 xl:w-1/3 p-2">
             <div className="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
               <div className="flex flex-row items-center text-xs">
-                <div className="flex-shrink pr-3">
+                <div className="flex-shrink pr-1">
                   <div className="rounded-full p-2 bg-blue-600"><DynamicFeedIcon className='text-white'/></div>
                 </div>
                 <JumpStartBox

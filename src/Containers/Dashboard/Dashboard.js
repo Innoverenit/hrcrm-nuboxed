@@ -9,8 +9,6 @@ import {setDashboardViewType,getProspectsData,getProspectLifeTime,getOpenQuotati
   getSourceCountAcc,
   getCategoryCountAcc
 } from "./DashboardAction";
-import DashBoardCommissionTable from "./Child/DashBoardCommissionTable";
-
 const CustomerGoogleMap=lazy(()=>import("./Child/Chart/CustomerGoogleMap"));
 const CustomerViewGoogleMap=lazy(()=>import("./CustomerViewGoogleMap"));
 const CustomerAccountGoogleMap=lazy(()=> import("../Dashboard/CustomerAccountGoogleMap"));

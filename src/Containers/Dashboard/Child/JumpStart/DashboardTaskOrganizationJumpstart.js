@@ -91,7 +91,7 @@ const DashboardTaskOrganizationJumpstart = (props) => {
                        
                        <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center text-xs">
-                               <div class="flex-shrink pr-3">
+                               <div class="flex-shrink pr-1">
                                    <div class="rounded-full p-2 bg-green-600">< FactCheckIcon className=" text-white"/></div>
                                </div>
                                <JumpStartBox
@@ -109,7 +109,7 @@ const DashboardTaskOrganizationJumpstart = (props) => {
                        
                        <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-pink-600 rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center text-xs">
-                               <div class="flex-shrink pr-3">
+                               <div class="flex-shrink pr-1">
                                    <div class="rounded-full p-2 bg-pink-600">< FactCheckIcon className=" text-white"/></div>
                                </div>
                                <JumpStartBox
@@ -129,7 +129,7 @@ const DashboardTaskOrganizationJumpstart = (props) => {
                        
                        <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center text-xs">
-                               <div class="flex-shrink pr-3">
+                               <div class="flex-shrink pr-1">
                                    <div class="rounded-full p-2 bg-yellow-600">< FactCheckIcon className=" text-white"/></div>
                                </div>
                                <JumpStartBox
@@ -147,7 +147,7 @@ const DashboardTaskOrganizationJumpstart = (props) => {
                        
                        <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-blue-600 rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center text-xs">
-                               <div class="flex-shrink pr-3">
+                               <div class="flex-shrink pr-1">
                                    <div class="rounded-full p-2 bg-blue-600"><EventRepeatIcon className='text-white'/></div>
                                </div>
                                <JumpStartBox

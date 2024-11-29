@@ -1,11 +1,10 @@
 import React, { useEffect ,useState} from "react";
-
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {handleInvestmentModal} from "../RegionalDashAction"
 import { getRegions } from "../../Settings/Category/Region/RegionAction";
 import { JumpStartBox } from "../../../Components/UI/Elements";
-// import AddInvestmentDrawerModal from "./AddInvestmentDrawerModal";
+
 
 function MultiOrgInvestorRegionalJumpstartBox(props) {
   const [totalOrgValue, setTotalOrgValue] = useState(0);

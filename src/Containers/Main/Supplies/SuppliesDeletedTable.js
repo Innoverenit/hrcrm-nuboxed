@@ -113,7 +113,7 @@ function SuppliesDeletedTable(props) {
                       <div className="flex rounded justify-center bg-white mt-1  py-ygap max-sm:h-[7.5rem] max-sm:flex-col max-xl:text-[0.65rem] max-lg:text-[0.45rem]  hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                         <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex  w-[14.1rem] border-l-2 border-green-500 bg-[#eef2f9] h-8 max-xl:w-[8.1rem] max-lg:w-[6.6rem]   max-sm:w-auto">
+                          <div className=" flex  w-[3.5rem] items-center  border-l-2 border-green-500 bg-[#eef2f9] h-8 max-xl:w-[8.1rem] max-lg:w-[6.6rem]   max-sm:w-auto">
                             <div className="flex max-sm:w-wk max-sm:justify-between ">
                               <div>
 <span>
@@ -129,14 +129,12 @@ function SuppliesDeletedTable(props) {
                               </div>
                               </div>
                               </div>
-                              <div class="w-[2.2rem] max-sm:w-auto max-xl:w-[1.2rem] max-lg:w-[0.2rem]">
-
-                              </div>
+                             
 
                               <div class="max-sm:w-auto flex items-center">
 
-                                <div className=" flex  w-[10rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-start max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                                  <div class="  text-[0.82rem] max-sm:text-[0.82rem]  font-poppins ">
+                                <div className=" flex  w-[10rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                                  <div class="  text-[0.65rem] max-sm:text-[0.65rem]  font-poppins ">
                                   <span> {currentDate === dayjs(item.creationDate).format("DD/MM/YYYY") ? (
                     <span className="text-[0.65rem] text-[tomato] font-bold">
                       New
@@ -147,38 +145,38 @@ function SuppliesDeletedTable(props) {
                               </div>
                            
                         
-                          <div className=" flex  w-[9.1rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-start max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                            <div class="  text-[0.82rem] max-sm:text-[0.82rem]  font-poppins ">
+                          <div className=" flex  w-[10.2rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-start max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div class="  text-[0.65rem] ml-gap max-sm:text-[0.65rem]  font-poppins ">
                               {item.suppliesName}
                             </div>
                           </div>
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex  w-[9.81rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-start max-xl:w-[8.1rem] max-lg:w-[6.6rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                            <div class="  text-[0.82rem] max-sm:text-[0.82rem]  font-poppins ">
+                          <div className=" flex  w-[13.81rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-start max-xl:w-[8.1rem] max-lg:w-[6.6rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div class="  text-[0.65rem] ml-gap max-sm:text-[0.65rem]  font-poppins ">
                               {item.categoryName}
                             </div>
                           </div>
 
-                          <div className=" flex  w-[9.3rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-start max-xl:w-[6.23rem] max-lg:w-[5.23rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                            <div class="  text-[0.82rem] max-sm:text-[0.82rem]  font-poppins ">
+                          <div className=" flex  w-[9.4rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-start max-xl:w-[6.23rem] max-lg:w-[5.23rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div class="  text-[0.65rem] ml-gap max-sm:text-[0.65rem]  font-poppins ">
                               {item.subCategoryName}
                             </div>
                           </div>
                           <div className=" flex  w-[8.12rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-start max-xl:w-[6.32rem] max-lg:w-[5.32rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                            <div class="  text-[0.82rem] max-sm:text-[0.82rem]  font-poppins ">
+                            <div class="  text-[0.65rem] ml-gap max-sm:text-[0.65rem]  font-poppins ">
                               {item.attributeName} {item.subAttributeName}
                             </div>
                           </div>
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex  w-[9.41rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-start max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                            <div class="  text-[0.82rem] max-sm:text-[0.82rem]  font-poppins ">
+                          <div className=" flex  w-[9.41rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-center max-xl:w-[6.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div class="  text-[0.65rem] max-sm:text-[0.65rem]  font-poppins ">
                               {item.reorder}
                             </div>
                           </div>
-                          <div className=" flex  w-[9.2rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                            <div class="  text-[0.82rem] items-center flex max-sm:text-[0.82rem]  font-poppins ">
+                          <div className=" flex  w-[9.3rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                            <div class="  text-[0.65rem] items-center flex max-sm:text-[0.65rem]  font-poppins ">
                             <MultiAvatar
                               primaryTitle={item.userName}
                               imageId={item.imageId}
@@ -189,7 +187,7 @@ function SuppliesDeletedTable(props) {
                             </div>
                           </div>
                           <div className=" flex  w-[7.2rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-center max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                            <div class="  text-[0.82rem] max-sm:text-[0.82rem]  font-poppins ">
+                            <div class="  text-[0.65rem] max-sm:text-[0.65rem]  font-poppins ">
                             <ReInstateSupplies suppliesId={item.suppliesId} />
                             </div>
                           </div>
