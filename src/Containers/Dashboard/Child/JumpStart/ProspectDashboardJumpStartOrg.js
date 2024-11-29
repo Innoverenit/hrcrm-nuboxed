@@ -9,14 +9,11 @@ import {getJumpDistributorDetail,
   handleOrderClosedModal,getCustomerAddedList,getContactAddedList,getOrderAddedList,
   getOrderClosedList,
 } from "../../DashboardAction";
-// import {getleaveLeftSideDetails} from "../../../Leave/LeavesAction";
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
-import CustomerJumpStartDrawer from "./CustomerJumpStartDrawer";
 import CustomerAddedModal from "./CustomerAddedModal";
 import ContactAddedModal from "./ContactAddedModal";
 import OrdersAddedModal from "./OrdersAddedModal";
 import OrdersClosedModal from "./OrdersClosedModal";
-// import {getDateWiseList,getSalesDateWiseList,getTasklist,getavgHour,} from "../../DashboardAction";
 import axios from 'axios';
 import {base_url} from "../../../../Config/Auth";
 import ApartmentIcon from '@mui/icons-material/Apartment';
@@ -201,7 +198,7 @@ function ProspectDashboardJumpStart (props) {
           <div className="w-full md:w-1/2 xl:w-1/3 p-2">
             <div className="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
               <div className="flex flex-row items-center text-xs">
-                <div className="flex-shrink pr-3">
+                <div className="flex-shrink pr-1">
                   <div className="rounded-full p-2 bg-green-600"><ApartmentIcon className='text-white'/></div>
                 </div>
                 <JumpStartBox
@@ -218,7 +215,7 @@ function ProspectDashboardJumpStart (props) {
           <div className="w-full md:w-1/2 xl:w-1/3 p-2">
             <div className="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
               <div className="flex flex-row items-center text-xs">
-                <div className="flex-shrink pr-3">
+                <div className="flex-shrink pr-1">
                   <div className="rounded-full p-2 bg-pink-600"><ContactsIcon className='text-white'/></div>
                 </div>
                 <JumpStartBox
@@ -234,7 +231,7 @@ function ProspectDashboardJumpStart (props) {
           <div className="w-full md:w-1/2 xl:w-1/3 p-2">
             <div className="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
               <div className="flex flex-row items-center text-xs">
-                <div className="flex-shrink pr-3">
+                <div className="flex-shrink pr-1">
                   <div className="rounded-full p-2 bg-yellow-600"><LightbulbIcon className='text-white'/></div>
                 </div>
                 <JumpStartBox
@@ -251,7 +248,7 @@ function ProspectDashboardJumpStart (props) {
           <div className="w-full md:w-1/2 xl:w-1/3 p-2">
             <div className="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
               <div className="flex flex-row items-center text-xs">
-                <div className="flex-shrink pr-3">
+                <div className="flex-shrink pr-1">
                   <div className="rounded-full p-2 bg-blue-600"><LightbulbIcon className='text-white'/></div>
                 </div>
                 <JumpStartBox

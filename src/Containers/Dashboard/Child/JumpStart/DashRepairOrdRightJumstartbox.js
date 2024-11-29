@@ -194,7 +194,7 @@ fetchDasRepairCount();
                      
                      <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center text-xs">
-                             <div class="flex-shrink pr-3">
+                             <div class="flex-shrink pr-1">
                                  <div class="rounded-full p-2 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
                              </div>
                              <JumpStartBox
@@ -215,7 +215,7 @@ fetchDasRepairCount();
                        
                        <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
                            <div class="flex flex-row items-cente text-xs">
-                               <div class="flex-shrink pr-3">
+                               <div class="flex-shrink pr-1">
                                    <div class="rounded-full p-2 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
                                </div>
                                <JumpStartBox
@@ -237,7 +237,7 @@ fetchDasRepairCount();
                        
                        <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center text-xs">
-                               <div class="flex-shrink pr-3">
+                               <div class="flex-shrink pr-1">
                                    <div class="rounded-full p-2 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
                                </div>
                                <JumpStartBox

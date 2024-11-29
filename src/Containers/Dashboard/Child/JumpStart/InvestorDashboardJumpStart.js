@@ -7,17 +7,15 @@ import {getJumpDistributorDetail,
   handleOrderClosedModal,getCustomerAddedList,getContactAddedList,getOrderAddedList,
   getOrderClosedList
 } from "../../DashboardAction";
-// import {getleaveLeftSideDetails} from "../../../Leave/LeavesAction";
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
 import CustomerJumpStartDrawer from "./CustomerJumpStartDrawer";
 import CustomerAddedModal from "./CustomerAddedModal";
 import ContactAddedModal from "./ContactAddedModal";
 import OrdersAddedModal from "./OrdersAddedModal";
 import OrdersClosedModal from "./OrdersClosedModal";
-// import {getDateWiseList,getSalesDateWiseList,getTasklist,getavgHour,} from "../../DashboardAction";
 import axios from 'axios';
 import {base_url} from "../../../../Config/Auth";
-
+import DynamicPieChart from "./DynamicPieChart";
 function InvestorDashboardJumpStart (props) {
   
   const [date, setDate] = useState(dayjs().format('YYYY-MM-DD'));
@@ -182,13 +180,13 @@ function InvestorDashboardJumpStart (props) {
 
 
   return(
-    <>
+    <><div class=" flex flex-col" >
     <div className="flex flex-row w-full">
         <div className="flex w-full max-sm:flex-col">
           <div className="w-full md:w-1/2 xl:w-1/3 p-2">
             <div className="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
               <div className="flex flex-row items-center text-xs">
-                <div className="flex-shrink pr-3">
+                <div className="flex-shrink pr-1">
                   <div className="rounded-full p-2 bg-green-600"><i className="fa fa-wallet fa-2x fa-inverse"></i></div>
                 </div>
                 <JumpStartBox
@@ -205,7 +203,7 @@ function InvestorDashboardJumpStart (props) {
           <div className="w-full md:w-1/2 xl:w-1/3 p-2">
             <div className="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
               <div className="flex flex-row items-center text-xs">
-                <div className="flex-shrink pr-3">
+                <div className="flex-shrink pr-1">
                   <div className="rounded-full p-2 bg-pink-600"><i className="fas fa-users fa-2x fa-inverse"></i></div>
                 </div>
                 <JumpStartBox
@@ -221,7 +219,7 @@ function InvestorDashboardJumpStart (props) {
           <div className="w-full md:w-1/2 xl:w-1/3 p-2">
             <div className="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
               <div className="flex flex-row items-center text-xs">
-                <div className="flex-shrink pr-3">
+                <div className="flex-shrink pr-1">
                   <div className="rounded-full p-2 bg-yellow-600"><i className="fas fa-user-plus fa-2x fa-inverse"></i></div>
                 </div>
                 <JumpStartBox
@@ -238,7 +236,7 @@ function InvestorDashboardJumpStart (props) {
           <div className="w-full md:w-1/2 xl:w-1/3 p-2">
             <div className="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
               <div className="flex flex-row items-center text-xs">
-                <div className="flex-shrink pr-3">
+                <div className="flex-shrink pr-1">
                   <div className="rounded-full p-2 bg-blue-600"><i className="fas fa-server fa-2x fa-inverse"></i></div>
                 </div>
                 <JumpStartBox
@@ -253,6 +251,19 @@ function InvestorDashboardJumpStart (props) {
             </div>
           </div>
         </div>
+        </div>
+        <div class=" mt-1 flex flex-row justify-between" >
+        <div>
+        <div class=" font-poppins font-bold text-base ">By Order Value</div>
+        <DynamicPieChart dtype={"RepairOrderValue"} 
+        userId={props.userId} timeRangeType={props.timeRangeType}/>
+        </div>
+        <div>
+        <div class=" font-poppins font-bold text-base ">By Order Volume</div>
+        <DynamicPieChart dtype={"RepairOrder"}
+         userId={props.userId} timeRangeType={props.timeRangeType}/>
+        </div>
+      </div>
       </div>
 
 <CustomerJumpStartDrawer

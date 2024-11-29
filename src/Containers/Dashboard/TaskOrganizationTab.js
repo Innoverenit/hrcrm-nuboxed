@@ -4,8 +4,6 @@ import { bindActionCreators } from "redux";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import {  StyledTabs } from "../../Components/UI/Antd";
 import TabsWrapper1 from "../../Components/UI/Layout/TabsWrapper1";
-
-import { BundleLoader } from "../../Components/Placeholder";
 const TaskOrganizationNew=lazy(()=>import("./TaskOrganizationNew"));
 
 const TabPane = StyledTabs.TabPane;

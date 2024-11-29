@@ -15,7 +15,9 @@ import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import CategoryIcon from '@mui/icons-material/Category'
-
+import ShareLocationIcon from '@mui/icons-material/ShareLocation';
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom'; 
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {
   getMaterialBestBefore,
   addToWaste,
@@ -285,9 +287,12 @@ const DashBoardSummary=(props) =>{
              {colleague.reorderLevel}
                 </div>
             </div>
-            <div className="text-xs text-gray-500 font-poppins">{colleague.zone} {colleague.aisle} {colleague.chamber} </div>
-            <div className="text-xs text-gray-500 font-poppins">{colleague.locationName}</div>
-            <Button>{translatedMenuItems[5]} PO</Button>
+            <div className="flex justify-between">
+            <div className="text-xs text-gray-500 font-poppins"><ShareLocationIcon className="!text-base text-[#637492]"/> {colleague.zone}<MeetingRoomIcon className="!text-base text-[#FFADD6]"/> {colleague.aisle} {colleague.chamber}  </div>
+            <div className=" text-xs text-gray-500 font-poppins"> <LocationOnIcon className='!text-base  text-[#2C7775]'
+              />{colleague.locationName}</div>
+              </div>
+            <Button type="primary">{translatedMenuItems[5]} PO</Button>
           </div>
         ))}
       </div>

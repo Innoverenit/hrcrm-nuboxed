@@ -1,28 +1,12 @@
 import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, message, Tooltip, Popover, Icon } from "antd";
-
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import { StyledModal, StyledTabs } from "../../Components/UI/Antd";
-import { FlexContainer, TabsWrapper } from "../../Components/UI/Layout";
+import { StyledTabs } from "../../Components/UI/Antd";
+import {  TabsWrapper } from "../../Components/UI/Layout";
 import PieChartIcon from "@mui/icons-material/PieChart";
-
 import StackedSummaryChart from "../Dashboard/SatckedSummaryChart";
-
-// import { getTimeLineDataByOpportunityId } from "../../../OpportunityAction";
-import { ActionIcon } from "../../Components/Utils";
-import { AddPopover } from "../../Components/Common";
-import DashboardTable from "../Dashboard/Child/DashboardTable";
-import DashboardTable2 from "../Dashboard/Child/DashboardTable2";
-import DashBoardCommissionTable from "../Dashboard/Child/DashBoardCommissionTable";
-// import { handleLinkPartnerModal } from "../../../../Partner/PartnerAction";
-import { BundleLoader } from "../../Components/Placeholder";
-
-import { Breadcrumb, Alert } from "antd";
 import StackedChart from "./StackedChart";
-import ParetoChart from "./ParetoChart";
-import Example from "./ParetoChart";
 import StackedAllChart from "./StackedAllChart";
 import StackedAllSummaryChart from "./StackedAllSummaryChart";
 
