@@ -19,7 +19,7 @@ function ReInstateLocation(props) {
 
     return (
         <>
-            <div>
+      
                 <Popconfirm
                     title="Do you change state?"
                     onConfirm={() => handleToggleReinstate()}
@@ -34,7 +34,7 @@ function ReInstateLocation(props) {
                         unCheckedChildren="No"
                     />
                 </Popconfirm>
-            </div>
+
         </>
     );
 }

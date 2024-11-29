@@ -61,6 +61,7 @@ const handleLoadMore = () => {
         loader={props.fetchingDeletedLocationHistory?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
         height={"80vh"}
         style={{scrollbarWidth:"thin"}}
+        endMessage={ <p class="flex  text-center font-bold text-xs font-poppins text-red-500">You have reached the end of page. </p>}
       >
       <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky font-poppins !text-lm z-10">
         <div className=" max-md:w-[14.5rem] w-[14.5rem] text-[#00A2E8] text-sm">
@@ -85,9 +86,9 @@ const handleLoadMore = () => {
           {props.deletedLocationHistory.map((item) => {
             return (
               <div >
-                <div class=" flex rounded justify-between  bg-white mt-[0.5rem]  items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                <div class=" flex rounded justify-between py-ygap bg-white mt-[0.5rem]  items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                   <div class="flex">
-                  <div className=" flex  items-center justify-start border-l-2 border-green-500 bg-[#eef2f9] max-md:w-[15.25rem] w-[15.25rem] max-sm:flex-row  mt-1 max-sm:justify-between">
+                  <div className=" flex  items-center justify-start border-l-2 border-green-500 bg-[#eef2f9] max-md:w-[15.25rem] w-[15.25rem] ">
                       
 
                       <div class=" font-normal items-center ml-gaptext-[0.82rem]  font-poppins">
@@ -98,7 +99,7 @@ const handleLoadMore = () => {
                     </div>
                    
 
-                    <div className=" flex  w-[7.25rem] max-md:w-[7.25rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  mt-1 max-sm:justify-between">
+                    <div className=" flex  w-[7.25rem] max-md:w-[7.25rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] ">
                       
 
                       <div class=" font-normal text-[0.82rem]  font-poppins">
@@ -107,26 +108,25 @@ const handleLoadMore = () => {
                         {item.countryAlpha2Code}
                       </div>
                     </div>
-                    <div className=" flex w-[34rem] max-md:w-[34rem] justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  mt-1 max-sm:justify-between">
+                    <div className=" flex w-[34rem] max-md:w-[34rem] justify-center h-8 ml-gap items-center bg-[#eef2f9]">
                      
 
-                      <div class=" font-normal text-[0.82rem]   ml-gap  font-poppins">
+                      <div class=" font-normal text-[0.82rem]   ml-gap  font-poppins ">
                        
-                      <span>
+                      
   {item.address && item.address.length > 0 ? (
     `${(item.address[0].city || "")} ${(item.address[0].state || "")}`.slice(0, 20)
   ) : (
     "No address available"
-  )}
-</span>            </div>
+  )}        </div>
                     </div>
-                    <div className="   items-center justify-center h-8 ml-gap  bg-[#eef2f9] flex w-[14.41rem] max-md:w-[20.41rem] max-sm:flex-row  mt-1 max-sm:justify-between">
+                    <div className="   items-center justify-center h-8 ml-gap  bg-[#eef2f9] flex w-[14.41rem] ">
                       
                       <div class=" font-normal text-[0.82rem] items-center ml-gap font-poppins">
                        {item.regions}
                       </div>
                     </div>
-                    <div className=" flex  w-[7.2rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                    <div className=" flex  w-[7.2rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] ">
                             <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <ReInstateLocation locationDetailsId={item.locationDetailsId} />
                             </div>

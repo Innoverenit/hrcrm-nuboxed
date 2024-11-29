@@ -75,8 +75,8 @@ render() {
   } = this.props;
   return(
     <>
-     <div class="flex  h-[70vh]">
-    <div class="flex justify-between items-center h-[70vh]">
+     <div class="flex  h-[70vh] flex-col">
+    <div class="flex justify-between items-center h-[50vh]">
     <div className="w-1/2">
         <div class=" text-base flex  font-bold justify-center text-[blue]">Current</div>
     <div class=" flex flex-row w-full" >
@@ -310,12 +310,15 @@ render() {
 
 
         <div class=" mt-1 flex justify-between items-center" > 
-          
-        <div className="font-bold font-poppins  text-lg">Deals</div>
-        <InvestorPieChart1/>
+          <div className=" flex flex-col">
+          <div className="font-bold font-poppins  text-lg">Deals</div>
+          <InvestorPieChart1/>
+          </div>
+        <div className=" flex flex-col">
         <div className="font-bold font-poppins text-lg">Activity</div>
         <InvestorPieChart2/>
        
+       </div>
         </div> 
         </div> 
        

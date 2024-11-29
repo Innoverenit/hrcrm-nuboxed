@@ -113,6 +113,7 @@ const LocationCard = (props) => {
           next={handleLoadMore}
           hasMore={hasMore}
           loader={props.fetchingLocationData ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+          endMessage={ <p class="flex  text-center font-bold text-xs font-poppins text-red-500">You have reached the end of page. </p>}
           height={"83vh"}
         >
           <div className=" flex  font-bold font-poppins items-end  justify-between w-[97%] mt-3 p-1 bg-transparent  sticky  text-lm z-10 max-sm:hidden">
