@@ -8,9 +8,12 @@ import PaidIcon from '@mui/icons-material/Paid';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
-import { handleOrderDetailsModal, handleLeadModal,
- 
-   } from "../Account/AccountAction";
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
+import ContactsIcon from '@mui/icons-material/Contacts';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import GroupsIcon from '@mui/icons-material/Groups';
+import { handleOrderDetailsModal, handleLeadModal,} from "../Account/AccountAction";
 import {
 
   emptyOrders,
@@ -29,8 +32,6 @@ import StatusOfOrderModal from "../Account/AccountDetailsTab/AccountOrderTab/Sta
 import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
 import { PersonAddAlt1 } from "@mui/icons-material";
 import AddLeadModal from "./AddLeadModal";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import { BundleLoader } from "../../../Components/Placeholder";
 const { Option } = Select;
 
 function OrderSearchedData(props) {
@@ -168,17 +169,17 @@ const handleLoadMoreLow = () => {
     <>
       <div className=' flex  sticky  z-auto'>
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[100%]   bg-transparent font-bold sticky  z-10 max-sm:hidden">
-                        <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
-                        <div className=" md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>
-          <div className=" md:w-[8.6rem]">{translatedMenuItems[2]}</div>
-          <div className=" md:w-[4.051rem] ">{translatedMenuItems[3]}</div>
-          <div className="md:w-[5.018rem]">{translatedMenuItems[4]}</div>
-          <div className="md:w-[5.031rem]">{translatedMenuItems[5]}</div>
-          <div className="md:w-[5.2rem]">{translatedMenuItems[6]}</div>
-          <div className="md:w-[5.06rem]">{translatedMenuItems[7]}</div>
-          <div className="md:w-[9.73rem]">{translatedMenuItems[8]}</div>
-          <div className="md:w-24"></div>
+                    <div className=" flex  w-[100%]   bg-transparent font-poppins font-bold sticky  z-10 max-sm:hidden text-lm">
+                        <div className=" max-md:w-[3.54rem] w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]} </div>
+                        <div className=" max-md:w-[10.31rem] w-[10.31rem] ml-2 text-[#00A2E8] text-base "> <DynamicFeedIcon className='!text-base mr-1 '/> {translatedMenuItems[1]} ID</div>
+          <div className=" max-md:w-[8.6rem] w-[8.6rem]"> <ApartmentIcon className='!text-base mr-0  text-[#902089]'/> {translatedMenuItems[2]}</div>
+          <div className=" max-md:w-[4.051rem] w-[4.051rem] "> <ContactsIcon className='!text-base mr-1 text-[#12462c]'/> {translatedMenuItems[3]}</div>
+          <div className="max-md:w-[5.018rem] w-[5.018rem]">{translatedMenuItems[4]}</div>
+          <div className="max-md:w-[5.031rem] w-[5.031rem]">  <AccountCircleIcon className="!text-icon  text-[#f28482]"/> {translatedMenuItems[5]}</div>
+          <div className="max-md:w-[5.2rem] w-[5.2rem]">{translatedMenuItems[6]}</div>
+          <div className="max-md:w-[5.06rem] w-[5.06rem]"> <GroupsIcon className='!text-base mr-1  text-[#f29844]'/>{translatedMenuItems[7]}</div>
+          <div className="max-md:w-[9.73rem] w-[9.73rem]">{translatedMenuItems[8]}</div>
+          <div className="max-md:w-24 w-24"></div>
                     </div>
 
                     {/* <div class="overflow-x-auto h-[64vh]"> */}
@@ -204,11 +205,11 @@ const handleLoadMoreLow = () => {
                                          
                 <div className="flex rounded justify-between max-sm:rounded-lg
                max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500
-                bg-white mt-1 h-8 items-center  max-sm:h-[9rem] max-sm:flex-col   p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                bg-white mt-1  items-center  max-sm:h-[9rem] max-sm:flex-col   p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                  <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                  <div className=" flex items-center  md:w-[4.26rem] max-sm:w-full  ">
+                  <div className=" flex items-center border-l-2 border-green-500 bg-[#eef2f9] justify-center   w-[4.26rem]  max-md:w-[4.26rem] max-sm:  ">
                                                         <Tooltip>
-                                                            <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
+                                                            <div class="flex max-sm: justify-between  max-md:flex-col">
                                                                 <div class="  text-blue-500  font-poppins font-bold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
@@ -224,9 +225,9 @@ const handleLoadMoreLow = () => {
                                                             </div>
                                                         </Tooltip>
                                                     </div>
-                    <div className=" flex  font-bold  w-wk   max-sm:w-full">
-                      <div className="flex items-center max-sm:w-full">
-                        <div class="w-[9.43rem]">
+                    <div className=" flex  font-bold  w-wk   max-sm:">
+                      <div className="flex items-center max-sm:">
+                        <div class=" flex w-[9.43rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] ">
                           <Badge size="small" count={item.productNum}>
                             <span
                               class="underline cursor-pointer text-[#1890ff] font-bold text-xs"
@@ -247,9 +248,9 @@ const handleLoadMoreLow = () => {
                               ) : null}
                         </div>
                         {props.user.accountInfoInd?
-                        <div class="max-sm:w-full md:w-[9.02rem] font-bold">
+                        <div class="max-md:w-[9.02rem] w-[9.02rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  font-bold">
                           <Tooltip>
-                            <div class="max-sm:w-full justify-between flex md:text-xs">
+                            <div class="max-sm:justify-between flex max-md:text-xs">
                               {item.distributorName}
                             </div>
                           </Tooltip>
@@ -258,7 +259,7 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
                     {props.user.accountInfoInd?
-                    <div class="flex flex-row items-center md:w-[3.21rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex  items-center max-md:w-[3.21rem] w-[3.21rem] max-sm:  max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -271,14 +272,14 @@ const handleLoadMoreLow = () => {
                     </div>
                        :null}
                   
-                    <div className=" flex  text-xs md:w-[3.31rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]  text-xs max-md:w-[3.31rem] w-[3.21rem] max-sm:  max-sm:justify-between ">
                       <div class=" font-poppins text-xs">
                         {item.noOfPhones}
                       </div>
                     </div>
                   </div>
                   <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                  <div class="flex  flex-row items-center md:w-[5.03rem] max-sm:flex-row w-full max-sm:justify-between">
+                  <div class="flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]    max-md:w-[5.03rem] w-[5.03rem] max-sm:  max-sm:justify-between">
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
@@ -289,7 +290,7 @@ const handleLoadMoreLow = () => {
                     </div>
                   </div>
                   <div class=" flex">
-                    <div class="flex flex-row  items-center md:w-[3.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex   max-md:w-[3.02rem] w-[3.02rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-sm:  max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.supervisorUserName}
@@ -300,7 +301,7 @@ const handleLoadMoreLow = () => {
 
                       </div>
                     </div>
-                    <div class="flex flex-row items-center md:w-[6.02rem] max-sm:flex-row w-full max-sm:justify-between">
+                    <div class="flex  items-center max-md:w-[6.02rem] w-[6.02rem] max-sm:  max-sm:justify-between">
                       <div>
                         {item.teamLeadUserName && <MultiAvatar2
                           primaryTitle={item.teamLeadUserName}
@@ -310,20 +311,20 @@ const handleLoadMoreLow = () => {
                       </div>
                     </div>
                   </div>
-                  <div className=" flex text-xs  md:w-[11.912rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex text-xs  max-md:w-[11.912rem] w-[11.912rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-sm:justify-between ">
                     <span>{date}</span>
                   </div>
-                  <div className=" flex   md:w-[0.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex   max-md:w-[0.01rem] w-[1.01rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9]  max-sm:justify-between ">
 
                   <div class=" text-xs  font-semibold  font-poppins">
                     {item.noOfownerPhones}
                   </div>
                   </div>
-                  <div class="rounded-full text-xs bg-white  h-5 cursor-pointer w-8 justify-cente">
+                  <div class="items-center justify-center h-8 ml-gap  bg-[#eef2f9]  text-xs  cursor-pointer w-8 justify-cente">
                   {item.orderStatus}
                   </div>
                   </div>
-                  <div class="flex justify-end items-center max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                  <div class="flex justify-end items-center  h-8 ml-gap  bg-[#eef2f9]  max-sm:justify-between max-sm:w-wk max-sm:items-center">
                    
                     
                       <div class=" text-xs  font-poppins">
@@ -342,7 +343,7 @@ const handleLoadMoreLow = () => {
                       <div class=" text-xs  font-poppins">
                         <Tooltip title="Notes">
                           <NoteAltIcon
-                             className=" !text-icon cursor-pointer text-green-800 max-sm:!text-2xl"
+                             className=" !text-icon cursor-pointer text-green-600 max-sm:!text-2xl"
                             onClick={() => {
 
                               props.handleNotesModalInOrder(true);

@@ -56,6 +56,11 @@ const initialState = {
 
   quotationDashboardCount:{},
 
+  fetchingReorderDashboardCount:false,
+  fetchingReorderDashboardCountError:false,
+  
+  ReorderDashboardCount:{},
+
   fetchingEnterPriseorderDetails: false,
   fetchingEnterPriseorderDetailsError: false,
   enterpriseOrderinDashboard:[],
@@ -1587,6 +1592,20 @@ export const dashboardReducer = (state = initialState, action) => {
       };
 
 
+      case types.GET_REORDER_DASHBOARD_COUNT_REQUEST:
+        return { ...state,  fetchingReorderDashboardCount: true };
+      case types.GET_REORDER_DASHBOARD_COUNT_SUCCESS:
+        return {
+          ...state,
+          fetchingReorderDashboardCount: false,
+          ReorderDashboardCount: action.payload,
+        };
+      case types.GET_REORDER_DASHBOARD_COUNT_FAILURE:
+        return {
+          ...state,
+          fetchingReorderDashboardCount: false,
+          fetchingReorderDashboardCountError: true,
+        };
 
       case types.GET_QUOTATION_DASHBOARD_COUNT_REQUEST:
         return { ...state, fetchingQuotationDashboardCount: true };

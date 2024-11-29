@@ -272,6 +272,7 @@ const exportPDFAnnexure = async () => {
                         loader={props.fetchingCompletedHighOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"38vh"}
                         style={{scrollbarWidth:"thin"}}
+                        endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}
                     >
                         {props.completedHighOrder.length === 0 ?
                             <><EmptyPage/>
@@ -561,7 +562,7 @@ const exportPDFAnnexure = async () => {
                         loader={props.fetchingCompletedLowOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"38vh"}
                         style={{scrollbarWidth:"thin"}}
-                        
+                        endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}
                     >
                         {props.completedLowOrder.length === 0 ?
                             <><EmptyPage/>

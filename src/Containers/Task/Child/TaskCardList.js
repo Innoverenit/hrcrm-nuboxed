@@ -284,7 +284,7 @@ const TaskCardList = (props) => {
         loader={fetchingHighTaskList?<div class="flex justify-center" >Loading...</div>:null}
         height={"24vh"}
         style={{ scrollbarWidth:"thin"}}
-        endMessage={ <p class="flex  text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+        endMessage={ <p class="flex  text-center font-bold text-xs font-poppins text-red-500">You have reached the end of page. </p>}
       >
       {highTaskList.map((item) => { 
         const currentDate = dayjs();
@@ -706,7 +706,7 @@ Reject
         loader={fetchingMediumTaskList?<div class="flex justify-center" >Loading...</div>:null}
         height={"24vh"}
         style={{ scrollbarWidth:"thin"}}
-        endMessage={ <p class="flex  text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+        endMessage={ <p class="flex  text-center font-bold text-xs font-poppins text-red-500">You have reached the end of page. </p>}
       >
       {mediumTaskList.map((item) => { 
         const currentDate = dayjs();
@@ -1127,7 +1127,7 @@ taskStatus: "To Start",
       hasMore={hasMore}
         loader={fetchingLowTaskList?<div class="flex justify-center" >Loading...</div>:null}
         height={"24vh"}
-        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+        endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
       {lowTaskList.map((item) => { 
         const currentDate = dayjs();

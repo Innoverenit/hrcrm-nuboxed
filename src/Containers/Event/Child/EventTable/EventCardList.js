@@ -202,6 +202,7 @@ const getLocation = (item) => {
         loader={fetchingEventListRangeByUserId?<div class="flex justify-center">Loading...</div>:null}
         height={"83vh"}
         style={{scrollbarWidth:"thin"}}
+        endMessage={ <p class="flex  text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
       {eventListRangeByUserId.map((item) => { 
             const handleCopyClick = () => {
