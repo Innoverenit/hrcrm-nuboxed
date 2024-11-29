@@ -362,7 +362,7 @@ export const handleCallActivityModal = (modalProps) => (dispatch) => {
   });
 };
 
-export const deleteDocument = (documentId) => (dispatch, getState) => {
+export const deleteDocument = (documentId,type) => (dispatch, getState) => {
   console.log("inside deleteDocument", documentId);
   // const { opportunityId } = getState("opportunity").opportunity.opportunity;
   dispatch({
@@ -370,7 +370,7 @@ export const deleteDocument = (documentId) => (dispatch, getState) => {
   });
 
   axios
-    .delete(`${base_url}/customer/document/${documentId}`, {
+    .delete(`${base_url}/document/delete/${documentId}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -506,6 +506,37 @@ export const updateCustomer = (data, customerId) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.UPDATE_CUSTOMER_BY_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const updateDocument = (data, documentId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_DOCUMENT_BY_ID_REQUEST });
+  axios
+    .put(`${base_url}/document/update/${documentId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Prospect Info updated Successfully!',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_DOCUMENT_BY_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_DOCUMENT_BY_ID_FAILURE,
         payload: err,
       });
     });

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import axios from "axios";
+import { useDispatch } from 'react-redux';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { BundleLoader } from '../../../../../../Components/Placeholder';
 import {getCountries} from "../../../../../Auth/AuthAction"
@@ -23,12 +24,13 @@ const { Option } = Select;
 function PoSupplierDetailsTable(props) {
     const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [isEditingBatch, setIsEditingBatch] = useState(false);
     const [batchInput, setbatchInput] = useState();
-    const [isCountryDropdownVisible, setIsCountryDropdownVisible] = useState(false);
+    const [isCountryDropdownVisible, setIsCountryDropdownVisible] = useState(null);
     const [selectedCountry, setSelectedCountry] = useState("Select Country");
     const [isEditingDate, setIsEditingDate] = useState(false); // Controls editing mode
-    const [selectedDate, setSelectedDate] = useState(null);
+    const [selectedDate, setSelectedDate] = useState();
+    const [editingRowId, setEditingRowId] = useState(null);
+    const dispatch = useDispatch();
     useEffect(() => {
       const fetchMenuTranslations = async () => {
         try {
@@ -99,7 +101,7 @@ function PoSupplierDetailsTable(props) {
               },
             }
           );
-          // dispatch(getPackNo(response.data));
+           dispatch(getPurchaseOrderDetailsList(props.poSupplierDetailsId));
           if (response.data === 'Successfully !!!!') {
             message.success('Update successful');
           } else {
@@ -114,7 +116,8 @@ function PoSupplierDetailsTable(props) {
             batchNo:batchInput,
         };
        sendPutRequest(updatedName,poSupplierSuppliesId);
-       setIsEditingBatch(false); // Close the input box after updating
+    //    setIsEditingBatch(false); // Close the input box after updating
+       setEditingRowId(null)
       };
     const handleCountryChange = (poSupplierSuppliesId,countryId) => {
         const updatedPayload = {
@@ -122,22 +125,24 @@ function PoSupplierDetailsTable(props) {
         };
       
         sendPutRequest(updatedPayload,poSupplierSuppliesId);
-        setIsCountryDropdownVisible(false); // Hide the dropdown after the request
+        setIsCountryDropdownVisible(null); // Hide the dropdown after the request
       };
-
     const handleDateChange = (poSupplierSuppliesId, dateString) => {
         if (dateString) {
-            setSelectedDate(dateString); // Update the local state
+            // Convert the date string to ISO format with timezone
+            const date = new Date(dateString);
+            const isoDate = date.toISOString(); // Converts to ISO 8601 format in UTC
+    
+            setSelectedDate(isoDate); // Update the local state with the ISO format
             const updatedPayload = {
-                bestBeforeUse: dateString, // Include the selected date in the payload
+                bestBeforeUse: isoDate, // Include the ISO date in the payload
             };
-            sendPutRequest(updatedPayload,poSupplierSuppliesId); // Send the updated payload
-            setIsEditingDate(false); // Exit edit mode
+            sendPutRequest(updatedPayload, poSupplierSuppliesId); // Send the updated payload
+            setIsEditingDate(null); // Exit edit mode
         } else {
-            message.error("Invalid date selected"); // Optional: Notify the user of invalid input
+            message.error("Invalid date selected"); // Notify the user of invalid input
         }
     };
-    
       
       
     return (
@@ -327,7 +332,7 @@ function PoSupplierDetailsTable(props) {
                                             <div>
 
 
-        {isEditingBatch ? (
+        {editingRowId === item.poSupplierSuppliesId ? (
         <input
           type="text"
           className="h-7 w-[4rem] text-xl"
@@ -339,7 +344,7 @@ function PoSupplierDetailsTable(props) {
         />
       ) : (
         <div onClick={() => {
-            setIsEditingBatch(true); // Enable editing mode
+            setEditingRowId(item.poSupplierSuppliesId); // Enable editing mode
             setbatchInput(item.batchNo); // Set the initial value from the batchNo of the item
           }} className="cursor-pointer text-xl font-[Poppins]">
             {item.batchNo || "Enter Batch No"}
@@ -353,7 +358,8 @@ function PoSupplierDetailsTable(props) {
   
 
   {/* Dropdown options */}
-  {isCountryDropdownVisible ? (
+  {/* {isCountryDropdownVisible ? ( */}
+     {isCountryDropdownVisible === item.poSupplierSuppliesId ? (
     <Select
       style={{ width: "8rem" }}
       value={selectedCountry}
@@ -371,7 +377,11 @@ function PoSupplierDetailsTable(props) {
     </Select>
   ):(
     <div 
-    onClick={() => setIsCountryDropdownVisible(!isCountryDropdownVisible)} 
+    // onClick={() => setIsCountryDropdownVisible(item.poSupplierSuppliesId)}
+    onClick={() => {
+        setIsCountryDropdownVisible(item.poSupplierSuppliesId); // Enable editing mode
+        setSelectedCountry(item.countryName); // Set the initial value from the batchNo of the item
+      }}  
     className="cursor-pointer"
   >
     {item.countryName || "Select"}
@@ -380,7 +390,7 @@ function PoSupplierDetailsTable(props) {
                         )}
 </div>
 
-{isEditingDate ? (
+{isEditingDate === item.poSupplierSuppliesId ? (
     <DatePicker
         className="h-7"
         value={selectedDate ? dayjs(selectedDate) : null} // Convert `selectedDate` to dayjs format
@@ -389,7 +399,11 @@ function PoSupplierDetailsTable(props) {
     />
 ) : (
     <div 
-        onClick={() => setIsEditingDate(true)} 
+        // onClick={() => setIsEditingDate(true)} 
+        onClick={() => {
+            setIsEditingDate(item.poSupplierSuppliesId); // Enable editing mode
+            setSelectedDate(item.bestBefore); // Set the initial value from the batchNo of the item
+          }} 
         className="cursor-pointer text-xl font-[Poppins]"
     >
         {date || "Select Date"} {/* Show selected date or prompt */}

@@ -3017,7 +3017,7 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         removingOrderAcc: false,
         highDistributorOrder: state.highDistributorOrder.map((item) => {
-          if (item.orderId == action.payload.orderId) {
+          if (item.orderPhoneId == action.payload.orderPhoneId) {
             return action.payload;
           } else {
             return item;

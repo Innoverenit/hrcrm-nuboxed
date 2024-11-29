@@ -749,6 +749,28 @@ export const customerReducer = (state = initialState, action) => {
         updateCustomerByIdError: true,
       };
 
+
+      case types.UPDATE_DOCUMENT_BY_ID_REQUEST:
+      return { ...state, updateDocumentById: true };
+    case types.UPDATE_DOCUMENT_BY_ID_SUCCESS:
+      return {
+        ...state,
+        updateDocumentById: false,
+        documentsByCustomerId: state.documentsByCustomerId.map((item) => {
+          if (item.documentId === action.payload.documentId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.UPDATE_DOCUMENT_BY_ID_FAILURE:
+      return {
+        ...state,
+        updateDocumentById: false,
+        updateDocumentByIdError: true,
+      };
+
     /*add/link customer document */
     case types.ADD_CUSTOMER_DOCUMENT_REQUEST:
       return {
