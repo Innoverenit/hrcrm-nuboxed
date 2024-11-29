@@ -2,11 +2,11 @@ import React,{useEffect,useState} from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import axios from 'axios';
-import { base_url2} from "../../../../Config/Auth";
+import { base_url} from "../../../../Config/Auth";
 import ReactApexChart from 'react-apexcharts';
 import { BundleLoader } from '../../../../Components/Placeholder';
 
-const DynamicBarChart = (props) => {
+const ExpenseBarChart = (props) => {
   useEffect(()=>{
     fetchDashbysectorChart();
        }, [props.timeRangeType]);
@@ -17,7 +17,7 @@ const[error,setError]=useState(null);
 
   const fetchDashbysectorChart = async () => {
     try {
-      const response = await axios.get(`${base_url2}/distributor/BarCht/${props.userId}/${props.timeRangeType}/${props.dtype}`,{
+      const response = await axios.get(`${base_url}/expense/dashboard/user/barchrt/${props.userId}`,{
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
@@ -30,26 +30,43 @@ const[error,setError]=useState(null);
     }
   };
   
+  const getChartData = () => {
+    if (!dashSectorChart || Object.keys(dashSectorChart).length === 0) {
+      return {
+        categories: [],
+        series: [],
+      };
+    }
+
+    const months = Object.keys(dashSectorChart);
+    const seriesData = [];
+    const allProducts = new Set();
+
+    months.forEach((month) => {
+      Object.keys(dashSectorChart[month]).forEach((product) => {
+        allProducts.add(product);
+      });
+    });
+
+    const productList = Array.from(allProducts);
+productList.forEach((product) => {
+      const productData = months.map((month) => dashSectorChart[month][product] || 0); // If no data for the product in a month, set 0
+      seriesData.push({
+        name: product,
+        data: productData,
+      });
+    });
+
+    return {
+      categories: months,
+      series: seriesData,
+    };
+  };
+
+  const { categories, series } = getChartData();
 
   const options = {
-    series: [
-      {
-        name: 'PRODUCT A',
-        data: [44, 55, 41, 67, 22, 43]
-      },
-      {
-        name: 'PRODUCT B',
-        data: [13, 23, 20, 8, 13, 27]
-      },
-      {
-        name: 'PRODUCT C',
-        data: [11, 17, 15, 15, 21, 14]
-      },
-      {
-        name: 'PRODUCT D',
-        data: [21, 7, 25, 13, 22, 8]
-      }
-    ],
+    series: series,
     chart: {
       type: 'bar',
       height: 350,
@@ -91,15 +108,16 @@ const[error,setError]=useState(null);
       }
     },
     xaxis: {
-      type: 'datetime', // X-axis is based on dates
-      categories: [
-        '01/01/2011 GMT',
-        '01/02/2011 GMT',
-        '01/03/2011 GMT',
-        '01/04/2011 GMT',
-        '01/05/2011 GMT',
-        '01/06/2011 GMT'
-      ] // Date categories for x-axis
+      type: 'category', // X-axis is based on dates
+      categories:categories,
+      //  [
+      //   '01/01/2011 GMT',
+      //   '01/02/2011 GMT',
+      //   '01/03/2011 GMT',
+      //   '01/04/2011 GMT',
+      //   '01/05/2011 GMT',
+      //   '01/06/2011 GMT'
+      // ] // Date categories for x-axis
     },
     legend: {
       position: 'right', // Legend position
@@ -112,17 +130,18 @@ const[error,setError]=useState(null);
 
   return (
     <div className="w-wk">
-      <ReactApexChart
-        options={options}
-        series={options.series}
-        type="bar"
-        height={160}
-      />
+      {/* {loading ? (
+        <div>Loading...</div>
+      ) : error ? (
+        <div>Error fetching data</div>
+      ) : ( */}
+        <ReactApexChart options={options} series={series} type="bar" height={350} />
+      
     </div>
   );
 };
 
-export default DynamicBarChart;
+export default ExpenseBarChart;
 
 
 
