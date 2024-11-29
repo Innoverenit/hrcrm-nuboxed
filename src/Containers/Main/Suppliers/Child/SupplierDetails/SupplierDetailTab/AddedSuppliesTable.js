@@ -46,37 +46,37 @@ const [loading, setLoading] = useState(true);
         <>
             <div className=' flex justify-end sticky top-28 z-auto'>
                 <div class=" m-3 p-1 h-62vh overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between  p-1 bg-transparent font-bold sticky top-0 z-10">
-                        <div className=" font-poppins text-xs md:w-[19.1rem]">
+                    <div className=" flex justify-between  p-1 bg-transparent font-bold font-poppins sticky top-0 items-end !text-lm z-10">
+                        <div className="w-[19.1rem] truncate max-md:w-[19.1rem]">
                         <ApartmentIcon className="  !text-icon"/> 
                          {/* {translatedMenuItems[0]} */}
                           Name
                         </div>
-                        <div className="font-poppins text-xs md:w-[14.1rem]">
+                        <div className="w-[14.1rem] truncate max-md:w-[14.1rem]">
                         <WidgetsIcon className=" !text-icon"/>
                          {/* {translatedMenuItems[1]}  */}
                          Category
                         </div>
-                        <div className="font-poppins text-xs md:w-[14.1rem]">
+                        <div className="w-[14.1rem] truncate max-md:w-[14.1rem]">
                         {/* {translatedMenuItems[2]}  */}
                           Sub-category
                         </div>
-                        <div className="font-poppins text-xs md:w-[14.1rem]">
+                        <div className="w-[14.1rem] truncate max-md:w-[14.1rem]">
                         < AttractionsIcon className=" !text-icon"/>
                          {/* {translatedMenuItems[3]}   */}
                          Attribute
                         </div>
-                        <div className="font-poppins text-xs md:w-[14.1rem]">
+                        <div className="w-[14.1rem] truncate max-md:w-[14.1rem]">
                         {/* {translatedMenuItems[4]}  */}
                          Sub-attribute
                         </div>
                        
-                        <div className="font-poppins text-xs md:w-[5.1rem]">
+                        <div className="w-[5.1rem] truncate max-md:w-[5.1rem]">
                         <VerifiedUserIcon className=" !text-icon" />
                          {/* {translatedMenuItems[5]}  */}
                           Quality
                         </div>
-                        <div className="font-poppins text-xs md:w-[5.1rem]">
+                        <div className=" w-[5.1rem] truncate max-md:md:w-[5.1rem]">
                         <QrCodeIcon className=" !text-icon"/> 
                          {/* {translatedMenuItems[6]}   */}
                          Units

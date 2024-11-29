@@ -149,9 +149,10 @@
 
 // export default connect(mapStateToProps, mapDispatchToProps)(NewArrivalList);
 
-import React, { useEffect,useState } from "react";
+import React, { useEffect } from "react";
 import { Checkbox, Tooltip } from "antd";
-
+import ContactsIcon from '@mui/icons-material/Contacts';
+import PixIcon from '@mui/icons-material/Pix'
 const NewArrivalListStep1 = ({ 
     selectedItems, 
     setSelectedItems, 
@@ -189,38 +190,38 @@ const NewArrivalListStep1 = ({
 
     return (
         <div>
-              <div className="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:hidden">
-             <div className="flex w-[90%] justify-between p-1 bg-transparent font-bold sticky z-10">
+              <div className="rounded m-1 max-sm:m-1 h-[82vh] p-1 w-[99%] overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:hidden">
+             <div className="flex w-[90%] justify-between p-1 bg-transparent font-bold sticky !text-lm items-end font-poppins z-10">
              <div className="md:w-[0.25rem]"></div>
              <div className="md:w-[2rem]">
             <Tooltip title="Select All">
                 <Checkbox checked={selectAll} onChange={handleSelectAll} />
             </Tooltip>
             </div>
-            <div className="font-bold w-[16rem] flex items-center font-poppins text-xs">
-           Name
+            <div className=" w-[16rem] truncate text-[#00A2E8] text-sm">
+            <ContactsIcon className='!text-icon'/> Name
           </div>
-          <div className="font-bold w-[35.5rem] flex items-center font-poppins text-xs">
-           Unit
+          <div className="w-[35.5rem] truncate">
+          <PixIcon className='!text-icon '/>  Unit
           </div>
           </div>
             <div className="overflow-x-auto h-[75vh]">
                 {newStepItemData.map((item) => (
                     <div key={item.id}>
                          <div
-                  className="flex rounded  bg-white mt-1 h-8 items-center p-1 max-sm:rounded-lg max-sm:bg-gradient-to-b max-sm:from-blue-200
+                  className="flex rounded  bg-white mt-1 h-8 items-center  border-l-2 border-green-500 bg-[#eef2f9] py-ygap max-sm:rounded-lg max-sm:bg-gradient-to-b max-sm:from-blue-200
                     max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow border-solid m-1 leading-3 hover:border hover:border-[#23A0BE] hover:shadow-[#23A0BE]"
-                >
+                >      <div className="border-l-2 border-green-500 bg-[#eef2f9]">
                         <Checkbox
                             checked={selectedItems.includes(item)}
                             onChange={() => handleCheckboxChange(item)}
-                        />
-                         <div className="flex items-center md:w-[14rem] max-sm:flex-row max-sm:justify-between">
+                        /></div>
+                         <div className="flex items-center h-8 ml-gap bg-[#eef2f9] justify-start md:w-[23rem] max-sm:flex-row max-sm:justify-between">
                          <div className="text-xs flex items-center font-poppins">
                        {item.suppliesName}
                         </div>
                         </div>
-                        <div className="flex items-center md:w-[12rem] max-sm:flex-row max-sm:justify-between">
+                        <div className="flex items-center h-8 ml-gap bg-[#eef2f9] justify-center md:w-[30rem] max-sm:flex-row max-sm:justify-between">
                          <div className="text-xs flex items-center font-poppins">
                        {item.unit}
                         </div>

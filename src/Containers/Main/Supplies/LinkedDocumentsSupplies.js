@@ -2,9 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Highlighter from "react-highlight-words";
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
+import DescriptionIcon from '@mui/icons-material/Description';
+import ArticleIcon from '@mui/icons-material/Article';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 import { getDocuments } from "../../Settings/Documents/DocumentsAction";
 import SearchIcon from '@mui/icons-material/Search';
+import MergeTypeIcon from '@mui/icons-material/MergeType';
  import {
   Button,
   Input
@@ -124,26 +128,26 @@ const LinkedDocumentsSupplies = (props) => {
     <>
         <div className=' flex  sticky  z-auto'>          
 <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm items-end sticky  z-10">
                 
-                <div className="md:w-[9.7rem]">
-                {translatedMenuItems[0]}   
+                <div className="w-[9.7rem] truncate text-sm text-[#7dcfb6] max-md:w-[9.7rem]">
+                <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[0]}   
                   {/* Date */}
                 </div>
-                    <div className=" md:w-[11.12rem]">
-                    {translatedMenuItems[1]}   
+                    <div className="w-[11.12rem] truncate  max-md:w-[11.12rem]">
+                    <ArticleIcon className='!text-icon mr-1 text-[#a379c9] '  /> {translatedMenuItems[1]}   
                       {/* Name */}
                       </div>
-                    <div className=" md:w-[12.122rem]">
-                    {translatedMenuItems[2]}   
+                    <div className="w-[12.122rem] truncate  max-md:w-[12.122rem]">
+                    < MergeTypeIcon className='!text-icon text-[#c42847] '  />  {translatedMenuItems[2]}   
                       {/* Type */}
                       </div>
-                    <div className=" md:w-[9.5rem]">
-                    {translatedMenuItems[3]}   
+                    <div className=" w-[9.5rem] truncate  max-md:w-[9.5rem]">
+                    <DescriptionIcon className='!text-icon text-[#9ad5ca] '  />  {translatedMenuItems[3]}   
                       {/* Description */}
                       </div>
-                    <div className=" md:w-[9.81rem] ">
-                    {translatedMenuItems[4]}   
+                    <div className=" w-[9.81rem] truncate  max-md:w-[9.81rem] ">
+                    <AccountCircleIcon className="!text-icon  text-[#f28482]"/> {translatedMenuItems[4]}   
                       {/* Uploaded By */}
                       </div>
                    

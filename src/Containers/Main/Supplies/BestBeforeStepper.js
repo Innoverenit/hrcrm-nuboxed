@@ -9,7 +9,6 @@ import { getBestBefore } from "./SuppliesAction";
 import { getContactDistributor } from "../../Contact/ContactAction";
 import Swal from "sweetalert2";
 import axios from "axios";
-import dayjs from "dayjs";
 import { base_url2 } from "../../../Config/Auth";
 import BestbeforeStep1 from "./BestbeforeStep1";
 import BestbeforeStep2 from "./BestbeforeStep2";
@@ -115,7 +114,7 @@ const BestBeforeStepper = (props) => {
                     )}
 
                     {current < steps.length - 1 && (
-                        <Button type="tertiary" onClick={next}>
+                        <Button type="primary" onClick={next}>
                             <div className="text-base cursor-pointer">Proceed</div>
                         </Button>
                     )}
