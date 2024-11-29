@@ -290,7 +290,7 @@ const handleInputChange = (stagesId, field, value) => {
           )}
          
         </div>
-        {yesState[stage.stagesId] && (
+        {/* {yesState[stage.stagesId] && ( */}
             
               <div
           key={stage.stagesId}
@@ -315,8 +315,8 @@ const handleInputChange = (stagesId, field, value) => {
                       <Option value="Repeat">Repeat</Option>
                 </Select>
               </div>
-            )}
-              {noState[stage.stagesId] && (
+            {/* )} */}
+              {/* {noState[stage.stagesId] && ( */}
               
               <div
               key={stage.stagesId}
@@ -341,16 +341,9 @@ const handleInputChange = (stagesId, field, value) => {
                       <Option value="Repeat">Repeat</Option>
                 </Select>
               </div>
-            )}
-            {noActionState[stage.stagesId] && (
-              // <div
-              //   style={{
-              //     // position: "absolute",
-              //     top: "0",
-              //     left: "105%",
-              //     width: "200px",
-              //   }}
-              // >
+            {/* )} */}
+            {/* {noActionState[stage.stagesId] && ( */}
+            
               <div
               key={stage.stagesId}
               style={{
@@ -376,7 +369,7 @@ const handleInputChange = (stagesId, field, value) => {
                       <Option value="Repeat">Repeat</Option>
                 </Select>
               </div>
-            )}
+            {/* )} */}
         </div>
           {index < stages.length - 1 && (
             <div

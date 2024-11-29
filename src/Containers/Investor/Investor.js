@@ -151,14 +151,24 @@ const handleChange = (e) => {
              handleCheckboxChange={handleCheckboxChange}
              selectedLanguage={props.selectedLanguage}
             /> }
-            {viewType === 'teams' &&  <InvestorTeamCardList
+            {viewType === 'teams' ?(  <InvestorTeamCardList
              translateText={props.translateText}
              showCheckboxes={showCheckboxes}
              selectedDeals={selectedDeals}
              selectedUser={selectedUser}
              handleCheckboxChange={handleCheckboxChange}
              selectedLanguage={props.selectedLanguage}
-            />}
+            />
+            ):(
+<InvestorCardList
+             translateText={props.translateText}
+             showCheckboxes={showCheckboxes}
+             selectedDeals={selectedDeals}
+             selectedUser={selectedUser}
+             handleCheckboxChange={handleCheckboxChange}
+             selectedLanguage={props.selectedLanguage}
+            />
+            )}
              {viewType === 'delete' &&  <InvestorDeleteList
              translateText={props.translateText}
              selectedLanguage={props.selectedLanguage}
