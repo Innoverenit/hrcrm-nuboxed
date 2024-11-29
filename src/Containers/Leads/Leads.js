@@ -247,7 +247,7 @@ class Leads extends Component {
              selectedLanguage={this.props.selectedLanguage}
            translatedMenuItems={this.props.translatedMenuItems}
             />}
-            {viewType === 'teams' && <LeadsTeamCardList 
+            {viewType === 'teams'?( <LeadsTeamCardList 
              translateText={this.props.translateText}
              handleCheckboxChange={this.handleCheckboxChange}
              selectedUser={this.state.selectedUser}
@@ -255,7 +255,17 @@ class Leads extends Component {
              selectedDeals={this.state.selectedDeals}
              selectedLanguage={this.props.selectedLanguage}
            translatedMenuItems={this.props.translatedMenuItems}
-            />}
+            />
+            ):(
+              <LeadsCardList  filter={this.state.filter}  
+            translateText={this.props.translateText}
+            handleCheckboxChange={this.handleCheckboxChange}
+            selectedUser={this.state.selectedUser}
+            showCheckboxes={this.state.showCheckboxes}
+            selectedDeals={this.state.selectedDeals}
+               selectedLanguage={this.props.selectedLanguage}
+             translatedMenuItems={this.props.translatedMenuItems}/>
+            )}
               {viewType === 'list' && <LeadsJunkList 
              translateText={this.props.translateText}
              handleCheckboxChangeJunk={this.handleCheckboxChangeJunk}

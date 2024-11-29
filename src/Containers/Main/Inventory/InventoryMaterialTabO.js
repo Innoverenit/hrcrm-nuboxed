@@ -1,6 +1,7 @@
 import React, { PureComponent, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import InventoryGlobaltab from "./InventoryGlobaltab"
 import MaterialIntransitList from "../Inventory/MaterialIntransitList"//2
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
@@ -122,9 +123,16 @@ class InventoryMaterialTabO extends PureComponent {
                                   />
                               </div>;
                                case "7":
-                                return  <div> 
-                                 <InventoryWastetab
+                                return  <div>  {this.state.shipperPopover ? (
+                                  <div>
+                                   <InventoryGlobaltab
                                    translatedMenuItems={this.props.translatedMenuItems}/>
+                                    </div>
+                                ):(
+                                  <InventoryWastetab
+                                   translatedMenuItems={this.props.translatedMenuItems}/>
+                                 
+                                )}
                                     </div>;
                       
             default:
