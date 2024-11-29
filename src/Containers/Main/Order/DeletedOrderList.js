@@ -232,6 +232,7 @@ const exportPDFAnnexure = async () => {
                         loader={props.fetchingDeletedHighOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"38vh"}
                         style={{ scrollbarWidth:"thin"}}
+                        endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}
                     >
                         {props.deletedHighOrder.length ?
                             <>
@@ -516,6 +517,7 @@ const exportPDFAnnexure = async () => {
                         loader={props.fetchingDeletedLowOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"38vh"}
                         style={{ scrollbarWidth:"thin"}}
+                        endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}
                     >
                         {props.deletedLowOrder.length ?
                             <>

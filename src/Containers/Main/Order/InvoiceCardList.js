@@ -1,15 +1,12 @@
 import React, {  useEffect, useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import InfiniteScroll from "react-infinite-scroll-component";
 import {
     getInvoiceEcomList,
 } from "./OrderAction";
-import jsPDF from "jspdf";
 import "jspdf-autotable";
 import dayjs from "dayjs";
 import relativeTime from 'dayjs/plugin/relativeTime';
-import { MultiAvatar } from "../../../Components/UI/Elements";
 
 function InvoiceCardList(props) {
   const [page, setPage] = useState(0);
@@ -114,15 +111,6 @@ const {handleProcureNotesDrawerModal,
                        
                       
         </div>
-        {/* <InfiniteScroll
-            hasMore={hasMore}
-          dataLength={props.ecomInvoiceList.length}
-          next={handleLoadMore}
-          loader={props.fetchingecomInvoiceList?<div class="flex justify-center" >Loading...</div>:null}
-          height={"83vh"}
-          style={{ scrollbarWidth:"thin"}}
-          endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
-        > */}
           {props.ecomInvoiceList.map((item) => {
             const currentDate = dayjs().format("DD/MM/YYYY");
             const date = dayjs(item.creationDate).format("DD/MM/YYYY");

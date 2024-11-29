@@ -70,6 +70,7 @@ function CompleteOrder(props) {
                     loader={props.fetchingCompleteOrders ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
                     height={"80vh"}
                     style={{scrollbarWidth:"thin"}}
+                    endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}
                 >
                     {props.comepletOrder.map((item) => {
                         const currentdate = dayjs().format("DD/MM/YYYY");

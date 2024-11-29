@@ -287,7 +287,7 @@ const exportPDFAnnexure = async () => {
           loader={props.fetchingRepairHighOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
           style={{ scrollbarWidth:"thin"}}
           height={"38vh"}
-          endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+          endMessage={ <p class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </p>}
         >
                         {props.repairHighCompleteOrder.length === 0 ?
                             <><EmptyPage/>
@@ -351,7 +351,7 @@ const exportPDFAnnexure = async () => {
                       </div>
                     </div>
                     {props.user.accountInfoInd?
-                    <div class="flex flex-row items-center max-md:w-[5.71rem]  w-[5.71rem] justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
+                    <div class="flex  items-center max-md:w-[5.71rem]  w-[5.71rem] justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -378,7 +378,7 @@ const exportPDFAnnexure = async () => {
 </svg>
 {getRelativeTime(item.creationDate)}
 </span></div>
-                  <div class="flex  flex-row  items-center justify-center h-8 ml-gap w-[6.03rem]  bg-[#eef2f9] max-md:w-[6.03rem] max-sm:flex-row max-sm:justify-between">
+                  <div class="flex    items-center justify-center h-8 ml-gap w-[6.03rem]  bg-[#eef2f9] max-md:w-[6.03rem] max-sm:flex-row max-sm:justify-between">
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
@@ -389,7 +389,7 @@ const exportPDFAnnexure = async () => {
                     </div>
                   </div>
                   <div class=" flex">
-                    <div class="flex flex-row   items-center justify-center h-8 ml-gap w-[6.02rem] bg-[#eef2f9] max-md:w-[6.02rem] max-sm:flex-row max-sm:justify-between">
+                    <div class="flex    items-center justify-center h-8 ml-gap w-[6.02rem] bg-[#eef2f9] max-md:w-[6.02rem] max-sm:flex-row max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.supervisorUserName}
@@ -400,7 +400,7 @@ const exportPDFAnnexure = async () => {
 
                       </div>
                     </div>
-                    <div class="flex flex-row  items-center justify-center h-8 ml-gap w-[6.04rem] bg-[#eef2f9] max-md:w-[6.04rem] max-sm:flex-row  max-sm:justify-between">
+                    <div class="flex   items-center justify-center h-8 ml-gap w-[6.04rem] bg-[#eef2f9] max-md:w-[6.04rem] max-sm:flex-row  max-sm:justify-between">
                       <div>
                         {item.teamLeadUserName && <MultiAvatar2
                           primaryTitle={item.teamLeadUserName}
@@ -545,7 +545,7 @@ const exportPDFAnnexure = async () => {
           loader={props.fetchingRepairLowOrderList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
           height={"38vh"}
           style={{ scrollbarWidth:"thin"}}
-          endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+          endMessage={ <div class="flex text-center font-poppins font-bold text-xs text-red-500">You have reached the end of page. </div>}
         >
                         {props.repairLowCompleteOrder.length === 0 ?
                             <><EmptyPage/>
@@ -608,7 +608,7 @@ const exportPDFAnnexure = async () => {
                       </div>
                     </div>
                     {props.user.accountInfoInd?
-                    <div class="flex flex-row items-center max-md:w-[5.71rem] w-[5.71rem] justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
+                    <div class="flex  items-center max-md:w-[5.71rem] w-[5.71rem] justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.contactPersonName}
@@ -635,7 +635,7 @@ const exportPDFAnnexure = async () => {
 </svg>
 {getRelativeTime(item.creationDate)}
 </span></div>
-                  <div class="flex flex-row items-center max-md:w-[6.03rem] w-[6.03rem]   justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
+                  <div class="flex  items-center max-md:w-[6.03rem] w-[6.03rem]   justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                     <div>
                       <MultiAvatar
                         primaryTitle={item.userName}
@@ -646,7 +646,7 @@ const exportPDFAnnexure = async () => {
                     </div>
                   </div>
                   <div class=" flex">
-                    <div class="flex flex-row  max-md:w-[6.02rem] w-[6.02rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
+                    <div class="flex   max-md:w-[6.02rem] w-[6.02rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                       <div>
                         <MultiAvatar2
                           primaryTitle={item.supervisorUserName}
@@ -657,7 +657,7 @@ const exportPDFAnnexure = async () => {
 
                       </div>
                     </div>
-                    <div class="flex flex-row items-center max-md:w-[6.04rem] w-[6.04rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
+                    <div class="flex  items-center max-md:w-[6.04rem] w-[6.04rem]  justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between">
                       <div>
                         {item.teamLeadUserName && <MultiAvatar2
                           primaryTitle={item.teamLeadUserName}

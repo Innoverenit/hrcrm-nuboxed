@@ -11,7 +11,6 @@ import {
     getEcomList,
     handleItemViewDrawer
 } from "./OrderAction";
-import StackedBarChartIcon from '@mui/icons-material/StackedBarChart';
 import CalculateIcon from '@mui/icons-material/Calculate';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import jsPDF from "jspdf";
@@ -236,34 +235,34 @@ const {handleProcureNotesDrawerModal,
     <>
     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:hidden">
         <div className=" flex justify-between w-[79%]  p-1 bg-transparent font-poppins text-xs font-bold sticky items-end z-10">
-                        <div className="w-[6rem] max-md:w-[6.02rem] text-[#00A2E8] text-sm"> 
-                          <DynamicFeedIcon className='!text-base mr-1 '/>
+                        <div className="w-[6rem] max-md:w-[6.02rem] text-[#00A2E8] text-sm truncate"> 
+                          <DynamicFeedIcon className='!text-icon mr-1 '/>
                           {translatedMenuItems[0]} ID</div>
-                        <div className="w-[5.14rem] max-md:w-[5.14rem]">
-                          <ContactsIcon className='!text-base mr-1 text-[#e4eb2f]'/>
+                        <div className="w-[5.14rem] max-md:w-[5.14rem] truncate">
+                          <ContactsIcon className='!text-icon mr-1 text-[#e4eb2f]'/>
                           {translatedMenuItems[1]}</div>
-                        <div className="w-[9.4rem] max-md:w-[9.4rem] flex">
-                          <ApartmentIcon className='!text-base  text-[#606C38]'/>
+                        <div className="w-[9.4rem] max-md:w-[9.4rem] flex truncate">
+                          <ApartmentIcon className='!text-icon  text-[#606C38]'/>
                           {translatedMenuItems[2]}</div>
                         {/* Customer */}
-                        <div className="w-[10.4rem] max-md:w-[10.4rem]">
-                        <LocationOnIcon className='!text-base  text-[#2B2D42]'/>
+                        <div className="w-[10.4rem] max-md:w-[10.4rem] truncate">
+                        <LocationOnIcon className='!text-icon  text-[#2B2D42]'/>
                         {translatedMenuItems[3]}</div>
                         {/* Shipping */}
-                        <div className="w-[11.04rem] max-md:w-[11.04rem]">  
-                          <TextSnippetIcon className='!text-base  text-[#457B9D]'/>
+                        <div className="w-[11.04rem] max-md:w-[11.04rem] truncate">  
+                          <TextSnippetIcon className='!text-icon  text-[#457B9D]'/>
                       {translatedMenuItems[4]}</div>
                         {/* Billing */}
-                        <div className="w-[4.4rem] max-md:w-[4.4rem]">
-                          <AddShoppingCartIcon className='!text-base  text-[#B23A48]'/>
+                        <div className="w-[4.4rem] max-md:w-[4.4rem] truncate">
+                          <AddShoppingCartIcon className='!text-icon  text-[#B23A48]'/>
                           {translatedMenuItems[5]}
                           </div>
                         {/* item */}              
-                        <div className="w-[5.8rem] max-md:w-[5.8rem]"> 
+                        <div className="w-[5.8rem] max-md:w-[5.8rem] truncate"> 
                           <UpdateIcon className='!text-icon text-[#ff66b3]' /> 
                           {translatedMenuItems[6]}
                           </div>                 
-                        <div className="w-[5.4rem] max-md:w-[5.4rem]"> 
+                        <div className="w-[5.4rem] max-md:w-[5.4rem] truncate"> 
                         < MergeTypeIcon className='!text-icon text-[#c42847] '  /> 
                           {translatedMenuItems[10]}                       
                           </div>                     
@@ -275,7 +274,7 @@ const {handleProcureNotesDrawerModal,
           loader={props.fetchingEcomList?<div class="flex justify-center" >Loading...</div>:null}
           height={"83vh"}
           style={{ scrollbarWidth:"thin"}}
-          endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
+          endMessage={ <div class="flex font-poppins text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
         >
           {data.map((item) => {
             const currentDate = dayjs().format("DD/MM/YYYY");
@@ -287,7 +286,7 @@ const {handleProcureNotesDrawerModal,
                 <div
 className="flex rounded justify-between  bg-white mt-1 py-ygap items-center   max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
                                      max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-24 max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
-                     <div class="flex max-sm:justify-between max-sm:w-wk items-center border-l-2 border-green-500 bg-[#eef2f9]">
+                     <div class="flex max-sm:justify-between max-sm:w-wk items-center h-8 border-l-2 border-green-500 ">
                         <div className=" flex  w-[6.4rem] max-md:w-[6.4rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row max-sm:justify-between  ">
                             <div class=" text-xs  font-poppins">
                                 {item.newOrderNo}
@@ -389,7 +388,7 @@ className="flex rounded justify-between  bg-white mt-1 py-ygap items-center   ma
                                                             >
                                                                 <EventRepeatIcon
 
-                                                                    className="!text-base cursor-pointer text-[green]"
+                                                                    className="!text-icon cursor-pointer text-[green]"
                                                                     onClick={() => {
                                                                        openModal();
                                                                         handleSetParticularOrderData(item);

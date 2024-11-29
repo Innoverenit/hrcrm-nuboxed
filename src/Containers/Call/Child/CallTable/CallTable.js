@@ -136,7 +136,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
         loader={fetchingCallListRangeByUserId?<div class="flex justify-center">{props.translatedMenuItems[9]}...</div>:null}
         height={"83vh"}
         style={{scrollbarWidth:"thin"}}
-        endMessage={ <div class="flex text-center font-bold text-xs text-red-500">{props.translatedMenuItems[10]}. </div>}
+        endMessage={ <div class="flex text-center font-poppins font-bold text-xs text-red-500">{props.translatedMenuItems[10]}. </div>}
       >
       
           {callListRangeByUserId.map((item) => {
@@ -151,7 +151,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
             }));
              return (
               <div>
-            <div className="flex rounded justify-between bg-white py-ygap  max-sm:rounded  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col items-center py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+            <div className="flex rounded justify-between bg-white py-ygap  max-sm:rounded  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
            >
               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
               <div class="flex  w-[8.9rem]  border-l-2 border-green-500 h-8 bg-[#eef2f9]  text-xs max-xl:w-[6.3rem] max-lg:w-[4.9rem] max-sm:w-auto max-sm:flex-row max-sm:justify-between ">
