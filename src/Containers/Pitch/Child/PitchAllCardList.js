@@ -131,39 +131,39 @@ serachedPitchData={props.serachedPitchData}
 />
 ) : (
  <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
- <div className=" flex justify-between max-sm:hidden w-[98%]  p-1 bg-transparent font-bold sticky items-end z-10">
-        <div className="font-bold font-poppins text-xs w-[19.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
-        <CategoryIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[0]}
+ <div className=" flex justify-between max-sm:hidden w-[98%]  p-1 bg-transparent font-poppins font-bold sticky items-end !text-lm max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
+        <div className=" text-sm  w-[19.1rem] text-[#2cbdaa] max-xl:w-[9.6rem]">
+        <CategoryIcon className=' text-[#2cbdaa]'/>{translatedMenuItems[0]}
         {/* name */}
                 </div>      
-        <div className="font-bold font-poppins text-xs  w-[11.3rem]  max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <div className=" text-xs  w-[11.3rem]  max-xl:w-[5.1rem] ">
         <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/> {translatedMenuItems[1]} 
         {/* Mobile */}
                 </div>   
-        <div className=" font-bold font-poppins text-xs w-[11.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
+        <div className="  text-xs w-[11.12rem]  max-xl:w-[5.122rem]">
         <ApartmentIcon className="!text-icon mr-1 "/>  {translatedMenuItems[2]} 
         {/* company */}
                 </div>
-                    <div className="font-bold font-poppins text-xs w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                    <div className=" text-xs w-[7.12rem] ">
                     <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[3]}  
                     {/* source */}
                 </div>
-                     <div className="font-bold font-poppins text-xs w-[9.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                     <div className=" text-xs w-[9.121rem] ">
                      <FactoryIcon className="!text-icon  text-[#84a59d]"/>{translatedMenuItems[4]} 
                      {/* sector */}
                 </div>
                 {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
+            <div className="  text-xs w-[5.81rem]  max-xl:w-[3.81rem]">
             {/* Score */}
             <ScoreIcon className="!text-icon  text-[#f28482]"/>   {translatedMenuItems[18]}
             </div>
             )}
-        <div className="font-bold font-poppins text-xs w-[7.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <div className=" text-xs w-[7.122rem] ">
           {/* Assigned */}
           <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[5]}
         </div>
       
-        <div className="font-bold font-poppins text-xs w-[9.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
+        <div className=" text-xs w-[9.6rem]  max-xl:w-[7.4rem]">
         <ExploreIcon  className="!text-icon cursor-pointer text-[green]" />  {translatedMenuItems[6]}
         {/* qualify */}
                 </div>

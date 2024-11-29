@@ -130,50 +130,64 @@ serachedPitchData={props.serachedPitchData}
     <>
   <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
     <div class="w-[90%]">
- <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky items-end z-10">
-        <div className=" text-xs font-bold font-poppins w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
-        <CategoryIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[0]}
-        {/* Name */}
+      
+ <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky  font-poppins  items-end !text-lm max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
+        <div className=" text-sm w-[13.1rem] max-md:w-[13.1rem]  text-[#2693ac] max-xl:w-[9.6rem]">
+          <CategoryIcon className='!text-base  text-[#2693ac]'/>
+          {translatedMenuItems[0]}
+          {/* Name */}
                 </div>
-        <div className=" w-[11.1rem] max-xl:w-[3rem]"></div>
-        <div className="  text-xs font-bold font-poppins w-[10.3rem] max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/> {translatedMenuItems[1]} 
-        {/* Mobile */}
+        <div className=" w-[11.1rem] max-md:w-[11.1rem] max-xl:w-[3rem]">
+
+        </div>
+        <div className="  text-xs w-[10.3rem] max-md:w-[10.3rem]  max-xl:w-[5.1rem] ">
+          <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>
+          {translatedMenuItems[1]} 
+          {/* Mobile */}
                 </div>
-        <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className="text-xs font-bold font-poppins w-[19.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
-        <ApartmentIcon className="!text-icon mr-1 "/>  {translatedMenuItems[2]}
-        {/* Company */}
+        <div className="w-[7.2rem] ">
+
+        </div>
+        <div className="text-xs w-[19.12rem] max-md:w-[19.12rem]  max-xl:w-[5.122rem]">
+          <ApartmentIcon className="!text-icon mr-1 "/> 
+          {translatedMenuItems[2]}
+          {/* Company */}
+          </div>
+         <div className="text-xs w-[11.12rem] max-md:w-[11.12rem] ">
+          <SourceIcon className="!text-icon  text-[#4b5043]"/>
+          {translatedMenuItems[3]}
+                {/* Source */}
            </div>
-         <div className="text-xs font-bold font-poppins w-[11.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-         <SourceIcon className="!text-icon  text-[#4b5043]"/>{translatedMenuItems[3]}
-               {/* Source */}
-           </div>
-          <div className="text-xs font-bold font-poppins w-[12.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-          <FactoryIcon className="!text-icon  text-[#84a59d]"/> {translatedMenuItems[4]} 
-                     {/* Sector */}
+          <div className="text-xs w-[12.121rem] max-md:w-[12.121rem] ">
+            <FactoryIcon className="!text-icon  text-[#84a59d]"/> 
+            {translatedMenuItems[4]} 
+                      {/* Sector */}
                 </div>
 
                 {props.user.aiInd && (
-            <div className="font-poppins font-bold text-xs w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-             <ScoreIcon className="!text-icon  text-[#f28482]"/>  {translatedMenuItems[19]} 
-            {/* Score */}
+            <div className="font-poppins font-bold text-xs w-[5.81rem] max-md:w-[5.81rem]  max-xl:w-[3.81rem]">
+              <ScoreIcon className="!text-icon  text-[#f28482]"/> 
+                {translatedMenuItems[19]} 
+              {/* Score */}
           
             </div>
             )}
-        <div className="text-xs font-bold font-poppins w-[7.522rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[5]}
-          {/* Assigned */}
+        <div className="text-xs w-[7.522rem] max-md:w-[7.522rem] ">
+          <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  
+          {translatedMenuItems[5]}
+            {/* Assigned */}
           </div>
-          <div className="text-xs font-bold font-poppins w-[5.521rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-          <AccountCircleIcon className="!text-icon  text-[#d64933]"/> {translatedMenuItems[6]}
-          {/* Owner */}
+          <div className="text-xs w-[5.521rem]  max-md:w-[5.521rem] ">
+            <AccountCircleIcon className="!text-icon  text-[#d64933]"/> 
+            {translatedMenuItems[6]}
+            {/* Owner */}
           </div>
          
-        <div className="text-xs font-bold font-poppins w-[5.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
-        <ExploreIcon  className="!text-icon cursor-pointer text-[green]" /> {translatedMenuItems[7]}
-        {/* Qualify */}
-                </div>
+        <div className="text-xs w-[5.6rem] max-md:w-[5.6rem]  max-xl:w-[7.4rem]">
+          <ExploreIcon  className="!text-icon cursor-pointer text-[green]" />
+          {translatedMenuItems[7]}
+          {/* Qualify */}
+                  </div>
                 </div>
       </div>
       <InfiniteScroll

@@ -280,7 +280,7 @@ const PitchActionLeft = (props) => {
               </div>
               {/* </Badge> */}
 
-      <div class=" w-72 ml-4 max-sm:w-28">
+      <div class=" w-[28rem] max-sm:w-28 ml-4 ">
           <Input
             placeholder="Search by Name or Company"
             width={"100%"}
