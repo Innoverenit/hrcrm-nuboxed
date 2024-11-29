@@ -12,8 +12,9 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import SuppliesListOfItemNewArrival from "./SuppliesListOfItemNewArrival";
 import ContactListOfItemNewArrival from "./ContactListOfItemNewArrival";
 import EmptyPage from "../EmptyPage";
-
-
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import ContactsIcon from '@mui/icons-material/Contacts';
 function NewArrivalListData(props) {
 
   const [hasMore, setHasMore] = useState(true);
@@ -70,12 +71,12 @@ function NewArrivalListData(props) {
   return (
     <>
 
-  <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between max-sm:hidden  w-[89%]  p-1 bg-transparent font-bold text-xs font-poppins sticky  z-10">
-        <div className="w-[20rem] text-[#00A2E8] text-sm truncate max-md:w-2">Date</div>
+  <div class="rounded m-1 max-sm:m-1 p-1 w-[100%] h-[79vh] max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div className=" flex justify-between max-sm:hidden  w-[93%]  p-1 bg-transparent items-end font-bold !text-lm font-poppins sticky  z-10">
+        <div className="w-[37.4rem] text-[#00A2E8] text-sm truncate max-md:w-2"> <DateRangeIcon className="!text-icon "/>Date</div>
         
-        <div className="w-[21rem] truncate max-md:w-12">Items</div>
-        <div className="w-[22rem] truncate max-md:w-20">Contact #</div>
+        <div className="w-[36rem] truncate max-md:w-12"><AddShoppingCartIcon className="!text-icon"/>Items</div>
+        <div className="w-[30rem] truncate max-md:w-20"><ContactsIcon className='!text-base mr-1 text-[#e4eb2f]'/>Contact #</div>
       </div>
       {!fetchingNewArrivalList && newArrivalDataList.length === 0 ?<EmptyPage />:newArrivalDataList.map((item,index) =>  {
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -87,11 +88,12 @@ function NewArrivalListData(props) {
               className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[10rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" 
             >
                                      <div class="flex max-sm:justify-between h-8 max-sm:w-wk max-sm:items-center">
-                                     <div className=" flex items-center w-[28rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                  
+                                     <div className=" flex items-center w-[28.1rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                  <div className="font-poppins ml-gap">
                                    {date}
+                                   </div>
                                 </div>
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] cursor-pointer text-blue-500 w-[27rem] max-xl:w-[5.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between "
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] cursor-pointer text-blue-500 w-[27.1rem] max-xl:w-[5.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between "
                                 onClick={() => {
                                   handleOpen(true);
                                   handleCurrentRowData(item);
@@ -100,7 +102,7 @@ function NewArrivalListData(props) {
                                   
                                   {item.itmCnt}
                                </div>
-                               <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[28.1rem] cursor-pointer text-blue-500 max-xl:w-[5.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between "
+                               <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[27.2rem] cursor-pointer text-blue-500 max-xl:w-[5.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between "
                                 onClick={() => {
                                   handleContactOpen(true);
                                   handleCurrentRowData(item);
@@ -109,7 +111,7 @@ function NewArrivalListData(props) {
                                   
                                   {item.usrCnt}
                                </div>
-                               <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                               <div className=" flex items-center justify-center w-[1.5rem] h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   
                                <div >
             <StyledPopconfirm

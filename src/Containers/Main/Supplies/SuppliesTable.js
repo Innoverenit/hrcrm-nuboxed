@@ -29,7 +29,6 @@ import {
   getPriceFactor
 } from "./SuppliesAction";
 import {getUOM} from "../../Settings/SettingsAction"
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip, Popconfirm,Button } from "antd";
 import CallIcon from '@mui/icons-material/Call';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';

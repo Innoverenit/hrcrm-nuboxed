@@ -114,7 +114,7 @@ const NewArrivalStepper = (props) => {
                     )}
 
                     {current < steps.length - 1 && (
-                        <Button type="tertiary" onClick={next}>
+                        <Button type="primary" onClick={next}>
                             <div className="text-base cursor-pointer">Proceed</div>
                         </Button>
                     )}

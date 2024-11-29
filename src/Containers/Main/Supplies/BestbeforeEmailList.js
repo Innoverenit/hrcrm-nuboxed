@@ -12,8 +12,9 @@ import FWLogo1 from "../../../Assets/Images/smallLogo.png"
 import SuppliesListOfItem from "./SuppliesListOfItem";
 import ContactListOfEmailList from "./ContactListOfEmailList";
 import EmptyPage from "../EmptyPage";
-
-
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 
 function BestbeforeEmailList(props) {
 
@@ -109,10 +110,10 @@ function BestbeforeEmailList(props) {
 
   <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between max-sm:hidden  w-[89%]  p-1 bg-transparent font-bold  items-end !text-lm font-poppins sticky  z-10">
-          <div className="w-[20rem] text-[#00A2E8] text-sm truncate max-md:w-2">Date</div>
+          <div className="w-[20rem] text-[#00A2E8] text-sm truncate max-md:w-2"><DateRangeIcon className="!text-icon  mr-1"/>Date</div>
         
-          <div className="w-[21rem] truncate max-md:w-12">Items</div>
-          <div className="w-[22rem] truncate max-md:w-20">Contact #</div>
+          <div className="w-[21rem] truncate max-md:w-12"><AddShoppingCartIcon className='!text-icon'/>Items</div>
+          <div className="w-[22rem] truncate max-md:w-20"><ContactsIcon className='!text-base  text-[#e4eb2f]'/>Contact #</div>
       </div>
       
    

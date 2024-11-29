@@ -96,20 +96,20 @@ function SupplierSuppliesCardTable(props) {
       <NewSupploesForm/>
       <div className=' flex sticky w-[70%]  z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[100%] p-1 bg-transparent  text-xs font-poppins font-bold sticky items-end z-10">
-            <div className="text-[#00A2E8] text-base w-[13.1rem] truncate max-md:w-[28.1rem] max-xl:text-[0.65rem] max-xl:w-[6.6rem]"><ApartmentIcon className="  !text-icon"/>   {translatedMenuItems[0]}
+          <div className=" flex justify-between w-[100%] p-1 bg-transparent  !text-lm font-poppins font-bold sticky items-end max-xl:text-[0.65rem] z-10">
+            <div className="text-[#00A2E8] text-sm w-[13.1rem] truncate max-md:w-[28.1rem]  max-xl:w-[6.6rem]"><ApartmentIcon className="  !text-icon"/>   {translatedMenuItems[0]}
               {/* Name */}
             </div>
-             <div className="w-[14.9rem] max-xl:text-[0.65rem] truncate max-md:w-[15.9rem] max-xl:w-[6.9rem]">  <WidgetsIcon className=" !text-icon"/> {translatedMenuItems[1]}
+             <div className="w-[14.9rem]  truncate max-md:w-[15.9rem] max-xl:w-[6.9rem]">  <WidgetsIcon className=" !text-icon"/> {translatedMenuItems[1]}
              {/* Category */}
               </div>
-              <div className="w-[7.91rem] max-xl:w-[4.9rem] truncate max-md:w-[3.91rem] max-xl:text-[0.65rem]">  < AttractionsIcon className=" !text-icon"/> {translatedMenuItems[2]}
+              <div className="w-[7.91rem] max-xl:w-[4.9rem] truncate max-md:w-[3.91rem] ">  < AttractionsIcon className=" !text-icon"/> {translatedMenuItems[2]}
               {/* Attribute */}
               </div>
-            <div className=" w-[10.11rem] max-xl:text-[0.65rem] truncate max-md:w-[10.11rem] max-xl:w-[14.11rem]">  <PublishIcon className=" !text-icon"/>  {translatedMenuItems[3]}
+            <div className=" w-[10.11rem]  truncate max-md:w-[10.11rem] max-xl:w-[14.11rem]">  <PublishIcon className=" !text-icon"/>  {translatedMenuItems[3]}
          {/* Tag with Supplier" */}
            </div>
-                <div className=" w-[12.12rem] max-xl:text-[0.65rem] truncate max-md: w-[10.12rem] max-xl:w-[14.11rem]">  <VerifiedUserIcon className=" !text-icon" /> {translatedMenuItems[4]}
+                <div className=" w-[12.12rem]  truncate max-md: w-[10.12rem] max-xl:w-[14.11rem]">  <VerifiedUserIcon className=" !text-icon" /> {translatedMenuItems[4]}
                   {/* Quality */}
                   </div>       
          
@@ -129,12 +129,12 @@ function SupplierSuppliesCardTable(props) {
                     const initialSelectedValues = item.quality ? item.quality.map(({ qualityId }) => qualityId) : [];
                     return (
                       <>
-                        <div className="flex rounded justify-between py-ygap mt-1 bg-white  items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                        <div className="flex rounded justify-between py-ygap mt-1 bg-white  items-center max-xl:text-[0.65rem] scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
 
                         >
                           <div class=" flex flex-row justify-between w-wk max-sm:flex-col">
                             <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9] truncate w-[14.1rem]  max-md:w-[22.1rem] max-xl:w-[9.2rem] items-center  max-sm:justify-between  max-sm:flex-row ">
-                              <div class="  text-xs ml-gap font-poppins max-xl:text-[0.65rem]">                        
+                              <div class="  text-xs ml-gap font-poppins ">                        
                                   {item.suppliesName}
                                   {/* </Link> */}
 
@@ -142,17 +142,17 @@ function SupplierSuppliesCardTable(props) {
                             </div>
                             <div className=" flex justify-start  h-8 ml-gap bg-[#eef2f9] truncate w-[16.01rem] max-md:w-[24.01rem] max-xl:w-[10.01rem] items-center max-sm:justify-between  max-sm:flex-row ">
 
-                              <div class="  text-xs ml-gap font-poppins max-xl:text-[0.65rem]">
+                              <div class="  text-xs ml-gap font-poppins ">
                                 {item.categoryName} {item.subCategoryName}
                               </div>
                             </div>
-                            <div className=" flex  justify-center h-8 ml-gap bg-[#eef2f9] w-[7.9rem] max-md:w-[7.9rem] max-xl:w-[6.9rem] items-center max-sm:justify-between  max-sm:flex-row ">
-                              <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem]">
+                            <div className=" flex  justify-start  h-8 ml-gap bg-[#eef2f9] w-[7.9rem] max-md:w-[7.9rem] max-xl:w-[6.9rem] items-center max-sm:justify-between  max-sm:flex-row ">
+                              <div class=" text-xs ml-gap font-poppins ">
                               {item.attributeName} {item.subAttributeName}
                               </div>
                             </div>
 
-                            <div className=" flex   justify-center h-8 ml-gap bg-[#eef2f9] w-[10.25rem] max-md:w-[13.25rem] max-xl:w-[9.2rem] items-center max-sm:justify-between  max-sm:flex-row ">
+                            <div className=" flex   justify-start h-8 ml-gap bg-[#eef2f9] w-[10.25rem] max-md:w-[13.25rem] max-xl:w-[9.2rem] items-center max-sm:justify-between  max-sm:flex-row ">
                             
 <SupplierSuppliesToggle
 item={item}
