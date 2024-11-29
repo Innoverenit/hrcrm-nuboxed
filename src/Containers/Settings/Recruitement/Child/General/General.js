@@ -25,6 +25,7 @@ function General(props) {
     ordDelvry: props.requirementDuration.ordDelvry === 0 ? "Not Applicable" : props.requirementDuration.ordDelvry || "",
     qtionInclItem: props.requirementDuration.qtionInclItem === 0 ? "Not Applicable" : props.requirementDuration.qtionInclItem || "",
     matPrc: props.requirementDuration.matPrc === 0 ? "Not Applicable" : props.requirementDuration.matPrc || "",
+    prcUpdt: props.requirementDuration.prcUpdt === 0 ? "Not Applicable" : props.requirementDuration.prcUpdt || "",
     jobAniEmailInd: props.requirementDuration.jobAniEmailInd,
     birthdayEmailInd: props.requirementDuration.birthdayEmailInd,
     trnsfrEvthngToErpInd: props.requirementDuration.trnsfrEvthngToErpInd,
@@ -90,6 +91,7 @@ function General(props) {
     ordDelvry: props.requirementDuration.ordDelvry === 0 ? "Not Applicable" : props.requirementDuration.ordDelvry || "",
     qtionInclItem: props.requirementDuration.qtionInclItem === 0 ? "Not Applicable" : props.requirementDuration.qtionInclItem || "",
     matPrc: props.requirementDuration.matPrc === 0 ? "Not Applicable" : props.requirementDuration.matPrc || "",
+    prcUpdt: props.requirementDuration.prcUpdt === 0 ? "Not Applicable" : props.requirementDuration.prcUpdt || "",
     jobAniEmailInd: props.requirementDuration.jobAniEmailInd,
     birthdayEmailInd: props.requirementDuration.birthdayEmailInd,
     trnsfrEvthngToErpInd: props.requirementDuration.trnsfrEvthngToErpInd,
@@ -169,6 +171,7 @@ function General(props) {
           ordDelvry: formValues.ordDelvry === 0 ? "Not Applicable" : props.requirementDuration.ordDelvry || "",
           qtionInclItem: formValues.qtionInclItem === 0 ? "Not Applicable" : props.requirementDuration.qtionInclItem || "",
           matPrc: formValues.matPrc === 0 ? "Not Applicable" : props.requirementDuration.matPrc || "",
+          prcUpdt: formValues.prcUpdt === 0 ? "Not Applicable" : props.requirementDuration.prcUpdt || "",
           userId: props.userId,
           orgId: props.orgId,
           jobAniEmailInd: formValues.jobAniEmailInd,
@@ -231,7 +234,7 @@ function General(props) {
                 <div class=" flex justify-between w-full p-3 ">             
                   <div>   
                  
-                  <div class=" text-sm  font-bold">HR</div>           
+                  <div class=" text-sm  font-bold">HR aa</div>           
                     {/* <div class=" flex justify-between mt-2">                    
                      <div class=" text-xs  ">Drop Open Orders (in months)</div>
                      <div>
@@ -501,7 +504,7 @@ function General(props) {
 </Select>
                       </div>
                     </div>
-
+                    
                     <div class=" flex justify-between ] mt-2">           
                         <div class=" text-xs  ">Material / Pricing</div>    
                         <div className="w-[10rem]">
@@ -511,7 +514,24 @@ function General(props) {
 >
 <Option value="simpleMarkup">Simple markup</Option>
   <Option value="averageOfStock">Average of stock</Option>
+  <Option value="averageOfPrice">Average of Price</Option>
+
 </Select>
+                      </div>
+                    </div>
+
+                    <div class=" flex justify-between ] mt-2">           
+                        <div class=" text-xs  ">Price Update</div>    
+                        <div className="w-[10rem]">
+                                          <Select
+                      value={formValues.prcUpdt}
+                      onChange={(value) => handleDropdownChange("prcUpdt", value)}
+                    >
+                    <Option value="generatePo">Generate PO</Option>
+                      <Option value="updateInStock">Update in stock</Option>
+                      <Option value="generateGRN">Generate GRN</Option>
+
+                    </Select>
                       </div>
                     </div>
 
