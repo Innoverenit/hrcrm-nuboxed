@@ -751,7 +751,7 @@ Reject
 
                          <div className=" flex   w-[11.12rem]  items-center justify-start  h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
                              {/* <div class=" text-sm  font-sm font-poppins max-sm:hidden"> Name </div> */}
-                             <div class=" ml-gap text-xs ml-gap font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
+                             <div class=" ml-gap text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
                              <span   
          onClick={() => {
            props.handleTaskopenModal(true);               
@@ -776,7 +776,7 @@ Reject
                 <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
                  {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
             </div>
-                         <div class="flex  w-[6.2rem]  ml-gap items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
+                         <div class="flex  w-[6.2rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
                            
              <div class="">
              <ButtonGroup >
