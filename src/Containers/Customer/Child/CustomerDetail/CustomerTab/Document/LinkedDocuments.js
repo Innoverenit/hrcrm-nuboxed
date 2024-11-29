@@ -19,7 +19,8 @@ import {
 import {
   getCustomerDocument,
   deleteDocument,
-  getDocumentCount
+  getDocumentCount,
+  updateDocument
 } from "../../../../CustomerAction";
 import { elipsize } from "../../../../../../Helpers/Function/Functions";
 import dayjs from "dayjs";
@@ -39,6 +40,10 @@ const LinkedDocuments = (props) => {
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const searchInput = useRef(null);
+  const [isEditingName, setIsEditingName] = useState(null);
+  const [nameInput, setnameInput] = useState();
+  const [isDescVisible, setIsDescVisible] = useState(null);
+    const [descType, setDescType] = useState();
 
   useEffect(() => {
     props.getCustomerDocument(props.uniqueId,props.type);
@@ -140,6 +145,25 @@ const LinkedDocuments = (props) => {
     clearFilters();
     setSearchText("");
   };
+  const handleUpdateName = (documentId) => {
+    const updatedName = {
+      documentTitle:nameInput,
+    };
+    props.updateDocument(updatedName,documentId);
+    setIsEditingName(null); // Close the input box after updating
+  };
+
+
+  const handleDescChange = (documentId) => {
+    const updatedPayload = {
+      documentDescription:descType // Use the selected country ID
+    };
+  
+    props.updateDocument(updatedPayload,documentId);
+    setIsDescVisible(null); // Hide the dropdown after the request
+  };
+
+
 
 
   const {
@@ -218,7 +242,26 @@ const LinkedDocuments = (props) => {
                           <div className=" flex w-[12.3rem] max-md:w-[12.3rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                              
                               <div class="flex text-xs ml-gap items-center  font-poppins">
-                                   {item.documentTitle}
+                                 
+         {isEditingName === item.documentId ? (
+        <input
+          type="text"
+          className="h-7 w-[4rem] text-sm"
+          value={nameInput}
+          onChange={(e) => setnameInput(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleUpdateName(item.documentId)}
+          onBlur={() => handleUpdateName(item.documentId)}
+          autoFocus // Focus the input automatically when editing
+        />
+      ) : (
+        <div onClick={() => {
+          setIsEditingName(item.documentId); // Enable editing mode
+            setnameInput(item.documentTitle); // Set the initial value from the batchNo of the item
+          }} className="cursor-pointer text-sm font-[Poppins]">
+            {item.documentTitle || "Enter Name"}
+            
+            </div> // Click to enter edit mode
+      )}
                                    &nbsp;&nbsp;
         {date === currentdate ? (
     <span class="text-xs text-[tomato] font-bold"
@@ -231,7 +274,25 @@ const LinkedDocuments = (props) => {
                           <div className=" flex w-[12.4rem]  max-md:w-[12.4rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row  max-sm:justify-between">
                           
                             <div class="text-xs  font-poppins">
-                            {elipsize(item.documentDescription || "", 15)}
+         {isDescVisible === item.documentId ? (
+        <textarea
+          type="text"
+          className="h-7 w-[4rem] text-sm"
+          value={descType}
+          onChange={(e) => setDescType(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleDescChange(item.documentId)}
+          onBlur={() => handleDescChange(item.documentId)}
+          autoFocus 
+        />
+      ) : (
+        <div onClick={() => {
+          setIsDescVisible(item.documentId); 
+          setDescType(item.documentDescription); 
+          }} className="cursor-pointer text-sm font-[Poppins]">
+            {elipsize(item.documentDescription || "", 15) || "Enter Desc"}
+            
+            </div> 
+      )}
                             </div>
                         </div>
                         </div>
@@ -285,7 +346,7 @@ const LinkedDocuments = (props) => {
                         title= {translatedMenuItems[10]}
                         okText="Yes"
                         cancelText="No"
-                        onConfirm={() => deleteDocument(item.documentId)}
+                        onConfirm={() => deleteDocument(item.documentId,props.type)}
                       >
                          <Tooltip title= {translatedMenuItems[11]}>
       
@@ -319,7 +380,8 @@ const mapDispatchToProps = (dispatch) =>
     {
       getCustomerDocument,
       deleteDocument,
-      getDocumentCount
+      getDocumentCount,
+      updateDocument
       // getDocuments,
     },
     dispatch
