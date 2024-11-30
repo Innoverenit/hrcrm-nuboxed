@@ -751,6 +751,8 @@ const AWBtst=[
         rowData={rowData}
         handleCreateAddPack={props.handleCreateAddPack}
         addPackData={props.addPackData}
+        viewType={props.viewType}
+
       />
        <AddpackID
       translateText={props.translateText}

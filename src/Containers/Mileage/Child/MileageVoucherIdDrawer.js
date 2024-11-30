@@ -8,7 +8,6 @@ const MileageDrawerCard=lazy(()=>import("./MileageDrawerCard"));
 
 const MileageVoucherIdDrawer = (props) => {
   const { mileageVoucherIdDrawer, handleMileageVoucherIdDrwer,voucherId, ...formProps } = props;
-  console.log(voucherId)
   return (
     
     <>
@@ -18,7 +17,7 @@ const MileageVoucherIdDrawer = (props) => {
         visible={mileageVoucherIdDrawer}
         onClose={() => {
           handleMileageVoucherIdDrwer(false);
-          props.getMileageByUserId(props.userId)
+          props.getMileageByUserId("0",props.userId)
         }}
       >
         <Suspense fallback={<BundleLoader />}>

@@ -11,7 +11,6 @@ import { InputComponent } from "../../../Components/Forms/Formik/InputComponent"
 import * as Yup from "yup";
 import { getCustomer } from "../../Settings/Category/Customer/CustomerAction";
 import { getCountry } from "../../../Containers/Settings/Category/Country/CountryAction";
-import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { updateDistributor ,setClearbitData} from "./AccountAction";
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';

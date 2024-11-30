@@ -8,6 +8,7 @@ import {
   handleAccountAddress,
   handleUpdateAccountUserModal
 } from "./AccountAction";
+import { getCustomer } from "../../Settings/Category/Customer/CustomerAction";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import ExploreIcon from "@mui/icons-material/Explore";
@@ -15,7 +16,7 @@ import NodataFoundPage from '../../../Helpers/ErrorBoundary/NodataFoundPage';
 import { MultiAvatar } from '../../../Components/UI/Elements';
 import { BundleLoader } from "../../../Components/Placeholder";
 import { Link } from 'react-router-dom';
-import { Tooltip, Input,Button,Progress  } from 'antd';
+import { Tooltip, Input,Button,Progress,Select  } from 'antd';
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import dayjs from 'dayjs';
@@ -30,16 +31,17 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import { base_url2 } from "../../../Config/Auth";
+import { getCountry } from "../../../Containers/Settings/Category/Country/CountryAction";
 import axios from "axios";
 import Swal from 'sweetalert2'
-
+import { getSaleCurrency, getCategory } from "../../Auth/AuthAction";
 const AddAccountAdressModal = lazy(() => import("./AddAccountAdressModal"));
 const AccountSearchedData = lazy(() => import("./AccountSearchedData"));
 const AccountPulseModal = lazy(() => import("./AccountPulseModal"));
 const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 const AccountCreditToggle = lazy(() => import("./AccountCreditToggle"));
 
-
+const { Option } = Select;
 
 dayjs.extend(relativeTime);
 
@@ -72,6 +74,10 @@ const AllAccountList = (props) => {
   }, []);
   useEffect(() => {
     setcustomerLists(props.allDistributors);
+    props.getCustomer(props.orgId);
+    props.getCategory(props.orgId);
+    props.getSaleCurrency();
+    props.getCountry();
 }, [props.allDistributors]);
 
   useEffect(() => {
@@ -162,11 +168,63 @@ const handleEditRowField = (distributorId, field, currentValue) => {
   const handleChangeRowItem = (e) => {
     setEditingValue(e.target.value);
   };
+  const handleChangeRowSelectItem = async (value) => {
+    setEditingValue(value);
+
+      const { distributorId, field } = editableField;
+      const updatedData = {};
+      let mappedField = field;
+
+      if (field === 'clientName') {
+        mappedField = 'clientId'; 
+      } else if (field === 'dcategoryName') {
+        mappedField = 'dcategory';
+      }
+      else if (field === 'curName') {
+        mappedField = 'currency';
+      }
+      updatedData[mappedField] = value;
+    
+      try {
+        const response = await axios.put(
+          `${base_url2}/distributor/rowEdit/${distributorId}`,
+          updatedData,
+          {
+            headers: {
+              Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+            },
+          }
+        );
+        setcustomerLists(prevData =>
+          prevData.map(cat =>
+            cat.distributorId === distributorId ? response.data : cat
+          )
+        );
+        setEditableField(null); 
+        setEditingValue("");
+        Swal.fire({
+          icon: 'success',
+          title: 'Update successful',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+    
+      } catch (error) {
+        console.error("Error updating item:", error);
+        setEditableField(null); 
+      }
+  };
 
   const handleUpdateSubmit = async () => {
     const { distributorId, field } = editableField;
-    const updatedData = { [field]: editingValue };
-
+    const updatedData = {};
+    let mappedField = field;
+    if (field === 'clientName') {
+      mappedField = 'clientId'; 
+    } else if (field === 'dcategoryName') {
+      mappedField = 'dcategory';
+    }
+    updatedData[mappedField] = editingValue;
     try {
       const response = await axios.put(
         `${base_url2}/distributor/rowEdit/${distributorId}`,
@@ -182,17 +240,15 @@ const handleEditRowField = (distributorId, field, currentValue) => {
           cat.distributorId === distributorId ? response.data : cat
         )
       );
-      if (response.data === "Successfully !!!!") {
+      setEditableField(null);
+      setEditingValue("");
         Swal.fire({
           icon: 'success',
           title: 'Update successful',
           showConfirmButton: false,
           timer: 1500,
         });
-        setEditableField(null); // Reset editable field after successful update
-      } else {
-        console.error(response.data);
-      }
+
     } catch (error) {
       console.error("Error updating item:", error);
       setEditableField(null);
@@ -334,19 +390,22 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                         <div className=" flex max-md:w-[9.1rem]  w-[9.1rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]  max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row  max-sm:justify-between max-sm:w-auto  ">
                           <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] justify-start max-sm:text-sm ml-gap ">
                           {editableField?.distributorId === item.distributorId && editableField?.field === 'dialCode' ? (
-                              <Input
-                                type="text"
-                                className="h-7 w-[4rem] text-xs"
-                                value={editingValue}
-                                onChange={handleChangeRowItem}
-                                onBlur={handleUpdateSubmit}
-                                onKeyDown={handleKeyDown} 
-                                autoFocus
-                              />
+                              <Select
+                              style={{ width: "8rem" }}
+                              value={editingValue}
+                              onChange={handleChangeRowSelectItem} 
+                              autoFocus
+                            >
+                              {props.countries.map((cntr) => (
+                                <Option key={cntr.country_dial_code} value={cntr.country_dial_code}>
+                                  {cntr.country_dial_code}
+                                </Option>
+                              ))}
+                            </Select>
                             ) : (
                               <div className="cursor-pointer text-xs font-[Poppins]"
                                onClick={() => handleEditRowField(item.distributorId, 'dialCode', item.dialCode)}>
-                                {item.dialCode}
+                                {item.dialCode || "Enter dialcode"}
                               </div>
                             )}
                               <div>
@@ -365,7 +424,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'phoneNo', item.phoneNo)} 
     className="cursor-pointer text-xs font-[Poppins]">
-    {item.phoneNo || "Enter Mobile No"}
+    {item.phoneNo || "Enter MobileNo"}
     
     </div> 
 )}
@@ -380,15 +439,18 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                           <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                           {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'dcategoryName' ? (
-<Input
-  type="text"
-  className="h-7 w-[4rem] text-xs"
-  value={editingValue}
-  onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
-  onKeyDown={handleKeyDown} 
-  autoFocus
-/>
+<Select
+      style={{ width: "8rem" }}
+      value={editingValue}
+      onChange={handleChangeRowSelectItem} 
+      autoFocus
+    >
+      {props.category.map((ctg) => (
+        <Option key={ctg.categoryId} value={ctg.categoryId}>
+          {ctg.name}
+        </Option>
+      ))}
+    </Select>
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'dcategoryName', item.dcategoryName)} 
@@ -404,15 +466,18 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                           <div class=" text-xs  font-poppins text-center ml-gap justify-start max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                           {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'clientName' ? (
-<Input
-  type="text"
-  className="h-7 w-[4rem] text-xs"
-  value={editingValue}
-  onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
-  onKeyDown={handleKeyDown} 
-  autoFocus
-/>
+<Select
+      style={{ width: "8rem" }}
+      value={editingValue}
+      onChange={handleChangeRowSelectItem} 
+      autoFocus
+    >
+      {props.customerListData.map((clnt) => (
+        <Option key={clnt.customerTypeId} value={clnt.customerTypeId}>
+          {clnt.name}
+        </Option>
+      ))}
+    </Select>
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'clientName', item.clientName)} 
@@ -564,15 +629,18 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                               {/* {item.curName} {(item.currencyPrice / 1000).toFixed(0)}k */}
                               {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'curName' ? (
-<Input
-  type="text"
-  className="h-7 w-[4rem] text-xs"
-  value={editingValue}
-  onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
-  onKeyDown={handleKeyDown} 
-  autoFocus
-/>
+<Select
+      style={{ width: "8rem" }}
+      value={editingValue}
+      onChange={handleChangeRowSelectItem} 
+      autoFocus
+    >
+      {props.saleCurrencies.map((crr) => (
+        <Option key={crr.currency_id} value={crr.currency_id}>
+          {crr.currency_name}
+        </Option>
+      ))}
+    </Select>
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'curName', item.curName)} 
@@ -580,8 +648,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
     {item.curName || "Enter curname"} 
     </div> 
 )}
-                              {item.curName}
-
+                     
                               {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'currencyPrice' ? (
 <Input
@@ -767,7 +834,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
   )
 }
 
-const mapStateToProps = ({ distributor,auth }) => ({
+const mapStateToProps = ({ distributor,auth,catgCustomer }) => ({
   allDistributors: distributor.allDistributors,
   updateAccountUserModal:distributor.updateAccountUserModal,
   fetchingAllDistributors: distributor.fetchingAllDistributors,
@@ -776,6 +843,10 @@ const mapStateToProps = ({ distributor,auth }) => ({
   orgId: auth.userDetails.organizationId,
   distributorSearch:distributor.distributorSearch,
   addAccountAddressModal:distributor.addAccountAddressModal,
+  category: auth.category,
+  customerListData: catgCustomer.customerListData,
+  saleCurrencies: auth.saleCurrencies,
+  countries: auth.countries,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -784,7 +855,11 @@ const mapDispatchToProps = (dispatch) =>
       getAllDistributorsList,
       handleUpdateAccountModal,
       handleAccountAddress,
-      handleUpdateAccountUserModal
+      handleUpdateAccountUserModal,
+      getCategory,
+      getCustomer,
+      getSaleCurrency,
+      getCountry
     },
     dispatch
   );

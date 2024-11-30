@@ -43,13 +43,13 @@ export const addMileage = (mileage, cb) => (dispatch) => {
 
 /**Fetch an mileage voucher by userId
  */
-export const getMileageByUserId = (userId) => (dispatch) => {
+export const getMileageByUserId = (pageNo,userId) => (dispatch) => {
   dispatch({
     type: types.GET_MILEAGE_BY_USER_ID_REQUEST,
   });
 
   axios
-    .get(`${base_url}/voucher/mileage/user/${userId}`, {
+    .get(`${base_url}/voucher/mileage/user/${pageNo}/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

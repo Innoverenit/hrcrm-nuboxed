@@ -36,6 +36,7 @@ const InputToggleForm = (props) => {
         }
       );
       dispatch(getPackNo(response.data));
+      dispatch(getPackData(props.orderPhoneId));
       if (response.data === 'Successfully !!!!') {
         message.success('Update successful');
       } else {
@@ -141,6 +142,7 @@ const InputToggleForm = (props) => {
       <AddPacketTable
       newOrderNo={props.newOrderNo}
       orderPhoneId={props.orderPhoneId}
+      viewType={props.viewType}
       />
     </>
   );

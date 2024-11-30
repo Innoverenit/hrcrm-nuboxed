@@ -30,6 +30,7 @@ class AddpackDrawer extends Component {
                         <AddPackForm
                        newOrderNo={this.props.rowData.newOrderNo}
                         orderPhoneId={this.props.rowData.orderPhoneId}
+                        viewType={this.props.viewType}
                         />
                        
                     </Suspense>

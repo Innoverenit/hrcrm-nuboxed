@@ -101,6 +101,7 @@ class InventoryCommerceDetailTabO extends PureComponent {
                 selectedLanguage={this.props.selectedLanguage}
                 locationDetailsId={this.props.user.locationId}
                    inventory={this.props.inventory}
+                   viewType={this.props.viewType}
                 />
              
               </Suspense>

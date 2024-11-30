@@ -24,7 +24,7 @@ class Expense extends Component {
              viewType={viewType}
            />
           ) 
-          :this.props.viewType === "tile" ?(
+          :this.props.viewType === "list" ?(
               <ExpenseStatusCard/>
             )
           : null}

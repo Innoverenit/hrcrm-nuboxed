@@ -32,6 +32,7 @@ import {
   handleAccountAddress,
   handleAccountOpportunityModal
 } from "./AccountAction";
+import { getCountry } from "../../../Containers/Settings/Category/Country/CountryAction";
 import { getCustomer } from "../../Settings/Category/Customer/CustomerAction";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import dayjs from "dayjs";
@@ -121,6 +122,7 @@ function AccountTable(props) {
     props.getCustomer(props.orgId);
     props.getCategory(props.orgId);
     props.getSaleCurrency();
+    props.getCountry();
   }, [props.userId]);
 
   useEffect(() => {
@@ -190,8 +192,7 @@ function AccountTable(props) {
       const { distributorId, field } = editableField;
       const updatedData = {};
       let mappedField = field;
-    
-      // Map the field to the correct key if needed
+
       if (field === 'clientName') {
         mappedField = 'clientId'; 
       } else if (field === 'dcategoryName') {
@@ -200,7 +201,7 @@ function AccountTable(props) {
       else if (field === 'curName') {
         mappedField = 'currency';
       }
-      updatedData[mappedField] = value; // Update the value with selected option
+      updatedData[mappedField] = value;
     
       try {
         const response = await axios.put(
@@ -212,17 +213,13 @@ function AccountTable(props) {
             },
           }
         );
-    
-        // Update the customer list with the response data
         setcustomerLists(prevData =>
           prevData.map(cat =>
             cat.distributorId === distributorId ? response.data : cat
           )
         );
-        setEditableField(null); // Reset editable field
-        setEditingValue(""); // Reset editing value
-    
-        // Show success message
+        setEditableField(null); 
+        setEditingValue("");
         Swal.fire({
           icon: 'success',
           title: 'Update successful',
@@ -232,13 +229,12 @@ function AccountTable(props) {
     
       } catch (error) {
         console.error("Error updating item:", error);
-        setEditableField(null); // Reset editable field on error
+        setEditableField(null); 
       }
     
   };
   const handleUpdateSubmit = async () => {
     const { distributorId, field } = editableField;
-    // const updatedData = { [field]: editingValue };
     const updatedData = {};
     let mappedField = field;
     if (field === 'clientName') {
@@ -247,7 +243,6 @@ function AccountTable(props) {
       mappedField = 'dcategory';
     }
     updatedData[mappedField] = editingValue;
-
     try {
       const response = await axios.put(
         `${base_url2}/distributor/rowEdit/${distributorId}`,
@@ -432,15 +427,18 @@ function AccountTable(props) {
                             <div class="flex ml-gap text-xs font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-center max-sm:text-xs ">
                              
                             {editableField?.distributorId === item.distributorId && editableField?.field === 'dialCode' ? (
-                              <Input
-                                type="text"
-                                className="h-7 w-[4rem] text-xs"
-                                value={editingValue}
-                                onChange={handleChangeRowItem}
-                                onBlur={handleUpdateSubmit}
-                                onKeyDown={handleKeyDown} 
-                                autoFocus
-                              />
+                                   <Select
+                                   style={{ width: "8rem" }}
+                                   value={editingValue}
+                                   onChange={handleChangeRowSelectItem} 
+                                   autoFocus
+                                 >
+                                   {props.countries.map((cntr) => (
+                                     <Option key={cntr.country_dial_code} value={cntr.country_dial_code}>
+                                       {cntr.country_dial_code}
+                                     </Option>
+                                   ))}
+                                 </Select>
                             ) : (
                               <div className="cursor-pointer text-xs font-[Poppins]"
                                onClick={() => handleEditRowField(item.distributorId, 'dialCode', item.dialCode)}>
@@ -463,7 +461,7 @@ function AccountTable(props) {
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'phoneNo', item.phoneNo)} 
     className="cursor-pointer text-xs font-[Poppins]">
-    {item.phoneNo || "Enter Mobile No"}
+    {item.phoneNo || "Enter MobileNo"}
     
     </div> 
 )}
@@ -929,6 +927,7 @@ const mapStateToProps = ({ distributor, auth,catgCustomer, customer }) => ({
   category: auth.category,
   customerListData: catgCustomer.customerListData,
   saleCurrencies: auth.saleCurrencies,
+  countries: auth.countries,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -952,6 +951,7 @@ const mapDispatchToProps = (dispatch) =>
       getCategory,
       getCustomer,
       getSaleCurrency,
+      getCountry
     },
     dispatch
   );

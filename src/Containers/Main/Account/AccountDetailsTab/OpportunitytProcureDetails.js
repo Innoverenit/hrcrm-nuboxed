@@ -484,7 +484,7 @@ const handleRowItem = (item) => {
               </div>
             </div>
             
-            {showPay && (RowItem.orderPhoneId === item.orderPhoneId) &&
+            {showPay && (RowItem.id === item.id) &&
               <ExtendOpportunityProductList
              //  newOrderNo={props.newOrderNo}
              //  row={row}
