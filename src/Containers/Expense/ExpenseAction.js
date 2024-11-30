@@ -46,13 +46,13 @@ export const addExpense = (expense, cb) => (dispatch) => {
  * Fetch an expense voucher by userId
  */
 
-export const getExpenseById = (userId) => (dispatch) => {
+export const getExpenseById = (pageNo,userId) => (dispatch) => {
   dispatch({
     type: types.GET_EXPENSE_BY_USER_ID_REQUEST,
   });
 
   axios
-    .get(`${base_url}/voucher/expense/user/${userId}`, {
+    .get(`${base_url}/voucher/expense/user/${pageNo}/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },

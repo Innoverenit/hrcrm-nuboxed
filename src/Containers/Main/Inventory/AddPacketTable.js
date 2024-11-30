@@ -12,6 +12,7 @@ import {
 import { base_url2 } from "../../../Config/Auth";
 import SubPackList from "./SubPackList";
 import AddPackToggle from "./AddPackToggle";
+import RepairSubPackList from "./RepairSubPackList";
 
 function AddPacketTable(props) {
   const [rowToggleStates, setRowToggleStates] = useState({});
@@ -66,7 +67,7 @@ function AddPacketTable(props) {
     <>
   
         
-        <div className=' flex sticky  z-auto'>
+        <div className=' flex sticky h-[86vh] z-auto'>
             <div class="rounded  py-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
             <div className="flex justify-between w-full p-1 font-bold text-xs sticky z-10">
           <div className="w-[6.51rem]">Pack ID</div>
@@ -99,7 +100,7 @@ function AddPacketTable(props) {
                                                          </div>
                                                    </div>
               <div className="flex w-[7.2rem] border-l-2 h-8 border-green-500 bg-[#eef2f9]">
-                <div className="text-xs font-bold underline text-blue-600">
+                <div className="text-xs font-bold">
                   {item.packingNo}
                 </div>
               </div>
@@ -113,7 +114,16 @@ function AddPacketTable(props) {
           </div>
 
                                         {checkAwb && (item.dispatchPackingId === rowData.dispatchPackingId) &&
+                                         props.viewType==="commerce" &&
                                              <SubPackList 
+                                             newOrderNo={props.newOrderNo}
+                                                              rowData={rowData}
+                                                              dispatchPackingId={item.dispatchPackingId}
+                                                              />
+                                        }
+                                           {checkAwb && (item.dispatchPackingId === rowData.dispatchPackingId) &&
+                                         props.viewType==="repair" &&
+                                             <RepairSubPackList 
                                              newOrderNo={props.newOrderNo}
                                                               rowData={rowData}
                                                               dispatchPackingId={item.dispatchPackingId}

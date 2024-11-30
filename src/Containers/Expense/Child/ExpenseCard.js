@@ -9,14 +9,17 @@ import { getExpenseById,
   handleExpenseVoucherIdDrawer,
   handleStatusExpenseModal,
   deleteExpense } from "../ExpenseAction";
-import { BundleLoader } from "../../../Components/Placeholder";
 import dayjs from "dayjs";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import InfiniteScroll from "react-infinite-scroll-component";
 const ExpenseVoucherIdDrawer=lazy(()=>import("./ExpenseVoucherIdDrawer"));
 const ExpenseStatusDrawer=lazy(()=>import("./UpdateExpense/ExpenseStatusDrawer"));
 
 
 function ExpenseCard(props) {
+
+  const [page, setPage] = useState(0);
+  const [hasMore, setHasMore] = useState(true);
   const [expand, setExpand] = useState(false);
   const [voucherId, setvoucherId] = useState("");
   const [particularRowData, setParticularRowData] = useState({});
@@ -32,10 +35,26 @@ function ExpenseCard(props) {
   }
 
   useEffect(() => {
-    props.getExpenseById(props.userId);
+    props.getExpenseById(page,props.userId);
+    setPage(page + 1);
   }, [props.userId]);
 
- 
+  const handleLoadMore = () => {
+    const pageCountMap = props.Expenses && props.Expenses.length &&props.Expenses[0].pageCount
+    setTimeout(() => {
+      if  (props.Expenses)
+      {
+        if (page < pageCountMap) {
+          setPage(page + 1);
+          props.getExpenseById(page,props.userId);
+      }
+      if (page === pageCountMap){
+        setHasMore(false)
+      }
+    }
+    }, 100);
+  };
+
     const {
       Expenses,
       fetchingExpenseById,
@@ -45,11 +64,19 @@ function ExpenseCard(props) {
       expenseVoucherIdDrawer,
       handleExpenseVoucherIdDrawer,
     } = props;
-    if (fetchingExpenseById) return <BundleLoader/>;
 
     return (
       <>
        <div class=" h-[87vh] overflow-auto overflow-x-auto">
+       <InfiniteScroll
+        dataLength={Expenses.length}
+        next={handleLoadMore}
+      hasMore={hasMore}
+        loader={fetchingExpenseById?<div class="flex justify-center">Loading...</div>:null}
+        height={"83vh"}
+        style={{scrollbarWidth:"thin"}}
+        endMessage={ <div class="flex text-center font-poppins font-bold text-xs text-red-500">You have reach the end. </div>}
+      >
        <div class="flex flex-wrap w-full max-sm:justify-between max-sm:h-[34rem] max-sm:items-center overflow-x-auto h-[37rem]">   
               {Expenses.map((item) => {
                  return (
@@ -145,6 +172,7 @@ className="!text-base cursor-pointer text-[grey] p-[2px]"/>
                  )  
             })}
               </div>
+              </InfiniteScroll>
               </div>
 
         <ExpenseVoucherIdDrawer

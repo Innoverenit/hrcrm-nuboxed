@@ -294,7 +294,7 @@ let buttonRendered = false;
 })}
 </div>
 
-                <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold sticky  z-10 h-[86vh]">
+                <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
                     <div className='w-[5.2rem]'>Brand</div>
                     <div className=" w-[4.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Model</div>
                     <div className="w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]">IMEI</div>

@@ -128,7 +128,7 @@ setSearchOnEnter(true);
             overflowCount={999}
           >
             <span class=" mr-1 cursor-pointer !text-icon]"
-              onClick={() => props.setExpenseViewType("all")}
+              onClick={() => props.setMileageViewType("all")}
               style={{
                 color: props.viewType === "all" && "#1890ff",
               }}
