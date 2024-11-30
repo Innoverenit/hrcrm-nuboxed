@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {getAllSuppliersList,emptysUPPLIERS,deleteSupplierData,handleUpdateSupplierModal,setEditSuppliers,handleSuppliersAddress } from "../SuppliersAction"
+import {getAllSuppliersList,emptysUPPLIERS,
+  deleteSupplierData,handleUpdateSupplierModal,
+  setEditSuppliers,handleSuppliersAddress,updateSupplierById } from "../SuppliersAction"
 import StoreIcon from '@mui/icons-material/Store';
-import {Popconfirm,Tooltip } from "antd";
+import {Popconfirm,Tooltip,Input,Select } from "antd";
 import dayjs from "dayjs";
+import {getAllDialCodeList} from "../../../Auth/AuthAction";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import InfiniteScroll from "react-infinite-scroll-component";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
@@ -22,17 +25,20 @@ import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 
 import AddSuppliersAdressModal from "./AddSuppliersAdressModal";
 import EmptyPage from "../../EmptyPage";
-
+const { Option } = Select;
 function AllSuppliersCardList(props) {
 
   const [hasMore, setHasMore] = useState(true);
   const [currentShipperId, setCurrentShipperId] = useState("");
   const [rowdata, setrowData] = useState({});
   const [page, setPage] = useState(0);
+  const [editableField, setEditableField] = useState(null); 
+  const [editingValue, setEditingValue] = useState("");
 
   useEffect(() => {
     setPage(page + 1);
     props.getAllSuppliersList(props.orgId,page);
+    props.getAllDialCodeList();
   }, []);
 
   const handleRowData = (data) => {
@@ -61,7 +67,39 @@ function AllSuppliersCardList(props) {
     }
     }, 100);
   };
+  const handleEditRowField = (supplierId, field, currentValue) => {
+    setEditableField({ supplierId, field });  
+    setEditingValue(currentValue);  
+  };
+  const handleChangeRowItem = (e) => {
+    setEditingValue(e.target.value);
+  };
+  const handleUpdateSubmit = async () => {
+    const { supplierId, field } = editableField;
+    const updatedData = {};
+    let mappedField = field;
+    updatedData[mappedField] = editingValue;
+    props.updateSupplierById(updatedData,supplierId)
+    setEditableField(null);
+      setEditingValue("");
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleUpdateSubmit(); 
+    }
+  };
+  const handleChangeRowSelectItem = async (value) => {
+    setEditingValue(value);
 
+      const { supplierId, field } = editableField;
+      const updatedData = {};
+      let mappedField = field;
+      updatedData[mappedField] = value; // Update the value with selected option
+      props.updateSupplierById(updatedData,supplierId)
+      setEditableField(null);
+      setEditingValue("");
+    
+  };
 return(
 <>
 {props.searchSupplierList.length > 0 ? (
@@ -180,6 +218,27 @@ return(
                               <div >
                               <a class="overflow-ellipsis whitespace-nowrap h-8 p-1 text-[#042E8A] text-xs  underline font-bold font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm" 
                             href={`supplier/${item.supplierId}`}>{item.name}</a>
+                            <div className="flex">
+                      {editableField?.supplierId === item.supplierId &&
+   editableField?.field === 'name' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.supplierId, 'name', item.name)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+   <BorderColorIcon  className=" !text-xs cursor-pointer"/>
+    
+    </div> 
+)}                 
+                      </div>
                               </div>
                           
                                   {date === currentdate ? (
@@ -193,14 +252,75 @@ return(
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">             
                             <div className=" flex items-center h-8 ml-gap bg-[#eef2f9] w-[8.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem] ">
                               <div class="  text-xs ml-gap font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
-                                {item.dialCode} {item.phoneNo}
+                              <div>
+{editableField?.supplierId === item.supplierId && editableField?.field === 'dialCode' ? (
+  <Select
+  style={{ width: "8rem" }}
+  value={editingValue}
+  onChange={handleChangeRowSelectItem} 
+  autoFocus
+>
+{props.dialcodeList.map((country) => (
+   <Option key={country.country_dial_code} value={country.country_dial_code}>
+  {country.country_dial_code}
+   </Option>
+ ))}
+</Select>
+) : (
+<div onClick={() => 
+handleEditRowField(item.supplierId, 'dialCode', item.dialCode)} 
+className="cursor-pointer text-xs font-[Poppins]">
+{item.dialCode || "Enter DialCode"}
+
+</div>         
+                        )}
+                      </div>
+                      <div>
+                      {editableField?.supplierId === item.supplierId &&
+   editableField?.field === 'phoneNo' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.supplierId, 'phoneNo', item.phoneNo)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.phoneNo || "Enter Mobile No"}
+    
+    </div> 
+)}                 
+                      </div>
                               </div>
 
                             </div>
                                                     
                             <div className=" flex items-center h-8 ml-gap bg-[#eef2f9] w-[12.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem] ">
                                 <div class="  text-xs ml-gap font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
-                                {item.emailId}
+                                {editableField?.supplierId === item.supplierId &&
+   editableField?.field === 'emailId' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.supplierId, 'emailId', item.emailId)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.emailId || "Enter Email"}
+    
+    </div> 
+)}   
                               </div>
                             </div>
                                                         <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[17.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
@@ -303,7 +423,8 @@ const mapStateToProps = ({ shipper, suppliers,auth }) => ({
   orgId:auth.userDetails.organizationId,
   updateSupplierModal:suppliers.updateSupplierModal,
   searchSupplierList:suppliers.searchSupplierList,
-  addSuppliersAddressModal: suppliers.addSuppliersAddressModal
+  addSuppliersAddressModal: suppliers.addSuppliersAddressModal,
+  dialcodeList:auth.dialcodeList,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -314,7 +435,9 @@ const mapDispatchToProps = (dispatch) =>
       deleteSupplierData,
       setEditSuppliers,
       handleUpdateSupplierModal,
-      handleSuppliersAddress
+      handleSuppliersAddress,
+      getAllDialCodeList,
+      updateSupplierById
     },
     dispatch
   );

@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { Tooltip, Popconfirm,Switch } from "antd";
+import {getAllDialCodeList} from "../../Auth/AuthAction";
+import {getShipByData} from "../../Settings/Category/ShipBy/ShipByAction";
+import { Tooltip, Popconfirm,Switch,Input,message,Select } from "antd";
 import {
   getAllShipperList,
   setEditShipper,
@@ -27,34 +29,45 @@ import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
 import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import ApiIcon from '@mui/icons-material/Api';
-
+import Swal from 'sweetalert2'
+import axios from "axios";
+import { base_url2 } from "../../../Config/Auth";
+const { Option } = Select;
 function AllShipperList(props) {
   const { handleUpdateShipperModal, updateShipperModal } = props;
   const [currentShipperId, setCurrentShipperId] = useState("");
   const [rowdata, setrowData] = useState({});
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+  const [editableField, setEditableField] = useState(null); 
+const [editingValue, setEditingValue] = useState("");
+const [dataShipper, setdataShipper] = useState([]);
 
   useEffect(() => {
     setPage(page + 1);
     props.getAllShipperList(props.orgId,page);
+    props.getAllDialCodeList();
+    props.getShipByData(props.orgId);
   }, []);
 
   const handleRowData = (data) => {
     setrowData(data);
   };
+  useEffect(() => {
+    setdataShipper(props.allShipper);
+}, [props.allShipper]);
 
   function handleSetCurrentShipperId(shipperId) {
     setCurrentShipperId(shipperId);
   }
   const handleLoadMore = () => {
-    const PageMapd = props.allShipper && props.allShipper.length &&props.allShipper[0].pageCount
+    const PageMapd = dataShipper && dataShipper.length &&dataShipper[0].pageCount
     setTimeout(() => {
       const {
         getAllShipperList,
         orgId
       } = props;
-      if  (props.allShipper)
+      if  (dataShipper)
       {
         if (page < PageMapd) {
           setPage(page + 1);
@@ -66,7 +79,111 @@ function AllShipperList(props) {
     }
     }, 100);
   };
+  const handleEditRowField = (shipperId, field, currentValue) => {
+    setEditableField({ shipperId, field });  
+    setEditingValue(currentValue);  
+  };
+  const handleChangeRowItem = (e) => {
+    setEditingValue(e.target.value);
+  };
+  const handleChangeRowSelectItem = async (value) => {
+    setEditingValue(value);
 
+      const { shipperId, field } = editableField;
+      const updatedData = {};
+      let mappedField = field;
+    
+      // Map the field to the correct key if needed
+      if (field === 'shipByName') {
+        mappedField = 'shipById'; 
+      } else if (field === 'dialCode2') {
+        mappedField = 'dialCode';
+      } else if (field === 'shipperName') {
+        mappedField = 'name';
+      }
+      updatedData[mappedField] = value; // Update the value with selected option
+    
+      try {
+        const response = await axios.put(
+          `${base_url2}/shipper/rowEdit/updateShipper/${shipperId}`,
+          updatedData,
+          {
+            headers: {
+              Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+            },
+          }
+        );
+    
+        // Update the customer list with the response data
+        setdataShipper(prevData =>
+          prevData.map(cat =>
+            cat.shipperId === shipperId ? response.data : cat
+          )
+        );
+        setEditableField(null); // Reset editable field
+        setEditingValue(""); // Reset editing value
+    
+        // Show success message
+        Swal.fire({
+          icon: 'success',
+          title: 'Update successful',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+    
+      } catch (error) {
+        console.error("Error updating item:", error);
+        setEditableField(null); // Reset editable field on error
+      }
+    
+  };
+  const handleUpdateSubmit = async () => {
+    const { shipperId, field } = editableField;
+    const updatedData = {};
+    let mappedField = field;
+    if (field === 'shipByName') {
+      mappedField = 'shipById'; 
+    } else if (field === 'dialCode2') {
+      mappedField = 'dialCode';
+    } else if (field === 'shipperName') {
+      mappedField = 'name';
+    }
+    updatedData[mappedField] = editingValue;
+
+    try {
+      const response = await axios.put(
+        `${base_url2}/shipper/rowEdit/updateShipper/${shipperId}`,
+        updatedData,
+        {
+          headers: {
+            Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+          },
+        }
+      );
+      setdataShipper(prevData => 
+        prevData.map(cat =>
+          cat.shipperId === shipperId ? response.data : cat
+        )
+      );
+      setEditableField(null);
+      setEditingValue("");
+        Swal.fire({
+          icon: 'success',
+          title: 'Update successful',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+    } catch (error) {
+      console.error("Error updating item:", error);
+      setEditableField(null);
+    }
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleUpdateSubmit(); 
+    }
+  };
   return (
     <>
      {props.shipperSerachedData.length > 0 ? (
@@ -96,13 +213,13 @@ function AllShipperList(props) {
                 <ApiIcon className='!text-base  text-[#f45236]'/>  API</div>
           </div>
           <InfiniteScroll 
-        dataLength={props.allShipper.length}
+        dataLength={dataShipper.length}
         next={handleLoadMore}
         hasMore={hasMore}
         loader={props.fetchingAllShipper ? <div class="flex justify-center">{props.translatedMenuItems[8]}...</div> : null}
         height={"83vh"}
       >
-        {!props.fetchingAllShipper && props.allShipper.length === 0 ? <NodataFoundPage /> : props.allShipper.map((item, index) => {
+        {!props.fetchingAllShipper && dataShipper.length === 0 ? <NodataFoundPage /> : dataShipper.map((item, index) => {
             return (
               <>
                 <div  >
@@ -112,12 +229,33 @@ function AllShipperList(props) {
                         <div className=" flex  w-[9.9rem] max-md:w-[9.9rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[7.6rem] max-lg:w-[6.1rem] max-sm:w-auto  ">
 
                  
-                          <div class=" text-xs text-blue-500  items-center font-poppins font-semibold  cursor-pointer">
+                          <div class="flex text-xs text-blue-500  items-center font-poppins font-semibold  cursor-pointer">
 
 <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
   to={`shipper/${item.shipperId}`} title={item.shipperName}>
   {item.shipperName}
 </Link>
+<div>
+                      {editableField?.shipperId === item.shipperId &&
+   editableField?.field === 'shipperName' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.shipperId, 'shipperName', item.shipperName)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+   <BorderColorIcon  className=" !text-xs cursor-pointer"/>
+    
+    </div> 
+)}                 
+                      </div>
 </div>
 
                    
@@ -125,8 +263,51 @@ function AllShipperList(props) {
                   
                         </div>
                         <div className=" flex w-[7rem] max-md:w-[7rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between   md:w-[6rem] max-sm:flex-row ">
-<div class="  text-xs ml-gap items-center  font-poppins">
-{item.dialCode} {item.phoneNo}
+<div class="flex  text-xs ml-gap items-center  font-poppins">
+<div>
+{editableField?.shipperId === item.shipperId && editableField?.field === 'dialCode2' ? (
+  <Select
+  style={{ width: "8rem" }}
+  value={editingValue}
+  onChange={handleChangeRowSelectItem} 
+  autoFocus
+>
+{props.dialcodeList.map((country) => (
+   <Option key={country.country_dial_code} value={country.country_dial_code}>
+  {country.country_dial_code}
+   </Option>
+ ))}
+</Select>
+) : (
+<div onClick={() => 
+handleEditRowField(item.shipperId, 'dialCode2', item.dialCode2)} 
+className="cursor-pointer text-xs font-[Poppins]">
+{item.dialCode2 || "Enter DialCode"}
+
+</div>         
+                        )}
+                      </div>
+                      <div>
+                      {editableField?.shipperId === item.shipperId &&
+   editableField?.field === 'phoneNo' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.shipperId, 'phoneNo', item.phoneNo)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.phoneNo || "Enter Mobile No"}
+    
+    </div> 
+)}                 
+                      </div>
 </div>
 
 </div>
@@ -134,7 +315,25 @@ function AllShipperList(props) {
                         <div className=" flex  w-[10.3rem] max-md:w-[10.3rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
                           <div class=" font-normal text-xs  ml-gap items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {item.emailId}
+                          {editableField?.shipperId === item.shipperId &&
+   editableField?.field === 'emailId' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.shipperId, 'emailId', item.emailId)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.emailId || "Enter Email"}
+    
+    </div> 
+)}   
                           </div>
 
                         </div>
@@ -142,7 +341,30 @@ function AllShipperList(props) {
                         <div className=" flex   w-[6.12rem] max-md:w-[6.12rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9]  max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
                           <div class=" font-normal text-xs  ml-gap items-center font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                            {item.shipByName}
+                          <div>
+                              {editableField?.shipperId === item.shipperId &&
+   editableField?.field === 'shipByName' ? (
+<Select
+      style={{ width: "8rem" }}
+      value={editingValue}
+      onChange={handleChangeRowSelectItem} 
+      autoFocus
+    >
+     {props.ShipByData.map((ship) => (
+                              <Option key={ship.shipById} value={ship.shipById}>
+                                {ship.name}
+                              </Option>
+                            ))}
+    </Select>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.shipperId, 'shipByName', item.shipByName)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.shipByName || "Enter type"}
+    </div> 
+)}
+
+                      </div>
                           </div>
 
                         </div>
@@ -271,7 +493,7 @@ function AllShipperList(props) {
     </>
   )
 }
-const mapStateToProps = ({ shipper, auth }) => ({
+const mapStateToProps = ({ shipper, auth,shipBy }) => ({
   allShipper: shipper.allShipper,
   userId: auth.userDetails.userId,
   fetchingAllShipper: shipper.fetchingAllShipper,
@@ -281,7 +503,9 @@ const mapStateToProps = ({ shipper, auth }) => ({
   addShipperOrderModal: shipper.addShipperOrderModal,
   orgId:auth.userDetails.organizationId,
   shipperSerachedData: shipper.shipperSerachedData,
-  addShipperAddressModal: shipper.addShipperAddressModal
+  addShipperAddressModal: shipper.addShipperAddressModal,
+  dialcodeList:auth.dialcodeList,
+  ShipByData:shipBy.ShipByData,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -293,7 +517,9 @@ const mapDispatchToProps = (dispatch) =>
       deleteShipperData,
       getAllShipperList,
       setEditShipper,
-      handleShipperAddress
+      handleShipperAddress,
+      getAllDialCodeList,
+      getShipByData
     },
     dispatch
   );

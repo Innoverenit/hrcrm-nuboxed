@@ -2982,7 +2982,7 @@ const onCheckAllePriceDiscountChange = (e) => {
             
           </div>
 
-          {props.departmentData.recruitProInd === true ? (
+          {/* {props.departmentData.recruitProInd === true ? ( */}
             <div class="flex flex-col ">
               <div class=" text-clr text-base flex justify-center  ml-2 mt-8 font-bold">
                 RecruitPro
@@ -3039,7 +3039,7 @@ const onCheckAllePriceDiscountChange = (e) => {
               
               </div>
             </div>
-          ) : null}
+          {/* ) : null} */}
           {props.departmentData.imInd === true ? (
             <div class="flex flex-col ">
               <div class=" text-clr text-base  ml-2 mt-8 flex  font-bold">
