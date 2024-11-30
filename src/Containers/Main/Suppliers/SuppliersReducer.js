@@ -1754,6 +1754,20 @@ export const suppliersReducer = (state = initialState, action) => {
             return item;
           }
         }),
+        notApprovalSupplierList: state.notApprovalSupplierList.map((item) => {
+          if (item.supplierId == action.payload.supplierId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        allSupplierList: state.allSupplierList.map((item) => {
+          if (item.supplierId == action.payload.supplierId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
       };
     case types.UPDATE_SUPPLIERS_BY_ID_FAILURE:
       return {

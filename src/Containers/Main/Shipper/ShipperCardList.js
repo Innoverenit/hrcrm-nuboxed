@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { bindActionCreators } from "redux";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { Tooltip, Popconfirm, Switch,Select } from "antd";
+import { Tooltip, Popconfirm, Switch } from "antd";
 import {
   getShipperByUserId,
   setEditShipper,
@@ -12,9 +12,13 @@ import {
   handleShipperOrderModal,
   handleShipperActivityTableModal,
   deleteShipperData,
-  handleShipperAddress
+  handleShipperAddress,
 } from "./ShipperAction";
+import Swal from 'sweetalert2'
+import {getShipByData} from "../../Settings/Category/ShipBy/ShipByAction";
+import {getAllDialCodeList} from "../../Auth/AuthAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import { Input,message,Select } from "antd";
 import UpdateShipperModal from "./UpdateShipperModal";
 import AddShipperOrderModal from "./AddShipperOrderModal";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -49,11 +53,16 @@ function ShipperCardList(props) {
   const [editsuppliesId, setEditsuppliesId] = useState(null);
 const[storedApiKey,setstoredApiKey]=useState([{apikeyId:"api1",apikeyName:"apiOne"},{apikeyId:"api2",apikeyName:"apiTwos"}]);
 const[ErrorFetchApiKey,setErrorFetchApiKey]=useState(null);
+const [editableField, setEditableField] = useState(null); 
+const [editingValue, setEditingValue] = useState(""); 
+
 
   useEffect(() => {
     setPage(page + 1);
     props.getShipperByUserId(props.userId, page);
     fetchApiKeyList();
+    props.getAllDialCodeList();
+    props.getShipByData(props.orgId);
   }, []);
 
   useEffect(() => {
@@ -154,6 +163,113 @@ const fetchApiKeyList = async () => {
       }
     }, 100);
   };
+  const handleEditRowField = (shipperId, field, currentValue) => {
+    setEditableField({ shipperId, field });  
+    setEditingValue(currentValue);  
+  };
+  const handleChangeRowItem = (e) => {
+    setEditingValue(e.target.value);
+  };
+  const handleChangeRowSelectItem = async (value) => {
+    setEditingValue(value);
+
+      const { shipperId, field } = editableField;
+      const updatedData = {};
+      let mappedField = field;
+    
+      // Map the field to the correct key if needed
+      if (field === 'shipByName') {
+        mappedField = 'shipById'; 
+      } else if (field === 'dialCode2') {
+        mappedField = 'dialCode';
+      } else if (field === 'shipperName') {
+        mappedField = 'name';
+      }
+      updatedData[mappedField] = value; // Update the value with selected option
+    
+      try {
+        const response = await axios.put(
+          `${base_url2}/shipper/rowEdit/updateShipper/${shipperId}`,
+          updatedData,
+          {
+            headers: {
+              Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+            },
+          }
+        );
+    
+        // Update the customer list with the response data
+        setdataShipper(prevData =>
+          prevData.map(cat =>
+            cat.shipperId === shipperId ? response.data : cat
+          )
+        );
+        setEditableField(null); // Reset editable field
+        setEditingValue(""); // Reset editing value
+    
+        // Show success message
+        Swal.fire({
+          icon: 'success',
+          title: 'Update successful',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+    
+      } catch (error) {
+        console.error("Error updating item:", error);
+        setEditableField(null); // Reset editable field on error
+      }
+    
+  };
+  const handleUpdateSubmit = async () => {
+    const { shipperId, field } = editableField;
+    const updatedData = {};
+    let mappedField = field;
+    if (field === 'shipByName') {
+      mappedField = 'shipById'; 
+    } else if (field === 'dialCode2') {
+      mappedField = 'dialCode';
+    } else if (field === 'shipperName') {
+      mappedField = 'name';
+    }
+    updatedData[mappedField] = editingValue;
+
+    try {
+      const response = await axios.put(
+        `${base_url2}/shipper/rowEdit/updateShipper/${shipperId}`,
+        updatedData,
+        {
+          headers: {
+            Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+          },
+        }
+      );
+      setdataShipper(prevData => 
+        prevData.map(cat =>
+          cat.shipperId === shipperId ? response.data : cat
+        )
+      );
+      setEditableField(null);
+      setEditingValue("");
+        Swal.fire({
+          icon: 'success',
+          title: 'Update successful',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+    } catch (error) {
+      console.error("Error updating item:", error);
+      setEditableField(null);
+    }
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleUpdateSubmit(); 
+    }
+  };
+
+
 
   return (
     <>
@@ -217,19 +333,85 @@ const fetchApiKeyList = async () => {
                           <div className=" flex font-medium w-[9.9rem] max-xl:w-[7.6rem] items-center justify-start h-8   bg-[#eef2f9] max-lg:w-[6.1rem] max-sm:w-auto  ">
                   
                          
-                              <div class=" text-xs text-blue-500 ml-gap font-poppins font-semibold  cursor-pointer">
+                              <div class=" text-xs flex text-blue-500 ml-gap font-poppins font-semibold  cursor-pointer">
 
                                 <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer   max-sm:text-xs"
                                   to={`shipper/${item.shipperId}`} title={item.shipperName}>
                                   {item.shipperName}
                                 </Link>
+                                <div>
+                      {editableField?.shipperId === item.shipperId &&
+   editableField?.field === 'shipperName' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.shipperId, 'shipperName', item.shipperName)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+   <BorderColorIcon  className=" !text-xs cursor-pointer"/>
+    
+    </div> 
+)}                 
+                      </div>
                               </div>
 
                             </div>
                           </div>
                           <div className=" flex max-md:w-44 w-[7rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
-<div class="  text-xs ml-gap items-center  font-poppins">
-{item.dialCode} {item.phoneNo}
+<div class="  text-xs ml-gap items-center  font-poppins flex">
+{/* {item.dialCode} {item.phoneNo} */}
+
+<div>
+{editableField?.shipperId === item.shipperId && editableField?.field === 'dialCode2' ? (
+  <Select
+  style={{ width: "8rem" }}
+  value={editingValue}
+  onChange={handleChangeRowSelectItem} 
+  autoFocus
+>
+{props.dialcodeList.map((country) => (
+   <Option key={country.country_dial_code} value={country.country_dial_code}>
+  {country.country_dial_code}
+   </Option>
+ ))}
+</Select>
+) : (
+<div onClick={() => 
+handleEditRowField(item.shipperId, 'dialCode2', item.dialCode2)} 
+className="cursor-pointer text-xs font-[Poppins]">
+{item.dialCode2 || "Enter DialCode"}
+
+</div>         
+                        )}
+                      </div>
+                      <div>
+                      {editableField?.shipperId === item.shipperId &&
+   editableField?.field === 'phoneNo' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.shipperId, 'phoneNo', item.phoneNo)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.phoneNo || "Enter Mobile No"}
+    
+    </div> 
+)}                 
+                      </div>
 </div>
 
 </div>
@@ -237,13 +419,57 @@ const fetchApiKeyList = async () => {
                           <div className=" flex   w-[10.3rem] max-md:w-[10.3rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
                             <div class="flex  text-xs ml-gap  font-poppins   max-sm:text-xs">
-                              {item.emailId}
+                            {editableField?.shipperId === item.shipperId &&
+   editableField?.field === 'emailId' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.shipperId, 'emailId', item.emailId)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.emailId || "Enter Email"}
+    
+    </div> 
+)}   
+                        
+                       
                             </div>
                           </div>
 
                           <div className=" flex  w-[6.12rem] max-md:w-[6.12rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
                             <div class="  text-xs  font-poppins ml-gap   max-sm:text-xs">
-                              {item.shipByName}
+                              {/* {item.shipByName} */}
+                              <div>
+                              {editableField?.shipperId === item.shipperId &&
+   editableField?.field === 'shipByName' ? (
+<Select
+      style={{ width: "8rem" }}
+      value={editingValue}
+      onChange={handleChangeRowSelectItem} 
+      autoFocus
+    >
+     {props.ShipByData.map((ship) => (
+                              <Option key={ship.shipById} value={ship.shipById}>
+                                {ship.name}
+                              </Option>
+                            ))}
+    </Select>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.shipperId, 'shipByName', item.shipByName)} 
+    className="cursor-pointer text-xs font-[Poppins]">
+    {item.shipByName || "Enter type"}
+    </div> 
+)}
+
+                      </div>
                             </div>
 
                           </div>
@@ -385,7 +611,7 @@ const fetchApiKeyList = async () => {
     </>
   )
 }
-const mapStateToProps = ({ shipper, auth }) => ({
+const mapStateToProps = ({ shipper, auth,shipBy }) => ({
   shipperByUserId: shipper.shipperByUserId,
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,
@@ -395,7 +621,9 @@ const mapStateToProps = ({ shipper, auth }) => ({
   addShipperActivityTableModal: shipper.addShipperActivityTableModal,
   addShipperOrderModal: shipper.addShipperOrderModal,
   shipperSerachedData: shipper.shipperSerachedData,
-  addShipperAddressModal: shipper.addShipperAddressModal
+  addShipperAddressModal: shipper.addShipperAddressModal,
+  dialcodeList:auth.dialcodeList,
+  ShipByData:shipBy.ShipByData,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -407,7 +635,9 @@ const mapDispatchToProps = (dispatch) =>
       deleteShipperData,
       getShipperByUserId,
       setEditShipper,
-      handleShipperAddress
+      handleShipperAddress,
+      getAllDialCodeList,
+      getShipByData
     },
     dispatch
   );

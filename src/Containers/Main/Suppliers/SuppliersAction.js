@@ -1855,7 +1855,7 @@ export const updateSupplierById = (data, id, userId) => (dispatch) => {
     type: types.UPDATE_SUPPLIERS_BY_ID_REQUEST,
   });
   axios
-    .put(`${base_url2}/supplier/${id} `, data, {
+    .put(`${base_url2}/supplier/rowEdit/${id} `, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
