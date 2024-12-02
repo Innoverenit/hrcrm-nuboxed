@@ -7,10 +7,6 @@ import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import { getAssignedToList } from "../Employees/EmployeeAction";
 import {getAllCustomerData} from "../Customer/CustomerAction"
-// import {
-//     getContactListByCustomerId,
-//     getOpportunityListByCustomerId,
-//   } from "../Customer/CustomerAction";
 import dayjs from "dayjs";
 import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
@@ -18,29 +14,17 @@ import AddressFieldArray from "../../Components/Forms/Formik/AddressFieldArray";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../Components/Forms/Formik/DatePicker";
 import { TimePicker } from "../../Components/Forms/Formik/TimePicker";
-// import {
-//   deleteEvent,
-//   updateEvent,
-//   handleEventModal,
-// } from "../../../Event/EventAction";
 import {addActivityEvent} from "../Activity/ActivityAction"
-//import { handleChooserModal } from "../../../Planner/PlannerAction";
 import { TextareaComponent } from "../../Components/Forms/Formik/TextareaComponent";
 import { StyledPopconfirm } from "../../Components/UI/Antd";
-//import { setClearbitCandidateData } from "../../../Candidate/CandidateAction";
 import { Listbox } from '@headlessui/react'
 import { BundleLoader } from "../../Components/Placeholder";
-import { DivIcon } from "leaflet";
 import { base_url } from "../../Config/Auth";
 const { Option } = Select;
-// yup validation scheme for creating a opportunity
 const EventSchema = Yup.object().shape({
   eventTypeId: Yup.string().required("Select event type"),
   eventSubject: Yup.string().required("This field is required !"),
   timeZone: Yup.string().required("Input required !"),
-  // endDate: Yup.string()
-  //   .nullable()
-  //   .required("Input required !"),
   startTime: Yup.string().nullable().required("Input required !"),
   endTime: Yup.string().nullable().required("Input required !"),
   startDate: Yup.string().nullable().required("Input required !"),

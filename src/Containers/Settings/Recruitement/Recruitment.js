@@ -114,7 +114,7 @@ function Recruitment(props) {
     {
       rulesName:(
         <span>
-        <WorkHistoryIcon className=" !text-icon mr-2 text-[#6F1D1B]" />
+        <WorkHistoryIcon className=" !text-icon mr-2 text-[#6F1D1B]" /> Reports
       </span>
     ),
      

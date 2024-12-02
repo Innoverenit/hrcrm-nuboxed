@@ -4,7 +4,8 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 import axios from "axios";
 import dayjs from "dayjs";
-import AddIcon from '@mui/icons-material/Add';
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import CancelIcon from '@mui/icons-material/Cancel';
 import { message} from 'antd';
 import {
   getPackData
@@ -13,10 +14,13 @@ import { base_url2 } from "../../../Config/Auth";
 import SubPackList from "./SubPackList";
 import AddPackToggle from "./AddPackToggle";
 import RepairSubPackList from "./RepairSubPackList";
+import RepairPackNoList from "./RepairPackNoList";
+import CommercePackNoList from "./CommercePackNoList";
 
 function AddPacketTable(props) {
   const [rowToggleStates, setRowToggleStates] = useState({});
   const [loading, setLoading] = useState(true);
+   const [expandPackNo,setexpandPackNo]=useState(false);
 
   useEffect(() => {
     props.getPackData(props.orderPhoneId);
@@ -38,6 +42,9 @@ function AddPacketTable(props) {
   const handleRowData = (item) => {
     setRowData(item)
   }
+  const handleExpandPackNo = ()=>{
+setexpandPackNo(!expandPackNo);
+  };
   const sendPutRequest = async (packingNo, newType) => {
     try {
       const response = await axios.post(
@@ -87,28 +94,42 @@ function AddPacketTable(props) {
             <div className="flex justify-start w-wk">
                 <div className=" flex   md:w-[2.9rem] max-sm:flex-row w-full max-sm:justify-between ">
                                                          <div class=" text-xs  font-poppins text-center">
-                                                        
-                                                                 <AddIcon
+                                                         {item.packingInd?"":
+                                                            <>
+                                                            {!checkAwb ?
+                                                                 <AddBoxIcon 
+                                                                 className=" !text-icon items-center text-[#6f0080ad]"
 
                                                                      onClick={() => {
                                                                          handleCheckAwb();
                                                                          handleRowData(item)
-                                                                     }
-                                                                     }
-                                                                 />
+                                                                     }}
+                                                                 />:
+                                                                 <CancelIcon 
+                                                                 className=" !text-icon items-center text-[red]"
+                                                                 onClick={() => {
+                                                                  handleCheckAwb();
+                                                                  handleRowData(item)
+                                                              }}
+                                                                 />}
+                                                                 </>
+                                                                 }
                                                               
                                                          </div>
                                                    </div>
               <div className="flex w-[7.2rem] border-l-2 h-8 border-green-500 bg-[#eef2f9]">
-                <div className="text-xs font-bold">
+                <div className="text-xs font-bold underline text-blue-600 cursor-pointer"
+                 onClick={() => {
+                  handleExpandPackNo();
+                  handleRowData(item)
+              }}>
                   {item.packingNo}
                 </div>
               </div>
               <div className="flex items-center  justify-end h-8 ml-gap bg-[#eef2f9] ">
               <AddPackToggle
-                packingInd={item.packingInd}  
-                orderId={item.orderId}              
-                                />
+              item={item}
+              packData={props.packData}        />
               </div>
             </div>  
           </div>
@@ -124,6 +145,22 @@ function AddPacketTable(props) {
                                            {checkAwb && (item.dispatchPackingId === rowData.dispatchPackingId) &&
                                          props.viewType==="repair" &&
                                              <RepairSubPackList 
+                                             newOrderNo={props.newOrderNo}
+                                                              rowData={rowData}
+                                                              dispatchPackingId={item.dispatchPackingId}
+                                                              />
+                                        }
+                                        {expandPackNo && (item.dispatchPackingId === rowData.dispatchPackingId) &&
+                                         props.viewType==="commerce" &&
+                                             <CommercePackNoList 
+                                             newOrderNo={props.newOrderNo}
+                                                              rowData={rowData}
+                                                              dispatchPackingId={item.dispatchPackingId}
+                                                              />
+                                        }
+                                           {expandPackNo && (item.dispatchPackingId === rowData.dispatchPackingId) &&
+                                         props.viewType==="repair" &&
+                                             <RepairPackNoList 
                                              newOrderNo={props.newOrderNo}
                                                               rowData={rowData}
                                                               dispatchPackingId={item.dispatchPackingId}

@@ -1,14 +1,9 @@
-import React, {} from "react";
+import React, {lazy,Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
-import InvestorPieChart1 from "../InvestorTable/InvestorPieChart1"
-import InvestorPieChart2 from "../InvestorTable/InvestorPieChart2"
 import dayjs from "dayjs";
-import CustomerPieLineChart from "../InvestorTable/CustomerPieLineChart"
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import ContactsIcon from '@mui/icons-material/Contacts';
-import CustomerPieChart from "../../../Dashboard/Child/JumpStart/CustomerPieChart"
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
  import {
   getInvestorWeightedValue,
@@ -22,7 +17,10 @@ import HourglassFullIcon from '@mui/icons-material/HourglassFull';
   getInvestorContactValue
 } from "../../InvestorAction"
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
-import AddInvestorActivityJumpstartModal from "./AddInvestorActivityJumpstartModal";
+const InvestorPieChart1 =lazy(()=> import("../InvestorTable/InvestorPieChart1"));
+const InvestorPieChart2 =lazy(()=> import("../InvestorTable/InvestorPieChart2"));
+const CustomerPieLineChart =lazy(()=> import("../InvestorTable/CustomerPieLineChart"));
+const AddInvestorActivityJumpstartModal =lazy(()=> import("./AddInvestorActivityJumpstartModal"));
 class InvestorPulseJumpStart extends React.Component{
   constructor() {
     super();
@@ -299,11 +297,7 @@ render() {
 
           <div class=" mt-1 flex flex-col  items-center" > 
           <div className="font-bold font-poppins  text-lg">Line Chart</div>
-          <CustomerPieLineChart/>
-     
-       
-       
-        </div> 
+        <Suspense><CustomerPieLineChart/></Suspense>   </div> 
 
         </div>
 
@@ -312,11 +306,11 @@ render() {
         <div class=" mt-1 flex justify-between items-center" > 
           <div className=" flex flex-col">
           <div className="font-bold font-poppins  text-lg">Deals</div>
-          <InvestorPieChart1/>
+          <Suspense><InvestorPieChart1/></Suspense>  
           </div>
         <div className=" flex flex-col">
         <div className="font-bold font-poppins text-lg">Activity</div>
-        <InvestorPieChart2/>
+        <Suspense><InvestorPieChart2/></Suspense> 
        
        </div>
         </div> 

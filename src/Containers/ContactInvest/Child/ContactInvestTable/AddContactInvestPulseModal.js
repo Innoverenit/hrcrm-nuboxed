@@ -1,10 +1,9 @@
-import React, { Component, Suspense } from "react";
+import React, { Component, Suspense, lazy} from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import ContactInvestPulseJumpstart from "./ContactInvestPulseJumpstart";
-
+const ContactInvestPulseJumpstart = lazy(() =>  import("./ContactInvestPulseJumpstart"));
 
 class AddContactInvestPulseModal extends Component {
   render() {

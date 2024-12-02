@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef,lazy } from "react";
+import React, { useState, useEffect, useRef,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import DownloadIcon from '@mui/icons-material/Download';
@@ -32,8 +32,9 @@ import { BundleLoader } from "../../../../../../Components/Placeholder";
 import FileOpenIcon from '@mui/icons-material/FileOpen';
 import GavelIcon from '@mui/icons-material/Gavel';
 
+const EmptyPage =lazy(()=>import("../../../../../Main/EmptyPage")); 
 const ContractToggle =lazy(()=>import("./ContractToggle")); 
-const EmptyPage = lazy(() => import("../../../../../Main/EmptyPage"));
+
 const LinkedDocuments = (props) => {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
@@ -208,7 +209,7 @@ const LinkedDocuments = (props) => {
       </div>
    
         
-      { !fetchingDocumentsByCustomerId && documentsByCustomerId.length === 0 ?<EmptyPage className=" overflow-hidden"/>: documentsByCustomerId.map((item,index) =>  {
+      { !fetchingDocumentsByCustomerId && documentsByCustomerId.length === 0 ? <Suspense><EmptyPage className=" overflow-hidden"/> </Suspense>: documentsByCustomerId.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         

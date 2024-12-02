@@ -1,10 +1,10 @@
 import React, { useEffect, useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {  Button } from "antd";
+import { Button,Tooltip,Checkbox,Popconfirm } from "antd";
 import axios from "axios";
 import { base_url2 } from "../../../Config/Auth";
-import AddScanModal from "./AddScanModal"
+import AddScanModal from "./AddScanModal";
 import {getSubList,handleScanModal} from "./InventoryAction";
 import AvTimerIcon from '@mui/icons-material/AvTimer';
 import RepartitionIcon from '@mui/icons-material/Repartition';
@@ -12,6 +12,7 @@ import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import ShareLocationIcon from '@mui/icons-material/ShareLocation';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ItemWiseReceivedModal from "./Child/InventoryDetails/InventoryMaterialTab/ItemWiseReceivedModal";
+import Swal from 'sweetalert2';
 
 function SubPackList(props) {
 
@@ -20,6 +21,12 @@ function SubPackList(props) {
     const [inputValue, setInputValue] = useState(props.packingNo || '');
     const [loading, setLoading] = useState(true); 
     const [numberInput, setNumberInput] = useState('');
+
+    const [cardData, setcardData] = useState([]);
+    const [selectedItems, setSelectedItems] = useState([]);
+    const [selectAll, setSelectAll] = useState(false);
+    const [error, setError] = useState(null);
+
     useEffect(() => {
       props.getSubList(props.rowData.orderId) 
     }, [])
@@ -58,7 +65,6 @@ function SubPackList(props) {
     const handleAwbUpdate = (val) => {
         setAwbNo(val)
     }
-
 
     function handleSetScandata(item) {
       setScanData(item);
@@ -132,11 +138,165 @@ orgId:props.orgId,
 
     });
   };
+
+  useEffect(()=>{
+    setcardData(props.subList);
+   },[]);        
+   
+   const handleSelectAll = () => {
+    if (selectAll) {
+      setSelectedItems([]);  
+    } else {
+      const allPhoneIds = props.subList.map(item => item.phoneId);
+      setSelectedItems(allPhoneIds);  
+    }
+    setSelectAll(!selectAll);
+  };
+  
+  const handleCheckboxChange = (item) => {
+    setSelectedItems((prevSelected) => {
+      if (prevSelected.includes(item)) {
+        return prevSelected.filter((selected) => selected !== item.phoneId);
+      } else {
+        return [...prevSelected, item.phoneId];
+      }
+    });
+  };
+  const handleCheckBoxAll = async () => {
+    setLoading(true);
+    setError(null);
+
+    const selectedItemsData = props.subList.filter(item => selectedItems.includes(item.phoneId));
+    try {
+      const response = await axios.post(`${base_url2}/dispatchPacking/multiple/repair-dispatch-packing-item`, {
+        userId: props.userId,
+        orgId: props.orgId,
+        orderId:props.rowData.orderId,
+        dispatchPackingId:props.rowData.dispatchPackingId,
+        itemId: selectedItemsData.map(item => item.phoneId), 
+        type:"procure",
+        packingUnits:"",
+
+      }, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      });
+      if (Array.isArray(response.data)) {
+        setcardData(response.data);
+      } else {
+        console.error('Expected array but got:', response.data);
+        setcardData([]);
+      }
+      const removeSelectedItems = (selectedPhoneIds) => {
+        setcardData((prevData) => prevData.filter(item => !selectedPhoneIds.includes(item.phoneId)));
+      };
+      removeSelectedItems(selectedItems);
+      setSelectedItems([]);
+      setSelectAll(false);
+
+      Swal.fire({
+        title: 'Success!',
+        text: 'Dispatched successfully!',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } 
+    catch (err) {
+      setError(err);
+      Swal.fire({
+        title: 'Error!',
+        text: 'Not able to dispatched.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      setSelectedItems([]);
+      setSelectAll(false);
+
+    } finally {
+      setLoading(false);
+    }
+  
+  };
+
+  const handleCheckBoxSingle = async (item) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await axios.post(`${base_url2}/dispatchPacking/dispatch-packing-item-link/unit`, {
+        userId: props.userId,
+        orgId: props.orgId,
+        orderId:props.rowData.orderId,
+        dispatchPackingId:props.rowData.dispatchPackingId,
+        itemId:item.phoneId, 
+        type:"procure",
+        packingUnits:"",
+
+      }, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      });
+      if (Array.isArray(response.data)) {
+        setcardData(response.data);
+      } else {
+        console.error('Expected array but got:', response.data);
+        setcardData([]);
+      }
+      const removeSelectedItems = (selectedPhoneIds) => {
+        setcardData((prevData) => prevData.filter(item => !selectedPhoneIds.includes(item.phoneId)));
+      };
+      removeSelectedItems([item.phoneId]);
+      setSelectAll(false);
+      setSelectedItems([]);
+      Swal.fire({
+        title: 'Success!',
+        text: 'Dispatched successfully!',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      // props.setmodalMultiple(false);
+      // props.getGeneratedInvoiveList(props.distributorId)
+     
+    } catch (err) {
+      setError(err);
+      Swal.fire({
+        title: 'Error!',
+        text: 'Not able to dispatched.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      setSelectAll(false);
+      setSelectedItems([]);
+    } 
+    finally {
+      setLoading(false);
+    }
+  };         
     return (
         <>
             <div className='flex  sticky z-auto w-wk'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky font-poppins text-lm z-10">
+                    <div className="md:w-[2.01rem]">
+          <Popconfirm
+          title="Do you want to Dispatch all?"
+          onConfirm={handleCheckBoxAll} 
+          onCancel={() => setSelectAll(false)}
+          okText="Yes"
+          cancelText="No"
+                    >
+          <Tooltip title="Select All">
+            <Checkbox checked={selectAll} onChange={handleSelectAll} />
+          </Tooltip>
+          </Popconfirm>
+          </div>
                         <div className=" md:w-[12rem] text-[#00A2E8]  text-sm">
                          <AddShoppingCartIcon className=" !text-icon "/>  items
                         </div>
@@ -153,8 +313,26 @@ orgId:props.orgId,
                                 return ( 
                                     <div>
                                         <div className="flex rounded  mt-1 bg-white items-center py-ygap  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
+                                        <div className="flex w-[1.5rem]">
+                                        <Popconfirm
+          title="Do you want to Dispatch ?"
+          onConfirm={() => handleCheckBoxSingle(item)}
+          onCancel={() => setSelectedItems([])}
+          okText="Yes"
+          cancelText="No"
+                    >
+          <Tooltip title="Select">
+                           <Checkbox
+                      checked={selectedItems.includes(item.phoneId)}
+                      onChange={() => handleCheckboxChange(item)}
+                    />
+                    </Tooltip>
+                    </Popconfirm>
+                        </div>
+                                           
                                            <div className="w-[12.1rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] ">{item.productFullName}</div> 
                                            <div className="w-28 items-center justify-center h-8 ml-gap bg-[#eef2f9] flex" >{item.unit}</div>
+                                          
                                            <div className=" flex w-36 items-center justify-center h-8 ml-gap bg-[#eef2f9]" >
                                            <input
             id="packingUnits"

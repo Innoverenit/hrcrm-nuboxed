@@ -43,13 +43,15 @@ import {getAllInvestorsbyId,handleInvestorNotesDrawerModal,emptyInvestor,
   deleteInvestorData,
   handleInvestorAddressDrawerModal,
   getAllEmployeelist,
-  getInvestorsbyId
+  getInvestorsbyId, 
+  handleInvestorPriceDrawer,
 } from "../../InvestorAction";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import EmptyPage from "../../../Main/EmptyPage";
 
+const InventoryPriceDrawer = lazy(() => import("./InventoryPriceDrawer"));
+const EmptyPage = lazy(() => import("../../../Main/EmptyPage"));
 const AddInvestorNotesDrawerModal = lazy(() =>  import("../InvestorDetail/AddInvestorNotesDrawerModal"));
 const InvestorPulseDrawerModal = lazy(() =>  import("./InvestorPulseDrawerModal"));
 const  ContactsInvestorModal = lazy(() =>  import("./ContactsInvestorModal"));
@@ -276,7 +278,9 @@ useEffect(() => {
     addDrawerInvestorPulseModal,
     addDrawerInvestorContactModal,
     user,
-    IconShowhover,
+    priceInvestorDrawer,
+    IconShowhover, 
+    handleInvestorPriceDrawer,
     deleteInvestorData
   } = props;
   console.log("ee");
@@ -507,7 +511,7 @@ console.log(selectedEmployee)
 
     <div class="text-xs text-[blue] font-bold cursor-pointer justify-center  font-poppins  max-sm:text-sm">
   <div    onClick={() => {
-props.handleInvestorPriceDrawer(true);
+handleInvestorPriceDrawer(true);
 handleCurrentRowData(item);
 }}>{item.allTotalQuantityOfShare}</div>
     </div>
@@ -913,7 +917,7 @@ handleCurrentRowData(item);
 
                                     <div class="text-xs text-[blue] font-bold cursor-pointer justify-center  font-poppins  max-sm:text-sm">
                                   <div    onClick={() => {
-                              props.handleInvestorPriceDrawer(true);
+                       handleInvestorPriceDrawer(true);
                               handleCurrentRowData(item);
                             }}>{item.allTotalQuantityOfShare}</div>
                                     </div>
@@ -1161,7 +1165,14 @@ handleCurrentRowData(item);
          translateText={props.translateText}
          selectedLanguage={props.selectedLanguage}
       /> 
-      
+       <InventoryPriceDrawer
+          RowData={RowData}
+          handleInvestorPriceDrawer={handleInvestorPriceDrawer}
+          priceInvestorDrawer={priceInvestorDrawer}
+          key={priceInvestorDrawer ? 'open' : 'closed'}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        />
       </Suspense>
     </>
   );
@@ -1195,6 +1206,7 @@ const mapStateToProps = ({
   fetchingInvestorsError: investor.fetchingInvestorsError,
   addInvestorAddressModal: investor.addInvestorAddressModal,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
+  priceInvestorDrawer: investor.priceInvestorDrawer,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -1214,6 +1226,7 @@ const mapDispatchToProps = (dispatch) =>
       deleteInvestorData,
       handleInvestorAddressDrawerModal,
       getAllEmployeelist,
+      handleInvestorPriceDrawer,
       getInvestorsbyId
     },
     dispatch

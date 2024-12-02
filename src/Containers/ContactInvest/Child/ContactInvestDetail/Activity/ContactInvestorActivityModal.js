@@ -2,9 +2,7 @@ import React, { lazy, Suspense,useEffect,useState } from "react";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
-
-import ActivityForm from "../../../../Activity/ActivityForm";
-
+const ActivityForm  =lazy(()=>import("../../../../Activity/ActivityForm"));
 
 const TabPane = StyledTabs.TabPane;
 

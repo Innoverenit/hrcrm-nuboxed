@@ -1,8 +1,8 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState,useEffect, lazy, Suspense } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {getEmployeeKpiList} from "../../../../../../Main/Teams/TeamsAction"
-import EmptyPage from '../../../../../../Main/EmptyPage';
+import {getEmployeeKpiList} from "../../../../../../Main/Teams/TeamsAction";
+const EmptyPage =lazy(()=>import("../../../../../../Main/EmptyPage"));
 const EmployeePerformanceTable = (props) => {
  
   const [editedFields, setEditedFields] = useState({});
@@ -44,7 +44,7 @@ const EmployeePerformanceTable = (props) => {
     <>
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       {props.employeeKpiList.length === 0 ? (
-          <div><EmptyPage/></div>
+          <div><Suspense><EmptyPage/></Suspense></div>
         ) : (
           props.employeeKpiList.map((item) => (
             <div key={item.id}>

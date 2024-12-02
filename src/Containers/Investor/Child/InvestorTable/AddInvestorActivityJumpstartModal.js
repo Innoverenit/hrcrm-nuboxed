@@ -1,10 +1,9 @@
-import React, { Component, Suspense } from "react";
+import React, { Component, Suspense,lazy } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import InvestorActivityJumpstartCardList from "./InvestorActivityJumpstartCardList";
-
+const InvestorActivityJumpstartCardList =lazy(()=> import("./InvestorActivityJumpstartCardList"));
 class AddInvestorActivityJumpstartModal extends Component {
   render() {
     //  console.log("data5", this.props.currentNameId.taskName);

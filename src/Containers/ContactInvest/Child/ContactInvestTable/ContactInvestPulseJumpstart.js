@@ -1,14 +1,12 @@
-import React, {} from "react";
+import React, { lazy, Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
-import ContactInvestPieChart1 from "../ContactInvestTable/ContactInvestPieChart1"
-import ContactInvestPieChart2 from "../ContactInvestTable/ContactInvestPieChart2"
 import dayjs from "dayjs";
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
-import CustomerPieChart from "../../../Dashboard/Child/JumpStart/CustomerPieChart"
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-import ContactsIcon from '@mui/icons-material/Contacts';
+const  ContactInvestPieChart1 = lazy(() =>  import("../ContactInvestTable/ContactInvestPieChart1"));
+const  ContactInvestPieChart2 = lazy(() =>  import("../ContactInvestTable/ContactInvestPieChart2"));
+
 class ContactInvestPulseJumpStart extends React.Component{
   constructor() {
     super();
@@ -43,7 +41,7 @@ render() {
   return(
     <>
   
-   <div className=" flex ">
+   <div className=" flex flex-col ">
     <div class=" flex w-1/2" >
     <div class="flex flex-wrap " >
     <div class="w-full md:w-1/2 xl:w-1/3 p-2">
@@ -51,7 +49,7 @@ render() {
                      <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                          <div class="flex flex-row items-center">
                              <div class="flex-shrink pr-3">
-                                 <div class="rounded-full p-1 bg-green-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
+                                 <div class="rounded-full p-1 bg-green-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"/></div>
                              </div>
                              <JumpStartBox
             noProgress
@@ -69,7 +67,7 @@ render() {
                        <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                            <div class="flex flex-row items-center">
                                <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-1 bg-pink-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"></CurrencyExchangeIcon></div>
+                                   <div class="rounded-full p-1 bg-pink-600"><CurrencyExchangeIcon className="!text-3xl text-[#FFFF]"/></div>
                                </div>
                                <JumpStartBox
             noProgress
@@ -100,7 +98,7 @@ render() {
                       </div>
                      
                   </div>
-                  <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                  {/* <div class="w-full md:w-1/2 xl:w-1/3 p-2">
                       
                       <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
                           <div class="flex flex-row items-center">
@@ -115,16 +113,21 @@ render() {
                           </div>
                       </div>
                      
-                  </div>                                
+                  </div>                                 */}
         </div>
         </div>
     
-      <div class=" mt-1 flex flex-col w-1/2 h-[83vh] items-center" > 
+      <div class=" mt-1 flex  items-center" > 
+      <div className=" flex flex-col">
       <div className="font-bold font-poppins  text-lg">Deals</div>
+      <Suspense>
         <ContactInvestPieChart1/>
-       
+        </Suspense>
+        </div>
+        <div className=" flex flex-col">
         <div className="font-bold font-poppins text-lg">Activity</div>
-        <ContactInvestPieChart2/>
+        <Suspense> <ContactInvestPieChart2/></Suspense>
+        </div>
         </div>     
         </div>
   </>

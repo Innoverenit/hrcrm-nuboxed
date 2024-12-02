@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-
 import { bindActionCreators } from "redux";
 import { Button, Switch, Tooltip,Select } from "antd";
 import { Formik, Form, Field } from "formik";
@@ -14,7 +13,6 @@ import {
   handleDocumentUploadModal,
   addCustomerDocument,
   getCustomerDocument,
-  // getselectdrop,
 } from "../../../../CustomerAction";
 import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
 import InputIcon from '@mui/icons-material/Input';
