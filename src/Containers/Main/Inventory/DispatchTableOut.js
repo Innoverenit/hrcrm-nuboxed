@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Button,Badge } from "antd";
+import { Tooltip, Button } from "antd";
 import { getAllShipper } from "../Shipper/ShipperAction";
 import dayjs from "dayjs";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -19,25 +19,23 @@ import {
 import {handleProductionNotesModal} from "../Refurbish/RefurbishAction"
 import { withRouter } from "react-router";
 import InfiniteScroll from "react-infinite-scroll-component";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import DispatchPhoneListModalInventory from "./Child/InventoryDetails/Dispatch/DispatchPhoneListModalInventory";
-import SubOrderList from "../Account/AccountDetailsTab/AccountOrderTab/SubOrderList";
-import RefurbishNoteAll from "../Refurbish/RefurbishNoteAll";
-import DispatchPackedToggle from "./Child/InventoryDetails/Dispatch/DispatchPackedToggle";
-import DispatchValidationToggle from "./Child/InventoryDetails/Dispatch/DispatchValidationToggle";
-import DispatchOrderAwbModal from "./Child/InventoryDetails/Dispatch/DispatchOrderAwbModal";
 import AddpackDrawer from "./AddpackDrawer";
 import GpsFixedIcon from '@mui/icons-material/GpsFixed';
 import AddpackID from "./AddpackID";
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import UpdateIcon from '@mui/icons-material/Update';
-
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import RvHookupIcon from '@mui/icons-material/RvHookup';
+import BookmarkAddedIcon from '@mui/icons-material/BookmarkAdded';
 // Repair -Dis-2
-
-
-
-
+const RefurbishNoteAll = lazy(() =>import("../Refurbish/RefurbishNoteAll"));
+const DispatchPhoneListModalInventory = lazy(() =>import("./Child/InventoryDetails/Dispatch/DispatchPhoneListModalInventory"));
+const DispatchOrderAwbModal = lazy(() =>import("./Child/InventoryDetails/Dispatch/DispatchOrderAwbModal"));
+const DispatchValidationToggle = lazy(() =>import("./Child/InventoryDetails/Dispatch/DispatchValidationToggle"));
+const DispatchPackedToggle = lazy(() =>import("./Child/InventoryDetails/Dispatch/DispatchPackedToggle"));
+const SubOrderList = lazy(() =>import("../Account/AccountDetailsTab/AccountOrderTab/SubOrderList"));
+const EmptyPage = lazy(() =>import("../EmptyPage"));
 function DispatchTableOut(props) {
   const [pageNo, setPageNo] = useState(0);
   const [loading, setLoading] = useState(true);
@@ -479,37 +477,37 @@ const AWBtst=[
     
         <div className=' flex  sticky  z-auto'>
           <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <div className=" flex max-sm:hidden justify-between w-[98%]  p-1 bg-transparent font-bold text-xs font-poppins sticky  z-10">
-              <div className=" w-[7.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]">
-              <DynamicFeedIcon className='!text-base  text-[#3ac427]'/> {translatedMenuItems[0]}
+            <div className=" flex max-sm:hidden justify-between w-[98%]  p-1 bg-transparent font-bold !text-lm font-poppins sticky items-end max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
+              <div className=" w-[10.51rem] text-sm text-[#00A2E8] truncate max-md:w-[7.51rem] max-xl:w-[5.5rem]">
+              <DynamicFeedIcon className='!text-icon  text-[#3ac427]'/> {translatedMenuItems[0]}
                 </div>            
-              <div className="w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]">
+              <div className="w-[8.8rem] truncate max-md:w-[7.01rem]  max-xl:w-[5.001rem]">
                 {/* Inspection" /> */}
-                {translatedMenuItems[2]}
+                   <BookmarkAddedIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[2]}
                 </div>
 
-              <div className="w-[5.03rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.03rem]">
+              <div className="w-[14.03rem] truncate max-md:w-[5.03rem] max-xl:w-[5.03rem]">
                 {/*Packed ?" /> */}
-                {translatedMenuItems[3]}
+                <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[3]}
                 </div>
-              <div className="w-[10.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem]">
+              <div className="w-[11.2rem] truncate max-md:w-[10.2rem] max-xl:w-[5.3rem]">
                 {/*Delivery" /> */}
-                <LocalShippingIcon className='!text-base  text-[#832161]'/> {translatedMenuItems[4]}
+                <LocalShippingIcon className='!text-icon  text-[#832161]'/> {translatedMenuItems[4]}
                 </div>
-              <div className=" w-[5.04rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.03rem]">
+              <div className=" w-[12.04rem] truncate max-md:w-[5.04rem] max-xl:w-[6.03rem]">
                 {/* Shipper" /> */}
-                <LocalShippingIcon className='!text-base  text-[#6ba368]'/>{translatedMenuItems[5]}
+                <LocalShippingIcon className='!text-icon mr-1 text-[#6ba368]'/>{translatedMenuItems[5]}
                 </div>
-              < div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]">
+              < div className=" w-[9.5rem] truncate max-md:w-[6.5rem] max-xl:w-[5.5rem]">
               {/*pickup" /> */}
-              {translatedMenuItems[6]}
+              <   RvHookupIcon className='!text-icon  text-[#6ba368]'/> {translatedMenuItems[6]}
               </div>
              
-              <div className=" w-[4.20rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.20rem]">
+              <div className=" w-[10.20rem] truncate max-md:w-[4.20rem] max-xl:w-[4.20rem]">
                 {/* Status" /> */}
                 <UpdateIcon className='!text-icon text-[#ff66b3]' /> {translatedMenuItems[8]}
                 </div>
-              <div className="w-[3.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.5rem]">
+              <div className="w-[6.51rem] truncate max-md:w-[3.51rem] max-xl:w-[3.5rem]">
                 {/* Pick Up" /> */}
                {translatedMenuItems[9]}
                 </div>
@@ -538,11 +536,11 @@ const AWBtst=[
                   const date1 = dayjs(item.pickUpDate).format("DD/MM/YYYY");
                   return (
                     <div>
-                      <div className="flex rounded justify-between mt-1 bg-white items-center py-1  max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                      <div className="flex rounded justify-between mt-1 bg-white items-center py-ygap  max-sm:h-[7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
                           <div className=" flex  w-[10.2rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] max-xl:w-[5.2rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
-                            <div class="text-xs flex items-center ml-gap font-bold underline font-poppins cursor-pointer  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm text-blue-600">
+                            <div class="text-xs flex items-center ml-gap font-bold underline font-poppins cursor-pointer   max-sm:text-sm text-blue-600">
                               <div
                                 onClick={() => {
                                   handleRowData(item);
@@ -565,7 +563,7 @@ const AWBtst=[
 
 
                           <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9]  w-[8.14rem] max-xl:w-[2.6rem] max-lg:w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  ml-gap font-poppins  max-sm:text-sm">
                               {item.dispatchPhoneCount}/{item.phoneReceiveCount}
                             </div>
                           </div>
@@ -593,7 +591,7 @@ const AWBtst=[
                                                            
                                                         </div>
                                                     </div>
-                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs   font-poppins  max-sm:text-sm">
                               {item.dispatchInspectionInd === 0 ?
                                 <Button
                                   loading={rowData.orderPhoneId === item.orderPhoneId && props.updatingDispatchInspectionButton}
@@ -616,7 +614,7 @@ const AWBtst=[
                             </div>
                           </div>
                           <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[6.8rem] max-xl:w-[4.8rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs ml-gap items-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs ml-gap items-center  font-poppins  max-sm:text-sm">
                               {item.dispatchInspectionInd === 0 || item.dispatchInspectionInd === 1 ?
                                 null : <DispatchPackedToggle
                                   locationDetailsId={props.locationDetailsId}
@@ -658,12 +656,12 @@ const AWBtst=[
                                                         </div>
                                                     </div>
                           <div className=" flex items-center justify-start h-8 ml-gap bg-[#eef2f9]  w-[7.78rem] max-xl:w-[4.58rem] max-lg:w-[3.58rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  ml-gap items-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  ml-gap items-center  font-poppins  max-sm:text-sm">
                               {item.shipperName === "null" ? "" : item.shipperName}
                             </div>
                           </div>
                           <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.51rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs   font-poppins  max-sm:text-sm">
                               {item.pickUp === "null" ? "" : dayjs(item.pickUp).format("DD-MM-YYYY")}
                             </div>
                           </div>
@@ -671,7 +669,7 @@ const AWBtst=[
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                        
                           <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.01rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs   font-poppins  max-sm:text-sm">
                               {/* {item.unloadingAddresses && item.unloadingAddresses[0].city && item.newAwbNo==="null" ? <Button type="primary"
                                 onClick={() => {
                                   handleRowData(item);
@@ -684,12 +682,12 @@ const AWBtst=[
                           </div>
                     
                           <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[10.2rem] max-xl:w-[4.2rem] max-lg:w-[2.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs   font-poppins  max-sm:text-sm">
                               {item.status === "null" ? "" : item.status}
                             </div>
                           </div>
                           <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs   font-poppins  max-sm:text-sm">
                               {item.dispatchInspectionInd === 4 && item.newAwbNo &&
                                 <DispatchValidationToggle
                                   locationDetailsId={props.locationDetailsId}
@@ -725,12 +723,12 @@ const AWBtst=[
                 })}
               </>
                 : !props.allDispatchList.length
-                  && !props.fetchingDispatchList ? <NodataFoundPage /> : null}
+                  && !props.fetchingDispatchList ? <EmptyPage /> : null}
             </InfiniteScroll>
           </div>
         </div>
 
-
+        <Suspense fallback={"Loading..."}>
         <RefurbishNoteAll
         translateText={props.translateText}
         selectedLanguage={props.selectedLanguage}
@@ -768,6 +766,7 @@ const AWBtst=[
         addCreateAwb={props.addCreateAwb}
         handleCreateAWB={props.handleCreateAWB}
       />
+      </Suspense>
     </>
   );
 }

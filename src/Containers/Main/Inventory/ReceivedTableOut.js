@@ -21,17 +21,19 @@ import {handleProductionNotesModal} from "../Refurbish/RefurbishAction"
 import { getLocationList } from "../Account/AccountAction"
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
-import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
+import { MultiAvatar } from "../../../Components/UI/Elements";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LabelOffIcon from '@mui/icons-material/LabelOff';
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import RefurbishNoteAll from "../Refurbish/RefurbishNoteAll";
-import ReceivedMismatchModal from "./Child/InventoryDetails/Recieved/ReceivedMismatchModal";
-import ReceivedOrderToggle from "./Child/InventoryDetails/Recieved/ReceivedOrderToggle";
-import DeliveryDateModal from "./Child/InventoryDetails/Recieved/DeliveryDateModal";
-import OpenReceivedOrderIdModal from "./Child/InventoryDetails/Recieved/OpenReceivedOrderIdModal";
+import { BundleLoader } from "../../../Components/Placeholder";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import RvHookupIcon from '@mui/icons-material/RvHookup';
 
-
+const RefurbishNoteAll = lazy(() =>import("../Refurbish/RefurbishNoteAll"));
+const ReceivedMismatchModal = lazy(() =>import("./Child/InventoryDetails/Recieved/ReceivedMismatchModal"));
+const ReceivedOrderToggle = lazy(() =>import("./Child/InventoryDetails/Recieved/ReceivedOrderToggle"));
+const DeliveryDateModal = lazy(() =>import("./Child/InventoryDetails/Recieved/DeliveryDateModal"));
+const OpenReceivedOrderIdModal = lazy(() =>import("./Child/InventoryDetails/Recieved/OpenReceivedOrderIdModal"));
+const EmptyPage = lazy(() =>import("../EmptyPage"));
 
 const { Option } = Select;
 
@@ -130,33 +132,33 @@ const ReceivedTableOut = (props) => {
       
         <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <div className=" flex justify-between max-sm:hidden  w-[94%]  p-1 bg-transparent font-bold !text-lm font-poppins  z-10">
-              <div className=" w-[8.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              <DynamicFeedIcon className='!text-base  text-[#3ac427]'/>{translatedMenuItems[0]}
+            <div className=" flex justify-between max-sm:hidden  w-[94%]  p-1 bg-transparent font-bold !text-lm items-end font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
+              <div className=" w-[16.4rem] text-sm text-[#00A2E8] truncate max-md:w-[16.4rem] ">
+              <DynamicFeedIcon className='!text-icon  text-[#3ac427]'/>{translatedMenuItems[0]}
                 </div>
               {props.accountInfoInd && (
                 <>
-              <div className=" w-[9.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+              <div className=" w-[9.51rem] truncate max-md:w-[9.51rem] ">
               <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>   {translatedMenuItems[1]}
                 </div>
-              <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                <div className="w-[6.1rem] truncate max-md:w-[6.2rem]">
               {translatedMenuItems[2]}
                 </div>
               </>
               )}
-              <div className="w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="w-[7.2rem] truncate max-md:w-[6.2rem]">
               {translatedMenuItems[3]}
                 </div>
-              <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              {translatedMenuItems[4]}
+              <div className="w-[6.2rem] truncate max-md:w-[6.2rem]">
+              <AccountCircleIcon className="!text-icon  text-[#d64933]"/> {translatedMenuItems[4]}
                 </div>
          
-              <div className="w-[7.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              {translatedMenuItems[5]}
+              <div className="w-[7.12rem] truncate max-md:w-[7.12rem]">
+              <   RvHookupIcon className='!text-icon  text-[#6ba368]'/>  {translatedMenuItems[5]}
                 </div>
-              <div className="w-[7.21rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <div className="w-[7.21rem] truncate max-md:w-[7.21rem]">
               <LocationOnIcon
-              className='!text-base  text-[#e4eb2f]'
+              className='!text-icon  text-[#e4eb2f]'
               /> {translatedMenuItems[6]}
                 </div>
           
@@ -178,10 +180,10 @@ const ReceivedTableOut = (props) => {
                   const isValidPercentage = !isNaN(percentage) && isFinite(percentage);
                   return (
                     <div>
-                      <div className="flex justify-between rounded  mt-1 bg-white  items-center py-ygap max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                      <div className="flex justify-between rounded  mt-1 bg-white  items-center py-ygap max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className=" flex w-[9.62rem] border-l-2 items-center h-8 border-green-500 bg-[#eef2f9] max-xl:w-[7rem] max-lg:w-[5.5rem] max-sm:w-auto   ">
-                          <span className="text-xs ml-gap font-bold max-sm:text-sm  font-poppins cursor-pointer underline text-blue-600 max-xl:text-[0.65rem] max-lg:text-[0.45rem]"
+                          <span className="text-xs ml-gap font-bold max-sm:text-sm  font-poppins cursor-pointer underline text-blue-600 "
                                   onClick={() => {
                                     handleRowData(item);
                                     props.handleReceivedOrderIdModal(true);
@@ -217,7 +219,7 @@ const ReceivedTableOut = (props) => {
                             </div>
                           </div>
                           <div className=" flex w-[9.12rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[5.7rem]  max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs ml-gap  font-poppins  max-sm:text-sm">
                               {item.contactPersonName}
                             </div>
                           </div>
@@ -226,7 +228,7 @@ const ReceivedTableOut = (props) => {
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           {/* <div className=" flex w-[5.5rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-semibold  font-poppins  max-sm:text-sm">
 
                               <MultiAvatar2
                                 primaryTitle={item.contactPersonName}
@@ -237,7 +239,7 @@ const ReceivedTableOut = (props) => {
                             </div>
                           </div> */}
                           <div className=" flex w-[7.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs    font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs    font-poppins  max-sm:text-sm">
 
                               <MultiAvatar
                                 primaryTitle={item.userName}
@@ -248,12 +250,12 @@ const ReceivedTableOut = (props) => {
                             </div>
                           </div>
                           <div className=" flex w-[6.81rem] items-center  h-8 ml-gap bg-[#eef2f9] max-xl:w-[6.21rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs ml-gap font-poppins  max-sm:text-sm">
                               {` ${item.dialCode1 || ""} ${item.mobileNo || ""} `}
                             </div>
                           </div>
                           <div className=" flex w-[7.52rem] max-xl:w-[3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs   font-poppins  max-sm:text-sm">
                               {item.inspectionInd !== 0 && <MultiAvatar
                                 primaryTitle={item.startInspectionUserName}
                                 imageId={item.imageId}
@@ -263,7 +265,7 @@ const ReceivedTableOut = (props) => {
                             </div>
                           </div>
                           <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[17.81rem] max-xl:w-[4rem] max-lg:w-[2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs   font-poppins  max-sm:text-sm">
                               {/* {item.phoneReceiveCount}/{item.phoneCount} */}
                               {isValidPercentage ? (
 
@@ -284,12 +286,12 @@ const ReceivedTableOut = (props) => {
                                 orderId={item.orderPhoneId}
                                 locationId={props.locationDetailsId}
                                 inventoryReceiveInd={item.inventoryReceiveInd}
-                              /> : <b className="max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">Received</b>}
+                              /> : <b className=" max-sm:text-sm">Received</b>}
                             </div>
                           </div>
 
                           <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.51rem] max-xl:w-[5.01rem] max-lg:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                            <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-poppins  max-sm:text-sm">
 
                               {item.productionLocationName && <MultiAvatar
                                 primaryTitle={item.productionLocationName}
@@ -305,7 +307,7 @@ const ReceivedTableOut = (props) => {
     item.inspectionInd !== 0 &&  item.inspectionInd !== 1 && item.inspectionInd !== 2 && item.inventoryReceiveInd   ? 'bg-[#92f672]' : 'bg-[#eef2f9]'
   }`}
 >
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class=" text-xs  font-semibold  font-poppins  max-sm:text-sm">
                               {item.inspectionInd === 0 && item.inventoryReceiveInd ?
                                 <Button
                                   loading={item.orderId === rowData.orderId && props.updatingInspection}
@@ -389,12 +391,12 @@ const ReceivedTableOut = (props) => {
                   );
                 })}
               </> : !props.allReceivedUser.length
-                && !props.fetchingReceivedUser ? <NodataFoundPage /> : null}
+                && !props.fetchingReceivedUser ? <EmptyPage /> : null}
 
             </InfiniteScroll>
           </div>
         </div>
-
+        <Suspense fallback={<BundleLoader />}>
       <DeliveryDateModal
         rowData={rowData}
         addDeliverDate={props.addDeliverDate}
@@ -417,6 +419,7 @@ const ReceivedTableOut = (props) => {
                      productioNoteModal={props.productioNoteModal}
                     handleProductionNotesModal={props.handleProductionNotesModal}
                     />
+                    </Suspense>
     </>
   );
 }

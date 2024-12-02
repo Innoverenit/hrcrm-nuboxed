@@ -9,6 +9,8 @@ import { FormattedMessage } from 'react-intl';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Button, Tooltip, Input,Badge,Checkbox,Popconfirm } from "antd";
 import QRCode from "qrcode.react";
+import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
+import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import {
   handleReceivedOrderIdPhoneNoteModal,
   updateInspection,
@@ -265,13 +267,13 @@ console.log(selectedItems)
     <>
       <div class=" flex justify-between">
         <div class=" w-3/6">
-          <div style={{ display: "flex", marginLeft: "8rem" }}>
+        <div className="flex ml-8">
  
             <Button type="primary">
               <DocumentScannerIcon className="!text-icon"/>
               Scan 
             </Button>
-            <div class="mt-2">
+            <div>
             <Input
           placeholder="Search by Name "
           width={"100%"}
@@ -313,8 +315,8 @@ console.log(selectedItems)
       </div>
       {/* {props.fetchingPhoneListById ? <BundleLoader /> : */}
       <div className='flex justify-center sticky ticky z-10 '>
-        <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+        <div class="rounded m-1 p-1 w-[100%] h-[88vh] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end mt-8 z-10">
           <div className="md:w-[2.01rem]">
           {props.rowData.inspectionInd === 1 && (
           <Popconfirm
@@ -330,40 +332,22 @@ console.log(selectedItems)
           </Popconfirm>
           )}
           </div>
-            <div className=" md:w-[4.74rem]">Brand</div>
-            <div className=" md:w-[6.73rem]"><FormattedMessage
-              id="app.model"
-              defaultMessage="model"
-            /></div>
-            <div className=" md:w-[8.07rem] "><FormattedMessage
-              id="app.imei"
-              defaultMessage="imei"
-            /></div>
-            <div className="md:w-[6.71rem]">Info</div>
+            <div className="w-[4.74rem] text-[#00A2E8] text-sm  truncate max-md:w-[4.74rem]"><BrandingWatermarkIcon className="!text-icon" /> Brand</div>
+            <div className="w-[6.73rem] truncate max-md:w-[6.73rem]"> <ModelTrainingIcon className=" !text-icon" /> Model</div>
+            <div className="w-[8.07rem] truncate max-md:w-[8.07rem] ">IMEI</div>
+            <div className="w-[6.71rem] truncate max-md:w-[6.71rem]">Info</div>
 
 
-            <div className="md:w-[6.75rem]"><FormattedMessage
-              id="app.conditions"
-              defaultMessage="conditions"
-            /></div>
-            <div className="md:w-[20rem]"><FormattedMessage
-              id="app.issue"
-              defaultMessage="Issue"
-            /></div>
+            <div className="w-[6.75rem] truncate max-md:w-[6.75rem]">Condition</div>
+            <div className="w-[20rem] truncate max-md:w-[20rem]">Issue</div>
            
-            <div className="md:w-[9.1rem]">
-              <FormattedMessage
-                id="app.Received"
-                defaultMessage="Received"
-              />
+            <div className="w-[9.1rem] truncate max-md:w-[9.1rem]">
+             Received
             </div>
            
            
-            <div className="md:w-[7.3rem]">
-              <FormattedMessage
-                id="app.Status"
-                defaultMessage="Status"
-              />
+            <div className="w-[7.3rem] truncate max-md:w-[7.3rem]">
+             Status
             </div>
           </div>
           <div >
@@ -394,7 +378,7 @@ console.log(selectedItems)
                       onChange={() => handleCheckboxChange(item)}
                     />)}
                       </div>
-                        <div className=" flex   border-l-2  h-8 border-green-500 bg-[#eef2f9] md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div className=" flex   border-l-2 py-ygap border-green-500 bg-[#eef2f9] md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           {item.mismatchInd && <div class=" text-xs  font-poppins">
                              <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" onClick={() => {
                               handleMismatchItem();
@@ -531,7 +515,7 @@ console.log(selectedItems)
                         </div>
                       </div>
 
-                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[3.09rem] max-sm:flex-row w-full max-sm:justify-between ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[1.09rem]  max-md:w-[1.09rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
                           {item.inspectionInd === 1 && item.receivePhoneInd && !item.cannotRepairInd && (
                             <VisibilityIcon
@@ -584,7 +568,7 @@ console.log(selectedItems)
                             </>}
                         </div>
                       </div>
-                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[5.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[1.04rem]  max-md:w-[1.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
                         <div class=" text-xs  font-poppins">
                           {item.cannotRepairInd && "Can't Repair"}
                         </div>
@@ -627,13 +611,13 @@ console.log(selectedItems)
                         }}
                       >
 
-                        <div style={{ fontSize: "5rem", marginTop: "2rem" }}>
+                        <div class="mt-8" style={{ fontSize: "5rem"}}>
                           <QRCode
                             size={150}
                             value={`${base_url2}/supplies/masterName/${item.company}/${item.model}`}
                           />
                         </div>
-                        <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>IMEI:</span> {item.imei}</div>
+                        <div style={{ fontSize: "1.5rem" }}><span class="font-bold">IMEI:</span> {item.imei}</div>
                       </div>
                     </div>
                   </div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy,Suspense  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
@@ -8,13 +8,17 @@ import { getRoomRackByLocId, getRackList } from "./InventoryAction";
 import { getMaterialUnitsData, handleSTockItemModal, handleStockUsedDrawer, trnasferGrnItemToStock } from "./InventoryAction"
 import InfiniteScroll from "react-infinite-scroll-component";
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import ItemHistoryInStockData from "./Child/InventoryDetails/InventoryMaterialTab/ItemHistoryInStockData";
-import StockItemClickModal from "./Child/InventoryDetails/InventoryMaterialTab/StockItemClickModal";
-import TheStockUsedDrawer from "./Child/InventoryDetails/InventoryMaterialTab/TheStockUsedDrawer";
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import AttractionsIcon from '@mui/icons-material/Attractions'; 
-import EmptyPage from "../EmptyPage";
+import ShareLocationIcon from '@mui/icons-material/ShareLocation';
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+import RepartitionIcon from '@mui/icons-material/Repartition'; 
+import { BundleLoader } from "../../../Components/Placeholder";
+const ItemHistoryInStockData = lazy(() =>import("./Child/InventoryDetails/InventoryMaterialTab/ItemHistoryInStockData") );
+const StockItemClickModal = lazy(() =>import("./Child/InventoryDetails/InventoryMaterialTab/StockItemClickModal") );
+const TheStockUsedDrawer = lazy(() =>import("./Child/InventoryDetails/InventoryMaterialTab/TheStockUsedDrawer") );
+const EmptyPage = lazy(() =>import("../EmptyPage") );
 const { Option } = Select;
 
 const MaterialStockTableOut = (props) => {
@@ -107,10 +111,10 @@ const MaterialStockTableOut = (props) => {
                             <AttractionsIcon className="  !text-icon" />  {props.translatedMenuItems[25]}
                             </div>
                      
-                        <div className="w-[7.11rem] truncate max-md:w-[4.11rem]">< PinIcon className=" !text-base"/>HSN</div>
-                        <div className="w-[7.11rem] truncate max-md:md:w-[4.11rem]">{props.translatedMenuItems[32]}</div>
-                        <div className="w-[7.11rem] truncate max-md:md:w-[4.11rem]">Room</div>
-                        <div className="w-[7.11rem] truncate max-md:md:w-[4.11rem]">{props.translatedMenuItems[33]}</div>
+                        <div className="w-[7.11rem] truncate max-md:w-[4.11rem]">< PinIcon className=" !text-icon"/>HSN</div>
+                        <div className="w-[7.11rem] truncate max-md:md:w-[4.11rem]">< ShareLocationIcon className=" !text-icon"/>{props.translatedMenuItems[32]}</div>  {/* Zone*/}
+                        <div className="w-[7.11rem] truncate max-md:md:w-[4.11rem]">< MeetingRoomIcon className=" !text-icon"/> room</div>
+                        <div className="w-[7.11rem] truncate max-md:md:w-[4.11rem]">< RepartitionIcon className=" !text-icon"/>{props.translatedMenuItems[33]}</div> {/* Zone*/}
                         <div className="w-[6.10rem] truncate max-md:md:w-[6.10rem]">
                             {/* in stock  */}
                              {props.translatedMenuItems[29]}
@@ -228,6 +232,7 @@ const MaterialStockTableOut = (props) => {
                     </InfiniteScroll>
                 </div>
             </div>
+            <Suspense fallback={<BundleLoader />}>
             <StockItemClickModal
                 row={row}
                 handleSTockItemModal={props.handleSTockItemModal}
@@ -239,7 +244,7 @@ const MaterialStockTableOut = (props) => {
                 stockUseDrwr={props.stockUseDrwr}
                 handleStockUsedDrawer={props.handleStockUsedDrawer}
             />
-
+  </Suspense>
         </>
     );
 }

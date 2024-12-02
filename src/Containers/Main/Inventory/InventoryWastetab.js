@@ -376,7 +376,7 @@ import {
 import TermsnConditionModal from "../Suppliers/Child/SupplierDetails/SupplierDetailTab/TermsnConditionModal"
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
-
+import BatchPredictionIcon from '@mui/icons-material/BatchPrediction';
 import { Tooltip, Select, Button,Input } from "antd";
 import CategoryIcon from '@mui/icons-material/Category'
 import FactoryIcon from '@mui/icons-material/Factory';
@@ -469,11 +469,11 @@ console.log(selectedLocation)
 
                         </div>
                         <div className=" w-[9.3rem] truncate max-md:w-[9.2rem]" >       
-                        <CurrencyExchangeIcon className='!text-base  text-[#e4eb2f]'/>    Unit Price
+                        <CurrencyExchangeIcon className='!text-icon  text-[#e4eb2f]'/>    Unit Price
 
                         </div>
                         <div className=" w-[13.2rem]">       
-                    Batch No
+                        <BatchPredictionIcon className='!text-icon' /> Batch No
 
                         </div>
             
@@ -482,7 +482,7 @@ console.log(selectedLocation)
 
                         </div>
                         <div className=" w-[7.12rem]">       
-                        <CurrencyExchangeIcon className='!text-base  text-[#e4eb2f]'/> Total Value
+                        <CurrencyExchangeIcon className='!text-icon  text-[#e4eb2f]'/> Total Value
 
                         </div>
                    

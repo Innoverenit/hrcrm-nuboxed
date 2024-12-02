@@ -181,53 +181,53 @@ const AccountOrderTable = (props) => {
             <div className=' flex sticky   z-auto'>
                 <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[100%]  bg-transparent   sticky  z-10">
-                        <div className='flex justify-between w-[85%]  !text-lm font-bold font-poppins'>
-                    <div className=" max-md:w-[3.54rem] w-[3.54rem] text-[white] flex justify-center bg-[red]">
+                        <div className='flex justify-between w-[80%]  !text-lm font-bold font-poppins'>
+                    <div className=" max-md:w-[3.54rem] w-[3.54rem] truncate text-[white] flex justify-center bg-[red]">
                     {translatedMenuItems[0]}   {/* Urgent */}
                          </div>
-                        <div className=" max-md:w-[10.41rem] w-[10.41rem] ml-2">     {/* Order ID"*/}                  
-                        <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[1]} ID
+                        <div className=" max-md:w-[10.41rem] truncate w-[5.9rem]">     {/* Order ID"*/}                  
+                        <DynamicFeedIcon className='!text-icon  text-[#e4eb2f]'/> {translatedMenuItems[1]} ID
                         </div>
-                      <div className=" w-[9.012rem] max-md:w-[9.012rem]">    {/*Created */}
+                      <div className=" w-[5.09rem] truncate max-md:w-[9.012rem]">    {/*Created */}
                         <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[13]}
                         </div>
-                        <div className="w-[9.012rem] max-md:w-[9.012rem]">
+                        <div className="w-[5.3rem] max-md:w-[9.012rem]">
                         {translatedMenuItems[2]}  {/* LOB */}
                         </div>              
-                        <div className="max-md:w-[2.81rem] w-[2.81rem]">
+                        <div className="truncate w-[4.8rem] max-md:w-[2.81rem] ">
                         </div>
-                        <div className="max-md:w-[7.91rem] w-[7.91rem]">
+                        <div className="truncate w-[5.4rem] max-md:w-[5.91rem]">
                         <ContactPageIcon className='!text-icon'/> {translatedMenuItems[4]}   {/*Contact"
                             /> */}
                         </div>
-                        <div className="max-md:w-[6.11rem] w-[6.11rem]">
+                        <div className=" w-[4.6rem] truncate max-md:w-[6.11rem]">
                         {translatedMenuItems[5]}  {/* Quoted"
                             /> */}
                         </div>
-                        <div className="max-md:w-[5.09rem] w-[5.09rem] ">
+                        <div className=" truncate max-md:w-[5.09rem] w-[4.3rem] ">
                         {translatedMenuItems[6]}  {/*"Final"
                             /> */}
                         </div>
-                        <div className="w-[5.076rem] max-md:w-[5.076rem]">
+                        <div className=" truncate w-[6.7rem] max-md:w-[5.076rem]">
                         {translatedMenuItems[7]}    {/*Revised"
                             /> */}
                         </div>
-                        <div className=" max-md:w-[5.063rem] w-[5.063rem]">
+                        <div className="w-[3.5rem] truncate  max-md:w-[5.063rem] ">
                         </div>
-                        <div className=" max-md:w-[8.10rem] w-[8.10rem]">
+                        <div className="w-[5.9rem] max-md:w-[8.10rem] ">
                         {translatedMenuItems[8]}  {/* Received"
                             /> */}
                         </div>
-                        <div className=" max-md:w-[8.03rem] w-[8.03rem]">
+                        <div className="w-[6.2rem] truncate max-md:w-[8.03rem] ">
                         {translatedMenuItems[9]}  {/*Supervisor"
                             /> */}
                         </div>
-                        <div className=" max-md:w-[8.12rem] w-[8.12rem]">
+                        <div className=" w-[5.5rem] truncate max-md:w-[8.12rem]">
                         <GroupsIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[10]}  {/*Lead"
                             /> */}
                         </div>
 
-                        <div className=" max-md:w-[8.02rem] w-[8.02rem]">
+                        <div className="w-[5rem] truncate  max-md:w-[8.02rem] ">
                         <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' />  {translatedMenuItems[32]}   
                         </div>
                     </div>
@@ -305,7 +305,7 @@ const AccountOrderTable = (props) => {
                                                             ) : null}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex items-center  ml-gap bg-[#eef2f9] h-8 max-md:w-[4.81rem] w-[4.81rem] text-xs  max-sm:flex-row  max-sm:justify-between ">
+                                                    <div className=" flex items-center  ml-gap bg-[#eef2f9] h-8 max-md:w-[4.81rem] w-[5.81rem] text-xs  max-sm:flex-row  max-sm:justify-between ">
                                                     {date}
                                                     </div>
                                                     <div className=" flex max-md:w-[6.31rem] w-[6.31rem] text-xs max-sm:flex-row  max-sm:justify-between items-center justify-center ml-gap bg-[#eef2f9] h-8 ">
@@ -336,7 +336,7 @@ const AccountOrderTable = (props) => {
                                                             </Badge>
                                                         </div>
                                                     </div>
-                                                    <div className=" flex max-md:w-[5.9rem] w-[5.9rem] items-center  ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
+                                                    <div className=" flex max-md:w-[5.9rem] w-[5.9rem] items-center justify-center  ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
                                                         <div >
                                                             <MultiAvatar
                                                                 primaryTitle={item.contactPersonName}
@@ -377,7 +377,7 @@ const AccountOrderTable = (props) => {
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex  max-md:w-[6.06rem] w-[6.06rem] items-center  ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
+                                                <div className=" flex  max-md:w-[6.06rem] w-[3.06rem] items-center  ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
 
                                                         {visible && (item.orderId === particularRowData.orderId) ? (
@@ -413,12 +413,12 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex w-[4.1rem]  max-md:w-[15.1rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                                                <div className=" flex w-[5.1rem]  max-md:w-[15.1rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center">
                                                         {item.locationName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex w-[7.04rem] max-md:w-[16.04rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 text-xs max-sm:flex-row  max-sm:justify-between ">
+                                                <div className=" flex w-[6.04rem] max-md:w-[16.04rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 text-xs max-sm:flex-row  max-sm:justify-between ">
                                                     <div >
                                                     {item.supervisorUserName ? 
                                                     <MultiAvatar
@@ -434,7 +434,7 @@ const AccountOrderTable = (props) => {
                                                         </span> */}
                                                     </div>
                                                 </div>
-                                                <div class="flex flex-row w-[6.03rem] items-center  justify-center ml-gap bg-[#eef2f9] h-8 max-md:w-[10.03rem] max-sm:flex-row  max-sm:justify-between">
+                                                <div class="flex flex-row w-[5.03rem] items-center  justify-center ml-gap bg-[#eef2f9] h-8 max-md:w-[10.03rem] max-sm:flex-row  max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.shipById}
                                             </div>
@@ -444,7 +444,7 @@ const AccountOrderTable = (props) => {
                                                         {item.productionLocationName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex w-[4.06rem] max-md:w-[11.06rem] max-sm:flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:justify-between  ">
+                                                <div className=" flex w-[3.6rem] max-md:w-[11.06rem] max-sm:flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:justify-between  ">
                                                     {item.inventoryReceiveInd ? null
                                                         :
                                                         <Tooltip title={translatedMenuItems[20]}
@@ -637,84 +637,94 @@ const AccountOrderTable = (props) => {
                 </div>
             </div >
             
-            <div className=' flex sticky  z-auto'>
-                <div class="rounded  py-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className=" flex  w-[100%]  bg-transparent  sticky z-10">
-                <div className='flex   justify-between w-[85%]  !text-lm font-bold font-poppins'>
-                    <div className=" max-md:w-[3.54rem] w-[3.54rem] text-[white] flex justify-center bg-[teal]">
-                    {translatedMenuItems[12]}   {/* Normal */}
+            <div className=' flex sticky   z-auto'>
+                <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                    <div className=" flex  w-[100%]  bg-transparent   sticky  z-10">
+                        <div className='flex justify-between w-[80%]  !text-lm font-bold font-poppins'>
+                    <div className=" max-md:w-[3.54rem] w-[3.54rem] truncate text-[white] flex justify-center bg-[teal]">
+                    {translatedMenuItems[12]}   {/* normal */}
                          </div>
-                        <div className=" max-md:w-[10.41rem] w-[10.41rem] ml-2">
-                        
-                        <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[1]}ID
+                        <div className=" max-md:w-[10.41rem] truncate w-[5.9rem]">     {/* Order ID"*/}                  
+                        <DynamicFeedIcon className='!text-icon  text-[#e4eb2f]'/> {translatedMenuItems[1]} ID
                         </div>
-                        <div className="w-[9.112rem] max-md:w-[9.012rem]">
+                      <div className=" w-[5.09rem] truncate max-md:w-[9.012rem]">    {/*Created */}
                         <DateRangeIcon className='!text-icon  '  /> {translatedMenuItems[13]}
                         </div>
-                        <div className=" w-[9.013rem] max-md:w-[9.013rem]">
+                        <div className="w-[5.3rem] max-md:w-[9.012rem]">
                         {translatedMenuItems[2]}  {/* LOB */}
+                        </div>              
+                        <div className="truncate w-[4.8rem] max-md:w-[2.81rem] ">
                         </div>
-                        {/* <div className=" max-md:w-[5.08rem]">
-                        {translatedMenuItems[3]}   
-                        </div> */}
+                        <div className="truncate w-[5.4rem] max-md:w-[5.91rem]">
+                        <ContactPageIcon className='!text-icon'/> {translatedMenuItems[4]}   {/*Contact"
+                            /> */}
+                        </div>
+                        <div className=" w-[4.6rem] truncate max-md:w-[6.11rem]">
+                        {translatedMenuItems[5]}  {/* Quoted"
+                            /> */}
+                        </div>
+                        <div className=" truncate max-md:w-[5.09rem] w-[4.3rem] ">
+                        {translatedMenuItems[6]}  {/*"Final"
+                            /> */}
+                        </div>
+                        <div className=" truncate w-[6.7rem] max-md:w-[5.076rem]">
+                        {translatedMenuItems[7]}    {/*Revised"
+                            /> */}
+                        </div>
+                        <div className="w-[3.5rem] truncate  max-md:w-[5.063rem] ">
+                        </div>
+                        <div className="w-[5.9rem] max-md:w-[8.10rem] ">
+                        {translatedMenuItems[8]}  {/* Received"
+                            /> */}
+                        </div>
+                        <div className="w-[6.2rem] truncate max-md:w-[8.03rem] ">
+                        {translatedMenuItems[9]}  {/*Supervisor"
+                            /> */}
+                        </div>
+                        <div className=" w-[5.5rem] truncate max-md:w-[8.12rem]">
+                        <GroupsIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[10]}  {/*Lead"
+                            /> */}
+                        </div>
 
-                        <div className="max-md:w-[2.81rem] w-[2.81rem]">
-                        </div>
-                        <div className="max-md:w-[7.91rem] w-[7.91rem]">
-                        <ContactPageIcon className='!text-icon'/> {translatedMenuItems[4]}
-                        </div>
-                        <div className="max-md:w-[6.11rem] w-[6.11rem]">
-                        {translatedMenuItems[5]}  
-                        </div>
-                        <div className="max-md:w-[5.09rem] w-[5.09rem]">
-                        {translatedMenuItems[6]}  
-                        </div>
-                        <div className="max-md:w-[5.076rem] w-[5.076rem]">
-                        {translatedMenuItems[7]}   
-                        </div>
-                        <div className=" max-md:w-[5.063rem] w-[5.063rem]">
-                        </div>
-                        <div className=" max-md:w-[8.10rem] w-[8.10rem]">
-                        {translatedMenuItems[8]}  
-                        </div>
-                        <div className=" max-md:w-[8.03rem] w-[8.03rem]">
-                        {translatedMenuItems[9]}   
-                        </div>
-                        <div className=" max-md:w-[8.12rem] w-[8.12rem]">
-                        <GroupsIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[10]}  
-                        </div>
-                        <div className=" max-md:w-[8.02rem] w-[8.02rem]">
+                        <div className="w-[5rem] truncate  max-md:w-[8.02rem] ">
                         <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' />  {translatedMenuItems[32]}   
                         </div>
-                        </div>
                     </div>
-
-                   
+             </div>
+                    {/* <div class="overflow-x-auto h-[64vh]"> */}
                     <InfiniteScroll
-                        dataLength={props.lowDistributorOrder.length}
-                        next={handleLoadMoreLow}
+                        dataLength={props.highDistributorOrder.length}
+                        next={handleLoadMore}
                         hasMore={hasMore}
-                        loader={props.fetchingDistributorOfLow ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
+                        loader={props.fetchingDistributorOfHigh ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
                         height={"35vh"}
                         style={{scrollbarWidth:"thin"}}
                     >
-                        {props.lowDistributorOrder.length ?
+                        {props.highDistributorOrder.length ?
                             <>
-                                {props.lowDistributorOrder.map((item) => {
+                                {props.highDistributorOrder.map((item) => {
                                     const currentdate = dayjs().format("DD/MM/YYYY");
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
-                                        <div >
-                                            <div className="flex rounded  mt-1 bg-white  items-center py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                                                <div class="flex ">
-                                                    <div className=" flex items-center  border-l-2 border-green-500 bg-[#eef2f9]  max-md:w-[2.56rem] w-[2.56rem] max-sm:  ">
+                                   
+                                          <div>
+                                           <div 
+  className={`flex rounded mt-1  items-center bg-white py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow border-solid  leading-3 hover:border-[#23A0BE] hover:shadow-[#23A0BE]
+`}
+>
+  <div 
+  className={`flex ${item.active ? '' : 'opacity-50 cursor-not-allowed pointer-events-none'}
+  `}
+>
+                                                <div class="flex w-[42rem] ">
+                                                    <div className=" flex items-center border-l-2 border-green-500 bg-[#eef2f9] w-[2.56rem] max-md:w-[2.56rem] max-sm:  ">
                                                         <Tooltip>
                                                             <div class="flex max-sm:flex-row justify-between  max-md:flex-col">
                                                                 <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                                                     {item.priority === "High" && (
                                                                         <div
-                                                                            class="border rounded-[50%] h-6 w-6 bg-[red]"></div>
+                                                                            class="border rounded-[50%] h-6 w-6 bg-[teal]"></div>
                                                                     )}
                                                                     {item.priority === "Medium" && (
                                                                         <div
@@ -727,9 +737,9 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className=" flex items-center  ml-gap bg-[#eef2f9] h-8   max-md:w-[7.4rem] w-[7.4rem] max-sm:flex-row  max-sm:justify-between">
-                                                        <div class=" text-xs  font-poppins">
-                                                           
+                                                    <div className=" flex items-center  ml-gap bg-[#eef2f9] w-[7.4rem] h-8 max-md:w-[7.4rem] max-sm:flex-row  max-sm:justify-between">
+                                                        <div class=" text-xs ml-gap items-center font-poppins">
+                                                          
                                                                 <span
                                                                     class="underline cursor-pointer font-bold text-[#1890ff]"
                                                                     onClick={() => {
@@ -737,7 +747,7 @@ const AccountOrderTable = (props) => {
                                                                         props.handleOrderDetailsModal(true);
                                                                     }}
                                                                 >{item.newOrderNo}</span>
-                                                                 <Badge
+                                                                  <Badge
                                                                 class=" ml-2"
                                                                 size="small"
                                                                 count={item.count || 0}
@@ -745,38 +755,32 @@ const AccountOrderTable = (props) => {
                                                                 offset={[ 0, -16]}
                                                             >
                                                             </Badge>
-                                                            &nbsp;&nbsp;
+                                                           
                                                             {date === currentdate ? (
                                                                 <span
                                                                     class="text-[tomato] text-[0.65rem] font-bold">
-                                                                   {translatedMenuItems[14]} {/* {<FormattedMessage
-                                                                        id="app.new"
-                                                                        defaultMessage="New"
-                                                                    />} */}
+                                                                    {/* New*/}{translatedMenuItems[14]}
                                                                 </span>
                                                             ) : null}
                                                         </div>
                                                     </div>
-                                                    <div className=" flex   ml-gap bg-[#eef2f9] h-8   max-md:w-[4.81rem] w-[4.81rem] text-xs items-center max-sm:flex-row  max-sm:justify-between ">
+                                                    <div className=" flex items-center  ml-gap bg-[#eef2f9] h-8 max-md:w-[4.81rem] w-[5.81rem] text-xs  max-sm:flex-row  max-sm:justify-between ">
                                                     {date}
                                                     </div>
-                                                    <div className=" flex  items-center  ml-gap bg-[#eef2f9] h-8   max-md:w-[6.31rem] w-[6.31rem] text-xs max-sm:flex-row  max-sm:justify-between ">
+                                                    <div className=" flex max-md:w-[6.31rem] w-[6.31rem] text-xs max-sm:flex-row  max-sm:justify-between items-center justify-center ml-gap bg-[#eef2f9] h-8 ">
+                                                    
                                                     </div>
+                                                    
 
-                                                    {/* <div className=" flex   max-md:w-[4.02rem] max-sm:flex-row  max-sm:justify-between ">
-                                                        <div >
-                                                            <MultiAvatar2
-                                                                primaryTitle={item.userName}
-                                                                imageURL={item.imageURL}
-                                                                imgWidth={"1.8rem"}
-                                                                imgHeight={"1.8rem"}
-                                                            />
-                                                        </div>
-                                                    </div> */}
-
-                                                    <div className=" flex items-center  ml-gap bg-[#eef2f9] h-8   max-md:w-[4.9rem] w-[4.9rem] max-sm:flex-row  max-sm:justify-between ">
-                                                        <div class="  font-poppins">
-                                                           
+                                                    <div className=" flex max-md:w-[4.9rem] w-[4.9rem] items-center  ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                                                        <div class=" font-poppins ">
+                                                            <Badge
+                                                                class=" ml-2"
+                                                                size="small"
+                                                                count={item.awbCount || 0}
+                                                                overflowCount={999}
+                                                                offset={[ 0, -16]}
+                                                            >
                                                                 <Button
                                                                     style={{ boxShadow: "#faad14 1px 2px 0px 0px" }}
                                                                     class=" bg-green-500"
@@ -786,18 +790,13 @@ const AccountOrderTable = (props) => {
                                                                     }
                                                                     }
                                                                 ><span className='!text-[#faad14]'>
-                                                                   {/* Ship  */}
-                                                                   {translatedMenuItems[15]}  ID</span></Button>
-                                                                   <Badge
-                                                                class=" ml-2"
-                                                                size="small"
-                                                                count={item.awbCount || 0}
-                                                                overflowCount={999}
-                                                            > </Badge>
+                                                                    {/* Ship  */}
+                                                                    {translatedMenuItems[15]} ID</span></Button>
+                                                            </Badge>
                                                         </div>
                                                     </div>
-                                                    <div className=" flex max-md:w-[5.9rem] w-[5.9rem] items-center  ml-gap bg-[#eef2f9] h-8   max-sm:flex-row  max-sm:justify-between  ">
-                                                        <div class=" text-xs  font-poppins">
+                                                    <div className=" flex max-md:w-[5.9rem] w-[5.9rem] items-center justify-center  ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
+                                                        <div >
                                                             <MultiAvatar
                                                                 primaryTitle={item.contactPersonName}
                                                                 imageURL={item.imageURL}
@@ -809,22 +808,22 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
 
-                                                    <div className=" flex   items-center  ml-gap bg-[#eef2f9] h-8   max-md:w-[5rem] w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                    <div className=" flex  items-center  ml-gap bg-[#eef2f9] h-8  max-md:w-[5rem] w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
-                                                        <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 1000).toFixed(2)}k
+                                                            <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.expectedPrice / 1000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
-                                                    <div className=" flex    items-center justify-center ml-gap bg-[#eef2f9] h-8    max-md:w-[5.03rem] w-[5.03rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                    <div className=" flex items-center  ml-gap bg-[#eef2f9] h-8 max-md:w-[5.03rem] w-[5.03rem] max-sm:flex-row  max-sm:justify-between  ">
 
                                                         <div class=" text-xs  font-poppins">
-                                                        <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.finalPrice / 1000).toFixed(2)}k
+                                                            <CurrencySymbol currencyType={item.orderCurrencyName} /> {(item.finalPrice / 1000).toFixed(2)}k
                                                         </div>
 
                                                     </div>
 
 
-                                                    <div className=" flex  items-center justify-center ml-gap bg-[#eef2f9] h-8 max-md:w-[8.05rem] max-sm:flex-row w-[8.05rem] max-sm:justify-between  ">
+                                                    <div className=" flex items-center  ml-gap bg-[#eef2f9] h-8 w-[8.05rem] max-md:w-[8.05rem] max-sm:flex-row  max-sm:justify-between  ">
                                                         <div class=" text-xs  font-poppins">
                                                             <CurrencySymbol currencyType={item.orderCurrencyName} /> {visible && (item.orderId === particularRowData.orderId) ?
                                                                 <Input
@@ -837,34 +836,26 @@ const AccountOrderTable = (props) => {
 
                                                     </div>
                                                 </div>
-                                                <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8 w-[6.06rem]  max-md:w-[6.06rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                <div className=" flex  max-md:w-[6.06rem] w-[3.06rem] items-center  ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
 
                                                         {visible && (item.orderId === particularRowData.orderId) ? (
                                                             <>
                                                                 <div className=" flex justify-between flex-col">
-                                                                    <Button 
-                                                                    type='cancel'
-                                                                    onClick={() => {
+                                                                    <Button onClick={() => {
                                                                         handleSubmitPrice()
                                                                     }} >
-                                                                    {translatedMenuItems[16]}     {/* <FormattedMessage
-                                                                            id="app.save"
-                                                                            defaultMessage="Save"
+                                                                       {translatedMenuItems[16]} {/*Save"
                                                                         /> */}
                                                                     </Button>
-                                                                    <Button
-                                                                     type='cancel'
-                                                                     onClick={() => handleUpdateRevisePrice(false)}>
-                                                                    {translatedMenuItems[17]}     {/* <FormattedMessage
-                                                                        id="app.cancel"
-                                                                        defaultMessage="Cancel"
+                                                                    <Button onClick={() => handleUpdateRevisePrice(false)}>
+                                                                    {translatedMenuItems[17]}  {/*Cancel"
                                                                     /> */}
                                                                     </Button>
                                                                 </div>
                                                             </>
-                                                        ) : item.qcStartInd === 3 && item.priceConfirmInd === false ? <Tooltip title={translatedMenuItems[18]} 
-                                                        // {<FormattedMessage
+                                                        ) : item.qcStartInd === 3 && item.priceConfirmInd === false ? <Tooltip title=
+                                                        {translatedMenuItems[18]}   // {<FormattedMessage
                                                         //     id="app.updaterevisedprice"
                                                         //     defaultMessage="Update Revised Price"
                                                         // />}
@@ -881,45 +872,44 @@ const AccountOrderTable = (props) => {
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex w-[15.1rem] max-md:w-[15.1rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
+                                                <div className=" flex w-[5.1rem]  max-md:w-[15.1rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row  max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center">
                                                         {item.locationName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex text-xs w-[16.04rem] max-md:w-[16.04rem] max-sm:flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:justify-between ">
+                                                <div className=" flex w-[6.04rem] max-md:w-[16.04rem]  items-center justify-center ml-gap bg-[#eef2f9] h-8 text-xs max-sm:flex-row  max-sm:justify-between ">
                                                     <div >
-                                                        {/* <span style={{ color: item.supervisorUserName ? "green" : "red" }}>
-                                                            {item.supervisorUserName ? item.supervisorUserName : "Tag Supervisor"}
-                                                        </span> */}
-                                                        {item.supervisorUserName ? 
+                                                    {item.supervisorUserName ? 
                                                     <MultiAvatar
                                                                 primaryTitle={item.supervisorUserName}
                                                                 imageURL={item.imageURL}
                                                                 imgWidth={"1.8rem"}
                                                                 imgHeight={"1.8rem"}
-                                                            /> : <div class="text-[red]">
-                                                             {translatedMenuItems[19]}    {/* Tag Supervisor */}
+                                                            />:<div class="text-[red]">
+                                                                {/* Tag Supervisor */}{translatedMenuItems[19]}
                                                                 </div>}
+                                                        {/* <span style={{ color: item.supervisorUserName ? "green" : "red" }}>
+                                                            {item.supervisorUserName ? item.supervisorUserName : "Tag Supervisor"}
+                                                        </span> */}
                                                     </div>
                                                 </div>
-                                                <div class="flex flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 max-md:w-[10.03rem] w-[10.03rem] max-sm:flex-row  max-sm:justify-between">
+                                                <div class="flex flex-row w-[5.03rem] items-center  justify-center ml-gap bg-[#eef2f9] h-8 max-md:w-[10.03rem] max-sm:flex-row  max-sm:justify-between">
                                         <div class=" font-poppins text-xs">
                                               {item.shipById}
                                             </div>
-                                        </div>
-                                                <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8  max-md:w-[17.05rem] w-[17.05rem] max-sm:flex-row  max-sm:justify-between ">
+                                        </div> 
+                                                <div className=" flex w-[5.05rem]  max-md:w-[17.05rem] max-sm:flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8  max-sm:justify-between ">
                                                     <div class=" text-xs  font-poppins text-center">
                                                         {item.productionLocationName}
                                                     </div>
                                                 </div>
-                                                <div className=" flex items-center justify-center ml-gap bg-[#eef2f9] h-8 max-md:w-[11.06rem] w-[11.06rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                <div className=" flex w-[3.6rem] max-md:w-[11.06rem] max-sm:flex-row items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:justify-between  ">
                                                     {item.inventoryReceiveInd ? null
                                                         :
-                                                        <Tooltip title={translatedMenuItems[20]} 
-                                                        // {<FormattedMessage
-                                                        //     id="app.selectinventorylocation"
-                                                        //     defaultMessage="Select Inventory Location"
-                                                        // />}
+                                                        <Tooltip title={translatedMenuItems[20]}
+                                                   
+                                                        //  Select Inventory Location"
+                                                     
                                                         >
                                                             <Button
                                                                 type='primary'
@@ -928,19 +918,18 @@ const AccountOrderTable = (props) => {
                                                                     handleSetParticularOrderData(item);
                                                                     props.handleOrderPickupModal(true);
                                                                 }}
-                                                            >
-                                                              {translatedMenuItems[21]}   {/* <FormattedMessage
-                                                                    id="app.orderpickup"
-                                                                    defaultMessage="Pickup"
+                                                            >{translatedMenuItems[21]}
+                                                                {/*
+                                                                    Pickup"
                                                                 /> */}
 
                                                             </Button>
                                                         </Tooltip>}
                                                 </div>
-                                                <div class="flex items-center justify-end w-[8rem] ml-gap bg-[#eef2f9] h-8">
+                                                <div class="flex items-center  justify-end w-[9rem]  ml-gap bg-[#eef2f9] h-8">
                                                     <div class="flex flex-row  max-sm:flex-row max-sm:w-[10%]">
                                                     <div>
-                                                            <Tooltip title={translatedMenuItems[22]} 
+                                                            <Tooltip title={translatedMenuItems[22]}
                                                             // "PI List"
                                                             >
                                                                 <span
@@ -954,10 +943,9 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
                                                         </div>
                                                         <div>
-                                                            <Tooltip title={translatedMenuItems[23]} 
-                                                            // {<FormattedMessage
-                                                            //     id="app.notes"
-                                                            //     defaultMessage="Notes"
+                                                            <Tooltip title={translatedMenuItems[23]}
+                                                         
+                                                            //     Notes"
                                                             // />}
                                                             >
                                                                 <NoteAltIcon
@@ -972,10 +960,9 @@ const AccountOrderTable = (props) => {
                                                         </div>
 
                                                         <div>
-                                                            <Tooltip title={translatedMenuItems[24]} 
-                                                            // {<FormattedMessage
-                                                            //     id="app.status"
-                                                            //     defaultMessage="Status"
+                                                            <Tooltip title={translatedMenuItems[24]}
+                                                         
+                                                            //     Status"
                                                             // />}
                                                             >
                                                                 <EventRepeatIcon
@@ -989,11 +976,11 @@ const AccountOrderTable = (props) => {
                                                             </Tooltip>
                                                         </div>
 
-                                                
                                                   
+                                                   
 
                                                         <div>
-                                                            <Tooltip title={translatedMenuItems[25]} 
+                                                            <Tooltip title={translatedMenuItems[25]}
                                                             // "Collection"
                                                             >
                                                                 <PaidIcon
@@ -1009,7 +996,7 @@ const AccountOrderTable = (props) => {
                                                         </div>
                                                         { !item.inventoryReceiveInd ? (
                                                         <div class=" cursor-pointer">
-                                                        <Tooltip title={translatedMenuItems[30]} 
+                                                        <Tooltip title={translatedMenuItems[30]}
                                                         // "Add Supervisor"
                                                         >
                                                             <PersonAddAlt1
@@ -1024,11 +1011,10 @@ const AccountOrderTable = (props) => {
                                                     }
 
                                                     
-                                                  
+                                                   
                                                         <div>
-                                                            <Tooltip title={translatedMenuItems[26]} 
-                                                            // {<FormattedMessage
-                                                            //     id="app.rating"
+                                                            <Tooltip title={translatedMenuItems[26]}
+                                                        
                                                             //     defaultMessage="Rating"
                                                             // />}
                                                             >
@@ -1039,26 +1025,25 @@ const AccountOrderTable = (props) => {
 
                                                         </div>
                                                         <div>
-                                                            <Tooltip title={translatedMenuItems[27]} 
-                                                            // {<FormattedMessage
-                                                            //     id="app.feedback"
+                                                            <Tooltip title={translatedMenuItems[27]}
+                                                           
                                                             //     defaultMessage="Feedback"
-                                                            // />}
+                                                       
                                                             >
                                                                 <FeedbackIcon
-                                                                    className="!text-icon cursor-pointer text-[#10d512]"
+                                                                    className="!text-icon cursor-pointer text-[#10d512] "
                                                                 />
                                                             </Tooltip>
 
                                                         </div>
-                                               
-
                                                  
+
+                                                    
                                                         <div>
-                                                            {item.inventoryReceiveInd ? null : <Tooltip title={translatedMenuItems[28]} 
+                                                            {item.inventoryReceiveInd ? null : <Tooltip title={translatedMenuItems[28]}
                                                             // {<FormattedMessage
-                                                            //     id="app.updateorder"
-                                                            //     defaultMessage="Update Order"
+                                                            //     id="app.edit"
+                                                            //     defaultMessage="Edit"
                                                             // />}
                                                             >
                                                                 <BorderColorIcon
@@ -1071,23 +1056,29 @@ const AccountOrderTable = (props) => {
                                                                 />
                                                             </Tooltip>}
                                                         </div>
-                                                        <div>
-                                                            <Tooltip title={translatedMenuItems[29]} 
+                                                        </div>
+                                                        </div>
+                                                        
+
+                                                    </div>
+                                                    <div>
+                                                            <Tooltip title={translatedMenuItems[29]}
                                                             // {<FormattedMessage
                                                             //     id="app.delete"
                                                             //     defaultMessage="Detele"
                                                             // />}
                                                             >
-                                                               <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  
-                                                                    onClick={() => { props.removeOrderAcc(item.orderId,props.distributorId, 0, "repair","Low" )}}
+                                                                <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  
+                                                                    onClick={() => { props.removeOrderAcc({
+                                                                        active:item.active ? false : true},
+                                                                        item.orderId, props.distributorId, 0, "repair","High")
+                                                                      
+                                                                    }}
                                                                 />
                                                             </Tooltip>
 
                                                         </div>
-
-                                                        </div>
-                                                </div>
-
+                                                    
                                             </div>
 
                                             {checkAwb && (item.orderId === particularRowData.orderId) &&
@@ -1098,7 +1089,7 @@ const AccountOrderTable = (props) => {
 
                                     )
                                 })}
-                            </> : !props.lowDistributorOrder.length && !props.fetchingDistributorOfLow ? <NodataFoundPage /> : null}
+                            </> : !props.highDistributorOrder.length && !props.fetchingDistributorOfHigh ? <NodataFoundPage /> : null}
                     </InfiniteScroll>
                     {/* </div> */}
 
