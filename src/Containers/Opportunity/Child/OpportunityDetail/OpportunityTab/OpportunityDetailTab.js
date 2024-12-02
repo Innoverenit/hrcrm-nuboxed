@@ -235,7 +235,9 @@ return  <BundleLoader />
             onChange={this.handleTabChange}
             forceRender={true}
           >
-            {user.requirementAccessInd === true && user.recruitProInd === true ? (
+            {
+            // user.requirementAccessInd === true && 
+            user.recruitProInd === true ? (
              <TabPane
               tab={
                 <>
