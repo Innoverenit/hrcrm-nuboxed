@@ -273,7 +273,7 @@ const downloadPdf= async (item) => {
         <OnDeviceTrainingIcon className="!text-icon text-[#157a6e] cursor-pointer"/>{translatedMenuItems[0]}</div>
 <div className="w-[7.2rem] max-md:w-[6.4rem]" truncate> 
 <LightbulbIcon className="!text-icon text-[#bfa89e]" /> {translatedMenuItems[1]} ID</div>
-           <div className="w-[5.1rem] max-md:w-[5.1rem]">
+           <div className="w-[5.4rem] max-md:w-[5.1rem]">
                       <DateRangeIcon className='!text-icon  '  />  {translatedMenuItems[10]}  </div>
                         <div className=" w-[9.8rem] max-md:w-[9.6rem] truncate"> 
                         <LocalShippingIcon className='!text-icon  text-[#7a9e9f]'/> {translatedMenuItems[2]}</div>
@@ -307,7 +307,7 @@ const downloadPdf= async (item) => {
                                         <div class="flex">
                                           <div className=" flex  items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
-                                            <div className=" flex  items-center  md:w-[3.56rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-sm:w-full  ">
+                                            <div className=" flex  items-center justify-center md:w-[3.56rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-sm:w-full  ">
                                                                               <Tooltip>
                                                                                   <div class="flex max-sm:flex-row justify-between w-full md:">
                                                                                       <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
@@ -440,13 +440,13 @@ const downloadPdf= async (item) => {
       <div class="rounded m-1 mt-1 max-sm:m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex justify-between w-full p-1 bg-transparent  sticky   z-10">
         <div className='flex   justify-between w-[81%] items-end !text-lm font-bold font-poppins'>
-<div class="text-[#00A2E8] text-sm w-[6.25rem] max-md:w-[6.25rem] truncate"> 
+<div class="text-[#00A2E8] text-sm w-[4.25rem] max-md:w-[6.25rem] truncate"> 
 <ShopIcon className="text-[#00A2E8] !text-icon" />
   {translatedMenuItems[9]}
 </div>
-<div className="w-[6.4rem] md:w-[6.4rem]" truncate> 
+<div className="w-[7.4rem] max-md:w-[6.4rem]" truncate> 
 <LightbulbIcon className="!text-icon text-[#bfa89e]" /> {translatedMenuItems[1]} ID</div>
-           <div className="w-[5.1rem] max-md:w-[5.1rem]">
+           <div className="w-[5.4rem] max-md:w-[5.1rem]">
                       <DateRangeIcon className='!text-icon  '  />  {translatedMenuItems[10]}  </div>
                         <div className=" w-[9.6rem] max-md:w-[9.6rem] truncate"> 
                         <LocalShippingIcon className='!text-icon  text-[#7a9e9f]'/> {translatedMenuItems[2]}</div>
@@ -481,7 +481,7 @@ const downloadPdf= async (item) => {
                                         <div class="flex">
                                           <div className=" flex  items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
-                                            <div className=" flex  items-center  md:w-[3.56rem] border-l-2 border-green-500 bg-[#eef2f9] h-8 max-sm:w-full  ">
+                                            <div className=" flex  items-center justify-center md:w-[3.56rem] border-l-2 border-green-500 bg-[#eef2f9] h-8 max-sm:w-full  ">
                                                                               <Tooltip>
                                                                                   <div class="flex max-sm:flex-row justify-between w-full md:">
                                                                                       <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">

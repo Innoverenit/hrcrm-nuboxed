@@ -358,29 +358,29 @@ const handleSelectedOrderDropDown =  async (value,item) => {
         <div className=" max-md:w-[3.54rem] w-[4.2rem] text-[white] truncate flex justify-center bg-[red]">
         {translatedMenuItems[0]} {/* Urgent */}
            </div>
-                        <div className=" text-[#00A2E8] truncate text-sm w-[67rem] max-md:w-[7.4rem]">
-                        <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'/>   {translatedMenuItems[1]} ID{/*Order ID"/> */}
+                        <div className=" text-[#00A2E8] truncate text-sm w-[7rem] max-md:w-[7.4rem]">
+                        <DynamicFeedIcon className='!text-icon  text-[#e4eb2f]'/>   {translatedMenuItems[1]} ID{/*Order ID"/> */}
                           </div>
-                          <div className="w-[8.1rem] truncate max-md:w-[7rem]">  
+                          <div className="w-[8.4rem] truncate max-md:w-[7rem]">  
                           <DateRangeIcon className='!text-icon  '/> {translatedMenuItems[9]}
                           </div>
-                        <div className="w-[8.1rem] truncate max-md:w-[9.1rem]">
+                        <div className="w-[8.04rem] truncate max-md:w-[9.1rem]">
                         <LocalShippingIcon
-                         className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]} {/* Delivery"/> */}
+                         className='!text-icon  text-[#e4eb2f]'/> {translatedMenuItems[2]} {/* Delivery"/> */}
                           </div>
-                        <div className="w-[10.1rem] truncate max-md:w-[10.8rem] ">
-                        <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[3]} {/* Location"/> */}
+                        <div className="w-[10.3rem] truncate max-md:w-[10.8rem] ">
+                        <LocationOnIcon className='!text-icon  text-[#e4eb2f]'/> {translatedMenuItems[3]} {/* Location"/> */}
                           </div>
                           <div className="w-[7.6rem] truncate max-md:w-[4.4rem]">
                           <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[5]} {/* Contact"/> */}
                           </div>
-                          <div className="w-[4.9rem] truncate max-md:w-[4.1rem]">
+                          <div className="w-[5.2rem] truncate max-md:w-[4.1rem]">
                         {/* {translatedMenuItems[2]}  */}<AddShoppingCartIcon className='!text-icon'/>  Items
                           </div>
-                          <div className="w-[5.2rem] truncate max-md:w-[4.4rem]">
+                          <div className="w-[5.4rem] truncate max-md:w-[4.4rem]">
                            <BackpackIcon className=" !text-icon text-[#ba5624]"/> {/* {translatedMenuItems[5]} */} Packing
                           </div>
-                          <div className="w-[5.1rem] truncate max-md:w-[4.4rem]">
+                          <div className="w-[5.4rem] truncate max-md:w-[4.4rem]">
                           <RocketLaunchIcon className=" !text-icon text-[#42bfdd]"/>  {/* {translatedMenuItems[5]} */} Shipping
                           </div> <div className="w-[5.3rem] truncate max-md:w-[4.4rem]">
 
@@ -423,7 +423,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                         <div class="flex">
                                           <div className=" flex  items-center   max-sm:w-full">
                                             <div className="flex items-center max-sm:w-full">
-                                            <div className=" flex  items-center w-[4rem]  max-md:w-[4rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-sm:w-full  ">
+                                            <div className=" flex  items-center  justify-center w-[4rem]  max-md:w-[4rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-sm:w-full  ">
 
                                             {editsuppliesId === item.orderId ? (
                         <>
@@ -644,29 +644,29 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
         <div className=" max-md:w-[3.54rem] w-[4.2rem] text-[white] truncate flex justify-center bg-[teal]">
         {translatedMenuItems[8]} {/* normal */}
            </div>
-                        <div className=" text-[#00A2E8] truncate text-sm w-[67rem] max-md:w-[7.4rem]">
-                        <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'/>   {translatedMenuItems[1]} ID{/*Order ID"/> */}
+                        <div className=" text-[#00A2E8] truncate text-sm w-[7rem] max-md:w-[7.4rem]">
+                        <DynamicFeedIcon className='!text-icon  text-[#e4eb2f]'/>   {translatedMenuItems[1]} ID{/*Order ID"/> */}
                           </div>
-                          <div className="w-[8.1rem] truncate max-md:w-[7rem]">  
+                          <div className="w-[8.4rem] truncate max-md:w-[7rem]">  
                           <DateRangeIcon className='!text-icon  '/> {translatedMenuItems[9]}
                           </div>
-                        <div className="w-[8.1rem] truncate max-md:w-[9.1rem]">
+                        <div className="w-[8.04rem] truncate max-md:w-[9.1rem]">
                         <LocalShippingIcon
-                         className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]} {/* Delivery"/> */}
+                         className='!text-icon  text-[#e4eb2f]'/> {translatedMenuItems[2]} {/* Delivery"/> */}
                           </div>
-                        <div className="w-[10.1rem] truncate max-md:w-[10.8rem] ">
-                        <LocationOnIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[3]} {/* Location"/> */}
+                        <div className="w-[10.3rem] truncate max-md:w-[10.8rem] ">
+                        <LocationOnIcon className='!text-icon  text-[#e4eb2f]'/> {translatedMenuItems[3]} {/* Location"/> */}
                           </div>
                           <div className="w-[7.6rem] truncate max-md:w-[4.4rem]">
                           <ContactPageIcon className='!text-icon  '  />  {translatedMenuItems[5]} {/* Contact"/> */}
                           </div>
-                          <div className="w-[4.9rem] truncate max-md:w-[4.1rem]">
+                          <div className="w-[5.2rem] truncate max-md:w-[4.1rem]">
                         {/* {translatedMenuItems[2]}  */}<AddShoppingCartIcon className='!text-icon'/>  Items
                           </div>
-                          <div className="w-[5.2rem] truncate max-md:w-[4.4rem]">
+                          <div className="w-[5.4rem] truncate max-md:w-[4.4rem]">
                            <BackpackIcon className=" !text-icon text-[#ba5624]"/> {/* {translatedMenuItems[5]} */} Packing
                           </div>
-                          <div className="w-[5.1rem] truncate max-md:w-[4.4rem]">
+                          <div className="w-[5.4rem] truncate max-md:w-[4.4rem]">
                           <RocketLaunchIcon className=" !text-icon text-[#42bfdd]"/>  {/* {translatedMenuItems[5]} */} Shipping
                           </div> <div className="w-[5.3rem] truncate max-md:w-[4.4rem]">
 
@@ -697,7 +697,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                       <div>
                <div className="flex rounded  mt-1 bg-white py-ygap items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                   <div class="flex">
-                      <div className=" flex  items-center w-[4rem] max-md:w-[4rem]  border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
+                      <div className=" flex  items-center justify-center w-[4rem] max-md:w-[4rem]  border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
                       {editsuppliesId === item.orderId ? (
                         <>
                      <Select

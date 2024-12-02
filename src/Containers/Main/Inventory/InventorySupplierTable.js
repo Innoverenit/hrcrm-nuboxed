@@ -9,7 +9,13 @@ import { Input, Select } from 'antd';
 import MicIcon from '@mui/icons-material/Mic';
 import axios from "axios";
 import { base_url2 } from "../../../Config/Auth";
-
+import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import WidgetsIcon from '@mui/icons-material/Widgets';
+import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
+import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
+import AttractionsIcon from '@mui/icons-material/Attractions'; 
+import DateRangeIcon from '@mui/icons-material/DateRange';
 
 const { Option } = Select;
 
@@ -201,45 +207,53 @@ function InventorySupplierTable(props) {
                 </div>
             <div className=' flex justify-end sticky mt-3  z-auto'>
                 <div class="rounded  w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[100%] p-1 bg-transparent font-bold sticky items-end top-0 z-10 ">
+                    <div className=" flex justify-between w-[100%] p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end max-xl:text-[0.65rem] top-0 z-10 ">
                         <div className="w-4"></div>
-                    <div className="text-[#00A2E8] text-base w-[18.69rem] font-poppins  font-bold max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> {translatedMenuItems[12]}
+                    <div className="text-[#00A2E8] text-sm w-[18.69rem] truncate max-md:w-[18.69rem] max-xl:w-[21.1rem]"> {translatedMenuItems[12]}
                             {/* Name*/}
                             </div>
-                    <div className=" w-[13.69rem] font-poppins text-xs font-bold  max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> {translatedMenuItems[0]}
+                    <div className=" w-[13.69rem] truncate max-md:w-[13.69rem]   max-xl:w-[21.1rem]"> {translatedMenuItems[0]}
                             {/* Trade ID */}
                             </div>
-                            <div className=" w-[14.11rem] font-poppins text-xs font-bold max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[1]}
+                            <div className=" w-[14.11rem] truncate max-md:w-[14.11rem]  max-xl:w-[9.11rem]">
+                            <DateRangeIcon className="!text-icon "/> {translatedMenuItems[1]}
                             {/* Creation  */}
                         </div>
-                        <div className=" w-[19.1rem] font-poppins text-xs font-bold max-xl:text-[0.65rem] max-xl:w-[21.1rem]"> {translatedMenuItems[2]}
+                        <div className=" w-[19.1rem] truncate max-md:w-[19.1rem]  max-xl:w-[21.1rem]"> 
+                        <WidgetsIcon className='!text-icon    text-[#42858c]' />{translatedMenuItems[2]}
                             {/* Category */}
                             </div>
-                        <div className=" w-[17.1rem] font-poppins text-xs font-bold max-xl:text-[0.65rem] max-xl:w-[9.1rem]"> {translatedMenuItems[3]}
+                        <div className=" w-[17.1rem]  truncate max-md:w-[17.1rem]  max-xl:w-[9.1rem]"> 
+                        <BrandingWatermarkIcon className="!text-icon" /> {translatedMenuItems[3]}
                             {/* Brand */}
                         </div>
-                        <div className=" w-[42.12rem] font-poppins text-xs font-bold max-xl:text-[0.65rem] max-xl:w-[9.12rem]"> {translatedMenuItems[4]}
+                        <div className=" w-[15.12rem] truncate max-md:w-[42.12rem]  max-xl:w-[9.12rem]"> 
+                        <ModelTrainingIcon className=" !text-icon" /> {translatedMenuItems[4]}
                            {/* Model */}
                         </div>
-                        <div className=" w-[13.23rem] font-poppins text-xs font-bold max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[5]}
+                        <div className=" w-[13.23rem] truncate max-md:w-[13.23rem]  max-xl:w-[9.11rem]">
+                        <DateRangeIcon className="!text-icon "/> {translatedMenuItems[5]}
                           {/* Availability Date */}
                         </div>
-                        <div className=" w-[13.23rem] font-poppins text-xs font-bold max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[6]}
+                        <div className=" w-[13.23rem] truncate max-md:w-[13.23rem]  max-xl:w-[9.11rem]"> 
+                        <AttractionsIcon className="  !text-icon" />{translatedMenuItems[6]}
                           {/* Attribute */}
                         </div>
-                        <div className=" w-[12.11rem] font-poppins text-xs font-bold max-xl:text-[0.65rem] max-xl:w-[9.11rem]"> {translatedMenuItems[7]}
+                        <div className=" w-[12.11rem] truncate max-md:w-[12.11rem]  max-xl:w-[9.11rem]">
+                        <VerifiedUserIcon className="  !text-icon" />   {translatedMenuItems[7]}
                             {/* Quality */}
                         </div>
-                        <div className=" w-[13.13rem] font-poppins text-xs font-bold max-xl:text-[0.65rem] max-xl:w-[16.13rem]"> {translatedMenuItems[8]}
+                        <div className=" w-[9.13rem] max-md:w-[13.13rem]  max-xl:w-[16.13rem]"> {translatedMenuItems[8]}
                             {/* Specs */}
                         </div>
-                        <div className=" md:w-[14.9rem] font-poppins text-xs font-bold "> {translatedMenuItems[9]}
+                        <div className="w-[4.9rem] truncate max-md:w-[14.9rem]  "> {translatedMenuItems[9]}
                            {/* Unit */}
                         </div>
-                        <div className=" md:w-[5.9rem] font-poppins text-xs font-bold"> {translatedMenuItems[10]}
+                        <div className="w-[11.8rem] truncate max-md:w-[5.9rem] ">
+                        <CurrencyExchangeIcon className='!text-icon  mr-1   text-[#84a59d]' /> {translatedMenuItems[10]}
                          {/* Price */}
                         </div>
-                        <div className=" md:w-[5.9rem] font-poppins text-xs font-bold"> {translatedMenuItems[11]}
+                        <div className="w-[11.9rem] truncate max-md:w-[5.9rem]"> {translatedMenuItems[11]}
                          {/* Publish */}
                         </div>
                     </div>
@@ -258,10 +272,10 @@ function InventorySupplierTable(props) {
                                     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                     return (
                                         <>
-                                            <div key={item.inventorySupplieId} className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" > 
+                                            <div key={item.inventorySupplieId} className="flex rounded justify-between mt-1 bg-white max-xl:text-[0.65rem] items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" > 
                                                 <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
                                                 <div className=" flex  justify-between items-center  w-[15.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" font-normal max-xl:text-[0.65rem] text-xs font-poppins flex items-center">
+                                                        <div class=" font-normal  text-xs font-poppins flex items-center">
                                                            {item.tradeId}
                                                            
 
@@ -274,7 +288,7 @@ function InventorySupplierTable(props) {
                                                     </div>
                                                            
                                                     <div className=" flex  justify-between  w-[9.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="  max-xl:text-[0.65rem] text-xs font-poppins flex items-center">
+                                                        <div class="   text-xs font-poppins flex items-center">
                                                             {dayjs(item.creationDate).format("DD/MM/YYYY")}
                                                            
 
@@ -282,7 +296,7 @@ function InventorySupplierTable(props) {
                                                         
                                                     </div>
                                                     <div className=" flex  justify-between  w-[9.25rem] max-xl:w-[27.25rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" max-xl:text-[0.65rem] text-xs font-poppins flex items-center">
+                                                        <div class="  text-xs font-poppins flex items-center">
                                                             {item.categoryName}
                                                            
 
@@ -290,18 +304,18 @@ function InventorySupplierTable(props) {
                                                         
                                                     </div>
                                                     <div className=" flex   w-[8.1rem] max-xl:w-[10.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="flex items-center  max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        <div class="flex items-center   text-xs font-poppins">
                                                             {item.brand}
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[21.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class=" flex items-center  max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        <div class=" flex items-center   text-xs font-poppins">
 
                                                             {item.model}
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[6.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="flex items-center   max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        <div class="flex items-center    text-xs font-poppins">
 {editsuppliesId === item.inventorySupplieId ? (
                                                                 <input
           type="date"
@@ -319,29 +333,29 @@ function InventorySupplierTable(props) {
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[6.2rem] max-xl:w-[10.2rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="flex items-center   max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        <div class="flex items-center    text-xs font-poppins">
 
                                                             {item.attributeName}
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[5.1rem] max-xl:w-[20.1rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="flex items-center  max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        <div class="flex items-center   text-xs font-poppins">
 
                                                             {item.quality}
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[4.32rem] max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="flex items-center  max-xl:text-[0.65rem] text-xs font-poppins w-20">
+                                                        <div class="flex items-center   text-xs font-poppins w-20">
                                                             {item.spces}
                                                         </div>
                                                     </div>
                                                     <div className=" flex   w-[6.41rem] max-xl:w-[20.41rem]  max-sm:justify-between  max-sm:flex-row ">
-                                                        <div class="flex items-center   max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        <div class="flex items-center    text-xs font-poppins">
                                                            {item.unit}
                                                         </div>
                                                     </div>
                                                     <div className=" flex  w-[8.01rem] max-xl:w-[18.01rem] max-sm:justify-between items-center max-sm:flex-row ">
-                                                        <div class="flex items-center   max-xl:text-[0.65rem] text-xs font-poppins">
+                                                        <div class="flex items-center    text-xs font-poppins">
                                                            {item.currency} {item.price}
                                                         </div>
                                                     </div>

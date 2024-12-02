@@ -14,7 +14,10 @@ import { BundleLoader } from "../../../../../Components/Placeholder";
 import InfiniteScroll from "react-infinite-scroll-component";
 import ReactToPrint from "react-to-print";
 import QrCodeIcon from '@mui/icons-material/QrCode';
-import NodataFoundPageRefubish from "../../../Refurbish/NodataFoundPageRefubish";
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import BrandingWatermarkIcon from '@mui/icons-material/BrandingWatermark'
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import NodataFoundPageAccount from "./NodataFoundPageAccount";
 const PhoneNotesOrderModal = lazy(() => import("./PhoneNotesOrderModal"));
 const AccountPhoneTaskTable = lazy(() => import("./AccountPhoneTaskTable"));
@@ -232,7 +235,7 @@ function DistributorPauseForm(props) {
                     <>
                         <div className=' flex  sticky flex-col z-auto'>
                             <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                            <div class="w-72 ml-4 mb-2 items- max-sm:w-28">
+                            <div class="w-72 ml-4 mb-2 mt-2 items- max-sm:w-28">
           <Input
             placeholder="Search by Imei"
             width={"100%"}
@@ -243,26 +246,27 @@ function DistributorPauseForm(props) {
         
           />
         </div>
-                                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
-                                    <div className=" md:w-[4.2rem]">
-                                    {translatedMenuItems[0]}</div>
+                                <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins items-end !text-lm sticky  z-10">
+                                    <div className="w-[4.9rem] text-sm text-[#00A2E8] truncate max-md:w-[4.2rem]">
+                                    <BrandingWatermarkIcon className="!text-icon" />  {translatedMenuItems[0]}</div>
                                     <div className=" md:w-[6.5rem]">
-                                        {translatedMenuItems[1]}
+                                    <ModelTrainingIcon className=" !text-icon" /> {translatedMenuItems[1]}
                                       
                                         </div>
-                                    <div className="md:w-[11.2rem]">{translatedMenuItems[2]}</div>
-                                    <div className=" md:w-[9.2rem]">{translatedMenuItems[3]}</div>
-                                    <div className=" md:w-[7.5rem]">{translatedMenuItems[4]}</div>
-                                    <div className=" md:w-[5.8rem]">{translatedMenuItems[5]}</div>
-                                    <div className=" md:w-[6.5rem]">{translatedMenuItems[6]}</div>
-                                    <div className=" md:w-[5.31rem]">{translatedMenuItems[7]}</div>
-                                    <div className=" md:w-[6.3rem]">{translatedMenuItems[8]}</div>
-                                    <div className=" md:w-[4rem]">QC</div>
-                                    <div className=" md:w-[6rem]">{translatedMenuItems[9]}</div>
-                                    <div className=" md:w-[2rem]"></div>
-                                    <div className=" md:w-[1rem]"></div>
-                                    <div className=" md:w-[1rem]"></div>
-                                    <div className=" md:w-[1rem]"></div>
+                                    <div className="w-[9.4rem] truncate max-md:w-[11.2rem]">
+                                    <LightbulbIcon className='!text-base  text-[#e4eb2f]'/>{translatedMenuItems[2]}</div>
+                                    <div className="w-[8.1rem] truncate max-md:w-[9.2rem]">{translatedMenuItems[3]}</div>
+                                    <div className="w-[4.5rem] truncate max-md:w-[7.5rem]">{translatedMenuItems[4]}</div>
+                                    <div className="w-[7.7rem] truncate max-md:w-[5.8rem]">{translatedMenuItems[5]}</div>
+                                    <div className="w-[6.5rem] truncate max-md:w-[6.5rem]">{translatedMenuItems[6]}</div>
+                                    <div className="w-[6.31rem] truncate max-md:w-[5.31rem]">
+                                    <CurrencyExchangeIcon className='!text-icon  mr-1   text-[#84a59d]' />  {translatedMenuItems[7]}</div>
+                                    <div className="w-[9.3rem] truncate max-md:w-[6.3rem]">
+                                    <CurrencyExchangeIcon className='!text-icon  mr-1   text-[#84a59d]' /> {translatedMenuItems[8]}</div>
+                                    <div className="w-[6rem] truncate max-md:w-[4rem]">QC</div>
+                                    <div className="w-[7rem] truncate max-md:w-[6rem]">{translatedMenuItems[9]}</div>
+                                    <div className="w-[7rem] truncate max-md:w-[2rem]"></div>
+                                 
                                 </div>
                                 <div >
                                     <InfiniteScroll
@@ -270,7 +274,7 @@ function DistributorPauseForm(props) {
                                         next={handleLoadMore}
                                         hasMore={hasMore}
                                         loader={props.fetchingPhoneListById ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                                        height={"78vh"}
+                                        height={"79vh"}
                                         style={{scrollbarWidth: "thin"}}
                                         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
                                     >
@@ -279,25 +283,25 @@ function DistributorPauseForm(props) {
                                                 <div>
                                                     <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] " >
                                                         <div class="flex">
-                                                            <div className=" flex   items-center   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs  font-poppins">
+                                                            <div className=" flex   border-l-2 border-green-500 bg-[#eef2f9]  items-center   md:w-[4rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                                <div class=" text-xs ml-gap font-poppins">
                                                                     {item.company}
                                                                 </div>
                                                             </div>
 
-                                                            <div className=" flex    items-center   md:w-[6.51rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs  font-poppins">
+                                                            <div className=" flex     items-center justify-start h-8 ml-gap bg-[#eef2f9]  md:w-[6.51rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                                <div class=" text-xs   ml-gap font-poppins">
                                                                     {item.model}
                                                                 </div>
 
                                                             </div>
-                                                            <div className=" flex   items-center    md:w-[9.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs  font-poppins">
+                                                            <div className=" flex    items-center justify-start h-8 ml-gap bg-[#eef2f9] h-8 ml-gap bg-[#eef2f9]   md:w-[9.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                                <div class=" text-xs  ml-gap font-poppins">
                                                                     {item.imei}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex    items-center   md:w-[7.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs  font-poppins">
+                                                            <div className=" flex      items-center justify-center h-8 ml-gap bg-[#eef2f9] h-8 ml-gap bg-[#eef2f9]   md:w-[7.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                                <div class=" text-xs  ml-gap  font-poppins">
                                                                     {item.os} {item.gb} {item.color}
                                                                 </div>
                                                             </div>
@@ -311,34 +315,34 @@ function DistributorPauseForm(props) {
                                                                     {item.color}
                                                                 </div>
                                                             </div> */}
-                                                            <div className=" flex    items-center   md:w-[4.60rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs  font-poppins">
+                                                            <div className=" flex      items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[4.60rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                                <div class=" text-xs  ml-gap font-poppins">
                                                                     {item.condition}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex    items-center   md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs  font-poppins">
+                                                            <div className=" flex      items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[7.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                                <div class=" text-xs  ml-gap  font-poppins">
                                                                     {item.expectedPrice}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex    items-center   md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs  font-poppins">
+                                                            <div className=" flex     items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                                <div class=" text-xs   ml-gap font-poppins">
                                                                     {item.totalhours}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex    items-center   md:w-[6.50rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs  font-poppins">
+                                                            <div className=" flex     items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[6.50rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                                <div class=" text-xs   ml-gap font-poppins">
                                                                     {item.totalExtraCost}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex    items-center   md:w-[8.8rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs  font-poppins">
+                                                            <div className=" flex      items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[8.8rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                                <div class=" text-xs  ml-gap font-poppins">
                                                                     {item.totalPrice}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex   items-center    md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                                <div class=" text-xs  font-poppins">
-                                                                    <ButtonGroup>
+                                                            <div className=" flex    items-center justify-center h-8 ml-gap bg-[#eef2f9]    md:w-[6.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                                <div class=" text-xs  ml-gap font-poppins">
+                                                                    <ButtonGroup className="w-[4rem]">
                                                                         <StatusIcon
                                                                             color="blue"
                                                                             type="To Start"
@@ -374,12 +378,12 @@ function DistributorPauseForm(props) {
                                                                     </ButtonGroup>
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex   items-center   md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                            <div className=" flex    items-center justify-center h-8 ml-gap bg-[#eef2f9]   md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     {item.issue}
                                                                 </div>
                                                             </div>
-                                                            <div class="flex items-center">
+                                                            <div class="flex   items-center justify-center h-8 ml-gap bg-[#eef2f9]">
                                                             <div className=" flex   md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                                 <div class=" text-xs  font-poppins">
                                                                     <Tooltip title="Spare"

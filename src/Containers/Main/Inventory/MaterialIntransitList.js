@@ -1,4 +1,4 @@
-import React, { useEffect, useState,  } from "react";
+import React, { useEffect, useState,lazy  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -12,9 +12,8 @@ import { withRouter } from "react-router";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {  Select } from "antd";
 import CategoryIcon from '@mui/icons-material/Category'
-import EmptyPage from "../EmptyPage";
 
-
+const EmptyPage = lazy(() =>import("../EmptyPage") );
 const { Option } = Select;
 
 const MaterialIntransitList = (props) => {
@@ -44,7 +43,7 @@ const MaterialIntransitList = (props) => {
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[100%] font-poppins  text-xs !text-lm p-1 bg-transparent font-bold items-end sticky z-10">
                         <div className=""></div>
-                        <div className="text-[#00A2E8] truncate text-base w-[15.5rem] max-md:w-[15.5rem]">
+                        <div className="text-[#00A2E8] truncate text-sm w-[16.2rem] max-md:w-[15.5rem]">
                             Po ID
                             </div>
                         <div className="truncate w-[23.52rem] max-md:w-[23.52rem]">
@@ -100,7 +99,7 @@ const MaterialIntransitList = (props) => {
                                             </div>
                                         </div>
                                       
-                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[45rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[46rem] max-sm:flex-row w-full max-sm:justify-between ">
                                           
                                         </div>
                                        

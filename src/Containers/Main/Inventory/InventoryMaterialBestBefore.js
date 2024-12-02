@@ -770,26 +770,32 @@
 
 
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,lazy,Suspense  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PinIcon from '@mui/icons-material/Pin';
 import CategoryIcon from '@mui/icons-material/Category'
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import TerminalSharp from "@mui/icons-material/TerminalSharp";
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import FactoryIcon from '@mui/icons-material/Factory';
+import ShareLocationIcon from '@mui/icons-material/ShareLocation';
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+import RepartitionIcon from '@mui/icons-material/Repartition'; 
+
 import {
   getMaterialBestBefore,
   addToWaste,
   addAsileInbest,
 } from "../Inventory/InventoryAction";
-import TermsnConditionModal from "../Suppliers/Child/SupplierDetails/SupplierDetailTab/TermsnConditionModal"
 import { handleTermsnConditionModal } from "../Suppliers/SuppliersAction";
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
 import { Tooltip, Select, Button } from "antd";
 import { base_url2 } from "../../../Config/Auth";
-import TerminalSharp from "@mui/icons-material/TerminalSharp";
-import DateRangeIcon from '@mui/icons-material/DateRange';
-import FactoryIcon from '@mui/icons-material/Factory';
+
+const TermsnConditionModal = lazy(() =>import("../Suppliers/Child/SupplierDetails/SupplierDetailTab/TermsnConditionModal") );
+const EmptyPage = lazy(() =>import("../EmptyPage") );
 const { Option } = Select;
 
 const InventoryMaterialBestBefore = (props) => {
@@ -930,9 +936,9 @@ const InventoryMaterialBestBefore = (props) => {
           <div className="w-[4.12rem] truncate max-md:w-[5.12rem]">Country</div>
           <div className="w-[6.66rem] truncate max-md:w-[8.12rem]"><DateRangeIcon className="!text-icon "/>Best Use Date</div>
           <div className="w-[5.6rem] truncate max-md:w-[8.12rem]"></div>
-          <div className="w-[7.7rem] truncate max-md:w-[9.2rem]">Zone</div>
-          <div className="w-[7.8rem] truncate max-md:w-[9.2rem]">Aisle</div>
-          <div className="w-[7.12rem] truncate max-md:w-[7.12rem]">Rack</div>
+          <div className="w-[7.7rem] truncate max-md:w-[9.2rem]">< ShareLocationIcon className=" !text-icon"/>Zone</div>
+          <div className="w-[7.8rem] truncate max-md:w-[9.2rem]">< MeetingRoomIcon className=" !text-icon"/>Aisle</div>
+          <div className="w-[7.12rem] truncate max-md:w-[7.12rem]">< RepartitionIcon className=" !text-icon"/>Rack</div>
           <div className="w-[7.22rem] truncate max-md:w-[3.22rem]">Discount</div>
         </div>
 
@@ -1050,6 +1056,7 @@ const InventoryMaterialBestBefore = (props) => {
         ))}
       </div>
     </div>
+    <Suspense fallback={"Loading..."}>
     <TermsnConditionModal
                 rowData={row}
                 addTermsnCondition={props.addTermsnCondition}
@@ -1057,6 +1064,7 @@ const InventoryMaterialBestBefore = (props) => {
                 translateText={props.translateText}
                 selectedLanguage={props.selectedLanguage}
             />
+            </Suspense>
             </>
 
   );

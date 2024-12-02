@@ -1,4 +1,4 @@
-import React, { useEffect, useState,  } from "react";
+import React, { useEffect, useState,lazy,Suspense  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -11,16 +11,17 @@ import {handleTermsnConditionModal} from "../Suppliers/SuppliersAction"
 import dayjs from "dayjs";
 import { withRouter } from "react-router";
 import { TerminalSharp } from "@mui/icons-material";
-
+import { BundleLoader } from "../../../Components/Placeholder";
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Tooltip, Select, Button } from "antd";
 import FactoryIcon from '@mui/icons-material/Factory';
-import GrnListOfPOModal from "./Child/InventoryDetails/InventoryMaterialTab/GrnListOfPOModal";
-import ReceivedDetailModalOut from "./ReceivedDetailModalOut";
-import TermsnConditionModal from "../Suppliers/Child/SupplierDetails/SupplierDetailTab/TermsnConditionModal";
-import EmptyPage from "../EmptyPage";
 import DateRangeIcon from '@mui/icons-material/DateRange';
+ 
+const TermsnConditionModal = lazy(() =>import("../Suppliers/Child/SupplierDetails/SupplierDetailTab/TermsnConditionModal"));
+const GrnListOfPOModal = lazy(() =>import("./Child/InventoryDetails/InventoryMaterialTab/GrnListOfPOModal"));
+const ReceivedDetailModalOut = lazy(() =>import("./ReceivedDetailModalOut"));
+const EmptyPage = lazy(() =>import("../EmptyPage"));
 
 const { Option } = Select;
 
@@ -82,7 +83,7 @@ const MaterialReceivedTableOut = (props) => {
                     <div className=" flex  w-[100%] font-poppins  text-xs  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end z-10">
                        
                         <div className="text-[#00A2E8] truncate text-sm w-[18.1rem] max-md:w-[19.5rem]">PO ID</div>
-                        <div className=" w-[15.52rem] max-md:w-[15.52rem] truncate">
+                        <div className=" w-[15.8rem] max-md:w-[15.52rem] truncate">
                             {/* Created" */}
                             <DateRangeIcon className="!text-icon "/>{props.translatedMenuItems[21]}
                         </div>
@@ -196,6 +197,7 @@ const MaterialReceivedTableOut = (props) => {
                     </InfiniteScroll>
                 </div>
             </div>
+            <Suspense fallback={<BundleLoader />}>
             <ReceivedDetailModalOut
                 row={row}
                 handleMaterialReceived={props.handleMaterialReceived}
@@ -215,6 +217,7 @@ const MaterialReceivedTableOut = (props) => {
                 row={row}
                 translatedMenuItems={props.translatedMenuItems}
             />
+              </Suspense>
         </>
     );
 }
