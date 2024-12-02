@@ -1050,7 +1050,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
         )} 
 
         {/*Publish*/}
-              {user.department === "Management" && user.moduleMapper.recruitProInd === true && (
+              {/* {user.department === "Management" && user.moduleMapper.recruitProInd === true && (
             <Menu.Item key="/invoice" style={{height:"1.45rem",paddingLeft:"1px"}} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
               <Link to="/Invoice">
                 <TextSnippetIcon
@@ -1063,7 +1063,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
                 </span>
               </Link>
             </Menu.Item>
-          )}  
+          )}   */}
       
 
         {/* {user.userType !== "USER" && user.department !== "VENDOR" && user.department !== "Customer" && user.department !== "Recruiter" &&( */}

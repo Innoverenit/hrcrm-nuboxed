@@ -318,6 +318,19 @@ const initialState = {
   fetchingDocumentsBySupplierIdError: false,
   documentsBySupplierId: [],
 
+  fetchingDocumentsCountBySupplierId: false,
+  fetchingDocumentsCountBySupplierIdError: false,
+  documentCountSupplierId:{},
+
+  deleteErpDocument: false,
+  deleteErpDocumentError: false,
+
+  updateDocumentById: false,
+  updateDocumentByIdError: false,
+
+  updateDocumentSupplier: false,
+  updateDocumentSupplierError: false,
+
   addSupplierContactModal: false,
 
 
@@ -1087,7 +1100,9 @@ export const suppliersReducer = (state = initialState, action) => {
         ...state,
         addingDocumentBySupplierId: false,
         addingDocumentBySupplierIdError: false,
+        documentsBySupplierId: [action.payload, ...state.documentsBySupplierId],
         supplierDocumentUploadModal: false,
+        
       };
     case types.ADD_SUPPLIER_DOCUMENT_FAILURE:
       return {
@@ -1118,6 +1133,82 @@ export const suppliersReducer = (state = initialState, action) => {
         fetchingDocumentsBySupplierId: false,
         fetchingDocumentsBySupplierIdError: true,
       };
+
+      case types.GET_SUPPLIER_DOCUMENTS_COUNT_REQUEST:
+        return {
+          ...state,
+          fetchingDocumentsCountBySupplierId: true,
+        };
+      case types.GET_SUPPLIER_DOCUMENTS_COUNT_SUCCESS:
+        return {
+          ...state,
+          fetchingDocumentsCountBySupplierId: false,
+          documentCountSupplierId: action.payload,
+        };
+      case types.GET_SUPPLIER_DOCUMENTS_COUNT_FAILURE:
+        return {
+          ...state,
+          fetchingDocumentsCountBySupplierId: false,
+          fetchingDocumentsCountBySupplierIdError: true,
+        };
+
+        case types.DELETE_ERP_DOCUMENT_REQUEST:
+          return { ...state, deleteErpDocument: true };
+        case types.DELETE_ERP_DOCUMENT_SUCCESS:
+          return {
+            ...state,
+            deleteErpDocument: false,
+            documentsBySupplierId: state.documentsBySupplierId.filter(
+              (item) => item.documentId !== action.payload
+            ),
+          };
+        case types.DELETE_ERP_DOCUMENT_FAILURE:
+          return { ...state, 
+             deleteErpDocument: false,
+             deleteErpDocumentError: false };
+
+             case types.UPDATE_ERP_DOCUMENT_BY_ID_REQUEST:
+              return { ...state, updateDocumentById: true };
+            case types.UPDATE_ERP_DOCUMENT_BY_ID_SUCCESS:
+              return {
+                ...state,
+                updateDocumentById: false,
+                documentsBySupplierId: state.documentsBySupplierId.map((item) => {
+                  if (item.documentId === action.payload.documentId) {
+                    return action.payload;
+                  } else {
+                    return item;
+                  }
+                }),
+              };
+            case types.UPDATE_ERP_DOCUMENT_BY_ID_FAILURE:
+              return {
+                ...state,
+                updateDocumentById: false,
+                updateDocumentByIdError: true,
+              };
+        
+              case types.UPDATE_ERP_DOCUMENT_SUPPLIER_REQUEST:
+                return { ...state, updateDocumentSupplier: true };
+              case types.UPDATE_ERP_DOCUMENT_SUPPLIER_SUCCESS:
+                return {
+                  ...state,
+                  updateDocumentSupplier: false,
+                  documentsBySupplierId: state.documentsBySupplierId.map((item) => {
+                    if (item.documentId === action.payload.documentId) {
+                      return action.payload;
+                    } else {
+                      return item;
+                    }
+                  }),
+                };
+              case types.UPDATE_ERP_DOCUMENT_SUPPLIER_FAILURE:
+                return {
+                  ...state,
+                  updateDocumentSupplier: false,
+                  updateDocumentSupplierError: true,
+                };
+    
 
     case types.GENERATE_ORDER_BY_SUPPLIER_ID_REQUEST:
       return {

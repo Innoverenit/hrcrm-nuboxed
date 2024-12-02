@@ -107,7 +107,10 @@ class SupplierDetailsTab extends Component {
                     translateText={this.props.translateText}/>
                       </div>;
                    case "5":
-                      return  <div> <SupplierDocumentTable supplier={this.props.supplier} 
+                      return  <div> <SupplierDocumentTable 
+                      uniqueId={this.props.supplier.supplierId}
+                      type={"supplier"}
+                      supplier={this.props.supplier} 
                       translateText={this.props.translateText}
                       selectedLanguage={this.props.selectedLanguage}/></div>;
                       case "6":
@@ -329,7 +332,9 @@ class SupplierDetailsTab extends Component {
           selectedLanguage={this.props.selectedLanguage}
         />
         <AddSupplierDocumentModal
-          supplier={this.props.supplier}
+          supplierId={this.props.supplier.supplierId}
+          uniqueId={this.props.supplier.supplierId}
+           type={"supplier"}
           supplierDocumentUploadModal={this.props.supplierDocumentUploadModal}
           handleSupplierDocumentUploadModal={
             this.props.handleSupplierDocumentUploadModal}

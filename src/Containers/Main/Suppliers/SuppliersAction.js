@@ -827,7 +827,7 @@ export const addSupplierInventoryImportForm =
 
 //add supplier document
 
-export const addSupplierDocument = (data, cb) => (dispatch) => {
+export const addSupplierDocument = (data) => (dispatch) => {
   console.log(data);
   dispatch({ type: types.ADD_SUPPLIER_DOCUMENT_REQUEST });
   axios
@@ -843,7 +843,7 @@ export const addSupplierDocument = (data, cb) => (dispatch) => {
         payload: res.data,
       });
       // dispatch(getCandidateDocument(candidateId));
-      cb();
+      //cb();
     })
     .catch((err) => {
       console.log(err);
@@ -977,10 +977,10 @@ export const getDeletedPurchaseById = () => (dispatch) => {
     });
 };
 //get customer documnet
-export const getSupplierDocument = (supplierId) => (dispatch) => {
+export const getSupplierDocument = (id,type) => (dispatch) => {
   dispatch({ type: types.GET_SUPPLIER_DOCUMENTS_REQUEST });
   axios
-    .get(`${base_url2}/supplier/suppliers/document/${supplierId}`, {
+    .get(`${base_url2}/document/get/${id}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -997,6 +997,120 @@ export const getSupplierDocument = (supplierId) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_SUPPLIER_DOCUMENTS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getErpDocumentCount = (id,type) => (dispatch) => {
+  dispatch({ type: types.GET_SUPPLIER_DOCUMENTS_COUNT_REQUEST });
+  axios
+    .get(`${base_url2}/document/count/${id}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIER_DOCUMENTS_COUNT_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIER_DOCUMENTS_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const deleteErpDocument = (documentId,type) => (dispatch, getState) => {
+  dispatch({
+    type: types.DELETE_ERP_DOCUMENT_REQUEST,
+  });
+
+  axios
+    .delete(`${base_url2}/document/delete/${documentId}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.DELETE_ERP_DOCUMENT_SUCCESS,
+        payload: documentId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_ERP_DOCUMENT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const updateErpDocument = (data, documentId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_ERP_DOCUMENT_BY_ID_REQUEST });
+  axios
+    .put(`${base_url2}/document/update/${documentId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Erp Info updated Successfully!',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_ERP_DOCUMENT_BY_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_ERP_DOCUMENT_BY_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const linkSupplierDoc = (data, documentId,contractInd) => (dispatch) => {
+  dispatch({ type: types.UPDATE_ERP_DOCUMENT_SUPPLIER_REQUEST });
+  axios
+    .put(`${base_url2}/document/update/contract/${documentId}/${contractInd}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Erp Info updated Successfully!',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_ERP_DOCUMENT_SUPPLIER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_ERP_DOCUMENT_SUPPLIER_FAILURE,
         payload: err,
       });
     });

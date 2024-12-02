@@ -14,7 +14,6 @@ const AddInvoiceModal = (props) => {
         title="Invoice"
       
         width="60%"
-        style={{marginTop:"5rem"}}
         visible={props.addInvoiceModal}
         closable
         destroyOnClose

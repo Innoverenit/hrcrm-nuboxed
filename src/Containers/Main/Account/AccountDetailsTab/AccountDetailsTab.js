@@ -22,6 +22,7 @@ import {
     handleSupplierTicketModal,
     handleAccountOpportunityModal,
 } from "../AccountAction";
+import {handleInvoiceModal} from "../../../Invoice/InvoiceAction";
 import LayersIcon from '@mui/icons-material/Layers';// salesmap
 import DistributorChart from "../AccountDetailsTab/DistributorChart"
 import { handleSupplierDocumentUploadModal } from "../../Suppliers/SuppliersAction"
@@ -41,6 +42,9 @@ import OrderTableC from "./OrderTableC"; //4
 import ProcureCommerceShippedOrder from "./AccountOrderTab/ProcureCommerceShippedOrder";
 import AddAccountOpportunityModal from "./AccountQuotationDrawer";
 import AccountOrderCreateDrawer from "./AccountOrderCreateDrawer";
+import Invoice from "../../../Invoice/Invoice";
+import AddInvoiceModal from "../../../Invoice/InvoiceHeader/AddInvoiceModal";
+import InvoiceTable from "../../../Invoice/InvoiceHeader/InvoiceTable";
 
 
 const CompleteOrderTable= lazy(() =>import("./AccountOrderTab/CompleteOrderTable"));
@@ -270,6 +274,16 @@ function AccountDetailsTab(props) {
                             <DistributorCompletedTicket/>:<DistributorTicket/>}
                            
                             </div>;
+
+case "16":
+    return  <div>  
+
+<InvoiceTable
+ selectedLanguage={props.selectedLanguage}
+ translateText={props.translateText}
+/>
+
+</div>;
 
           default:
             return null;
@@ -776,7 +790,36 @@ function AccountDetailsTab(props) {
                             />
                         </Suspense> */}
                     </TabPane>
+                    <TabPane
+                        tab={
+                            <>
+                                <span class="!text-tab font-poppins ">
+                                <SummarizeIcon 
+                                className="!text-icon text-[#55d6c2] mr-1"/>  
+                                  Billing 
+                                </span>
+                                {activeKey === "16" && (
+                                    <>
+                                        <Tooltip title="Billing">
+                                            <AddBoxIcon className=" !text-icon  ml-1 items-center
+                                           text-[#6f0080ad]"
+                                                onClick={() =>
+                                                   
+                                                    props.handleInvoiceModal(true)
+                                                }
+                                             
+                                            />
+                                        </Tooltip>
+                                       
+                                    </>
+                                )}
 
+                            </>
+                        }
+                        key="16"
+                    >
+                       
+                    </TabPane>
                 </StyledTabs>
                 <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
                 {renderTabContent(activeKey)}
@@ -877,11 +920,15 @@ distributorData={props.distributorData}
              distributorId={props.distributorData.distributorId}
                  type="distributor"
             />
+             <AddInvoiceModal
+        addInvoiceModal={props.addInvoiceModal}
+        handleInvoiceModal={props.handleInvoiceModal}
+        />
         </>
     );
 }
 
-const mapStateToProps = ({ distributor, auth, suppliers,customer }) => ({
+const mapStateToProps = ({ distributor, auth, suppliers,customer,invoice }) => ({
     orderRecordData: distributor.orderRecordData,
     user: auth.userDetails,
     addSupplierTicketModal:distributor.addSupplierTicketModal,
@@ -898,7 +945,8 @@ const mapStateToProps = ({ distributor, auth, suppliers,customer }) => ({
     supplierDocumentUploadModal: suppliers.supplierDocumentUploadModal,
     procureRecordData:distributor.procureRecordData,
     addAccountOpportunityModal: distributor.addAccountOpportunityModal,
-    invoiceCount: distributor.invoiceCount
+    invoiceCount: distributor.invoiceCount,
+    addInvoiceModal:invoice.addInvoiceModal
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -916,6 +964,7 @@ const mapDispatchToProps = (dispatch) =>
             handleSupplierContactModal,
             getOrderRecords,
             handleAccountOpportunityModal,
+            handleInvoiceModal
             
         },
         dispatch
