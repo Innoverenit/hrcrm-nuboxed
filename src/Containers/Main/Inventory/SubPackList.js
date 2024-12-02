@@ -11,6 +11,7 @@ import RepartitionIcon from '@mui/icons-material/Repartition';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import ShareLocationIcon from '@mui/icons-material/ShareLocation';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import ItemWiseReceivedModal from "./Child/InventoryDetails/InventoryMaterialTab/ItemWiseReceivedModal";
 
 function SubPackList(props) {
 
@@ -153,6 +154,7 @@ orgId:props.orgId,
                                     <div>
                                         <div className="flex rounded  mt-1 bg-white items-center py-ygap  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                            <div className="w-[12.1rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] ">{item.productFullName}</div> 
+                                           <div className="w-28 items-center justify-center h-8 ml-gap bg-[#eef2f9] flex" >{item.unit}</div>
                                            <div className=" flex w-36 items-center justify-center h-8 ml-gap bg-[#eef2f9]" >
                                            <input
             id="packingUnits"

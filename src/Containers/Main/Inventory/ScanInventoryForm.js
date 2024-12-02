@@ -9,11 +9,37 @@ import {addScandata} from "./InventoryAction";
 const ScanInventoryForm = (props) => {
 // console.log(props.data)
 const [data, setData] = useState(null);
-const [scanning, setScanning] = useState(false);
-const [shouldRenderCamera, setShouldRenderCamera] = useState(false);
-const [modalVisible, setModalVisible] = useState(false);
+const [isMatched, setIsMatched] = useState(false);
+const [matchedValue, setMatchedValue] = useState(null);
 
 
+console.log(props.scandata)
+
+console.log(matchedValue)
+
+
+useEffect(() => {
+
+  // const foundMatch = props.scandata.barCodeList.some((res) =>
+  //   res.some((value) => value.barCode === data)
+  // );
+  const foundMatch = props.scandata.barCodeList.some(
+    (item) => item.barCode === data
+  );
+  console.log(foundMatch)
+
+  if (foundMatch) {
+    setIsMatched(true);
+    const matchingValue = props.scandata.barCodeList.find(
+      (item) => item.barCode === data
+    );
+console.log(matchingValue)
+    setMatchedValue(matchingValue.barCode);
+  } else {
+    setIsMatched(false);
+    setMatchedValue(null);
+  }
+}, [props.scandata, data]);
 const handleScan = async (result) => {
     if (result) {
       setData(result.text);
@@ -22,23 +48,23 @@ const handleScan = async (result) => {
   };
 
   const stopScanning = () => {
-    setScanning(false);
-    setShouldRenderCamera(false);
-    setModalVisible(false);
+    // setScanning(false);
+    //setShouldRenderCamera(false);
+    //setModalVisible(false);
   };
 
-  const startScanning = () => {
-    setData('No result');
-    setScanning(true);
-    setShouldRenderCamera(true);
-    setModalVisible(true);
-  };
+  // const startScanning = () => {
+  //   setData('No result');
+  //   setScanning(true);
+  //   setShouldRenderCamera(true);
+  //   setModalVisible(true);
+  // };
 
   const handleError = (error) => {
     console.error('Error with the QR scanner:', error);
-    setScanning(false);
-    setShouldRenderCamera(false);
-    setModalVisible(false);
+    // setScanning(false);
+    //setShouldRenderCamera(false);
+    // setModalVisible(false);
   };
 
 
@@ -48,37 +74,38 @@ const handleScan = async (result) => {
         itemId:props.scandata.productId,
         dispatchPackingId:props.dispatchPackingId,
         orgId:props.orgId,
-        manualNo:data,
+        manualNo:matchedValue,
     }
-    props.addScandata(result)
+    props.addScandata(result,props.scandata.productId)
   };
 
   return (
     <>
-     {/* <DocumentScannerIcon onClick={startScanning} className='!cursor-pointer text-lg text-[tomato]'/> */}
-
-  
-        {/* {shouldRenderCamera && scanning && ( */}
+    
           <div className={`qr-code-scanner-container`}>
             <QrReader
               constraints={{ facingMode: 'environment' }}
               delay={300}
-              // onScan={props.handleScan}
+             
               onResult={handleScan}
               onError={handleError}
               onClose={stopScanning} />
                {typeof data === 'string' && data.trim() !== '' && data !== 'No result' ? (
-              <span onClick={stopScanning}>
-                {/* <Link to={`scan/${data}`}>
-                  Click here to Proceed
-                </Link> */}
+              <span 
+              style={{color:"black",fontWeight:"bolder"}}
+              onClick={stopScanning}>
+               
                 {data}
               </span>
             ) : (
               <span>No result</span>
             )}
            
-<Button  onClick={handleSubmit}>Submit</Button>
+<Button 
+style={{ cursor: isMatched ? "pointer" : "not-allowed",}}
+ onClick={handleSubmit}
+ disabled={!isMatched}
+>Submit</Button>
           </div>
         {/* )} */}
      
@@ -102,114 +129,116 @@ export default connect(mapStateToProps, mapDispatchToProps)(ScanInventoryForm);
 
 
 
-// import React, { useRef, useState } from 'react';
-// import { BrowserMultiFormatReader } from '@zxing/library';
-// import { Button, Modal } from 'antd';
-// import { Link } from 'react-router-dom';
-// import 'antd/dist/reset.css'; // Ensure you import the Ant Design CSS
+// import React, { useEffect, useState } from "react";
+// import { Button } from "antd";
+// import { connect } from "react-redux";
+// import { bindActionCreators } from "redux";
+// import { QrReader } from "react-qr-reader";
+// import { addScandata } from "./InventoryAction";
 
-// function QrCodeList() {
-//   const videoRef = useRef(null);
-//   const [data, setData] = useState('Not Found');
-//   const [isModalVisible, setIsModalVisible] = useState(false);
-  
-//   const codeReaderRef = useRef(null); // Store the codeReader reference here
-//   const lastError = useRef(null);
-//   const lastErrorTime = useRef(Date.now());
+// const ScanInventoryForm = (props) => {
+//   const [data, setData] = useState(null); // Stores the scanned QR code
+//   const [isMatched, setIsMatched] = useState(false); // Tracks if a match is found
+//   const [matchedValue, setMatchedValue] = useState(null); // Stores the matched value
 
-//   const handleScan = (result, error) => {
+//   console.log("Props scandata:", props.scandata);
+
+//   // Effect to check for a match between scanned data and barCodeList
+//   useEffect(() => {
+//     if (!props.scandata || !Array.isArray(props.scandata.barCodeList)) {
+//       console.error("Invalid scandata or barCodeList:", props.scandata);
+//       setIsMatched(false);
+//       return;
+//     }
+
+//     const foundMatch = props.scandata.barCodeList.some(
+//       (value) => value && typeof value.barCode === "string" && value.barCode === data
+//     );
+
+//     if (foundMatch) {
+//       setIsMatched(true);
+//       const matchingValue = props.scandata.barCodeList.find(
+//         (value) => value && value.barCode === data
+//       );
+//       setMatchedValue(matchingValue ? matchingValue.barCode : null);
+//     } else {
+//       setIsMatched(false);
+//       setMatchedValue(null);
+//     }
+//   }, [props.scandata, data]);
+
+//   // Handle scanning success
+//   const handleScan = (result) => {
 //     if (result) {
 //       setData(result.text);
-//     } else if (error) {
-//       const now = Date.now();
-//       if (!lastError.current || (now - lastErrorTime.current > 1000)) { // Throttle errors to every 1000ms
-//         console.error(error);
-//         lastError.current = error;
-//         lastErrorTime.current = now;
-//       }
 //     }
 //   };
 
-//   const startScanner = async () => {
-//     const codeReader = new BrowserMultiFormatReader();
-//     codeReaderRef.current = codeReader; // Store the instance in the ref
+//   // Handle scanning error
+//   const handleError = (error) => {
+//     console.error("Error with the QR scanner:", error);
+//   };
 
-//     // Use 'environment' to request back camera
-//     const constraints = {
-//       video: { facingMode: { exact: "environment" } }
+//   // Handle submit action
+//   const handleSubmit = () => {
+//     if (!data || !isMatched) return;
+
+//     const result = {
+//       orderId: props.orderId,
+//       itemId: props.scandata.productId,
+//       dispatchPackingId: props.dispatchPackingId,
+//       orgId: props.orgId,
+//       manualNo: data,
 //     };
-    
-//     try {
-//       await codeReader.decodeFromVideoDevice(null, videoRef.current, handleScan, constraints);
-//     } catch (err) {
-//       console.warn("Back camera not available, switching to default camera:", err);
-//       // If the back camera is unavailable, try without the facingMode constraint (defaults to front camera)
-//       codeReader.decodeFromVideoDevice(null, videoRef.current, handleScan);
-//     }
+
+//     console.log("Submitting matched data:", result);
+//     props.addScandata(result);
 //   };
-
-//   const stopScanner = () => {
-//     if (codeReaderRef.current) {
-//       codeReaderRef.current.reset(); // Safely reset using the ref
-//       codeReaderRef.current = null; // Clear the reference
-//     }
-//   };
-
-//   const showModal = () => {
-//     setIsModalVisible(true);
-//   };
-
-//   const handleOk = () => {
-//     setIsModalVisible(false);
-//   };
-
-//   const handleCancel = () => {
-//     setIsModalVisible(false);
-//   };
-
-//   React.useEffect(() => {
-//     if (isModalVisible) {
-//       startScanner();
-//     } else {
-//       stopScanner();
-//     }
-
-//     return () => {
-//       stopScanner(); // Ensure cleanup when component unmounts
-//     };
-//   }, [isModalVisible]);
-
-//   console.log(data);
 
 //   return (
-//     <div>
-//       <Button type="primary" onClick={showModal}>
-//         Scan Code
-//       </Button>
+//     <>
+//       <div className="qr-code-scanner-container" style={{ padding: "20px" }}>
+//         <h2>Scan QR Code</h2>
+//         <QrReader
+//           constraints={{ facingMode: "environment" }}
+//           delay={300}
+//           onResult={handleScan}
+//           onError={handleError}
+//           style={{ width: "100%" }}
+//         />
 
-//       <Modal
-//         title="Scan QR Code"
-//         visible={isModalVisible}
-//         onOk={handleOk}
-//         onCancel={handleCancel}
-//         footer={null} // Hide default footer
-//       >
-//         <video ref={videoRef} style={{ width: '100%', height: '100%' }}></video>
-//         {/* <p>{data}</p> */}
-//         {typeof data === 'string' && data.trim() !== '' && data !== 'Not Found' ? (
-//               <span 
-//               // onClick={props.stopScanning}
-//               >
-//                 <Link to={data}>
-//                   Click here to Proceed
-//                 </Link>
-//               </span>
-//             ) : (
-//               <span>Not Found</span>
-//             )}
-//       </Modal>
-//     </div>
+//         <div style={{ marginTop: "20px" }}>
+//           <span>
+//             {typeof data === "string" && data.trim() !== "" && data !== "No result"
+//               ? `Scanned Code: ${data}`
+//               : "No result"}
+//           </span>
+//         </div>
+
+//         <Button
+//           type="primary"
+//           style={{ marginTop: "20px" }}
+//           onClick={handleSubmit}
+//           disabled={!isMatched}
+//         >
+//           Submit
+//         </Button>
+//       </div>
+//     </>
 //   );
-// }
+// };
 
-// export default QrCodeList;
+// const mapStateToProps = ({ inventory, auth }) => ({
+//   orgId: auth.userDetails.organizationId,
+//   scandata: inventory.scandata, // Assuming scandata comes from the inventory reducer
+// });
+
+// const mapDispatchToProps = (dispatch) =>
+//   bindActionCreators(
+//     {
+//       addScandata,
+//     },
+//     dispatch
+//   );
+
+// export default connect(mapStateToProps, mapDispatchToProps)(ScanInventoryForm);

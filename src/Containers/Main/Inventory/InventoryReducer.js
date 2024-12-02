@@ -1210,6 +1210,15 @@ export const inventoryReducer = (state = initialState, action) => {
               ...state,
               fetchingScanData: false,
               addScanModal:false,
+
+              subList: state.subList.map((item) => {
+                if (item.productId === action.payload.productId) {
+                  return action.payload;
+                } else {
+                  return item;
+                }
+              }),
+
               //subList: action.payload
             };
           case types.ADD_SCAN_DATA_FAILURE:

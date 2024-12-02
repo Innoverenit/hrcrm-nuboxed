@@ -126,6 +126,7 @@ class InventoryMaterialTabO extends PureComponent {
                                 return  <div>  {this.state.shipperPopover ? (
                                   <div>
                                    <InventoryGlobaltab
+                                     locationDetailsId={this.props.user.locationId}
                                    translatedMenuItems={this.props.translatedMenuItems}/>
                                     </div>
                                 ):(
