@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {  Button } from "antd";
+import {  Button,Tooltip,Checkbox,Popconfirm } from "antd";
 import axios from "axios";
 import { base_url2 } from "../../../Config/Auth";
 import AddScanModal from "./AddScanModal"
@@ -23,11 +23,12 @@ function RepairSubPackList(props) {
     const [cardData, setcardData] = useState([]);
     const [hasMore, setHasMore] = useState(true);
     const [page, setPage] = useState(0);
-    const [selectedRows, setSelectedRows] = useState([]);
+    const [selectedItems, setSelectedItems] = useState([]);
+    const [selectAll, setSelectAll] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-      // props.getRepairSubList(props.rowData.orderId,page)
+      props.getRepairSubList(props.rowData.orderId,page)
       setPage(page + 1);
     }, []);
     
@@ -66,8 +67,6 @@ function RepairSubPackList(props) {
     const handleAwbUpdate = (val) => {
         setAwbNo(val)
     }
-
-
     function handleSetScandata(item) {
       setScanData(item);
       // console.log("opp",item);
@@ -107,7 +106,6 @@ dispatchPackingId:props.rowData.dispatchPackingId,
  type:type,
 userId:props.userId,
 orgId:props.orgId,
-
      });
   };
   const handleInputBlur1 = (productId,type,e) => {
@@ -141,23 +139,42 @@ orgId:props.orgId,
 
  useEffect(()=>{
   setcardData(props.repairSubList);
- },[]);           
-            const handleCheckBox = async () => {
+ },[]);        
+ 
+ const handleSelectAll = () => {
+  if (selectAll) {
+    setSelectedItems([]);  
+  } else {
+    const allPhoneIds = props.repairSubList.map(item => item.phoneId);
+    setSelectedItems(allPhoneIds);  
+  }
+  setSelectAll(!selectAll);
+};
+
+const handleCheckboxChange = (item) => {
+  setSelectedItems((prevSelected) => {
+    if (prevSelected.includes(item)) {
+      return prevSelected.filter((selected) => selected !== item.phoneId);
+    } else {
+      return [...prevSelected, item.phoneId];
+    }
+  });
+};
+            const handleCheckBoxAll = async () => {
               setLoading(true);
               setError(null);
 
-              const AllRowsSelected = selectedRows.map(orderId => {
-                  const selectedRow = props.repairSubList.find(item => item.orderId === orderId);
-                  return {
-                      orderPhoneId: selectedRow ? selectedRow.orderId : "",
-                  };
-              });
-      
+              const selectedItemsData = props.repairSubList.filter(item => selectedItems.includes(item.phoneId));
               try {
-                const response = await axios.post(`${base_url2}/dispatchPacking/dispatch-packing-item-link/unit`, {
+                const response = await axios.post(`${base_url2}/dispatchPacking/multiple/repair-dispatch-packing-item`, {
                   userId: props.userId,
                   orgId: props.orgId,
-                  AllRowsSelected,
+                  orderId:props.rowData.orderId,
+                  dispatchPackingId:props.rowData.dispatchPackingId,
+                  itemId: selectedItemsData.map(item => item.phoneId), 
+                  type:"repair",
+                  packingUnits:"0",
+
                 }, {
                   headers: {
                     Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -169,55 +186,116 @@ orgId:props.orgId,
                   console.error('Expected array but got:', response.data);
                   setcardData([]);
                 }
+                const removeSelectedItems = (selectedPhoneIds) => {
+                  setcardData((prevData) => prevData.filter(item => !selectedPhoneIds.includes(item.phoneId)));
+                };
+                removeSelectedItems(selectedItems);
+                setSelectedItems([]);
+                setSelectAll(false);
+
                 Swal.fire({
                   title: 'Success!',
-                  text: 'Invoice generated successfully!',
+                  text: 'Dispatched successfully!',
                   icon: 'success',
                   showConfirmButton: false,
                   timer: 1500,
                 });
-                // props.setmodalMultiple(false);
-                // props.getGeneratedInvoiveList(props.distributorId)
-           
-              } catch (err) {
+                props.getRepairSubList(props.rowData.orderId,"0")
+              } 
+              catch (err) {
                 setError(err);
                 Swal.fire({
                   title: 'Error!',
-                  text: 'There was an issue generating the invoice.',
+                  text: 'Not able to dispatched.',
                   icon: 'error',
                   confirmButtonText: 'OK',
                   showConfirmButton: false,
                   timer: 1500,
                 });
+                setSelectedItems([]);
+                setSelectAll(false);
+
               } finally {
                 setLoading(false);
               }
-              setSelectedRows([]);
+            
             };
-                       
-            const handleRowSelection = (orderId) => {
-              setSelectedRows(prevSelected => {
-                if (prevSelected.includes(orderId)) {
-                  return prevSelected.filter(id => id !== orderId);
+            const handleCheckBoxSingle = async (item) => {
+              setLoading(true);
+              setError(null);
+              try {
+                const response = await axios.post(`${base_url2}/dispatchPacking/dispatch-packing-item-link/unit`, {
+                  userId: props.userId,
+                  orgId: props.orgId,
+                  orderId:props.rowData.orderId,
+                  dispatchPackingId:props.rowData.dispatchPackingId,
+                  itemId:item.phoneId, 
+                  type:"repair",
+                  packingUnits:"0",
+
+                }, {
+                  headers: {
+                    Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+                  },
+                });
+                if (Array.isArray(response.data)) {
+                  setcardData(response.data);
                 } else {
-                  return [...prevSelected, orderId];
+                  console.error('Expected array but got:', response.data);
+                  setcardData([]);
                 }
-              });
-            };          
+                const removeSelectedItems = (selectedPhoneIds) => {
+                  setcardData((prevData) => prevData.filter(item => !selectedPhoneIds.includes(item.phoneId)));
+                };
+                removeSelectedItems([item.phoneId]);
+                setSelectAll(false);
+                setSelectedItems([]);
+                Swal.fire({
+                  title: 'Success!',
+                  text: 'Dispatched successfully!',
+                  icon: 'success',
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                props.getRepairSubList(props.rowData.orderId,"0"); 
+              } catch (err) {
+                setError(err);
+                Swal.fire({
+                  title: 'Error!',
+                  text: 'Not able to dispatched.',
+                  icon: 'error',
+                  confirmButtonText: 'OK',
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                setSelectAll(false);
+                setSelectedItems([]);
+              } 
+              finally {
+                setLoading(false);
+              }
+            };         
+       
     return (
         <>
-           <div className="ml-2 ">
-                    
-                    <Button type="primary" 
-                    onClick={handleCheckBox}
-                    >
-                     Generate
-                    </Button>
-                    </div>
+     
                   
             <div className='flex  sticky z-auto w-wk'>
                 <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
                     <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky font-poppins text-lm z-10">
+                    <div className="md:w-[2.01rem]">
+          <Popconfirm
+          title="Do you want to Dispatch all?"
+          onConfirm={handleCheckBoxAll} 
+          onCancel={() => setSelectAll(false)}
+          okText="Yes"
+          cancelText="No"
+                    >
+          <Tooltip title="Select All">
+            <Checkbox checked={selectAll} onChange={handleSelectAll} />
+          </Tooltip>
+          </Popconfirm>
+          </div>
                         <div className=" md:w-[12rem] text-[#00A2E8]  text-sm">
                          <AddShoppingCartIcon className=" !text-icon "/>  items
                         </div>
@@ -244,11 +322,20 @@ orgId:props.orgId,
                                     <div>
                                         <div className="flex rounded  mt-1 bg-white items-center py-ygap  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                                         <div className="flex w-[1.5rem]">
-                          <input
-                            type="checkbox"
-                            checked={selectedRows.includes(item.orderId)}
-                            onChange={() => handleRowSelection(item.orderId)}
-                          />
+                                        <Popconfirm
+          title="Do you want to Dispatch ?"
+          onConfirm={() => handleCheckBoxSingle(item)}
+          onCancel={() => setSelectedItems([])}
+          okText="Yes"
+          cancelText="No"
+                    >
+          <Tooltip title="Select">
+                           <Checkbox
+                      checked={selectedItems.includes(item.phoneId)}
+                      onChange={() => handleCheckboxChange(item)}
+                    />
+                    </Tooltip>
+                    </Popconfirm>
                         </div>
                                            <div className="w-[12.1rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] ">{item.company}</div> 
                                            <div className=" flex w-36 items-center justify-center h-8 ml-gap bg-[#eef2f9]" >

@@ -49,12 +49,16 @@ const InputToggleForm = (props) => {
 
   // Handle input blur event for a specific field
   const handleInputBlur = (e, index) => {
-    const value = e.target.value === '' ? '0' : e.target.value; // Default to '0' if empty
+    const value = e.target.value.trim();  
+    if (value === '') {
+      return;  
+    }
+    const updatedValue = value === '' ? '0' : value; // Default to '0' if empty
     const updatedFields = [...fields];
-    updatedFields[index].packingNo = value;
+    updatedFields[index].packingNo = updatedValue;
     setFields(updatedFields);
     // Send payload in the required format on blur
-    sendPutRequest({ packingNo: value,orderId:props.orderPhoneId });
+    sendPutRequest({ packingNo: updatedValue,orderId:props.orderPhoneId });
   };
 
   // Handle toggle change for a specific field

@@ -4,58 +4,59 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import axios from "axios";
 import { base_url2 } from "../../../Config/Auth";
+import {setPackedUnpacked} from "./InventoryAction";
 
 function AddPackToggle(props) {
 
-  const[data,setData]=useState(props.packData)
-  useEffect(()=>{
-    setData(props.packData)
-  },[props.packData])
+  const [toggle, setToggle] = React.useState(props.item.packingInd);
+//  const [reducerData,setreducerData]= useState(props.packData);
 
-  const sendPutRequest = async (item) => {
-    try {
-      const response = await axios.post(
-        `${base_url2}/dispatchPacking/dispatch-packing`,
-        item,
-        {
-          headers: {
-            Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
-          },
-        }
-      );
-      // dispatch(getPackNo(response.data));
-      if (response.data === 'Successfully !!!!') {
-        message.success('Update successful');
-      } else {
-        console.log(response.data);
-      }
-    } catch (error) {
-      console.error("Error updating item:", error);
-    }
-  };
+  // const sendPutRequest = async (item) => {
+  //   try {
+  //     const response = await axios.post(
+  //       `${base_url2}/dispatchPacking/dispatch-packing`,
+  //       item,
+  //       {
+  //         headers: {
+  //           Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+  //         },
+  //       }
+  //     );
+  //     // dispatch(getPackNo(response.data));
+  //     setreducerData(prevData => 
+  //   prevData.map(cat =>
+  //     cat.dispatchPackingId === item.dispatchPackingId ? response.data : cat
+  //   )
+  // );
+  //   } catch (error) {
+  //     console.error("Error updating item:", error);
+  //   }
+  // };
 
-  const [toggle, setToggle] = useState(props.packingInd);
 
-  function handleToggleClick(item) {
-    if (props.packingInd) {
-      sendPutRequest({
-        orderId: props.orderId,
-        packingInd: props.packingInd ? false : true,
-         
-      },props.orderId);
-      setToggle( props.packingInd ? false : true);
+  function handleToggleClick() {
+    if (props.item.packingInd) {
+      props.setPackedUnpacked({
+        orderId: props.item.orderId,
+        packingInd: props.item.packingInd ? false : true,
+        userId:props.userId,
+        packingNo:props.item.packingNo
+      },props.item.orderId);
+      setToggle( props.item.packingInd ? false : true);
  
     } else {
-      sendPutRequest({
-        orderId: props.orderId,
-        packingInd: props.packingInd ? false : true,
-      },props.orderId);
-      setToggle( props.packingInd ? false : true);
+      props.setPackedUnpacked({
+        orderId: props.item.orderId,
+        packingInd: props.item.packingInd ? false : true,
+        userId:props.userId,
+        packingNo:props.item.packingNo
+      },props.item.orderId);
+      setToggle( props.item.packingInd ? false : true);
     }
   }
 
   function handleCancel() {
-    if (props.packingInd) {
+    if (props.item.packingInd) {
       setToggle(true);
     } else {
       setToggle(false);
@@ -73,7 +74,7 @@ function AddPackToggle(props) {
       >
         <Switch
          className="toggle-clr"
-         checked={props.packingInd || toggle}
+         checked={toggle || props.item.packingInd}
          isLoading={true}
           checkedChildren="Packed"
           unCheckedChildren="UnPacked"
@@ -86,13 +87,12 @@ function AddPackToggle(props) {
 const mapStateToProps = ({ auth, inventory }) => ({
   userId: auth.userDetails.userId,
   orgId: auth.userDetails.organizationId,
-  packData: inventory.packData,
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-     
+      setPackedUnpacked
     },
     dispatch
   );

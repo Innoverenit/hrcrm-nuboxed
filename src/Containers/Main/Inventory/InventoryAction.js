@@ -2944,3 +2944,36 @@ export const addScanReceivedata = (data,poSupplierDetailsId,qrCodeNo) => (dispat
       });
     });
 };
+
+export const setPackedUnpacked = (data,orderId) => (dispatch) => {
+  dispatch({ type: types.INVENTORY_PACKED_UNPACKED_TOGGLE_REQUEST });
+  axios
+    .post(
+      `${base_url2}/dispatchPacking/dispatch-packing`,data,
+      {
+    
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      
+      })
+    .then((res) => {
+      console.log(res);
+     dispatch(getPackData(orderId));
+      dispatch({
+        type: types.INVENTORY_PACKED_UNPACKED_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+      Swal({
+        icon: 'success',
+        title: 'Satus has been changed successfully!',
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.INVENTORY_PACKED_UNPACKED_TOGGLE_FAILURE,
+        payload: err,
+      });
+    });
+};
