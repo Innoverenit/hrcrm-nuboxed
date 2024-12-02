@@ -95,6 +95,19 @@ const AccessForm = (props) => {
   const [checkAllTalent, setCheckAllTalent] = useState(false);
 
 
+  const [checkedProjectList, setCheckedProjectList] = useState(
+    props.departmentAcces.project || []
+  );
+  const [indeterminateProject, setIndeterminateProject] = useState(true);
+  const [checkAllProject, setCheckAllProject] = useState(false);
+
+  const [checkedBillingList, setCheckedBillingList] = useState(
+    props.departmentAcces.billing || []
+  );
+  const [indeterminateBilling, setIndeterminateBilling] = useState(true);
+  const [checkAllBilling, setCheckAllBilling] = useState(false);
+
+
   const [checkedContactList, setCheckedContactList] = useState(
     props.departmentAcces.contact || []
   );
@@ -584,6 +597,8 @@ useEffect(() => {
     setCheckedCalculateList(props.departmentAcces.calculator || [])
     setCheckedWarrentyList(props.departmentAcces.warrenty || [])
     setCheckedPriceDiscountList(props.departmentAcces.pnd || [])
+    setCheckedProjectList(props.departmentAcces.project || [])
+    setCheckedBillingList(props.departmentAcces.billing || [])
 }, [props.departmentAcces]);
 
   const updateAccessForCategory = (category, selectedList) => {
@@ -654,7 +669,9 @@ useEffect(() => {
       planner: plannerCheckedList || [],
       calculator : calculateCheckedList || [],
       warrenty : warrentyCheckedList || [],
-      pnd : priceDiscountCheckedList || []
+      pnd : priceDiscountCheckedList || [],
+      project : checkedProjectList || [],
+      billing : checkedBillingList || []
     };
   
     // Update only the specified category with the selectedList
@@ -738,6 +755,42 @@ useEffect(() => {
     setIndeterminateTalent(false);
     setCheckAllTalent(e.target.checked);
     updateAccessForCategory('talent', checked);
+  };
+
+   //Project
+ 
+
+   const onProjectChange = (list) => {
+    setCheckedProjectList(list);
+    setIndeterminateProject(!!list.length && list.length < materialNewOptions.length);
+    setCheckAllProject(list.length === materialNewOptions.length);
+    updateAccessForCategory('project', list);
+  };
+
+  const onCheckAllProjectChange = (e) => {
+    const checked = e.target.checked ? materialNewOptions : [];
+    setCheckedProjectList(checked);
+    setIndeterminateProject(false);
+    setCheckAllProject(e.target.checked);
+    updateAccessForCategory('project', checked);
+  };
+
+   //Billing
+ 
+
+   const onBillingChange = (list) => {
+    setCheckedBillingList(list);
+    setIndeterminateBilling(!!list.length && list.length < materialNewOptions.length);
+    setCheckAllBilling(list.length === materialNewOptions.length);
+    updateAccessForCategory('billing', list);
+  };
+
+  const onCheckAllBillingChange = (e) => {
+    const checked = e.target.checked ? materialNewOptions : [];
+    setCheckedBillingList(checked);
+    setIndeterminateBilling(false);
+    setCheckAllBilling(e.target.checked);
+    updateAccessForCategory('billing', checked);
   };
 
   // Contact
@@ -2984,7 +3037,7 @@ const onCheckAllePriceDiscountChange = (e) => {
 
           {/* {props.departmentData.recruitProInd === true ? ( */}
             <div class="flex flex-col ">
-              <div class=" text-clr text-base flex justify-center  ml-2 mt-8 font-bold">
+              <div class=" text-clr text-base flex   ml-2 mt-8 font-bold">
                 RecruitPro
               </div>
               <div class="flex flex-col  ">
@@ -3030,6 +3083,52 @@ const onCheckAllePriceDiscountChange = (e) => {
                           options={requirementCheckedList}
                           value={checkedRequirementList}
                           onChange={onRequirementChange}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-col w-[100%] p-1">
+                <div class="flex justify-between  border  mt-2 w-[100%] h-24">
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Project</div>
+                        <div className=" flex justify-evenly ml-2"></div>
+                      </div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                        <Checkbox
+                          indeterminate={indeterminateProject}
+                          onChange={onCheckAllProjectChange}
+                          checked={checkAllProject}
+                        >
+                          <div class="text-xs"> Check all </div>
+                        </Checkbox>
+                       
+                        <CheckboxGroup
+                          options={materialNewOptions}
+                          value={checkedProjectList}
+                          onChange={onProjectChange}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-col w-[100%] p-1">
+                <div class="flex justify-between  border  mt-2 w-[100%] h-24">
+                      <div className="  flex w-2/5 flex-col">
+                      <div className="text-sm font-semibold ml-2 mt-1">Billing</div>
+                        <div className=" flex justify-evenly ml-2"></div>
+                      </div>
+                      <div  className=" flex w-3/5 flex-col ml-4 mt-4">
+                        <Checkbox
+                          indeterminate={indeterminateBilling}
+                          onChange={onCheckAllBillingChange}
+                          checked={checkAllBilling}
+                        >
+                          <div class="text-xs"> Check all </div>
+                        </Checkbox>
+                       
+                        <CheckboxGroup
+                          options={materialNewOptions}
+                          value={checkedBillingList}
+                          onChange={onBillingChange}
                         />
                       </div>
                     </div>
