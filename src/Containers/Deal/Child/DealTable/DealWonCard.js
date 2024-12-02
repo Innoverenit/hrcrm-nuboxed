@@ -12,6 +12,15 @@ import LockIcon from "@mui/icons-material/Lock";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import RepartitionIcon from '@mui/icons-material/Repartition';
+import UpdateIcon from '@mui/icons-material/Update';
+import CategoryIcon from '@mui/icons-material/Category';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import StairsIcon from '@mui/icons-material/Stairs';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
+
 import {
   MultiAvatar,
   MultiAvatar2,
@@ -52,7 +61,7 @@ function DealWonCard(props) {
         const itemsToTranslate = [
           "110",//0  Name
           "511",//1 Investor
-          "216",//2 Sponsor
+          "73",//2 Contact
           "176",//3 Start Date
           "1159",//4 Values
           "219",//5 Stages
@@ -120,42 +129,50 @@ function DealWonCard(props) {
       return (    
   <>    
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins  max-xl:text-xs] max-lg:text-[0.45rem] !text-lm sticky  z-10">
-        <div className=" w-[13.82rem] max-md:w-[13.82rem] truncate max-xl:w-[11.12rem]">
+      <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins   max-xl:text-xs] max-lg:text-[0.45rem] !text-lm sticky  z-10">
+        <div className=" w-[13.82rem] max-md:w-[13.82rem] text-sm truncate max-xl:w-[11.12rem] text-[#3a86ff]">
+        <CategoryIcon className='!text-icont ext-[#3a86ff]' />
         {translatedMenuItems[0]}
        {/* "name" */}
                 </div>
-        <div className=" w-[8.21rem] max-md:w-[8.21rem]  truncate max-xl:w-[7.21rem]">
+        <div className=" w-[7.21rem] max-md:w-[7.21rem]  truncate max-xl:w-[7.21rem]">
+        <RepartitionIcon className='!text-icon text-[#BBE6E4]' />
         {translatedMenuItems[1]}
          {/* investor"              */}
                 </div>
-        <div className=" truncate  w-[7.21rem] max-md:w-[7.21rem] max-xl:w-[6.21rem] ">
+        <div className=" truncate  w-[9.21rem] max-md:w-[9.21rem] max-xl:w-[9.21rem] ">
+        <ContactPageIcon className='!text-icon text-[#4F5D75]' />
         {translatedMenuItems[2]}
-        {/* "sponsor"          */}
+        {/* "Contact"          */}
                 </div>
         <div className=" truncate w-[6.11rem] max-md:w-[6.11rem] max-xl:w-[7.11rem]">
+        <DateRangeIcon className="!text-icon text-[#1b263b]"/>
         {translatedMenuItems[3]}
        {/* startdate" */}       
                 </div>
-        <div className=" truncate w-[8.16rem] max-md:w-[8.16rem] max-xl:w-[9.16rem]">
-         proposalamt
+        <div className=" truncate w-[7.16rem] max-md:w-[7.16rem] max-xl:w-[7.16rem]">
+        <CurrencyExchangeIcon className="!text-icon text-[#ffbe0b]"/>
+        {translatedMenuItems[4]}
                 </div>
         <div className=" truncate w-[8.14rem] max-md:w-[8.14rem] max-xl:w-[6.14rem]">
+        <StairsIcon className='!text-icon text-[#2f3e46]' />
         {translatedMenuItems[5]}
          {/* "stages" */}             
                 </div> 
         <div className="truncate w-[8.1rem] max-md:w-[8.1rem] max-xl:w-[7.1rem]">
+        <UpdateIcon className='!text-icon text-[#ff66b3]' />
         {translatedMenuItems[6]}
         {/* Assigned" */}      
                 </div>
-        <div className="truncate w-[5.22rem] max-md:w-[5.22rem] max-xl:w-[5.21rem]">
+        <div className="truncate w-[17.5rem] max-md:w-[17.5rem] max-xl:w-[17.5rem]">
+        <AcUnitIcon className="!text-icon  text-[#667761]"/>
         {translatedMenuItems[7]} 
         {/* owner" */}
                 </div>
-        <div className="w-[2.71rem]"></div>
+        {/* <div className="w-[2.71rem]"></div>
         <div className="w-[3.01rem]">
-        {/* action" */}             
-                </div>
+                    
+                </div> */}
       </div>
       <InfiniteScroll
          dataLength={wonDeals.length}
@@ -214,7 +231,7 @@ function DealWonCard(props) {
                                 </div>
                                 </div>       
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[7.4rem] max-xl:w-[4.4rem] max-lg:w-[3.4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[9.4rem] max-xl:w-[9.4rem] max-lg:w-[3.4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                               {/* Country */}
                                   <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">                            
           {item.contactName === null ? "None" :
@@ -290,7 +307,7 @@ function DealWonCard(props) {
             </span>     
                                     </div>
                                 </div>
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.5rem] max-xl:w-[7.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[12.5rem] max-xl:w-[7.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
                                 {/* Owner */}
               <Tooltip title={item.ownerName}>
           <span>

@@ -13,10 +13,18 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../Components/Placeholder";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { CurrencySymbol } from "../../Components/Common";
-import EmptyPage from "../Main/EmptyPage";
-const SearchedDataDeal=lazy(()=>import ("./SearchedDataDeal"));
-const ButtonGroup = Button.Group;
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import RepartitionIcon from '@mui/icons-material/Repartition';
+import UpdateIcon from '@mui/icons-material/Update';
+import CategoryIcon from '@mui/icons-material/Category';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import StairsIcon from '@mui/icons-material/Stairs';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange'; 
 
+const SearchedDataDeal=lazy(()=>import ("./SearchedDataDeal"));
+const EmptyPage=lazy(()=>import ("../Main/EmptyPage"));
+const ButtonGroup = Button.Group;
 const DealsTeamCardList = (props) => {
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
@@ -33,7 +41,7 @@ const DealsTeamCardList = (props) => {
    
           "110",//0  Name
           "511",//1 Investor
-          "216",//2 Sponsor
+          "73",//2 Contact
           "176",//3 Start Date
           "1159",//4 Values
           "219",//5 Stages
@@ -172,35 +180,46 @@ const DealsTeamCardList = (props) => {
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold font-poppins !text-lm sticky  z-10 max-sm:hidden">
         <div className=" flex justify-between w-[100%]">
-          <div className=" w-[13.5rem] truncate text-sm max-md:w-[13.5rem]  ">
+          <div className=" w-[12.5rem] text-blue-500 truncate text-sm max-md:w-[12.5rem]  ">
+          <CategoryIcon className='!text-icon text-blue-500' />
           {translatedMenuItems[0]}
            {/* "name" */}    
           </div>
-          <div className="w-[8.13rem] truncate max-md:w-[8.13rem]  ">
+          <div className="w-[11.13rem] truncate max-md:w-[11.13rem]  ">
+          
+          <RepartitionIcon className='!text-icon text-[#BBE6E4]' />
           {translatedMenuItems[1]}
          {/* investor" */}     
           </div>
-          <div className="w-[1.2rem] truncate max-md:w-[1.2rem]  ">
+          <div className="w-[3.5rem] truncate max-md:w-[3.5rem]  ">
+          
+          <ContactPageIcon className='!text-icon text-[#4F5D75]' />
           {translatedMenuItems[2]}
-                    {/* sponsor */}     
+                    {/* Contact */}     
           </div>
           <div className=" w-[4.12rem] truncate max-md:w-[4.12rem]  ">
+          <DateRangeIcon className="!text-icon text-[#1b263b]"/>
           {translatedMenuItems[3]}
                 {/* startdate" */}
           </div>
-          <div className=" w-[2.2rem] truncate max-md:w-[2.2rem]  ">
+          <div className=" w-[3.5rem] truncate max-md:w-[3.5rem]  ">
+          <CurrencyExchangeIcon className="!text-icon text-[#ffbe0b]"/>
           {translatedMenuItems[4]}
          {/* Value */} 
           </div>
           <div className="w-[4.2rem] truncate max-md:w-[4.2rem] ">
+          <StairsIcon className='!text-icon text-[#2f3e46]' />
           {translatedMenuItems[5]}
           {/* "stages" */}
           </div>
           <div className=" w-[5.26rem] truncate max-md:w-[5.26rem] ">
+         
+          <UpdateIcon className='!text-icon text-[#ff66b3]' />
           {translatedMenuItems[6]}
             {/* Status */}
             </div>
           <div className=" w-[7.21rem] truncate max-md:w-[7.21rem] ">
+          <AcUnitIcon className="!text-icon  text-[#667761]"/>
           {translatedMenuItems[7]}
           {/* Assign To" */}  
           </div>
@@ -218,7 +237,7 @@ const DealsTeamCardList = (props) => {
           endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
           style={{scrollbarWidth:"thin"}}
         >
-          {!fetchingTeamsDealsData && props.teamsDealsData.length === 0 ? <EmptyPage /> : props.teamsDealsData.map((item, index) => {
+          {!fetchingTeamsDealsData && props.teamsDealsData.length === 0 ?<Suspense >  <EmptyPage /> </ Suspense> : props.teamsDealsData.map((item, index) => {
             var findProbability = item.probability;
             item.stageList.forEach((element) => {
               if (element.oppStage === item.oppStage) {
@@ -290,7 +309,7 @@ const DealsTeamCardList = (props) => {
                       </div>
                     </div>
                     <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
-                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] mt-1 md:w-[14.1rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                       <div class=" text-xs  font-poppins">
                         <Link to="/investor">
@@ -298,7 +317,7 @@ const DealsTeamCardList = (props) => {
                         </Link>
                       </div>
                     </div>
-                    <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] mt-1 md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" text-xs  font-poppins">
                         <SubTitle>
                           {item.contactName === null ? "None" :
@@ -315,7 +334,7 @@ const DealsTeamCardList = (props) => {
                     </div>
                
                   
-                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] mt-1  md:w-[7.01rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" text-xs justify-center  font-poppins">
                         {dayjs(item.startDate).format("DD/MM/YYYY")}
                       </div>
@@ -323,7 +342,7 @@ const DealsTeamCardList = (props) => {
                     </div>
 
                 <div class="flex max-sm:justify-evenly max-sm:w-wk max-sm:items-center">
-                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] mt-1  md:w-[8.1rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" text-xs font-poppins text-center">
                         <CurrencySymbol currencyType={item.currency} />
                         &nbsp;
@@ -331,7 +350,7 @@ const DealsTeamCardList = (props) => {
                       </div>
                     </div>
 
-                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  mt-1 md:w-[5.02rem] max-sm:flex-row w-full max-sm:justify-between ">
                       <div class=" text-xs  font-poppins text-center">
                         <Dropdown
                           overlay={
@@ -364,12 +383,12 @@ const DealsTeamCardList = (props) => {
 
                       </div>
                     </div>
-                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[5.051rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] mt-1  md:w-[5.051rem] max-sm:flex-row w-full max-sm:justify-between ">
                     {myIndicator}
                     </div>
 </div>
 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] mt-1  md:w-[8.01rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 
                       <div class=" text-xs  font-poppins">
@@ -395,7 +414,7 @@ const DealsTeamCardList = (props) => {
 
                       </div>
                     </div>
-                    <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-20 max-sm:flex-row w-full mb-1 max-sm:justify-between ">
+                    <div className=" flex  items-center justify-center h-8  bg-[#eef2f9]  md:w-20 max-sm:flex-row w-full mt-1 max-sm:justify-between ">
 
                       <span>
                         <MultiAvatar2

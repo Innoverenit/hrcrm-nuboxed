@@ -8,13 +8,23 @@ import "jspdf-autotable";
 import {
     getDeletedDeal
 } from "./DealAction";
+
 import { Button, Tooltip, Dropdown, Menu, Progress } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../Components/Placeholder";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 import { CurrencySymbol } from "../../Components/Common";
 import EmptyPage from "../Main/EmptyPage";
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import RepartitionIcon from '@mui/icons-material/Repartition';
+import UpdateIcon from '@mui/icons-material/Update';
+import CategoryIcon from '@mui/icons-material/Category';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import StairsIcon from '@mui/icons-material/Stairs';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
 const ButtonGroup = Button.Group;
+
 
 const DealDeletedCard = (props) => {
   const [page, setPage] = useState(0);
@@ -30,7 +40,7 @@ const DealDeletedCard = (props) => {
    
           "110",//0  Name
           "511",//1 Investor
-          "216",//2 Sponsor
+          "73",//2 Contact
           "176",//3 Start Date
           "1159",//4 Values
           "219",//5 Stages
@@ -92,22 +102,44 @@ const DealDeletedCard = (props) => {
       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
         <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold font-poppins !text-lm sticky  z-10 max-sm:hidden">
         <div className=" flex justify-between w-[95%]">
-          <div className="  text-sm w-[15.5rem] max-md:w-[11.5rem]">
-          {translatedMenuItems[0]} </div>
+          <div className="  text-sm w-[8.5rem] max-md:w-[8.5rem] text-[#3a86ff]">
+          <CategoryIcon className='!text-icont ext-[#3a86ff]' />
+          {translatedMenuItems[0]}
+           </div>
           {/* Name */}
-          <div className="  w-[9.1rem] truncate max-md:w-[7.1rem]">  {translatedMenuItems[1]} </div>
+          <div className="  w-[6.1rem] truncate max-md:w-[7.1rem]">
+          <RepartitionIcon className='!text-icon text-[#BBE6E4]' />
+              {translatedMenuItems[1]}
+               </div>
           {/* investor */}
-          <div className="  w-[15.2rem] truncate max-md:w-[7.2rem] ">  {translatedMenuItems[2]}</div>
-          {/* Sponsor */}
-          <div className="  w-[11.1rem] truncate max-md:w-[8.1rem]">  {translatedMenuItems[3]}</div>
+          <div className="  w-[8.2rem] truncate max-md:w-[7.2rem] "> 
+          <ContactPageIcon className='!text-icon text-[#4F5D75]' />
+             {translatedMenuItems[2]}
+             </div>
+          {/* Contact */}
+          <div className="  w-[7.1rem] truncate max-md:w-[8.1rem]">
+          <DateRangeIcon className="!text-icon text-[#1b263b]"/>
+              {translatedMenuItems[3]}
+              </div>
           {/* startDate */}
-          <div className="  w-[7.5rem] truncate max- md:w-[6.5rem]">  {translatedMenuItems[4]}</div>
+          <div className="  w-[7.5rem] truncate max- md:w-[6.5rem]"> 
+          <CurrencyExchangeIcon className="!text-icon text-[#ffbe0b]"/>
+             {translatedMenuItems[4]}
+             </div>
           {/* Value */}
-          <div className="w-[4.2rem] truncate max-md:w-[4.2rem]">  {translatedMenuItems[5]}</div>
+          <div className="w-[4.2rem] truncate max-md:w-[4.2rem]"> 
+          <StairsIcon className='!text-icon text-[#2f3e46]' />
+             {translatedMenuItems[5]}
+             </div>
           {/* Stages */}
-          <div className="w-[7.1rem] truncate max-md:w-[7.1rem]">  {translatedMenuItems[6]}</div>
+          <div className="w-[7.1rem] truncate max-md:w-[7.1rem]">
+          <UpdateIcon className='!text-icon text-[#ff66b3]' />
+              {translatedMenuItems[6]}
+              </div>
           {/* assignedTo */}
-          <div className=" w-[3rem] truncate max-md:w-[3rem]">  {translatedMenuItems[7]}</div>
+          <div className=" w-[3rem] truncate max-md:w-[3rem]"> 
+          <AcUnitIcon className="!text-icon  text-[#667761]"/>
+             {translatedMenuItems[7]}</div>
             {/* owner  */}
         </div>
         </div>
@@ -150,7 +182,7 @@ const DealDeletedCard = (props) => {
                 >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
                   <div class="flex justify-between">
-                    <div className=" flex  w-[12rem]  border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full">
+                    <div className=" flex  w-[12rem] max-md:w-[12rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full">
                       <div className="flex max-sm:w-full items-center">
                         <div>
                           <SubTitle>
@@ -190,7 +222,7 @@ const DealDeletedCard = (props) => {
                     </div>
                     </div>
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                    <div className=" flex   md:w-44 max-sm:flex-row w-full max-sm:justify-between items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
+                    <div className=" flex  w-[11rem]  max-md:w-[11rem] max-sm:flex-row  max-sm:justify-between items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
                       <div class="text-xs  font-poppins">
                         <Link to="/investor">
                           {item.investor}
@@ -198,7 +230,7 @@ const DealDeletedCard = (props) => {
                       </div>
                     
 </div>
-                    <div className=" flex  md:w-44 max-sm:flex-row w-full max-sm:justify-between items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
+                    <div className=" flex w-[11rem] max-md:w-[11rem] max-sm:flex-row  max-sm:justify-between items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
                       <div class="text-xs  font-poppins">
                         <SubTitle>
                           {item.contactName === null ? "None" :
@@ -214,7 +246,7 @@ const DealDeletedCard = (props) => {
                       </div>
                     </div>             
                              
-                    <div className=" flex  md:w-36 max-sm:flex-row w-full max-sm:justify-between items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
+                    <div className=" flex w-[11rem]  max-md:w-[11rem] max-sm:flex-row  max-sm:justify-between items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
                       <div class="text-xs justify-center  font-poppins">
                         {dayjs(item.startDate).format("DD/MM/YYYY")}
                       </div>
@@ -294,8 +326,21 @@ const DealDeletedCard = (props) => {
                         />
                       </span>
                     </div>
-                  
-                </div>
+                    <div className="flex w-[7.2rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]">
+                      <div className="font-normal text-[0.82rem] max-sm:text-[0.82rem] font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {/* Rounded "Yes" button 
+                        <button className="ml-2 px-4 py-2 text-white rounded-full bg-green-500">
+                          Yes
+                        </button>
+                       Rounded "No" button 
+                        <button className="ml-2 px-4 py-2 text-white rounded-full bg-red-500">
+                          No
+                        </button>*/}
+                      </div>
+                    </div>
+
+
+                  </div>
               </div>
             )
           })}
@@ -304,6 +349,8 @@ const DealDeletedCard = (props) => {
     </>
   );
 };
+
+
 
 const mapStateToProps = ({ auth, leads, deal, sector, pitch }) => ({
   //   leadsAllData: leads.leadsAllData,
@@ -316,6 +363,7 @@ const mapStateToProps = ({ auth, leads, deal, sector, pitch }) => ({
   allDealsData: deal.allDealsData,
   deletedDeal:deal.deletedDeal,
   fetchingDeletedDeal:deal.fetchingDeletedDeal,
+ 
   
 });
 const mapDispatchToProps = (dispatch) =>
