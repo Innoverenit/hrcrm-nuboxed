@@ -38,10 +38,11 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 
 import {getTeamInvestor,handleInvestorNotesDrawerModal,emptyInvestor,
-  handleInvestorPulseDrawerModal,  handleInvestorAddressDrawerModal,handleUpdateInvestorModal,handleInvestorContModal,deleteInvestorData} from "../../InvestorAction";
+  handleInvestorPulseDrawerModal,  handleInvestorAddressDrawerModal,handleUpdateInvestorModal,handleInvestorContModal,deleteInvestorData,handleInvestorPriceDrawer} from "../../InvestorAction";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { BundleLoader } from "../../../../Components/Placeholder";
-import EmptyPage from "../../../Main/EmptyPage";
+const InventoryPriceDrawer = lazy(() => import("./InventoryPriceDrawer"));
+const EmptyPage = lazy(() => import("../../../Main/EmptyPage"));
 const InvestorPulseDrawerModal = lazy(() =>import("./InvestorPulseDrawerModal"));
 const InvestorSearchedData = lazy(() =>import("./InvestorSearchedData"));
 const ContactsInvestorModal = lazy(() =>import("./ContactsInvestorModal"));
@@ -173,6 +174,8 @@ function InvestorTeamCardList(props) {
     fetchingAllCustomers,
     handleInvestorPulseDrawerModal,
     addDrawerInvestorPulseModal,
+    priceInvestorDrawer,
+    handleInvestorPriceDrawer,
     handleInvestorContModal,
     addDrawerInvestorContactModal,
     user,
@@ -434,7 +437,7 @@ function InvestorTeamCardList(props) {
 
                                     <div class="text-xs text-[blue] font-bold cursor-pointer justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                   <div    onClick={() => {
-                              props.handleInvestorPriceDrawer(true);
+                          handleInvestorPriceDrawer(true);
                               handleCurrentRowData(item);
                             }}>{item.allTotalQuantityOfShare}</div>
                                     </div>
@@ -643,6 +646,14 @@ function InvestorTeamCardList(props) {
         translateText={props.translateText}
           selectedLanguage={props.selectedLanguage}
       />
+        <InventoryPriceDrawer
+          RowData={RowData}
+          handleInvestorPriceDrawer={handleInvestorPriceDrawer}
+          priceInvestorDrawer={priceInvestorDrawer}
+          key={priceInvestorDrawer ? 'open' : 'closed'}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        />
       <InvestorPulseDrawerModal
         RowData={RowData}
         addDrawerInvestorPulseModal={addDrawerInvestorPulseModal}
@@ -687,6 +698,7 @@ const mapStateToProps = ({
   fetchingInvestorsError: investor.fetchingInvestorsError,
   updateInvestorModal: investor.updateInvestorModal,
   user: auth.userDetails,
+  priceInvestorDrawer: investor.priceInvestorDrawer,
   employees: employee.employees,
   investorSerachedData:investor.investorSerachedData,
   addInvestorAddressModal: investor.addInvestorAddressModal,
@@ -713,6 +725,7 @@ const mapDispatchToProps = (dispatch) =>
       deleteInvestorData,
       handleInvestorContModal,
       handleInvestorAddressDrawerModal,
+      handleInvestorPriceDrawer,
       getTeamUserList
     },
     dispatch

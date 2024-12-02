@@ -5,7 +5,7 @@ import {handleCallActivityModal} from "../../../../Activity/ActivityAction"
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import {handleContactInvestActivityModal} from "../../../ContactInvestAction"
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import { Badge, Tooltip } from "antd";
+import { Badge } from "antd";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
@@ -14,10 +14,10 @@ import {
   handleContactReactSpeechModal,
   handleDocumentUploadModal,
 } from "../../../../Contact/ContactAction";
-import LinkedDocuments from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments";
-import AddDocumentModals from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
-import ActivityListData from "../../../../Activity/ActivityListData";
-const ContactInvestTimeLine =lazy(()=>import("../Activity/ContactInvestTimeLine"));
+
+const LinkedDocuments =lazy(()=>import("../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments"));
+const AddDocumentModals =lazy(()=>import("../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals"));
+const  ActivityListData =lazy(()=>import("../../../../Activity/ActivityListData"));
 const ContactInvestorActivityModal =lazy(()=>import("../Activity/ContactInvestorActivityModal"));
 const LinkedDealTable =lazy(()=>import("./ContactInvestDeal/LinkedDealTable"));
  const TabPane = StyledTabs.TabPane;
@@ -71,18 +71,24 @@ class ContactInvestDetailTab extends Component {
       switch (key) {
         case "1":
           return     <div> 
+        <Suspense fallback={"Loading..."}>
+
                  <LinkedDealTable contactInVestDetail={this.props.contactInVestDetail}
                 selectedLanguage={this.props.selectedLanguage}
                 translateText={this.props.translateText}/>
+                </Suspense>
               </div>;
         case "2":
-          return  <div>  <LinkedDocuments
+          return  <div> 
+        <Suspense fallback={"Loading..."}>
+        <LinkedDocuments
           uniqueId={this.props.contactInVestDetail.contactId}
           type={"contact"}
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
         translatedMenuItems={this.props.translatedMenuItems}
-         /> </div>;
+         /> </Suspense>
+         </div>;
           case "3":
               return  <div>  
                 {/* <ContactInvestTimeLine
@@ -90,10 +96,13 @@ class ContactInvestDetailTab extends Component {
               selectedLanguage={this.props.selectedLanguage}
               translateText={this.props.translateText}
       /> */}
+        <Suspense fallback={"Loading..."}>
+
         <ActivityListData
                       uniqueId={this.props.contactInVestDetail.contactId}
                       type={"contact"}
                       />
+                      </Suspense>
       </div>;
         default:
           return null;

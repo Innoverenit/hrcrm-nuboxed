@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -35,11 +35,11 @@ import {getTeamsContactInvest,
   handleContactInvestNotesDrawerModal,
   handleDealModal,
   emptyContactInvest,handleUpdateContactInvestModal,handleContactAddressDrawerModal,handleContactInvestPulseDrawerModal} from "../../ContactInvestAction";
-import AddContactInvestPulseModal from "./AddContactInvestPulseModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import AddContactInvestAdressModal from "./AddContactInvestAdressModal";
-import AddContactInvestDealModal from "./AddContactInvestDealModal";
-import EmptyPage from "../../../Main/EmptyPage";
+const AddContactInvestPulseModal = lazy(() =>  import("./AddContactInvestPulseModal"));
+const AddContactInvestAdressModal = lazy(() =>  import("./AddContactInvestAdressModal"));
+const AddContactInvestDealModal = lazy(() =>  import("./AddContactInvestDealModal"));
+const EmptyPage = lazy(() =>  import("../../../Main/EmptyPage"));
 const AddContactInvestNotesDrawerModal = lazy(() =>
   import("../AddContactInvestNotesDrawerModal")
 );
@@ -499,6 +499,7 @@ if (loading) {
       </div>
       </div>
 </div>
+<Suspense fallback={<BundleLoader />}>
       <UpdateContactInvestModal
         contactiData={contactiData}
         updateContactInvestModal={updateContactInvestModal}
@@ -558,6 +559,7 @@ if (loading) {
         handleDealModal={props.handleDealModal}
         handleCurrentContactIdata={handleCurrentContactIdata}
       />  
+        </Suspense>
     </>
   );
 }

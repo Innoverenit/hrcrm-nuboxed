@@ -1,12 +1,9 @@
 import React, { Component,lazy, Suspense } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
-
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import MainNotes from "../../../CustomNote/MainNotes";
-
+const MainNotes = lazy(() => import("../../../CustomNote/MainNotes"));
 
 
 class AddInvestorNotesDrawerModal extends Component {
@@ -16,7 +13,6 @@ class AddInvestorNotesDrawerModal extends Component {
     return (
       <div>
         <StyledDrawer
-        // title="Notes"
           title={this.props.RowData.name}
           width="60%"
           visible={this.props.addDrawerInvestorNotesModal}

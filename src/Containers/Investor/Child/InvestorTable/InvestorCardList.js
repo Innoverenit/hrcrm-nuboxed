@@ -51,8 +51,8 @@ import {getInvestorsbyId,
   handleInvestorAddressDrawerModal
 } from "../../InvestorAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import EmptyPage from "../../../Main/EmptyPage";
 
+const EmptyPage = lazy(() => import("../../../Main/EmptyPage"));
 const InvestorSearchedData = lazy(() => import("./InvestorSearchedData"));
 const InvestorPulseDrawerModal = lazy(() => import("./InvestorPulseDrawerModal"));
 const InventoryPriceDrawer = lazy(() => import("./InventoryPriceDrawer"));
@@ -260,7 +260,7 @@ function InvestorCardList(props) {
         Value
           </div> */}
           <div className=" w-[8.21rem]  truncate max-md:w-[1.21rem]  max-xl:w-[8.2rem]">
-          <GolfCourseIcon className='!text-base   text-[#f42c04]'/> {translatedMenuItems[10]}
+          <GolfCourseIcon className='!text-icon   text-[#f42c04]'/> {translatedMenuItems[10]}
         {/* Club */}
           </div>
       
@@ -425,7 +425,7 @@ function InvestorCardList(props) {
 
                                     <div class="text-xs text-[blue] font-bold cursor-pointer justify-center  font-poppins  max-sm:text-sm">
                                   <div    onClick={() => {
-                              props.handleInvestorPriceDrawer(true);
+                             handleInvestorPriceDrawer(true);
                               handleCurrentRowData(item);
                             }}>{item.allTotalQuantityOfShare}</div>
                                     </div>

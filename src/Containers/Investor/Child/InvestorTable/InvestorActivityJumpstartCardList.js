@@ -9,9 +9,6 @@ import {
   MultiAvatar2,
 } from "../../../../Components/UI/Elements";
 import { Link } from 'react-router-dom';
-// import {getCustomerActivityTimeline} from "../../CustomerAction"
-
-
 import { BundleLoader } from "../../../../Components/Placeholder";
 
 const Option = Select;

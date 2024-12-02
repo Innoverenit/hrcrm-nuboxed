@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -8,7 +8,7 @@ import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
 import {  Tooltip } from "antd";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
-import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
+import { MultiAvatar2 } from "../../../../Components/UI/Elements";
 import {
   handleUpdateContactModal,
   handleContactReactSpeechModal,
@@ -29,17 +29,17 @@ import {
   handleDealModal,
   getContactInvestByUserId,
   emptyContactInvest,handleUpdateContactInvestModal,handleContactInvestPulseDrawerModal,handleContactAddressDrawerModal} from "../../ContactInvestAction";
-import AddContactInvestPulseModal from "./AddContactInvestPulseModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import AddContactInvestAdressModal from "./AddContactInvestAdressModal";
-import AddContactInvestDealModal from "./AddContactInvestDealModal";
 import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency'
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import ScoreIcon from '@mui/icons-material/Score';
 import SourceIcon from '@mui/icons-material/Source';
-import EmptyPage from "../../../Main/EmptyPage";
 
+const AddContactInvestPulseModal= lazy(() =>  import("./AddContactInvestPulseModal"));
+const AddContactInvestAdressModal = lazy(() =>  import("./AddContactInvestAdressModal"));
+const AddContactInvestDealModal = lazy(() =>  import("./AddContactInvestDealModal"));
+const EmptyPage = lazy(() =>  import("../../../Main/EmptyPage"));
 const AddContactInvestNotesDrawerModal = lazy(() =>  import("../AddContactInvestNotesDrawerModal"));
 const UpdateContactInvestModal = lazy(() => import("../UpdateContactInvest/UpdateContactInvestModal"));
 
@@ -404,6 +404,7 @@ function ContactInvestCardList(props) {
                 })}
        </InfiniteScroll>
       </div>
+      <Suspense fallback={<BundleLoader />}>
       <UpdateContactInvestModal
         translateText={props.translateText}
          selectedLanguage={props.selectedLanguage}
@@ -445,7 +446,8 @@ function ContactInvestCardList(props) {
         addDrawerDealModal={props.addDrawerDealModal}
         handleDealModal={props.handleDealModal}
         handleCurrentContactIdata={handleCurrentContactIdata}
-      />  
+      /> 
+      </Suspense> 
     </>
   );
 }

@@ -14,7 +14,6 @@ import {
   handleDocumentUploadModal,
   addCustomerDocument,
   getCustomerDocument,
-  // getselectdrop,
 } from "../../../../CustomerAction";
 import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
 import InputIcon from '@mui/icons-material/Input';

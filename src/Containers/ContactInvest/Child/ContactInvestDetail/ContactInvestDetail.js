@@ -18,8 +18,10 @@ function ContactInvestDetails (props) {
     return (
       <>
         <>
+        <Suspense fallback={"Loading..."}>
           <ContactInvestDetailHeader    selectedLanguage={props.selectedLanguage}
             translateText={props.translateText}/>
+            </Suspense>
           {fetchingContactInvestByContactId ? (
             <MainWrapper>
               <BundleLoader />
