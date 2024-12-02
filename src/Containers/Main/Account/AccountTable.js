@@ -564,7 +564,7 @@ function AccountTable(props) {
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'clubName', item.clubName)} 
     className="cursor-pointer text-xs font-[Poppins]">
-    {item.clubName || "Enter club"}
+    {item.clubName }
     </div> 
 )}
                             </div>

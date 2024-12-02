@@ -2,7 +2,6 @@ import React, { useEffect, useState,lazy} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
-
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { Tooltip, Menu, Dropdown, Progress } from "antd";
 import { CurrencySymbol } from "../../../../Components/Common";

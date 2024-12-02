@@ -7,15 +7,22 @@ import { MultiAvatar, MultiAvatar2, SubTitle } from "../../../../../Components/U
 import "jspdf-autotable";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import DoDisturbIcon from '@mui/icons-material/DoDisturb';
-import {
-  getAllDeals
-} from "../../../DealAction";
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import RepartitionIcon from '@mui/icons-material/Repartition';
+import UpdateIcon from '@mui/icons-material/Update';
+import CategoryIcon from '@mui/icons-material/Category';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import StairsIcon from '@mui/icons-material/Stairs';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
+import { getAllDeals } from "../../../DealAction";
 import { CurrencySymbol } from "../../../../../Components/Common";
 import { Button, Tooltip, Dropdown, Menu, Progress } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { Link } from "react-router-dom/cjs/react-router-dom";
-import EmptyPage from "../../../../Main/EmptyPage";
+
+const EmptyPage =lazy(()=>import("../../../../Main/EmptyPage"));
 const SearchedDataDeal =lazy(()=>import("../../../SearchedDataDeal"));
 const ButtonGroup = Button.Group;
 
@@ -33,7 +40,7 @@ const DealsAllCardList = (props) => {
         const itemsToTranslate = [  
           "110",//0  Name
           "511",//1 Investor
-          "216",//2 Sponsor
+          "73",//2 Contact
           "176",//3 Start Date
           "1159",//4 Values
           "219",//5 Stages
@@ -152,38 +159,46 @@ const DealsAllCardList = (props) => {
         </div>
    <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
       <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end z-10 max-sm:hidden">
-      <div className=" flex justify-between w-[95%]">
-          <div className="  w-[11.5rem] truncate text-sm max-md:w-[11.5rem]">
+      <div className=" flex justify-between w-[99%]">
+          <div className="  w-[10.5rem] truncate  text-blue-500 text-sm max-md:w-[10.5rem]">
+          <CategoryIcon className='!text-icon text-blue-500' />
           {translatedMenuItems[0]}
           {/* name */}
           </div>
-          <div className="  w-[9.13rem] truncate max-md:w-[9.13rem]">
+          <div className="  w-[11.7rem] truncate max-md:w-[11.7rem]">
+          <RepartitionIcon className='!text-icon text-[#BBE6E4]' />
           {translatedMenuItems[1]}
            {/* investor */}
           </div>
-          <div className=" w-[2.2rem] truncate max-md:w-[2.2rem] ">
+          <div className=" w-[3.90rem] truncate max-md:w-[3.90rem] ">
+          <ContactPageIcon className='!text-icon text-[#4F5D75]' />
           {translatedMenuItems[2]}
-          {/* sponsor */}
+          {/* Contact */}
          
           </div>
-          <div className=" w-[7.12rem] truncate max-md:w-[7.12rem]">
+          <div className=" w-[5.12rem] truncate max-md:w-[5.12rem]">
+          <DateRangeIcon className="!text-icon text-[#1b263b]"/>
           {translatedMenuItems[3]}
                      {/* startdate   */}
           </div>
-          <div className="w-[6.2rem] truncate max-md:w-[6.2rem]">
+          <div className="w-[4.2rem] truncate max-md:w-[4.2rem]">
+          <CurrencyExchangeIcon className="!text-icon text-[#ffbe0b]"/>
           {translatedMenuItems[4]}
            {/* Value */}       
           </div>
-          <div className="w-[4.2rem] truncate max-md:w-[4.2rem]">
+          <div className="w-[7.5rem] truncate max-md:w-[7.5rem]">
+          <StairsIcon className='!text-icon text-[#2f3e46]' />
           {translatedMenuItems[5]}
           {/* stages" */}
          
           </div>
           <div className=" w-[7.1rem] truncate max-md:w-[7.1rem]">
+          <UpdateIcon className='!text-icon text-[#ff66b3]' />
           {translatedMenuItems[6]}
             {/* Status */}
             </div>
-          <div className=" w-[3rem] truncate max-md:w-[3rem]">
+          <div className=" w-[4rem] truncate max-md:w-[4rem]">
+          <AcUnitIcon className="!text-icon  text-[#667761]"/>
           {translatedMenuItems[7]}
           {/* Assign To" */}
        
@@ -201,7 +216,7 @@ const DealsAllCardList = (props) => {
           height={"83vh"}
           style={{ scrollbarWidth: "thin"}}
         >
-          {!fetchingAllDealsData && props.allDealsData.length === 0 ? <EmptyPage/> : props.allDealsData.map((item, index) => {
+          {!fetchingAllDealsData && props.allDealsData.length === 0 ? <Suspense> <EmptyPage/> </Suspense> : props.allDealsData.map((item, index) => {
             var findProbability = item.probability;
             item.stageList.forEach((element) => {
               if (element.oppStage === item.oppStage) {
