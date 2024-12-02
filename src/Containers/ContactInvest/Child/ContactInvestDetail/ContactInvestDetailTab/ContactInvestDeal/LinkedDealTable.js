@@ -1,6 +1,6 @@
 
 
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect, lazy } from "react";
 import { connect } from "react-redux";
 import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
@@ -21,7 +21,7 @@ import DateRangeIcon from '@mui/icons-material/DateRange';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 import UpdateIcon from '@mui/icons-material/Update';
-import EmptyPage from "../../../../../Main/EmptyPage";
+const EmptyPage =lazy(()=>import("../../../../../Main/EmptyPage"));
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }

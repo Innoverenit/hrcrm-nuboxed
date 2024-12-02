@@ -1,17 +1,12 @@
 import React, { lazy, Suspense } from "react";
-import { StyledDrawer } from "../../Components/UI/Antd";
-import { BundleLoader } from "../../Components/Placeholder";
 import { StyledTabs } from "../../Components/UI/Antd";
 import { TabsWrapper } from "../../Components/UI/Layout";
-
-import ActivityCallForm from "./ActivityCallForm"
-import ActivityEventForm from "./ActivityEventForm"
-import ActivityTaskForm from "./ActivityTaskForm"
-
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
-
+const ActivityTaskForm  =lazy(()=>import("./ActivityTaskForm"));
+const ActivityEventForm  =lazy(()=>import("./ActivityEventForm"));
+const ActivityCallForm  =lazy(()=>import("./ActivityCallForm"));
 
 const TabPane = StyledTabs.TabPane;
 

@@ -32,7 +32,7 @@ import { BundleLoader } from "../../../Components/Placeholder";
 
 const ButtonGroup = Button.Group;
 const DashBoardSummary=(props) =>{
-
+  const { user } = props;
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
@@ -132,6 +132,7 @@ const DashBoardSummary=(props) =>{
   return (
     <div className=" container  mx-auto  p-2 flex rounded mt-1  bg-white h-[87vh]  overflow-x-auto overflow-y-hidden  ">
       {/* TASK */}
+      {(user.basicAccessInd === true || user.role === "ADMIN") && (
       <div class="flex flex-col  w-[14rem] items-center min-">
         <div className="text-xl font-bold font-poppins mb-2 uppercase">  <FactCheckIcon className='!text-icon mr-1 text-[#b02e0c]'/>{translatedMenuItems[0]}<span  className="font-bold text-[tomato] ml-1"> 
           {`${props.taskperCount.totalTask  ?? ""} `}</span></div>
@@ -226,9 +227,13 @@ const DashBoardSummary=(props) =>{
       </InfiniteScroll>
     </div>
       </div>
+        )}
       <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
 
       {/* QUOTATION */}
+      {(user.opportunityAccessInd === true && user.crmInd === true 
+
+      ) && (
       <div class="flex flex-col w-[14rem]  items-center">
   <div className="text-xl font-poppins font-bold mb-2 uppercase">  <LightbulbIcon className='!text-icon mr-1 text-[#84a59d]'/>
   {translatedMenuItems[2]} <span  className=" font-bold text-[tomato] ml-1"> 
@@ -271,11 +276,14 @@ const DashBoardSummary=(props) =>{
    </InfiniteScroll>
   </div>
 </div>
-
+  )}
 <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
     
 
   {/* Re Order */}
+  {(user.materialAccessInd === true && user.erpInd === true )
+        && (user.supplierAccessInd === true && user.erpInd === true
+      ) &&  (
   <div class="flex flex-col min-h-[89vh] w-[14rem] items-center">
         <div className="text-xl font-poppins font-bold mb-2 uppercase"> <DynamicFeedIcon className='!text-icon mr-1 text-[#ef6f6c]'/>
         {translatedMenuItems[4]}<span  className=" text-xl font-bold text-[tomato] ml-1">   {`${props.ReorderDashboardCount.bbcnt ?? ""} `}</span> </div>
@@ -292,12 +300,18 @@ const DashBoardSummary=(props) =>{
             <div className=" text-xs text-gray-500 font-poppins"> <LocationOnIcon className='!text-base  text-[#2C7775]'
               />{colleague.locationName}</div>
               </div>
-            <Button type="primary">{translatedMenuItems[5]} PO</Button>
+              <div className=" flex items-center justify-end w-wk"><Button type="primary">{translatedMenuItems[5]} PO</Button></div>
+          
           </div>
         ))}
       </div>
+        )}
+        
       <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
          {/* Best Before */}
+         {(user.materialAccessInd === true && user.erpInd === true )
+        && (user.supplierAccessInd === true && user.erpInd === true
+      ) &&  (
          <div class="flex flex-col w-[14rem] items-center">
         <div className="text-xl font-bold font-poppins mb-2 uppercase"> <CategoryIcon className='!text-icon mr-1 text-[#7dcfb6]'
               /> {translatedMenuItems[6]} <span  className="font-bold text-[tomato] ml-1">
@@ -349,7 +363,7 @@ const DashBoardSummary=(props) =>{
 
         </div>
       </div>
-
+   )}
       <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
         {/* ORDER */}
         <div class="flex flex-col w-[14rem]  items-center">
@@ -390,6 +404,9 @@ const DashBoardSummary=(props) =>{
       </div>
       <div className="max-md:h-[80vh] h-[80vh]  md:bg-[#fcacc6]  w-[0.1rem] ml-1"></div> 
       {/* DEALS */}
+      {(user.imInd === true && user.dealAccessInd === true 
+      
+      ) && (
       <div class="flex flex-col w-[14rem]  items-center">
         <div className="text-xl font-bold font-poppins mb-2 uppercase">
         <CurrencyExchangeIcon className='!text-icon  text-[#1d4e89]'/> {translatedMenuItems[9]}
@@ -420,6 +437,7 @@ const DashBoardSummary=(props) =>{
          </InfiniteScroll>
         </div>
       </div>
+          )}
     </div>   
   );
 };
@@ -443,7 +461,8 @@ const mapStateToProps = ({ dashboard,inventory, auth }) => ({
   orderDashboardCount:dashboard.orderDashboardCount,
   taskDashboard:dashboard.taskDashboard,
   fetchingTaskDashboard:dashboard.fetchingTaskDashboard,
-  bestDashboardCount:dashboard.bestDashboardCount
+  bestDashboardCount:dashboard.bestDashboardCount,
+  user: auth.userDetails,
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   getQuotationDashboard,

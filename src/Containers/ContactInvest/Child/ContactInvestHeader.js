@@ -1,4 +1,4 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy, Suspense } from "react";
 import { ActionHeader } from "../../../Components/Utils";
 const ContactInvestActionLeft = lazy(()=>import("./ContactInvestActionLeft"));
 const ContactInvestActionRight = lazy(() =>import("./ContactInvestActionRight"));
@@ -22,6 +22,7 @@ class ContactInvestHeader extends Component {
       <div>
         <ActionHeader
           leftComponent={
+            <Suspense >
             <ContactInvestActionLeft         
             teamsAccessInd={teamsAccessInd}
             handleFilterChange={this.props.handleFilterChange}
@@ -37,8 +38,10 @@ class ContactInvestHeader extends Component {
             selectedLanguage={this.props.selectedLanguage}
             translatedMenuItems={this.props.translatedMenuItems}
             />
+            </Suspense>
           }
           rightComponent={
+            <Suspense>
             <ContactInvestActionRight 
             viewType={viewType}
             addContactInvestModal={addContactInvestModal}
@@ -47,6 +50,7 @@ class ContactInvestHeader extends Component {
             selectedLanguage={this.props.selectedLanguage}
             translatedMenuItems={this.props.translatedMenuItems}
             />
+            </Suspense>
           }
         />
       </div>

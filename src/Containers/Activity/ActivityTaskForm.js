@@ -6,10 +6,6 @@ import { getTasks } from "../../Containers/Settings/Task/TaskAction";
 
 import { Formik, Form, Field, FastField } from "formik";
 import dayjs from "dayjs";
-// import {
-//     getContactListByCustomerId,
-//     getOpportunityListByCustomerId,
-//   } from "../../Containers/Customer/CustomerAction";
 import {getAllCustomerData} from "../../Containers/Customer/CustomerAction"
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import { getUnits } from "../../Containers/Settings/Unit/UnitAction";
@@ -31,7 +27,6 @@ import {
   getTaskForStages,
   getTaskForWorkflow,
  } from "../../Containers/Settings/SettingsAction";
-//import { handleChooserModal } from "../../../Planner/PlannerAction";
 import { TextareaComponent } from "../../Components/Forms/Formik/TextareaComponent";
 import ButtonGroup from "antd/lib/button/button-group";
 import { StyledPopconfirm } from "../../Components/UI/Antd";

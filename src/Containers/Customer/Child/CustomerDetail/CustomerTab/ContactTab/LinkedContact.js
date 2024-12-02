@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
@@ -22,12 +22,11 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { BundleLoader } from "../../../../../../Components/Placeholder";
-import ContactReportData from "./ContactReportData";
-import { NotAccessibleOutlined } from "@mui/icons-material";
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+
 const EmptyPage = lazy(() => import("../../../../../Main/EmptyPage"));
 const AddCustomerUpdateContactModal = lazy(() => import("./AddCustomerUpdateContactModal"));
-const CustomerContactActiveToggle = lazy(() => import("./CustomerContactActiveToggle"));
+const ContactReportData = lazy(() => import("./ContactReportData"));
 
 
 
@@ -371,14 +370,14 @@ function LinkedContact(props) {
                             </div>
                             <div>
                             {itemHistory && (currentContact.contactId === item.contactId)
-                                            && <ContactReportData
+                                            && <Suspense><ContactReportData
                                             selectedLanguage={props.selectedLanguage}
                                             translateText={props.translateText}
                                             currentContact={currentContact} 
                                             reportsToId={item.reportsToId}
                                           
 
-                                            />}
+                                            /></Suspense>}
                                             </div>
                         </div>
 
@@ -388,7 +387,7 @@ function LinkedContact(props) {
                     
       </div>
 
-
+<Suspense>
       <AddCustomerUpdateContactModal
           addUpdateCustomerContactModal={addUpdateCustomerContactModal}
            contactId={contactId}
@@ -401,7 +400,7 @@ function LinkedContact(props) {
 
         />
        
-     
+       </Suspense>
      
    
     </>

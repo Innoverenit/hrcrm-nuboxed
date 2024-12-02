@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { Button, DatePicker, Input, Select } from "antd";
 import {investorShare,getInvestorShare,investorShareUpdate} from "../../InvestorAction";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import {getInvestorCurrency} from "../../../Auth/AuthAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { BundleLoader } from "../../../../Components/Placeholder";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import ShowChartIcon from '@mui/icons-material/ShowChart';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 
+const EmptyPage = lazy(() => import("../../../Main/EmptyPage"));
 const { Option } = Select;
 
 function InventoryPriceAddTable(props) {
@@ -50,7 +54,7 @@ function InventoryPriceAddTable(props) {
           '1158', // 0 share
           '1435', // 1 Value per Share
           '1436', // 2 Purchase
-          '1370',// Add Row
+          '85',// Add 
         
         ];
 
@@ -164,9 +168,12 @@ function InventoryPriceAddTable(props) {
   }
   return (
     <div>
+      <div className=" flex items-center justify-end w-wk">
       <Button type="primary" className="mb-16" onClick={handleAddRow} >
-        {/* Add Row  */} {translatedMenuItems[3]}
+        {/* Add Row  */} <DataSaverOnIcon className=" text-white !text-icon"/>{translatedMenuItems[3]}
       </Button>
+      </div>
+      
       {rows.map((row, index) => (
           <div key={index} class="flex items-center justify-between">
             <div class="flex justify-around w-[30rem]">
@@ -232,16 +239,16 @@ function InventoryPriceAddTable(props) {
           </div>
         ))}
 
-      <div className=' flex  sticky z-auto'>
+      <div className=' flex  sticky z-auto mt-2'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[84%]  p-1 bg-transparent font-bold  font-poppins sticky items-end z-10">         
-            <div className=" text-xs w-[12rem] max-md:w-[12rem]"> {translatedMenuItems[0]}
-              {/* Shares */}
+          <div className=" flex justify-between w-[84%]  p-1 bg-transparent font-bold text-lm font-poppins sticky items-end z-10">         
+            <div className=" text-sm text-[#00A2E8] w-[12rem] max-md:w-[12rem]">  <ShowChartIcon className='!text-icon    text-[#776871]' />  {translatedMenuItems[0]}
+          {/* Shares */}
               </div>
-            <div className="text-xs w-[10.1rem] max-md:w-[14.1rem]"> {translatedMenuItems[1]}
-              {/* Value per Share */}
+            <div className=" w-[10.1rem] max-md:w-[14.1rem]"> <CurrencyExchangeIcon className='!text-icon    text-[#e4eb2f]' />  {translatedMenuItems[1]}
+    {/* Value per Share */}
               </div>
-            <div className="text-xs  w-[6.2rem] max-md:w-[10.2rem] "> {translatedMenuItems[2]}
+            <div className="text-xs  w-[8.2rem] max-md:w-[10.2rem] "><DateRangeIcon className="!text-icon   text-[#f28482]"/> {translatedMenuItems[2]}
               {/* Purchase date */}
               </div>
                
@@ -354,7 +361,7 @@ function InventoryPriceAddTable(props) {
                 </div>
               </div>
             );
-          }) : !data.length && !props.fetchingInvenstoryShare ? <NodataFoundPage /> : null}
+          }) : !data.length && !props.fetchingInvenstoryShare ? <EmptyPage /> : null}
 
         </div>
       </div>
