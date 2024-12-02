@@ -34,8 +34,8 @@ function BillingJumpStartBox(props) {
     props.billingByDesignation.length &&
     props.billingByDesignation[0].billableCurency;
   return (
-    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-[100%]">
-    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-[100%] ">
+    <div class=" flex flex-row  items-center  justify-center h-auto  w-[100%]">
+    <div class=" flex flex-row  items-center  justify-center h-auto  w-[100%]">
 
     <div class="w-1/6 md:w-1/2 xl:w-1/6 p-2">
                      
@@ -112,7 +112,6 @@ function BillingJumpStartBox(props) {
                   </div>
        
   </div>
-      <mt-2 />
     </div>
   );
 }
