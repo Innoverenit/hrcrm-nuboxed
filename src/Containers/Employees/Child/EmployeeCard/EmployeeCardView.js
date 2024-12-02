@@ -1,8 +1,7 @@
-import React , { useEffect,useState} from 'react';
+import React , { useEffect,useState, lazy, Suspense} from 'react';
 import { Tabs } from 'antd';
-import ExternalUserData from "../EmployeeCard/ExternalUserData"
-import InternalUserdata from "../EmployeeCard/InternalUserdata"
-
+const ExternalUserData = lazy(() => import("../EmployeeCard/ExternalUserData"));
+const InternalUserdata = lazy(() => import("../EmployeeCard/InternalUserdata"));
 const { TabPane } = Tabs;
 
 const InternalExternalTabs = (props) => {
@@ -35,11 +34,12 @@ const InternalExternalTabs = (props) => {
       case '1':
         return (
           <div>
+            <Suspense>
             <InternalUserdata
             filteredData={props.filteredData}
             translateText={props.translateText}
             selectedLanguage={props.selectedLanguage}
-            />
+            /></Suspense>
             {/* <h3>Internal Content</h3>
             <p>This is the content for the Internal tab.</p> */}
           </div>
@@ -47,11 +47,12 @@ const InternalExternalTabs = (props) => {
       case '2':
         return (
           <div>
+             <Suspense>
             <ExternalUserData
               filteredData={props.filteredData}
               translateText={props.translateText}
               selectedLanguage={props.selectedLanguage}
-            />
+            /></Suspense>
             {/* <h3>External Content</h3>
             <p>This is the content for the External tab.</p> */}
           </div>

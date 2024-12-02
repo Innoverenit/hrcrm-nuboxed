@@ -26,14 +26,15 @@ import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import ApartmentIcon from '@mui/icons-material/Apartment';
-import EmployeeDetailsView from "../EmployeeGroup/EmployeeDetails/EmployeeDetailsView";
-import SuspendEmployee from "../SuspendEmployee/SuspendEmployee";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import MultiOrgEmployee from "../MultiOrgEmployee";
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import BusinessIcon from '@mui/icons-material/Business';
-import EmployeeSearchedData from "./EmployeeSearchedData";
+
+const EmployeeDetailsView =lazy(()=>import("../EmployeeGroup/EmployeeDetails/EmployeeDetailsView"))
+const SuspendEmployee =lazy(()=>import("../SuspendEmployee/SuspendEmployee"))
+const MultiOrgEmployee =lazy(()=>import("../MultiOrgEmployee"))
+const EmployeeSearchedData =lazy(()=>import("./EmployeeSearchedData"))
 const OpenNotifyDrawer =lazy(()=>import("../EmployeeCard/OpenNotifyDrawer"));
 const EmployeePulseDrawerModal =lazy(()=>import("./EmployeePulseDrawerModal"));
 const EmployeeDrawerForAdmin =lazy(()=>import("./EmployeeDrawer/EmployeeDrawerForAdmin"));

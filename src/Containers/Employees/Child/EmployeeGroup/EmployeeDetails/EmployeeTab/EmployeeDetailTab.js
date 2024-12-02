@@ -12,7 +12,7 @@ import ContrastIcon from '@mui/icons-material/Contrast';
 import { StyledTabs } from "../../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../../Components/UI/Layout";
 import SchoolIcon from '@mui/icons-material/School';
-import { Badge, Tooltip } from "antd";
+import { Badge } from "antd";
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
@@ -29,9 +29,8 @@ import {
   handleDocumentUploadModal,
   handleContractModal,
 } from "../../../../../Profile/ProfileAction";
-import AddDocumentModals from "../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
-import LinkedDocuments from "../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments";
-
+const AddDocumentModals =lazy(()=>import("../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals"));
+const LinkedDocuments =lazy(()=>import("../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments"));
 const EmployeePerformanceTable =lazy(()=>import("./Performance/EmployeePerformanceTable"));
 const AddPersonalModal =lazy(()=>import("../EmployeeTab/Personal/AddPersonalModal"));
 const AddEducationModal =lazy(()=>import("./Education/AddEducationModal"));

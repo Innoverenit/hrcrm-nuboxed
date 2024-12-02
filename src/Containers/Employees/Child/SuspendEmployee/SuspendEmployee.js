@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Switch, Popconfirm, message } from "antd";
+import React, { } from "react";
+import { Switch} from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -18,25 +18,6 @@ console.log("employeeId",props.employeeId)
     props.suspendEmployee(props.employeeId,value)
   }
 
-  // function handleCallback(a, b, c) {
-  //   // debugger;
-  //   if (a === "success") {
-  //     // debugger;
-  //     if (c === false) {
-  //       // debugger;
-  //       message.info(b);
-  //       setAssignedIndicator(false);
-  //       props.getAssignedToList(props.orgId);
-  //     } else {
-  //       // debugger;
-  //       message.success("User login disabled sucessfully");
-  //       props.getAssignedToList(props.orgId);
-  //     }
-  //   } else {
-  //     // debugger;
-  //     message.error("something went wrong");
-  //   }
-  // }
   function handleCancel() {
     if (toggle) {
       setToggle(true);
