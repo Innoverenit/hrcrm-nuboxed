@@ -9,10 +9,28 @@ import {addScanReceivedata} from "../../../InventoryAction";
 const ReceiveScanForm = (props) => {
 // console.log(props.data)
 const [data, setData] = useState(null);
+const [matchedValue, setMatchedValue] = useState(null);
 const [scanning, setScanning] = useState(false);
 const [shouldRenderCamera, setShouldRenderCamera] = useState(false);
 const [modalVisible, setModalVisible] = useState(false);
+console.log(props.receivedData)
 
+
+useEffect(() => {
+  const checkMatch = () => {
+    for (const group of props.receivedData) {
+      for (const barcodeObj of group.barCodeList) {
+        if (barcodeObj.barCode === data) {
+          setMatchedValue(barcodeObj.barCode);
+          return;
+        }
+      }
+    }
+    setMatchedValue(null);
+  };
+
+  checkMatch();
+}, [props.receivedData, data]);
 
 const handleScan = async (result) => {
     if (result) {
@@ -43,6 +61,9 @@ const handleScan = async (result) => {
 
 
   const handleSubmit = () => {
+    if (matchedValue) {
+      console.log("Matched Value:", matchedValue);
+    }
     let result={
       poReceivedInd:true,
       userId:props.userId,
@@ -77,7 +98,9 @@ const handleScan = async (result) => {
               <span>No result</span>
             )}
            
-<Button  
+<Button 
+style={{cursor: matchedValue ? "pointer" : "not-allowed",}}
+  disabled={!matchedValue} 
 onClick={handleSubmit}
 >Submit</Button>
           </div>

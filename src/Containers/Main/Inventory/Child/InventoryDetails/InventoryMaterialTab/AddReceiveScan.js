@@ -18,6 +18,7 @@ const AddScanModal = (props) => {
       >
         <Suspense fallback={<BundleLoader />}>
         <ReceiveScanForm
+          receivedData={props.receivedData}
         poSupplierDetailsId={props.poSupplierDetailsId}
         // orderId={props.orderId}
         //  newOrderNo={props.newOrderNo}

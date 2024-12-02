@@ -11,6 +11,7 @@ import RepartitionIcon from '@mui/icons-material/Repartition';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import ShareLocationIcon from '@mui/icons-material/ShareLocation';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import ItemWiseReceivedModal from "./Child/InventoryDetails/InventoryMaterialTab/ItemWiseReceivedModal";
 import Swal from 'sweetalert2';
 
 function SubPackList(props) {
@@ -330,6 +331,7 @@ orgId:props.orgId,
                         </div>
                                            
                                            <div className="w-[12.1rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] ">{item.productFullName}</div> 
+                                           <div className="w-28 items-center justify-center h-8 ml-gap bg-[#eef2f9] flex" >{item.unit}</div>
                                           
                                            <div className=" flex w-36 items-center justify-center h-8 ml-gap bg-[#eef2f9]" >
                                            <input

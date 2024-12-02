@@ -956,6 +956,8 @@ const InventoryMaterialBestBefore = (props) => {
             </div>
             <div className="flex w-[7.4rem] truncate items-center justify-start h-8 ml-gap bg-[#eef2f9]">
             <div class=" text-xs  font-poppins ml-gap max-sm:text-sm  ">{item.newSuppliesNo}</div></div>
+            <div className="flex w-[7.4rem] truncate items-center justify-start h-8 ml-gap bg-[#eef2f9]">
+            <div class=" text-xs  font-poppins ml-gap max-sm:text-sm  ">{item.countryName}</div></div>
             <div className=" flex w-[4.8rem] truncate items-center justify-center h-8 ml-gap bg-[#eef2f9]">
             <div class=" text-xs  font-poppins max-sm:text-sm  ">{item.remainingCorrectUnit}</div></div>
             <div className="  flex w-[8.22rem] truncate items-center justify-start h-8 ml-gap bg-[#eef2f9]">

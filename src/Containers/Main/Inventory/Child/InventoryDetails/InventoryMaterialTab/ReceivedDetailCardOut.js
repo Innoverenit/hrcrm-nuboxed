@@ -486,6 +486,7 @@ console.log(formData)
                 </Modal>
             </div>
             <AddReceiveScan
+            receivedData={receivedData}
             poSupplierDetailsId={props.row.poSupplierDetailsId}
             handleReceiveScanModal={props.handleReceiveScanModal}
             addReceivedScanModal={props.addReceivedScanModal}
