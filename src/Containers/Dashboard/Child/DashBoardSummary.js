@@ -16,7 +16,7 @@ import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import CategoryIcon from '@mui/icons-material/Category'
 import ShareLocationIcon from '@mui/icons-material/ShareLocation';
-import MeetingRoomIcon from '@mui/icons-material/MeetingRoom'; 
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import {
   getMaterialBestBefore,

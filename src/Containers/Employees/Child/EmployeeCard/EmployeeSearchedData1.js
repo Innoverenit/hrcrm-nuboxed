@@ -27,7 +27,6 @@ import {
 import { Link } from 'react-router-dom';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { elipsize } from "../../../../Helpers/Function/Functions";
-import EmployeeSearchedData from "../EmployeeTable/EmployeeSearchedData";
 const EmployeeDrawerForAdmin =lazy(()=>import("../EmployeeTable/EmployeeDrawer/EmployeeDrawerForAdmin"));
 const EmployeePulseDrawerModal =lazy(()=>import("../EmployeeTable/EmployeePulseDrawerModal"));
 const EmployeeDocumentDrawerModal =lazy(()=>import("./EmployeeDocumentDrawerModal"));
