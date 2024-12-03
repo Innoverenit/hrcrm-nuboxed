@@ -185,11 +185,20 @@ console.log(formData)
         //   availableDate: formData.availableDate
         // });
       };
+      const allEmpty = receivedData.every(group => group.barCodeList.length === 0);   
     return (
         <>
            <Button
              onClick={() => {
-                props.handleReceiveScanModal(true);
+
+                
+                if (allEmpty) {
+                                               
+                    message.success("Barcode is not available.")
+                  } else {
+                    props.handleReceiveScanModal(true)
+                  }
+                // ;
             //  handleSetScandata(item);
               }}
            >Scan</Button>
