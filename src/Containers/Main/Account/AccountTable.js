@@ -428,7 +428,7 @@ function AccountTable(props) {
                              
                             {editableField?.distributorId === item.distributorId && editableField?.field === 'dialCode' ? (
                                    <Select
-                                   style={{ width: "8rem" }}
+                                   style={{ width: "7.1rem" }}
                                    value={editingValue}
                                    onChange={handleChangeRowSelectItem} 
                                    autoFocus
@@ -442,7 +442,7 @@ function AccountTable(props) {
                             ) : (
                               <div className="cursor-pointer !text-xxs font-[Poppins]"
                                onClick={() => handleEditRowField(item.distributorId, 'dialCode', item.dialCode)}>
-                                {item.dialCode || "Enter dialcode"}
+                                {item.dialCode || " dialcode"}
                               </div>
                             )}
                               <div>
@@ -461,7 +461,7 @@ function AccountTable(props) {
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'phoneNo', item.phoneNo)} 
     className="cursor-pointer !text-xxs font-[Poppins]">
-    {item.phoneNo || "Enter MobileNo"}
+    {item.phoneNo || "MobileNo"}
     
     </div> 
 )}
@@ -477,7 +477,7 @@ function AccountTable(props) {
                             {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'dcategoryName' ? (
 <Select
-      style={{ width: "8rem" }}
+      style={{ width: "7.2rem" }}
       value={editingValue}
       onChange={handleChangeRowSelectItem} 
       autoFocus
@@ -492,7 +492,7 @@ function AccountTable(props) {
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'dcategoryName', item.dcategoryName)} 
     className="cursor-pointer !text-xxs font-[Poppins]">
-    {item.dcategoryName || "Enter category"}
+    {item.dcategoryName || "Update..."}
     
     </div> 
 )}
@@ -503,7 +503,7 @@ function AccountTable(props) {
                             {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'clientName' ? (
 <Select
-      style={{ width: "8rem" }}
+      style={{ width: "6.2rem" }}
       value={editingValue}
       onChange={handleChangeRowSelectItem} 
       autoFocus
@@ -518,7 +518,7 @@ function AccountTable(props) {
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'clientName', item.clientName)} 
     className="cursor-pointer !text-xxs font-[Poppins]">
-    {item.clientName || "Enter type"}
+    {item.clientName || "Update..."}
     </div> 
 )}
                             
@@ -587,7 +587,7 @@ function AccountTable(props) {
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'payment', item.payment)} 
     className="cursor-pointer !text-xxs font-[Poppins]">
-    {item.payment || "Enter"} days
+    {item.payment || "Update..."} days
     </div> 
 )}
                             </div>
@@ -655,7 +655,7 @@ function AccountTable(props) {
                                                 success={{acivedPercentage}}
                                                // strokeColor={getGradientStrokeColor(acivedPercentage)}
                                                 format={() => `${acivedPercentage}%`} 
-                                                 style={{width:"10rem",cursor:"pointer"}} 
+                                                 style={{width:"10rem",cursor:"pointer ", marginLeft:"0.25rem"}} 
                                                       />                                                       
                                                 </Tooltip>
                           <div class=" text-xs flex items-center justify-center font-poppins w-[6.021rem] bg-[#eef2f9] h-8   text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
@@ -663,7 +663,7 @@ function AccountTable(props) {
                               {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'curName' ? (
 <Select
-      style={{ width: "8rem" }}
+      style={{ width: "6.021rem" }}
       value={editingValue}
       onChange={handleChangeRowSelectItem} 
       autoFocus
@@ -678,7 +678,7 @@ function AccountTable(props) {
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'curName', item.curName)} 
     className="cursor-pointer !text-xxs font-[Poppins]">
-    {item.curName || "Enter curname"} 
+    {item.curName || "Update..."} 
     </div> 
 )}        
 
@@ -801,10 +801,10 @@ function AccountTable(props) {
                               </div> */}
                               
 
-                            <div className=" items-center justify-center flex bg-[#eef2f9] h-8  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
+                            {/* <div className=" items-center justify-center flex bg-[#eef2f9] h-8  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs  font-poppins">
                                 <Tooltip title={translatedMenuItems[13]}>
-                                {/* "Edit"> */}
+                               
                                   <BorderColorIcon
                                     className=" !text-icon cursor-pointer text-[tomato]"
                                     onClick={() => {
@@ -818,7 +818,7 @@ function AccountTable(props) {
                               </div>
 
 
-                            </div>
+                            </div> */}
                             <div className=" items-center justify-center flex bg-[#eef2f9] h-8  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs  font-poppins">
                               <Tooltip title={translatedMenuItems[19]}>
