@@ -62,9 +62,9 @@ import SearchSelect from "../../../../../../../Components/Forms/Formik/SearchSel
 import { base_url, base_url2 } from "../../../../../../../Config/Auth";
 const { Option } = Select;
 const ButtonGroup = Button.Group;
-// const documentSchema = Yup.object().shape({
-//   documentId: Yup.string().required("Input needed !"),
-// });
+const documentSchema = Yup.object().shape({
+  documentId: Yup.string().required("Input needed !"),
+});
 
 function AddSupplierDocumentModal (props){
   const [documentshare, setDocumentshare] = useState(false);
@@ -258,7 +258,7 @@ function AddSupplierDocumentModal (props){
             distributorId:props.distributorId,
             shipperId:props.shipperId
           }}
-          // validationSchema={documentSchema}
+           validationSchema={documentSchema}
           onSubmit={(values, { resetForm }) => {
             addSupplierDocument({ ...values, 
               included:selectedIncludeValues, 

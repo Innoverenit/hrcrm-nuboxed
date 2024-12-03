@@ -13,7 +13,7 @@ import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import EditUpload from "../../../Components/Forms/Edit/EditUpload";
 import { BundleLoader } from "../../../Components/Placeholder";
 
-const AddDocumentModal = lazy(() => import("./AddDocumentModal"));
+
 const UpdateExpenseModal = lazy(() => import("./UpdateExpense/UpdateExpenseModal"));
 
 function ExpenseDrawerCard(props) {
@@ -332,10 +332,10 @@ style={{ border: "1px solid grey" }}
       handleUpdateExpenseModal={handleUpdateExpenseModal}
       // handleSetCurrentExpenseId={handleSetCurrentExpenseId}
     />
-    <AddDocumentModal
+    {/* <AddDocumentModal
       documentUploadModal={documentUploadModal}
       handleDocumentUploadModal={handleDocumentUploadModal}
-    />
+    /> */}
     </>
   );
 }

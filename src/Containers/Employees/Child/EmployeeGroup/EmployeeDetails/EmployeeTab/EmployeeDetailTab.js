@@ -52,7 +52,6 @@ const EducationTable = lazy(() => import("./Education/EducationTable"));
 const EmploymentTable = lazy(() => import("./Employment/EmploymentTable"));
 const TrainingTable = lazy(() => import("./Training/TrainingTable"));
 const PersonalTable2 = lazy(() => import("./Personal/PersonalTable2"));
-const AddDocumentModal = lazy(() => import("./Document/AddDocumentModal"));
 const TabPane = StyledTabs.TabPane;
 
 class EmployeeDetailTab extends Component {
