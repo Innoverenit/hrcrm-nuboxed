@@ -25,10 +25,8 @@ import {
 } from "../../../../CandidateAction";
 import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
-const LinkedDocuments = lazy(() => import("./Document/LinkedDocuments"));
 const ReactCandidateSpeechModal = lazy(() => import("../../ReactCandidateSpeechModal"));
 const ExperienceForm = lazy(() => import("../CandidateDetailTab/Experience/ExperienceForm"));
-const AddDocumentModal = lazy(() => import("./Document/AddDocumentModal"));
 const CandidateEducationTable = lazy(() => import("./Education/CandidateEducationTable"));
 const AddCandidateEducationModal = lazy(() => import("../CandidateDetailTab/Education/AddCandidateEducationModal"));
 const AddCandidateTrainingModal = lazy(() => import("../CandidateDetailTab/Training/AddCandidateTrainingModal"));
@@ -122,8 +120,8 @@ function CandidateDetailTab(props) {
             tab={
               <>
                 <span>
-                  <LocalActivityIcon style={{ fontSize: "1.1rem" }} />
-                  <span class=" ml-[0.25em]" >
+                  <LocalActivityIcon className=" !text-icon" />
+                  <span class=" ml-1 !text-tab" >
                    Activity
 
 
@@ -157,6 +155,8 @@ function CandidateDetailTab(props) {
               {" "}
               <ActivityTable
                 candidate={props.candidateId}
+                translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}
               />
             </Suspense>
           </TabPane>
@@ -164,9 +164,9 @@ function CandidateDetailTab(props) {
             tab={
               <>
                 <TransferWithinAStationIcon
-                  style={{ fontSize: "1.1rem" }}
+                  className=" !text-icon"
                 />
-                <span class=" ml-[0.25em]" >
+                <span class=" ml-1 !text-tab" >
                   RecruitPro
                   {/* {translatedContent[0]} */}
                 </span>
@@ -179,6 +179,8 @@ function CandidateDetailTab(props) {
             <Suspense fallback={"Loading ..."}>
               {" "}
               <PlacementTable
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}
               />
             </Suspense>
           </TabPane>
@@ -186,8 +188,8 @@ function CandidateDetailTab(props) {
             tab={
               <>
 
-                <WorkspacePremiumIcon style={{ fontSize: "1.1rem" }} />
-                <span class=" ml-[0.25em]" >
+                <WorkspacePremiumIcon className=" !text-icon" />
+                <span class=" ml-1 !text-tab" >
                   {/* {translatedContent[1]} */}
                   Experience
                 </span>
@@ -199,14 +201,16 @@ function CandidateDetailTab(props) {
             {/* <LinkedExperience/> */}
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <ExperienceForm />
+              <ExperienceForm 
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
             </Suspense>
           </TabPane>
           <TabPane
             tab={
               <>
-                <FileCopyIcon style={{ fontSize: "1.1rem" }} />
-                <span style={{ marginLeft: "0.25em" }}>
+                <FileCopyIcon className=" !text-icon" />
+                <span class=" ml-1 !text-tab">
                   Documents
                   {/* {translatedContent[3]} */}
                 </span>
@@ -227,15 +231,18 @@ function CandidateDetailTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <LinkedDocuments />
+              <LinkedDocuments 
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
+               
             </Suspense>
           </TabPane>
 
           <TabPane
             tab={
               <>
-                <span>
-                  <NoteAltIcon style={{ fontSize: "1.1rem" }} />
+                <span  className="  !text-tab">
+                  <NoteAltIcon className=" !text-icon " />
                 Notes
                   {/* {translatedContent[4]} */}
                   &nbsp;
@@ -245,7 +252,7 @@ function CandidateDetailTab(props) {
                         <span
                           onClick={() => handleCandidateReactSpeechModal(true)}>
                           <MicIcon
-                            style={{ fontSize: "1.1rem" }}
+                            className=" !text-icon"
                           />
 
                         </span>
@@ -258,14 +265,16 @@ function CandidateDetailTab(props) {
             key="5"
           >
             <Suspense fallback={"Loading ..."}>
-              {/* <LinkedNotes />{" "} */}
+              {/* <LinkedNotes 
+               translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}/>{" "} */}
             </Suspense>
           </TabPane>
           <TabPane
             tab={
               <>
-                <SchoolIcon style={{ fontSize: "1.1rem" }} />
-                <span class=" ml-[0.25em]" >
+                <SchoolIcon className=" !text-icon" />
+                <span class=" ml-1 !text-tab" >
                   Education
                   {/* {translatedContent[5]} */}
                 </span>
@@ -294,14 +303,16 @@ function CandidateDetailTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <CandidateEducationTable />
+              <CandidateEducationTable 
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
             </Suspense>
           </TabPane>
           <TabPane
             tab={
               <>
-                <HeadphonesIcon style={{ fontSize: "1.1rem" }} />
-                <span class=" ml-[0.25em]" >
+                <HeadphonesIcon className=" !text-icon" />
+                <span class=" ml-1 !text-tab" >
                   Training
                   {/* {translatedContent[7]} */}
                 </span>
@@ -323,14 +334,16 @@ function CandidateDetailTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <CandidateTrainingTable />
+              <CandidateTrainingTable 
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
             </Suspense>
           </TabPane>
           <TabPane
             tab={
               <>
-                <AccountBalanceIcon style={{ fontSize: "1.1rem" }} />
-                <span class=" ml-[0.25em]" >
+                <AccountBalanceIcon className=" !text-icon" />
+                <span class=" ml-1 !text-tab" >
                   Employment
                   {/* {translatedContent[6]} */}
                 </span>
@@ -352,7 +365,9 @@ function CandidateDetailTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <CandidateEmploymentTable />
+              <CandidateEmploymentTable 
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
             </Suspense>
           </TabPane>
 
@@ -362,8 +377,8 @@ function CandidateDetailTab(props) {
           <TabPane
             tab={
               <>
-                <AccountBalanceIcon style={{ fontSize: "1.1rem" }} />
-                <span class=" ml-[0.25em]" >
+                <AccountBalanceIcon className=" !text-icon" />
+                <span class=" ml-1 !text-tab" >
                   Bank Details
                   {/* {translatedContent[8]} */}
                 </span>
@@ -383,7 +398,9 @@ function CandidateDetailTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <BankTable />
+              <BankTable 
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
             </Suspense>
           </TabPane>
         </StyledTabs>
@@ -392,32 +409,46 @@ function CandidateDetailTab(props) {
         <AddDocumentModal
           documentUploadModal={documentUploadModal}
           handleDocumentUploadModal={handleDocumentUploadModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         />
         <AddCandidateEducationModal
           addCandidateEducationModal={addCandidateEducationModal}
           handleCandidateEducationModal={handleCandidateEducationModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         />
         <AddCandidateTrainingModal
           addCandidateTrainingModal={addCandidateTrainingModal}
           handleCandidateTrainingModal={handleCandidateTrainingModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         />
         <AddCandidateEmploymentModal
           addCandidateEmploymentModal={addCandidateEmploymentModal}
           handleCandidateEmploymentModal={handleCandidateEmploymentModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         />
         <AddBankModal
           addCandidateBankModal={addCandidateBankModal}
           handleCandidateBankModal={handleCandidateBankModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         />
         <ActivityModal
           addCandidateActivityModal={addCandidateActivityModal}
           handleCandidateActivityModal={handleCandidateActivityModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         />
 
         <ReactCandidateSpeechModal
           candidate={props.candidate}
           handleCandidateReactSpeechModal={handleCandidateReactSpeechModal}
           addCandidateSpeechModal={addCandidateSpeechModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         />
       </Suspense>
     </>
