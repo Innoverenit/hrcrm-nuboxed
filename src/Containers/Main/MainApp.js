@@ -74,6 +74,7 @@ import AddOpportunityModal from "../Opportunity/Child/AddOpportunityModal";
 import AddContactModal from "../Contact/Child/AddContactModal";
 import AddAccountModal from "./Account/AddAccountModal";
 import AddAccountOpportunityModal from "./Account/AccountDetailsTab/AccountQuotationDrawer";
+import ErrorPage from "./ErrorPage";
 const NavMenu = lazy(() =>
   import("./NavMenu")
 );
@@ -1271,6 +1272,17 @@ function MainApp(props) {
                         />
                       )}
                     />  
+                     <Route
+                      exact
+                      path="/errorPage"
+                      render={(props) => (
+                        <ErrorPage
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    /> 
                      {/* <Route
                       exact
                       path="/leads/:leadsId"
