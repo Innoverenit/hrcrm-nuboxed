@@ -24,6 +24,8 @@ import ProcureOrderModal from "./Child/ProcureOrderModal";
 import AddProcureNotesDrawerModal from "./AddProcureNotesDrawerModal";
 import ProcureSearchedData from "./ProcureSearchedData";
 import { base_url2 } from "../../../Config/Auth";
+import ErrorPage from "../ErrorPage";
+import EmptyPage from "../EmptyPage";
 import axios from "axios";
 
 
@@ -180,6 +182,7 @@ useEffect(() => {
 const {handleProcureNotesDrawerModal,
   addDrawerProcureNotesModal
 } = props;
+console.log(props.fetchingAllProcure)
   return (
     <div>
     {props.orderSearch.length > 0 ? (
@@ -218,7 +221,13 @@ const {handleProcureNotesDrawerModal,
           style={{ scrollbarWidth:"thin"}}
           endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
         >
-          {data.map((item) => {
+          {/* {data.map((item) => { */}
+{props.fetchingAllProcure === false ? (
+  <ErrorPage />
+) : !props.fetchingAllProcure && data.length === 0 ? (
+  <EmptyPage />
+) : (
+  data.map((item, index) => {
             const currentDate = dayjs().format("DD/MM/YYYY");
             const date = dayjs(item.creationDate).format("DD/MM/YYYY");
             const diff = Math.abs(
@@ -465,7 +474,8 @@ const {handleProcureNotesDrawerModal,
               </div>
               // </div>
             );
-          })}
+})
+        )}
         </InfiniteScroll>
       </div>
 
