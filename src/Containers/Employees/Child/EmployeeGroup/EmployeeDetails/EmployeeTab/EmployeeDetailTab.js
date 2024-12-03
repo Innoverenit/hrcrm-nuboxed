@@ -1,773 +1,543 @@
-import React, { Component, lazy, Suspense } from "react";
+import React, { lazy, Suspense, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import NoteAltIcon from "@mui/icons-material/NoteAlt";
+
+import { translateText, } from '../../../../../Translate/TranslateService';
+import { Tooltip,Badge } from "antd";
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
-import PaymentIcon from '@mui/icons-material/Payment';
+import MicIcon from '@mui/icons-material/Mic';
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStation';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
-import RecentActorsIcon from '@mui/icons-material/RecentActors';
-import PhoneIcon from '@mui/icons-material/Phone';
-import ContrastIcon from '@mui/icons-material/Contrast';
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import { handleCandidateReactSpeechModal } from "../../../../CandidateAction";
 import { StyledTabs } from "../../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../../Components/UI/Layout";
 import SchoolIcon from '@mui/icons-material/School';
-import { Badge } from "antd";
-import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
-import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
-import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
-import ApartmentIcon from '@mui/icons-material/Apartment';
+import { handleCandidateEducationModal } from "../../../../CandidateAction";
+import { handleDocumentUploadModal } from "../../../../../Customer/CustomerAction";
+import { handleCandidateTrainingModal } from "../../../../CandidateAction";
 import {
-  handlePersonalModal,
-  handleEmploymentModal,
-  handleTrainingModal,
-  handleBankModal,
-  handleEducationModal,
-  handleVisaModal,
-  handlePersonalDetailsModal,
-  handleSalaryModal,
-  handleDocumentUploadModal,
-  handleContractModal,
-} from "../../../../../Profile/ProfileAction";
-const AddDocumentModals =lazy(()=>import("../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals"));
-const LinkedDocuments =lazy(()=>import("../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments"));
-const EmployeePerformanceTable =lazy(()=>import("./Performance/EmployeePerformanceTable"));
-const AddPersonalModal =lazy(()=>import("../EmployeeTab/Personal/AddPersonalModal"));
-const AddEducationModal =lazy(()=>import("./Education/AddEducationModal"));
-const AddTrainingModal =lazy(()=>import("./Training/AddTrainingModal"));
-const AddEmploymentModal =lazy(()=>import("./Employment/AddEmploymentModal"));
-const AddBankModal =lazy(()=>import("./Bank/AddBankModal"));
-const PersonalDetailsTable =lazy(()=>import("./PersonalDetails/PersonalDetailsTable"));
-const AddPersonalDetailsModal =lazy(()=>import("./PersonalDetails/AddPersonalDetailsModal"));
-const AddSalaryModal =lazy(()=>import("./Salary/AddSalaryModal"));
-const SalaryTable =lazy(()=>import("./Salary/SalaryTable"));
-const AddContractModal =lazy(()=>import("./Contract/AddContractModal"));
-const ContractTable =lazy(()=>import("./Contract/ContractTable"));
-const ContactsIcon =lazy(()=>import("@mui/icons-material/Contacts"));
-const EmployeeExperienceForm =lazy(()=>import("./Experience/EmployeeExperienceForm"));
-const AddVisaModal =lazy(()=>import("./Visa/AddVisaModal"));
-const VisaTable =lazy(()=>import("./Visa/VisaTable"));
+  handleCandidateEmploymentModal,
+  handleCandidateBankModal,
+  handleCandidateActivityModal,
+} from "../../../../CandidateAction";
+import LocalActivityIcon from '@mui/icons-material/LocalActivity';
+import HeadphonesIcon from '@mui/icons-material/Headphones';
+import AddDocumentModals from "../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
+import LinkedDocuments from "../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments";
+const ReactCandidateSpeechModal = lazy(() => import("../../ReactCandidateSpeechModal"));
+const ExperienceForm = lazy(() => import("../CandidateDetailTab/Experience/ExperienceForm"));
+const CandidateEducationTable = lazy(() => import("./Education/CandidateEducationTable"));
+const AddCandidateEducationModal = lazy(() => import("../CandidateDetailTab/Education/AddCandidateEducationModal"));
+const AddCandidateTrainingModal = lazy(() => import("../CandidateDetailTab/Training/AddCandidateTrainingModal"));
+const CandidateTrainingTable = lazy(() => import("./Training/CandidateTrainingTable"));
+const AddCandidateEmploymentModal = lazy(() => import("./Employment/AddCandidateEmploymentModal"));
+const CandidateEmploymentTable = lazy(() => import("./Employment/CandidateEmploymentTable"));
+const AddBankModal = lazy(() => import("./Bank/AddBankModal"));
 const BankTable = lazy(() => import("./Bank/BankTable"));
-const EducationTable = lazy(() => import("./Education/EducationTable"));
-const EmploymentTable = lazy(() => import("./Employment/EmploymentTable"));
-const TrainingTable = lazy(() => import("./Training/TrainingTable"));
-const PersonalTable2 = lazy(() => import("./Personal/PersonalTable2"));
+const PlacementTable = lazy(() => import("./Placement/PlacementTable"));
+const ActivityModal = lazy(() => import("./Activity/ActivityModal"));
+const ActivityTable = lazy(() => import("./Activity/ActivityTable"));
 
 const TabPane = StyledTabs.TabPane;
 
-class EmployeeDetailTab extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeKey: "1",
-      translatedMenuItems: [],
+function CandidateDetailTab(props) {
+  const [activeKey, setActiveKey] = useState('1');
+  const [translatedContent, setTranslatedContent] = useState('');
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     activeKey: "1",
+  //   };
+  // }
+
+
+  // handleTabChange = (key) => this.setState({ activeKey: key });
+
+  function handleTabChange(key) {
+    setActiveKey(key)
+  }
+
+  useEffect(() => {
+
+
+
+    const fetchTranslation = async () => {
+      try {
+        const translation = await Promise.all([
+          translateText('RecruitPro', props.selectedLanguage),
+          translateText('Experience', props.selectedLanguage),
+          translateText('Activity', props.selectedLanguage),
+          translateText('Documents', props.selectedLanguage),
+          translateText('Notes', props.selectedLanguage),
+          translateText('Education', props.selectedLanguage),
+          translateText('Employment', props.selectedLanguage),
+          translateText('Training', props.selectedLanguage),
+
+          translateText('Bank Details', props.selectedLanguage),
+        ]);
+
+        setTranslatedContent(translation);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
     };
-  }
-componentDidMount(){
-  this.fetchMenuTranslations();
-}
-componentDidUpdate(prevProps) {
-  if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
-    this.fetchMenuTranslations();
-  }
-}
 
-fetchMenuTranslations = async () => {
-  try {
-    const itemsToTranslate = [
-      "1139",//0Performance
-      "1195",//1 Education
-      "1194",//2Training
-      "992",//3Employment
-   "1197", //  4 "Emergency"
-   "1198",//  5 Bank Details
-   "1199",  //  6 Personal Details
-   "316", //   7Notes"
-    "981",  //  8 Salary
-    "1166", // 9  Documents"
-    "1205", //   10"Contract"
-    "1153",  //  11 "Talent"
-    "99", //  12 Opportunity"
-    "248", // 13  "Customer"
-    "1152",  //  14 Requirement"
-    "870", //  15 "Vendor"
-    "1697", //   16 Experience
-    "1696", //   17 Visa
-    "85", // add
-    ];
+    fetchTranslation();
+  }, [props.selectedLanguage]);
+  const renderTabContent = (key) => {
+    switch (key) {
+      case "1":
+        return     <div> 
+          <ActivityTable
+                candidate={props.candidate.candidateId}
+                translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}
+              />
+            </div>;
+      case "2":
+        return  <div>
+          <PlacementTable
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}
+              />
+        </div>;
+    case "3":
+      return  <div>
+           <ExperienceForm 
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
+      </div>;
+         case "4":
+          return  <div>
+            <LinkedDocuments
+              uniqueId={props.candidate.candidateId}
+              type={"candidate"}
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}
+            translatedMenuItems={props.translatedMenuItems}
+             /> 
+          </div>;
+          case "5":
+            return  <div>
+              
+            </div>;
+            case "6":
+              return  <div>
+                 <CandidateEducationTable 
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
+              </div>;
+              case "7":
+                return  <div>
+                   <CandidateTrainingTable 
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
+                </div>;
+ case "8":
+  return  <div>
+    <CandidateEmploymentTable 
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
+  </div>;
+  case "8":
+    return  <div>
+       <BankTable 
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
+    </div>;
+      default:
+        return null;
+    }
+  };
 
-    const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
-    this.setState({ translatedMenuItems: translations });
-  } catch (error) {
-    console.error('Error translating menu items:', error);
-  }
-};
+  // const { activeKey } = this.state;
+  const {
+    addingEmail,
+    handleDocumentUploadModal,
+    documentUploadModal,
+    handleOpportunityModal,
+    addOpportunityModal,
+    addCandidateEducationModal,
+    handleCandidateEducationModal,
+    handleCandidateTrainingModal, 
+    addCandidateTrainingModal,
+    handleCandidateEmploymentModal,
+    addCandidateEmploymentModal,
+    handleCandidateBankModal,
+    addCandidateBankModal,
+    handleCandidateActivityModal,
+    addCandidateActivityModal,
+    handleCandidateReactSpeechModal,
+    addCandidateSpeechModal,
+  } = props;
+  console.log(props.candidateId);
+  console.log("activeKey", activeKey)
+  return (
+    <>
+      <TabsWrapper>
+        <StyledTabs defaultActiveKey="1" onChange={handleTabChange}>
 
-  handleTabChange = (key) => this.setState({ activeKey: key });
 
- 
-  render() {
-    const { activeKey } = this.state;
-    const {
-      addEducationModal,
-      addVisaModal,
-      handleEducationModal,
-      handleVisaModal,
-      addTrainingModal,
-      handleTrainingModal,
-      addEmploymentModal,
-      handleEmploymentModal,
-      addPersonalModal,
-      handlePersonalModal,
-      addPersonalDetailsModal,
-      addSalaryModal,
-      handlePersonalDetailsModal,
-      handleSalaryModal,
-      addBankModal,
-      handleBankModal,
-      handleDocumentUploadModal,
-      documentUploadModal,
-      addContractModal,
-      handleContractModal,
-      user
-    } = this.props;
-console.log(this.props.singleEmployee)
-    return (
-      <>
-        <TabsWrapper>
-          <StyledTabs defaultActiveKey="1" onChange={this.handleTabChange}>
 
           <TabPane
-              tab={
-                <>
-                 <DirectionsRunIcon className=" !text-icon"/>
-                <span class="  !text-tab ml-1"> 
-                {this.state.translatedMenuItems[0]}   {/* Performance  */}
-                   </span>
-                  </>
-              }
-              key="1"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <EmployeePerformanceTable 
-                singleEmployee={this.props.singleEmployee}
-                translateText={this.props.translateText}
-                selectedLanguage={this.props.selectedLanguage}
-                />
-              </Suspense>
-            </TabPane>
-            <TabPane
-              tab={
-                <>
-                <SchoolIcon  className=" !text-icon" />
-                  <span class=" font-poppins ml-1  !text-tab" >
-                    
-                  {this.state.translatedMenuItems[1]}     {/* Education */}
-                  </span>
-                  {activeKey === "2" && user.userCreateInd === true &&(
-                    <>
-                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
-                        tooltipTitle={this.state.translatedMenuItems[18]}
-                        onClick={() => handleEducationModal(true)}
-                      />
-                    </>
-                  )}
-                </>
-              }
-              key="2"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <EducationTable 
-                 translateText={this.props.translateText}
-                 selectedLanguage={this.props.selectedLanguage}/>
-              </Suspense>
-            </TabPane>
-            <TabPane
-              tab={
-                <>
-                  
-                  {/* <HeadphonesIcon   className=" !text-icon" 
-                  /> */}
-                  < ModelTrainingIcon className=" !text-icon" />
-                   <span class="  !text-tab font-poppins ml-1" >
-                   {this.state.translatedMenuItems[2]} {/* Training */}
-                    
-                  </span>
-                  {activeKey === "3" &&  user.userCreateInd === true && (
-                    <>
-                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
-                        tooltipTitle={this.state.translatedMenuItems[18]}
-                        onClick={() => handleTrainingModal(true)}
-                      />
-                    </>
-                  )}
-                </>
-              }
-              key="3"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <TrainingTable 
-                 translateText={this.props.translateText}
-                 selectedLanguage={this.props.selectedLanguage}/>
-              </Suspense>
-            </TabPane>
+            tab={
+              <>
+                <span>
+                  <LocalActivityIcon className=" !text-icon" />
+                  <span class=" ml-1 !text-tab" >
+                   Activity
 
-            <TabPane
-              tab={
-                <>
-                  {/* <AccountBalanceIcon   className=" !text-icon"  /> */}
-                  <AccountBalanceIcon className=" !text-icon"/>
-                  <span class="  !text-tab font-poppins ml-1" >
-                  {this.state.translatedMenuItems[3]}
-                    {/* <FormattedMessage
-                      id="app.employment"
-                      defaultMessage="Employment"
-                    /> */}
-                  </span>
-                  {activeKey === "4" &&  user.userCreateInd === true &&(
-                    <>
-                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
-                       
-                        tooltipTitle={this.state.translatedMenuItems[18]}
-                        onClick={() => handleEmploymentModal(true)}
-                      
-                      />
-                    </>
-                  )}
-                </>
-              }
-              key="4"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <EmploymentTable 
-                 translateText={this.props.translateText}
-                 selectedLanguage={this.props.selectedLanguage}/>
-              </Suspense>
-            </TabPane>
 
-            <TabPane
-              tab={
-                <>
-                
-                <PhoneIcon 
-                 className=" !text-icon"
-                 />
-                  <span class="  !text-tab font-poppins ml-1">
-                  {this.state.translatedMenuItems[4]}
-                    {/* <FormattedMessage
-                      id="app.emergency"
-                      defaultMessage="Emergency"
-                    /> */}
                   </span>
-                  {activeKey === "5" && user.userCreateInd === true && (
-                    <>
-                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
-                       
-                        tooltipTitle={this.state.translatedMenuItems[18]}
-                        onClick={() => handlePersonalModal(true)}
-                       
-                      />
-                    </>
-                  )}
-                </>
-              }
-              key="5"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                {/* <PersonalTable /> */}
-                <PersonalTable2
-                 translateText={this.props.translateText}
-                 selectedLanguage={this.props.selectedLanguage} />
-              </Suspense>
-            </TabPane>
-{user.userAccessInd === true ?(
-            <TabPane
-              tab={
-                <>
-                <AccountBalanceIcon  className=" !text-icon"/>
-                  <span class=" font-poppins ml-1  !text-tab">
-                  {this.state.translatedMenuItems[5]}  {/* Bank Details */}
-                  </span>
-                  {activeKey === "6" && user.userCreateInd === true && (
-                    <>
-                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
-                       
-                        tooltipTitle={this.state.translatedMenuItems[18]}
-                        onClick={() => handleBankModal(true)}
-                      />
-                    </>
-                  )}
-                </>
-              }
-              key="6"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <BankTable 
-                 translateText={this.props.translateText}
-                 selectedLanguage={this.props.selectedLanguage} />
-              </Suspense>
-            </TabPane>
-):null}
-{user.userAccessInd === true ?(
-            <TabPane
-              tab={
-                <>
-                <RecentActorsIcon className=" !text-icon"/>
-                  <span class=" font-poppins ml-1  !text-tab">
-                  {this.state.translatedMenuItems[6]}  {/* Personal Details */}
-                  </span>
-                  {activeKey === "7" && user.userCreateInd === true && (
-                    <>
-                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
-                       
-                        tooltipTitle={this.state.translatedMenuItems[18]}
-                        onClick={() => handlePersonalDetailsModal(true)}
-                      />
-                    </>
-                  )}
-                </>
-              }
-              key="7"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <PersonalDetailsTable
-                 translateText={this.props.translateText}
-                 selectedLanguage={this.props.selectedLanguage} />
-              </Suspense>
-            </TabPane>
-            ):null}
-            <TabPane
-              tab={
-                <>
-                <NoteAltIcon  className=" !text-icon"/>
-                  <span class="ml-1  !text-tab">  
-                  {this.state.translatedMenuItems[7]}  {/* <FormattedMessage id="app.notes" defaultMessage="Notes" /> */}
-                  </span>
-                  {activeKey === "8" && (
-                    <>
+                </span>
+                {activeKey === "1" && (
+                  <>
+
+                    {/* {props.user.talentCreateInd === true && props.user.recruitOppsInd === true ( */}
+                    <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
                      
-                    </>
-                  )}
-                </>
-              }
-              key="8"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                {/* <EmployeesNotes /> */}
-              </Suspense>
-            </TabPane> 
-       
-     
-            <TabPane
-              tab={
-                <>
-                 <PaymentIcon  className=" !text-icon"/>
-                  <span class=" font-poppins ml-1  !text-tab">
-                  {this.state.translatedMenuItems[8]} {/* Salary */}
-                  </span>
-                  {activeKey === "9" && user.userCreateInd === true && (
-                    <>
-                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                      tooltiptitle=
+                          "Create"
                        
-                        tooltipTitle={this.state.translatedMenuItems[18]}
-                        onClick={() => handleSalaryModal(true)}
+                      
+                      onClick={() =>
+                        handleCandidateActivityModal(true)
+                      }
+               
+
+                    />
+                    {/* )} */}
+                  </>
+                )}
+              </>
+            }
+            key="1"
+          >
+            <Suspense fallback={"Loading ..."}>
+              {" "}
+             
+            </Suspense>
+          </TabPane>
+          <TabPane
+            tab={
+              <>
+                <TransferWithinAStationIcon
+                  className=" !text-icon"
+                />
+                <span class=" ml-1 !text-tab" >
+                  RecruitPro
+                  {/* {translatedContent[0]} */}
+                </span>
+
+
+              </>
+            }
+            key="2"
+          >
+            <Suspense fallback={"Loading ..."}>
+              {" "}
             
-                      />
-                    </>
-                  )}
-                </>
-              }
-              key="9"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <SalaryTable 
-                 translateText={this.props.translateText}
-                 selectedLanguage={this.props.selectedLanguage}/>
-              </Suspense>
-            </TabPane>
-            {user.userAccessPlusInd === true ? (
-            <TabPane
-              tab={
-                <>
-                <FileCopyIcon   className=" !text-icon" />
-                  <span class=" font-poppins ml-1  !text-tab">
-                    
-                  {this.state.translatedMenuItems[9]}    {/* <FormattedMessage
-                      id="app.documents"
-                      defaultMessage="Documents"
-                    /> */}
-                  </span>
-                  <Badge
-                count={this.props.documentsByCount.document}
+            </Suspense>
+          </TabPane>
+          <TabPane
+            tab={
+              <>
+
+                <WorkspacePremiumIcon className=" !text-icon" />
+                <span class=" ml-1 !text-tab" >
+                  {/* {translatedContent[1]} */}
+                  Experience
+                </span>
+              </>
+            }
+            key="3"
+          >
+
+            {/* <LinkedExperience/> */}
+            <Suspense fallback={"Loading ..."}>
+              {" "}
+             
+            </Suspense>
+          </TabPane>
+          <TabPane
+            tab={
+              <>
+                <FileCopyIcon className=" !text-icon" />
+                <span class=" ml-1 !text-tab">
+                  Documents
+                  {/* {translatedContent[3]} */}
+                </span>
+                <Badge
+                count={props.documentsByCount.document}
                 overflowCount={999}
               > 
                    </Badge>
-                  {activeKey === "10" && user.userCreateInd === true && (
-                    <>
-                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
-                       
-                        tooltipTitle="Upload Document"
-                        onClick={() => handleDocumentUploadModal(true)}
-                        size="14px"
-                        style={{
-                          marginLeft: "0.25em",
-                          verticalAlign: "center",
-                        }}
-                      />
-                    </>
-                  )}
-                </>
-              }
-              key="10"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <LinkedDocuments
-          uniqueId={this.props.singleEmployee.employeeId}
-          type={"employee"}
-          translateText={this.props.translateText}
-          selectedLanguage={this.props.selectedLanguage}
-        translatedMenuItems={this.props.translatedMenuItems}
-         />
-              </Suspense>
-            </TabPane>
-            ):null}
-            <TabPane
-              tab={
-                <>
-                <ContrastIcon className=" !text-icon"/>
-                  <span class=" font-poppins ml-1  !text-tab">
-                    
-                   
-                  {this.state.translatedMenuItems[10]} {/* <FormattedMessage
-                      id="app.contract"
-                      defaultMessage="Contract"
-                    /> */}
-                  </span>
-                  {activeKey === "11" && user.userCreateInd === true && (
-                    <>
-                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
-                       
-                        tooltipTitle={this.state.translatedMenuItems[18]}
-                        onClick={() => handleContractModal(true)}
-                      />
-                    </>
-                  )}
-                </>
-              }
-              key="11"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <ContractTable 
-                 translateText={this.props.translateText}
-                 selectedLanguage={this.props.selectedLanguage}/>
-              </Suspense>
-            </TabPane>
-            
-            {this.props.singleEmployee.suspendInd? 
-            <TabPane
-              tab={
-                <>
-               <i class="fas fa-portrait" aria-hidden="true"></i>
-                  <span class=" font-poppins ml-1  !text-tab">
-                    
-                  {this.state.translatedMenuItems[11]}
-                    {/* <FormattedMessage
-                      id="app.talent"
-                      defaultMessage="Talent"
-                    /> */}
-                  </span>
-                  {activeKey === "12" && (
-                    <>
-                      
-                    </>
-                  )}
-                </>
-              }
-              key="12"
-            >
-           
-            </TabPane>
-                :null} 
+                {activeKey === "4" && (
+                  <>
+                    <AddBoxIcon className=" !text-icon  ml-1 items-center
+                    text-[#6f0080ad]"
 
-              {this.props.singleEmployee.suspendInd?    
-            <TabPane
-              tab={
-                <>
-                 <i class="far fa-lightbulb" aria-hidden="true"></i>
-                  <span class=" font-poppins ml-1  !text-tab" >
-                  {/* <FormattedMessage
-                id="app.opportunity"
-                defaultMessage="Opportunity"
-              /> */}{this.state.translatedMenuItems[12]}
-                  </span>
-                  {activeKey === "13" && (
-                    <>
-                      {/* <ActionIcon
-                       
-                        tooltipTitle={this.state.translatedMenuItems[18]}
-                        handleIconClick={() => handleTalentModal(true)}
-                        size="14px"
-                        style={{ marginLeft:"0.25em", verticalAlign: "center" }}
-                      /> */}
-                    </>
-                  )}
-                </>
-              }
-              key="13"
-            >
-           
-            </TabPane>:null}
-            {this.props.singleEmployee.suspendInd? 
-            <TabPane
-              tab={
-                <>
-                 <ApartmentIcon className="!text-icon "/>
-                  <span class=" font-poppins ml-1  !text-tab">
-                  {/* <FormattedMessage
-                id="app.customer"
-                defaultMessage="Customer"
-              /> */}{this.state.translatedMenuItems[13]}
-                  </span>
-                  {activeKey === "14" && (
-                    <>
-                      {/* <ActionIcon
-                       
-                        tooltipTitle={this.state.translatedMenuItems[18]}
-                        handleIconClick={() => handleTalentModal(true)}
-                        size="14px"
-                        style={{ marginLeft:"0.25em", verticalAlign: "center" }}
-                      /> */}
-                    </>
-                  )}
-                </>
-              }
-              key="14"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-               
-              </Suspense>
-            </TabPane>:null}
-            {this.props.singleEmployee.suspendInd? 
-            <TabPane
-              tab={
-                <>
-                <ContactsIcon className=" !text-icon"/>
-                  <span class=" font-poppins ml-1  !text-tab">
-                  {this.state.translatedMenuItems[14]} {/* <FormattedMessage
-                  id="app.requirement"
-                  defaultMessage="Requirement"
-                /> */}
-                  </span>
-                  {activeKey === "15" && (
-                    <>
-                  
-                    </>
-                  )}
-                </>
-              }
-              key="15"
-            >
-             
-            </TabPane>:null}
-            {this.props.singleEmployee.suspendInd? 
-            <TabPane
-              tab={
-                <>
-                 <i class="far fa-handshake" aria-hidden="true"></i>
-                  <span class=" font-poppins ml-1  !text-tab">
-                  {this.state.translatedMenuItems[15]}    {/* <FormattedMessage
-                id="app.vendor"
-                defaultMessage="Vendor"
-              /> */}
-                  </span>
-                  {activeKey === "16" && (
-                    <>
-                      {/* <ActionIcon
-                       
-                        tooltipTitle={this.state.translatedMenuItems[18]}
-                        handleIconClick={() => handleTalentModal(true)}
-                        size="14px"
-                        style={{ marginLeft:"0.25em", verticalAlign: "center" }}
-                      /> */}
-                    </>
-                  )}
-                </>
-              }
-              key="16"
-            >
+                      tooltipTitle="Upload Document"
+                      onClick={() => handleDocumentUploadModal(true)}
+                    
+                    />
+                  </>
+                )}
+              </>
+            }
+            key="4"
+          >
+            <Suspense fallback={"Loading ..."}>
+              {" "}
               
-            </TabPane>:null}
+               
+            </Suspense>
+          </TabPane>
 
-            <TabPane
-              tab={
-                <>
-                
-               <WorkspacePremiumIcon className=" !text-icon"/>
-                  <span class=" font-poppins ml-1  !text-tab">                  
-                  {this.state.translatedMenuItems[16]} {/* Experience */}
-                  </span>                 
-                </>
-              }
-              key="17"
-            >
-             
-              {/* <LinkedExperience/> */}
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <EmployeeExperienceForm
-                 translateText={this.props.translateText}
-                 selectedLanguage={this.props.selectedLanguage}/>
-              </Suspense>
-            </TabPane>
-
-            <TabPane
-              tab={
-                <>
-                <SchoolIcon  className=" !text-icon"/>
-                  <span class=" font-poppins ml-1  !text-tab">
-                    
-               {this.state.translatedMenuItems[17]}  {/* Visa */}
-                  </span>
-                  {activeKey === "18" && user.userCreateInd === true && (
+          <TabPane
+            tab={
+              <>
+                <span  className="  !text-tab">
+                  <NoteAltIcon className=" !text-icon " />
+                Notes
+                  {/* {translatedContent[4]} */}
+                  &nbsp;
+                  {activeKey === "5" && (
                     <>
-                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
-                       
-                        tooltipTitle={this.state.translatedMenuItems[18]}
-                        onClick={() => handleVisaModal(true)}
-                      />
+                      <Tooltip title="Voice to Text">
+                        <span
+                          onClick={() => handleCandidateReactSpeechModal(true)}>
+                          <MicIcon
+                            className=" !text-icon"
+                          />
+
+                        </span>
+                      </Tooltip>
                     </>
                   )}
-                </>
-              }
-              key="18"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <VisaTable 
-                 translateText={this.props.translateText}
-                 selectedLanguage={this.props.selectedLanguage}/>
+                </span>
+              </>
+            }
+            key="5"
+          >
+            <Suspense fallback={"Loading ..."}>
+              {/* <LinkedNotes 
+               translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}/>{" "} */}
+            </Suspense>
+          </TabPane>
+          <TabPane
+            tab={
+              <>
+                <SchoolIcon className=" !text-icon" />
+                <span class=" ml-1 !text-tab" >
+                  Education
+                  {/* {translatedContent[5]} */}
+                </span>
+                {activeKey === "6" && (
+                  <>
+                    {addingEmail ? (
+                      <></>
+                    ) : (
+                      <>
+                        <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                         
+                          tooltipTitle="Add"
+                          onClick={() =>
+                            handleCandidateEducationModal(true)
+                          }
+                       
+                        />
+                      </>
+                    )}
+                  </>
+                )}
+              </>
+            }
+            key="6"
+          >
+            <Suspense fallback={"Loading ..."}>
+              {" "}
+             
+            </Suspense>
+          </TabPane>
+          <TabPane
+            tab={
+              <>
+                <HeadphonesIcon className=" !text-icon" />
+                <span class=" ml-1 !text-tab" >
+                  Training
+                  {/* {translatedContent[7]} */}
+                </span>
+                {activeKey === "7" && (
+                  <>
+                    <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                     
+                      tooltipTitle="Add"
+                      onClick={() =>
+                        handleCandidateTrainingModal(true)
+                      }
+                    />
+                  </>
+                )}
+              </>
+            }
+            key="7"
+          >
+            <Suspense fallback={"Loading ..."}>
+              {" "}
+             
+            </Suspense>
+          </TabPane>
+          <TabPane
+            tab={
+              <>
+                <AccountBalanceIcon className=" !text-icon" />
+                <span class=" ml-1 !text-tab" >
+                  Employment
+                  {/* {translatedContent[6]} */}
+                </span>
+                {activeKey === "8" && (
+                  <>
+                    <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                     
+                      tooltipTitle="Add"
+                      onClick={() =>
+                        handleCandidateEmploymentModal(true)
+                      }
+                    />
+                  </>
+                )}
+              </>
+            }
+            key="8"
+          >
+            <Suspense fallback={"Loading ..."}>
+              {" "}
+             
+            </Suspense>
+          </TabPane>
+
+
+
+
+          <TabPane
+            tab={
+              <>
+                <AccountBalanceIcon className=" !text-icon" />
+                <span class=" ml-1 !text-tab" >
+                  Bank Details
+                  {/* {translatedContent[8]} */}
+                </span>
+                {activeKey === "9" && (
+                  <>
+                    <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                     
+                      tooltipTitle="Add"
+                      onClick={() => handleCandidateBankModal(true)}
+                    />
+                  </>
+                )}
+              </>
+            }
+            key="9"
+          >
+            <Suspense fallback={"Loading ..."}>
+              {" "}
+             
+            </Suspense>
+          </TabPane>
+        </StyledTabs>
+        <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                {renderTabContent(activeKey)}
               </Suspense>
-            </TabPane>
-      
-        
-          </StyledTabs> 
-        </TabsWrapper>
-        <Suspense fallback={"Loading..."}>
-          <AddEmploymentModal
-           translateText={this.props.translateText}
-           selectedLanguage={this.props.selectedLanguage}
-            addEmploymentModal={addEmploymentModal}
-            handleEmploymentModal={handleEmploymentModal}
-          />
-          <AddPersonalModal
-           translateText={this.props.translateText}
-           selectedLanguage={this.props.selectedLanguage}
-            addPersonalModal={addPersonalModal}
-            handlePersonalModal={handlePersonalModal}
-          />
-          <AddEducationModal
-           translateText={this.props.translateText}
-           selectedLanguage={this.props.selectedLanguage}
-            addEducationModal={addEducationModal}
-            handleEducationModal={handleEducationModal}
-          />
-           <AddVisaModal
-            translateText={this.props.translateText}
-            selectedLanguage={this.props.selectedLanguage}
-            addVisaModal={addVisaModal}
-            handleVisaModal={handleVisaModal}
-          />
-
-
-          <AddTrainingModal
-           translateText={this.props.translateText}
-           selectedLanguage={this.props.selectedLanguage}
-            addTrainingModal={addTrainingModal}
-            handleTrainingModal={handleTrainingModal}
-          />
-
-          <AddBankModal
-           translateText={this.props.translateText}
-           selectedLanguage={this.props.selectedLanguage}
-            addBankModal={addBankModal}
-            handleBankModal={handleBankModal}
-          />
-          <AddPersonalDetailsModal
-           translateText={this.props.translateText}
-           selectedLanguage={this.props.selectedLanguage}
-            addPersonalDetailsModal={addPersonalDetailsModal}
-            handlePersonalDetailsModal={handlePersonalDetailsModal}
-          />
-          <AddSalaryModal
-           translateText={this.props.translateText}
-           selectedLanguage={this.props.selectedLanguage}
-            addSalaryModal={addSalaryModal}
-            handleSalaryModal={handleSalaryModal}
-          />
-
+      </TabsWrapper>
+      <Suspense fallback={"Loading..."}>
+       
+        <AddCandidateEducationModal
+          addCandidateEducationModal={addCandidateEducationModal}
+          handleCandidateEducationModal={handleCandidateEducationModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        />
+        <AddCandidateTrainingModal
+          addCandidateTrainingModal={addCandidateTrainingModal}
+          handleCandidateTrainingModal={handleCandidateTrainingModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        />
+        <AddCandidateEmploymentModal
+          addCandidateEmploymentModal={addCandidateEmploymentModal}
+          handleCandidateEmploymentModal={handleCandidateEmploymentModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        />
+        <AddBankModal
+          addCandidateBankModal={addCandidateBankModal}
+          handleCandidateBankModal={handleCandidateBankModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        />
+        <ActivityModal
+          addCandidateActivityModal={addCandidateActivityModal}
+          handleCandidateActivityModal={handleCandidateActivityModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        />
            <AddDocumentModals
-            translateText={this.props.translateText}
-            selectedLanguage={this.props.selectedLanguage}
-            translatedMenuItems={this.props.translatedMenuItems}
+           candidateId={props.candidate.candidateId}
+           uniqueId={props.candidate.candidateId}
+           type={"candidate"}
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
-            employeeId={this.props.singleEmployee.employeeId}
-            uniqueId={this.props.singleEmployee.employeeId}
-            type={"employee"}
+            selectedLanguage={props.selectedLanguage}
+            translateText={props.translateText}
           />
-          <AddContractModal
-           translateText={this.props.translateText}
-           selectedLanguage={this.props.selectedLanguage}
-            addContractModal={addContractModal}
-            handleContractModal={handleContractModal}
-          />
-        </Suspense>
-      </>
-    );
-  }
+        <ReactCandidateSpeechModal
+          candidate={props.candidate}
+          handleCandidateReactSpeechModal={handleCandidateReactSpeechModal}
+          addCandidateSpeechModal={addCandidateSpeechModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        />
+      </Suspense>
+    </>
+  );
 }
-const mapStateToProps = ({ profile,employee,auth,customer }) => ({
-  addEducationModal: profile.addEducationModal,
-  addVisaModal:profile.addVisaModal,
-  user:auth.userDetails,
-  addTrainingModal: profile.addTrainingModal,
-  addEmploymentModal: profile.addEmploymentModal,
-  addPersonalModal: profile.addPersonalModal,
-  addBankModal: profile.addBankModal,
-  addPersonalDetailsModal: profile.addPersonalDetailsModal,
-  addSalaryModal: profile.addSalaryModal,
-  documentUploadModal: profile.documentUploadModal,
-  addContractModal: profile.addContractModal,
-  singleEmployee:employee.singleEmployee,
+
+const mapStateToProps = ({ candidate,customer, auth }) => ({
+  user: auth.userDetails,
+  documentUploadModal: customer.documentUploadModal,
+  addCandidateEducationModal: candidate.addCandidateEducationModal,
+  addCandidateTrainingModal: candidate.addCandidateTrainingModal,
+  addCandidateEmploymentModal: candidate.addCandidateEmploymentModal,
+  addCandidateBankModal: candidate.addCandidateBankModal,
+  addCandidateActivityModal: candidate.addCandidateActivityModal,
+  addCandidateSpeechModal: candidate.addCandidateSpeechModal,
+  candidateId: candidate.candidateId,
+  candidate: candidate.candidate,
   documentsByCount:customer.documentsByCount
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      handleTrainingModal,
-      handleEducationModal,
-      handleVisaModal,
-      handleEmploymentModal,
-      handlePersonalModal,
-      handleBankModal,
-      handlePersonalDetailsModal,
-      handleSalaryModal,
       handleDocumentUploadModal,
-      handleContractModal,
+      handleCandidateEducationModal,
+      handleCandidateTrainingModal,
+      handleCandidateEmploymentModal,
+      handleCandidateBankModal,
+      handleCandidateActivityModal,
+      handleCandidateReactSpeechModal,
     },
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(EmployeeDetailTab);
+export default connect(mapStateToProps, mapDispatchToProps)(CandidateDetailTab);

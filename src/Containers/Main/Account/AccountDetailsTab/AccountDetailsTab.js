@@ -45,6 +45,7 @@ import AccountOrderCreateDrawer from "./AccountOrderCreateDrawer";
 import Invoice from "../../../Invoice/Invoice";
 import AddInvoiceModal from "../../../Invoice/InvoiceHeader/AddInvoiceModal";
 import InvoiceTable from "../../../Invoice/InvoiceHeader/InvoiceTable";
+import SupplierDocumentTable from "../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/SupplierDocumentTable";
 
 
 const CompleteOrderTable= lazy(() =>import("./AccountOrderTab/CompleteOrderTable"));
@@ -60,7 +61,6 @@ const AccountOrder1Table = lazy(() => import("./AccountOrder1Tab/AccountOrder1Ta
 const AccountOrderTable = lazy(() => import("./AccountOrderTab/AccountOrderTable"));//1
 const AddAccountModal = lazy(() => import("./AccountOrderTab/AddAccountModal"));
 const AccountActivityModal = lazy(() => import("./AccountActivityTab/AccountActivityModal"));
-const DistributorDocumentTable = lazy(() => import("./AccountDocumentTab/DistributorDocumentTable"));
 const CatalogueOrderModal = lazy(() => import("./AccountOrder1Tab/CatalogueOrderModal"));
 const AccountContactTable = lazy(() => import("./AccountContactTab/AccountContactTable"))//8
 const AccountActivityTable = lazy(() => import("./AccountActivityTab/AccountActivityTable"));
@@ -220,11 +220,11 @@ function AccountDetailsTab(props) {
                        /></div>;
                        case "7":
                         return  <div>  
-                            <DistributorDocumentTable
-                                distributorId={props.distributorData.distributorId}
-                                selectedLanguage={props.selectedLanguage}
-                              translateText={props.translateText}
-                            />
+                             <SupplierDocumentTable 
+                      uniqueId={props.distributorData.distributorId}
+                      type={"distributor"}
+                      translateText={props.translateText}
+                      selectedLanguage={props.selectedLanguage}/>
                             </div>;
                             case "9":
                         return  <div>  
@@ -234,7 +234,10 @@ function AccountDetailsTab(props) {
                             /></div>;
                             case "10":
                                 return  <div>  
-                                   <AccountContactTable distributorId={props.distributorData.distributorId} 
+                                   <AccountContactTable 
+                                     uniqueId={props.distributorData.distributorId} 
+                                     type={"distributor"}
+                                   distributorId={props.distributorData.distributorId} 
                               selectedLanguage={props.selectedLanguage}
                               translateText={props.translateText}/></div>;
                               case "11":
@@ -635,6 +638,13 @@ case "16":
                                     {/* Documents */}
                                         </span>
                                 </span>
+                                <Badge
+                                    size="small"
+                                    count={(props.documentCountSupplierId.document) || 0}
+                                    overflowCount={999}
+                                    offset={[ 0, -16]}
+                                >
+                              </Badge>
                                 {activeKey === "7" && (
                                     <>
                                         <Tooltip title={translatedMenuItems[11]}>
@@ -837,6 +847,8 @@ case "16":
             <AddSupplierDocumentModal
              selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText}
+                uniqueId={props.distributorData.distributorId}
+                type={"distributor"}
                 distributorId={props.distributorData.distributorId}
                 supplierDocumentUploadModal={props.supplierDocumentUploadModal}
                 handleSupplierDocumentUploadModal={props.handleSupplierDocumentUploadModal}
@@ -946,7 +958,8 @@ const mapStateToProps = ({ distributor, auth, suppliers,customer,invoice }) => (
     procureRecordData:distributor.procureRecordData,
     addAccountOpportunityModal: distributor.addAccountOpportunityModal,
     invoiceCount: distributor.invoiceCount,
-    addInvoiceModal:invoice.addInvoiceModal
+    addInvoiceModal:invoice.addInvoiceModal,
+    documentCountSupplierId:suppliers.documentCountSupplierId
 });
 
 const mapDispatchToProps = (dispatch) =>

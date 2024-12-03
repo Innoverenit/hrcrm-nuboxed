@@ -32,13 +32,17 @@ class CandidateDetails extends Component {
                 <div class=" w-[25%]" >
                   <CandidateDetailLeft 
                   candidate ={candidate}
+                  translateText={this.props.translateText}
                   selectedLanguage={this.props.selectedLanguage}
+                translatedMenuItems={this.props.translatedMenuItems}
                   />
                 </div>
                 <div class=" w-[75%]" >
                   <CandidateDetailRight 
                   candidate={candidate}
-                  selectedLanguage={this.props.selectedLanguage}
+                  translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
 
                   />
                 </div>

@@ -12,7 +12,9 @@ class CandidateDetailRight extends Component {
       <div class=" w-full" >
         <CandidateDetailTab 
         candidate={this.props.candidateId} 
-        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
         />
       </div>
     );

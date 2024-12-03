@@ -14,21 +14,58 @@ const [scanning, setScanning] = useState(false);
 const [shouldRenderCamera, setShouldRenderCamera] = useState(false);
 const [modalVisible, setModalVisible] = useState(false);
 console.log(props.receivedData)
-
+console.log(matchedValue)
+console.log(data)
 
 useEffect(() => {
+  // const checkMatch = () => {
+  //   for (const group of props.receivedData) {
+  //     for (const barcodeObj of group.barCodeList) {
+  //       console.log(
+  //         "Comparing:",
+  //         barcodeObj.barCode.toString().trim(),
+  //         "with",
+  //         data?.toString().trim()
+  //       );
+        
+  //       if (barcodeObj.barCode.toString().trim() === data?.toString().trim()) {
+  //         setMatchedValue(barcodeObj.barCode.toString());
+  //         console.log("Matched Value Found:", barcodeObj.barCode);
+  //         return;
+  //       }
+  //     }
+  //   }
+  //   setMatchedValue(null);
+  // };
+
+
   const checkMatch = () => {
+    console.log("Checking matches with receivedData:", props.receivedData);
+    console.log("Current data:", data);
+  
     for (const group of props.receivedData) {
-      for (const barcodeObj of group.barCodeList) {
-        if (barcodeObj.barCode === data) {
-          setMatchedValue(barcodeObj.barCode);
-          return;
+      // Ensure barCodeList is a valid array
+      if (Array.isArray(group.barCodeList)) {
+        for (const barcodeObj of group.barCodeList) {
+          console.log(
+            "Comparing:",
+            barcodeObj.barCode.toString().trim(),
+            "with",
+            data?.toString().trim()
+          );
+          if (barcodeObj.barCode.toString().trim() === data?.toString().trim()) {
+            setMatchedValue(barcodeObj.barCode.toString());
+            console.log("Matched Value Found:", barcodeObj.barCode);
+            return;
+          }
         }
+      } else {
+        console.warn("Invalid barCodeList:", group.barCodeList);
       }
     }
+  
     setMatchedValue(null);
   };
-
   checkMatch();
 }, [props.receivedData, data]);
 
@@ -63,27 +100,25 @@ const handleScan = async (result) => {
   const handleSubmit = () => {
     if (matchedValue) {
       console.log("Matched Value:", matchedValue);
+      let result={
+        poReceivedInd:true,
+        userId:props.userId,
+  
+  
+      }
+    props.addScanReceivedata(result,props.poSupplierDetailsId,matchedValue)
     }
-    let result={
-      poReceivedInd:true,
-      userId:props.userId,
-
-
-    }
-  props.addScanReceivedata(result,props.poSupplierDetailsId,data)
+ 
   };
 
   return (
     <>
-     {/* <DocumentScannerIcon onClick={startScanning} className='!cursor-pointer text-lg text-[tomato]'/> */}
-
-  
-        {/* {shouldRenderCamera && scanning && ( */}
+   
           <div className={`qr-code-scanner-container`}>
             <QrReader
               constraints={{ facingMode: 'environment' }}
               delay={300}
-              // onScan={props.handleScan}
+            
               onResult={handleScan}
               onError={handleError}
               onClose={stopScanning} />
@@ -119,7 +154,7 @@ const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
           addScanReceivedata
-            // addScandata
+           
         },
         dispatch
     );
