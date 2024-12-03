@@ -1,7 +1,7 @@
 import React, { useEffect, useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button,Tooltip,Checkbox,Popconfirm } from "antd";
+import { Button,Tooltip,Checkbox,Popconfirm,message } from "antd";
 import axios from "axios";
 import { base_url2 } from "../../../Config/Auth";
 import AddScanModal from "./AddScanModal";
@@ -278,7 +278,8 @@ orgId:props.orgId,
     finally {
       setLoading(false);
     }
-  };         
+  };      
+ 
     return (
         <>
             <div className='flex  sticky z-auto w-wk'>
@@ -361,8 +362,11 @@ orgId:props.orgId,
           <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]">
                                             <Button
                                              onClick={() => {
+
+
+
                                               props.handleScanModal(true);
-                                            handleSetScandata(item);
+                                          handleSetScandata(item);
                                             }}
                                             >Scan</Button>
                                             </div>
