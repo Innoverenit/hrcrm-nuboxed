@@ -36,7 +36,9 @@ import { BundleLoader } from '../../../../../Components/Placeholder';
 import { CurrencySymbol } from '../../../../../Components/Common';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import NodataFoundPage from '../../../../../Helpers/ErrorBoundary/NodataFoundPage';
-
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import axios from 'axios';
+import { base_url2 } from '../../../../../Config/Auth';
 
 const SubOrderList = lazy(() => import('./SubOrderList'));
 const AddPickupModal = lazy(() => import('./AddPickupModal'));
@@ -166,7 +168,29 @@ const CompleteOrderTable = (props) => {
         setVisible(false)
     }
 
-
+    const viewAnDownloadPdf= async (item) => {  
+        try {
+          const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.orderId}`, {
+            responseType: 'blob',
+            headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+            },
+          });
+      
+          const blob = response.data;
+          const url = window.URL.createObjectURL(blob);
+          const filename = 'custom-pdf-name.pdf';
+      
+          window.open(url, '_blank');
+          const downloadLink = document.createElement('a');
+          downloadLink.href = url;
+          downloadLink.download = filename; 
+          downloadLink.click(); 
+        } catch (error) {
+          console.error('Error fetching PDF:', error);
+        }  
+      
+      }; 
     return (
         <>
       
@@ -809,7 +833,11 @@ const CompleteOrderTable = (props) => {
                                                             </Tooltip>
                                                         </div>
 
-                                                  
+                                                        <div>
+                                                        <PictureAsPdfIcon className="!text-icon text-[red] cursor-pointer" 
+                                                            onClick={()=> viewAnDownloadPdf(item)}
+                                                        />
+                                                        </div>
                                                   
 
                                                         <div>

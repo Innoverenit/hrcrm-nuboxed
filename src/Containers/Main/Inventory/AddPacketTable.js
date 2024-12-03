@@ -23,7 +23,7 @@ function AddPacketTable(props) {
    const [expandPackNo,setexpandPackNo]=useState(false);
 
   useEffect(() => {
-    props.getPackData(props.orderPhoneId);
+    // props.getPackData(props.orderPhoneId);
   }, []);
 
   useEffect(() => {
@@ -129,7 +129,8 @@ setexpandPackNo(!expandPackNo);
               <div className="flex items-center  justify-end h-8 ml-gap bg-[#eef2f9] ">
               <AddPackToggle
               item={item}
-              packData={props.packData}        />
+              packData={props.packData}      
+                />
               </div>
             </div>  
           </div>

@@ -18,6 +18,7 @@ import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import axios from "axios";
 
 const { Option } = Select;
 
@@ -89,6 +90,29 @@ function OrderPaymentTable(props) {
     setMode("")
     setEdit(false)
   }
+  const viewAnDownloadPdf= async (item) => {  
+    try {
+      const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.orderPhoneId}`, {
+        responseType: 'blob',
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      });
+  
+      const blob = response.data;
+      const url = window.URL.createObjectURL(blob);
+      const filename = 'custom-pdf-name.pdf';
+  
+      window.open(url, '_blank');
+      const downloadLink = document.createElement('a');
+      downloadLink.href = url;
+      downloadLink.download = filename; 
+      downloadLink.click(); 
+    } catch (error) {
+      console.error('Error fetching PDF:', error);
+    }  
+  
+  }; 
 
   return (
     <>
@@ -212,12 +236,9 @@ function OrderPaymentTable(props) {
                   </div>
 
                   <div class="w-6">
-                  <a
-              href={`${base_url2}/customer/pdf/${item.paymentId}`}
-            target="_blank"
-            >
-            <PictureAsPdfIcon className="!text-icon"/>
-                           </a>
+                  <PictureAsPdfIcon className="!text-icon text-[red] cursor-pointer" 
+    onClick={()=> viewAnDownloadPdf(item)}
+    />
           </div>
                   <div class="flex  max-md:w-[6rem] items-center justify-center ml-gap bg-[#eef2f9] h-8 max-sm:flex-row max-sm:w-[10%]">
                     <div>

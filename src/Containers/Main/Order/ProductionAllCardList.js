@@ -22,6 +22,7 @@ import AddNotesOrderDrawer from "./AddNotesOrderDrawer";
 import PaidButtonModal from "../Account/AccountDetailsTab/AccountOrderTab/PaidButtonModal";
 import AccountOrderDetailsModal from "../Account/AccountDetailsTab/AccountOrderTab/AccountOrderDetailsModal";
 import { base_url2 } from "../../../Config/Auth";
+import axios from "axios";
 
 function ProductionAllCardList(props) {
   const [particularRowData, setParticularRowData] = useState({});
@@ -156,12 +157,33 @@ function ProductionAllCardList(props) {
     fetchingCustomerPagination,
   
   } = props;
-  console.log("ee");
+ 
 
-//   if (fetchingProductionAllOrder) {
-//     return <BundleLoader />;
-//   }
-console.log(page)
+
+  const viewAnDownloadPdf= async (item) => {  
+    try {
+      const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.orderId}`, {
+        responseType: 'blob',
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      });
+  
+      const blob = response.data;
+      const url = window.URL.createObjectURL(blob);
+      const filename = 'custom-pdf-name.pdf';
+  
+      window.open(url, '_blank');
+      const downloadLink = document.createElement('a');
+      downloadLink.href = url;
+      downloadLink.download = filename; 
+      downloadLink.click(); 
+    } catch (error) {
+      console.error('Error fetching PDF:', error);
+    }  
+  
+  }; 
+
   return (
     <>
       <div className=' flex  sticky  z-auto'>
@@ -275,12 +297,9 @@ console.log(page)
                     </div>
                   <div class=" flex">
                   <div class="w-6">
-                  <a
-              href={`${base_url2}/customer/pdf/${item.orderId}`}
-            target="_blank"
-            >
-            <PictureAsPdfIcon className="!text-icon text-red-600"/>
-                           </a>
+                  <PictureAsPdfIcon className="!text-icon text-[red] cursor-pointer" 
+    onClick={()=> viewAnDownloadPdf(item)}
+    />
           </div>  
                     <div className=" flex  w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
 
