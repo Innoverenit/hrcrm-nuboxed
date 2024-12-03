@@ -12,7 +12,6 @@ import UploadIcon from '@mui/icons-material/Upload';
 import EditUpload from "../../../Components/Forms/Edit/EditUpload";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
-const AddDocumentModal = lazy(() => import("./AddDocumentModal"));
 const UpdateExpenseModal = lazy(() => import("./UpdateExpense/UpdateExpenseModal"));
 
 function ExpenseDrawerCard(props) {
@@ -353,10 +352,10 @@ style={{border:"1px solid lightgrey",marginRight:"0.25rem"}}
       handleUpdateExpenseModal={handleUpdateExpenseModal}
       // handleSetCurrentExpenseId={handleSetCurrentExpenseId}
     />
-    <AddDocumentModal
+    {/* <AddDocumentModal
       documentUploadModal={documentUploadModal}
       handleDocumentUploadModal={handleDocumentUploadModal}
-    />
+    /> */}
     </>
   );
 }

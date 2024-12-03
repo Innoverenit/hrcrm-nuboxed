@@ -1,25 +1,25 @@
+
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 import { bindActionCreators } from "redux";
 import { Button, Switch, Tooltip,Select } from "antd";
 import { Formik, Form, Field } from "formik";
-import { StyledDrawer } from "../../../Components/UI/Antd";
-import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import * as Yup from "yup";
 import {
-  getCustomerDocument,
-  getselectdrop,
-  addCustomerDocument
-} from "../../Customer/CustomerAction";
+  addSupplierDocument,
+  getSupplierDocument,
+} from "../Suppliers/SuppliersAction";
+import {handleErpDocumentUploadModal} from "./SuppliesAction";
 import DragableUpload from "../../../Components/Forms/Formik/DragableUpload";
 import InputIcon from '@mui/icons-material/Input';
 import VerticalAlignTopIcon from '@mui/icons-material/VerticalAlignTop';
-import { base_url } from "../../../Config/Auth";
-import LinkedDocumentsSupplies from "./LinkedDocumentsSupplies";
-
+import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
+import { StyledDrawer } from "../../../Components/UI/Antd";
+import { base_url, base_url2 } from "../../../Config/Auth";
+import SupplierDocumentTable from "../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/SupplierDocumentTable";
 const { Option } = Select;
 const ButtonGroup = Button.Group;
 const documentSchema = Yup.object().shape({
@@ -29,7 +29,11 @@ const documentSchema = Yup.object().shape({
 function AddDocumentErpModals (props){
   const [documentshare, setDocumentshare] = useState(false);
   const [approvalAbove, setApprovalAbove] = useState(false);
+  const [customers, setCustomers] = useState([]);
   const [contract, setContract] = useState(false);
+  const [touchedCustomer, setTouchedCustomer] = useState(false);
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
+  const [isLoadingCustomers, setIsLoadingCustomers] = useState(false);
   const [ownerAbove, setOwnerAbove] = useState("Specific");
   const [selectedOwnerAbove, setSelectedOwnerAbove] = useState("Specific");
   const [data, setData] = useState([1]);
@@ -73,7 +77,8 @@ function AddDocumentErpModals (props){
           "1158",//4
           "75",//5
           "154",//6
-         
+         "73",//7
+         "138",//8
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -85,9 +90,9 @@ function AddDocumentErpModals (props){
 
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
-  useEffect(() => {
-    props.getselectdrop(props.orgId);
-  }, [ props.orgId]);
+  // useEffect(() => {
+  //   props.getselectdrop(props.orgId);
+  // }, [ props.orgId]);
 
   const handleSelectChangeInclude = (values) => {
     setSelectedIncludeValues(values); // Update selected values
@@ -103,6 +108,47 @@ function AddDocumentErpModals (props){
   const handleToggleInclude = () => {
     setShowInclude(!showInclude);
   };
+
+
+
+  const handleSelectCustomerFocus = () => {
+    if (!touchedCustomer) {
+      fetchCustomers();
+      // fetchSector();
+
+      setTouchedCustomer(true);
+    }
+  };
+
+  const handleCustomerChange = (customerId) => {
+    setSelectedCustomer(customerId);
+    // fetchContacts(customerId);
+  };
+
+
+  const fetchCustomers = async () => {
+    setIsLoadingCustomers(true);
+    try {
+   
+
+      const apiEndpoint = `${base_url2}/contactPerson/contact-list/drop-down/${props.uniqueId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setCustomers(data);
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      setIsLoadingCustomers(false);
+    }
+  };
+  
 
 
 
@@ -131,7 +177,7 @@ function AddDocumentErpModals (props){
   };
 
   const callback = () => {
-    getCustomerDocument(customer.customerId);
+    getSupplierDocument(props.uniqueId,props.type);
     handleErpDocumentUploadModal(false);
   };
 
@@ -141,22 +187,22 @@ function AddDocumentErpModals (props){
 
   const {
     customer,
-    documentUploadModal,
+    supplierDocumentUploadModal,
     handleErpDocumentUploadModal,
-    addCustomerDocument,
-    erpDocumentUploadModal,
-    addingDocumentByCustomerId,
+    addSupplierDocument,
+    addingDocumentBySupplierId,
     oppoStages,
     subscriptionType,
     organization,
-    getCustomerDocument,
+    getSupplierDocument,
+    erpDocumentUploadModal
   } = props;
 
 
   return (
     <>
       <StyledDrawer
-        title="Document"
+        title={translatedMenuItems[8]}
         width="60%"
         visible={erpDocumentUploadModal}
         onClose={handleClose}
@@ -166,28 +212,36 @@ function AddDocumentErpModals (props){
             documentTypeId: "",
             documentTitle: "",
             documentDescription: "",
-            contractInd: contract ? "true" : "false",
+            contract: contract ? "true" : "false",
             documentId: "",
-            suppliesId:props.suppliesId,
+            suppliesId: props.suppliesId,
+            supplierId: props.supplierId,
+            userId:props.userId,
+            distributorId:props.distributorId,
+            shipperId:props.shipperId
           }}
-          validationSchema={documentSchema}
+           validationSchema={documentSchema}
           onSubmit={(values, { resetForm }) => {
-            addCustomerDocument({ ...values, shareInd:selectedIncludeValues, contractInd: contract ? "true" : "false" }, callback);
+            addSupplierDocument({ ...values, 
+              included:selectedIncludeValues, 
+              contactId:selectedCustomer,
+              contract: contract ? "true" : "false" }, callback);
             resetForm();
           }}
         >
           {({ errors, touched, isSubmitting, setFieldValue, setFieldTouched, values, ...rest }) => (
-            <Form className="form-background">
+            <Form className="form-background h-[40vh]">
               <div class=" flex justify-between ">
                 <div class=" h-full w-2/4">
-                  <Field name="documentId" isRequired component={DragableUpload} />
+                  <Field name="documentId" isRequired component={DragableUpload} />       
                   {errors.documentId && (
-                    <p style={{ color: "tomato", fontWeight: 600 }}>{errors.documentId}</p>
+                    <div className="text-[tomato] text-[0.5rem] font-semibold">{errors.documentId}</div>
                   )}
-                  <div class=" mt-3">
+                  <div class="flex justify-between mt-3">
+                  <div class="  w-1/2">
                     <div className="font-bold font-poppins text-xs">{translatedMenuItems[0]}</div>
                     {/* type */}
-                    <Field
+                    <Field className="w-[14vw]"
                       name="documentTypeId"
                       selectType="documentTypeName"
                       isColumnWithoutNoCreate                     
@@ -197,21 +251,43 @@ function AddDocumentErpModals (props){
                       inlineLabel
                     />
                   </div>
-                  <div class=" flex  mt-4">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                  <div class=" flex justify-end w-1/2">
+                    <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                     {translatedMenuItems[1]}
                       {/* Contract */}
                       </div>
-                    <Switch
-                      style={{ width: "6.25em", marginLeft: "0.625em" }}
+                    <Switch className="w-[6.25rem] ml-2"          
                       onChange={handleContract}
                       checked={contract}
                       checkedChildren="Yes"
                       unCheckedChildren="No"
                     />
                   </div>
+                  </div>
+                  {(props.type === "distributor" || props.type === "supplier" || props.type === "shipper") && (
+                  <div class=" w-w47.5 max-sm:w-wk">                
+<div className="font-bold text-xs">
+{translatedMenuItems[7]}
+  {/* Contact */}
+  </div>
+      <Select
+       
+        placeholder="Select Contact"
+        loading={isLoadingCustomers}
+        onFocus={handleSelectCustomerFocus}
+        onChange={handleCustomerChange}
+      >
+        {customers.map(customer => (
+          <Option key={customer.contactId} value={customer.contactId}>
+            {customer.fullName}
+          </Option>
+        ))}
+      </Select>
+          
+            </div>
+)}  
                 </div>
-                <div class=" h-full w-2/5">
+                <div class=" h-full w-[47.5%]">
                 <div className="font-bold font-poppins text-xs">{translatedMenuItems[2]}</div>
                 {/* name */}
                   <Field
@@ -231,7 +307,7 @@ function AddDocumentErpModals (props){
                       component={TextareaComponent}
                     />
                   </div>           
-       <div className="mt-1 flex flex-col">
+       <div className="mt-2 flex flex-col">
       
       <div className="flex items-center">
       <div className="font-bold font-poppins text-xs">{translatedMenuItems[4]}</div>
@@ -259,7 +335,7 @@ function AddDocumentErpModals (props){
           defaultValue={selectedIncludeValues}
           mode="multiple"
         >
-          {props.selectDrop.map((includes) => (
+          {include.map((includes) => (
             <Option key={includes.employeeId} value={includes.employeeId}>
               {includes.empName}
             </Option>
@@ -283,7 +359,7 @@ function AddDocumentErpModals (props){
                                 <Field
                                   inlineLabel
                                   name="department"
-                                  label="Function"
+                                  label="Function" 
                                   isRequired
                                   isColumn
                                   component={InputComponent}
@@ -292,7 +368,7 @@ function AddDocumentErpModals (props){
                               <div>
                                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                                   {" "}
-                                  Level
+                                Level
                                 </div>
                                 <div class=" flex justify-between">
                                   <ButtonGroup>
@@ -346,7 +422,7 @@ function AddDocumentErpModals (props){
                 </div>
               </div>
               <div class=" flex justify-end mt-3">
-                <Button htmlType="submit" type="primary" loading={addingDocumentByCustomerId}>
+                <Button htmlType="submit" type="primary" loading={addingDocumentBySupplierId}>
                 <div className="font-bold font-poppins text-xs">{translatedMenuItems[6]}</div>
                 {/* submit */}
                 </Button>
@@ -354,31 +430,42 @@ function AddDocumentErpModals (props){
             </Form>
           )}
         </Formik>
-        <LinkedDocumentsSupplies
-        suppliesId={props.suppliesId}
-        translateText={props.translateText}
-        selectedLanguage={props.selectedLanguage}
-        />
+        <div> <SupplierDocumentTable 
+                      uniqueId={props.suppliesId}
+                      type={"supplies"}
+                      translateText={props.translateText}
+                      selectedLanguage={props.selectedLanguage}/></div>
       </StyledDrawer>
+      
     </>
   );
 };
 
-const mapStateToProps = ({ customer, settings, auth }) => ({
+const mapStateToProps = ({ customer, suppliers, auth }) => ({
   customer: customer.customer,
-  documentUploadModal: customer.documentUploadModal,
-  addingDocumentByCustomerId: customer.addingDocumentByCustomerId,
-  organization: auth.userDetails?.metaData?.organization,
+  supplierDocumentUploadModal: suppliers.supplierDocumentUploadModal,
+  supplier: suppliers.supplier,
+  supplierId: suppliers.supplierDetailById.supplierId,
+  documentUploadModal: suppliers.documentUploadModal,
+  addingDocumentBySupplierId: suppliers.addingDocumentBySupplierId,
+  organization:
+    auth.userDetails &&
+    auth.userDetails.metaData &&
+    auth.userDetails.metaData.organization,
+  organization:
+    auth.userDetails.metaData && auth.userDetails.metaData.organization,
+  userId:auth.userDetails.userId,
+  token: auth.token,
   orgId: auth.userDetails.organizationId,
-  selectDrop:customer.selectDrop
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
-    { 
-      addCustomerDocument,
-      getCustomerDocument,
-      getselectdrop
+    {
+      handleErpDocumentUploadModal,
+      addSupplierDocument,
+      getSupplierDocument,
+      // getselectdrop
     },
     dispatch
   );

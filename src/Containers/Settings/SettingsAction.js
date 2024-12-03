@@ -7060,11 +7060,7 @@ export const getApikey = (orgId) => (dispatch) => {
     type: types.GET_API_KEY_REQUEST,
   });
   axios
-    .get(`${base_url2}/ApiKey/getBy/${orgId}`, {
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },
-    })
+    .get(`${base_url2}/ApiKey/getBy/${orgId}` )
     .then((res) => {
       console.log(res);
       dispatch({

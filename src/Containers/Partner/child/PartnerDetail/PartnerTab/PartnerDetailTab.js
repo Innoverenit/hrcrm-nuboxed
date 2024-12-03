@@ -18,8 +18,6 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import MicIcon from '@mui/icons-material/Mic';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
-import LinkedDocuments from "./DocumentTab/LinkedDocuments";
-import AddDocumentModal from "./DocumentTab/AddDocumentModal";
 import { handlePartnerContactModal } from "../../../PartnerAction";
 import { handlePartnerOpportunityModal } from "../../../PartnerAction";
 import AddPartnerContactModal from "./ContactTab/AddPartnerContactModal";
@@ -184,7 +182,7 @@ class ContactDetailTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedDocuments />
+                {/* <LinkedDocuments /> */}
               </Suspense>
             </TabPane>
 
@@ -227,10 +225,10 @@ class ContactDetailTab extends Component {
           </StyledTabs>
         </TabsWrapper>
         <Suspense fallback={"Loading..."}>
-          <AddDocumentModal
+          {/* <AddDocumentModal
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
-          />
+          /> */}
 
           <AddPartnerContactModal
             addPartnerContactModal={addPartnerContactModal}

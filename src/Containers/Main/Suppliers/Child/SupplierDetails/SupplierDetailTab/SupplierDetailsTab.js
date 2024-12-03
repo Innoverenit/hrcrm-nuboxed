@@ -17,7 +17,7 @@ import {
 } from "../../../SuppliersAction";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import FileCopyIcon from '@mui/icons-material/FileCopy';
-import { Tooltip } from "antd";
+import { Badge, Tooltip } from "antd";
 import Shop2Icon from '@mui/icons-material/Shop2'; 
 import InventoryIcon from '@mui/icons-material/Inventory';
 import AccountContactTable from "../../../../Account/AccountDetailsTab/AccountContactTab/AccountContactTable";
@@ -248,6 +248,13 @@ class SupplierDetailsTab extends Component {
                     <i class="far fa-file text-[#96bdc6]"></i>
                     <span className="max-xl:text-[0.65rem] ml-1 !text-tab font-poppins text-sm ">{this.state.translatedMenuItems[4]}</span>
                   </span>
+                  <Badge
+                                    size="small"
+                                    count={(this.props.documentCountSupplierId.document) || 0}
+                                    overflowCount={999}
+                                    offset={[ 0, -16]}
+                                >
+                              </Badge>
                   {activeKey === "5" && (
                     <>
                       <Tooltip title="Create">
@@ -383,7 +390,8 @@ const mapStateToProps = ({ auth, suppliers }) => ({
   supplierDocumentUploadModal: suppliers.supplierDocumentUploadModal,
   addSuppliersActivityModal: suppliers.addSuppliersActivityModal,
   supplierExcleUploadModal:suppliers.supplierExcleUploadModal,
-  erpContactCount: suppliers.erpContactCount
+  erpContactCount: suppliers.erpContactCount,
+  documentCountSupplierId:suppliers.documentCountSupplierId
 });
 
 const mapDispatchToProps = (dispatch) =>
