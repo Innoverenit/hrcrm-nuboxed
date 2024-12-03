@@ -107,7 +107,7 @@ const initialState = {
   fetchingBlacklistCandidateError:false,
   // remark: [],
 
-  
+  emaildrawermodal: false,
   //Experience delete
   deleteExperienceTable: false,
 
@@ -1672,7 +1672,8 @@ case types.ADD_EXPERIENCE_BY_CANDIDATE_ID_REQUEST:
                       candidateByUserId: [], 
                       // deletedTruck: [] 
                     };
-
+                    case types.HANDLE_EMAIL_DRAWER_MODAL:
+                      return { ...state, addemaildrawermodal: action.payload };
                 
 
     default:

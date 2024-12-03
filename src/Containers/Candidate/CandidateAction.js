@@ -46,6 +46,12 @@ export const handlePlayerModal = (modalProps) => (dispatch) => {
   });
 };
 
+export const handleemaildrawermodal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_EMAIL_DRAWER_MODAL,
+    payload: modalProps,
+  });
+};
 export const handleRecruiterDrawerModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_RECRUITER_DRAWER_MODAL,

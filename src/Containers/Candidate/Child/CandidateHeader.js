@@ -21,6 +21,8 @@ class CandidateHeader extends Component {
               currentSkillData={this.props.currentSkillData}
               handleSkillClear={this.props.handleSkillClear}
               setCurrentSkillData={this.props.setCurrentSkillData}
+              translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
               // handleCandidateFilterModal={handleCandidateFilterModal}
             />
           }
@@ -32,6 +34,8 @@ class CandidateHeader extends Component {
             handleCandidateModal={handleCandidateModal}
             handleCandidateResumeModal={handleCandidateResumeModal}
             handleCandidateFilterModal={handleCandidateFilterModal}
+            translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
             
             />
           }
