@@ -20,15 +20,21 @@ class CandidateDetailLeft extends Component {
         candidate={candidate} />
         <ProfileTopicOfIntrest 
         candidate={candidate}
-        selectedLanguage={this.props.selectedLanguage} 
+        translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
+      translatedMenuItems={this.props.translatedMenuItems}
         />
         <CertificationLibrary 
         candidate={candidate} 
-        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
         />
         <CandidateExtraDetailCard 
         candidate={candidate} 
-        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
         />
         <ExtraCandidateCardView candidate={candidate}/>
         
