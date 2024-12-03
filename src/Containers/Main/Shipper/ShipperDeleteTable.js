@@ -68,7 +68,7 @@ function ShipperDeleteTable(props) {
     />
   ) : (
 <div className=' flex  sticky z-auto'>
-<div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+<div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
 <div className=" flex justify-between w-[100%]  p-1 bg-transparent sticky items-end font-poppins font-bold !text-lm max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
         <div className="  text-[#00A2E8] text-sm  w-[12.1rem] max-md:w-[12.1rem]">
             <CategoryIcon className='!text-icon '/>   {props.translatedMenuItems[0]}</div>

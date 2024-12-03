@@ -175,7 +175,7 @@ const viewAnDownloadPdf= async (item) => {
     ) : (
     <>
         <div className=' flex justify-end sticky  z-auto'>
-       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+       <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
       <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky items-end text-xs z-10 max-sm:hidden">
       <div className=" w-[3rem]  max-md:w-[3rem] text-[white] flex justify-center bg-[red]">
         {translatedMenuItems[0]} </div>
@@ -478,7 +478,7 @@ const viewAnDownloadPdf= async (item) => {
       </div>
      
       <div className=' flex justify-end sticky  z-auto'>
-       <div class="rounded m-1 max-sm:hidden max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+       <div class="rounded m-1 max-sm:hidden max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
        <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky items-end z-10 max-sm:hidden">
       <div className="font-bold font-poppins text-xs md:w-[3rem] text-[white] flex justify-center bg-[teal]">{translatedMenuItems[9]} </div>
       <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[7.31rem] ">

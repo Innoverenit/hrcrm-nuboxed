@@ -119,7 +119,7 @@ function LinkedContact(props) {
     <>
       
      
-      <div class="rounded m-1 p-1 w-[99%] h-[77vh] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded m-1 p-1 w-[99%] h-[77vh] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex justify-between w-[99%]  p-1 bg-transparent items-end font-bold font-poppins sticky !text-lm  z-10">
         <div className="font-bold font-poppins text-[#00A2E8] text-sm w-[15.2rem]  max-md:w-[16.5rem]">
         <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}

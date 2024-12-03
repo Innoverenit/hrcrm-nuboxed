@@ -247,7 +247,7 @@ const TaskCardList = (props) => {
     <>
     
           <div className=' flex sticky  z-auto'>
-          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" font-poppins text-xs flex max-sm:hidden justify-between w-[64%]  p-1 bg-transparent font-bold sticky  z-10">
           <div className="flex  w-[3.54] truncate md:w-[4.54rem] bg-red-600 text-white">
           {translatedMenuItems[7]}</div>
@@ -669,7 +669,7 @@ Reject
 </div>
 
 <div className=' flex sticky  z-auto'>
-          <div class="rounded m-1 max-sm:m-1  p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] ">
+          <div class="rounded m-1 max-sm:m-1  p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white] ">
           <div className=" font-poppins text-xs flex max-sm:hidden justify-between w-[64%]  p-1 bg-transparent font-bold sticky  z-10">
           <div className=" flex justify-center w-[3.54] truncate md:w-[4.54rem] bg-orange-600 text-white">
           {translatedMenuItems[8]}</div>
@@ -1090,7 +1090,7 @@ taskStatus: "To Start",
 </div>
 
 <div className=' flex sticky  z-auto'>
-          <div class="rounded max-sm:m-1  py-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] ">
+          <div class="rounded max-sm:m-1  py-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white] ">
           <div className=" font-poppins text-xs flex max-sm:hidden justify-between w-[64%]  p-1 bg-transparent font-bold sticky  z-10">
           <div className="flex  w-[3.54] truncate  md:w-[4.54rem] bg-teal-600 text-white">
           {translatedMenuItems[9]}</div>

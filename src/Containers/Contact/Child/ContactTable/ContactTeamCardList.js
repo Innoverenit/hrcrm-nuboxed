@@ -213,10 +213,10 @@ if (loading) {
     <>
        <div  className=" flex">
        <div className=' flex rounded w-[13%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
-      <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[#eaedf1] mt-1  items-center shadow-[#a3abb980] ">
+      <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[white] mt-1  items-center shadow-[#a3abb980] ">
       <div className="w-[14vw]"  > Search team Member</div>
         </div>
-        <div class="flex rounded flex-col w-[11vw]  h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+        <div class="flex rounded flex-col w-[11vw]  h-[73vh] box-content border bg-[white] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
         {props.teamUserList.map((item,index) =>{
           return (
          <div class=" flex flex-col rounded border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
@@ -265,7 +265,7 @@ if (loading) {
 })}
         </div>
         </div>
-      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
       <div className=" max-sm:hidden flex justify-between w-[94%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent   sticky  z-10">
         <div class=" flex justify-between w-[89%] font-bold font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm items-end ">
         <div className=" w-[28.1rem] truncate text-[#00A2E8] text-sm  max-xl:w-[21.5rem] max-lg:w-[20.5rem]">

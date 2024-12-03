@@ -160,7 +160,7 @@ const LeadsTeamColdCard = (props) => {
     <>
 
       <div className=' flex  sticky  z-auto'>
-      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
       <div className=" flex  w-[96%] max-sm:hidden p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
       <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] bg-blue-600 truncate text-white">{translatedMenuItems[13]}</div><div className=" ml-4 w-[7.1rem] text-[#00A2E8] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">    <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}</div>
         <div className=" w-[10.12rem] max-xl:w-[11.1rem] max-lg:w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] truncate"></div>

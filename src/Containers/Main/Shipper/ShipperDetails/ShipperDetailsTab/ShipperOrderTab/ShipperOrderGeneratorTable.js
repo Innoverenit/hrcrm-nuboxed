@@ -7,6 +7,7 @@ import {
   handleUpdateOrderDetailModal,
   setEditShipperOrder,
 } from "../../../../ShipperAction";
+import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { CurrencySymbol } from "../../../../../../Components/Common";
 import UpdateOrderDetailModal from "./UpdateOrderDetailModal";
 import { Tooltip } from "antd";
@@ -74,8 +75,8 @@ class ShipperOrderGeneratorTable extends Component {
         render: (name, item, i) => {
           return (
             <Tooltip title="Edit">
-              <FontAwesomeIcon icon={solid('pen-to-square')}
-                style={{ cursor: "pointer" }}
+              <BorderColorIcon 
+              className=" cursor-pointer !text-icon text-red-600"
                 onClick={() => {
                   //   this.props.setEditShipperOrder(item);
                   //   this.props.handleUpdateOrderDetailModal(true);

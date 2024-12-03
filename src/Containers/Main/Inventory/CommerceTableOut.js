@@ -977,7 +977,7 @@ useEffect(() => {
           />
         </div>
         <div className=' flex  sticky  z-auto'>
-          <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
             <div className=" flex max-sm:hidden justify-between w-[90%]  p-1 bg-transparent font-bold !text-lm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] sticky items-end z-10">
               <div className=" w-[6.51rem] text-sm text-[#00A2E8] truncate max-md:  max-xl:w-[5.5rem]">
               <DynamicFeedIcon className='!text-icon  text-[#3ac427]'/>  {translatedMenuItems[0]}

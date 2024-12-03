@@ -129,7 +129,7 @@ return (
   <>
    
    <div className=' flex justify-center sticky  z-auto'>
-      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky    font-poppins  !text-lm items-end max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
           <div className=" w-[4.1rem] max-md:w-[4.1rem]  text-[#00A2E8]  text-sm ">
           <ApartmentIcon className="!text-icon  text-[#00A2E8] "/> 

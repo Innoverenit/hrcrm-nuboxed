@@ -148,7 +148,7 @@ function PoSupplierDetailsTable(props) {
     return (
         <>
             {props.fetchingPoDetailsList ? <BundleLoader /> : <div className=' flex justify-end sticky z-auto'>
-                <div class="rounded m-1 p-1   w-[100%] h-77vh  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded m-1 p-1   w-[100%] h-77vh  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex justify-between  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky z-10">
                         <div className="text-[#00A2E8] text-base w-[9.1rem] md:w-[9.1rem]">
                         <ContactsIcon className=" !text-icon"/> {translatedMenuItems[0]} 

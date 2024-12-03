@@ -155,7 +155,7 @@ function DistributorColletcionArchive(props) {
 
       {props.fetchingTodayDistributor ? <BundleLoader /> : 
       <div className=' flex  sticky z-auto'>
-        <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-y-auto  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-y-auto  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end   z-10">
             <div className=" w-[13.11rem] max-md:w-[13.11rem] text-sm truncate">
             <AcUnitIcon className="!text-icon text-[#157a6e] "/> {translatedMenuItems[2]}   {/* Customer" /> */}

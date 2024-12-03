@@ -219,7 +219,7 @@ const viewAnDownloadPdf= async (item) => {
     ) : (
     <>
       <div className=' flex  sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                 <div className=" flex  w-[100%]   bg-transparent  sticky  items-end  z-10 max-sm:hidden">
                     <div class=" flex justify-between  text-xs font-poppins  font-bold  w-[96%]  ">
                         <div className="w-[4.54rem] items-center max-md:w-[4.54rem]   flex justify-center bg-[red] text-white">

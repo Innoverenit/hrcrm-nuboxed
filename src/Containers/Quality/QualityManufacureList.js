@@ -102,7 +102,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
         Show Data
       </Button>
     <div className='flex sticky z-auto' style={{width:"62em"}}>
-            <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+            <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                 <div className="flex w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
                     <div className=""></div>
                     <div className="md:w-[22.12rem]">
@@ -201,7 +201,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
         </div>
         {showMessage && 
         <div className='flex sticky z-auto' style={{width:"62em"}}>
-            <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+            <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                 <div className="flex w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
                     <div className=""></div>
                     <div className="md:w-[22.12rem]">

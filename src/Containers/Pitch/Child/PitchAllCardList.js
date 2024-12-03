@@ -131,7 +131,7 @@ const PitchAllCardList = (props) => {
 serachedPitchData={props.serachedPitchData}
 />
 ) : (
- <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+ <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
  <div className=" flex justify-between max-sm:hidden w-[98%]  p-1 bg-transparent font-poppins font-bold sticky items-end !text-lm max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
         <div className=" text-sm  w-[19.1rem] text-[#2cbdaa] max-xl:w-[9.6rem]">
         <CategoryIcon className=' text-[#2cbdaa]'/>{translatedMenuItems[0]}

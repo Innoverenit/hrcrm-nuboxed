@@ -42,7 +42,7 @@ function InvestorDocumentTable(props) {
     return (
         <>
             <div className=' flex justify-end sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex justify-between w-[82.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
                     <div className=" w-[10.69rem] max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
                             Document Name

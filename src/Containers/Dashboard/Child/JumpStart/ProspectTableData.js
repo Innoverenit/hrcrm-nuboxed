@@ -31,7 +31,7 @@ function ProspectTableData (props) {
     return (
       <>
        <div className=' flex justify-end sticky z-auto'>
-        <div class="rounded m-1 max-sm:m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class="rounded m-1 max-sm:m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex max-sm:hidden  w-[92.5%] justify-between p bg-transparent font-bold sticky  z-10">
             <div className=" w-[18.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
               Name

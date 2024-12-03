@@ -87,7 +87,7 @@ const handleTemplateSelection = () => {
 
 
   return (
-    <div className="bg-[#eaedf1] min-h-screen p-5">
+    <div className="bg-[white] min-h-screen p-5">
       <div className="mx-auto flex space-x-5">
         {/* Left Column - List of Invoices */}
         <div className="w-1/4 bg-white p-4 h-[80vh] overflow-auto">

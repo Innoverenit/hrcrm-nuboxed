@@ -55,7 +55,7 @@ function SuppliersDeletedCardList(props) {
     />
   ) : (
       <div className=' flex  sticky  z-auto'>
-        <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex ml-4 max-sm:hidden justify-between w-[98%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end max-lg:text-[0.45rem] max-xl:text-[0.65rem] z-10">
           <div className=" w-[8.3rem] truncate max-xl:text-[0.65rem] text-[#00A2E8]  max-xl:w-[10.9rem] text-sm"> 
                {/* Supplier ID */}

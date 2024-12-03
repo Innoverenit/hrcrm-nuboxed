@@ -15,7 +15,7 @@ const MaterialCellStock = (props) => {
     return (
         <>
             <div className=' flex justify-end sticky top-28 z-auto'>
-                <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex  w-[100%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=""></div>
                         <div className=" md:w-[30.05rem]"><FormattedMessage id="app.po" defaultMessage="PO #" /></div>

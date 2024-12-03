@@ -87,7 +87,7 @@ class VisaTable extends Component {
     return (
       <>
 
-<div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+<div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
 <div className=" flex justify-between w-[100%] text-lm p-1 bg-transparent font-bold sticky  z-10">
 <div className=" max-md:w-[6.5rem] w-[6.5rem] text-sm text-[#00A2E8]">
 <PublicIcon className=" !text-icon text-[#1E213D] "/>{this.state.translatedMenuItems[0]}</div>

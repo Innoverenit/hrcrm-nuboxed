@@ -216,7 +216,7 @@ function InvestorCardList(props) {
   translatedMenuItems={props.translatedMenuItems}
     />
   ) : (
-  <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+  <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex justify-between max-sm:hidden  w-[87%]  p-1 bg-transparent items-end font-bold !text-lm font-poppins max-xl:text-xs max-lg:text-[0.45rem] sticky  z-10">
           <div className="w-2"></div>
         <div className="text-[#00A2E8] text-sm w-[14.9rem] truncate max-md:w-[14.6rem] max-xl:w-[14.4rem] ">

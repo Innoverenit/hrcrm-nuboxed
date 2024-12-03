@@ -281,7 +281,7 @@ const handleEditRowField = (distributorId, field, currentValue) => {
     </Suspense>
   ) : (
       <div className=' flex  sticky z-auto'>
-      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex max-sm:hidden  w-[90%]   justify-between p-1 bg-transparent  sticky items-end  z-10 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.1rem] max-lg:w-[16.1rem]">
         <div class=" flex justify-between !text-lm font-poppins  font-bold  w-[94%]  ">
             <div className=" w-[22.1rem] text-[#00A2E8] text-sm max-md:w-[22.1rem] truncate ">  
@@ -615,10 +615,11 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                       <div className=" flex items-center max-sm:w-auto w-[2rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>&nbsp;                            
                           </div>
+                          <div>
                           <Tooltip title="">
                                                  
                                                  <Progress
-                                                 className=' w-[6rem] cursor-pointer ml-1'
+                                                 className=' w-[6rem] cursor-pointer ml-2'
                                                 percent={acivedPercentage}
                                                 success={{acivedPercentage}}
                                                // strokeColor={getGradientStrokeColor(acivedPercentage)}
@@ -626,6 +627,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                                                 //  style={{width:"6rem",cursor:"pointer", marginLeft:"0.25rem"}} 
                                                       />                                                       
                                                 </Tooltip>
+                                                </div>
                           <div class=" text-xs flex items-center justify-center font-poppins w-[6.021rem] bg-[#eef2f9] h-8   text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {/* {item.curName} {(item.currencyPrice / 1000).toFixed(0)}k */}
                               {editableField?.distributorId === item.distributorId &&

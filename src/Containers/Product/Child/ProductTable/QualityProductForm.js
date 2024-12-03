@@ -189,7 +189,7 @@ useEffect(() => {
                         {...provided.dragHandleProps}
                         className="flex rounded mt-1 bg-white  items-center p-1"
                       >
-                        <div className="flex md:w-[36.1rem] h-8 border-l-2 border-green-500   max-sm:w-full shadow-[#a3abb980] bg-[#eaedf1]">
+                        <div className="flex md:w-[36.1rem] h-8 border-l-2 border-green-500   max-sm:w-full shadow-[#a3abb980] bg-[white]">
                           <div className="flex justify-between text-xs font-semibold font-poppins">
                             {/* {item.qualityName} */}
                             {editingIndex === index ? (
@@ -204,13 +204,13 @@ useEffect(() => {
                           </div>
                         </div>
 
-                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row shadow-[#a3abb980] bg-[#eaedf1]">
+                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row shadow-[#a3abb980] bg-[white]">
                           <div className="  text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
                             {item.steps}
                           </div>
                         </div>
 
-                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row shadow-[#a3abb980] bg-[#eaedf1]">
+                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row shadow-[#a3abb980] bg-[white]">
                           <div className="  text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
                             {/* {item.steps} */}
 
@@ -227,7 +227,7 @@ useEffect(() => {
 
 
 
-                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row shadow-[#a3abb980] bg-[#eaedf1]aQ1 ">
+                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row shadow-[#a3abb980] bg-[white]aQ1 ">
                           <div className="  text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
                             {/* {item.steps} */}
 
@@ -244,7 +244,7 @@ useEffect(() => {
 
 
 
-                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row shadow-[#a3abb980] bg-[#eaedf1]">
+                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row shadow-[#a3abb980] bg-[white]">
                           <div className="  text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
                             {/* {item.steps} */}
                             <StyledPopconfirm
@@ -278,7 +278,7 @@ useEffect(() => {
                        
                         className="flex rounded mt-1 bg-white h-8 items-center p-1"
                       >
-                        <div className="flex md:w-[36.1rem] max-sm:w-full  h-8  ml-gap border-l-2 border-green-500  shadow-[#a3abb980] bg-[#eaedf1]">
+                        <div className="flex md:w-[36.1rem] max-sm:w-full  h-8  ml-gap border-l-2 border-green-500  shadow-[#a3abb980] bg-[white]">
                           <div className="flex justify-between text-sm font-semibold font-poppins">
                             {/* {item.qualityName} */}
 
@@ -294,13 +294,13 @@ useEffect(() => {
                           </div>
                         </div>
 
-                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row shadow-[#a3abb980] bg-[#eaedf1]">
+                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row shadow-[#a3abb980] bg-[white]">
                           <div className="  text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
                             {item.steps}
                           </div>
                         </div>
 
-                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row shadow-[#a3abb980] bg-[#eaedf1]">
+                        <div className="flex md:w-26 max-sm:justify-between w-full max-sm:flex-row shadow-[#a3abb980] bg-[white]">
                           <div className="  text-[0.85rem] font-poppins" style={{ marginLeft: "9em" }}>
                             {/* {item.steps} */}
 

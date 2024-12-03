@@ -383,11 +383,7 @@ class SummaryTable extends Component {
         width: "5%",
         render: (name, item, i) => {
           return (
-            // <span>
-            //   {/* <FontAwesomeIcon icon={solid("firefox-browser")} /> */}
-            //   <FontAwesomeIcon icon={solid('circle-question')} />
-
-            // </span>
+          
 
             <Button
               style={{ marginLeft: "-12px" }}

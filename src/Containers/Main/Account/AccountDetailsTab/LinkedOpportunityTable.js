@@ -146,7 +146,7 @@ const viewAnDownloadPdf= async (item) => {
   return (
     <>
      { props.user.repairInd === true &&(
-    <div class="rounded m-1 max-sm:m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+    <div class="rounded m-1 max-sm:m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex justify-between w-full p-1 bg-transparent  sticky   z-10">
         <div className='flex   justify-between w-[81%] items-end !text-lm font-bold font-poppins'>
         <div class="text-[#00A2E8] text-sm w-[4.55rem] max-md:w-[4.55rem] truncate">
@@ -316,7 +316,7 @@ const viewAnDownloadPdf= async (item) => {
       </div>
      )}
      { props.user.moduleMapper.ecomModInd === true &&(
-      <div class="rounded m-1 mt-1 max-sm:m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded m-1 mt-1 max-sm:m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex justify-between w-full p-1 bg-transparent  sticky   z-10">
         <div className='flex   justify-between w-[81%] items-end !text-lm font-bold font-poppins'>
 <div class="text-[#00A2E8] text-sm w-[4.25rem] max-md:w-[6.25rem] truncate"> 

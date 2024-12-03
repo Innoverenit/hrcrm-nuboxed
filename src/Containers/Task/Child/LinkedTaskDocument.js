@@ -43,7 +43,7 @@ const LinkedTaskDocument = (props) => {
   return (
     <>
 
-<div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] h-[81vh]">
+<div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white] h-[81vh]">
       {documentsByTaskId.map((item) => { 
         
          

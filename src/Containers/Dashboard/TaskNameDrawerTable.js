@@ -30,7 +30,7 @@ function TaskNameDrawerTable (props) {
       <>
         
         <div className=' flex justify-end sticky top-28 z-auto'>
-        <OnlyWrapCard style={{backgroundColor:"#eaedf1"}}>
+        <OnlyWrapCard style={{backgroundColor:"white"}}>
         <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
           {/* <div class=" w-4"></div> */}
         <div className=" md:w-[7.1rem]">

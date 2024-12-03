@@ -206,7 +206,7 @@ function InventorySupplierTable(props) {
 
                 </div>
             <div className=' flex justify-end sticky mt-3  z-auto'>
-                <div class="rounded  w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded  w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex justify-between w-[100%] p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end max-xl:text-[0.65rem] top-0 z-10 ">
                         <div className="w-4"></div>
                     <div className="text-[#00A2E8] text-sm w-[18.69rem] truncate max-md:w-[18.69rem] max-xl:w-[21.1rem]"> {translatedMenuItems[12]}

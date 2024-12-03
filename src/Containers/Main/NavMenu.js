@@ -1170,20 +1170,6 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
 
 
 
-
-        {/* <Menu.Item key="/message">
-            <Link to="/message">
-            <FontAwesomeIcon icon={solid("user-group")} style={{fontSize: "small"}}/>&nbsp;&nbsp;&nbsp;
-              <span style={{ color: "white" }}>
-                <FormattedMessage
-                  id="app.chat"
-                  defaultMessage="Chat"
-                />
-              </span>
-            </Link>
-          </Menu.Item> */}
-        {/* Employees */}
-   
         <hr />
         {/* {user.userAccessInd === true || user.role === "ADMIN"  && ( */}
         { (user.teamsAccessInd === true &&  user.hrInd === true 

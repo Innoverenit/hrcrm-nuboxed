@@ -93,58 +93,10 @@ class GantChartTab extends Component {
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 <TaskThisMonthGanttChart 
-                // style={{ overflow: "scroll" }} 
+                 
                 />
               </Suspense>
             </TabPane>
-            {/* <TabPane
-              tab={
-                <>
-                  <TipsAndUpdatesIcon style={{fontSize:"1.1rem"}}/>
-
-                  <span class=" ml-1">Actions</span>
-
-                  {activeKey === "2" && (
-                    <>
-                    </>
-                  )}
-                </>
-              }
-              key="2"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <ActionNotification />
-              </Suspense>
-            </TabPane> */}
-          
-          
-
-            {/* <TabPane
-              tab={
-                <>
-                 
-               
-                 <FontAwesomeIcon icon={solid('bullseye')} />
-                    <span style={{ marginLeft: "0.25em" }}>Pareto</span>
-                  
-                  {activeKey === "3" && (
-                    <>
-                    
-                    </>
-                  )}
-                </>
-              }
-              key="3"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <Example/>
-         
-              </Suspense>
-            </TabPane> */}
-
-            {/* )} */}
           </StyledTabs>
         </TabsWrapper>
         <Suspense fallback={null}></Suspense>

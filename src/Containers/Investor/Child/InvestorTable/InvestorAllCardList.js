@@ -306,10 +306,10 @@ console.log(selectedEmployee)
   ) : (
     <div  className=" flex">
        <div className=' flex rounded w-[13%] h-[87vh] flex-col border border-[#0000001f] items-center justify-center  '>
-      <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[#eaedf1] mt-1  items-center shadow-[#a3abb980] ">
+      <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[white] mt-1  items-center shadow-[#a3abb980] ">
        <div> Search team Member</div>
         </div>
-        <div class="flex flex-col rounded w-[11vw]    p-1 h-[78vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+        <div class="flex flex-col rounded w-[11vw]    p-1 h-[78vh] box-content border bg-[white] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
         {props.allEmployeeList.map((item,index) =>{
            return (
          <div class="flex flex-col rounded border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
@@ -365,7 +365,7 @@ console.log(selectedEmployee)
         </div>
         {selectedEmployee ?
         <>
-        <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
       
             <InfiniteScroll
         dataLength={investorsbyId.length}
@@ -710,7 +710,7 @@ handleCurrentRowData(item);
      </>
      :
      <div className=' flex sticky  w-[87%] z-auto'>
-  <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+  <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
   <div className=" flex justify-between max-sm:hidden  w-[80%]  p-1 bg-transparent font-poppins font-bold !text-lm sticky items-end max-xl:text-xs max-lg:text-[0.45rem] z-10">
         <div className="text-[#00A2E8] text-sm w-[10.6rem] truncate max-md:w-[14.6rem] max-xl:w-[14.4rem] ">
         <LocationCityIcon className='!text-icon  '  /> {translatedMenuItems[0]}

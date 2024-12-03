@@ -126,7 +126,7 @@ class CandidateProjectsActionRight extends React.Component {
               onClick={() => exportPDF()}
             >
               <FileCopyIcon />
-              {/* <FontAwesomeIcon icon={solid("file-excel")} /> */}
+           
             </Button>
           </Tooltip>
         </div>

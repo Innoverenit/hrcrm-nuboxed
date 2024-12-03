@@ -187,7 +187,7 @@ if (fetchingCustomerOpportunity) return <BundleLoader/>;
   return (
     <>
     <div className=' flex  sticky z-auto'>
-    <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] h-[79vh] shadow-[#a3abb980] bg-[#eaedf1]">
+    <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] h-[79vh] shadow-[#a3abb980] bg-[white]">
       <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end  z-10">
         <div className="w-[16rem] font-bold font-poppins truncate text-[#00A2E8] text-sm max-md:w-[16rem] ">
         <LightbulbIcon className="!text-icon text-[#84a59d] "/> {translatedMenuItems[0]} ID</div>

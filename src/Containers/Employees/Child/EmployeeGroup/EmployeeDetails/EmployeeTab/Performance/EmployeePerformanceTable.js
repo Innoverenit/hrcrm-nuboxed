@@ -42,7 +42,7 @@ const EmployeePerformanceTable = (props) => {
 
   return (
     <>
-      <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
       {props.employeeKpiList.length === 0 ? (
           <div><Suspense><EmptyPage/></Suspense></div>
         ) : (

@@ -40,7 +40,7 @@ const MaterialIntransitList = (props) => {
     return (
         <>
             <div className=' flex sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex  w-[100%] font-poppins  text-xs !text-lm p-1 bg-transparent font-bold items-end sticky z-10">
                         <div className=""></div>
                         <div className="text-[#00A2E8] truncate text-sm w-[16.2rem] max-md:w-[15.5rem]">

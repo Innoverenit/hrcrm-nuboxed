@@ -157,7 +157,7 @@ function ContactInvestCardList(props) {
   }
   return (
     <>     
-      <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex  justify-between max-sm:hidden w-[94%]  p-1 bg-transparent  font-poppins font-bold !text-lm sticky z-10">
           <div className=" flex justify-between items-end  w-[97%]">
         <div className="  w-[15.9rem] truncate text-[#00A2E8] text-sm max-md:w-[18.32rem]">

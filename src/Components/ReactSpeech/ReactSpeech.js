@@ -69,7 +69,6 @@ const Dictaphone = (props) => {
       >
           <Tooltip title="Clear">
              <span style={{ fontSize: "1.5em",marginLeft:"3px" }}>
-        {/* <FontAwesomeIcon icon={solid("rotate-right")} /> */}
         <RotateRightIcon/>
         </span>
         </Tooltip>

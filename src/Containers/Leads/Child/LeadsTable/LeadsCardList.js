@@ -246,7 +246,7 @@ const LeadsCardList = (props) => {
   ) : (
       <>
      <div className=' flex  sticky  z-auto'>
-     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
       <div className=" flex  w-[100%] max-sm:hidden p-1 bg-transparent font-bold sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm z-10">
         <div className="   flex justify-between w-[90%] font-bold font-poppins text-xs">
          <div className=" ml-1   text-white w-[8.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem] text-sm    bg-red-600  justify-center "> 
@@ -702,7 +702,7 @@ const LeadsCardList = (props) => {
       </div>
 
       <div className=' flex   sticky z-auto mt-1'>
-     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
      <div className=" flex  w-[100%] p-1 bg-transparent  sticky top-0 max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm z-10 max-sm:hidden">
       <div class="  flex justify-between font-bold font-poppins text-xs w-[90%]">
       <div className=" w-[8.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]   bg-orange-400 text-white">
@@ -1158,7 +1158,7 @@ const LeadsCardList = (props) => {
       </div>
 
       <div className=' flex   sticky  z-auto mt-1'>
-     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+     <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
      <div className=" flex  w-[100%] max-sm:hidden p-1 bg-transparent font-bold sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm top-0 z-10">
        <div class=" flex justify-between font-bold font-poppins text-xs w-[90%]">
       <div className=" w-[8.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem] text-sm   bg-blue-600 text-white">

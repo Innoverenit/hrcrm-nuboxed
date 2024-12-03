@@ -74,21 +74,10 @@ class TeamsActionLeft extends React.Component {
               </span>
             </Badge>
             </Tooltip>
-          {/* )} */}
+        
 
        
 
-          {/* <Tooltip title="Inventory">
-            <span
-              onClick={() => setTeamsViewType("inventory")}
-              style={{
-                marginRight: "0.5rem",
-                color: viewType === "inventory" && "#1890ff",
-              }}
-            >
-              <FontAwesomeIcon icon={solid('warehouse')} />
-            </span>
-          </Tooltip> */}
 
         </div>
       </>

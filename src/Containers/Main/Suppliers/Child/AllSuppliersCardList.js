@@ -112,10 +112,10 @@ return(
   ) : (
     <div className=" flex">
     <div className=' flex rounded w-[13vw] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
-    <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[#eaedf1] mt-1  items-center shadow-[#a3abb980] ">
+    <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[white] mt-1  items-center shadow-[#a3abb980] ">
      <div> Search team Member</div>
       </div>
-      <div class="flex rounded w-[92%]  p-1 h-[73vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+      <div class="flex rounded w-[92%]  p-1 h-[73vh] box-content border bg-[white] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
        <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
                 text-[#444444] m-1 w-[11.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
       <div class="flex items-center flex-no-wrap h-16">
@@ -163,7 +163,7 @@ return(
       </div>
       </div>
 <div className=' flex  sticky  z-auto'>
-<div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+<div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
 <div className=" flex max-sm:hidden ml-4 justify-between w-[99%]  p-1 bg-transparent font-bold font-poppins  !text-lm items-end sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
 <div className=" w-[6.91rem] truncate text-[#00A2E8]  max-xl:w-[14.9rem] text-sm  "> 
                {/* Supplier ID */}
@@ -255,7 +255,7 @@ return(
                               <div>
 {editableField?.supplierId === item.supplierId && editableField?.field === 'dialCode' ? (
   <Select
-  style={{ width: "8rem" }}
+  style={{ width: "8.2rem" }}
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
   autoFocus
@@ -269,7 +269,7 @@ return(
 ) : (
 <div onClick={() => 
 handleEditRowField(item.supplierId, 'dialCode', item.dialCode)} 
-className="cursor-pointer text-xs font-[Poppins]">
+className="cursor-pointer text-xxs font-[Poppins]">
 {item.dialCode || "Enter DialCode"}
 
 </div>         
@@ -280,7 +280,7 @@ className="cursor-pointer text-xs font-[Poppins]">
    editableField?.field === 'phoneNo' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xs"
+  className="h-7 w-[4rem] text-xxs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -290,7 +290,7 @@ className="cursor-pointer text-xs font-[Poppins]">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'phoneNo', item.phoneNo)} 
-    className="cursor-pointer text-xs font-[Poppins]">
+    className="cursor-pointer text-xxs font-[Poppins]">
     {item.phoneNo || "Enter Mobile No"}
     
     </div> 
@@ -306,7 +306,7 @@ className="cursor-pointer text-xs font-[Poppins]">
    editableField?.field === 'emailId' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xs"
+  className="h-7 w-[4rem] text-xxs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -316,7 +316,7 @@ className="cursor-pointer text-xs font-[Poppins]">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'emailId', item.emailId)} 
-    className="cursor-pointer text-xs font-[Poppins]">
+    className="cursor-pointer text-xxs font-[Poppins]">
     {item.emailId || "Enter Email"}
     
     </div> 
@@ -365,7 +365,7 @@ className="cursor-pointer text-xs font-[Poppins]">
           }}
           
         />            
- <div>
+ {/* <div>
 <Tooltip title={props.translatedMenuItems[19]}>
             <BorderColorIcon
              className="!text-icon cursor-pointer text-[tomato] max-sm:!text-2xl"
@@ -376,7 +376,7 @@ className="cursor-pointer text-xs font-[Poppins]">
               }}
             />
           </Tooltip>
-          </div>
+          </div> */}
           <div>
           <Popconfirm
               title={`${props.translatedMenuItems[22]} ?`}

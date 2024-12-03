@@ -153,7 +153,7 @@ function ProcureInvoiceList (props) {
 
                                 </div>
             <div className=' flex sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex justify-between w-[82.5%] p-1 bg-transparent font-bold  font-poppins text-xs sticky z-10">
                    
                     <div class=" text-[#00A2E8] text-base w-[9.5rem]">

@@ -57,7 +57,7 @@ function OpenQcTable(props) {
         <>
             {props.fetchingOpenQc ? <BundleLoader /> : 
             <div className=' flex sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs  sticky  z-10">
                         <div className="text-base text-[#00A2E8] md:w-[34.12rem]">   <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/> {translatedMenuItems[0]} #</div>
                         <div className=" md:w-[35.1rem]">

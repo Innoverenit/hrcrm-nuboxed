@@ -84,7 +84,7 @@ function LeaveCardList(props) {
 
   return (
     <>
-      <div class="rounded m-1 p-1 w-wk h-[31rem] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:h-[13rem]">
+      <div class="rounded m-1 p-1 w-wk h-[31rem] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white] max-sm:h-[13rem]">
         {/* <InfiniteScroll
                     dataLength={props.tableRequirement.length}
                 next={handleLoadMore}

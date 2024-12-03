@@ -315,7 +315,7 @@ console.log(selectedItems)
       </div>
       {/* {props.fetchingPhoneListById ? <BundleLoader /> : */}
       <div className='flex justify-center sticky ticky z-10 '>
-        <div class="rounded m-1 p-1 w-[100%] h-[88vh] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class="rounded m-1 p-1 w-[100%] h-[88vh] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end mt-8 z-10">
           <div className="md:w-[2.01rem]">
           {props.rowData.inspectionInd === 1 && (

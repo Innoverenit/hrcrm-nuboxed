@@ -184,7 +184,7 @@ const ProductionOrderList = (props) => {
   ) : (
         <>
             <div className=' flex sticky  z-auto'>
-                <div class="rounded  max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded  max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                  <div className=" flex max-sm:hidden  justify-between w-[95%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end z-10 ">
                     <div className=" max-md:w-[3rem] w-[3rem] text-[white] flex justify-center mr-1 bg-[red]"> {translatedMenuItems[6]} </div>
                         <div className="max-md:w-[10.2rem]  w-[10.2rem] flex justify-start ">
@@ -454,7 +454,7 @@ const ProductionOrderList = (props) => {
 
 
 <div className=' flex  sticky  z-auto'>
-                <div class="rounded  max-sm:m-1  py-ygap w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded  max-sm:m-1  py-ygap w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                 <div className=" flex max-sm:hidden  justify-between w-[95%]  p-1 bg-transparent font-bold font-poppins text-lm sticky items-end z-10">
                     <div className=" max-md:w-[3.54rem] w-[3.54rem] text-[white] flex justify-center mr-1 bg-[teal]"> {translatedMenuItems[8]} </div>
                         <div className=" w-[10.2rem] max-md:w-[10.2rem] flex justify-start ">

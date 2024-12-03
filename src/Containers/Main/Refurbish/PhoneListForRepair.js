@@ -307,7 +307,7 @@ function PhoneListForRepair(props) {
         <>
             {props.fetchingRepairPhoneByUser ? <BundleLoader /> : 
             <div className=' flex  sticky z-auto overflow-x-auto '>
-             <div class=" rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+             <div class=" rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                 <div class="flex items-center">
                 <div class=" w-72 ml-1 max-sm:w-28">
           <Input

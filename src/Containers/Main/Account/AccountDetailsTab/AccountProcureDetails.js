@@ -370,7 +370,7 @@ const handleGenerateInvoice= async () => {
   
   return (
     <>
-      <div className="rounded m-1 max-sm:m-1 p-1 w-[100%] h-[89vh] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div className="rounded m-1 max-sm:m-1 p-1 w-[100%] h-[89vh] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className="flex justify-between font-bold font-poppins text-xs w-[97%] items-end  p-1 bg-transparent  sticky z-10">
           <div className="w-[19.2rem]  text-[#00A2E8] text-base ">
           <ContactsIcon className="!text-icon mr-1 "/>  {translatedMenuItems[13]}

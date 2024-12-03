@@ -74,7 +74,7 @@ class ShipperAwbTable extends Component {
     return (
       <>
             <div className=' flex  sticky h-[78vh]  z-auto'>
-            <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+            <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
             <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs items-end sticky  z-10">
                         <div className=" md:w-[0.5rem]"></div>
                         <div className=" text-[#00A2E8] text-base w-[7.4rem] max-md:w-[7.4rem]">  

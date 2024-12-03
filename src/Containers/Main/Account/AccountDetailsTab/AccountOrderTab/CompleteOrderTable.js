@@ -195,7 +195,7 @@ const CompleteOrderTable = (props) => {
         <>
       
             <div className=' flex sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex  w-[100%]   bg-transparent font-bold sticky text-xs font-poppins  z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center bg-[red]">{translatedMenuItems[0]}</div>
                         <div className=" md:w-[11.41rem] ml-2">
@@ -547,7 +547,7 @@ const CompleteOrderTable = (props) => {
            
          
             <div className=' flex sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex  w-[100%]   bg-transparent font-bold sticky text-xs font-poppins z-10">
                     <div className=" md:w-[3.25rem] flex justify-center text-[white] bg-[teal] " >{translatedMenuItems[12]}</div>
                         <div className=" md:w-[11.41rem] ml-2">

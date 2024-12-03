@@ -85,7 +85,7 @@ const PitchSearchedData = (props) => {
   return (
     
     <>
-  <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+  <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
     <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky max-xl:text-[0.65rem]  max-lg:text-[0.45rem] !text-lm z-10">
     <div className=" w-[6.1rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem] mr-2 text-sm   text-white bg-red-600  justify-center ">
       Type

@@ -78,7 +78,7 @@ class SalaryTable extends Component {
     const tableHeight = tab && tab.offsetHeight * 0.75;
     return (
       <>
-          <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex justify-between w-[98%] p-1 bg-transparent !text-lm font-poppins font-bold sticky top-0 z-10">
           <div className=" max-md:w-[6.5rem] w-[6.5rem] text-sm text-[#00A2E8]">
           <MonetizationOnIcon  className=" !text-icon"/>Gross Salary

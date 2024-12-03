@@ -95,7 +95,7 @@ function SupplierSuppliesCardTable(props) {
     <div className="flex">
       <NewSupploesForm/>
       <div className=' flex sticky w-[70%]  z-auto'>
-        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex justify-between w-[100%] p-1 bg-transparent  !text-lm font-poppins font-bold sticky items-end max-xl:text-[0.65rem] z-10">
             <div className="text-[#00A2E8] text-sm w-[13.1rem] truncate max-md:w-[28.1rem]  max-xl:w-[6.6rem]"><ApartmentIcon className="  !text-icon"/>   {translatedMenuItems[0]}
               {/* Name */}

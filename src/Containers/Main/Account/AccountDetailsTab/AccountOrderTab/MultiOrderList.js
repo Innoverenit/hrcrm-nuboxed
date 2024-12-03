@@ -147,7 +147,7 @@ function MultiOrderList(props) {
     return (
         <>
             <div className=' flex sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex justify-between w-[99.5%] p-1 bg-transparent font-bold !text-lm font-poppins sticky z-10">
                     {/* <div class=" w-[8.5rem]">{translatedMenuItems[0]} ID</div> */}
                         <div className=" max-md:w-[7rem]  w-[7rem]">{translatedMenuItems[1]} ID</div>

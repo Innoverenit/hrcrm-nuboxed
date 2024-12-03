@@ -113,7 +113,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   return (
     <>
        <div className=' flex   sticky  z-auto'>
-       <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+       <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
        <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold items-end sticky  z-10">
         <div className=" flex justify-between w-[79%] text-xs font-poppins">
         <div className="flex  w-[11.14rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem]">            

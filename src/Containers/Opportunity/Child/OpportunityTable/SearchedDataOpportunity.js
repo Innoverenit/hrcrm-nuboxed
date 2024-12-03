@@ -142,7 +142,7 @@ function SearchedDataOpportunity(props) {
 
       return (    
   <>
-<div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+<div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
  <div className="flex max-sm:hidden  w-[100%]  max-xl:w-[87%] p-1 bg-transparent font-bold font-poppins text-lm sticky  z-10">
         <div className=" w-[14.8rem]  max-md:w-[14.8rem]  text-sm text-[#00A2E8] "><RequestQuoteIcon className="!text-icon text-[#aa3e98] "/>  {translatedMenuItems[0]}</div>
         <div className=" w-[11.1rem] max-md:w-[11.8rem]"> <ApartmentIcon  className='!text-icon text-[#f19953] ' />{translatedMenuItems[1]}</div>

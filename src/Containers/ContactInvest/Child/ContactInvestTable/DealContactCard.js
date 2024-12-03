@@ -118,7 +118,7 @@ const DealContactCard = (props) => {
     dealSerachedData={props.dealSerachedData}
     /></Suspense>
   ) : ( */}
-      <div class="rounded m-1 p-1 w-[99%] h-[90vh]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded m-1 p-1 w-[99%] h-[90vh]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end z-10 max-sm:hidden">
           <div className=" w-[19.5rem] text-[#00A2E8] text-sm  truncate   max-md:w-[14.5rem]">
           <ContactEmergencyIcon className='!text-icon mr-1  '

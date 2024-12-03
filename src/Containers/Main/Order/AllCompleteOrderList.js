@@ -190,7 +190,7 @@ const viewAnDownloadPdf= async (item) => {
     ) : (
         <>
               <div className=' flex sticky  z-auto'>
-            <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+            <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
               
                 <div className=" flex justify-between w-[94%] p-1 text-xs bg-transparent  items-end sticky font-bold font-poppins  z-10 max-sm:hidden">
                   
@@ -482,7 +482,7 @@ const viewAnDownloadPdf= async (item) => {
           
 
             <div className=' flex  sticky  z-auto'>
-            <div class="rounded  m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+            <div class="rounded  m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
               
             <div className=" flex justify-between w-[94%] p-1 bg-transparent text-xs items-end sticky font-bold font-poppins  z-10 max-sm:hidden">
                   

@@ -130,31 +130,7 @@ class TodoDashboardTab extends Component {
               </Suspense>
             </TabPane>
 ) : null}
-            {/* <TabPane
-              tab={
-                <>
-                 
-               
-                 <FontAwesomeIcon icon={solid('bullseye')} />
-                    <span style={{ marginLeft: "0.25em" }}>Pareto</span>
-                  
-                  {activeKey === "3" && (
-                    <>
-                    
-                    </>
-                  )}
-                </>
-              }
-              key="3"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <Example/>
-         
-              </Suspense>
-            </TabPane> */}
-
-            {/* )} */}
+           
           </StyledTabs>
         </TabsWrapper>
         <Suspense fallback={null}>

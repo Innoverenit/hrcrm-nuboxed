@@ -248,7 +248,7 @@ function EmployeeSearchedData(props) {
     <div>
      <div class=" h-h86 overflow-auto overflow-x-auto">
         <div className=' flex  sticky z-auto'>
-        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                 <div className=" flex  w-[100%] justify-between  p-1 bg-transparent font-bold font-poppins items-end !text-lm sticky  z-10">
                     <div className=" text-[#00A2E8] text-sm w-[15.5rem] max-md:w-[15.5rem]"><LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}</div>
                     {/* Name */}

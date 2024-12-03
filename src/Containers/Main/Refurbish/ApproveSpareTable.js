@@ -59,7 +59,7 @@ if (props.fetchingALlSPareList){
     return (
         <>
          <div className='flex  sticky z-auto'>
-                <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
+                <OnlyWrapCard style={{ backgroundColor: "white" }}>
                     <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
                         <div className=" md:w-[8.1rem]">
                         {translatedMenuItems[0]}  {/* <FormattedMessage

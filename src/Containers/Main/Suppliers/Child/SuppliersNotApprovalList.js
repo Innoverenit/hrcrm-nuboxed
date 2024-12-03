@@ -109,7 +109,7 @@ const [editingValue, setEditingValue] = useState("");
     />
   ) : (
       <div className=' flex  sticky  z-auto'>
-        <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex max-sm:hidden justify-between w-[97%]  p-1 bg-transparent font-bold font-poppins !text-lm text-xs sticky max-lg:text-[0.45rem] max-xl:w-[14.9rem]  max-xl:text-[0.65rem] max-lg:text-text-xs    items-end z-10">
           <div className=" w-[9.91rem] truncate text-[#00A2E8]  "> 
                {/* Supplier ID */}
@@ -214,7 +214,7 @@ const [editingValue, setEditingValue] = useState("");
 ) : (
 <div onClick={() => 
 handleEditRowField(item.supplierId, 'dialCode', item.dialCode)} 
-className="cursor-pointer text-xs font-[Poppins]">
+className="cursor-pointer text-xxs font-[Poppins]">
 {item.dialCode || "Enter DialCode"}
 
 </div>         

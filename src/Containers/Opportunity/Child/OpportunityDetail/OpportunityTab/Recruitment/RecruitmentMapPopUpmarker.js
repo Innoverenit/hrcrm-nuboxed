@@ -139,7 +139,7 @@ L.Icon.Default.mergeOptions({
   position={[props.mark.lat, props.mark.lng]}
    // position={[mark.address&&mark.address.length&&mark.address[0].latitude, mark.address&&mark.address.length&&mark.address[0].longitude]}
      // icon={image}
-      // icon={<FontAwesomeIcon icon={solid('flag-checkered')} />}
+     
      >
       <Popup className="!w-[18rem]">
       

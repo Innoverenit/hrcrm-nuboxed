@@ -57,18 +57,7 @@ class AddReportAttendenceModal extends Component {
         
         >
           <Suspense fallback={<BundleLoader />}>
-          {/* <FontAwesomeIcon 
-          style={{fontSize:"64px",color:"blue"}}
-          icon={solid("file")} /> */}
-          {/* <CandidateDocumentView
-           candidateId={candidateId}
-           documentsByCandidateId={this.props.documentsByCandidateId}
-          //candidate={candidate}
-          /> */}
-      {/* <ReportsProductuvityData
-      userId={this.props.userId}
-        startDateData={this.props.startDateData}
-      /> */}
+          
      <ReportsAttendenceDataList
       userId={this.props.userId}
       startDateData={this.props.startDateData}

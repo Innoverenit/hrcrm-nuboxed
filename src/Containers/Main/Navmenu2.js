@@ -798,40 +798,6 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
         <hr />
 
 
-
-
-        {/* <Menu.Item key="/message">
-            <Link to="/message">
-            <FontAwesomeIcon icon={solid("user-group")} style={{fontSize: "small"}}/>&nbsp;&nbsp;&nbsp;
-              <span style={{ color: "white" }}>
-                <FormattedMessage
-                  id="app.chat"
-                  defaultMessage="Chat"
-                />
-              </span>
-            </Link>
-          </Menu.Item> */}
-        {/* Employees */}
-
-        {/* {user.userType !== "USER" && user.department !== "VENDOR" && ( 
-          <SubMenu
-            key="sub2"
-          style={{ marginBottom: "-1.25em" }}
-         title={
-              <span>
-              
-                 <i class="fab fa-servicestack"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-               <span style={{ color: "white" }}>
-
-                  <FormattedMessage
-                 id="app.selfService"
-                    defaultMessage="Self Service"
-                  />
-                </span>
-              </span>
-            }
-          >
-           */}
         {(user.orderAccessInd === true && user.erpInd === true 
         // || user.role === "ADMIN" && user.orderManagementInd === true
       ) &&  (
@@ -839,14 +805,11 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}}>
           <Menu.Item key="/order" style={{ height: "1.45rem", 
           color: selectedMenuItem === '/order' ? 'tomato' : '#28a355' }}>
             <Link to="/order"  onClick={() => handleSelect('/order')}>
-              <DynamicFeedIcon
+              <DynamicFeedIcon 
                 style={{ fontSize: "large" }}
               />
               <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage
-                id="app.order"
-                defaultMessage="Order"
-              /> */}
+            
               {translatedMenuItems[16]}
               </span>
             </Link>

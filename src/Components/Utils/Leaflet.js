@@ -112,8 +112,7 @@ class MapContainer extends Component {
         <Map
           ref={this.mapRef}
           center={position || null}
-          // icon={image}
-          //icon={<FontAwesomeIcon icon={solid('flag-checkered')} />}
+       
           zoom={zoomedOut ? 2 : zoom}
           style={{
             width: width || "auto",

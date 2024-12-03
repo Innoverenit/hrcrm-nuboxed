@@ -348,7 +348,6 @@ render: (name, item, i) => {
    >
        <UploadFileIcon
          style={{fontSize:"1.2rem"}}  />
-     {/* <FontAwesomeIcon icon={solid('file-arrow-up')} /> */}
     </span>
     </Badge>
     </Tooltip>

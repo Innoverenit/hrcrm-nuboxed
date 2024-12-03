@@ -59,7 +59,7 @@ class ChangePassword extends Component {
     return (
       <>
         <div class=" flex justify-center items-center h-[100vh]">
-        <div class="   overflow-auto flex flex-col justify-center items-center bg-[#eaedf1] "> 
+        <div class="   overflow-auto flex flex-col justify-center items-center bg-[white] "> 
        
      <div class=" p-4 w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white">
               <div class="text-lg font-poppins font-bold text-black mt-2">Change Password</div>
