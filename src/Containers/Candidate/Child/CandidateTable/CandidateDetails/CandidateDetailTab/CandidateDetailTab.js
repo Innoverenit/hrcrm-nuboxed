@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 import { translateText, } from '../../../../../Translate/TranslateService';
-import { Tooltip } from "antd";
+import { Tooltip,Badge } from "antd";
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import MicIcon from '@mui/icons-material/Mic';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -16,7 +16,7 @@ import { StyledTabs } from "../../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../../Components/UI/Layout";
 import SchoolIcon from '@mui/icons-material/School';
 import { handleCandidateEducationModal } from "../../../../CandidateAction";
-import { handleDocumentUploadModal } from "../../../../CandidateAction";
+import { handleDocumentUploadModal } from "../../../../../Customer/CustomerAction";
 import { handleCandidateTrainingModal } from "../../../../CandidateAction";
 import {
   handleCandidateEmploymentModal,
@@ -25,6 +25,8 @@ import {
 } from "../../../../CandidateAction";
 import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
+import AddDocumentModals from "../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
+import LinkedDocuments from "../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments";
 const ReactCandidateSpeechModal = lazy(() => import("../../ReactCandidateSpeechModal"));
 const ExperienceForm = lazy(() => import("../CandidateDetailTab/Experience/ExperienceForm"));
 const CandidateEducationTable = lazy(() => import("./Education/CandidateEducationTable"));
@@ -85,7 +87,71 @@ function CandidateDetailTab(props) {
 
     fetchTranslation();
   }, [props.selectedLanguage]);
-
+  const renderTabContent = (key) => {
+    switch (key) {
+      case "1":
+        return     <div> 
+          <ActivityTable
+                candidate={props.candidate.candidateId}
+                translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}
+              />
+            </div>;
+      case "2":
+        return  <div>
+          <PlacementTable
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}
+              />
+        </div>;
+    case "3":
+      return  <div>
+           <ExperienceForm 
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
+      </div>;
+         case "4":
+          return  <div>
+            <LinkedDocuments
+              uniqueId={props.candidate.candidateId}
+              type={"candidate"}
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}
+            translatedMenuItems={props.translatedMenuItems}
+             /> 
+          </div>;
+          case "5":
+            return  <div>
+              
+            </div>;
+            case "6":
+              return  <div>
+                 <CandidateEducationTable 
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
+              </div>;
+              case "7":
+                return  <div>
+                   <CandidateTrainingTable 
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
+                </div>;
+ case "8":
+  return  <div>
+    <CandidateEmploymentTable 
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
+  </div>;
+  case "8":
+    return  <div>
+       <BankTable 
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
+    </div>;
+      default:
+        return null;
+    }
+  };
 
   // const { activeKey } = this.state;
   const {
@@ -96,7 +162,7 @@ function CandidateDetailTab(props) {
     addOpportunityModal,
     addCandidateEducationModal,
     handleCandidateEducationModal,
-    handleCandidateTrainingModal,
+    handleCandidateTrainingModal, 
     addCandidateTrainingModal,
     handleCandidateEmploymentModal,
     addCandidateEmploymentModal,
@@ -153,11 +219,7 @@ function CandidateDetailTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <ActivityTable
-                candidate={props.candidateId}
-                translateText={props.translateText}
-                selectedLanguage={props.selectedLanguage}
-              />
+             
             </Suspense>
           </TabPane>
           <TabPane
@@ -178,10 +240,7 @@ function CandidateDetailTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <PlacementTable
-               translateText={props.translateText}
-               selectedLanguage={props.selectedLanguage}
-              />
+            
             </Suspense>
           </TabPane>
           <TabPane
@@ -201,9 +260,7 @@ function CandidateDetailTab(props) {
             {/* <LinkedExperience/> */}
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <ExperienceForm 
-               translateText={props.translateText}
-               selectedLanguage={props.selectedLanguage}/>
+             
             </Suspense>
           </TabPane>
           <TabPane
@@ -214,10 +271,15 @@ function CandidateDetailTab(props) {
                   Documents
                   {/* {translatedContent[3]} */}
                 </span>
+                <Badge
+                count={props.documentsByCount.document}
+                overflowCount={999}
+              > 
+                   </Badge>
                 {activeKey === "4" && (
                   <>
                     <AddBoxIcon className=" !text-icon  ml-1 items-center
- text-[#6f0080ad]"
+                    text-[#6f0080ad]"
 
                       tooltipTitle="Upload Document"
                       onClick={() => handleDocumentUploadModal(true)}
@@ -231,7 +293,7 @@ function CandidateDetailTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-            
+              
                
             </Suspense>
           </TabPane>
@@ -301,9 +363,7 @@ function CandidateDetailTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <CandidateEducationTable 
-               translateText={props.translateText}
-               selectedLanguage={props.selectedLanguage}/>
+             
             </Suspense>
           </TabPane>
           <TabPane
@@ -332,9 +392,7 @@ function CandidateDetailTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <CandidateTrainingTable 
-               translateText={props.translateText}
-               selectedLanguage={props.selectedLanguage}/>
+             
             </Suspense>
           </TabPane>
           <TabPane
@@ -363,9 +421,7 @@ function CandidateDetailTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <CandidateEmploymentTable 
-               translateText={props.translateText}
-               selectedLanguage={props.selectedLanguage}/>
+             
             </Suspense>
           </TabPane>
 
@@ -396,12 +452,13 @@ function CandidateDetailTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <BankTable 
-               translateText={props.translateText}
-               selectedLanguage={props.selectedLanguage}/>
+             
             </Suspense>
           </TabPane>
         </StyledTabs>
+        <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                {renderTabContent(activeKey)}
+              </Suspense>
       </TabsWrapper>
       <Suspense fallback={"Loading..."}>
        
@@ -435,7 +492,15 @@ function CandidateDetailTab(props) {
           translateText={props.translateText}
           selectedLanguage={props.selectedLanguage}
         />
-
+           <AddDocumentModals
+           candidateId={props.candidate.candidateId}
+           uniqueId={props.candidate.candidateId}
+           type={"candidate"}
+            documentUploadModal={documentUploadModal}
+            handleDocumentUploadModal={handleDocumentUploadModal}
+            selectedLanguage={props.selectedLanguage}
+            translateText={props.translateText}
+          />
         <ReactCandidateSpeechModal
           candidate={props.candidate}
           handleCandidateReactSpeechModal={handleCandidateReactSpeechModal}
@@ -448,9 +513,9 @@ function CandidateDetailTab(props) {
   );
 }
 
-const mapStateToProps = ({ candidate, auth }) => ({
+const mapStateToProps = ({ candidate,customer, auth }) => ({
   user: auth.userDetails,
-  documentUploadModal: candidate.documentUploadModal,
+  documentUploadModal: customer.documentUploadModal,
   addCandidateEducationModal: candidate.addCandidateEducationModal,
   addCandidateTrainingModal: candidate.addCandidateTrainingModal,
   addCandidateEmploymentModal: candidate.addCandidateEmploymentModal,
@@ -459,6 +524,7 @@ const mapStateToProps = ({ candidate, auth }) => ({
   addCandidateSpeechModal: candidate.addCandidateSpeechModal,
   candidateId: candidate.candidateId,
   candidate: candidate.candidate,
+  documentsByCount:customer.documentsByCount
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
