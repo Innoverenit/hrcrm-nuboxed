@@ -12,7 +12,7 @@ function RecruitmentProfileView(props) {
           Theme
         </div>
       </div>
-      <div className=" h-[50vh]">
+      <div className=" h-[70vh]">
       {props.rules.map((item, i) => {
         return (
           
