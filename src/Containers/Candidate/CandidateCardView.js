@@ -2,13 +2,13 @@ import React, { useEffect, useState,  lazy } from "react";
 import { MultiAvatar, MultiAvatar2   } from '../../Components/UI/Elements'
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-import BuildCircleIcon from '@mui/icons-material/BuildCircle';
-import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DraftsIcon from '@mui/icons-material/Drafts';
 import CircleIcon from '@mui/icons-material/Circle';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import {  Tooltip } from 'antd'
 import {
   getCandidateById,
@@ -25,7 +25,8 @@ import {
     getCandidateListByUserId,
     handleCandidatesTasksDrawerModal,
     getCandidateTasksInfo,
-    emptyCandidate
+    emptyCandidate,
+    handleemaildrawermodal
     
   } from "../Candidate/CandidateAction";
   import { Link } from 'react-router-dom';
@@ -36,6 +37,8 @@ import { Select } from "antd";
 import { StyledPopconfirm  } from '../../Components/UI/Antd';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import { BundleLoader } from "../../Components/Placeholder";
+import CandidateRowEmailModal from "./Child/CandidateTable/CandidateRowEmailModal";
+
 const AddCandidatesTasksDrawerModal = lazy(() =>import("./AddCandidatesTasksDrawerModal"));
 const AddPlayerModal = lazy(() =>import("./Child/CandidateTable/AddPlayerModal"));
 const SkillsLoadMore = lazy(() =>import("../../Containers/Candidate/Child/CandidateTable/SkillsLoadMore"));
@@ -81,7 +84,8 @@ function handleSetCurrentCandidateId(candidateId) {
   fetchingCandidatesError,
   updateCandidateResumeModal,
   updateCandidateModal,
-
+  handleemaildrawermodal,
+  addemaildrawermodal
 }=props;
     return (   
             <>
@@ -112,7 +116,7 @@ function handleSetCurrentCandidateId(candidateId) {
                        item.address[0].postalCode} `;
       
                  return (
-                  <div class="rounded-md border-2 bg-[#ffffff]  shadow-[#aaa] h-[9rem] 
+                  <div class="rounded-md border-2 bg-[#ffffff]  shadow-[#aaa] h-[7.5rem] 
                   text-[#444444] my-3 p-1 ml-3 w-[15vw] flex flex-col  max-sm:w-wk max-sm:ml-0 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                      <div class="flex" >
                    <Tooltip 
@@ -161,7 +165,7 @@ function handleSetCurrentCandidateId(candidateId) {
                      handleSetCurrentCandidateId(item.candidateId);
                    }}
               >
-                <BorderColorIcon className="text-gray-600 !text-icon"/>
+                <BorderColorIcon className="text-red-600 !text-icon"/>
               </div>
             
               </div>
@@ -174,7 +178,7 @@ function handleSetCurrentCandidateId(candidateId) {
                         /></div>
                         
                         <Tooltip  title={item.skillList}>
-                        <BuildCircleIcon className="text-[#24d8a7] !text-icon"/> 
+                        <MoreHorizIcon className="text-[#24d8a7] !text-icon"/> 
                         </Tooltip>            
                         </div>                             
                         <div class=" flex flex-row justify-around w-full items-end">
@@ -185,14 +189,31 @@ function handleSetCurrentCandidateId(candidateId) {
                   item.category === "White" ?"bisque":item.category === "Blue" ?  "#00afff":item.category==="Both"&&"grey",fontSize:"0.8rem" }}/>
               </Tooltip>
               </div>     
-                     <span>
+                     {/* <span>
                         <Tooltip  title={item.mobileNumber}>
                         <VolumeUpIcon className="text-[#24d8a7] !text-icon" />
                         </Tooltip> 
-                        </span>
+                        </span> */}
                         <span>
                         <Tooltip  title={item.emailId}>
-                   <DraftsIcon className=" !text-icon text-[#24d8a7] "  />
+                   <DraftsIcon className=" !text-icon text-[#24d8a7]"
+                  
+                   onClick={() => {
+                    
+                  handleemaildrawermodal(true);
+                  // addemaildrawermodal(item.emailId);
+                      }}    />
+          </Tooltip> 
+          </span>
+          <span>
+                        <Tooltip  title={item.emailId}>
+                   <WhatsAppIcon className=" !text-icon text-[#24d8a7]"
+                  
+                   onClick={() => {
+                    
+                  handleemaildrawermodal(true);
+                  // addemaildrawermodal(item.emailId);
+                      }}    />
           </Tooltip> 
           </span>
           <Tooltip
@@ -280,6 +301,10 @@ function handleSetCurrentCandidateId(candidateId) {
               
         
       />
+      <CandidateRowEmailModal
+       handleemaildrawermodal={props.handleemaildrawermodal}
+       addemaildrawermodal={props.addemaildrawermodal}
+      />
  <AddPlayerModal
         addPlayerModal={props.addPlayerModal}
         handlePlayerModal={props.handlePlayerModal}
@@ -328,8 +353,8 @@ const mapStateToProps = ({ candidate, auth,dashboard}) => ({
   fetchingDashBoardFunnelError:dashboard.fetchingDashBoardFunnelError,
   dashboardFunnel:dashboard.dashboardFunnel,
   candidateTasksInfoDetails:candidate.candidateTasksInfoDetails,
-  addDrawerCandidatesTasksModal:candidate.addDrawerCandidatesTasksModal
-
+  addDrawerCandidatesTasksModal:candidate.addDrawerCandidatesTasksModal,
+  addemaildrawermodal:candidate.addemaildrawermodal
 })
 
 const mapDispatchToProps = (dispatch) =>
@@ -351,7 +376,8 @@ const mapDispatchToProps = (dispatch) =>
         handleupdateCandidateResumeModal,
         Candidatesorttype,
         getCandidateListByUserId,
-        getCandidateTasksInfo
+        getCandidateTasksInfo,
+        handleemaildrawermodal
         //getDashboardFunnelRecord
     //   LinkProductInfo
     },

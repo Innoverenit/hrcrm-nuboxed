@@ -28,8 +28,9 @@ import { Button, Tooltip,Checkbox } from "antd";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../Components/Placeholder";
-import AddPitchAdressModal from "./AddPitchAdressModal";
-import EmptyPage from "../../Main/EmptyPage";
+
+const AddPitchAdressModal =lazy(()=>import("./AddPitchAdressModal"));
+const EmptyPage =lazy(()=>import("../../Main/EmptyPage"));
 const AddPitchNotesDrawerModal =lazy(()=>import("./AddPitchNotesDrawerModal"));
 const UpdateLPitchModal =lazy(()=>import("../Child/UpdateLPitchModal"));
 const PitchSearchedData =lazy(()=>import("./PitchSearchedData"));
@@ -177,7 +178,7 @@ serachedPitchData={props.serachedPitchData}
         style={{overflowX:"hidden",scrollbarWidth:"thin"}}
     
       >
-  { !fetchingAllPitch && props.allPitchData.length === 0 ?<EmptyPage/>:props.allPitchData.map((item,index) =>  {
+  { !fetchingAllPitch && props.allPitchData.length === 0 ?<Suspense> <EmptyPage/> </Suspense>:props.allPitchData.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 //  const countryCode = item.address[0].country_alpha2_code   

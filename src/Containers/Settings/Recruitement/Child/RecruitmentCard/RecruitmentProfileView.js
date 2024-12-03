@@ -12,9 +12,10 @@ function RecruitmentProfileView(props) {
           Theme
         </div>
       </div>
-     
+      <div className=" h-[70vh]">
       {props.rules.map((item, i) => {
         return (
+          
           <StageWrapper>
             <ViewEditCard>
               {({ viewType }, toggleViewType) =>
@@ -41,8 +42,10 @@ function RecruitmentProfileView(props) {
               }
             </ViewEditCard>
           </StageWrapper>
+          
         );
       })}
+      </div>
     </>
   );
 }

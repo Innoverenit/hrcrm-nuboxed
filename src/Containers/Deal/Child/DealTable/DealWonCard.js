@@ -220,7 +220,7 @@ function DealWonCard(props) {
 </div>
                                         </Tooltip>                         
                                 </div>
-                                <div className=" flex   w-[8.1rem] items-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex   w-[8.1rem] items-center mt-1 h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                        {/* sector */}
                                    
                                     <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">   
@@ -231,7 +231,7 @@ function DealWonCard(props) {
                                 </div>
                                 </div>       
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[9.4rem] max-xl:w-[9.4rem] max-lg:w-[3.4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex   items-center justify-center h-8 ml-gap mt-1 bg-[#eef2f9]  w-[9.4rem] max-xl:w-[9.4rem] max-lg:w-[3.4rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                               {/* Country */}
                                   <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">                            
           {item.contactName === null ? "None" :
@@ -245,14 +245,14 @@ function DealWonCard(props) {
           }
                                   </div>
                               </div>
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap mt-1 bg-[#eef2f9] w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[4.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* Deals */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">
                                     {dayjs(item.startDate).format("DD/MM/YYYY")}
                                     </div>
                                 </div>                           
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.2rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap mt-1 bg-[#eef2f9] w-[8.2rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* Value */}
                                     <div class=" text-xs  font-poppins text-center max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">              
             &nbsp;
@@ -261,10 +261,10 @@ function DealWonCard(props) {
                                 </div>
                                 </div>
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.1rem] max-xl:w-[8.11rem] max-lg:w-[6.11rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap mt-1 bg-[#eef2f9] w-[9.1rem] max-xl:w-[8.11rem] max-lg:w-[6.11rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                {/* Value */}
 
-                                    <div class=" text-xs  font-poppins text-center max-sm:text-xs">
+                                    <div class=" text-xs  mt-1 font-poppins text-center max-sm:text-xs">
                                     <Dropdown
               overlay={
                 <div>
@@ -294,7 +294,7 @@ function DealWonCard(props) {
             </Dropdown>
                                     </div>
                                 </div>
-                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.1rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap mt-1 bg-[#eef2f9] w-[8.1rem] max-xl:w-[5.8rem] max-lg:w-[4.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* Assigned */}
 
                                     <div class=" text-xs  font-poppins max-sm:text-xs">                                   
@@ -307,7 +307,7 @@ function DealWonCard(props) {
             </span>     
                                     </div>
                                 </div>
-                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[12.5rem] max-xl:w-[7.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap mt-1 bg-[#eef2f9] w-[12.5rem] max-xl:w-[7.5rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto  max-sm:justify-between ">
                                 {/* Owner */}
               <Tooltip title={item.ownerName}>
           <span>
@@ -322,7 +322,7 @@ function DealWonCard(props) {
             </Tooltip>
                    </div>
                    </div>
-                   <div class="flex max-sm:justify-evenly max-sm:w-wk items-center  justify-end h-8 ml-gap bg-[#eef2f9]">
+                   <div class="flex max-sm:justify-evenly max-sm:w-wk items-center  justify-end h-8 ml-gap mt-1 bg-[#eef2f9]">
                    
                     <div>
                     <Tooltip title= {translatedMenuItems[8]}><span
