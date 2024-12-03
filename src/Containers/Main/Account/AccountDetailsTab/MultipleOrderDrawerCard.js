@@ -263,7 +263,7 @@ function AccountInvoiceTable(props) {
         
 
             <div className=' flex sticky  z-auto mt-1'>
-                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex justify-between w-[86%] p-1 bg-transparent font-bold font-poppins text-xs sticky z-10">
                   <div class="w-3"></div>
                         <div className=" md:w-[7.4rem]">{translatedMenuItems[1]} ID</div>

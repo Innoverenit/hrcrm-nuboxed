@@ -200,7 +200,7 @@ console.log("drb2",data)
     <>
 
       <div className=' flex  sticky  z-auto'>
-        <div class="rounded m-1 h-[87vh] max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class="rounded m-1 h-[87vh] max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end z-10"> 
             <div class="w-[6rem]"></div>         
             <div className=" text-[#00A2E8] text-sm w-[48.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">

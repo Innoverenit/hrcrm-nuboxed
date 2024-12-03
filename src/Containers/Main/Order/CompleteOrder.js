@@ -54,7 +54,7 @@ function CompleteOrder(props) {
 
     return (
         <>
-            <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
+            <OnlyWrapCard style={{ backgroundColor: "white" }}>
                 <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky z-10">
                     <div className="w-[12rem] max-md:w-[12rem]">Order ID</div>
                     <div className="w-[28rem] max-md:w-[28rem]">Customer</div>

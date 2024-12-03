@@ -218,7 +218,7 @@ function MaterialComplementaryCard(props) {
 
 
       <div className=" flex sticky z-auto mt-2">
-        <div class="rounded m-1 max-sm:m-1 p-1 h-[80vh] w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class="rounded m-1 max-sm:m-1 p-1 h-[80vh] w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex max-sm:hidden justify-between  p-1 bg-transparent font-poppins !text-lm font-bold items-end sticky  z-10">
            
             

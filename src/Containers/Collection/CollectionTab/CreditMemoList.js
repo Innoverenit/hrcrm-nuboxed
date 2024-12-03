@@ -48,7 +48,7 @@ function CreditMemoList(props) {
  
 
       <div className=' flex  sticky  z-auto'>
-      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%] h-[78vh]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%] h-[78vh]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex max-sm:hidden justify-between w-[100%] items-end p-1 bg-transparent font-poppins font-bold !text-lm  sticky  z-10">
             <div className=" w-[6.1rem] max-md:w-[13.1rem] truncate text-sm">
             <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[0]} {/* Order Id */}

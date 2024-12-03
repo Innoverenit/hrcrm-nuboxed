@@ -102,7 +102,7 @@ function handleSetCurrentPhoneId(item) {
      
  
       <div className=' flex  sticky  z-auto'>
-        <div class="rounded m-1 max-sm:m-1 p-1 w-[100%] h-[87vh]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class="rounded m-1 max-sm:m-1 p-1 w-[100%] h-[87vh]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold font-poppins !text-lm sticky  max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10"> 
             <div className=" w-[6.5rem] text-[#00A2E8] text-sm truncate max-md:w-[6.5rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
             <BrandingWatermarkIcon className="!text-icon  mr-1" />  {translatedMenuItems[0]}

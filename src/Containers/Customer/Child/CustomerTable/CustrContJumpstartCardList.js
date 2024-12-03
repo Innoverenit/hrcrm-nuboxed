@@ -80,7 +80,7 @@ function CustrContJumpstartCardList(props) {
     <>
       
      
-      <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[98%] max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded-lg m-1 max-sm:m-1 p-1 w-[98%] max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" max-sm:hidden flex justify-between w-[95%] max-lg:w-[89%] max-xl:w-[96%] p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
     Name</div>

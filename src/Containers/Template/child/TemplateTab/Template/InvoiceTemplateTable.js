@@ -79,7 +79,7 @@ useEffect(() => {
     }
   };
     return (
-        <div className="bg-[#eaedf1] min-h-screen p-5">
+        <div className="bg-[white] min-h-screen p-5">
              <div className="mx-auto flex space-x-5">
              <div className="w-1/4 bg-white p-4 h-[80vh] overflow-auto">
           <h3 className="text-xl font-bold mb-3">Invoice</h3>

@@ -894,7 +894,7 @@ const date=diff+1
 
       //         >
 
-      //           <FontAwesomeIcon icon={solid('circle-question')} />
+      //         
       //         </span>
       //       </Tooltip>
       //       </span>
@@ -1116,7 +1116,7 @@ const date=diff+1
   //             this.props.handleRecruiterModal(true);
   //       }}
   //       >
-  //      <FontAwesomeIcon icon={solid('person-circle-question')} />
+  //     
   //       </span>
   //         }
   //       </>

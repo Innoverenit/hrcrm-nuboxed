@@ -108,7 +108,7 @@ class ShipperCostTable extends Component {
 <>
 
  <div className=' flex  sticky h-[78vh]  z-auto'>
-          <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
+          <OnlyWrapCard style={{ backgroundColor: "white" }}>
             <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
               <div className="font-bold font-poppins text-[#00A2E8] text-base md:w-[7.1rem]">
               <SourceIcon className="!text-icon  text-[#4b5043]"/> {this.state.translatedMenuItems[0]}</div>

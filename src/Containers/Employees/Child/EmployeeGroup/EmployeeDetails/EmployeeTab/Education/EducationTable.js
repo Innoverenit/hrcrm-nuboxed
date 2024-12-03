@@ -91,7 +91,7 @@ class EducationTable extends Component {
     const tableHeight = tab && tab.offsetHeight * 0.75;
     return (
       <>
-       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+       <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold  font=poppins !text-lm sticky items-end z-10">
           <div className=" max-md:w-[6.5rem] w-[6.5rem] text-[#00A2E8] text-sm"><MergeTypeIcon className=" !text-icon"/> {this.state.translatedMenuItems[0]} </div>
  

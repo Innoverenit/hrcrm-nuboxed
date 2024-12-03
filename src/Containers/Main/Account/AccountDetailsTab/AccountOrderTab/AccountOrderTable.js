@@ -205,7 +205,7 @@ const AccountOrderTable = (props) => {
         <>
       
             <div className=' flex sticky   z-auto'>
-                <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex  w-[100%]  bg-transparent   sticky  z-10">
                         <div className='flex justify-between w-[80%]  !text-lm font-bold font-poppins'>
                     <div className=" max-md:w-[3.54rem] w-[3.54rem] truncate text-[white] flex justify-center bg-[red]">
@@ -668,7 +668,7 @@ const AccountOrderTable = (props) => {
             </div >
             
             <div className=' flex sticky   z-auto'>
-                <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex  w-[100%]  bg-transparent   sticky  z-10">
                         <div className='flex justify-between w-[80%]  !text-lm font-bold font-poppins'>
                     <div className=" max-md:w-[3.54rem] w-[3.54rem] truncate text-[white] flex justify-center bg-[teal]">

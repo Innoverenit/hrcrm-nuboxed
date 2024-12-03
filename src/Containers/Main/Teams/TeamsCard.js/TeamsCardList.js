@@ -46,7 +46,7 @@ function TeamsCardList(props) {
   return (
     <>
   
-  <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] h-[88vh]">
+  <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white] h-[88vh]">
 <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
 <div className="font-bold font-poppins text-xs md:w-[44.5rem]">
 < ApartmentIcon className=" text-base"/> {props.translatedMenuItems[0]}

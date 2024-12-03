@@ -186,7 +186,7 @@ function ContactCardList(props) {
     <>
       
       
-      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
       <div className=" max-sm:hidden flex justify-between w-[96%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold sticky  z-10">
       <div class=" flex justify-between w-[99%] font-bold  font-poppins !text-lm items-end ">
         <div className=" w-[22.9rem] text-[#00A2E8] truncate max-md:w-[21.9rem]  text-sm max-xl:w-[21.5rem] max-lg:w-[20.5rem]">

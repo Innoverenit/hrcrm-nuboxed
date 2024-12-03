@@ -648,6 +648,7 @@ function AccountTable(props) {
                       <div className=" flex items-center max-sm:w-auto w-[2rem] max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                             <AccountCreditToggle distributorCreditInd={item.distributorCreditInd} distributorId={item.distributorId}/>&nbsp;                            
                           </div>
+                          <div className=' w-[6rem] cursor-pointer ml-2'>
                           <Tooltip title="">
                                                  
                                                  <Progress
@@ -655,9 +656,10 @@ function AccountTable(props) {
                                                 success={{acivedPercentage}}
                                                // strokeColor={getGradientStrokeColor(acivedPercentage)}
                                                 format={() => `${acivedPercentage}%`} 
-                                                 style={{width:"10rem",cursor:"pointer ", marginLeft:"0.25rem"}} 
+                                                  className=' w-[6rem] cursor-pointer ml-2'
                                                       />                                                       
                                                 </Tooltip>
+                                                </div>
                           <div class=" text-xs flex items-center justify-center font-poppins w-[6.021rem] bg-[#eef2f9] h-8   text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {/* {item.curName}  */}
                               {editableField?.distributorId === item.distributorId &&

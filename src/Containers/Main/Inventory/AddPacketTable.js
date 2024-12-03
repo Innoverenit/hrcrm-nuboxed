@@ -75,7 +75,7 @@ setexpandPackNo(!expandPackNo);
   
         
         <div className=' flex sticky h-[86vh] z-auto'>
-            <div class="rounded  py-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+            <div class="rounded  py-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
             <div className="flex justify-between w-full p-1 font-bold text-xs sticky z-10">
           <div className="w-[6.51rem]">Pack ID</div>
           <div className="w-[3.5rem]"></div>

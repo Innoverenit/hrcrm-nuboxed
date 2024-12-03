@@ -236,7 +236,7 @@ const timerRef = useRef(null);
         value={currentData}
         />
       </div>
-                <div class="rounded m-1 p-1 w-[99%] mt-3  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded m-1 p-1 w-[99%] mt-3  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex justify-between w-[99%]  p-1 bg-transparent  font-bold font-poppins text-xs items-end sticky z-10">
                         <div className=" w-[11.1rem] text-[#00A2E8] text-base truncate  max-xl:text-[0.65rem] max-xl:w-[21.1rem]">
                         <Shop2Icon className="mr-1 !text-icon"/>PO ID

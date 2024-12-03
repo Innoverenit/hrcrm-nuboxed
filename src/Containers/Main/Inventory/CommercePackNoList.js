@@ -86,7 +86,7 @@ function CommercePackNoList (props) {
      
                   
             <div className='flex  sticky z-auto w-wk'>
-                <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky font-poppins text-lm z-10">
                         <div className=" md:w-[12rem] text-[#00A2E8]  text-sm">
                          <AddShoppingCartIcon className=" !text-icon "/>  items

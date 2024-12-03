@@ -180,7 +180,7 @@ function InvestorDeleteList(props) {
   translatedMenuItems={props.translatedMenuItems}
     />
   ) : (
-  <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+  <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex justify-between max-sm:hidden  w-[89%]  p-1 bg-transparent font-bold font-poppins text-xs sticky max-xl:text-xs max-lg:text-[0.45rem] !text-lm z-10">
           <div className="w-2"></div>
         <div className=" w-[11.6rem] text-[#00A2E8] text-sm truncate max-md:w-[11.6rem]  max-xl:w-[14.4rem] ">

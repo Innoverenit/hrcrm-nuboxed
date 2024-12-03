@@ -99,7 +99,7 @@ const DealDeletedCard = (props) => {
   }
   return (
     <>
-      <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex  w-[100%]  justify-between p-1 bg-transparent font-bold font-poppins !text-lm sticky  z-10 max-sm:hidden">
         <div className=" flex justify-between w-[95%]">
           <div className="  text-sm w-[8.5rem] max-md:w-[8.5rem] text-[#3a86ff]">

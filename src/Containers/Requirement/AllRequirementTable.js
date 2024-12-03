@@ -87,7 +87,7 @@ class AllRequirementTable extends Component {
     return (
       <>
   <div className=' flex justify-end sticky top-28 z-auto'>
-      <OnlyWrapCard style={{backgroundColor:"#eaedf1"}}>
+      <OnlyWrapCard style={{backgroundColor:"white"}}>
       <div className=" flex justify-between w-[100%]  p-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[8.1rem]">Job ID</div>
         <div className=" md:w-[4.2rem] ">Requirement</div>

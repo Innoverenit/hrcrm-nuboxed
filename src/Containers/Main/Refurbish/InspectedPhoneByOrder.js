@@ -201,7 +201,7 @@ function InspectedPhoneByOrder(props) {
             {props.fetchingUpdateDispatchList ?
                 <BundleLoader />
                 : <div className='flex sticky ticky  z-10 '>
-                    <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                    <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div class=" w-72 ml-4 max-sm:w-28">
           <Input
             placeholder="Search by Imei"

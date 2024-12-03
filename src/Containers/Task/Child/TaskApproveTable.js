@@ -143,7 +143,7 @@ const TaskApproveTable = (props) => {
   return (
     <>
       
-          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex max-sm:hidden justify-between w-[85%]  p-1 bg-transparent font-bold sticky items-end text-xs font-poppins z-10">
                 <div className="flex w-[2.5rem] truncate"></div>
           <div className="flex w-[13.7rem] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.9rem] max-lg:w-[16.1rem]">

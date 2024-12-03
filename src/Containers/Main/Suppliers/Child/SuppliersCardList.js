@@ -143,7 +143,7 @@ const [editingValue, setEditingValue] = useState("");
     />
   ) : (
       <div className=' flex  sticky  z-auto'>
-        <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex font-poppins text-xs justify-between w-[96%] max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm   p-1 bg-transparent font-bold sticky items-end z-10 max-sm:hidden">
           <div className=" w-[9.91rem] truncate text-[#00A2E8]  max-md:w-[14.9rem] text-sm  "> 
                {/* Supplier ID */}
@@ -250,7 +250,7 @@ const [editingValue, setEditingValue] = useState("");
                                 <div>
 {editableField?.supplierId === item.supplierId && editableField?.field === 'dialCode' ? (
   <Select
-  style={{ width: "8rem" }}
+  style={{ width: "10rem" }}
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
   autoFocus
@@ -264,7 +264,7 @@ const [editingValue, setEditingValue] = useState("");
 ) : (
 <div onClick={() => 
 handleEditRowField(item.supplierId, 'dialCode', item.dialCode)} 
-className="cursor-pointer text-xs font-[Poppins]">
+className="cursor-pointer text-xxs font-[Poppins]">
 {item.dialCode || "Enter DialCode"}
 
 </div>         
@@ -275,7 +275,7 @@ className="cursor-pointer text-xs font-[Poppins]">
    editableField?.field === 'phoneNo' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xs"
+  className="h-7 w-[4rem] text-xxs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -285,7 +285,7 @@ className="cursor-pointer text-xs font-[Poppins]">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'phoneNo', item.phoneNo)} 
-    className="cursor-pointer text-xs font-[Poppins]">
+    className="cursor-pointer text-xxs font-[Poppins]">
     {item.phoneNo || "Enter Mobile No"}
     
     </div> 
@@ -303,7 +303,7 @@ className="cursor-pointer text-xs font-[Poppins]">
    editableField?.field === 'emailId' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xs"
+  className="h-7 w-[4rem] text-xxs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -313,7 +313,7 @@ className="cursor-pointer text-xs font-[Poppins]">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'emailId', item.emailId)} 
-    className="cursor-pointer text-xs font-[Poppins]">
+    className="cursor-pointer text-xxs font-[Poppins]">
     {item.emailId || "Enter Email"}
     
     </div> 
@@ -377,7 +377,7 @@ className="cursor-pointer text-xs font-[Poppins]">
                                   />
                                 </Tooltip>
                               </div>
-                              <div>
+                              {/* <div>
                                 <Tooltip title={props.translatedMenuItems[39]}>
                                   <InventoryIcon
                                     className="!text-icon cursor-pointer text-[green] max-sm:!text-2xl"
@@ -388,7 +388,7 @@ className="cursor-pointer text-xs font-[Poppins]">
                                     }}
                                   />
                                 </Tooltip>
-                              </div>
+                              </div> */}
                               <Tooltip title={props.translatedMenuItems[34]}>
                               <AddLocationAltIcon
           className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-2xl"

@@ -127,7 +127,7 @@ const ReceivedTable = (props) => {
     <>
       
         <div className=' flex sticky  z-auto'>
-          <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
             <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold  z-10">
               <div className=" w-[9.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
               {translatedMenuItems[0]}

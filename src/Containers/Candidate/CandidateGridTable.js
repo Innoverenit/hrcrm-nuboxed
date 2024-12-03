@@ -443,10 +443,8 @@ function CandidateGridTable(props) {
             <Tooltip title="Video">
               {data.videoClipsId!==null&&(
               <span>
-                {/* <FontAwesomeIcon icon={solid("wallet")} /> */}
+      
                 <PlayCircleIcon 
-                // icon={solid("play")}
-                // style={{ color: "red" }}
                 onClick={() => {
                   props.handlePlayerModal(true);
                   handleSetCurrentVideoId(data.videoClipsId)
@@ -682,7 +680,6 @@ function CandidateGridTable(props) {
                   cursor: "pointer",
                 }}
               >
-                {/* <FontAwesomeIcon icon={solid("phone-volume")} /> */}
                 <PhoneDisabledIcon 
                 // icon={solid("phone-slash")}
                  />
@@ -808,16 +805,6 @@ function CandidateGridTable(props) {
                 <EditIcon1></EditIcon1>
               </span>
 
-              // <FontAwesomeIcon
-              //   icon={solid("pen-to-square")}
-              //   type="edit"
-              //   style={{ cursor: "pointer" }}
-              //   onClick={() => {
-              //     props.setEditCandidate(item);
-              //     handleupdateCandidateResumeModal(true);
-              //     handleSetCurrentCandidateId(item.candidateId);
-              //   }}
-              // />
             )}
           </>
         );

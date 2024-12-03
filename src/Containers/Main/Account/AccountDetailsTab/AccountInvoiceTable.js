@@ -366,7 +366,7 @@ const[openMultipleDrawer,setopenMultipleDrawer]=useState(false);
         
 
             <div className=' flex sticky  z-auto mt-3'>
-                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex justify-between w-[86%] items-end p-1 bg-transparent font-bold !text-lm font-poppins text-xs sticky z-10">
                   
                     <div class="text-[#00A2E8] text-sm max-md:w-[8.5rem] w-[8.5rem]">

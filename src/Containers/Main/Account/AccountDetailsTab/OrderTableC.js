@@ -131,7 +131,7 @@ const {handleProcureNotesDrawerModal,
     <div>
   
     <>
-    <div class="rounded m-1 max-sm:m-1 p-1 w-[99%]  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:hidden">
+    <div class="rounded m-1 max-sm:m-1 p-1 w-[99%]  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white] max-sm:hidden">
         <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
 
                         <div className="font-bold text-[#00A2E8] text-base w-[25rem] font-poppins  md:w-[25rem]">

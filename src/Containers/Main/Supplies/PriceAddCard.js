@@ -434,7 +434,7 @@ suppliesId:props.particularDiscountData.suppliesId
         ))}
 </div>
       <div className=' flex sticky z-auto'>
-        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-poppins font-bold sticky !text-lm z-10">      
             <div className="w-[7.3rem] text-[#00A2E8] text-sm truncate max-md:w-[6.3rem]"> <CurrencyExchangeIcon className='!text-base  text-[#e4eb2f]'/>  {translatedMenuItems[1]}</div>
             <div className=" w-[8.5rem] truncate max-md:w-[7.9rem]">  <CurrencyExchangeIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]}(B2B)</div>

@@ -102,7 +102,7 @@ const {handleProcureNotesDrawerModal,
     <div>
 
     <>
-    <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:hidden">
+    <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white] max-sm:hidden">
         <div className=" flex justify-between w-[79%]  p-1 bg-transparent font-poppins text-xs font-bold sticky  z-10">
         <div className=" md:w-[0.5rem]"></div>
                         <div className="w-[10rem] md:w-[4.02rem] text-[#00A2E8] text-base"><DynamicFeedIcon className='!text-base mr-1 '/>{translatedMenuItems[0]} ID</div>

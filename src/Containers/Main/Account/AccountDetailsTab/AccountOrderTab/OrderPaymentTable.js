@@ -118,7 +118,7 @@ function OrderPaymentTable(props) {
     <>
 
       {props.fetchingPaymentHistory ? <BundleLoader /> : <div className=' flex sticky z-auto'>
-        <div class="rounded m-1 p-1  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class="rounded m-1 p-1  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-semibold fonr-poppins items-end !text-lm sticky z-10">
          
             <div className="w-[7.09rem] max-max-md:w-[7rem] text-sm"> <ReadMoreIcon className=" !text-icon"/>{translatedMenuItems[0]}  ID</div>

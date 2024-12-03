@@ -45,7 +45,7 @@ const [loading, setLoading] = useState(true);
     return (
         <>
             <div className=' flex justify-end sticky top-28 z-auto'>
-                <div class=" m-3 p-1 h-62vh overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class=" m-3 p-1 h-62vh overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex justify-between  p-1 bg-transparent font-bold font-poppins sticky top-0 items-end !text-lm z-10">
                         <div className="w-[19.1rem] truncate max-md:w-[19.1rem]">
                         <ApartmentIcon className="  !text-icon"/> 

@@ -72,7 +72,7 @@ if (loading) {
                                                     {/* Repeat Order */}
                                                     </Button>  
 <div className=' flex justify-end sticky flex-col z-auto'>
-<div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+<div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
 <div className=" flex rounded  max-sm:hidden w-[99%] mt-1 p-1 bg-transparent font-bold font-poppins text-xs sticky top-0 z-10">
                                     <div className="text-[#00A2E8] text-base  w-[10rem] md:w-[10.1rem]">{translatedMenuItems[1]}
                                         {/* "Name"

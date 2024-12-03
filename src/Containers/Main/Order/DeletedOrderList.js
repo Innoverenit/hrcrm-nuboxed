@@ -155,7 +155,7 @@ const viewAnDownloadPdf= async (item) => {
       ) : (
         <>
             <div className=' flex justify-end sticky  z-auto'>
-            <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+            <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
               
                 <div className=" flex justify-between w-full p-1 bg-transparent  sticky font-bold font-poppins z-10 max-sm:hidden">
                         <div className="w-[3.54rem] max-md:w-[3.54rem] text-[white] flex justify-center bg-[red]">
@@ -447,7 +447,7 @@ const viewAnDownloadPdf= async (item) => {
             </div>
 
             <div className=' flex sticky  z-auto'>
-            <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+            <div class="rounded m-1 p-1 w-[100%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                 <div className=" flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10 max-sm:hidden">
                 <div className="font-bold font-poppins text-xs md:w-[3.54rem] text-[white] flex justify-center bg-[teal]">{translatedMenuItems[9]} </div>
                         <div className="font-bold font-poppins text-xs md:w-[10.31rem] ml-2">{translatedMenuItems[1]} ID</div>

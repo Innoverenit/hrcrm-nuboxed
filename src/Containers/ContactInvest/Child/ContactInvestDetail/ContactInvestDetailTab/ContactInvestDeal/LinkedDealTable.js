@@ -79,7 +79,7 @@ if (fetchingDealList) return <BundleLoader/>;
   return (
     <>
     <div className=' flex sticky z-auto h-[78vh]'>
-    <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+    <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
       <div className=" flex justify-between w-[83%]  p-1 bg-transparent !text-lm items-end font-bold font-poppins sticky z-10">
         <div className="text-[#00A2E8] text-sm truncate w-[20.2rem] max-md:w-[22rem]">
         <ContactsIcon className="!text-icon text-[#4f7cac] "/>  {translatedMenuItems[0]}  

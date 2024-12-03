@@ -7,7 +7,7 @@ import { setDarkTheme, setLightTheme } from "./ThemeAction";
 
 export const lightTheme = {
     primaryColor: '#1890ff',
-    applicationBackground: '#eaedf1',
+    applicationBackground: 'white',
     applicationColor: '#444',
     backgroundColor: '#fff',
     borderBoxBgColor: '#eee',

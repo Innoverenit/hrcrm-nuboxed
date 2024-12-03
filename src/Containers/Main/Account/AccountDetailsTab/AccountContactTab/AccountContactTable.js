@@ -121,7 +121,7 @@ const AccountContactTable = (props) => {
     return (
         <>
             <div className='flex sticky h-[79vh] z-auto'>
-                <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className="flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky items-end font-poppins !text-lm z-10">
                         <div className="w-[5.1rem] text-[#00A2E8] text-sm max-md:w-[7.1rem]">
                         <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}</div>

@@ -143,7 +143,7 @@ function ProcureDetailsCardList(props) {
 
   return (
     <>
-      <div className="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div className="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className="flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
         <div className="md:w-[7.4rem]">
           Category

@@ -145,7 +145,7 @@ if(props.fetchingCatalogueCell){
            </div>
           ) : (
             <div className=' flex sticky z-auto'>
-            <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+            <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
               <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">      
                 <div className=""></div>
                 <div className=" md:w-[6rem]">#{translatedMenuItems[0]}</div>
@@ -165,14 +165,14 @@ if(props.fetchingCatalogueCell){
                     <div className="flex rounded  mt-1 bg-white h-8 items-center p-1">
     
                       <div className=" flex   md:w-[9.1rem] max-sm:w-full  ">
-                        <div class="text-xs  font-bold  font-poppins cursor-pointer h-8  shadow-[#a3abb980] bg-[#eaedf1]">
+                        <div class="text-xs  font-bold  font-poppins cursor-pointer h-8  shadow-[#a3abb980] bg-[white]">
                           <div className="font-poppins ">
                             <div> {item.cellChamber}</div>
                           </div>
                         </div>
                       </div>
     
-                      <div className=" flex    md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  h-8 shadow-[#a3abb980] bg-[#eaedf1] ">
+                      <div className=" flex    md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  h-8 shadow-[#a3abb980] bg-[white] ">
     
                         <div class=" text-xs  font-poppins">
                         

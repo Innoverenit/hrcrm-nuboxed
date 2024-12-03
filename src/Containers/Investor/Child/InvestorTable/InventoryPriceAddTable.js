@@ -240,7 +240,7 @@ function InventoryPriceAddTable(props) {
         ))}
 
       <div className=' flex  sticky z-auto mt-2'>
-        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex justify-between w-[84%]  p-1 bg-transparent font-bold text-lm font-poppins sticky items-end z-10">         
             <div className=" text-sm text-[#00A2E8] w-[12rem] max-md:w-[12rem]">  <ShowChartIcon className='!text-icon    text-[#776871]' />  {translatedMenuItems[0]}
           {/* Shares */}

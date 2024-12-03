@@ -476,7 +476,7 @@ const AWBtst=[
     <>
     
         <div className=' flex  sticky  z-auto'>
-          <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
             <div className=" flex max-sm:hidden justify-between w-[98%]  p-1 bg-transparent font-bold !text-lm font-poppins sticky items-end max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
               <div className=" w-[10.51rem] text-sm text-[#00A2E8] truncate max-md:w-[7.51rem] max-xl:w-[5.5rem]">
               <DynamicFeedIcon className='!text-icon  text-[#3ac427]'/> {translatedMenuItems[0]}

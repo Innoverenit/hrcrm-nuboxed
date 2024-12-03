@@ -12,7 +12,7 @@ function ProspectJumpStartDrawerCard (props) {
   return (
     <>
    
-   <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+   <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
           <div className="text-xs font-poppins font-bold md:w-[12rem]">Name</div>
           <div className="text-xs font-poppins font-bold md:w-[10.4rem]">Work#

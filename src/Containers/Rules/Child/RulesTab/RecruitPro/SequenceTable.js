@@ -230,7 +230,7 @@
               
 //              }}
 //               >
-//               <FontAwesomeIcon style={{fontSize:"1.3em"}} icon={solid("diamond-turn-right")} />
+//               
 //             </span>
 //             </Tooltip>
 //             </>
@@ -371,11 +371,7 @@
 
 // const AppIcon1 = (props) => (
   
-//   <FontAwesomeIcon
-//   icon={solid("pen-to-square")}
-//   className={`pen-to-square ${props.className}`}
-//   >
-//   </FontAwesomeIcon>
+
 // );
 
 // const EditIcon = styled(AppIcon1)`

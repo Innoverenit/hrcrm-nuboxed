@@ -160,7 +160,7 @@ function EventAllcardList (props) {
     return(
         <>
         <div className=' flex  sticky  z-auto'>
-        <div class="rounded  justify-between m-1  max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class="rounded  justify-between m-1  max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
    
          <div className=" flex  w-[93%]  max-sm:hidden p-1 bg-transparent font-bold sticky  z-10">
           <div className=" flex justify-between text-xs font-poppins w-[93%]">

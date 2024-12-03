@@ -505,7 +505,7 @@ class DemandTable extends Component {
                     this.props.handleRecruiterModal(true);
                   }}
                 >
-                  {/* <FontAwesomeIcon icon={solid('person-circle-question')} /> */}
+                  
                   <PsychologyAltIcon/>
                 </span>
               }

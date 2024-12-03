@@ -87,7 +87,7 @@ function MileageDrawerCard(props) {
 
   return (
     <>
-    <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+    <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
      <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
         <div className=" md:w-[9.2rem]">ID</div>
         <div className="md:w-[6.8rem]">Cost Code</div>
@@ -379,7 +379,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(MileageDrawerCard);
 //   return (
 //     <>
 //         <div className=' flex justify-end sticky flex-col z-auto overflow-x-auto h-[30rem]'>
-//             <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
+//             <OnlyWrapCard style={{ backgroundColor: "white" }}>
 //                 <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
 //                 <div className=" md:w-[3.1rem]"><FormattedMessage
 //                     id="app.company"

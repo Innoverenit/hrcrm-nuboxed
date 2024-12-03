@@ -174,10 +174,10 @@ if (loading) {
     <>
     <div  className=" flex">
     <div className=' flex rounded w-[13%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
-      <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[#eaedf1] mt-1  items-center shadow-[#a3abb980] ">
+      <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[white] mt-1  items-center shadow-[#a3abb980] ">
       <div className="w-[14vw]"  > Search team Member</div>
         </div>
-        <div class="flex flex-col rounded w-[11vw]  h-[78vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+        <div class="flex flex-col rounded w-[11vw]  h-[78vh] box-content border bg-[white] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
         {props.allEmployeeList.map((item,index) =>{
            return (
               <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
@@ -228,7 +228,7 @@ if (loading) {
         </div>
         </div>
         <div className=' flex sticky w-[87%] z-auto'>
-      <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
     
       <div className=" flex  justify-between max-sm:hidden w-[89%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end  z-10">
      

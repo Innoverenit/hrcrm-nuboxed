@@ -130,7 +130,7 @@ class LinkedCandidateActivity extends Component {
     return (
       <>
            <div className=' flex  sticky  z-auto'>
-           <div class="rounded m-1 p-1 w-[99%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+           <div class="rounded m-1 p-1 w-[99%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky font-poppins text-lm z-10">
         <div className=" md:w-[10.5rem]">Type</div>
        <div className=" md:w-[8.1rem]">Topic</div>

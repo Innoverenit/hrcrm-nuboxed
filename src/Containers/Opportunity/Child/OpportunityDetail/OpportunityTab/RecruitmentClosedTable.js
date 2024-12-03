@@ -858,11 +858,7 @@ class RecruitmentClosedTable extends Component {
       //                 this.handleCandidateDataSet(item);
       //             this.props.handleRecruiterModal(true);
       //       }}
-      //       >
-      //      <FontAwesomeIcon icon={solid('person-circle-question')} />
-      //       </span>
-      //         }
-      //       </>
+      //     
       //     )
       //   }
       // },

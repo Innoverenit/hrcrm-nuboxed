@@ -376,7 +376,7 @@ const handleSelectedOrderDropDown =  async (value,item) => {
         
       </div>
 
-    <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+    <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex justify-between w-[97%] p-1 bg-transparent font-bold sticky items-end !text-lm font-poppins  z-10">
         <div className=" max-md:w-[3.54rem] w-[4.2rem] text-[white] truncate flex justify-center bg-[red]">
         {translatedMenuItems[0]} {/* Urgent */}
@@ -659,7 +659,7 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                     </InfiniteScroll>
       </div>
      
-      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
       <div className=" flex justify-between w-[97%] p-1 bg-transparent font-bold sticky items-end !text-lm font-poppins  z-10">
         <div className=" max-md:w-[3.54rem] w-[4.2rem] text-[white] truncate flex justify-center bg-[teal]">
         {translatedMenuItems[8]} {/* normal */}

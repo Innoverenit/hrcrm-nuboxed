@@ -241,10 +241,10 @@ const [rowdata, setrowdata] = useState("");
     <div className=" flex "> 
      
       <div className=' flex rounded w-[13%]  flex-col border border-[#0000001f] items-center justify-center  '>
-      <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[#eaedf1] mt-1  items-center shadow-[#a3abb980] ">
+      <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[white] mt-1  items-center shadow-[#a3abb980] ">
        <div> Search team Member</div>
         </div>
-        <div class="flex rounded  flex-col  overflow-x-auto w-[11vw] font-poppins h-[78vh] box-content border bg-[#eaedf1] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+        <div class="flex rounded  flex-col  overflow-x-auto w-[11vw] font-poppins h-[78vh] box-content border bg-[white] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
         {props.teamUserList.map((item,index) =>{
            return (
          <div class=" flex flex-col rounded border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
@@ -295,7 +295,7 @@ const [rowdata, setrowdata] = useState("");
         </div>
          {/* Header */}
          <div className=' flex sticky  w-[87%] z-auto'>
-         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
          <div className=" flex max-sm:hidden  w-[100%]  justify-between p-1 bg-transparent font-bold sticky items-end z-10">
          <div class=" flex justify-between w-[82%] items-end font-poppins font-bold max-lg:text-[0.45rem] max-xl:text-[0.65rem] !text-lm ">
             <div className=" text-[#00A2E8] truncate text-sm  w-[12.5rem] max-md:w-[11.5rem]  max-xl:w-[8.7rem] max-lg:w-[9.31rem]">

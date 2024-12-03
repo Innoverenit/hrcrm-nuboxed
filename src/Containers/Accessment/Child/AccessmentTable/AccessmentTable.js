@@ -24,7 +24,7 @@ setRowData(item)
     return (
         <>
           <div className=' flex justify-end sticky top-28 z-auto'>
-         <OnlyWrapCard style={{backgroundColor:"#eaedf1"}}>
+         <OnlyWrapCard style={{backgroundColor:"white"}}>
          <div className=" flex justify-between w-[100%]  px-2 bg-transparent font-bold sticky top-0 z-10">
          <div className=""></div>
          <div className=" md:w-[4.1rem]">Name</div>
