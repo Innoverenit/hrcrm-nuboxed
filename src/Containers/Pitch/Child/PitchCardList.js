@@ -42,8 +42,10 @@ import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import CountryFlag1 from "../../Settings/Category/Country/CountryFlag1";
 import { BundleLoader } from "../../../Components/Placeholder";
-import AddPitchAdressModal from "./AddPitchAdressModal";
-import EmptyPage from "../../Main/EmptyPage";
+
+
+const AddPitchAdressModal =lazy(()=>import("./AddPitchAdressModal"));
+const EmptyPage =lazy(()=>import("../../Main/EmptyPage"));
 const PitchSearchedData =lazy(()=>import("./PitchSearchedData"));
 const UpdateLPitchModal =lazy(()=>import("../Child/UpdateLPitchModal"));
 const OpenASSimodal =lazy(()=>import("./OpenASSimodal"));
@@ -223,7 +225,7 @@ const handleLoadMore2 = () => {
     <div className=" w-[7.12rem] max-xl:w-[12.1rem] max-lg:w-[7.1rem]  max-xl:text-[0.65rem] mr-2 max-lg:text-[0.45rem] text-white text-sm bg-red-600  justify-center ">Hot</div>
         <div className=" w-[10.1rem] truncate max-md:w-[10.1rem] max-xl:w-[9.6rem] ">
         <CategoryIcon className='!text-icon   text-[#e4eb2f]'/>
-         {translatedMenuItems[0]}   aaa
+         {translatedMenuItems[0]}   
                 {/* name */}           
                </div>
         <div className=" w-[4.1rem] max-xl:w-[3rem]"></div>
@@ -292,7 +294,7 @@ const handleLoadMore2 = () => {
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
-    { !props.fetchingPitchHot && props.pitchDataHot.length === 0 ?<EmptyPage/>:props.pitchDataHot.map((item,index) =>  {
+    { !props.fetchingPitchHot && props.pitchDataHot.length === 0 ?<Suspense> <EmptyPage/> </Suspense>:props.pitchDataHot.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
    const Category=item.pvtAndIntunlInd?"Institutional":"Private"
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -724,7 +726,7 @@ const countryCode = item.countryAlpha2Code
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
-    { !props.fetchingPitchHot && props.pitchDataHot.length === 0 ?<EmptyPage/>:props.pitchDataHot.map((item,index) =>  {
+    { !props.fetchingPitchHot && props.pitchDataHot.length === 0 ?<Suspense> <EmptyPage/> </Suspense>:props.pitchDataHot.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
    const Category=item.pvtAndIntunlInd?"Institutional":"Private"
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -1159,7 +1161,7 @@ const countryCode = item.countryAlpha2Code
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
       >
-    { !props.fetchingPitchHot && props.pitchDataHot.length === 0 ?<EmptyPage/>:props.pitchDataHot.map((item,index) =>  {
+    { !props.fetchingPitchHot && props.pitchDataHot.length === 0 ?<Suspense> <EmptyPage/> </Suspense>:props.pitchDataHot.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
    const Category=item.pvtAndIntunlInd?"Institutional":"Private"
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
