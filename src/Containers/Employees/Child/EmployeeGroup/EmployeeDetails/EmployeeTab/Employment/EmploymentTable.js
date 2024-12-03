@@ -1,4 +1,4 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 
 import { bindActionCreators } from "redux";
@@ -245,11 +245,12 @@ class EmploymentTable extends Component {
           scroll={{ y: tableHeight }}
           pagination={false}
         /> */}
-
+<Suspense>
         <UpdateEmploymentModal
           updateEmploymentModal={updateEmploymentModal}
           handleUpdateEmploymentModal={handleUpdateEmploymentModal}
         />
+        </Suspense>
         {/* )} */}
       </>
     );

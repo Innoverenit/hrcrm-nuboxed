@@ -40,8 +40,7 @@ const InternalExternalTabs = (props) => {
             translateText={props.translateText}
             selectedLanguage={props.selectedLanguage}
             /></Suspense>
-            {/* <h3>Internal Content</h3>
-            <p>This is the content for the Internal tab.</p> */}
+       
           </div>
         );
       case '2':
@@ -53,8 +52,7 @@ const InternalExternalTabs = (props) => {
               translateText={props.translateText}
               selectedLanguage={props.selectedLanguage}
             /></Suspense>
-            {/* <h3>External Content</h3>
-            <p>This is the content for the External tab.</p> */}
+       
           </div>
         );
       default:

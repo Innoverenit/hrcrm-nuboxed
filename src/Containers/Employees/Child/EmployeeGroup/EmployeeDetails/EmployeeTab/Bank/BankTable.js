@@ -1,4 +1,4 @@
-import React, { Component ,lazy} from "react";
+import React, { Component ,lazy, Suspense} from "react";
 import { connect } from "react-redux";
 
 import { bindActionCreators } from "redux";
@@ -20,7 +20,7 @@ import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import EmptyPage from "../../../../../../Main/EmptyPage";
+const EmptyPage = lazy(() => import("../../../../../../Main/EmptyPage"));
 const DefultToggle = lazy(() => import("./DefultToggle"));
 const UpdateBankModal = lazy(() => import("../../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Bank/UpdateBankModal"));
 
@@ -96,7 +96,7 @@ class BankTable extends Component {
       </div>
    
         
-      {bank =="" ? <EmptyPage/>:bank.map((item) => { 
+      {bank =="" ? <Suspense><EmptyPage/></Suspense>:bank.map((item) => { 
         
         
                     return (
@@ -162,12 +162,13 @@ class BankTable extends Component {
                               <div className=" flex  " style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >
                    
                               <>
+                              <Suspense>
                               <DefultToggle
               // partnerId={item.partnerId}
                defaultInd={item.defaultInd}
               // assignedIndicator={item.assignedInd}
               id={item.id}
-            />
+            /></Suspense>
           </>
                  
                   </div>
@@ -221,12 +222,12 @@ class BankTable extends Component {
           scroll={{ y: tableHeight }}
           pagination={false}
         /> */}
-
+<Suspense>
         <UpdateBankModal
           updateBankModal={updateBankModal}
           handleUpdateBankModal={handleUpdateBankModal}
         />
-
+</Suspense>
         {/* )} */}
         {/* <StyledModal
                     title={"Configure"}

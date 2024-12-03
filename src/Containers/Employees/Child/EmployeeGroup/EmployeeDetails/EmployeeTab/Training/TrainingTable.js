@@ -18,11 +18,12 @@ import dayjs from "dayjs";
 import { base_url } from "../../../../../../../Config/Auth";
 import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 import { Tooltip } from "antd";
-import EmptyPage from "../../../../../../Main/EmptyPage";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import SchoolIcon from '@mui/icons-material/School';
 import GradingIcon from '@mui/icons-material/Grading';
+
+const EmptyPage = lazy(() => import("../../../../../../Main/EmptyPage"));
 const UpdateTrainingModal = lazy(() =>
   import("./UpdateTrainingModal")
 );

@@ -1,4 +1,4 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 
 import { bindActionCreators } from "redux";
@@ -13,8 +13,8 @@ import { Tooltip } from "antd";
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import DescriptionIcon from '@mui/icons-material/Description';
-import EmptyPage from "../../../../../../Main/EmptyPage";
 import MergeTypeIcon from '@mui/icons-material/MergeType';
+const EmptyPage = lazy(() => import("../../../../../../Main/EmptyPage"));
 const UpdateContractModal = lazy(() => import("./UpdateContractModal"));
 
 class ContractTable extends Component {
@@ -89,7 +89,7 @@ class ContractTable extends Component {
       </div>
    
         
-      {contractDetails == "" ? <EmptyPage/>:contractDetails.map((item) => { 
+      {contractDetails == "" ? <Suspense><EmptyPage/></Suspense>:contractDetails.map((item) => { 
         
         
         return (

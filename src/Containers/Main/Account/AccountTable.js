@@ -440,7 +440,7 @@ function AccountTable(props) {
                                    ))}
                                  </Select>
                             ) : (
-                              <div className="cursor-pointer text-xs font-[Poppins]"
+                              <div className="cursor-pointer !text-xxs font-[Poppins]"
                                onClick={() => handleEditRowField(item.distributorId, 'dialCode', item.dialCode)}>
                                 {item.dialCode || "Enter dialcode"}
                               </div>
@@ -460,7 +460,7 @@ function AccountTable(props) {
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'phoneNo', item.phoneNo)} 
-    className="cursor-pointer text-xs font-[Poppins]">
+    className="cursor-pointer !text-xxs font-[Poppins]">
     {item.phoneNo || "Enter MobileNo"}
     
     </div> 
@@ -491,7 +491,7 @@ function AccountTable(props) {
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'dcategoryName', item.dcategoryName)} 
-    className="cursor-pointer text-xs font-[Poppins]">
+    className="cursor-pointer !text-xxs font-[Poppins]">
     {item.dcategoryName || "Enter category"}
     
     </div> 
@@ -517,7 +517,7 @@ function AccountTable(props) {
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'clientName', item.clientName)} 
-    className="cursor-pointer text-xs font-[Poppins]">
+    className="cursor-pointer !text-xxs font-[Poppins]">
     {item.clientName || "Enter type"}
     </div> 
 )}
@@ -586,8 +586,8 @@ function AccountTable(props) {
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'payment', item.payment)} 
-    className="cursor-pointer text-xs font-[Poppins]">
-    {item.payment || "Enter payment"} days
+    className="cursor-pointer !text-xxs font-[Poppins]">
+    {item.payment || "Enter"} days
     </div> 
 )}
                             </div>
@@ -677,7 +677,7 @@ function AccountTable(props) {
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'curName', item.curName)} 
-    className="cursor-pointer text-xs font-[Poppins]">
+    className="cursor-pointer !text-xxs font-[Poppins]">
     {item.curName || "Enter curname"} 
     </div> 
 )}        
