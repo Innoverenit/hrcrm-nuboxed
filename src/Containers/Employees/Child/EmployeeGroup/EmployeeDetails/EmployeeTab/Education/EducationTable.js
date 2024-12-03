@@ -6,7 +6,6 @@ import {
   StyledPopconfirm,
 } from "../../../../../../../Components/UI/Antd";
 import DeleteIcon from "@mui/icons-material/Delete";
-
 import {
   getEducationDetails,
   handleUpdateEducationModal,
@@ -18,12 +17,12 @@ import { deleteEducationTable } from "../../../../../../Profile/ProfileAction";
 import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip } from "antd";
-import EmptyPage from "../../../../../../Main/EmptyPage";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import SchoolIcon from '@mui/icons-material/School';
 import GradingIcon from '@mui/icons-material/Grading';
 import MergeTypeIcon from '@mui/icons-material/MergeType';
+const EmptyPage = lazy(() => import("../../../../../../Main/EmptyPage"));
 const UpdateEducationModal = lazy(() => import("../../../../EmployeeGroup/EmployeeDetails/EmployeeTab/Education/UpdateEducationModal"));
 
 class EducationTable extends Component {

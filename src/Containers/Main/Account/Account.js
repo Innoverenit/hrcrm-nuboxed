@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { BundleLoader } from "../../../Components/Placeholder";
 import {
   handleDistributorModal,
   handleAccountImportModal,
@@ -55,7 +54,7 @@ const Account = ({
 
   return (
     <>
-    <Suspense fallback={<BundleLoader />}>
+    <Suspense fallback={"Loading.."}>
       <AccountHeader
         selectedLanguage={selectedLanguage}
         translateText={translateText}

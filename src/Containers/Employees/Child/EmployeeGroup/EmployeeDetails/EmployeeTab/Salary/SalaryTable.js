@@ -1,6 +1,5 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
-
 import { bindActionCreators } from "redux";
 import {
   StyledPopconfirm,
@@ -18,7 +17,7 @@ import { Tooltip } from "antd";
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
 import DateRangeIcon from '@mui/icons-material/DateRange';
-import EmptyPage from "../../../../../../Main/EmptyPage";
+const EmptyPage =lazy(()=>import("../../../../../../Main/EmptyPage"));
 const UpdateSalaryModal =lazy(()=>import("./UpdateSalaryModal"));
 
 class SalaryTable extends Component {
@@ -107,7 +106,7 @@ class SalaryTable extends Component {
       </div>
    
         
-      {salaryDetails =="" ? <EmptyPage/>:salaryDetails.map((item) => { 
+      {salaryDetails =="" ?<Suspense> <EmptyPage/></Suspense>:salaryDetails.map((item) => { 
         
         
                     return (

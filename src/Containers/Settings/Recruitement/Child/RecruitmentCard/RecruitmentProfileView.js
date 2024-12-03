@@ -4,6 +4,7 @@ import { bindActionCreators } from "redux";
 import styled from "styled-components";
 import { ViewEditCard } from "../../../../../Components/UI/Elements";
 
+
 function RecruitmentProfileView(props) {
   return (
     <>
@@ -12,7 +13,8 @@ function RecruitmentProfileView(props) {
           Theme
         </div>
       </div>
-      <div className=" h-[70vh]">
+      
+      <div className=" h-[75vh] overflow-auto ">
       {props.rules.map((item, i) => {
         return (
           
@@ -46,6 +48,7 @@ function RecruitmentProfileView(props) {
         );
       })}
       </div>
+    
     </>
   );
 }
