@@ -8,7 +8,7 @@ import { StyledTabs } from "../../../../../Components/UI/Antd";
 import {
   TabsWrapper,
 } from "../../../../../Components/UI/Layout";
-import { message, Tooltip } from "antd";
+import { Badge, message, Tooltip } from "antd";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import ContactsIcon from '@mui/icons-material/Contacts';
 import {
@@ -32,10 +32,8 @@ import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
 import AddShipperActivityModal from "./ShipperActivityTab/AddShipperActivityModal";
 import DynamicShipTabs from "./ShipperActivityTab/DynamicShipTabs";
 import AccountContactTable from "../../../Account/AccountDetailsTab/AccountContactTab/AccountContactTable";
+import SupplierDocumentTable from "../../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/SupplierDocumentTable";
 
-const ShipperDocumentTable = lazy(() =>
-  import("./ShipperDocumentTab/ShipperDocumentTable")
-);
 const ShipperCostTable = lazy (() =>
 import ("./ShipperCostTab/ShipperCostTable")
 );
@@ -174,11 +172,11 @@ class ShipperDetailsTab extends Component {
              /> </div>;
               case "4":
                   return  <div> 
-                   <ShipperDocumentTable
-                  shipperId={this.props.shipper.shipperId}
-                  translateText={this.props.translateText}
-                  selectedLanguage={this.props.selectedLanguage}
-                />
+                   <SupplierDocumentTable
+                      uniqueId={this.props.shipper.shipperId}
+                      type={"shipper"}
+                      translateText={this.props.translateText}
+                      selectedLanguage={this.props.selectedLanguage}/>
                       </div>;
                    case "5":
                       return  <div> <AccountContactTable
@@ -319,6 +317,13 @@ class ShipperDetailsTab extends Component {
                     {this.state.translatedMenuItems[3]}
                     {/* Document */}
                   </span>
+                  <Badge
+                                    size="small"
+                                    count={(this.props.documentCountSupplierId.document) || 0}
+                                    overflowCount={999}
+                                    offset={[ 0, -16]}
+                                >
+                              </Badge>
                   {activeKey === "4" && (
                     <>
                       <Tooltip title="Create">
@@ -340,11 +345,7 @@ class ShipperDetailsTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                {/* <ShipperDocumentTable
-                  shipperId={this.props.shipper.shipperId}
-                  translateText={this.props.translateText}
-                  selectedLanguage={this.props.selectedLanguage}
-                /> */}
+              
               </Suspense>
             </TabPane>
 
@@ -460,6 +461,8 @@ class ShipperDetailsTab extends Component {
           />  */}
           <AddSupplierDocumentModal
             translateText={this.props.translateText}
+            uniqueId={this.props.shipper.shipperId}
+            type={"shipper"}
             selectedLanguage={this.props.selectedLanguage}
             shipperId={this.props.shipper.shipperId}
             supplierDocumentUploadModal={this.props.supplierDocumentUploadModal}
@@ -517,6 +520,7 @@ const mapStateToProps = ({ shipper, auth, suppliers }) => ({
   shipperContactModal: shipper.shipperContactModal,
   addSupplierContactModal: suppliers.addSupplierContactModal,
   supplierDocumentUploadModal: suppliers.supplierDocumentUploadModal,
+  documentCountSupplierId:suppliers.documentCountSupplierId
 });
 
 const mapDispatchToProps = (dispatch) =>

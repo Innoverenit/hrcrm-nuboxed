@@ -631,6 +631,8 @@ function SuppliesTable(props) {
         />
          <AddDocumentErpModals
         suppliesId={particularDiscountData.suppliesId}
+        uniqueId={particularDiscountData.suppliesId}
+        type={"supplies"}
           erpDocumentUploadModal={erpDocumentUploadModal}
           handleErpDocumentUploadModal={handleErpDocumentUploadModal}
           translateText={props.translateText}
