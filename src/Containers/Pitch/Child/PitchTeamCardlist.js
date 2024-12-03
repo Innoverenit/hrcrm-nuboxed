@@ -33,8 +33,10 @@ import { Button, Tooltip,Checkbox } from "antd";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../Components/Placeholder";
-import AddPitchAdressModal from "./AddPitchAdressModal";
-import EmptyPage from "../../Main/EmptyPage";
+
+
+const AddPitchAdressModal =lazy(()=>import("./AddPitchAdressModal"));
+const EmptyPage =lazy(()=>import("../../Main/EmptyPage"));
 const OpenASSimodal =lazy(()=>import("./OpenASSimodal"));
 const AddPitchNotesDrawerModal =lazy(()=>import("./AddPitchNotesDrawerModal"));
 const UpdateLPitchModal =lazy(()=>import("./UpdateLPitchModal"));
@@ -129,7 +131,8 @@ serachedPitchData={props.serachedPitchData}
 ) : (
     <>
   <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-    <div class="w-[90%]">
+    
+    <div class="">
       
  <div className=" flex justify-between max-sm:hidden w-[100%]  p-1 bg-transparent font-bold sticky  font-poppins  items-end !text-lm max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
         <div className=" text-sm w-[13.1rem] max-md:w-[13.1rem]  text-[#2693ac] max-xl:w-[9.6rem]">
@@ -198,7 +201,7 @@ serachedPitchData={props.serachedPitchData}
         height={"83vh"}
         style={{overflowX:"hidden",scrollbarWidth:"thin"}}
       >
-  { !fetchingTeamPitch && props.teamPitch.length === 0 ?<EmptyPage />:props.teamPitch.map((item,index) =>  {
+  { !fetchingTeamPitch && props.teamPitch.length === 0 ?<Suspense> <EmptyPage/> </Suspense> :props.teamPitch.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 //  const countryCode = item.address[0].country_alpha2_code    
