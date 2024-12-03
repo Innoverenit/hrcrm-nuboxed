@@ -391,7 +391,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                           <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] justify-start max-sm:text-sm ml-gap ">
                           {editableField?.distributorId === item.distributorId && editableField?.field === 'dialCode' ? (
                               <Select
-                              style={{ width: "8rem" }}
+                              style={{ width: "9.1rem" }}
                               value={editingValue}
                               onChange={handleChangeRowSelectItem} 
                               autoFocus
@@ -405,7 +405,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                             ) : (
                               <div className="cursor-pointer !text-xxs font-[Poppins]"
                                onClick={() => handleEditRowField(item.distributorId, 'dialCode', item.dialCode)}>
-                                {item.dialCode || "Enter dialcode"}
+                                {item.dialCode || "Update..."}
                               </div>
                             )}
                               <div>
@@ -424,7 +424,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'phoneNo', item.phoneNo)} 
     className="cursor-pointer !text-xxs font-[Poppins]">
-    {item.phoneNo || "Enter MobileNo"}
+    {item.phoneNo || "Update..."}
     
     </div> 
 )}
@@ -440,7 +440,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                           {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'dcategoryName' ? (
 <Select
-      style={{ width: "8rem" }}
+      style={{ width: "9.2rem" }}
       value={editingValue}
       onChange={handleChangeRowSelectItem} 
       autoFocus
@@ -455,7 +455,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'dcategoryName', item.dcategoryName)} 
     className="cursor-pointer !text-xxs font-[Poppins]">
-    {item.dcategoryName || "Enter category"}
+    {item.dcategoryName || "Update..."}
     
     </div> 
 )}
@@ -482,7 +482,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'clientName', item.clientName)} 
     className="cursor-pointer !text-xxs font-[Poppins]">
-    {item.clientName || "Enter type"}
+    {item.clientName || "Update..."}
     </div> 
 )}
                             
@@ -507,7 +507,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'payment', item.payment)} 
     className="cursor-pointer !text-xxs font-[Poppins]">
-    {item.payment || "Enter payment"} 
+    {item.payment || "Update..."} 
     </div> 
 )}
 
@@ -530,7 +530,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'clubName', item.clubName)} 
     className="cursor-pointer !text-xxs font-[Poppins]">
-    {item.clubName || "Enter club"}
+    {item.clubName || "Update..."}
     </div> 
 )}
 
@@ -553,7 +553,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'payment', item.payment)} 
     className="cursor-pointer !text-xxs font-[Poppins]">
-    {item.payment || "Enter payment"} days
+    {item.payment || "Update..."} days
     </div> 
 )}
 
@@ -618,11 +618,12 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                           <Tooltip title="">
                                                  
                                                  <Progress
+                                                 className=' w-[6rem] cursor-pointer ml-1'
                                                 percent={acivedPercentage}
                                                 success={{acivedPercentage}}
                                                // strokeColor={getGradientStrokeColor(acivedPercentage)}
                                                 format={() => `${acivedPercentage}%`} 
-                                                 style={{width:"10rem",cursor:"pointer"}} 
+                                                //  style={{width:"6rem",cursor:"pointer", marginLeft:"0.25rem"}} 
                                                       />                                                       
                                                 </Tooltip>
                           <div class=" text-xs flex items-center justify-center font-poppins w-[6.021rem] bg-[#eef2f9] h-8   text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
@@ -630,7 +631,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                               {editableField?.distributorId === item.distributorId &&
    editableField?.field === 'curName' ? (
 <Select
-      style={{ width: "8rem" }}
+      style={{ width: "6.021rem" }}
       value={editingValue}
       onChange={handleChangeRowSelectItem} 
       autoFocus
@@ -645,7 +646,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'curName', item.curName)} 
     className="cursor-pointer !text-xxs font-[Poppins]">
-    {item.curName || "Enter curname"} 
+    {item.curName || "Update..."} 
     </div> 
 )}
                      
@@ -753,8 +754,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                       <div>
                         <Tooltip title={item.url}>
                           {item.url !== "" ? (
-                            <div                            
-                              style={{ cursor: "pointer" }}
+                            <div      
                               onClick={() => { }}
                             >
                               {" "}
@@ -774,11 +774,11 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                       </div>
                         </div>
- 
+{/*  
                         <div className=" flex    max-xl:w-[1.25rem] max-sm:flex-row  items-center justify-center h-8  bg-[#eef2f9] max-sm:justify-between  ">
                           <div class=" text-xs  font-poppins">
                             <Tooltip title=  {translatedMenuItems[9]}>
-                            {/*  "Edit"> */}
+                           
                               <BorderColorIcon
                                 className=" !text-icon cursor-pointer text-[tomato]"
                                 onClick={() => {
@@ -790,7 +790,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                             </Tooltip>
                           </div>
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </div>
