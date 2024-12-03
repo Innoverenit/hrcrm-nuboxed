@@ -185,19 +185,19 @@ console.log(formData)
         //   availableDate: formData.availableDate
         // });
       };
-      const allEmpty = receivedData.every(group => group.barCodeList.length === 0);   
+     // const allEmpty = receivedData.every(group => group.barCodeList.length === 0);   
     return (
         <>
            <Button
              onClick={() => {
 
                 
-                if (allEmpty) {
+                // if (allEmpty) {
                                                
-                    message.success("Barcode is not available.")
-                  } else {
+                //     message.success("Barcode is not available.")
+                //   } else {
                     props.handleReceiveScanModal(true)
-                  }
+                //   }
                 // ;
             //  handleSetScandata(item);
               }}

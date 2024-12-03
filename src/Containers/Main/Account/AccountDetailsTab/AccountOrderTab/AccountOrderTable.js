@@ -15,6 +15,7 @@ import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import GroupsIcon from '@mui/icons-material/Groups';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import UpdateIcon from '@mui/icons-material/Update';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 import PublishedWithChangesIcon from '@mui/icons-material/PublishedWithChanges';
 import {
     getDistributorOrderByDistributorId,
@@ -45,6 +46,8 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import NodataFoundPage from '../../../../../Helpers/ErrorBoundary/NodataFoundPage';
 import { PersonAddAlt1 } from '@mui/icons-material';
 import PIOPenModal from './PIOPenModal';
+import axios from 'axios';
+import { base_url2 } from '../../../../../Config/Auth';
 const SubOrderList = lazy(() => import('./SubOrderList'));
 const AddLocationInOrder = lazy(() => import('./AddLocationInOrder'));
 const AccountOrderDetailsModal = lazy(() => import('./AccountOrderDetailsModal'));
@@ -174,6 +177,29 @@ const AccountOrderTable = (props) => {
         setVisible(false)
     }
 
+    const viewAnDownloadPdf= async (item) => {  
+        try {
+          const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.orderId}`, {
+            responseType: 'blob',
+            headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+            },
+          });
+      
+          const blob = response.data;
+          const url = window.URL.createObjectURL(blob);
+          const filename = 'custom-pdf-name.pdf';
+      
+          window.open(url, '_blank');
+          const downloadLink = document.createElement('a');
+          downloadLink.href = url;
+          downloadLink.download = filename; 
+          downloadLink.click(); 
+        } catch (error) {
+          console.error('Error fetching PDF:', error);
+        }  
+      
+      }; 
 
     return (
         <>
@@ -578,7 +604,11 @@ const AccountOrderTable = (props) => {
 
                                                         </div>
                                                  
-
+                                                        <div>
+                                                        <PictureAsPdfIcon className="!text-icon text-[red] cursor-pointer" 
+                                                            onClick={()=> viewAnDownloadPdf(item)}
+                                                        />
+                                                        </div>
                                                     
                                                         <div>
                                                             {item.inventoryReceiveInd ? null : <Tooltip title={translatedMenuItems[28]}
@@ -1037,7 +1067,11 @@ const AccountOrderTable = (props) => {
 
                                                         </div>
                                                  
-
+                                                        <div>
+                                                        <PictureAsPdfIcon className="!text-icon text-[red] cursor-pointer" 
+                                                            onClick={()=> viewAnDownloadPdf(item)}
+                                                        />
+                                                        </div>
                                                     
                                                         <div>
                                                             {item.inventoryReceiveInd ? null : <Tooltip title={translatedMenuItems[28]}

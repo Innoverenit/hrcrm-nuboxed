@@ -1,4 +1,4 @@
-import React, { Component ,lazy} from "react";
+import React, { Component ,lazy, Suspense} from "react";
 import { connect } from "react-redux";
 
 import { bindActionCreators } from "redux";
@@ -26,9 +26,10 @@ import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import EmptyPage from "../../../../../../Main/EmptyPage";
 import PhoneIcon from '@mui/icons-material/Phone';
 import ContactsIcon from '@mui/icons-material/Contacts';
+
+const EmptyPage = lazy(() => import("../../../../../../Main/EmptyPage"));
 const UpdatePersonalModal = lazy(() => import("../Personal/UpdatePersonalModal"));
 
 class PersonalTable2 extends Component {
@@ -265,11 +266,11 @@ class PersonalTable2 extends Component {
           scroll={{ y: tableHeight }}
           pagination={false}
         /> */}
-
+  <Suspense>
         <UpdatePersonalModal
           updatePersonalModal={updatePersonalModal}
           handleUpdatePersonalModal={handleUpdatePersonalModal}
-        />
+        /></Suspense>
         <StyledModal
           title={`${contactFirstName || ""} 
              ${contactLastName || ""}`}

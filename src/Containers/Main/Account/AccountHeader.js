@@ -1,6 +1,5 @@
 import React, { Component,lazy, Suspense } from 'react';
 import { ActionHeader } from '../../../Components/Utils';
-import { BundleLoader } from "../../../Components/Placeholder";
 const  AccountActionLeft = lazy(() => import("./AccountActionLeft"));
 const  AccountActionRight = lazy(() => import("./AccountActionRight"));
 
@@ -18,7 +17,7 @@ class AccountHeader extends Component {
 
         return (
             <>
-            <Suspense fallback={<BundleLoader />}>
+            <Suspense fallback={"Loading.."}>
                 <ActionHeader
                     leftComponent={
                         <AccountActionLeft

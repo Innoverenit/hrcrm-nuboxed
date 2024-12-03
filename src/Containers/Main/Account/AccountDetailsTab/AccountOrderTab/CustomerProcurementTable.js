@@ -331,6 +331,29 @@ const handleSelectedOrderDropDown =  async (value,item) => {
         }
     };
   
+    const viewAnDownloadPdf= async (item) => {  
+      try {
+        const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.orderPhoneId}`, {
+          responseType: 'blob',
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+    
+        const blob = response.data;
+        const url = window.URL.createObjectURL(blob);
+        const filename = 'custom-pdf-name.pdf';
+    
+        window.open(url, '_blank');
+        const downloadLink = document.createElement('a');
+        downloadLink.href = url;
+        downloadLink.download = filename; 
+        downloadLink.click(); 
+      } catch (error) {
+        console.error('Error fetching PDF:', error);
+      }  
+    
+    }; 
 
   return (
     <>
@@ -622,12 +645,9 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                                             </Tooltip>
                                                             </div>  */}
                                                  <div class=" flex items-center justify-center h-8   bg-[#eef2f9]">         
-                                                 <a
-              href={`${base_url2}/customer/pdf/${item.orderId}`}
-            target="_blank"
-            >
-            <PictureAsPdfIcon className="!text-icon text-[red]"/>
-                           </a>
+                                               <PictureAsPdfIcon className="!text-icon text-[red] cursor-pointer" 
+    onClick={()=> viewAnDownloadPdf(item)}
+    />
                            </div>             
 </div>
    </div>
@@ -871,12 +891,9 @@ console.log("fox",totalPay,"payStand-",payStand,"outStand-",outStand,"canPack-",
                                                     
                                                             </div>
                                                     <div class="items-center justify-center h-8 ml-gap  bg-[#eef2f9] flex">      
-                                                    <a
-              href={`${base_url2}/customer/pdf/${item.orderId}`}
-            target="_blank"
-            >
-            <PictureAsPdfIcon className="!text-icon text-[red]"/>
-                           </a>
+                                                    <PictureAsPdfIcon className="!text-icon text-[red] cursor-pointer" 
+    onClick={()=> viewAnDownloadPdf(item)}
+    />
                                  </div>   
                   
                                                         </div>

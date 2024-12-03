@@ -1,4 +1,4 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 
 import { bindActionCreators } from "redux";
@@ -237,11 +237,12 @@ class VisaTable extends Component {
             );
           }}
         /> */}
+        <Suspense>
  <UpdateVisaModal
           updateVisaModal={updateVisaModal}
           handleUpdateVisaModal={handleUpdateVisaModal}
         />
-     
+     </Suspense>
       </>
     );
   }

@@ -519,16 +519,12 @@ class SummaryTable extends Component {
                   />
                 }
               >
-                 <a
-              href={`${base_url2}/customer/pdf/${'item.orderId'}`}
-            target="_blank"
-            >
-                <Button
+        <Button
                   // icon="file-pdf"
                   // icon={<FilePdfOutlined />}
                   
                   type="primary"
-                  //  onClick={this.handleDownloadPdf}
+                  // onClick={()=> viewAnDownloadPdf()}
                   style={{
                     color: "white",
                     border: "0.125em solid red",
@@ -536,9 +532,9 @@ class SummaryTable extends Component {
                     backgroundColor: "red",
                   }}
                 >
-                  <PictureAsPdfIcon />
+                  <PictureAsPdfIcon className="!text-icon text-[red] cursor-pointer" />
                 </Button>
-                </a>
+         
               </Tooltip>
               &nbsp;&nbsp;
               <Tooltip //title={"Generate XL"}
