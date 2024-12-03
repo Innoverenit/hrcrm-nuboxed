@@ -2,7 +2,6 @@ import React, { lazy, Suspense,Component } from "react";
 import { StyledModal } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { Button } from "antd";
-const LinkedDocuments =lazy(()=> import("../../Candidate/Child/CandidateTable/CandidateDetails/CandidateDetailTab/Document/LinkedDocuments"));
 const AddDocumentForm =lazy(()=> import("../Child/AddDocumentForm"));
 
 const ButtonGroup = Button.Group;
@@ -21,7 +20,7 @@ class AddDocumentModal extends Component {
         >
           <Suspense fallback={<BundleLoader />}>
             <AddDocumentForm />
-            <LinkedDocuments />
+           
           </Suspense>
         </StyledModal>
       </>

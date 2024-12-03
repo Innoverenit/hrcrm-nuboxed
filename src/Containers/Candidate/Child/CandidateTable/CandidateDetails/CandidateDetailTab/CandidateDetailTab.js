@@ -231,9 +231,7 @@ function CandidateDetailTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <LinkedDocuments 
-               translateText={props.translateText}
-               selectedLanguage={props.selectedLanguage}/>
+            
                
             </Suspense>
           </TabPane>
@@ -406,12 +404,7 @@ function CandidateDetailTab(props) {
         </StyledTabs>
       </TabsWrapper>
       <Suspense fallback={"Loading..."}>
-        <AddDocumentModal
-          documentUploadModal={documentUploadModal}
-          handleDocumentUploadModal={handleDocumentUploadModal}
-          translateText={props.translateText}
-          selectedLanguage={props.selectedLanguage}
-        />
+       
         <AddCandidateEducationModal
           addCandidateEducationModal={addCandidateEducationModal}
           handleCandidateEducationModal={handleCandidateEducationModal}
