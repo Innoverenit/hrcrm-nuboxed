@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -13,8 +13,8 @@ import {
 import dayjs from "dayjs";
 import { Tooltip, Button, Input } from "antd";
 import { BorderColor as BorderColorIcon } from "@mui/icons-material";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
+const EmptyPage =lazy(()=>import("../../EmptyPage"));
 
 function SuppliersPriceCardList(props) {
   const [editRowId, setEditRowId] = useState(null);
@@ -177,7 +177,7 @@ function SuppliersPriceCardList(props) {
                   );
                 })
               ) : (
-                <NodataFoundPage />
+                <suspense><EmptyPage /></suspense>
               )}
             </div>
           </div>

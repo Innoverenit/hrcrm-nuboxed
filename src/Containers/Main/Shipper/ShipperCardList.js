@@ -344,7 +344,7 @@ const fetchApiKeyList = async () => {
    editableField?.field === 'shipperName' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xs"
+  className="h-7 w-[4rem] text-xxs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -354,8 +354,8 @@ const fetchApiKeyList = async () => {
 ) : (
 <div onClick={() => 
     handleEditRowField(item.shipperId, 'shipperName', item.shipperName)} 
-    className="cursor-pointer text-xs font-[Poppins]">
-   <BorderColorIcon  className=" !text-xs cursor-pointer"/>
+    className="cursor-pointer text-xxs font-poppins">
+   <BorderColorIcon  className=" !text-xxs cursor-pointer"/>
     
     </div> 
 )}                 
@@ -364,14 +364,14 @@ const fetchApiKeyList = async () => {
 
                             </div>
                           </div>
-                          <div className=" flex max-md:w-44 w-[7rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
+                          <div className=" flex max-md:w-44 w-[9rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
 <div class="  text-xs ml-gap items-center  font-poppins flex">
 {/* {item.dialCode} {item.phoneNo} */}
 
 <div>
 {editableField?.shipperId === item.shipperId && editableField?.field === 'dialCode2' ? (
   <Select
-  style={{ width: "8rem" }}
+  style={{ width: "7rem" }}
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
   autoFocus
@@ -385,8 +385,8 @@ const fetchApiKeyList = async () => {
 ) : (
 <div onClick={() => 
 handleEditRowField(item.shipperId, 'dialCode2', item.dialCode2)} 
-className="cursor-pointer text-xs font-[Poppins]">
-{item.dialCode2 || "Enter DialCode"}
+className="cursor-pointer text-xxs font-poppins">
+{item.dialCode2 || "Update..."}
 
 </div>         
                         )}
@@ -396,7 +396,7 @@ className="cursor-pointer text-xs font-[Poppins]">
    editableField?.field === 'phoneNo' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xs"
+  className="h-7 w-[4rem] text-xxs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -406,8 +406,8 @@ className="cursor-pointer text-xs font-[Poppins]">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.shipperId, 'phoneNo', item.phoneNo)} 
-    className="cursor-pointer text-xs font-[Poppins]">
-    {item.phoneNo || "Enter Mobile No"}
+    className="cursor-pointer text-xxs font-poppins">
+    {item.phoneNo || "Update..."}
     
     </div> 
 )}                 
@@ -423,7 +423,7 @@ className="cursor-pointer text-xs font-[Poppins]">
    editableField?.field === 'emailId' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xs"
+  className="h-7 w-[4rem] text-xxs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -433,8 +433,8 @@ className="cursor-pointer text-xs font-[Poppins]">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.shipperId, 'emailId', item.emailId)} 
-    className="cursor-pointer text-xs font-[Poppins]">
-    {item.emailId || "Enter Email"}
+    className="cursor-pointer text-xxs font-poppins">
+    {item.emailId || "Update..."}
     
     </div> 
 )}   
@@ -450,7 +450,7 @@ className="cursor-pointer text-xs font-[Poppins]">
                               {editableField?.shipperId === item.shipperId &&
    editableField?.field === 'shipByName' ? (
 <Select
-      style={{ width: "8rem" }}
+      style={{ width: "6.12rem" }}
       value={editingValue}
       onChange={handleChangeRowSelectItem} 
       autoFocus
@@ -464,8 +464,8 @@ className="cursor-pointer text-xs font-[Poppins]">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.shipperId, 'shipByName', item.shipByName)} 
-    className="cursor-pointer text-xs font-[Poppins]">
-    {item.shipByName || "Enter type"}
+    className="cursor-pointer text-xxs font-poppins">
+    {item.shipByName || "Update..."}
     </div> 
 )}
 
@@ -547,7 +547,7 @@ className="cursor-pointer text-xs font-[Poppins]">
         />      
        </div>
 
-                                   <div className=" flex items-center justify-center h-8  bg-[#eef2f9]">          
+                                   {/* <div className=" flex items-center justify-center h-8  bg-[#eef2f9]">          
                             <Tooltip title={props.translatedMenuItems[9]}>
                               <BorderColorIcon
                                 className=" !text-icon cursor-pointer text-[tomato] max-sm:!text-2xl"
@@ -560,7 +560,7 @@ className="cursor-pointer text-xs font-[Poppins]">
                                 }}
                               />
                             </Tooltip>
-                  </div>
+                  </div> */}
                   <div className=" flex items-center justify-center h-8  bg-[#eef2f9]">
                             <Popconfirm
                               title={`${props.translatedMenuItems[10]}?`}

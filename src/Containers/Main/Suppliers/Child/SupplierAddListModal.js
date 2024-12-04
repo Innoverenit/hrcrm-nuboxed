@@ -1,8 +1,7 @@
-import React, { Suspense } from "react";
+import React, { Suspense, lazy } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import SuppliersListForm from "./SuppliersListForm";
-
+const SuppliersListForm =lazy(()=>import("./SuppliersListForm"));
 const SupplierAddListModal = (props) => {
   const { ...formProps } = props;
   return (

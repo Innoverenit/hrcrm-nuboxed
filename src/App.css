@@ -131,7 +131,7 @@
   touch-action: manipulation;
   white-space: nowrap;
   will-change: box-shadow, transform;
-  font-size: "0.875rem";
+  font-size: "0.8rem";
   background-image: linear-gradient(90deg, tomato, #ffb600e0)!important;
 }
 
@@ -340,7 +340,7 @@
   font-family: "Poppins";
   height: 1.8rem;
   padding: 3px 8px;
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   border-radius: 3px;
   line-height: revert;
   margin: 0 2px 0 2px;
@@ -568,7 +568,7 @@ iframe#webpack-dev-server-client-overlay {
   touch-action: manipulation;
   white-space: nowrap;
   will-change: box-shadow, transform;
-  font-size: "0.875rem";
+  font-size: "0.8rem";
 }
 .ant-btn-primary:active {
   height: 1.8rem!important;
@@ -582,7 +582,7 @@ iframe#webpack-dev-server-client-overlay {
 .ant-btn-cancel {
   color: #fff;
   height: 1.58rem;
-  font-size: 0.55em;
+  font-size: 0.8rem;
   border-color: #fff;
   padding: 2px 1px;
   color: white;

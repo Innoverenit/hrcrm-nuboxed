@@ -1,7 +1,7 @@
-import React, {  Suspense } from "react";
+import React, {  Suspense, lazy } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import SuppliersPriceCardList from "./SuppliersPriceCardList";
+const SuppliersPriceCardList =lazy(()=>import("./SuppliersPriceCardList"));
 
 const SupplierPriceModal = (props) => {
   const { ...formProps } = props;

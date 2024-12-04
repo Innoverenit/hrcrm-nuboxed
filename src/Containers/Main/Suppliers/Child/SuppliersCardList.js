@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -13,11 +13,9 @@ import {getAllDialCodeList} from "../../../Auth/AuthAction";
 import PublishIcon from '@mui/icons-material/Publish';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
-import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import CategoryIcon from '@mui/icons-material/Category';
 import LinkIcon from '@mui/icons-material/Link';
-import InventoryIcon from '@mui/icons-material/Inventory';
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
 import StoreIcon from '@mui/icons-material/Store';
@@ -25,17 +23,19 @@ import EuroIcon from '@mui/icons-material/Euro';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Popconfirm, Tooltip,Input,Select } from "antd";
 import { Link } from 'react-router-dom';
-import UpdateSupplierModal from "./UpdateSupplierModal";
-import SupplierPriceModal from "./SupplierPriceModal";
-import SupplierAddListModal from "./SupplierAddListModal";
-import SuplierPublishToggle from "./SuplierPublishToggle";
-import SupplierSearchedData from "./SupplierSearchedData";
-import SuplierNotApprovalPublish from "./SuplierNotApprovalPublish";
-import AddSuppliersAdressModal from "./AddSuppliersAdressModal";
-import EmptyPage from "../../EmptyPage";
 import BorderColorIcon from "@mui/icons-material/BorderColor"; 
 import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import ExtensionOffIcon from '@mui/icons-material/ExtensionOff';
+
+const SupplierPriceModal =lazy(()=>import("./SupplierPriceModal"));
+const SupplierAddListModal =lazy(()=>import("./SupplierAddListModal"));
+const SuplierPublishToggle =lazy(()=>import("./SuplierPublishToggle"));
+const SuplierNotApprovalPublish =lazy(()=>import("./SuplierNotApprovalPublish"));
+const EmptyPage =lazy(()=>import("../../EmptyPage"));
+const UpdateSupplierModal =lazy(()=>import("./UpdateSupplierModal"));
+const SupplierSearchedData =lazy(()=>import("./SupplierSearchedData"));
+const AddSuppliersAdressModal =lazy(()=>import("./AddSuppliersAdressModal"));
+ 
 const { Option } = Select;
 function SuppliersCardList(props) {
 
@@ -214,7 +214,7 @@ const [editingValue, setEditingValue] = useState("");
    editableField?.field === 'name' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xs"
+  className="h-7 w-[4rem] text-xxs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -224,8 +224,8 @@ const [editingValue, setEditingValue] = useState("");
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'name', item.name)} 
-    className="cursor-pointer text-xs font-[Poppins]">
-   <BorderColorIcon  className=" !text-xs cursor-pointer"/>
+    className="cursor-pointer text-xxs font-poppins">
+   <BorderColorIcon  className=" !text-xxs cursor-pointer"/>
     
     </div> 
 )}                 
@@ -264,8 +264,8 @@ const [editingValue, setEditingValue] = useState("");
 ) : (
 <div onClick={() => 
 handleEditRowField(item.supplierId, 'dialCode', item.dialCode)} 
-className="cursor-pointer text-xxs font-[Poppins]">
-{item.dialCode || "Enter DialCode"}
+className="cursor-pointer text-xxs font-poppins">
+{item.dialCode || "Update..."}
 
 </div>         
                         )}
@@ -285,8 +285,8 @@ className="cursor-pointer text-xxs font-[Poppins]">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'phoneNo', item.phoneNo)} 
-    className="cursor-pointer text-xxs font-[Poppins]">
-    {item.phoneNo || "Enter Mobile No"}
+    className="cursor-pointer text-xxs font-poppins">
+    {item.phoneNo || "Update..."}
     
     </div> 
 )}                 
@@ -313,8 +313,8 @@ className="cursor-pointer text-xxs font-[Poppins]">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'emailId', item.emailId)} 
-    className="cursor-pointer text-xxs font-[Poppins]">
-    {item.emailId || "Enter Email"}
+    className="cursor-pointer text-xxs font-poppins">
+    {item.emailId || "Update..."}
     
     </div> 
 )}   
@@ -399,16 +399,16 @@ className="cursor-pointer text-xxs font-[Poppins]">
           
         />      
                </Tooltip> 
-               <div>   <BorderColorIcon
-                                className=" !text-icon cursor-pointer text-[tomato]"
+               {/* <div>   <BorderColorIcon
+                                className=" !text-icon cursor-pointer text-[tomato]" */}
 
-                                // onClick={() => {
-                                //   props.setEditCustomer(item);
+                               {/* onClick={() => { */}
+                                {/* //   props.setEditCustomer(item);
                                 //   handleUpdateCustomerModal(true);
                                 //   handleSetCurrentCustomerId(item.customerId);
 
                                 // }}
-                              />   </div>               
+                              // />   </div>                */}
                               <div>
                                 <Tooltip title={props.translatedMenuItems[21]}>
                                   <Popconfirm
@@ -428,12 +428,13 @@ className="cursor-pointer text-xxs font-[Poppins]">
                   })}
                 </> :
                 !props.supplierList.length &&
-                  !props.fetchingSupplierList ? <EmptyPage/> : null}
+                  !props.fetchingSupplierList ? <suspense><EmptyPage/></suspense> : null}
             </InfiniteScroll>
           </div>
         </div>
       </div>
  )}
+ <Suspense>
       <UpdateSupplierModal
         rowdata={rowdata}
         updateSupplierModal={props.updateSupplierModal}
@@ -461,7 +462,7 @@ className="cursor-pointer text-xxs font-[Poppins]">
          type="supplier"
          addSuppliersAddressModal={props.addSuppliersAddressModal}
          handleSuppliersAddress={props.handleSuppliersAddress}
-      /> 
+      /> </Suspense>
     </>
   )
 }
