@@ -13,6 +13,7 @@ import {
 import { BundleLoader } from "../../../../../Components/Placeholder";
 const CheckboxGroup = Checkbox.Group;
 const plainOptions = ["Access", "Create", "Update", "Delete", "Full List"];
+const orderOptions = ["Access", "Create", "Update", "Delete", "Full List","MFA Update","MFA Delete"];
 const clubOption = ["Access", "Create", "Update", "Delete", "Full List","Activity","Pulse","Note"];
 const accountOptions = [
   "Access",
@@ -23,6 +24,7 @@ const accountOptions = [
   "Info",
 ];
 const materialOptions = ["Access", "Create", "Update", "Delete"];
+const materialMfaOptions = ["Access", "Create", "Update", "Delete","MFA Update","MFA Delete"];
 const materialNewOptions = [
   "Access",
   "Create",
@@ -49,7 +51,7 @@ const supplierNewOptions = [
   "Inventory"
  
 ];
-const userOptions = ["Access", "Create", "Update", "Delete", "Access Plus"];
+const userOptions = ["Access", "Create", "Update", "Delete", "Access Plus","MFA Update","MFA Delete"];
 const defaultCheckedList = ["Full List"];
 const melCheckedList = ["Access", "Full List"];
 const dashboardCheckedList = ["Access", "Full List", "Regional", "Location"];
@@ -725,14 +727,14 @@ useEffect(() => {
   const onOpportunityChange = (list) => {
     setCheckedOpportunityList(list);
     setIndeterminateOpportunity(
-      !!list.length && list.length < plainOptions.length
+      !!list.length && list.length < orderOptions.length
     );
-    setCheckAllOpportunity(list.length === plainOptions.length);
+    setCheckAllOpportunity(list.length === orderOptions.length);
     updateAccessForCategory('opportunity', list);
   };
 
   const onCheckAllOpportunityChange = (e) => {
-    const checked = e.target.checked ? plainOptions : [];
+    const checked = e.target.checked ? orderOptions : [];
     setCheckedOpportunityList(checked);
     setIndeterminateOpportunity(false);
     setCheckAllOpportunity(e.target.checked);
@@ -1082,13 +1084,13 @@ useEffect(() => {
 
   const onOrderChange = (list) => {
     setCheckedOrderList(list);
-    setIndeterminateOrder(!!list.length && list.length < plainOptions.length);
-    setCheckAllOrder(list.length === plainOptions.length);
+    setIndeterminateOrder(!!list.length && list.length < orderOptions.length);
+    setCheckAllOrder(list.length === orderOptions.length);
     updateAccessForCategory('order', list);
   };
 
   const onCheckAllOrderChange = (e) => {
-    const checked = e.target.checked ? plainOptions : [];
+    const checked = e.target.checked ? orderOptions : [];
     setCheckedOrderList(checked);
     setIndeterminateOrder(false);
     setCheckAllOrder(e.target.checked);
@@ -1103,14 +1105,14 @@ useEffect(() => {
    const onMaterialsChange = (list) => {
      setCheckedMaterialsList(list);
      setIndeterminateMaterials(
-       !!list.length && list.length < materialNewOptions.length
+       !!list.length && list.length < materialMfaOptions.length
      );
-     setCheckAllMaterials(list.length === materialNewOptions.length);
+     setCheckAllMaterials(list.length === materialMfaOptions.length);
      updateAccessForCategory('material', list);
    };
  
    const onCheckAllMaterialsChange = (e) => {
-    const checked = e.target.checked ? materialNewOptions : [];
+    const checked = e.target.checked ? materialMfaOptions : [];
      setCheckedMaterialsList(checked);
      setIndeterminateMaterials(false);
      setCheckAllMaterials(e.target.checked);
@@ -1605,13 +1607,13 @@ useEffect(() => {
 
   const onPlantChange = (list) => {
     setCheckedPlantList(list);
-    setIndeterminatePlant(!!list.length && list.length < plainOptions.length);
-    setCheckAllPlant(list.length === plainOptions.length);
+    setIndeterminatePlant(!!list.length && list.length < orderOptions.length);
+    setCheckAllPlant(list.length === orderOptions.length);
     updateAccessForCategory('plant', list);
   };
 
   const onCheckAllPlantChange = (e) => {
-    const checked = e.target.checked ? plainOptions : [];
+    const checked = e.target.checked ? orderOptions : [];
     setCheckedPlantList(checked);
     setIndeterminatePlant(false);
     setCheckAllPlant(e.target.checked);
@@ -1622,13 +1624,13 @@ useEffect(() => {
 
   const onTeamsChange = (list) => {
     setCheckedTeamsList(list);
-    setIndeterminateTeams(!!list.length && list.length < plainOptions.length);
-    setCheckAllTeams(list.length === plainOptions.length);
+    setIndeterminateTeams(!!list.length && list.length < orderOptions.length);
+    setCheckAllTeams(list.length === orderOptions.length);
     updateAccessForCategory('teams', list);
   };
 
   const onCheckAllTeamsChange = (e) => {
-    const checked = e.target.checked ? plainOptions : [];
+    const checked = e.target.checked ? orderOptions : [];
     setCheckedTeamsList(checked);
     setIndeterminateTeams(false);
     setCheckAllTeams(e.target.checked);
@@ -2006,7 +2008,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         </Checkbox>
                        
                         <CheckboxGroup
-                          options={plainOptions}
+                          options={orderOptions}
                           value={checkedPlantList}
                           onChange={onPlantChange}
                         />
@@ -2164,7 +2166,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         </Checkbox>
                        
                         <CheckboxGroup
-                          options={plainOptions}
+                          options={orderOptions}
                           value={checkedTeamsList}
                           onChange={onTeamsChange}
                         />
@@ -2465,7 +2467,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         </Checkbox>
                        
                         <CheckboxGroup
-                          options={plainOptions}
+                          options={orderOptions}
                           value={checkedOpportunityList}
                           onChange={onOpportunityChange}
                         />
@@ -2597,7 +2599,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         </Checkbox>
                        
                         <CheckboxGroup
-                          options={plainOptions}
+                          options={orderOptions}
                           value={checkedOrderList}
                           onChange={onOrderChange}
                         />
@@ -2621,7 +2623,7 @@ const onCheckAllePriceDiscountChange = (e) => {
         </Checkbox>
        
         <Checkbox.Group
-          options={materialNewOptions}
+          options={materialMfaOptions}
           value={checkedMaterialsList}
           onChange={onMaterialsChange}
         />
