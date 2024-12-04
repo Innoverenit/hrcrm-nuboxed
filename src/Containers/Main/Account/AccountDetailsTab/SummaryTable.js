@@ -27,12 +27,12 @@ const SummaryTable = (props) => {
         <div class="flex  w-[25%]">
             <div class="flex ">
             <div class="font-poppins font-bold">Order By Value</div>
-     <DynamicPieChart dtype={"value"} 
+     <DynamicPieChart dtype={"DistributorOrder"} 
         userId={props.RowData.distributorId} timeRangeType={year}/>
      </div>
      <div class="flex  justify-end">
      <div class="font-poppins font-bold">Order By Volume</div>
-     <DynamicPieChart dtype={"volume"} 
+     <DynamicPieChart dtype={"DistributoVolume"} 
         userId={props.RowData.distributorId} timeRangeType={year}/>
    
      </div>

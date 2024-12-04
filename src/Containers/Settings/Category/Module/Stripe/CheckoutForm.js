@@ -10,6 +10,30 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 class CheckoutForm extends React.Component {
 
+  // componentDidMount() {
+  //   const loadStripeScript = () => {
+  //     const script = document.createElement('script');
+  //     script.src = 'https://js.stripe.com/v3/';
+  //     script.async = true;
+  //     script.onload = () => {
+  //       console.log('Stripe script loaded successfully!');
+  //       const stripe = window.Stripe('your-public-key'); 
+  
+  //     };
+  //     document.body.appendChild(script);
+  //   };
+
+  //   loadStripeScript();
+  // }
+
+  // componentWillUnmount() {
+ 
+  //   const script = document.querySelector('script[src="https://js.stripe.com/v3/"]');
+  //   if (script) {
+  //     document.body.removeChild(script);
+  //   }
+  // }
+  
   handleSubmit = async (event) => {
 
     event.preventDefault();

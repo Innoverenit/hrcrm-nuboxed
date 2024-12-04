@@ -367,6 +367,27 @@ const handleFinanceClick = (checked) => {
     props.addingModules(data, props.orgId);
   };
   
+  // useEffect(() => {
+  //   const loadStripeScript = () => {
+  //     const script = document.createElement('script');
+  //     script.src = 'https://js.stripe.com/v3/';
+  //     script.async = true;
+  //     script.onload = () => {
+  //       console.log('Stripe script loaded successfully!');
+  //       const stripe = window.Stripe('your-public-key');
+  //     };
+  //     document.body.appendChild(script);
+  //   };
+
+  //   loadStripeScript();
+  //   return () => {
+  //     const script = document.querySelector('script[src="https://js.stripe.com/v3/"]');
+  //     if (script) {
+  //       document.body.removeChild(script);
+  //     }
+  //   };
+  // }, []);
+
   if (props.fetchingModules) return <BundleLoader/>;
     return (
       <>

@@ -8,7 +8,7 @@ import {
   handleAddOutputReasonModal,
 } from "./InventoryAction";
 import { TabsWrapper } from "../../../Components/UI/Layout";
-import DispatchTableOut from "./DispatchTableOut";
+import DispatchCommerceAndRepairTableOut from "./DispatchCommerceAndRepairTableOut";
 import ReceivedTableOut from "./ReceivedTableOut";
 import CompleteDispatchTable from "./CompleteDispatchTable";
 import SendAndArchiveIcon from '@mui/icons-material/SendAndArchive';
@@ -121,7 +121,7 @@ class InventoryDetailTabO extends PureComponent {
               key="2"
             >
               <Suspense fallback={"Loading..."}>
-                <DispatchTableOut
+                <DispatchCommerceAndRepairTableOut
                 translateText={this.props.translateText}
                 selectedLanguage={this.props.selectedLanguage}
                 locationDetailsId={this.props.user.locationId}

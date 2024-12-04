@@ -25,6 +25,30 @@ class SingleModuleList extends Component {
 
   handleSectorId = (value) =>
     this.setState({ sectorId: value });
+  
+  // componentDidMount() {
+  //   const loadStripeScript = () => {
+  //     const script = document.createElement('script');
+  //     script.src = 'https://js.stripe.com/v3/';
+  //     script.async = true;
+  //     script.onload = () => {
+  //       console.log('Stripe script loaded successfully!');
+  //       const stripe = window.Stripe('your-public-key'); 
+  
+  //     };
+  //     document.body.appendChild(script);
+  //   };
+
+  //   loadStripeScript();
+  // }
+
+  // componentWillUnmount() {
+ 
+  //   const script = document.querySelector('script[src="https://js.stripe.com/v3/"]');
+  //   if (script) {
+  //     document.body.removeChild(script);
+  //   }
+  // }
   render() {
 
 
