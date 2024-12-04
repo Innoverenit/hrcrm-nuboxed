@@ -203,18 +203,18 @@ const [editingValue, setEditingValue] = useState("");
 </div>
                               </div>
                               <div className="  flex items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[11.2rem]  max-sm:justify-between max-sm:w-auto max-sm:flex-row max-md:w-[10.1rem] max-lg:w-[8.06rem] ">
-                                <div>
+                            
                                   <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 ml-gap underline font-bold font-poppins text-[#042E8A] cursor-pointer max-md:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
                                     to={`supplier/${item.supplierId}`}
                                     title={`${item.name}`}
                                   >{item.name}</Link>
 
-<div className="flex">
+<div>
                       {editableField?.supplierId === item.supplierId &&
    editableField?.field === 'name' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xxs"
+  className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -224,15 +224,15 @@ const [editingValue, setEditingValue] = useState("");
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'name', item.name)} 
-    className="cursor-pointer text-xxs font-poppins">
-   <BorderColorIcon  className=" !text-xxs cursor-pointer"/>
+    className="cursor-pointer text-xs font-poppins flex items-center">
+   <BorderColorIcon  className=" !text-icon cursor-pointer"/>
     
     </div> 
 )}                 
                       </div>
 
 
-                                </div>
+                             
 
                                 {date === currentdate ? (
                                   <div class="text-[0.65rem]  text-[tomato] font-bold"
@@ -265,7 +265,7 @@ const [editingValue, setEditingValue] = useState("");
 ) : (
 <div onClick={() => 
 handleEditRowField(item.supplierId, 'dialCode', item.dialCode)} 
-className="cursor-pointer text-xxs font-poppins">
+className="cursor-pointer text-xs font-poppins">
 {item.dialCode || "Update..."}
 
 </div>         
@@ -276,7 +276,7 @@ className="cursor-pointer text-xxs font-poppins">
    editableField?.field === 'phoneNo' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xxs"
+  className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -286,7 +286,7 @@ className="cursor-pointer text-xxs font-poppins">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'phoneNo', item.phoneNo)} 
-    className="cursor-pointer text-xxs font-poppins">
+    className="cursor-pointer text-xs font-poppins">
     {item.phoneNo || "Update..."}
     
     </div> 
@@ -304,7 +304,7 @@ className="cursor-pointer text-xxs font-poppins">
    editableField?.field === 'emailId' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xxs"
+  className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -314,7 +314,7 @@ className="cursor-pointer text-xxs font-poppins">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'emailId', item.emailId)} 
-    className="cursor-pointer text-xxs font-poppins">
+    className="cursor-pointer text-xs font-poppins">
     {item.emailId || "Update..."}
     
     </div> 

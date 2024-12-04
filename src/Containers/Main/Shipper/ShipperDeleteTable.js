@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy,  Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
   getDeletedShipper,
   handleShipperActivityTableModal,
 } from "./ShipperAction";
-import InfiniteScroll from "react-infinite-scroll-component";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import InfiniteScroll from "react-infinite-scroll-component"
 import { Link } from "../../../Components/Common";
 import { BundleLoader } from "../../../Components/Placeholder";
-import ReInstateShipper from "./ReInstateShipper";
-import ShipperSearchedData from "./ShipperSearchedData";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CategoryIcon from '@mui/icons-material/Category'
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+const ReInstateShipper =lazy(()=>import("./ReInstateShipper"));
+const ShipperSearchedData =lazy(()=>import("./ShipperSearchedData"));
+const EmptyPage =lazy(()=>import("../EmptyPage"));
 
 function ShipperDeleteTable(props) {
   const [hasMore, setHasMore] = useState(true);
@@ -163,7 +163,7 @@ function ShipperDeleteTable(props) {
 
 <div className=" flex  w-[7.2rem] max-md:w-[7.2rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                             <div class=" text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            <ReInstateShipper shipperId={item.shipperId} />
+                            <Suspense><ReInstateShipper shipperId={item.shipperId} /></Suspense>
                             </div>
                           </div>
 
@@ -172,7 +172,7 @@ function ShipperDeleteTable(props) {
                 )
               })}
             </> : !deletedShipper.length
-              && !props.fetchingDeletedShipper ? <NodataFoundPage /> : null}
+              && !props.fetchingDeletedShipper ? <Suspense><EmptyPage/></Suspense> : null}
 
           </InfiniteScroll>
   </div>

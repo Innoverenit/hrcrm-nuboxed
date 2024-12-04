@@ -173,7 +173,7 @@ const [editingValue, setEditingValue] = useState("");
    editableField?.field === 'name' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xxs"
+  className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -183,8 +183,8 @@ const [editingValue, setEditingValue] = useState("");
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'name', item.name)} 
-    className="cursor-pointer text-xxs font-poppins">
-   <BorderColorIcon  className=" !text-xxs cursor-pointer"/>
+    className="cursor-pointer text-xs font-poppins">
+   <BorderColorIcon  className=" !text-xs cursor-pointer"/>
     
     </div> 
 )}                 
@@ -216,7 +216,7 @@ const [editingValue, setEditingValue] = useState("");
 ) : (
 <div onClick={() => 
 handleEditRowField(item.supplierId, 'dialCode', item.dialCode)} 
-className="cursor-pointer text-xxs font-poppins">
+className="cursor-pointer text-xs font-poppins">
 {item.dialCode || "Update..."}
 
 </div>         
@@ -227,7 +227,7 @@ className="cursor-pointer text-xxs font-poppins">
    editableField?.field === 'phoneNo' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xxs"
+  className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -237,7 +237,7 @@ className="cursor-pointer text-xxs font-poppins">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'phoneNo', item.phoneNo)} 
-    className="cursor-pointer text-xxs font-poppins">
+    className="cursor-pointer text-xs font-poppins">
     {item.phoneNo || "Update..."}
     
     </div> 
@@ -255,7 +255,7 @@ className="cursor-pointer text-xxs font-poppins">
    editableField?.field === 'emailId' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xxs"
+  className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -265,7 +265,7 @@ className="cursor-pointer text-xxs font-poppins">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'emailId', item.emailId)} 
-    className="cursor-pointer text-xxs font-poppins">
+    className="cursor-pointer text-xs font-poppins">
     {item.emailId || "Update..."}
     
     </div> 

@@ -403,7 +403,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
                               ))}
                             </Select>
                             ) : (
-                              <div className="cursor-pointer !text-xxs font-[Poppins]"
+                              <div className="cursor-pointer !text-xs font-[Poppins]"
                                onClick={() => handleEditRowField(item.distributorId, 'dialCode', item.dialCode)}>
                                 {item.dialCode || "Update..."}
                               </div>
@@ -423,7 +423,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'phoneNo', item.phoneNo)} 
-    className="cursor-pointer !text-xxs font-[Poppins]">
+    className="cursor-pointer !text-xs font-[Poppins]">
     {item.phoneNo || "Update..."}
     
     </div> 
@@ -454,7 +454,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'dcategoryName', item.dcategoryName)} 
-    className="cursor-pointer !text-xxs font-[Poppins]">
+    className="cursor-pointer !text-xs font-[Poppins]">
     {item.dcategoryName || "Update..."}
     
     </div> 
@@ -481,7 +481,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'clientName', item.clientName)} 
-    className="cursor-pointer !text-xxs font-[Poppins]">
+    className="cursor-pointer !text-xs font-[Poppins]">
     {item.clientName || "Update..."}
     </div> 
 )}
@@ -506,7 +506,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'payment', item.payment)} 
-    className="cursor-pointer !text-xxs font-[Poppins]">
+    className="cursor-pointer !text-xs font-[Poppins]">
     {item.payment || "Update..."} 
     </div> 
 )}
@@ -529,7 +529,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'clubName', item.clubName)} 
-    className="cursor-pointer !text-xxs font-[Poppins]">
+    className="cursor-pointer !text-xs font-[Poppins]">
     {item.clubName || "Update..."}
     </div> 
 )}
@@ -552,7 +552,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'payment', item.payment)} 
-    className="cursor-pointer !text-xxs font-[Poppins]">
+    className="cursor-pointer !text-xs font-[Poppins]">
     {item.payment || "Update..."} days
     </div> 
 )}
@@ -647,7 +647,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'curName', item.curName)} 
-    className="cursor-pointer !text-xxs font-[Poppins]">
+    className="cursor-pointer !text-xs font-[Poppins]">
     {item.curName || "Update..."} 
     </div> 
 )}
