@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { BundleLoader } from "../../../Components/Placeholder";
-import { Popconfirm, Tooltip,Input,Button,Progress,Select } from "antd";
+import { Popconfirm, Tooltip,Input,Button,Progress,Select, Avatar } from "antd";
 import { Link } from 'react-router-dom';
 import {handleCustomerOpportunityDrawerModal
 } from "../../Customer/CustomerAction";
@@ -431,6 +431,7 @@ function AccountTable(props) {
                                    style={{ width: "7.1rem" }}
                                    value={editingValue}
                                    onChange={handleChangeRowSelectItem} 
+                                   onBlur={() => handleEditRowField(null, null, null)}
                                    autoFocus
                                  >
                                    {props.countries.map((cntr) => (
@@ -480,11 +481,19 @@ function AccountTable(props) {
       style={{ width: "7.2rem" }}
       value={editingValue}
       onChange={handleChangeRowSelectItem} 
+      onBlur={() => handleEditRowField(null, null, null)}
       autoFocus
     >
       {props.category.map((ctg) => (
         <Option key={ctg.categoryId} value={ctg.categoryId}>
-          {ctg.name}
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+        <MultiAvatar
+          primaryTitle={ctg.name} 
+          size="small"
+          style={{ backgroundColor: ctg.color || "#ccc" }} 
+        />
+        <span>{ctg.name}</span>
+      </div>
         </Option>
       ))}
     </Select>
@@ -506,11 +515,15 @@ function AccountTable(props) {
       style={{ width: "6.2rem" }}
       value={editingValue}
       onChange={handleChangeRowSelectItem} 
+      onBlur={() => handleEditRowField(null, null, null)}
       autoFocus
     >
       {props.customerListData.map((clnt) => (
         <Option key={clnt.customerTypeId} value={clnt.customerTypeId}>
-          {clnt.name}
+           <MultiAvatar
+          primaryTitle={clnt.name} 
+        />
+          <span>{clnt.name}</span>
         </Option>
       ))}
     </Select>
@@ -668,6 +681,7 @@ function AccountTable(props) {
       style={{ width: "6.021rem" }}
       value={editingValue}
       onChange={handleChangeRowSelectItem} 
+      onBlur={() => handleEditRowField(null, null, null)}
       autoFocus
     >
       {props.saleCurrencies.map((crr) => (

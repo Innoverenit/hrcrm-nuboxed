@@ -2136,12 +2136,12 @@ export const featureProductToggle = ( data,productId) => (dispatch) => {
     })
 };
 
-export const catalogueCategorySearch = (categoryName) => (dispatch) => {
+export const catalogueCategorySearch = (name) => (dispatch) => {
   dispatch({
     type: types.CATALOGUE_CATEGORY_SEARCH_REQUEST,
   });
   axios
-    .get(`${base_url2}/product/category/${categoryName}`, {
+    .get(`${base_url2}/product/search/all/${name}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2162,6 +2162,14 @@ export const catalogueCategorySearch = (categoryName) => (dispatch) => {
       });
     });
 };
+
+export const catalougeClear = () => (dispatch) => {
+  dispatch({
+    type: types.CATALOUGE_CLEAR,
+  });
+};
+
+
 
 export const getProductsByProductId = (productId) => (dispatch) => {
   dispatch({

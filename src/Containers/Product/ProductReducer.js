@@ -411,6 +411,7 @@ const initialState = {
 
   fetchingCatalogueCatSrch: false,
   fetchingCatalogueCatSrchError: false,
+  categorySearch:[],
 
   fetchingProductsByProductId: false,
   fetchingProductsByProductIdError: false,
@@ -1844,12 +1845,17 @@ export const productReducer = (state = initialState, action) => {
                                           return {
                                             ...state,
                                             fetchingCatalogueCatSrch: false,
-                                            categoryProducts: action.payload,
+                                            categorySearch: action.payload,
                                          
                                           };
                                         case types.CATALOGUE_CATEGORY_SEARCH_FAILURE:
                                           return { ...state, fetchingCatalogueCatSrchError: true };                     
 
+                                          case types.CATALOUGE_CLEAR:
+                                          return { ...state, 
+                                            categorySearch: [], 
+                        
+                                                  };
       
                                           case types.GET_PRODUCTS_BY_PRODUCTID_REQUEST:
                                             return {

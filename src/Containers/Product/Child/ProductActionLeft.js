@@ -6,7 +6,8 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Tooltip, Avatar,Badge,Input } from "antd";
 import MicIcon from '@mui/icons-material/Mic';
 import MenuIcon from '@mui/icons-material/Menu';
-import { getRecords,getCategory,getDeletedProductRecords,catalogueCategorySearch} from "../ProductAction";
+import { getRecords,getCategory,getDeletedProductRecords,
+  catalogueCategorySearch,catalougeClear} from "../ProductAction";
 import CategoryIcon from '@mui/icons-material/Category';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
@@ -79,7 +80,8 @@ const ProductActionLeft = (props) => {
     
         if (searchOnEnter && e.target.value.trim() === "") {  //Code for Search
            
-          props.getCategory();
+          // props.getProducts(0);
+          props.catalougeClear()
           setSearchOnEnter(false);
         }
       };
@@ -120,7 +122,7 @@ const ProductActionLeft = (props) => {
         setIsRecording(false);
         if (transcript.trim() !== "") {
           setCurrentCatData(transcript);
-          props.catalogueCategorySearch(currentCatData);
+          props.catalogueCategorySearch(transcript);
           setSearchOnEnter(true);
         }
       };
@@ -280,7 +282,7 @@ const ProductActionLeft = (props) => {
       
 <div class=" w-64 max-sm:w-24">
                 
-{props.viewType === "category" &&
+{/* {props.viewType === "category" && */}
 <Input
           placeholder={translatedMenuItems[6]}
           width={"100%"}
@@ -288,7 +290,8 @@ const ProductActionLeft = (props) => {
           onPressEnter={handleCatSearch}
           onChange={handleCatChange}
         value={currentCatData}
-        />}
+        />
+         {/* } */}
             </div>
     </div>
   );
@@ -306,7 +309,8 @@ const mapDispatchToProps = (dispatch) =>
       getRecords,
       getDeletedProductRecords,
       catalogueCategorySearch,
-      getCategory
+      getCategory,
+      catalougeClear
     },
     dispatch
   );

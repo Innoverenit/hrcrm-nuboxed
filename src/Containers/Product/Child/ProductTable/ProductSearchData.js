@@ -46,7 +46,6 @@ import FeatureProductToggle from "./FeatureProductToggle";
 import WarrentyProductToggle from "./WarrentyProductToggle";
 import EmptyPage from "../../../Main/EmptyPage";
 import MaterialBarCodeInput from "../../../Main/Supplies/MaterialBarCodeInput";
-import ProductSearchData from "./ProductSearchData";
 const UpdateProductModal = lazy(() => import("../../Child/UpdateProductModal"));
 const PriceDrawer = lazy(() => import("./PriceDrawer"));
 const ProductBuilderDrawer = lazy(() => import("./ProductBuilderDrawer"));
@@ -56,7 +55,7 @@ const ProductQualityDrawer=lazy(()=>import("../ProductTable/ProductQualityDrawer
 
 
 
-function ProductCardList(props) {
+function ProductSearchData(props) {
 
   const [page, setPage] = useState(0);
   const [hasMore, setHasMore] = useState(true);
@@ -182,7 +181,9 @@ useEffect(() => {
     handleProductBuilderDrawer,
     handlePriceDrawer,
     priceOpenDrawer,
-    deleteCatalogData
+    deleteCatalogData,
+    categorySearch,
+    fetchingCatalogueCatSrch
   } = props;
 
   const handleInputChange = (value, key, dataIndex) => {
@@ -211,15 +212,7 @@ useEffect(() => {
 
   return (
     <>
- {props.categorySearch.length > 0 ? (
-    <ProductSearchData
-    categorySearch={props.categorySearch}
-    fetchingCatalogueCatSrch={props.fetchingCatalogueCatSrch}
-    translateText={props.translateText}
-    selectedLanguage={props.selectedLanguage}
-  translatedMenuItems={props.translatedMenuItems}
-    />
-  ) : (
+
       <div className=' flex sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex font-poppins text-xs justify-between w-[91%] max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm   p-1 bg-transparent font-bold sticky items-end z-10 max-sm:hidden">  
@@ -268,7 +261,7 @@ useEffect(() => {
               </div>
             {/* <div className="w-[7rem]"></div> */}
           </div>
-          <InfiniteScroll
+          {/* <InfiniteScroll
             dataLength={data.length}
             next={handleLoadMore}
             hasMore={hasMore}
@@ -276,10 +269,10 @@ useEffect(() => {
             height={"85vh"}
             style={{scrollbarWidth:"thin"}}
             endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
-          >
-             {data.length ?
+          > */}
+             {categorySearch.length ?
               <>
-                {data.map((item,index) => {
+                {categorySearch.map((item,index) => {
                return (
                 <div>
                   <div key={item.productId} className="flex rounded justify-between mt-1  bg-white  items-center py-ygap max-sm:h-[9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
@@ -514,11 +507,10 @@ useEffect(() => {
              )
             })}
              </>
-              : !products.length && !fetchingProducts ? <EmptyPage/> : null}
-          </InfiniteScroll>
+              : !categorySearch.length && !fetchingCatalogueCatSrch ? <EmptyPage/> : null}
+          {/* </InfiniteScroll> */}
         </div>
       </div>
-  )}
       <Suspense fallback={"Loading"}>
         <UpdateProductModal
           updateProductModal={updateProductModal}
@@ -600,8 +592,7 @@ const mapStateToProps = ({ product, auth, supplies }) => ({
   priceOpenDrawer: product.priceOpenDrawer,
   productQualityDrawer:product.productQualityDrawer,
   clickProdclDrwr:product.clickProdclDrwr,
-  categorySearch:product.categorySearch,
-  fetchingCatalogueCatSrch:product.fetchingCatalogueCatSrch
+
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -628,4 +619,4 @@ const mapDispatchToProps = (dispatch) =>
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProductCardList);
+)(ProductSearchData);

@@ -253,6 +253,7 @@ const [editingValue, setEditingValue] = useState("");
   style={{ width: "10rem" }}
   value={editingValue}
   onChange={handleChangeRowSelectItem} 
+  onBlur={() => handleEditRowField(null, null, null)}
   autoFocus
 >
 {props.dialcodeList.map((country) => (
