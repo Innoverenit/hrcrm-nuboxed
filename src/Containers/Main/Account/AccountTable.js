@@ -441,7 +441,7 @@ function AccountTable(props) {
                                    ))}
                                  </Select>
                             ) : (
-                              <div className="cursor-pointer !text-xxs font-[Poppins]"
+                              <div className="cursor-pointer !text-xs font-[Poppins]"
                                onClick={() => handleEditRowField(item.distributorId, 'dialCode', item.dialCode)}>
                                 {item.dialCode || " dialcode"}
                               </div>
@@ -461,7 +461,7 @@ function AccountTable(props) {
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'phoneNo', item.phoneNo)} 
-    className="cursor-pointer !text-xxs font-[Poppins]">
+    className="cursor-pointer !text-xs font-[Poppins]">
     {item.phoneNo || "MobileNo"}
     
     </div> 
@@ -500,7 +500,7 @@ function AccountTable(props) {
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'dcategoryName', item.dcategoryName)} 
-    className="cursor-pointer !text-xxs font-[Poppins]">
+    className="cursor-pointer !text-xs font-[Poppins]">
     {item.dcategoryName || "Update..."}
     
     </div> 
@@ -530,7 +530,7 @@ function AccountTable(props) {
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'clientName', item.clientName)} 
-    className="cursor-pointer !text-xxs font-[Poppins]">
+    className="cursor-pointer !text-xs font-[Poppins]">
     {item.clientName || "Update..."}
     </div> 
 )}
@@ -599,7 +599,7 @@ function AccountTable(props) {
 ) : (
 <div onClick={() => 
     handleEditRowField(item.distributorId, 'payment', item.payment)} 
-    className="cursor-pointer !text-xxs font-[Poppins]">
+    className="cursor-pointer !text-xs font-[Poppins]">
     {item.payment || "Update..."} days
     </div> 
 )}

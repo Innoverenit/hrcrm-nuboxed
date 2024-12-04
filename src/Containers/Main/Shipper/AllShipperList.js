@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -16,13 +16,8 @@ import {
 } from "./ShipperAction";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import UpdateShipperModal from "./UpdateShipperModal";
-import AddShipperOrderModal from "./AddShipperOrderModal";
 import { Link } from 'react-router-dom';
-import InfiniteScroll from "react-infinite-scroll-component";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import ShipperSearchedData from "./ShipperSearchedData";
-import AddShipperAdressModal from "./AddShipperAdressModal";
+import InfiniteScroll from "react-infinite-scroll-component"
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CategoryIcon from '@mui/icons-material/Category'
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
@@ -32,6 +27,12 @@ import ApiIcon from '@mui/icons-material/Api';
 import Swal from 'sweetalert2'
 import axios from "axios";
 import { base_url2 } from "../../../Config/Auth";
+const UpdateShipperModal =lazy(()=>import("./UpdateShipperModal"));
+const AddShipperOrderModal =lazy(()=>import("./AddShipperOrderModal"));
+const EmptyPage =lazy(()=>import("../EmptyPage"));
+const ShipperSearchedData =lazy(()=>import("./ShipperSearchedData"));
+const AddShipperAdressModal =lazy(()=>import("./AddShipperAdressModal"));
+
 const { Option } = Select;
 function AllShipperList(props) {
   const { handleUpdateShipperModal, updateShipperModal } = props;
@@ -219,7 +220,7 @@ const [dataShipper, setdataShipper] = useState([]);
         loader={props.fetchingAllShipper ? <div class="flex justify-center">{props.translatedMenuItems[8]}...</div> : null}
         height={"83vh"}
       >
-        {!props.fetchingAllShipper && dataShipper.length === 0 ? <NodataFoundPage /> : dataShipper.map((item, index) => {
+        {!props.fetchingAllShipper && dataShipper.length === 0 ? <Suspense><EmptyPage /></Suspense> : dataShipper.map((item, index) => {
             return (
               <>
                 <div  >
@@ -250,7 +251,7 @@ const [dataShipper, setdataShipper] = useState([]);
 ) : (
 <div onClick={() => 
     handleEditRowField(item.shipperId, 'shipperName', item.shipperName)} 
-    className="cursor-pointer text-xxs font-poppins">
+    className="cursor-pointer text-xs font-poppins">
    <BorderColorIcon  className=" !text-xs cursor-pointer"/>
     
     </div> 
@@ -281,7 +282,7 @@ const [dataShipper, setdataShipper] = useState([]);
 ) : (
 <div onClick={() => 
 handleEditRowField(item.shipperId, 'dialCode2', item.dialCode2)} 
-className="cursor-pointer text-xxs font-poppins">
+className="cursor-pointer text-xs font-poppins">
 {item.dialCode2 || "Update..."}
 
 </div>         
@@ -292,7 +293,7 @@ className="cursor-pointer text-xxs font-poppins">
    editableField?.field === 'phoneNo' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xxs"
+  className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -302,7 +303,7 @@ className="cursor-pointer text-xxs font-poppins">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.shipperId, 'phoneNo', item.phoneNo)} 
-    className="cursor-pointer text-xxs font-poppins">
+    className="cursor-pointer text-xs font-poppins">
     {item.phoneNo || "Update..."}
     
     </div> 
@@ -319,7 +320,7 @@ className="cursor-pointer text-xxs font-poppins">
    editableField?.field === 'emailId' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xxs"
+  className="h-7 w-[4rem] text-xs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -329,7 +330,7 @@ className="cursor-pointer text-xxs font-poppins">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.shipperId, 'emailId', item.emailId)} 
-    className="cursor-pointer text-xxs font-poppins">
+    className="cursor-pointer text-xs font-poppins">
     {item.emailId || "Update..."}
     
     </div> 
@@ -359,7 +360,7 @@ className="cursor-pointer text-xxs font-poppins">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.shipperId, 'shipByName', item.shipByName)} 
-    className="cursor-pointer text-xxs font-poppins">
+    className="cursor-pointer text-xs font-poppins">
     {item.shipByName || "Update..."}
     </div> 
 )}
@@ -463,6 +464,7 @@ className="cursor-pointer text-xxs font-poppins">
         </div>
       </div>
         )}
+        <Suspense>
       <UpdateShipperModal
         rowdata={rowdata}
         shipperId={currentShipperId}
@@ -489,7 +491,7 @@ className="cursor-pointer text-xxs font-poppins">
          type="shipper"
          addShipperAddressModal={props.addShipperAddressModal}
          handleShipperAddress={props.handleShipperAddress}
-      />
+      /></Suspense>
     </>
   )
 }
