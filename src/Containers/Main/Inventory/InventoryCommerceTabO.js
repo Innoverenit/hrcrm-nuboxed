@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import { withRouter } from "react-router";
-import CommerceTableOut from "./CommerceTableOut";
+import DispatchCommerceAndRepairTableOut from "./DispatchCommerceAndRepairTableOut";
 import CompleteDispatchTable from "./CompleteDispatchTable";
 import SendAndArchiveIcon from '@mui/icons-material/SendAndArchive';
 
@@ -96,7 +96,7 @@ class InventoryCommerceDetailTabO extends PureComponent {
               {" "}
               <Suspense fallback={"Loading..."}>
                
-              <CommerceTableOut
+              <DispatchCommerceAndRepairTableOut
                 translateText={this.props.translateText}
                 selectedLanguage={this.props.selectedLanguage}
                 locationDetailsId={this.props.user.locationId}

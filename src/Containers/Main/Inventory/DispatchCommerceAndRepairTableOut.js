@@ -49,7 +49,7 @@ import CommerceOpenTrackDrawer from "./CommerceOpenTrackDrawer";
 
 
 
-function CommerceTableOut(props) {
+function DispatchCommerceAndRepairTableOut(props) {
   const [pageNo, setPageNo] = useState(0);
   const [loading, setLoading] = useState(true);
   const [currentData, setCurrentData] = useState("");
@@ -63,8 +63,12 @@ const timerRef = useRef(null);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   useEffect(() => {
     setPageNo(pageNo + 1);
+    if(props.viewType === "repair"){
+      props.getDispatchList(props.locationDetailsId,pageNo,"Repair");
+    }
+    else if(props.viewType === "commerce") {
     props.getDispatchList(props.locationDetailsId,pageNo,"Procure");
-    //props.getAllShipper(props.orgId)
+    }
     props. clearDispatch();
   }, []);
 
@@ -83,12 +87,8 @@ const timerRef = useRef(null);
 "1606",// 'Pick up', // 6
 '1486', // 7 Track
 '142', // 8 status
-
-
-            
              
         ];
-
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);
         setLoading(false);
@@ -1315,5 +1315,5 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(CommerceTableOut)
+  connect(mapStateToProps, mapDispatchToProps)(DispatchCommerceAndRepairTableOut)
 );

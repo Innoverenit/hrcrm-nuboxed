@@ -23,7 +23,7 @@ function AddPacketTable(props) {
    const [expandPackNo,setexpandPackNo]=useState(false);
 
   useEffect(() => {
-    // props.getPackData(props.orderPhoneId);
+    props.getPackData(props.orderPhoneId);
   }, []);
 
   useEffect(() => {
