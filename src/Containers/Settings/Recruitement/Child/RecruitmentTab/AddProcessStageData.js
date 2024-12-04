@@ -163,6 +163,23 @@ const handleInputChange = (stagesId, field, value) => {
     }
   };
   console.log(stages)
+  const toggleIndicator = (stageId, ruleType) => {
+    setStages((prevData) =>
+      prevData.map((stage) =>
+        stage.stagesId === stageId
+          ? {
+              ...stage,
+              stageSequence: {
+                ...stage.stageSequence,
+                [`${ruleType}Indicator`]: !stage.stageSequence[
+                  `${ruleType}Indicator`
+                ],
+              },
+            }
+          : stage
+      )
+    );
+  };
   return (
     <div style={{ padding: "20px" }}>
       {/* {showAddButton && ( */}
@@ -264,21 +281,29 @@ const handleInputChange = (stagesId, field, value) => {
                                <div style={{ marginTop: "10px" }}>
                     <Button
                       type="default"
-                      onClick={() => toggleAction(stage.stagesId, "Yes")}
+                      onClick={() =>
+                        toggleIndicator(stage.stagesId, "trueStage")
+                      }
                       style={{ marginRight: "5px" }}
                     >
                       Next
                     </Button>
                     <Button
                       type="default"
-                      onClick={() => toggleAction(stage.stagesId, "No")}
+                      onClick={() =>
+                        toggleIndicator(stage.stagesId, "falseStage")
+                      }
+                     // onClick={() => toggleAction(stage.stagesId, "No")}
                       style={{ marginRight: "5px" }}
                     >
                       Else
                     </Button>
                     <Button
                       type="default"
-                      onClick={() => toggleAction(stage.stagesId, "No Action")}
+                      onClick={() =>
+                        toggleIndicator(stage.stagesId, "noInputStage")
+                      }
+                      //onClick={() => toggleAction(stage.stagesId, "No Action")}
                     >
                       No Action
                     </Button>
@@ -291,7 +316,7 @@ const handleInputChange = (stagesId, field, value) => {
          
         </div>
         {/* {yesState[stage.stagesId] && ( */}
-            
+        {stage.stageSequence.trueStageSequenceRule!=null && (
               <div
           key={stage.stagesId}
           style={{
@@ -315,9 +340,10 @@ const handleInputChange = (stagesId, field, value) => {
                       <Option value="Repeat">Repeat</Option>
                 </Select>
               </div>
+        )}
             {/* )} */}
               {/* {noState[stage.stagesId] && ( */}
-              
+              {stage.stageSequence.falseStageSequenceRule!=null && (
               <div
               key={stage.stagesId}
               style={{
@@ -341,9 +367,10 @@ const handleInputChange = (stagesId, field, value) => {
                       <Option value="Repeat">Repeat</Option>
                 </Select>
               </div>
+              )}
             {/* )} */}
             {/* {noActionState[stage.stagesId] && ( */}
-            
+            {stage.stageSequence.noInputStageSequenceRule!=null && (
               <div
               key={stage.stagesId}
               style={{
@@ -369,6 +396,7 @@ const handleInputChange = (stagesId, field, value) => {
                       <Option value="Repeat">Repeat</Option>
                 </Select>
               </div>
+            )}
             {/* )} */}
         </div>
           {index < stages.length - 1 && (
