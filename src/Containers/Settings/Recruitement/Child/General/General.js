@@ -68,6 +68,9 @@ function General(props) {
     packageInd: props.requirementDuration.packageInd,
     stucUpInd: props.requirementDuration.stucUpInd,
     disPackInd: props.requirementDuration.disPackInd,
+    nwTypInd: props.requirementDuration.nwTypInd,
+    mfaLogInd: props.requirementDuration.mfaLogInd,
+    mfaCPInd: props.requirementDuration.mfaCPInd,
     userId: props.userId,
     orgId: props.orgId,
   });
@@ -134,6 +137,9 @@ function General(props) {
     enaShipInd: props.requirementDuration.enaShipInd,
     stucUpInd: props.requirementDuration.stucUpInd,
     disPackInd: props.requirementDuration.disPackInd,
+    nwTypInd: props.requirementDuration.nwTypInd,
+    mfaLogInd: props.requirementDuration.mfaLogInd,
+    mfaCPInd: props.requirementDuration.mfaCPInd,
     userId: props.userId,
     orgId: props.orgId,
       });
@@ -217,7 +223,9 @@ function General(props) {
           bestBfrDayRng: formValues.bestBfrDayRng,
           packageInd: formValues.packageInd,
           disPackInd: formValues.disPackInd,
-
+          nwTypInd: formValues.nwTypInd,
+          mfaLogInd: formValues.mfaLogInd,
+          mfaCPInd: formValues.mfaCPInd,
     };
 
     props.updateRequirement(payload, props.orgId);
@@ -635,6 +643,76 @@ function General(props) {
    
                       </div>
                     </div>
+                    {props.requirementDuration.mfaInd &&
+                    <div class=" flex justify-between   mt-2">                
+                    <div class=" text-xs  ">Network </div>
+                      <div>
+                      <div>
+                    <Popconfirm
+                      title="Are you sure to change ?"
+                      onConfirm={() => handleConfirm("Package")}
+                      okText="yes"
+                      cancelText="No"
+                    >
+                      <Switch
+                        checked={formValues.nwTypInd}
+                        checkedChildren={"Google"}
+                        unCheckedChildren={"Microsoft"}
+                        onChange={(checked) => handleToggleChange("nwTypInd", checked)}
+                      />
+                    </Popconfirm>
+                  </div>
+   
+                      </div>
+                    </div>
+}
+                       <div class=" flex  mt-2">
+                      <div class=" text-sm  font-bold">MFA where to use</div>                      
+                      </div>
+                      <div class=" flex justify-between   mt-2">                
+                    <div class=" text-xs  ">MFA Login </div>
+                      <div>
+                      <div>
+                    <Popconfirm
+                      title="Are you sure to change ?"
+                      onConfirm={() => handleConfirm("Package")}
+                      okText="yes"
+                      cancelText="No"
+                    >
+                      <Switch
+                        checked={formValues.mfaLogInd}
+                        checkedChildren={"yes"}
+                        unCheckedChildren={"No"}
+                        onChange={(checked) => handleToggleChange("mfaLogInd", checked)}
+                      />
+                    </Popconfirm>
+                  </div>
+   
+                      </div>
+                    </div>
+
+                    <div class=" flex justify-between   mt-2">                
+                    <div class=" text-xs  ">Change Password </div>
+                      <div>
+                      <div>
+                    <Popconfirm
+                      title="Are you sure to change ?"
+                      onConfirm={() => handleConfirm("Package")}
+                      okText="yes"
+                      cancelText="No"
+                    >
+                      <Switch
+                        checked={formValues.mfaCPInd}
+                        checkedChildren={"yes"}
+                        unCheckedChildren={"No"}
+                        onChange={(checked) => handleToggleChange("mfaCPInd", checked)}
+                      />
+                    </Popconfirm>
+                  </div>
+   
+                      </div>
+                    </div>
+
                     <div class=" flex  mt-2">
                       <div class=" text-sm  font-bold">Production</div>                      
                       </div>

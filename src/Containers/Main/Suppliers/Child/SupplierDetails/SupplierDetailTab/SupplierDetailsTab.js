@@ -21,7 +21,7 @@ import { Badge, Tooltip } from "antd";
 import Shop2Icon from '@mui/icons-material/Shop2'; 
 import InventoryIcon from '@mui/icons-material/Inventory';
 
-const AccountContactTable = lazy(() => import("./AddPoModal../../../../Account/AccountDetailsTab/AccountContactTab/AccountContactTable"));
+const AccountContactTable = lazy(() => import("../../../../../../Containers/Main/Account/AccountDetailsTab/AccountContactTab/AccountContactTable"));
 const AddPoModal = lazy(() => import("./AddPoModal"));
 const AddSupplierInventoryImportModal = lazy(() => import("./SuppliersActivityTab/SuppliersActivityTable"));
 const PurchaseOrderTable = lazy(() => import("./PurchaseOrderTable"));//1

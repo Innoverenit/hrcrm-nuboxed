@@ -31,8 +31,10 @@ import {
   handleCustomerContactDrawerModal,
   handleCustomerOpportunityDrawerModal,
   handleAddressCutomerModal,
-  getTeamUserList
+  getTeamUserList,
+  updateProspectUser
 } from "../../CustomerAction";
+import {getCrm} from "../../../Leads/LeadsAction"
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
 import FactoryIcon from '@mui/icons-material/Factory';
@@ -89,6 +91,9 @@ function CustomerTeamCardList(props) {
  
   const [pageNo, setPageNo] = useState(0);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const [isAssignDropdownVisible, setIsAssignDropdownVisible] = useState(null);
+  const [selectedAssign, setSelectedAssign] = useState();
+
   useEffect(() => {
     window.addEventListener('error', e => {
       if (e.message === 'ResizeObserver loop limit exceeded' || e.message === 'Script error.') {
@@ -110,6 +115,7 @@ function CustomerTeamCardList(props) {
     props.getTeamCustomer(props.userId, pageNo);
     setPageNo(pageNo + 1);
     props.getTeamUserList(props.userId)
+    props.getCrm()
     //   props.getSectors();
     // props.getCountries();
     // props.getAllCustomerEmployeelist();
@@ -169,7 +175,11 @@ function CustomerTeamCardList(props) {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+  const handleAssignChange = (customerId,value) => {
 
+    props.updateProspectUser(customerId,value);
+    setIsAssignDropdownVisible(null); // Hide the dropdown after the request
+  };
 
 
 const [rowdata, setrowdata] = useState("");
@@ -225,7 +235,7 @@ const [rowdata, setrowdata] = useState("");
   if (loading) {
     return <div><BundleLoader/></div>;
   }
-
+console.log(selectedAssign)
   return (
     <>
     
@@ -500,27 +510,55 @@ handleRowData(item);
                           
 
                             <div class=" text-xs  font-poppins">
-                            
-                            <div>
-      {item.assignedTo === null ? (
+                            {item.assignedTo === null ? (
         "None"
       ) : (
-        <div
-        style={{cursor:"pointer"}}
-      onClick={() => {
-        handleSetCurrentCustomerId(item.customerId)
-        props.handleUpdateUserModal(true);
-        
-      }}
+                            <div>
+         {isAssignDropdownVisible === item.customerId ? (
+          <Select
+            style={{ width: "8rem" }}
+            value={selectedAssign}
+            onChange={(value) => {
+              setSelectedAssign(value); 
+              handleAssignChange(item.customerId,value); 
+            }}
+            onBlur={() => setIsAssignDropdownVisible(null, null, null)} 
+            autoFocus
+          >
+             {props.crmAllData.map(customer => (
+                 <Option key={customer.employeeId} value={customer.employeeId}>
+                  <div className="flex">
+                   <MultiAvatar
+          primaryTitle={customer.empName} 
+          imageId={item.imageId}
+                    imageURL={item.imageURL}
+                    imgWidth={"1.8rem"}
+                    imgHeight={"1.8rem"} 
+        />
+                  <span>{customer.empName}</span> 
+                  </div>
+                 </Option>
+               ))}
+          </Select>
+        ):(
+          <div 
+          onClick={() => {
+            setIsAssignDropdownVisible(item.customerId); 
+            setSelectedAssign(item.assignedTo); 
+            }}  
+          className="cursor-pointer"
         >
-        <MultiAvatar2
+          <MultiAvatar2
           primaryTitle={item.assignedTo}
           imgWidth={"1.8rem"}
           imgHeight={"1.8rem"}
         />
-        </div>
-      )}
+      
+        </div>  
+                              )}
+   
     </div>
+       )}
    
                             </div>
                         </div>
@@ -815,6 +853,7 @@ const mapStateToProps = ({
   sector,
   opportunity,
   employee,
+  leads
 }) => ({
   userId: auth.userDetails.userId,
   updateUserModal:customer.updateUserModal,
@@ -838,7 +877,8 @@ const mapStateToProps = ({
   allCustomerEmployeeList: employee.allCustomerEmployeeList,
   addDrawerCustomerEmailModal: customer.addDrawerCustomerEmailModal,
   addAddressCustomerModal:customer.addAddressCustomerModal,
-  teamUserList:customer.teamUserList
+  teamUserList:customer.teamUserList,
+  crmAllData:leads.crmAllData
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -860,7 +900,9 @@ const mapDispatchToProps = (dispatch) =>
       handleCustomerContactDrawerModal,
       handleCustomerOpportunityDrawerModal,
       handleAddressCutomerModal,
-      getTeamUserList
+      getTeamUserList,
+      updateProspectUser,
+      getCrm
     },
     dispatch
   );
