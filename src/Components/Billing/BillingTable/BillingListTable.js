@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState ,Suspense,lazy} from 'react'
 import { StyledTable } from '../../../Components/UI/Antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -9,8 +9,10 @@ import { getCustomerTask } from "../../../Containers/Task/TaskAction"
 import { Tooltip, Button, Input, Space } from "antd";
 import Highlighter from 'react-highlight-words';
 import "jspdf-autotable";
-import { BundleLoader } from '../../../Components/Placeholder';
 import { getDesignationWiseBilling } from "../BillingAction";
+
+// import { BundleLoader } from '../../../Components/Placeholder';
+const BundleLoader = lazy(() => import("../../../Components/Placeholder"));
 
 function BillingListTable(props) {
 
@@ -323,7 +325,7 @@ function BillingListTable(props) {
   ]
 
   if (props.fetchingLeadsTabData) {
-    return <BundleLoader />;
+    return <Suspense > <BundleLoader /> </Suspense>
   }
   return (
     <>
