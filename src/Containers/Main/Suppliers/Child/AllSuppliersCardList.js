@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {getAllSuppliersList,emptysUPPLIERS,
@@ -11,20 +11,21 @@ import {getAllDialCodeList} from "../../../Auth/AuthAction";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import InfiniteScroll from "react-infinite-scroll-component";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import UpdateSupplierModal from "./UpdateSupplierModal";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import SupplierSearchedData from "./SupplierSearchedData";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import CategoryIcon from '@mui/icons-material/Category';
 import LinkIcon from '@mui/icons-material/Link'; 
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
 import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
-
 import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 
-import AddSuppliersAdressModal from "./AddSuppliersAdressModal";
-import EmptyPage from "../../EmptyPage";
+
+const EmptyPage =lazy(()=>import("../../EmptyPage"));
+const UpdateSupplierModal =lazy(()=>import("./UpdateSupplierModal"));
+const SupplierSearchedData =lazy(()=>import("./SupplierSearchedData"));
+const AddSuppliersAdressModal =lazy(()=>import("./AddSuppliersAdressModal"));
+
 const { Option } = Select;
 function AllSuppliersCardList(props) {
 
@@ -197,7 +198,7 @@ return(
         height={"83vh"}
         style={{scrollbarWidth:"thin"}}
       >
-{!props.fetchingSupplierList &&  props.allSupplierList===0 ? <EmptyPage /> :props.allSupplierList.map((item) => {
+{!props.fetchingSupplierList &&  props.allSupplierList===0 ? <Suspense> <EmptyPage /></Suspense> :props.allSupplierList.map((item) => {
     const currentdate = dayjs().format("DD/MM/YYYY");
     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
   return (
@@ -223,7 +224,7 @@ return(
    editableField?.field === 'name' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xs"
+  className="h-7 w-[4rem] text-xxs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -233,8 +234,8 @@ return(
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'name', item.name)} 
-    className="cursor-pointer text-xs font-[Poppins]">
-   <BorderColorIcon  className=" !text-xs cursor-pointer"/>
+    className="cursor-pointer text-xxs font-poppins">
+   <BorderColorIcon  className=" !text-xxs cursor-pointer"/>
     
     </div> 
 )}                 
@@ -269,8 +270,8 @@ return(
 ) : (
 <div onClick={() => 
 handleEditRowField(item.supplierId, 'dialCode', item.dialCode)} 
-className="cursor-pointer text-xxs font-[Poppins]">
-{item.dialCode || "Enter DialCode"}
+className="cursor-pointer text-xxs font-poppins">
+{item.dialCode || "Update..."}
 
 </div>         
                         )}
@@ -290,8 +291,8 @@ className="cursor-pointer text-xxs font-[Poppins]">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'phoneNo', item.phoneNo)} 
-    className="cursor-pointer text-xxs font-[Poppins]">
-    {item.phoneNo || "Enter Mobile No"}
+    className="cursor-pointer text-xxs font-poppins">
+    {item.phoneNo || "Update..."}
     
     </div> 
 )}                 
@@ -316,8 +317,8 @@ className="cursor-pointer text-xxs font-[Poppins]">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'emailId', item.emailId)} 
-    className="cursor-pointer text-xxs font-[Poppins]">
-    {item.emailId || "Enter Email"}
+    className="cursor-pointer text-xxs font-poppins">
+    {item.emailId || "Update..."}
     
     </div> 
 )}   
@@ -396,6 +397,7 @@ className="cursor-pointer text-xxs font-[Poppins]">
   </div>
   </div>
  )}
+ <Suspense>
   <UpdateSupplierModal
         rowdata={rowdata}
         updateSupplierModal={props.updateSupplierModal}
@@ -409,6 +411,7 @@ className="cursor-pointer text-xxs font-[Poppins]">
          addSuppliersAddressModal={props.addSuppliersAddressModal}
          handleSuppliersAddress={props.handleSuppliersAddress}
       /> 
+      </Suspense>
 </>
 )
 }

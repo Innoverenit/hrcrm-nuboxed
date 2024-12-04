@@ -12,10 +12,11 @@ import CategoryIcon from '@mui/icons-material/Category';
 import LinkIcon from '@mui/icons-material/Link';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { Link } from 'react-router-dom';
-import UpdateSupplierModal from "./UpdateSupplierModal";
 import FlipCameraAndroidIcon from '@mui/icons-material/FlipCameraAndroid';
 import { BundleLoader } from "../../../../Components/Placeholder";
-import EmptyPage from "../../EmptyPage";
+
+const EmptyPage =lazy(()=>import("../../EmptyPage"));
+const UpdateSupplierModal =lazy(()=>import("./UpdateSupplierModal"));
 const SupplierSearchedData =lazy(()=>import("./SupplierSearchedData"));
 const ReInstateSuppliers =lazy(()=>import("../ReInstateSuppliers"));
 function SuppliersDeletedCardList(props) {

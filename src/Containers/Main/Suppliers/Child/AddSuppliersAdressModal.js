@@ -3,10 +3,8 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import ErpAddressData from "../../../Address/ErpAddressData";
 
-
-
+const ErpAddressData =lazy(()=>import("../../../Address/ErpAddressData"));
 
 class AddSuppliersAdressModal extends Component {
   render() {

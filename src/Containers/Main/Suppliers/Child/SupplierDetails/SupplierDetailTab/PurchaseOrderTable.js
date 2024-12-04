@@ -27,8 +27,8 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import ContactPageIcon from "@mui/icons-material/ContactPage";
 import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import Shop2Icon from '@mui/icons-material/Shop2'; 
-import EmptyPage from "../../../../EmptyPage";
 
+const EmptyPage  = lazy(() => import("../../../../EmptyPage"));
 const PoLocationModal  = lazy(() => import("./PoLocationModal"));
 const POSupplierDetailsModal  = lazy(() => import("./POSupplierDetailsModal"));
 const TermsnConditionModal  = lazy(() => import("./TermsnConditionModal"));

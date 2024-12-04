@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -6,8 +6,8 @@ import {
   emptynotApprovedSuppliers,
   handleSuppliersAddress,
   updateSupplierById
-} from "../SuppliersAction"
-import { Popconfirm, Tooltip,Input,Select } from "antd";
+} from "../SuppliersAction";
+import {Input,Select } from "antd";
 import {getAllDialCodeList} from "../../../Auth/AuthAction";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ApartmentIcon from '@mui/icons-material/Apartment';
@@ -17,13 +17,15 @@ import CategoryIcon from '@mui/icons-material/Category';
 import LinkIcon from '@mui/icons-material/Link';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import InfiniteScroll from "react-infinite-scroll-component";
-import SuplierNotApprovalPublishToggle from "../Child/SuplierNotApprovalPublishToggle"
 import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
-import SupplierSearchedData from "./SupplierSearchedData";
-import AddSuppliersAdressModal from "./AddSuppliersAdressModal";
-import EmptyPage from "../../EmptyPage";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+
+const SuplierNotApprovalPublishToggle =lazy(()=>import("../Child/SuplierNotApprovalPublishToggle"));
+const SupplierSearchedData =lazy(()=>import("./SupplierSearchedData"));
+const EmptyPage =lazy(()=>import("../../EmptyPage"));
+const AddSuppliersAdressModal =lazy(()=>import("./AddSuppliersAdressModal"));
+
 const { Option } = Select;
 function SuppliersNotApprovalList(props) {
 
@@ -171,7 +173,7 @@ const [editingValue, setEditingValue] = useState("");
    editableField?.field === 'name' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xs"
+  className="h-7 w-[4rem] text-xxs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -181,8 +183,8 @@ const [editingValue, setEditingValue] = useState("");
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'name', item.name)} 
-    className="cursor-pointer text-xs font-[Poppins]">
-   <BorderColorIcon  className=" !text-xs cursor-pointer"/>
+    className="cursor-pointer text-xxs font-poppins">
+   <BorderColorIcon  className=" !text-xxs cursor-pointer"/>
     
     </div> 
 )}                 
@@ -214,8 +216,8 @@ const [editingValue, setEditingValue] = useState("");
 ) : (
 <div onClick={() => 
 handleEditRowField(item.supplierId, 'dialCode', item.dialCode)} 
-className="cursor-pointer text-xxs font-[Poppins]">
-{item.dialCode || "Enter DialCode"}
+className="cursor-pointer text-xxs font-poppins">
+{item.dialCode || "Update..."}
 
 </div>         
                         )}
@@ -225,7 +227,7 @@ className="cursor-pointer text-xxs font-[Poppins]">
    editableField?.field === 'phoneNo' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xs"
+  className="h-7 w-[4rem] text-xxs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -235,8 +237,8 @@ className="cursor-pointer text-xxs font-[Poppins]">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'phoneNo', item.phoneNo)} 
-    className="cursor-pointer text-xs font-[Poppins]">
-    {item.phoneNo || "Enter Mobile No"}
+    className="cursor-pointer text-xxs font-poppins">
+    {item.phoneNo || "Update..."}
     
     </div> 
 )}                 
@@ -253,7 +255,7 @@ className="cursor-pointer text-xxs font-[Poppins]">
    editableField?.field === 'emailId' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xs"
+  className="h-7 w-[4rem] text-xxs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -263,8 +265,8 @@ className="cursor-pointer text-xxs font-[Poppins]">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'emailId', item.emailId)} 
-    className="cursor-pointer text-xs font-[Poppins]">
-    {item.emailId || "Enter Email"}
+    className="cursor-pointer text-xxs font-poppins">
+    {item.emailId || "Update..."}
     
     </div> 
 )}   
@@ -279,10 +281,10 @@ className="cursor-pointer text-xxs font-[Poppins]">
                    
                             <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[8.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
                               <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-text-xs">
-                                <SuplierNotApprovalPublishToggle
+                               <Suspense> <SuplierNotApprovalPublishToggle
                                  approvedInd={item.approvedInd}
                                 supplierId={item.supplierId}
-                                />
+                                /></Suspense>
                               </div>
                               </div>  
             <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[2.2rem]"> 
@@ -314,18 +316,19 @@ className="cursor-pointer text-xxs font-[Poppins]">
                   })}
                 </> :
                 !props.notApprovalSupplierList.length &&
-                  !props.fetchingNotApprovalSupplierList ? <EmptyPage /> : null}
+                  !props.fetchingNotApprovalSupplierList ? <Suspense><EmptyPage /></Suspense> : null}
             </InfiniteScroll>
           </div> 
         </div>
       </div>
       )}
+      <Suspense>
       <AddSuppliersAdressModal    
         item={rowdata}
          type="supplier"
          addSuppliersAddressModal={props.addSuppliersAddressModal}
          handleSuppliersAddress={props.handleSuppliersAddress}
-      /> 
+      /> </Suspense>
     </>
   )
 }

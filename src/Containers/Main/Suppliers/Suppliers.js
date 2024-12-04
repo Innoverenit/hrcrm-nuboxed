@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { setSuppliersViewType } from "./SuppliersAction";
 import { getSuppliersList, getAllSuppliersList } from "./SuppliersAction";
 import { BundleLoader } from "../../../Components/Placeholder";
-import PurchaseOrderTable from "./Child/SupplierDetails/SupplierDetailTab/PurchaseOrderTable";
+const PurchaseOrderTable =lazy(()=>import("./Child/SupplierDetails/SupplierDetailTab/PurchaseOrderTable"));
 const SuppliersHeader =lazy(()=>import("../../Main/Suppliers/SuppliersHeader"));
 const SuppliersDeletedCardList =lazy(()=>import("./Child/SuppliersDeletedCardList"));
 const SuppliersCardList =lazy(()=>import("./Child/SuppliersCardList"));

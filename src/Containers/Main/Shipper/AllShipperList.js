@@ -250,7 +250,7 @@ const [dataShipper, setdataShipper] = useState([]);
 ) : (
 <div onClick={() => 
     handleEditRowField(item.shipperId, 'shipperName', item.shipperName)} 
-    className="cursor-pointer text-xs font-[Poppins]">
+    className="cursor-pointer text-xxs font-poppins">
    <BorderColorIcon  className=" !text-xs cursor-pointer"/>
     
     </div> 
@@ -281,8 +281,8 @@ const [dataShipper, setdataShipper] = useState([]);
 ) : (
 <div onClick={() => 
 handleEditRowField(item.shipperId, 'dialCode2', item.dialCode2)} 
-className="cursor-pointer text-xs font-[Poppins]">
-{item.dialCode2 || "Enter DialCode"}
+className="cursor-pointer text-xxs font-poppins">
+{item.dialCode2 || "Update..."}
 
 </div>         
                         )}
@@ -292,7 +292,7 @@ className="cursor-pointer text-xs font-[Poppins]">
    editableField?.field === 'phoneNo' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xs"
+  className="h-7 w-[4rem] text-xxs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -302,8 +302,8 @@ className="cursor-pointer text-xs font-[Poppins]">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.shipperId, 'phoneNo', item.phoneNo)} 
-    className="cursor-pointer text-xs font-[Poppins]">
-    {item.phoneNo || "Enter Mobile No"}
+    className="cursor-pointer text-xxs font-poppins">
+    {item.phoneNo || "Update..."}
     
     </div> 
 )}                 
@@ -319,7 +319,7 @@ className="cursor-pointer text-xs font-[Poppins]">
    editableField?.field === 'emailId' ? (
 <Input
   type="text"
-  className="h-7 w-[4rem] text-xs"
+  className="h-7 w-[4rem] text-xxs"
   value={editingValue}
   onChange={handleChangeRowItem}
   onBlur={handleUpdateSubmit}
@@ -329,8 +329,8 @@ className="cursor-pointer text-xs font-[Poppins]">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.shipperId, 'emailId', item.emailId)} 
-    className="cursor-pointer text-xs font-[Poppins]">
-    {item.emailId || "Enter Email"}
+    className="cursor-pointer text-xxs font-poppins">
+    {item.emailId || "Update..."}
     
     </div> 
 )}   
@@ -359,8 +359,8 @@ className="cursor-pointer text-xs font-[Poppins]">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.shipperId, 'shipByName', item.shipByName)} 
-    className="cursor-pointer text-xs font-[Poppins]">
-    {item.shipByName || "Enter type"}
+    className="cursor-pointer text-xxs font-poppins">
+    {item.shipByName || "Update..."}
     </div> 
 )}
 
@@ -421,7 +421,7 @@ className="cursor-pointer text-xs font-[Poppins]">
           
         />    
         </div>
-        <div class="items-center justify-center h-8   bg-[#eef2f9] flex">
+        {/* <div class="items-center justify-center h-8   bg-[#eef2f9] flex">
                             <Tooltip title={props.translatedMenuItems[9]}>
                               <BorderColorIcon
                                 className=" !text-icon cursor-pointer text-[tomato]"
@@ -434,7 +434,7 @@ className="cursor-pointer text-xs font-[Poppins]">
                                 }}
                               />
                             </Tooltip>
-                          </div>
+                          </div> */}
                           </div>
                           <div>
 
