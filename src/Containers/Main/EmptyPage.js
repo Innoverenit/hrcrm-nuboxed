@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import FWLogo from "../../Assets/Images/image 21.png";
+import FWLogo from "../../Assets/Images/image 21.jpg";
 
 
 
