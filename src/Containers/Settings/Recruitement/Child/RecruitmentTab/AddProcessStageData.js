@@ -171,8 +171,8 @@ const handleInputChange = (stagesId, field, value) => {
               ...stage,
               stageSequence: {
                 ...stage.stageSequence,
-                [`${ruleType}Indicator`]: !stage.stageSequence[
-                  `${ruleType}Indicator`
+                [`${ruleType}`]: !stage.stageSequence[
+                  `${ruleType}`
                 ],
               },
             }
@@ -282,7 +282,7 @@ const handleInputChange = (stagesId, field, value) => {
                     <Button
                       type="default"
                       onClick={() =>
-                        toggleIndicator(stage.stagesId, "trueStage")
+                        toggleIndicator(stage.stagesId, "trueStageSequenceRule")
                       }
                       style={{ marginRight: "5px" }}
                     >
@@ -291,7 +291,7 @@ const handleInputChange = (stagesId, field, value) => {
                     <Button
                       type="default"
                       onClick={() =>
-                        toggleIndicator(stage.stagesId, "falseStage")
+                        toggleIndicator(stage.stagesId, "falseStageSequenceRule")
                       }
                      // onClick={() => toggleAction(stage.stagesId, "No")}
                       style={{ marginRight: "5px" }}
@@ -301,7 +301,7 @@ const handleInputChange = (stagesId, field, value) => {
                     <Button
                       type="default"
                       onClick={() =>
-                        toggleIndicator(stage.stagesId, "noInputStage")
+                        toggleIndicator(stage.stagesId, "noInputStageSequenceRule")
                       }
                       //onClick={() => toggleAction(stage.stagesId, "No Action")}
                     >

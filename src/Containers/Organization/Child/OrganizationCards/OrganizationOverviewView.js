@@ -12,6 +12,7 @@ class OrganizationOverviewView extends Component {
       organizationList: { organizationName, imageId, imageURL },
       toggleViewType,
     } = this.props;
+    console.log(imageId)
     return (
       <>
         <div class=" flex justify-between" >
