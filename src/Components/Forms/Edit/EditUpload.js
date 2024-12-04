@@ -201,7 +201,7 @@ class EditUpload extends React.Component {
               }
             },
             "image/webp",
-            1.0 // Quality: Adjust as needed (0.0 to 1.0)
+            0.5 // Quality: Adjust as needed (0.0 to 1.0)
           );
         };
 
