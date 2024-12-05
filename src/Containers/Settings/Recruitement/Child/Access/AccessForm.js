@@ -13,6 +13,7 @@ import {
 import { BundleLoader } from "../../../../../Components/Placeholder";
 const CheckboxGroup = Checkbox.Group;
 const plainOptions = ["Access", "Create", "Update", "Delete", "Full List"];
+const propspectOptions = ["Access", "Create", "Update", "Delete", "Full List","MFA Approve"];
 const orderOptions = ["Access", "Create", "Update", "Delete", "Full List","MFA Update","MFA Delete"];
 const clubOption = ["Access", "Create", "Update", "Delete", "Full List","Activity","Pulse","Note"];
 const accountOptions = [
@@ -22,6 +23,7 @@ const accountOptions = [
   "Delete",
   "Full List",
   "Info",
+  "MFA Delete"
 ];
 const materialOptions = ["Access", "Create", "Update", "Delete"];
 const materialMfaOptions = ["Access", "Create", "Update", "Delete","MFA Update","MFA Delete"];
@@ -73,7 +75,8 @@ const newCallCheckedList = ["Access"];
 const downloadCheckedList = ["All"];
 const calculateCheckedList = ["Calculator"];
 const warrentyCheckedList = ["Access" , "Update"]
-const priceDiscountCheckedList = ["Access" , "Create", "Update"]
+const priceDiscountCheckedList = ["Access" , "Create", "Update","MFA Access","MFA Create","MFA Update"]
+const dataRoomOption = ["Access", "Create", "Update", "Delete", "Full List","MFA Access"];
 
 const AccessForm = (props) => {
   const [checkedCustomerList, setCheckedCustomerList] = useState(
@@ -707,14 +710,14 @@ useEffect(() => {
   const onCustomerChange = (list) => {
     setCheckedCustomerList(list);
     setIndeterminateCustomer(
-      !!list.length && list.length < plainOptions.length
+      !!list.length && list.length < propspectOptions.length
     );
-    setCheckAllCustomer(list.length === plainOptions.length);
+    setCheckAllCustomer(list.length === propspectOptions.length);
     updateAccessForCategory('customer', list);
   };
 
   const onCheckAllCustomerChange = (e) => {
-    const checked = e.target.checked ? plainOptions : [];
+    const checked = e.target.checked ? propspectOptions : [];
     setCheckedCustomerList(checked);
     setIndeterminateCustomer(false);
     setCheckAllCustomer(e.target.checked);
@@ -746,13 +749,13 @@ useEffect(() => {
 
   const onTalentChange = (list) => {
     setCheckedTalentList(list);
-    setIndeterminateTalent(!!list.length && list.length < plainOptions.length);
-    setCheckAllTalent(list.length === plainOptions.length);
+    setIndeterminateTalent(!!list.length && list.length < orderOptions.length);
+    setCheckAllTalent(list.length === orderOptions.length);
     updateAccessForCategory('talent', list);
   };
 
   const onCheckAllTalentChange = (e) => {
-    const checked = e.target.checked ? plainOptions : [];
+    const checked = e.target.checked ? orderOptions : [];
     setCheckedTalentList(checked);
     setIndeterminateTalent(false);
     setCheckAllTalent(e.target.checked);
@@ -1458,14 +1461,14 @@ useEffect(() => {
   const onDataRoomChange = (list) => {
     setCheckedDataRoomList(list);
     setIndeterminateDataRoom(
-      !!list.length && list.length < plainOptions.length
+      !!list.length && list.length < dataRoomOption.length
     );
-    setCheckAllDataRoom(list.length === plainOptions.length);
+    setCheckAllDataRoom(list.length === dataRoomOption.length);
     updateAccessForCategory('dataRoom', list);
   };
 
   const onCheckAllDataRoomChange = (e) => {
-    const checked = e.target.checked ? plainOptions : [];
+    const checked = e.target.checked ? dataRoomOption : [];
     setCheckedDataRoomList(checked);
     setIndeterminateDataRoom(false);
     setCheckAllDataRoom(e.target.checked);
@@ -1718,14 +1721,14 @@ useEffect(() => {
   const onCatalogChange = (list) => {
     setCheckedCatalogList(list);
     setIndeterminateCatalog(
-      !!list.length && list.length < materialOptions.length
+      !!list.length && list.length < materialMfaOptions.length
     );
-    setCheckAllCatalog(list.length === materialOptions.length);
+    setCheckAllCatalog(list.length === materialMfaOptions.length);
     updateAccessForCategory('catalog', list);
   };
 
   const onCheckAllCatalogChange = (e) => {
-    const checked = e.target.checked ? materialOptions : [];
+    const checked = e.target.checked ? materialMfaOptions : [];
     setCheckedCatalogList(checked);
     setIndeterminateCatalog(false);
     setCheckAllCatalog(e.target.checked);
@@ -2443,7 +2446,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         </Checkbox>
                        
                         <CheckboxGroup
-                          options={plainOptions}
+                          options={propspectOptions}
                           value={checkedCustomerList}
                           onChange={onCustomerChange}
                         />
@@ -2791,7 +2794,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         </Checkbox>
                        
                         <CheckboxGroup
-                          options={materialOptions}
+                          options={materialMfaOptions}
                           value={checkedCatalogList}
                           onChange={onCatalogChange}
                         />
@@ -3059,7 +3062,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         </Checkbox>
                        
                         <CheckboxGroup
-                          options={plainOptions}
+                          options={orderOptions}
                           value={checkedTalentList}
                           onChange={onTalentChange}
                         />
@@ -3212,7 +3215,7 @@ const onCheckAllePriceDiscountChange = (e) => {
                         </Checkbox>
                        
                         <CheckboxGroup
-                          options={plainOptions}
+                          options={dataRoomOption}
                           value={checkedDataRoomList}
                           onChange={onDataRoomChange}
                         />

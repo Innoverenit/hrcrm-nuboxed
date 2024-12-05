@@ -7077,6 +7077,91 @@ export const getApikey = (orgId) => (dispatch) => {
     });
 };
 
+export const getDiscountCat = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_DISCOUNT_CAT_REQUEST,
+  });
+  axios
+    .get(`${base_url}/category/dropdown/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    } )
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DISCOUNT_CAT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DISCOUNT_CAT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getDiscountCatVol = (categoryId) => (dispatch) => {
+  dispatch({
+    type: types.GET_DISCOUNT_CATVOL_REQUEST,
+  });
+  axios
+    .get(`${base_url}/category/vol-price/${categoryId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    } )
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DISCOUNT_CATVOL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DISCOUNT_CATVOL_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const categoryVolUpdate = (opportunity, cb) => (dispatch, getState) => {
+  dispatch({
+    type: types.ADD_CATEGORY_VOLUME_REQUEST,
+  });
+  axios
+    .post(`${base_url}/category/vol-price/save`, opportunity, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Volume added Successfully!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      console.log(res);
+     
+      dispatch({
+        type: types.ADD_CATEGORY_VOLUME_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_CATEGORY_VOLUME_FAILURE,
+        payload: err,
+      });
+    });
+};
 
 
 

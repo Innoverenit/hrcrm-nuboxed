@@ -70,7 +70,8 @@ function MaterialFastMovingToggle(props) {
   };
 
   return (
-    <div>
+    <div className="flex items-center">
+      <div>
       <Switch
         className="toggle-clr"
         checked={isInputVisible}
@@ -78,16 +79,18 @@ function MaterialFastMovingToggle(props) {
         unCheckedChildren="No"
         onChange={handleToggleChange}
       />
-
+      </div>
+<div>
       {isInputVisible && (
         <Input
           placeholder="Enter details"
           value={maxOdU} 
           onChange={handleInputChange}
           onBlur={handleInputBlur}
-          style={{ marginTop: "0.5rem", width: "6rem" }}
+          style={{ marginTop: "0.5rem", width: "6rem",marginLeft:"0.5rem" }}
         />
       )}
+      </div>
     </div>
   );
 }
