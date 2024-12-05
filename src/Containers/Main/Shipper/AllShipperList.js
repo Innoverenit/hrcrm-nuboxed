@@ -27,7 +27,6 @@ import ApiIcon from '@mui/icons-material/Api';
 import Swal from 'sweetalert2'
 import axios from "axios";
 import { base_url2 } from "../../../Config/Auth";
-const UpdateShipperModal =lazy(()=>import("./UpdateShipperModal"));
 const AddShipperOrderModal =lazy(()=>import("./AddShipperOrderModal"));
 const EmptyPage =lazy(()=>import("../EmptyPage"));
 const ShipperSearchedData =lazy(()=>import("./ShipperSearchedData"));
@@ -422,20 +421,7 @@ className="cursor-pointer text-xs font-poppins">
           
         />    
         </div>
-        {/* <div class="items-center justify-center h-8   bg-[#eef2f9] flex">
-                            <Tooltip title={props.translatedMenuItems[9]}>
-                              <BorderColorIcon
-                                className=" !text-icon cursor-pointer text-[tomato]"
-
-                                onClick={() => {
-                                  props.setEditShipper(item);
-                                  handleRowData(item);
-                                  handleUpdateShipperModal(true);
-                                  handleSetCurrentShipperId(item.shipperId);
-                                }}
-                              />
-                            </Tooltip>
-                          </div> */}
+     
                           </div>
                           <div>
 
@@ -465,14 +451,7 @@ className="cursor-pointer text-xs font-poppins">
       </div>
         )}
         <Suspense>
-      <UpdateShipperModal
-        rowdata={rowdata}
-        shipperId={currentShipperId}
-        updateShipperModal={updateShipperModal}
-        handleSetCurrentShipperId={handleSetCurrentShipperId}
-        handleUpdateShipperModal={handleUpdateShipperModal}
-        translatedMenuItems={props.translatedMenuItems}
-      />
+      
       <AddShipperOrderModal
         addShipperOrderModal={props.addShipperOrderModal}
         handleShipperOrderModal={props.handleShipperOrderModal}
