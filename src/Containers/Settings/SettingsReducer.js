@@ -16,6 +16,17 @@ const initialState = {
   addingUOM: false,
   addingUOMError: false,
 
+  fetchingDiscountCat: false,
+  fetchingDiscountCatError: false,
+  discountCat:[],
+
+  fetchingDiscountCatVol: false,
+  fetchingDiscountCatVolError: false,
+  discountCatVol:[],
+
+  addingCategoryVolume: false,
+  addingCategoryVolumeError: false,
+
   removingUOM: false,
   removingUOMError: false,
 
@@ -3584,8 +3595,52 @@ export const settingsReducer = (state = initialState, action) => {
           fetchingApiKeyError: true,
         };
 
+        case types.GET_DISCOUNT_CAT_REQUEST:
+          return { ...state, fetchingDiscountCat: true };
+        case types.GET_DISCOUNT_CAT_SUCCESS:
+          return {
+            ...state,
+            fetchingDiscountCat: false,
+            discountCat: action.payload,
+          };
+        case types.GET_DISCOUNT_CAT_FAILURE:
+          return {
+            ...state,
+            fetchingDiscountCat: false,
+            fetchingDiscountCatError: true,
+          };
+  
+          case types.GET_DISCOUNT_CATVOL_REQUEST:
+            return { ...state, fetchingDiscountCatVol: true };
+          case types.GET_DISCOUNT_CATVOL_SUCCESS:
+            return {
+              ...state,
+              fetchingDiscountCatVol: false,
+              discountCatVol: action.payload,
+            };
+          case types.GET_DISCOUNT_CATVOL_FAILURE:
+            return {
+              ...state,
+              fetchingDiscountCatVol: false,
+              fetchingDiscountCatVolError: true,
+            };
 
 
+            case types.ADD_CATEGORY_VOLUME_REQUEST:
+              return { ...state, addingCategoryVolume: true };
+            case types.ADD_CATEGORY_VOLUME_SUCCESS:
+              return {
+                ...state,
+                addingCategoryVolume: false,
+                discountCatVol: [action.payload, ...state.discountCatVol],
+               
+              };
+            case types.ADD_CATEGORY_VOLUME_FAILURE:
+              return {
+                ...state,
+                addingCategoryVolume: false,
+                addingCategoryVolumeError: true,
+              };
 
 
       case types.LINK_DEALS_PROCESS_GLOBAL_REQUEST:

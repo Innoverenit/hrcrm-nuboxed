@@ -13,7 +13,7 @@ function MaterialDetailsDrawer(props) {
 
     const { modalVisible,closeModal,particularDiscountData, ...formProps } = props;
     const isSmallScreen = window.innerWidth <= 600;
-    const drawerWidth = isSmallScreen ? "90%" : "65%";
+    const drawerWidth = isSmallScreen ? "90%" : "80%";
     const [activeKey, setActiveKey] = useState("1");
     const handleTabChange = (key) => setActiveKey(key);
     const renderTabContent = (key) => {

@@ -95,7 +95,7 @@ console.log(props.UOMListData)
         {isEditingName ? (
         <input
           type="text"
-          className="h-10 w-[30rem] text-xl"
+          className="h-10 w-[10rem] text-xl"
           value={sName}
           onChange={(e) => setsName(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleUpdateName()} // Trigger update on 'Enter'
@@ -137,7 +137,7 @@ console.log(props.UOMListData)
  
     </div>
     <div className="flex flex-col"> 
-    <div className="flex items-center w-[30rem]">
+    <div className="flex items-center justify-between w-[30rem]">
 
                             <div className=" flex flex-col w-[6.8rem] mr-[3rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                             <div className="text-base">Fast Moving</div>
@@ -158,7 +158,7 @@ console.log(props.UOMListData)
                               </div>
                             </div>
                             </div>
-                            <div className="flex items-center w-[30rem]">
+                            <div className="flex items-center justify-between w-[30rem]">
                             <div className=" flex flex-col w-[7.2rem] mr-[3rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
      <div className="text-base">Recommend</div>
                               <div class="  text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
@@ -185,13 +185,14 @@ console.log(props.UOMListData)
         <TextArea
           type="text"
           value={sDesc}
+           className="h-10 w-[30rem] text-xl"
           onChange={(e) => setsDesc(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && handleUpdateDesc()} // Trigger update on 'Enter'
           onBlur={handleUpdateDesc} // Optional: Update on blur as well
           autoFocus // Focus the input automatically when editing
         />
       ) : (
-        <div onClick={() => setIsEditingDesc(true)} className="cursor-pointer border overflow-x-auto h-[6rem] mt-2 w-[100%] text-sm font-[Poppins]" title=
+        <div onClick={() => setIsEditingDesc(true)} className="cursor-pointer border overflow-x-auto h-[6rem] mt-2 w-[40rem] text-sm font-[Poppins]" title=
         {sDesc}><div dangerouslySetInnerHTML={{ __html: `<p>${sDesc}</p>` }} /></div> // Click to enter edit mode
       )}
     {/* <div dangerouslySetInnerHTML={{ __html: `<p>${props.materialsBySuppliesId.description}</p>` }} /> */}

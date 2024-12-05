@@ -5,6 +5,9 @@ import dayjs from "dayjs";
 import { Button, DatePicker, Input, Select,Tooltip } from "antd";
 import {createMaterialDiscount,getMaterialDiscount,
 } from "./SuppliesAction";
+import {
+  getCategory,
+} from "../../Settings/Category/CategoryList/CategoryListAction";
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import DateRangeIcon from '@mui/icons-material/DateRange';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -27,6 +30,7 @@ function PriceDiscountCard(props) {
   useEffect(() => {
     props.getMaterialDiscount(props.particularDiscountData.suppliesId,"B2B");
    // props.getInvestorCurrency()
+   props.getCategory(props.orgId); 
   }, []);
 
   useEffect(() => {
@@ -74,7 +78,7 @@ function PriceDiscountCard(props) {
       volume: '',
       allowedDiscount: '',
       date: null,
-
+      catagoryId:"",
     };
     setRows([...rows, newRow]);
   };
@@ -131,10 +135,10 @@ function PriceDiscountCard(props) {
         endDate: row.endDate ? dayjs(row.endDate).format('YYYY-MM-DDTHH:mm:ss[Z]') : null,
         userId: props.userId,
         orgId: props.orgId,
-
+        sCategory:row.catagoryId,
       };
       props.createMaterialDiscount(result)
-      setRows([{  allowedDiscount: '', volume: '', }]);
+      setRows([{  allowedDiscount: '', volume: '', catagoryId:"" }]);
   };
   const handleEditClick = (suppliesId) => {
     setEditsuppliesId(suppliesId);
@@ -234,6 +238,29 @@ function PriceDiscountCard(props) {
           />
         </div>
       </div>
+      <div>           
+                <div class="w-28">
+                <div>        
+                  <div class="font-bold text-xs font-poppins text-black">
+               Catagory
+                  
+                  </div>
+          
+                <Select
+                      
+                      value={row.catagoryId}
+                      onChange={(value) => handleChange(index, 'catagoryId',value)}
+                      >
+                        {props.categoryListData.map((s) => (
+                          <Option key={s.categoryId} value={s.categoryId}>
+                            {s.name}
+                          </Option>
+                        ))}
+                      </Select>              
+              </div>
+                       
+                      </div>
+                      </div>
       <div class="flex items-center">    
       <Button type="primary" onClick={() => handleSave(index)}>
             {translatedMenuItems[5]} {/* Submit */}
@@ -397,7 +424,7 @@ function PriceDiscountCard(props) {
 
 };
 
-const mapStateToProps = ({ investor, auth ,supplies}) => ({
+const mapStateToProps = ({ investor, auth ,supplies,categoryList}) => ({
   materialDiscount: supplies.materialDiscount,
   fetchingMaterialDiscount: supplies.fetchingMaterialDiscount,
   currencies: auth.currencies,
@@ -406,6 +433,7 @@ const mapStateToProps = ({ investor, auth ,supplies}) => ({
   saleCurrencies:auth.saleCurrencies,
   investorCurrencies: auth.investorCurrencies,
   orgId: auth.userDetails.organizationId,
+  categoryListData: categoryList.categoryListData,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -413,6 +441,7 @@ const mapDispatchToProps = (dispatch) =>
     {
        getMaterialDiscount,
        createMaterialDiscount,
+       getCategory
        //createMaterialDiscountUpdate,
       // getInvestorCurrency,
    
