@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { Popconfirm, Switch } from "antd";
 import ViewEditCard from "../../../../Components/UI/Elements/ViewEditCard";
 import { Select } from "../../../../Components/UI/Elements";
-import Ecomimg from "../../../../Assets/Images/Ecomimg.jpg";
-import Cataloimg from "../../../../Assets/Images/Cataloimg.jpg";
-import Materialimg from "../../../../Assets/Images/Materialimg.jpg";
-import Trading from "../../../../Assets/Images/Trading.jpeg";
+import Ecomimg from "../../../../Assets/Images/Ecomimg.webp";
+import Cataloimg from "../../../../Assets/Images/Cataloimg.webp";
+import Materialimg from "../../../../Assets/Images/Materialimg.webp";
+import Trading from "../../../../Assets/Images/Trading.webp";
 import Timetrack from "../../../../Assets/Images/timetrack.jpg"
-import cbmcal from "../../../../Assets/Images/Cbmcal.jpg"
+import cbmcal from "../../../../Assets/Images/Cbmcal.webp"
 
 const { Option } = Select;
 

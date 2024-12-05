@@ -10,7 +10,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import Button from "antd/lib/button";
 import { addOnboard, generateOtpByEmail, validateOtp } from "./AuthAction";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
-   import FWLogo from "../../Assets/Images/logo_22 copy.png";
+   import FWLogo from "../../Assets/Images/logo_22.webp";
 
 
 
@@ -99,7 +99,7 @@ class OnBoardOrganizationPage extends Component {
             />
             <br />
      
-            <div class=" w-[25rem] p-4 w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white">
+            <div class=" w-[25rem] p-4  shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white">
               <Formik
                 enableReinitialize
                 initialValues={{

@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { Select } from "../../../../Components/UI/Elements";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import {getProductsByProductId} from "../../ProductAction";
-import img from "../../../../Assets/Images/Erp.jpg"
+import img from "../../../../Assets/Images/Erp.webp"
 import "../../Product.scss";
 const ProductDetailsCardViewId = lazy(() => import("./ProductDetailsCardViewId"));
 const { Option } = Select;

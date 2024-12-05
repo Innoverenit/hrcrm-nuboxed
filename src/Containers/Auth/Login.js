@@ -12,13 +12,11 @@ import CarouselItem from "./CarouselItem";
 import { login, generateOtpByEmail, validateOtp } from "./AuthAction";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import FWLogo3 from "../../Assets/Images/dashbrdimg.jpg";
-import FWLogo1 from "../../Assets/Images/Screenshot (251).png";
-import FWLogo from "../../Assets/Images/name.jpg";//ct
-import FWLogo2 from "../../Assets/Images/nuboxnew.jpg"; //nubox
-import DevelopTk from "../../Assets/Images/logo_22.png";// testhr
-import KAPSSN from "../../Assets/Images/KAPSSNLogo.jpg";// KPSSN
-import OneDi from "../../Assets/Images/1DiLogo.jpg";//1Di 
+import FWLogo from "../../Assets/Images/name.webp";//ct
+import FWLogo2 from "../../Assets/Images/nuboxnew.webp"; //nubox
+import DevelopTk from "../../Assets/Images/logo_22.webp";// testhr
+import KAPSSN from "../../Assets/Images/KAPSSNLogo.webp";// KPSSN
+import OneDi from "../../Assets/Images/1DiLogo.webp";//1Di 
 
 
 

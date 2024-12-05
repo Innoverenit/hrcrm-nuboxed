@@ -7,21 +7,24 @@ import { MainWrapper } from "../../../../Components/UI/Layout";
 import { Select } from "../../../../Components/UI/Elements";
 import {  Popconfirm, Switch } from "antd";
 import dayjs from "dayjs";
-import FWLogo from "../../../../Assets/Images/crm.jpg";
-import FWLogo1 from "../../../../Assets/Images/Im.jpg";
-import FWLogo2 from "../../../../Assets/Images/Hr.jpg";
-import FWLogo3 from "../../../../Assets/Images/Recruitpro.jpg";
+import FWLogo from "../../../../Assets/Images/crm.webp";
+import FWLogo1 from "../../../../Assets/Images/Im.webp";
+import FWLogo2 from "../../../../Assets/Images/Hr.webp";
+import FWLogo3 from "../../../../Assets/Images/Recruitpro.webp";
 import FWLogo4 from "../../../../Assets/Images/elearning.jpg";
 import FWLogo5 from "../../../../Assets/Images/payment.jpg";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import ModuleTrading from "./ModuleTrading";
 import {handleStripeModal} from "./ModuleAction";
-import StripePaymentModal from "./Stripe/StripePaymentModal";
 
+const StripePaymentModal = lazy(() =>
+  import("./Stripe/StripePaymentModal")
+);
 const SingleModuleList = lazy(() =>
   import("./SingleModuleList")
 );
-
+const ModuleTrading = lazy(() =>
+  import("./ModuleTrading")
+);
 
 const { Option } = Select;
 

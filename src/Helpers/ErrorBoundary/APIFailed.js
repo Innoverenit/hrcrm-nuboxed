@@ -1,8 +1,6 @@
 import React from "react";
 import { Modal, Button } from "antd";
-import error from "../../Assets/Images/i.png";
-
-import connectionLoss from "../../Assets/Images/connectionLost.png";
+import connectionLoss from "../../Assets/Images/connectionLost.webp";
 
 
 function APIFailed() {

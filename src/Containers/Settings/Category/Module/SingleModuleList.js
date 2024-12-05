@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { Popconfirm, Switch, Tooltip, } from "antd";
 import ViewEditCard from "../../../../Components/UI/Elements/ViewEditCard";
 import { Select } from "../../../../Components/UI/Elements";
-import FWLogo from "../../../../Assets/Images/Erp.jpg";
-import FWLogo1 from "../../../../Assets/Images/Production.jpg";
-import FWLogo2 from "../../../../Assets/Images/repair.jpg";
+import FWLogo from "../../../../Assets/Images/Erp.webp";
+import FWLogo1 from "../../../../Assets/Images/Production.webp";
+import FWLogo2 from "../../../../Assets/Images/repair.webp";
 import FWLogo3 from "../../../../Assets/Images/ordermanagement.jpg";
 import FWLogo4 from "../../../../Assets/Images/logistic.jpg";
-import FWLogo5 from "../../../../Assets/Images/proceurement.jpg";
+import FWLogo5 from "../../../../Assets/Images/proceurement.webp";
 
 const { Option } = Select;
 
