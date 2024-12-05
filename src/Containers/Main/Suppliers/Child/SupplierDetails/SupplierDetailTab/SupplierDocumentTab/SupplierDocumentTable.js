@@ -287,23 +287,23 @@ const SupplierDocumentTable = (props) => {
         <div class="rounded m-1 p-1 w-[100%]  ">
           <div className=" flex justify-between w-[100%]  p-1 sticky font-bold font-poppins !text-lm items-end z-10">
           
-        <div className=" text-[#00A2E8] truncate w-[10.8rem] text-sm max-md:w-[16.1rem]">
+        <div className=" text-[#00A2E8] truncate w-[10rem] text-sm max-md:w-[10rem]">
         <DateRangeIcon className='!text-icon  '  />  {translatedMenuItems[0]}</div>
         {/* Date */}
-                <div className=" w-[15.2rem] truncate max-md:w-[16.2rem]">
+                <div className=" w-[11.2rem] truncate max-md:w-[11.2rem]">
                 <ArticleIcon className='!text-icon mr-1 text-[#a379c9] '  />{translatedMenuItems[1]}</div>
                 {/* Name */}
-        <div className=" w-[15.4rem] truncate max-md:w-[13.13rem]">
+        <div className=" w-[12.4rem] truncate max-md:w-[12.13rem]">
         <DescriptionIcon className='!text-icon text-[#9ad5ca] '  /> {translatedMenuItems[2]}</div>
        
-        <div className=" w-[10.7rem] truncate max-md:w-[15.1rem]">
+        <div className=" w-[19.7rem] truncate max-md:w-[19.7rem]">
         <AccountCircleIcon className="!text-icon  text-[#f28482]"/> {translatedMenuItems[3]}</div>
      
-        <div className=" w-[14.2rem] truncate max-md:w-[12.2rem]">
+        <div className=" w-[16.2rem] truncate max-md:w-[16.2rem]">
         <  FileOpenIcon className='!text-icon text-[#7fb800] '  />  {translatedMenuItems[4]}</div>
           {/* fileName */}
         
-                     <div className=" w-[9.5rem] truncate max-md:w-[9.5rem]">
+                     <div className=" w-[7.5rem] truncate max-md:w-[7.5rem]">
                      <  GavelIcon className='!text-icon text-[red] '  />        {translatedMenuItems[5]}</div>
                      {/* Contract */}
         
@@ -321,7 +321,7 @@ const SupplierDocumentTable = (props) => {
                 className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:h-[9.1rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                
-                          <div className=" flex w-[9rem] maax-md:w-[9rem] h-8 border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
+                          <div className=" flex w-[11rem] maax-md:w-[11rem] h-8 border-l-2 border-green-500 bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between  ">
 <div className="flex  items-center"> 
 
     <div class="">
@@ -374,7 +374,7 @@ const SupplierDocumentTable = (props) => {
         ) : null} 
                               </div>
                           </div>
-                          <div className=" flex w-[12.4rem]  max-md:w-[12.4rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row  max-sm:justify-between">
+                          <div className=" flex w-[13.4rem]  max-md:w-[13.4rem] items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-sm:flex-row  max-sm:justify-between">
                           
                             <div class="text-xs  font-poppins">
          {isDescVisible === item.documentId ? (
@@ -399,7 +399,7 @@ const SupplierDocumentTable = (props) => {
                             </div>
                         </div>
                         </div>
-                        <div className="flex  w-[9.1rem] max-md:w-[9.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
+                        <div className="flex  w-[21.1rem] max-md:w-[21.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
 
 <div className="text-xs  font-poppins text-center">
 <div className="font-normal text-xs font-poppins">
@@ -415,7 +415,7 @@ const SupplierDocumentTable = (props) => {
                      </div>
 </div>
 </div>
-<div className=" flex w-[12.1rem]  max-md:w-[12.1rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
+<div className=" flex w-[17.1rem]  max-md:w-[17.1rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  max-sm:justify-between ">
                               <div class="flex text-xs truncate ml-gap items-center font-poppins text-center">
                               {item.fileName}
 
