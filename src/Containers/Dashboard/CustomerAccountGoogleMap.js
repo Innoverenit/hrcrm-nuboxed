@@ -1,9 +1,12 @@
 import React from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import useGoogleMapsLoader from '../../Components/CustomMap/useGoogleMapsLoader';
 import { GoogleMap,  Marker,InfoWindow } from '@react-google-maps/api';
 
 const CustomerGoogleMap = (props) => {
+  const apiKey = "AIzaSyAQdQZU6zRL9w32DH2_9al-kkXnK38fnJY";
+  const { isLoaded, error } = useGoogleMapsLoader(apiKey, 'places');
  
   const data = {
     address: [
@@ -21,6 +24,10 @@ const CustomerGoogleMap = (props) => {
   };
 
   return (
+    <>
+          {!isLoaded ? (
+      <div>Loading Google Maps...</div>
+     ) : (
    
       <GoogleMap
         mapContainerStyle={{ height: '17.5rem', overflow: "hidden", marginTop: "0.2rem", width: '44rem' }}
@@ -40,6 +47,9 @@ const CustomerGoogleMap = (props) => {
           </InfoWindow>
         )}
       </GoogleMap>
+       )}
+
+      </>
   
   );
 };
