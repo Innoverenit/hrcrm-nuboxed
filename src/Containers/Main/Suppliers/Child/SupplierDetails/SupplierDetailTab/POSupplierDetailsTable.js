@@ -150,52 +150,52 @@ function PoSupplierDetailsTable(props) {
             {props.fetchingPoDetailsList ? <BundleLoader /> : <div className=' flex justify-end sticky z-auto'>
                 <div class="rounded m-1 p-1   w-[100%] h-77vh  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className=" flex justify-between  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky z-10">
-                        <div className="text-[#00A2E8] text-base w-[9.1rem] md:w-[9.1rem]">
-                        <ContactsIcon className=" !text-icon"/> {translatedMenuItems[0]} 
+                        <div className="text-[#00A2E8] text-base w-[10rem] md:w-[9.5rem]">
+                        <ContactsIcon className=" !text-icon text-sm"/> {translatedMenuItems[0]} 
                         {/* Name" */}
                            
                             </div>
 
-                            <div className=" w-[9.1rem]">
-                       <QrCodeIcon className=" !text-icon"/> Supplies Id
+                            <div className=" w-[10.1rem] truncate">
+                       <QrCodeIcon className=" text-[#003049] !text-icon"/> Supplies Id
                         {/* Name" */}
                            
                             </div>
 
-                            <div className=" w-[8.1rem]">
-                            <PinIcon className=" !text-icon"/>HSN
+                            <div className=" w-[9.5rem] ">
+                            <PinIcon className="text-[#bc4749] !text-icon"/>HSN
                         {/* Name" */}
                            
                             </div>
                           
-                        <div className="w-[8.1rem]">
-                        <WidgetsIcon className=" !text-icon"/> {translatedMenuItems[1]} 
+                        <div className="w-[8.5rem] truncate">
+                        <WidgetsIcon className="text-[#ffd60a] !text-icon"/> {translatedMenuItems[1]} 
                         {/* Category */}
                         </div>
 
-                        <div className="w-[7.12rem] ">
-                        <ModelTrainingIcon className=" !text-icon"/> {translatedMenuItems[2]} 
+                        <div className="w-[7.9rem] truncate">
+                        <ModelTrainingIcon className=" text-[#386641] !text-icon"/> {translatedMenuItems[2]} 
                          {/* Attribute */}
                         </div>
-                        <div className="w-[13.13rem] ">
-                        <QrCodeIcon className=" !text-icon"/> {translatedMenuItems[3]}  
+                        <div className="w-[6.13rem]  truncate">
+                        <QrCodeIcon className=" text-[#000814] !text-icon"/> {translatedMenuItems[3]}  
                         {/* Unit */}
                         </div>
-                        <div className="w-[9.14rem]">
-                        <QrCodeIcon className=" !text-icon"/> {translatedMenuItems[4]}  
+                        <div className="w-[9.14rem] truncate">
+                        <QrCodeIcon className="text-[#000814] !text-icon"/> {translatedMenuItems[4]}  
                         {/* Price/Unit */}
                         </div>
-                        <div className="w-[6.14rem] ">
+                        <div className="w-[6.14rem] truncate">
                         {/* {translatedMenuItems[4]}   */}
-                        <BatchPredictionIcon className=" !text-icon"/>  Batch No
+                        <BatchPredictionIcon className="text-[#bc6c25] !text-icon"/>  Batch No
                         </div>
-                        <div className="w-[7.14rem] ">
+                        <div className="w-[5.4rem] truncate">
                         {/* {translatedMenuItems[4]}   */}
-                        <EventBusyIcon className=" !text-icon"/> Best Before
+                        <EventBusyIcon className=" text-[#8338ec] !text-icon"/> Best Before
                         </div>
-                        <div className="w-[5.14rem]">
+                        <div className="w-[5.14rem] truncate">
                         {/* {translatedMenuItems[4]}   */}
-                        <PublicIcon className=" !text-icon"/>Origin
+                        <PublicIcon className="text-[#386641] !text-icon"/>Origin
                         </div>
                       
 
@@ -266,7 +266,7 @@ function PoSupplierDetailsTable(props) {
 
                                                 </div>
                                             </div>
-                                            <div className=" flex  w-[4.21rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
+                                            {/* <div className=" flex  w-[4.21rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
                                                 <div class="flex items-center text-xs font-poppins">
                                                     <span>
                                                      
@@ -289,7 +289,7 @@ function PoSupplierDetailsTable(props) {
                                                     </span>
 
                                                 </div>
-                                            </div>
+                                            </div> */}
 
                                             <div className=" flex  w-[8.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
                                                 <div class="flex items-center text-xs font-poppins">
@@ -329,86 +329,100 @@ function PoSupplierDetailsTable(props) {
 
                                                 </div>
                                             </div>
-                                            <div>
+                                            <div className=" flex  w-[6.12rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
+                                                <div class="flex items-center text-xs font-poppins">
+                                                <div className="h-7 w-[6rem] flex  items-center  text-xs  font-poppins">
+                                                    {editingRowId === item.poSupplierSuppliesId ? (
+                                            <input
+                                            type="text"
+                                            className=""
+                                            value={batchInput}
+                                            onChange={(e) => setbatchInput(e.target.value)}
+                                            onKeyDown={(e) => e.key === "Enter" && handleUpdateBatchNo(item.poSupplierSuppliesId)}
+                                            onBlur={() => handleUpdateBatchNo(item.poSupplierSuppliesId)}
+                                            autoFocus // Focus the input automatically when editing
+                                            />
+                                        ) : (
+                                            <div onClick={() => {
+                                                setEditingRowId(item.poSupplierSuppliesId); // Enable editing mode
+                                                setbatchInput(item.batchNo); // Set the initial value from the batchNo of the item
+                                            }} className="cursor-pointer  text-xs  font-poppins">
+                                                {item.batchNo || "Enter Batch No"}
+                                                
+                                                </div> // Click to enter edit mode
+                                        )}
 
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                            
+                                            <div className=" flex  w-[8.278rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
+                                                <div class="flex items-center text-xs  w-[5rem]  font-poppins">
+                                                <div>
+                                    
+                                        {isCountryDropdownVisible === item.poSupplierSuppliesId ? (
+                                        <Select
+                                        style={{ width: "8rem" }}
+                                        value={selectedCountry}
+                                        onChange={(value) => {
+                                            setSelectedCountry(value); // Update the local state with the selected country
+                                            handleCountryChange(item.poSupplierSuppliesId,value); // Send the payload when the country is selected
+                                        }}
+                                        onBlur={() => setIsCountryDropdownVisible(false)} // Optionally hide dropdown on blur
+                                        >
+                                        {props.countries.map((country) => (
+                                            <Option key={country.country_id} value={country.country_id}>
+                                            {country.country_name}
+                                            </Option>
+                                        ))}
+                                        </Select>
+                                    ):(
+                                        <div 
+                                        // onClick={() => setIsCountryDropdownVisible(item.poSupplierSuppliesId)}
+                                        onClick={() => {
+                                            setIsCountryDropdownVisible(item.poSupplierSuppliesId); // Enable editing mode
+                                            setSelectedCountry(item.countryName); // Set the initial value from the batchNo of the item
+                                        }}  
+                                        className="cursor-pointer text-xs  font-poppins"
+                                    >
+                                        {item.countryName || "Select"}
 
-        {editingRowId === item.poSupplierSuppliesId ? (
-        <input
-          type="text"
-          className="h-7 w-[4rem] text-xl"
-          value={batchInput}
-          onChange={(e) => setbatchInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && handleUpdateBatchNo(item.poSupplierSuppliesId)}
-          onBlur={() => handleUpdateBatchNo(item.poSupplierSuppliesId)}
-          autoFocus // Focus the input automatically when editing
-        />
-      ) : (
-        <div onClick={() => {
-            setEditingRowId(item.poSupplierSuppliesId); // Enable editing mode
-            setbatchInput(item.batchNo); // Set the initial value from the batchNo of the item
-          }} className="cursor-pointer text-xl font-[Poppins]">
-            {item.batchNo || "Enter Batch No"}
-            
-            </div> // Click to enter edit mode
-      )}
-          </div>
+                                    </div>  
+                                                            )}
+                                    </div >
 
-          <div>
-  {/* Dropdown trigger */}
-  
+                                                </div>
+                                            </div>
 
-  {/* Dropdown options */}
-  {/* {isCountryDropdownVisible ? ( */}
-     {isCountryDropdownVisible === item.poSupplierSuppliesId ? (
-    <Select
-      style={{ width: "8rem" }}
-      value={selectedCountry}
-      onChange={(value) => {
-        setSelectedCountry(value); // Update the local state with the selected country
-        handleCountryChange(item.poSupplierSuppliesId,value); // Send the payload when the country is selected
-      }}
-      onBlur={() => setIsCountryDropdownVisible(false)} // Optionally hide dropdown on blur
-    >
-      {props.countries.map((country) => (
-        <Option key={country.country_id} value={country.country_id}>
-          {country.country_name}
-        </Option>
-      ))}
-    </Select>
-  ):(
-    <div 
-    // onClick={() => setIsCountryDropdownVisible(item.poSupplierSuppliesId)}
-    onClick={() => {
-        setIsCountryDropdownVisible(item.poSupplierSuppliesId); // Enable editing mode
-        setSelectedCountry(item.countryName); // Set the initial value from the batchNo of the item
-      }}  
-    className="cursor-pointer"
-  >
-    {item.countryName || "Select"}
+                                            <div className=" flex  w-[4.278rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
+                                                <div class="flex items-center text-xs font-poppins">
+                                                    <span class="flex items-center text-xs w-[4.278rem] font-poppins">
+                                                    {isEditingDate === item.poSupplierSuppliesId ? (
+                                        <DatePicker
+                                            className="h-7 text-xs font-poppins"
+                                            value={selectedDate ? dayjs(selectedDate) : null} // Convert `selectedDate` to dayjs format
+                                            onChange={(date, dateString) => handleDateChange(item.poSupplierSuppliesId, dateString)} // Correctly handle date selection
+                                            autoFocus // Focus the picker when editing
+                                        />
+                                    ) : (
+                                        <div 
+                                            // onClick={() => setIsEditingDate(true)} 
+                                            onClick={() => {
+                                                setIsEditingDate(item.poSupplierSuppliesId); // Enable editing mode
+                                                setSelectedDate(item.bestBefore); // Set the initial value from the batchNo of the item
+                                            }} 
+                                            className="cursor-pointer text-xs  font-poppins"
+                                        >
+                                            {date || "Select Date"} {/* Show selected date or prompt */}
+                                        </div>
+                                    )}
+                                                    </span>
 
-  </div>  
-                        )}
-</div>
+                                                </div>
+                                            </div>      
 
-{isEditingDate === item.poSupplierSuppliesId ? (
-    <DatePicker
-        className="h-7"
-        value={selectedDate ? dayjs(selectedDate) : null} // Convert `selectedDate` to dayjs format
-        onChange={(date, dateString) => handleDateChange(item.poSupplierSuppliesId, dateString)} // Correctly handle date selection
-        autoFocus // Focus the picker when editing
-    />
-) : (
-    <div 
-        // onClick={() => setIsEditingDate(true)} 
-        onClick={() => {
-            setIsEditingDate(item.poSupplierSuppliesId); // Enable editing mode
-            setSelectedDate(item.bestBefore); // Set the initial value from the batchNo of the item
-          }} 
-        className="cursor-pointer text-xl font-[Poppins]"
-    >
-        {date || "Select Date"} {/* Show selected date or prompt */}
-    </div>
-)}
+                                    
 
 
 

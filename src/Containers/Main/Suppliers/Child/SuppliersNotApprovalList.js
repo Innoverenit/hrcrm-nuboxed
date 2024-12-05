@@ -113,7 +113,7 @@ const [editingValue, setEditingValue] = useState("");
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex max-sm:hidden justify-between w-[97%]  p-1 bg-transparent font-bold font-poppins !text-lm text-xs sticky max-lg:text-[0.45rem] max-xl:w-[14.9rem]  max-xl:text-[0.65rem] max-lg:text-text-xs    items-end z-10">
-          <div className=" w-[9.91rem] truncate text-[#00A2E8]  "> 
+          <div className=" w-[9.91rem] truncate text-[#00A2E8] text-sm "> 
                {/* Supplier ID */}
                <CategoryIcon className="!text-icon"/> {props.translatedMenuItems[40]} ID
                </div>
@@ -124,7 +124,7 @@ const [editingValue, setEditingValue] = useState("");
             <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>     {props.translatedMenuItems[1]}
             </div>
             <div className=" w-[17.4rem] max-md:w-[17.4rem]  truncate  "> 
-            <MailOutlineIcon className="!text-icon  text-[#4f5d75]"/>  {props.translatedMenuItems[2]}</div>
+            <MailOutlineIcon className="!text-icon  text-[#ff9f1c]"/>  {props.translatedMenuItems[2]}</div>
             <div className=" w-[16.3rem] max-md:w-[16.3rem]  truncate  "> 
                {/* url */}
                <LinkIcon  className="!text-icon  text-[#4f5d75]"/>    {props.translatedMenuItems[41]}
@@ -156,7 +156,7 @@ const [editingValue, setEditingValue] = useState("");
                           className="flex  rounded justify-between bg-white   items-center py-1  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:flex-col  max-sm:h-[6rem]  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                           <div class=" flex flex-row justify-between  w-wk max-sm:flex-col">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className="border-l-2 border-green-500 bg-[#eef2f9] h-8 flex items-center w-[9.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
+                            <div className="border-l-2 border-green-500 bg-[#eef2f9] h-8 flex items-center w-[9.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-md:w-[10.1rem] max-lg:w-[8.06rem]">
                             <div class=" text-xs ml-gap  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {item.newSuppNo}
                             </div>
@@ -190,7 +190,7 @@ const [editingValue, setEditingValue] = useState("");
 )}                 
                       </div>
                                 {date === currentdate ? (
-                                  <div class="text-[0.65rem]  text-[tomato] font-bold"
+                                  <div class="text-[0.65rem]  text-[#ff6347] font-bold"
                                   >
                                     {/* New */} {props.translatedMenuItems[23]}
                                   </div>

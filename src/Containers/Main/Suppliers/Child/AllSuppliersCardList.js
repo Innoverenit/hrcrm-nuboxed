@@ -383,7 +383,7 @@ className="cursor-pointer text-xs font-poppins">
               title={`${props.translatedMenuItems[22]} ?`}
              onConfirm={() => props.deleteSupplierData(item.supplierId)}
             >
-            <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+            <DeleteOutlineIcon ClassName="!text-icon text-[#ff6347] cursor-pointer"  />
             </Popconfirm>
             </div>
             </div> 
