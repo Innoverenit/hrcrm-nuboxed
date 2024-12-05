@@ -266,7 +266,7 @@ return  <BundleLoader />
                           </Tooltip>                                        
 
                         <Tooltip title="Summary">
-                      <span className="ml-[-4px]"                   
+                      <span className=" -ml-1"                   
                           type="area-chart"
                           // tooltipTitle="Summary"
                           onClick={() => {
@@ -275,45 +275,46 @@ return  <BundleLoader />
                           size="0.875em"                         
                           >
                        
-                          <PieChartIcon className="!text-icon" />
+                          <PieChartIcon className="!text-icon text-[#42858c]" />
                           </span>
                         </Tooltip>
 
                         <Tooltip title="Close">
                          <span
-                     
-                      style={{marginLeft:"4px"}}
+                         className=" ml-1 "
+                  
                           type="area-chart"
                           // tooltipTitle="Summary"
                           onClick={() => {
                             this.handleClosedPopoverVisibleChange();
                           }}
-                          size="0.8em"                         
+                                           
                           >
-                             <LockIcon className="!text-icon" />
+                             <LockIcon className="!text-icon text-[#e4eb2f] " />
                             
                           
                           </span>
                       
                         </Tooltip>
 
-                        <Tooltip title="Close">
+                        <Tooltip title="Delete">
                          <span
-                     
-                      style={{marginLeft:"4px"}}
+                      className=" ml-1 !text-icon text-[#c42847]"
+                      
                           type="area-chart"
                           // tooltipTitle="Summary"
                           // onClick={() => {
                           //   this.handleClosedPopoverVisibleChange();
                           // }}
-                          size="0.8em"                         
+                                          
                           >
-                            <DeleteIcon  style={{fontSize:"1.1rem"}}
+                            <DeleteIcon
+                      className=" ml-1 !text-icon "
                             onClick={() => {
                             this.handledeletedPopoverVisibleChange();
                           }}
                             />
-                            
+                                                    
                           
                           </span>
                       

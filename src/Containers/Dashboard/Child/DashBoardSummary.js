@@ -128,10 +128,13 @@ const DashBoardSummary=(props) =>{
         const difference = currentDate.diff(endDate, 'days');
         return (
           <div key={index} className="mb-2  p-1 ml-2 box-content h-16 min-h-[5.25rem]  border-2 border-[#00008b23] w-[11rem] min-w-[11rem]">
-            <div className="flex justify-between">
+            <div className="flex justify-between flex-col">
               <div>
                 <div className="font-semibold font-poppins truncate text-xs ">{deal.taskName}</div>
-                <div className="text-xs text-gray-500 font-poppins">
+               
+              </div>
+              <div className=" flex flex-row justify-between w-full  items-center  content-end">
+              <div className=" text-gray-500 font-poppins flex justify-start ">
                   <ButtonGroup>
                     <StatusIcon
                       class="!text-icon"
@@ -176,12 +179,7 @@ const DashBoardSummary=(props) =>{
                     />
                   </ButtonGroup>
                 </div>
-              </div>
-              <div>
-              <div className="text-red-600 font-bold inline-block px-2 py-1 rounded max-h-max">
-               
-              </div>
-              <div className="text-red-600 text-xs font-bold bg-red-100 inline-block px-2 py-1 rounded max-h-max">
+              <div className="text-red-600 text-xs font-bold bg-red-100  px-2 py-1 rounded max-h-max flex justify-end items-center mr-2">
                 {`${dayjs(deal.endDate).format("DD/MM/YYYY")}`}
               </div>
               </div>
@@ -268,7 +266,7 @@ const DashBoardSummary=(props) =>{
             <div className=" text-xs text-gray-500 font-poppins"> <LocationOnIcon className='!text-base  text-[#2C7775]'
               />{colleague.locationName}</div>
               </div>
-              <div className=" flex items-center justify-end w-wk"><Button type="primary">{translatedMenuItems[5]} PO</Button></div>
+              <div className=" flex items-center justify-end w-wk flex-wrap content-end"><Button type="primary">{translatedMenuItems[5]} PO</Button></div>
           
           </div>
         ))}

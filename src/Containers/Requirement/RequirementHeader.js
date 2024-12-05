@@ -1,5 +1,6 @@
 import React, { Component,lazy } from "react";
 import { ActionHeader } from "../../Components/Utils";
+import CandidateActionRight from "../Candidate/Child/CandidateActionRight";
 const RequirementActionLeft =lazy(()=>import("./RequirementActionLeft"));
 
 class RequirementHeader extends Component {
@@ -22,13 +23,14 @@ class RequirementHeader extends Component {
               // setCurrentSkillData={this.props.setCurrentSkillData}
             />
           }
-        //   rightComponent={
-        //     <CandidateActionRight 
-        //     handleCandidateModal={handleCandidateModal}
-        //     handleCandidateResumeModal={handleCandidateResumeModal}
+          rightComponent={
+            <CandidateActionRight
+            viewType={viewType}
+            // handleCandidateModal={handleCandidateModal}
+            // handleCandidateResumeModal={handleCandidateResumeModal}
             
-        //     />
-        //   }
+            />
+          }
         />
       </div>
     );

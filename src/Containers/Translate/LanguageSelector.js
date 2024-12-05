@@ -186,6 +186,7 @@ function LanguageSelector({ onLanguageChange,supportedLanguages,selectedLanguage
         <option value="Turkish">Türkçe</option>
         <option value="Bangla">বাংলা</option>
         <option value="Bangla"> গুরুমুখী</option>
+        <option value="Odia">ଓଡିଆ</option>
        
         
       </select>
