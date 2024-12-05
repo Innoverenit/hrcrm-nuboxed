@@ -15,7 +15,7 @@ import {
   deleteShipperData,
 } from "./ShipperAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import UpdateShipperModal from "./UpdateShipperModal";
+
 import AddShipperOrderModal from "./AddShipperOrderModal";
 import CategoryIcon from '@mui/icons-material/Category'
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
@@ -180,20 +180,7 @@ function ShipperSearchedData(props) {
                           </div>
                           </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                          <div  class='flex items-center justify-center w-[10rem] h-8 ml-gap  bg-[#eef2f9]'>
-                            <Tooltip title="Edit">
-                              <BorderColorIcon
-                                className=" !text-icon cursor-pointer text-[tomato]"
-
-                                onClick={() => {
-                                  props.setEditShipper(item);
-                                  handleRowData(item);
-                                  handleUpdateShipperModal(true);
-                                  handleSetCurrentShipperId(item.shipperId);
-                                }}
-                              />
-                            </Tooltip>
-                          </div>
+                        
                           <div class='flex items-center justify-center w-[8rem] h-8   bg-[#eef2f9]'>
                             <Popconfirm
                               title="Do you want to delete?"
@@ -211,15 +198,7 @@ function ShipperSearchedData(props) {
             </> 
         </div >
       </div>
-     
-      <UpdateShipperModal
-        rowdata={rowdata}
-        shipperId={currentShipperId}
-        updateShipperModal={updateShipperModal}
-        handleSetCurrentShipperId={handleSetCurrentShipperId}
-        handleUpdateShipperModal={handleUpdateShipperModal}
-        translatedMenuItems={props.translatedMenuItems}
-      />
+    
       <AddShipperOrderModal
         addShipperOrderModal={props.addShipperOrderModal}
         handleShipperOrderModal={props.handleShipperOrderModal}

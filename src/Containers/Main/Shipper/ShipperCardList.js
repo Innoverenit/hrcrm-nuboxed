@@ -29,7 +29,6 @@ import ApiIcon from '@mui/icons-material/Api';
 import { base_url2 } from "../../../Config/Auth";
 import axios from "axios";
 
-const UpdateShipperModal =lazy(()=>import("./UpdateShipperModal"));
 const AddShipperOrderModal =lazy(()=>import("./AddShipperOrderModal"));
 const EmptyPage =lazy(()=>import("../EmptyPage"));
 const ShipperSearchedData =lazy(()=>import("./ShipperSearchedData"));
@@ -546,20 +545,6 @@ className="cursor-pointer text-xs font-poppins">
         />      
        </div>
 
-                                   {/* <div className=" flex items-center justify-center h-8  bg-[#eef2f9]">          
-                            <Tooltip title={props.translatedMenuItems[9]}>
-                              <BorderColorIcon
-                                className=" !text-icon cursor-pointer text-[tomato] max-sm:!text-2xl"
-
-                                onClick={() => {
-                                  props.setEditShipper(item);
-                                  handleRowData(item);
-                                  handleUpdateShipperModal(true);
-                                  handleSetCurrentShipperId(item.shipperId);
-                                }}
-                              />
-                            </Tooltip>
-                  </div> */}
                   <div className=" flex items-center justify-center h-8  bg-[#eef2f9]">
                             <Popconfirm
                               title={`${props.translatedMenuItems[10]}?`}
@@ -587,14 +572,7 @@ className="cursor-pointer text-xs font-poppins">
       </div>
       )}
       <Suspense>
-      <UpdateShipperModal
-        rowdata={rowdata}
-        shipperId={currentShipperId}
-        updateShipperModal={updateShipperModal}
-        handleSetCurrentShipperId={handleSetCurrentShipperId}
-        handleUpdateShipperModal={handleUpdateShipperModal}
-        translatedMenuItems={props.translatedMenuItems}
-      />
+    
       <AddShipperOrderModal
         addShipperOrderModal={props.addShipperOrderModal}
         handleShipperOrderModal={props.handleShipperOrderModal}
