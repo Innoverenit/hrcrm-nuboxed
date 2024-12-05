@@ -3,11 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Menu, Icon, Popover, Badge } from "antd";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
-
-import { translateText, getSupportedLanguages } from '../Translate/TranslateService';
-import TimeToLeaveIcon from '@mui/icons-material/TimeToLeave';
-import HandshakeIcon from '@mui/icons-material/Handshake';
-import CellTowerIcon from '@mui/icons-material/CellTower';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
@@ -1341,9 +1336,9 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355' }}>
       </ul>
       <div className="mobile-menu" onClick={handleClick}>
         {click ? (
-          <CloseIcon className="menu-icon" />
+          <CloseIcon className="w-8 h-8" />
         ) : (
-          <MenuOpenIcon className="menu-icon  !text-orange-600" />
+          <MenuOpenIcon className="w-8 h-8  !text-orange-600" />
         )}
       </div>
     </div>

@@ -273,7 +273,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
                           
                     
                         </div>
-             <div class="flex max-sm:justify-between max-sm:w-wk ml-gap  items-center justify-center h-8 bg-[#eef2f9] ">
+             <div class="flex max-sm:justify-between max-sm:w-wk  items-center justify-center h-8 bg-[#eef2f9] ">
               <div class="flex flex-row  max-sm:flex-row max-sm:w-auto">
                     <div>
                     <Tooltip title={props.translatedMenuItems[14]}>
@@ -282,7 +282,7 @@ const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
                   handleCallNotesDrawerModal(true);
                   handleSetCallNameId(item);
                 }}
-                className="!text-icon cursor-pointer text-[green]"
+                className="!text-icon cursor-pointer text-[green] flex"
               />
            </Tooltip>
                     </div>

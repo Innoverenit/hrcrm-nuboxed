@@ -7,17 +7,14 @@ import {
 } from "../../ProductAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
-import { MultiAvatar} from "../../../../Components/UI/Elements";
 import { Button, Input,Popconfirm } from "antd";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { base_url, base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
 import EditUpload from "../../../../Components/Forms/Edit/EditUpload";
 import ProductCategoryPUnblishToggle from "./ProductCategoryPUnblishToggle";
 import Tooltip from '@mui/material/Tooltip';
 import styled from "styled-components";
-import "../../Product.scss";
 import dayjs from "dayjs"; 
 import Carousel from "react-elastic-carousel";
 import ProductAddQualityCheckModal from "./ProductAddQualityCheckModal";

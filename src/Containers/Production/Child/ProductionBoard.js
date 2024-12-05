@@ -208,8 +208,7 @@ function ProductionBoard(props) {
                                       isDraggingOver={snapshot.isDraggingOver}
                                       {...provided.droppableProps}
                                       droppableProps={{ hello: "world" }}
-                                      className="scrollbar"
-                                      id="style-3"
+                                      style={{scrollbarWidth:"thin", backgroundColor:"f5f5f5" }}
                                     >
                                       {/* {props.productionByLocsId
                                         .filter(

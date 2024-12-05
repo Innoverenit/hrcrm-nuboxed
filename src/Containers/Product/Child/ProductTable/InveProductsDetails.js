@@ -6,7 +6,6 @@ import { Select } from "../../../../Components/UI/Elements";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import {getProductsByProductId} from "../../ProductAction";
 import img from "../../../../Assets/Images/Erp.webp"
-import "../../Product.scss";
 const ProductDetailsCardViewId = lazy(() => import("./ProductDetailsCardViewId"));
 const { Option } = Select;
 
@@ -73,7 +72,7 @@ const breakPoints = [
     </div>
     {/* <div dangerouslySetInnerHTML={{ __html: `<p>${props.productsByproductId.description}</p>` }} /> */}
     
-    <div className="cardDs-bottom">
+    <div className="p-4">
     <Suspense fallback={<BundleLoader />}>
       <ProductDetailsCardViewId 
       productsByproductId={props.productsByproductId}

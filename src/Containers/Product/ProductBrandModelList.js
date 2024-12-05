@@ -8,7 +8,6 @@ import {
     addBrandModel,
 } from "../Settings/Category/Brand&Model/BrandModelAction";
 import dayjs from "dayjs"; 
-import "./Product.scss";
 import styled from "styled-components";
 import Carousel from "react-elastic-carousel";
 

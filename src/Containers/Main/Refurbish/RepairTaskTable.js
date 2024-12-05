@@ -7,17 +7,11 @@ import QCPhoneTaskToggle from './QCPhoneTaskToggle'
 import { Button, Popconfirm,Tooltip } from "antd";
 import dayjs from "dayjs";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
-import DeleteIcon from '@mui/icons-material/Delete';
-import Clock from 'react-clock';
-import 'react-clock/dist/Clock.css';
-import AddBoxIcon from '@mui/icons-material/AddBox';
 import QcTaskNwToggle from './QcTaskNwToggle'
-import ProcessSpareDrawer from './ProcessSpareDrawer'
-import ProcessSpareTable from './ProcessSpareTable'
 import RepairSpareListTable from './RepairSpareListTable'
 import { BundleLoader } from '../../../Components/Placeholder'
 import AddSpareInRepair from './AddSpareInRepair'
-
+import DeleteIcon from '@mui/icons-material/Delete';
 const RepairTaskTable = (props) => {
     const [newData, setnewData] = useState("");
     const [open,setOpen]=useState(false);
@@ -81,13 +75,7 @@ const RepairTaskTable = (props) => {
                                 />
                                 <span>
                                     {dayjs(item.creationDate).format("DD-MM-YY")}
-                                </span>
-                                {/* <span>
-                                    <Clock
-                                         style={{ width: "5rem", height: "5rem" }}
-                                        value={dayjs(item.creationDate).format("HH:mm")} />
-
-                                </span> */}
+                                </span>                          
                                 <span className="digital-clock">
     {dayjs(item.creationDate).format("HH:mm")}
 </span>

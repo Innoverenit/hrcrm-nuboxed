@@ -10,7 +10,6 @@ import { Select } from "../../../../Components/UI/Elements";
 import MaterialFastMovingToggle from "../MaterialById/MaterialFastMovingToggle"
 import MaterialsDetailsCardViewId from "./MaterialsDetailsCardViewId";
 import {getMaterialsBySuppliesId,UpdateMaterialIamge} from "../SuppliesAction";
-import "../Supplies.scss";
 import MaterialRecommendToggle from "../MaterialRecommendToggle";
 import MaterialFifoToggle from "../MaterialFifoToggle";
 import MaterialFeatureToggle from "../MaterialFeatureToggle";
@@ -196,7 +195,7 @@ console.log(props.UOMListData)
       )}
     {/* <div dangerouslySetInnerHTML={{ __html: `<p>${props.materialsBySuppliesId.description}</p>` }} /> */}
     
-    <div className="cardDs-bottom">
+    <div className="p-4">
       <MaterialsDetailsCardViewId 
       UpdateMaterialIamge={props.UpdateMaterialIamge}
    materialsBySuppliesId={props.materialsBySuppliesId}

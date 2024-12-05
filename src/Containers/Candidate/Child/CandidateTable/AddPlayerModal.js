@@ -1,13 +1,8 @@
 import React, { Component } from "react";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-
 import { base_url } from "../../../../Config/Auth";
 import { Player } from "video-react";
-
 import "video-react/dist/video-react.css";
-
-// const YoutubePlayerForm = lazy(() => import("./YoutubePlayerForm"));
-
 class AddPlayerModal extends Component {
     state = { visible: false };
 

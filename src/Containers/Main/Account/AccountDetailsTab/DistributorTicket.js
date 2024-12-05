@@ -252,10 +252,8 @@ let type="Quotation"
                                       ref={provided.innerRef}
                                       isDraggingOver={snapshot.isDraggingOver}
                                       {...provided.droppableProps}
-                                      droppableProps={{ hello: "world" }}
-                                      className="scrollbar"
-                                      id="style-3"
-                                      style={{scrollbarWidth:"thin"}}
+                                      droppableProps={{ hello: "world" }}                                
+                                      style={{scrollbarWidth:"thin", backgroundColor:"f5f5f5" }}
                                     >
                                       {props.ticketList
                                         .filter(

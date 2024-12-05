@@ -210,28 +210,28 @@ const handleSave = (item) => {
  
       <div className=' flex  sticky  z-auto'>
         <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-          <div className=" flex max-sm:hidden  w-[99%]  justify-between p-1 bg-transparent font-poppins font-bold !text-lm sticky items-end z-10">
+          <div className=" flex max-sm:hidden  w-[99%]  justify-between p-1 bg-transparent font-poppins font-bold !text-lm sticky  max-xl:text-[0.65rem] max-lg:text-[0.45rem] items-end z-10">
             <div class="w-[5rem]"></div>
-            <div className="text-[#00A2E8]  w-[24.9rem] truncate max-md:w-[23.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
+            <div className="text-[#00A2E8] text-sm w-[24.9rem] truncate max-md:w-[23.9rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
              {/* Name */}
              <ContactsIcon className="!text-icon mr-1 "/>  {translatedMenuItems[0]}
             </div>
-            <div className=" w-[24.5rem] truncate max-md:w-[20.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
+            <div className=" w-[24.5rem] truncate max-md:w-[20.5rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
           {/* Brand Id */}
           <BrandingWatermarkIcon className="!text-icon" />   {`${translatedMenuItems[1]} ID`}
             </div>
-            <div className=" w-[7.63rem] truncate max-md:w-[5.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">    
+            <div className=" w-[7.63rem] truncate max-md:w-[5.63rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">    
             <LiveTvIcon className="!text-icon" />  {translatedMenuItems[2]}
             {/* Live */}
             </div>
-            <div className=" w-[8.12rem] truncate max-md:w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">      
+            <div className=" w-[8.12rem] truncate max-md:w-[6.12rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">      
              {/* Inactive */}
              <ToggleOffIcon className="!text-icon" />   {translatedMenuItems[3]}
             </div>
-            <div className="w-[8.2rem] truncate max-md:w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
+            <div className="w-[8.2rem] truncate max-md:w-[3.8rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
               
    {/* Delete */}
-  < DeleteOutlineIcon
+  < DeleteOutlineIcon className="!text-icon"
    />{translatedMenuItems[10]}
             </div>
                
@@ -245,7 +245,7 @@ const handleSave = (item) => {
               return (
                 <div>
                   <div
-                className="flex rounded justify-between  bg-white mt-1  items-center py-ygap max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1  items-center py-ygap max-sm:h-[9rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">          
                         <div className="flex w-[5rem] items-center max-sm:w-auto  border-l-2 border-green-500 bg-[#eef2f9]">
@@ -285,7 +285,7 @@ const handleSave = (item) => {
                           <div class="max-sm:w-full md:flex items-center">
                             <Tooltip>
                               <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                              <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class=" text-xs  max-sm:text-sm font-poppins">
                         {editsuppliesId === item.brand ? (
                             <Input
                             style={{ width: "3rem" }}
@@ -325,7 +325,7 @@ const handleSave = (item) => {
                       <div className=" flex max-sm:w-auto   h-8 ml-gap bg-[#eef2f9] justify-center   items-center  w-[8.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-                        <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        <div class=" text-xs  font-poppins max-sm:text-sm">
                           {item.liveCount}
                         </div>
 
@@ -333,7 +333,7 @@ const handleSave = (item) => {
                       <div className=" flex max-sm:w-auto   h-8 ml-gap bg-[#eef2f9] justify-center   items-center w-[8.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-<div class=" text-xs ml-gap font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+<div class=" text-xs ml-gap font-poppins max-sm:text-sm">
   {item.inactiveCount}
 </div>
 
@@ -341,7 +341,7 @@ const handleSave = (item) => {
 <div className=" flex max-sm:w-auto   h-8 ml-gap bg-[#eef2f9] justify-center   items-center  w-[8.01rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-<div class=" text-xs ml-gap  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+<div class=" text-xs ml-gap  font-poppins max-sm:text-sm">
   {item.deleteCount}
 </div>
 
@@ -380,7 +380,7 @@ const handleSave = (item) => {
                     <div className=" flex max-sm:w-auto  h-8 ml-gap bg-[#eef2f9] justify-center   items-center w-[1.215rem] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-<div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+<div class=" text-xs  font-poppins max-sm:text-sm">
 <StyledPopconfirm
 title=  {translatedMenuItems[9]}
 onConfirm={() => props.deleteSuppliesBrandData({active:false},item.brand)}

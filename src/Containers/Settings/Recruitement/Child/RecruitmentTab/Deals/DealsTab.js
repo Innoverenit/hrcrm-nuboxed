@@ -467,8 +467,7 @@ handleStagePublishClick = (investorOppStagesId, publishInd) => {
                 handleStageType={this.handleStageType}
                 handleStagePublishClick={this.handleStagePublishClick}
                 investorOppStagesId={dealsProcessStages.investorOppStagesId}
-                className="scrollbar"
-                id="style-3"
+                style={{scrollbarWidth:"thin", backgroundColor:"f5f5f5" }}
               />
             ))}  
 

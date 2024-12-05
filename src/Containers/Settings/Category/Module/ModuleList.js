@@ -406,7 +406,7 @@ const handleFinanceClick = (checked) => {
              <div class=" h-[12rem] w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
              <div className=" flex h-28 justify-center "> 
               <img
-              className="big-logo w-36 h-24 m-2"
+              className="w-18 h-18 m-2"
               src={FWLogo}
               alt="Tekorero logo"
             /></div>
@@ -438,7 +438,7 @@ const handleFinanceClick = (checked) => {
                     <div class=" h-[12rem]  w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
            <div className=" flex h-28 justify-center"> 
               <img
-              className="big-logo w-36 h-24 m-2"
+              className="w-18 h-18 m-2"
               src={FWLogo5}
             
               alt="Tekorero logo"
@@ -469,7 +469,7 @@ const handleFinanceClick = (checked) => {
                     <div class=" h-[12rem]  w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
                      <div className=" flex h-28 justify-center"> 
               <img
-              className="big-logo w-36 h-24 m-2"
+              className="w-18 h-18 m-2"
               src={FWLogo1}
               alt="Tekorero logo"
             /></div>
@@ -500,7 +500,7 @@ const handleFinanceClick = (checked) => {
  <div class=" h-[12rem]  w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
  <div className=" flex h-28 justify-center"> 
               <img
-              className="big-logo w-36 h-24 m-2"
+              className="w-18 h-18 m-2"
               src={FWLogo2}
               alt="Tekorero logo"
             /></div>
@@ -531,7 +531,7 @@ const handleFinanceClick = (checked) => {
                     <div class=" h-[12rem]  w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
                     <div className=" flex h-28 justify-center"> 
               <img
-              className="big-logo w-36 h-24 m-2"
+              className="w-18 h-18 m-2"
               src={FWLogo3}
               alt="Tekorero logo"
             /></div>
@@ -562,7 +562,7 @@ const handleFinanceClick = (checked) => {
                     <div class=" h-[12rem]  w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
                     <div className=" flex h-28 justify-center"> 
               <img
-              className="big-logo w-36 h-24 m-2"
+              className="w-18 h-18 m-2"
               src={FWLogo4}
               alt="Tekorero logo"
             /></div>
