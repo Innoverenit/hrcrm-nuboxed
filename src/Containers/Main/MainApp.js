@@ -10,14 +10,9 @@ import {
 } from "./Account/AccountAction";
 import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
-import PhoneMaterialScanner from "../Main/Scan/PhoneScanner/PhoneMaterialScanner"
-import QRCodeList from "../../Containers/Main/Refurbish/QrCodeList";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
-import AssessmentData from "../AssessmentData/AssessmentData"
 import { login_url } from "../../Config/Auth";
-import Waranty from "../Waranty/Waranty"
-import { useNavigate } from 'react-router-dom';
 import {
   handleCandidateResumeModal,
 } from "../Candidate/CandidateAction";
@@ -51,30 +46,105 @@ import { getPresentNotifications } from "../Notification/NotificationAction";
 import FlashOnIcon from '@mui/icons-material/FlashOn'; 
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { MultiAvatar } from "../../Components/UI/Elements";
-import AddActionModal from "./AddActionModal";
-import EmptyPage from "./EmptyPage";
-import LanguageSelector from "../Translate/LanguageSelector";
-import FAQPage from "./FAQ/FAQPage";
-import DashboardPage from "../DashboardPage/DashboardPage";
-import DataRoom from "../Data Room/DataRoom";
-import TagInDrawer from "./Refurbish/ProductionTab/TagInDrawer";
-import PhoneScanner from "./Scan/PhoneScanner/PhoneScanner";
-import Vendor from "./Vendor/Vendor";
-import Procre from "./Procre/Procre";
-import Trade from "./Trade/Trade";
 import {handleContactModal} from "../Contact/ContactAction"
-import CreateSubscriptionDrawer from "../Subscription/Child/CreateSubscriptionDrawer";
 import { handleCreateSubscriptionDrawer } from "../Subscription/SubscriptionAction";
-import Quality from "../Quality/Quality";
-import Club from "./Club/Club";
-import PromotionsDrawerr from "./PromotionsDrawerr";
-import Prmotion from "./Promotion/Prmotion";
-import AddCustomerModal from "../Customer/Child/AddCustomerModal";
-import AddOpportunityModal from "../Opportunity/Child/AddOpportunityModal";
-import AddContactModal from "../Contact/Child/AddContactModal";
-import AddAccountModal from "./Account/AddAccountModal";
-import AddAccountOpportunityModal from "./Account/AccountDetailsTab/AccountQuotationDrawer";
-import ErrorPage from "./ErrorPage";
+const AddActionModal = lazy(() =>
+  import("./AddActionModal")
+);
+const EmptyPage = lazy(() =>
+  import("./EmptyPage")
+);
+
+const LanguageSelector = lazy(() =>
+  import("../Translate/LanguageSelector")
+);
+
+const FAQPage = lazy(() =>
+  import("./FAQ/FAQPage")
+);
+
+const DashboardPage = lazy(() =>
+  import("../DashboardPage/DashboardPage")
+);
+
+const DataRoom = lazy(() =>
+  import("../Data Room/DataRoom")
+);
+
+const PhoneMaterialScanner = lazy(() =>
+  import("../Main/Scan/PhoneScanner/PhoneMaterialScanner")
+);
+const QRCodeList = lazy(() =>
+  import("../../Containers/Main/Refurbish/QrCodeList")
+);
+const AssessmentData = lazy(() =>
+  import("../AssessmentData/AssessmentData")
+);
+
+const Waranty = lazy(() =>
+  import("../Waranty/Waranty")
+);
+const Procre = lazy(() =>
+  import("./Procre/Procre")
+);
+const Vendor = lazy(() =>
+  import("./Vendor/Vendor")
+);
+const PhoneScanner = lazy(() =>
+  import("./Scan/PhoneScanner/PhoneScanner")
+);
+const TagInDrawer = lazy(() =>
+  import("./Refurbish/ProductionTab/TagInDrawer")
+);
+
+
+const Trade = lazy(() =>
+  import("./Trade/Trade")
+);
+
+
+const CreateSubscriptionDrawer = lazy(() =>
+  import("../Subscription/Child/CreateSubscriptionDrawer")
+);
+
+const Quality = lazy(() =>
+  import("../Quality/Quality")
+);
+
+const Club = lazy(() =>
+  import("./Club/Club")
+);
+
+const PromotionsDrawerr = lazy(() =>
+  import("./PromotionsDrawerr")
+);
+const Prmotion = lazy(() =>
+  import("./Promotion/Prmotion")
+);
+
+const AddCustomerModal = lazy(() =>
+  import("../Customer/Child/AddCustomerModal")
+);
+
+const AddOpportunityModal = lazy(() =>
+  import("../Opportunity/Child/AddOpportunityModal")
+);
+
+const AddContactModal = lazy(() =>
+  import("../Contact/Child/AddContactModal")
+);
+
+const AddAccountModal = lazy(() =>
+  import("./Account/AddAccountModal")
+);
+
+const AddAccountOpportunityModal = lazy(() =>
+  import("./Account/AccountDetailsTab/AccountQuotationDrawer")
+);
+
+const ErrorPage = lazy(() =>
+  import("./ErrorPage")
+);
 const NavMenu = lazy(() =>
   import("./NavMenu")
 );
@@ -225,9 +295,6 @@ const CandidateDetails = lazy(() =>
 const Customer = lazy(() => import("../Customer/Customer"));
 const Publish = lazy(() => import("../Publish/Publish"));
 const Opportunity = lazy(() => import("../Opportunity/Opportunity"));
-const { Option } = Select;
-
-const { Header, Sider, Content } = Layout;
 const Profile = lazy(() => import("../Profile/Profile"));
 const Permissions = lazy(() => import("../Permissions/Permissions"));
 const Organization = lazy(() => import("../Organization/Organization"));
@@ -277,7 +344,12 @@ const PlantDetail = lazy(() => import("../Plant/Child/PlantDetail/PlantDetail"))
 const Procurement = lazy(() => import("../Procurement/Procurement"));
 const SubscriptionMainApps = lazy(() => import("../Subscription/SubscriptionMainApps"));
 const Production = lazy(() => import("../Production/Production"));
- 
+
+
+const { Option } = Select;
+
+const { Header, Sider, Content } = Layout;
+
 function MainApp(props) {
   
   const [visible, setVisible] = useState(false);
@@ -638,64 +710,7 @@ function MainApp(props) {
             </FloatButton.Group>
               )} 
                 <div class="mr-3 flex items-center h-[2.5rem]">            
- {/* <div className="flex items-center">           
-                <Button
-                 type="primary"
-                 onClick={() =>{
-                  props.handlePromotion(true)}}
-                >Promotions</Button>
-                 </div> */}
-           {/* <div className="flex items-center">
-                <div className=" text-sm font-semibold font-poppins mr-1">{Subscription}</div>
-                <Button
-                 type="primary"
-                 onClick={() =>{
-                  handleRowData(props.suscrptionData);
-                  props.handleCreateSubscriptionDrawer(true)}}
-                >Upgrade</Button>
-                 </div> */}
-                 
-                
 
-                  {/* <div class=" text-[tomato]  bg-white h-[1.75rem] mr-3 max-sm:hidden"
-                    style={{
-                      border: "1px solid tomato",
-                      borderRadius: "5px",
-                      lineHeight: "24px",
-                      padding: "0px 10px",
-                    }}
-                  >
-                    {props.department}
-                  </div> */}
-                      <div class="max-xl:text-[0.75rem]  max-lg:text-[0.5rem] ">
-                  <LanguageSelector
-                    translateText={translateText}
-                    selectedLanguage={selectedLanguage}
-                    setSelectedLanguage={setSelectedLanguage}
-                    onLanguageChange={handleLanguageChange}
-                    supportedLanguages={supportedLanguages}
-                  />
-                </div> 
-                  <div class=" text-[tomato]  bg-white h-[1.75rem] ml-8 mr-3 max-sm:hidden"
-                    style={{
-                      border: "1px solid tomato",
-                      borderRadius: "5px",
-                      lineHeight: "24px",
-                      padding: "0px 10px",
-                    }}
-                  >
-                    {props.role}
-                  </div>
-                  {/* <div class=" text-[tomato]  bg-white h-[1.75rem] mr-3 max-sm:hidden"
-                    style={{
-                      border: "1px solid tomato",
-                      borderRadius: "5px",
-                      lineHeight: "24px",
-                      padding: "0px 10px",
-                    }}
-                  >
-                    {props.roleType}
-                  </div> */}
                 
                   <div class=" flex items-center h-0">
                     {user.settingsAccessInd === true || user.role === "ADMIN" ?
@@ -1283,17 +1298,7 @@ function MainApp(props) {
                         />
                       )}
                     /> 
-                     {/* <Route
-                      exact
-                      path="/leads/:leadsId"
-                      render={(props) => (
-                        <LeadDetails
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
-                    />  */}
+                 
                      <Route
                       exact
                       path="/scan/:phoneId"
@@ -1795,7 +1800,7 @@ function MainApp(props) {
        <AddOpportunityModal
           translateText={translateText}
           selectedLanguage={selectedLanguage}
-          //translatedMenuItems={this.props.translatedMenuItems}
+        
           addOpportunityModal={props.addOpportunityModal}
           handleOpportunityModal={props.handleOpportunityModal}
         />
@@ -1824,14 +1829,14 @@ function MainApp(props) {
           handleCustomerModal={props.handleCustomerModal}
           translateText={translateText}
           selectedLanguage={selectedLanguage}
-          //translatedMenuItems={this.props.translatedMenuItems}
+          
         />
           <AddContactModal
         addContactModal={props.addContactModal}
         handleContactModal={props.handleContactModal}
         translateText={translateText}
             selectedLanguage={selectedLanguage}
-         // translatedMenuItems={props.translatedMenuItems}
+        
       />
        {props.addAccountOpportunityModal && props.distributorData?.distributorId && (
   <AddAccountOpportunityModal
