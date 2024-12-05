@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { ProgressiveImage } from "../../Utils";
 import { Tooltip, Avatar } from "antd";
 import { base_url } from "../../../Config/Auth";
@@ -19,6 +19,7 @@ const MultiAvatar = ({
   const borderWidth = size === "large" ? "0.0625em" : "0.0625em";
   const borderColor = size === "large" ? "#94B3E4" : "#94B3E4";
   const borderStyle = size === "large" ? "solid" : "solid";
+
   return (
     <>
       {imageId || imageURL ? (
@@ -31,6 +32,7 @@ const MultiAvatar = ({
               height={imgHeight || "3.4375em"}
               // borderRadius={imgRadius}
               borderRadius={'1.0625em'}
+               loading="lazy"
             />
           </div>
         ) : (
@@ -41,6 +43,7 @@ const MultiAvatar = ({
             height={imgHeight || "3.4375em"}
             // borderRadius={imgRadius}
             borderRadius={'1.0625em'}
+             loading="lazy"
           />
         )
       ) : (
