@@ -38,7 +38,6 @@ import { getSaleCurrency, getCategory } from "../../Auth/AuthAction";
 const AddAccountAdressModal = lazy(() => import("./AddAccountAdressModal"));
 const AccountSearchedData = lazy(() => import("./AccountSearchedData"));
 const AccountPulseModal = lazy(() => import("./AccountPulseModal"));
-const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 const AccountCreditToggle = lazy(() => import("./AccountCreditToggle"));
 
 const { Option } = Select;
@@ -776,23 +775,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
 
                       </div>
                         </div>
-{/*  
-                        <div className=" flex    max-xl:w-[1.25rem] max-sm:flex-row  items-center justify-center h-8  bg-[#eef2f9] max-sm:justify-between  ">
-                          <div class=" text-xs  font-poppins">
-                            <Tooltip title=  {translatedMenuItems[9]}>
-                           
-                              <BorderColorIcon
-                                className=" !text-icon cursor-pointer text-[tomato]"
-                                onClick={() => {
-                                  props.setEditDistributor(item)
-                                  handleUpdateAccountModal(true);
-                                  handleCurrentRowData(item);
-                                }}
-                              />
 
-                            </Tooltip>
-                          </div>
-                        </div> */}
                       </div>
                     </div>
                   </div>
@@ -806,13 +789,7 @@ ${(item.address && item.address.length && item.address[0].country) || ""
       </div>
           )}
             <Suspense fallback={<BundleLoader />}>
-      <UpdateAccountModal
-       selectedLanguage={props.selectedLanguage}
-       translateText={props.translateText}
-        RowData={RowData}
-        updateAccountModal={props.updateAccountModal}
-        handleUpdateAccountModal={handleUpdateAccountModal}
-      />
+  
       <AccountPulseModal
        selectedLanguage={props.selectedLanguage}
        translateText={props.translateText}

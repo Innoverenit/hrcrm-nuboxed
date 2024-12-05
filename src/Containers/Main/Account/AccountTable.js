@@ -54,7 +54,6 @@ import axios from "axios";
 const AddAccountAdressModal = lazy(() => import("./AddAccountAdressModal"));
 const AccountCreditToggle = lazy(() => import("./AccountCreditToggle"));
 const AccountSearchedData = lazy(() => import("./AccountSearchedData"));
-const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 const  AccountPulseModal = lazy(() => import("./AccountPulseModal"));
 const AccountModal = lazy(() => import("./AccountModal"));
 const AccountQuotationDrawer =lazy(()=>import("./AccountDetailsTab/AccountQuotationDrawer"));
@@ -817,24 +816,7 @@ function AccountTable(props) {
                               </div> */}
                               
 
-                            {/* <div className=" items-center justify-center flex bg-[#eef2f9] h-8  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
-                              <div class=" text-xs  font-poppins">
-                                <Tooltip title={translatedMenuItems[13]}>
-                               
-                                  <BorderColorIcon
-                                    className=" !text-icon cursor-pointer text-[tomato]"
-                                    onClick={() => {
-                                      props.setEditDistributor(item)
-                                      handleUpdateAccountModal(true);
-                                      handleCurrentRowData(item);
-                                    }}
-                                  />
-
-                                </Tooltip>
-                              </div>
-
-
-                            </div> */}
+                     
                             <div className=" items-center justify-center flex bg-[#eef2f9] h-8  max-xl:w-[1.25rem] max-sm:flex-row  max-sm:justify-between  ">
                               <div class=" text-xs  font-poppins">
                               <Tooltip title={translatedMenuItems[19]}>
@@ -866,14 +848,7 @@ function AccountTable(props) {
       </div>
         )}
           <Suspense fallback={<BundleLoader />}>
-      <UpdateAccountModal
-        RowData={RowData}
-        updateAccountModal={props.updateAccountModal}
-        handleUpdateAccountModal={handleUpdateAccountModal}
-        selectedLanguage={props.selectedLanguage}
-        translateText={props.translateText}
-
-      />
+    
       <AccountPulseModal
         RowData={RowData}
         handleAccountPulse={props.handleAccountPulse}

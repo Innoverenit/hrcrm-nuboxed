@@ -118,13 +118,13 @@ function handleSetCurrentCandidateId(candidateId) {
                  return (
                   <div class="rounded-md border-2 bg-[#ffffff]  shadow-[#aaa] h-[7.5rem] 
                   text-[#444444] my-3 p-1 ml-3 w-[15vw] flex flex-col  max-sm:w-wk max-sm:ml-0 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                     <div class="flex" >
-                   <Tooltip 
+                     <div class="flex  w-[100%] justify-between items-center" >
+                      <div class="flex  w-[100%] justify-start items-center"> 
+                      <Tooltip 
                    title={item.country}
                    >               
-                   </Tooltip>              
-                   <div class="flex flex-row max-sm:justify-start items-center ">              
-                   <div >
+                   </Tooltip>  
+                      <div >
                           <MultiAvatar2
 
                            primaryTitle={item.fullName}
@@ -135,15 +135,16 @@ function handleSetCurrentCandidateId(candidateId) {
                           />
                          </div>
                   
-                      <div>
+                        <div>
                       {/* <div class="h-8 overflow-hidden whitespace-nowrap text-lg font-poppins font-bold overflow-ellipsis text-center"> */}
                         <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`candidate/${item.candidateId}`} title={item.fullName}>
       {item.fullName}
     </Link>                     
                         {/* </div>  */}
                         </div>
+                        </div>
                         {/* {item.Video !== null?( */}
-                        <div class=" flex flex-row justify-evenly  w-full items-end ">  
+                        <div class=" flex flex-row justify-end w-full items-center ">  
                            <div >
                            {item.videoClipsId!==null&&( 
                         <Tooltip title="Video">
@@ -158,7 +159,7 @@ function handleSetCurrentCandidateId(candidateId) {
                         {/* ):(null
                           )}
                        */}
-             <div className=" cursor-pointer p-[0.125rem]"
+             <div className=" flex justify-end cursor-pointer w-full"
               onClick={() => {
                      props.setEditCandidate(item);
                    handleupdateCandidateResumeModal(true);
@@ -169,7 +170,7 @@ function handleSetCurrentCandidateId(candidateId) {
               </div>
             
               </div>
-          </div>                  
+                  
                         </div>                    
                         <div class=" flex flex-row  ">                        
                         <div class=" text-xs font-bold font-poppins text-black"> <SkillsLoadMore 
@@ -181,7 +182,7 @@ function handleSetCurrentCandidateId(candidateId) {
                         <MoreHorizIcon className="text-[#24d8a7] !text-icon"/> 
                         </Tooltip>            
                         </div>                             
-                        <div class=" flex flex-row justify-around w-full items-end">
+                        <div class=" flex flex-row justify-end w-full flex-wrap  mb-1 items-center absolute bottom-0">
                         <div className=" items-center">
               <Tooltip title={item.category}>
               <CircleIcon

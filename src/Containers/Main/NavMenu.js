@@ -44,9 +44,10 @@ import FactoryIcon from '@mui/icons-material/Factory';
 import AssessmentIcon from '@mui/icons-material/Assessment';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
-import TextSnippetIcon from '@mui/icons-material/TextSnippet';
+import DirectionsCarFilledIcon from '@mui/icons-material/DirectionsCarFilled';
 import DonutSmallIcon from '@mui/icons-material/DonutSmall';
-
+import LuggageIcon from '@mui/icons-material/Luggage';
+import ModeOfTravelIcon from '@mui/icons-material/ModeOfTravel';
 const SubMenu = Menu.SubMenu;
 
 function NavMenu(props) {
@@ -825,10 +826,9 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
         <Menu.Item key="/report" style={{ height: "1.45rem", 
          color: selectedMenuItem === '/report' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
           <Link to="/leave" onClick={() => handleSelect('/report')}>
-            <i class="fas fa-luggage-cart text-[#e4eb2f]"></i>
+            <LuggageIcon className="!text-base  text-[#e4eb2f]"/>
             <span class="text-white text-ls ml-1 ">
-              {/* Leaves"
-             */}
+              {/* Leaves"  */}
              {translatedMenuItems[28]}
               &nbsp;&nbsp;&nbsp;
               <Badge
@@ -846,9 +846,9 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
         <Menu.Item key="/mileage" style={{ height: "1.45rem", 
          color: selectedMenuItem === '/mileage' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
           <Link to="/mileage" onClick={() => handleSelect('/mileage')}>
-
-            <i class="fas fa-tachometer-alt text-[#e4eb2f]"></i>
-            <span class="text-white   text-ls ml-[0.3rem]">
+            <DirectionsCarFilledIcon className="!text-base  text-[#e4eb2f]"/>
+          
+            <span class="text-white   text-ls ml-1">
               {/*Mileage"
              */}
              {translatedMenuItems[29]}
@@ -867,9 +867,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
         <Menu.Item key="/expense" style={{ height: "1.45rem",
           color: selectedMenuItem === '/expense' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
           <Link to="/expense" onClick={() => handleSelect('/expense')}>
-            <ReceiptIcon
-            className='!text-base  text-[#e4eb2f]'
-            />
+            <ReceiptIcon className='!text-base  text-[#e4eb2f]'/>
             <span class="text-white text-ls ml-1">
               {/* Expense"
              */}
@@ -892,8 +890,8 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
         color: selectedMenuItem === '/holiday' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
           <Link to="/holiday" onClick={() => handleSelect('/holiday')}>
 
-            <i class="fas fa-holly-berry"></i>
-            &nbsp;
+          <ModeOfTravelIcon  className='!text-base  text-[#e4eb2f]'/>
+           
             <span class="text-white text-ls ml-1">
               {/* Holiday"
              */}
@@ -912,7 +910,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
           <Link to="/assessment" onClick={() => handleSelect('/assessment')}>
 
             < AssessmentIcon  className="!text-base  text-[#e4eb2f]"/>
-            &nbsp;
+      
             <span class="text-white text-ls ml-1">
            {/* KPI Assessment */}
            {translatedMenuItems[35]}
@@ -949,6 +947,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
           )}   
         {/*Talent*/}
         {/*Requirement*/}
+        <hr />
         {((user.requirementAccessInd === true && user.moduleMapper.recruitProInd === true )
     ) &&  ( 
           <Menu.Item key="/requirement" style={{ height: "1.45rem",
@@ -1021,14 +1020,8 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
         {(user.moduleMapper.recruitProInd === true &&  
         <Menu.Item key="/billing" style={{height:"1.45rem",paddingLeft:"1px"}} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/Billing">
-              <AccessAlarmIcon
-
-               className='!text-base  text-[#e4eb2f]'
-              />
-             <span class="text-white text-ls ml-3">
-            
-                {translatedMenuItems[49]}
-              </span>
+              <AccessAlarmIcon className='!text-base  text-[#e4eb2f]'/>
+             <span class="text-white text-ls "> {translatedMenuItems[49]} </span>
             </Link>
           </Menu.Item>
        )} 
