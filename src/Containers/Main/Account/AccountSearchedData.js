@@ -36,7 +36,6 @@ import ExploreIcon from "@mui/icons-material/Explore";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import GolfCourseIcon from '@mui/icons-material/GolfCourse';
 import AccountModal from "./AccountModal";
-const UpdateAccountModal = lazy(() => import("./UpdateAccountModal"));
 const AccountCreditToggle = lazy(() => import("./AccountCreditToggle"));
 
 function AccountSearchedData(props) {
@@ -542,11 +541,7 @@ function AccountSearchedData(props) {
        
       </div>
       </div>
-      <UpdateAccountModal
-        RowData={RowData}
-        updateAccountModal={props.updateAccountModal}
-        handleUpdateAccountModal={handleUpdateAccountModal}
-      />
+    
       <AccountPulseModal
         RowData={RowData}
         handleAccountPulse={props.handleAccountPulse}

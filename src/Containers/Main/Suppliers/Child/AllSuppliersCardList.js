@@ -165,7 +165,7 @@ return(
       </div>
 <div className=' flex  sticky  z-auto'>
 <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-<div className=" flex max-sm:hidden ml-4 justify-between w-[99%]  p-1 bg-transparent font-bold font-poppins  !text-lm items-end sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
+<div className=" flex max-sm:hidden ml-4 justify-between w-[99%]  p-1 bg-transparent font-bold font-poppins   !text-lm items-end sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
 <div className=" w-[6.91rem] truncate text-[#00A2E8]  max-xl:w-[14.9rem] text-sm  "> 
                {/* Supplier ID */}
                <CategoryIcon className=" !text-icon"/>  {props.translatedMenuItems[40]} ID
@@ -208,7 +208,7 @@ return(
                           <div class=" flex flex-row justify-between  max-sm:flex-col">
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                           <div className="border-l-2 border-green-500 bg-[#eef2f9] h-8 flex items-center w-[7.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
-                          <div class=" text-xs ml-gap font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                          <div class=" text-xs ml-gap  max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             {item.newSuppNo}
                             
 </div>
@@ -217,7 +217,7 @@ return(
 </div>
                             <div className=" h-8 flex items-center ml-gap w-[16.5rem] bg-[#eef2f9] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
                               <div >
-                              <a class="overflow-ellipsis whitespace-nowrap h-8 p-1 text-[#042E8A] text-xs  underline font-bold font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm" 
+                              <a class="overflow-ellipsis whitespace-nowrap h-8 p-1 text-[#042E8A] text-xs  underline font-bold  cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm" 
                             href={`supplier/${item.supplierId}`}>{item.name}</a>
                             <div className="flex">
                       {editableField?.supplierId === item.supplierId &&
@@ -234,7 +234,7 @@ return(
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'name', item.name)} 
-    className="cursor-pointer text-xs font-poppins">
+    className="cursor-pointer text-xs ">
    <BorderColorIcon  className=" !text-xs cursor-pointer"/>
     
     </div> 
@@ -252,7 +252,7 @@ return(
                             </div>      
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">             
                             <div className=" flex items-center h-8 ml-gap bg-[#eef2f9] w-[8.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[5.01rem] max-lg:w-[5.9rem] ">
-                              <div class="  text-xs ml-gap font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class="  text-xs ml-gap  max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                               <div>
 {editableField?.supplierId === item.supplierId && editableField?.field === 'dialCode' ? (
   <Select
@@ -270,7 +270,7 @@ return(
 ) : (
 <div onClick={() => 
 handleEditRowField(item.supplierId, 'dialCode', item.dialCode)} 
-className="cursor-pointer text-xs font-poppins">
+className="cursor-pointer text-xs ">
 {item.dialCode || "Update..."}
 
 </div>         
@@ -291,7 +291,7 @@ className="cursor-pointer text-xs font-poppins">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'phoneNo', item.phoneNo)} 
-    className="cursor-pointer text-xs font-poppins">
+    className="cursor-pointer text-xs ">
     {item.phoneNo || "Update..."}
     
     </div> 
@@ -302,7 +302,7 @@ className="cursor-pointer text-xs font-poppins">
                             </div>
                                                     
                             <div className=" flex items-center h-8 ml-gap bg-[#eef2f9] w-[12.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[12.03rem] max-lg:w-[9.84rem] ">
-                                <div class="  text-xs ml-gap font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
+                                <div class="  text-xs ml-gap  max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                 {editableField?.supplierId === item.supplierId &&
    editableField?.field === 'emailId' ? (
 <Input
@@ -317,7 +317,7 @@ className="cursor-pointer text-xs font-poppins">
 ) : (
 <div onClick={() => 
     handleEditRowField(item.supplierId, 'emailId', item.emailId)} 
-    className="cursor-pointer text-xs font-poppins">
+    className="cursor-pointer text-xs ">
     {item.emailId || "Update..."}
     
     </div> 
