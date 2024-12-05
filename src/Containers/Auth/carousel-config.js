@@ -1,7 +1,7 @@
-import Img1 from "../../Assets/Images/img1.jpg";
-import Img2 from "../../Assets/Images/img2.jpg";
-import Img3 from "../../Assets/Images/img3.jpg";//ct
-import Img4 from "../../Assets/Images/img4.jpg";//ct
+import Img1 from "../../Assets/Images/img1.webp";
+import Img2 from "../../Assets/Images/img2.webp";
+import Img3 from "../../Assets/Images/img3.webp";//ct
+
 
 export const cardDetails = {
     0: {
@@ -17,27 +17,5 @@ export const cardDetails = {
     2: {
         imgUrl: Img3,
         title: "Text 3"
-    },
-
-    3: {
-        imgUrl: Img4,
-        title: "Text 4"
-    },
-
-//     4: {
-//         imgUrl: Img4,
-//         title: "Text 5"
-//     },
-
-//     5: {
-//         imgUrl: "https://picsum.photos/id/42/200/300",
-//         title: "Text 6"
-//     },
-
-//     6: {
-//         imgUrl: "https://picsum.photos/id/243/200/300",
-//         title: "Text 7",
-//     },
-
-   
+    },  
 }

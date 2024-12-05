@@ -8,7 +8,7 @@ import { ValidationError} from "../../Components/UI/Elements";
 import Button from "antd/lib/button";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import FWLogo from "../../Assets/Images/name.jpg";  // for CT
+import FWLogo from "../../Assets/Images/name.webp";  // for CT
 import { forgotUserPassword, validateOtpurL, verifyEmailurL } from "./AuthAction";
 
 class ForgotPassword extends Component {

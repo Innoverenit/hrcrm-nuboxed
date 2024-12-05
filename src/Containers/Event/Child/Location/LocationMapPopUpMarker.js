@@ -6,9 +6,9 @@ import L from "leaflet";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require("../../../../Assets/Images/download.png"),
-  iconUrl: require("../../../../Assets/Images/download.png"),
-  shadowUrl: require("../../../../Assets/Images/download.png"),
+  iconRetinaUrl: require("../../../../Assets/Images/download.webp"),
+  iconUrl: require("../../../../Assets/Images/download.webp"),
+  shadowUrl: require("../../../../Assets/Images/download.webp"),
   iconSize: [15, 25], // size of the icon
   shadowSize: [35, 25], // size of the shadow
   shadowAnchor: [15, 40],
