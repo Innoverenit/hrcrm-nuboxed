@@ -3,11 +3,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.react-clock {
-  width: 41px; /* Adjust the width as needed */
-  height: 40px; /* Adjust the height as needed */
-}
-
 .recharts-default-legend {
   padding: revert;
   margin: revert;
@@ -15,13 +10,8 @@
   text-align: center;
 }
 
+/* @media only screen and (max-width: 37.5em) {
 
-
-@media only screen and (max-width: 37.5em) {
-
-  
- 
- 
   .css-1w5m2wr-MuiDataGrid-virtualScroller {
     overflow: hidden;
     position: relative;
@@ -29,7 +19,7 @@
   .reg_text {
     font-size: 0.6875em;
   }
-}
+} */
 
 @keyframes fadeInOut {
   0% {
@@ -96,13 +86,9 @@
   
 }
 
-
-
-
-
-.DraftEditor-root {
+/* .DraftEditor-root {
   height: auto !important;
-}
+} */
 
 .ant-btn-primary:focus {
   align-items: center;
@@ -135,7 +121,7 @@
   background-image: linear-gradient(90deg, tomato, #ffb600e0)!important;
 }
 
-
+/* 
 .antbtn1 {
   background-color: teal;
   height: 2.1em;
@@ -151,7 +137,7 @@
   padding: 3px 4px;
   height: 2.1em;
   width: 43%;
-}
+} */
 
 .ant-menu-dark .ant-menu-inline.ant-menu-sub {
  
@@ -212,12 +198,6 @@
   height: 54px;
   right: 0;
 }
-.load1 {
-  font-size: 8px;
-  margin-top: 9px;
-  font-weight: bold;
-  margin-left: 6px;
-}
 
 .ant-tooltip-inner {
   color: white;
@@ -259,7 +239,7 @@
   overflow: hidden;
 }
 
-.ant-badge-count {
+/* .ant-badge-count {
   z-index: 8;
   min-width: 12px;
   height: 16px;
@@ -274,8 +254,8 @@
   border-radius: 10px;
   -webkit-box-shadow: 0 0 0 1px #fff;
   box-shadow: 0 0 0 1px #fff;
-}
-.ant-badge {
+} */
+/* .ant-badge {
   box-sizing: border-box;
   color: #0e9590d6;
   font-size: 0.75rem;
@@ -285,7 +265,7 @@
  
   position: relative;
   display: inline-block;
-}
+} */
 
 .ant-btn-background-ghost {
   color: #fff;
@@ -336,7 +316,7 @@
   align-items: center;
 }
 
-.ant-btn {
+/* .ant-btn {
   font-family: "Poppins";
   height: 1.8rem;
   padding: 3px 8px;
@@ -345,7 +325,7 @@
   line-height: revert;
   margin: 0 2px 0 2px;
   box-shadow: #faad14 1px 2px 0px 0px;
-}
+} */
 
 .ant-input-affix-wrapper > input.ant-input {
   padding: 0;
@@ -686,11 +666,11 @@ iframe#webpack-dev-server-client-overlay {
   background-color: #709ab3;
 }
 
-.region {
+/* .region {
   flex-grow: 1;
   margin-right: 10px;
-}
-
+} */
+/* div class="grow mr-2" */
 
 @media print {
   .print-content {
@@ -713,19 +693,19 @@ iframe#webpack-dev-server-client-overlay {
   width: 150px;
   height: 100px;
 }
-.name-list-container {
+/* .name-list-container {
   max-height: 512px;
   overflow-y: auto;
   border: 1px solid #ccc;
   padding: 10px;
   border-radius: 5px;
-}
+} */
 
-.name-list {
+/* .name-list {
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
+} */
 
 .name-item {
   background-color: #f0f0f0;
@@ -745,15 +725,15 @@ iframe#webpack-dev-server-client-overlay {
   gap: 20px;
   margin-bottom: 10px;
 }
-
+/* 
 .switch-item {
   display: flex;
   align-items: center;
-}
-
+} */
+/* 
 .switch-item label {
   margin-right: 5px;
-}
+} */
 
 .checkboxes {
   margin-bottom: 10px;
@@ -821,8 +801,6 @@ scrollbar-width: thin;
 .flip {
   transform: rotateY(180deg);
 }
-
-
 
 .custom-image-gallery {
   display: flex;

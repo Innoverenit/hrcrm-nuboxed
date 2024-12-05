@@ -1,7 +1,5 @@
 import styled from "styled-components";
 import { Calendar } from 'react-big-calendar'
-import dayjs from 'dayjs';
-// import 'react-big-calendar/lib/css/react-big-calendar.css';
 
 const StyledCalendar = styled(Calendar)`
     /* border-radius: 0.1875em;
@@ -10,7 +8,6 @@ const StyledCalendar = styled(Calendar)`
     color: ${props => props.theme.color};
     display: block;
     margin: 0.3rem;
-   // border-radius: 0.3rem;
     outline: none;
     box-shadow: 0em 0.25em 0.625em -0.25em  ${props => props.theme.boxShadowColor};
     padding: 0.3rem 1rem; */

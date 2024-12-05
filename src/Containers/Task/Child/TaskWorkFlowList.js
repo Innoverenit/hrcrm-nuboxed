@@ -191,10 +191,8 @@ class TaskWorkflowList extends Component {
                 handleStageType={this.handleStageType}
                 // taskChecklistId={this.state.currentProcess.taskChecklistId}
                 recruitTaskWorkflowStage={recruitTaskWorkflowStage}
-                organization={this.props.organization}
-               
-                className="scrollbar"
-                id="style-3"
+                organization={this.props.organization}               
+                style={{scrollbarWidth:"thin", backgroundColor:"f5f5f5" }}
               />
             ))}
 

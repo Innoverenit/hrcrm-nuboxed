@@ -1,11 +1,9 @@
-//import "./styles.css";
-import React, { Component,useState, useMemo ,useEffect} from "react";
+
+import React from "react";
 import { connect } from "react-redux";
-import { Popover, Select, Button, Switch } from "antd";
+import { Popover} from "antd";
 import { bindActionCreators } from "redux";
 import TimeInterval from "../../Utils/TimeInterval";
-// import {getDashBoardSummaryChart,} from "./DashboardAction";
-// import {setSelectedStackedTimeIntervalReport} from "../Contact/ContactAction";
 import {
   BarChart,
   Bar,
@@ -49,11 +47,6 @@ const data = [
     position: 303
   }
 ]
-
-
- 
-
-
  class StackedAllSummaryChart extends React.Component {
   
 // console.log("data",data)
@@ -71,24 +64,6 @@ this.state = {
   date: date,
 };
 }
-// componentDidMount() {
-//   const { getDashBoardSummaryChart, organizationId, startDate, endDate } = this.props;
-//   getDashBoardSummaryChart(organizationId,  startDate, endDate);
-// }
-// componentWillReceiveProps(nextProps) {
-//   if (
-//     this.props.startDate !== nextProps.startDate ||
-//     this.props.endDate !== nextProps.endDate
-//   ) {
-//     const { getDashBoardSummaryChart, organizationId, startDate, endDate } = nextProps;
-//     getDashBoardSummaryChart(organizationId, startDate, endDate);
-//   }
-// }
-
-  // useEffect(() => {
-  //   props.getDashBoardSummaryChart(props.organizationId);
-    
-  // }, []);
   render() {
     // const data=this.props.dashBoardSummaryChart
   return (
@@ -125,22 +100,11 @@ this.state = {
 }
  }
 const mapStateToProps = ({ dashboard,auth ,contact}) => ({
-//   dashBoardSummaryChart:dashboard.dashBoardSummaryChart,
-//   organizationId:auth.userDetails.organizationId,
-// //   dashBoardCustomerChart:dashboard.dashBoardCustomerChart,
-//   userId: auth.userDetails.userId,
-//   dateStackedRangeList:contact.dateStackedRangeList,
-//   endDate: contact.endDate,
-//   startDate: contact.startDate,
-//   showDatelist:dashboard.showDatelist,
+
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      
-    //   getDashBoardSummaryChart,
-    //   setSelectedStackedTimeIntervalReport
-
     },
     dispatch
   );

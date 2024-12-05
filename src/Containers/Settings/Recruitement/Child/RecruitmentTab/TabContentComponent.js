@@ -601,8 +601,7 @@ fetchType = async () => {
                 handleStagePublishClick={this.handleStagePublishClick}
                 stagesId={dealsProcessStages.stagesId}
                 handleSetCurrentItem={this.handleSetCurrentItem}
-                className="scrollbar"
-                id="style-3"
+                 style={{scrollbarWidth:"thin", backgroundColor:"f5f5f5" }}
               />
             ))}    */}
         

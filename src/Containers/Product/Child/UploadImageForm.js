@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Upload, Button, message } from 'antd';
 import UploadIcon from '@mui/icons-material/Upload';
-import { base_url, base_url2 } from '../../../Config/Auth';
-//import 'antd/dist/antd.css';
+import {  base_url2 } from '../../../Config/Auth';
 const token = sessionStorage.getItem("token");
 
 const AntdFileUpload = () => {

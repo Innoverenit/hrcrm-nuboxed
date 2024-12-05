@@ -69,13 +69,13 @@ const NameList = (props) => {
   }
 
   return (
-    <div className="name-list-container">
-      <div className="name-list">
+    <div className="max-h-[45vh] overflow-y-auto border p-2 ">
+      <div className="flex flex-col gap-[20px]">
         {data.map((item, index) => (
           <div key={index} className="name-item">
             <h3>{item.name}</h3>
             <div className="switches">
-              <div className="switch-item">
+              <div classname="flex items-center">
                 <div class="font-bold text-xs font-poppins text-black">Admin:</div>
                 <Switch
                  checkedChildren="Yes"
@@ -84,7 +84,7 @@ const NameList = (props) => {
                   onChange={(checked) => handleSwitchChange(index, 'admin', checked)}
                 />
               </div>
-              <div className="switch-item">
+              <div classname="flex items-center">
                 <div class="font-bold text-xs font-poppins text-black">Reporting Manager:</div>
                 <Switch
                  checkedChildren="Yes"
@@ -93,7 +93,7 @@ const NameList = (props) => {
                   onChange={(checked) => handleSwitchChange(index, 'reportingManager', checked)}
                 />
               </div>
-              <div className="switch-item">
+              <div classname="flex items-center">
                 <div class="font-bold text-xs font-poppins text-black">Reporting Manager1:</div>
                 <Switch
                  checkedChildren="Yes"

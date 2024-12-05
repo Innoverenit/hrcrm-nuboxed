@@ -7,9 +7,6 @@ import PrivateRoute from "./Helpers/Auth/PrivateRoute";
 import AppErrorBoundary from "./Helpers/ErrorBoundary/AppErrorBoundary";
 import AppLoginMessage from "./Containers/Auth/AppLoginMessage";
 import OnBoardOrganizationPage from "./Containers/Auth/OnBoardOrganizationPage";
-import OnBoardUserPage from "./Containers/Auth/OnBoardUserPage";
-
-
 
 /**
  * lazy loaded compenents

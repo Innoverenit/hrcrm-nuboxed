@@ -442,8 +442,7 @@ class RecruitmentTab extends Component {
                 handleUpdateStage={this.handleUpdateStage}
                 handleStagePublishClick={this.handleStagePublishClick}
                 stageId={recruitProcessStages.stageId}
-                className="scrollbar"
-                id="style-3"
+                style={{scrollbarWidth:"thin", backgroundColor:"f5f5f5" }}
               />
             ))}
 

@@ -1,14 +1,12 @@
-import React, {  Suspense } from "react";
+
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import { BundleLoader } from "../../../../Components/Placeholder";
 import { Field, Form, Formik } from "formik";
 import { Button } from "antd";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
-import { EditorState, convertToRaw, } from "draft-js";
-import {sendEmail} from "../../../../Containers/Settings/Email/EmailAction";
+
 
 const CandidateRowEmailModal = props => {
   return (
@@ -31,14 +29,7 @@ const CandidateRowEmailModal = props => {
             }}
             // validationSchema={NoteSchema}
             onSubmit={(values, { resetForm }) => {
-             
-              //debugger
-             
-              // console.log(
-              //   draftToHtml(convertToRaw(editorState.getCurrentContent()))
-              // );
               const htmlBody = draftToHtml(
-                // convertToRaw(editorState.getCurrentContent())
               );
               console.log(this.state.formattedFile)
               

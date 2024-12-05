@@ -227,67 +227,7 @@ function SuppliesTable(props) {
                     
                    </div>  
                     
-                {/* <div class="w-full md:w-1/2 xl:w-1/3 p-2">
-                       
-                       <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
-                           <div class="flex flex-row items-center text-xs">
-                               <div class="flex-shrink pr-3">
-                                   <div class="rounded-full p-2 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
-                               </div>
-                               <JumpStartBox
-                bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
-              noProgress
-              title= {translatedMenuItems[27]}
-          
-              //jumpstartClick={()=> handleClick("Closed")}
-              cursorData={"pointer"}
-            // value={completeOrder}
-            // isLoading={props.fetchingorderDetails}
-            />
-                           </div>
-                       </div>
-                     
-                   </div>   */}
-                   
-                   {/* <div class="w-full md:w-1/2 xl:w-1/3 p-2">
-                      
-                      <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
-                          <div class="flex flex-row items-center text-xs">
-                              <div class="flex-shrink pr-3">
-                                  <div class="rounded-full p-2 bg-blue-600"><i class="fas fa-server fa-2x fa-inverse"></i></div>
-                              </div>
-                              <JumpStartBox
-                             bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
-                              noProgress
-                              title= {translatedMenuItems[28]} 
-                             // jumpstartClick={()=> handleClick("Cancelled")}
-                              cursorData={"pointer"}
-                              value={"0"}
-                            // isLoading={props.fetchingorderDetails}
-                            />
-                          </div>
-                      </div>      
-                  </div> */}
-                  {/* <div class="w-full md:w-1/2 xl:w-1/3 p-2">
-                     
-                     <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
-                         <div class="flex flex-row items-center  text-xs">
-                             <div class="flex-shrink pr-3">
-                                 <div class="rounded-full p-2 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
-                             </div>
-                             <JumpStartBox
-              bgColor="linear-gradient(270deg,#F15753,orange)"
-              noProgress
-              title= {translatedMenuItems[25]}
-             // jumpstartClick={()=> handleClick("Added")}
-              cursorData={"pointer"}
-              value={"0"}
-            // isLoading={props.fetchingorderDetails}
-            />
-                         </div>
-                     </div>
-                 
-                 </div>  */}
+           
                  <div class="w-[14rem]  max-md:w-1/2 max-xl:w-1/3 p-2">
                       
                       <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
@@ -337,17 +277,17 @@ function SuppliesTable(props) {
               <WidgetsIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[3]}
               </div>
             
-              <div className=" w-[11.4rem] truncate max-md:w-[11.13rem] ">
+              <div className=" w-[11.4rem]  truncate max-md:w-[11.13rem] ">
               {/* Brand*/}
-              <BrandingWatermarkIcon className="!text-icon" />   {translatedMenuItems[15]}
+              <BrandingWatermarkIcon className="!text-icon text-[#4F5D75]" />   {translatedMenuItems[15]}
               </div>
-              <div className=" w-[9.135rem] truncate max-md:w-[8.135rem] ">
+              <div className=" w-[9.135rem]  truncate max-md:w-[8.135rem] ">
               {/* Model*/}
-              <ModelTrainingIcon className=" !text-icon" />  {translatedMenuItems[16]}
+              <ModelTrainingIcon className="text-[#4D804D] !text-icon" />  {translatedMenuItems[16]}
               </div>
             <div className=" w-[7.01rem] truncate max-md:w-[10.01rem] ">
               {/* Attribute */}
-              <AttractionsIcon className="  !text-icon" />  {translatedMenuItems[5]}
+              <AttractionsIcon className=" text-[#755577] !text-icon" />  {translatedMenuItems[5]}
               </div>
            
             

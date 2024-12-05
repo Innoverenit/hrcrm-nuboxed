@@ -41,7 +41,7 @@ class ModuleTrading extends Component {
               <div class=" h-[12rem]         w-[10.5rem]  bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
               <div className=" flex h-28 justify-center "> 
               <img
-              className="big-logo w-36 h-24 m-2"
+              className="w-18 h-18 m-2"
               src={Trading}
               alt="Tekorero logo"
             /></div>
@@ -71,7 +71,7 @@ class ModuleTrading extends Component {
             <div class=" h-[12rem]  w-[10.5rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
             <div className=" flex h-28 justify-center "> 
               <img
-              className="big-logo w-36 h-24 m-2"
+              className="w-18 h-18 m-2"
               src={Ecomimg}
               alt="Tekorero logo"
             /></div>
@@ -102,7 +102,7 @@ class ModuleTrading extends Component {
                     <div class=" h-[12rem]  w-[10.5rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
             <div className=" flex h-28 justify-center "> 
               <img
-              className="big-logo w-36 h-24 m-2"
+              className="w-18 h-18 m-2"
               src={Cataloimg}
               alt="Tekorero logo"
             /></div>
@@ -132,7 +132,7 @@ class ModuleTrading extends Component {
                     <div class=" h-[12rem]  w-[10.5rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
             <div className=" flex h-28 justify-center "> 
               <img
-              className="big-logo w-36 h-24 m-2"
+              className="w-18 h-18 m-2"
               src={Materialimg}
               alt="Tekorero logo"
             /></div>
@@ -162,7 +162,7 @@ class ModuleTrading extends Component {
                     <div class=" h-[12rem]  w-[10.5rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
             <div className=" flex h-28 justify-center "> 
               <img
-              className="big-logo w-36 h-24 m-2"
+              className="w-18 h-18 m-2"
               src={Timetrack}
               alt="Tekorero logo"
             /></div>
@@ -191,7 +191,7 @@ class ModuleTrading extends Component {
                     <div class=" h-[12rem]  w-[10.5rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
             <div className=" flex h-28 justify-center "> 
               <img
-              className="big-logo w-36 h-24 m-2"
+              className="w-18 h-18 m-2"
               src={cbmcal}
               alt="Tekorero logo"
             /></div>

@@ -92,8 +92,7 @@ class TopicTab extends Component {
                 newTopicName="topics"
                 topicsData={topicsData}
                 organization={this.props.organization}
-                className="scrollbar"
-                id="style-3"
+                style={{scrollbarWidth:"thin", backgroundColor:"f5f5f5" }}
               /> 
             ))}
               </div>

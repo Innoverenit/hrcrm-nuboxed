@@ -123,17 +123,6 @@ function generateRandomColor() {
         </>
 
       )} 
-     {/* {props.matchSkill.length ?
-      <p className="load1"
-        styles={{ cursor: "pointer" }}
-        onClick={() => (!isViewAll ? setIsViewAll(true) : setIsViewAll(false))}
-      >
-        {!isViewAll ? " Load More" : " View Less"}
-      </p>
-      :null} */}
-
-
-      
     </div>
   
              

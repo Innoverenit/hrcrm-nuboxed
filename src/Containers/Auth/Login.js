@@ -80,7 +80,7 @@ class Login extends Component {
              
              <div className=" flex justify-start ">
               <img
-              className="big-logo w-[8rem]"
+              className="w-18 h-18"
               src={DevelopTk}
               alt="Tekorero logo"
             /></div>
@@ -173,22 +173,10 @@ class Login extends Component {
             <div class=" flex mt-2  text-white justify-center text-base">Say goodbye to missed opportunities and manual task tracking</div>
         </div>
 
-            {/* <img
-              className="big-logo h-[50%] w-[94%]"
-              src={FWLogo3}
-              style={{}}
-              alt="Tekorero logo"
-            /> */}
+        
             <div className="carousel-container">
       <div className="carousel-track ">
-        {/* {Object.keys(cardDetails).map((detailKey) => {
-          return (
-            <CarouselItem
-              imgUrl={cardDetails[detailKey].imgUrl}
-              imgTitle={cardDetails[detailKey].title}
-            ></CarouselItem>
-          );
-        })} */}
+
         {Object.keys(cardDetails).map((detailKey) => {
           return (
             <CarouselItem 

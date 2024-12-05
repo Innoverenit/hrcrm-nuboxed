@@ -92,9 +92,8 @@ class OnBoardOrganizationPage extends Component {
             }}
           >
             <img
-              className="big-logo"
+              className="w-18 h-18"
               src={FWLogo}
-              style={{ width: 200 }}
               alt="Tekorero logo"
             />
             <br />

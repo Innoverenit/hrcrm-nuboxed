@@ -5,7 +5,7 @@ import {  Select,Tooltip } from "antd";
 import { Link } from 'react-router-dom';
 import {getBrandProductList} from "./SuppliesAction"
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-
+import WidgetsIcon from '@mui/icons-material/Widgets';
 
 
 const Option = Select;
@@ -29,61 +29,6 @@ function MaterialBrandList(props) {
     props.getBrandProductList(props.currentBrandId.brand);
    
   }, []);
-//   useEffect(() => {
-//     const fetchMenuTranslations = async () => {
-//       try {
-//         setLoading(true); 
-//         const itemsToTranslate = [
-
-//    "110", // 'Name', // 0
-//    "378",// 'Work', // 1
-//    "278",// 'Sector', // 2
-//    "279",// 'Source', // 3
-//    "213",// 'Quotation', // 4
-//    "328",// 'PipeLine', // 5
-//    "76",// 'Assigned', // 6
-//    "77",// 'Owner', // 7
-//    "248",// 'Customer', // 8
-//        "100",   // new 9
-//     "1300" , //  Change status to Customer?"10
-//     "99" ,  // "Opportunity"11
-//     "392" ,  // Pulse 12
-//     "316" ,  // "Notes"13
-//     "170" ,  // "Edit" 14
-//    "73" // Contact 15
-//         ];
-
-//         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
-//         setTranslatedMenuItems(translations);
-//         setLoading(false);
-//       } catch (error) {
-//         setLoading(false);
-//         console.error('Error translating menu items:', error);
-//       }
-//     };
-
-//     fetchMenuTranslations();
-//   }, [props.selectedLanguage]);
-
-
-  
-//   const handleLoadMore = () => {
-//     const callPageMapd = props.customerByUserId && props.customerByUserId.length &&props.customerByUserId[0].pageCount
-//     setTimeout(() => {
-
-//       if  (props.customerByUserId)
-//       {
-//         if (page < callPageMapd) {
-//           setPage(page + 1);
-//           props.getCustomerListByUserId(props.userId, page, "creationdate");
-//       }
-//       if (page === callPageMapd){
-//         setHasMore(false)
-//       }
-//     }
-//     }, 100);
-//   };
- 
 
   return (
     <>
@@ -98,33 +43,14 @@ function MaterialBrandList(props) {
            {/* name */}
             </div>
             <div className=" w-[39.5rem] text-[#00A2E8] truncate max-md:w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
-            Catagory Name
+            <WidgetsIcon className='!text-icon    text-[#42858c]' />  Catagory Name
              {/* work */}
             </div>
             <div className=" w-[8.63rem] truncate max-md: w-[8.63rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
        Article No
               {/* "Sector" */}
           
-            </div>
-            {/* <div className="w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
-          
-            Live
-         
-            </div> */}
-            {/* <div className=" w-[4.8rem]   truncate max-md:w-[4.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
-              
-
-            </div> */}
-             {/* <div className=" w-[5.9rem]  truncate max-md:w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
-           Inactive
-           
-     
-            </div> */}
-            {/* <div className=" w-[4.1rem]  truncate max-md:w-[4.1rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
-          Delete
-           
-            </div>        */}
-          
+            </div>                                           
             <div className="w-[13.12rem]"></div>
 
           </div>
@@ -160,7 +86,7 @@ function MaterialBrandList(props) {
 
 
                       </div>
-                      <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9]  justify-center max-sm:w-auto  w-[20.21rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+                      <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9]  justify-center max-sm:w-auto  w-[20rem] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
                   
                         <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                           {item.articleNo}
@@ -177,10 +103,6 @@ function MaterialBrandList(props) {
          
         </div>
       </div>
-  
-  {/* <Suspense fallback={<BundleLoader />}>
-
-      </Suspense> */}
     </>
   );
 }

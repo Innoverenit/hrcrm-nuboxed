@@ -3,46 +3,28 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import FWLogo from "../../Assets/Images/Support.jpg";
 
-
-
 const ErrorPage = (props) => {
-
-
-    return (
+ return (
         <>
-    
-           <div className="flex flex-col justify-center items-center  h-[79vh] max-md:[20rem]">
-          
+           <div className="flex flex-col justify-center items-center  h-[79vh] max-md:[20rem]">         
            <img
-                  className="big-logo w-[15rem]"
+                  className="w-18 h-18"
                   src={FWLogo}
-                //   style={{ width: "10rem"}}
                   alt="Tekorero logo"
-
                 /> 
-               <div className=" text-base font-[Poppins]  font-semibold">Nothing there for now</div>
-                
-                
-              
-    
-  <div
-    className="text-xs cursor-pointer  font-[Poppins] font-medium"
+               <div className=" text-base font-poppins font-semibold">Nothing there for now</div>
    
+  <div
+    className="text-xs cursor-pointer  font-poppins font-medium"
   >
      Contact With Support Team, Thank You.
   </div>
-
-          
-           </div>
-           
+    </div>          
         </>
     );
-
-
 }
 const mapStateToProps = ({ auth}) => ({
    
-
 });
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(

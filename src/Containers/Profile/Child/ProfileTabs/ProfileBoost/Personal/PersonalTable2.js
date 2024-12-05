@@ -236,7 +236,7 @@ class PersonalTable2 extends Component {
         
               >
                 <div>
-                  <div className="product3" style={{ width: "180" }}>
+                  <div classname="flex flex-col w-[11rem] h-[40%] px-2 py-5 bg-[f5f5f5] justify-left items-left mb-2 mt-2" >
                     {address &&
                       address.map((components, i) => (
                         <AddressComponent

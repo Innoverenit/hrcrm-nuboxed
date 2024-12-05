@@ -60,9 +60,8 @@ class ForgotPassword extends Component {
           <div class="  w-full  min-h-[100vh] overflow-auto flex flex-col justify-center items-center bg-white  ">
            
                 <img
-                  className="big-logo"
-                  src={FWLogo}
-                  style={{ width: 200 }}
+                  className="w-18 h-18"
+                  src={FWLogo}           
                   alt="Tekorero logo"
                 />
            <div class=" p-4 w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white">
@@ -160,7 +159,6 @@ class ForgotPassword extends Component {
                           </div>
 
                           <div className="w-full flex" >
-
                             <div className="w-full" >
                               <Field
                                 name="password"
@@ -184,7 +182,6 @@ class ForgotPassword extends Component {
                                 style={{ marginLeft: "-1.25em", marginTop: "-0.25em" }}
                               />
                             )}
-
                           </div>
 
                           <div className="w-full flex" >
@@ -207,11 +204,8 @@ class ForgotPassword extends Component {
                                 type="eye-invisible"
                                 onClick={this.handleClick1}
                               />
-                            )}
-                          
-
+                            )}        
                           </div>
-
                         </div>
 
                         <div className="mt-4">
@@ -225,8 +219,6 @@ class ForgotPassword extends Component {
                               >
                                 Back to login
                               </Link>
-
-
                             </span>
 
                             <Button 
@@ -239,9 +231,7 @@ class ForgotPassword extends Component {
                               Save Password
                             </Button>
                           </span>
-                        </div>
-                     
-
+                        </div>                   
                       </Form>
                     )}
                   </Formik>
