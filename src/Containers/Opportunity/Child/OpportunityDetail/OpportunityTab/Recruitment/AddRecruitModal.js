@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 
-import { StyledDrawer, StyledModal } from "../../../../../../Components/UI/Antd";
+import { StyledDrawer } from "../../../../../../Components/UI/Antd";
 const RecruitForm = lazy(() => import("./RecruitForm"));
 
 const AddRecruitModal = (props) => {

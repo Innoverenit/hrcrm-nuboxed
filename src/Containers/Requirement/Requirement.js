@@ -9,6 +9,7 @@ import {
   } from "../Opportunity/OpportunityAction";
 
   import { setRequirementViewType } from "./RequirementAction";
+import AddRecruitModal from "../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/AddRecruitModal";
 class Requirement extends Component  {
     state = { currentData: undefined,responseData:null,text:undefined,currentSkillData: "" };
     handleClear = () => {
@@ -38,6 +39,8 @@ class Requirement extends Component  {
         text={this.state.text}
         setCurrentData={this.setCurrentData}
         />
+        <AddRecruitModal
+         viewType={viewType}/>
         <AllRequirementTable/>
         </>
     ); 

@@ -2,11 +2,16 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import { OnlyWrapCard } from "../../Components/UI/Layout";
 import {getAllRequirementTable} from "../Requirement/RequirementAction"
 import InfiniteScroll from "react-infinite-scroll-component";
-
-
+import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
+import CategoryIcon from '@mui/icons-material/Category';
+import EventIcon from '@mui/icons-material/Event';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import RecentActorsIcon from '@mui/icons-material/RecentActors';
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+import PortraitIcon from '@mui/icons-material/Portrait';
+import ContactsIcon from '@mui/icons-material/Contacts';
 
 class AllRequirementTable extends Component {
  
@@ -86,21 +91,21 @@ class AllRequirementTable extends Component {
     const tableHeight = tab && tab.offsetHeight - 100;
     return (
       <>
-  <div className=' flex justify-end sticky top-28 z-auto'>
-      <OnlyWrapCard style={{backgroundColor:"white"}}>
-      <div className=" flex justify-between w-[100%]  p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[8.1rem]">Job ID</div>
-        <div className=" md:w-[4.2rem] ">Requirement</div>
-        <div className="md:w-[5.8rem]">Category</div>
-        <div className="md:w-[8.5rem]">Customer</div>
-        <div className="md:w-[3.8rem]">Created</div> 
-        <div className="md:w-[5.2rem]">Recruiter</div>
-        <div className="md:w-[1.5rem]">On</div>
-        <div className="md:w-[3.3rem]">Start</div>
-        <div className="w-12">Duration</div>
-        <div className="w-12">Billing</div>
-        <div className="w-12">Talent</div>
-        <div className="w-12">Sponsor</div>
+  <div className=' flex sticky z-auto'>
+  <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-white" >
+  <div className=" flex max-sm:hidden   justify-between items-end !text-lm font-poppins  font-bold   w-[100%]   p-1 bg-transparent sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
+        <div className=" max-md:w-[8.1rem] w-[6.1rem] text-sm text-[#00A2E8]"> <WorkHistoryIcon className="!text-icon  "/> Job ID</div>
+        <div className=" max-md:w-[4.2rem] w-[6.2rem]"> <RecentActorsIcon className="!text-icon  "/> Requirement</div>
+        <div className="max-md:w-[5.8rem] w-[5.8rem]"> <CategoryIcon className="!text-icon text-[#42858c] "/> Category</div>
+        <div className="max-md:w-[8.5rem] w-[6.5rem]"> <AcUnitIcon className="!text-icon  text-[#c42847]"/> Customer</div>
+        <div className="max-md:w-[3.8rem] w-[4.8rem]"> <EventIcon className="!text-icon text-[#5A189A] "/> Created</div> 
+        <div className="max-md:w-[5.2rem] w-[5.2rem]"> <RecentActorsIcon className="!text-icon text-[#84a59d] "/> Recruiter</div>
+        <div className="max-md:w-[1.5rem] w-[1.5rem]"> On</div>
+        <div className="max-md:w-[3.3rem] w-[3.3rem]"> <EventIcon className="!text-icon  "/> Start</div>
+        <div className="max-md:w-[3.3rem] w-18"> <EventIcon className="!text-icon text-[#f42c04] "/> Duration</div>
+        <div className="max-md:w-[3.3rem] w-16"> <AccessAlarmIcon className="!text-icon  text-[#c42847]"/> Billing</div>
+        <div className="max-md:w-[3.3rem] w-16"> <PortraitIcon className="!text-icon  text-[#e4eb2f]"/> Talent</div>
+        <div className="max-md:w-[3.3rem] w-16"> <ContactsIcon className="!text-icon text-[#d64933] "/> Contact</div>
 
       </div>
       <InfiniteScroll
@@ -108,7 +113,7 @@ class AllRequirementTable extends Component {
         // next={handleLoadMore}
         // hasMore={hasMore}
         loader={fetchingAllRequirementTable?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
-        height={"75vh"}
+        height={"86vh"}
       >
         {requirementTable.map((item) => {
           const currentdate = dayjs().format("DD/MM/YYYY");
@@ -139,104 +144,95 @@ class AllRequirementTable extends Component {
                } `;
           return (
             <div>
-                            <div className="flex rounded-xl justify-between mt-2 bg-white h-11 items-center p-3"
-                                // style={{
-                                //     borderBottom: "3px dotted #515050"
-                                // }}
-                                >
+                              <div className="flex  justify-between text-xs  font-poppins bg-white mt-1 py-ygap items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                               
                                 <div class="flex">
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
+                                <div className=" flex max-md:w-36 w-36 max-sm:flex-row border-l-2 border-green-500 bg-[#eef2f9]  max-sm:justify-between ">
 
                                     <div class=" text-sm justify-center  font-poppins">
                                     {item.jobOrder}
                                     </div>
                                 </div>
                              
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex max-md:w-36 w-36 max-sm:flex-row  max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {item.requirementName}
 
                                     </div>
-                                    <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                    <div className=" flex max-md:w-36 w-36 max-sm:flex-row  max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {item.category}
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex max-md:w-36 w-36 max-sm:flex-row  max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {item.customerName}
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex max-md:w-36  max-sm:flex-row w-36 max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {item.recruitOwner}
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex max-md:w-36 w-36 max-sm:flex-row  max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
+                                
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {item.creationDate}
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex max-md:w-36 w-36 max-sm:flex-row  max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
+                                
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {/* {item.creationDate} */}
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex max-md:w-36 w-36 max-sm:flex-row  max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
+                                
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {/* {item.creationDate} */}
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex max-md:w-36 w-36 max-sm:flex-row  max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
+                                
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {/* {item.creationDate} */}
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex max-md:w-36 w-36 max-sm:flex-row  max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
+                                
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {item.billing}
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex max-md:w-36 w-36 max-sm:flex-row  max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
+                                
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {item.candidatetList}
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex max-md:w-36 w-36 max-sm:flex-row  max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
+                                
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {item.candidatetList}
 
                                     </div>
@@ -250,7 +246,7 @@ class AllRequirementTable extends Component {
           );
         })}
          </InfiniteScroll>
-      </OnlyWrapCard>
+      </div>
       </div>
  
     

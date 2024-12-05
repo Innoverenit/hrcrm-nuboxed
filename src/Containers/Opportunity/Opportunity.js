@@ -112,19 +112,20 @@ class Opportunity extends Component {
              selectedLanguage={this.props.selectedLanguage}
            translatedMenuItems={this.props.translatedMenuItems}
             />}
-            { viewType === "teams" ?( <OpportunityTeamsCard
+            { viewType === "teams" && <OpportunityTeamsCard
              translateText={this.props.translateText}
              selectedLanguage={this.props.selectedLanguage}
            translatedMenuItems={this.props.translatedMenuItems}
             />
-            ):(
-<OpportunityCardList
-             translateText={this.props.translateText}
-             selectedLanguage={this.props.selectedLanguage}
-           translatedMenuItems={this.props.translatedMenuItems}
+//             ):(
+// <OpportunityCardList
+//              translateText={this.props.translateText}
+//              selectedLanguage={this.props.selectedLanguage}
+//            translatedMenuItems={this.props.translatedMenuItems}
             
-            />
-            )}
+//             />
+            // )
+          }
             {   viewType === "lost" &&  <OpportunityLostCard
              translateText={this.props.translateText}
              selectedLanguage={this.props.selectedLanguage}

@@ -710,7 +710,25 @@ function MainApp(props) {
             </FloatButton.Group>
               )} 
                 <div class="mr-3 flex items-center h-[2.5rem]">            
-
+                <div class="max-xl:text-[0.75rem]  max-lg:text-[0.5rem] ">
+                  <LanguageSelector
+                    translateText={translateText}
+                    selectedLanguage={selectedLanguage}
+                    setSelectedLanguage={setSelectedLanguage}
+                    onLanguageChange={handleLanguageChange}
+                    supportedLanguages={supportedLanguages}
+                  />
+                </div> 
+                  <div class=" text-[tomato]  bg-white h-[1.75rem] ml-8 mr-3 max-sm:hidden"
+                    style={{
+                      border: "1px solid tomato",
+                      borderRadius: "5px",
+                      lineHeight: "24px",
+                      padding: "0px 10px",
+                    }}
+                  >
+                    {props.role}
+                  </div>
                 
                   <div class=" flex items-center h-0">
                     {user.settingsAccessInd === true || user.role === "ADMIN" ?
