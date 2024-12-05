@@ -19,6 +19,7 @@ import ApartmentIcon from '@mui/icons-material/Apartment';
 import MobileFriendlyIcon from '@mui/icons-material/MobileFriendly';
 import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
+import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 const UpdateAccountContactModal = lazy(() => import('./UpdateAccountContactModal'));
 const AccountContactJumpstartBoxDrawer = lazy(() => import('./AccountContactJumpstartBoxDrawer'));
 
@@ -123,17 +124,19 @@ const AccountContactTable = (props) => {
             <div className='flex sticky h-[79vh] z-auto'>
                 <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                     <div className="flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky items-end font-poppins !text-lm z-10">
-                        <div className="w-[5.1rem] text-[#00A2E8] text-sm max-md:w-[7.1rem]">
+                        <div className="w-[4.1rem] text-[#00A2E8] text-sm max-md:w-[4.1rem]">
                         <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]}</div>
-                        <div className="w-[6.01rem]  max-md:w-[11.01rem]">
+                        <div className="w-[8.01rem]  max-md:w-[8.01rem]">
                         <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] '/>{translatedMenuItems[1]}</div>
-                        <div className="w-[4.8rem]  max-md:w-[6.8rem]">
+                        <div className="w-[3.8rem]  max-md:w-[3.8rem]">
                               <MobileFriendlyIcon className='!text-icon text-[#41ead4] '/> {translatedMenuItems[2]}</div>
-                        <div className="w-[5.9rem]  max-md:w-[7.9rem]">
-                        <i className="fab fa-artstation mr-1 text-[#b744b8]"></i>{translatedMenuItems[3]}</div>
-                        <div className="w-[16.6rem]  max-md:w-[19.6rem]">
+                        <div className="w-[5.9rem]  max-md:w-[5.9rem]">
+                        
+                        <WorkHistoryIcon className="!text-icon text-[#b744b8] "/>
+                        {translatedMenuItems[3]}</div>
+                        <div className="w-[16.6rem]  max-md:w-[16.6rem]">
                         <ApartmentIcon className="!text-icon text-[#f0386b] "/>{translatedMenuItems[4]}</div>
-                        <div className="w-[4.7rem]  max-md:w-[10.7rem]">{translatedMenuItems[5]}</div>
+                        <div className="w-[4.7rem]  max-md:w-[4.7rem]">{translatedMenuItems[5]}</div>
                         <div className=" w-[18.8rem]  max-md:w-[18.8rem]">{translatedMenuItems[6]}</div>
                     </div>
 

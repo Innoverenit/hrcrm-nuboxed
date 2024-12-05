@@ -144,24 +144,24 @@ const [editingValue, setEditingValue] = useState("");
   ) : (
       <div className=' flex  sticky  z-auto'>
         <div class=" m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-          <div className=" flex font-poppins text-xs justify-between w-[96%] max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm   p-1 bg-transparent font-bold sticky items-end z-10 max-sm:hidden">
-          <div className=" w-[9.91rem] truncate text-[#00A2E8]  max-md:w-[14.9rem] text-sm  "> 
+          <div className=" flex font-poppins text-xs justify-between w-[98%] max-xl:text-[0.65rem] max-lg:text-[0.45rem] !text-lm   p-1 bg-transparent font-bold sticky items-end z-10 max-sm:hidden">
+          <div className=" w-[8.8rem] truncate text-[#00A2E8]  max-md:w-[14.9rem] text-sm  "> 
                {/* Supplier ID */}
-              <CategoryIcon className=" text-base"/> {props.translatedMenuItems[40]} ID 
+              <CategoryIcon className=" !text-icon"/> {props.translatedMenuItems[40]} ID 
                </div>
-            <div className=" w-[11.4rem] truncate   max-md:w-[11.8rem]">  
+            <div className=" w-[10.4rem] truncate   max-md:w-[11.8rem]">  
             {/* "Name" */}
             <ApartmentIcon className="!text-icon text-[#4f5d75] "/>  {props.translatedMenuItems[0]}
             </div>
-            <div className=" w-[10.8rem] truncate  max-md:w-[9.8rem]">
+            <div className=" w-[9rem] truncate  max-md:w-[9.8rem]">
               {/* Phone  */}
               <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/> {props.translatedMenuItems[1]}
             </div>
-            <div className=" w-[13.92rem] truncate  max-md:w-[14.9rem] "> 
-            <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c] ' /> {/* Email */}
+            <div className=" w-[12.5rem] truncate  max-md:w-[14.9rem] "> 
+            <MarkEmailUnreadIcon className='!text-icon  text-[#ff9f1c] ' /> {/* Email */}
                {props.translatedMenuItems[2]}
                </div>
-               <div className=" w-[18.93rem]  truncate  max-md:w-[14.9rem] "> 
+               <div className=" w-[17.93rem]  truncate  max-md:w-[14.9rem] "> 
                {/* URL */}
                <LinkIcon  className="!text-icon  text-[#4f5d75]"/>    {props.translatedMenuItems[41]}
                </div>
@@ -194,10 +194,10 @@ const [editingValue, setEditingValue] = useState("");
                       <>
                         <div
                           className="flex  rounded justify-between bg-white   items-center py-ygap  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:flex-col  max-sm:h-24  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-                          <div class=" flex flex-row justify-between  w-wk max-sm:flex-col">
+                          <div class=" flex flex-row justify-between font-poppins w-wk max-sm:flex-col max-md:text-[0.65rem] max-lg:text-[0.45rem]">
                             <div class="flex max-sm:justify-start items-center">
                             <div className="border-l-2 border-green-500 bg-[#eef2f9] h-8 flex items-center w-[9.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-md:w-[10.1rem] max-lg:w-[8.06rem] ">
-                            <div class=" text-xs ml-gap font-poppins max-sm:text-sm max-md:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div class=" text-xs ml-gap  max-sm:text-sm ">
                             {item.newSuppNo}
                             
 </div>
@@ -416,7 +416,7 @@ className="cursor-pointer text-xs font-poppins">
                                     title={`${props.translatedMenuItems[22]} ?`}
                                     onConfirm={() => props.deleteSupplierData(item.supplierId, props.userId)}
                                   >
-                                  <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+                                  <DeleteOutlineIcon ClassName="!text-icon text-[#ff6347] cursor-pointer"  />
                                   </Popconfirm>
                                 </Tooltip>
                               </div>

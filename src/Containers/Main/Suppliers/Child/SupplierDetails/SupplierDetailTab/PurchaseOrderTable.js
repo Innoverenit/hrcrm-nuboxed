@@ -242,20 +242,20 @@ const timerRef = useRef(null);
                         <Shop2Icon className="mr-1 !text-icon"/>PO ID
                             </div>
                         <div className=" w-[4.1rem]  truncate max-md:w-[10.1rem]  max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
-                      <AccountCircleIcon className=" !text-icon"/>  {translatedMenuItems[0]}    {/* Created" /> */}
+                      <AccountCircleIcon className=" !text-icon text-[#b2452a]"/>  {translatedMenuItems[0]}    {/* Created" /> */}
                         </div>
                         <div className=" w-[12.7rem]  truncate  max-md:w-[13.12rem] max-xl:text-[0.65rem] max-xl:w-[9.1rem]">
-                        <LocationOnIcon className=" !text-icon"/> {translatedMenuItems[1]} {/* Location" /> */}
+                        <LocationOnIcon className=" !text-icon text-[#e63946]"/> {translatedMenuItems[1]} {/* Location" /> */}
                         </div>
                         <div className=" w-[12.8rem]  truncate  max-md:w-[13.12rem]  max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
-                        <LocationOnIcon className=" !text-icon"/> {translatedMenuItems[2]}  {/* Delivery */}
+                        <LocationOnIcon className=" !text-icon text-[#e63946]"/> {translatedMenuItems[2]}  {/* Delivery */}
                         </div>
                         <div className=" w-[13.11rem]  truncate   max-md:w-[17.11rem] max-xl:text-[0.65rem] max-xl:w-[9.12rem]">
-                        <ContactPageIcon className=" !text-icon"/>  {translatedMenuItems[3]} {/* Contact */}
+                        <ContactPageIcon className=" !text-icon text-[#1d3557]"/>  {translatedMenuItems[3]} {/* Contact */}
                         </div>
                                            
                         <div className=" w-[31.14rem]  truncate  max-md:w-[23.14rem] max-xl:text-[0.65rem] max-xl:w-[9.11rem]">
-                        <CurrencyExchangeIcon className=" !text-icon"/> {translatedMenuItems[5]} 
+                        <CurrencyExchangeIcon className=" !text-icon text-[#ffd60a]"/> {translatedMenuItems[5]} 
                          {/* Value" */}
                         </div>
                                   
