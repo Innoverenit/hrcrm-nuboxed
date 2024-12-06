@@ -7097,12 +7097,16 @@ export const addSequenceFlow = (
 
 
 
-export const getApikey = (orgId) => (dispatch) => {
+export const getApikey = (orgId,type) => (dispatch) => {
   dispatch({
     type: types.GET_API_KEY_REQUEST,
   });
   axios
-    .get(`${base_url2}/ApiKey/getBy/${orgId}` )
+    .get(`${base_url}/thirdPartyApi/get/${orgId}/${type}` ,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -7171,6 +7175,43 @@ export const getDiscountCatVol = (categoryId) => (dispatch) => {
     });
 };
 
+
+
+export const addHideFlow = (thirdPartyApiId,hideInd, cb) => (dispatch, getState) => {
+  const userId = getState().auth.userDetails.userId;
+  dispatch({
+    type: types.ADD_HIDE_FLOW_REQUEST,
+  });
+  axios
+    .put(`${base_url}/thirdPartyApi/update/hideInd/${thirdPartyApiId}/${hideInd}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Api added Successfully!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      console.log(res);
+     
+      dispatch({
+        type: types.ADD_HIDE_FLOW_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_HIDE_FLOW_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const categoryVolUpdate = (opportunity, cb) => (dispatch, getState) => {
   dispatch({
     type: types.ADD_CATEGORY_VOLUME_REQUEST,
@@ -7213,7 +7254,7 @@ export const addApi = (opportunity, cb) => (dispatch, getState) => {
     type: types.ADD_API_REQUEST,
   });
   axios
-    .post(`${base_url2}/Apikey`, opportunity, {
+    .put(`${base_url}/thirdPartyApi/update/api`, opportunity, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
