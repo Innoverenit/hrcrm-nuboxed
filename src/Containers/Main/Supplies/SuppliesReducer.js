@@ -15,6 +15,15 @@ const initialState = {
     fetchingBarcodeViewerError: false,
     barCodeViewer:[],
 
+
+    fetchingPriceUpdated: false,
+    fetchingPriceUpdatedError: false,
+    priceUpdated:[],
+
+    fetchingPriceUpdatedCount: false,
+    fetchingPriceUpdatedCountError: false,
+    priceUpdatedCount:[],
+
     fetchingPriceFactor: false,
     fetchingPriceFactorError: false,
     priceFactorData:{},
@@ -1618,6 +1627,36 @@ export const suppliesReducer = (state = initialState, action) => {
                     fetchingBarcodeViewer: false,
                     fetchingBarcodeViewerError: true,
                   };
+
+                  case types.GET_PRICE_UPDATED_REQUEST:
+                    return { ...state,  fetchingPriceUpdated: true };
+                  case types.GET_PRICE_UPDATED_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingPriceUpdated: false,
+                      priceUpdated: action.payload,
+                    };
+                  case types.GET_PRICE_UPDATED_FAILURE:
+                    return {
+                      ...state,
+                      fetchingPriceUpdated: false,
+                      fetchingPriceUpdatedError: true,
+                    };
+
+                    case types.GET_PRICE_UPDATED_COUNT_REQUEST:
+                      return { ...state,  fetchingPriceUpdatedCount: true };
+                    case types.GET_PRICE_UPDATED_COUNT_SUCCESS:
+                      return {
+                        ...state,
+                        fetchingPriceUpdatedCount: false,
+                        priceUpdatedCount: action.payload,
+                      };
+                    case types.GET_PRICE_UPDATED_COUNT_FAILURE:
+                      return {
+                        ...state,
+                        fetchingPriceUpdatedCount: false,
+                        fetchingPriceUpdatedCountError: true,
+                      };
 
         default:
             return state;

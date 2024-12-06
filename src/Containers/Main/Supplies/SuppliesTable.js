@@ -26,7 +26,8 @@ import {
   handleErpDocumentUploadModal,
   getBestBeforeJumpListCount,
   getReorderCount,
-  getPriceFactor
+  getPriceFactor,
+  getPriceUpdatedCount
 } from "./SuppliesAction";
 import {getUOM} from "../../Settings/SettingsAction"
 import { Tooltip, Popconfirm,Button } from "antd";
@@ -52,6 +53,7 @@ import EmptyPage from "../EmptyPage";
 import BestJumpOpen from "./BestJumpOpen";
 import ReOrderOpen from "./ReOrderOpen";
 import MaterialBarCodeInput from "./MaterialBarCodeInput";
+import PriceOpenDrawer from "./PriceOpenDrawer";
 const MaterialInventoryDrawer = lazy(()=>import("./MaterialInventory/MaterialInventoryDrawer"));
 const MaterialBuilderDrawer = lazy(() => import("./MaterialBuilder/MaterialBuilderDrawer"));
 const TagBrandModel = lazy(() => import("./TagBrandModel"));
@@ -71,6 +73,7 @@ function SuppliesTable(props) {
   const [openStatus,setopenStatus] = useState(false);
   const [open , setOpen] = useState(false);
   const [reOpen , setreOpen] = useState(false);
+  const [priceOpen , setPriceOpen] = useState(false);
   const {bestbeforelistcount, fetchingbestbefore} = props;
 
   const openModal = () => {
@@ -91,6 +94,7 @@ function SuppliesTable(props) {
     props.getUOM()
     props.getBestBeforeJumpListCount(props.orgId)
     props.getReorderCount()
+    props.getPriceUpdatedCount()
   }, []);
 
   const handleLoadMore = () => {
@@ -239,9 +243,10 @@ function SuppliesTable(props) {
                              bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
                               noProgress
                               title= "Price Update"
-                             // jumpstartClick={()=> handleClick("Cancelled")}
+                              jumpstartClick={()=> setPriceOpen(true)}
                               cursorData={"pointer"}
                               value={"0"}
+                               //  value={ props.priceUpdatedCount.count}
                             // isLoading={props.fetchingorderDetails}
                             />
                           </div>
@@ -639,7 +644,13 @@ function SuppliesTable(props) {
       reOpen={reOpen}
       setreOpen={setreOpen}
       />
-      
+       <PriceOpenDrawer
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      particularDiscountData={particularDiscountData}
+      priceOpen={priceOpen}
+      setPriceOpen={setPriceOpen}
+      />
       </Suspense>
 
     </>
@@ -666,7 +677,8 @@ const mapStateToProps = ({ supplies, auth,settings }) => ({
   fetchingSuppliesInputSearchData:supplies.fetchingSuppliesInputSearchData,
   orgId: auth.userDetails.organizationId,
   suppliesBestBeforeCount:supplies.suppliesBestBeforeCount,
-  reOrderCount:supplies.reOrderCount
+  reOrderCount:supplies.reOrderCount,
+  priceUpdatedCount:supplies.priceUpdatedCount
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -687,7 +699,8 @@ const mapDispatchToProps = (dispatch) =>
       handlePriceModal,
       getUOM,
       getBestBeforeJumpListCount,
-      getReorderCount
+      getReorderCount,
+      getPriceUpdatedCount
     },
     dispatch
   );

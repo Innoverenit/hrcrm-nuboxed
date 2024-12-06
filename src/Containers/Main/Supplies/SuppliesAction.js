@@ -2060,3 +2060,57 @@ export const getBarcodeViewer = (suppliesId) => (dispatch) => {
       });
     });
 };
+
+export const getPriceUpdated = () => (dispatch) => {
+  dispatch({
+    type: types.GET_PRICE_UPDATED_REQUEST,
+  });
+  axios
+  .get(`${base_url2}/urlShouldChange`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRICE_UPDATED_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRICE_UPDATED_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getPriceUpdatedCount = () => (dispatch) => {
+  dispatch({
+    type: types.GET_PRICE_UPDATED_COUNT_REQUEST,
+  });
+  axios
+  .get(`${base_url2}/urlShouldChange`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRICE_UPDATED_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRICE_UPDATED_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};

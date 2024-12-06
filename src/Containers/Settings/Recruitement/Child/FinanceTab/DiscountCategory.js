@@ -27,7 +27,7 @@ const DiscountCategory = (props) => {
                             <div className="md:w-[7.1rem]">Category</div>
                            
                         </div>
-                        <div className="h-[33vh]">
+                        <div className="h-[74vh]">
                             {props.discountCat.map((item) => {
                                 const currentdate = dayjs().format("DD/MM/YYYY");
                                 const date = dayjs(item.paymentDate).format("DD/MM/YYYY");
@@ -38,12 +38,7 @@ const DiscountCategory = (props) => {
                                        
                                         <div className="flex font-medium justify-between w-[10.25rem]">
                                             <div className="font-normal text-[0.85rem] font-poppins flex items-center">
-                                                {item.piId}
-                                            </div>
-                                        </div>
-                                        <div className="flex w-[7.1rem]">
-                                            <div className="text-xs font-poppins">
-                                                {item.piInquiryItemLinkId}
+                                                {item.name}
                                             </div>
                                         </div>
                                     </div>
@@ -56,9 +51,6 @@ const DiscountCategory = (props) => {
                                 
                             })}
                         </div>
-                        <DiscountCategoryVolume
-                                 
-                                    />
                     </div>
                 </div>
         </div>
