@@ -370,7 +370,7 @@ console.log(selectedItems)
       }`}
     >
                       <div class="flex">
-                      <div className="md:w-[2rem]">
+                      <div className="w-[2rem] max-md:w-[2rem]">
                       {item.inspectionInd === 1 && (
                       <Checkbox
                       checked={selectedItems.includes(item)}
@@ -378,7 +378,7 @@ console.log(selectedItems)
                       onChange={() => handleCheckboxChange(item)}
                     />)}
                       </div>
-                        <div className=" flex   border-l-2 py-ygap border-green-500 bg-[#eef2f9] md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div className=" flex   border-l-2 py-ygap border-green-500 bg-[#eef2f9] w-[2rem] max-md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                           {item.mismatchInd && <div class=" text-xs  font-poppins">
                              <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" onClick={() => {
                               handleMismatchItem();
@@ -387,19 +387,20 @@ console.log(selectedItems)
                             } />
                           </div>}
                         </div>
-                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.03rem] max-sm:w-full  ">
-                          {item.company}
+                        <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] md:w-[5.03rem] max-sm:w-full  ">
+                        <div class=" text-xs ml-gap font-poppins">
+                           {item.company} 
+                             </div>
                         </div>
 
-                        <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                          <div class=" text-xs  font-poppins">
+                        <div className=" flex   items-center justify-start h-8 ml-gap bg-[#eef2f9] md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                          <div class=" text-xs ml-gap font-poppins">
                             {item.model}
                           </div>
 
                         </div>
-                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <div class=" text-sm  font-poppins">
-
+                        <div className=" flex  items-center justify-start h-8 ml-gap bg-[#eef2f9] md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div class=" text-sm ml-gap font-poppins">
                             {item.imei}
                           </div>
                         </div>
@@ -422,62 +423,7 @@ console.log(selectedItems)
                         <div class="truncate max-w-[100px] " title={item.issue}>{item.issue}</div>
                         </div>
                       </div>
-                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.53rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                        {item.levelCount&&item.levelCount.map((level)=>{
-                                                            return(
-                                                                <span 
-                                                                style={{marginLeft:"9px",cursor:"pointer"}}
-                                                                onClick={() => {
-                                                                   props.handleRefurbishLevelModal(true);
-                                                                   // handleSetCurrentOpportunityId(item);
-                                                                 }}
-                                                               title={level.level}
-                                                               >
-                                                                <Badge size="small" count={level.levelCount}>
-                                                                {level.level}
-                                                                </Badge>
-                                                                   {/* {level.levelCount} */}
-                                                                   {/* {item.issue.substring(0, 10)}{item.issue.length > 20 && '...'} */}
-                                                               </span>
-                                                            )
-                                                        })}
-
-                                                    </div>
-                                                </div>
-
-                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        {item.receivePhoneInd?(
-                        <div class=" text-xs  font-poppins text-center">
-                          <Tooltip title="Task">
-                            <TaskIcon   className="!text-icon  text-[black]" type="file-done"
-                              onClick={() => {
-                                handleSetParticularOrderData(item);
-                                 handleExpand(item.phoneId);
-                                 setSelectedRow(item.phoneId);
-                                props.handleInventoryexpand(true);
-                              }}
-                            />
-
-                          </Tooltip>
-                        </div>
-                         ):null}
-                      </div>
-                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[3.06rem] max-sm:flex-row w-full max-sm:justify-between ">
-                        <div class=" text-xs  font-poppins text-center">
-                          <Tooltip title="Notes">
-                            <NoteAltIcon
-                              className="!text-icon cursor-pointer text-[green]"
-                           
-                              onClick={() => {
-                                handleSetParticularOrderData(item);
-                                props.handleReceivedOrderIdPhoneNoteModal(true);
-                              }}
-                            />
-
-                          </Tooltip>
-                        </div>
-                      </div>
+                  
 
                       <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[7.06rem] max-sm:flex-row w-full max-sm:justify-between ">
                         <div class=" text-xs  font-poppins text-center">
@@ -588,7 +534,62 @@ console.log(selectedItems)
 
                         </div>
                       </div>
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.53rem] max-xl:w-[4.12rem] max-lg:w-[3.12rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        {item.levelCount&&item.levelCount.map((level)=>{
+                                                            return(
+                                                                <span 
+                                                                style={{marginLeft:"9px",cursor:"pointer"}}
+                                                                onClick={() => {
+                                                                   props.handleRefurbishLevelModal(true);
+                                                                   // handleSetCurrentOpportunityId(item);
+                                                                 }}
+                                                               title={level.level}
+                                                               >
+                                                                <Badge size="small" count={level.levelCount}>
+                                                                {level.level}
+                                                                </Badge>
+                                                                   {/* {level.levelCount} */}
+                                                                   {/* {item.issue.substring(0, 10)}{item.issue.length > 20 && '...'} */}
+                                                               </span>
+                                                            )
+                                                        })}
 
+                                                    </div>
+                                                </div>
+
+                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.01rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        {item.receivePhoneInd?(
+                        <div class=" text-xs  font-poppins text-center">
+                          <Tooltip title="Task">
+                            <TaskIcon   className="!text-icon  text-[black]" type="file-done"
+                              onClick={() => {
+                                handleSetParticularOrderData(item);
+                                 handleExpand(item.phoneId);
+                                 setSelectedRow(item.phoneId);
+                                props.handleInventoryexpand(true);
+                              }}
+                            />
+
+                          </Tooltip>
+                        </div>
+                         ):null}
+                      </div>
+                      <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[3.06rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div class=" text-xs  font-poppins text-center">
+                          <Tooltip title="Notes">
+                            <NoteAltIcon
+                              className="!text-icon cursor-pointer text-[green]"
+                           
+                              onClick={() => {
+                                handleSetParticularOrderData(item);
+                                props.handleReceivedOrderIdPhoneNoteModal(true);
+                              }}
+                            />
+
+                          </Tooltip>
+                        </div>
+                      </div>
                     </div>
                     {/* 2nd part */}
                     {(show && particularRowData.phoneId === item.phoneId) && 

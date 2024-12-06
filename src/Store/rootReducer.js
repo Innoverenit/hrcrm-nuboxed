@@ -9,7 +9,6 @@ import { pitchReducer } from "../Containers/Pitch/PitchReducer";
 import { activityReducer } from "../Containers/Activity/ActivityReducer";
 import { regionsReducer } from "../Containers/Settings/Category/Region/RegionReducer";
 import { serviceLineReducer } from "../Containers/Settings/Category/ServiceLine/ServiceLineReducer";
-import { messageReducer } from "../Containers/LiveMessages/MessageReducer";
 import { dashboardReducer } from "../Containers/Dashboard/DashboardReducer";
 import { brandmodelReducer } from "../Containers/Settings/Category/Brand&Model/BrandModelReducer"
 import { plannerReducer } from "../Containers/Planner/PlannerReducer";
@@ -169,7 +168,6 @@ const appReducer = combineReducers({
   requirement: requirementReducer,
   publish: publishReducer,
   idProof: idProofsReducer,
-  message: messageReducer,
   assessment: accessmentReducer,
   leads: leadsReducer,
   level: levelsReducer,

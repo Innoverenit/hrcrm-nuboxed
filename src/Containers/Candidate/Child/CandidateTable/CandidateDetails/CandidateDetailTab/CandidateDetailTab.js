@@ -1,8 +1,6 @@
 import React, { lazy, Suspense, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
-import { translateText, } from '../../../../../Translate/TranslateService';
 import { Tooltip,Badge } from "antd";
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import MicIcon from '@mui/icons-material/Mic';
@@ -46,69 +44,63 @@ const TabPane = StyledTabs.TabPane;
 function CandidateDetailTab(props) {
   const [activeKey, setActiveKey] = useState('1');
   const [translatedContent, setTranslatedContent] = useState('');
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     activeKey: "1",
-  //   };
-  // }
-
-
-  // handleTabChange = (key) => this.setState({ activeKey: key });
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   function handleTabChange(key) {
     setActiveKey(key)
   }
-
   useEffect(() => {
-
-
-
-    const fetchTranslation = async () => {
+    const fetchMenuTranslations = async () => {
       try {
-        const translation = await Promise.all([
-          translateText('RecruitPro', props.selectedLanguage),
-          translateText('Experience', props.selectedLanguage),
-          translateText('Activity', props.selectedLanguage),
-          translateText('Documents', props.selectedLanguage),
-          translateText('Notes', props.selectedLanguage),
-          translateText('Education', props.selectedLanguage),
-          translateText('Employment', props.selectedLanguage),
-          translateText('Training', props.selectedLanguage),
+        setLoading(true); 
+        const itemsToTranslate = [
+          // 'RecruitPro' 
+'1697', // 'Experience', // 0
+"1165",// ' Activity', 1
+"316",// 'Notes', // 2
+"138", // ' Documents',3
+'1195',// Education   4
+'1196',//Employment 5
+ '1194',//Training 6
+ '1198',//Bank Details 8
+      ];
 
-          translateText('Bank Details', props.selectedLanguage),
-        ]);
-
-        setTranslatedContent(translation);
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
         console.error('Error translating menu items:', error);
       }
     };
 
-    fetchTranslation();
+    fetchMenuTranslations();
   }, [props.selectedLanguage]);
+
   const renderTabContent = (key) => {
     switch (key) {
       case "1":
         return     <div> 
           <ActivityTable
                 candidate={props.candidate.candidateId}
-                translateText={props.translateText}
                 selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText}
+             
               />
             </div>;
       case "2":
         return  <div>
           <PlacementTable
-               translateText={props.translateText}
-               selectedLanguage={props.selectedLanguage}
+                 selectedLanguage={props.selectedLanguage}
+                 translateText={props.translateText}
               />
         </div>;
     case "3":
       return  <div>
            <ExperienceForm 
-               translateText={props.translateText}
-               selectedLanguage={props.selectedLanguage}/>
+                 selectedLanguage={props.selectedLanguage}
+                 translateText={props.translateText}/>
       </div>;
          case "4":
           return  <div>
@@ -249,7 +241,7 @@ function CandidateDetailTab(props) {
 
                 <WorkspacePremiumIcon className=" !text-icon" />
                 <span class=" ml-1 !text-tab" >
-                  {/* {translatedContent[1]} */}
+                  {/* {translatedContent[0]} */}
                   Experience
                 </span>
               </>
@@ -269,7 +261,7 @@ function CandidateDetailTab(props) {
                 <FileCopyIcon className=" !text-icon" />
                 <span class=" ml-1 !text-tab">
                   Documents
-                  {/* {translatedContent[3]} */}
+                  {/* {translatedContent[1]} */}
                 </span>
                 <Badge
                 count={props.documentsByCount.document}
@@ -304,7 +296,7 @@ function CandidateDetailTab(props) {
                 <span  className="  !text-tab">
                   <NoteAltIcon className=" !text-icon " />
                 Notes
-                  {/* {translatedContent[4]} */}
+                  {/* {translatedContent[2]} */}
                   &nbsp;
                   {activeKey === "5" && (
                     <>
