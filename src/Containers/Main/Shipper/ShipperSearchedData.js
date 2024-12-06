@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState, lazy  } from "react";
 import { connect } from "react-redux";
 
 import { Link } from 'react-router-dom';
 
 import { bindActionCreators } from "redux";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { Tooltip, Popconfirm, Switch } from "antd";
+import {  Popconfirm } from "antd";
 import {
   getShipperByUserId,
   setEditShipper,
@@ -14,15 +14,15 @@ import {
   handleShipperActivityTableModal,
   deleteShipperData,
 } from "./ShipperAction";
-import BorderColorIcon from "@mui/icons-material/BorderColor";
 
-import AddShipperOrderModal from "./AddShipperOrderModal";
 import CategoryIcon from '@mui/icons-material/Category'
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
 import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import ApiIcon from '@mui/icons-material/Api';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+const AddShipperOrderModal =lazy(()=>import("./AddShipperOrderModal"));
+
 function ShipperSearchedData(props) {
 
 
@@ -198,14 +198,14 @@ function ShipperSearchedData(props) {
             </> 
         </div >
       </div>
-    
+    <Suspense>
       <AddShipperOrderModal
         addShipperOrderModal={props.addShipperOrderModal}
         handleShipperOrderModal={props.handleShipperOrderModal}
         shipperId={currentShipperId}
         handleSetCurrentShipperId={handleSetCurrentShipperId}
         translatedMenuItems={props.translatedMenuItems}
-      />
+      /></Suspense>
     </>
   )
 }

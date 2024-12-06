@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { ViewEditCard } from "../../../../../Components/UI/Elements";
-import ShipperOverViewView from "./ShipperOverViewView";
+const ShipperOverViewView =lazy(()=>import("./ShipperOverViewView"));
 
 class ShipperOverViewCard extends Component {
     render() {
@@ -10,11 +10,11 @@ class ShipperOverViewCard extends Component {
                 <ViewEditCard>
                     {({ viewType }, toggleViewType) =>
                         viewType === "view" ? (
-                            <ShipperOverViewView
+                            <Suspense fallback={"Loading..."}> <ShipperOverViewView
                                 shipper={shipper}
                                 translatedMenuItems={this.translatedMenuItems}
                                 selectedLanguage={this.props.selectedLanguage}
-                            />
+                            /></Suspense>
                         ) : null
                     }
                 </ViewEditCard>

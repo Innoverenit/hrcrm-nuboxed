@@ -1,13 +1,15 @@
-import React, { Component,Suspense } from "react";
+import React, { Component,Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getShipperByShipperId } from "./ShipperAction";
 import {  MainWrapper } from "../../../Components/UI/Layout";
 import { withRouter } from "react-router";
 import { BundleLoader } from "../../../Components/Placeholder";
-import ShipperDetailsHeader from "./ShipperDetailsHeader";
-import ShipperDetailsRight from "./ShipperDetails/ShipperDetailsTab/ShipperDetailsRight";
-import ShipperDetailsLeft from "./ShipperDetails/ShipperDetailsLeft";
+
+
+const ShipperDetailsHeader =lazy(()=>import("./ShipperDetailsHeader"));
+const ShipperDetailsRight =lazy(()=>import("./ShipperDetails/ShipperDetailsTab/ShipperDetailsRight"));
+const ShipperDetailsLeft =lazy(()=>import("./ShipperDetails/ShipperDetailsLeft"));
 
 class ShipperDetails extends Component {
   componentDidMount() {
@@ -18,10 +20,12 @@ class ShipperDetails extends Component {
     return (
       <>
         <>
+        <Suspense fallback={"Loading..."}>
           <ShipperDetailsHeader
            translateText={this.props.translateText}
            selectedLanguage={this.props.selectedLanguage}
           />
+          </Suspense>
           {fetchingShipperDetailsByShipperId ? (
             <MainWrapper>
               <BundleLoader />
