@@ -76,7 +76,7 @@ function NewArrivalListData(props) {
         <div className="w-[37.4rem] text-[#00A2E8] text-sm truncate max-md:w-2"> <DateRangeIcon className="!text-icon "/>Date</div>
         
         <div className="w-[36rem] truncate max-md:w-12"><AddShoppingCartIcon className="!text-icon"/>Items</div>
-        <div className="w-[30rem] truncate max-md:w-20"><ContactsIcon className='!text-base mr-1 text-[#e4eb2f]'/>Contact #</div>
+        <div className="w-[30rem] truncate max-md:w-20"><ContactsIcon className='!text-icon mr-1 text-[#35CE8D]'/>Contact #</div>
       </div>
       {!fetchingNewArrivalList && newArrivalDataList.length === 0 ?<EmptyPage />:newArrivalDataList.map((item,index) =>  {
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");

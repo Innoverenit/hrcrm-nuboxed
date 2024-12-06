@@ -1,20 +1,11 @@
 import React,{useEffect,useState} from 'react'
 import { connect } from 'react-redux'
 import { getInventory } from "../Inventory/InventoryAction"
-
 import {handleSuppliesLocationModal} from "../Supplies/SuppliesAction"
-//import {getLocationSupplies,addLocationSuppliesValue} from "../../Main/Supplies/SuppliesAction"
-//import AddWarantyDrawerModal from "../Waranty/AddWarantyDrawerModal"
-import ButtonGroup from "antd/lib/button/button-group";
-import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
- import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
-import { Tooltip, Button,Input,message, Popconfirm, Select,Switch } from "antd";
-import dayjs from "dayjs";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { Select} from "antd";
 import { bindActionCreators } from "redux";
 import AddSuppliesLocationModal from "./AddSuppliesLocationModal"
-
-
-
 
 const { Option } = Select;
 
@@ -69,34 +60,16 @@ function handleSetCurrentLocationId(item) {
   useEffect(() => {
     props.getInventory(props.orgId)
 }, []);
-
-
-
-
-
-
-
- 
-
-
-
- 
-
   return (
     <>
     <div className='flex sticky z-auto'>
             <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                 <div className="flex w-[100%]  p-1 bg-transparent font-bold sticky !text-lm font-poppins  z-10">
                     <div className=""></div>
-                    <div className="w-[22.12rem] max:w-[22.12rem]">
-                    Location
+                    <div className="w-[22.12rem] text-[#00A2E8] text-sm truncate max:w-[22.12rem]">
+                    <LocationOnIcon className='!text-icon   '/>     Location
                       {/* <FormattedMessage id="app.manufactureid" defaultMessage="Manufacture ID" /> */}
                       </div>
-
-                 
-                
-                  
-                
                 </div>
            
                 {props.inventory.map((item, index) => {

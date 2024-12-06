@@ -56,40 +56,39 @@ function SuppliesDeletedTable(props) {
    <div className=" flex  sticky  z-auto">
         <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky font-poppins !text-lm items-end max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
-            <div className=" w-[3.5rem] max-xl:w-[2rem]"></div>
-            <div className=" w-[8.5rem] text-sm text-[#7dcfb6] truncate max-md:w-[6.13rem] ">
+            <div className=" w-[3.4rem] max-xl:w-[2rem]"></div>
+            <div className=" w-[10.5rem] text-sm text-[#00A2E8] truncate max-md:w-[6.13rem] ">
               {/* HSN */}
               < PinIcon className=" !text-icon"/> {translatedMenuItems[0]}
               </div>
-            <div className=" w-[12.3rem]  truncate max-md:w-[5.1rem]">
+            <div className=" w-[10.3rem]  truncate max-md:w-[5.1rem]">
               {/* Name */}
-              <ContactsIcon className="!text-icon mr-1 "/>  {translatedMenuItems[1]}
+              <ContactsIcon className="!text-icon text-[#35CE8D] mr-1 "/>  {translatedMenuItems[1]}
               </div>
-            <div className=" w-[10.2rem]  truncate max-md:w-[6.2rem]">
+            <div className=" w-[14.2rem]  truncate max-md:w-[6.2rem]">
               {/* Category */}
               <WidgetsIcon className='!text-icon    text-[#42858c]' />   {translatedMenuItems[2]}
               </div>
-            <div className=" w-[10.1rem]  truncate max-md:w-[6.1rem]">
+            <div className=" w-[9.4rem]  truncate max-md:w-[6.1rem]">
               {/* Sub Category */}
               <WidgetsIcon className='!text-icon    text-[#42858c]' />  {translatedMenuItems[3]}
               </div>
-            <div className=" w-[7.01rem]  truncate max-md:w-[4.8rem] ">
+            <div className=" w-[8.4rem]  truncate max-md:w-[4.8rem] ">
               {/* Attribute */}
-              <AttractionsIcon className="  !text-icon" /> {translatedMenuItems[4]}
+              <AttractionsIcon className="text-[#755577]  !text-icon" /> {translatedMenuItems[4]}
               </div>
-            <div className=" w-[6.1rem]  truncate max-md:w-[6.1rem]">
+            <div className=" w-[9.6rem]  truncate max-md:w-[6.1rem]">
               {/* Re-order level */}
               {translatedMenuItems[5]}
               </div>
-            <div className=" w-[4.23rem]   truncate max-md:w-[4.23rem]">
+            <div className=" w-[9.23rem]   truncate max-md:w-[4.23rem]">
               {/* Created */}
               <DateRangeIcon className="!text-icon "/>  {translatedMenuItems[6]}
               </div>
-            <div className=" w-[7.2rem]  truncate max-md:w-[7.2rem]">
+            <div className=" w-[8.1rem]  truncate max-md:w-[7.2rem]">
               {/* Reinstate */}
               {translatedMenuItems[7]}
-              </div>
-            
+              </div>           
           </div>
 
           <InfiniteScroll
@@ -100,7 +99,7 @@ function SuppliesDeletedTable(props) {
             <div className="loader !block"> </div>
         <div className="custom-loader" ><img src={FWLogo1}   className="w-12 -mt-[5.5rem]"  alt="Loading..."  /></div>
       </div></div> : null}
-            height={"80vh"}
+            height={"83vh"}
             style={{overflowX:"hidden", scrollbarWidth:"thin"}}
             
           >
@@ -145,7 +144,7 @@ function SuppliesDeletedTable(props) {
                               </div>
                            
                         
-                          <div className=" flex  w-[10.2rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-start max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                          <div className=" flex  w-[10.7rem] items-center  h-8 ml-gap bg-[#eef2f9] justify-start max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                             <div class="  text-[0.65rem] ml-gap max-sm:text-[0.65rem]  font-poppins ">
                               {item.suppliesName}
                             </div>
