@@ -1949,13 +1949,6 @@
       "type": "fs_event",
       "is_active": "1",
       "is_referenced": "1",
-      "address": "1665750507888",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\Placeholder\\ClockLoader.js"
-    },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
       "address": "1665750518928",
       "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\Placeholder\\index.js"
     },

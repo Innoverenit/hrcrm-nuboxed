@@ -1,8 +1,8 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { FlexContainer } from "../../../../Components/UI/Layout";
-import ShipperOverViewCard from "./ShipperCards/ShipperOverViewCard"
-import ShipperDetailCard from "./ShipperCards/ShipperDetailCard";
-import ShipperOverViewDetailCard from "./ShipperCards/ShipperOverViewDetailCard";
+const ShipperOverViewCard =lazy(()=>import("./ShipperCards/ShipperOverViewCard"));
+const ShipperDetailCard =lazy(()=>import("./ShipperCards/ShipperDetailCard"));
+const ShipperOverViewDetailCard =lazy(()=>import("./ShipperCards/ShipperOverViewDetailCard"));
 
 class ShipperDetailLeft extends Component {
   render() {
@@ -10,6 +10,7 @@ class ShipperDetailLeft extends Component {
     return (
       <>
         <FlexContainer flexDirection="column" style={{ display: "block" }}>
+        <Suspense fallback={"Loading..."}>
           <ShipperOverViewCard  shipper={shipper}
  translateText={this.props.translateText}
  selectedLanguage={this.props.selectedLanguage}
@@ -21,7 +22,7 @@ class ShipperDetailLeft extends Component {
           <ShipperOverViewDetailCard shipper={shipper}
   translateText={this.props.translateText}
   selectedLanguage={this.props.selectedLanguage}
-           />
+           /></Suspense>
         </FlexContainer>
       </>
     );

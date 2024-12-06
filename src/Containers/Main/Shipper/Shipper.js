@@ -82,7 +82,7 @@ const handleClear = () => {
 
     return (
       <>
-      <Suspense fallback={<BundleLoader />}>
+      <Suspense fallback={"Loading..."}>
         <ShipperHeader
           viewType={viewType}
           setShipperViewType={setShipperViewType}

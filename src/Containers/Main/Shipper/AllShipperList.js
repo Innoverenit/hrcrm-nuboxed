@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {getAllDialCodeList} from "../../Auth/AuthAction";
 import {getShipByData} from "../../Settings/Category/ShipBy/ShipByAction";
-import { Tooltip, Popconfirm,Switch,Input,message,Select } from "antd";
+import {  Popconfirm,Switch,Input,Select } from "antd";
 import {
   getAllShipperList,
   setEditShipper,
@@ -459,12 +459,6 @@ className="cursor-pointer text-xs font-poppins">
         handleSetCurrentShipperId={handleSetCurrentShipperId}
         translatedMenuItems={props.translatedMenuItems}
       />
-      {/* <AddShipperActivityModal
-        addShipperActivityTableModal={props.addShipperActivityTableModal}
-        handleShipperActivityTableModal={props.handleShipperActivityTableModal}
-        shipperId={currentShipperId}
-        handleSetCurrentShipperId={handleSetCurrentShipperId}
-      /> */}
         <AddShipperAdressModal 
         item={rowdata}
          type="shipper"

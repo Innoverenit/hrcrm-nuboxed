@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from "react";
 import { BundleLoader } from "../../../../../Components/Placeholder";
-
 import { StyledModal } from "../../../../../Components/UI/Antd";
 
 
