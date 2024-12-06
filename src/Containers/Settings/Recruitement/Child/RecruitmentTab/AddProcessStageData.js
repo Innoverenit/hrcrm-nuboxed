@@ -5,6 +5,7 @@ import {addProcessStageForDeals,
   updateStageForDeals,
   deleteDealsStagesData,
   LinkDealsStagePublish,
+  addSequenceFlow,
    
      } from "../../../SettingsAction";
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -24,20 +25,11 @@ const AddStageComponent = (props) => {
   const [noActionDropdown, setNoActionDropdown] = useState({});
   const [selectedAction, setSelectedAction] = useState({});
     const [editingStageId, setEditingStageId] = useState(null);
-//   const initialStages = []; // Can be empty or pre-filled
+
   const [stages, setStages] = useState(props.dealsProcessStages);
   const [showAddButton, setShowAddButton] = useState(true);
 
-//   const addNewStage = () => {
-//     setStages([
-//       ...stages,
-//       { stagesId: Date.now(), stageName: "", probability: "", days: "", 
-//         isEditing: true 
-//     },
-    
-//     ]);
-//     setShowAddButton(false);
-//   };
+
 
 
 useEffect(() => {
@@ -63,12 +55,7 @@ useEffect(() => {
     setShowAddButton(false);
   };
 
-//   const handleSave = (stagesId) => {
-//     setStages(stages.map((stage) => (stage.stagesId === stagesId ? { ...stage, 
-//         isEditing: false } : stage)));
-//     setShowAddButton(true);
-//     setEditingStageId(null);
-//   };
+
 
 const handleSave = (stagesId) => {
     const savedStage = stages.find((stage) => stage.stagesId === stagesId);
@@ -92,14 +79,10 @@ const handleSave = (stagesId) => {
 
   };
 
-//   const handleCancel = (stagesId) => {
-//     setStages(stages.filter((stage) => stage.stagesId !== stagesId));
-//     setShowAddButton(true);
-//   };
+
 
 const handleCancel = (stagesId) => {
-   // setStages(stages.filter((stage) => stage.stagesId !== stagesId));
-    //setEditingStageId(null);
+ 
     setShowAddButton(true);
   };
 
@@ -113,13 +96,7 @@ const handleCancel = (stagesId) => {
    };
 
 
-//   const handleInputChange = (stagesId, field, value) => {
-//     setStages(
-//       stages.map((stage) =>
-//         stage.stagesId === stagesId ? { ...stage, [field]: value } : stage
-//       )
-//     );
-//   };
+
 
 
 
@@ -132,36 +109,13 @@ const handleInputChange = (stagesId, field, value) => {
   };
 
   const handleEdit = (stagesId) => {
-    // const stageToEdit = stages.find((stage) => stage.stagesId === stagesId);
-    // console.log("Editing Stage:", stageToEdit); // Log the stage being edited
-    // let result={
-    //   stageName:savedStage1.stageName,
-    //   stagesId:savedStage1.stagesId,
-    // }
-    // props.updateStageForDeals(result,savedStage1.stagesId)
+    
     setEditingStageId(stagesId);
     setShowAddButton(false);
   };
 
 
-  const toggleAction = (id, action) => {
-    if (action === "Yes") {
-      setYesState((prev) => ({
-        ...prev,
-        [id]: !prev[id], // Toggle the state visibility
-      }));
-    } else if (action === "No") {
-      setNoState((prev) => ({
-        ...prev,
-        [id]: !prev[id], // Toggle the state visibility
-      }));
-    } else if (action === "No Action") {
-      setNoActionState((prev) => ({
-        ...prev,
-        [id]: !prev[id], // Toggle the state visibility
-      }));
-    }
-  };
+
   console.log(stages)
   const toggleIndicator = (stageId, ruleType) => {
     setStages((prevData) =>
@@ -179,6 +133,24 @@ const handleInputChange = (stagesId, field, value) => {
           : stage
       )
     );
+  };
+  const handleSequenceChange = (stagesId, ruleType, value) => {
+    console.log(`${ruleType} selected value:`, value);
+    // Update the selected value for the specific rule (trueStageSequenceRule, falseStageSequenceRule, noInputStageSequenceRule)
+    setStages((prevStages) =>
+      prevStages.map((stage) =>
+        stage.stagesId === stagesId
+          ? {
+              ...stage,
+              stageSequence: {
+                ...stage.stageSequence,
+                [ruleType]: value,  // Update the ruleType field with the new value
+              },
+            }
+          : stage
+      )
+    );
+    props.addSequenceFlow()
   };
   return (
     <div style={{ padding: "20px" }}>
@@ -315,8 +287,8 @@ const handleInputChange = (stagesId, field, value) => {
           )}
          
         </div>
-        {/* {yesState[stage.stagesId] && ( */}
-        {stage.stageSequence.trueStageSequenceRule!=null && (
+      
+        {stage && stage.stageSequence && stage.stageSequence.trueStageSequenceRule != null && (
               <div
           key={stage.stagesId}
           style={{
@@ -332,7 +304,10 @@ const handleInputChange = (stagesId, field, value) => {
                 <Select
                   placeholder="Select Yes Option"
                   style={{ width: "100%" }}
-                  onChange={(value) => console.log("Yes Selected:", value)}
+                  value={stage && stage.stageSequence && stage.stageSequence.trueStageSequenceRule}
+                  onChange={(value) =>
+                    handleSequenceChange(stage.stagesId, "trueStageSequenceRule", value)
+                  }
                 >
                    <Option value=">Next Step">Next Step</Option>
                       <Option value="Jump to">Jump to</Option>
@@ -341,9 +316,8 @@ const handleInputChange = (stagesId, field, value) => {
                 </Select>
               </div>
         )}
-            {/* )} */}
-              {/* {noState[stage.stagesId] && ( */}
-              {stage.stageSequence.falseStageSequenceRule!=null && (
+            
+              {stage&&stage.stageSequence&&stage.stageSequence.falseStageSequenceRule!=null && (
               <div
               key={stage.stagesId}
               style={{
@@ -358,8 +332,11 @@ const handleInputChange = (stagesId, field, value) => {
                 <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Else</label>
                 <Select
                   placeholder="Select No Option"
+                  value={stage&&stage.stageSequence&&stage.stageSequence.falseStageSequenceRule}
                   style={{ width: "100%" }}
-                  onChange={(value) => console.log("No Selected:", value)}
+                  onChange={(value) =>
+                    handleSequenceChange(stage.stagesId, "falseStageSequenceRule", value)
+                  }
                 >
                  <Option value=">Next Step">Next Step</Option>
                       <Option value="Jump to">Jump to</Option>
@@ -368,9 +345,8 @@ const handleInputChange = (stagesId, field, value) => {
                 </Select>
               </div>
               )}
-            {/* )} */}
-            {/* {noActionState[stage.stagesId] && ( */}
-            {stage.stageSequence.noInputStageSequenceRule!=null && (
+           
+            {stage&&stage.stageSequence&&stage.stageSequence.noInputStageSequenceRule!=null && (
               <div
               key={stage.stagesId}
               style={{
@@ -386,8 +362,9 @@ const handleInputChange = (stagesId, field, value) => {
                 <Select
                   placeholder="Select No Action Option"
                   style={{ width: "100%" }}
+                  value={stage&&stage.stageSequence&&stage.stageSequence.noInputStageSequenceRule}
                   onChange={(value) =>
-                    console.log("No Action Selected:", value)
+                    handleSequenceChange(stage.stagesId, "noInputStageSequenceRule", value)
                   }
                 >
                    <Option value=">Next Step">Next Step</Option>
@@ -430,6 +407,7 @@ const mapStateToProps = ({ settings, auth }) => ({
         {
          
         addProcessStageForDeals,
+        addSequenceFlow,
         updateStageForDeals,
         deleteDealsStagesData,
         LinkDealsStagePublish

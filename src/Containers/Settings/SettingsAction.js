@@ -7055,6 +7055,48 @@ export const getUOMCount = () => (dispatch) => {
 
 
 
+
+export const addSequenceFlow = (
+  data,
+  stagesId,
+  
+  cb
+) => (dispatch) => {
+  // console.log(stageName, probability);
+  dispatch({
+    type: types.ADD_SEQUENCE_FLOW_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url}/workflow/stage/sequence/rule`,
+      data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_SEQUENCE_FLOW_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_SEQUENCE_FLOW_FAILURE,
+      });
+      cb && cb("error");
+    });
+};
+
+
+
+
+
 export const getApikey = (orgId) => (dispatch) => {
   dispatch({
     type: types.GET_API_KEY_REQUEST,
@@ -7199,4 +7241,7 @@ export const addApi = (opportunity, cb) => (dispatch, getState) => {
       });
     });
 };
+
+
+
 
