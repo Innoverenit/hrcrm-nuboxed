@@ -17,7 +17,8 @@ function UploadInvestorForm(props) {
                     excelId: "",
                     userId: props.userId,
                     orgId:props.orgId,
-                    locationDetailsId:props.locationDetailsId
+                    locationDetailsId:props.locationDetailsId,
+                    matPrc:props.user.matPrc
                 }}
                 onSubmit={(values, { resetForm }) => {
                     console.log(values)
@@ -70,6 +71,7 @@ function UploadInvestorForm(props) {
 }
 const mapStateToProps = ({ auth, distributor,pitch,inventory }) => ({
     userId: auth.userDetails.userId,
+    user: auth.userDetails,
     orderDetailsId: distributor.orderDetailsId,
     orgId: auth.userDetails.organizationId,
     addingStockImportForm:inventory.addingStockImportForm

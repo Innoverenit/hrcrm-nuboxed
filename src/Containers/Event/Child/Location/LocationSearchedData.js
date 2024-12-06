@@ -36,7 +36,6 @@ import LanguageIcon from'@mui/icons-material/Language';
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
 import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
-import LocationSearchedData from "./LocationSearchedData";
 
 const LocationCellDrawer = lazy(() => import("./LocationCellDrawer"));
 const LocationCustomerDrawer = lazy(() => import("./LocationCustomerDrawer"));
@@ -44,7 +43,7 @@ const LocationSupplierDrawer = lazy(() => import("./LocationSupplierDrawer"));
 const LocationShiftDrawer = lazy(() => import("./LocationShiftDrawer"));
 const LocationUpdateDrawer = lazy(() => import("./LocationUpdateDrawer"));
 
-const LocationCard = (props) => {
+const LocationSearchedData = (props) => {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -108,24 +107,9 @@ const LocationCard = (props) => {
   if (props.fetchingLocationData) return <BundleLoader />;
   return (
     <>
-       {props.locationSerachedData.length > 0 ? (
-    <LocationSearchedData
-    locationSerachedData={props.locationSerachedData}
-    fetchingLocationSearchData={props.fetchingLocationSearchData}
-    translateText={props.translateText}
-    selectedLanguage={props.selectedLanguage}
-  translatedMenuItems={props.translatedMenuItems}
-    />
-  ) : (
+   
       <div>
-        <InfiniteScroll
-          dataLength={props.showLocation.length}
-          next={handleLoadMore}
-          hasMore={hasMore}
-          loader={props.fetchingLocationData ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-          endMessage={ <p class="flex  text-center font-bold text-xs font-poppins text-red-500">You have reached the end of page. </p>}
-          height={"83vh"}
-        >
+       
           <div className=" flex  font-bold font-poppins items-end  justify-between w-[97%] mt-3 p-1 bg-transparent  sticky  text-lm z-10 max-sm:hidden">
             <div className=" max-md:w-[7.5rem] w-[7.5rem] text-[#00A2E8] text-sm">
             <ContactsIcon className="!text-icon  "/>
@@ -169,7 +153,7 @@ const LocationCard = (props) => {
               </div>
           </div>
           <div class="w-[99%]">
-            {props.showLocation.map((item) => {
+            {props.locationSerachedData.map((item) => {
               return (
                 <div >
                   <div class=" flex rounded  justify-between  bg-white mt-1 h-8 items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200
@@ -356,9 +340,9 @@ const LocationCard = (props) => {
               );
             })}
           </div>
-        </InfiniteScroll>
+       
       </div>
-        )}   
+
       <Suspense fallback={<BundleLoader />}>
       <LocationShiftDrawer
        translateText={props.translateText}
@@ -414,8 +398,6 @@ const mapStateToProps = ({ location, auth }) => ({
   recruitProInd: auth.userDetails.recruitProInd,
   fetchingLocationData: location.fetchingLocationData,
   clickLocDrwr: location.clickLocDrwr,
-  locationSerachedData:location.locationSerachedData,
-  fetchingLocationSearchData:location.fetchingLocationSearchData
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -431,4 +413,4 @@ const mapDispatchToProps = (dispatch) =>
     },
     dispatch
   );
-export default connect(mapStateToProps, mapDispatchToProps)(LocationCard);
+export default connect(mapStateToProps, mapDispatchToProps)(LocationSearchedData);
