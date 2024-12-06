@@ -22,12 +22,12 @@ import { AddressComponent } from "../../../../../../../Components/Common";
 import FormikPlacesAutoComplete from "../../../../../../../Components/Forms/Formik/FormikPlacesAutoComplete";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import { deleteEmergencyTable } from "../../../../../../Profile/ProfileAction";
-import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import PhoneIcon from '@mui/icons-material/Phone';
 import ContactsIcon from '@mui/icons-material/Contacts';
+import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 const EmptyPage = lazy(() => import("../../../../../../Main/EmptyPage"));
 const UpdatePersonalModal = lazy(() => import("../Personal/UpdatePersonalModal"));
@@ -120,7 +120,7 @@ class PersonalTable2 extends Component {
  
 
     if (fetchingPersonalDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;

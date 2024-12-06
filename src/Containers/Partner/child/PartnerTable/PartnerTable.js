@@ -28,11 +28,11 @@ import {
 } from "../../../Opportunity/OpportunityAction";
 import { getOwnsalesList } from "../../PartnerAction";
 import PartnerDetailView from "./PartnerDetailView";
-import APIFailed from "../../../../Helpers/ErrorBoundary/APIFailed";
 import PartnerSkillsLoadMore from "../PartnerDetail/PartnerTab/PartnerSkillsLoadMore";
 import AddPartnerEmailDrawerModal from "./AddPartnerEmailDrawerModal";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdatePartnerModal = lazy(() =>
   import("../UpdatePartner/UpdatePartnerModal")
 );
@@ -621,7 +621,7 @@ function PartnerTable(props) {
     },
   ];
   if (fetchingPartnersError) {
-    return <APIFailed />;
+    return <NodataFoundPage />;
   }
 
   const tab = document.querySelector(".ant-layout-sider-children");

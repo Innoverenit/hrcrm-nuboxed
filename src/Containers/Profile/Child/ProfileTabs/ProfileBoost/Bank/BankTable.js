@@ -9,11 +9,9 @@ import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { handleUpdateBankModal, setEditBank } from "../../../../ProfileAction";
 import { getBankDetails } from "../../../../ProfileAction";
 import { deleteBankTable } from "../../../../ProfileAction";
-import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
-
-import { FormattedMessage } from 'react-intl';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdateBankModal = lazy(() => import("../../ProfileBoost/Bank/UpdateBankModal"));
 class BankTable extends Component {
   // constructor(props) {
@@ -43,43 +41,27 @@ class BankTable extends Component {
     const columns = [
 
       {
-        //title: "Bank Name",
-        title: (
-          <FormattedMessage id="app.bankName" defaultMessage="Account Holder" />
-        ),
+        title: "Account Holder",
         dataIndex: "accountHolder",
-        // width: "35%"
       },
       {
-        //title: "Bank Name",
-        title: (
-          <FormattedMessage id="app.bankName" defaultMessage="Bank Name" />
-        ),
+       
+        title:"Bank Name" ,
         dataIndex: "bankName",
-        // width: "35%"
       },
 
       {
-        //title: "Branch Name",
-        title: (
-          <FormattedMessage id="app.branchName" defaultMessage="Branch Name" />
-        ),
+        title: "Branch Name",
         dataIndex: "branchName",
       },
 
       {
-        //title: "A/C Number",
-        title: (
-          <FormattedMessage id="app.accountNo" defaultMessage=" Account#" />
-        ),
+        title: "Account#",       
         dataIndex: "accountNo",
       },
 
       {
-        //title: "IFSC CODE",
-        title: (
-          <FormattedMessage id="app.ifscCode" defaultMessage="SWIFT Code" />
-        ),
+        title: "SWIFT CODE",       
         dataIndex: "ifscCode",
       },
 
@@ -90,8 +72,8 @@ class BankTable extends Component {
           //debugger
           return (
             <VisibilityIcon
+            className=" cursor-pointer"
               type="edit"
-              style={{ cursor: "pointer" }}
               onClick={() => {
                 setEditBank(item);
                 handleUpdateBankModal(true);
@@ -119,7 +101,7 @@ class BankTable extends Component {
     ];
 
     if (fetchingBankDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     return (
       <>

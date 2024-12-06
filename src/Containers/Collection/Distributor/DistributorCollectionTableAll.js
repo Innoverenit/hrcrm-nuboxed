@@ -3,12 +3,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip } from "antd";
 import { getAllDistributorsList } from "../CollectionAction";
-import APIFailed from "../../../Helpers/ErrorBoundary/APIFailed";
 import { CurrencySymbol } from "../../../Components/Common";
 import { Link } from "../../../Components/Common";
 import { OnlyWrapCard } from "../../../Components/UI/Layout";
 import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 class AllDistributorList extends Component {
 
@@ -62,7 +62,7 @@ class AllDistributorList extends Component {
   render() {
 
     if (this.props.fetchingAllDistributorsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
  
 

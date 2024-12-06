@@ -14,7 +14,6 @@ import {
 import DownloadIcon from "@mui/icons-material/Download";
 import { base_url } from "../../../../../../../Config/Auth";
 import { deleteEducationTable } from "../../../../../../Profile/ProfileAction";
-import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip } from "antd";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
@@ -22,6 +21,7 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 import SchoolIcon from '@mui/icons-material/School';
 import GradingIcon from '@mui/icons-material/Grading';
 import MergeTypeIcon from '@mui/icons-material/MergeType';
+import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const EmptyPage = lazy(() => import("../../../../../../Main/EmptyPage"));
 const UpdateEducationModal = lazy(() => import("../../../../EmployeeGroup/EmployeeDetails/EmployeeTab/Education/UpdateEducationModal"));
 
@@ -85,7 +85,7 @@ class EducationTable extends Component {
   
 
     if (fetchingEducationDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;

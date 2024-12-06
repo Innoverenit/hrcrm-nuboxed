@@ -26,9 +26,9 @@ import { AddressComponent } from "../../../../../../Components/Common";
 import FormikPlacesAutoComplete from "../../../../../../Components/Forms/Formik/FormikPlacesAutoComplete";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { deleteEmergencyTable } from "../../../../ProfileAction";
-import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdatePersonalModal = lazy(() => import("../Personal/UpdatePersonalModal"));
 class PersonalTable2 extends Component {
   constructor(props) {
@@ -190,7 +190,7 @@ class PersonalTable2 extends Component {
     ];
 
     if (fetchingPersonalDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     return (
       <>

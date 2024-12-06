@@ -8,7 +8,8 @@ import {  Tooltip } from "antd";
 import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import {getBankDetails, handleUpdateBankModal, setEditBank, deleteBankTable } from "../../../../../CandidateAction";
-import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
+import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+
 const DefultToggle = lazy(()=>import("../Bank/DefultToggle"));
 const UpdateBankModal = lazy(()=>import("./UpdateBankModal"));
 class BankTable extends Component {
@@ -39,7 +40,7 @@ class BankTable extends Component {
  
    
     if (fetchingBankDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     return (
       <>

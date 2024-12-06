@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledTable } from "../../../Components/UI/Antd";
 import { getTeamList } from "./TeamsAction";
-import APIFailed from "../../../Helpers/ErrorBoundary/APIFailed";
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 const TeamDetailsView =lazy(()=> import('./TeamDetailsView'));
 
 function TeamsTable(props) {
@@ -68,7 +68,7 @@ function TeamsTable(props) {
   ];
 
   if (props.fetchingTeamError) {
-    return <APIFailed />;
+    return <NodataFoundPage />;
   }
   const tab = document.querySelector(".ant-layout-sider-children");
   const tableHeight = tab && tab.offsetHeight - 200;
