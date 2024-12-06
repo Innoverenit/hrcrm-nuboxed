@@ -269,8 +269,8 @@ class Customer extends Component {
             )}
             { viewType === "dashboard1"  && <CustomerDeleteCard
             translateText={this.props.translateText}
-            selectedLanguage={this.props.selectedLanguage}
-           translatedMenuItems={this.props.translatedMenuItems}
+            selectedLanguage={this.props.selectedLanguage}            
+           viewType={this.props.viewType}
             />}
           </>
         )}
