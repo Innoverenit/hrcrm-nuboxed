@@ -8,6 +8,9 @@ const initialState = {
     fetchingCatalogueCellError:false,
     catalogueCell:[],
 
+    fetchingLocationSearchData:false,
+    fetchingLocationSearchDataError: false, 
+    locationSerachedData:[],
 
     addUserCellModal:false,
 
@@ -697,6 +700,25 @@ userMachineCard:[]
                                                     creatingMachineCellError: true,
                                     
                                                   };
+
+                                                  case types.GET_LOCATION_SEARCH_REQUEST:
+                                                    return { ...state, fetchingLocationSearchData: true };
+                                                  case types.GET_LOCATION_SEARCH_SUCCESS:
+                                                    return {
+                                                      ...state,
+                                                      fetchingLocationSearchData: false,
+                                                       locationSerachedData: action.payload,
+                                                    };
+                                                  case types.GET_LOCATION_SEARCH_FAILURE:
+                                                    return { ...state, fetchingLocationSearchDataError: true };
+
+                                                    case types.HANDLE_CLAER_REDUCER_DATA_LOCATION:
+                                                      return { ...state, 
+                                                        locationSerachedData: [], 
+                                            
+                                                      };
+
+
 
       default:
     return state;

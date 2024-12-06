@@ -37,7 +37,7 @@ function PriceAddCard(props) {
 
 
   const dispatch = useDispatch();
-  const [inputValue, setInputValue] = useState(props.priceFactorData?.p1 || "");
+  const [inputValue, setInputValue] = useState(props.priceFactorData?.p1 || "1");
 const [inputValue2, setInputValue2] = useState(props.priceFactorData?.p2 || "");
 const [inputValue3, setInputValue3] = useState(props.priceFactorData?.p3 || "");
 const [inputValue4, setInputValue4] = useState(props.priceFactorData?.p4 || "");
@@ -164,7 +164,7 @@ useEffect(() => {
       }
   };
   const handleInputBlur = (p2,p3,e) => {
-    const value = e.target.value === '' ? '0' : e.target.value; 
+    const value = e.target.value === '' ? '1' : e.target.value; 
     setInputValue(value);
     sendInputPutRequest({ p1: value,
       p2:p2,
@@ -598,7 +598,7 @@ suppliesId:props.particularDiscountData.suppliesId
             id="p1"
             type="text"
             className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
-            defaultValue={props.priceFactorData.p1}
+            defaultValue={props.priceFactorData?.p1 || "1"}
             onBlur={(e) => handleInputBlur(props.priceFactorData.p2,props.priceFactorData.p3,e)}
             onChange={(e) => setInputValue(e.target.value)}
            placeholder="Input Factor"
@@ -610,7 +610,7 @@ suppliesId:props.particularDiscountData.suppliesId
             id="p2"
             type="text"
             className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
-            defaultValue={props.priceFactorData.p2}
+            defaultValue={props.priceFactorData?.p2 || "1"}
             onBlur={(e) => handleInputBlur2(props.priceFactorData.p1,props.priceFactorData.p3,e)}
             onChange={(e) => setInputValue2(e.target.value)}
            placeholder="Input Factor"
@@ -623,7 +623,7 @@ suppliesId:props.particularDiscountData.suppliesId
             id="p3"
             type="text"
             className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
-            defaultValue={props.priceFactorData.p3}
+            defaultValue={props.priceFactorData?.p3 || "1"}
             onBlur={(e) => handleInputBlur3(props.priceFactorData.p1,props.priceFactorData.p2,e)}
             onChange={(e) => setInputValue3(e.target.value)}
            placeholder="Input Factor"
@@ -637,7 +637,7 @@ suppliesId:props.particularDiscountData.suppliesId
             id="p4"
             type="text"
             className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
-            defaultValue={props.priceFactorData.p4}
+            defaultValue={props.priceFactorData?.p4 || "1"}
             onBlur={(e) => handleInputBlur4(e)}
             onChange={(e) => setInputValue4(e.target.value)}
            placeholder="Input Factor"
@@ -649,7 +649,7 @@ suppliesId:props.particularDiscountData.suppliesId
             id="p5"
             type="text"
             className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
-            defaultValue={props.priceFactorData.p5}
+            defaultValue={props.priceFactorData?.p5 || "1"}
             onBlur={(e) => handleInputBlur5(e)}
             onChange={(e) => setInputValue5(e.target.value)}
            placeholder="Input Factor"
@@ -661,7 +661,7 @@ suppliesId:props.particularDiscountData.suppliesId
             id="p6"
             type="text"
             className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
-            defaultValue={props.priceFactorData.p6}
+            defaultValue={props.priceFactorData?.p6 || "1"}
             onBlur={(e) => handleInputBlur6(e)}
             onChange={(e) => setInputValue6(e.target.value)}
            placeholder="Input Factor"
@@ -675,7 +675,7 @@ suppliesId:props.particularDiscountData.suppliesId
             id="p7"
             type="text"
             className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
-            defaultValue={props.priceFactorData.p7}
+            defaultValue={props.priceFactorData?.p7 || "1"}
             onBlur={(e) => handleInputBlur7(e)}
             onChange={(e) => setInputValue7(e.target.value)}
            placeholder="Input Factor"
@@ -687,7 +687,7 @@ suppliesId:props.particularDiscountData.suppliesId
             id="p8"
             type="text"
             className="w-[7rem] h-[1.5rem] px-3 py-2 border rounded focus:outline-none focus:ring focus:border-blue-300"
-            defaultValue={props.priceFactorData.p8}
+            defaultValue={props.priceFactorData?.p8 || "1"}
             onBlur={(e) => handleInputBlur8(e)}
             onChange={(e) => setInputValue8(e.target.value)}
            placeholder="Input Factor"
@@ -697,7 +697,7 @@ suppliesId:props.particularDiscountData.suppliesId
              </div>  
 </div>
 
-<div className="mt-4">
+{/* <div className="mt-4">
             <div>Mark Up By %</div>
         {isEditingMarkUp ? (
         <input
@@ -713,7 +713,7 @@ suppliesId:props.particularDiscountData.suppliesId
         <div onClick={() => setIsEditingMarkUp(true)} className="cursor-pointer text-xl font-[Poppins]">{reduceData.markUp}sMarkUp</div> // Click to enter edit mode
       )}
         
-          </div>
+          </div> */}
 </Suspense>
     </div>
   );

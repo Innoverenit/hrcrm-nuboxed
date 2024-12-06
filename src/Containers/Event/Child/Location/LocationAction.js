@@ -983,3 +983,35 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         });
       });
   };
+
+  export const searchLocationName = (name) => (dispatch) => {
+    dispatch({
+      type: types.GET_LOCATION_SEARCH_REQUEST,
+    });
+    axios
+      .get(`${base_url}/locationDetails/search/${name}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+      
+        dispatch({
+          type: types.GET_LOCATION_SEARCH_SUCCESS,
+          payload: res.data,
+        });
+      }
+      )
+      .catch((err) => {
+        dispatch({
+          type: types.GET_LOCATION_SEARCH_FAILURE,
+          payload: err,
+        });
+      });
+  }; 
+
+  export const clearReducerOfLocationSearch = () => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_CLAER_REDUCER_DATA_LOCATION,
+    });
+  };
