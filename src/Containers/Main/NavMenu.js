@@ -172,7 +172,7 @@ function NavMenu(props) {
         {/* dashboard */}
  
  
-          {(user.userType !== "USER" && user.department !== "Vendor" && user.department !== "Customer" && user.dashboardAccessInd === true || user.role === "ADMIN") && (
+          {/* {(user.userType !== "USER" && user.department !== "Vendor" && user.department !== "Customer" && user.dashboardAccessInd === true || user.role === "ADMIN") && ( */}
 
 <Menu.Item key="/dashboard" style={{ height: "1.45rem", paddingLeft:"1px",
 
@@ -191,7 +191,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
   </Link>
 </Menu.Item>
 
-)}
+{/* )} */}
 
      
         {(user.imInd === true && user.basicAccessInd === true || user.role === "ADMIN" && user.imInd === true) && (

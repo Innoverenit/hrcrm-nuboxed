@@ -1,1 +1,0 @@
-export const SET_VENDOR_VIEW_TYPE = "SET_VENDOR_VIEW_TYPE";

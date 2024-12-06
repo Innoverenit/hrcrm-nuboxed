@@ -1,8 +1,8 @@
 import React, { lazy, Suspense } from "react";
 import { StyledDrawer } from "../../../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
-import PartnerReactSpeechForm from "../../../../../../../Components/PartnerSpeech/PartnerSpeechForm";
-import { handlePartnerReactSpeechModal } from "../../../../../../Partner/PartnerAction";
+import ReactDescription from "../../../../../../../Components/ReactSpeech/ReactDescription"
+
 const ReactPartnerSpeechModal = props => {
   const { addPartnerSpeechModal,handlePartnerReactSpeechModal } = props;
   console.log(props);
@@ -20,9 +20,7 @@ const ReactPartnerSpeechModal = props => {
         footer={null}
       >
          <Suspense fallback={<BundleLoader />}>
-        <PartnerReactSpeechForm
-        partnerId={props. partnerId}
-        />
+       <ReactDescription/>
         </Suspense>
       </StyledDrawer>
     </>

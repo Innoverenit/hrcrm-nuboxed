@@ -18,7 +18,7 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { handleContactModal,handleLinkContactModal } from "../../../../Contact/ContactAction";
 import RecruitmentClosedTable from "../OpportunityTab/RecruitmentClosedTable"
-import {handleReactSpeechModal} from "../../../OpportunityAction"
+// import {handleReactSpeechModal} from "../../../OpportunityAction"
 import {handleCustomerContactModal} from "../../../../Customer/CustomerAction"
 import {
     getContactListByOpportunityId,
@@ -32,7 +32,7 @@ import {
 } from "../../../OpportunityAction";
 import LockIcon from '@mui/icons-material/Lock';
 import { BundleLoader } from "../../../../../Components/Placeholder";
-import ReactSpeechModal from "./ReactSpeechModal";
+// import ReactSpeechModal from "./ReactSpeechModal";
 import AddDocumentModals from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
 import AddCustomerContactModal from "../../../../Customer/Child/CustomerDetail/CustomerTab/ContactTab/AddCustomerContactModal";
 import LinkedContact from "../../../../Customer/Child/CustomerDetail/CustomerTab/ContactTab/LinkedContact";
@@ -586,14 +586,14 @@ type={"oppertunity"}
             selectedLanguage={this.props.selectedLanguage}
           translatedMenuItems={this.state.translatedMenuItems}
           />
-          <ReactSpeechModal
+          {/* <ReactDescription
           opportunityId={opportunityId}
           handleReactSpeechModal={handleReactSpeechModal}
           addSpeechModal={addSpeechModal}
           translateText={this.props.translateText}
              selectedLanguage={this.props.selectedLanguage}
            translatedMenuItems={this.state.translatedMenuItems}
-          />
+          /> */}
       
         </Suspense>
       </>
@@ -634,7 +634,6 @@ const mapDispatchToProps = (dispatch) =>
       handleContactModal,
       handleCustomerContactModal,
       handleLinkContactModal,
-      handleReactSpeechModal,
       handleDocumentUploadModal,
       getContactListByOpportunityId,
        linkContactsCheckToOpportunity,
