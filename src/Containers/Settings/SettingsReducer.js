@@ -461,7 +461,7 @@ addingShipperCategoryError: false,
 
   fetchingApiKey:false,
   fetchingApiKeyError:false,
-  apikey:{},
+  apikey:[],
 
   fetchingProcessStagesForProduction: false,
   fetchingProcessStagesForProductionError: false,
@@ -823,6 +823,9 @@ addingShipperCategoryError: false,
   fetchingLangWords: false,
   fetchingLangWordsError:false,
   langWords:[],
+
+  addingHideFlow:false,
+  addingHideFlowError:false,
 
   addingLangWords: false,
   addingLangWordsError:false,
@@ -3599,6 +3602,37 @@ export const settingsReducer = (state = initialState, action) => {
         updatingStagesForDeals: false,
         updatingStagesForDealsError: true,
       };
+
+
+
+
+
+
+      case types.ADD_HIDE_FLOW_REQUEST:
+              return { ...state, addingHideFlow: true };
+            case types.ADD_HIDE_FLOW_SUCCESS:
+              return {
+                ...state,
+                addingHideFlow: false,
+                apikey: state.apikey.map((item) => {
+                  if (item.thirdPartyApiId === action.payload.thirdPartyApiId) {
+                    return action.payload;
+                  } else {
+                    return item;
+                  }
+                }),
+            
+               
+                //opportunityByUserId: [action.payload, ...state.opportunityByUserId],
+                // clearbit: null,
+              };
+            case types.ADD_HIDE_FLOW_FAILURE:
+              return {
+                ...state,
+                addingHideFlow: false,
+                addingHideFlowError: true,
+                //addOpportunityModal: false,
+              };
 
 
 
