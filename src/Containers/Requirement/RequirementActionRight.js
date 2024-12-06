@@ -14,7 +14,12 @@ class CandidateActionRight extends React.Component {
       componentDidMount() {
         this.fetchMenuTranslations();
       }
-    
+      handleClicked = (value) => {
+        this.setState({
+          isClicked: value,    
+        });
+        
+      };
       componentDidUpdate(prevProps) {
         if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
           this.fetchMenuTranslations();
@@ -40,7 +45,7 @@ class CandidateActionRight extends React.Component {
         }
       };
     render() {
-        const { handleDistributorModal, viewType,user } = this.props;
+        const { handleRecruitModal, viewType,user } = this.props;
         return (
           <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
                
@@ -50,7 +55,7 @@ class CandidateActionRight extends React.Component {
              
                 <Button
                     type="primary"  
-                    // onClick={() => handleDistributorModal(true)}
+                    onClick={() => handleRecruitModal(true)}
                     >
                     <DataSaverOnIcon className=" !text-icon" /> 
                     {/* {this.state.translatedMenuItems[0]} */}
