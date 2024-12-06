@@ -36,9 +36,8 @@ import { updateUserById, handleActionDrawerModal, getActionRequiredCount, handle
 import { setLanguage } from "../../Language/LanguageAction";
 import { getOpportunityRecord } from "../Opportunity/OpportunityAction";
 import {handleOpportunityModal} from "../Opportunity/OpportunityAction"
-import { handleMessageModal } from "../LiveMessages/LiveMessageAction";
+// import { handleMessageModal } from "../LiveMessages/LiveMessageAction";
 import { handleCallModal } from "../Call/CallAction";
-import { getSupportedLanguages } from '../Translate/TranslateService';
 import { handlePartnerModal } from "../Partner/PartnerAction";
 import { BundleLoader } from "../../Components/Placeholder";
 import { getPresentNotifications } from "../Notification/NotificationAction";
@@ -191,9 +190,9 @@ const CategoryTab = lazy(() =>
   import("../Settings/Category/CategoryTab")
 );
 
-const LiveMesssageModal = lazy(() =>
-  import("../LiveMessages/LiveMesssageModal")
-);
+// const LiveMesssageModal = lazy(() =>
+//   import("../LiveMessages/LiveMesssageModal")
+// );
 const AssessmentDetails = lazy(() =>
   import("../Accessment/Child/AssessmentDetails/AssessmentDetails")
 );
@@ -312,9 +311,7 @@ const Accessment = lazy(() => import("../Accessment/Accessment"));
 const Task = lazy(() => import("../Task/Task"));
 const Event = lazy(() => import("../Event/Event"));
 const Leave = lazy(() => import("../Leave/Leave"));
-const LiveMessage = lazy(() =>
-  import("../../Containers/LiveMessages/LiveMessage")
-);
+
 
 const NotificationPopover = lazy(() =>
   import("../Notification/NotificationPopover")
@@ -383,7 +380,7 @@ function MainApp(props) {
   useEffect(() => {
     const fetchSupportedLanguages = async () => {
       try {
-        const languages = await getSupportedLanguages();
+        const languages = await props.getSupportLanguages();
         setSupportedLanguages(languages);
       } catch (error) {
         console.error('Error fetching supported languages:', error);
@@ -1554,7 +1551,7 @@ function MainApp(props) {
                         />
                       )}
                     />          
-                      <Route
+                      {/* <Route
                       exact
                       path="/message"
                       render={(props) => (
@@ -1564,7 +1561,7 @@ function MainApp(props) {
                            selectedLanguage={selectedLanguage}
                         />
                       )}
-                    /> 
+                    />  */}
 
                       <Route
                         exact
@@ -1800,10 +1797,10 @@ function MainApp(props) {
         addDrawerActionModal={props.addDrawerActionModal}
         handleActionDrawerModal={props.handleActionDrawerModal}
       />
-      <LiveMesssageModal
+      {/* <LiveMesssageModal
         addMessageModal={props.addMessageModal}
         handleMessageModal={props.handleMessageModal}
-      />
+      /> */}
        <AddOpportunityModal
           translateText={translateText}
           selectedLanguage={selectedLanguage}
@@ -1946,7 +1943,7 @@ const mapDispatchToProps = (dispatch) =>
       setLanguage,
       getOpportunityRecord,
       getActionRequiredCount,
-      handleMessageModal,
+      // handleMessageModal,
       handleContactModal,
       handleOpportunityModal,
       handleActionDrawerModal,

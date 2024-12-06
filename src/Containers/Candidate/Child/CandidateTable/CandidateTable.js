@@ -2,11 +2,9 @@ import React, {  useEffect, useState, useMemo, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import { Link } from 'react-router-dom';
-import { translateText, } from '../../../Translate/TranslateService';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
@@ -83,38 +81,39 @@ const UpdateCandidateModal = lazy(() =>
 
 function CandidateTable(props) {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [visibleselect, setvisibleselect] = useState(false);
   const [selectedValue, setselectedValue] = useState("");
   const [translatedContent, setTranslatedContent] = useState('');
-
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   console.log("trans5",translatedContent)
 
   useEffect(() => {
-    
-    
-
-    const fetchTranslation = async () => {
+    const fetchMenuTranslations = async () => {
       try {
-        const translation = await Promise.all([
-          translateText('Name', props.selectedLanguage),
-              translateText('Vendor', props.selectedLanguage),
-              translateText('Role', props.selectedLanguage),
-              translateText('Country', props.selectedLanguage),
-              translateText('Skills', props.selectedLanguage),
-              translateText('Expectation', props.selectedLanguage),
-              translateText('Available', props.selectedLanguage),
-              translateText('Owner', props.selectedLanguage),
-              translateText('Active', props.selectedLanguage),
-        ]);
+        setLoading(true); 
+        const itemsToTranslate = [
+      "110",//Name
+           "824",//supplier
+           "980",//Role
+           "1109",// Country
+           "1191",// Skills
+           "",//Expectation
+           "1225 ",// Available
+           "77",//Owner
+          "",//Active
+      ];
 
-        setTranslatedContent(translation);
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
         console.error('Error translating menu items:', error);
       }
     };
 
-    fetchTranslation();
+    fetchMenuTranslations();
   }, [props.selectedLanguage]);
 
   function handleTransferClick() {
@@ -494,7 +493,7 @@ function CandidateTable(props) {
     },
 
     {
-       title:"Vendor",
+       title:"Supplier",
      
       dataIndex: "partnerName",
       width: "10%",
@@ -934,6 +933,8 @@ function CandidateTable(props) {
         updateCandidateModal={updateCandidateModal}
         handleUpdateCandidateModal={handleUpdateCandidateModal}
         handleSetCurrentCandidateId={handleSetCurrentCandidateId}
+        selectedLanguage={props.selectedLanguage}
+        translateText={props.translateText}
       />
       <AddEmailCandidateModal
         selectedValue={selectedValue}
@@ -941,11 +942,15 @@ function CandidateTable(props) {
         candidateEmailDrawerProps={props.candidateEmailDrawerProps}
         addCandidateEmailModal={props.addCandidateEmailModal}
         handleCandidateEmailModal={props.handleCandidateEmailModal}
+        selectedLanguage={props.selectedLanguage}
+        translateText={props.translateText}
       />
       <AddDonotCallModal
         addDonotCallModal={props.addDonotCallModal}
         candidateId={currentCandidateId}
         handleDonotCallModal={props.handleDonotCallModal}
+        selectedLanguage={props.selectedLanguage}
+        translateText={props.translateText}
       />
       <AddChoiceCandidateModal
         selectedValue={selectedValue}
@@ -977,6 +982,8 @@ function CandidateTable(props) {
         documentsByCandidateId={props.documentsByCandidateId}
         addDrawerCandidateModal={props.addDrawerCandidateModal}
         handleCandidateDrawerModal={props.handleCandidateDrawerModal}
+        selectedLanguage={props.selectedLanguage}
+        translateText={props.translateText}
         // candidateByUserId={this.props.candidateByUserId}
       />
     </>
