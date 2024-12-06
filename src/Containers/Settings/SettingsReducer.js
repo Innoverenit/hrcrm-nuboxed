@@ -351,6 +351,10 @@ addingShipperCategoryError: false,
   fetchingDepartmentsError: false,
   departments: [],
 
+
+  addingSequenceFlow:false,
+  addingSequenceFlowError:false,
+
   addingClubToggle:false,
   addingClubToggleError:false,
 
@@ -1719,6 +1723,28 @@ export const settingsReducer = (state = initialState, action) => {
         fetchingRecruiter: false,
         fetchingRecruiterError: true,
       };
+
+
+
+
+      case types.ADD_SEQUENCE_FLOW_REQUEST:
+        return { ...state, addingSequenceFlow: true };
+      case types.ADD_SEQUENCE_FLOW_SUCCESS:
+        // return { ...state, updatingStages: false, states: [...state.states, action.payload] };
+        return {
+          ...state,
+          addingSequenceFlow: false,
+          // dealsProcessStages: state.dealsProcessStages.map((state) =>
+          //   state.stagesId === action.payload.stagesId ? action.payload : state
+          // ),
+        };
+      case types.ADD_SEQUENCE_FLOW_FAILURE:
+        return {
+          ...state,
+          addingSequenceFlow: false,
+          addingSequenceFlowError: true,
+        };
+  
 
     //get RECRUITER table
     case types.GET_RECRUITER_TABLE_REQUEST:
