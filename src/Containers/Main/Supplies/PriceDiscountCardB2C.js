@@ -249,9 +249,9 @@ function PriceDiscountCardB2C(props) {
       <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1 w-[100%]   overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky  z-10">                
-            <div className=" w-[11.1rem] truncate max-md:w-[11.1rem]">  <CurrencyExchangeIcon className='!text-icon  text-[#e4eb2f]'/>{translatedMenuItems[1]}</div>
-            <div className=" w-[7.2rem] truncate max-md:w-[6.2rem] "> <DateRangeIcon className="!text-icon "/> {translatedMenuItems[2]}</div>
-            <div className=" w-[6.2rem] truncate max-md:w-[6.2rem] "><DateRangeIcon className="!text-icon "/>  {translatedMenuItems[3]}</div>
+            <div className=" w-[11.1rem] text-[#00A2E8] text-sm truncate max-md:w-[11.1rem]">  <CurrencyExchangeIcon className='!text-icon mr-1 '/>{translatedMenuItems[1]}</div>
+            <div className=" w-[7.2rem] truncate max-md:w-[6.2rem] "> <DateRangeIcon className="!text-icon text-[#896C7B]"/> {translatedMenuItems[2]}</div>
+            <div className=" w-[6.2rem] truncate max-md:w-[6.2rem] "><DateRangeIcon className="!text-icon text-[#896C7B] "/>  {translatedMenuItems[3]}</div>
             <div className="w-12"></div>           
               </div>
               <div className="h-[23vh] overflow-x-auto">

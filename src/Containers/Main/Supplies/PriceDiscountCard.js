@@ -273,10 +273,10 @@ function PriceDiscountCard(props) {
       <div className=' flex  sticky z-auto'>
         <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-poppins font-bold !text-lm sticky  z-10">         
-            <div className=" w-[12.2rem]    truncate max-md:w-[21rem]"><EqualizerIcon className='!text-icon  text-[#e4eb2f]'/> {translatedMenuItems[1]}  </div>
+            <div className=" w-[12.2rem] text-[#00A2E8] text-sm   truncate max-md:w-[21rem]"><EqualizerIcon className='!text-icon '/> {translatedMenuItems[1]}  </div>
             <div className=" w-[11.1rem]  truncate max-md:w-[11.1rem]">   <CurrencyExchangeIcon className='!text-icon  text-[#84a59d]'/> {translatedMenuItems[2]} </div>
-            <div className=" w-[10.2rem]  truncate max-md:w-[10.2rem] "><DateRangeIcon className="!text-icon "/> {translatedMenuItems[3]} </div>
-            <div className=" w-[9.2rem]  truncate max-md:w-[9.2rem] "><DateRangeIcon className="!text-icon "/> {translatedMenuItems[4]} </div>
+            <div className=" w-[10.2rem]  truncate max-md:w-[10.2rem] "><DateRangeIcon className="!text-icon text-[#896C7B]"/> {translatedMenuItems[3]} </div>
+            <div className=" w-[9.2rem]  truncate max-md:w-[9.2rem] "><DateRangeIcon className="!text-icon text-[#896C7B] "/> {translatedMenuItems[4]} </div>
             <div className="w-12"></div>           
               </div>
 <div className="h-[23vh] overflow-x-auto">

@@ -113,7 +113,7 @@ function BestbeforeEmailList(props) {
           <div className="w-[20rem] text-[#00A2E8] text-sm truncate max-md:w-2"><DateRangeIcon className="!text-icon  mr-1"/>Date</div>
         
           <div className="w-[21rem] truncate max-md:w-12"><AddShoppingCartIcon className='!text-icon'/>Items</div>
-          <div className="w-[22rem] truncate max-md:w-20"><ContactsIcon className='!text-base  text-[#e4eb2f]'/>Contact #</div>
+          <div className="w-[22rem] truncate max-md:w-20"><ContactsIcon className='!text-icon text-[#35CE8D]'/>Contact #</div>
       </div>
       
    

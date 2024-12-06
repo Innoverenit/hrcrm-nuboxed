@@ -270,7 +270,7 @@ function SuppliesTable(props) {
               </div>
             <div className=" w-[12.3rem] truncate max-md:w-[9.1rem] ">
               {/* Name */}
-              <ContactsIcon className="!text-icon mr-1 "/> {translatedMenuItems[2]}
+              <ContactsIcon className="!text-icon text-[#35CE8D] mr-1 "/> {translatedMenuItems[2]}
               </div>
             <div className=" w-[10.1rem] truncate max-md:w-[11.2rem] ">
               {/* Category */}

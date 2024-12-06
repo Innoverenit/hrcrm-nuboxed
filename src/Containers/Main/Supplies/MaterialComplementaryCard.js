@@ -219,25 +219,25 @@ function MaterialComplementaryCard(props) {
 
       <div className=" flex sticky z-auto mt-2">
         <div class="rounded m-1 max-sm:m-1 p-1 h-[80vh] w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-          <div className=" flex max-sm:hidden justify-between  p-1 bg-transparent font-poppins !text-lm font-bold items-end sticky  z-10">
+          <div className=" flex max-sm:hidden justify-between  p-1 bg-transparent font-poppins !text-lm font-bold items-end sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
            
             
             
-            <div className=" w-[9.1rem] truncate max-md:w-[4rem]  max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[9.1rem] text-sm text-[#00A2E8] truncate max-md:w-[4rem]  ">
               {/* Hsn*/}
               < PinIcon className=" !text-icon"/>  {translatedMenuItems[0]}
               </div>
-              <div className=" w-[15.2rem]  truncate max-md:w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <div className=" w-[15.2rem]  truncate max-md:w-[4rem] ">
               {/* Name */}
               <ContactsIcon className="!text-icon mr-1 "/> {translatedMenuItems[2]}
               </div>
-              <div className=" w-[13.1rem] truncate max-md:w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <div className=" w-[13.1rem] truncate max-md:w-[4rem] ">
               {/* category*/}
               <WidgetsIcon className='!text-icon    text-[#42858c]' /> {translatedMenuItems[4]}
               </div>        
-              <div className=" w-[22.4rem] truncate max-md:w-[4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+              <div className=" w-[22.4rem] truncate max-md:w-[4rem] ">
               {/* Attribute */}
-              <AttractionsIcon className="  !text-icon" />  {translatedMenuItems[6]}
+              <AttractionsIcon className="text-[#755577]  !text-icon" />  {translatedMenuItems[6]}
               </div>
             
 
@@ -258,26 +258,26 @@ function MaterialComplementaryCard(props) {
                   
                   return (
                     <>
-                      <div className="flex rounded justify-center bg-white mt-1    py-ygap max-sm:h-[7.5rem] max-sm:flex-col  hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                        <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
+                      <div className="flex roundedbg-white mt-1    py-ygap max-sm:h-[7.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:flex-col  hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                        <div class=" flex flex-row justify-evenly  max-sm:flex-col">
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex  w-[9rem] items-center border-l-2 border-green-500 max-md:w-[12rem] bg-[#eef2f9] h-8 max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class="  text-xs max-sm:text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                          <div className=" flex  w-[14rem] items-center border-l-2 border-green-500 max-md:w-[12rem] bg-[#eef2f9] h-8 max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class="  text-xs max-sm:text-xs ml-gap font-poppins ">
                                 {/* {item.HsnId} */}
                               </div>
                             </div>
-                            <div className=" flex  w-[15rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]  max-md:w-[15rem]  max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class="  text-xs max-sm:text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div className=" flex  w-[19rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]  max-md:w-[15rem]  max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class="  text-xs max-sm:text-xs ml-gap font-poppins ">
                                 {item.suppliesFullName}
                               </div>
                             </div>
-                            <div className=" flex  w-[13rem] items-center ml-gap max-md:w-[15rem] h-8 bg-[#eef2f9] max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class="  text-xs max-sm:text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div className=" flex  w-[18rem] items-center ml-gap max-md:w-[15rem] h-8 bg-[#eef2f9] max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                              <div class="  text-xs max-sm:text-xs ml-gap font-poppins ">
                                 {/* {item.category} */}
                               </div>
                             </div>
                             <div className=" flex  w-[14rem] items-center ml-gap max-md:w-[15rem] h-8 bg-[#eef2f9] max-xl:w-[6.5rem] max-lg:w-[4.5rem]  max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class="  text-xs max-sm:text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class="  text-xs max-sm:text-xs ml-gap font-poppins ">
                                 {/* {item.Attribute} */}
                               </div>
                             </div>
@@ -285,7 +285,7 @@ function MaterialComplementaryCard(props) {
 
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                             <div className=" flex h-8 ml-gap bg-[#eef2f9] justify-center   items-center  w-[7.1rem]  max-md:w-[7.1rem] max-xl:w-[8.1rem] max-lg:w-[6.6rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                              <div class="  text-xs truncate max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class="  text-xs truncate max-sm:text-xs  font-poppins ">
                               <ComplementaryToggle
                                   complementaryInd={item.complementaryInd}
                                   suppliesId={item.suppliesId}

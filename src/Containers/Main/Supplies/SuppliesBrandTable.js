@@ -214,19 +214,19 @@ const handleSave = (item) => {
             <div class="w-[5rem]"></div>
             <div className="text-[#00A2E8] text-sm w-[24.9rem] truncate max-md:w-[23.9rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
              {/* Name */}
-             <ContactsIcon className="!text-icon mr-1 "/>  {translatedMenuItems[0]}
+             <ContactsIcon className="!text-icon text-[#35CE8D] mr-1 "/>  {translatedMenuItems[0]}
             </div>
             <div className=" w-[24.5rem] truncate max-md:w-[20.5rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
           {/* Brand Id */}
-          <BrandingWatermarkIcon className="!text-icon" />   {`${translatedMenuItems[1]} ID`}
+          <BrandingWatermarkIcon className="!text-icon text-[#4F5D75]" />   {`${translatedMenuItems[1]} ID`}
             </div>
             <div className=" w-[7.63rem] truncate max-md:w-[5.63rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">    
-            <LiveTvIcon className="!text-icon" />  {translatedMenuItems[2]}
+            <LiveTvIcon className="!text-icon text-[#8F0037]" />  {translatedMenuItems[2]}
             {/* Live */}
             </div>
             <div className=" w-[8.12rem] truncate max-md:w-[6.12rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">      
              {/* Inactive */}
-             <ToggleOffIcon className="!text-icon" />   {translatedMenuItems[3]}
+             <ToggleOffIcon className="!text-icon text-[#BC6C25]" />   {translatedMenuItems[3]}
             </div>
             <div className="w-[8.2rem] truncate max-md:w-[3.8rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
               
