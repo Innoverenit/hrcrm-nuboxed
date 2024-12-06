@@ -15,10 +15,9 @@ import {
   setEditDocument,
   deletePersonalTable,
 } from "../../../../ProfileAction";
-import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
-
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import VisibilityIcon from '@mui/icons-material/Visibility';
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdatePersonalDetailsModal = lazy(() => import("./UpdatePersonalDetailsModal"));
 class EducationTable extends Component {
   componentDidMount() {
@@ -112,7 +111,7 @@ class EducationTable extends Component {
     ];
 
     if (fetchingDocumentDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     return (
       <>

@@ -41,13 +41,16 @@ import { handleCallModal } from "../Call/CallAction";
 import { getSupportedLanguages } from '../Translate/TranslateService';
 import { handlePartnerModal } from "../Partner/PartnerAction";
 import { BundleLoader } from "../../Components/Placeholder";
-import AppErrorBoundary from "../../Helpers/ErrorBoundary/AppErrorBoundary";
 import { getPresentNotifications } from "../Notification/NotificationAction";
 import FlashOnIcon from '@mui/icons-material/FlashOn'; 
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { MultiAvatar } from "../../Components/UI/Elements";
 import {handleContactModal} from "../Contact/ContactAction"
 import { handleCreateSubscriptionDrawer } from "../Subscription/SubscriptionAction";
+
+const NodataFoundPage = lazy(() =>
+  import("../../Helpers/ErrorBoundary/NodataFoundPage")
+);
 const AddActionModal = lazy(() =>
   import("./AddActionModal")
 );
@@ -140,9 +143,7 @@ const AddAccountOpportunityModal = lazy(() =>
   import("./Account/AccountDetailsTab/AccountQuotationDrawer")
 );
 
-const ErrorPage = lazy(() =>
-  import("./ErrorPage")
-);
+
 const NavMenu = lazy(() =>
   import("./NavMenu")
 );
@@ -751,7 +752,7 @@ function MainApp(props) {
               </Header>
             </div>
             <div class=" p-1 bg-light-gray ">
-              <AppErrorBoundary>
+              <NodataFoundPage>
                 <Content>
                   <Suspense maxDuration={6000} fallback={<BundleLoader />}>
                     <Switch>
@@ -1295,9 +1296,9 @@ function MainApp(props) {
                     />  
                      <Route
                       exact
-                      path="/errorPage"
+                      path="/nodatafoundpage"
                       render={(props) => (
-                        <ErrorPage
+                        <NodataFoundPage
                           {...props}
                           translateText={translateText}
                            selectedLanguage={selectedLanguage}
@@ -1790,7 +1791,7 @@ function MainApp(props) {
                     </Switch>
                   </Suspense>
                 </Content>
-              </AppErrorBoundary>
+              </NodataFoundPage>
             </div>
           </LayoutWrapper>
         </LayoutWrapper>

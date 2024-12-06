@@ -7,7 +7,6 @@ import { StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import InventoryMaterialBestBefore from "../Inventory/InventoryMaterialBestBefore"//5
 import { withRouter } from "react-router";
-import AppErrorBoundary from "../../../Helpers/ErrorBoundary/AppErrorBoundary";
 import {handleStockUpload} from "../Inventory/InventoryAction"
 import UploadIcon from '@mui/icons-material/Upload';
 import TokenIcon from '@mui/icons-material/Token';
@@ -142,7 +141,6 @@ class InventoryMaterialTabO extends PureComponent {
         };
         return (
             <>
-              <AppErrorBoundary>
                 <TabsWrapper>
                     <StyledTabs
                         defaultActiveKey="1"
@@ -468,7 +466,6 @@ class InventoryMaterialTabO extends PureComponent {
         />
               </Suspense>
                 </TabsWrapper>
-                </AppErrorBoundary>
             </>
         );
     }

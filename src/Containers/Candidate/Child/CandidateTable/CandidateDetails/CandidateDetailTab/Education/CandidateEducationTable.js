@@ -17,7 +17,7 @@ import { handleUpdateCandidateEducationModal } from "../../../../../CandidateAct
 import {
   deleteCandidateEducationTable,
 } from "../../../../../CandidateAction";
-import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
+import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdateCandidateEducationModal = lazy(()=>import("../Education/UpdateCandidateEducationModal"));
 class CandidateEducationTable extends Component {
   componentDidMount() {
@@ -47,7 +47,7 @@ class CandidateEducationTable extends Component {
  
 
     if (fetchingCandidateEducationDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     return (
       <>

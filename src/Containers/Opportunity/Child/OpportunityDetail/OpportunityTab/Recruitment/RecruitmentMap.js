@@ -7,7 +7,7 @@ import Leaflet from "../../../../../../Components/Utils/Leaflet";
 import L from "leaflet";
 import RecruitmentMapPopUpmarker from "./RecruitmentMapPopUpmarker"
 import { getSkillsCount, } from "../../../../OpportunityAction";
-import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: require("leaflet/dist/images/marker-icon-2x.png"),
@@ -72,7 +72,7 @@ function RecruitmentMap (props) {
     console.log("lng",lng);
     console.log("Map1",props.recruiter);
     if (props.fetchingAccountMapOnDashboardByUserIdError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     const getIndexSkillData = props.recruiter.filter((data, index) => {
       if (button.length !== 0 && includesMulti(button, data.skillList)) {

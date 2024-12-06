@@ -10,13 +10,13 @@ import {
   handleUpdateSalaryModal,
 } from "../../../../../../Profile/ProfileAction";
 import dayjs from "dayjs";
-import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip } from "antd";
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
 import DateRangeIcon from '@mui/icons-material/DateRange';
+import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const EmptyPage =lazy(()=>import("../../../../../../Main/EmptyPage"));
 const UpdateSalaryModal =lazy(()=>import("./UpdateSalaryModal"));
 
@@ -72,7 +72,7 @@ class SalaryTable extends Component {
   
 
     if (fetchingEmployeeSalaryDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;

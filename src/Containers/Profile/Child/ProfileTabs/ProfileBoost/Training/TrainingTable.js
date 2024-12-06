@@ -15,10 +15,10 @@ import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { deleteTrainingTable } from "../../../../ProfileAction";
 import dayjs from "dayjs";
 import { base_url } from "../../../../../../Config/Auth";
-import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
 import VisibilityIcon from '@mui/icons-material/Visibility'; 
 
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdateTrainingModal = lazy(() => import("./UpdateTrainingModal"));
 
 class TrainingTable extends Component {
@@ -131,7 +131,7 @@ class TrainingTable extends Component {
     ];
 
     if (fetchingTrainingDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     return (
       <>

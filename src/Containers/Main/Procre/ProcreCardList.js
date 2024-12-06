@@ -1,7 +1,7 @@
 import React, {  useEffect, useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip,Button,Input ,Popconfirm} from "antd";
+import { Tooltip,Button,Input } from "antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import InfiniteScroll from "react-infinite-scroll-component";
 import {
@@ -13,9 +13,7 @@ import {
   procureToAccept
 } from "../Procre/ProcreAction";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import jsPDF from "jspdf";
 import "jspdf-autotable";
-
 import dayjs from "dayjs";
 import NextPlanIcon from '@mui/icons-material/NextPlan';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -24,9 +22,9 @@ import ProcureOrderModal from "./Child/ProcureOrderModal";
 import AddProcureNotesDrawerModal from "./AddProcureNotesDrawerModal";
 import ProcureSearchedData from "./ProcureSearchedData";
 import { base_url2 } from "../../../Config/Auth";
-import ErrorPage from "../ErrorPage";
 import EmptyPage from "../EmptyPage";
 import axios from "axios";
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 
 function ProcreCardList(props) {
@@ -223,7 +221,7 @@ console.log(props.fetchingAllProcure)
         >
           {/* {data.map((item) => { */}
 {props.fetchingAllProcure === false ? (
-  <ErrorPage />
+  <NodataFoundPage/>
 ) : !props.fetchingAllProcure && data.length === 0 ? (
   <EmptyPage />
 ) : (

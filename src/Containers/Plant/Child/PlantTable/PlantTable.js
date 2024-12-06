@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../../Components/UI/Antd";
 import PlantDetailView from "./PlantDetailView";
 import { Tooltip, Button, Input, Space } from "antd";
-import APIFailed from "../../../../Helpers/ErrorBoundary/APIFailed";
 import {
   getPlant,
   setEditPlant,
@@ -13,6 +12,7 @@ import {
 import Highlighter from "react-highlight-words";
 import SearchIcon from '@mui/icons-material/Search';
 import dayjs from "dayjs";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 class PlantTable extends Component {
   componentDidMount() {
@@ -261,7 +261,7 @@ class PlantTable extends Component {
     ];
 
     if (this.props.fetchingPlantError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight - 300;

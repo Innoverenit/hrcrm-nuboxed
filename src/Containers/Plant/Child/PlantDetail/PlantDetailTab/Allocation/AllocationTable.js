@@ -4,13 +4,13 @@ import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../../../../Components/UI/Antd";
 import dayjs from "dayjs";
 import { Input, Space, Tooltip, Button } from "antd";
-import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
 import {
   handleDeputeButtonModal,
   setEditPlantAllocation,
 } from "../../../../PlantAction";
 import Highlighter from "react-highlight-words";
-import SearchIcon from '@mui/icons-material/Search';;
+import SearchIcon from '@mui/icons-material/Search';import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+;
 
 class AllocationTable extends Component {
   componentDidMount() {
@@ -255,7 +255,7 @@ class AllocationTable extends Component {
     ];
 
     if (this.props.fetchingProductionExecutiveError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight - 200;

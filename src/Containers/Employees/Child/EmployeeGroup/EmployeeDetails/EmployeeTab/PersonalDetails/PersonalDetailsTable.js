@@ -15,8 +15,8 @@ import {
   deletePersonalTable,
 } from "../../../../../../Profile/ProfileAction";
 import { base_url } from "../../../../../../../Config/Auth";
-import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 import { Tooltip } from "antd";
+import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdatePersonalDetailsModal =lazy(()=>import("./UpdatePersonalDetailsModal"));
 
 class EducationTable extends Component {
@@ -72,7 +72,7 @@ class EducationTable extends Component {
 
  
     if (fetchingDocumentDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;

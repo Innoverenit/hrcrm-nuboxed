@@ -15,7 +15,7 @@ import styled from "styled-components";
 import DownloadIcon from '@mui/icons-material/Download';
 import dayjs from "dayjs";
 import { base_url } from "../../../../../../../Config/Auth";
-import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
+import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdateCandidateEmploymentModal = lazy(()=>import("../Employment/UpdateCandidateEmploymentModal"));
 class CandidateEmploymentTable extends Component {
   componentDidMount() {
@@ -130,7 +130,7 @@ class CandidateEmploymentTable extends Component {
     ];
 
     if (fetchingCandidateEmploymentDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     return (
       <>

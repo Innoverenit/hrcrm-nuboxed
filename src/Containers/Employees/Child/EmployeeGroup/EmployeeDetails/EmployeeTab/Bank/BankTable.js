@@ -13,13 +13,13 @@ import {
 } from "../../../../../../Profile/ProfileAction";
 import { getBankDetails } from "../../../../../../Profile/ProfileAction";
 import { deleteBankTable } from "../../../../../../Profile/ProfileAction";
-import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 import { Tooltip } from "antd";
 import PasswordIcon from '@mui/icons-material/Password';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const EmptyPage = lazy(() => import("../../../../../../Main/EmptyPage"));
 const DefultToggle = lazy(() => import("./DefultToggle"));
 const UpdateBankModal = lazy(() => import("../../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Bank/UpdateBankModal"));
@@ -74,7 +74,7 @@ class BankTable extends Component {
    
 
     if (fetchingBankDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;

@@ -24,7 +24,7 @@ import StoreIcon from '@mui/icons-material/Store';
 import HailIcon from '@mui/icons-material/Hail';
 import DescriptionIcon from '@mui/icons-material/Description';
 import { deleteEmploymentTable } from "../../../../../../Profile/ProfileAction";
-import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
+import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdateEmploymentModal = lazy(() => import("../Employment/UpdateEmploymentModal"));
 
 class EmploymentTable extends Component {
@@ -77,7 +77,7 @@ class EmploymentTable extends Component {
  
 
     if (fetchingEmploymentDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;

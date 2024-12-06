@@ -12,7 +12,7 @@ import {
   deleteCandidateTrainingTable,
 } from "../../../../../CandidateAction";
 import { base_url } from "../../../../../../../Config/Auth";
-import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
+import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdateCandidateTrainingModal = lazy(()=>import("./UpdateCandidateTrainingModal"));
 
 class CandidateTrainingTable extends Component {
@@ -35,7 +35,7 @@ class CandidateTrainingTable extends Component {
   
 
     if (fetchingCandidateTrainingDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     return (
       <>

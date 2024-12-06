@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { Tooltip } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../Components/UI/Antd";
 import { getOrderDetailsById } from "../../Main/Account/AccountAction";
 import { CurrencySymbol } from "../../../Components/Common";
-import APIFailed from "../../../Helpers/ErrorBoundary/APIFailed";
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 
 class DistributorProductTable extends Component {
@@ -77,7 +76,7 @@ class DistributorProductTable extends Component {
         ];
 
         if (this.props.fetchingOrderDetailsByIdError) {
-            return <APIFailed />
+            return <NodataFoundPage />
         }
 
         return (

@@ -16,9 +16,9 @@ import DownloadIcon from '@mui/icons-material/Download';
 import dayjs from "dayjs";
 import { base_url } from "../../../../../../Config/Auth";
 import { deleteEmploymentTable } from "../../../../ProfileAction";
-import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdateEmploymentModal = lazy(() => import("../Employment/UpdateEmploymentModal"));
 class EmploymentTable extends Component {
   // constructor(props) {
@@ -173,7 +173,7 @@ class EmploymentTable extends Component {
     ];
 
     if (fetchingEmploymentDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     return (
       <>

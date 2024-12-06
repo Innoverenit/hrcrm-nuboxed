@@ -15,12 +15,10 @@ import { handleUpdateEducationModal } from "../../../../ProfileAction";
 import {
   deleteEducationTable,
 } from "../../../../ProfileAction";
-import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
-
 import { FormattedMessage } from 'react-intl';
 import VisibilityIcon from '@mui/icons-material/Visibility';
-
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdateEducationModal = lazy(() => import("../../ProfileBoost/Education/UpdateEducationModal"));
 class EducationTable extends Component {
   componentDidMount() {    
@@ -174,7 +172,7 @@ class EducationTable extends Component {
     ];
 
     if (fetchingEducationDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     return (
       <>

@@ -8,22 +8,15 @@ import LockOpenIcon from '@mui/icons-material/LockOpen';
 import PublishStatusToggle from "../PublishStatusToggle";
 import {
   Tooltip,
-  Icon,
   Input,
   Button,
-  Table,
-  InputNumber,
-  Popconfirm,
-  Form,
   Avatar,
-  Typography,
 } from "antd";
 import Highlighter from "react-highlight-words";
 import { StyledTable } from "../../../Components/UI/Antd";
-import { MultiAvatar2, SubTitle } from "../../../Components/UI/Elements";
+import { MultiAvatar2 } from "../../../Components/UI/Elements";
 import { getPublishTable } from "../PublishAction";
-import APIFailed from "../../../Helpers/ErrorBoundary/APIFailed";
-import Publish from "../Publish";
+
 
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
