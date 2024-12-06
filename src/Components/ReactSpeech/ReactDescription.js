@@ -3,7 +3,6 @@ import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
 import {Tooltip} from "antd"
-import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
 const SpeechRecognitionComponent = (props) => {
 //   const [text, setText] = useState("");         // For manual text input
   const [transcript, setTranscript] = useState('');  // For speech recognition text

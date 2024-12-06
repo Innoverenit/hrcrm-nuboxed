@@ -87,9 +87,7 @@ const Waranty = lazy(() =>
 const Procre = lazy(() =>
   import("./Procre/Procre")
 );
-const Vendor = lazy(() =>
-  import("./Vendor/Vendor")
-);
+
 const PhoneScanner = lazy(() =>
   import("./Scan/PhoneScanner/PhoneScanner")
 );
@@ -945,17 +943,7 @@ function MainApp(props) {
                         />
                       )}
                     /> 
-                      <Route
-                      exact
-                      path="/vendor"
-                      render={(props) => (
-                        <Vendor
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
-                    />                  
+                                       
                      <Route
                       exact
                       path="/inventory"
