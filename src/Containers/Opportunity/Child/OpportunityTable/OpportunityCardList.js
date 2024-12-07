@@ -4,8 +4,6 @@ import { bindActionCreators } from "redux";
 import AddOpportunityPulseModal from "../OpportunityTable/AddOpportunityPulseModal"
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import InfiniteScroll from "react-infinite-scroll-component"
-import { FormattedMessage } from 'react-intl';
-
 import OpportunitySelectStages from "../OpportunityTable/OpportunitySelectStages"
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
@@ -356,10 +354,8 @@ imgHeight={"1.8rem"}
               {item.approveInd&&item.opportunityOwner ? (
 <>
   <Tooltip 
-    title={<FormattedMessage
-      id="app.Own"
-      defaultMessage="Own"
-    />}
+    title="Own"
+ 
 
   >
     <CheckCircleOutlineIcon
@@ -392,10 +388,8 @@ imgHeight={"1.8rem"}
   cancelText="No"
 >
   <Tooltip 
-    title={<FormattedMessage
-      id="app.Own"
-      defaultMessage="Won"
-    />}
+    title="Won"
+  
 
   >
     <CheckCircleOutlineIcon
@@ -418,9 +412,8 @@ imgHeight={"1.8rem"}
   cancelText="No"
 >
  <Tooltip
-        title={
-          <FormattedMessage id="app.drop" defaultMessage="Lost" />
-        }
+        title="Lost" 
+        
       >
  
   <DoDisturbIcon
@@ -469,12 +462,7 @@ imgHeight={"1.8rem"}
 <div class="flex items-center">
 <Tooltip
           placement="right"
-          title={
-            <FormattedMessage
-              id="app.notes"
-              defaultMessage="Notes"
-            />
-          }
+          title="Notes"      
         >
            <span
 
@@ -490,12 +478,8 @@ imgHeight={"1.8rem"}
           </Tooltip>
 <Tooltip
           placement="right"
-          title={
-            <FormattedMessage
-              id="app.edit"
-              defaultMessage="Edit"
-            />
-          }
+          title="Edit"
+           
         >
             {user.opportunityUpdateInd ===true && user.crmInd === true &&  (
               

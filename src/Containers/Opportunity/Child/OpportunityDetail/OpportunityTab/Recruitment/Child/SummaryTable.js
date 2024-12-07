@@ -1,6 +1,5 @@
 import React, { Component, Suspense } from "react";
 import { StyledTable } from "../../../../../../../Components/UI/Antd";
-import { FormattedMessage } from 'react-intl';
 import {
   getAllRecruitmentDetailsByOppId,
   addWebsite,
@@ -211,21 +210,13 @@ class SummaryTable extends Component {
         dataIndex: "jobOrder",
       },
       {
-        //title: "Requirement",
-        title: (
-          <FormattedMessage
-            id="app.requirementName"
-            defaultMessage="Requirement"
-          />
-        ),
+        title: "Requirement",
         dataIndex: "recruiterName",
         width: "7%",
       },
 
       {
-        title: (
-          <FormattedMessage id="app.sponserName" defaultMessage="Sponsor" />
-        ),
+        title:"Sponsor",
         dataIndex: "sponserName",
         width: "8%",
         render: (text, item) => {
@@ -246,23 +237,20 @@ class SummaryTable extends Component {
       },
 
       {
-        //title: "# Positions",
-        title: (
-          <FormattedMessage id="app.number" defaultMessage="# Positions" />
-        ),
+        title: "# Positions",
+   
         dataIndex: "number",
         width: "6%",
       },
 
       {
-        //title: "Submitted",
-        title: <FormattedMessage id="app.offered" defaultMessage="Submitted" />,
+        title: "Submitted",
         dataIndex: "offered",
         width: "6%",
       },
 
       {
-        title: <FormattedMessage id="app.selected" defaultMessage="Selected" />,
+        title:"Selected" ,
         dataIndex: "closedPosition",
         width: "5%",
       },
@@ -507,13 +495,9 @@ class SummaryTable extends Component {
             <div class=" mt-3" />
             <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto p-[0rem 1.25rem] ">
          
-              <Tooltip // title={"Generate PDF"}
-                title={
-                  <FormattedMessage
-                    id="app.generatepdf"
-                    defaultMessage="Generate PDF"
-                  />
-                }
+              <Tooltip 
+              title={"Generate PDF"}
+              
               >
         <Button
                   // icon="file-pdf"
@@ -533,14 +517,7 @@ class SummaryTable extends Component {
          
               </Tooltip>
               &nbsp;&nbsp;
-              <Tooltip //title={"Generate XL"}
-                title={
-                  <FormattedMessage
-                    id="app.generatexl"
-                    defaultMessage="Generate XL"
-                  />
-                }
-              >
+              <Tooltip title={"Generate XL"}>
                 <Button
                   icon={<FileCopyIcon />}
                   type="primary"

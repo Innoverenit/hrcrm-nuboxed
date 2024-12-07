@@ -1,6 +1,5 @@
 import React, { Component, } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from 'react-intl';
 import { bindActionCreators } from "redux";
 
 import HelpIcon from "@mui/icons-material/Help";
@@ -381,12 +380,8 @@ class RecruitmentTable extends Component {
       // },
       {
         //title: "Requirement",
-        title: (
-          <FormattedMessage
-            id="app.requirementName"
-            defaultMessage="Requirement"
-          />
-        ),
+        title: "Requirement"
+        ,
         dataIndex: "requirementName",
         ...this.getColumnSearchProps("topic"),
         width: "13%",
@@ -444,21 +439,7 @@ class RecruitmentTable extends Component {
         dataIndex: "category",
         width: "5%",
         render: (name, item, i) => {
-          // return {
-          //   props: {
-          //     // style: {
-          //     //   background:
-          //     //     this.state.subTableVisible &&
-          //     //     this.state.recruitmentId === item.recruitmentId
-          //     //       ? "rgb(158 183 223)"
-
-          //     //       : null,
-          //     // },
-
-          //   },
-
-          //   children: <span>{item.category}</span>,
-          // };
+         
           return (
             <div>
               {item.category === "Blue" && (
@@ -521,40 +502,6 @@ class RecruitmentTable extends Component {
           return (record.category = value);
         },
       },
-      // {
-      //   title: "Created",
-      //   width: "7%",
-      //   dataIndex: "recruitOwner",
-      //   render: (name, item, i) => {
-      //     return {
-      //       props: {
-      //         style: {
-      //           background:
-      //              this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-      //               ? "rgb(158 183 223)"
-      //               : null,
-
-      //         },
-      //       },
-
-      //       children: <span>
-      //          <SubTitle>
-      //         <Tooltip title={item.recruitOwner}>
-      //           <MultiAvatar
-      //             primaryTitle={item.recruitOwner}
-      //             // imageId={item.imageId}
-      //             // imageURL={item.imageURL}
-      //             imgWidth={"2.1em"}
-      //             imgHeight={"2.1em"}
-      //           />
-      //         </Tooltip>
-      //       </SubTitle>
-      //       </span>,
-      //     };
-
-      //   },
-      // },
-
       {
         title: "Created",
         width: "7%",
@@ -664,8 +611,7 @@ class RecruitmentTable extends Component {
       
 
       {
-        //title: "Start",
-        title: <FormattedMessage id="app.processName" defaultMessage="Start" />,
+        title: "Start",
         dataIndex: "avilableDate",
         width: "9%",
         render: (name, item, i) => {
@@ -718,7 +664,7 @@ class RecruitmentTable extends Component {
       },
       {
         //title: "Rate/hr",
-        title: <FormattedMessage id="app.billing" defaultMessage="Billing" />,
+        title:"Billing",
         dataIndex: "billing",
         width: "8%",
         //   defaultSortOrder: "descend",
@@ -747,11 +693,8 @@ class RecruitmentTable extends Component {
         },
       },
       {
-        //title: "Skill Set",
-        title: (
-          <FormattedMessage id="app.callType" defaultMessage="Skill Set" />
-        ),
-
+        title: "Skill Set",
+        
         width: "15%",
         render: (name, item, i) => {
           console.log(this.props.SkillList);
@@ -958,10 +901,7 @@ class RecruitmentTable extends Component {
       },
 
       {
-        //title: "Sponsor",
-        title: (
-          <FormattedMessage id="app.sponserName" defaultMessage="Sponsor" />
-        ),
+        title: "Sponsor",
         dataIndex: "sponserName",
         ...this.getColumnSearchProps("sponserName"),
         width: "10%",
@@ -1015,13 +955,7 @@ class RecruitmentTable extends Component {
                 {item.candidateName ? (
                   <>
                     {close ? (
-                      <Tooltip //title="Close Details"
-                        title={
-                          <FormattedMessage
-                            id="app.closedetails"
-                            defaultMessage="Close Details"
-                          />
-                        }
+                      <Tooltip title="Close Details"
                       >
                         <VisibilityOffIcon
                           type="eye-invisible"
@@ -1038,13 +972,7 @@ class RecruitmentTable extends Component {
                       </Tooltip>
                     ) : (
                       <>
-                        <Tooltip //title="Access Details"
-                          title={
-                            <FormattedMessage
-                              id="app.accessdetails"
-                              defaultMessage="Access Details"
-                            />
-                          }
+                        <Tooltip title="Access Details"
                         >
                           <VisibilityIcon
                             type="eye"
@@ -1329,10 +1257,7 @@ class RecruitmentTable extends Component {
           }
         />
         <StyledModal
-          //title="Position"
-          title={
-            <FormattedMessage id="app.position" defaultMessage="Position" />
-          }
+          title="Position"
           width="24%"
           visible={this.state.editModal}
           maskClosable={false}
@@ -1348,13 +1273,7 @@ class RecruitmentTable extends Component {
           </Suspense>
         </StyledModal>
         <StyledModal
-          // title="Select Sponsor"
-          title={
-            <FormattedMessage
-              id="app.selectsponsor"
-              defaultMessage="Select Sponsor"
-            />
-          }
+          title="Select Sponsor"
           width="20%"
           visible={this.props.addSponsorModal}
           maskClosable={false}

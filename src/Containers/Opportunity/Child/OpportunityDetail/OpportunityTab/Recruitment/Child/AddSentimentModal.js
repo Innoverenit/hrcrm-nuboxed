@@ -13,7 +13,6 @@ class AddSentimentModal extends Component {
       <>
         <StyledModal
            title="Sentiment"
-          //title={<FormattedMessage id="app.remarks" defaultMessage="Remarks" />}
           width="25%"
           visible={addSentimentModal}
           destroyOnClose
