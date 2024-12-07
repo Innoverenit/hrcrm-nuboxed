@@ -978,48 +978,48 @@ useEffect(() => {
         </div>
         <div className=' flex  sticky  z-auto'>
           <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-            <div className=" flex max-sm:hidden justify-between w-[90%]  p-1 bg-transparent font-bold !text-lm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] sticky items-end z-10">
-              <div className=" w-[6.51rem] text-sm text-[#00A2E8] truncate max-md:  max-xl:w-[5.5rem]">
+            <div className=" flex max-sm:hidden justify-between w-[86%]  p-1 bg-transparent font-bold !text-lm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] sticky items-end z-10">
+              <div className=" w-[15.51rem] text-sm text-[#00A2E8] truncate max-md:  max-xl:w-[5.5rem]">
               <DynamicFeedIcon className='!text-icon  text-[#3ac427]'/>  {translatedMenuItems[0]}
                 </div>
-              <div className="w-[3.5rem] truncate max-md:w-[3.5rem]  max-xl:w-[3.5rem]">
+              <div className="w-[6.9rem] truncate max-md:w-[3.5rem]  max-xl:w-[3.5rem]">
                 {/* Units" /> */}
                 {translatedMenuItems[1]}
                 </div>
-              <div className="w-[5.01rem] truncate max-md:w-[5.01rem] max-xl:w-[5.001rem]">
+              <div className="w-[10.03rem] truncate max-md:w-[5.01rem] max-xl:w-[5.001rem]">
                 {/* Inspection" /> */}
                 <BookmarkAddedIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[2]}
                 </div>
 
-              <div className="w-[5.03rem] truncate max-md:w-[5.03rem] max-xl:w-[5.03rem]">
+              <div className="w-[6.3rem] truncate max-md:w-[5.03rem] max-xl:w-[5.03rem]">
                 {/* Packed ?" /> */}
                 <AccountCircleIcon className="!text-icon  text-[#832161]"/>{translatedMenuItems[3]}
                 </div>
-              <div className="w-[10.2rem] truncate max-md:w-[10.2rem] max-xl:w-[5.3rem]">
+              <div className="w-[7.4rem] truncate max-md:w-[10.2rem] max-xl:w-[5.3rem]">
                 {/* "Delivery" /> */}
                 <LocalShippingIcon className='!text-icon  text-[#832161]'/>  {translatedMenuItems[4]}
                 </div>
-              <div className=" w-[8.03rem] truncate max-md:w-[8.03rem] max-xl:w-[6.03rem]">
+              <div className=" w-[9.03rem] truncate max-md:w-[8.03rem] max-xl:w-[6.03rem]">
                 {/* Shipper" /> */}
                 <LocalShippingIcon className='!text-icon  text-[#6ba368]'/> {translatedMenuItems[5]}
                 </div>
-              < div className=" w-[4.5rem] truncate max-md:w-[4.5rem] max-xl:w-[5.5rem]">
+              < div className=" w-[8.2rem] truncate max-md:w-[4.5rem] max-xl:w-[5.5rem]">
               {/* pickup" /> */}
               <   RvHookupIcon className='!text-icon mr-1 text-[#6ba368]'/> {translatedMenuItems[6]}
               </div>
-              <div className="w-[3.51rem] truncate max-md:w-[3.51rem] max-xl:w-[3.5rem]">
+              <div className="w-[3.9rem] truncate max-md:w-[3.51rem] max-xl:w-[3.5rem]">
                
                {/*   Track */} <GpsFixedIcon className='!text-icon    text-[#42bfdd]' /> {translatedMenuItems[7]}
                </div>
-              <div className=" w-[4.20rem] truncate max-md:w-[4.20rem] max-xl:w-[4.20rem]">
+              <div className=" w-[8.2rem] truncate max-md:w-[4.20rem] max-xl:w-[4.20rem]">
                 {/* Status" /> */}
                 <UpdateIcon className='!text-icon text-[#ff66b3]' /> {translatedMenuItems[8]}
                 </div>
                
-              <div className="w-[3.51rem] truncate max-md:w-[3.51rem] max-xl:w-[3.5rem]">
-                {/*Pick Up" /> */}
+              {/* <div className="w-[3.1rem] truncate max-md:w-[3.51rem] max-xl:w-[3.5rem]">
+                Pick Up" />
                 {translatedMenuItems[9]}
-                </div>
+                </div> */}
              
             </div>
             <InfiniteScroll
@@ -1154,7 +1154,7 @@ useEffect(() => {
                               "HHHHH"
                             </div>
                           </div>
-                          <div>
+                          <div className="flex w-[3.8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
                                                                <GpsFixedIcon className="!cursor-pointer text-[#42bfdd]"
                                                                 onClick={() => {
                                                                   props.handlepackId(true);

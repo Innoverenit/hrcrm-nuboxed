@@ -42,7 +42,6 @@ import {getCrm} from "../../../Leads/LeadsAction"
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
 import FactoryIcon from '@mui/icons-material/Factory';
-import SourceIcon from '@mui/icons-material/Source';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import AcUnitIcon from '@mui/icons-material/AcUnit';
 import ScoreIcon from '@mui/icons-material/Score';
@@ -60,8 +59,6 @@ import AddCustomerAdressModal from "./AddCustomerAdressModal";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { CurrencySymbol } from "../../../../Components/Common";
 import EmptyPage from "../../../Main/EmptyPage";
-import { FixedSizeList } from 'react-window';
-import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
 const AddCustomerDrawerModal =lazy(()=> import("../../AddCustomerDrawerModal"));
 const AddCustomerEmailDrawerModal =lazy(()=> import("../UpdateCustomer/AddCustomerEmailDrawerModal"));
 const AddCustomerNotesDrawerModal =lazy(()=> import("../CustomerDetail/AddCustomerNotesDrawerModal"));
@@ -395,7 +392,7 @@ console.log(selectedAssign)
             </div>
             {props.user.aiInd && (
             <div className=" w-[4.71rem] truncate max-md:w-[4.71rem]   max-xl:w-[3.81rem]">
- <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/> 
+            <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/> 
             {/* Score */}
             {translatedMenuItems[19]}
             </div>
@@ -492,7 +489,14 @@ console.log(selectedAssign)
                                     <div class=" text-xs flex text-blue-500 ml-1 font-poppins font-semibold  cursor-pointer">
                                     <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm   cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
 {item.name}
-</Link>                                   
+</Link>  
+&nbsp;&nbsp;   
+{date === currentdate ? (
+<div class="text-[0.65rem] text-[tomato] font-bold"
+>
+    {translatedMenuItems[9]}
+  </div>
+) : null}                                   
 <div>
                       {editableField?.customerId === item.customerId &&
    editableField?.field === 'name' ? (
@@ -514,13 +518,7 @@ console.log(selectedAssign)
     </div> 
 )}                 
                       </div>
-&nbsp;&nbsp;   
-{date === currentdate ? (
-<div class="text-[0.65rem] text-[tomato] font-bold"
->
-    {translatedMenuItems[9]}
-  </div>
-) : null}   
+ 
                                     </div>
                                     </div>
                                 </Tooltip>
@@ -617,14 +615,7 @@ className="cursor-pointer text-xs font-poppins">
               </div>
               </div>
               <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-              {/* <div className=" flex   max-sm:w-auto w-[7rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
 
-
-<div class=" text-xs  max-sm:text-sm font-poppins   ml-gap">
-{item.source}
-</div>
-
-</div> */}
 <div className=" flex  w-[7.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 
 <div className=" flex  w-[3rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
@@ -691,9 +682,7 @@ handleRowData(item);
                   </div>
                         </div>
                         </div>
-</div>     
-               
-                    
+</div>               
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                         {props.user.aiInd && (
    <div className=" flex    w-[4.62rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
@@ -720,11 +709,7 @@ handleRowData(item);
                       </div>
     </div>
     )}
-
-
-                        <div className=" flex w-[4.50rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">
-                          
-
+                        <div className=" flex w-[4.50rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">                    
                             <div class=" text-xs  font-poppins">
                             {item.assignedTo === null ? (
         "None"
@@ -738,7 +723,7 @@ handleRowData(item);
               setSelectedAssign(value); 
               handleAssignChange(item.customerId,value); 
             }}
-            onBlur={() => setIsAssignDropdownVisible(null, null, null)} 
+            // onBlur={() => setIsAssignDropdownVisible(null, null, null)} 
             autoFocus
           >
              {props.crmAllData.map(customer => (
@@ -768,14 +753,11 @@ handleRowData(item);
           primaryTitle={item.assignedTo}
           imgWidth={"1.8rem"}
           imgHeight={"1.8rem"}
-        />
-      
+        />   
         </div>  
-                              )}
-   
+                              )}  
     </div>
        )}
-   
                             </div>
                         </div>
                   
@@ -891,9 +873,7 @@ handleRowData(item);
                     }
                   </Tooltip>
                   </div>
-                  </div>
-                
-              
+                  </div>     
                   <div 
                   
                   onClick={() => {
@@ -909,9 +889,7 @@ handleRowData(item);
                       className=" !text-icon cursor-pointer text-[#df9697]"
                     />}
                 
-                </div>                 
-           
-            
+                </div>                            
               <div class="flex   max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
            <div>
                   <Tooltip title= {translatedMenuItems[15]}>
@@ -926,45 +904,8 @@ handleRowData(item);
                   </Tooltip>
                 </div>
                 </div>
-               
-            {/* <div>
-                  <Tooltip title= {translatedMenuItems[11]}>
-                    <LightbulbIcon
-                      className=" !text-icon cursor-pointer text-[#AF5910]"
-                      onClick={() => {
-                        handleCustomerOpportunityDrawerModal(true);
-                        handleSetCurrentCustomer(item);
-                        handleRowData(item);
-                      }}
-
-                    />
-                  </Tooltip>
-               
-             </div>
-             */}
-            
-            
-
+ 
               <div class="flex max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
-              
-              {/* <div>
-                  {props.user.customerUpdateInd === true && user.crmInd === true && (
-                    <Tooltip title= {translatedMenuItems[14]}>
-                      <BorderColorIcon
-                        className=" !text-icon cursor-pointer text-[tomato]"
-
-                        onClick={() => {
-                          props.setEditCustomer(item);
-                          handleUpdateCustomerModal(true);
-                          handleSetCurrentCustomerId(item.customerId);
-
-                        }}
-                      />
-                    </Tooltip>
-                  )}
-                 
-             
-              </div> */}
               </div>
               </div>
             </div>

@@ -56,45 +56,7 @@ const SettingsMenu = ({ history, pathName, recruitmentInd }) => (
            <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/> Organization
           </a>
         </StyledMenuItem>
-        {/* <StyledMenuItem key="0">
-          <a
-            href="#"
-            style={{
-              color: pathName === "/rules" ? "#1890ff" : "rgba(0, 0, 0, 0.65)",
-            }}
-            onClick={() => history.push("/rules")}
-          >
-          
       
-          </a>
-        </StyledMenuItem> */}
-
-        {/* <StyledMenuItem key="1">
-          <a
-            href="#"
-            style={{
-              color:
-                pathName === "/template" ? "#1890ff" : "rgba(0, 0, 0, 0.65)",
-            }}
-            onClick={() => history.push("/template")}
-          >
-           
-          </a>
-        </StyledMenuItem>  */}
-    
-
-        {/* <StyledMenuItem key="8">
-            <a
-              href="#"
-              style={{
-                color:
-                  pathName === "/library" ? "#1890ff" : "rgba(0, 0, 0, 0.65)",
-              }}
-              onClick={() => history.push("/library")}
-            >
-              Library
-            </a>
-          </StyledMenuItem> */}
 
         <Menu.Divider />
       </StyledMenu>

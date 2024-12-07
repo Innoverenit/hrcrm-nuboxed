@@ -43,11 +43,8 @@ function ProductCategory(props) {
         setLoading(true); 
         const itemsToTranslate = [
    
-          
             "14",//0 Category
-           
-            
-
+      
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -227,37 +224,10 @@ const breakPoints = [
                                         style={{ height: "7rem", width: "7rem" }}
                                     />
 )}
-                                     {/* <h3>{item.newProductNo} </h3>   */}
                                      </div>
                                                       </div>  
                                                                                                    
-                                                      <div class="w-40  flex justify-between max-sm:flex items-center  flex-col">
-                                                      {/* <div class=" flex justify-evenly place-items-baseline flex-col max-sm:w-48  flex-auto ">
-                                                      <div className="add-minus-quantity">
-      <span
-
-      >
-             <MinusOutlined onClick={() => handleDecrement(item.productId)}/>
-      </span>
-    
-      <input type="number"  
-       value={units[item.productId] || 1}
-       onChange={(event) => handleQuantityChange(event, item.productId)}
-      min="1" 
-      step="1" 
-      />
-     
-      <span
-
-      >
-       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" onClick={() => handleIncrement(item.productId)} />
-      </span>
-
-    </div>
-       
-                      
-                                                 
-                                                            </div> */}
+                                                      <div class="w-40  flex justify-between max-sm:flex items-center  flex-col">                                             
                                                       <h3 class=" mt-2 h-4 font-bold text-xs ">
                                                         {item.model} &nbsp;&nbsp;&nbsp;
                                                         {dayjs(item.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
@@ -269,49 +239,13 @@ const breakPoints = [
                                                       <ProductCategoryPUnblishToggle item={item}    publishInd={item.publishInd}  categoryId={item.categoryId}/>
                                                       </h3> 
                                                     </div>
-
-                                                    </div>
-                                                    
-                                                    {/* <div class="flex justify-between m-2 w-wk max-sm:w-40 items-baseline md: " >
-                                                        <Desc> {item.description === "null" ? "No Description" : `${item.description}`}</Desc>
-                                                        {item.description === "<h3></h3>\n" ? null : (
-                                                          <Tooltip
-                                                            style={{ backgroundColor: "red" }}
-                                                            title={
-                                                              <Desc2>{item.description === "null" ? "No Description" : `${item.description}`}</Desc2>
-                                                            }
-                                                            placement="top"
-                                                            arrow
-                                                          >
-                                                            <span
-                                                              style={{
-                                                                cursor: "pointer",
-                                                              }}
-                                                            >
-                                                       
-                                                            </span>
-                                                          </Tooltip>
-                                                        )}
-                                                      </div> */}
+                                                    </div>                                           
                                                       <div class="mt-px flex  justify-end w-wk m-5 items-center">
-                   {/* <div className=" py-1 px-4 bg-slate-100 border-2 border-blue-300 hover:bg-ShopBlue cursor-pointer"
-                                                            
-                                      
-                                                            onClick={() =>
-                                                              handleAddToCart(
-                                                                item.productId
-                                                              )
-                                                            }
-                                                          >
-                                                              <label class=" text-gray-700 font-light text-base  flex  justify-center items-center hover:text-white cursor-pointer">
-                                                        Add +
-                                                          </label>
-                                                          </div> */}
-<div><CircleNotificationsIcon className="!cursor-pointer" onClick={() => {
+        
+                                <div><CircleNotificationsIcon className="!cursor-pointer" onClick={() => {
                                 setOpen(true);
                                 handleParticularRowData(item);
                               }}/></div>
-
 
                                                               <div>
                               <Popconfirm

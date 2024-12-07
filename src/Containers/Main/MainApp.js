@@ -727,22 +727,20 @@ function MainApp(props) {
                     {props.role}
                   </div>
                 
-                  <div class=" flex items-center h-0">
+                  <div class=" flex items-center h-8">
                     {user.settingsAccessInd === true || user.role === "ADMIN" ?
-                      <SettingsDropdown />
+                
+                      <SettingsDropdown/>
                       : null
                     }
-                    <a href="#" style={{ marginRight: 4 }}>
-                      <div class=" flex items-center "
-                      >
-                        <NotificationPopover />
-                      </div>
+                    <a href="#" className="mr-1">             
+                        <NotificationPopover />          
                     </a>
 
                     <RepositoryData  />
                     <FAQPage/>
-
-                  </div>
+</div>
+              
                   <ProfileDropdown />
 
                

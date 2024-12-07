@@ -7,7 +7,10 @@ import dayjs from "dayjs";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import { getCountries } from "../../../Auth/AuthAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip, Select,Button ,Checkbox,Popconfirm} from "antd";
+import { Tooltip, Select,Button ,Checkbox,Popconfirm,Input} from "antd";
+import {getAllDialCodeList} from "../../../Auth/AuthAction";
+import { getSectors } from "../../../Settings/Sectors/SectorsAction";
+import { getSources } from "../../../../Containers/Settings/Category/Source/SourceAction";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
@@ -39,8 +42,8 @@ import {
   handleCustomerContactDrawerModal,
   handleCustomerOpportunityDrawerModal,
   handleAddressCutomerModal, 
-  handleUpdateUserModal
- 
+  handleUpdateUserModal,
+  updateCustomer
 } from "../../CustomerAction";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
@@ -90,7 +93,10 @@ function CustomerAllCardList(props) {
   const [hasMore, setHasMore] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const [page, setPage] = useState(0);
-
+  const [editableField, setEditableField] = useState(null); 
+  const [editingValue, setEditingValue] = useState("");
+  const [isAssignDropdownVisible, setIsAssignDropdownVisible] = useState(null);
+  const [selectedAssign, setSelectedAssign] = useState();
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
@@ -153,6 +159,9 @@ function CustomerAllCardList(props) {
     setPage(page + 1);
     props.getAllCustomerlIST(page,props.filter?props.filter:"creationdate");
       props.getCrm();
+      props.getSectors();
+      props.getSources(props.orgId);
+      props.getAllDialCodeList()
     // props.getCountries();
     // props.getAllCustomerEmployeelist();
   }, []);
@@ -170,6 +179,11 @@ function CustomerAllCardList(props) {
     };
   }, []);
 
+  const handleAssignChange = (customerId,value) => {
+
+    props.updateProspectUser(customerId,value);
+    setIsAssignDropdownVisible(null); // Hide the dropdown after the request
+  }; 
 
 const [rowdata, setrowdata] = useState("");
   const [currentCustomerId, setCurrentCustomerId] = useState("");
@@ -198,6 +212,57 @@ const [rowdata, setrowdata] = useState("");
       
   };
 
+  const handleEditRowField = (customerId, field, currentValue) => {
+    setEditableField({ customerId, field });  
+    setEditingValue(currentValue);  
+  };
+  const handleChangeRowItem = (e) => {
+    setEditingValue(e.target.value);
+  };
+  const handleUpdateSubmit = async () => {
+    const { customerId, field } = editableField;
+    const updatedData = {};
+    let mappedField = field;
+    // if (field === 'shipByName') {
+    //   mappedField = 'shipById'; 
+    // } else if (field === 'dialCode2') {
+    //   mappedField = 'dialCode';
+    // } else if (field === 'shipperName') {
+    //   mappedField = 'name';
+    // }
+    updatedData[mappedField] = editingValue;
+    props.updateCustomer(updatedData,customerId)
+    setEditableField(null);
+      setEditingValue("");
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleUpdateSubmit(); 
+    }
+  };
+  const handleChangeRowSelectItem = async (value) => {
+    setEditingValue(value);
+
+      const { customerId, field } = editableField;
+      const updatedData = {};
+      let mappedField = field;
+    
+      // Map the field to the correct key if needed
+      if (field === 'sector') {
+        mappedField = 'sectorId'; 
+      } if (field === 'dialcCode') {
+        mappedField = 'dialCcode';
+      } else if (field === 'shipperName') {
+        mappedField = 'name';
+      }
+      updatedData[mappedField] = value; // Update the value with selected option
+      props.updateCustomer(updatedData,customerId)
+      setEditableField(null);
+      setEditingValue("");
+    
+  };
+
+
   const handleButtonClick = (employeeId) => {
     props.getCrm(employeeId, page1, "creationdate");
     props.emptyLeads();
@@ -210,8 +275,6 @@ const [rowdata, setrowdata] = useState("");
     addDrawerCustomerPulseModal,
     handleCustomerPulseDrawerModal,
     updateCustomerModal,
-    fetchingAllCustomerListError,
-    fetchingAllCustomers,
     handleCustomerContactDrawerModal,
     handleCustomerOpportunityDrawerModal,
     user,
@@ -229,7 +292,7 @@ const [rowdata, setrowdata] = useState("");
   if (loading) {
     return <div><BundleLoader/></div>;
   }
-
+console.log(selectedAssign)
   return (
     <>
     
@@ -321,7 +384,7 @@ const [rowdata, setrowdata] = useState("");
             </div>
             {props.user.aiInd && (
             <div className=" w-[4.71rem] truncate max-md:w-[4.71rem]   max-xl:w-[3.81rem]">
- <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/> 
+            <ScoreIcon className="!text-icon mr-1 text-[#f28482]"/> 
             {/* Score */}
             {translatedMenuItems[19]}
             </div>
@@ -412,26 +475,93 @@ const [rowdata, setrowdata] = useState("");
                                             <div class=" text-xs flex text-blue-500 ml-1 font-poppins font-semibold  cursor-pointer">
                                             <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm   cursor-pointer" to={`customer/${item.customerId}`} title={item.name}>
       {item.name}
-    </Link>                                   
-       
-    &nbsp;&nbsp;   
-        {date === currentdate ? (
+    </Link>    
+    &nbsp;&nbsp;
+    {date === currentdate ? (
     <div class="text-[0.65rem] text-[tomato] font-bold"
     >
             {translatedMenuItems[9]}
           </div>
-        ) : null}   
+        ) : null}                                  
+       <div>
+                      {editableField?.customerId === item.customerId &&
+   editableField?.field === 'name' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.customerId, 'name', item.name)} 
+    className="cursor-pointer text-xs font-poppins flex items-center">
+   <BorderColorIcon  className=" !text-icon cursor-pointer"/>
+    
+    </div> 
+)}                 
+                      </div>
+   
+ 
                                             </div>
                                             </div>
                                         </Tooltip>
                       </div>
                     </div>
                                     </div> 
-                                    <div className=" flex  max-sm:w-auto    w-[7.54rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">                                                        
-                                    <div class=" text-xs  max-sm:text-sm font-poppins   ml-gap">   
-                                    {item.phoneNumber}
-                                    </div>                              
-                                </div> 
+
+                                        <div className=" flex  max-sm:w-auto    w-[7.54rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">                                                        
+                            <div class="flex text-xs  max-sm:text-sm font-poppins   ml-gap">   
+                            <div>
+{editableField?.customerId === item.customerId && editableField?.field === 'countryDialCode' ? (
+  <Select
+  style={{ width: "10rem" }}
+  value={editingValue}
+  onChange={handleChangeRowSelectItem} 
+  onBlur={() => handleEditRowField(null, null, null)}
+  autoFocus
+>
+{props.dialcodeList.map((country) => (
+   <Option key={country.country_dial_code} value={country.country_dial_code}>
+  {country.country_dial_code}
+   </Option>
+ ))}
+</Select>
+) : (
+<div onClick={() => 
+handleEditRowField(item.customerId, 'countryDialCode',item.countryDialCode)}   
+className="cursor-pointer text-xs font-poppins">
+{item.countryDialCode || "Update..."}
+
+</div>         
+                        )}
+                      </div>
+                      <div>
+                      {editableField?.customerId === item.customerId &&
+   editableField?.field === 'phoneNumber' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.customerId, 'phoneNumber',item.phoneNumber)}   
+    className="cursor-pointer text-xs font-poppins">
+    {item.phoneNumber || "Update..."}
+    
+    </div> 
+)}                 
+                      </div>
+                            </div>                              
+                        </div> 
 
                                 <div className=" flex  w-[2.1rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 <div class=" text-xs  font-poppins max-sm:text-sm  ">
@@ -440,23 +570,40 @@ const [rowdata, setrowdata] = useState("");
   {item.countryAlpha2Code}
 </div>
 </div>
-                                <div className=" flex  max-sm:w-auto   w-[7.7rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
-            {/* sector */}
-                        <div class=" text-xs  max-sm:text-sm font-poppins   ml-gap">
-                          {item.sector}
-                        </div>
+<div className=" flex  max-sm:w-auto   w-[7.7rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.5rem] max-lg:w-[3.21rem] max-sm:flex-row  max-sm:justify-between  ">
+    {/* sector */}
+                <div class=" text-xs  max-sm:text-sm font-poppins   ml-gap">
+                
+                  <div>
+{editableField?.customerId === item.customerId && editableField?.field === 'sector' ? (
+  <Select
+  style={{ width: "10rem" }}
+  value={editingValue}
+  onChange={handleChangeRowSelectItem} 
+  onBlur={() => handleEditRowField(null, null, null)}
+  autoFocus
+>
+{props.sectors.map((country) => (
+   <Option key={country.sectorId} value={country.sectorId}>
+  {country.sectorName}
+   </Option>
+ ))}
+</Select>
+) : (
+<div onClick={() => 
+handleEditRowField(item.customerId, 'sector', item.sector)} 
+className="cursor-pointer text-xs font-poppins">
+{item.sector || "Update..."}
 
+</div>         
+                        )}
                       </div>
+                </div>
+
+              </div>
                       </div>
                       <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                      {/* <div className=" flex   max-sm:w-auto w-[7rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[2.215rem] max-sm:flex-row  max-sm:justify-between  ">
-
-
-<div class=" text-xs  max-sm:text-sm font-poppins   ml-gap">
-  {item.source}
-</div>
-
-</div> */}
+                  
 <div className=" flex  w-[7.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 
 <div className=" flex  w-[3rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
@@ -470,6 +617,27 @@ const [rowdata, setrowdata] = useState("");
    {item.oppNo}
 
                           </div>
+                          <div>
+                      {editableField?.customerId === item.customerId &&
+   editableField?.field === 'oppNo' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.customerId, 'oppNo', item.oppNo)} 
+    className="cursor-pointer text-xs font-poppins flex items-center">
+   <BorderColorIcon  className=" !text-icon cursor-pointer"/>
+    
+    </div> 
+)}                 
+                      </div>
                           </div>
 
 
@@ -478,8 +646,25 @@ const [rowdata, setrowdata] = useState("");
                                 <div>
         <CurrencySymbol currencyType={item.userCurrency}/>     </div> 
         <div>
-        {`${Math.floor(item.totalProposalValue / 1000)}K`}
-        </div>
+                      {editableField?.customerId === item.customerId &&
+   editableField?.field === 'totalProposalValue' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.customerId, 'totalProposalValue', item.totalProposalValue)} 
+    className="cursor-pointer text-xs font-poppins">
+    {`${Math.floor(item.totalProposalValue / 1000)}K` || "Update..."}
+    </div> 
+)}                 
+                      </div>
                           </div>
                                 </div>
                                 </div>
@@ -488,44 +673,82 @@ const [rowdata, setrowdata] = useState("");
                             
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                                 {props.user.aiInd && (
-           <div className=" flex    w-[4.62rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
-        {item.noteScoreInd}
-            </div>
-            )}
-
-
-                                <div className=" flex w-[4.50rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">
-                                  
-
-                                    <div class=" text-xs  font-poppins">
-                                    
-                                    <div>
-              {item.assignedTo === null ? (
-                "None"
-              ) : (
-                <div
-                style={{cursor:"pointer"}}
-              onClick={() => {
-                handleSetCurrentCustomerId(item.customerId)
-                props.handleUpdateUserModal(true);
-                
-              }}
-                >
-                <MultiAvatar2
-                  primaryTitle={item.assignedTo}
-                  imgWidth={"1.8rem"}
-                  imgHeight={"1.8rem"}
-                />
+            <div className=" flex    w-[4.62rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+            {/* {item.noteScoreInd} */}
+            <div>
+                                  {editableField?.customerId === item.customerId &&
+               editableField?.field === 'noteScoreInd' ? (
+            <Input
+              type="text"
+              className="h-7 w-[4rem] text-xs"
+              value={editingValue}
+              onChange={handleChangeRowItem}
+              onBlur={handleUpdateSubmit}
+              onKeyDown={handleKeyDown} 
+              autoFocus
+            />
+            ) : (
+            <div onClick={() => 
+                handleEditRowField(item.customerId, 'noteScoreInd', item.noteScoreInd)} 
+                className="cursor-pointer text-xs font-poppins">
+                {item.noteScoreInd  || "Update..."}
+                </div> 
+            )}                 
+                                  </div>
                 </div>
-              )}
-            </div>
-           
-                                    </div>
-                                </div>
-                          
-                                <div className=" flex  w-[4.90rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">
-                                  
-
+            )}
+                               <div className=" flex w-[4.50rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">                    
+                            <div class=" text-xs  font-poppins">
+                            {item.assignedTo === null ? (
+        "None"
+      ) : (
+                            <div>
+         {isAssignDropdownVisible === item.customerId ? (
+          <Select
+            style={{ width: "8rem" }}
+            value={selectedAssign}
+            onChange={(value) => {
+              setSelectedAssign(value); 
+              handleAssignChange(item.customerId,value); 
+            }}
+            // onBlur={() => setIsAssignDropdownVisible(null, null, null)} 
+            autoFocus
+          >
+             {props.crmAllData.map(customer => (
+                 <Option key={customer.employeeId} value={customer.employeeId}>
+                  <div className="flex">
+                   <MultiAvatar
+          primaryTitle={customer.empName} 
+          imageId={item.imageId}
+                    imageURL={item.imageURL}
+                    imgWidth={"1.8rem"}
+                    imgHeight={"1.8rem"} 
+        />
+                  <span>{customer.empName}</span> 
+                  </div>
+                 </Option>
+               ))}
+          </Select>
+        ):(
+          <div 
+          onClick={() => {
+            setIsAssignDropdownVisible(item.customerId); 
+            setSelectedAssign(item.assignedTo); 
+            }}  
+          className="cursor-pointer"
+        >
+          <MultiAvatar2
+          primaryTitle={item.assignedTo}
+          imgWidth={"1.8rem"}
+          imgHeight={"1.8rem"}
+        />   
+        </div>  
+                              )}  
+    </div>
+       )}
+                            </div>
+                        </div>    
+                                <div className=" flex  w-[4.7rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3rem] max-sm:justify-between ">                    
                                   <div class=" text-xs  font-poppins">
                                   <MultiAvatar2
                   primaryTitle={item.ownerName}
@@ -609,7 +832,6 @@ handleRowData(item);
 /> 
 </Tooltip>
 </div>
-
                       <div class="flex  max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
                       <div>
                           <Tooltip title={item.url}>
@@ -630,16 +852,13 @@ handleRowData(item);
                             )
                               : 
                               <div class=" w-3">
-
                               </div>
                             }
                           </Tooltip>
                           </div>
-                          </div>
-                        
-                      
-                          <div 
-                          
+                          </div>  
+
+                        <div                         
                           onClick={() => {
                               props.getCustomerDetailsById(item.customerId);
                               props.getCustomerKeySkill(item.customerId);
@@ -651,11 +870,9 @@ handleRowData(item);
                             {" "}
                             {user.pulseAccessInd === true && <MonitorHeartIcon
                               className=" !text-icon cursor-pointer text-[#df9697]"
-                            />}
-                        
+                            />}                    
                         </div>                 
-                   
-                    
+                                   
                       <div class="flex   max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%] ">
                    <div>
                           <Tooltip title= {translatedMenuItems[15]}>
@@ -665,32 +882,12 @@ handleRowData(item);
                                 handleCustomerContactDrawerModal(true);
                                 handleSetCurrentCustomer(item);
                               }}
-
                             />
                           </Tooltip>
                         </div>
                         </div>
-                       
-                    {/* <div>
-                          <Tooltip title= {translatedMenuItems[11]}>
-                            <LightbulbIcon
-                              className=" !text-icon cursor-pointer text-[#AF5910]"
-                              onClick={() => {
-                                handleCustomerOpportunityDrawerModal(true);
-                                handleSetCurrentCustomer(item);
-                                handleRowData(item);
-                              }}
 
-                            />
-                          </Tooltip>
-                       
-                     </div>
-                     */}
-                    
-                    
-
-                      <div class="flex max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">
-                      
+                      <div class="flex max-xl:w-[1.2rem] max-lg:w-[1rem] max-sm:flex-row max-sm:w-[10%]">                   
                       <div>
                           {props.user.customerUpdateInd === true && user.crmInd === true && (
                             <Tooltip title= {translatedMenuItems[14]}>
@@ -705,24 +902,12 @@ handleRowData(item);
                                 }}
                               />
                             </Tooltip>
-                          )}
-                          {/* <Tooltip title={item.email}>
-              <MailOutlineIcon
-                type="mail"
-                style={{ cursor: "pointer",fontSize: "1rem" }}
-                onClick={() => {
-                  props.getCustomerById(item.customerId);
-                  props.handleCustomerEmailDrawerModal(true);
-                }}
-              />
-            </Tooltip> */}
-                     
+                          )}                    
                       </div>
                       </div>
                       </div>
                     </div>
-                    </div>
-                   
+                    </div>                 
                     )
                 })}
                 </InfiniteScroll>
@@ -778,8 +963,7 @@ handleRowData(item);
       <AddCustomerEmailDrawerModal
        translateText={props.translateText}
        selectedLanguage={props.selectedLanguage}
-     translatedMenuItems={props.translatedMenuItems}
-        // contactById={props.contactById}
+       translatedMenuItems={props.translatedMenuItems}
         addDrawerCustomerEmailModal={props.addDrawerCustomerEmailModal}
         handleCustomerEmailDrawerModal={props.handleCustomerEmailDrawerModal}
       />
@@ -791,9 +975,9 @@ handleRowData(item);
          handleAddressCutomerModal={props.handleAddressCutomerModal}
       /> 
 <AddCustomerNotesDrawerModal
- translateText={props.translateText}
- selectedLanguage={props.selectedLanguage}
-translatedMenuItems={props.translatedMenuItems}
+         translateText={props.translateText}
+         selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
         customer={currentCustomer}
         rowdata={rowdata}
         addDrawerCustomerNotesModal={addDrawerCustomerNotesModal}
@@ -849,7 +1033,6 @@ const mapDispatchToProps = (dispatch) =>
       handleCustomerPulseDrawerModal,
       setEditCustomer,
       handleUpdateUserModal,
-      // getSectors,
       customerToAccount,
       emptyCustomer,
       updateOwnercustomerById,
@@ -860,11 +1043,14 @@ const mapDispatchToProps = (dispatch) =>
       handleCustomerNotesDrawerModal,
       getCustomerById,
       getCountries,
-      // getAllCustomerEmployeelist,
       handleCustomerContactDrawerModal,
       handleCustomerOpportunityDrawerModal,
       handleAddressCutomerModal,
       getCrm,
+      updateCustomer,
+      getAllDialCodeList,
+      getSources,
+      getSectors
     },
     dispatch
   );
