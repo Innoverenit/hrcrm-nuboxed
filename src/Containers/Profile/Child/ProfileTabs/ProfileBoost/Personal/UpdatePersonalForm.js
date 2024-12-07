@@ -123,13 +123,7 @@ class UpdatePersonalForm extends Component {
                       <FastField
                         name="contactSalutation"
                         type="text"
-                        // label="Salutation"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.contactSalutation"
-                        //     defaultMessage="Salutation"
-                        //   />
-                        // }
+                      
                         options={["Mr.", "Ms.", "None"]}
                         component={SelectComponent}
                         inlineLabel
@@ -148,13 +142,7 @@ class UpdatePersonalForm extends Component {
                       <FastField
                         isRequired
                         name="contactFirstName"
-                        //label="First Name"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.contactFirstName"
-                        //     defaultMessage="First Name"
-                        //   />
-                        // }
+                        
                         type="text"
                         width={"100%"}
                         isColumn
@@ -174,13 +162,7 @@ class UpdatePersonalForm extends Component {
                   <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[2]}</div>
                       <FastField
                         name="contactLastName"
-                        // label="Last Name"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.contactLastName"
-                        //     defaultMessage="Last Name"
-                        //   />
-                        // }
+                        
                         type="text"
                         width={"100%"}
                         isColumn
@@ -197,13 +179,6 @@ class UpdatePersonalForm extends Component {
                     <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[3]}</div>
                       <FastField
                         name="contactMiddleName"
-                        // label="Middle "
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.contactMiddleName"
-                        //     defaultMessage="Middle"
-                        //   />
-                        // }
                         type="text"
                         width={"100%"}
                         isColumn
@@ -223,13 +198,6 @@ class UpdatePersonalForm extends Component {
                   <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[4]} #</div>
                       <Field
                         name="countryDialCode"
-                        // label="Mobile #"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.countryDialCode"
-                        //     defaultMessage="Mobile #"
-                        //   />
-                        // }
                         isColumn
                         margintop={"0.25em"}
                         selectType="dialCode"
@@ -243,12 +211,6 @@ class UpdatePersonalForm extends Component {
                       <Field
                         type="text"
                         name="mobileNo"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.mobileNo"
-                        //     defaultMessage="Mobile No"
-                        //   />
-                        // }
                         placeholder="Mobile #"
                         component={InputComponent}
                         inlineLabel
@@ -269,13 +231,6 @@ class UpdatePersonalForm extends Component {
                   <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[6]} #</div>
                       <Field
                         name="countryDialCode1"
-                        //  label="Phone #"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.countryDialCode1"
-                        //     defaultMessage="Phone #"
-                        //   />
-                        // }
                         isColumn
                         margintop={"0.25em"}
                         selectType="dialCode"
@@ -289,12 +244,6 @@ class UpdatePersonalForm extends Component {
                       <Field
                         type="text"
                         name="phoneNo"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.phoneNo"
-                        //     defaultMessage="Phone No"
-                        //   />
-                        // }
                         placeholder="Phone #"
                         component={InputComponent}
                         inlineLabel
@@ -317,7 +266,7 @@ class UpdatePersonalForm extends Component {
                   type="primary"
                   Loading={updatingPersonalDetails}
                 >
-                 {this.state.translatedMenuItems[7]} {/* <FormattedMessage id="app.update" defaultMessage="Update" /> */}
+                 {this.state.translatedMenuItems[7]}
                 </Button>
               </div>
             </Form>

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from 'react-intl';
-
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
@@ -162,12 +160,8 @@ class HourForm extends Component {
                   <Field
                     isRequired
                     name="projectName"
-                    label={
-                      <FormattedMessage
-                        id="app.project"
-                        defaultMessage="Project"
-                      />
-                    }
+                    label="Project"
+                     
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -180,13 +174,7 @@ class HourForm extends Component {
                         <Field
                           isRequired
                           name="startDate"
-                          // label="Start Time"
-                          label={
-                            <FormattedMessage
-                              id="app.startTime"
-                              defaultMessage="Start Time"
-                            />
-                          }
+                          label="Start Time"
                           isColumn
                           component={TimePicker}
                           use12Hours
@@ -201,13 +189,7 @@ class HourForm extends Component {
                       <Field
                         isRequired
                         name="endDate"
-                        //label="End Time"
-                        label={
-                          <FormattedMessage
-                            id="app.endtime"
-                            defaultMessage="End Time"
-                          />
-                        }
+                        label="End Time"
                         isColumn
                         component={TimePicker}
                         use12Hours
@@ -223,36 +205,12 @@ class HourForm extends Component {
                 
               </div>
               <div class="flex justify-end mt-3">
-                {/* {isEditing && ( */}
-                  {/* <>
-                    <StyledPopconfirm
-                      title="Do you want to delete?"
-                     // onConfirm={() => deleteEvent(prefillEvent.eventId)}
-                    >
-                      <Button
-                        type="danger"
-                        htmlType="submit"
-                        //Loading={deletingEvent}
-                      >
-                        <FormattedMessage
-                          id="app.delete"
-                          defaultMessage="Delete"
-                        />
-                      </Button>
-                    </StyledPopconfirm>
-                  </> */}
-                {/* )} */}
                 <Button
                   type="primary"
                   htmlType="submit"
                   Loading={this.props.addingPlannerHour}
                 >
-
-                    <FormattedMessage
-                      id="app.create"
-                      defaultMessage="Create"
-                    />
-    
+                Create
                 </Button>
               </div>
             </Form>

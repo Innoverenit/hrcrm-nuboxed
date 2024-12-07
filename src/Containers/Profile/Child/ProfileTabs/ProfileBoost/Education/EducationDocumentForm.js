@@ -114,23 +114,7 @@ class EducationDocumentForm extends Component {
                   <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[0]}</div>
                   <FastField
                     name="educationTypeId"
-                    // type="text"
-                    //label="Education"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.education"
-                    //     defaultMessage="Education"
-                    //   />
-                    // }
-                    // options={[
-                    //   "Matriculation",
-                    //   "Intermediate",
-                    //   "Graduation",
-                    //   "Post-Graduation",
-                    //   "Others",
-                    // ]}
-                    // component={SelectComponent}
-                    // inlineLabel
+
                     className="field"
                     isColumn
                     style={{
@@ -164,13 +148,7 @@ class EducationDocumentForm extends Component {
                       type="text"
                       isColumn
                       width={"100%"}
-                      //label="Course Name"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.courseName"
-                      //     defaultMessage="Course Name"
-                      //   />
-                      // }
+                     
                       component={InputComponent}
                       inlineLabel
                       style={{
@@ -226,13 +204,7 @@ class EducationDocumentForm extends Component {
                       type="text"
                       isColumn
                       width={"100%"}
-                      //label="Specialization"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.Specialization"
-                      //     defaultMessage="Specialization"
-                      //   />
-                      // }
+                    
                       component={InputComponent}
                       inlineLabel
                       style={{
@@ -251,13 +223,7 @@ class EducationDocumentForm extends Component {
                       type="text"
                       isColumn
                       width={"100%"}
-                      //label="University/Institute "
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.university"
-                      //     defaultMessage="University/Institute"
-                      //   />
-                      // }
+                   
                       component={InputComponent}
                       inlineLabel
                       style={{
@@ -274,13 +240,7 @@ class EducationDocumentForm extends Component {
                     <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[4]}</div>
                       <Field
                         name="yearOfPassing"
-                        //label="Year of Passing"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.yearOfPassing"
-                        //     defaultMessage="Year of Passing"
-                        //   />
-                        // }
+                        
                         component={InputComponent}
                         isColumn
                         width={"100%"}
@@ -299,13 +259,7 @@ class EducationDocumentForm extends Component {
                     <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[5]}</div>
                       <Field
                         isRequired
-                        //label="Marks Secured"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.marksSecured"
-                        //     defaultMessage="Marks Secured"
-                        //   />
-                        // }
+                        
                         name="marksSecured"
                         type="text"
                         isColumn
@@ -323,12 +277,6 @@ class EducationDocumentForm extends Component {
                     <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[6]}</div>
                       <Field
                         name="marksType"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.marksType"
-                        //     defaultMessage="Marks Type"
-                        //   />
-                        // }
                         type="text"
                         component={SelectComponent}
                         options={["%", "Out of 10", "Out of 5"]}
@@ -352,12 +300,6 @@ class EducationDocumentForm extends Component {
                 <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[7]}</div>
                   <Field
                     name="documentId"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.documentId"
-                    //     defaultMessage="Document Id"
-                    //   />
-                    // }
                     isRequired
                     component={DragableUpload}
                   />
@@ -365,13 +307,6 @@ class EducationDocumentForm extends Component {
                <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[8]}</div>
                   <Field
                     name="documentTitle"
-                    //label="Name of Document"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.documentTitle"
-                    //     defaultMessage="Name of Document"
-                    //   />
-                    // }
                     width={"100%"}
                     isColumn
                     component={InputComponent}
@@ -384,14 +319,6 @@ class EducationDocumentForm extends Component {
                     name="documentTypeId"
                     selectType="documentTypeName"
                     isColumnWithoutNoCreate
-                    // label="Type"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.documentId"
-                    //     defaultMessage="Type"
-                    //   />
-                    // }
-                    // isRequired
                     component={SearchSelect}
                     isColumn
                     margintop={"0.25em"}
@@ -405,13 +332,6 @@ class EducationDocumentForm extends Component {
                     <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[10]}</div>
                   <Field
                     name="documentDescription"
-                    //label="Description of document"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.documentDescription"
-                    //     defaultMessage="Description of document"
-                    //   />
-                    // }
                     isRequired
                     isColumn
                     width={"100%"}
@@ -428,7 +348,7 @@ class EducationDocumentForm extends Component {
                   type="primary"
                   Loading={addingEducationDetails}
                 >
-                {this.state.translatedMenuItems[11]} {/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
+                {this.state.translatedMenuItems[11]} 
                 </Button>
               </div>
             </Form>

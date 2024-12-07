@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from 'react-intl';
-
 import { Button } from "antd";
 import { updateUserById } from "../../../Auth/AuthAction";
 import EditableSelect from "../../../../Components/Forms/Edit/EditableSelect";
@@ -155,19 +153,11 @@ class ProfileAboutEdit extends Component {
             Loading={updatingUserById}
             onClick={this.handleUpdate}
           >
-            {/* Save */}
-            <FormattedMessage
-              id="app.save"
-              defaultMessage="Save"
-            />
+            Save
           </Button>
           &nbsp;
           <Button type="ghost" onClick={() => toggleViewType()}>
-            {/* Cancel */}
-            <FormattedMessage
-              id="app.cancel"
-              defaultMessage="Cancel"
-            />
+            Cancel
           </Button>
         </div>
       </>

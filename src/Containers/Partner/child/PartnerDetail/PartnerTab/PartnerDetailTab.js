@@ -6,8 +6,6 @@ import { Tooltip } from "antd";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import AddBoxIcon from '@mui/icons-material/AddBox';
 import { StyledTabs } from "../../../../../Components/UI/Antd";
-import { FormattedMessage } from 'react-intl';
-
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import {
   handleDocumentUploadModal,
@@ -95,10 +93,7 @@ class ContactDetailTab extends Component {
                   <span>
                     <ContactsIcon   style={{fontSize:"1.1rem"}}/>
                     <span class=" ml-1">
-                      <FormattedMessage
-                              id="app.contacts"
-                              defaultMessage="Contacts"
-                            />
+                     Contacts
                       </span>
                   </span>
                   {activeKey === "1" && (
@@ -107,12 +102,8 @@ class ContactDetailTab extends Component {
                       <Tooltip title="Create">
                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                          
-                          tooltipTitle={
-                            <FormattedMessage
-                              id="app.create"
-                              defaultMessage="Create"
-                            />
-                          }
+                          tooltipTitle="Create"
+                          
                           onClick={() => {
                             handlePartnerContactModal(true);
                           }}
@@ -157,21 +148,14 @@ class ContactDetailTab extends Component {
                        style={{fontSize:"1.1rem"}}
                   />
                     <span class=" ml-1">
-                    <FormattedMessage
-                            id="app.documents"
-                            defaultMessage="Documents"
-                          />
+                    Documents
                   </span>
                   {activeKey === "3" && (
                     <>
                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                        
-                        tooltipTitle={
-                          <FormattedMessage
-                            id="app.uploaddocument"
-                            defaultMessage="Upload Document"
-                          />
-                        }
+                        tooltipTitle="Upload Document"
+                         
                         onClick={() => handleDocumentUploadModal(true)}
                       />
                     </>
@@ -193,10 +177,7 @@ class ContactDetailTab extends Component {
                 <span>
                 <NoteAltIcon   style={{fontSize:"1.1rem"}}/>
                 &nbsp;
-                    <FormattedMessage
-                      id="app.notes"
-                      defaultMessage="Notes"
-                    />
+                  Notes
                     &nbsp; 
                     {activeKey === "4" && (
                       <>

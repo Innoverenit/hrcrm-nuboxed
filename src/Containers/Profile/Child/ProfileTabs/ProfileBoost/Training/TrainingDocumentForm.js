@@ -106,13 +106,7 @@ class TrainingDocumentForm extends Component {
                       <FastField
                         isRequired
                         name="courseName"
-                        //label="Course Name"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.courseName"
-                        //     defaultMessage="Course Name"
-                        //   />
-                        // }
+                      
                         type="text"
                         width={"100%"}
                         isColumn
@@ -135,12 +129,7 @@ class TrainingDocumentForm extends Component {
                       <FastField
                         type="Organization"
                         name="organization"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.organization/institution"
-                        //     defaultMessage="Organization/Institution"
-                        //   />
-                        // }
+                      
                         className="field"
                         isColumn
                         width={"100%"}
@@ -159,12 +148,7 @@ class TrainingDocumentForm extends Component {
                       {/* <div class=" text-xs font-bold font-poppins text-black">Grade</div> */}
                       <FastField
                         name="grade"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.grade"
-                        //     defaultMessage="Grade"
-                        //   />
-                        // }
+                        
                         isColumn
                         selectType="text"
                         width={"30%"}
@@ -185,13 +169,6 @@ class TrainingDocumentForm extends Component {
                   <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[3]}</div>
                       <Field
                         name="startDate"
-                        //label="Start Date"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.startDate"
-                        //     defaultMessage="Start Date"
-                        //   />
-                        // }
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -211,13 +188,6 @@ class TrainingDocumentForm extends Component {
                     <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[4]}</div>
                       <Field
                         name="endDate"
-                        //label="End Date "
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.endDate"
-                        //     defaultMessage="End Date"
-                        //   />
-                        // }
                         isRequired
                         isColumn
                         width={"100%"}
@@ -262,13 +232,6 @@ class TrainingDocumentForm extends Component {
                  <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[5]}</div>
                     <Field
                       name="documentTitle"
-                      //label="Name of Document"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.documentTitle"
-                      //     defaultMessage="Name of Document"
-                      //   />
-                      // }
                       width={"100%"}
                       isColumn
                       component={InputComponent}
@@ -280,14 +243,7 @@ class TrainingDocumentForm extends Component {
                           name="documentTypeId"
                           selectType="documentTypeName"
                           isColumnWithoutNoCreate
-                          // label="Type"
-                          // label={
-                          //   <FormattedMessage
-                          //     id="app.documentId"
-                          //     defaultMessage="Type"
-                          //   />
-                          // }
-                          // isRequired
+                        
                           component={SearchSelect}
                           isColumn
                           margintop={"0.25em"}
@@ -301,13 +257,7 @@ class TrainingDocumentForm extends Component {
                         <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[7]}</div>
                     <Field
                       name="documentDescription"
-                      //label="Description of Document"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.documentDescription"
-                      //     defaultMessage="Description of Document"
-                      //   />
-                      // }
+                    
                       isRequired
                       isColumn
                       width={"100%"}
@@ -317,20 +267,6 @@ class TrainingDocumentForm extends Component {
                      </div>
                 
                   </div>
-
-           
-
-                  {/* <FieldArray
-                                    name="address"
-                                    render={(arrayHelpers) => (
-                                        <AddressFieldArray
-                                            singleAddress
-                                            arrayHelpers={arrayHelpers}
-                                            values={values}
-                                        />
-                                    )}
-                                /> */}
-
                  
                 </div>
               </div>
@@ -341,7 +277,7 @@ class TrainingDocumentForm extends Component {
                   type="primary"
                   Loading={addingTrainingDetails}
                 >
-                {this.state.translatedMenuItems[8]}  {/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
+                {this.state.translatedMenuItems[8]}  
                 </Button>
               </div>
             </Form>

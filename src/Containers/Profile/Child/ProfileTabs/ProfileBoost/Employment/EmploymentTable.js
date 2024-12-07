@@ -1,7 +1,5 @@
 import React, { Component,lazy , Suspense} from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from 'react-intl';
-
 import { bindActionCreators } from "redux";
 import {
   StyledTable,
@@ -51,36 +49,23 @@ class EmploymentTable extends Component {
     // const { emailCredential, fetchingEmailCredential } = this.props;
     const columns = [
       {
-        // title: "Company Name",
-        title: (
-          <FormattedMessage
-            id="app.companyname"
-            defaultMessage="Company Name"
-          />
-        ),
+        title: "Company Name",
         dataIndex: "companyName",
         // width: "35%"
       },
       {
-        //title: "Designation",
-        title: (
-          <FormattedMessage id="app.designation" defaultMessage="Designation" />
-        ),
+        title: "Designation",
         dataIndex: "designation",
       },
       {
-        //title: "Start Date",
-        title: (
-          <FormattedMessage id="app.startDate" defaultMessage="Start Date" />
-        ),
+        title: "Start Date",
         dataIndex: "startDate",
         render: (name, item, i) => {
           return <span>{dayjs(item.startDate).format("LL")}</span>;
         },
       },
       {
-        //title: "End Date",
-        title: <FormattedMessage id="app.endDate" defaultMessage="End Date" />,
+        title: "End Date",
         dataIndex: "endDate",
         render: (name, item, i) => {
           return <span>{dayjs(item.endDate).format("LL")}</span>;
@@ -97,20 +82,12 @@ class EmploymentTable extends Component {
       },
 
       {
-        //title: "Description",
-        title: (
-          <FormattedMessage id="app.description" defaultMessage="Description" />
-        ),
+        title: "Description",
         dataIndex: "description",
       },
       {
-        //title: "Marks Secured",
-        title: (
-          <FormattedMessage
-            id="app.type"
-            defaultMessage="Type"
-          />
-        ),
+        
+        title:"Type"         ,
         // dataIndex: "marksSecured",
       },
       {

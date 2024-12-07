@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
-import { FormattedMessage } from 'react-intl';
-
 import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
@@ -119,13 +117,7 @@ class UpdatePartnerForm extends Component {
                     isRequired
                     name="partnerName"
                     type="text"
-                    //label="Name"
-                    label={
-                      <FormattedMessage
-                        id="app.name"
-                        defaultMessage="Name"
-                      />
-                    }
+                    label="Name"
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -136,8 +128,7 @@ class UpdatePartnerForm extends Component {
                   <Field
                     name="url"
                     type="text"
-                    // label="URL"
-                    label={<FormattedMessage id="app.url" defaultMessage="URL" />}
+                    label="URL"
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -174,12 +165,8 @@ class UpdatePartnerForm extends Component {
                       <FastField
                         type="text"    
                         name="phoneNo"
-                        label={
-                          <FormattedMessage
-                            id="app.phoneNumber"
-                            defaultMessage="Phone #"
-                          />
-                        }
+                        label="Phone #"
+                         
                         isColumn
                         component={InputComponent}
                         inlineLabel
@@ -195,12 +182,8 @@ class UpdatePartnerForm extends Component {
                       isColumnWithoutNoCreate
                       selectType="sectorName"
                       // label="Department"
-                      label={
-                        <FormattedMessage
-                          id="app.sector"
-                          defaultMessage="Sector"
-                        />
-                      }
+                      label="Sector"
+                      
                     
                       component={SearchSelect}
                       isColumn
@@ -228,9 +211,7 @@ class UpdatePartnerForm extends Component {
                         name="taxRegistrationNumber"
                         type="text"
                         // label="URL"
-                        label={
-                          <FormattedMessage id="app.taxregistration" defaultMessage=" Tax Registration#" />
-                        }
+                        label=" Tax Registration#"
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -242,12 +223,8 @@ class UpdatePartnerForm extends Component {
                         name="businessRegistrationNumber"
                         type="text"
                         // label="URL"
-                        label={
-                          <FormattedMessage
-                            id="app.businessregistration"
-                            defaultMessage=" Business Registration#"
-                          />
-                        }
+                        label=" Business Registration#"
+                        
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -260,10 +237,8 @@ class UpdatePartnerForm extends Component {
                       <Field
                         name="bankName"
                         type="text"
-                        // label="URL"
-                        label={
-                          <FormattedMessage id="app.bankname" defaultMessage=" Bank Name" />
-                        }
+                        
+                        label=" Bank Name" 
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -275,9 +250,7 @@ class UpdatePartnerForm extends Component {
                         name="accountNumber"
                         type="text"
                         // label="URL"
-                        label={
-                          <FormattedMessage id="app.account" defaultMessage="Account #" />
-                        }
+                        label="Account #" 
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -303,12 +276,8 @@ class UpdatePartnerForm extends Component {
                     <Field
                       name="country"
                       isColumnWithoutNoCreate
-                      label={
-                        <FormattedMessage
-                          id="app.country"
-                          defaultMessage="Country"
-                        />
-                      }
+                      label="Country"
+                        
                       component={SearchSelect}
                       defaultValue={{
                         value: this.props.user.countryName,
@@ -323,11 +292,7 @@ class UpdatePartnerForm extends Component {
                   <div class=" mt-3"  />
                   <Field
                     name="notes"
-                    // label="Notes"
-                    label={
-                      <FormattedMessage id="app.notes" 
-                      defaultMessage="Notes" />
-                    }
+                    label="Notes"
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -341,10 +306,7 @@ class UpdatePartnerForm extends Component {
                   htmlType="submit"
                   loading={updatePartnerById}
                 >
-                  <FormattedMessage id="app.update"
-                   defaultMessage="Update" />
-                  {/*                     
-                    Create */}
+                Update
                 </Button>
               </div>
             </Form>

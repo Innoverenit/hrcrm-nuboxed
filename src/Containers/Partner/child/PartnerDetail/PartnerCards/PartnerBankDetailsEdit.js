@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from 'react-intl';
 
 import { Button } from "antd";
 import EditableInput from "../../../../../Components/Forms/Edit/EditableInput";
@@ -95,19 +94,11 @@ class PartnerBankDetailsEdit extends Component {
             loading={updatePartnerBankDetailsById}
             onClick={this.handleUpdate}
           >
-            {/* Save */}
-            <FormattedMessage
-              id="app.save"
-              defaultMessage="Save"
-            />
+            Save
           </Button>
           &nbsp;
           <Button type="ghost" onClick={() => toggleViewType()}>
-            {/* Cancel */}
-            <FormattedMessage
-              id="app.cancel"
-              defaultMessage="Cancel"
-            />
+            Cancel
           </Button>
         </div>
       </>

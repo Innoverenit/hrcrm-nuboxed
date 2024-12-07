@@ -1,7 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { FormattedMessage} from "react-intl";
 import { bindActionCreators } from "redux";
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 
@@ -12,13 +11,7 @@ class PartnerDetailActionLeft extends React.Component {
         <KeyboardReturnIcon
           style={{ color: "#1890ff" }}
           iconType="rollback"
-          // tooltipTitle="Back"
-          tooltipTitle={
-            <FormattedMessage
-              id="app.back"
-              defaultMessage="Back"
-            />
-          }
+          tooltipTitle="Back"
          
           onClick={() => this.props.history.goBack()}
         />

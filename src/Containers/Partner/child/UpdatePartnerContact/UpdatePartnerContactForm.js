@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Select } from "antd";
-import { FormattedMessage } from 'react-intl';
-
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
@@ -185,13 +183,7 @@ class UpdatePartnerContactForm extends Component {
                           <FastField
                             name="salutation"
                             type="text"
-                            // label="Salutation"
-                            label={
-                              <FormattedMessage
-                                id="app.salutation"
-                                defaultMessage="Salutation"
-                              />
-                            }
+                            label="Salutation"
                             options={["Mr.", "Ms.", "None"]}
                             component={SelectComponent}
                             inlineLabel
@@ -204,13 +196,7 @@ class UpdatePartnerContactForm extends Component {
                           <FastField
                             isRequired
                             name="firstName"
-                            // label="First Name"
-                            label={
-                              <FormattedMessage
-                                id="app.firstName"
-                                defaultMessage="First Name"
-                              />
-                            }
+                            label="First Name"
                             type="text"
                             width={"100%"}
                             isColumn
@@ -224,13 +210,7 @@ class UpdatePartnerContactForm extends Component {
                         <div style={{ width: "40%" }}>
                           <FastField
                             name="middleName"
-                            //label="Middle Name"
-                            label={
-                              <FormattedMessage
-                                id="app.middleName"
-                                defaultMessage="Middle Name"
-                              />
-                            }
+                            label="Middle Name"
                             type="text"
                             width={"100%"}
                             isColumn
@@ -241,13 +221,7 @@ class UpdatePartnerContactForm extends Component {
                         <div style={{ width: "55%" }}>
                           <FastField
                             name="lastName"
-                            //label="Last Name"
-                            label={
-                              <FormattedMessage
-                                id="app.lastName"
-                                defaultMessage="Last Name"
-                              />
-                            }
+                            label="Last Name"
                             type="text"
                             width={"100%"}
                             isColumn
@@ -266,12 +240,7 @@ class UpdatePartnerContactForm extends Component {
                         name="countryDialCode"
                         isColumnWithoutNoCreate
                         //label="Mobile #"
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        label="Dial Code"
                         isColumn
                         // margintop={"0.25em"}
                         selectType="dialCode"
@@ -288,12 +257,8 @@ class UpdatePartnerContactForm extends Component {
                       <FastField
                         type="text"
                         name="mobileNumber"
-                        label={
-                          <FormattedMessage
-                            id="app.mobileNo"
-                            defaultMessage="Mobile #"
-                          />
-                        }
+                        label="Mobile #"
+                         
                         //placeholder="Mobile #"
                         component={InputComponent}
                         inlineLabel
@@ -310,12 +275,8 @@ class UpdatePartnerContactForm extends Component {
                         isColumnWithoutNoCreate
                         selectType="dialCode"
                         //label="Phone No #"
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode1"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        label="Dial Code"
+                         
                         isColumn
                         // margintop={"0.25em"}
                         component={SearchSelect}
@@ -331,12 +292,8 @@ class UpdatePartnerContactForm extends Component {
                         type="text"
                         name="phoneNumber"
                         //placeholder="Phone #"
-                        label={
-                          <FormattedMessage
-                            id="app.phoneNumber"
-                            defaultMessage="Phone #"
-                          />
-                        }
+                        label="Phone #"
+                         
                         isColumn
                         component={InputComponent}
                         inlineLabel
@@ -351,13 +308,7 @@ class UpdatePartnerContactForm extends Component {
                       <FastField
                         type="email"
                         name="emailId"
-                        //label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.emailId"
-                            defaultMessage="Email"
-                          />
-                        }
+                        label="Email"
                         className="field"
                         isColumn
                         width={"100%"}
@@ -372,13 +323,7 @@ class UpdatePartnerContactForm extends Component {
                       <FastField
                         type="text"
                         name="linkedinPublicUrl"
-                        //label="Linkedin "
-                        label={
-                          <FormattedMessage
-                            id="app.linkedinPublicUrl"
-                            defaultMessage="Linkedin"
-                          />
-                        }
+                        label="Linkedin "
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -393,12 +338,7 @@ class UpdatePartnerContactForm extends Component {
                       <FastField
                         name="designationTypeId"
                         //label="Designation"
-                        label={
-                          <FormattedMessage
-                            id="app.role"
-                            defaultMessage="Role"
-                          />
-                        }
+                        label="Role"                         
                         isColumnWithoutNoCreate
                         selectType="designationType"
                         isColumn
@@ -437,10 +377,7 @@ class UpdatePartnerContactForm extends Component {
                   <div class=" mt-3"  style={{ marginTop: "1.25em" }}/>
                   <Field
                     name="notes"
-                    // label="Notes"
-                    label={
-                      <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                    }
+                    label="Notes"
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -454,9 +391,8 @@ class UpdatePartnerContactForm extends Component {
                   // icon={<PoweroffOutlined />}
                   loading={updatePartnerContactById}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
-                  {/*                     
-                    Create */}
+                                    
+                    Create 
                 </Button>
               </div>
             </Form>

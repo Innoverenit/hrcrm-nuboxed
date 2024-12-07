@@ -3,7 +3,6 @@ import React, { useEffect, useState,lazy, Suspense} from "react";
 import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from 'react-intl';
 import dayjs from "dayjs";
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import ExploreIcon from "@mui/icons-material/Explore";
@@ -91,24 +90,24 @@ const PitchSearchedData = (props) => {
       Type
       </div>
         <div className=" w-[8.1rem]  max-xl:w-[9.6rem]">
-          <FormattedMessage id="app.name" defaultMessage="name"/>
+        name
           </div>
         <div className=" w-[5.1rem] max-xl:w-[3rem]"></div>
         <div className=" w-[7.3rem] max-xl:w-[5.1rem] ">
-          <FormattedMessage  id="app.mobile#" defaultMessage="mobile#"  />
+          mobile #
           </div>
         <div className="w-[1.5rem] "> </div>
         <div className="w-[12.12rem]  max-xl:w-[5.122rem]">
-          <FormattedMessage  id="app.company"  defaultMessage="company"  /></div>
+       company</div>
                     <div className="w-[5.12rem] ">
-                      <FormattedMessage id="app.Source"  defaultMessage="Source"  />
+                    Source
                       
                       </div>
                      <div className="w-[5.121rem] ">
-                      <FormattedMessage  id="app.Sector"  defaultMessage="Sector"  />
+                    Sector
                       </div>
                  <div className="w-[5.23rem]  max-xl:w-[8.2rem]">
-        <FormattedMessage  id="app.Category"  defaultMessage="Category"  />
+      Category
           </div>
           <div className="w-[4.236rem]  max-xl:w-[8.2rem]">
           Shares #
@@ -123,22 +122,14 @@ const PitchSearchedData = (props) => {
           Assigned
           </div>
         <div className="w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]">
-          <FormattedMessage  id="app.owner"  defaultMessage="owner"   />
+       owner
           </div>
         <div className="w-[8.6rem]  max-xl:w-[7.4rem]">
-          <FormattedMessage  id="app.qualify"  defaultMessage="qualify"  />
+       qualify
           </div>
 
 
       </div>
-      {/* <InfiniteScroll
-        dataLength={props.serachedPitchData.length}
-        next={handleLoadMore}
-        hasMore={hasMore}
-        loader={props.fetchingPitchHot?<div class="flex justify-center" >Loading...</div>:null}
-        height={"22vh"}
-        endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
-      > */}
     { !props.fetchingPitchHot && props.serachedPitchData.length === 0 ?<NodataFoundPage />:props.serachedPitchData.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
    const Category=item.pvtAndIntunlInd?"Institutional":"Private"
@@ -174,11 +165,7 @@ const countryCode = item.countryAlpha2Code
                                               <RoleButton
                                               type="Hot"
                                               iconType="fas fa-mug-hot"
-                                              // tooltip="Hot"
-                                              tooltip={<FormattedMessage
-                                              id="app.hot"
-                                              defaultMessage="Hot"
-                                              />}
+                                              tooltip="Hot"
                                               role={item.type}
                                               onClick={() =>{
                                               const typ="Hot"
@@ -191,11 +178,7 @@ const countryCode = item.countryAlpha2Code
                                                 <RoleButton1
                                                 type="Warm"
                                                 iconType="	fas fa-burn"
-                                                // tooltip="Warm"
-                                                tooltip={<FormattedMessage
-                                                id="app.warm"
-                                                defaultMessage="Warm"
-                                                />}
+                                                tooltip="Warm"
                                                 role={item.type}
                                                 onClick={() =>{
                                                 const typ="Warm"
@@ -208,11 +191,7 @@ const countryCode = item.countryAlpha2Code
                                                 <RoleButton2
                                                 type="Cold"
                                                 iconType="far fa-snowflake"
-                                                // tooltip="Cold"
-                                                tooltip={<FormattedMessage
-                                                id="app.cold"
-                                                defaultMessage="Cold"
-                                                />}
+                                                tooltip="Cold"
                                                 role={item.type}
                                                 onClick={() => {
                                                 const typ="Cold"
@@ -464,9 +443,7 @@ const countryCode = item.countryAlpha2Code
             </div>
             <div>
 <Tooltip
-        title={
-          <FormattedMessage id="app.activity" defaultMessage="Activity" />
-        }
+        title="Activity" 
       >
                   <AddchartIcon
                   className="!text-icon cursor-pointer text-blue-500"

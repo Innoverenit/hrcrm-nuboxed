@@ -1,10 +1,7 @@
-import React,{ useEffect, useState, lazy }  from 'react'
-import { FormattedMessage } from 'react-intl';
-
+import React,{ useEffect, useState, }  from 'react';
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { connect } from "react-redux";
-import InfiniteScroll from "react-infinite-scroll-component";
 import {getManufactureDetailsData} from "../ProductionAction"
 
 function ManufactureListData(props) {
@@ -23,15 +20,13 @@ function ManufactureListData(props) {
     <div className="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className="flex w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
             <div className=""></div>
-            <div className="md:w-[22.12rem]"><FormattedMessage id="app.suppliername" defaultMessage="Supplier Name" /></div>
-            <div className="md:w-[15.5rem]"><FormattedMessage id="app.suppliercontactname" defaultMessage="Supplier Contact Name" /></div>
-            <div className="md:w-[15.5rem]"><FormattedMessage id="app.ponumber" defaultMessage="Po Number" /></div>
-            <div className="md:w-[15.5rem]"><FormattedMessage id="app.pocreation" defaultMessage="Po Creation" /></div>
-            <div className="md:w-[15.5rem]"><FormattedMessage id="app.createdby" defaultMessage="Created By" /></div>
-            {/* <div className="md:w-[15.5rem]"><FormattedMessage id="app.totalTimeTaken" defaultMessage="Time Taken" /></div> */}
+            <div className="md:w-[22.12rem]">Supplier Name</div>
+            <div className="md:w-[15.5rem]">Supplier Contact Name</div>
+            <div className="md:w-[15.5rem]">Po Number</div>
+            <div className="md:w-[15.5rem]">Po Creation</div>
+            <div className="md:w-[15.5rem]">Created By</div>
             
             <div className=""></div>
-            {/* <div className="md:w-[15.5rem]"><FormattedMessage id="app.tag" defaultMessage="Tag" /></div> */}
         </div>
       
 

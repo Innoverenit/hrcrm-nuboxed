@@ -1,7 +1,5 @@
 import React, { useEffect, useState, useMemo, lazy } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from 'react-intl';
-
 import ExploreIcon from '@mui/icons-material/Explore';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { bindActionCreators } from "redux";
@@ -397,7 +395,7 @@ function PartnerTable(props) {
       },
     },
     {
-      title: <FormattedMessage id="app.sector" defaultMessage="Sector" />,
+      title: "Sector" ,
       dataIndex: "sector",
       width: "15%",
       filters: sectorNameOption,
@@ -407,7 +405,7 @@ function PartnerTable(props) {
     },
     {
       //title: "Email",
-      title: <FormattedMessage id="app.country" defaultMessage="Country" />,
+      title:"Country" ,
       dataIndex: "country",
       width: "9%",
       sorter: (a, b) => {
@@ -425,8 +423,7 @@ function PartnerTable(props) {
     },
 
     {
-      // title: "Skills",
-      title: <FormattedMessage id="app.skills" defaultMessage="Skills" />,
+      title: "Skills",
       //dataIndex: "skillName",
       width: "18%",
       ...getColumnSearchProps("skillName"),
@@ -471,7 +468,7 @@ function PartnerTable(props) {
 
     {
       //title: "Email",
-      title: <FormattedMessage id="app.owner" defaultMessage="Owner" />,
+      title:"Owner" ,
       dataIndex: "ownerName",
       width: "9%",
       filters: ownerlistType,
@@ -500,7 +497,7 @@ function PartnerTable(props) {
     },
     {
       //title: "Type",
-      title: <FormattedMessage id="app.approved" defaultMessage="Approved" />,
+      title:"Approved" ,
       dataIndex: "status",
       width: "8%",
       render(name, item) {
@@ -596,7 +593,7 @@ function PartnerTable(props) {
       render: (name, item, i) => {
         return (
           <Tooltip
-            title={<FormattedMessage id="app.edit" defaultMessage="Edit" />}
+            title="Edit"
           >
             {/* {user.userType !== "USER" && user.department !== "Recruiter" && (  */}
             {props.user.vendorUpdateInd === true && (

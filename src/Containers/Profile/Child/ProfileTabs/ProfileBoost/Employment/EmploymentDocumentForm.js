@@ -117,13 +117,7 @@ class EmploymentDocumentForm extends Component {
                       type="text"
                       isColumn
                       width={"100%"}
-                      // label="Organization Name"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.companyName"
-                      //     defaultMessage="Organization Name"
-                      //   />
-                      // }
+                     
                       component={InputComponent}
                       inlineLabel
                       style={{
@@ -138,22 +132,9 @@ class EmploymentDocumentForm extends Component {
                   <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[1]}</div>
                     <FastField
                       name="designationTypeId"
-                      //label="Designation"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.designation"
-                      //     defaultMessage="Designation"
-                      //   />
-                      // }
+                     
                       selectType="designationType"
-                      // options={[
-                      //   "Board",
-                      //   "CXO",
-                      //   "Director",
-                      //   "Unit Head",
-                      //   "Mid Level",
-                      //   "Junior",
-                      // ]}
+                   
                       isColumn
                       // component={SelectComponent}
                       component={SearchSelect}
@@ -175,13 +156,7 @@ class EmploymentDocumentForm extends Component {
 
                       <Field
                         name="startDate"
-                        //label="Start Date"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.startDate"
-                        //     defaultMessage="Start Date"
-                        //   />
-                        // }
+                      
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -200,13 +175,7 @@ class EmploymentDocumentForm extends Component {
                     <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[3]}</div>
                       <Field
                         name="endDate"
-                        // label="End Date "
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.endDate"
-                        //     defaultMessage="End Date"
-                        //   />
-                        // }
+                      
                         isRequired
                         isColumn
                         width={"100%"}
@@ -245,13 +214,7 @@ class EmploymentDocumentForm extends Component {
                         type="text"
                         isColumn
                         width="47%"
-                        //label="Salary"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.salary"
-                        //     defaultMessage="Salary"
-                        //   />
-                        // }
+                        
                         component={InputComponent}
                         inlineLabel
                         style={{
@@ -271,13 +234,7 @@ class EmploymentDocumentForm extends Component {
                         type="text"
                         isColumn
                         width="47%"
-                        //label="Salary Type"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.salaryType"
-                        //     defaultMessage="Salary Type"
-                        //   />
-                        // }
+                      
                         component={SelectComponent}
                         options={["Daily", "Monthly", "Annual"]}
                         inlineLabel
@@ -296,13 +253,6 @@ class EmploymentDocumentForm extends Component {
                         name="currency"
                         isColumnWithoutNoCreate
                         placeholder="Curr"
-                        // label="Curr"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.currency"
-                        //     defaultMessage="Currency"
-                        //   />
-                        // }
                         width="100%"
                         isColumn
                         selectType="currency"
@@ -323,13 +273,7 @@ class EmploymentDocumentForm extends Component {
                   <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[7]}</div>
                     <Field
                       name="description"
-                      //label="Describe your role"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.description"
-                      //     defaultMessage="Describe your role"
-                      //   />
-                      // }
+                    
                       isRequired
                       isColumn
                       width={"100%"}
@@ -350,13 +294,7 @@ class EmploymentDocumentForm extends Component {
 
                   <Field
                     name="documentTitle"
-                    // label="Name of Document"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.documentTitle"
-                    //     defaultMessage="Name of Document"
-                    //   />
-                    // }
+                  
                     width={"100%"}
                     isColumn
                     component={InputComponent}
@@ -368,14 +306,7 @@ class EmploymentDocumentForm extends Component {
                     name="documentTypeId"
                     selectType="documentTypeName"
                     isColumnWithoutNoCreate
-                    // label="Type"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.documentId"
-                    //     defaultMessage="Type"
-                    //   />
-                    // }
-                    // isRequired
+                  
                     component={SearchSelect}
                     isColumn
                     margintop={"0.25em"}
@@ -389,13 +320,6 @@ class EmploymentDocumentForm extends Component {
                   <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[9]}</div>
                   <Field
                     name="documentDescription"
-                    //label="Description of Document"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.documentDescription"
-                    //     defaultMessage="Description of Document"
-                    //   />
-                    // }
                     isRequired
                     isColumn
                     width={"100%"}
@@ -413,7 +337,7 @@ class EmploymentDocumentForm extends Component {
                   type="primary"
                   Loading={addingEmploymentDetails}
                 >
-{this.state.translatedMenuItems[10]}{/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
+{this.state.translatedMenuItems[10]}
                 </Button>
               </div>
             </Form>

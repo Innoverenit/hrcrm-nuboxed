@@ -5,7 +5,6 @@ import {
   StyledTable,
   StyledPopconfirm,
 } from "../../../../../../Components/UI/Antd";
-import { FormattedMessage } from 'react-intl';
 import DownloadIcon from '@mui/icons-material/Download';
 import { base_url } from "../../../../../../Config/Auth";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
@@ -38,16 +37,13 @@ class EducationTable extends Component {
 
     const columns = [
       {
-        //title: " Type",
-        title: <FormattedMessage id="app.type" defaultMessage="Type" />,
+        title: " Type",
         dataIndex: "idType",
         // width: "35%"
       },
       {
-        //title: "Document ID number",
-        title: (
-          <FormattedMessage id="app.idNo" defaultMessage="Document ID number" />
-        ),
+        title: "Document ID number",
+    
         dataIndex: "idNo",
       },
       {

@@ -123,13 +123,7 @@ class UpdateEducationForm extends Component {
                 <FastField
                   name="educationTypeId"
                   type="text"
-                  //label="Type"
-                  // label={
-                  //   <FormattedMessage
-                  //     id="app.educationType"
-                  //     defaultMessage="Type"
-                  //   />
-                  // }
+                 
                   selectType="educationType"
                   component={SearchSelect}
                     value={values.educationTypeId}
@@ -152,13 +146,6 @@ class UpdateEducationForm extends Component {
                     type="text"
                     isColumn
                     width={"100%"}
-                    //label="Course Name"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.courseName"
-                    //     defaultMessage="Course Name"
-                    //   />
-                    // }
                     component={InputComponent}
                     inlineLabel
                     style={{
@@ -214,13 +201,6 @@ class UpdateEducationForm extends Component {
                     type="text"
                     isColumn
                     width={"100%"}
-                    //label="Specialization"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.specialization"
-                    //     defaultMessage="Specialization"
-                    //   />
-                    // }
                     component={InputComponent}
                     inlineLabel
                     style={{
@@ -238,13 +218,6 @@ class UpdateEducationForm extends Component {
                     type="text"
                     isColumn
                     width={"100%"}
-                    //label="University/Institute"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.university"
-                    //     defaultMessage="University/Institute"
-                    //   />
-                    // }
                     component={InputComponent}
                     inlineLabel
                     style={{
@@ -260,13 +233,6 @@ class UpdateEducationForm extends Component {
                   <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[4]}</div>
                     <Field
                       name="yearOfPassing"
-                      // label="Year of Passing"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.yearOfPassing"
-                      //     defaultMessage="Year of Passing"
-                      //   />
-                      // }
                       component={InputComponent}
                       isColumn
                       width={"100%"}
@@ -285,13 +251,7 @@ class UpdateEducationForm extends Component {
                   <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[5]}</div>
                     <Field
                       isRequired
-                      //label="Marks Secured"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.marksSecured"
-                      //     defaultMessage="Marks Secured"
-                      //   />
-                      // }
+                      
                       name="marksSecured"
                       type="text"
                       isColumn
@@ -308,12 +268,7 @@ class UpdateEducationForm extends Component {
                   <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[6]}</div>
                     <Field
                       name="marksType"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.marksType"
-                      //     defaultMessage="Marks Type"
-                      //   />
-                      // }
+                   
                       type="text"
                       component={SelectComponent}
                       options={["%", "Out of 10", "Out of 5"]}
@@ -374,7 +329,7 @@ class UpdateEducationForm extends Component {
                   type="primary"
                   Loading={updatingEducationDetails}
                 >
-                {this.state.translatedMenuItems[7]}  {/* <FormattedMessage id="app.update" defaultMessage="Update" /> */}
+                {this.state.translatedMenuItems[7]}  
                 </Button>
               </div>
             </Form>
@@ -384,10 +339,6 @@ class UpdateEducationForm extends Component {
     );
   }
 }
-// const DocumentUploadModal = (props) => {
-//     console.log(props)
-
-// }
 
 const mapStateToProps = ({ profile, employee,education }) => ({
   setEditingEducation: profile.setEditingEducation,

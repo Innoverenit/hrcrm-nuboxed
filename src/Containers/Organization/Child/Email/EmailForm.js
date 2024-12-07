@@ -145,12 +145,7 @@ class EmailForm extends Component {
                     <div class=" text-xs font-bold font-poppins text-black">{this.state.translatedMenuItems[5]}</div>
                     <Field
                       name="port"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.port"
-                      //     defaultMessage="Port"
-                      //   />
-                      // }
+                    
                       isColumn
                       isRequired
                       width={"100%"}

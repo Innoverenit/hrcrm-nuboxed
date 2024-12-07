@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from 'react-intl';
-
 import { bindActionCreators } from "redux";
 import { Button} from "antd";
 import { Formik, Form, FastField } from "formik";
@@ -98,13 +96,9 @@ class PermissionForm extends Component {
                         <FastField
                           isRequired
                           name="sales"
-                          //label="Start "
-                          label={
-                            <FormattedMessage
-                              id="app.sales"
-                              defaultMessage="Sales"
-                            />
-                          }
+                        
+                          label="Sales"
+                         
                           isColumn
                           component={InputComponent}
                           // value={values.startDate}
@@ -122,12 +116,8 @@ class PermissionForm extends Component {
                           isRequired
                           name="customercare"
                           // label="Start Time"
-                          label={
-                            <FormattedMessage
-                              id="app.CustomerCare"
-                              defaultMessage="Customer Care"
-                            />
-                          }
+                          label="Customer Care"
+                           
                           isColumn
                           component={InputComponent}
                           // value={values.startTime}
@@ -143,13 +133,8 @@ class PermissionForm extends Component {
                         <FastField
                           isRequired
                           name="management"
-                          //label="Start "
-                          label={
-                            <FormattedMessage
-                              id="app.management"
-                              defaultMessage="Management"
-                            />
-                          }
+                          label="Management"
+                            
                           isColumn
                           component={InputComponent}
                           // value={values.startDate}
@@ -167,12 +152,8 @@ class PermissionForm extends Component {
                           isRequired
                           name="production"
                           //label="Start "
-                          label={
-                            <FormattedMessage
-                              id="app.production"
-                              defaultMessage="Production"
-                            />
-                          }
+                          label="Production"
+                           
                           isColumn
                           component={InputComponent}
                           // value={values.startDate}
@@ -190,12 +171,8 @@ class PermissionForm extends Component {
                           isRequired
                           name="recruiter"
                           //label="Start "
-                          label={
-                            <FormattedMessage
-                              id="app.recruiter"
-                              defaultMessage="Recruiter"
-                            />
-                          }
+                          label="Recruiter"
+                         
                           isColumn
                           component={InputComponent}
                           // value={values.startDate}
@@ -217,10 +194,7 @@ class PermissionForm extends Component {
                       htmlType="submit"
                       //   Loading={addingEvent}
                     >
-                      <FormattedMessage
-                        id="app.create"
-                        defaultMessage="Create"
-                      />
+                     Create
                     </Button>
                   </div>
                 </div>

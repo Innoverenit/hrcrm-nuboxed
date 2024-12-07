@@ -1,7 +1,5 @@
 import React, { Component,lazy } from "react";
 import { Formik, Form, Field } from "formik";
-import { FormattedMessage } from 'react-intl';
-
 import { Button } from "antd";
 import { handleMapModal } from "../../ProfileAction";
 import axios from "axios";
@@ -334,18 +332,12 @@ class AddressField extends Component {
                 />
 
                 <Button type="primary" htmlType="submit">
-                  {/* Save */}
-                  <FormattedMessage
-              id="app.save"
-              defaultMessage="Save"
-            />
+                  Save
+                 
               </Button>
                 <Button type="default" onClick={handleAddAddressVisible}>
-                  {/* Cancel */}
-                  <FormattedMessage
-              id="app.cancel"
-              defaultMessage="Cancel"
-            />
+                  Cancel
+                
               </Button>
               </Form>
             )}

@@ -88,13 +88,6 @@ class BankDocumentForm extends Component {
               ><div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[0]}</div>
                   <FastField
                     name="accountName"
-                    //label="Account Number"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.accountName"
-                    //     defaultMessage="Account Holder Name"
-                    //   />
-                    // }
                     isColumn
                     margintop={"0.25em"}
                     component={InputComponent}
@@ -107,13 +100,6 @@ class BankDocumentForm extends Component {
               ><div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[1]}</div>
                   <FastField
                     name="accountNo"
-                    //label="Account Number"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.accountNo"
-                    //     defaultMessage="Account Number"
-                    //   />
-                    // }
                     isColumn
                     margintop={"0.25em"}
                     selectType="number"
@@ -127,13 +113,6 @@ class BankDocumentForm extends Component {
                   <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[2]}</div>
                     <FastField
                       name="ifscCode"
-                      //label="IFSC CODE"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.ifscCode"
-                      //     defaultMessage="SWIFT/IFSC Code"
-                      //   />
-                      // }
                       className="field"
                       isColumn
                       width={"100%"}
@@ -146,13 +125,6 @@ class BankDocumentForm extends Component {
                   <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[3]}</div>
                     <FastField
                       name="branchName"
-                      // label="Branch Name"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.branchName"
-                      //     defaultMessage="Branch Name"
-                      //   />
-                      // }
                       type="text"
                       width={"100%"}
                       isColumn
@@ -167,13 +139,6 @@ class BankDocumentForm extends Component {
                   <FastField
                     isRequired
                     name="bankName"
-                    //label="Bank Name"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.bankName"
-                    //     defaultMessage="Bank Name"
-                    //   />
-                    // }
                     type="text"
                     width={"100%"}
                     isColumn
