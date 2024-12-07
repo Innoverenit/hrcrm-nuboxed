@@ -304,14 +304,6 @@ function CustomerCardList(props) {
       setEditingValue("");
     
   };
-
-
-
-
-
-
-
-
 console.log(page)
 console.log(props.userId)
 if (loading) {
@@ -380,11 +372,8 @@ if (loading) {
             {translatedMenuItems[7]}
               {/* Customer" */}
           
+            </div>        
             </div>
-         
-            </div>
-           
-
           </div>
          {/* </ Header> */}
           <InfiniteScroll
@@ -443,8 +432,6 @@ if (loading) {
                             />
                             {/* </Tooltip> */}
                           </div>
-
-
                           <div class="max-sm:w-full flex items-center">
                             <Tooltip>
                               <div class="flex max-sm:flex-row justify-between w-full max-md:flex-col">
@@ -452,6 +439,13 @@ if (loading) {
 
                                 
                                     {item.name}
+                                    &nbsp;&nbsp;
+                                  {date === currentdate ? (
+                                    <div class="text-[0.65rem] text-[tomato] font-bold"
+                                    >
+                                      {translatedMenuItems[8]}
+                                    </div>
+                                  ) : null}
                                     <div>
                       {editableField?.customerId === item.customerId &&
    editableField?.field === 'name' ? (
@@ -473,13 +467,7 @@ if (loading) {
     </div> 
 )}                 
                       </div>
-                                  &nbsp;&nbsp;
-                                  {date === currentdate ? (
-                                    <div class="text-[0.65rem] text-[tomato] font-bold"
-                                    >
-                                      {translatedMenuItems[8]}
-                                    </div>
-                                  ) : null}                              
+                                                            
                                 </div>
                               </div>
                             </Tooltip>
@@ -487,10 +475,7 @@ if (loading) {
                         </div>
                       </div>
                       <div className=" flex   max-sm:w-auto  w-[10.54rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
-
-
-                        <div class=" text-xs flex  font-poppins max-sm:text-sm  ml-gap ">
-                      
+                        <div class=" text-xs flex  font-poppins max-sm:text-sm  ml-gap ">        
 <div>
 {editableField?.customerId === item.customerId && editableField?.field === 'countryDialCode' ? (
   <Select

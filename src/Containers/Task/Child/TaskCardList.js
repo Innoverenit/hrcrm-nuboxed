@@ -248,30 +248,30 @@ const TaskCardList = (props) => {
     
           <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-          <div className=" font-poppins text-xs flex max-sm:hidden justify-between w-[64%]  p-1 bg-transparent font-bold sticky  z-10">
-          <div className="flex  w-[3.54] truncate md:w-[4.54rem] bg-red-600 text-white">
+          <div className=" font-poppins text-xs flex max-sm:hidden justify-between w-[64%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky  max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
+          <div className="flex  w-[3.54] truncate max-md:w-[4.54rem] bg-red-600 text-white">
           {translatedMenuItems[7]}</div>
-        <div className=" flex  w-[9.1rem] truncate  ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
+        <div className=" flex  w-[9.1rem] truncate  ml-1 max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
         < MergeTypeIcon className='!text-icon text-[#c42847] '  />{translatedMenuItems[0]} 
                         </div>
-        <div className="flex  w-[12.9rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
+        <div className="flex  w-[12.9rem] truncate  max-xl:w-[8rem] max-lg:w-[9rem]">
         <CategoryIcon className='!text-base mr-1 text-[#e4eb2f]'/>{translatedMenuItems[1]}
                         </div>
-             <div className="flex  w-[5.9rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
+             <div className="flex  w-[5.9rem] truncate  max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
              <DateRangeIcon className="!text-icon mr-1"/>  {translatedMenuItems[2]}
                         </div>
-             <div className="flex  w-[7.5rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
+             <div className="flex  w-[7.5rem] truncate  max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
        
-                        <div className="flex  w-[10.51rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
+                        <div className="flex  w-[10.51rem] truncate  max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
                         {translatedMenuItems[4]}
                          
                           </div>
-        <div className="flex  w-[5.5rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
+        <div className="flex  w-[5.5rem] truncate  max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
         <AccountCircleIcon className="!text-icon mr-1  text-[#d64933]"/> {translatedMenuItems[5]} 
                         </div>
-        <div className="flex  w-[4.92rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
+        <div className="flex  w-[4.92rem] truncate  max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
         <AccountCircleIcon className="!text-icon  mr-1 text-[#d64933]"/> {translatedMenuItems[6]}
-        {/* <div className=" w-[9.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
+        {/* <div className=" w-[9.51rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
                   {translatedMenuItems[3]} 
                         </div> */}
                         </div>
@@ -297,7 +297,7 @@ const TaskCardList = (props) => {
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
                         <div>
-                             <div className="flex rounded mt-1 bg-white  items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                             <div className="flex rounded mt-1 bg-white  items-center py-ygap scale-[0.99]  max-xl:text-[0.65rem] max-lg:text-[0.45rem] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center  ">
                                 <div className=" flex w-[4.01rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
 <div className="flex max-sm:w-full ml-gap items-center"> 
@@ -319,7 +319,7 @@ const TaskCardList = (props) => {
                                             {/* <div class="text-sm  font-poppins max-sm:hidden">
                                             Type
                                             </div> */}
-                                            <div class="text-xs ml-gap truncate max-w-[7rem] flex items-center  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" title={item.taskType}>                                       
+                                            <div class="text-xs ml-gap truncate max-w-[7rem] flex items-center  font-poppins cursor-pointer max-sm:text-xs" title={item.taskType}>                                       
                                             {item.taskType}
        
                                             </div>
@@ -331,7 +331,7 @@ const TaskCardList = (props) => {
 
                                 <div className=" flex   w-[11.12rem]  items-center justify-start  h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
                                     {/* <div class=" text-sm  font-sm font-poppins max-sm:hidden"> Name </div> */}
-                                    <div class=" text-xs ml-gap font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
+                                    <div class=" text-xs ml-gap font-semibold  font-poppins max-sm:text-xs">   
                                     <span   
                 onClick={() => {
                   props.handleTaskopenModal(true);               
@@ -353,7 +353,7 @@ const TaskCardList = (props) => {
                                 <div className="flex w-[5.22rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.121rem] max-lg:w-[2.521rem] max-sm:flex-row  max-sm:w-auto ">
                        
                       
-                       <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
+                       <div class="text-xs  font-poppins max-sm:text-xs"> 
                         {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
                    </div>
                                 <div class="flex  w-[6.2rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
@@ -411,7 +411,7 @@ const TaskCardList = (props) => {
                    
                  
                    <div className="flex text-xs w-[9.2rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
-                   <div class="text-xs  font-poppins ml-gap items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                   <div class="text-xs  font-poppins ml-gap items-center max-sm:text-xs">
                    {item.customerName ? (
   <>{item.customerName}</>
 ) : null}
@@ -425,7 +425,7 @@ const TaskCardList = (props) => {
                    <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
                     <div className=" flex w-[4.33rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row  max-sm:w-auto ">
                                   {/* <div class="text-sm  font-poppins max-sm:hidden">Assigned</div> */}
-                                  <div class="text-xs ml-gap font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                  <div class="text-xs ml-gap font-poppins  max-sm:text-xs">
                                   <span>
               {item.assignedToName === null ? (
                 null
@@ -494,20 +494,21 @@ const TaskCardList = (props) => {
                     <div class="w-[10rem] items-center">
   {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
     <>
-      <div>
-        <Button type="primary"className="bg-[teal] text-[white] font-poppins text-xs "
-        onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
-     
-        >
-       Approve
-        </Button>
-       <Button type="primary"className="bg-[red] text-[white] font-poppins text-xs "
-      
-          onClick={() => rejectTaskByTaskId(item.taskId)}
-        >
-Reject
-        </Button>
-      </div>
+     <div className=" flex inline-block items-center justify-center">
+ <Button className="w-[4rem] bg-[teal] text-[white]  text-xs"
+ onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
+ >
+  Approve
+ </Button>
+ <Button  className="w-[4rem] text-[white] text-xs"
+   style={{
+     backgroundColor: "rgb(233, 79, 79)",
+   }}
+   onClick={() => rejectTaskByTaskId(item.taskId)}
+ >
+   Reject
+ </Button>
+</div>
     </>
   ) : (
     <>
@@ -670,30 +671,30 @@ Reject
 
 <div className=' flex sticky  z-auto'>
           <div class="rounded m-1 max-sm:m-1  p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white] ">
-          <div className=" font-poppins text-xs flex max-sm:hidden justify-between w-[64%]  p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" font-poppins text-xs flex max-sm:hidden justify-between w-[64%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
           <div className=" flex justify-center w-[3.54] truncate md:w-[4.54rem] bg-orange-600 text-white">
           {translatedMenuItems[8]}</div>
-          <div className=" flex  w-[9.1rem] truncate  ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
+          <div className=" flex  w-[9.1rem] truncate  ml-1 max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
         < MergeTypeIcon className='!text-icon text-[#c42847] '  />{translatedMenuItems[0]} 
                         </div>
-        <div className="flex  w-[12.9rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
+        <div className="flex  w-[12.9rem] truncate  max-xl:w-[8rem] max-lg:w-[9rem]">
         <CategoryIcon className='!text-base mr-1 text-[#e4eb2f]'/>{translatedMenuItems[1]}
                         </div>
-             <div className="flex  w-[5.9rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
+             <div className="flex  w-[5.9rem] truncate  max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
              <DateRangeIcon className="!text-icon mr-1"/>  {translatedMenuItems[2]}
                         </div>
-             <div className="flex  w-[7.5rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
+             <div className="flex  w-[7.5rem] truncate  max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
        
-                        <div className="flex  w-[10.51rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
+                        <div className="flex  w-[10.51rem] truncate  max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
                         {translatedMenuItems[4]}
                          
                           </div>
-        <div className="flex  w-[5.5rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
+        <div className="flex  w-[5.5rem] truncate  max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
         <AccountCircleIcon className="!text-icon mr-1  text-[#d64933]"/> {translatedMenuItems[5]} 
                         </div>
-        <div className="flex  w-[4.92rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
+        <div className="flex  w-[4.92rem] truncate  max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
         <AccountCircleIcon className="!text-icon  mr-1 text-[#d64933]"/> {translatedMenuItems[6]}
-        {/* <div className=" w-[9.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
+        {/* <div className=" w-[9.51rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
                   {translatedMenuItems[3]} 
                         </div> */}
                         </div>
@@ -717,7 +718,7 @@ Reject
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
                       <div>
-                      <div className="flex rounded mt-1 bg-white  items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                      <div className="flex rounded mt-1 bg-white  items-center py-ygap scale-[0.99] max-xl:text-[0.65rem] max-lg:text-[0.45rem] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                      <div class="flex max-sm:justify-between max-sm:w-wk items-center  ">
                          <div className=" flex w-[4.01rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
                          <div className="flex max-sm:w-full ml-gap items-center"> 
@@ -739,7 +740,7 @@ Reject
                                      {/* <div class="text-sm  font-poppins max-sm:hidden">
                                      Type
                                      </div> */}
-                                     <div class="text-xs  ml-gap truncate max-w-[7rem] flex items-center  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" title={item.taskType}>                                       
+                                     <div class="text-xs  ml-gap truncate max-w-[7rem] flex items-center  font-poppins cursor-pointer max-sm:text-xs" title={item.taskType}>                                       
                                      {item.taskType}
 
                                      </div>
@@ -751,7 +752,7 @@ Reject
 
                          <div className=" flex   w-[11.12rem]  items-center justify-start  h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
                              {/* <div class=" text-sm  font-sm font-poppins max-sm:hidden"> Name </div> */}
-                             <div class=" ml-gap text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
+                             <div class=" ml-gap text-xs  font-semibold  font-poppins max-sm:text-xs">   
                              <span   
          onClick={() => {
            props.handleTaskopenModal(true);               
@@ -773,7 +774,7 @@ Reject
                          <div className="flex w-[5.22rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.121rem] max-lg:w-[2.521rem] max-sm:flex-row  max-sm:w-auto ">
                 
                
-                <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
+                <div class="text-xs  font-poppins max-sm:text-xs"> 
                  {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
             </div>
                          <div class="flex  w-[6.2rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
@@ -831,7 +832,7 @@ taskStatus: "To Start",
             
           
             <div className="flex text-xs w-[9.2rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
-            <div class="text-xs  font-poppins ml-gap items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+            <div class="text-xs  font-poppins ml-gap items-center max-sm:text-xs">
             {item.customerName ? (
 <>{item.customerName}</>
 ) : null}
@@ -845,7 +846,7 @@ taskStatus: "To Start",
             <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
              <div className=" flex w-[4.33rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row  max-sm:w-auto ">
                            {/* <div class="text-sm  font-poppins max-sm:hidden">Assigned</div> */}
-                           <div class="text-xs  ml-gap font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                           <div class="text-xs  ml-gap font-poppins  max-sm:text-xs">
                            <span>
        {item.assignedToName === null ? (
          null
@@ -914,17 +915,15 @@ taskStatus: "To Start",
              <div class=" w-[10rem] items-center">
 {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
 <>
-<div>
- <Button className=""
+<div className=" flex inline-block items-center justify-center">
+ <Button className="w-[4rem] bg-[teal] text-[white]  text-xs"
  onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
-   style={{ backgroundColor: "teal", color: "white" }}
  >
-   Approve
+  Approve
  </Button>
- <Button
+ <Button  className="w-[4rem] text-[white] text-xs"
    style={{
      backgroundColor: "rgb(233, 79, 79)",
-     color: "white",
    }}
    onClick={() => rejectTaskByTaskId(item.taskId)}
  >
@@ -1091,30 +1090,30 @@ taskStatus: "To Start",
 
 <div className=' flex sticky  z-auto'>
           <div class="rounded max-sm:m-1  py-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white] ">
-          <div className=" font-poppins text-xs flex max-sm:hidden justify-between w-[64%]  p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" font-poppins text-xs flex max-sm:hidden justify-between w-[64%]  p-1 font-poppins !text-lm bg-transparent font-bold sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
           <div className="flex  w-[3.54] truncate  md:w-[4.54rem] bg-teal-600 text-white">
           {translatedMenuItems[9]}</div>
-          <div className=" flex  w-[9.1rem] truncate  ml-1 max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
+          <div className=" flex  w-[9.1rem] truncate  ml-1 max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
         < MergeTypeIcon className='!text-icon text-[#c42847] '  />{translatedMenuItems[0]} 
                         </div>
-        <div className="flex  w-[12.9rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
+        <div className="flex  w-[12.9rem] truncate  max-xl:w-[8rem] max-lg:w-[9rem]">
         <CategoryIcon className='!text-base mr-1 text-[#e4eb2f]'/>{translatedMenuItems[1]}
                         </div>
-             <div className="flex  w-[5.9rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
+             <div className="flex  w-[5.9rem] truncate  max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
              <DateRangeIcon className="!text-icon mr-1"/>  {translatedMenuItems[2]}
                         </div>
-             <div className="flex  w-[7.5rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
+             <div className="flex  w-[7.5rem] truncate  max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
        
-                        <div className="flex  w-[10.51rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
+                        <div className="flex  w-[10.51rem] truncate  max-xl:w-[8.51rem] max-lg:w-[6.51rem]">
                         {translatedMenuItems[4]}
                          
                           </div>
-        <div className="flex  w-[5.5rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
+        <div className="flex  w-[5.5rem] truncate  max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
         <AccountCircleIcon className="!text-icon mr-1  text-[#d64933]"/> {translatedMenuItems[5]} 
                         </div>
-        <div className="flex  w-[4.92rem] truncate  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
+        <div className="flex  w-[4.92rem] truncate  max-xl:w-[8.5rem] max-lg:w-[13.5rem]">
         <AccountCircleIcon className="!text-icon  mr-1 text-[#d64933]"/> {translatedMenuItems[6]}
-        {/* <div className=" w-[9.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
+        {/* <div className=" w-[9.51rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
                   {translatedMenuItems[3]} 
                         </div> */}
                         </div>
@@ -1138,7 +1137,7 @@ taskStatus: "To Start",
         const completeDeviation = completionDate.diff(endDate, 'days');
                     return (
                       <div>
-                      <div className="flex rounded mt-1 bg-white  items-center py-ygap scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                      <div className="flex rounded mt-1 bg-white  items-center py-ygap max-xl:text-[0.65rem] max-lg:text-[0.45rem] scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                      <div class="flex max-sm:justify-between max-sm:w-wk items-center  ">
                          <div className=" flex w-[4.01rem] border-l-2 border-green-500 h-8 bg-[#eef2f9] max-xl:w-[8.1rem] max-lg:w-[5.6rem] max-sm:flex-row justify-between max-sm:w-auto ">
                          <div className="flex ml-gap max-sm:w-full"> 
@@ -1160,7 +1159,7 @@ taskStatus: "To Start",
                                      {/* <div class="text-sm  font-poppins max-sm:hidden">
                                      Type
                                      </div> */}
-                                     <div class="text-xs truncate max-w-[7rem] flex items-center  font-poppins cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs" title={item.taskType}>                                       
+                                     <div class="text-xs truncate max-w-[7rem] flex items-center  font-poppins cursor-pointer max-sm:text-xs" title={item.taskType}>                                       
                                      {item.taskType}
 
                                      </div>
@@ -1172,7 +1171,7 @@ taskStatus: "To Start",
 
                          <div className=" flex   w-[11.12rem]  items-center justify-start  h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.12rem] max-lg:w-[3.52rem] max-sm:flex-row max-sm:w-auto ">
                              {/* <div class=" text-sm  font-sm font-poppins max-sm:hidden"> Name </div> */}
-                             <div class=" text-xs ml-gap font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">   
+                             <div class=" text-xs ml-gap font-semibold  font-poppins max-sm:text-xs">   
                              <span   
          onClick={() => {
            props.handleTaskopenModal(true);               
@@ -1194,7 +1193,7 @@ taskStatus: "To Start",
                          <div className="flex w-[5.22rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.121rem] max-lg:w-[2.521rem] max-sm:flex-row  max-sm:w-auto ">
                 
                
-                <div class="text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"> 
+                <div class="text-xs  font-poppins max-sm:text-xs"> 
                  {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}</div>
             </div>
                          <div class="flex  w-[6.2rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
@@ -1252,7 +1251,7 @@ taskStatus: "To Start",
             
           
             <div className="flex text-xs w-[9.2rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[10.23rem] max-lg:w-[7.23rem]  max-sm:flex-row   max-sm:w-auto ">
-            <div class="text-xs  font-poppins ml-gap items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+            <div class="text-xs  font-poppins ml-gap items-center max-sm:text-xs">
             {item.customerName ? (
 <>{item.customerName}</>
 ) : null}
@@ -1266,7 +1265,7 @@ taskStatus: "To Start",
             <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
              <div className=" flex w-[4.33rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9]  max-xl:w-[3.22rem] max-lg:w-[2.22rem] max-sm:flex-row  max-sm:w-auto ">
                            {/* <div class="text-sm  font-poppins max-sm:hidden">Assigned</div> */}
-                           <div class="text-xs  font-poppins  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                           <div class="text-xs  font-poppins  max-sm:text-xs">
                            <span>
        {item.assignedToName === null ? (
          null
@@ -1335,17 +1334,15 @@ taskStatus: "To Start",
              <div class=" w-[10rem] items-center">
 {item.taskStatus === "Completed" && !item.approvedInd && item.assignedToName !== item.submittedBy ? (
 <>
-<div>
- <Button className=""
+<div className=" flex inline-block items-center justify-center">
+ <Button className="w-[4rem] bg-[teal] text-[white]  text-xs"
  onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
-   style={{ backgroundColor: "teal", color: "white" }}
  >
   Approve
  </Button>
- <Button
+ <Button  className="w-[4rem] text-[white] text-xs"
    style={{
      backgroundColor: "rgb(233, 79, 79)",
-     color: "white",
    }}
    onClick={() => rejectTaskByTaskId(item.taskId)}
  >

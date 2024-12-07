@@ -25,24 +25,6 @@ const ProfileMenu = ({ logout, history }) => (
             Profile
           </a>
         </StyledMenuItem>
-        {/* <StyledMenuItem
-          key="1"
-          style={{
-            marginTop: 0,
-            marginBottom: 0,
-            paddingTop: 0,
-            paddingBottom: 0
-          }}
-        >
-          <a href="#" onClick={() => history.push("/setting")}>
-            Setting
-          </a>
-        </StyledMenuItem> */}
-        {/* <StyledMenuItem key="2">
-          <a href="#" onClick={() => history.push("/Permissions")}>
-            Permission
-          </a>
-        </StyledMenuItem> */}
         <StyledMenuItem key="3">
           <a href="#" onClick={() => history.push("/change-password")}>
        

@@ -26,10 +26,7 @@ const HeaderActionRight  = (props) => {
   return (
     <div class=" flex items-center max-sm:-mr-[0.75rem]">
          { user.department=== "Management" && (  
-            <>
-            
-      
-                  
+            <>          
             </>
              )}
 

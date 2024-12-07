@@ -192,10 +192,8 @@ console.log(props.filteredData)
          </div>
          <div class=" flex justify-end  mt-1 text-xs  items-center font-poppins ">
        
-       <span class=" cursor-pointer"
-         
-         >
-           
+       <span class=" cursor-pointer"       
+         >          
            {item.locationName}
       
   </span>
@@ -215,15 +213,6 @@ console.log(props.filteredData)
                     >
                        {translatedMenuItems[6]}
                     </Button>
-           {/* <Tooltip title= {translatedMenuItems[6]}>
-           <CircleNotificationsIcon
-          className=" !text-base cursor-pointer text-[gold]"
-           onClick={() => {
-            handleSetCurrentEmployeeId(item);
-            props.handleNotifyDrawer(true);
-           }}
-           />
-           </Tooltip> */}
             </div>
           
            <div class="flex justify-end  items-center mr-2">
