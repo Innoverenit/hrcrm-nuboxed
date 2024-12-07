@@ -2,10 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
-import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
-import { FormattedMessage } from 'react-intl';
-
-
+import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect"
 import { Formik, Form, Field, FastField } from "formik";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent"; 
@@ -74,13 +71,8 @@ function ProgramForm(props) {
                      isRequired
                     name="program"
                     type="text"
-                    //label="Name"
-                    label={
-                      <FormattedMessage
-                        id="app.programName"
-                        defaultMessage="Program Name"
-                      />
-                    }
+                    label="Program Name"
+                    
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -90,12 +82,8 @@ function ProgramForm(props) {
 <div class=" w-2/5">
 <Field
                             name="courseId"
-                            label={
-                              <FormattedMessage
-                                id="app.courseList"
-                                defaultMessage="Course List"
-                              />
-                            }
+                            label="Course List"
+                            
                             mode
                             component={SelectComponent}
                             options={
@@ -110,12 +98,8 @@ function ProgramForm(props) {
                      isRequired
                     name="duration"
                     type="text"
-                    label={
-                      <FormattedMessage
-                        id="app.duration"
-                        defaultMessage="Duration"
-                      />
-                    }
+                    label="Duration"
+                   
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -126,12 +110,8 @@ function ProgramForm(props) {
 <FastField
                             name="drtnType"
                             type="text"
-                            label={
-                              <FormattedMessage
-                                id="app.duration"
-                                defaultMessage="Duration(Unit)"
-                              />
-                            }
+                            label="Duration(Unit)"
+                              
                             options={["Hours", "Days", "Month","Years"]}
                             component={SelectComponent}
                             inlineLabel
@@ -143,12 +123,8 @@ function ProgramForm(props) {
                   <div class=" w-6/12">
                       <Field
                         name="price"
-                        label={
-                          <FormattedMessage
-                            id="price"
-                            defaultMessage="Price"
-                          />
-                        }
+                        label="Price"
+                         
                         component={InputComponent}
                         isColumn
                         width="100%"
@@ -159,12 +135,8 @@ function ProgramForm(props) {
                               name="currency"
                               isColumnWithoutNoCreate
                               placeholder="Currency"
-                              label={
-                                <FormattedMessage
-                                  id="app.currency"
-                                  defaultMessage="Currency"
-                                />
-                              }
+                              label="Currency"
+                              
                               isColumn
                               selectType="currencyName"
                               isRequired
@@ -199,7 +171,7 @@ function ProgramForm(props) {
                   htmlType="submit"
                   loading={addingPrograms}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
+                 Create
                 </Button>
               </div>
             </Form>

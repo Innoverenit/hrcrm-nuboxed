@@ -144,12 +144,7 @@ class EmployeeDrawerForAdmin extends Component {
                         <TextInput
                           placeholder={this.state.translatedMenuItems[1]}
                           name="departmentName"
-                          // label={
-                          //   <FormattedMessage
-                          //     id="app.departmentName"
-                          //     defaultMessage="Custom Function"
-                          //   />
-                          // }
+                         
                           onChange={this.handleChange}
                           width={"58%"}
                         />
@@ -160,11 +155,7 @@ class EmployeeDrawerForAdmin extends Component {
                           }}
                           htmlType="submit"
                           onClick={this.handleAddCustomeDepartment}
-                        >
-                          {/* <FormattedMessage
-                            id="app.save"
-                            defaultMessage="Save"
-                          /> */}{this.state.translatedMenuItems[2]}
+                        >{this.state.translatedMenuItems[2]}
                         </Button>
                         &nbsp;
                         <Button
@@ -174,10 +165,7 @@ class EmployeeDrawerForAdmin extends Component {
                           }}
                           onClick={this.handleCancelCustomeDepartment}
                         >
-                          {/* <FormattedMessage
-                            id="app.cancel"
-                            defaultMessage="Cancel"
-                          /> */}{this.state.translatedMenuItems[3]}
+                         {this.state.translatedMenuItems[3]}
                         </Button>
                       </div>
                     )}

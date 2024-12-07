@@ -1,8 +1,6 @@
 import { Field, Form, Formik } from 'formik'
 import React, {useEffect,useState} from 'react'
 import * as Yup from "yup";
-import { FormattedMessage } from 'react-intl';
-
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {updateInvoiceData} from "../../../Invoice/InvoiceAction"
@@ -152,12 +150,8 @@ onSubmit={(values, { resetForm }) => {
                     name="projectId"
                     // selectType="contactListFilter"
                     // isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.project"
-                        defaultMessage="Project"
-                      />
-                    }
+                    label="Project"
+                     
                     // component={SearchSelect}
                     component={SelectComponent}
                     //onChange={handleChangeProject}
@@ -185,12 +179,8 @@ onSubmit={(values, { resetForm }) => {
                         isRequired
                         name="month"
                         //label="Start "
-                        label={
-                          <FormattedMessage
-                            id="app.month"
-                            defaultMessage="Month"
-                          />
-                        }
+                        label="Month"
+                         
                         isColumn
                         options={["Jan", "Feb", "Mar","Apr","May","Jun","July","Aug","Sep","Oct","Nov","Dec"]}
                         component={SelectComponent}
@@ -207,12 +197,8 @@ onSubmit={(values, { resetForm }) => {
                         isRequired
                         name="year"
                         //label="Start "
-                        label={
-                          <FormattedMessage
-                            id="app.year"
-                            defaultMessage="Year"
-                          />
-                        }
+                        label="Year"
+                          
                         isColumn
                         // options={["Jan", "Feb", "Mar","Apr","May","Jun","July","Aug","Sep","Oct","Nov","Dec"]}
                         component={InputComponent}

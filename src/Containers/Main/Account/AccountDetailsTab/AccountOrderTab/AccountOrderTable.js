@@ -422,10 +422,7 @@ const AccountOrderTable = (props) => {
                                                                 </div>
                                                             </>
                                                         ) : item.qcStartInd === 3 && item.priceConfirmInd === false ? <Tooltip title=
-                                                        {translatedMenuItems[18]}   // {<FormattedMessage
-                                                        //     id="app.updaterevisedprice"
-                                                        //     defaultMessage="Update Revised Price"
-                                                        // />}
+                                                        {translatedMenuItems[18]}   
                                                         >
                                                             <PublishedWithChangesIcon
                                                                 onClick={() => {
@@ -612,10 +609,7 @@ const AccountOrderTable = (props) => {
                                                     
                                                         <div>
                                                             {item.inventoryReceiveInd ? null : <Tooltip title={translatedMenuItems[28]}
-                                                            // {<FormattedMessage
-                                                            //     id="app.edit"
-                                                            //     defaultMessage="Edit"
-                                                            // />}
+                                                          
                                                             >
                                                                 <BorderColorIcon
                                                                     className=" !text-icon cursor-pointer text-[tomato]"
@@ -634,10 +628,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
                                                     <div>
                                                             <Tooltip title={translatedMenuItems[29]}
-                                                            // {<FormattedMessage
-                                                            //     id="app.delete"
-                                                            //     defaultMessage="Detele"
-                                                            // />}
+                                                           
                                                             >
                                                                 <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  
                                                                     onClick={() => { props.removeOrderAcc({
@@ -885,10 +876,7 @@ const AccountOrderTable = (props) => {
                                                                 </div>
                                                             </>
                                                         ) : item.qcStartInd === 3 && item.priceConfirmInd === false ? <Tooltip title=
-                                                        {translatedMenuItems[18]}   // {<FormattedMessage
-                                                        //     id="app.updaterevisedprice"
-                                                        //     defaultMessage="Update Revised Price"
-                                                        // />}
+                                                        {translatedMenuItems[18]} 
                                                         >
                                                             <PublishedWithChangesIcon
                                                                 onClick={() => {
@@ -1075,10 +1063,7 @@ const AccountOrderTable = (props) => {
                                                     
                                                         <div>
                                                             {item.inventoryReceiveInd ? null : <Tooltip title={translatedMenuItems[28]}
-                                                            // {<FormattedMessage
-                                                            //     id="app.edit"
-                                                            //     defaultMessage="Edit"
-                                                            // />}
+                                                           
                                                             >
                                                                 <BorderColorIcon
                                                                     className=" !text-icon cursor-pointer text-[tomato]"
@@ -1097,10 +1082,7 @@ const AccountOrderTable = (props) => {
                                                     </div>
                                                     <div>
                                                             <Tooltip title={translatedMenuItems[29]}
-                                                            // {<FormattedMessage
-                                                            //     id="app.delete"
-                                                            //     defaultMessage="Detele"
-                                                            // />}
+                                                         
                                                             >
                                                                 <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  
                                                                     onClick={() => { props.removeOrderAcc({

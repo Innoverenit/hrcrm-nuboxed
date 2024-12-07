@@ -41,77 +41,17 @@ const BussinessCard = (props) => {
                 {primaryTitle || ""}
             </div>
             <div>
-            {/* <div class="text-xs">
-              {customerName || ""} 
-              </div>
-              <div class="text-xs">          
-              {contactName || ""} 
-              </div> */}
+          
             </div>
            
             <div>
               &nbsp;&nbsp;
-              {/* {currencyType && <CurrencySymbol currencyType={currencyType} />} */}
+             
              
               &nbsp;             
-              {/* {secondaryTitle || ""}  */}
-             
-              {/* <Popconfirm
-  title="Change status to Won?"
-  onConfirm={() => handleWon(opportunityId)}
-  okText="Yes"
-  cancelText="No"
->
-  <Tooltip 1
-    title={<FormattedMessage
-      id="app.Own"
-      defaultMessage="Won"
-    />}
-
-  >
-    <CheckCircleOutlineIcon
-      type="check-circle"
-      theme="twoTone"
-      twoToneColor="#24D8A7"
-      size={140}
-      className=" !text-icon"
-   
-    />
-  </Tooltip>
-  </Popconfirm> */}
-
+            
               &nbsp;    
-              {/* <Popconfirm
-  title="Change status to Lost?"
-  onConfirm={() => handleConfirm(opportunityId)}
-  okText="Yes"
-  cancelText="No"
->
- <Tooltip
-        title={
-          <FormattedMessage id="app.drop" defaultMessage="Lost" />
-        }
-      >
- 
-  <DoDisturbIcon
-          type="stop"
-          theme="twoTone"
-          twoToneColor="red"
-          size={140}
-          className=" !text-icon"
-        />
-        </Tooltip>
-    </Popconfirm> */}
-    {/* <StyledPopconfirm
-            title="Do you want to delete?"
-            onConfirm={() => handleDelete(opportunityId)}
-          >
-           
-             {user.opportunityDeleteInd ===true && user.crmInd === true && (
-            <DeleteOutlineIcon
-            type="delete" className=" !text-icon cursor-pointer text-red-600 "  />
-             )}
-          </StyledPopconfirm> */}
+            
             </div>      
           </div>
           <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">

@@ -175,41 +175,38 @@ function UserKpiList(props) {
   <div className="rounded m-1 p-1  w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
     <div className="flex justify-between  h-10 w-[100%]  p-1 bg-transparent font-bold sticky z-10">
       <div className="md:w-[8.5rem]"> KPI
-        {/* <FormattedMessage id="app.kpi" defaultMessage="KPI" /> */}
+     
       </div>
       <div className="md:w-[7.5rem]"> LOB
-        {/* <FormattedMessage id="app.lob" defaultMessage="LOB" /> */}
+    
       </div>
      
       <div className="md:w-[11.1rem]">
-      {translatedMenuItems[3]}    {/* <FormattedMessage id="app.assigned" defaultMessage="Assigned" /> */}
+      {translatedMenuItems[3]}  
       </div>
       <div className="md:w-[9.11rem]">
-      {translatedMenuItems[4]}    {/* <FormattedMessage id="app.assigned" defaultMessage=" Total" /> */}
+      {translatedMenuItems[4]}   
       </div>
   
       <div className="md:w-[7.11rem]">
-      {translatedMenuItems[5]}   {/* <FormattedMessage id="app.achieved" defaultMessage="Achieved" /> */}
+      {translatedMenuItems[5]}  
       </div>
       <div className="md:w-[7.51rem]">
-      {translatedMenuItems[4]}    {/* <FormattedMessage id="app.achieved" defaultMessage=" Total" /> */}
+      {translatedMenuItems[4]} 
       </div>
       <div class="w-[2rem]"></div>
       <div className="md:w-[8.01rem]">
-      {translatedMenuItems[6]}   {/* <FormattedMessage id="app.actual" defaultMessage="Actual" /> */}
+      {translatedMenuItems[6]} 
       </div>
       <div className="md:w-[3.1rem]">
-      {translatedMenuItems[4]}  {/* <FormattedMessage id="app.actual" defaultMessage="Total" /> */}
+      {translatedMenuItems[4]} 
 
       </div>
       <div class="w-[2rem]"></div>
        <div className="md:w-[4.1rem]">{translatedMenuItems[7]} 
-      {/* <FormattedMessage
-         id="app.weightage"
-         defaultMessage="Weightage"
-       /> */}
+     
        </div>
-        {/* <div className="w-[2rem]"></div> */}
+        
     </div>
 
     {props.userKpiList.map((item, index) => {
@@ -564,211 +561,3 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 export default connect(mapStateToProps, mapDispatchToProps)(UserKpiList);
-
-// <div class="rounded-lg m-5 p-2 w-[97%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
-// <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
-// <div className=" md:w-[8.5rem]">
-// <FormattedMessage
-//         id="app.name"
-//         defaultMessage="Name"
-//       /></div>
-
-
-//                <div className=" md:w-[7.1rem]"><FormattedMessage
-//         id="app.assigned"
-//         defaultMessage="Assigned"
-//       /></div>
-//        <div className="md:w-[10.1rem]"><FormattedMessage
-//         id="app.achieved"
-//         defaultMessage="Achieved"
-//       /></div>
-//            <div className="md:w-[14.1rem]"><FormattedMessage
-//         id="app.actual"
-//         defaultMessage="Actual"
-//       /></div>
-    
-
-
-
-
-// </div>
-
-
-// {props.userKpiList.map((item) => { 
-
-
-//           return (
-//               <div>
-//                   <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
-//                       >
-                           
-//                            <div className=" flex  md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
-// <div className="flex max-sm:w-full items-center"> 
-
-// <div class="max-sm:w-full">
-//                               <Tooltip>
-//                                 <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
-                                
-//                                   <div class="text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
-                                      
-// {item.kpiName}
-
-
-//                                   </div>
-//                                   </div>
-//                               </Tooltip>
-//                               </div>
-//                               </div>
-//                       </div>
-//                       <div class="flex">
-
-                  
-//                   <div className=" flex  md:w-[12.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                         
-//                          <div class="text-xs  font-poppins">
-    
-//            <div className=" text-xs  font-poppins">
-//            {item.assignedValue && (
-//                               <span>
-//                                   {item.currencyInd && `${item.userCurrency} `}
-//                                   {item.assignedValue}
-//                               </span>
-//                           )}
-//            </div>
-      
-//                          </div>
-//                      </div>
-//                      <div className=" flex  md:w-[16.3rem]  max-sm:flex-row w-full max-sm:justify-between">
-//                      {item.completedValue && (
-//                               <span>
-//                                   {item.currencyInd && `${item.userCurrency} `}
-//                                   {item.completedValue}
-//                               </span>
-//                           )}
-//                   </div>
-//                   <div className="Ccard__title w-[15rem]">
-//                   <div class="text-xs  font-poppins">
-//                      {editContactId === item.userKpiLinkId ? (
-//     <>
-//     <div class=" flex flex-row">
-//     <input
-//     style={{border:"2px solid black",width:"6rem"}}
-//     placeholder="Month1"
-//       value={editedFields[item.userKpiLinkId]?.month1ActualCompletedValue !== undefined ? editedFields[item.userKpiLinkId].month1ActualCompletedValue : item.month1ActualCompletedValue}
-//       onChange={(e) => {
-//         const inputValue = e.target.value;
-//         if (!isNaN(inputValue)) { 
-//             handleChange(item.userKpiLinkId, 'month1ActualCompletedValue', inputValue);
-//         } else {
-//           alert("Please enter  number.");
-       
-//         }
-//     }}
-//     />
-//     &nbsp;
-//     <input
-//     placeholder="Month2"
-//     style={{border:"2px solid black",width:"6rem"}}
-//       value={editedFields[item.userKpiLinkId]?.month2ActualCompletedValue !== undefined ? editedFields[item.userKpiLinkId].month2ActualCompletedValue : item.month2ActualCompletedValue}
-//       onChange={(e) => {
-//         const inputValue = e.target.value;
-//         if (!isNaN(inputValue)) { 
-//             handleChange(item.userKpiLinkId, 'month2ActualCompletedValue', inputValue);
-//         } else {
-//           alert("Please enter  number.");
-       
-//         }
-//     }}
-//     />
-//        &nbsp;
-//     <input
-//     placeholder="Month3"
-//     style={{border:"2px solid black",width:"6rem"}}
-//       value={editedFields[item.userKpiLinkId]?.month3ActualCompletedValue !== undefined ? editedFields[item.userKpiLinkId].month3ActualCompletedValue : item.month3ActualCompletedValue}
-//       onChange={(e) => {
-//         const inputValue = e.target.value;
-//         if (!isNaN(inputValue)) { 
-//             handleChange(item.userKpiLinkId, 'month3ActualCompletedValue', inputValue);
-//         } else {
-//           alert("Please enter  number.");
-       
-//         }
-//     }}
-//     />
-//        &nbsp;
-//     </div>
-//     </>
-//   ) : (
-//     <>
-
-//     <div className=" flex  flex-row text-xs  font-poppins">
-//     <div class=" flex flex-col">
-// <span className='mr-2'>M1</span>
-// <span className='ml-2'>   {item.month1ActualCompletedValue && (
-//                               <span>
-//                                   {item.currencyInd && `${item.userCurrency} `}
-//                                   {item.month1ActualCompletedValue}
-//                               </span>
-//                           )}</span>
-// </div>
-// <div class=" flex flex-col">
-// <span className='mr-2'>M2</span>
-// <span className='ml-2'>   {item.month2ActualCompletedValue && (
-//                               <span>
-//                                   {item.currencyInd && `${item.userCurrency} `}
-//                                   {item.month2ActualCompletedValue}
-//                               </span>
-//                           )}</span>
-// {/* <span className='ml-2'>{`${item.month2CompletedValue}`}</span> */}
-// </div>
-// <div class=" flex flex-col">
-// <span className='mr-2'>M3</span>
-// <span className='ml-2'>   {item.month3ActualCompletedValue && (
-//                               <span>
-//                                   {item.currencyInd && `${item.userCurrency} `}
-//                                   {item.month3ActualCompletedValue}
-//                               </span>
-//                           )}</span>
-// {/* <span className='ml-2'>{`${item.month3ActualCompletedValue}`}</span> */}
-// </div>
-//     </div>
-    
- 
-//     </>
-//   )}
-//                      </div>
-//         </div>
-
-//         <div className=" flex mt-[1rem] ml-4" style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >
-//           {editContactId === item.userKpiLinkId ? (
-//               <>
-//             <Button onClick={() => handleUpdateContact(item.userKpiLinkId, item.month1ActualCompletedValue,item.month2ActualCompletedValue,item.month3ActualCompletedValue)}>
-//               Save
-//             </Button>
-//               <Button onClick={() => handleCancelClick(item.userKpiLinkId)} style={{ marginLeft: '0.5rem' }}>
-//               Cancel
-//             </Button>
-//             </>
-            
-//           ) : (
-//             <BorderColorIcon
-//               tooltipTitle="Edit"
-//               iconType="edit"
-//               onClick={() => handleEditClick(item.userKpiLinkId)}
-//               style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '0.75rem', marginTop: '0.25rem', marginLeft: '0.25rem' }}
-//             />
-//           )}
-//         </div>
-//                     </div>
-       
-
-                    
-                   
-//                   </div>
-//               </div>
-
-
-//           )
-//       })}
-          
-// </div>

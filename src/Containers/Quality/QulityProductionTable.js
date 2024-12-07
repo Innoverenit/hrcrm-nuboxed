@@ -185,24 +185,19 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                     <div className=""></div>
                     <div className="md:w-[22.12rem]">
                     {translatedMenuItems[0]}
-                      {/* <FormattedMessage id="app.manufactureid" defaultMessage="Manufacture ID" /> */}
                       </div>
                     <div className="md:w-[22.12rem]">
                     {translatedMenuItems[1]}
-                      {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */}
                       </div>
                     <div className="md:w-[15.5rem]">
                     {translatedMenuItems[2]}
-                      {/* <FormattedMessage id="app.date" defaultMessage="Date" /> */}
                       </div>
                     <div className="md:w-[15.5rem]">
                     {translatedMenuItems[3]}
-                      {/* <FormattedMessage id="app.status" defaultMessage="Status" /> */}
                       </div>
                     <div className=""></div>
                     <div className="md:w-[15.5rem]">
                     {translatedMenuItems[4]}
-                      {/* <FormattedMessage id="app.todispatch" defaultMessage="To Dispatch" /> */}
                       </div>
                 
                 </div>

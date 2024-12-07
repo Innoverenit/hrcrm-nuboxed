@@ -107,13 +107,7 @@ class UpdateTrainingForm extends Component {
                     <FastField
                       isRequired
                       name="courseName"
-                      //label="Course Name"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.courseName"
-                      //     defaultMessage="Course Name"
-                      //   />
-                      // }
+                     
                       type="text"
                       width={"100%"}
                       isColumn
@@ -135,13 +129,7 @@ class UpdateTrainingForm extends Component {
                     <FastField
                       isRequired
                       name="courseName"
-                      //label="Course Name"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.courseName"
-                      //     defaultMessage="Course Name"
-                      //   />
-                      // }
+                      
                       type="text"
                       width={"100%"}
                       isColumn
@@ -164,12 +152,7 @@ class UpdateTrainingForm extends Component {
                     <FastField
                       type="Organization"
                       name="organization"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.organization"
-                      //     defaultMessage="Organization/Institution"
-                      //   />
-                      // }
+                     
                       className="field"
                       isColumn
                       width={"100%"}
@@ -188,12 +171,7 @@ class UpdateTrainingForm extends Component {
                     {/* <div class=" text-xs font-bold font-poppins text-black">Grade</div> */}
                     <FastField
                       name="grade"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.grade"
-                      //     defaultMessage="Grade"
-                      //   />
-                      // }
+                      
                       isColumn
                       selectType="text"
                       width={"30%"}
@@ -214,13 +192,7 @@ class UpdateTrainingForm extends Component {
               > <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[3]}</div>
                     <Field
                       name="startDates"
-                      //label="Start Date"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.startDates"
-                      //     defaultMessage="Start Dates"
-                      //   />
-                      // }
+                      
                       isRequired
                       component={DatePicker}
                       isColumn
@@ -240,13 +212,7 @@ class UpdateTrainingForm extends Component {
               > <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[4]}</div>
                     <Field
                       name="endDate"
-                      //label="End Date "
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.endDate"
-                      //     defaultMessage="End Date"
-                      //   />
-                      // }
+                    
                       isRequired
                       isColumn
                       width={"100%"}
@@ -283,7 +249,7 @@ class UpdateTrainingForm extends Component {
                   type="primary"
                   Loading={updatingTrainingDetails}
                 >
-                {this.state.translatedMenuItems[5]}  {/* <FormattedMessage id="app.update" defaultMessage="Update" /> */}
+                {this.state.translatedMenuItems[5]}  
                 </Button>
               </div>
             </Form>

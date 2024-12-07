@@ -138,21 +138,7 @@ fetchMenuTranslations = async () => {
               <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[1]}</div>
                   <FastField
                     name="educationTypeId"
-                    // type="text"
-                    //label="Education"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.education"
-                    //     defaultMessage="Education"
-                    //   />
-                    // }
-                    // options={[
-                    //   "Matriculation",
-                    //   "Intermediate",
-                    //   "Graduation",
-                    //   "Post-Graduation",
-                    //   "Others",
-                    // ]}
+                  
                     selectType="educationType"
                     component={SearchSelect}
                     value={values.educationTypeId}
@@ -170,13 +156,7 @@ fetchMenuTranslations = async () => {
                       type="text"
                       isColumn
                       width={"100%"}
-                      //label="Course Name"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.courseName"
-                      //     defaultMessage="Course Name"
-                      //   />
-                      // }
+                     
                       component={InputComponent}
                       inlineLabel
                       />
@@ -228,13 +208,7 @@ fetchMenuTranslations = async () => {
                       type="text"
                       isColumn
                       width={"100%"}
-                      //label="Specialization"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.Specialization"
-                      //     defaultMessage="Specialization"
-                      //   />
-                      // }
+                     
                       component={InputComponent}
                       inlineLabel
                       />
@@ -247,13 +221,7 @@ fetchMenuTranslations = async () => {
                       type="text"
                       isColumn
                       width={"100%"}
-                      //label="University/Institute "
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.university"
-                      //     defaultMessage="University/Institute"
-                      //   />
-                      // }
+                    
                       component={InputComponent}
                       inlineLabel
                       />
@@ -265,13 +233,7 @@ fetchMenuTranslations = async () => {
                     <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[9]}</div>
                       <Field
                         name="yearOfPassing"
-                        //label="Year of Passing"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.yearOfPassing"
-                        //     defaultMessage="Year of Passing"
-                        //   />
-                        // }
+                      
                         component={InputComponent}
                         isColumn
                         width={"100%"}
@@ -284,13 +246,7 @@ fetchMenuTranslations = async () => {
                     <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[10]}</div>
                       <Field
                         isRequired
-                        //label="Marks Secured"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.marksSecured"
-                        //     defaultMessage="Marks Secured"
-                        //   />
-                        // }
+                       
                         name="marksSecured"
                         type="text"
                         isColumn
@@ -302,12 +258,7 @@ fetchMenuTranslations = async () => {
                     <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[11]}</div>
                       <Field
                         name="marksType"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.marksType"
-                        //     defaultMessage="Marks Type"
-                        //   />
-                        // }
+                      
                         type="text"
                         component={SelectComponent}
                         options={["%", "Out of 10", "Out of 5"]}
@@ -325,12 +276,7 @@ fetchMenuTranslations = async () => {
                 >   <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[12]} ID</div>
                   <Field
                     name="documentId"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.documentId"
-                    //     defaultMessage="Document Id"
-                    //   />
-                    // }
+                    
                     isRequired
                     component={DragableUpload}
                   />
@@ -338,13 +284,7 @@ fetchMenuTranslations = async () => {
                 <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[13]}</div>
                   <Field
                     name="documentTitle"
-                    //label="Name of Document"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.documentTitle"
-                    //     defaultMessage="Name of Document"
-                    //   />
-                    // }
+                 
                     width={"100%"}
                     isColumn
                     component={InputComponent}
@@ -354,13 +294,7 @@ fetchMenuTranslations = async () => {
                    <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[14]}</div>
                   <Field
                     name="documentDescription"
-                    //label="Description of document"
-                    // label={
-                      // <FormattedMessage
-                      //   id="app.documentDescription"
-                      //   defaultMessage="Description of document"
-                      // />
-                    // }
+                    
                     isRequired
                     isColumn
                     width={"100%"}
@@ -377,7 +311,7 @@ fetchMenuTranslations = async () => {
                   type="primary"
                   Loading={addingEducationDetails}
                 >
-                  {this.state.translatedMenuItems[15]} {/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
+                  {this.state.translatedMenuItems[15]} 
                 </Button>
               </div>
             </Form>

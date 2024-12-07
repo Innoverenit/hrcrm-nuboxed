@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from 'react-intl';
 
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
@@ -223,11 +222,8 @@ class ProjectForm extends Component {
                   <Field
                     isRequired
                     name="project"
-                    // label="Project"
-                    label={<FormattedMessage
-                      id="app.project"
-                      defaultMessage="Project"
-                    />}
+                    label="Project"
+                  
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -240,11 +236,8 @@ class ProjectForm extends Component {
                       <Field
                         isRequired
                         name="startTime"
-                        // label="Start Time"
-                        label={<FormattedMessage
-                          id="app.startTime"
-                          defaultMessage="Start Time"
-                        />}
+                        label="Start Time"
+                       
                         isColumn
                         component={TimePicker}
                         use12Hours
@@ -259,11 +252,8 @@ class ProjectForm extends Component {
                       <Field
                         isRequired
                         name="endTime"
-                        //label="End Time"
-                        label={<FormattedMessage
-                          id="app.endTime"
-                          defaultMessage="End Time"
-                        />}
+                        label="End Time"
+                       
                         isColumn
                         component={TimePicker}
                         use12Hours
@@ -303,11 +293,7 @@ class ProjectForm extends Component {
                   <div class="mt-3">
                   <Field
                     name="notesField"
-                    //label="Notes"
-                    label={<FormattedMessage
-                      id="app.eventDescription"
-                      defaultMessage="Notes"
-                    />}
+                    label="Notes"
                     isColumn
                     width={"100%"}
                     component={TextareaComponent}

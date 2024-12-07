@@ -425,10 +425,6 @@ class UpdateEmployeeForm extends Component {
                               type="text"
                               isColumn
                               width={"100%"}
-                              // label={<FormattedMessage
-                              //   id="app.firstName"
-                              //   defaultMessage="First Name"
-                              // />}
                               component={InputComponent}
                               inlineLabel
                             />
@@ -443,10 +439,6 @@ class UpdateEmployeeForm extends Component {
                               type="text"
                               isColumn
                               width={"100%"}
-                              // label={<FormattedMessage
-                              //   id="app.middleName"
-                              //   defaultMessage="Middle Name"
-                              // />}
                               component={InputComponent}
                               inlineLabel
                             />
@@ -458,10 +450,6 @@ class UpdateEmployeeForm extends Component {
                               type="text"
                               isColumn
                               width={"100%"}
-                              // label={<FormattedMessage
-                              //   id="app.lastName"
-                              //   defaultMessage="Last Name"
-                              // />}
                               component={InputComponent}
                               inlineLabel
                             />
@@ -482,9 +470,6 @@ class UpdateEmployeeForm extends Component {
                           type="text"
                           isColumn
                           width={"100%"}
-                          // label={<FormattedMessage
-                          //   id="app.emailId"
-                          //   defaultMessage="Email" />}
                           component={InputComponent}
                           inlineLabel
                         />
@@ -495,10 +480,7 @@ class UpdateEmployeeForm extends Component {
                           name="currency"
                           isColumnWithoutNoCreate
                           placeholder=  {this.state.translatedMenuItems[4]}
-                          // label={<FormattedMessage
-                          //   id="app.currency"
-                          //   defaultMessage="Currency"
-                          // />}
+                       
                           isColumn
                         
                           isRequired
@@ -519,12 +501,6 @@ class UpdateEmployeeForm extends Component {
                           <FastField
                             name="countryDialCode"
                             isColumnWithoutNoCreate
-                            // label={
-                            //   <FormattedMessage
-                            //     id="app.dialCode"
-                            //     defaultMessage="Dial Code"
-                            //   />
-                            // }
                             isColumn
                             // width={"100%"}
                             selectType="dialCode"
@@ -554,12 +530,6 @@ class UpdateEmployeeForm extends Component {
                           <FastField
                             name="countryDialCode1"
                             isColumnWithoutNoCreate
-                            // label={
-                            //   <FormattedMessage
-                            //     id="app.dialCode"
-                            //     defaultMessage="Dial Code"
-                            //   />
-                            // }
                             isColumn
                             // width={"100%"}
                             selectType="dialCode"
@@ -604,12 +574,7 @@ class UpdateEmployeeForm extends Component {
                       <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[9]}</div>
                         <Field
                           isRequired
-                          name="dob"
-                          // label={<FormattedMessage
-                          //   id="app.dateOfBirth"
-                          //   defaultMessage="Date of Birth"
-                          // />}
-                          isColumn
+                          name="dob"n
                           component={DatePicker}
                           value={values.dob}
                           // defaultValue={dayjs("2020-01-01")}
@@ -627,10 +592,6 @@ class UpdateEmployeeForm extends Component {
                           type="text"
                           isColumn
                           width={"100%"}
-                          // label={<FormattedMessage
-                          //   id="app.linkedIn"
-                          //   defaultMessage="LinkedIn"
-                          // />}
                           component={InputComponent}
                           inlineLabel
                         />
@@ -650,13 +611,6 @@ class UpdateEmployeeForm extends Component {
                     name="timeZone"
                     isColumnWithoutNoCreate
                     placeholder= {this.state.translatedMenuItems[11]}
-                    //label="TimeZone "
-                    // label={
-                      // <FormattedMessage
-                      //   id="app.timeZone"
-                      //   defaultMessage="time Zone"
-                      // />
-                    // }
                     options={
                       Array.isArray(timeZoneOption)
                         ? timeZoneOption
@@ -675,12 +629,6 @@ class UpdateEmployeeForm extends Component {
                         <Field
                           name="departmentId"
                           isColumnWithoutNoCreate
-                          // label={
-                          //   <FormattedMessage
-                          //     id="app.Department"
-                          //     defaultMessage="Department"
-                          //   />
-                          // }
                           component={SelectComponent}
                           options={
                             Array.isArray(DepartmentOptions)
@@ -698,10 +646,6 @@ class UpdateEmployeeForm extends Component {
                         <FastField
                           name="label"
                           type="level"
-                          // label={<FormattedMessage
-                          //   id="app.level"
-                          //   defaultMessage="Level"
-                          // />}
                           options={["L1", "L2", "L3"]}
                           component={SelectComponent}
                           inlineLabel
@@ -715,10 +659,6 @@ class UpdateEmployeeForm extends Component {
                     <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[14]}</div>
                       <Field
                         name="roleType"
-                        // label={<FormattedMessage
-                        //   id="app.role"
-                        //   defaultMessage="Role"
-                        // />}
                         isColumnWithoutNoCreate
                         component={SelectComponent}
                         options={
@@ -755,9 +695,6 @@ class UpdateEmployeeForm extends Component {
                         type="text"
                         isColumn
                         width={"100%"}
-                        // label={<FormattedMessage
-                        //   id="app.salary"
-                        //   defaultMessage="Salary" />}
                         component={InputComponent}
                         inlineLabel
                       />
@@ -789,12 +726,6 @@ class UpdateEmployeeForm extends Component {
                         <Field
                           name="workplace"
                           isColumnWithoutNoCreate
-                          // label={
-                          //   <FormattedMessage
-                          //     id="app.Workplace"
-                          //     defaultMessage="Workplace"
-                          //   />
-                          // }
                           component={SelectComponent}
                           options={
                             Array.isArray(WorkplaceOptions)
@@ -813,10 +744,6 @@ class UpdateEmployeeForm extends Component {
                       <div className=" text-black font-bold text-xs font-poppins "> {this.state.translatedMenuItems[18]}</div>
                         <Field
                           name="location"
-                          // label={<FormattedMessage
-                          //   id="app.location"
-                          //   defaultMessage="Location"
-                          // />}
                           isColumnWithoutNoCreate
                           component={SelectComponent}
                           options={
@@ -865,10 +792,7 @@ class UpdateEmployeeForm extends Component {
                       &nbsp;&nbsp;&nbsp;&nbsp;
                       <div>
                         <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                          {/* <FormattedMessage
-                            id="app.category"
-                            defaultMessage="Category"
-                          /> */} {this.state.translatedMenuItems[22]}
+                         {this.state.translatedMenuItems[22]}
                         </div>
                         <Switch
                           checked={this.state.typeInd}
@@ -882,10 +806,7 @@ class UpdateEmployeeForm extends Component {
 
                     <div class=" mt-3">
                       <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                        {/* <FormattedMessage
-                        id="app.employeetype"
-                        defaultMessage="Employee Type"
-                      /> */}{this.state.translatedMenuItems[25]}
+                       {this.state.translatedMenuItems[25]}
                       </div>
 
                       <Radio.Group

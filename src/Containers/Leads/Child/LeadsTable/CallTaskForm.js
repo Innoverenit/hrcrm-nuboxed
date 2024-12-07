@@ -632,47 +632,9 @@ function CallForm(props) {
                     }}
                   />
                   <mt-3 />
-                  {/* <div>
-                  <Field
-                    name="contactId"
-                    //selectType="contactList"
-                    isColumnWithoutNoCreate
-                    // label="Contact"
-                    label=
-                    component={SelectComponent}
-                    isColumn
-                    options={Array.isArray(ContactData) ? ContactData : []}
-                    value={values.contactId}
-                    // isDisabled={defaultContacts}
-                    defaultValue={{
-                      label: `${fullName || ""} `,
-                      value: contactId,
-                    }}
-                    inlineLabel
-                  />
-                  </div> */}
+                 
                   <div class="mt-3" />
-                  {/* <div >
-                  <Field
-                    disabled="true"
-                    isRequired
-                    name="candidateId"
-                    // type="text"
-                    //label="Talent"
-                    label={
-                      <FormattedMessage
-                        id="app.team"
-                        defaultMessage="Team"
-                      />
-                    }
-                    placeholder="Start typing to search..."
-                    isColumnWithoutNoCreate
-                    setClearbitCandidateData={props.setClearbitCandidateData}
-                    component={CandidateClearbit}
-                    inlineLabel
-                  />
-                   </div>
-                  <mt-3 /> */}
+                 
                   <div>
                     <div class=" w-full"><Field
                       name="callDescription"
@@ -685,47 +647,7 @@ function CallForm(props) {
                   </div>
                  
                   <mt-3  />
-                  {/* <div class=" flex justify-between" >
-                    <div 
-                    class=" w-1/2 font-bold">
-                    <div class=" flex justify-between" >
-                        <div>
-                          <div class=" text-xs font-bold font-poppins text-black">Set Reminder</div>
-                        </div>
-                        <div>
-                          <Switch
-                            onChange={handleReminderChange}
-                            checked={reminder}
-                            checkedChildren="Yes"
-                            unCheckedChildren="No"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class=" w-1/3 font-bold">
-                      {reminder ? (
-                        <div>
-                          <Field
-                            // isRequired
-                            name="remindTime"
-                            label="Reminder"
-                            width={"100%"}
-                            component={SelectComponent}
-                            options={[
-                              "15 min",
-                              "30 min",
-                              "45 min",
-                              "1 hour",
-                              "2 hour",
-                            ]}
-                            defaultValue="30 min"
-                            isColumn
-                            inlineLabel
-                          />
-                        </div>
-                      ) : null}
-                    </div>
-                  </div> */}
+                
                 </div>
               </div>
               <mt-3  />

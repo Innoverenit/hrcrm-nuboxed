@@ -3,16 +3,15 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Button, Tooltip } from "antd";
-import { FormattedMessage } from 'react-intl';
 
 class ProgramActionRight extends React.Component {
   render() {
     const {handleProgramModal } = this.props;
     return (
       <div class=" flex items-center">
-        <Tooltip placement="left" title={<FormattedMessage id="app.create" defaultMessage="Create"/>}>
+        <Tooltip placement="left" title="Create">
           <Button type="primary" onClick={() => handleProgramModal(true)}>
-          <FormattedMessage id="app.add" defaultMessage="Add" />  
+         Add
           </Button>
         </Tooltip>
       </div>

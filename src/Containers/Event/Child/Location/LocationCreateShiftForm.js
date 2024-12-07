@@ -175,20 +175,12 @@ function LocationCreateShiftForm(props) {
                         <Field
                           isRequired
                           name="startDate"
-                          //label="Start "
-                          // label={
-                          //   <FormattedMessage
-                          //     id="app.startDate"
-                          //     defaultMessage="Start Date"
-                          //   />
-                          // }
+                          
                           isColumn
                           component={DatePicker}
                           value={values.startDate}
                           inlineLabel
-                          // style={{
-                          //   width: "100%",
-                          // }}
+                         
                         />
                       </div>
                       <div class=" w-[26%]">
@@ -196,19 +188,12 @@ function LocationCreateShiftForm(props) {
                       <Field
                         isRequired
                         name="endDate"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.enddate"
-                        //     defaultMessage="End Date"
-                        //   />
-                        // }
+                       
                         component={DatePicker}
                         isColumn
                         value={values.endDate || values.startDate}
                         inlineLabel
-                        // style={{
-                        //   width: "100%",
-                        // }}
+                       
                         disabledDate={(currentDate) => {
                           if (values.startDate) {
                             if (

@@ -1,8 +1,6 @@
 import React, { useState,lazy,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
-import { FormattedMessage} from "react-intl";
 import dayjs from "dayjs";
 import { Tooltip, Button,Select  } from "antd";
 import { MultiAvatar, } from "../../../../Components/UI/Elements";
@@ -244,19 +242,11 @@ const OrderRepairLocationCard = (props) => {
            <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
           Name
           </div>
-        <div className=" w-[9.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] "><FormattedMessage
-                          id="app.order"
-                          defaultMessage="Order"
-                        />#</div>
-             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] "><FormattedMessage
-                          id="app.end"
-                          defaultMessage="end"
-                        /></div>
+        <div className=" w-[9.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] ">Order #</div>
+             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] ">end"
+                      </div>
              <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
-        <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]"><FormattedMessage
-                          id="app.ordervalue"
-                          defaultMessage="Value"
-                        /></div>
+        <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">Value</div>
         <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
            
                        
@@ -376,19 +366,13 @@ const OrderRepairLocationCard = (props) => {
            <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">
           Name
           </div>
-        <div className=" w-[9.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] "><FormattedMessage
-                          id="app.order"
-                          defaultMessage="Order"
-                        />#</div>
-             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] "><FormattedMessage
-                          id="app.end"
-                          defaultMessage="end"
-                        /></div>
+        <div className=" w-[9.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] ">Order
+                       #</div>
+             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] ">end
+                    </div>
              <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
-        <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]"><FormattedMessage
-                          id="app.ordervalue"
-                          defaultMessage="Value"
-                        /></div>
+        <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">Value
+                      </div>
         <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">
            
                        

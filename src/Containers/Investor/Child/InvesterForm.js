@@ -447,25 +447,7 @@ function InvesterForm(props) {
                   <div class=" flex justify-between mt-3">
                   {contract ?
                   <div class=" w-w47.5 flex flex-col">
-                  {/* <Field                     
-                            name="sectorId"
-                            label={
-                              <FormattedMessage
-                                id="app.sector"
-                                defaultMessage="Sector"
-                              />
-                            }
-                            isColumn
-                            placeholder="Sector"
-                          
-                            value={values.sectorId}
-                            component={SelectComponent}
-                        options={
-                          Array.isArray(sectorOption)
-                            ? sectorOption
-                            : []
-                        }
-                          /> */}
+                 
                              <div class="font-bold text-xs font-poppins text-black">Sector</div>
 
 <Select
@@ -487,20 +469,7 @@ function InvesterForm(props) {
                      : ( null)}
                       {contract ?
                     <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
-                    {/* <FastField
-                            name="source"
-                             label={
-                              <FormattedMessage
-                                id="app.source"
-                                defaultMessage="Source"
-                              />
-                            }
-                            isColumnWithoutNoCreate
-                            selectType="sourceName"
-                            component={SearchSelect}
-                            value={values.source}
-                            isColumn
-                          /> */}
+                   
                           <div class="font-bold text-xs font-poppins text-black">Source</div>
 
 <Select

@@ -240,13 +240,7 @@ handleInventory = () => {
                         selectType="DRegion"
                         isColumnWithoutNoCreate
                         component={SearchSelect}
-                        // value={values.countryDialCode}
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.region"
-                        //     defaultMessage="Region"
-                        //   />
-                        // }
+                        
                         isColumn
                         defaultValue={{
                           label:`${this.props.storedLoc.regions===null?"Select":this.props.storedLoc.regions}`,

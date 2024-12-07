@@ -352,84 +352,10 @@ investorDetails={props.investorDetails}
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              {/* <InvestorDeals
-            investorDetails={props.investorDetails}
-            translateText={props.translateText}
-            selectedLanguage={props.selectedLanguage}       /> */}
+            
             </Suspense>
           </TabPane>
-          {/* <TabPane
-            tab={
-              <>
-                <span>
-                  <NoteAltIcon style={{fontSize:"1.1rem"}}/>
-         
-                  <FormattedMessage id="app.notes" defaultMessage="Notes" />
-          
-                  {activeKey === "6" && (
-                    <>
-                      <Tooltip title="Voice to Text">
-                        <span
-                          onClick={() => handleCustomerReactSpeechModal(true)}
-                        >
-                          <MicIcon 
-                          style={{fontSize:"1.1rem"}}
-                           />
-                        </span>
-                      </Tooltip>
-                    </>
-                  )}
-                </span>
-              </>
-            }
-            key="6"
-          >
-            <Suspense fallback={"Loading ..."}>
-              {" "}
-              <InvestorLinkedNotes investorDetails={this.props.investorDetails} />
-            </Suspense>
-          </TabPane> */}
-          {/* <TabPane
-            tab={
-              <>
-                <ReceiptIcon style={{fontSize:"1.1rem"}}/>
-                <span class=" ml-1">
-                  {
-                    <FormattedMessage
-                      id="app.invoice"
-                      defaultMessage="Invoice"
-                    />
-                  }
-                
-                </span>
-                {activeKey === "7" && (
-                  <>
-                     <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
-                     
-                      title={
-                        <FormattedMessage
-                          id="app.create"
-                          defaultMessage="Create"
-                        />
-                      }
-                      onClick={() => handleInvoiceModal(true)}
-                      size="0.875em"
-                      style={{
-                        marginLeft: "0.3125em",
-                        verticalAlign: "center",
-                      }}
-                    />
-                  </>
-                )}
-              </>
-            }
-            key="7"
-          >
-            <Suspense fallback={"Loading ..."}>
-              {" "}
-              <InvestorLinkedInvoice investorDetails={this.props.investorDetails}/>
-            </Suspense>
-          </TabPane> */}
+        
          
         </StyledTabs>
         <Suspense fallback={<div class="flex justify-center">Loading...</div>}>

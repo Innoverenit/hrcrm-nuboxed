@@ -52,32 +52,7 @@ class EmployeeStatusEdit extends Component {
     return (
       <>
          <div className="flex flex-col p-4">
-          {/* <EditableInput
-            isRequired
-            defaultValue={emailId}
-            handleChange={this.handleChange}
-            name={"emailId"}
-            label={<FormattedMessage
-              id="app.emailId"
-              defaultMessage="Email"
-            />}
-            placeholder={"Email"}
-            value={this.state.fields.emailId}
-            width="100%"
-          />
-          <div class=" mt-3" style={{ margin: "0.125em" }} />
-         <div class=" flex flex-col flex-wrap items-start self-start p-[0.625em 1.25em 0.625em 1.25em] justify-start grow shrink h-auto mr-auto ">
        
-            <EditableDatePicker
-              defaultValue={dateOfJoining}
-              handleChange={this.handleChange}
-              name={"dateOfJoining"}
-              placeholder={"Date of Joining"}
-              value={this.state.fields.dateOfJoining}
-              style={{ width: "100%" }}
-            /> */}
-            {/* <div class=" mt-3" style={{ margin: "0.125em" }} /> */}
-          {/* </div> */}
 
           <div class=" flex justify-between w-full"
           >
