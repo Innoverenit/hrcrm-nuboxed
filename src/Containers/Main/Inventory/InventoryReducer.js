@@ -23,6 +23,9 @@ fetchingCompleteDispatchSearchError: false,
   fetchingSubListError: false,
   subList:[],
 
+  addingMaterialStockToggle: false,
+  addingMaterialStockToggleError: false,
+
   fetchingRepairSubList: false,
   fetchingRepairSubListError: false,
   repairSubList:[ 
@@ -2509,6 +2512,29 @@ export const inventoryReducer = (state = initialState, action) => {
                 };
             case types.INVENTORY_PACKED_UNPACKED_TOGGLE_FAILURE:
                 return { ...state };
+
+
+                case types.LINK_MATERIAL_STOCK_TOGGLE_REQUEST:
+                  return { ...state, addingMaterialStockToggle: true };
+                case types.LINK_MATERIAL_STOCK_TOGGLE_SUCCESS:
+                  return {
+                    ...state,
+                    addingMaterialStockToggle: false,
+                    materialUnitsData: state.materialUnitsData.map((item) => {
+                      if (item.suppliesId === action.payload.suppliesId) {
+                        return action.payload;
+                      } else {
+                        return item;
+                      }
+                    }),
+                  };
+                case types.LINK_MATERIAL_STOCK_TOGGLE_FAILURE:
+                  return {
+                    ...state,
+                    addingMaterialStockToggle: false,
+                    addingMaterialStockToggleError: true,
+                  };
+
     
     default:
       return state;
