@@ -21,11 +21,7 @@ class RecruitProJumpStart extends Component {
       <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-full ">
     <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-full ">
           <JumpStartBox
-            // title="# Requirements"
-            title={<FormattedMessage
-              id="app.requirements"
-              defaultMessage="# Requirements"
-            />}
+            title="# Requirements"
             noProgress
             stringValue
              value={this.props.allRecruitmentByOppId}
@@ -33,11 +29,7 @@ class RecruitProJumpStart extends Component {
           />
           <CurrencySymbol />
           <JumpStartBox
-            //title="# Positions"
-            title={<FormattedMessage
-              id="app.positions"
-              defaultMessage="# Positions"
-            />}
+            title="# Positions"
             noProgress
             stringValue
              isLoading={this.props.fetchingAllRecruitmentPositionByOppId}
@@ -48,11 +40,9 @@ class RecruitProJumpStart extends Component {
           <JumpStartBox
             noProgress
             stringValue
-            //title="Positions Filled"
-            title={<FormattedMessage
-              id="app.#selected"
-              defaultMessage="# Selected"
-            />}
+       
+            title="# Selected"
+          
              isLoading={this.props.fetchingAllRecruitmentPositionFilledByOppId}
              value={this.props.allRecruitmentPositionFilledByOppId}
            
@@ -61,10 +51,8 @@ class RecruitProJumpStart extends Component {
             noProgress
             stringValue
             // title="Average Time"
-            title={<FormattedMessage
-              id="app.onboarded"
-              defaultMessage="OnBoarded"
-            />}
+            title="OnBoarded"
+        
             isLoading={this.props.fetchingAllRecruitmentAvgTimeByOppId}
               value={this.props.allRecruitmentAvgTimeByOppId.recruitProfileLinkDetails}
            

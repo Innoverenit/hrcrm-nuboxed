@@ -4,8 +4,6 @@ import { bindActionCreators } from "redux";
 import  { useSpeechRecognition } from 'react-speech-recognition';
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
-import { FormattedMessage } from 'react-intl';
-
 import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import { addRemark } from "../../../../../OpportunityAction";
@@ -89,11 +87,7 @@ function RemarkForm(props) {
                   {" "}
                   <Field
                     name="stageId"
-                    // label="Stage"
-                    label={<FormattedMessage
-                      id="app.stageId"
-                      defaultMessage="Stage"
-                    />}
+                    label="Stage"
                     isRequired
                     isColumn
                     style={{
@@ -107,11 +101,7 @@ function RemarkForm(props) {
                   <div class=" mt-3" />
                   <Field
                     name="reviewer"
-                    //  label="Reviewer"
-                    label={<FormattedMessage
-                      id="app.reviewer"
-                      defaultMessage="Reviewer"
-                    />}
+                     label="Reviewer"
                     width={"100%"}
                     isColumn
                     component={InputComponent}
@@ -136,11 +126,8 @@ function RemarkForm(props) {
                   htmlType="submit"
                   Loading={props.addingRemark}
                 >
-                  <FormattedMessage
-                    id="app.submit"
-                    defaultMessage="Submit"
-                  />
-                  {/* Remark */}
+                 Submit
+                 
                 </Button>
                
               </div>

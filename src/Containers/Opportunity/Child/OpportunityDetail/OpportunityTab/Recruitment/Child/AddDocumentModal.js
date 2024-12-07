@@ -97,10 +97,7 @@ class AddDocumentModal extends Component {
     return (
       <>
         <StyledModal
-          // title="Document"
-          title={
-            <FormattedMessage id="app.document" defaultMessage="Document" />
-          }
+          title="Document" 
           width="65vw"
           visible={documentUploadModal}
           destroyOnClose
@@ -175,13 +172,7 @@ class AddDocumentModal extends Component {
                         name="documentTypeId"
                         selectType="documentTypeName"
                         isColumnWithoutNoCreate
-                        // label="Types"
-                        label={
-                          <FormattedMessage
-                            id="app.type"
-                            defaultMessage="Type"
-                          />
-                        }
+                        label="Types"
                         // isRequired
                         component={SearchSelect}
                         isColumn
@@ -200,13 +191,7 @@ class AddDocumentModal extends Component {
                     >
                       <Field
                         name="documentTitle"
-                        //label="Name"
-                        label={
-                          <FormattedMessage
-                            id="app.name"
-                            defaultMessage="Name"
-                          />
-                        }
+                        label="Name"
                         width={"100%"}
                         isColumn
                         component={InputComponent}
@@ -215,13 +200,7 @@ class AddDocumentModal extends Component {
                       <div class=" mt-3" />
                       <Field
                         name="documentDescription"
-                        // label="Description"
-                        label={
-                          <FormattedMessage
-                            id="app.documentDescription"
-                            defaultMessage="Description"
-                          />
-                        }
+                        label="Description"
                         isRequired
                         isColumn
                         width={"100%"}
@@ -253,13 +232,7 @@ class AddDocumentModal extends Component {
                                   <Field
                                     inlineLabel
                                     name="department"
-                                    //label="Function"
-                                    label={
-                                      <FormattedMessage
-                                        id="app.department"
-                                        defaultMessage="Function"
-                                      />
-                                    }
+                                    label="Function"
                                     isRequired
                                     isColumn
                                     margintop={"0.25em"}
@@ -273,11 +246,7 @@ class AddDocumentModal extends Component {
                                 </div>
                                 <div>
                                   <div class=" text-xs font-bold font-poppins text-black">
-                                    <FormattedMessage
-                                      id="app.level"
-                                      defaultMessage="Level"
-                                    />
-                                    ,{/* Level */}
+                                   Level
                                   </div>
                                   <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto mt-[0.25rem] ">
                                 
@@ -364,11 +333,8 @@ class AddDocumentModal extends Component {
                       type="primary"
                       Loading={addingDocumentByCandidateId}
                     >
-                      <FormattedMessage
-                        id="app.submit"
-                        defaultMessage="Submit"
-                      />
-                      {/* Submit */}
+                     
+                      Submit
                     </Button>
                   </div>
                 </Form>

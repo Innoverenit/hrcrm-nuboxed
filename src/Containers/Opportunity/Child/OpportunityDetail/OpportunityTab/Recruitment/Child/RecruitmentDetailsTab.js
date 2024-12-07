@@ -53,28 +53,14 @@ class RecruitmentDetailsTab extends Component {
                   <span>Feedback</span>
                   {activeKey === "1" && (
                     <>
-                      {/* <Tooltip //title="Tag Remarks"
-                        title={<FormattedMessage
-                          id="app.tagremarks"
-                          defaultMessage="tagremarks"
-                        />} */}
+                     
                       
                          <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                          
                            tooltipTitle="Tag Feedback"
                            onClick={() => handleSentimentModal(true)}
                         />
-                        {/* <AddSentimentModalModal
-
-                        /> */}
-
-                        {/* <AddRemarksModal
-                        addRemarksModal={addRemarksModal}
-                        handleRemarksModal={handleRemarksModal}
-                        stageList={this.props.stageList}
-                        profileId={this.props.profileId}
-                      /> */}
-                      {/* </Tooltip> */}
+                       
                     </>
                   )}
                 </>
@@ -89,145 +75,7 @@ class RecruitmentDetailsTab extends Component {
               </Suspense>
             </TabPane>
 
-            {/* <TabPane
-              tab={
-                <>
-                  <span>
-                 
-                    <FormattedMessage
-                      id="app.sdcuments"
-                      defaultMessage="Documents"
-                    />
-                  
-                  </span>
-                  {activeKey === "3" && (
-                    <>
-            
-             <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
-                        
-                         
-                          tooltipTitle="Tag Document"
-                          onClick={() =>
-                            handleDocumentUploadModal(true)
-                          }
-                          size="1em"
-                          style={{ marginLeft: 10, verticalAlign: "center" }}
-                        />
-
-               <AddDocumentModal
-              documentUploadModal={documentUploadModal}
-              handleDocumentUploadModal={handleDocumentUploadModal}
-               />
-                     
-                    </>
-                  )}
-                </>
-              }
-              key="3"
-            >
-            
-
-              <Suspense fallback={"Loading ..."}>
-                 <LinkedDocuments candidate={this.props.candidate} /> 
-              </Suspense>
-            </TabPane> */}
-            {/* <TabPane
-              tab={
-                <>
-                  <span>
-                    <i class="fa fa-graduation-cap"></i>
-                    &nbsp;Education
-                  </span>
-                  {activeKey === "5" && (
-                    <>
-                      {addingEmail ? (
-                        <></>
-                      ) : (
-                        <>
-                           <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
-                           
-                            tooltipTitle="Add"
-                            handleIconClick={() =>
-                              handleCandidateEducationModal(true)
-                            }
-                            size="1em"
-                            style={{
-                              marginLeft: "0.3125em",
-                              verticalAlign: "center",
-                            }}
-                          />
-       
-                        </>
-                      )}
-                    </>
-                  )}
-                </>
-              }
-              key="5"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <CandidateEducationTable />
-              </Suspense>
-            </TabPane> */}
-            {/* <TabPane
-              tab={
-                <>
-                  <span>
-                    <SubscriptionsIcon type="customer-service" />
-                    Training
-                  </span>
-                  {activeKey === "6" && (
-                    <>
-                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
-                       
-                        tooltipTitle="Add"
-                        handleIconClick={() =>
-                          handleCandidateTrainingModal(true)
-                        }
-                        size="1em"
-                        style={{ marginLeft:"0.3125em", verticalAlign: "center" }}
-                      />
-                    </>
-                  )}
-                </>
-              }
-              key="6"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <CandidateTrainingTable />
-              </Suspense>
-            </TabPane> */}
-            {/* <TabPane
-              tab={
-                <>
-                  <span>
-                    <BankOutlined type="bank" />
-                   Employment
-                  </span>
-                  {activeKey === "7" && (
-                    <>
-                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
-                       
-                        tooltipTitle="Add"
-                        handleIconClick={() =>
-                          handleCandidateEmploymentModal(true)
-                        }
-                        size="1em"
-                        style={{ marginLeft: "0.3125em", verticalAlign: "center" }}
-                      />
-                    </>
-                  )}
-                </>
-              }
-              key="7"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <CandidateEmploymentTable />
-              </Suspense>
-            </TabPane> */}
+           
           </StyledTabs>
         </TabsWrapper>
         <Suspense fallback={"Loading..."}>
