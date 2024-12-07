@@ -29,6 +29,8 @@ import {
   LayoutWrapper,
 } from "../../Components/UI/Layout";
 import { Select } from "antd";
+import CloseIcon from "@mui/icons-material/Close";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import { handleInTagDrawer } from "../../Containers/Main/Refurbish/RefurbishAction";
 import { getSuscrption } from "../Subscription/SubscriptionAction";
 import { updateUserById, handleActionDrawerModal, getActionRequiredCount, handlePromotion } from "../Auth/AuthAction";
@@ -232,9 +234,6 @@ const CandidateTotalBilling = lazy(() =>
 const Location = lazy(() =>
   import("../Event/Child/Location/Location")
 );
-const Navmenu2 = lazy(() =>
-  import("./Navmenu2")
-);
 const Teams = lazy(() =>
   import("./Teams/Teams")
 );
@@ -365,6 +364,7 @@ function MainApp(props) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const hoverTimer = useRef(null);
+  
 
   console.log(data)
 
@@ -528,7 +528,7 @@ function MainApp(props) {
 
       <ThemeProvider theme={props.theme}>
         <LayoutWrapper>
-          <div class="max-sm:hidden overflow-x-auto max-xl:hidden scroller">
+          <div class="overflow-x-auto  scroller">
             <Sider className="bg-[#38445E] min-h-[100vh] overflow-auto"
               trigger={null}
               collapsible
@@ -550,21 +550,23 @@ function MainApp(props) {
               </div>
               <NavMenu
                 collapsed={collapsed}
-                toggleCollapsed={toggle}
-                toggleTheme={toggleTheme}
-                theme={theme}
                 translateText={translateText}
                 selectedLanguage={selectedLanguage}
+                toggle={toggle}
               />
             </Sider>
           </div>
           <LayoutWrapper class="w-[89%]  max-sm:w-wk" >
             <div class=" flex flex-row justify-between w-[100%] items-center content-center nowrap sticky z-50  h-10  leading-8  shadow-[0 0.0625em 0.25em 0.0625em] bg-slate-400">
-           
               <Header class=" flex bg-white w-[100%] box-border border-2 justify-between p-0 items-center">
-              <div ><Navmenu2 className=" z-10 "
-                  translateText={translateText}
-                  selectedLanguage={selectedLanguage} /></div>
+              <div className="md:hidden" >
+              <button
+                className="text-[green]"
+                onClick={toggle}
+              >
+                {collapsed ? <CloseIcon /> : <MenuOpenIcon />}
+              </button>
+                  </div>
 
                   <div class="flex flex-start items-center  ">
                     <div className="flex items-center  ">            
@@ -746,6 +748,12 @@ function MainApp(props) {
                
                 </div>
               </Header>
+              {collapsed && (
+        <div
+          className="fixed z-10 md:hidden"
+          onClick={toggle}
+        ></div>
+      )}
             </div>
             <div class=" p-1 bg-light-gray ">
               {/* <NodataFoundPage> */}
