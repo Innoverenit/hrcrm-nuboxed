@@ -67,6 +67,7 @@
     "react-speech-recognition": "^3.9.1",
     "react-to-print": "^2.15.1",
     "react-tree-graph": "^4.0.1",
+    "react-window": "^1.8.10",
     "react-wordcloud": "^1.2.7",
     "recharts": "^2.4.3",
     "redux": "^4.0.1",

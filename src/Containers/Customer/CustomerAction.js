@@ -484,7 +484,7 @@ export const setEditCustomerCard = (name) => (dispatch) => {
 export const updateCustomer = (data, customerId) => (dispatch) => {
   dispatch({ type: types.UPDATE_CUSTOMER_BY_ID_REQUEST });
   axios
-    .put(`${base_url}/customer/${customerId}`, data, {
+    .put(`${base_url}/customer/row-edit/${customerId}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
