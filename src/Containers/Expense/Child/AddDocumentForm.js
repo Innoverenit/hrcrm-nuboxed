@@ -143,13 +143,7 @@ class AddDocumentForm extends Component {
                     name="documentTypeId"
                     selectType="documentType"
                     label="Type"
-                    //   label={
-                    //     <FormattedMessage
-                    //       id="app.contactDocumentId"
-                    //       defaultMessage="Type"
-                    //     />
-                    //   }
-                    // isRequired
+                  
                     component={SearchSelect}
                     isColumn
                     inlineLabel
@@ -161,12 +155,7 @@ class AddDocumentForm extends Component {
                   <Field
                     name="documentTitle"
                     label="Name"
-                    //   label={
-                    //     <FormattedMessage
-                    //       id="app.documentName"
-                    //       defaultMessage="Name"
-                    //     />
-                    //   }
+                    
                     width={"100%"}
                     isColumn
                     component={InputComponent}
@@ -175,12 +164,7 @@ class AddDocumentForm extends Component {
                   <Field
                     name="documentDescription"
                     label="Description"
-                    //   label={
-                    //     <FormattedMessage
-                    //       id="app.documentDescription"
-                    //       defaultMessage="Description"
-                    //     />
-                    //   }
+                  
                     isRequired
                     isColumn
                     width={"100%"}
@@ -198,7 +182,6 @@ class AddDocumentForm extends Component {
                   type="primary"
                   Loading={addingDocumentByExpenseId}
                 >
-                  {/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
                   Submit
                 </Button>
               </div>

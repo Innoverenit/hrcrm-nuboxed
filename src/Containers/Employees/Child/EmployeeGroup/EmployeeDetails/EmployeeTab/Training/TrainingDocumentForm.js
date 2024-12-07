@@ -113,17 +113,7 @@ fetchMenuTranslations = async () => {
                       <FastField
                     name="documentTypeId"
                     type="text"
-                    //label="Type"
-                    // label={
-                    //   <FormattedMessage id="app.type" defaultMessage="Type" />
-                    // }
-                    // options={[
-                    //   "Aadhar Card",
-                    //   "Voter-Id Card",
-                    //   "Driving-License",
-                    //   "Pan Card",
-                    //   "Passport",
-                    // ]}
+                  
                     options={
                       Array.isArray(documentNameOption)
                         ? documentNameOption
@@ -139,11 +129,7 @@ fetchMenuTranslations = async () => {
                         <FastField
                           isRequired
                           name="courseName"
-                          //label="Course Name"
-                          // label={<FormattedMessage
-                          //   id="app.courseName"
-                          //   defaultMessage="Course Name"
-                          // />}
+                        
                           type="text"
                           width={"100%"}
                           isColumn
@@ -162,10 +148,7 @@ fetchMenuTranslations = async () => {
                         <FastField
                           type="Organization"
                           name="organization"
-                          // label={<FormattedMessage
-                          //   id="app.organization"
-                          //   defaultMessage="Organization"
-                          // />}
+                         
                           className="field"
                           isColumn
                           width={"100%"}
@@ -177,10 +160,7 @@ fetchMenuTranslations = async () => {
                       <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[3]}</div>
                         <FastField
                           name="grade"
-                          // label={<FormattedMessage
-                          //   id="app.grade"
-                          //   defaultMessage="Grade"
-                          // />}
+                         
                           isColumn
                           selectType="text"
                           width={"30%"}
@@ -198,11 +178,6 @@ fetchMenuTranslations = async () => {
                       <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[4]}</div>
                         <Field
                           name="startDate"
-                          //label="Start Date"
-                          // label={<FormattedMessage
-                          //   id="app.startDate"
-                          //   defaultMessage="Start Date"
-                          // />}
                           isRequired
                           component={DatePicker}
                           isColumn
@@ -228,11 +203,6 @@ fetchMenuTranslations = async () => {
                     <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[6]}</div>
                       <Field
                         name="documentTitle"
-                        //label="Name of Document"
-                        // label={<FormattedMessage
-                        //   id="app.documentTitle"
-                        //   defaultMessage="Name of Document"
-                        // />}
                         width={"100%"}
                         isColumn
                         component={InputComponent}
@@ -242,11 +212,6 @@ fetchMenuTranslations = async () => {
                         <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[7]}</div>
                       <Field
                         name="documentDescription"
-                        //label="Description of Document"
-                        // label={<FormattedMessage
-                        //   id="app.documentDescription"
-                        //   defaultMessage="Description of Document"
-                        // />}
                         isRequired
                         isColumn
                         width={"100%"}
@@ -280,10 +245,6 @@ fetchMenuTranslations = async () => {
                     Loading={addingTrainingDetails}
                   >
                 {this.state.translatedMenuItems[8]}
-                    {/* <FormattedMessage
-                      id="app.submit"
-                      defaultMessage="Submit"
-                    /> */}
                   </Button>
                 </div>
               </Form>

@@ -290,7 +290,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
               className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage id="app.reports" defaultMessage="Reports" /> */}
+               
                 Analytics
                 {/* {translatedMenuItems[5]} */}
               </span>
@@ -933,7 +933,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
                 className='!text-base  text-[#e4eb2f]'
                 />
                  <span class="text-white text-ls ml-1">
-                 {/* <FormattedMessage id="app.talent" defaultMessage="Talent" /> */}
+            
               
                   {translatedMenuItems[46]}
                   &nbsp;&nbsp;&nbsp;
@@ -958,8 +958,6 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
               className='!text-base  text-[#e4eb2f]' />
 
               <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.requirement" defaultMessage="Requirement" /> */}
-
                 {translatedMenuItems[45]}
                 &nbsp;&nbsp;
                 <Badge
@@ -1106,10 +1104,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
                   className='!text-base  text-[#e4eb2f]'
                 />
                  <span class="text-white text-ls ml-1">
-                 {/* <FormattedMessage
-                id="app.assessment"
-                defaultMessage="Assessment"
-              /> */}
+               
                  {translatedMenuItems[42]} 
                 </span>
               </Link>
@@ -1127,10 +1122,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
                 className='!text-base  text-[#e4eb2f]'
                 />
                <span class="text-white text-ls ml-1">
-               {/* <FormattedMessage
-                id="app.course"
-                defaultMessage="Course"
-              /> */}
+              
                  {translatedMenuItems[41]}
                 </span>
               </Link>
@@ -1148,11 +1140,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
                  className='!text-base  text-[#e4eb2f]'
                 />
                 <span class="text-white text-ls ml-1">
-              
-                {/* <FormattedMessage
-                id="app.program"
-                defaultMessage="Program"
-              /> */}
+            
                {translatedMenuItems[40]}
                 </span>
               </Link>
@@ -1176,10 +1164,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
               className='!text-base  text-[#e4eb2f]'
                   />
                   <span class="text-white text-ls ml-1">
-                    {/* <FormattedMessage 
-                    id="app.teams"
-                   defaultMessage="Teams"
-               /> */}
+                  
                 {translatedMenuItems[32]}
                    </span>
                  </Link> 
@@ -1199,7 +1184,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
               />
               <span class="text-white text-ls ml-1">
               {translatedMenuItems[33]}
-                {/* <FormattedMessage id="app.users" defaultMessage="Users" /> */}
+               
               </span>
               &nbsp;&nbsp;&nbsp;
               <Badge
@@ -1216,10 +1201,8 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
             <FactoryIcon
             className='!text-base  text-[#e4eb2f]'
             />
-            <span class="text-white text-ls ml-1"><FormattedMessage
-              id="app.plant"
-              defaultMessage="Plant"
-            />
+            <span class="text-white text-ls ml-1">Plant
+           
             </span>
           </Link>
         </Menu.Item> */}

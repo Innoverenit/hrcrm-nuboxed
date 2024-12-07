@@ -2,18 +2,7 @@ import React from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import { FormattedMessage } from 'react-intl';
-import { Badge, Tag, Tooltip, Avatar, Button } from "antd";
-import OnDeviceTrainingIcon from '@mui/icons-material/OnDeviceTraining';
-import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
-import ShopIcon from '@mui/icons-material/Shop'
-import ReceiptIcon from '@mui/icons-material/Receipt';
-import PersonIcon from '@mui/icons-material/Person';
-import FactCheckIcon from '@mui/icons-material/FactCheck';
-import LocationCityIcon from '@mui/icons-material/LocationCity';
-import ApartmentIcon from '@mui/icons-material/Apartment';
-import AcUnitIcon from '@mui/icons-material/AcUnit';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import { Tag, } from "antd";
 import { StyledSelect, } from "../../../Components/UI/Antd";
 import {
   setSelectedReportType,
@@ -105,14 +94,10 @@ class ReportActionLeft extends React.Component {
                     }}
                   >
                 {this.props.userorgflipClick ?
-                    <FormattedMessage
-                      id="app.enterprise"
-                      defaultMessage="Enterprise"
-                    />
-                     : <FormattedMessage
-                    id="app.myview"
-                    defaultMessage="My View"
-                  />}
+                    "Enterprise"
+                    
+                     : "My View"
+                  }
                   </Tag>
                 </div>
              

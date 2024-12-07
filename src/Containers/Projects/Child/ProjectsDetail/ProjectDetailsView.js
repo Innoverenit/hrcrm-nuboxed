@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import { FormattedMessage } from 'react-intl';
-
 class ProjectDetailsView extends Component {
   render() {
     console.log("name",this.props.projectsById.projectName)
@@ -13,19 +11,15 @@ class ProjectDetailsView extends Component {
 
     return (
       <>
-        <ProjectItemRow // label="URL"
-          label={<FormattedMessage id="app.owner" defaultMessage="Owner" />}
+        <ProjectItemRow 
+          label="Owner" 
           value={creatorName}
         />
 
 
-        <ProjectItemRow //label="Phone Number"
-          label={
-            <FormattedMessage
-              id="app.customerName"
-              defaultMessage="Customer "
-            />
-          }
+        <ProjectItemRow 
+          label="Customer "
+          
           value={customerName}
         />
 

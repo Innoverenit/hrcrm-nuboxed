@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
-import { FormattedMessage } from 'react-intl';
 import SearchIcon from '@mui/icons-material/Search';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import PublishStatusToggle from "../PublishStatusToggle";
@@ -131,25 +129,20 @@ function PublishTable(props) {
       width: "2%",
     },
     {
-      //title: "Currency",
-      title: <FormattedMessage id="app.jobId" defaultMessage="Job ID" />,
+      title: "Currency",
       dataIndex: "jobOrder",
       width: "15%",
       ...getColumnSearchProps('jobOrder'),
     },
     {
-      //title: "Name",
-      title: (
-        <FormattedMessage id="app.requirement" defaultMessage="Requirement" />
-      ),
+      title: "Name",
       width: "14%",
 
       dataIndex: "requirementName",
       ...getColumnSearchProps('requirementName'),
     },
     {
-      //title: "Currency",
-      title: <FormattedMessage id="app.customer" defaultMessage="Customer" />,
+      title: "Currency",
 
       dataIndex: "customerName",
       //   ...getColumnSearchProps('customer'),
@@ -157,19 +150,15 @@ function PublishTable(props) {
       ...getColumnSearchProps('customerName'),
     },
     {
-      //title: "Currency",
-      title: (
-        <FormattedMessage id="app.opprtunity" defaultMessage="Opprtunity" />
-      ),
-
+      title: "Currency",
+      
       dataIndex: "opprtunityName",
       //   ...getColumnSearchProps('customer'),
       width: "12%",
       ...getColumnSearchProps('opprtunityName'),
     },
     {
-      //title: "Currency",
-      title: <FormattedMessage id="app.sponsor" defaultMessage="Sponsor" />,
+      title:"Sponsor" ,
       dataIndex: "sponserName",
       width: "7%",
       ...getColumnSearchProps('sponserName'),
@@ -192,32 +181,30 @@ function PublishTable(props) {
       },
     },
     {
-      //title: "Start Date",
-      title: (
-        <FormattedMessage id="app.positions" defaultMessage="# Positions" /> 
-      ),
+      
+      title: "# Positions"  
+      ,
       dataIndex: "number",
       width: "7%",
     },
     {
-      //title: "Value",
-      title: <FormattedMessage id="app.submitted" defaultMessage="Submitted" />,
+   
+      title: "Submitted",
       dataIndex: "offered",
       width: "8%",
       onFilter: (value, record) => record.proposalAmount.indexOf(value) === 0,
     },
     {
-      //title: "Value",
-      title: <FormattedMessage id="app.selected" defaultMessage="Selected" />,
+     
+      
+      title: "Selected",
       dataIndex: "closedPosition",
       width: "7%",
       onFilter: (value, record) => record.proposalAmount.indexOf(value) === 0,
     },
     {
       //title: "End Date",
-      title: (
-        <FormattedMessage id="app.onBoarded" defaultMessage="On Boarded" />
-      ),
+      title: "On Boarded" ,
       dataIndex: "onBoardNo",
       width: "10%",
     },

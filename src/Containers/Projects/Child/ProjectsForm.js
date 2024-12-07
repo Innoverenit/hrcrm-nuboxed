@@ -3,8 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import {addProjectsData} from "../ProjectsAction"
-
-import { FormattedMessage } from 'react-intl';
 import {getCustomerTask} from "../../Task/TaskAction"
 
 import { Formik, Form, Field, } from "formik";
@@ -86,10 +84,7 @@ function ProjectsForm(props) {
                   isRequired
                   name="projectName"
                   type="text"
-                  //label="Name"
-                  label={
-                    <FormattedMessage id="app.name" defaultMessage="Name" />
-                  }
+                  label="Name"
                   isColumn
                   width={"100%"}
                   component={InputComponent}
@@ -133,9 +128,8 @@ function ProjectsForm(props) {
             <div class=" mt-3" />
             <div class=" flex justify-end"> 
               <Button type="primary" htmlType="submit" loading={addingProjectsData}>
-                <FormattedMessage id="app.create" defaultMessage="Create" />
-                {/*                     
-                    Create */}
+                                   
+                    Create 
               </Button>
             </div>
           </Form>

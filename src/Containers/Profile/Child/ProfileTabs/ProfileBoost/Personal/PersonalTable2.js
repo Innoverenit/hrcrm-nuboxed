@@ -1,6 +1,5 @@
 import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from 'react-intl';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 import { bindActionCreators } from "redux";
@@ -94,8 +93,7 @@ class PersonalTable2 extends Component {
       });
     const columns = [
       {
-        //title: "Name",
-        title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+        title: "Name",
         render: (name, item, i) => {
           return (
             <span>{` ${item.contactSalutation} 
@@ -107,33 +105,15 @@ class PersonalTable2 extends Component {
       },
 
       {
-        //title: "Mobile No",
-        title: (
-          <FormattedMessage id="app.mobileNo" defaultMessage="Mobile No" />
-        ),
+        title: "Mobile No",
         dataIndex: "mobileNo",
       },
       {
-        //title: "Phone No",
-        title: <FormattedMessage id="app.phoneNo" defaultMessage="Phone No" />,
+        title: "Phone No",
         dataIndex: "phoneNo",
       },
 
-      // {
-      //   title: "Address",
-      //   dataIndex: "contactAddress",
-      //   width: "35%",
-      //   render: (name, item, i) => {
-      //     //debugger
-      //     return item.address.map((item) => {
-      //       return (
-      //         <span>
-      //           {item.country}-{item.state}
-      //         </span>
-      //       );
-      //     });
-      //   },
-      // },
+    
 
       {
         title: "",
@@ -346,118 +326,64 @@ class AddressField extends Component {
             <Form className="form-background">
               <Field
                 name={`address`}
-                //label="Work place"
-                label={
-                  <FormattedMessage
-                    id="app.workplace"
-                    defaultMessage="Work place"
-                  />
-                }
+                label="Work place"
                 component={FormikPlacesAutoComplete}
                 options={{}}
               />
               <Field
-                //label="Address1"
-                label={
-                  <FormattedMessage
-                    id="app.Address1"
-                    defaultMessage="address.address1"
-                  />
-                }
+                label="Address1"
                 name="address.address1"
                 component={InputComponent}
                 // defaultValue='low'
               />
               <Field
-                //label="address2"
-                label={
-                  <FormattedMessage
-                    id="app.Address2"
-                    defaultMessage="address.address2"
-                  />
-                }
+                label="address2"
                 name="address.address2"
                 component={InputComponent}
                 // defaultValue='low'
               />
               <Field
-                //label="street"
-                label={
-                  <FormattedMessage
-                    id="app.address.street"
-                    defaultMessage="street"
-                  />
-                }
+                label="street"
                 name="address.street"
                 component={InputComponent}
                 // defaultValue='low'
               />
               <Field
-                //label="town"
-                label={
-                  <FormattedMessage
-                    id="app.address.town"
-                    defaultMessage="town"
-                  />
-                }
+                label="town"
                 name="address.town"
                 component={InputComponent}
                 // defaultValue='low'
               />
               <Field
-                //  label="city"
-                label={
-                  <FormattedMessage
-                    id="app.address.city"
-                    defaultMessage="city"
-                  />
-                }
+                 label="city"
                 name="address.city"
                 component={InputComponent}
                 // defaultValue='low'
               />
               <Field
-                //label="state"
-                label={
-                  <FormattedMessage
-                    id="app.address.state"
-                    defaultMessage="state"
-                  />
-                }
+                label="state"
                 name="address.state"
                 component={InputComponent}
                 // defaultValue='low'
               />
               <Field
-                //label="country"
-                label={
-                  <FormattedMessage
-                    id="app.address.country"
-                    defaultMessage="country"
-                  />
-                }
+                label="country"
                 name="address.country"
                 component={InputComponent}
                 // defaultValue='low'
               />
               <Field
-                //label="postalCode"
-                label={
-                  <FormattedMessage
-                    id="app.address.postalCode"
-                    defaultMessage="postalCode"
-                  />
-                }
+                label="postalCode"
                 name="address.postalCode"
                 component={InputComponent}
                 // defaultValue='low'
               />
 
               <Button type="primary" htmlType="submit">
-                <FormattedMessage id="app.save" defaultMessage="Save" />
+               Save
               </Button>
               <Button type="default" onClick={handleAddAddressVisible}>
-                <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                Cancel
               </Button>
             </Form>
           )}

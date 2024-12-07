@@ -222,10 +222,7 @@ console.log(this.props.singleEmployee)
                   <AccountBalanceIcon className=" !text-icon"/>
                   <span class="  !text-tab font-poppins ml-1" >
                   {this.state.translatedMenuItems[3]}
-                    {/* <FormattedMessage
-                      id="app.employment"
-                      defaultMessage="Employment"
-                    /> */}
+                
                   </span>
                   {activeKey === "4" &&  user.userCreateInd === true &&(
                     <>
@@ -258,10 +255,6 @@ console.log(this.props.singleEmployee)
                  />
                   <span class="  !text-tab font-poppins ml-1">
                   {this.state.translatedMenuItems[4]}
-                    {/* <FormattedMessage
-                      id="app.emergency"
-                      defaultMessage="Emergency"
-                    /> */}
                   </span>
                   {activeKey === "5" && user.userCreateInd === true && (
                     <>
@@ -348,7 +341,7 @@ console.log(this.props.singleEmployee)
                 <>
                 <NoteAltIcon  className=" !text-icon"/>
                   <span class="ml-1  !text-tab">  
-                  {this.state.translatedMenuItems[7]}  {/* <FormattedMessage id="app.notes" defaultMessage="Notes" /> */}
+                  {this.state.translatedMenuItems[7]} 
                   </span>
                   {activeKey === "8" && (
                     <>
@@ -401,10 +394,8 @@ console.log(this.props.singleEmployee)
                 <FileCopyIcon   className=" !text-icon" />
                   <span class=" font-poppins ml-1  !text-tab">
                     
-                  {this.state.translatedMenuItems[9]}    {/* <FormattedMessage
-                      id="app.documents"
-                      defaultMessage="Documents"
-                    /> */}
+                  {this.state.translatedMenuItems[9]}   
+                 
                   </span>
                   <Badge
                 count={this.props.documentsByCount.document}
@@ -448,10 +439,7 @@ console.log(this.props.singleEmployee)
                   <span class=" font-poppins ml-1  !text-tab">
                     
                    
-                  {this.state.translatedMenuItems[10]} {/* <FormattedMessage
-                      id="app.contract"
-                      defaultMessage="Contract"
-                    /> */}
+                  {this.state.translatedMenuItems[10]} 
                   </span>
                   {activeKey === "11" && user.userCreateInd === true && (
                     <>
@@ -482,10 +470,7 @@ console.log(this.props.singleEmployee)
                   <span class=" font-poppins ml-1  !text-tab">
                     
                   {this.state.translatedMenuItems[11]}
-                    {/* <FormattedMessage
-                      id="app.talent"
-                      defaultMessage="Talent"
-                    /> */}
+                 
                   </span>
                   {activeKey === "12" && (
                     <>
@@ -506,20 +491,11 @@ console.log(this.props.singleEmployee)
                 <>
                  <i class="far fa-lightbulb" aria-hidden="true"></i>
                   <span class=" font-poppins ml-1  !text-tab" >
-                  {/* <FormattedMessage
-                id="app.opportunity"
-                defaultMessage="Opportunity"
-              /> */}{this.state.translatedMenuItems[12]}
+               {this.state.translatedMenuItems[12]}
                   </span>
                   {activeKey === "13" && (
                     <>
-                      {/* <ActionIcon
-                       
-                        tooltipTitle={this.state.translatedMenuItems[18]}
-                        handleIconClick={() => handleTalentModal(true)}
-                        size="14px"
-                        style={{ marginLeft:"0.25em", verticalAlign: "center" }}
-                      /> */}
+                     
                     </>
                   )}
                 </>
@@ -534,20 +510,11 @@ console.log(this.props.singleEmployee)
                 <>
                  <ApartmentIcon className="!text-icon "/>
                   <span class=" font-poppins ml-1  !text-tab">
-                  {/* <FormattedMessage
-                id="app.customer"
-                defaultMessage="Customer"
-              /> */}{this.state.translatedMenuItems[13]}
+               {this.state.translatedMenuItems[13]}
                   </span>
                   {activeKey === "14" && (
                     <>
-                      {/* <ActionIcon
-                       
-                        tooltipTitle={this.state.translatedMenuItems[18]}
-                        handleIconClick={() => handleTalentModal(true)}
-                        size="14px"
-                        style={{ marginLeft:"0.25em", verticalAlign: "center" }}
-                      /> */}
+                     
                     </>
                   )}
                 </>
@@ -565,10 +532,7 @@ console.log(this.props.singleEmployee)
                 <>
                 <ContactsIcon className=" !text-icon"/>
                   <span class=" font-poppins ml-1  !text-tab">
-                  {this.state.translatedMenuItems[14]} {/* <FormattedMessage
-                  id="app.requirement"
-                  defaultMessage="Requirement"
-                /> */}
+                  {this.state.translatedMenuItems[14]} 
                   </span>
                   {activeKey === "15" && (
                     <>
@@ -587,20 +551,11 @@ console.log(this.props.singleEmployee)
                 <>
                  <i class="far fa-handshake" aria-hidden="true"></i>
                   <span class=" font-poppins ml-1  !text-tab">
-                  {this.state.translatedMenuItems[15]}    {/* <FormattedMessage
-                id="app.vendor"
-                defaultMessage="Vendor"
-              /> */}
+                  {this.state.translatedMenuItems[15]}   
                   </span>
                   {activeKey === "16" && (
                     <>
-                      {/* <ActionIcon
-                       
-                        tooltipTitle={this.state.translatedMenuItems[18]}
-                        handleIconClick={() => handleTalentModal(true)}
-                        size="14px"
-                        style={{ marginLeft:"0.25em", verticalAlign: "center" }}
-                      /> */}
+                    
                     </>
                   )}
                 </>

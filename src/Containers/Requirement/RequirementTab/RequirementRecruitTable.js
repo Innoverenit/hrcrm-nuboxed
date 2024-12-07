@@ -634,39 +634,7 @@ class RecruitmentTable extends Component {
 
       },
 
-      // {
-      //   //title: "Candidate",
-      //   title: <FormattedMessage
-      //     id="app.callType"
-      //     defaultMessage="Candidate"
-      //   />,
-      //   dataIndex: "callType",
-      //   width: "24%",
-      //   render: (name, item, i) => {
-      //     return (
-      //       <span>
-      //         <RecruitmentContact
-      //           candidateData={item.candidateList}
-      //           stageInd={item.stageInd}
-      //           name={item.candidateName}
-      //           approveInd={item.approveInd}
-      //           rejectInd={item.rejectInd}
-      //           // contact={(value) => {
-      //           //   //debugger;
-      //           //   this.props.LinkCandidateRecruit({
-      //           //     opportunityId: item.opportunityId,
-      //           //     stageId: item.stageId,
-      //           //     recruitmentProcessId: item.recruitmentProcessId,
-      //           //     contactId: value,
-      //           //     recruitmentId: item.recruitmentId,
-      //           //     profileId: item.profileId,
-      //           //   });
-      //           // }}
-      //         />
-      //       </span>
-      //     );
-      //   },
-      // },
+     
 
       {
         title: "",
@@ -710,34 +678,7 @@ class RecruitmentTable extends Component {
           );
         },
       },
-      // {
-      //   title: "",
-      //   width: "2%",
-      //   render: (name, item, i) => {
-      //     return (
-      //       <Tooltip
-      //         //title={"Copy"}
-      //         title={<FormattedMessage
-      //           id="app.copy"
-      //           defaultMessage="Copy"
-      //         />}
-      //       >
-      //         <Icon
-      //           type="copy"
-      //           style={{ cursor: "pointer" }}
-      //           onClick={() =>
-      //             this.handleCopy(
-      //               item.recruitmentId,
-      //               item.recruitmentProcessId,
-      //               item.stageList[1].stageId,
-      //               this.props.opportunityId
-      //             )
-      //           }
-      //         />
-      //       </Tooltip>
-      //     );
-      //   },
-      // },
+     
       {
         title: "",
         dataIndex: "callType",

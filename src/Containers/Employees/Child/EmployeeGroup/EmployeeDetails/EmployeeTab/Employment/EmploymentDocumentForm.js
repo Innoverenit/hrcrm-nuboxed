@@ -234,13 +234,6 @@ fetchMenuTranslations = async () => {
                       type="text"
                       isColumn
                       width={"100%"}
-                      // label="Organization Name"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.companyName"
-                      //     defaultMessage="Organization Name"
-                      //   />
-                      // }
                       component={InputComponent}
                       inlineLabel
                       />
@@ -250,13 +243,6 @@ fetchMenuTranslations = async () => {
                   <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[2]}</div>
                     <FastField
                       name="designationTypeId"
-                      //label="Designation"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.designation"
-                      //     defaultMessage="Designation"
-                      //   />
-                      // }
                       selectType="designationType"
                       isColumn
                       isColumnWithoutNoCreate
@@ -272,13 +258,6 @@ fetchMenuTranslations = async () => {
                     <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[3]}</div>
                       <Field
                         name="startDate"
-                        //label="Start Date"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.startDate"
-                        //     defaultMessage="Start Date"
-                        //   />
-                        // }
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -291,13 +270,6 @@ fetchMenuTranslations = async () => {
                     <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[4]}</div>
                       <Field
                         name="endDate"
-                        // label="End Date "
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.endDate"
-                        //     defaultMessage="End Date"
-                        //   />
-                        // }
                         isRequired
                         isColumn
                         width={"100%"}
@@ -331,13 +303,6 @@ fetchMenuTranslations = async () => {
                         type="text"
                         isColumn
                         width="47%"
-                        //label="Salary"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.salary"
-                        //     defaultMessage="Salary"
-                        //   />
-                        // }
                         component={InputComponent}
                         inlineLabel
                          style={{
@@ -353,13 +318,6 @@ fetchMenuTranslations = async () => {
                         name="currency"
                         isColumnWithoutNoCreate
                         placeholder={this.state.translatedMenuItems[6]}
-                        // label="Curr"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.currency"
-                        //     defaultMessage="Currency"
-                        //   />
-                        // }
                         width="100%"
                         isColumn
                         selectType="currencyName"
@@ -377,13 +335,6 @@ fetchMenuTranslations = async () => {
                         type="text"
                         isColumn
                         width="47%"
-                        //label="Salary Type"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.salaryType"
-                        //     defaultMessage="Salary Type"
-                        //   />
-                        // }
                         component={SelectComponent}
                         options={["Daily", "Monthly", "Annual"]}
                         inlineLabel
@@ -396,13 +347,6 @@ fetchMenuTranslations = async () => {
                   <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[8]}</div>
                     <Field
                       name="description"
-                      //label="Describe your role"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.description"
-                      //     defaultMessage="Describe your role"
-                      //   />
-                      // }
                       isRequired
                       isColumn
                       width={"100%"}
@@ -424,13 +368,6 @@ fetchMenuTranslations = async () => {
                <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[10]}</div>
                   <Field
                     name="documentTitle"
-                    // label="Name of Document"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.documentTitle"
-                    //     defaultMessage="Name of Document"
-                    //   />
-                    // }
                     width={"100%"}
                     isColumn
                     component={InputComponent}
@@ -441,13 +378,6 @@ fetchMenuTranslations = async () => {
                   <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[11]}</div>
                   <Field
                     name="documentDescription"
-                    //label="Description of Document"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.documentDescription"
-                    //     defaultMessage="Description of Document"
-                    //   />
-                    // }
                     isRequired
                     isColumn
                     width={"100%"}
@@ -463,7 +393,7 @@ fetchMenuTranslations = async () => {
                   type="primary"
                   Loading={addingEmploymentDetails}
                 >
-                   {this.state.translatedMenuItems[12]}{/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
+                   {this.state.translatedMenuItems[12]}
                 </Button>
               </div>
             </Form>

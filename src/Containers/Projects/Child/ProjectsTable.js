@@ -3,7 +3,6 @@ import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import { FormattedMessage } from 'react-intl';
 import {
   MultiAvatar2,
 } from "../../../Components/UI/Elements";
@@ -154,18 +153,9 @@ function ProjectsTable(props) {
         <div className=' flex justify-end sticky top-28 z-auto'>
             <OnlyWrapCard style={{ backgroundColor: "white" }}>
                 <div className=" flex text-xs font-bold font-poppins w-[90%] p-2 bg-transparent sticky top-0 z-10">
-                    <div className="w-[21.1rem] md:w-[21.1rem]"><FormattedMessage
-                        id="app.project"
-                        defaultMessage="project"
-                    /></div>
-                    <div className="w-[27.1rem] md:w-[27.1rem]"><FormattedMessage
-                        id="app.customer"
-                        defaultMessage="customer"
-                    /></div>
-                    <div className="w-[9.8rem] md:w-[9.8rem] "><FormattedMessage
-                        id="app.creator"
-                        defaultMessage="Creator"
-                    /></div>
+                    <div className="w-[21.1rem] md:w-[21.1rem]">project</div>
+                    <div className="w-[27.1rem] md:w-[27.1rem]">customer</div>
+                    <div className="w-[9.8rem] md:w-[9.8rem] ">Creator</div>
                     <div className="w-[5.8rem] md:w-[5.8rem]"></div>
                     
                 </div>

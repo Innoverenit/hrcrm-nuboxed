@@ -269,12 +269,9 @@ const AddAccountForm = ({
                     isRequired
                     name="name"
                     type="text"
-                    // label={<FormattedMessage
-                    //   id="app.name"
-                    //   defaultMessage="name"
-                    // />}
+                  
                     width={"100%"}
-                    // isColumnWithoutNoCreate
+                    
                     setClearbitData={setClearbitData}
                     component={ClearbitImage}
                     accounts={accounts}
@@ -283,46 +280,7 @@ const AddAccountForm = ({
                     style={{ borderRight: "3px red solid" }}
                   />
                 </div>
-                {/* <div class=" flex justify-between mt-4">
-                  <div class=" w-2/6">
-                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[1]}</div>
-                  
-                    <FastField
-                      name="dialCode"
-                      isColumnWithoutNoCreate
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.dialCode"
-                      //     defaultMessage="Dial Code"
-                      //   />
-                      // }
-                      isColumn
-                      value={countryDialCode1}
-                      selectType="dialCode"
-                      component={SearchSelect}
-                      inlineLabel
-                    />
-                  </div>
-
-                  <div class=" w-[60%]">
-                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[2]}</div>
-                
-                    <FastField
-                      name="phoneNo"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.phone"
-                      //     defaultMessage="phone"
-                      //   />
-                      // }
-                      placeholder="Mobile #"
-                      component={InputComponent}
-                      inlineLabel
-                      width={"100%"}
-                      isColumn
-                    />
-                  </div>
-                </div> */}
+             
                  <div className="font-bold text-xs">{translatedMenuItems[2]}</div>
 <div class=" flex justify-between shadow-[0_0.15em_0.3em_#aaa] border border-[#bfbebb] h-8">
                      <div class=" w-3/12 max-sm:w-[35%]">     
@@ -359,12 +317,7 @@ const AddAccountForm = ({
                   // isRequired
                   name="url"
                   type="text"
-                  // label={
-                  //   <FormattedMessage
-                  //     id="app.website"
-                  //     defaultMessage="website"
-                  //   />
-                  // }
+               
                   width={"100%"}
                   component={InputComponent}
                   isColumn
@@ -430,12 +383,7 @@ const AddAccountForm = ({
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div>
                     <Field
                       name="clientId"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.type"
-                      //     defaultMessage="Type"
-                      //   />
-                      // }
+                     
                       isColumn
                       placeholder="Type"
                       component={SelectComponent}
@@ -453,12 +401,6 @@ const AddAccountForm = ({
                   <div class="w-w47.5">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[8]}</div>
                     <FastField
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.creditlimit"
-                      //     defaultMessage="creditlimit"
-                      //   />
-                      // }
                       name="currencyPrice"
                       placeholder="Price"
                       component={InputComponent}
@@ -471,12 +413,6 @@ const AddAccountForm = ({
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[9]}</div>
                     <Field
                       name="currency"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.currency"
-                      //     defaultMessage="Currency"
-                      //   />
-                      // }
                       isColumn
                       placeholder="Currency"
                       component={SelectComponent}
@@ -495,12 +431,6 @@ const AddAccountForm = ({
                   <div class="w-w47.5">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
                     <FastField
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.Paymenttermdays"
-                      //     defaultMessage="Paymenttermdays"
-                      //   />
-                      // }
                       name="payment"
                       placeholder="Select"
                       component={SelectComponent}
@@ -515,12 +445,6 @@ const AddAccountForm = ({
                     <Field
                       name="insuranceGrade"
                       type="text"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.insurancegrade"
-                      //     defaultMessage="insurancegrade"
-                      //   />
-                      // }
                       width={"100%"}
                       component={InputComponent}
                       isColumn
@@ -531,12 +455,6 @@ const AddAccountForm = ({
                   {values.payment === "Custom" && <div class="w-w47.5">
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[12]}</div>
                     <FastField
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.Custom Payment"
-                      //     defaultMessage="Custom Payment"
-                      //   />
-                      // }
                       name="customPayment"
                       component={InputComponent}
                       inlineLabel

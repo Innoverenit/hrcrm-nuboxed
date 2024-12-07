@@ -11,7 +11,6 @@ import "jspdf-autotable";
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { MultiAvatar } from "../../../../Components/UI/Elements";
-import { FormattedMessage } from 'react-intl';
 const ButtonGroup = Button.Group;
 
 function ProjectsTaskTable (props)  {
@@ -191,7 +190,6 @@ function ProjectsTaskTable (props)  {
         },
         {
           title: "Assigned",
-          //title: <FormattedMessage id="app.assignedon" defaultMessage="Assigned on" />,
           dataIndex: "assignedToName",
           width:"8%",
           render: (text, item) => {
@@ -210,7 +208,6 @@ function ProjectsTaskTable (props)  {
         },
         {
           title: "Team",
-          //title: <FormattedMessage id="app.talent" defaultMessage="Talent" />,
           dataIndex: "candidateName",
           width:"10%",
           render: (text, item) => {
@@ -245,7 +242,6 @@ function ProjectsTaskTable (props)  {
 
         {
           title: "Start",
-          //title: <FormattedMessage id="app.start" defaultMessage="Start" />,
           dataIndex: "startDate",
           width:"8%",
          render: (text, item) => {
@@ -258,7 +254,6 @@ function ProjectsTaskTable (props)  {
         },
         {
           title: "End",
-          //title: <FormattedMessage id="app.end" defaultMessage="End" />,
           dataIndex: "endDate",
           width:"8%",
           render: (text, item) => {
@@ -323,8 +318,7 @@ function ProjectsTaskTable (props)  {
                         // onClick={() => approveTaskByTaskId(item.taskId)}
                         style={{ backgroundColor: "teal", color: "white" }}
                       >
-                        {/* Approve */}
-                        <FormattedMessage id="app.approve" defaultMessage="Approve" />
+                        Approve
                       </Button>
                       <Button
                         style={{
@@ -333,8 +327,7 @@ function ProjectsTaskTable (props)  {
                         }}
                         // onClick={() => rejectTaskByTaskId(item.taskId)}
                       >
-                        {/* Reject */}
-                        <FormattedMessage id="app.reject" defaultMessage="Reject" />
+                        Reject
                       </Button>
                     </div>
                   </>
