@@ -129,7 +129,6 @@ function NavMenu(props) {
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
 
-
    const [selectedMenuItem, setSelectedMenuItem] = useState("/dashboard");
   // const [selectedMenuItem, setSelectedMenuItem] = useState(user.dashboardRegionalInd ? "/dashboardRegional" : "/dashboard");
 
@@ -143,6 +142,9 @@ function NavMenu(props) {
   const handleSelect = (menuItemKey) => {
     setSelectedMenuItem(menuItemKey);
     localStorage.setItem('selectedMenuItem', menuItemKey);
+    if (window.innerWidth <= 768) { // Assuming 768px is the breakpoint for mobile screens
+      props.toggle(true);
+    }
     // Additional logic for handling selection
   };
 
@@ -157,16 +159,19 @@ function NavMenu(props) {
   }
   return (
     <div >
-
+ <aside
+        className={` text-white w-[10vw] h-[-webkit-fill-available] overflow-x-auto max-sm:w-[34vw] fixed md:relative z-[100] md:translate-x-0 transform ${
+          props.collapsed ? "translate-x-0" : "-translate-x-full"
+        } transition-transform duration-30 ease-in-out`}
+      >
       <Menu
       //  defaultSelectedKeys={[selectedMenuItem]}
         defaultSelectedKeys={["/" + path]}
         defaultOpenKeys={[]}
         mode="inline"
-        // theme={props.theme}
         theme="dark"
         style={{ background: "#38445E", fontFamily: "Poppins", }}
-        inlineCollapsed={props.collapsed}
+         inlineCollapsed={props.collapsed}
         selectedKeys={[selectedMenuItem]}
       >
         {/* dashboard */}
@@ -174,10 +179,12 @@ function NavMenu(props) {
  
           {/* {(user.userType !== "USER" && user.department !== "Vendor" && user.department !== "Customer" && user.dashboardAccessInd === true || user.role === "ADMIN") && ( */}
 
-<Menu.Item key="/dashboard" style={{ height: "1.45rem", paddingLeft:"1px",
+<Menu.Item key="/dashboard" style={{ height: "1.45rem", display:"flex", display:"flex", paddingLeft:"1px",
 
-color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
-  <Link to="/dashboard" onClick={() => handleSelect('/dashboard')}>
+color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '
+
+>
+  <Link to="/dashboard" onClick={() => handleSelect('/dashboard')} >
     <DashboardIcon
 
     className='!text-base  text-[#e4eb2f] '
@@ -195,7 +202,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
 
      
         {(user.imInd === true && user.basicAccessInd === true || user.role === "ADMIN" && user.imInd === true) && (
-          <Menu.Item key="/planner" style={{ height: "1.45rem", 
+          <Menu.Item key="/planner" style={{ height: "1.45rem", display:"flex", 
           color: selectedMenuItem === '/planner' ? 'tomato' : '#28a355', paddingLeft:"1px"} } className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '> 
             <Link to="/planner" onClick={() => handleSelect('/planner')}>  
               <CalendarMonthIcon
@@ -211,7 +218,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
         )}
              
         {(user.basicAccessInd === true || user.role === "ADMIN") && (
-          <Menu.Item key="/call" style={{ height: "1.45rem",
+          <Menu.Item key="/call" style={{ height: "1.45rem", display:"flex",
            color: selectedMenuItem === '/call' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/call" onClick={() => handleSelect('/call')}>
               <VolumeUpIcon        
@@ -229,7 +236,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
           </Menu.Item>
         )}
         {(user.basicAccessInd === true || user.role === "ADMIN") && (
-          <Menu.Item key="task" style={{ height: "1.45rem",
+          <Menu.Item key="task" style={{ height: "1.45rem", display:"flex",
            color: selectedMenuItem === '/Task' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/Task" onClick={() => handleSelect('/Task')}>    
               <FactCheckIcon
@@ -248,7 +255,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
           </Menu.Item>
         )}
         {(user.basicAccessInd === true && user.eventAccessInd === true || user.role === "ADMIN") &&  (
-          <Menu.Item key="/event" style={{ height: "1.45rem",
+          <Menu.Item key="/event" style={{ height: "1.45rem", display:"flex",
            color: selectedMenuItem === '/event' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/event" onClick={() => handleSelect('/event')}>
               <EventAvailableIcon
@@ -268,7 +275,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
         )}
 
         {(user.basicAccessInd === true || user.role === "ADMIN") && (
-          <Menu.Item key="/reports" style={{ height: "1.45rem", 
+          <Menu.Item key="/reports" style={{ height: "1.45rem", display:"flex", 
           color: selectedMenuItem === '/reports' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/reports"onClick={() => handleSelect('/reports')}>
               <PictureAsPdfIcon
@@ -283,7 +290,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
         )}
 
 {(user.basicAccessInd === true || user.role === "ADMIN") && (
-          <Menu.Item key="/Analytics" style={{ height: "1.45rem", 
+          <Menu.Item key="/Analytics" style={{ height: "1.45rem", display:"flex", 
           color: selectedMenuItem === '/Analytics' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/Analytics"onClick={() => handleSelect('/Analytics')}>
               <DonutSmallIcon
@@ -304,7 +311,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
         {(user.leadsAccessInd === true && user.crmInd === true 
         // || user.role === "ADMIN" && user.crmInd === true
       ) && (
-          <Menu.Item key="/leads" style={{ height: "1.45rem",
+          <Menu.Item key="/leads" style={{ height: "1.45rem", display:"flex",
            color: selectedMenuItem === '/leads' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/leads" onClick={() => handleSelect('/leads')}>
               <GroupsIcon
@@ -327,7 +334,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
         {(user.opportunityAccessInd === true && user.crmInd === true 
         // || user.role === "ADMIN" && user.crmInd === true
       ) && (
-          <Menu.Item key="/opportunity" style={{ height: "1.45rem",
+          <Menu.Item key="/opportunity" style={{ height: "1.45rem", display:"flex",
             color: selectedMenuItem === '/opportunity' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/opportunity" onClick={() => handleSelect('/opportunity')}>
             <LightbulbIcon
@@ -352,7 +359,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
         {(user.contactAccessInd === true && user.crmInd === true
         //  || user.role === "ADMIN" && user.crmInd === true
         ) && (
-          <Menu.Item key="/contact" style={{ height: "1.45rem",
+          <Menu.Item key="/contact" style={{ height: "1.45rem", display:"flex",
            color: selectedMenuItem === '/contact' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/contact" onClick={() => handleSelect('/contact')}>
 
@@ -377,7 +384,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
         {(user.customerAccessInd === true && user.crmInd === true 
         // || user.role === "ADMIN" && user.crmInd === true
       ) && (
-          <Menu.Item key="/customer" style={{ height: "1.45rem",
+          <Menu.Item key="/customer" style={{ height: "1.45rem", display:"flex",
             color: selectedMenuItem === '/customer' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/customer" onClick={() => handleSelect('/customer')}>
 
@@ -402,7 +409,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
         {(user.imInd === true && user.pitchAccessInd === true
         //  || user.role === "ADMIN" && user.imInd === true 
         ) && (
-          <Menu.Item key="/pitch " style={{ height: "1.45rem",
+          <Menu.Item key="/pitch " style={{ height: "1.45rem", display:"flex",
             color: selectedMenuItem === '/pitch' ? 'tomato' : '#28a355',paddingLeft:"1px" }}className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/pitch" onClick={() => handleSelect('/pitch')}>
               <FilePresentIcon
@@ -425,7 +432,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
         {(user.imInd === true && user.dealAccessInd === true 
         // || user.role === "ADMIN" && user.imInd === true
       ) && (
-          <Menu.Item key="/deal " style={{ height: "1.45rem", 
+          <Menu.Item key="/deal " style={{ height: "1.45rem", display:"flex", 
             color: selectedMenuItem === '/deal' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/deal" onClick={() => handleSelect('/deal')}>
               <CurrencyExchangeIcon
@@ -445,7 +452,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
         {(user.imInd === true && user.investorContactAccessInd === true 
         // || user.role === "ADMIN" && user.imInd === true
       ) && (
-          <Menu.Item key="/contactInvest" style={{ height: "1.45rem",
+          <Menu.Item key="/contactInvest" style={{ height: "1.45rem", display:"flex",
             color: selectedMenuItem === '/contactInvest' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/contactInvest"  onClick={() => handleSelect('/contactInvest')}>
               <ContactEmergencyIcon
@@ -465,7 +472,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
         {(user.imInd === true && user.investorAccessInd === true 
         // || user.role === "ADMIN" && user.imInd === true
       ) && (
-          <Menu.Item key="/investor" style={{ height: "1.45rem", 
+          <Menu.Item key="/investor" style={{ height: "1.45rem", display:"flex", 
           color: selectedMenuItem === '/investor' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/investor" onClick={() => handleSelect('/investor')}>
 
@@ -484,7 +491,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
         )}
           {(user.imInd === true && user.clubAccessInd === true 
   ) &&  (
-         <Menu.Item key="/club" style={{ height: "1.45rem", 
+         <Menu.Item key="/club" style={{ height: "1.45rem", display:"flex", 
           color: selectedMenuItem === '/club' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/club" onClick={() => handleSelect('/club')}>
 
@@ -503,7 +510,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
           {/* {(user.imInd === true && user.dataRoomAccessInd === true */}
             {/* //  || user.role === "ADMIN" && user.imInd === true  */}
             {/* ) && ( */}
-                      {/* <Menu.Item key="/dataroom " style={{ height: "1.45rem",
+                      {/* <Menu.Item key="/dataroom " style={{ height: "1.45rem", display:"flex",
                         color: selectedMenuItem === '/dataroom' ? 'tomato' : '#28a355',paddingLeft:"1px" }}>
                         <Link to="/dataroom" onClick={() => handleSelect('/dataroom')}>
                           <MarkUnreadChatAltIcon
@@ -525,7 +532,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
         // || user.role === "ADMIN" && user.orderManagementInd === true
       ) &&  (
 
-          <Menu.Item key="/order" style={{ height: "1.45rem", 
+          <Menu.Item key="/order" style={{ height: "1.45rem", display:"flex", 
           color: selectedMenuItem === '/order' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/order"  onClick={() => handleSelect('/order')}>
               <DynamicFeedIcon
@@ -544,7 +551,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
         // || user.role === "ADMIN" && user.orderManagementInd === true
       ) &&  (
 
-          <Menu.Item key="/account" style={{ height: "1.45rem", 
+          <Menu.Item key="/account" style={{ height: "1.45rem", display:"flex", 
            color: selectedMenuItem === '/account' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/account"  onClick={() => handleSelect('/account')}>
               <AcUnitIcon
@@ -561,7 +568,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
         {(user.catalogAccessInd === true && user.erpInd === true 
         // || user.role === "ADMIN" && user.productionInd === true
       ) &&  (
-        <Menu.Item key="/product" style={{ height: "1.45rem", 
+        <Menu.Item key="/product" style={{ height: "1.45rem", display:"flex", 
         color: selectedMenuItem === '/product' ? 'tomato' : '#28a355' ,paddingLeft:"1px"}} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
           <Link to="/product" onClick={() => handleSelect('/product')}>
             <ViewInArIcon
@@ -579,7 +586,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
           {(user.promotionAccessInd === true && user.moduleMapper.ecomModInd === true 
         // || user.role === "ADMIN" && user.productionInd === true
       ) &&  (
-        <Menu.Item key="/promotion" style={{ height: "1.45rem", 
+        <Menu.Item key="/promotion" style={{ height: "1.45rem", display:"flex", 
         color: selectedMenuItem === '/promotion' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
           <Link to="/promotion" onClick={() => handleSelect('/promotion')}>
             <PointOfSaleIcon 
@@ -597,7 +604,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
          {(user.subscriptionAccessInd === true && user.erpInd === true 
         //  || user.role === "ADMIN" && user.subscriptionAccessInd === true
         ) &&  (
-        <Menu.Item key="/subscriptionmainapps" style={{ height: "1.45rem", 
+        <Menu.Item key="/subscriptionmainapps" style={{ height: "1.45rem", display:"flex", 
         color: selectedMenuItem === '/subscriptionmainapps' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
           <Link to="/subscriptionmainapps" onClick={() => handleSelect('/subscriptionmainapps')}>
             <SubscriptionsIcon
@@ -616,7 +623,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
         // || user.role === "ADMIN" && user.repairInd === true
       ) &&  (
 
-          <Menu.Item key="/refurbish" style={{ height: "1.45rem",
+          <Menu.Item key="/refurbish" style={{ height: "1.45rem", display:"flex",
             color: selectedMenuItem === '/refurbish' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/refurbish" onClick={() => handleSelect('/refurbish')}>
               <OnDeviceTrainingIcon
@@ -633,7 +640,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
          {(user.productionAccessInd === true && user.productionInd === true 
         //  || user.role === "ADMIN" && user.productionInd === true
         ) &&  (
-        <Menu.Item key="/production" style={{ height: "1.45rem", 
+        <Menu.Item key="/production" style={{ height: "1.45rem", display:"flex", 
         color: selectedMenuItem === '/production' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
           <Link to="/production" onClick={() => handleSelect('/production')}>
             <PrecisionManufacturingIcon
@@ -649,7 +656,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
         )} 
  {( user.erpInd === true && user.qualityAccessInd === true 
   ) &&  (
-<Menu.Item key="/quality" style={{ height: "1.45rem", 
+<Menu.Item key="/quality" style={{ height: "1.45rem", display:"flex", 
         color: selectedMenuItem === '/quality' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
           <Link to="/quality" onClick={() => handleSelect('/quality')}>
             <VerifiedUserIcon
@@ -667,7 +674,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
   || user.productionInd === true &&  user.repairInd === true 
        
       ) &&  (
-<Menu.Item key="/sold" style={{ height: "1.45rem",
+<Menu.Item key="/sold" style={{ height: "1.45rem", display:"flex",
             color: selectedMenuItem === '/sold' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/sold" onClick={() => handleSelect('/sold')}>
 
@@ -689,7 +696,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
         // || user.role === "ADMIN" && user.inventoryInd === true
       ) &&  (
 
-          <Menu.Item key="/supplies" style={{ height: "1.45rem",
+          <Menu.Item key="/supplies" style={{ height: "1.45rem", display:"flex",
             color: selectedMenuItem === '/supplies' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/supplies" onClick={() => handleSelect('/supplies')} >
               <CategoryIcon
@@ -707,7 +714,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
         //  || user.role === "ADMIN" && user.inventoryInd === true
         ) && (
 
-<Menu.Item key="/suppliers" style={{ height: "1.45rem", 
+<Menu.Item key="/suppliers" style={{ height: "1.45rem", display:"flex", 
  color: selectedMenuItem === '/suppliers' ? 'tomato' : '#28a355',paddingLeft:"1px"}} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
   <Link to="/suppliers" onClick={() => handleSelect('/suppliers')}>
     <FactoryIcon
@@ -724,7 +731,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
   {( user.tradingInd === true 
        
       ) &&  (
-<Menu.Item key="/trade" style={{ height: "1.45rem", 
+<Menu.Item key="/trade" style={{ height: "1.45rem", display:"flex", 
  color: selectedMenuItem === '/trade' ? 'tomato' : '#28a355',paddingLeft:"1px"}} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
   <Link to="/trade" onClick={() => handleSelect('/trade')}>
     <ShopTwoIcon
@@ -741,7 +748,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='sc
   {(user.procurementAccessInd === true && user.erpInd === true 
     // || user.role === "ADMIN" && user.procurementInd === true
     ) && (
-<Menu.Item key="/procurement" style={{ height: "1.45rem", 
+<Menu.Item key="/procurement" style={{ height: "1.45rem", display:"flex", 
 color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/procurement" onClick={() => handleSelect('/procurement')}>
               <CrisisAlertIcon
@@ -760,7 +767,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
   (user.inventoryAccessInd === true && user.erpInd === true 
     // || user.role === "ADMIN" && user.inventoryInd === true
   ) && (
-    <Menu.Item key="/inventory" style={{ height: "1.45rem",  color: selectedMenuItem === '/inventory' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+    <Menu.Item key="/inventory" style={{ height: "1.45rem", display:"flex",  color: selectedMenuItem === '/inventory' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
       <Link to="/inventory" onClick={() => handleSelect('/inventory')}>
         <InventoryIcon
         className='!text-base  text-[#e4eb2f]'
@@ -780,7 +787,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
         // ||  user.role === "ADMIN" && user.logisticsInd === true
       ) &&  (
 
-          <Menu.Item key="/shipper" style={{ height: "1.45rem",
+          <Menu.Item key="/shipper" style={{ height: "1.45rem", display:"flex",
             color: selectedMenuItem === '/shipper' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/shipper" onClick={() => handleSelect('/shipper')}>
               <LocalShippingIcon
@@ -804,7 +811,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
   // || user.role === "ADMIN" && user.financeInd === true
 ) &&  (
 
-        <Menu.Item key="/collection" style={{ height: "1.45rem",
+        <Menu.Item key="/collection" style={{ height: "1.45rem", display:"flex",
          color: selectedMenuItem === '/collection' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
           <Link to="/collection" onClick={() => handleSelect('/collection')} >
             <ReceiptIcon   className='!text-base  text-[#e4eb2f]' style={{ fontSize: "large" }} />
@@ -823,7 +830,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
         {(user.leaveAccessInd === true   && user.moduleMapper.hrInd === true
         // || user.role === "ADMIN"
       ) && ( 
-        <Menu.Item key="/report" style={{ height: "1.45rem", 
+        <Menu.Item key="/report" style={{ height: "1.45rem", display:"flex", 
          color: selectedMenuItem === '/report' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
           <Link to="/leave" onClick={() => handleSelect('/report')}>
             <LuggageIcon className="!text-base  text-[#e4eb2f]"/>
@@ -843,7 +850,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
         // ||
         //  user.role === "ADMIN"
         ) &&( 
-        <Menu.Item key="/mileage" style={{ height: "1.45rem", 
+        <Menu.Item key="/mileage" style={{ height: "1.45rem", display:"flex", 
          color: selectedMenuItem === '/mileage' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
           <Link to="/mileage" onClick={() => handleSelect('/mileage')}>
             <DirectionsCarFilledIcon className="!text-base  text-[#e4eb2f]"/>
@@ -864,7 +871,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
      {(user.expenseAccessInd === true    && user.moduleMapper.hrInd === true
     //  || user.role === "ADMIN"
     ) && ( 
-        <Menu.Item key="/expense" style={{ height: "1.45rem",
+        <Menu.Item key="/expense" style={{ height: "1.45rem", display:"flex",
           color: selectedMenuItem === '/expense' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
           <Link to="/expense" onClick={() => handleSelect('/expense')}>
             <ReceiptIcon className='!text-base  text-[#e4eb2f]'/>
@@ -886,7 +893,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
 {(user.holidayAccessInd === true   
 // || user.role === "ADMIN"
 ) && ( 
-        <Menu.Item key="/holiday" style={{ height: "1.45rem", 
+        <Menu.Item key="/holiday" style={{ height: "1.45rem", display:"flex", 
         color: selectedMenuItem === '/holiday' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
           <Link to="/holiday" onClick={() => handleSelect('/holiday')}>
 
@@ -905,7 +912,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
 {(user.hrInd === true   
  && user.role === "ADMIN" && user.moduleMapper.recruitProInd === true
 ) && ( 
-        <Menu.Item key="/assessment" style={{ height: "1.45rem", 
+        <Menu.Item key="/assessment" style={{ height: "1.45rem", display:"flex", 
         color: selectedMenuItem === '/assessment' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
           <Link to="/assessment" onClick={() => handleSelect('/assessment')}>
 
@@ -924,7 +931,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
      )}  */}
       {((user.talentAccessInd === true && user.moduleMapper.recruitProInd === true) 
       ) && ( 
-            <Menu.Item key="/candidate" style={{ height: "1.45rem", 
+            <Menu.Item key="/candidate" style={{ height: "1.45rem", display:"flex", 
              color: selectedMenuItem === '/candidate' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
               <Link to="/candidate" onClick={() => handleSelect('/candidate')}>
           
@@ -950,7 +957,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
         <hr />
         {((user.requirementAccessInd === true && user.moduleMapper.recruitProInd === true )
     ) &&  ( 
-          <Menu.Item key="/requirement" style={{ height: "1.45rem",
+          <Menu.Item key="/requirement" style={{ height: "1.45rem", display:"flex",
             color: selectedMenuItem === '/requirement' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/requirement " onClick={() => handleSelect('/requirement')}>
 
@@ -971,7 +978,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
           {((user.requirementAccessInd === true && user.moduleMapper.recruitProInd === true)
           // || user.role === "ADMIN" && user.recruitProInd === true
         ) &&  (
-         <Menu.Item key="/project" style={{ height: "1.45rem",
+         <Menu.Item key="/project" style={{ height: "1.45rem", display:"flex",
            color: selectedMenuItem === '/project' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
               <Link to="/project" onClick={() => handleSelect('/project')}>
                 <LightbulbIcon
@@ -989,7 +996,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
         {/* )} */}
         {/*Demand*/}
         {(user.moduleMapper.recruitProInd === true &&  
-          <Menu.Item key="/demand" style={{ height: "1.45rem", 
+          <Menu.Item key="/demand" style={{ height: "1.45rem", display:"flex", 
            color: selectedMenuItem === '/demand' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/demand" onClick={() => handleSelect('/demand')}>
               <ContactsIcon
@@ -1027,7 +1034,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
         {/* {user.userType !== "USER" && user.department !== "Recruiter" &&user.department !== "Customer"&&
             user.department !== "VENDOR" && (  */}
         {((user.publishAccessInd === true  && user.moduleMapper.recruitProInd === true))  && (
-        <Menu.Item key="/publish" style={{ height: "1.45rem", 
+        <Menu.Item key="/publish" style={{ height: "1.45rem", display:"flex", 
           color: selectedMenuItem === '/publish' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/publish" onClick={() => handleSelect('/publish')}>
 
@@ -1096,7 +1103,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
         {(user.eLearningInd === true && user.assessmentAccessInd === true 
         // || user.role === "ADMIN" && user.eLearningInd === true
       ) &&  (
-            <Menu.Item key="/accessment" style={{ height: "1.45rem",
+            <Menu.Item key="/accessment" style={{ height: "1.45rem", display:"flex",
               color: selectedMenuItem === '/accessment' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
               <Link to="/Accessment" onClick={() => handleSelect('/accessment')}>
                 <ComputerIcon
@@ -1114,7 +1121,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
         {(user.eLearningInd === true && user.courseAccessInd === true 
         // || user.role === "ADMIN" && user.eLearningInd === true
       ) && (
-            <Menu.Item key="/course" style={{ height: "1.45rem",
+            <Menu.Item key="/course" style={{ height: "1.45rem", display:"flex",
              color: selectedMenuItem === '/course' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
               <Link to="/Course" onClick={() => handleSelect('/course')}>
                 <NewspaperIcon
@@ -1132,7 +1139,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
         {(user.eLearningInd === true && user.programAccessInd === true 
         // || user.role === "ADMIN" && user.eLearningInd === true
       ) && (
-            <Menu.Item key="/program" style={{ height: "1.45rem",
+            <Menu.Item key="/program" style={{ height: "1.45rem", display:"flex",
               color: selectedMenuItem === '/program' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
               <Link to="/Program" onClick={() => handleSelect('/program')}>
                 <LibraryBooksIcon
@@ -1175,7 +1182,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
          || user.role === "ADMIN" &&  user.hrInd === true
       ) ? (
 
-          <Menu.Item key="/employees" style={{ height: "1.45rem",
+          <Menu.Item key="/employees" style={{ height: "1.45rem", display:"flex",
             color: selectedMenuItem === '/employees' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/Employees" onClick={() => handleSelect('/employees')}>
               <GroupsIcon
@@ -1196,7 +1203,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
         ):null}
         {/* )} */}
 
-        {/* <Menu.Item key="/plant" style={{ height: "1.45rem", paddingLeft: "1rem" }}>
+        {/* <Menu.Item key="/plant" style={{ height: "1.45rem", display:"flex", paddingLeft: "1rem" }}>
           <Link to="/plant">
             <FactoryIcon
             className='!text-base  text-[#e4eb2f]'
@@ -1208,7 +1215,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
         </Menu.Item> */}
         {(user.locationAccessInd === true && user.hrInd === true || user.role === "ADMIN" &&  user.hrInd === true) &&  (
 
-          <Menu.Item key="/location" style={{ height: "1.45rem",
+          <Menu.Item key="/location" style={{ height: "1.45rem", display:"flex",
            color: selectedMenuItem === '/location' ? 'tomato' : '#28a355' ,paddingLeft:"1px"}} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/location" onClick={() => handleSelect('/location')}>
               <LocationOnIcon
@@ -1224,7 +1231,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1
         {/* Employees */}
 
       </Menu>
-
+      </aside>
     </div>
   );
 }
