@@ -28,7 +28,7 @@ class App extends Component {
     return (
       <div>
      
-        <NodataFoundPage>
+        {/* <NodataFoundPage> */}
           <Suspense fallback={<BundleLoader />}>
             <Switch>
               <Route exact path="/register/:type?" component={Register} />
@@ -58,7 +58,7 @@ class App extends Component {
               )}
             </Switch>
           </Suspense>
-        </NodataFoundPage>
+        {/* </NodataFoundPage> */}
      
       </div>
     );
