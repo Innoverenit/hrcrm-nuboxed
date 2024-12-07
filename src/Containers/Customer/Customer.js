@@ -2,7 +2,6 @@ import React, { Component, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import AddCustomerImportModal from "../Customer/Child/AddCustomerImportModal"
-import { BundleLoader } from "../../Components/Placeholder";
 import {
     handleCustomerModal,
     getCustomerListByUserId,
@@ -153,7 +152,7 @@ class Customer extends Component {
     } = this.props;
     return (
       <React.Fragment>
-        <Suspense fallback={<BundleLoader />}>
+            <Suspense fallback={"Loading ..."}>
         <CustomerHeader
         isTransferMode={this.state.isTransferMode}
         showCheckboxes={this.state.showCheckboxes}
@@ -274,38 +273,7 @@ class Customer extends Component {
             />}
           </>
         )}
-        {/* { this.props.viewType==="card"?
-        <CustomerCardView/>:
-         this.props.viewType === "list" ?
-          <CustomerWhiteTable /> :
-          this.props.viewType === "dashboard" ?
-             <CustomerBlueTable/> :
-             this.props.viewType === "table" ?(
-             <CustomerCardList
-             filter={this.state.filter}
-             currentUser={this.state.currentUser} 
-             viewType={this.props.viewType}
-             /> ):
-          this.props.viewType==="map"?
-          <CustomerMap/>:
-          this.props.viewType==="all" ?(
-          
-            <CustomerCardList
-             filter={this.state.filter}
-             currentUser={this.state.currentUser} 
-             viewType={this.props.viewType}
-             /> 
-          
-          )
-            :this.props.viewType==="teams" ? (
-            // <CustomerTeamCardList/>
-            <CustomerCardList
-            viewType={this.props.viewType}
-            filter={this.state.filter}
-            currentUser={this.state.currentUser} 
-            /> 
-          )
-            : null}  */}
+     
         </Suspense> 
         {/* <FloatButton.Group
       trigger="click"

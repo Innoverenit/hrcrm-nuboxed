@@ -23,7 +23,6 @@ import {
   handleCustomerDrawerModal,
   getCustomerDetailsById,
   getCustomerKeySkill,
-  handleUpdateUserModal,
   handleCustomerEmailDrawerModal,
   handleCustomerNotesDrawerModal,
   getCustomerById,
@@ -51,7 +50,6 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import CustomerContactDrawerModal from "./CustomerContactDrawerModal";
-import UpdateUserModal from "../CustomerTable/UpdateUserModal"
 import CustomerOpportunityDrawerModal from "./CustomerOpportunityDrawerModal";
 import CustomerSearchedData from "./CustomerSearchedData";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -264,9 +262,6 @@ const [rowdata, setrowdata] = useState("");
       setEditingValue("");
     
   };
-
-
-
   const {
     fetchingTeamCustomer,
     teamCustomer,
@@ -333,11 +328,8 @@ console.log(selectedAssign)
           <div class="font-semibold text-[#337df4] font-poppins  truncate cursor-pointer text-lm " >
         
  {item.fullName}
-
         </div> 
-        </div>
-          
-       
+        </div>    
         </div>
         <div className="flex flex-col max-sm:justify-between ">
           
@@ -618,39 +610,19 @@ className="cursor-pointer text-xs font-poppins">
 
 <div className=" flex  w-[7.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 
-<div className=" flex  w-[3rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
-<div class=" text-xs  cursor-pointer font-bold font-poppins  text-blue-600 max-sm:text-sm  text-center"
-onClick={() => {
-handleCustomerOpportunityDrawerModal(true);
-handleSetCurrentCustomer(item);
-handleRowData(item);
-}}
->
-{item.oppNo}
+<div className=" flex   max-sm:w-auto w-[5.1rem] items-center justify-center h-8  bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                     {/* Pipeline Value */}
 
-                  </div>
-                  <div>
-                      {editableField?.customerId === item.customerId &&
-   editableField?.field === 'oppNo' ? (
-<Input
-  type="text"
-  className="h-7 w-[4rem] text-xs"
-  value={editingValue}
-  onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
-  onKeyDown={handleKeyDown} 
-  autoFocus
-/>
-) : (
-<div onClick={() => 
-    handleEditRowField(item.customerId, 'oppNo', item.oppNo)} 
-    className="cursor-pointer text-xs font-poppins flex items-center">
-   <BorderColorIcon  className=" !text-icon cursor-pointer"/>
-    
-    </div> 
-)}                 
+                        <div class=" text-xs  cursor-pointer font-bold font-poppins  text-blue-600  max-sm:text-sm text-center  "
+                          onClick={() => {
+                                handleCustomerOpportunityDrawerModal(true);
+                                handleSetCurrentCustomer(item);
+                                handleRowData(item);
+                              }}
+                              >
+                        {item.oppNo}
+                        </div>
                       </div>
-                  </div>
 
 
 <div className=" flex  w-[3.5rem]  max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
@@ -986,12 +958,7 @@ handleRowData(item);
         translatedMenuItems={props.translatedMenuItems}
       />
 
-      <UpdateUserModal
-         rowdata={rowdata}
-      currentCustomerId={currentCustomerId}
-      updateUserModal={props.updateUserModal}
-      handleUpdateUserModal={props.handleUpdateUserModal}
-      />
+    
     </>
   );
 }
@@ -1006,7 +973,6 @@ const mapStateToProps = ({
   source
 }) => ({
   userId: auth.userDetails.userId,
-  updateUserModal:customer.updateUserModal,
   addDrawerCustomerNotesModal:customer.addDrawerCustomerNotesModal,
   teamCustomer: customer.teamCustomer,
   sales: opportunity.sales,
@@ -1040,7 +1006,6 @@ const mapDispatchToProps = (dispatch) =>
       handleUpdateCustomerModal,
       handleCustomerPulseDrawerModal,
       setEditCustomer,
-      handleUpdateUserModal,
       customerToAccount,
       emptyCustomer,
       updateOwnercustomerById,
