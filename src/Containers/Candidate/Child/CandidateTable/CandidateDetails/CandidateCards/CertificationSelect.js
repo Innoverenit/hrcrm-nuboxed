@@ -10,10 +10,7 @@ function CertificationSelect(props) {
   const [selectType, setSelectType] = useState("");
   
   function handleChange(selectType) {
-    // useEffect(() => {
-    //   props.getCertification(props.organizationId);
-    
-    // }, []);
+  
     props.addCertificationByCandidateId(
       {
         candidateCertificationName: selectType,
@@ -25,9 +22,9 @@ function CertificationSelect(props) {
 
   return (
     <div>
-      <Select style={{ width: "14rem" }} onChange={(e) => handleChange(e)}>
-        {/* <Option value={"item"}>"item" </Option>; */}
-        {props.certifications.map((item, i) => {
+      <Select style={{ width: "9rem" }} onChange={(e) => handleChange(e)}
+        placeholder="Select">
+      {props.certifications.map((item, i) => {
           return <Option value={item.name}>{item.name}</Option>;
         })}
       </Select>
@@ -36,7 +33,6 @@ function CertificationSelect(props) {
 }
 const mapStateToProps = ({ candidate, auth, certifications }) => ({
   user: auth.userDetails,
-  //certifications:certifications.certifications,
   organizationId: auth.userDetails.organizationId,
   
 });
@@ -44,7 +40,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         addCertificationByCandidateId,
-        // getCertification,
+  
     },
     dispatch
   );

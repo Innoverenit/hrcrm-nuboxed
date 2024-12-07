@@ -127,39 +127,21 @@ class CandidateTopicOfInterest extends React.Component {
       <ViewEditCard>
         {({ viewType }, toggleViewType) =>
           viewType === "view" ? (
-            <div class=" h-[11em]" >
-              <div class=" flex " >
-              <Title
-                fontSize="0.875em"
-                style={{ fontWeight: 600, marginBottom: "0.2rem" }}
+            <div class=" h-44" >
+              <div class=" flex  items-center justify-around mb-3" >
+              <div className=" font-bold font-poppins text-xs mb-1 "
+               
               >
                 Skills{" "}
-              </Title>
-              {/* <Select
-              // ref={this.saveInputRef}
-                         name="skillName"
-                        // mode="multiple"
-                        style={{ width: '135%' }}
-                        placeholder="Select"
-                        // onPressEnter={this.handleSelectConfirm}
-                       
-                        // value={selectValue}
-                      onChange={this.handleSelectConfirm}
-                      >
-  
-                        {this.props.librarys.map((item, i) => {
-                          return (
-                            <Option value={item.name}>{item.name}</Option>
-                            )
-                          })}
-                      </Select> */}
+              </div>
+             
                       <div>
                       <CandidateSelect
                       candidateId={this.props.candidate.candidateId}
                       />
                       </div>
                       </div>
-                      <div class=" mt-3" />
+                     
 
               {fetchingTopicsByCandidateId ? (
                 <p>fetching Skills ...</p>

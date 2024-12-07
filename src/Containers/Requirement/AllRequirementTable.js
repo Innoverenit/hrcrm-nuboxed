@@ -110,8 +110,6 @@ class AllRequirementTable extends Component {
       </div>
       <InfiniteScroll
         dataLength={requirementTable.length}
-        // next={handleLoadMore}
-        // hasMore={hasMore}
         loader={fetchingAllRequirementTable?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
         height={"86vh"}
       >

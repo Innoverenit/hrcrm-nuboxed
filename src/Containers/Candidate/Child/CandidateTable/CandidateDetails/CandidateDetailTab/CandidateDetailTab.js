@@ -16,12 +16,12 @@ import SchoolIcon from '@mui/icons-material/School';
 import { handleCandidateEducationModal } from "../../../../CandidateAction";
 import { handleDocumentUploadModal } from "../../../../../Customer/CustomerAction";
 import { handleCandidateTrainingModal } from "../../../../CandidateAction";
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import {
   handleCandidateEmploymentModal,
   handleCandidateBankModal,
   handleCandidateActivityModal,
 } from "../../../../CandidateAction";
-import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import AddDocumentModals from "../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
 import LinkedDocuments from "../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments";
@@ -85,8 +85,7 @@ function CandidateDetailTab(props) {
           <ActivityTable
                 candidate={props.candidate.candidateId}
                 selectedLanguage={props.selectedLanguage}
-                translateText={props.translateText}
-             
+                translateText={props.translateText}             
               />
             </div>;
       case "2":
@@ -143,9 +142,7 @@ function CandidateDetailTab(props) {
       default:
         return null;
     }
-  };
-
-  // const { activeKey } = this.state;
+  };  
   const {
     addingEmail,
     handleDocumentUploadModal,
@@ -178,8 +175,9 @@ function CandidateDetailTab(props) {
             tab={
               <>
                 <span>
-                  <LocalActivityIcon className=" !text-icon" />
-                  <span class=" ml-1 !text-tab" >
+                <HourglassFullIcon className="text-[#edf67d] !text-icon" />
+                <span class="ml-1 !text-tab font-poppins ">
+               
                    Activity
 
 
@@ -294,7 +292,7 @@ function CandidateDetailTab(props) {
             tab={
               <>
                 <span  className="  !text-tab">
-                  <NoteAltIcon className=" !text-icon " />
+                  <NoteAltIcon className=" !text-icon mr-1" />
                 Notes
                   {/* {translatedContent[2]} */}
                   &nbsp;
