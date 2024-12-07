@@ -8,9 +8,10 @@ import { getSectors } from "../../../Settings/Sectors/SectorsAction";
 import dayjs from "dayjs";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ContactsIcon from '@mui/icons-material/Contacts';
-import { getCountries } from "../../../Auth/AuthAction";
+import { getCountries ,getAllDialCodeList} from "../../../Auth/AuthAction";
+import { getSources } from "../../../../Containers/Settings/Category/Source/SourceAction";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip, Select, Button, Popconfirm,Checkbox } from "antd";
+import { Tooltip, Select, Button, Popconfirm,Checkbox,Input } from "antd";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import NextPlanIcon from '@mui/icons-material/NextPlan';
 import ApartmentIcon from '@mui/icons-material/Apartment';
@@ -43,6 +44,7 @@ import {
   handleCustomerOpportunityDrawerModal,
   handleAddressCutomerModal,
   deleteCustomer,
+  updateCustomer
   // handleUpdateUserModal
 } from "../../CustomerAction";
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
@@ -90,6 +92,8 @@ function CustomerCardList(props) {
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [editableField, setEditableField] = useState(null); 
+  const [editingValue, setEditingValue] = useState("");
 
   console.log(props.viewType)
 
@@ -137,8 +141,11 @@ function CustomerCardList(props) {
     
       props.emptyCustomer()
       props.getCustomerListByUserId(props.userId, page, "creationdate");
-   
-  }, [props.viewType]);
+   props.getCountries();
+   props.getSources(props.orgId);
+   props.getSectors();
+   props.getAllDialCodeList()
+  }, []);
 
   useEffect(() => {
     window.addEventListener('error', e => {
@@ -248,9 +255,63 @@ function CustomerCardList(props) {
   } = props;
   console.log("ee");
 
-  // if (fetchingCustomers) {
-  //   return <BundleLoader />;
-  // }
+  const handleEditRowField = (customerId, field, currentValue) => {
+    setEditableField({ customerId, field });  
+    setEditingValue(currentValue);  
+  };
+  const handleChangeRowItem = (e) => {
+    setEditingValue(e.target.value);
+  };
+  const handleUpdateSubmit = async () => {
+    const { customerId, field } = editableField;
+    const updatedData = {};
+    let mappedField = field;
+    // if (field === 'shipByName') {
+    //   mappedField = 'shipById'; 
+    // } else if (field === 'dialCode2') {
+    //   mappedField = 'dialCode';
+    // } else if (field === 'shipperName') {
+    //   mappedField = 'name';
+    // }
+    updatedData[mappedField] = editingValue;
+    props.updateCustomer(updatedData,customerId)
+    setEditableField(null);
+      setEditingValue("");
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleUpdateSubmit(); 
+    }
+  };
+  const handleChangeRowSelectItem = async (value) => {
+    setEditingValue(value);
+
+      const { customerId, field } = editableField;
+      const updatedData = {};
+      let mappedField = field;
+    
+      // Map the field to the correct key if needed
+      // if (field === 'countryDialCode') {
+      //   mappedField = 'shipById'; 
+      // } if (field === 'dialCode') {
+      //   mappedField = 'dialCode';
+      // } else if (field === 'shipperName') {
+      //   mappedField = 'name';
+      // }
+      updatedData[mappedField] = value; // Update the value with selected option
+      props.updateCustomer(updatedData,customerId)
+      setEditableField(null);
+      setEditingValue("");
+    
+  };
+
+
+
+
+
+
+
+
 console.log(page)
 console.log(props.userId)
 if (loading) {
@@ -391,7 +452,27 @@ if (loading) {
 
                                 
                                     {item.name}
-
+                                    <div>
+                      {editableField?.customerId === item.customerId &&
+   editableField?.field === 'name' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.customerId, 'name', item.name)} 
+    className="cursor-pointer text-xs font-poppins flex items-center">
+   <BorderColorIcon  className=" !text-icon cursor-pointer"/>
+    
+    </div> 
+)}                 
+                      </div>
                                   &nbsp;&nbsp;
                                   {date === currentdate ? (
                                     <div class="text-[0.65rem] text-[tomato] font-bold"
@@ -408,21 +489,53 @@ if (loading) {
                       <div className=" flex   max-sm:w-auto  w-[10.54rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row  max-sm:justify-between  ">
 
 
-                        <div class=" text-xs  font-poppins max-sm:text-sm  ml-gap ">
-                        {
-  
-  (item.countryDialCode !== null && item.countryDialCode !== undefined) && 
-  (item.phoneNumber !== null && item.phoneNumber !== undefined) ?
+                        <div class=" text-xs flex  font-poppins max-sm:text-sm  ml-gap ">
+                      
+<div>
+{editableField?.customerId === item.customerId && editableField?.field === 'countryDialCode' ? (
+  <Select
+  style={{ width: "10rem" }}
+  value={editingValue}
+  onChange={handleChangeRowSelectItem} 
+  onBlur={() => handleEditRowField(null, null, null)}
+  autoFocus
+>
+{props.dialcodeList.map((country) => (
+   <Option key={country.country_dial_code} value={country.country_dial_code}>
+  {country.country_dial_code}
+   </Option>
+ ))}
+</Select>
+) : (
+<div onClick={() => 
+handleEditRowField(item.customerId, 'countryDialCode', item.countryDialCode)} 
+className="cursor-pointer text-xs font-poppins">
+{item.countryDialCode || "Update..."}
 
- 
-  `+${item.countryDialCode} ${item.phoneNumber}` :
-
-  
-  (item.phoneNumber !== null && item.phoneNumber !== undefined) ?
-  `${item.phoneNumber}` : 
-  '' 
-}
-
+</div>         
+                        )}
+                      </div>
+                      <div>
+                      {editableField?.customerId === item.customerId &&
+   editableField?.field === 'phoneNumber' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.customerId, 'phoneNumber', item.phoneNumber)} 
+    className="cursor-pointer text-xs font-poppins">
+    {item.phoneNumber || "Update..."}
+    
+    </div> 
+)}                 
+                      </div>
                           {/* {
                           `${item.countryDialCode} ${item.phoneNumber}`
                           } */}
@@ -801,9 +914,13 @@ const mapStateToProps = ({
   sector,
   opportunity,
   employee,
+  source
 }) => ({
   userId: auth.userDetails.userId,
   updateUserModal:customer.updateUserModal,
+  dialcodeList: auth.dialcodeList,
+  sources: source.sources,
+  sectors: sector.sectors,
   addDrawerCustomerContactModal: customer.addDrawerCustomerContactModal,
   addDrawerCustomerOpportunityModal: customer.addDrawerCustomerOpportunityModal,
   addDrawerCustomerNotesModal: customer.addDrawerCustomerNotesModal,
@@ -813,7 +930,6 @@ const mapStateToProps = ({
   addDrawerCustomerPulseModal: customer.addDrawerCustomerPulseModal,
   recruiterName: opportunity.recruiterName,
   fetchingAllCustomers: customer.fetchingAllCustomers,
-  sectors: sector.sectors,
   fetchingCustomers: customer.fetchingCustomers,
   fetchingCustomersError: customer.fetchingCustomersError,
   updateCustomerModal: customer.updateCustomerModal,
@@ -848,9 +964,12 @@ const mapDispatchToProps = (dispatch) =>
       handleCustomerNotesDrawerModal,
       getCustomerById,
       getCountries,
+      getSources,
       getAllCustomerEmployeelist,
       handleAddressCutomerModal,
-      deleteCustomer
+      deleteCustomer,
+      updateCustomer,
+      getAllDialCodeList
     },
     dispatch
   );
