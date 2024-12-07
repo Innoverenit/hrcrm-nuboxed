@@ -668,61 +668,10 @@ const [priority,setpriority]=useState(props.selectedTask
                     isColumn
                     inlineLabel
                   /> */}
-                          {/* <Field
-                            name="taskChecklistId"
-                            // selectType="contactListFilter"
-                            isColumnWithoutNoCreate
-                            isRequired
-                            placeolder="Select type"
-                            // label={
-                            //   <FormattedMessage
-                            //     id="app.taskList"
-                            //     defaultMessage="Task CheckList"
-                            //   />
-                            // }
-                            // component={SearchSelect}
-                            component={SelectComponent}
-                            options={
-                              Array.isArray(TaskOptions) ? TaskOptions : []
-                            }
-                            value={values.taskChecklistId}
-                            isColumn
-                            inlineLabel
-                          /> */}
+                          
                      
                       </div>
-                    {/* )} */}
-                      {/* <div class=" w-1/2">
-                  
-                      <div class=" text-xs font-bold font-poppins text-black">Task Stages</div>
-                      <Field
-                    name="taskChecklistId"
-                 
-                    isColumnWithoutNoCreate
-                
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        this.taskStageOptions("taskTypeId", values.taskTypeId)
-                      )
-                        ? this.taskStageOptions("taskTypeId", values.customerId)
-                        : []
-                    }
-                     value={values.taskChecklistId}
-                    filterOption={{
-                      filterType: "taskTypeId",
-                      filterValue: values.taskTypeId,
-                    }}
-                    disabled={!values.taskTypeId}
-                    isColumn
-                    inlineLabel
-                  />
-                    
-                     
-                      </div> */}
-
-
-                 
+                   
                  
                   </div>
                   <div class=" flex justify-between w-full max-sm:flex-col mt-4">
@@ -784,28 +733,7 @@ const [priority,setpriority]=useState(props.selectedTask
                             inlineLabel
                           />
                         </div>
-                    {/* <div class=" w-5/12 max-sm:w-wk">
-                      <div class=" flex justify-between w-full">
-                        <div class=" w-full">
-                          <Field
-                            isRequired
-                            name="taskName"
-                            //label="Name"
-                            // value={values.taskName}
-                            label={
-                              <FormattedMessage
-                                id="app.name"
-                                defaultMessage="Name"
-                              />
-                            }
-                            component={InputComponent}
-                            isColumn
-                            width={"100%"}
-                            inlineLabel
-                          />
-                        </div>
-                      </div>
-                    </div> */}
+                  
                   </div>
     
                
@@ -1038,26 +966,7 @@ const [priority,setpriority]=useState(props.selectedTask
                 </div>
                 <div class=" h-full w-w47.5 max-sm:w-wk mt-4">
                  
-                  {/* <Field
-                    name="assignedTo"
-                    selectType="employee"
-                    isColumnWithoutNoCreate
-                    // label="Assigned"
-                    label={
-                      <FormattedMessage
-                        id="app.assignedto"
-                        defaultMessage="Assigned"
-                      />
-                    }
-                    component={SearchSelect}
-                    isColumn
-                    value={values.assignedTo}
-                    defaultValue={{
-                      label: `${firstName || ""} ${middleName ||
-                        ""} ${lastName || ""}`,
-                      // value: employeeId,
-                    }}
-                    inlineLabel
+
                   /> */}
                                    <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
@@ -1127,58 +1036,7 @@ const [priority,setpriority]=useState(props.selectedTask
           </>
         )}
       </Listbox>
-                 
-                  {/* {values.taskTypeId === "TSK52434477391272022" && (
-                    <Field
-                      name="included"
-                      //type="text"
-                      label="Team"
-                      mode
-                      component={SelectComponent}
-                        //  options={Array.isArray(employeesData) ? employeesData : []}
-                      options={
-                        Array.isArray(
-                          this.handlecandidateOptions(
-                            "customerId",
-                            values.customerId
-                          )
-                        )
-                          ? this.handlecandidateOptions(
-                              "customerId",
-                              values.customerId
-                            )
-                          : []
-                      }
-                      value={values.included}
-                      defaultValue={{
-                        label: `${candidateName || ""} `,
-                        value: employeeId,
-                      }}
-                    />
-                  )} */}
-                  {/* {values.taskTypeId !== "TSK52434477391272022" && ( */}
-                  {/* <Field
-                    name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.team"
-                        defaultMessage="Team"
-                      />
-                    }
-                    mode
-                    placeholder="Select"
-                    component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
-                    value={values.included}
-                    defaultValue={{
-                      label: `${fullName || ""} `,
-                      value: employeeId,
-                    }}
-                  /> */}
               
-                 
-               
               <div class=" mt-4">
                   <Field
                     name="taskDescription"

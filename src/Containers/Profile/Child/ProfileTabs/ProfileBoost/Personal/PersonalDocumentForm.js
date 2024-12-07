@@ -133,13 +133,6 @@ class PersonalDocumentForm extends Component {
                       <FastField
                         name="contactSalutation"
                         type="text"
-                        //label="Salutation"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.contactSalutation"
-                        //     defaultMessage="Salutation"
-                        //   />
-                        // }
                         options={["Mr.", "Ms.", "None"]}
                         component={SelectComponent}
                         inlineLabel
@@ -158,13 +151,7 @@ class PersonalDocumentForm extends Component {
                       <FastField
                         isRequired
                         name="contactFirstName"
-                        //label="First Name"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.contactFirstName"
-                        //     defaultMessage="First Name"
-                        //   />
-                        // }
+                      
                         type="text"
                         width={"100%"}
                         isColumn
@@ -184,13 +171,7 @@ class PersonalDocumentForm extends Component {
                   <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[2]}</div>
                       <FastField
                         name="contactLastName"
-                        //label="Last Name"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.contactLastName"
-                        //     defaultMessage="Last Name"
-                        //   />
-                        // }
+                       
                         type="text"
                         width={"100%"}
                         isColumn
@@ -207,13 +188,7 @@ class PersonalDocumentForm extends Component {
                     <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[3]}</div>
                       <FastField
                         name="contactMiddleName"
-                        //label="Middle "
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.contactMiddleName"
-                        //     defaultMessage="Middle"
-                        //   />
-                        // }
+                      
                         type="text"
                         width={"100%"}
                         isColumn
@@ -234,13 +209,6 @@ class PersonalDocumentForm extends Component {
                       <Field
                         name="countryDialCode"
                         isColumnWithoutNoCreate
-                        //label="Mobile #"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.countryDialCode"
-                        //     defaultMessage="Mobile #"
-                        //   />
-                        // }
                         isColumn
                         margintop={"0.25em"}
                         selectType="dialCode"
@@ -254,12 +222,6 @@ class PersonalDocumentForm extends Component {
                       <Field
                         type="text"
                         name="mobileNo"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.mobileNo"
-                        //     defaultMessage="Mobile No"
-                        //   />
-                        // }
                         placeholder="Mobile #"
                         component={InputComponent}
                         inlineLabel
@@ -281,13 +243,6 @@ class PersonalDocumentForm extends Component {
                       <Field
                         name="countryDialCode1"
                         isColumnWithoutNoCreate
-                        // label="Phone #"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.countryDialCode1"
-                        //     defaultMessage="Phone #"
-                        //   />
-                        // }
                         isColumn
                         margintop={"0.25em"}
                         selectType="dialCode"
@@ -301,12 +256,6 @@ class PersonalDocumentForm extends Component {
                       <Field
                         type="text"
                         name="phoneNo"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.phoneNo"
-                        //     defaultMessage="Phone No"
-                        //   />
-                        // }
                         placeholder="Phone #"
                         component={InputComponent}
                         inlineLabel
@@ -348,7 +297,7 @@ class PersonalDocumentForm extends Component {
                   type="primary"
                   Loading={addingPersonalDetails}
                 >
-                 {this.state.translatedMenuItems[8]} {/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
+                 {this.state.translatedMenuItems[8]} 
                 </Button>
               </div>
             </Form>

@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Select, Switch } from "antd";
-import { FormattedMessage } from 'react-intl';
-
+import { Button, Select, Switch } from "antd"
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
@@ -181,13 +179,7 @@ class ContactForm extends Component {
                           <FastField
                             name="salutation"
                             type="text"
-                            // label="Salutation"
-                            label={
-                              <FormattedMessage
-                                id="app.salutations"
-                                defaultMessage="Salutations"
-                              />
-                            }
+                            label="Salutation"
                             options={["Mr.", "Ms.", "None"]}
                             component={SelectComponent}
                             inlineLabel
@@ -199,12 +191,8 @@ class ContactForm extends Component {
                           <FastField
                             isRequired
                             name="firstName"
-                            label={
-                              <FormattedMessage
-                                id="app.firstName"
-                                defaultMessage="First Name"
-                              />
-                            }
+                            label="First Name"
+                            
                             type="text"
                             width={"100%"}
                             isColumn
@@ -217,12 +205,8 @@ class ContactForm extends Component {
                         <div class=" w-2/5">
                           <FastField
                             name="middleName"
-                            label={
-                              <FormattedMessage
-                                id="app.middle"
-                                defaultMessage="Middle"
-                              />
-                            }
+                            label="Middle"
+                              
                             type="text"
                             width={"100%"}
                             isColumn
@@ -233,12 +217,8 @@ class ContactForm extends Component {
                         <div class=" w-2/4">
                           <FastField
                             name="lastName"
-                            label={
-                              <FormattedMessage
-                                id="app.lastName"
-                                defaultMessage="Last Name"
-                              />
-                            }
+                            label="Last Name"
+                             
                             type="text"
                             width={"100%"}
                             isColumn
@@ -254,12 +234,8 @@ class ContactForm extends Component {
                       <FastField
                         name="countryDialCode"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        label="Dial Code"
+                        
                         isColumn
                         selectType="dialCode"
                         component={SearchSelect}
@@ -274,12 +250,8 @@ class ContactForm extends Component {
                       <FastField
                         type="text"
                         name="mobileNumber"
-                        label={
-                          <FormattedMessage
-                            id="app.mobile"
-                            defaultMessage="Mobile #"
-                          />
-                        }
+                        label="Mobile #"
+                         
                         component={InputComponent}
                         inlineLabel
                         width={"100%"}
@@ -309,12 +281,8 @@ class ContactForm extends Component {
                           isColumnWithoutNoCreate
                           selectType="dialCode"
 
-                          label={
-                            <FormattedMessage
-                              id="app.#whatsApp"
-                              defaultMessage="WhatsApp #"
-                            />
-                          }
+                          label="WhatsApp #"
+                           
                           component={SearchSelect}
                           isColumn
                           inlineLabel
@@ -340,12 +308,8 @@ class ContactForm extends Component {
                       <FastField
                         type="email"
                         name="emailId"
-                        label={
-                          <FormattedMessage
-                            id="app.email"
-                            defaultMessage="Email"
-                          />
-                        }
+                        label="Email"
+                          
                         className="field"
                         isColumn
                         width={"100%"}
@@ -360,12 +324,8 @@ class ContactForm extends Component {
                       <FastField
                         type="text"
                         name="linkedinPublicUrl"
-                        label={
-                          <FormattedMessage
-                            id="app.linkedin"
-                            defaultMessage="Linkedin"
-                          />
-                        }
+                        label="Linkedin"
+                         
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -380,12 +340,8 @@ class ContactForm extends Component {
                           name="partnerId"
                           isColumnWithoutNoCreate
                           selectType="partnerList"
-                          label={
-                            <FormattedMessage
-                              id="app.tagCompany"
-                              defaultMessage="Tag Company"
-                            />
-                          }
+                          label="Tag Company"
+                           
                           component={SearchSelect}
                           isColumn
                           value={values.partnerId}
@@ -402,12 +358,8 @@ class ContactForm extends Component {
                         name="designationTypeId"
                         isColumnWithoutNoCreate
                         selectType="designationType"
-                        label={
-                          <FormattedMessage
-                            id="app.role"
-                            defaultMessage="Role"
-                          />
-                        }
+                        label="Role"
+                         
                         isColumn
                         component={SearchSelect}
                         inlineLabel
@@ -432,9 +384,7 @@ class ContactForm extends Component {
                   <div class=" mt-3"  />
                   <Field
                     name="notes"
-                    label={
-                      <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                    }
+                    label="Notes" 
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -448,9 +398,8 @@ class ContactForm extends Component {
                   htmlType="submit"
                   loading={addingPartnerContact}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
-                  {/*                     
-                    Create */}
+                                     
+                    Create 
                 </Button>
               </div>
             </Form>

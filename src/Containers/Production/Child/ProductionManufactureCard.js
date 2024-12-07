@@ -1,9 +1,6 @@
 import React,{ useEffect, useState, lazy }  from 'react'
 import { connect } from "react-redux";
 import dayjs from "dayjs";
-//import {getReportsProductivityData} from "../../ReportAction"
-import { FormattedMessage } from 'react-intl';
-
 import { bindActionCreators } from "redux";
 import ManufactureListData from "../Child/ManufactureListData"
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -42,14 +39,11 @@ function ProductionManufactureCard(props) {
             <div className="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                 <div className="flex w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
                     <div className=""></div>
-                    <div className="md:w-[22.12rem]"><FormattedMessage id="app.partname" defaultMessage="Part Name" /></div>
-                    <div className="md:w-[15.5rem]"><FormattedMessage id="app.partno" defaultMessage="Part No" /></div>
-                    <div className="md:w-[15.5rem]"><FormattedMessage id="app.user" defaultMessage="User" /></div>
-                    <div className="md:w-[15.5rem]"><FormattedMessage id="app.date" defaultMessage="Date" /></div>
-                    {/* <div className="md:w-[15.5rem]"><FormattedMessage id="app.totalTimeTaken" defaultMessage="Time Taken" /></div> */}
-                    
-                    <div className=""></div>
-                    {/* <div className="md:w-[15.5rem]"><FormattedMessage id="app.tag" defaultMessage="Tag" /></div> */}
+                    <div className="md:w-[22.12rem]">Part Name</div>
+                    <div className="md:w-[15.5rem]">Part No</div>
+                    <div className="md:w-[15.5rem]">User </div>
+                    <div className="md:w-[15.5rem]">Date</div>
+                  <div className=""></div>
                 </div>
                 <InfiniteScroll
                         dataLength={props.manufactureLinkData.length}

@@ -97,10 +97,7 @@ class UpdatePersonalDetailsDocumentForm extends Component {
                   <FastField
                     name="idType"
                     type="text"
-                    //label="Type"
-                    // label={
-                    //   <FormattedMessage id="app.type" defaultMessage="Type" />
-                    // }
+                  
                     options={[
                       "Aadhar Card",
                       "Voter-Id Card",
@@ -127,13 +124,6 @@ class UpdatePersonalDetailsDocumentForm extends Component {
                       type="text"
                       isColumn
                       width={"100%"}
-                      //label="Document ID number"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.idNo"
-                      //     defaultMessage="Document ID number"
-                      //   />
-                      // }
                       component={InputComponent}
                       inlineLabel
                       style={{
@@ -157,13 +147,6 @@ class UpdatePersonalDetailsDocumentForm extends Component {
 <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[2]}</div>
                   <Field
                     name="documentTitle"
-                    //label="Name"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.documentTitle"
-                    //     defaultMessage="Name of Document"
-                    //   />
-                    // }
                     width={"100%"}
                     isColumn
                     component={InputComponent}
@@ -174,13 +157,6 @@ class UpdatePersonalDetailsDocumentForm extends Component {
                   <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[3]}</div>
                   <Field
                     name="documentDescription"
-                    //label="Description"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.documentDescription"
-                    //     defaultMessage="Description of Document"
-                    //   />
-                    // }
                     isRequired
                     isColumn
                     width={"100%"}
@@ -198,7 +174,7 @@ class UpdatePersonalDetailsDocumentForm extends Component {
                   type="primary"
                   Loading={updatingPersonalDocumentDetails}
                 >
-                 {this.state.translatedMenuItems[4]} {/* <FormattedMessage id="app.submit" defaultMessage= /> */}
+                 {this.state.translatedMenuItems[4]} 
                 </Button>
               </div>
             </Form>

@@ -141,33 +141,13 @@ function AddOrganizationForm (props) {
                    
                     <div>
                       <div class=" flex justify-between max-sm:flex-col">
-                        {/* <div class=" w-2/5 max-sm:w-full">
-                          <Field
-                            name="salutation"
-                            label={
-                              <FormattedMessage
-                                id="app.salutation"
-                                defaultMessage="Salutation"
-                              />
-                            }
-                            options={["Mr.", "Ms.", "None"]}
-                            component={SelectComponent}
-                            inlineLabel
-                            isColumn
-                          />
-                        </div> */}
+                        
                         <div class=" w-wk max-sm:w-full ">
                         <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[0]}</div>
                           <FastField
                             isRequired
                             name="organizationName"
-                            // label="First Name"
-                            // label={
-                            //   <FormattedMessage
-                            //     id="app.organizationName"
-                            //     defaultMessage="Organization Name"
-                            //   />
-                            // }
+                          
                             type="text"
                             width={"100%"}
                             isColumn
@@ -183,9 +163,7 @@ function AddOrganizationForm (props) {
                   <Field
                     name="email"
                     type="text"
-                    // label={
-                    //   <FormattedMessage id="app.email" defaultMessage="Email" />
-                    // }
+                 
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -199,12 +177,7 @@ function AddOrganizationForm (props) {
                         name="countryDialCode"
                         selectType="dialCode"
                         isColumnWithoutNoCreate
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.dialCode"
-                        //     defaultMessage="Dial Code"
-                        //   />
-                        // }
+                      
                         isColumn
                         component={SearchSelect}
                         value={values.countryDialCode1}
@@ -218,7 +191,7 @@ function AddOrganizationForm (props) {
                       <FastField
                         type="text"
                         name="phoneNumber"
-                        // label="Phone No"
+                       
                         isColumn
                         component={InputComponent}
                         inlineLabel
@@ -234,13 +207,7 @@ function AddOrganizationForm (props) {
                     <FastField
                             name="fiscalStartDate"
                             type="text"
-                            // label="Salutation"
-                            // label={
-                            //   <FormattedMessage
-                            //     id="app.fiscalstartdate"
-                            //     defaultMessage="Fiscal start date"
-                            //   />
-                            // }
+                            
                             options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]}
                             component={SelectComponent}
                             inlineLabel
@@ -255,13 +222,7 @@ function AddOrganizationForm (props) {
                     <FastField
                             name="fiscalStartMonth"
                             type="text"
-                            // label="Salutation"
-                            // label={
-                            //   <FormattedMessage
-                            //     id="app.fiscalStartMonth"
-                            //     defaultMessage="Fiscal start month"
-                            //   />
-                            // }
+                           
                             component={SelectComponent}
                             options={['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']}
                             inlineLabel
@@ -278,13 +239,7 @@ function AddOrganizationForm (props) {
                     <FastField
                             // type="companySize"
                             name="companySize"
-                            //placeholder="Mobile #"
-                            // label={
-                            //   <FormattedMessage
-                            //     id="app.companySize"
-                            //     defaultMessage="Company Size"
-                            //   />
-                            // }
+                          
                             component={InputComponent}
                             inlineLabel
                             width={"100%"}
@@ -298,13 +253,7 @@ function AddOrganizationForm (props) {
                     <FastField
                             // type="companySize"
                             name="industryType"
-                            //placeholder="Mobile #"
-                            // label={
-                            //   <FormattedMessage
-                            //     id="app.industryType"
-                            //     defaultMessage="Industry Type"
-                            //   />
-                            // }
+                           
                             component={InputComponent}
                             inlineLabel
                             width={"100%"}
@@ -320,13 +269,7 @@ function AddOrganizationForm (props) {
                     <FastField
                             // type="companySize"
                             name="vat"
-                            //placeholder="Mobile #"
-                            // label={
-                            //   <FormattedMessage
-                            //     id="app.vat"
-                            //     defaultMessage="VAT(In %)"
-                            //   />
-                            // }
+                            
                             component={InputComponent}
                             inlineLabel
                             width={"100%"}
@@ -340,13 +283,7 @@ function AddOrganizationForm (props) {
                     <FastField
                             // type="companySize"
                             name="organizationUrl"
-                            //placeholder="Mobile #"
-                            // label={
-                            //   <FormattedMessage
-                            //     id="app.organizationUrl"
-                            //     defaultMessage="Website"
-                            //   />
-                            // }
+                            
                             component={InputComponent}
                             inlineLabel
                             width={"100%"}
@@ -363,13 +300,7 @@ function AddOrganizationForm (props) {
                     <FastField
                             // type="companySize"
                             name="twitter"
-                            //placeholder="Mobile #"
-                            // label={
-                            //   <FormattedMessage
-                            //     id="app.twitter"
-                            //     defaultMessage="Twitter"
-                            //   />
-                            // }
+                           
                             component={InputComponent}
                             inlineLabel
                             width={"100%"}
@@ -383,13 +314,7 @@ function AddOrganizationForm (props) {
                     <FastField
                             // type="companySize"
                             name="linkedinUrl"
-                            //placeholder="Mobile #"
-                            // label={
-                            //   <FormattedMessage
-                            //     id="app.linkedinUrl"
-                            //     defaultMessage="Linkedin"
-                            //   />
-                            // }
+                           
                             component={InputComponent}
                             inlineLabel
                             width={"100%"}
@@ -404,13 +329,7 @@ function AddOrganizationForm (props) {
                     <FastField
                             // type="companySize"
                             name="facebook"
-                            //placeholder="Mobile #"
-                            // label={
-                            //   <FormattedMessage
-                            //     id="app.facebook"
-                            //     defaultMessage="Facebook"
-                            //   />
-                            // }
+                           
                             component={InputComponent}
                             inlineLabel
                             width={"100%"}

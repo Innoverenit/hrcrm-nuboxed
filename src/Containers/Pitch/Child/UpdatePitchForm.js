@@ -2,8 +2,6 @@ import React, {  useState,useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Switch,Tooltip } from "antd";
-import { FormattedMessage } from 'react-intl';
-
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
 import {getAllEmployeelist,getDialCode} from "../../Investor/InvestorAction"
@@ -362,12 +360,8 @@ function UpdatePitchForm (props) {
                       <Field
                         name="vatNo"
                         type="text" 
-                        label={
-                          <FormattedMessage
-                            id="app.vatNumber"
-                            defaultMessage="vatNumber"
-                          />
-                        }
+                        label="vatNumber"
+                          
                         //isRequired
                         isColumn
                         width={"100%"}
@@ -384,12 +378,8 @@ function UpdatePitchForm (props) {
                         name="businessRegistration"
                         type="text"
                         // label="URL"
-                        label={
-                          <FormattedMessage
-                          id="app.businessregistration"
-                          defaultMessage=" businessregistration"
-                        />
-                        }
+                        label=" businessregistration"
+                      
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -435,12 +425,8 @@ function UpdatePitchForm (props) {
                         name="sectorId"
                         isColumnWithoutNoCreate
                         // selectType="sectorName"
-                        label={
-                          <FormattedMessage
-                            id="app.sector"
-                            defaultMessage="Sector"
-                          />
-                        }
+                        label="Sector"
+                         
                         isColumn
                         component={SelectComponent}
                         options={
@@ -454,12 +440,8 @@ function UpdatePitchForm (props) {
                   
                         <FastField
                           name="source"
-                          label={
-                            <FormattedMessage
-                            id="app.source"
-                            defaultMessage="source"
-                          />
-                          }
+                          label="source"
+                         
                           isColumnWithoutNoCreate
                           defaultValue={{
                             label:props.setEditingPitch.source,

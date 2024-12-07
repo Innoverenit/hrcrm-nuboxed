@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Formik, Form, } from "formik";
-import { FormattedMessage } from 'react-intl';
 import {
   Select
 } from "../../../../Components/UI/Elements";
@@ -105,10 +104,7 @@ const handleDeptChange = (event) => {
                >
                                                     <div class=" w-[35%] mt-4" >
                                                     <div class="text-xs font-bold text-[#444]">
-                                                    <FormattedMessage
-                  id="app.department"
-                  defaultMessage="Department"
-                />
+                                                    Department
                                                       
                                                       </div>
                       <select   className="customize-select"
@@ -129,10 +125,7 @@ const handleDeptChange = (event) => {
 
             <div class=" w-[35%]" >
             <div class="text-xs font-bold text-[#444]">
-            <FormattedMessage
-                  id="app.user"
-                  defaultMessage="User"
-                />
+           User
                   
               
               </div>
@@ -168,8 +161,9 @@ const handleDeptChange = (event) => {
                   htmlType="submit"
                   Loading={props.linkingLeads}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
-                  {/* Update */}
+                
+              
+                  Update
                 </Button>
               </div>
   

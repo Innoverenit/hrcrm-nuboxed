@@ -2,8 +2,6 @@ import React, {useState ,useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getAllSalesList } from "../../../Opportunity/OpportunityAction"
-import { FormattedMessage } from 'react-intl';
-
 import { Button, Switch, Tooltip } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
@@ -351,18 +349,13 @@ function PitchCallForm(props) {
                     <div class=" w-2/6 max-sm:w-wk">
                       <div class=" mt-3"/>
                       <div class=" text-xs font-bold font-poppins text-black">
-                        {/* Type */}
-                        <FormattedMessage id="app.type" defaultMessage="Type" />
+                        Type
                       </div>
                       <div class=" flex justify-between">
                         {/* <Tooltip title="Inbound"> */}
                         <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.introductory"
-                              defaultMessage="Introductory"
-                            />
-                          }
+                          title="Introductory"
+                           
                         >
                           <div
                             onClick={() => handleTypeChange("Inbound")}
@@ -380,12 +373,8 @@ function PitchCallForm(props) {
                         </Tooltip>
                         {/* <Tooltip title="Outbound"> */}
                         <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.interview"
-                              defaultMessage="Interview"
-                            />
-                          }
+                          title="Interview"
+                            
                         >
                           <div
                             onClick={() => handleTypeChange("Outbound")}
@@ -403,12 +392,8 @@ function PitchCallForm(props) {
                         </Tooltip>
                         {/* <Tooltip title="Conference"> */}
                         <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.closure"
-                              defaultMessage="Closure"
-                            />
-                          }
+                          title="Closure"
+                            
                         >
                           <div
                             onClick={() => handleTypeChange("Conference")}
@@ -429,10 +414,7 @@ function PitchCallForm(props) {
                     <div class=" w-1/2">
                       <div class=" mt-3" />
                       <div class=" text-xs font-bold font-poppins text-black">
-                        <FormattedMessage
-                          id="app.category"
-                          defaultMessage="Category"
-                        />
+                      Category
                       </div>
                       
                       <ButtonGroup>
@@ -447,8 +429,7 @@ function PitchCallForm(props) {
                             category === "New" ? "white" : "black",
                           }}
                         >
-                          {/* New */}
-                          <FormattedMessage id="app.new" defaultMessage="New" />
+                          New
                         </Button>
                         <Button
                           onClick={() => handleCategoryChange("Follow up")}
@@ -463,11 +444,7 @@ function PitchCallForm(props) {
                                 : "black",
                           }}
                         >
-                          {/* Follow up */}
-                          <FormattedMessage
-                            id="app.followup"
-                            defaultMessage="Follow up"
-                          />
+                          Follow up
                         </Button>
                       </ButtonGroup>
                     </div>
@@ -476,10 +453,7 @@ function PitchCallForm(props) {
                   <div class=" flex justify-between items-end max-sm:flex-col " >
                     <div class=" self-start">
                       <div class=" text-xs font-bold font-poppins text-black">
-                      <FormattedMessage
-                            id="app.mode"
-                            defaultMessage="Mode"
-                          />
+                    Mode
                       
                       </div>
                       <Switch
@@ -524,12 +498,8 @@ function PitchCallForm(props) {
                     // isRequired
                     name="callPurpose"
                     // label="Topic"
-                    label={
-                      <FormattedMessage
-                        id="app.subject"
-                        defaultMessage="Subject"
-                      />
-                    }
+                    label="Subject"
+                     
                     component={InputComponent}
                     isColumn
                     width={"100%"}
@@ -538,10 +508,7 @@ function PitchCallForm(props) {
                   <div class=" mt-3" />
                   <Field
                     name="startDate"
-                    // label="Date"
-                    label={
-                      <FormattedMessage id="app.date" defaultMessage="Date" />
-                    }
+                    label="Date"
                     component={DatePicker}
                     isColumn
                     width={"100%"}
@@ -553,13 +520,7 @@ function PitchCallForm(props) {
                     <div class=" w-1/2 max-sm:w-wk">
                       <Field
                         name="startTime"
-                        // label="Start Time"
-                        label={
-                          <FormattedMessage
-                            id="app.starttime"
-                            defaultMessage="Start Time"
-                          />
-                        }
+                        label="Start Time"
                         component={TimePicker}
                         isRequired
                         isColumn
@@ -574,13 +535,7 @@ function PitchCallForm(props) {
                     <div class=" w-2/5 max-sm:w-wk">
                       <Field
                         name="endTime"
-                        // label="End Time"
-                        label={
-                          <FormattedMessage
-                            id="app.endtime"
-                            defaultMessage="End Time"
-                          />
-                        }
+                        label="End Time"
                         component={TimePicker}
                         use12Hours
                         isRequired
@@ -599,13 +554,7 @@ function PitchCallForm(props) {
                      defaultValue={{ label: timeZone, value: userId }}
                     name="timeZone"
                     isColumnWithoutNoCreate
-                    //label="TimeZone "
-                    label={
-                      <FormattedMessage
-                        id="app.timeZone"
-                        defaultMessage="Time Zone"
-                      />
-                    }
+                    label="TimeZone "
                     selectType="timeZone"
                     isColumn
                     value={values.timeZone}
@@ -613,34 +562,7 @@ function PitchCallForm(props) {
                     inlineLabel
                   />
                   <div class=" mt-3" />
-                  {/* {startDate ? (
-                    <span>
-                      {dayjs(startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>
-                            <FormattedMessage
-                              id="app.thiscalloccursinthepast!"
-                              defaultMessage="This Call occurs in the past !"
-                            />
-                          </b>
-                        </span>
-                      )}
-                    </span>
-                  ) : (
-                    <span>
-                      {dayjs(values.startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>
-                            {" "}
-                            <FormattedMessage
-                              id="app.thiscalloccursinthepast!"
-                              defaultMessage="This Call occurs in the past !"
-                            />
-                          </b>
-                        </span>
-                      )}
-                    </span>
-                  )} */}
+                 
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk " 
                 >
@@ -648,11 +570,7 @@ function PitchCallForm(props) {
       {({ open }) => (
         <>
           <Listbox.Label className="block font-semibold text-[0.75rem]">
-          <FormattedMessage
-                  id="app.assignedTo"
-                  defaultMessage="Assigned"
-                />
-           
+         Assigned
             </Listbox.Label>
           <div className="relative mt-1">
               <Listbox.Button  style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
@@ -719,13 +637,7 @@ function PitchCallForm(props) {
                       <div class=" mt-3" />
                   <Field
                     name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.include"
-                        defaultMessage="Include"
-                      />
-                    }
+                    label="Include"
                     mode
                     placeholder="Select"
                     component={SelectComponent}
@@ -739,34 +651,11 @@ function PitchCallForm(props) {
                  
                
                   <div class=" mt-3"/>
-                  {/* <div >
-                  <Field
-                    disabled="true"
-                    isRequired
-                    name="candidateId"
-                    // type="text"
-                    //label="Talent"
-                    label={
-                      <FormattedMessage
-                        id="app.team"
-                        defaultMessage="Team"
-                      />
-                    }
-                    placeholder="Start typing to search..."
-                    isColumnWithoutNoCreate
-                    setClearbitCandidateData={props.setClearbitCandidateData}
-                    component={CandidateClearbit}
-                    inlineLabel
-                  />
-                   </div>
-                  <div class=" mt-3" /> */}
+                 
                   <div>
                     <div class=" w-full"><Field
                       name="callDescription"
-                      // label="Notes"
-                      label={
-                        <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                      }
+                      label="Notes"
                       isColumn
                       width={"100%"}
                       component={TextareaComponent}
@@ -775,47 +664,6 @@ function PitchCallForm(props) {
                   </div>
                  
                   <div class=" mt-3"  />
-                  {/* <div class=" flex justify-between" >
-                    <div 
-                    class=" w-1/2 font-bold">
-                    <div class=" flex justify-between" >
-                        <div>
-                          <div class=" text-xs font-bold font-poppins text-black">Set Reminder</div>
-                        </div>
-                        <div>
-                          <Switch
-                            onChange={handleReminderChange}
-                            checked={reminder}
-                            checkedChildren="Yes"
-                            unCheckedChildren="No"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class=" w-1/3 font-bold">
-                      {reminder ? (
-                        <div>
-                          <Field
-                            // isRequired
-                            name="remindTime"
-                            label="Reminder"
-                            width={"100%"}
-                            component={SelectComponent}
-                            options={[
-                              "15 min",
-                              "30 min",
-                              "45 min",
-                              "1 hour",
-                              "2 hour",
-                            ]}
-                            defaultValue="30 min"
-                            isColumn
-                            inlineLabel
-                          />
-                        </div>
-                      ) : null}
-                    </div>
-                  </div> */}
                 </div>
               </div>
               <div class=" mt-3"  />
@@ -823,13 +671,7 @@ function PitchCallForm(props) {
                 {isEditing && (
                   <>
                     <StyledPopconfirm
-                      // title="Do you want to delete?"
-                      title={
-                        <FormattedMessage
-                          id="app.doyouwanttodelete?"
-                          defaultMessage="Do you want to delete?"
-                        />
-                      }
+                      title="Do you want to delete?"
                       onConfirm={() => deleteCall(prefillCall.callId)}
                     >
                       <Button
@@ -837,11 +679,7 @@ function PitchCallForm(props) {
                         htmlType="submit"
                         Loading={deletingCall}
                       >
-                        {/* Delete */}
-                        <FormattedMessage
-                          id="app.delete"
-                          defaultMessage="Delete"
-                        />
+                        Delete
                       </Button>
                     </StyledPopconfirm>
                   </>
@@ -854,8 +692,7 @@ function PitchCallForm(props) {
                   {isEditing ? (
                     "Update"
                   ) : (
-                    // "Create"
-                    <FormattedMessage id="app.create" defaultMessage="Create" />
+                    "Create"
                   )}
                 </Button>
               </div>

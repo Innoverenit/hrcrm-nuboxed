@@ -98,17 +98,7 @@ class PersonalDetailsDocumentForm extends Component {
                     // type="text"
                     selectType="documentTypeName"
                     isColumnWithoutNoCreate
-                    //label="Type"
-                    // label={
-                    //   <FormattedMessage id="app.type" defaultMessage="Type" />
-                    // }
-                    // options={[
-                    //   "Aadhar Card",
-                    //   "Voter-Id Card",
-                    //   "Driving-License",
-                    //   "Pan Card",
-                    //   "Passport",
-                    // ]}
+                    
                     component={SearchSelect}
                     inlineLabel
                     className="field"
@@ -123,13 +113,7 @@ class PersonalDetailsDocumentForm extends Component {
                       type="text"
                       isColumn
                       width={"100%"}
-                      //label="Document ID number"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.idNo"
-                      //     defaultMessage="Document ID number"
-                      //   />
-                      // }
+                     
                       component={InputComponent}
                       inlineLabel
                      />
@@ -147,13 +131,7 @@ class PersonalDetailsDocumentForm extends Component {
                  <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[2]}</div>
                   <Field
                     name="documentTitle"
-                    //label="Name of Document"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.documentTitle"
-                    //     defaultMessage="Name of Document"
-                    //   />
-                    // }
+                   
                     width={"100%"}
                     isColumn
                     component={InputComponent}
@@ -164,13 +142,7 @@ class PersonalDetailsDocumentForm extends Component {
                   <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[3]}</div>
                   <Field
                     name="documentDescription"
-                    //label="Description of Document"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.documentDescription"
-                    //     defaultMessage="Description of Document"
-                    //   />
-                    // }
+                  
                     isRequired
                     isColumn
                     width={"100%"}
@@ -187,7 +159,7 @@ class PersonalDetailsDocumentForm extends Component {
                   type="primary"
                   Loading={addingPersonalDocumentDetails}
                 >
-                  {this.state.translatedMenuItems[4]}{/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
+                  {this.state.translatedMenuItems[4]}
                 </Button>
               </div>
             </Form>

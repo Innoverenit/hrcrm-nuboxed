@@ -5,8 +5,6 @@ import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import {handlePitchActivityModal,getPitchActivityRecords} from "../../PitchAction"
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import { FormattedMessage } from 'react-intl';
-
 import { Tooltip,Badge } from "antd";
 import { BundleLoader, } from "../../../../Components/Placeholder";
 
@@ -41,32 +39,20 @@ const TabPane = StyledTabs.TabPane;
                 overflowCount={999}
               > 
                        <i class="fas fa-phone-square"></i>&nbsp;
-                       <FormattedMessage
-                        id="app.activity"
-                        defaultMessage="Activity"
-                      />
+                      Activity
                        </Badge>
                   </span>
                 
                     <>
                       <Tooltip 
-                        title={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
+                        title="Create"
+                         
                       >
                        
                          <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                          
                           
-                          tooltiptitle={
-                            <FormattedMessage
-                              id="app.Create"
-                              defaultMessage="Create"
-                            />
-                          }
+                          tooltiptitle="Create"                            
                           onClick={() => {
                             handlePitchActivityModal(true);
                           }}

@@ -29,8 +29,6 @@ import { getAssignedToList } from "../../../Employees/EmployeeAction";
 import { getEvents } from "../../../Settings/Event/EventAction";
 import { setClearbitCandidateData } from "../../../Candidate/CandidateAction";
 import { Listbox } from '@headlessui/react'
-import { FormattedMessage } from 'react-intl';
-
 // yup validation scheme for creating a opportunity
 const EventSchema = Yup.object().shape({
   eventTypeId: Yup.string().required("Select event type"),
@@ -296,10 +294,7 @@ const {
                   <Field
                     isRequired
                     name="eventTypeId"
-                    //label="Type"
-                    label={
-                      <FormattedMessage id="app.type" defaultMessage="Type" />
-                    }
+                    label="Type"
                     component={SearchSelect}
                     isColumnWithoutNoCreate
                     selectType="eventType"
@@ -310,13 +305,8 @@ const {
                   <Field
                     isRequired
                     name="eventSubject"
-                    //label="Topic"
-                    label={
-                      <FormattedMessage
-                        id="app.subject"
-                        defaultMessage="Subject"
-                      />
-                    }
+                    label="Subject"
+                  
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -329,13 +319,8 @@ const {
                         <Field
                           isRequired
                           name="startDate"
-                          //label="Start "
-                          label={
-                            <FormattedMessage
-                              id="app.startDate"
-                              defaultMessage="Start Date"
-                            />
-                          }
+                          label="Start Date"
+                         
                           isColumn
                           component={DatePicker}
                           value={values.startDate}
@@ -349,13 +334,7 @@ const {
                         <Field
                           isRequired
                           name="startTime"
-                          // label="Start Time"
-                          label={
-                            <FormattedMessage
-                              id="app.startTime"
-                              defaultMessage="Start Time"
-                            />
-                          }
+                          label="Start Time"
                           isColumn
                           component={TimePicker}
                           use12Hours
@@ -373,13 +352,7 @@ const {
                       <Field
                         isRequired
                         name="endDate"
-                        // label="End "
-                        label={
-                          <FormattedMessage
-                            id="app.enddate"
-                            defaultMessage="End Date"
-                          />
-                        }
+                        label="End Date"                        
                         component={DatePicker}
                         isColumn
                         value={values.endDate || values.startDate}
@@ -407,13 +380,7 @@ const {
                       <Field
                         isRequired
                         name="endTime"
-                        //label="End Time"
-                        label={
-                          <FormattedMessage
-                            id="app.endtime"
-                            defaultMessage="End Time"
-                          />
-                        }
+                        label="End Time"
                         isColumn
                         component={TimePicker}
                         use12Hours
@@ -430,13 +397,7 @@ const {
                     defaultValue={{ label: timeZone, value: userId }}
                     isColumnWithoutNoCreate
                     name="timeZone"
-                    //label="TimeZone "
-                    label={
-                      <FormattedMessage
-                        id="app.timeZone"
-                        defaultMessage="Time Zone"
-                      />
-                    }
+                    label="TimeZone "
                     selectType="timeZone"
                     isColumn
                     value={values.timeZone}
@@ -444,38 +405,12 @@ const {
                     inlineLabel
                   />
                   <div class=" mt-3" />
-                  <div class=" mt-3" />
-                  
-                    {/* <Field
-                      name="employeesId"
-                      isColumnWithoutNoCreate
-                      selectType="employee"
-                      // label="Assigned"
-                      label={
-                        <FormattedMessage
-                          id="app.assignedto"
-                          defaultMessage="Assigned"
-                        />
-                      }
-                      component={SearchSelect}
-                      isColumn
-                      value={values.employeeId}
-                      defaultValue={{
-                        label: `${firstName || ""} ${middleName || ""} ${
-                          lastName || ""
-                        }`,
-                        value: employeeId,
-                      }}
-                      inlineLabel
-                    /> */}
+                 
                  <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
             <Listbox.Label className="block text-sm font-semibold text-gray-700">
-            <FormattedMessage
-                            id="app.assignedto"
-                            defaultMessage="Assigned"
-                          />
+          Assigned
             </Listbox.Label>
             <div className="relative mt-1">
             <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm" style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}}>
@@ -542,13 +477,7 @@ const {
                        <div class=" mt-3" />
                   <Field
                     name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.include"
-                        defaultMessage="Include"
-                      />
-                    }
+                    label="Include"
                     mode
                     placeholder="Select"
                     component={SelectComponent}
@@ -609,10 +538,7 @@ const {
                   <div class=" mt-3" />
                   <Field
                     name="eventDescription"
-                    //label="Notes"
-                    label={
-                      <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                    }
+                    label="Notes"
                     isColumn
                     width={"100%"}
                     component={TextareaComponent}
@@ -674,10 +600,7 @@ const {
                         htmlType="submit"
                         Loading={deletingEvent}
                       >
-                        <FormattedMessage
-                          id="app.delete"
-                          defaultMessage="Delete"
-                        />
+                       Delete
                       </Button>
                     </StyledPopconfirm>
                   </>
@@ -691,8 +614,7 @@ const {
                   {isEditing ? (
                     "Update"
                   ) : (
-                    // "Create"
-                    <FormattedMessage id="app.create" defaultMessage="Create" />
+                    "Create"
                   )}
                 </Button>
               </div>

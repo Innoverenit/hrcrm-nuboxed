@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
 import GroupsIcon from '@mui/icons-material/Groups';
-import { FormattedMessage } from 'react-intl';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import CallIcon from '@mui/icons-material/Call';
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
@@ -50,10 +49,8 @@ class OpportunityUpdateStepper extends Component {
         const {  ...formProps } = this.props;
         const steps = [
             {
-                title: <FormattedMessage
-                    id="app.order"
-                    defaultMessage="Order"
-                />,
+                title: "Order"
+               ,
                 icon: <GroupsIcon />,
                 content: <UpdateOpportunityForm
                 opportunityId={this.props.opportunityId}
@@ -64,10 +61,7 @@ class OpportunityUpdateStepper extends Component {
                 />,
             },
             {
-                title: <FormattedMessage
-                    id="app.catalogue"
-                    defaultMessage="Catalogue List"
-                />,
+                title: "Catalogue List",
                 icon: <CallIcon style={{ color: "blue" }}/>,
                 content: <AddCatalogueForm/>,
             },
@@ -80,17 +74,13 @@ class OpportunityUpdateStepper extends Component {
                 <StyledSteps current={current}>
                     <Step
                         title={<AddShoppingCartIcon className="!text-icon" />}
-                        description={<FormattedMessage
-                            id="app.oderdetails"
-                            defaultMessage="Order Details"
-                        />}
+                        description="Order Details"
+                   
                     />
                     <Step
                         title={<ControlPointDuplicateIcon  className="!text-icon" />}
-                        description={<FormattedMessage
-                            id="app.unitsinfo"
-                            defaultMessage="Units Info"
-                        />}
+                        description="Units Info"
+                      
                     />
 
                 </StyledSteps>

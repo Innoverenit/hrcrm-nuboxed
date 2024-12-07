@@ -404,15 +404,9 @@ function ProductionTableView(props) {
                                                 <div className=" flex ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         <Tooltip title="Print"
-                                                        // {<FormattedMessage
-                                                        //     id="app.Print"
-                                                        //     defaultMessage="Print"
-                                                        // />}\
+                                                       
                                                         >
-                                                            {/* <PrintOutlined
-                                                                            // onClick={handlePrint}
-                                                                            className="!text-base cursor-pointer"
-                                                                        /> */}
+                                                           
                                                             <ReactToPrint
                                                               trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>
                                                                Print 

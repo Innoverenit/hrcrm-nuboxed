@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from 'react-intl';
-
 import { bindActionCreators } from "redux";
 import { Tooltip, Button,Input, } from "antd";
 import { 
@@ -143,8 +141,7 @@ function LinkedContact(props) {
         },
       },
       {
-        // title: "Name",
-        title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+        title: "Name",
         width: "20%",
         ...getColumnSearchProps("fullName"),
          dataIndex: "fullName",
@@ -189,8 +186,8 @@ function LinkedContact(props) {
           },
         },
       {
-        // title: "Designation",
-        title: <FormattedMessage id="app.role2" defaultMessage="Role" />,
+       
+        title: "Role" ,
         width: "15%",
         dataIndex: "designation",
         onFilter: (value, record) => record.designation.indexOf(value) === 0,
@@ -209,7 +206,7 @@ function LinkedContact(props) {
         },
       },
       {
-        title: <FormattedMessage id="e" defaultMessage="Mobile No" />,
+        title:"Mobile No" ,
         width: "18%",
         dataIndex: "mobileNumber",
         render: (name, item, i) => {
@@ -221,7 +218,7 @@ function LinkedContact(props) {
         },
       },
       {
-        title: <FormattedMessage id="emailid" defaultMessage="Email" />,
+        title: "Email" ,
         width: "27%",
         dataIndex: "emailId",
 
@@ -306,8 +303,7 @@ function LinkedContact(props) {
           return (
              <StyledPopconfirm
               placement="bottom"
-              // title="Do you wish to detach?"
-              title={<FormattedMessage id="app.doyouwishtodetach" defaultMessage="Do you wish to detach?" />}
+              title="Do you wish to detach?"
             >
                {user.userType !== "USER" && user.department !== "Recruiter" && ( 
               <ApiIcon

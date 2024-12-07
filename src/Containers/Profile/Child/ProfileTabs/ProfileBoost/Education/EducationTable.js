@@ -15,7 +15,6 @@ import { handleUpdateEducationModal } from "../../../../ProfileAction";
 import {
   deleteEducationTable,
 } from "../../../../ProfileAction";
-import { FormattedMessage } from 'react-intl';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -42,21 +41,12 @@ class EducationTable extends Component {
 
     const columns = [
       {
-        //title: "Education Type",
-        title: (
-          <FormattedMessage
-            id="app.educationType"
-            defaultMessage="Education Type"
-          />
-        ),
+        title: "Education Type",
         dataIndex: "educationType",
         // width: "35%"
       },
       {
-        //title: "Course Name",
-        title: (
-          <FormattedMessage id="app.courseName" defaultMessage="Course Name" />
-        ),
+        title: "Course Name",
         dataIndex: "courseName",
       },
       // {
@@ -64,26 +54,12 @@ class EducationTable extends Component {
       //   dataIndex: "courseType",
       // },
       {
-        //title: "Year of Passing",
-        title: (
-          <FormattedMessage
-            id="app.yearOfPassing"
-            defaultMessage="Year of Passing"
-          />
-        ),
+        title: "Year of Passing",
         dataIndex: "yearOfPassing",
-        // render: (name, item, i) => {
-        //   return <span>{dayjs(item.yearOfPassing).format("LL")}</span>;
-        // },
+        
       },
       {
-        //title: "University/Institute Name",
-        title: (
-          <FormattedMessage
-            id="app.university"
-            defaultMessage="University/Institute Name"
-          />
-        ),
+        title: "University/Institute Name",
         dataIndex: "university",
       },
       // {
@@ -91,24 +67,13 @@ class EducationTable extends Component {
       //   dataIndex: "specialization",
       // },
       {
-        //title: "Marks Secured",
-        title: (
-          <FormattedMessage
-            id="app.marksSecured"
-            defaultMessage="Marks Secured"
-          />
-        ),
+        title: "Marks Secured",
         dataIndex: "marksSecured",
       },
       {
-        //title: "Marks Secured",
-        title: (
-          <FormattedMessage
-            id="app.type"
-            defaultMessage="Type"
-          />
-        ),
-        // dataIndex: "marksSecured",
+       
+        title: "Type"
+       ,
       },
       {
         title: "",
