@@ -6,7 +6,7 @@ import {
 import { bindActionCreators } from "redux";
 import { Tag, Input, Tooltip, } from "antd";
 import AddBoxIcon from '@mui/icons-material/AddBox';
-import { ViewEditCard, Title, } from "../../../../../../Components/UI/Elements";
+import { ViewEditCard,  } from "../../../../../../Components/UI/Elements";
 import {
   addCertificationByCandidateId,
   getCertificationByCandidateId,
@@ -58,7 +58,6 @@ class certificationLibrary extends React.Component {
 
       addCertificationByCandidateId,
     } = this.props;
-    // if (selectValue) {
       addCertificationByCandidateId(
         {
           candidateId: this.props.candidate.candidateId,
@@ -66,11 +65,6 @@ class certificationLibrary extends React.Component {
         },
         this.props.candidate.candidateId
       );
-    
-    // this.setState({
-    //   inputVisible: false,
-    //   selectValue: "",
-    // });
   };
   handleTopicDelete = ({ candiCertiLinkId, candidateId }) => {
     const { deleteCertificationByCandidateId } = this.props;
@@ -97,14 +91,11 @@ class certificationLibrary extends React.Component {
       <ViewEditCard>
         {({ viewType }, toggleViewType) =>
           viewType === "view" ? (
-            <div class=" h-[11em]" >
-            <div class=" flex " >
-              <Title
-                fontSize="0.875em"
-                style={{ fontWeight: 600, marginBottom: "0.2rem" }}
-              >
+            <div class=" h-44" >
+            <div class=" flex items-center justify-around mb-3" >
+            <div className=" font-bold font-poppins text-xs mb-1 ">
                 Certification{" "}
-              </Title>
+              </div>
             
               <div>
                       <CertificationSelect

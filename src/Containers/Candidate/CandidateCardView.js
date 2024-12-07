@@ -182,7 +182,7 @@ function handleSetCurrentCandidateId(candidateId) {
                         <MoreHorizIcon className="text-[#24d8a7] !text-icon"/> 
                         </Tooltip>            
                         </div>                             
-                        <div class=" flex flex-row justify-end w-full flex-wrap  mb-1 items-center absolute bottom-0">
+                        <div class=" flex flex-row justify-around w-full flex-wrap  mb-1 items-center absolute bottom-0">
                         <div className=" items-center">
               <Tooltip title={item.category}>
               <CircleIcon

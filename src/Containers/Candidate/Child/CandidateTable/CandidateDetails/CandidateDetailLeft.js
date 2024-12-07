@@ -14,7 +14,7 @@ class CandidateDetailLeft extends Component {
     const { candidate } = this.props;
     // console.log(userDetails);
     return (
-      <div class=" flex flex-col block"  >
+      <div class=" flex flex-col "  >
         <CandidateOverViewCard 
        
         candidate={candidate} />

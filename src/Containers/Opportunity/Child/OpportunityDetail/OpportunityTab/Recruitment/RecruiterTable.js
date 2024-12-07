@@ -294,7 +294,7 @@ function RecruiterTable(props) {
 
     {
       title: "Name",
-      //   title: <FormattedMessage id="app.url" defaultMessage="URL" />,
+     
       dataIndex: "fullName",
       ...getColumnSearchProps('fullName'),
       width: "12%",
@@ -415,7 +415,6 @@ function RecruiterTable(props) {
     },
     {
       title: "Vendor",
-      //   title: <FormattedMessage id="app.url" defaultMessage="URL" />,
       dataIndex: "partnerName",
       ...getColumnSearchProps('partner'),
       width: "9%",
@@ -423,7 +422,6 @@ function RecruiterTable(props) {
     },
     {
       title: "Country",
-      //   title: <FormattedMessage id="app.url" defaultMessage="URL" />,
       dataIndex: "country",
       filters: countryTypeOption,
 
@@ -436,7 +434,6 @@ function RecruiterTable(props) {
     },
     {
       title: "Role",
-      //   title: <FormattedMessage id="app.url" defaultMessage="URL" />,
       dataIndex: "roleType",
       ...getColumnSearchProps('role'),
       width: "7%",
@@ -444,7 +441,6 @@ function RecruiterTable(props) {
     },
     {
       title: "Availability",
-      //   title: <FormattedMessage id="app.url" defaultMessage="URL" />,
       dataIndex: "availableDate",
 
       width: "8%",
@@ -474,9 +470,7 @@ function RecruiterTable(props) {
 
     },
     {
-      // title: <FormattedMessage 
-      // id="app.category" defaultMessage=""
-      //  />,
+     
       dataIndex: "category",
       width: "3%",
       render: (name, item, i) => {

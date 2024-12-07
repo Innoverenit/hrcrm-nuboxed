@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from 'react-intl';
 import { bindActionCreators } from "redux";
 
 import { Button } from "antd";
@@ -94,12 +93,8 @@ class CandidateDateForm extends Component {
                 <div style={{ width: "47%" }}>
                   <Field
                     name="projectName"
-                    label={
-                      <FormattedMessage
-                        id="app.projectName"
-                        defaultMessage="Project Name"
-                      />
-                    }
+                    label="Project Name"
+                      
                     isColumn
                     //component={SearchSelect}
                     component={SelectComponent}
@@ -190,8 +185,7 @@ class CandidateDateForm extends Component {
                   htmlType="submit"
                   Loading={candidateDate}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
-                  {/* Create */}
+                 Update
                 </Button>
               </div>
             </Form>

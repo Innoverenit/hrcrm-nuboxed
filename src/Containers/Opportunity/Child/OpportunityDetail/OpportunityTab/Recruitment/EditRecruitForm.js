@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, } from "antd";
 import { Formik, Form, Field } from "formik";
-import { FormattedMessage } from 'react-intl';
 import * as Yup from "yup";
 
 
@@ -51,14 +50,6 @@ function EditRecruitForm(props) {
             ...values,
             avilableDate: values.avilableDate.toISOString(),
           });
-          // props.updateRecruitment(
-          //   {
-          //     ...values,
-          //     avilableDate: values.avilableDate.toISOString(),
-          //   },
-          //   props.opportunityId,
-          //   () => props.handleEditModal(false)
-          // );
         }}
       >
         {({
@@ -80,11 +71,7 @@ function EditRecruitForm(props) {
               >
                 <Field
                   name="description"
-                  // label="Description"
-                  label={<FormattedMessage
-                    id="app.description"
-                    defaultMessage="Description"
-                  />}
+                  label="Description"
                   width={"100%"}
                   isColumn
                   component={TextareaComponent}
@@ -101,11 +88,7 @@ function EditRecruitForm(props) {
                     {" "}
                     <Field
                       name="avilableDate"
-                      //label="Start Date"
-                      label={<FormattedMessage
-                        id="app.avilableDate"
-                        defaultMessage="Start Date"
-                      />}
+                      label="Start Date"
                       isRequired
                       component={DatePicker}
                       isColumn
@@ -123,12 +106,7 @@ function EditRecruitForm(props) {
                   <div style={{ width: "22%" }}>
                     <Field
                       name="billing"
-                      //label="Billing / hour"
-                      label={<FormattedMessage
-                        name="billing"
-                        id="app."
-                        defaultMessage="Billing / hour"
-                      />}
+                      label="Billing / hour"
                       width={"100%"}
                       isRequired
                       isColumn
@@ -172,11 +150,8 @@ function EditRecruitForm(props) {
                 htmlType="submit"
               // Loading={props.updatingRecruitment}
               >
-                <FormattedMessage
-                  id="app.update"
-                  defaultMessage="Update"
-                />
-                {/* Update */}
+              
+          Update
               </Button>
             </FlexContainer>
           </Form>
