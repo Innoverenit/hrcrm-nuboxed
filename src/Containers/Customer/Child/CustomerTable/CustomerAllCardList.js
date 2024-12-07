@@ -42,8 +42,8 @@ import {
   handleCustomerContactDrawerModal,
   handleCustomerOpportunityDrawerModal,
   handleAddressCutomerModal, 
-  handleUpdateUserModal,
-  updateCustomer
+  updateCustomer,
+  updateProspectUser,
 } from "../../CustomerAction";
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
@@ -55,7 +55,6 @@ import AddCustomerAdressModal from "./AddCustomerAdressModal";
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { CurrencySymbol } from "../../../../Components/Common";
 import {getCrm,}from"./././../../../Leads/LeadsAction";
-import UpdateUserModal from "../CustomerTable/UpdateUserModal"
 import EmptyPage from "../../../Main/EmptyPage";
 
 const CustomerContactDrawerModal =lazy(()=> import("./CustomerContactDrawerModal"));
@@ -606,39 +605,19 @@ className="cursor-pointer text-xs font-poppins">
                   
 <div className=" flex  w-[7.3rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 
-<div className=" flex  w-[3rem] max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
-<div class=" text-xs  cursor-pointer font-bold font-poppins  text-blue-600 max-sm:text-sm  text-center"
- onClick={() => {
-  handleCustomerOpportunityDrawerModal(true);
-  handleSetCurrentCustomer(item);
-  handleRowData(item);
- }}
->
-   {item.oppNo}
+<div className=" flex   max-sm:w-auto w-[5.1rem] items-center justify-center h-8  bg-[#eef2f9] max-xl:w-[3.1rem] max-sm:flex-row  max-sm:justify-between ">
+                     {/* Pipeline Value */}
 
-                          </div>
-                          <div>
-                      {editableField?.customerId === item.customerId &&
-   editableField?.field === 'oppNo' ? (
-<Input
-  type="text"
-  className="h-7 w-[4rem] text-xs"
-  value={editingValue}
-  onChange={handleChangeRowItem}
-  onBlur={handleUpdateSubmit}
-  onKeyDown={handleKeyDown} 
-  autoFocus
-/>
-) : (
-<div onClick={() => 
-    handleEditRowField(item.customerId, 'oppNo', item.oppNo)} 
-    className="cursor-pointer text-xs font-poppins flex items-center">
-   <BorderColorIcon  className=" !text-icon cursor-pointer"/>
-    
-    </div> 
-)}                 
+                        <div class=" text-xs  cursor-pointer font-bold font-poppins  text-blue-600  max-sm:text-sm text-center  "
+                          onClick={() => {
+                                handleCustomerOpportunityDrawerModal(true);
+                                handleSetCurrentCustomer(item);
+                                handleRowData(item);
+                              }}
+                              >
+                        {item.oppNo}
+                        </div>
                       </div>
-                          </div>
 
 
 <div className=" flex  w-[3.5rem]  max-sm:w-auto max-xl:w-[3.1rem] max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
@@ -984,11 +963,7 @@ handleRowData(item);
         handleCustomerNotesDrawerModal={handleCustomerNotesDrawerModal}
         handleSetCurrentCustomer={handleSetCurrentCustomer}
       /> 
-        <UpdateUserModal
-      currentCustomerId={currentCustomerId}
-      updateUserModal={props.updateUserModal}
-      handleUpdateUserModal={props.handleUpdateUserModal}
-      />
+      
     </>
   );
 }
@@ -1012,7 +987,6 @@ const mapStateToProps = ({
   recruiterName: opportunity.recruiterName,
   fetchingAllCustomers: customer.fetchingAllCustomers,
   sectors: sector.sectors,
-  updateUserModal:customer.updateUserModal,
   fetchingAllCustomerList: customer.fetchingAllCustomerList,
   fetchingAllCustomerListError: customer.fetchingAllCustomerListError,
   updateCustomerModal: customer.updateCustomerModal,
@@ -1032,7 +1006,6 @@ const mapDispatchToProps = (dispatch) =>
       handleUpdateCustomerModal,
       handleCustomerPulseDrawerModal,
       setEditCustomer,
-      handleUpdateUserModal,
       customerToAccount,
       emptyCustomer,
       updateOwnercustomerById,
@@ -1050,7 +1023,8 @@ const mapDispatchToProps = (dispatch) =>
       updateCustomer,
       getAllDialCodeList,
       getSources,
-      getSectors
+      getSectors,
+      updateProspectUser,
     },
     dispatch
   );

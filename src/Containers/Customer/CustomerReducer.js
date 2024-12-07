@@ -103,7 +103,7 @@ const initialState = {
   fetchingAllCustomerByPosition: false,
 
 
-  updateUserModal:false,
+
 
   fetchingCustomerRequirement: false,
   fetchingCustomerRequirementError: false,
@@ -862,9 +862,7 @@ export const customerReducer = (state = initialState, action) => {
         fetchingDocumentsCountError: true,
       };
 
-      case types.HANDLE_UPDATE_USER_MODAL:
-      return { ...state, updateUserModal: action.payload };
-
+      
     case types.ADD_LOCATION_DETAILS_REQUEST:
       return { ...state, addingLocationDetails: true };
     case types.ADD_LOCATION_DETAILS_SUCCESS:
