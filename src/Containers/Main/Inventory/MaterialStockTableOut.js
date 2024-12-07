@@ -15,6 +15,7 @@ import ShareLocationIcon from '@mui/icons-material/ShareLocation';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import RepartitionIcon from '@mui/icons-material/Repartition'; 
 import { BundleLoader } from "../../../Components/Placeholder";
+import MaterialStockToggle from "./MaterialStockToggle";
 const ItemHistoryInStockData = lazy(() =>import("./Child/InventoryDetails/InventoryMaterialTab/ItemHistoryInStockData") );
 const StockItemClickModal = lazy(() =>import("./Child/InventoryDetails/InventoryMaterialTab/StockItemClickModal") );
 const TheStockUsedDrawer = lazy(() =>import("./Child/InventoryDetails/InventoryMaterialTab/TheStockUsedDrawer") );
@@ -119,7 +120,7 @@ const MaterialStockTableOut = (props) => {
                             {/* in stock  */}
                              {props.translatedMenuItems[29]}
                         </div>
-                       
+                        <div className="w-[7.11rem] truncate max-md:md:w-[4.51rem]">< MeetingRoomIcon className=" !text-icon"/> Publish</div>
                         <div className=""></div>
                     </div>
                     <InfiniteScroll
@@ -213,7 +214,10 @@ const MaterialStockTableOut = (props) => {
 <div></div>
 </div>
                                       
-
+<MaterialStockToggle
+                                      publishInd={item.publishInd}
+                                      suppliesId={item.suppliesId}
+                                    />
                                     </div>
                                     <div>
                                         {itemHistory && (row.suppliesId === item.suppliesId)
@@ -226,6 +230,7 @@ const MaterialStockTableOut = (props) => {
 
                                             />}
                                     </div>
+                                  
                                 </div>
                             );
                         })}

@@ -2977,3 +2977,30 @@ export const setPackedUnpacked = (data,orderId) => (dispatch) => {
       });
     });
 };
+
+export const linkMaterialStockToggle = ( data,suppliesId) => (dispatch, getState) => {
+  dispatch({
+    type: types.LINK_MATERIAL_STOCK_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/supplies/update/publishInd/${suppliesId}`,data,  {
+    // headers: {
+    //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    // },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_MATERIAL_STOCK_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_MATERIAL_STOCK_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};
