@@ -9,7 +9,6 @@ import {
   getSearchDistributor
 } from "./Account/AccountAction";
 import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
-import HeadphonesIcon from '@mui/icons-material/Headphones';
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import { login_url } from "../../Config/Auth";
@@ -749,7 +748,7 @@ function MainApp(props) {
               </Header>
             </div>
             <div class=" p-1 bg-light-gray ">
-              <NodataFoundPage>
+              {/* <NodataFoundPage> */}
                 <Content>
                   <Suspense maxDuration={6000} fallback={<BundleLoader />}>
                     <Switch>
@@ -1788,7 +1787,7 @@ function MainApp(props) {
                     </Switch>
                   </Suspense>
                 </Content>
-              </NodataFoundPage>
+              {/* </NodataFoundPage> */}
             </div>
           </LayoutWrapper>
         </LayoutWrapper>
