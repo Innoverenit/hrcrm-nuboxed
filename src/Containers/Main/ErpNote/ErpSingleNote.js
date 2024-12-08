@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import moment from "moment";
+import dayjs from "dayjs";
+import relativeTime from 'dayjs/plugin/relativeTime';
+
+
 const NotesWrapper = styled.div``;
 export default function ErpSingleNote(props) {
   console.log(props);
@@ -13,6 +16,10 @@ export default function ErpSingleNote(props) {
     //   creatorDetails: { firstName, lastName }
     // }
   } = props;
+  dayjs.extend(relativeTime);
+  
+  const formattedDate = dayjs(creationDate).format('MMMM D, YYYY h:mm A');
+  const relativeTimeString = dayjs(creationDate).fromNow();
   return (
     <NotesWrapper>
       {/* <SubTitle fontSize='1.125em' whiteSpace='normal' fontFamily='Abel' style={{ color: '#393a3a' }}>
@@ -23,7 +30,10 @@ export default function ErpSingleNote(props) {
        
         
         <div class="mt-3">
-        {`${moment(creationDate).fromNow()}`}  {props.ownerName}
+        {/* {`${moment(creationDate).fromNow()}`}  */}
+        {/* {formattedDate}  */}
+        {relativeTimeString}
+         {props.ownerName}
         </div>
         {/* <b>
           {userId !== creatorId

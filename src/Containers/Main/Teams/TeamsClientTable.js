@@ -1,15 +1,16 @@
-import React, { Component, useEffect } from "react";
+import React, { Component, useEffect , lazy , Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../Components/UI/Antd";
+import { BundleLoader } from "../../../Components/Placeholder";
 import {
     getClientsInTeam,
     setEditTeamsAllocation,
     handleUpdateTeamsAllocationModal,
 } from "./TeamsAction"
 import { Tooltip } from "antd";
-import UpdateTeamsAllocationModal from "./UpdateTeamsAllocationModal";
 import dayjs from "dayjs";
+const  UpdateTeamsAllocationModal =lazy(()=> import('./UpdateTeamsAllocationModal'));
 
 function TeamsClientTable(props) {
 
@@ -115,6 +116,7 @@ function TeamsClientTable(props) {
     const tableHeight = tab && tab.offsetHeight - 200;
     return (
         <>
+          <Suspense fallback={<BundleLoader />}>
             <StyledTable
                 columns={columns}
                 dataSource={props.clientTeam}
@@ -126,7 +128,7 @@ function TeamsClientTable(props) {
                 handleUpdateTeamsAllocationModal={
                     props.handleUpdateTeamsAllocationModal
                 }
-            />
+            /></Suspense>
         </>
     );
 }

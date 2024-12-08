@@ -1,14 +1,14 @@
 import React, { useEffect,useRef,useState } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { Tooltip, Badge,Avatar,Input } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import PeopleIcon from '@mui/icons-material/People';
-import { CheckCircleTwoTone } from "@ant-design/icons";
-import { AudioOutlined } from '@ant-design/icons';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import {getdealsRecord,getdealsAllRecord,
   getdealsTeamRecord,getlostRecords,
@@ -16,7 +16,8 @@ import {getdealsRecord,getdealsAllRecord,
   getDealListbyUserId,getTeamsDeals,getAllDeals
 
 } from "../DealAction";
-import { StopTwoTone, TableOutlined } from "@ant-design/icons";
+import GridOnIcon from '@mui/icons-material/GridOn';
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 const { Search } = Input;
 
 const DealActionLeft = (props) => {
@@ -116,7 +117,7 @@ const DealActionLeft = (props) => {
     };
 
     const suffix = (
-      <AudioOutlined
+      <MicIcon
         onClick={handleStartListening}
         style={{
           fontSize: 16,
@@ -184,12 +185,8 @@ const DealActionLeft = (props) => {
         overflowCount={999}
       >
         <Tooltip
-          title={
-            <FormattedMessage
-              id="app.listView"
-              defaultMessage=" My Deals"
-            />
-          }
+          title=" My Deals"
+           
         >
           <span
             class=" mr-1 text-sm cursor-pointer"
@@ -198,16 +195,14 @@ const DealActionLeft = (props) => {
               color: viewType === "table" && "#1890ff",
             }}
           >          
-            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355" }}>
             <CurrencyExchangeIcon  className="text-white !text-icon"/>
             </Avatar>
           </span>
         </Tooltip>
       </Badge>
       <Tooltip
-          title={
-            <FormattedMessage id="app.stageview" defaultMessage=" My Deals-Stage View" />
-          }
+          title=" My Deals-Stage View" 
         >
         <Badge
         size="small"
@@ -222,17 +217,15 @@ const DealActionLeft = (props) => {
           
             onClick={() => props.setDealViewType("stage")}
           >
-             <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#4bc076" }}>
-           <TableOutlined  className="text-white !text-icon cursor:pointer"/>
+             <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#28a355" }}>
+           <GridOnIcon  className="text-white !text-icon cursor:pointer"/>
            </Avatar>
           </span>
           </Badge>
         </Tooltip>
         <Tooltip 
-        title={   <FormattedMessage
-          id="app.won"
-          defaultMessage="My Deals-Won"
-        />}
+        title="My Deals-Won"
+     
    >
       <Badge
           size="small"     
@@ -247,18 +240,16 @@ const DealActionLeft = (props) => {
             }}
           >
             {" "}
-            <Avatar style={{ background: props.viewType === "won" ? "#f279ab" : "#4bc076" }}>
-            <CheckCircleTwoTone type="check-circle" theme="twoTone" twoToneColor="#24D8A7"  className=" !text-icon cursor:pointer" />
+            <Avatar style={{ background: props.viewType === "won" ? "#f279ab" : "#28a355" }}>
+            <CheckCircleOutlineIcon type="check-circle" theme="twoTone" twoToneColor="#24D8A7"  className=" !text-icon cursor:pointer" />
             </Avatar>
           </span>
           </Badge>
       </Tooltip>
        
       <Tooltip 
-        title={   <FormattedMessage
-          id="app.lost"
-          defaultMessage="My Deals-Lost"
-        />}>
+        title="My Deals-Lost"
+       >
         <Badge
           size="small"
           count={
@@ -278,8 +269,8 @@ const DealActionLeft = (props) => {
             }}
           >
             {" "}
-            <Avatar style={{ background: props.viewType === "lost" ? "#f279ab" : "#4bc076" }}>
-            <StopTwoTone type="stop" theme="twoTone" twoToneColor="red"  className=" !text-icon cursor:pointer" />
+            <Avatar style={{ background: props.viewType === "lost" ? "#f279ab" : "#28a355" }}>
+            <DoDisturbIcon type="stop" theme="twoTone" twoToneColor="red"  className=" !text-icon cursor:pointer" />
             </Avatar>
           </span>
         </Badge>
@@ -287,10 +278,8 @@ const DealActionLeft = (props) => {
    
       {user.teamsAccessInd === true && (
         <Tooltip
-          title={   <FormattedMessage
-            id="app.teams"
-            defaultMessage="My Deals-Teams"
-          />}
+          title="My Deals-Teams"
+        
         >
            <Badge
           size="small"
@@ -310,7 +299,7 @@ const DealActionLeft = (props) => {
             }}
             onClick={() => props.setDealViewType("teams")}
           >
-            <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#28a355" }}>
          <PeopleIcon  className="text-white !text-icon cursor:pointer"/>
          </Avatar>
           </span>
@@ -319,10 +308,7 @@ const DealActionLeft = (props) => {
            )}
         {(props.dealFullListInd===true || props.user.role==="ADMIN") && (
         <Tooltip
-          title={   <FormattedMessage
-            id="app.all"
-            defaultMessage="ALL"
-          />}
+          title="ALL"
         >
      <Badge
         size="small"
@@ -339,23 +325,16 @@ const DealActionLeft = (props) => {
             tooltipTitle="All"
             onClick={() => props.setDealViewType("all")}
           >
-             <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-            <FormattedMessage
-                        id="app.all"
-                        defaultMessage="ALL" className="text-white !text-icon cursor:pointer"
-                      />
+             <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
+          ALL
                       </Avatar>
           </span>
           </Badge>
         </Tooltip>
      )}
       <Tooltip
-        title={
-          <FormattedMessage
-            id="app.deletedDeal"
-            defaultMessage=" My Deals-Deleted"
-          />
-        }
+        title=" My Deals-Deleted"
+        
       >
         {" "}
         <Badge
@@ -376,8 +355,8 @@ const DealActionLeft = (props) => {
             
             }}
           >
-             <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#4bc076" }}>
-            <DeleteOutlined  className="text-white !text-icon"/>
+             <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#28a355" }}>
+             <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
             </Avatar>
           </span>
         </Badge>

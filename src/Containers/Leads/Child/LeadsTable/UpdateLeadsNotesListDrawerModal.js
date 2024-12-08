@@ -3,7 +3,7 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-// import NotesLeadsForm from "./NotesLeadsForm";
+
 
 class UpdateLeadsNotesListDrawerModal extends Component {
 
@@ -16,7 +16,7 @@ class UpdateLeadsNotesListDrawerModal extends Component {
  <StyledDrawer 
           // title="Notes"
           title={this.props.rowdata.notes}
-          width="64%"
+            width="38%"
           destroyOnClose
           closable
           visible={this.props.updatingLeadsNoteDrawerModal}

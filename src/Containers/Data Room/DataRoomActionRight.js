@@ -6,7 +6,7 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Button } from "antd";
 import { StyledSelect } from "../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 const Option = StyledSelect.Option;
 
 class DataRoomActionRight extends React.Component {
@@ -36,8 +36,10 @@ class DataRoomActionRight extends React.Component {
 
   fetchMenuTranslations = async () => {
     try {
-      const itemsToTranslate = [                    
-        "Add",              
+      const itemsToTranslate = [   
+
+        "85",//Add      
+
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -52,16 +54,16 @@ class DataRoomActionRight extends React.Component {
       <>
                <div class=" flex  items-center">
        
-           {this.props.user.dataRoomCreateInd ===true && user.imInd === true &&(
+           {/* {this.props.user.dataRoomCreateInd ===true && user.imInd === true &&(
 <Button
   type="primary"
   onClick={() => this.props.handleDataroomModal(true)}
 >
-                     Add
-            {/* {this.state.translatedMenuItems[0]} */}
-{/* add */}
+  <DataSaverOnIcon className="!text-icon"/> 
+       {this.state.translatedMenuItems[0]}
+     
 </Button>
-   )} 
+   )}  */}
         </div>    
       </>
     );

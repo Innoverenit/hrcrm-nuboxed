@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Button, Tooltip, } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
@@ -23,6 +23,7 @@ class EducationDocumentForm extends Component {
     super(props);
     this.state = {
       active: "Full Time",
+      translatedMenuItems: [],
     };
   }
   glassButtoClick = (type) => {
@@ -31,8 +32,41 @@ class EducationDocumentForm extends Component {
   };
 componentDidMount() {
   this.props.getLinkedUsersDocument(this.props.orgId);
+  this.fetchMenuTranslations();
  
 }
+componentDidUpdate(prevProps) {
+  if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+    this.fetchMenuTranslations();
+  }
+}
+fetchMenuTranslations = async () => {
+  try {
+    const itemsToTranslate = [
+      "76",//0Type
+      "1195",//1Education"
+      "1692",//2Course Name
+      "1179",//3 Course Type
+      "986",//4"Full Time
+      "987",// part time5
+      "1691",// Distance6
+      "1180",// Specialization7
+      "1690",// University/Institute8
+      "1175",// year of Passing9
+     "1178", // Marks Secured"10
+      "1183",// Marks Type"11
+      "138",// Document Id12
+      "1181",// Name of Document13
+     "1182", // Description of document14
+     "154", // submit15
+    ];
+
+    const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+    this.setState({ translatedMenuItems: translations });
+  } catch (error) {
+    console.error('Error translating menu items:', error);
+  }
+};
   render() {
     const { addingEducationDetails } = this.props;
     const documentNameOption = this.props.linkedUserDocument.map((item) => {
@@ -85,21 +119,11 @@ componentDidMount() {
               <div class=" flex w-full h-full justify-between"
               >
                 <div class=" w-[45%]"
-                >
+                > <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[0]}</div>
                    <FastField
                     name="documentTypeId"
                     type="text"
-                    //label="Type"
-                    label={
-                      <FormattedMessage id="app.type" defaultMessage="Type" />
-                    }
-                    // options={[
-                    //   "Aadhar Card",
-                    //   "Voter-Id Card",
-                    //   "Driving-License",
-                    //   "Pan Card",
-                    //   "Passport",
-                    // ]}
+                 
                     options={
                       Array.isArray(documentNameOption)
                         ? documentNameOption
@@ -111,23 +135,10 @@ componentDidMount() {
                     isColumn
                      />
               <div class=" mt-3">
+              <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[1]}</div>
                   <FastField
                     name="educationTypeId"
-                    // type="text"
-                    //label="Education"
-                    label={
-                      <FormattedMessage
-                        id="app.education"
-                        defaultMessage="Education"
-                      />
-                    }
-                    // options={[
-                    //   "Matriculation",
-                    //   "Intermediate",
-                    //   "Graduation",
-                    //   "Post-Graduation",
-                    //   "Others",
-                    // ]}
+                  
                     selectType="educationType"
                     component={SearchSelect}
                     value={values.educationTypeId}
@@ -138,32 +149,29 @@ componentDidMount() {
                       />
                       </div>
                       <div class=" mt-3">
+                      <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[2]}</div>
                     <Field
                       isRequired
                       name="courseName"
                       type="text"
                       isColumn
                       width={"100%"}
-                      //label="Course Name"
-                      label={
-                        <FormattedMessage
-                          id="app.courseName"
-                          defaultMessage="Course Name"
-                        />
-                      }
+                     
                       component={InputComponent}
                       inlineLabel
                       />
                   </div>
                   <div class=" mt-3">
-                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Course Type</div>
+                  <div class="font-bold font-poppinsm-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                  {this.state.translatedMenuItems[3]}</div>
                     <div class=" mt-3">
                     <ButtonGroup>
                       <StatusIcon
                         color="blue"
                         type="Full Time"
                         iconType="fa-hourglass-start"
-                        tooltip="Full Time"
+                        tooltip= {this.state.translatedMenuItems[4]}
+                        // "Full Time"
                         status={this.state.active}
                         onClick={() => this.glassButtoClick("Full Time")}
                       />
@@ -171,7 +179,8 @@ componentDidMount() {
                       <StatusIcon
                         type="Part Time"
                         iconType="fa-hourglass-half"
-                        tooltip="Part Time"
+                        tooltip= {this.state.translatedMenuItems[5]}
+                        // "Part Time"
                         status={this.state.active}
                         onClick={() => this.glassButtoClick("Part Time")}
                       />
@@ -179,7 +188,8 @@ componentDidMount() {
                       <StatusIcon
                         type="Distance"
                         iconType="fa-hourglass"
-                        tooltip="Distance"
+                        tooltip= {this.state.translatedMenuItems[6]}
+                        // "Distance"
                         status={this.state.active}
                         onClick={() => this.glassButtoClick("Distance")}
                         //  status={item.taskStatus}
@@ -191,37 +201,27 @@ componentDidMount() {
                     </div>
                   </div>
                   <div class=" mt-3">
+                  <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[7]}</div>
                     <Field
                       isRequired
                       name="specialization"
                       type="text"
                       isColumn
                       width={"100%"}
-                      //label="Specialization"
-                      label={
-                        <FormattedMessage
-                          id="app.Specialization"
-                          defaultMessage="Specialization"
-                        />
-                      }
+                     
                       component={InputComponent}
                       inlineLabel
                       />
                   </div>
                   <div class=" mt-3">
+                  <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[8]}</div>
                     <Field
                       isRequired
                       name="university"
                       type="text"
                       isColumn
                       width={"100%"}
-                      //label="University/Institute "
-                      label={
-                        <FormattedMessage
-                          id="app.university"
-                          defaultMessage="University/Institute"
-                        />
-                      }
+                    
                       component={InputComponent}
                       inlineLabel
                       />
@@ -230,15 +230,10 @@ componentDidMount() {
 
                   <div class=" flex mt-3" >
                     <div class=" w-[50%]" >
+                    <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[9]}</div>
                       <Field
                         name="yearOfPassing"
-                        //label="Year of Passing"
-                        label={
-                          <FormattedMessage
-                            id="app.yearOfPassing"
-                            defaultMessage="Year of Passing"
-                          />
-                        }
+                      
                         component={InputComponent}
                         isColumn
                         width={"100%"}
@@ -248,15 +243,10 @@ componentDidMount() {
                     </div>
                  
                     <div class=" w-[49%] ml-4" >
+                    <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[10]}</div>
                       <Field
                         isRequired
-                        //label="Marks Secured"
-                        label={
-                          <FormattedMessage
-                            id="app.marksSecured"
-                            defaultMessage="Marks Secured"
-                          />
-                        }
+                       
                         name="marksSecured"
                         type="text"
                         isColumn
@@ -265,14 +255,10 @@ componentDidMount() {
                       />
                     </div>
                     <div class=" w-[60%] ml-4" >
+                    <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[11]}</div>
                       <Field
                         name="marksType"
-                        label={
-                          <FormattedMessage
-                            id="app.marksType"
-                            defaultMessage="Marks Type"
-                          />
-                        }
+                      
                         type="text"
                         component={SelectComponent}
                         options={["%", "Out of 10", "Out of 5"]}
@@ -287,44 +273,28 @@ componentDidMount() {
                 </div>
 
                 <div class=" w-[45%]"
-                >
+                >   <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[12]} ID</div>
                   <Field
                     name="documentId"
-                    label={
-                      <FormattedMessage
-                        id="app.documentId"
-                        defaultMessage="Document Id"
-                      />
-                    }
+                    
                     isRequired
                     component={DragableUpload}
                   />
                 <div class=" mt-3" >
-
+                <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[13]}</div>
                   <Field
                     name="documentTitle"
-                    //label="Name of Document"
-                    label={
-                      <FormattedMessage
-                        id="app.documentTitle"
-                        defaultMessage="Name of Document"
-                      />
-                    }
+                 
                     width={"100%"}
                     isColumn
                     component={InputComponent}
                     />
                    </div>
                    <div class=" mt-3" >
+                   <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[14]}</div>
                   <Field
                     name="documentDescription"
-                    //label="Description of document"
-                    label={
-                      <FormattedMessage
-                        id="app.documentDescription"
-                        defaultMessage="Description of document"
-                      />
-                    }
+                    
                     isRequired
                     isColumn
                     width={"100%"}
@@ -341,7 +311,7 @@ componentDidMount() {
                   type="primary"
                   Loading={addingEducationDetails}
                 >
-                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
+                  {this.state.translatedMenuItems[15]} 
                 </Button>
               </div>
             </Form>

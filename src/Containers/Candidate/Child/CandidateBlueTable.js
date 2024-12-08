@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useMemo, lazy } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 import { bindActionCreators } from "redux";
-import moment from "moment";
-import { SearchOutlined } from "@ant-design/icons";
+import dayjs from "dayjs";
+import SearchIcon from '@mui/icons-material/Search';
 import { StyledTable } from "../../../Components/UI/Antd";
 import { Tooltip, Button, Input } from "antd";
 import Highlighter from "react-highlight-words";
@@ -81,7 +81,7 @@ function CandidateBlueTable(props) {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             //icon="search"
             size="small"
             style={{ width: 90 }}
@@ -109,7 +109,7 @@ function CandidateBlueTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />
@@ -199,8 +199,8 @@ function CandidateBlueTable(props) {
       },
     },
     {
-      // title: "Name",
-      title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+      title: "Name",
+    
       width: "13%",
       ...getColumnSearchProps("name"),
       sorter: (a, b) => {
@@ -219,8 +219,8 @@ function CandidateBlueTable(props) {
         const fullName = ` ${item.salutation || ""} ${item.firstName || ""} ${
           item.middleName || ""
         } ${item.lastName || ""}`;
-        const currentdate = moment().format("DD/MM/YYYY");
-        const date = moment(item.creationDate).format("DD/MM/YYYY");
+        const currentdate = dayjs().format("DD/MM/YYYY");
+        const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         console.log(date, currentdate, currentdate === date);
         return (
           <>
@@ -272,15 +272,15 @@ function CandidateBlueTable(props) {
     },
 
     {
-      // title: "Company",
-      title: <FormattedMessage id="app.vendor" defaultMessage="Vendor" />,
+      title: "Company",
+
       dataIndex: "partnerName",
       width: "10%",
       ...getColumnSearchProps("partnerName"),
     },
     {
-      // title: "Status",
-      title: <FormattedMessage id="app.role" defaultMessage="Role" />,
+      title: "Status",
+      title: "Role",
       dataIndex: "roleType",
       width: "10%",
       filters: roleTypeOption,
@@ -291,9 +291,7 @@ function CandidateBlueTable(props) {
     },
 
     {
-      title: (
-        <FormattedMessage id="app.mobileNumber" defaultMessage="Mobile #" />
-      ),
+      title: "Mobile #",
       dataIndex: "mobileNumber",
       width: "10%",
       render: (name, item, i) => {
@@ -305,7 +303,7 @@ function CandidateBlueTable(props) {
       },
     },
     {
-      title: <FormattedMessage id="app.country" defaultMessage="Country" />,
+      title: "Country" ,
       dataIndex: "country",
       align: "left",
       sorter: (a, b) => {
@@ -323,7 +321,7 @@ function CandidateBlueTable(props) {
       width: "7%",
     },
     {
-      title: <FormattedMessage id="app.skills" defaultMessage="Skills" />,
+      title: "Skills",
       // dataIndex: "skillList",
       width: "17%",
       ...getColumnSearchProps("skillList"),
@@ -350,7 +348,7 @@ function CandidateBlueTable(props) {
     },
 
     {
-      title: <FormattedMessage id="app.cost" defaultMessage="Cost" />,
+      title: "Cost" ,
       dataIndex: "billing",
       align: "left",
       width: "6%",
@@ -366,7 +364,7 @@ function CandidateBlueTable(props) {
       },
     },
     {
-      title: <FormattedMessage id="app.benefits" defaultMessage="Benefits" />,
+      title:"Benefits" ,
       dataIndex: "benifit",
       width: "6%",
       render: (name, item, i) => {
@@ -381,17 +379,17 @@ function CandidateBlueTable(props) {
       },
     },
     {
-      title: <FormattedMessage id="app.available" defaultMessage="Available" />,
+      title: "Available" ,
       dataIndex: "availableDate",
       width: "7%",
       render: (text, item) => {
-        const availableDate = moment(item.availableDate).format("ll");
+        const availableDate = dayjs(item.availableDate).format("ll");
         return (
           <>
             {item.availableDate === null ? (
               "None"
             ) : (
-              <span>{moment(item.availableDate).format("l")}</span>
+              <span>{dayjs(item.availableDate).format("l")}</span>
             )}
           </>
         );
@@ -400,7 +398,7 @@ function CandidateBlueTable(props) {
 
     {
       //title: "",
-      title: <FormattedMessage id="app.owner" defaultMessage="Owner" />,
+      title: "Owner" ,
       width: "8%",
       filters: ownerlistType,
 
@@ -426,7 +424,7 @@ function CandidateBlueTable(props) {
       },
     },
     {
-      title: <FormattedMessage id="app.active" defaultMessage="Active" />,
+      title: "Active" ,
       width: "6%",
       render: (name, item, i) => {
         return (

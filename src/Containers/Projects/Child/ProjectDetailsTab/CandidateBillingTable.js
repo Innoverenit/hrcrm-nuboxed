@@ -2,7 +2,7 @@ import React, { useEffect, useState,useMemo,lazy } from 'react'
 import { StyledTable } from '../../../../Components/UI/Antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import { Link } from "../../../../Components/Common";
 import { Tooltip,Button,Input,Avatar } from "antd";
 import SearchIcon from '@mui/icons-material/Search';
@@ -62,8 +62,7 @@ function CandidateBillingTable (props)  {
                 <Button
                   type="primary"
                   onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                  // icon={<SearchOutlined />}
-                 // icon="search"
+               
                   size="small"
                   style={{ width: 90 }}
                 >
@@ -91,7 +90,6 @@ function CandidateBillingTable (props)  {
             </div>
           ),
           filterIcon: (filtered) => (
-            // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
             <SearchIcon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
           ),
           onFilter: (value, record) =>

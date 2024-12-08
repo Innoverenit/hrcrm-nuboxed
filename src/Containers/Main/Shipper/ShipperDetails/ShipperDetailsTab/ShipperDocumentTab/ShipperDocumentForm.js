@@ -3,9 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
-import { FormattedMessage } from "react-intl";
 import { FlexContainer } from "../../../../../../Components/UI/Layout";
-import { Spacer } from "../../../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
@@ -29,8 +27,36 @@ class ShipperDocumentForm extends Component {
       ownerAbove: "Specific",
       selectedownerAbove: "Specific",
       data: [1],
+      translatedMenuItems: [],
     };
   }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+       
+       "71",//Type 0
+       "110",// "Name id" 1
+       "147",// "Description" 2
+       "154",  //Submit 3
+   "887",//Shipper 4
+       
+            ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  }; 
   handleButtonClick = () => {
     console.log(length);
     let length = this.state.data.length;
@@ -126,14 +152,10 @@ class ShipperDocumentForm extends Component {
             values,
             ...rest
           }) => (
-            <Form class="form-background">
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <div
-                  style={{
-                    height: "100%",
-                    width: "45%",
-                  }}
-                ><Spacer/>
+            <Form class="form-background h-[30vh]">
+              <div className="flex justify-between" >
+                <div className="h-[100%] w-[45%]"              
+                ><div class=" mt-3"/>
                   <Field
                     name="documentId"
                     isRequired
@@ -144,11 +166,11 @@ class ShipperDocumentForm extends Component {
                     <p style={{ color: "tomato", fontWeight: 600 }}>
                       {errors.documentId}
                     </p>
-                  )}             
+                  )}  
+                   <div class=" mt-3 font-bold font-poppins text-xs">{this.state.translatedMenuItems[0]}</div>           
                   <Field
                     name="documentTypeId"
-                    selectType="documentType"
-                    label={<FormattedMessage id="app.Type" defaultMessage="Type" />}                  
+                    selectType="documentType"            
                     component={SearchSelect}
                     isColumn
                     margintop={"0.25em"}
@@ -156,22 +178,19 @@ class ShipperDocumentForm extends Component {
                     inlineLabel              
                   />
                 </div>
-                <div
-                  style={{
-                    height: "100%",
-                    width: "45%",
-                  }}
+                <div className="h-[100%] w-[45%]"                
                 >
+                   <div class=" mt-3 font-bold font-poppins text-xs">{this.state.translatedMenuItems[1]}</div>
                   <Field
-                    name="documentName"
-                    label={<FormattedMessage id="app.name" defaultMessage="Name" />}                   
+                    name="documentName"              
                     width={"100%"}
                     isColumn
                     component={InputComponent}             
-                  />               
+                  />  
+                   <div class=" mt-3 font-bold font-poppins text-xs">{this.state.translatedMenuItems[2]}</div>             
                   <Field
                     name="documentDescription"
-                    label={<FormattedMessage id="app.Description" defaultMessage="Description" />}                 
+                               
                     isRequired
                     isColumn
                     width={"100%"}
@@ -179,14 +198,14 @@ class ShipperDocumentForm extends Component {
                   />                 
                 </div>
               </div>
-              <Spacer />
+              <div class=" mt-3" />
               <FlexContainer justifyContent="flex-end">
                 <Button
                   htmlType="submit"
                   type="primary"
                   Loading={addingDocumentByShipperId}
                 >
-                       {<FormattedMessage id="app.submit" defaultMessage="Submit"/>}
+                       <div class=" mt-3 font-bold font-poppins text-xs">{this.state.translatedMenuItems[3]}</div>
                 </Button>
               </FlexContainer>
             </Form>

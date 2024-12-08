@@ -1,6 +1,6 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import {
   StyledPopconfirm,
@@ -16,17 +16,50 @@ import { base_url } from "../../../../../../../Config/Auth";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import dayjs from "dayjs";
 import { Tooltip } from "antd";
+import MergeTypeIcon from '@mui/icons-material/MergeType';
+import PublicIcon from '@mui/icons-material/Public';
+import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
+import DateRangeIcon from '@mui/icons-material/DateRange';
 const UpdateVisaModal =lazy(()=>import("./UpdateVisaModal"));
 
 class VisaTable extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
   componentDidMount() {
     // debugger;
     const { getVisaDetails, userId } = this.props;
     // console.log(employeeId);
     if (userId) {
       getVisaDetails(userId);
+      this.fetchMenuTranslations();
     }
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "1109",//0 Country
+        "71",//1 Type
+        "176",//2 Start Date
+        "126",//3  End Date
+        "1259"// Do you want to delete?"
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
 
   render() {
     console.log(this.props.userId);
@@ -54,27 +87,21 @@ class VisaTable extends Component {
     return (
       <>
 
-<div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-<div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-<div className=" md:w-[6.5rem]">
-<FormattedMessage
-        id="app.country"
-        defaultMessage="Country"
-      /></div>
+<div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+<div className=" flex justify-between w-[100%] text-lm p-1 bg-transparent font-bold sticky  z-10">
+<div className=" max-md:w-[6.5rem] w-[6.5rem] text-sm text-[#00A2E8]">
+<PublicIcon className=" !text-icon text-[#1E213D] "/>{this.state.translatedMenuItems[0]}</div>
 
-<div className="md:w-[10.1rem]">
-    <FormattedMessage id="app.type" defaultMessage="Type" /></div>
-       <div className="md:w-[7.1rem]">
-       <FormattedMessage
-id="app.startDate"
-defaultMessage="Start Date"
-/></div>
-             <div className=" md:w-[8.1rem]">
-             <FormattedMessage id="app.endDate" defaultMessage="End Date" /></div>
+<div className="max-md:w-[10.1rem] w-[10.1rem]">
+<MergeTypeIcon className=" !text-icon  text-[#006600]"/>{this.state.translatedMenuItems[1]}</div>
+       <div className="max-md:w-[7.1rem] w-[7.1rem]">
+       <DateRangeIcon className=" !text-icon text-[#4B2206]"/>  {this.state.translatedMenuItems[2]}</div>
+             <div className=" max-md:w-[10.2rem] w-[10.2rem]">
+             <InsertInvitationIcon className=" !text-icon text-[#D64045]"/>  {this.state.translatedMenuItems[3]}</div>
 
         
 
-<div className="w-[10.2rem]"></div>
+<div className="max-md:w-[10.2rem] w-[10.2rem]"></div>
 
 </div>
 
@@ -171,7 +198,7 @@ defaultMessage="Start Date"
 
                           <div class=" text-xs  font-poppins text-center">
                           <StyledPopconfirm
-  title="Do you want to delete?"
+  title= {this.state.translatedMenuItems[4]}
   onConfirm={() => deleteVisa(item.visaId)}
 >
   <DeleteIcon className=" cursor-pointer !text-icon text-red-600"
@@ -210,11 +237,12 @@ defaultMessage="Start Date"
             );
           }}
         /> */}
+        <Suspense>
  <UpdateVisaModal
           updateVisaModal={updateVisaModal}
           handleUpdateVisaModal={handleUpdateVisaModal}
         />
-     
+     </Suspense>
       </>
     );
   }

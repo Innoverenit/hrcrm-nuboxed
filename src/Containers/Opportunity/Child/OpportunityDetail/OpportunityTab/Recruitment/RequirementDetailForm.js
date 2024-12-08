@@ -2,18 +2,12 @@ import React, { useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Switch } from "antd";
-import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field,FieldArray } from "formik";
 import {
   getProcessForRecruit,
 } from "../../../../../Settings/SettingsAction";
 import AddressFieldArray from "../../../../../../Components/Forms/Formik/AddressFieldArray";
 import dayjs from "dayjs";
-import {
-  HeaderLabel,
-  Spacer,
-  StyledLabel,
-} from "../../../../../../Components/UI/Elements";
 import { getAllPartnerListByUserId } from "../../../../../Partner/PartnerAction"
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
@@ -266,10 +260,8 @@ function RequirementDetailForm(props) {
                       name="jobOrder"
                       //  label="Sponsor"
                       disabled="true"
-                      label={<FormattedMessage
-                        id="app.joborder"
-                        defaultMessage="Job ID"
-                      />}
+                      label="Job ID"
+                    
                       isColumn
                       width={"100%"}
                       inlineLabel
@@ -297,10 +289,7 @@ function RequirementDetailForm(props) {
                     <Field
                       name="number"
                       label="# Positions"
-                      // label={<FormattedMessage
-                      //   id="app.number"
-                      //   defaultMessage="# Positions"
-                      // />}
+                    
                       width={"100%"}
                       isRequired
                       disabled="true"
@@ -309,7 +298,7 @@ function RequirementDetailForm(props) {
                     />
                   </div>
                   <div style={{ width: "47%" }}>
-                    <StyledLabel>Type </StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">Type </div>
                     <Switch
                       checked={typeData}
                       onChange={handleType}
@@ -324,11 +313,7 @@ function RequirementDetailForm(props) {
                     {" "}
                     <Field
                       name="avilableDate"
-                      // label="Start Date"
-                      label={<FormattedMessage
-                        id="app.avilableDate"
-                        defaultMessage="Start Date"
-                      />}
+                      label="Start Date"
                       disabled="true"
                       isRequired
                       component={DatePicker}
@@ -356,10 +341,8 @@ function RequirementDetailForm(props) {
                     <Field
                       name="endDate"
                       // label="Start Date"
-                      label={<FormattedMessage
-                        id="app.endate"
-                        defaultMessage="End Date"
-                      />}
+                      label="End Date"
+                     
                       // isRequired
                       component={DatePicker}
                       isColumn
@@ -390,10 +373,8 @@ function RequirementDetailForm(props) {
                     <Field
                       name="experience"
                       //  label="Sponsor"
-                      label={<FormattedMessage
-                        id="app.joborder"
-                        defaultMessage="Experience (in Years)"
-                      />}
+                      label="Experience (in Years)"
+                     
                       isColumn
                       disabled="true"
                       width={"100%"}
@@ -408,12 +389,8 @@ function RequirementDetailForm(props) {
                         // type="email"
                         name="workPreference"
                         //label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.workpreference"
-                            defaultMessage="Work Preference"
-                          />
-                        }
+                        label="Work Preference"
+                          
                         className="field"
                         isColumn
                         disabled="true"
@@ -435,7 +412,7 @@ function RequirementDetailForm(props) {
                    
                     <FlexContainer justifyContent="space-between">
                     <div style={{ width: "25%" }}>
-                  <StyledLabel >Category</StyledLabel>
+                  <div class=" text-xs font-bold font-poppins">Category</div>
                 
                   <Switch
   
@@ -454,10 +431,7 @@ function RequirementDetailForm(props) {
                         <Field
                           name="billing"
                           label={typeData ? "Salary" : "Rate/hr"}
-                          // label={<FormattedMessage
-                          //   id="app.billing"
-                          //   defaultMessage="Billing/hour"
-                          // />}
+                        
                           width={"100%"}
                           isRequired
                           isColumn
@@ -468,12 +442,8 @@ function RequirementDetailForm(props) {
                         <Field
                           name="currency"
                           isColumnWithoutNoCreate
-                          label={
-                            <FormattedMessage
-                              id="app.currency"
-                              defaultMessage="Currency"
-                            />
-                          }
+                          label="Currency"
+                           
                           width="100%"
                           isColumn
                           disabled="true"
@@ -489,16 +459,12 @@ function RequirementDetailForm(props) {
                     </FlexContainer>
                   </div>
                 </FlexContainer>
-                <Spacer style={{marginTop:"1.25em"}} />    
+                <div class=" mt-3" style={{marginTop:"1.25em"}} />    
                 <FlexContainer justifyContent="space-between">
                   <div style={{ width: "47%", }}>
                     <Field
                       name="sponserId"
-                      //  label="Sponsor"
-                      label={<FormattedMessage
-                        id="app.sponserId"
-                        defaultMessage="Sponsor"
-                      />}
+                       label="Sponsor"
                       isColumn
                       disabled="true"
                       width={"100%"}
@@ -512,10 +478,6 @@ function RequirementDetailForm(props) {
                       <Field
                         name="closeByDate"
                          label="Close By"
-                        // label={<FormattedMessage
-                        //   id="app.avilableDate"
-                        //   defaultMessage="Start Date"
-                        // />}
                         isRequired
                         disabled="true"
                         component={DatePicker}
@@ -524,27 +486,14 @@ function RequirementDetailForm(props) {
                         value={values.closeByDate}
                         inlineLabel
                        
-                        // disabledDate={(currentDate) => {
-                        //   if (values.avilableDate) {
-                        //     if (
-                        //       dayjs(currentDate).isBefore(
-                        //         dayjs(values.avilableDate)
-                        //       )
-                        //     ) {
-                        //       return true;
-                        //     } else {
-                        //       return false;
-                        //     }
-                        //   }
-                        // }}
                       />
                     </div>
                 </FlexContainer> 
                
-                <Spacer style={{marginTop:"1.25em"}} />          
+                <div class=" mt-3" style={{marginTop:"1.25em"}} />          
                 <FlexContainer justifyContent="space-between">
                   <div style={{ width: "100%" }}>
-                  <StyledLabel>Recruiter</StyledLabel> 
+                  <div class=" text-xs font-bold font-poppins text-black">Recruiter</div> 
 
                     <Select
                       name="recruitersId"
@@ -565,17 +514,13 @@ function RequirementDetailForm(props) {
 
                   </div>
                 </FlexContainer>
-                <Spacer />
+                <div class=" mt-3" />
                 <FlexContainer justifyContent="space-between">
                   <div style={{ width: "47%" }}>
                     <Field
                     
                       name="recruitmentProcessId"
                       label="Workflow"
-                      // label={<FormattedMessage
-                      //   id="app.recruitmentProcessId"
-                      //   defaultMessage="Workflow"
-                      // />}
                       isRequired
                       disabled="true"
                       isColumn
@@ -585,7 +530,7 @@ function RequirementDetailForm(props) {
                     />
                   </div>
                   <div style={{ width: "47%" }}>
-                     <StyledLabel>Vendor</StyledLabel> 
+                     <div class=" text-xs font-bold font-poppins text-black">Vendor</div> 
 
                      <Select
                       name="partnerId"
@@ -607,31 +552,7 @@ function RequirementDetailForm(props) {
                   </div>
                 </FlexContainer>
 
-                {/* <Field
-                    name="recruiterId"
-                    //  selectType="contactList"
-                    // isColumnWithoutNoCreate
-                    // label="Contact"
-                    label={
-                      <FormattedMessage
-                        id="app.recruiter"
-                        defaultMessage="Recruiter"
-                      />
-                    }
-                    // isRequired
-                    component={SelectComponent}
-                    isColumn
-                    margintop={"4px"}
-                    options={Array.isArray(recruiterNameOption) ? recruiterNameOption : []}
-                    
-                    //  value={values.recruiterId}
-                    // defaultValue={{ label: firstName, value: documentId }}
-                    // isDisabled={defaultContacts}
-                    // defaultValue={defaultContacts ? defaultContacts : null}
-                    inlineLabel
-                    style={{ flexBasis: "80%" }}
-                  /> */}
-                <Spacer />
+                <div class=" mt-3" />
               </div>
               &nbsp;
               <div
@@ -643,7 +564,7 @@ function RequirementDetailForm(props) {
                 <FlexContainer justifyContent="space-between">
                 <div style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
-                  <HeaderLabel style={{color:"white"}}>Location</HeaderLabel>
+                      <div class="font-semibold text-xs flex text-white"> Location</div>
                   </div>
                   </div>
                 <div style={{ width: "100%" }}>
@@ -661,16 +582,12 @@ function RequirementDetailForm(props) {
                   />
                   </div>
                   </FlexContainer>
-                  <Spacer style={{marginTop:"1.25em"}} />  
+                  <div class=" mt-3" style={{marginTop:"1.25em"}} />  
                   <div style={{ width: "100%" }}>
                     <Field
                        disabled="true"
                       name="description"
-                      //label="Description"
-                      label={<FormattedMessage
-                        id="app.description"
-                        defaultMessage="Description"
-                      />}
+                      label="Description"
                       width={"100%"}
                       isColumn
                       component={TextareaComponent}
@@ -682,19 +599,9 @@ function RequirementDetailForm(props) {
                   </div>
               </div>
             </div>
-            <Spacer />
+            <div class=" mt-3" />
             <FlexContainer justifyContent="flex-end">
-              {/* <Button
-                type="primary"
-                htmlType="submit"
-              //   Loading={props.linkingRecruitToOpportunity}
-              >
-                <FormattedMessage
-                  id="app.update"
-                  defaultMessage="Update"
-                />
-              
-              </Button> */}
+           {/* Update */}
             </FlexContainer>
           </Form>
         )}

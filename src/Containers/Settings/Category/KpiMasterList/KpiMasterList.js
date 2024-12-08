@@ -1,7 +1,7 @@
 import React, { useEffect,lazy,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Popconfirm,Tooltip, Input } from "antd";
 import DownloadIcon from '@mui/icons-material/Download';
@@ -117,8 +117,8 @@ return <div><BundleLoader/></div>;
 }
   return (
       <div>
-    <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw] mt-3" >
+    <div class=" flex flex-row justify-end items-center">
+    <div class=" flex w-[18vw] mt-3 mr-2" >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}
@@ -128,7 +128,7 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <div class="w-[38rem]">
+          <div class="w-[2rem]">
   <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"performanceManagement"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">
@@ -160,9 +160,9 @@ return <div><BundleLoader/></div>;
           </div>
           <div class=" flex flex-col" >
          
-         <MainWrapper className="!h-[69vh] !mt-2" >
+         <MainWrapper className="!h-[65vh] !mt-2" >
           {!props.fetchingMasterKpi && masterKpiList.length === 0 ? <NodataFoundPage /> : masterKpiList.slice().sort((a, b) => a.kpi.localeCompare(b.kpi)).map((region, index) => (
-            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center  h-12 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.performanceManagementId}>
+            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  border-[#0000001f]  border  shadow-[#a3abb980] bg-white text-[#444] mt-1  p-2 justify-between items-center  h-12 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.performanceManagementId}>
             {/* Region name display or input field */}
             <div className=" flex flex-row">
             {editingId === region.performanceManagementId ? (
@@ -212,11 +212,7 @@ Currency
                         cancelText="No"
                         onConfirm={() =>  props.removeMasterKpi(region.performanceManagementId,props.orgId)}
                       >
-                <DeleteOutlined className=" cursor-pointer !text-icon text-red-600"
-              // onClick={() => 
-              //     props.removeServiceLine(item.performanceManagementId)
-              //  }
-                 />
+                <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                  </Popconfirm>
             </div>
         </div>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { StyledTable } from "../../../../../../../Components/UI/Antd";
 // import { getRemark } from "../../../../../OpportunityAction";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
 import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
@@ -14,11 +14,8 @@ class RemarksTable extends Component {
   render() {
     const columns = [
       {
-        //title: "Stage",
-        title: <FormattedMessage
-          id="app.stageName"
-          defaultMessage="Stage"
-        />,
+        title: "Stage",
+       
         dataIndex: "stageName",
         sorter: (a, b) => {
           const stageA = a.stageA && a.stageA.toLowerCase();
@@ -33,11 +30,8 @@ class RemarksTable extends Component {
         },
       },
       {
-        // title: "Reviewer",
-        title: <FormattedMessage
-          id="app.reviewer"
-          defaultMessage="Reviewer"
-        />,
+        title: "Reviewer",
+        
         dataIndex: "reviewer",
         sorter: (a, b) => {
           const reviewerA = a.reviewerA && a.reviewerA.toLowerCase();
@@ -52,11 +46,8 @@ class RemarksTable extends Component {
         },
       },
       {
-        //  title: "Comments",
-        title: <FormattedMessage
-          id="app.note"
-          defaultMessage="" Comments
-        />,
+         title: "Comments",
+       
         dataIndex: "note",
         sorter: (a, b) => {
           const commentsA = a.commentsA && a.commentsA.toLowerCase();

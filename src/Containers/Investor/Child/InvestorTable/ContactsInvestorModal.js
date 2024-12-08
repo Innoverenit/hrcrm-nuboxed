@@ -1,8 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import ContactsInvestorCardList from "./ContactsInvestorCardList";
-// const UpdateInvestorForm = lazy(() => import("./UpdateInvestorForm.js"));
+const LinkedContact = lazy(() => import("../../../Customer/Child/CustomerDetail/CustomerTab/ContactTab/LinkedContact"));
 
 const ContactsInvestorModal = (props) => {
   const isSmallScreen = window.innerWidth <= 600;
@@ -18,7 +17,14 @@ const ContactsInvestorModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <ContactsInvestorCardList RowData={RowData} />{" "}
+            <LinkedContact 
+          uniqueId={RowData.investorId}
+          type={"investor"}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
+          />
+          {" "}
         </Suspense>
       </StyledDrawer>
     </>

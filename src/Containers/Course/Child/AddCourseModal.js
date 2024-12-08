@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 const CourseForm =lazy(()=>import("./CourseForm"));
@@ -8,10 +8,8 @@ const AddCourseModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.course"
-          defaultMessage="Course"
-        />}
+        title="Course"
+      
         width="60%"
         style={{marginTop:"5rem"}}
         visible={props.addCourseModal}

@@ -2,8 +2,7 @@ import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Switch, Route, Link } from "react-router-dom";
-import { FlexContainer } from "../../Components/UI/Layout";
-import { BundleLoader } from "../../Components/Placeholder";
+
 
 class Import extends Component {
   render() {

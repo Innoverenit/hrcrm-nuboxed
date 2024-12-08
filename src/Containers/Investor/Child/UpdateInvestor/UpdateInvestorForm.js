@@ -1,9 +1,8 @@
 import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button,Switch} from "antd";
-import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
 import {getAllEmployeelist,getDialCode} from "../../InvestorAction"
@@ -13,7 +12,6 @@ import { InputComponent } from "../../../../Components/Forms/Formik/InputCompone
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { Listbox } from '@headlessui/react'
 import dayjs from "dayjs";
-
 import {UpdateInvestor} from "../../InvestorAction";
 import {getInvestorList} from "../../../Settings/Category/InvestorTab/InvestorListAction";
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
@@ -28,7 +26,46 @@ const UpdateInvestorSchema = Yup.object().shape({
 
 function UpdateInvestorForm (props) {
  
+  const [loading, setLoading] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [contract, setContract] = useState(false);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+          "110",//0 Name
+          "102",//1 URL
+          "140",//2 Email
+          "357",//3 Dial Code
+          "300",//4 Phone No
+          '71', //5 2Type
+         "14",//6 Category
+                
+          "74",//7 Date
+          "316",//8Notes
+          "76",//9 Assigned
+          "185", //10 "Address",
+          "186", // 11"Street",//
+           "187",//Zip Code",//12
+           "188",// "City",13
+              "314",// "State",//14
+              "1109",// "Country",//15
+              "1246",//Update
+        
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
+
   useEffect(() => {
     props.getAllEmployeelist();
     props.getInvestorList(props.orgId)
@@ -104,17 +141,17 @@ function UpdateInvestorForm (props) {
             firstMeetingDate: endDate || null,
             assignedTo:selectedOption ? selectedOption.employeeId:props.RowData.employeeId,
             notes: RowData.notes || "",
-            address: [
-              {
-                addressId: RowData.address.length ? RowData.address[0].addressId : "",
-                address1: RowData.address.length ? RowData.address[0].address1 : "",
-                address2:  RowData.address.length ? RowData.address[0].address2 : "",
-                street:  RowData.address.length ? RowData.address[0].street : "",
-                city:  RowData.address.length ? RowData.address[0].city : "",
-                state:  RowData.address.length ? RowData.address[0].state : "",
-                postalCode:  RowData.address.length ? RowData.address[0].postalCode : "",             
-              },
-            ],
+            // address: [
+            //   {
+            //     addressId: RowData.address.length ? RowData.address[0].addressId : "",
+            //     address1: RowData.address.length ? RowData.address[0].address1 : "",
+            //     address2:  RowData.address.length ? RowData.address[0].address2 : "",
+            //     street:  RowData.address.length ? RowData.address[0].street : "",
+            //     city:  RowData.address.length ? RowData.address[0].city : "",
+            //     state:  RowData.address.length ? RowData.address[0].state : "",
+            //     postalCode:  RowData.address.length ? RowData.address[0].postalCode : "",             
+            //   },
+            // ],
           }}
           validationSchema={UpdateInvestorSchema}
           onSubmit={(values, { resetForm }) => {
@@ -173,8 +210,10 @@ function UpdateInvestorForm (props) {
               <div class=" flex justify-between max-sm:flex-col">
                 <div class=" w-w47.5 max-sm:w-wk" >
                   
-                   <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold mt-3 ">
-                    <FormattedMessage id="app.name" defaultMessage="Name" /></div>
+                   <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold  ">
+                   {translatedMenuItems[0]} 
+                   {/* Name */}
+                    </div>
                   <Field
                     isRequired
                     name="name"
@@ -185,61 +224,62 @@ function UpdateInvestorForm (props) {
                     accounts={accounts}
                     inlineLabel
                     />
-                   
+                  <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold mt-3 ">
+                   {translatedMenuItems[1]} 
+                   {/* URL */}
+                    </div>
                   <Field
                     name="url"
                     type="text"
                     // label="URL"
-                    label={
-                      <FormattedMessage id="app.url" defaultMessage="URL" />
-                    }
                     isColumn
                     width={"100%"}
                     component={InputComponent}
                     inlineLabel
                     />
                    {!contract ?
+                  
                   <Field
                     name="email"
                     type="text"                   
-                    label={
-                      <FormattedMessage id="app.email" defaultMessage="Email" />
-                    }
+                    label= {translatedMenuItems[2]}  
+                    // Email
                     isColumn
                     width={"100%"}
                     component={InputComponent}
                     inlineLabel
                     />
                     : ( null)}   
-                   <div class=" flex justify-between mt-6">
-                   <div class=" w-3/12 max-sm:w-[30%]">
+              <div className="font-bold text-xs  mt-3">{translatedMenuItems[4]}</div>         
+   <div class=" flex justify-between shadow-[0_0.15em_0.3em_#aaa] border border-[#bfbebb] h-8">
+   <div class=" w-3/12 max-sm:w-[35%]">  
+                 {/* Dial Code */}
                    <FastField
                         name="countryDialCode"
-                        isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.dialCode"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        isColumnWithoutNoCreate                                            
                         isColumn
                         // width={"100%"}
                         selectType="dialCode"
                         component={SearchSelect}
                         inlineLabel
                       />
-                    </div>
-                    <div class=" w-8/12">
+                    </div> <div class="w-[1px] h-full bg-gray-300">
+  <div class="w-full h-[75%]"></div>
+</div>
+<div class=" w-[76%]">
+<div class="text-xs flex flex-col font-bold "> 
+                   
                       <FastField
                         //isRequired
                         type="text"
                         name="phoneNumber"
                         isColumn
                         component={InputComponent}
-                        label="Phone No"
+                        // label="Phone No"
                         inlineLabel
                         width={"100%"}
-                        />                   
+                        />   
+                        </div>                
                          </div>
                   </div>
                   
@@ -251,12 +291,8 @@ function UpdateInvestorForm (props) {
                         name="sectorId"
                         isColumnWithoutNoCreate
                         selectType="sectorName"
-                        label={
-                          <FormattedMessage
-                            id="app.sector"
-                            defaultMessage="Sector"
-                          />
-                        }
+                        label="Sector"
+                          
                         isColumn
                         component={SearchSelect}
                         defaultValue={RowData.sector}
@@ -268,12 +304,8 @@ function UpdateInvestorForm (props) {
                     <FastField
                             name="source"
                             isColumnWithoutNoCreate
-                             label={
-                              <FormattedMessage
-                                id="app.source"
-                                defaultMessage="Source"
-                              />
-                            }
+                             label="Source"
+                             
                             defaultValue={{
                               label:RowData.source,
                             }}
@@ -289,15 +321,11 @@ function UpdateInvestorForm (props) {
                        : ( null)}
                  </div>
                  <div class=" flex justify-between">
-                  <div class=" w-w47.5">
+                  <div class=" w-w47.5 font-bold font-poppins text-xs ">
+                  {translatedMenuItems[5]} 
+                  {/* Type */}
                   <Field                     
-                            name="investorCategoryId"
-                            label={
-                              <FormattedMessage
-                                id="app.type"
-                                defaultMessage="Type"
-                              />
-                            }
+                            name="investorCategoryId"                      
                             isColumn
                             placeholder="Type"
                             component={SelectComponent}
@@ -308,7 +336,10 @@ function UpdateInvestorForm (props) {
                           />
                     </div>
                     <div class=" flex flex-col items-center  mt-4">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Category</div>
+                    <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    {translatedMenuItems[6]} 
+                      {/* Category */}
+                      </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
                       onChange={handleContract}
@@ -320,7 +351,10 @@ function UpdateInvestorForm (props) {
                     </div> 
                     <div class="flex justify-between">
                  <div class=" flex flex-col items-center  mt-4">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">UBO</div>
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                   
+                      UBO
+                      </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
                       //onChange={handleContract}
@@ -330,7 +364,10 @@ function UpdateInvestorForm (props) {
                     />
                   </div>
                   <div class=" flex flex-col items-center  mt-4">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Identification</div>
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                 
+                      Identification
+                      </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
                       //onChange={handleContract}
@@ -343,7 +380,10 @@ function UpdateInvestorForm (props) {
                  </div>
                  
                   <div class=" flex flex-col   mt-4">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Inofocit</div>
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    {translatedMenuItems[9]} 
+                      Inofocit
+                      </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
                       //onChange={handleContract}
@@ -352,40 +392,31 @@ function UpdateInvestorForm (props) {
                       unCheckedChildren="No"
                     />
                   </div>
-                  <div class=" w-w47.5 max-sm:w-wk">
+                  <div class="font-bold font-poppins text-xs w-w47.5 max-sm:w-wk mt-2">
+                  {translatedMenuItems[7]} 
                     <Field
                       name="firstMeetingDate"
-                      label="Date"
+                      // label="Date"
                       component={DatePicker}
                       value={values.firstMeetingDate}
                       isColumn
                       inlineLabel
                     />
                   </div>
-                 <div class="mt-3">
-                  <Field
-                    name="notes"
-                    // label="Notes"
-                    label={
-                      <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                    }
-                    width={"100%"}
-                    isColumn
-                    component={TextareaComponent}
-                    /> 
-                    </div>  
+                 
                  </div>
 
                  <div class=" h-3/4 w-w47.5 max-sm:w-wk "
                 >
                   
-                   <div class=" flex justify-between mt-3">
+                   <div class=" flex justify-between ">
                    <div class=" h-full w-full">
                    <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block font-semibold text-[0.75rem]">
-              Assigned
+            <Listbox.Label className=" font-bold text-xs font-poppins">
+            {translatedMenuItems[9]} 
+              {/* Assigned */}
             </Listbox.Label>
             <div className="relative mt-[0.1rem]">
               <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm" style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}}>
@@ -458,12 +489,7 @@ function UpdateInvestorForm (props) {
                       <Field
                         name="vatNo"
                         type="text" 
-                        label={
-                          <FormattedMessage
-                            id="app.vatNumber"
-                            defaultMessage="VAT Number"
-                          />
-                        }
+                        label="VAT Number"
                         //isRequired
                         isColumn
                         width={"100%"}
@@ -478,12 +504,8 @@ function UpdateInvestorForm (props) {
                         name="businessRegistration"
                         type="text"
                         // label="URL"
-                        label={
-                          <FormattedMessage
-                            id="app.businessregistration"
-                            defaultMessage=" Business Registration#"
-                          />
-                        }
+                        label=" Business Registration#"
+                       
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -493,7 +515,7 @@ function UpdateInvestorForm (props) {
                     : ( null)}                  
                     </div>
                  
-                  <div class="mt-3 w-full" style={{backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
+                  {/* <div class="mt-3 w-full" style={{backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
                       <div class="text-white font-medium m-[0.2rem_0_0.4rem_0.2rem] text-xs flex" >Corporate Address</div>
                   </div>
@@ -510,7 +532,17 @@ function UpdateInvestorForm (props) {
                       
                     )}
                   />    
-                  </div>             
+                  </div>              */}
+                  <div class="mt-3 font-bold text-xs font-poppins">
+                 {translatedMenuItems[8]} 
+                  <Field
+                    name="notes"
+                    // label="Notes"               
+                    width={"100%"}
+                    isColumn
+                    component={TextareaComponent}
+                    /> 
+                    </div>  
                 </div>
               </div>
              
@@ -520,8 +552,9 @@ function UpdateInvestorForm (props) {
                   htmlType="submit"
                   Loading={updateInvestorById}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
-                  {/* Update */}
+                  {translatedMenuItems[16]}
+                 
+                  Update
                 </Button>
               </div>
             </Form>

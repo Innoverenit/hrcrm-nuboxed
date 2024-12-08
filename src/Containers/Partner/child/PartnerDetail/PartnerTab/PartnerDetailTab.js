@@ -1,12 +1,11 @@
-import React, { Component, lazy, Suspense } from "react";
+import React, { Component, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { handlePartnerReactSpeechModal } from "../../../PartnerAction";
 import { Tooltip } from "antd";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { StyledTabs } from "../../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import {
   handleDocumentUploadModal,
@@ -17,18 +16,13 @@ import ContactsIcon from '@mui/icons-material/Contacts';
 import MicIcon from '@mui/icons-material/Mic';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
-import LinkedDocuments from "./DocumentTab/LinkedDocuments";
-import AddDocumentModal from "./DocumentTab/AddDocumentModal";
 import { handlePartnerContactModal } from "../../../PartnerAction";
 import { handlePartnerOpportunityModal } from "../../../PartnerAction";
 import AddPartnerContactModal from "./ContactTab/AddPartnerContactModal";
-import AddPartnerOpportunityModal from "./OpportunityTab/AddPartnerOpportunityModal";
-import LinkedPartnerNotes from "./NotesTab/LinkedPartnerNotes";
-import LinkedPartnerOpportunity from "./OpportunityTab/LinkedPartnerOpportunity";
 import LinkedPartnerContact from "./ContactTab/LinkedPartnerContact";
 import CommercialsForm from "./Commercials/CommercialsForm";
 import ReactPartnerSpeechModal from "../../../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/Child/ReactPartnerSpeechModal";
-import LinkedNotes from "../../../../Opportunity/Child/OpportunityDetail/OpportunityTab/LinkedNotes";
+
 
 const TabPane = StyledTabs.TabPane;
 
@@ -99,29 +93,21 @@ class ContactDetailTab extends Component {
                   <span>
                     <ContactsIcon   style={{fontSize:"1.1rem"}}/>
                     <span class=" ml-1">
-                      <FormattedMessage
-                              id="app.contacts"
-                              defaultMessage="Contacts"
-                            />
+                     Contacts
                       </span>
                   </span>
                   {activeKey === "1" && (
                     <>
                       {/* {this.props.user.contactCreateInd === true && ( */}
                       <Tooltip title="Create">
-                      <PlusOutlined
-                          type="plus"
-                          tooltipTitle={
-                            <FormattedMessage
-                              id="app.create"
-                              defaultMessage="Create"
-                            />
-                          }
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
+                          tooltipTitle="Create"
+                          
                           onClick={() => {
                             handlePartnerContactModal(true);
                           }}
-                          size="14px"
-                          style={{ verticalAlign: "center", marginLeft: "5px" }}
+                       
                         />
                      
                     
@@ -162,24 +148,15 @@ class ContactDetailTab extends Component {
                        style={{fontSize:"1.1rem"}}
                   />
                     <span class=" ml-1">
-                    <FormattedMessage
-                            id="app.documents"
-                            defaultMessage="Documents"
-                          />
+                    Documents
                   </span>
                   {activeKey === "3" && (
                     <>
-                       <PlusOutlined
-                        type="plus"
-                        tooltipTitle={
-                          <FormattedMessage
-                            id="app.uploaddocument"
-                            defaultMessage="Upload Document"
-                          />
-                        }
+                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
+                        tooltipTitle="Upload Document"
+                         
                         onClick={() => handleDocumentUploadModal(true)}
-                        size="14px"
-                        style={{ marginLeft: "5px", verticalAlign: "center" }}
                       />
                     </>
                   )}
@@ -189,7 +166,7 @@ class ContactDetailTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedDocuments />
+                {/* <LinkedDocuments /> */}
               </Suspense>
             </TabPane>
 
@@ -200,10 +177,7 @@ class ContactDetailTab extends Component {
                 <span>
                 <NoteAltIcon   style={{fontSize:"1.1rem"}}/>
                 &nbsp;
-                    <FormattedMessage
-                      id="app.notes"
-                      defaultMessage="Notes"
-                    />
+                  Notes
                     &nbsp; 
                     {activeKey === "4" && (
                       <>
@@ -224,7 +198,7 @@ class ContactDetailTab extends Component {
               key="4"
             >
               <Suspense fallback={"Loading ..."}>
-                <LinkedPartnerNotes />{" "}
+                {/* <LinkedPartnerNotes />{" "} */}
               </Suspense>
             </TabPane>
 
@@ -232,10 +206,10 @@ class ContactDetailTab extends Component {
           </StyledTabs>
         </TabsWrapper>
         <Suspense fallback={"Loading..."}>
-          <AddDocumentModal
+          {/* <AddDocumentModal
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
-          />
+          /> */}
 
           <AddPartnerContactModal
             addPartnerContactModal={addPartnerContactModal}

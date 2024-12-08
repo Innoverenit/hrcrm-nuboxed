@@ -5,19 +5,19 @@ import {
     handleCategoryModal,
     getCategory
 } from "../../ProductAction";
-import ProductPublishToggle from "./ProductPublishToggle";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
-import { Button, Tooltip,Input,Popconfirm } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import InfiniteScroll from "react-infinite-scroll-component";
-import ViewQuiltIcon from '@mui/icons-material/ViewQuilt';
-import EuroIcon from '@mui/icons-material/Euro';
-import NodataFoundPage from '../../../../Helpers/ErrorBoundary/NodataFoundPage';
-import { base_url2 } from "../../../../Config/Auth";
+import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
+import { Button, Input,Popconfirm } from "antd";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { base_url, base_url2 } from "../../../../Config/Auth";
 import axios from "axios";
 import EditUpload from "../../../../Components/Forms/Edit/EditUpload";
+import ProductCategoryPUnblishToggle from "./ProductCategoryPUnblishToggle";
+import Tooltip from '@mui/material/Tooltip';
+import styled from "styled-components";
+import dayjs from "dayjs"; 
+import Carousel from "react-elastic-carousel";
+import ProductAddQualityCheckModal from "./ProductAddQualityCheckModal";
 
 const CategoryProductModal = lazy(() => import("../CategoryProductModal"));
 
@@ -34,6 +34,7 @@ function ProductCategory(props) {
   const [editsuppliesId, setEditsuppliesId] = useState(null);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null)
+  const [open,setOpen]= useState(false)
 
 
   useEffect(() => {
@@ -42,11 +43,8 @@ function ProductCategory(props) {
         setLoading(true); 
         const itemsToTranslate = [
    
-          
-            "Category",//0
-           
-            
-
+            "14",//0 Category
+      
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -163,45 +161,37 @@ const DeleteOnClick = async (item) => {
   }
 };
 
+const breakPoints = [
+  { width: 1, itemsToShow: 1 },
+  { width: 500, itemsToShow: 2 },
+  { width: 768, itemsToShow: 4, itemToScroll: 4 },
+  { width: 1100, itemsToShow: 5, itemToScroll: 5 },
+];
 
   return (
     <>
+ <div class="h-[24rem] overflow-auto">
+ <CardWrapper>
+<Carousel
+    // ref={carouselRef}
+    pagination={false}
+    breakPoints={breakPoints}
+    style={{ minHeight: "6em", justifyContent: "center" }}
+    class="w-2/12 mt-8 ml-margin10"
+    // onNextEnd={next}
+    // onPrevEnd={previous}
+                   >
 
-      <div className=' flex  sticky  z-auto'>
-        <div class="rounded m-1 h-[85vh] max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky  z-10">          
-            <div className=" w-[6.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.5rem] max-lg:w-[6.7rem]">
-            {translatedMenuItems[0]}   {/* Category */}
-              </div>
-            <div className=" w-[4.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.11rem] max-lg:w-[4.11rem]"></div>
-            <div className=" flex font-medium flex-col w-[1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                      <div class=" text-xs  font-poppins">
-                        <Tooltip title="Add">
-                          <AddCircleIcon
-                            className="!text-icon cursor-pointer text-[tomato]"
-                            onClick={() => {
-                              //props.setEditProducts(item);
-                              handleCategoryModal(true);
-                            }}
-                          />
-                        </Tooltip>
-                      </div>
-
-
-                    </div>
-          </div>
-          
-            {data.map((item) => {
-              return (
-                <div>
-                  <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    
-
-                      <div className=" flex font-medium flex-col  w-[7.1rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-
-                        <div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                        {editsuppliesId === item.categoryId ? (
+{data.map((item, index) => {
+                 const currentdate = dayjs().format("YYYY/MM/DD");
+                 const date = dayjs(item.creationDate).format("YYYY/MM/DD");
+                
+                 return (
+                  <CardElement >
+                    <div  key={item.categoryId} className="card-element">
+<div class=" h-[18rem] flex-col flex bg-[cornsilk] items-center scale-90 hover:scale-95 ease-in  duration-500 hover:shadow-lg  w-[18rem] flex-shrink-0 overflow-hidden rounded-md border border-gray-200 object-cover object-center max-sm:w-48 flex-grow-3 md:flex-grow-0">
+<div class="mt-1"> 
+{editsuppliesId === item.categoryId ? (
                             <Input
                             style={{ width: "3rem" }}
                             value={item.categoryName}
@@ -210,20 +200,16 @@ const DeleteOnClick = async (item) => {
                       
                        
                     ) : (
-                      <div className="font-normal text-sm  font-poppins">
-                        <div>  {item.categoryName}</div>
-                      </div>
+                      <Tooltip title={item.categoryName} placement="top" arrow>
+                      <Header>{item.categoryName || ""}</Header> 
+                    </Tooltip>
                     )}
-                        </div>
 
-                      </div>
-      
-                    </div>
-                    <div className=" flex font-medium flex-col  w-[7.21rem] max-xl:w-[7.1rem] max-lg:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between  ">
-
-<div class=" text-xs  max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-
-{editsuppliesId === item.categoryId ? (
+</div>
+<div class="max-sm:mr-0 md:flex  my-2 h-hwk flex-col">
+                              <div class="object-cover object-center  flex items-center">
+                                <div>
+                                {editsuppliesId === item.categoryId ? (
     
     <EditUpload
     imageId={item.imageId}
@@ -233,33 +219,44 @@ const DeleteOnClick = async (item) => {
   />
                        
                     ) : (
-                      <div className="font-normal text-sm  font-poppins">
-                        <div> 
-                            {item.imageId ? (
-                            <MultiAvatar
-                              imageId={item.imageId ? item.imageId : ''}
-                              imgHeight={"1.8em"}
-                              imgWidth={"1.8em"}
-                              imgRadius={20}
-                            />
-                          ) : (
-                            <div class="font-bold text-xs" >
-                              No Image
+                            <img
+                                        src={`${base_url}/image/${item.imageId}`} alt=""
+                                        style={{ height: "7rem", width: "7rem" }}
+                                    />
+)}
+                                     </div>
+                                                      </div>  
+                                                                                                   
+                                                      <div class="w-40  flex justify-between max-sm:flex items-center  flex-col">                                             
+                                                      <h3 class=" mt-2 h-4 font-bold text-xs ">
+                                                        {item.model} &nbsp;&nbsp;&nbsp;
+                                                        {dayjs(item.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
+                                        >
+                                         {translatedMenuItems[6]} {/* New */}
+                                        </span> : null}
+                                                      </h3>
+                                                      <h3 class=" mt-2 h-4 font-bold text-xs ">
+                                                      <ProductCategoryPUnblishToggle item={item}    publishInd={item.publishInd}  categoryId={item.categoryId}/>
+                                                      </h3> 
+                                                    </div>
+                                                    </div>                                           
+                                                      <div class="mt-px flex  justify-end w-wk m-5 items-center">
+        
+                                <div><CircleNotificationsIcon className="!cursor-pointer" onClick={() => {
+                                setOpen(true);
+                                handleParticularRowData(item);
+                              }}/></div>
+
+                                                              <div>
+                              <Popconfirm
+                                title="Do you want to delete?"
+                                onConfirm={() => DeleteOnClick(item)}
+                              >
+
+<DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+                              </Popconfirm>
                             </div>
-                          )}
-                          </div>
-                      </div>
-                    )}
-                      
-</div>
-
-</div>
-                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-
-                     
-                     
-                    
-                   <div className=" flex font-medium  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                          <div className=" flex   max-sm:flex-row  max-sm:justify-between ">
     {editsuppliesId === item.categoryId ? (
                         <>
                       <Button 
@@ -279,38 +276,38 @@ const DeleteOnClick = async (item) => {
                       
                     ) : (
                       <BorderColorIcon
-                      className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                      className="!text-icon cursor-pointer text-[tomato] "
                         tooltipTitle="Edit"
                         iconType="edit"
                         onClick={() => handleEditClick(item.categoryId)}
                       />
                     )}
     </div> 
+</div>
+                   </div>
+                   </div>
+                 </CardElement>
+                );
+              })}
 
-{item.categoryCount===1 &&
-    <div>
-                              <Popconfirm
-                                title="Do you want to delete?"
-                                onConfirm={() => DeleteOnClick(item)}
-                              >
-
-                                <DeleteOutlined className=" !text-icon cursor-pointer text-[red]" />
-                              </Popconfirm>
-                            </div>}
-                    </div>
-                   
-                  </div>
-                </div>
-               );
-            })} 
-          
-        </div>
-      </div>
+</Carousel>
+</CardWrapper> 
+ </div>
+    
       <Suspense fallback={"Loading"}>
       <CategoryProductModal
+         translateText={props.translateText}
+         selectedLanguage={props.selectedLanguage}
           categoryProductModal={categoryProductModal}
           handleCategoryModal={handleCategoryModal}
         />
+        <ProductAddQualityCheckModal
+translateText={props.translateText}
+selectedLanguage={props.selectedLanguage}
+setOpen={setOpen}
+open={open}
+particularDiscountData={particularDiscountData}
+  />
       </Suspense>
     </>
   );
@@ -354,3 +351,63 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(ProductCategory);
+const CardWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  @media only screen and (max-width: 600px) {
+    justify-content: center;
+    flex-direction: column;
+  }
+`;
+const CardElement = styled.div`
+
+  /* border:2px solid orange */
+   padding: 0 10px;
+   margin-top: 2.5em;
+  display: flex;
+    justify-content: center;
+  /* margin:0px 20px; */
+  @media only screen and (max-width: 600px) {
+    display: flex;
+    padding:0;
+    margin-top: 1rem;
+    justify-content: center;
+    width: 100%;
+  }
+`;
+const Header = styled.div`
+  text-overflow: ellipsis;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  height: 2em;
+  font-size: 1.3em;
+  font-family: Poppins;
+  font-weight: 700;
+  @media only screen and (max-width: 600px) {
+    text-overflow: ellipsis;
+
+white-space: nowrap;
+overflow: hidden;
+height: 2em;
+font-size: 1.3em;
+font-family: Poppins;
+font-weight: 700;
+width:100%
+text-align:center
+  }
+`;
+const Desc = styled.p`
+  height: 1.5em;
+  overflow: hidden;
+  padding: 1%;
+  text-align: center;
+`;
+const Desc2 = styled.p`
+  height: 60px;
+  overflow: auto;
+  color: white;
+  padding: 3%;
+  text-align: center;
+`;

@@ -3,14 +3,14 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { OnlyWrapCard } from '../../../Components/UI/Layout';
 import { Button, } from "antd";
-import moment from "moment";
+import dayjs from "dayjs";
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
     getTaskDocument,
     deleteDocumentTask
 } from "../TaskAction";
-import { FormattedMessage } from "react-intl";
+
 
 
 const LinkedTaskDocument = (props) => {
@@ -43,7 +43,7 @@ const LinkedTaskDocument = (props) => {
   return (
     <>
 
-<div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] h-[81vh]">
+<div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white] h-[81vh]">
       {documentsByTaskId.map((item) => { 
         
          
@@ -70,7 +70,7 @@ const LinkedTaskDocument = (props) => {
                                 <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full justify-between ">
                                   <div class="text-[0.875rem]  font-poppins">Creation Date</div>
                                   <div class="text-[0.75rem]  font-poppins">
-                                  <span>{` ${moment(item.creationDate).format("ll")}`}</span>
+                                  <span>{` ${dayjs(item.creationDate).format("ll")}`}</span>
                                   </div>
                               </div>
                               <div className=" flex font-medium flex-col md:w-32 max-sm:flex-row w-full justify-between ">
@@ -84,13 +84,9 @@ const LinkedTaskDocument = (props) => {
            
      
                          <StyledPopconfirm
-                           // title="Do you want to delete?"
-                           title={
-                             <FormattedMessage
-                               id="app.doyouwishtodelete?"
-                               defaultMessage="Do you wish to delete?"
-                             />
-                           }
+                           title="Do you want to delete?"
+                          
+                         
                            onConfirm={() => deleteDocumentTask(item.documentId)}
                          >
                            <DeleteIcon

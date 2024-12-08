@@ -3,13 +3,13 @@ import styled from "styled-components";
 const StyledCreatable = styled(Creatable)`
     flex: 1 1 0%;
     width: ${(props) => props.width || "auto"};
-    height: 1.48rem;
+    height: 1.88rem;
     min-height:1.35rem;
     box-shadow:${(props) => (props.isShadow ? "" : "0em 0.25em 0.625em -0.25em #aaa")} ; 
     margin-bottom:0.42rem;
     border-radius:2px;
 .sales__control{
-    height: 1.57rem;
+    height: 1.88rem;
     place-content: center;
     min-height:1.35em; 
     width: ${(props) => props.width || "auto"};

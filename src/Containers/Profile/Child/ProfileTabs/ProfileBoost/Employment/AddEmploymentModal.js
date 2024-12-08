@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 const EmploymentDocumentForm = lazy(() =>
   import("../Employment/EmploymentDocumentForm")
 );
@@ -16,10 +16,7 @@ class AddEmploymentModal extends Component {
     return (
       <>
         <StyledDrawer
-          // title="Employment"
-          title={
-            <FormattedMessage id="app.employment" defaultMessage="Employment" />
-          }
+          title="Employment"
           width="60%"
           visible={addEmploymentModal}
           destroyOnClose
@@ -30,7 +27,9 @@ class AddEmploymentModal extends Component {
           footer={null}
         >
           <Suspense fallback={<BundleLoader />}>
-            <EmploymentDocumentForm employeeId={this.props.employeeId}/>
+            <EmploymentDocumentForm employeeId={this.props.employeeId}
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}/>
           </Suspense>
         </StyledDrawer>
       </>

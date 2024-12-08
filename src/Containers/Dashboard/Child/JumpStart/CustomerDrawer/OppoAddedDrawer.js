@@ -1,5 +1,5 @@
 import React, {Suspense,lazy } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
 const OppoAddedTable =lazy(()=>import("./OppoAddedTable"));
@@ -9,10 +9,8 @@ const OppoAddedDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-     title={<FormattedMessage
-      id="app.opportunitiesAdded"
-      defaultMessage="Opportunities Added"
-    />}
+     title="Opportunities Added"
+    
         width="60%"
         visible={props.openOppoAdded}
         onClose={()  => props.handleOppoAddedDrawer(false)}

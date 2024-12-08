@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Tooltip, Badge,Avatar } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import GridViewIcon from '@mui/icons-material/GridView';
 
 
@@ -17,7 +17,7 @@ const SubscriptionActionLeft = (props) => {
   return (
     <div class=" flex items-center">
       <Tooltip
-        title={<FormattedMessage id="app.tileView" defaultMessage="Tile View" />}
+        title="Tile View"
       > 
        <Badge
           size="small"
@@ -36,7 +36,7 @@ const SubscriptionActionLeft = (props) => {
             // }}
           >
             <Avatar 
-            style={{ background: props.viewType === "tile" ? "#f279ab" : "#4bc076" }}
+            style={{ background: props.viewType === "tile" ? "#f279ab" : "#28a355" }}
             >
             <GridViewIcon className="text-white"/>
             </Avatar>

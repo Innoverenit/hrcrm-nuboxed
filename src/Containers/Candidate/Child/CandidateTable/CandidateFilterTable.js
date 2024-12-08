@@ -1,7 +1,7 @@
 import React, { useEffect, useState ,useMemo} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import {  Select, } from "antd";
 import { StyledTable, } from "../../../../Components/UI/Antd";
 const Option =Select;
@@ -32,19 +32,15 @@ function CandidateFilterTable(props) {
 
     {
       //title: "Name",
-      title: <FormattedMessage
-        id="app.filterId"
-        defaultMessage="Filter ID"    
-      />,
+      title: "Filter ID"    
+      ,
       width: "20%",
     
     },
     {
       //title: "Currency",
-      title: <FormattedMessage
-        id="app.parameter"
-        defaultMessage="Parameter"
-      />,
+      title: "Parameter"
+     ,
        width: "15%",
     },
 

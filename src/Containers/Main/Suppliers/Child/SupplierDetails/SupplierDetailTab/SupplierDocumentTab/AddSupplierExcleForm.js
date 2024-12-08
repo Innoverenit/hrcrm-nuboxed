@@ -2,13 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
-import { Formik, Form, Field, FastField } from "formik";
+import { Formik, Form, Field} from "formik";
 import { FlexContainer } from "../../../../../../../Components/UI/Layout";
-import { Spacer } from "../../../../../../../Components/UI/Elements";
-import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import DragableUpload from "../../../../../../../Components/Forms/Formik/DragableUpload";
-import SearchSelect from "../../../../../../../Components/Forms/Formik/SearchSelect";
-import { TextareaComponent } from "../../../../../../../Components/Forms/Formik/TextareaComponent";
+
 import {
   handleSupplierDocumentUploadModal,
   addSupplierDocument,
@@ -153,14 +150,13 @@ class AddSupplierExcleForm extends Component {
                 
               </div>
 
-              <Spacer />
+              <div class=" mt-3" />
               <FlexContainer justifyContent="flex-end">
                 <Button
                   htmlType="submit"
                   type="primary"
                   Loading={addingDocumentBySupplierId}
                 >
-                  {/* <FormattedMessage id="app.submit" defaultMessage="Submit" /> */}
                   Submit
                 </Button>
               </FlexContainer>

@@ -3,7 +3,6 @@ import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
 const PitchCallForm =lazy(()=>import("./PitchCallForm"));
 const PitchTaskForm =lazy(()=>import("./PitchTaskForm"));
 const PitchEventForm =lazy(()=>import("./PitchEventForm"));
@@ -22,10 +21,8 @@ const AddPitchActivityModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.schedule"
-          defaultMessage="Schedule"
-        />}
+        title="Schedule"
+   
         width={drawerWidth}
         visible={addPitchactivityModal}
         onClose={() => handlePitchActivityModal(false)}
@@ -50,18 +47,14 @@ const AddPitchActivityModal = (props) => {
           <TabsWrapper>
             <StyledTabs
               defaultActiveKey="1"
-              style={{ overflow: "visible", width: "53vw", padding: "15px" }}
+              style={{ overflow: "visible", width: "52vw", padding: "5px" }}
               animated={false}
             >
               <TabPane
                 tab={
                   <span>
                    <i class="fas fa-phone-square"></i>&nbsp;
-                   <FormattedMessage
-                        id="app.calls"
-                        defaultMessage="Calls"
-                      />
-                    
+                Calls
                   </span>
                 }
                 key="1"
@@ -75,10 +68,7 @@ const AddPitchActivityModal = (props) => {
                 tab={
                   <span>
                     <i class="fas fa-tasks"></i>&nbsp;
-                    <FormattedMessage
-                        id="app.events"
-                        defaultMessage="Events"
-                      />
+                   Events
                     
                   </span>
                 }
@@ -94,10 +84,7 @@ const AddPitchActivityModal = (props) => {
                 tab={
                   <span>
                     <i class="far fa-calendar-check"></i>&nbsp;
-                    <FormattedMessage
-                        id="app.tasks"
-                        defaultMessage="Tasks"
-                      />
+                   Tasks
                     
                   </span>
                 }

@@ -1,11 +1,11 @@
 import React, {Suspense, lazy, useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Rate, Steps } from 'antd';
-import { FormattedMessage } from 'react-intl';
+import { Button, Rate, Steps,Tooltip,Progress } from 'antd';
 import {getProcureStatusItem} from "../../AccountAction";
-import moment from 'moment';
+import dayjs from 'dayjs';
 import OrdrSuplrStatusItemCard from "./OrdrSuplrStatusItemCard";
+import OrderPieChart from "./OrderPieChart";
 
 function OrderSupplierStatuShower (props) {
 
@@ -16,62 +16,126 @@ function OrderSupplierStatuShower (props) {
 
 
   return (
-    <React.Fragment>
-    
-    <div class="bg-white">
-        <Steps
-            direction="vertical"
-            current={1}
-            items={[
-                {
-                    title: <FormattedMessage
-                        id="app.ordercreated"
-                        defaultMessage="Order Created"
-                    />,
-                    status: <FormattedMessage
-                        id="app.progress"
-                        defaultMessage="progress"
-                    />,
-                    description: <>
-                 <b> {moment(props.statusItems.creationDate).format("DD-MM-YYYY")} </b>
-                    </>
-                },
-                {
-                    title: 'Payment',
-                    status: <>
-                   
-                        </>,
-                    description:
-                        <>
-
-{props.statusItems.paymentType} | {moment(props.statusItems.paymentDate).format("DD-MM-YYYY")}
-
-                        </>
-                },
-                {
-                    title: 'Order Pick Up',
-                    status:  '',
-                   // subTitle: <StatusItemCard statusItems={props.statusItems}/>,
-                    description: <>
+   <React.Fragment>
+        <div className="bg-white p-4 rounded-md shadow-md">
+            <div className="relative flex items-center justify-between px-4">
          
-                      <OrdrSuplrStatusItemCard statusItems={props.statusItems} particularRowData={props.particularRowData}/>
-                    </>
-                },
+                <div className="absolute top-1/2 left-0 w-full h-1 bg-red-500 z-0"></div>
+                
+                    <div className="relative z-10 flex flex-col items-center">
+                 <div className="text-4xl mb-2">🛒</div>
+                        
+     
+                        <div className={`${props.statusItems.creationDate ? "bg-green-500  w-8 h-8 text-white rounded-full flex items-center justify-center":"bg-red-500 w-8 h-8 text-white rounded-full flex items-center justify-center"}`}>
+                            1
+                        </div>
+                        
+         <p className="mt-2 text-sm font-medium text-center">Order Created</p>
+         <b> {dayjs(props.statusItems.creationDate).format("DD-MM-YYYY")} </b>
+                    </div>
+                    <div className="relative z-10 flex flex-col items-center">
+                 <div className="text-4xl mb-2">🛒</div>
+                        <div className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
+                            2
+                        </div>
+         <p className="mt-2 text-sm font-medium text-center">Invoice</p>
+         {/*  */} <Tooltip title="">
+{" "}
+<Progress
+type="circle"
+className=" !text-xl cursor-pointer text-[red]"
+percent={25}
+width={30}
+strokeColor={"#005075"}
+/>
+</Tooltip>
+                    </div>
+                    <div className="relative z-10 flex flex-col items-center">
+                 <div className="text-4xl mb-2">🛍️</div>
+                        <div className={`${props.statusItems.paymentType ? "w-8 h-8 bg-green-500 text-white rounded-full flex items-center justify-center":"w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center"}`}>
+                            3
+                        </div>
+         <p className="mt-2 text-sm font-medium text-center">Payment</p>
+         <b> {`${props.statusItems.paymentType ? `${props.statusItems.paymentType} |` :""} ${props.statusItems && props.statusItems.paymentDate ? 
+  dayjs(props.statusItems.paymentDate).format("DD-MM-YYYY") : 
+  ""
+}`}</b>
+                    </div>
+                    <div className="relative z-10 flex flex-col items-center">
+                 <div className="text-4xl mb-2">🛒</div>
+                        <div className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
+                            4
+                        </div>
+         <p className="mt-2 text-sm font-medium text-center">Pack</p>
+         {/*  */}
+         <Tooltip title="">
+{" "}
+<Progress
+type="circle"
+className=" !text-xl cursor-pointer text-[red]"
+percent={50}
+width={30}
+strokeColor={"#005075"}
+/>
+</Tooltip>
+                    </div>
+                    <div className="relative z-10 flex flex-col items-center">
+                 <div className="text-4xl mb-2">🛒</div>
+                        <div className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
+                            5
+                        </div>
+         <p className="mt-2 text-sm font-medium text-center">Order Pick Up</p>
+         {/* <OrdrSuplrStatusItemCard statusItems={props.statusItems} particularRowData={props.particularRowData}/> */}
+         <Tooltip title="">
+{" "}
+<Progress
+type="circle"
+className=" !text-xl cursor-pointer text-[red]"
+percent={71}
+width={30}
+strokeColor={"#005075"}
+/>
+</Tooltip>
+                    </div>
+                    <div className="relative z-10 flex flex-col items-center">
+                 <div className="text-4xl mb-2">📍</div>
+                        <div className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
+                            6
+                        </div>
+         <p className="mt-2 text-sm font-medium text-center">Ship</p>
+         {/*  */}   <Tooltip title="">
+{" "}
+<Progress
+type="circle"
+className=" !text-xl cursor-pointer text-[red]"
+percent={57}
+width={30}
+strokeColor={"#005075"}
+/>
+</Tooltip>
+                    </div>
 
-        
-               
-                // {
-                //     title: 'Customer Feedback',
-                //     status: 'progress',
-                //     description: <>
-                //  <Rate/>
-                //   </>
-                // },
-            ]}
-        />
-      
-    </div>
-       
+                    <div className="relative z-10 flex flex-col items-center">
+                 <div className="text-4xl mb-2">🚚</div>
+                        <div className="w-8 h-8 bg-red-500 text-white rounded-full flex items-center justify-center">
+                            7
+                        </div>
+         <p className="mt-2 text-sm font-medium text-center">Delevered</p>
+         {/*  */}  <Tooltip title="">
+{" "}
+<Progress
+type="circle"
+className=" !text-xl cursor-pointer text-[red]"
+percent={88}
+width={30}
+strokeColor={"#005075"}
+/>
+</Tooltip>
+                    </div>  
+            </div>
+        </div>
+
+        <OrdrSuplrStatusItemCard statusItems={props.statusItems} particularRowData={props.particularRowData}/>
     </React.Fragment>
   );
 }

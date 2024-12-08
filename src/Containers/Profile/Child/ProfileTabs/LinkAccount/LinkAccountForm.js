@@ -4,16 +4,49 @@ import { bindActionCreators } from "redux";
 import {  withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { Input } from "../../../../Auth/styled";
-import { ValidationError, Title, SubTitle } from "../../../../../Components/UI/Elements";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
+import { ValidationError } from "../../../../../Components/UI/Elements";
 import Button from "antd/lib/button";
-import styled from "styled-components";
+
  import { verifyUserEmailurL ,
   validateEmailOtpurL,
   addEmailLinkSave
 } from "../../../ProfileAction";
 
 class LinkAccountForm extends Component {
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+      activeKey: "1",
+    };
+  }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "Send OTP",
+        "Validate",
+        "Submit"
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
+  
   state = {
     type: "password",
     type1: "password",
@@ -64,16 +97,10 @@ class LinkAccountForm extends Component {
 
           <div className="forgot_password">
 
-            <FlexContainer>
-              <AuthContainer
-                style={{
-                  backgroundColor: "white",
-                  flexDirection: "column",
-                  width: "100%",
-                }}
-              >
-            
-                <FormWrapper>
+          <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
+            <div class="   min-h- [100vh] overflow-auto flex  flex-col justify-center w-full bg-white items-center ">
+                    
+            <div class=" p-4 w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white">
                   <Formik
                     initialValues={{
                       emailId: this.props.user.emailId,
@@ -127,7 +154,7 @@ class LinkAccountForm extends Component {
                                 }}
 
                               >
-                                Send OTP
+                                {this.state.translatedMenuItems[0]} {/* Send OTP */}
                               </Button>
                             </div>
                           </div>
@@ -160,7 +187,7 @@ class LinkAccountForm extends Component {
                                 }}
                               // disabled={!this.state.sendOtpClicked}
                               >
-                                Validate
+                                 {this.state.translatedMenuItems[1]}{/* Validate */}
                               </Button>
                             </div>
                           </div>
@@ -201,7 +228,7 @@ class LinkAccountForm extends Component {
                                 }}
 
                               >
-                                Send OTP
+                                {this.state.translatedMenuItems[0]} {/* Send OTP */}
                               </Button>
                             </div>
                           </div>
@@ -235,7 +262,7 @@ class LinkAccountForm extends Component {
                                 }}
                               // disabled={!this.state.sendOtpClicked}
                               >
-                                Validate
+                                 {this.state.translatedMenuItems[1]}{/* Validate */}
                               </Button>
                             </div>
                           </div>
@@ -262,7 +289,7 @@ class LinkAccountForm extends Component {
                                 secondaryEmailId:values.email2,
                               })}
                             >
-                            Submit
+                            {this.state.translatedMenuItems[2]} {/* Submit */}
                             </Button>
                           </span>
                         </div>
@@ -272,11 +299,11 @@ class LinkAccountForm extends Component {
                     )}
                   </Formik>
              
-                </FormWrapper>
+                </div>
              
-              </AuthContainer>
+              </div>
 
-            </FlexContainer>
+            </div>
           </div>
  
         </div>
@@ -307,34 +334,4 @@ const mapDispatchToProps = (dispatch) =>
   );
 export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(LinkAccountForm)
-);
-
-const AuthContainer = styled.div`
-  // width: 50%;
-  width:${(props) => props.width || "50%"}
-  min-height: 100vh;
-  overflow: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url(${(props) => props.backgroundImage});
-  background-size: cover;
-  @media only screen and (max-width: 37.5em) { 
-   width:100%
-  }
-`;
-const FormWrapper = styled.div`    
-padding: 1rem;
-width: ${(props) => props.width}
-     border-radius: 0.3rem;
-    box-shadow: 0em 0.25em 0.625em -0.125em #444;
-    border: 0.0625em solid #ddd;
-    background: #fff;
-    @media only screen and (max-width: 37.5em) {
-       width:89%
-         }
- @media only screen 
-and (min-device-width : 48em) 
-and (max-device-width : 64em)
-and (-webkit-min-device-pixel-ratio: 2){
-}`;
+);   

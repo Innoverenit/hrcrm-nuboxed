@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { updateEmployeeById } from "../../../../EmployeeAction";
 import { Button } from "antd";
 import { TextInput } from "../../../../../../Components/UI/Elements";
@@ -59,12 +59,9 @@ class EmployeeOverviewEdit extends Component {
             defaultValue={singleEmployee.firstName}
             handleChange={this.handleChange}
             name={"firstName"}
-            label={
-              <FormattedMessage
-                id="app.firstName"
-                defaultMessage="First name"
-              />
-            }
+            label=
+            "First name"
+             
             placeholder="First name"
             value={this.state.fields.firstName}
             width="100%"
@@ -81,9 +78,7 @@ class EmployeeOverviewEdit extends Component {
             defaultValue={singleEmployee.lastName}
             handleChange={this.handleChange}
             name={"lastName"}
-            label={
-              <FormattedMessage id="app.lastName" defaultMessage="Last name" />
-            }
+            label="Last name" 
             placeholder="Last name"
             value={this.state.fields.lastName}
             width="100%"
@@ -97,11 +92,11 @@ class EmployeeOverviewEdit extends Component {
             Loading={updatingEmployeeById}
             onClick={this.handleUpdate}
           >
-            <FormattedMessage id="app.save" defaultMessage="Save" />
+        Save
           </Button>
 <div class=" ml-2">
           <Button type="ghost" onClick={() => toggleViewType()}>
-            <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+         Cancel
           </Button>
           </div>
         </div>

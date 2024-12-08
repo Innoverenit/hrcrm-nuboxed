@@ -2,8 +2,8 @@ import React, {useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
-import moment from "moment";
-import { FormattedMessage } from "react-intl";
+import dayjs from "dayjs";
+
 
 function CollectionActionRight (props){
   const [selectedTodayRowDistributor,setSelectedTodayRowDistributor] = useState([]);
@@ -21,16 +21,11 @@ function CollectionActionRight (props){
     return (
 <>
 <div class="flex justify-evenly">
-<div class="font-bold flex justify-center"> <FormattedMessage
-                              id="app.receivable"
-                              defaultMessage="Receivables"
-                            />: ₹ {resultForToday.toFixed(2)}</div>
+<div class="font-bold flex justify-center">Receivables
+                         : ₹ {resultForToday.toFixed(2)}</div>
 &nbsp;&nbsp;
 <div class="font-bold flex justify-center">
-<FormattedMessage
-                              id="app.balanceasof"
-                              defaultMessage="Balance as of"
-                            />{moment().format("ll")} : ₹{resultForDis.toFixed(2)}
+Balance as of {dayjs().format("ll")} : ₹{resultForDis.toFixed(2)}
 </div>
 </div>
     </>

@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from "react";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 
-const MileageNote =lazy(()=>import("./MileageNote"));
+
 
 const MileageNoteDrawer = (props) => {
   const { noteMileageDrawer, handleMileageNoteDrawer,milaegeItems, ...formProps } = props;
@@ -16,7 +16,7 @@ const MileageNoteDrawer = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <MileageNote milaegeItems={milaegeItems} />{" "} 
+          {/* <MileageNote milaegeItems={milaegeItems} />{" "}  */}
         </Suspense>
       </StyledDrawer>
     </>

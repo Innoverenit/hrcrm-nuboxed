@@ -1,12 +1,12 @@
 import React, { useState,useEffect,lazy } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import {linkDepartmentDocumentToggle,removeDepartments} from "../Department/DepartmentAction"
 import { Button, Popconfirm, Switch, Tooltip } from "antd";
 import {addingDeptModules} from "../Department/DepartmentAction"
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { TextInput } from "../../../Components/UI/Elements";
 import dayjs from "dayjs";
 import ViewEditCard from "../../../Components/UI/Elements/ViewEditCard";
@@ -343,7 +343,7 @@ const SingleDepartment = (props) => {
           cardViewType === "view" ? (
             <div className="flex">
               <div className="w-full flex-row">
-                <div className="flex justify-between">
+                <div className="flex justify-between items-center">
                   <div className="w-[11%]">
                   <div class=" font-semibold" >{departmentName}&nbsp;&nbsp;&nbsp;
             {date === currentdate ?<span class="text-xs text-[tomato] font-bold"
@@ -386,7 +386,7 @@ const SingleDepartment = (props) => {
 
 {moduleMapper.financeInd === true && (
   <>
-  <div class=" flex">
+  <div class=" flex items-center">
                     <div class=" text-xs w-[4.5rem] ml-4">Accounting</div>
                     <div   class=" w-[7%]">
                     <Popconfirm
@@ -753,17 +753,9 @@ const SingleDepartment = (props) => {
                           cancelText="No"
                           onConfirm={() => props.removeDepartments(departmentId,props.orgId )}
                         >
-                      <DeleteOutlined
-                        // onClick={() => handleDeleteDepartment(departmentId)}
+                    
                      
-                        style={{
-                          cursor:"pointer",
-                          verticalAlign: "center",
-                          marginLeft: "5px",
-                          fontSize: "1rem",
-                          color: "red",
-                        }}
-                      />
+                        <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                        </Popconfirm>
                     )}
                     </Tooltip>
@@ -791,19 +783,13 @@ const SingleDepartment = (props) => {
                     }}
                   // onClick={() => handleUpdateDepartment(departmentId,value,sectorId,sectorName,value, toggleViewType())}
                   >
-                    {/* Save */}
-                    <FormattedMessage
-              id="app.update"
-              defaultMessage="Update"
-            />
+                    Save
+                   
                 </Button>
             
                   <Button type="cancel"  onClick={() => toggleViewType()}>
-                    {/* Cancel */}
-                    <FormattedMessage
-              id="app.cancel"
-              defaultMessage="Cancel"
-            />
+                    Cancel
+                   
                 </Button>
                 </div>
             </div>

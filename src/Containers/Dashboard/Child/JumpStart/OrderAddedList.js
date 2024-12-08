@@ -2,17 +2,13 @@
 import React, { Component, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Input, Popconfirm, Space, Button, Badge } from "antd";
-import { EditOutlined, SearchOutlined } from "@ant-design/icons";
-import Highlighter from "react-highlight-words";
+import { Tooltip, Badge } from "antd";
 import OnlyWrapCard from "../../../../Components/UI/Layout/OnlyWrapCard"
-import moment from "moment";
-import InfiniteScroll from "react-infinite-scroll-component";
+import dayjs from "dayjs";
 import PaidIcon from '@mui/icons-material/Paid';
 import {getOrderAddedList} from "../../DashboardAction"
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
-import { dashboardReducer } from "../../DashboardReducer";
 import { MultiAvatar2 } from "../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
@@ -29,37 +25,32 @@ useEffect(()=>{
     }else {
         props.getOrderAddedList(props.orgId,props.endDate,props.startDate,)
       }
-   }, [props.orgId,props.startDate,props.endDate]);
+   }, [props.orgId,props.endDate,props.startDate]);
 
   return (
     <>
-   <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
+   <OnlyWrapCard style={{ backgroundColor: "white" }}>
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
-          <div className=" md:w-[12rem]">Order ID</div>
-          <div className=" md:w-[10.4rem]">Customer</div>
-          <div className=" md:w-[12.01rem] ">Contact</div>
-          <div className="md:w-[8.12rem]">#Units</div>
-          <div className="md:w-[4rem]">Owner</div>
-          <div className="md:w-[7.1rem]">Creation Date</div>
-          <div className="md:w-[37rem]">Revised</div>
+          <div className="text-xs font-poppins font-bold md:w-[12rem]">Order ID</div>
+          <div className="text-xs font-poppins font-bold md:w-[10.4rem]">Customer</div>
+          <div className="text-xs font-poppins font-bold md:w-[12.01rem] ">Contact</div>
+          <div className="text-xs font-poppins font-bold md:w-[8.12rem]">#Units</div>
+          <div className="text-xs font-poppins font-bold md:w-[4rem]">Owner</div>
+          <div className="text-xs font-poppins font-bold md:w-[7.1rem]">Creation Date</div>
+          <div className="text-xs font-poppins font-bold md:w-[37rem]">Revised</div>
+          <div className="md:w-[4rem]"></div>  {/* show status icon */}
 
 
         </div>
-        {/* <InfiniteScroll
-          dataLength={props.allCompleteOrder.length}
-          next={handleLoadMore}
-          hasMore={hasMore}
-          loader={props.fetchingAllOrderList ? <h4 style={{ textAlign: 'center' }}>Loading...</h4> : null}
-          height={"75vh"}
-        > */}
+       
           {props.orderAddedList.length ?
             <>
               {props.orderAddedList.map((item) => {
-                const currentdate = moment().format("DD/MM/YYYY");
-                const date = moment(item.creationDate).format("DD/MM/YYYY");
+                const currentdate = dayjs().format("DD/MM/YYYY");
+                const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 
                 const diff = Math.abs(
-                  moment().diff(moment(item.lastRequirementOn), "days")
+                  dayjs().diff(dayjs(item.lastRequirementOn), "days")
                 );
                 const dataLoc = ` Address : ${item.address && item.address.length && item.address[0].address1
                   } 
@@ -85,17 +76,13 @@ useEffect(()=>{
                     // }}
                     >
                       <div class="flex">
-                        <div className=" flex font-medium flex-col w-wk   max-sm:w-full">
+                        <div className=" flex  w-wk   max-sm:w-full">
                           <div className="flex max-sm:w-full">
                             <div class="w-[9.1rem]">
                               <Badge size="small" count={item.productNum}>
                                 <span
                                   class="underline cursor-pointer text-[#1890ff]"
-                                //   onClick={() => {
-                                //     handleOrder(item.orderId);
-                                //     handleSetParticularOrderData(item);
-                                //     props.handleOrderDetailsModal(true);
-                                //   }}
+                               
 
                                 >{`${item.newOrderNo} `}
 
@@ -142,94 +129,73 @@ useEffect(()=>{
                         </div>
                       </div>
                       <div class="flex">
-                        <div className=" flex font-medium flex-col  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex   md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                          <h4 class=" text-xs  font-poppins">
+                          <div class=" text-xs  font-poppins">
                             {item.noOfPhones}
-                          </h4>
+                          </div>
                         </div>
-                        <div className=" flex font-medium flex-col  md:w-[4.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                          <h4 class=" text-xs  font-poppins">
+                        <div className=" flex   md:w-[4.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div class=" text-xs  font-poppins">
                             <MultiAvatar2
                               primaryTitle={item.userName}
                               imageURL={item.imageURL}
                               imgWidth={"1.8rem"}
                               imgHeight={"1.8rem"}
                             />
-                          </h4>
+                          </div>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-[7.23rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex  md:w-[7.23rem] max-sm:flex-row w-full max-sm:justify-between ">
 
                           <span>{date}</span>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-[7.8rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex  md:w-[7.8rem] max-sm:flex-row w-full max-sm:justify-between ">
 
 <span>{item.payableOfferPrice}</span>
 </div>
                       </div>
                       <div class="flex">
-                        <div className=" flex font-medium flex-col  md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex   md:w-[10rem] max-sm:flex-row w-full max-sm:justify-between ">
 
-                          <h4 class=" text-xs  font-semibold  font-poppins">
+                          <div class=" text-xs  font-semibold  font-poppins">
                             {item.noOfownerPhones}
-                          </h4>
+                          </div>
                         </div>
                         <div class="rounded-full bg-white  h-5 cursor-pointer w-8 justify-cente">
                           {item.orderStatus}
                         </div>
-                        <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
+                        <div className=" flex  w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
 
-                          {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
-                          <h4 class=" text-xs  font-poppins">
+                         
+                          <div class=" text-xs  font-poppins">
                             <Tooltip title="Notes">
-                              <NoteAltIcon
-                                style={{ cursor: "pointer", color: "green", fontSize: "1rem" }}
-                                // onClick={() => {
-
-                                //   props.handleNotesModalInOrder(true);
-                                //   handleSetParticularOrderData(item);
-                                // }}
-                              />
+                              <NoteAltIcon className=" !text-icon cursor-pointer text-green-600" />
 
                             </Tooltip>
-                          </h4>
+                          </div>
 
 
                         </div>
 
 
-                        <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
-                          <h4 class=" text-xs  font-poppins">
+                        <div className=" flex  w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
+                          <div class=" text-xs  font-poppins">
                             <Tooltip title="Status">
-                              <EventRepeatIcon
-                                style={{ cursor: "pointer", fontSize: "1rem", }}
-                                // onClick={() => {
-                                //   props.handleStatusOfOrder(true);
-                                //   handleSetParticularOrderData(item);
-                                // }}
-                              />
+                              <EventRepeatIcon  className=" !text-icon cursor-pointer"   />
                             </Tooltip>
-                          </h4>
-                          {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
-
+                          </div>
+                      
 
                         </div>
-                        <div className=" flex font-medium flex-col w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
-                          <h4 class=" text-xs  font-poppins">
+                        <div className=" flex  w-[2rem] md:w-[1rem] max-sm:flex-row  max-sm:justify-between  ">
+                          <div class=" text-xs  font-poppins">
                             <Tooltip title="Collection">
-                              <PaidIcon
-                                style={{ cursor: "pointer", fontSize: "1rem", }}
-                                // onClick={() => {
-                                //   props.handlePaidModal(true);
-                                //   handleSetParticularOrderData(item);
-                                // }}
-                              // style={{ color: "blue" }}
+                              <PaidIcon className=" !text-icon cursor-pointer"                           
                               />
                             </Tooltip>
 
-                          </h4>
-                          {/* <h4 class=" text-sm  font-poppins max-sm:hidden"> Sector </h4> */}
-
+                          </div>
+                          
 
                         </div>
 
@@ -238,13 +204,13 @@ useEffect(()=>{
 
                     </div>
                   </div>
-                  // </div>
+                
                 );
               })}
             </> :
             !props.orderAddedList.length && !props.fetchingOrderAddedList ? <NodataFoundPage /> 
             : null}
-        {/* </InfiniteScroll> */}
+
       </OnlyWrapCard>
     </>
   );
@@ -252,15 +218,8 @@ useEffect(()=>{
 }
 
 const mapStateToProps = ({ order, auth,dashboard, distributor }) => ({
-//   allCompleteOrder: order.allCompleteOrder,
-//   addPaidButtonModal: order.addPaidButtonModal,
 orderAddedList:dashboard.orderAddedList,
 fetchingOrderAddedList:dashboard.fetchingOrderAddedList,
-//   addStatusOfOrder: order.addStatusOfOrder,
-//   addNotesInOrder: order.addNotesInOrder,
-//   fetchingAllOrderList: order.fetchingAllOrderList,
-//   userId: auth.userDetails.userId,
-//   addOrderDetailsModal: distributor.addOrderDetailsModal,
 orgId: auth.userDetails.organizationId,
 timeRangeType:dashboard.timeRangeType,
 startDate: dashboard.startDate,
@@ -271,13 +230,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         getOrderAddedList
-    //   getAllOrderList,
-    //   handleNotesModalInOrder,
-    //   handleStatusOfOrder,
-    //   handlePaidModal,
-    //   emptyOrders,
-    //   handleOrderDetailsModal
-    },
+       },
     dispatch
   );
 

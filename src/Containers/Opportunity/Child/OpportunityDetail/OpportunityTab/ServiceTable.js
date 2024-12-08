@@ -1,14 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../../Components/Placeholder";
-import {
-  getServiceByOpportunityId,
-  getProductsByOpportunityId,
-  deleteOppService,
-} from "../../../OpportunityAction";
-// import { DeleteOutlined} from '@ant-design/icons';
+
 import { Icon } from "antd";
 import { StyledTable } from "../../../../../Components/UI/Antd";
 
@@ -41,30 +36,19 @@ class ServiceTable extends Component {
     } = this.props;
     const columns = [
       {
-        //title: "Role",
-        title: <FormattedMessage
-          id="app.role"
-          defaultMessage="Role"
-        />,
+        title: "Role",
 
         dataIndex: "role",
       },
       {
-        //title: "Region",
-        title: <FormattedMessage
-          id="app.region"
-          defaultMessage="Region"
-        />,
-
+        title: "Region",
+       
         dataIndex: "region",
       },
 
       {
-        //title: "Value",
-        title: <FormattedMessage
-          id="app.minRate"
-          defaultMessage="Value"
-        />,
+        title: "Value",
+      
 
         dataIndex: "minRate",
         render: (text, item) => {
@@ -75,22 +59,12 @@ class ServiceTable extends Component {
         },
       },
       {
-        // title: "# ",
-        title: <FormattedMessage
-          id="app.noOfUnit"
-          defaultMessage="#"
-        />,
-
+        title: "# ",
         dataIndex: "noOfUnit",
       },
       {
-        //title: "Unit",
-        title: <FormattedMessage
-          id="app.unit"
-          defaultMessage="Unit"
-        />,
-
-        dataIndex: "unit",
+        title: "Unit",
+         dataIndex: "unit",
       },
       {
         title: "",

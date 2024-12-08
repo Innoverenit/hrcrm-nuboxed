@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
-import UploadPitchForm from "./UploadPitchForm";
-
+const  UploadPitchForm=lazy(()=> import("./UploadPitchForm"));
 
 class UploadPitch extends Component {
     render() {

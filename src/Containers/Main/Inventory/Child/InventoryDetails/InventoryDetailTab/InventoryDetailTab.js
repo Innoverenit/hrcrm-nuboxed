@@ -1,9 +1,9 @@
 import React, { Component, lazy, PureComponent, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { StyledTabs } from "../../../../../../Components/UI/Antd";
-import { Spacer } from "../../../../../../Components/UI/Elements";
+
 import { TabsWrapper } from "../../../../../../Components/UI/Layout";
 import { Tooltip } from "antd";
 import { withRouter } from "react-router";
@@ -109,7 +109,10 @@ class InventoryDetailTab extends PureComponent {
             >
               {" "}
               <Suspense fallback={"Loading..."}>
-                <ReceivedTable />
+                <ReceivedTable
+                  translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
+                 />
               </Suspense>
             </TabPane>
 
@@ -124,7 +127,7 @@ class InventoryDetailTab extends PureComponent {
                   {/* {activeKey === "2" && (
                     <>
                       <Tooltip title="Dispatch">
-                        <PlusOutlined
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                           onClick={() => this.props.handleAddDispatchModal(true)}
                           size="14px"
                           style={{ verticalAlign: "center", marginLeft: "5px" }}
@@ -138,6 +141,8 @@ class InventoryDetailTab extends PureComponent {
             >
               <Suspense fallback={"Loading..."}>
                 <DispatchTable 
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
                    inventory={this.props.inventory}
                 />
               </Suspense>

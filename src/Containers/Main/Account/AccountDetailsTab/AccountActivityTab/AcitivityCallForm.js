@@ -1,16 +1,16 @@
-import React, { Component, useState, useMemo, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getAllSalesList } from "../../../../Opportunity/OpportunityAction"
-import { FormattedMessage } from "react-intl";
-import { Button, Icon, Switch, Tooltip } from "antd";
+
+import { Button,  Switch, Tooltip } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
 import { getAllOpportunityData } from "../../../../Opportunity/OpportunityAction"
 import { handleCallNotesModal } from "../../../../Call/CallAction";
 import { getFilteredEmailContact } from "../../../../Candidate/CandidateAction";
 import dayjs from "dayjs";
-import { Spacer, StyledLabel } from "../../../../../Components/UI/Elements";
+
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
@@ -29,13 +29,11 @@ import { StyledPopconfirm } from "../../../../../Components/UI/Antd";
 import { getAssignedToList } from "../../../../Employees/EmployeeAction";
 import { setClearbitCandidateData } from "../../../../Candidate/CandidateAction";
 import SpeechRecognition, { } from 'react-speech-recognition';
-import { AudioOutlined } from '@ant-design/icons';
-import { Fragment } from 'react'
-import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
+import MicIcon from '@mui/icons-material/Mic';
+import { Listbox } from '@headlessui/react'
 const ButtonGroup = Button.Group;
 const suffix = (
-    <AudioOutlined
+    <MicIcon
         onClick={SpeechRecognition.startListening}
         style={{
             fontSize: 16,
@@ -61,9 +59,6 @@ const CallSchema = Yup.object().shape({
         .nullable()
         .required("Input required !"),
 
-    // reminder:Yup.string()
-    // .nullable()
-    // .required("Input required !"),
 });
 function CallForm(props) {
 
@@ -347,21 +342,14 @@ function CallForm(props) {
                                 <div class=" h-full w-w47.5 max-sm:w-wk"   >
                                     <div class=" flex justify-between w-full max-sm:flex-col">
                                         <div class=" w-2/6 max-sm:w-wk">
-                                            <Spacer />
-                                            <StyledLabel>
-                                                {/* Type */}
-                                                <FormattedMessage id="app.type" defaultMessage="Type" />
-                                            </StyledLabel>
+                                            < div class="mt-3" />
+                                            <div class=" text-xs font-bold font-poppins text-black">
+                                                Type
+                                            </div>
                                             <div class=" flex justify-between">
                                                 {/* <Tooltip title="Inbound"> */}
                                                 <Tooltip
-                                                    title={
-                                                        <FormattedMessage
-                                                            id="app.introductory"
-                                                            defaultMessage="Introductory"
-                                                        />
-                                                    }
-                                                >
+                                                    title="Introductory">
                                                     <div
                                                         onClick={() => handleTypeChange("Inbound")}
                                                         style={{
@@ -378,12 +366,8 @@ function CallForm(props) {
                                                 </Tooltip>
                                                 {/* <Tooltip title="Outbound"> */}
                                                 <Tooltip
-                                                    title={
-                                                        <FormattedMessage
-                                                            id="app.interview"
-                                                            defaultMessage="Interview"
-                                                        />
-                                                    }
+                                                    title="Interview"
+                                                        
                                                 >
                                                     <div
                                                         onClick={() => handleTypeChange("Outbound")}
@@ -401,12 +385,8 @@ function CallForm(props) {
                                                 </Tooltip>
                                                 {/* <Tooltip title="Conference"> */}
                                                 <Tooltip
-                                                    title={
-                                                        <FormattedMessage
-                                                            id="app.closure"
-                                                            defaultMessage="Closure"
-                                                        />
-                                                    }
+                                                    title="Closure"
+                                                       
                                                 >
                                                     <div
                                                         onClick={() => handleTypeChange("Conference")}
@@ -425,13 +405,11 @@ function CallForm(props) {
                                             </div>
                                         </div>
                                         <div class=" w-1/2">
-                                            <Spacer />
-                                            <StyledLabel>
-                                                <FormattedMessage
-                                                    id="app.category"
-                                                    defaultMessage="Category"
-                                                />
-                                            </StyledLabel>
+                                            < div class="mt-3" />
+                                            <div class=" text-xs font-bold font-poppins text-black">
+                                          Category
+                                              
+                                            </div>
 
                                             <ButtonGroup>
                                                 <Button
@@ -445,8 +423,7 @@ function CallForm(props) {
                                                             category === "New" ? "white" : "black",
                                                     }}
                                                 >
-                                                    {/* New */}
-                                                    <FormattedMessage id="app.new" defaultMessage="New" />
+                                                    New
                                                 </Button>
                                                 <Button
                                                     onClick={() => handleCategoryChange("Follow up")}
@@ -461,21 +438,17 @@ function CallForm(props) {
                                                                 : "black",
                                                     }}
                                                 >
-                                                    {/* Follow up */}
-                                                    <FormattedMessage
-                                                        id="app.followup"
-                                                        defaultMessage="Follow up"
-                                                    />
+                                                    Follow up
                                                 </Button>
                                             </ButtonGroup>
                                         </div>
                                     </div>
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div class=" flex justify-between items-end max-sm:flex-col " >
                                         <div class=" self-start">
-                                            <StyledLabel>
+                                            <div class=" text-xs font-bold font-poppins text-black">
                                                 Mode
-                                            </StyledLabel>
+                                            </div>
                                             <Switch
                                                 // style={{
                                                 //   marginLeft: "0.3125em"
@@ -518,42 +491,29 @@ function CallForm(props) {
                                         isRequired
                                         name="callPurpose"
                                         // label="Topic"
-                                        label={
-                                            <FormattedMessage
-                                                id="app.subject"
-                                                defaultMessage="Subject"
-                                            />
-                                        }
+                                        label="Subject"
                                         component={InputComponent}
                                         isColumn
                                         width={"100%"}
                                         inlineLabel
                                     />
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <Field
                                         name="startDate"
-                                        // label="Date"
-                                        label={
-                                            <FormattedMessage id="app.date" defaultMessage="Date" />
-                                        }
+                                        label="Date"
+                                        
                                         component={DatePicker}
                                         isColumn
                                         width={"100%"}
                                         value={values.startDate}
                                         inlineLabel
                                     />
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div class=" flex justify-between max-sm:flex-col">
                                         <div class=" w-1/2 max-sm:w-wk">
                                             <Field
                                                 name="startTime"
-                                                // label="Start Time"
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.starttime"
-                                                        defaultMessage="Start Time"
-                                                    />
-                                                }
+                                                label="Start Time"
                                                 component={TimePicker}
                                                 isRequired
                                                 isColumn
@@ -568,13 +528,7 @@ function CallForm(props) {
                                         <div class=" w-2/5 max-sm:w-wk">
                                             <Field
                                                 name="endTime"
-                                                // label="End Time"
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.endtime"
-                                                        defaultMessage="End Time"
-                                                    />
-                                                }
+                                                label="End Time"
                                                 component={TimePicker}
                                                 use12Hours
                                                 isRequired
@@ -587,35 +541,26 @@ function CallForm(props) {
                                             />
                                         </div>
                                     </div>
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <Field
                                         isRequired
                                         defaultValue={{ label: timeZone, value: userId }}
                                         name="timeZone"
                                         isColumnWithoutNoCreate
-                                        //label="TimeZone "
-                                        label={
-                                            <FormattedMessage
-                                                id="app.timeZone"
-                                                defaultMessage="Time Zone"
-                                            />
-                                        }
+                                        label="TimeZone "
                                         selectType="timeZone"
                                         isColumn
                                         value={values.timeZone}
                                         component={SearchSelect}
                                         inlineLabel
                                     />
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     {startDate ? (
                                         <span>
                                             {dayjs(startDate).isBefore(dayjs()) && (
                                                 <span>
                                                     <b>
-                                                        <FormattedMessage
-                                                            id="app.thiscalloccursinthepast!"
-                                                            defaultMessage="This Call occurs in the past !"
-                                                        />
+                                                        This Call occurs in the past !
                                                     </b>
                                                 </span>
                                             )}
@@ -626,10 +571,7 @@ function CallForm(props) {
                                                 <span>
                                                     <b>
                                                         {" "}
-                                                        <FormattedMessage
-                                                            id="app.thiscalloccursinthepast!"
-                                                            defaultMessage="This Call occurs in the past !"
-                                                        />
+                                                        This Call occurs in the past !
                                                     </b>
                                                 </span>
                                             )}
@@ -640,7 +582,7 @@ function CallForm(props) {
                                     <Listbox value={selected} onChange={setSelected}>
                                         {({ open }) => (
                                             <>
-                                                <Listbox.Label className="block text-sm font-semibold text-gray-700">
+                                                <Listbox.Label className="block text-xs font-semibold text-gray-700">
                                                     Assigned
                                                 </Listbox.Label>
                                                 <div className="relative mt-1">
@@ -702,16 +644,11 @@ function CallForm(props) {
                                             </>
                                         )}
                                     </Listbox>
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <Field
                                         name="included"
                                         // label="Include"
-                                        label={
-                                            <FormattedMessage
-                                                id="app.include"
-                                                defaultMessage="Include"
-                                            />
-                                        }
+                                        label="Include"
                                         mode
                                         placeholder="Select"
                                         component={SelectComponent}
@@ -722,20 +659,14 @@ function CallForm(props) {
                                             value: employeeId,
                                         }}
                                     />
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div>
                                         {props.user.crmInd === true && (
                                             <Field
                                                 name="contactId"
                                                 //selectType="contactList"
                                                 isColumnWithoutNoCreate
-                                                // label="Contact"
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.contact"
-                                                        defaultMessage="Contact"
-                                                    />
-                                                }
+                                                label="Contact"
                                                 component={SelectComponent}
                                                 isColumn
                                                 options={Array.isArray(ContactData) ? ContactData : []}
@@ -749,19 +680,14 @@ function CallForm(props) {
                                             />
                                         )}
                                     </div>
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div>
                                         {props.user.crmInd === true && (
                                             <Field
                                                 name="customerId"
                                                 // selectType="customerList"
                                                 isColumnWithoutNoCreate
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.customer"
-                                                        defaultMessage="Customer"
-                                                    />
-                                                }
+                                                label="Customer"
                                                 //component={SearchSelect}
                                                 component={SelectComponent}
                                                 options={
@@ -776,19 +702,14 @@ function CallForm(props) {
                                             />
                                         )}
                                     </div>
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div>
                                         {props.user.crmInd === true && (
                                             <Field
                                                 name="opportunityId"
                                                 // selectType="customerList"
                                                 isColumnWithoutNoCreate
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.opportunity"
-                                                        defaultMessage="Opportunity"
-                                                    />
-                                                }
+                                                label="Opportunity"
                                                 //component={SearchSelect}
                                                 component={SelectComponent}
                                                 options={
@@ -803,35 +724,13 @@ function CallForm(props) {
                                             />
                                         )}
                                     </div>
-                                    <Spacer />
-                                    {/* <div >
-                  <Field
-                    disabled="true"
-                    isRequired
-                    name="candidateId"
-                    // type="text"
-                    //label="Talent"
-                    label={
-                      <FormattedMessage
-                        id="app.team"
-                        defaultMessage="Team"
-                      />
-                    }
-                    placeholder="Start typing to search..."
-                    isColumnWithoutNoCreate
-                    setClearbitCandidateData={props.setClearbitCandidateData}
-                    component={CandidateClearbit}
-                    inlineLabel
-                  />
-                   </div>
-                  <Spacer /> */}
+                                    < div class="mt-3" />
+                                   
                                     <div>
                                         <div class=" w-full"><Field
                                             name="callDescription"
                                             // label="Notes"
-                                            label={
-                                                <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                                            }
+                                            label="Notes" 
                                             isColumn
                                             width={"100%"}
                                             component={TextareaComponent}
@@ -839,62 +738,16 @@ function CallForm(props) {
                                         /></div>
                                     </div>
 
-                                    <Spacer />
-                                    {/* <div class=" flex justify-between" >
-                    <div 
-                    class=" w-1/2 font-bold">
-                    <div class=" flex justify-between" >
-                        <div>
-                          <StyledLabel>Set Reminder</StyledLabel>
-                        </div>
-                        <div>
-                          <Switch
-                            onChange={handleReminderChange}
-                            checked={reminder}
-                            checkedChildren="Yes"
-                            unCheckedChildren="No"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class=" w-1/3 font-bold">
-                      {reminder ? (
-                        <div>
-                          <Field
-                            // isRequired
-                            name="remindTime"
-                            label="Reminder"
-                            width={"100%"}
-                            component={SelectComponent}
-                            options={[
-                              "15 min",
-                              "30 min",
-                              "45 min",
-                              "1 hour",
-                              "2 hour",
-                            ]}
-                            defaultValue="30 min"
-                            isColumn
-                            inlineLabel
-                          />
-                        </div>
-                      ) : null}
-                    </div>
-                  </div> */}
+                                    < div class="mt-3" />
+                                   
                                 </div>
                             </div>
-                            <Spacer />
+                            < div class="mt-3" />
                             <div class=" flex justify-end">
                                 {isEditing && (
                                     <>
                                         <StyledPopconfirm
-                                            // title="Do you want to delete?"
-                                            title={
-                                                <FormattedMessage
-                                                    id="app.doyouwanttodelete?"
-                                                    defaultMessage="Do you want to delete?"
-                                                />
-                                            }
+                                            title="Do you want to delete?"
                                             onConfirm={() => deleteCall(prefillCall.callId)}
                                         >
                                             <Button
@@ -902,11 +755,7 @@ function CallForm(props) {
                                                 htmlType="submit"
                                                 Loading={deletingCall}
                                             >
-                                                {/* Delete */}
-                                                <FormattedMessage
-                                                    id="app.delete"
-                                                    defaultMessage="Delete"
-                                                />
+                                                Delete
                                             </Button>
                                         </StyledPopconfirm>
                                     </>
@@ -919,8 +768,8 @@ function CallForm(props) {
                                     {isEditing ? (
                                         "Update"
                                     ) : (
-                                        // "Create"
-                                        <FormattedMessage id="app.create" defaultMessage="Create" />
+                                        "Create"
+                                       
                                     )}
                                 </Button>
                             </div>

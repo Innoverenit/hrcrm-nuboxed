@@ -1372,6 +1372,8 @@ export const convertProspectStatus = (data,userId,taskId) => (
         Swal.fire({
           icon: 'success',
           title: res.data,
+          showConfirmButton: false,
+          timer: 1500,
         });
       } 
       dispatch(getAprrovalTaskTable(userId,0));
@@ -1639,6 +1641,8 @@ export const updateTaskStepperValue= (data,employeeId, cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Task Value updated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("Value has been updated successfully!");
       console.log(res);
@@ -1672,6 +1676,8 @@ export const deleteStepperTaskData = (id,orgId) => (dispatch, getState) => {
       Swal.fire({
         icon: 'success',
         title: 'Task deleted Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       console.log(res);
       //  dispatch(getScheduler(orgId));

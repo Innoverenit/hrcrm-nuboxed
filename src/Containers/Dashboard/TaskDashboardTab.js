@@ -5,7 +5,7 @@ import DashboardDoubleChart from "./DashboardDoubleChart"
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import {  StyledTabs } from "../../Components/UI/Antd";
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
-import { FormattedMessage } from "react-intl";
+
 import TabsWrapper1 from "../../Components/UI/Layout/TabsWrapper1";
 import { BundleLoader } from "../../Components/Placeholder";
 const TaskNew =lazy(()=>import("./TaskNew"));
@@ -48,10 +48,10 @@ class TaskDashboardTab extends Component {
     try {
       this.setState({ loading: true });
       const itemsToTranslate = [
-        ' Development', // 0
-         'Open Tasks', // 1
-         'Completed Tasks', // 2
-         ' Events ', // 3
+        '33', // 0
+         '31', // 1
+         '34', // 2
+         '35', // 3
 
 
       ];
@@ -78,9 +78,9 @@ class TaskDashboardTab extends Component {
     // const { activeKey } = this.state;
     const { activeKey, loading, translatedMenuItems } = this.state;
 
-    if (loading) {
-      return <div><BundleLoader/></div>;
-    } 
+    // if (loading) {
+    //   return <div><BundleLoader/></div>;
+    // } 
     return (
       <>
         <TabsWrapper1 style={{height:"14.5rem"}}>
@@ -95,11 +95,7 @@ class TaskDashboardTab extends Component {
                   <ListAltIcon style={{fontSize:"1.1rem"}}/>
                  
                <span class=" ml-1 font-semibold">
-               {/* <FormattedMessage
-                id="app.openTasks"
-                defaultMessage="Open Tasks"
-              /> */}
-              {/* Development */}
+             
               {translatedMenuItems[0]}
                 </span>
               
@@ -124,10 +120,7 @@ class TaskDashboardTab extends Component {
                   <ListAltIcon style={{fontSize:"1.1rem"}}/>
                  
                <span class=" ml-1 font-semibold">
-               {/* <FormattedMessage
-                id="app.openTasks"
-                defaultMessage="Open Tasks"
-              /> */}
+              
                {translatedMenuItems[1]}
                 </span>
               
@@ -151,11 +144,7 @@ class TaskDashboardTab extends Component {
                   <ListAltIcon style={{fontSize:"1.1rem"}}/>
                  
                <span class=" ml-1 font-semibold">
-               {/* <FormattedMessage
-                id="app.completedTasks"
-                defaultMessage="Completed Tasks"
-              /> */}
-                {/* Completed Tasks */}
+    
                 {translatedMenuItems[2]}
                 </span>
               
@@ -180,10 +169,7 @@ class TaskDashboardTab extends Component {
 
                   <span class=" ml-1 font-semibold">
                   {translatedMenuItems[3]}
-                  {/* <FormattedMessage
-                id="app.events"
-                defaultMessage="Events"
-              /> */}         
+                
                     {/* Events */}
                     </span>
 

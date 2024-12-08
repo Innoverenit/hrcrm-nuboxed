@@ -1,7 +1,7 @@
 import React, { Component, lazy, Suspense } from "react";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../Components/UI/Antd";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import {handleOrganizationDocumentDrawer} from "../Auth/AuthAction"
 import { TabsWrapper } from "../../Components/UI/Layout";
 import { connect } from "react-redux";
@@ -34,22 +34,22 @@ class OrganizationDocumentTab extends Component {
       <>
         <div class=" flex flex-no-wrap" >
         <div class=" w-full" >
-          <TabsWrapper style={ {height:"80vh"}}>
+          <TabsWrapper style={ {height:"83vh"}}>
             <StyledTabs defaultActiveKey="0" onChange={this.handleTabChange}>
            
               <TabPane
                 tab={
                   <>
                   
-                    <span style={{ marginLeft: "0.25em" }}>Document</span>
+                    <span class=" ml-1">Document</span>
                     {(activeKey === "1" && this.props.user.repositoryCreateInd === true || this.props.user.role === "ADMIN") && (
                     <>
-                       <PlusOutlined
-                        type="plus"
+                        <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle="Add"
                          onClick={() => this.props.handleOrganizationDocumentDrawer(true)}
-                        size="14px"
-                        style={{ marginLeft: "0.25", verticalAlign: "center" }}
+                     
+                       
                       />
                     </>
                   )}
@@ -59,7 +59,9 @@ class OrganizationDocumentTab extends Component {
               >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <OrganizationDocumentList/>
+                <OrganizationDocumentList
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}/>
                 </Suspense>
               </TabPane>
 

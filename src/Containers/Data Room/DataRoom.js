@@ -1,24 +1,76 @@
-import React, {Suspense } from 'react';
+import React, {Suspense,lazy, useState} from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import AddDataRoomModal from "../Data Room/AddDataRoomModal"
-import DataRoomHeader from "../Data Room/DataRoomHeader"
-import DataRoomCard from "../Data Room/DataRoomCard"
-import { BundleLoader, } from "../../Components/Placeholder";
+import DataInvestorRoomCard from "../Data Room/DataInvestorRoomCard"
+import { BundleLoader } from "../../Components/Placeholder";
 import {setDataRoomViewType,handleDataroomModal} from "./DataRoomAction";
+const AddDataRoomModal=lazy(()=> import("../Data Room/AddDataRoomModal"));
+const DataRoomHeader=lazy(()=> import("../Data Room/DataRoomHeader"));
+const DataRoomCard=lazy(()=> import("../Data Room/DataRoomCard"));
+const DataRoomCustomerCard=lazy(()=> import("../Data Room/DataRoomCustomerCard"));
+const DataRoomProspectCard=lazy(()=> import("../Data Room/DataRoomProspectcard"));
 
 function DataRoom (props) {
+
+  const [selectedTab, setSelectedTab] = useState('prospect'); 
+  const [selectedButtonTab, setSelectedButtonTab] = useState('byList');
+  const [selectedPerson, setSelectedPerson] = useState(null);
+  const[selectedPersonData,setSelectedPersonData] =useState(null)
+console.log(selectedButtonTab)
+  const [selectedInvestor, setSelectedInvestor] = useState(null);
+const[selectedCustomer,setSelectedCustomer]=useState(null)
+const[selectedPropsectSector,setSelectedProspectSector]=useState(null)
+
+
+const[selectedPropsectSource,setSelectedProspectSource]=useState(null)
+  const handleCardClick = (person,prospectData) => {
+    setSelectedPerson(person);
+    setSelectedPersonData(prospectData);
+  };
+
+
+  console.log(selectedPropsectSector)
+
+
+  const handleCardProspectSectorClick = (person) => {
+    setSelectedProspectSector(person);
+    // setSelectedPersonData(prospectData);
+  };
+
+
+
+
+  const handleCardProspectSourceClick = (person) => {
+    setSelectedProspectSource(person);
+    // setSelectedPersonData(prospectData);
+  };
+
+
+  const handleCardClickInvestor = (person) => {
+    setSelectedInvestor(person);
+  };
+
+
+  const handleCardClickCustomer = (person) => {
+    setSelectedCustomer(person);
+  };
+  console.log(selectedPerson)
+ 
     const {
         handleDataroomModal ,
         addDataroomModal   
       } = props;
+      const [viewType,setDataRoomViewType]=useState("list");
         return (
             <React.Fragment>
+            <Suspense fallback={<BundleLoader />}>
             <DataRoomHeader
+            selectedTab={selectedTab}
+            setSelectedTab={setSelectedTab}
              translateText={props.translateText}
              selectedLanguage={props.selectedLanguage}
-             setDataRoomViewType={props.setDataRoomViewType}
-             viewType={props.viewType}
+             setDataRoomViewType={setDataRoomViewType}
+             viewType={viewType}
              handleDataroomModal={handleDataroomModal}
             />
              <AddDataRoomModal
@@ -27,15 +79,47 @@ function DataRoom (props) {
              addDataroomModal={addDataroomModal}
              handleDataroomModal={handleDataroomModal}
         />                  
-            <Suspense fallback={<BundleLoader />}>
-            {props.viewType === "list" ? (
+       
+            {selectedTab === "list" ? 
            //<DataRoomTab />
-         <DataRoomCard
-         translateText={props.translateText}
-         selectedLanguage={props.selectedLanguage}
-         translatedMenuItems={props.translatedMenuItems}
-         />
-          ) : null}   
+              <DataInvestorRoomCard
+              selectedInvestor={selectedInvestor}
+              setSelectedInvestor={setSelectedInvestor}
+              handleCardClickInvestor={handleCardClickInvestor}
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}
+              translatedMenuItems={props.translatedMenuItems}
+              />:
+              selectedTab === "customer" ? 
+            //<DataRoomTab />
+               <DataRoomCustomerCard
+               selectedCustomer={selectedCustomer}
+               setSelectedCustomer={setSelectedCustomer}
+               handleCardClickCustomer={handleCardClickCustomer}
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}
+               translatedMenuItems={props.translatedMenuItems}
+               />
+           :
+           selectedTab === "prospect" ? 
+            //<DataRoomTab />
+               <DataRoomProspectCard
+               handleCardProspectSourceClick={handleCardProspectSourceClick}
+               selectedPropsectSource={selectedPropsectSource}
+               handleCardProspectSectorClick={handleCardProspectSectorClick}
+               selectedPropsectSector={selectedPropsectSector}
+               setSelectedProspectSector={setSelectedProspectSector}
+               selectedPersonData={selectedPersonData}
+               setSelectedButtonTab={setSelectedButtonTab}
+               selectedButtonTab={selectedButtonTab}
+               selectedPerson={selectedPerson}
+               handleCardClick={handleCardClick}
+               setSelectedPerson={setSelectedPerson}
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}
+               translatedMenuItems={props.translatedMenuItems}
+               />
+            : null}   
             </Suspense>  
           </React.Fragment>
         )

@@ -1,7 +1,8 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
+
 const TrainingDocumentForm = lazy(() =>
   import("../Training/TrainingDocumentForm")
 );
@@ -12,10 +13,7 @@ class AddTrainingModal extends Component {
     return (
       <>
         <StyledDrawer
-          //title="Training"
-          title={
-            <FormattedMessage id="app.training" defaultMessage="Training" />
-          }
+          title="Training"
           width="60%"
           // height="20vh"
           visible={addTrainingModal}
@@ -27,7 +25,9 @@ class AddTrainingModal extends Component {
           footer={null}
         >
           <Suspense fallback={<BundleLoader />}>
-            <TrainingDocumentForm employeeId={this.props.employeeId}/>
+            <TrainingDocumentForm employeeId={this.props.employeeId}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}/>
           </Suspense>
         </StyledDrawer>
       </>

@@ -18,7 +18,7 @@ const ExpenseVoucherIdDrawer = (props) => {
         //  maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
         onClose={() => {
           handleExpenseVoucherIdDrawer(false);
-          props.getExpenseById(props.userId)
+          props.getExpenseById("0",props.userId)
 
         }}
       >

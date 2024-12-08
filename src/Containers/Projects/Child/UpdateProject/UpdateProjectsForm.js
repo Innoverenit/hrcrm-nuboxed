@@ -5,8 +5,8 @@ import { Button } from "antd";
 import dayjs from "dayjs";
 import {updateProjects} from "../../ProjectsAction"
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
-import { FormattedMessage } from "react-intl";
-import { Formik, Form, Field, FastField } from "formik";
+
+import { Formik, Form, Field} from "formik";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import * as Yup from "yup";
 import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
@@ -60,9 +60,7 @@ function UpdateProjectsForm(props) {
                   name="projectName"
                   type="text"
                   
-                  label={
-                    <FormattedMessage id="app.name" defaultMessage="Name" />
-                  }
+                  label="Name" 
                   isColumn
                   width={"100%"}
                   component={InputComponent}
@@ -75,12 +73,8 @@ function UpdateProjectsForm(props) {
                           isRequired
                           name="startDate"
                          
-                          label={
-                            <FormattedMessage
-                              id="app.startDate"
-                              defaultMessage="Start Date"
-                            />
-                          }
+                          label="Start Date"
+                          
                           isColumn
                           component={DatePicker}
                           value={values.startDate}
@@ -95,12 +89,7 @@ function UpdateProjectsForm(props) {
                         isRequired
                         name="endDate"
                         
-                        label={
-                          <FormattedMessage
-                            id="app.enddate"
-                            defaultMessage="End Date"
-                          />
-                        }
+                        label="End Date"
                         component={DatePicker}
                         isColumn
                         value={values.endDate || values.startDate}
@@ -143,7 +132,7 @@ function UpdateProjectsForm(props) {
               <Button type="primary" htmlType="submit" 
                loading={updatingProjects}
     >
-                <FormattedMessage id="app.update" defaultMessage="Update" />
+               Update
         
               </Button>
             </div>

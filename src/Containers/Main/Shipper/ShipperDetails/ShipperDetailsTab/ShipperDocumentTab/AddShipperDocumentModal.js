@@ -2,7 +2,7 @@ import React, { lazy, Suspense, Component } from "react";
 import { Button } from "antd";
 import { StyledModal } from "../../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
+
 
 const ShipperDocumentForm = lazy(() => import("./ShipperDocumentForm"));
 const ButtonGroup = Button.Group;
@@ -16,7 +16,7 @@ class AddShipperDocumentModal extends Component {
     return (
       <>
         <StyledModal
-          title={<FormattedMessage id="app.document" defaultMessage="Document" />}
+          title="Document" 
           width="65vw"
           visible={shipperDocumentUploadModal}
           destroyOnClose
@@ -27,7 +27,11 @@ class AddShipperDocumentModal extends Component {
           footer={null}
         >
           <Suspense fallback={<BundleLoader />}>
-            <ShipperDocumentForm />
+            <ShipperDocumentForm
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
+            />
           </Suspense>
         </StyledModal>
       </>

@@ -3,7 +3,7 @@ import { Gantt} from 'gantt-task-react';
 import "gantt-task-react/dist/index.css";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import OnlyWrapCard1 from "../../../../Components/UI/Layout/OnlyWrapCard1";
+
 
 
 function LeaveGranttChart(props){
@@ -13,12 +13,12 @@ function LeaveGranttChart(props){
         //   );
     },[])
     // let tasks=props.tasksListByOpportunityId.length && props.tasksListByOpportunityId.map((item)=>{
-    //   const startYear=moment(item.creationDate).format("YYYY")
-    //   const startMonth=moment(item.creationDate).format("MM")
-    //   const startDate=moment(item.creationDate).format("DD")
-    //   const endYear=moment(item.creationDate).format("YYYY")
-    //   const endMonth=moment(item.creationDate).format("MM")
-    //   const endDate=moment(item.creationDate).format("DD")
+    //   const startYear=dayjs(item.creationDate).format("YYYY")
+    //   const startMonth=dayjs(item.creationDate).format("MM")
+    //   const startDate=dayjs(item.creationDate).format("DD")
+    //   const endYear=dayjs(item.creationDate).format("YYYY")
+    //   const endMonth=dayjs(item.creationDate).format("MM")
+    //   const endDate=dayjs(item.creationDate).format("DD")
     //   let startYearInt=Number(startYear);
     // let startMonthInt=Number(startMonth)
     // let startDateInt=Number(startDate)
@@ -28,53 +28,53 @@ function LeaveGranttChart(props){
 
 
     // if(item.taskHistory.assignedDate){
-    //   const startYear=moment(item.taskHistory.assignedDate).format("YYYY")
-    //   const startMonth=moment(item.taskHistory.assignedDate).format("MM")
-    //   const startDate=moment(item.taskHistory.assignedDate).format("DD")
+    //   const startYear=dayjs(item.taskHistory.assignedDate).format("YYYY")
+    //   const startMonth=dayjs(item.taskHistory.assignedDate).format("MM")
+    //   const startDate=dayjs(item.taskHistory.assignedDate).format("DD")
 
     //   startYearInt=Number(startYear)
     //   startMonthInt=Number(startMonth)
     //   startDateInt=Number(startDate)
 
 
-    //   const addDate=moment(item.taskHistory.assignedDate).add(item.unit,'days')
-    //   const endYear=moment(addDate).format("YYYY")
-    //   const endMonth=moment(addDate).format("MM")
-    //   const endDate=moment(addDate).format("DD")
+    //   const addDate=dayjs(item.taskHistory.assignedDate).add(item.unit,'days')
+    //   const endYear=dayjs(addDate).format("YYYY")
+    //   const endMonth=dayjs(addDate).format("MM")
+    //   const endDate=dayjs(addDate).format("DD")
     //    endYearInt=Number(endYear)
     //    endMonthInt=Number(endMonth)
     //    endDateInt=Number(endDate)
 
     // }else if(item.taskHistory.inProgressDate){
-    //   const startYear=moment(item.taskHistory.inProgressDate).format("YYYY")
-    //   const startMonth=moment(item.taskHistory.inProgressDate).format("MM")
-    //   const startDate=moment(item.taskHistory.inProgressDate).format("DD")
+    //   const startYear=dayjs(item.taskHistory.inProgressDate).format("YYYY")
+    //   const startMonth=dayjs(item.taskHistory.inProgressDate).format("MM")
+    //   const startDate=dayjs(item.taskHistory.inProgressDate).format("DD")
 
     //   startYearInt=Number(startYear)
     //   startMonthInt=Number(startMonth)
     //   startDateInt=Number(startDate)
 
 
-    //   const addDate=moment(item.taskHistory.inProgressDate).add(item.unit,'days')
-    //   const endYear=moment(addDate).format("YYYY")
-    //   const endMonth=moment(addDate).format("MM")
-    //   const endDate=moment(addDate).format("DD")
+    //   const addDate=dayjs(item.taskHistory.inProgressDate).add(item.unit,'days')
+    //   const endYear=dayjs(addDate).format("YYYY")
+    //   const endMonth=dayjs(addDate).format("MM")
+    //   const endDate=dayjs(addDate).format("DD")
     //    endYearInt=Number(endYear)
     //    endMonthInt=Number(endMonth)
     //    endDateInt=Number(endDate)
 
 
     // }else{
-    //   const startYear=moment(item.creationDate).format("YYYY")
-    //   const startMonth=moment(item.creationDate).format("MM")
-    //   const startDate=moment(item.creationDate).format("DD")
+    //   const startYear=dayjs(item.creationDate).format("YYYY")
+    //   const startMonth=dayjs(item.creationDate).format("MM")
+    //   const startDate=dayjs(item.creationDate).format("DD")
     //    startYearInt=Number(startYear)
     //    startMonthInt=Number(startMonth)
     //    startDateInt=Number(startDate)
 
-    //    const endYear=moment(item.creationDate).format("YYYY")
-    //   const endMonth=moment(item.creationDate).format("MM")
-    //   const endDate=moment(item.creationDate).format("DD")
+    //    const endYear=dayjs(item.creationDate).format("YYYY")
+    //   const endMonth=dayjs(item.creationDate).format("MM")
+    //   const endDate=dayjs(item.creationDate).format("DD")
     //    endYearInt=Number(endYear)
     //    endMonthInt=Number(endMonth)
     //    endDateInt=Number(endDate)
@@ -129,7 +129,9 @@ function LeaveGranttChart(props){
 
     return(
     
-        <OnlyWrapCard1><Gantt tasks={tasks}/></OnlyWrapCard1> 
+      <div class="rounded bg-white m-4 p-2 w-full overflow-auto  boxShadow: '4px 0px 9px 3px rgba(163, 171, 185, 0.5)'  ">
+        <Gantt tasks={tasks}/>
+        </div> 
     )
 }
 const mapStateToProps = ({ auth }) => ({

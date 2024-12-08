@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
-import { FormattedMessage } from "react-intl";
+
 import { getMaterialReceivedDetailData, handleReceivedUnit } from "../../../InventoryAction"
 import TransferToStock from "./TransferToStock";
 import { Select, Button } from "antd";
@@ -53,35 +53,27 @@ const GrnListOfPO = (props) => {
     return (
         <>                           
             <div className=' flex  sticky z-auto'>
-                <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky z-10">
+                <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+                    <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky z-10">
                         <div className=""></div>
-                        <div className=" w-[15rem]">
-                            {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */} {props.translatedMenuItems[15]}
+                        <div className=" w-[15rem]"> {props.translatedMenuItems[15]}
                             </div>
-                        <div className=" w-[7.12rem]">
-                            {/* <FormattedMessage id="app.price" defaultMessage="Price" /> */}{props.translatedMenuItems[44]}
+                        <div className=" w-[7.12rem]">{props.translatedMenuItems[44]}
                             </div>
-                        <div className=" w-[8.1rem]">
-                            {/* <FormattedMessage id="app.unit" defaultMessage="Unit" /> */}{props.translatedMenuItems[18]}
+                        <div className=" w-[8.1rem]">{props.translatedMenuItems[18]}
                             </div>
-                        <div className=" w-[8.2rem]">
-                            {/* <FormattedMessage id="app.received" defaultMessage="Receive" /> */} {props.translatedMenuItems[5]}
+                        <div className=" w-[8.2rem]">{props.translatedMenuItems[5]}
                             </div>
-                        <div className=" w-[8.3rem]">
-                            {/* <FormattedMessage id="app.damage" defaultMessage="Damage" /> */} {props.translatedMenuItems[45]}
+                        <div className=" w-[8.3rem]"> {props.translatedMenuItems[45]}
                             </div>
-                        <div className=" w-[8.01rem]">
-                            {/* <FormattedMessage id="app.final" defaultMessage="Final" /> */}{props.translatedMenuItems[46]}
+                        <div className=" w-[8.01rem]">{props.translatedMenuItems[46]}
                             </div>
                         <div className=" w-[5.01rem]"></div>
-                        <div className=" w-[10rem]">
-                            {/* <FormattedMessage id="app.remark" defaultMessage="Remark" /> */}{props.translatedMenuItems[21]}
+                        <div className=" w-[10rem]">{props.translatedMenuItems[21]}
                             </div>
-                        <div className=" w-[10.04rem]"><FormattedMessage id="app.grn" defaultMessage="GRN #" /></div>
+                        <div className=" w-[10.04rem]">GRN #</div>
                         <div className=" w-[15rem]"></div>
-                        <div className=" w-[5rem]">
-                            {/* <FormattedMessage id="app.stock" defaultMessage="To Stock" /> */}{props.translatedMenuItems[14]}
+                        <div className=" w-[5rem]">{props.translatedMenuItems[14]}
                             </div>
                         <div className=""></div>
                     </div>
@@ -90,7 +82,8 @@ const GrnListOfPO = (props) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingMaterialReceiveDetailData ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div> : null}
-                        height={"76vh"}
+                        height={"67vh"}
+                        style={{ scrollbarWidth:"thin"}}
                     >
                         {props.receivedDetailData.map((item) => {
 
@@ -145,12 +138,12 @@ const GrnListOfPO = (props) => {
                                         </div>
                                         <div class="flex w-[29rem]">
                                         
-                                        <div className=" flex font-medium   w-[7.24rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex    w-[7.24rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.remark}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium   w-[6.123rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex    w-[6.123rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.grnNumber}
                                             </div>
@@ -204,7 +197,7 @@ const GrnListOfPO = (props) => {
                                                 </div>
                                            
                                         }
-                                        <div className=" flex font-medium   w-[3.1rem] max-sm:flex-row  max-sm:justify-between  ">
+                                        <div className=" flex    w-[3.1rem] max-sm:flex-row  max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.grnNumber !== null &&
                                                     <TransferToStock

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Button } from "antd";
 import EditableInput from "../../../../../Components/Forms/Edit/EditableInput";
 import { updatePartnerBankDetails } from "../../../PartnerAction";
-import { Spacer } from "../../../../../Components/UI/Elements";
+
 class PartnerBankDetailsEdit extends Component {
   constructor(props) {
     super(props);
@@ -37,7 +37,7 @@ class PartnerBankDetailsEdit extends Component {
         <div class=" flex flex-col"
           style={{ padding: "0.62em 1.25em 0.62em 1.25em" }}
         >
-          <Spacer />
+          <div class=" mt-3" />
 
           <div class=" w-full justify-between"
           >
@@ -85,28 +85,20 @@ class PartnerBankDetailsEdit extends Component {
               />
             </div>
           </div>
-          <Spacer  />
+          <div class=" mt-3"  />
         </div>
-        <Spacer />
+        <div class=" mt-3" />
         <div class=" flex justify-end" >
           <Button
             type="primary"
             loading={updatePartnerBankDetailsById}
             onClick={this.handleUpdate}
           >
-            {/* Save */}
-            <FormattedMessage
-              id="app.save"
-              defaultMessage="Save"
-            />
+            Save
           </Button>
           &nbsp;
           <Button type="ghost" onClick={() => toggleViewType()}>
-            {/* Cancel */}
-            <FormattedMessage
-              id="app.cancel"
-              defaultMessage="Cancel"
-            />
+            Cancel
           </Button>
         </div>
       </>

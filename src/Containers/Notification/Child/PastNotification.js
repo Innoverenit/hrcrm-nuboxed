@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { Link } from 'react-router-dom';
 import { List, Avatar, Spin, Button } from "antd";
 import dayjs from "dayjs";
 import { getPastNotifications, updateNotifcation } from "../NotificationAction";
-import moment from "moment";
 
 class PastNotification extends Component {
   constructor(props) {
@@ -66,17 +66,17 @@ class PastNotification extends Component {
     return (
       <div>
         {this.props.fetchingPastNotifications ? (
-          <div style={{ textAlign: "center" }}>
+          <div className="text-center" >
             <Spin />
           </div>
         ) : (
-            <List
-              style={{
-                height: 400,
-                overflow: "auto",
-                border: "none"
-                //   backgroundColor: this.state.color
-              }}
+            <List className=" w-[34vw] h-[78vh] overflow-auto"
+              // style={{
+              //   height: 400,
+              //   overflow: "auto",
+              //   border: "none"
+              //   //   backgroundColor: this.state.color
+              // }}
               size="small"
               bordered
               dataSource={this.props.pastNotifications.slice(
@@ -92,6 +92,11 @@ class PastNotification extends Component {
                     cursor:
                       item.notificationReadInd === true ? "default" : "pointer"
                   }}
+                  onClick={
+                    item.notificationReadInd === false
+                      ? () => this.handleClick(item)
+                      : null
+                  }
                 >
                   <List.Item.Meta
                     // avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
@@ -101,8 +106,28 @@ class PastNotification extends Component {
                           color:
                             item.notificationReadInd === true ? "grey" : "white"
                         }}
+                        onClick={(event) => event.stopPropagation()}
                       >
+                           {/* <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm   cursor-pointer" to={`/${item.notificationProcess}/${item.uniqueId}`} title={item.notificationMessage}>
                         {item.notificationMessage}
+                        </Link> */}
+                        {item.uniqueId ? (
+  <Link
+    className="overflow-ellipsis whitespace-nowrap text-xs text-[#042E8A] max-sm:text-sm cursor-pointer"
+    to={`/${item.notificationProcess}/${item.uniqueId}`}
+    title={item.notificationMessage}
+  >
+    {item.notificationMessage}
+  </Link>
+) : (
+  <span
+    className="overflow-ellipsis whitespace-nowrap text-xs text-[#042E8A] max-sm:text-sm cursor-not-allowed"
+    title={item.notificationMessage}
+  >
+    {item.notificationMessage}
+  </span>
+)}
+
                       </h4>
                     }
                     description={
@@ -112,22 +137,19 @@ class PastNotification extends Component {
                             item.notificationReadInd === true ? "grey" : "white"
                         }}
                       >
-                        {moment(item.notificationDate).format("LLL")}
+                        {dayjs(item.notificationDate).format("MMM DD")}
                       </h4>
                     }
-                    onClick={
-                      item.notificationReadInd === false
-                        ? () => this.handleClick(item)
-                        : null
-                    }
+                  
                   />
+             
                 </List.Item>
               )}
             />
           )}
         {this.props.pastNotifications &&
           this.props.pastNotifications.length > this.state.itemsToShow && (
-            <Button style={{ marginTop: "1.25em" }} onClick={this.showMore}>
+            <Button type="primary" style={{ marginTop: "1.25em" }} onClick={this.showMore}>
               {this.state.expanded ? (
                 <span>Show less</span>
               ) : (

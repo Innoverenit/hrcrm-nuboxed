@@ -27,7 +27,6 @@ import {
 import { Link } from 'react-router-dom';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { elipsize } from "../../../../Helpers/Function/Functions";
-import EmployeeSearchedData from "../EmployeeTable/EmployeeSearchedData";
 const EmployeeDrawerForAdmin =lazy(()=>import("../EmployeeTable/EmployeeDrawer/EmployeeDrawerForAdmin"));
 const EmployeePulseDrawerModal =lazy(()=>import("../EmployeeTable/EmployeePulseDrawerModal"));
 const EmployeeDocumentDrawerModal =lazy(()=>import("./EmployeeDocumentDrawerModal"));
@@ -156,7 +155,7 @@ function handleSetCurrentUser(item) {
           <div class=" font-normal text-xs mt-1  font-poppins ">Reports To:    <span>
           {item.reportingManagerName 
                         ? `${item.reportingManagerName}`
-                        : <label class="text-[red]" >Not Assigned</label>}
+                        : <div class="text-[red]" >Not Assigned</div>}
                       </span>
          </div>
           <div class=" flex flex-row justify-between mt-[0.5rem] w-full items-end">
@@ -386,7 +385,6 @@ const mapStateToProps = ({ auth,role, employee,designations,departments }) => ({
     fetchingEmployeeError: employee.fetchingEmployeeError,
     employeeDrawerVisibleForAdmin: employee.employeeDrawerVisibleForAdmin,
     openNotifydrwr:employee.openNotifydrwr,
-    employeeSerachedData: employee.employeeSerachedData,
     fetchingEmployeeInputSearchData: employee.fetchingEmployeeInputSearchData
 })
 

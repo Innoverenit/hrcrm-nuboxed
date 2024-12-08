@@ -4,8 +4,8 @@ import { bindActionCreators } from "redux";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import {  StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
-import UpcomingIcon from '@mui/icons-material/Upcoming';
-import { FormattedMessage } from "react-intl";
+
+
 const TaskThisMonthGanttChart = lazy(()=>import("../Child/TaskThisMonthGanttChart"));
 const TaskGanttChart = lazy(()=>import("../Child/TaskGanttChart"));
 
@@ -48,7 +48,7 @@ class GantChartTab extends Component {
     const { activeKey } = this.state;
     return (
       <>
-        <TabsWrapper>
+        <TabsWrapper className="w-wk">
           <StyledTabs
             defaultActiveKey="1"
             onChange={this.handleTabChange}
@@ -59,10 +59,8 @@ class GantChartTab extends Component {
                 <>
                   <ListAltIcon style={{fontSize:"1.1rem"}}/>
                   <span class=" ml-1 font-semibold">
-                  <FormattedMessage
-              id="app.openTasks"
-              defaultMessage="Open Tasks"
-            />
+                 Open Tasks
+           
                     </span>
 
                 
@@ -84,10 +82,7 @@ class GantChartTab extends Component {
                 <>
                   <ListAltIcon style={{fontSize:"1.1rem"}}/>
                   <span class=" ml-1 font-semibold">
-                  <FormattedMessage
-              id="app.tasksThisMonth"
-              defaultMessage="Tasks-This Month"
-            />
+               Tasks-This Month
                    </span>
 
                 
@@ -98,58 +93,10 @@ class GantChartTab extends Component {
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 <TaskThisMonthGanttChart 
-                // style={{ overflow: "scroll" }} 
+                 
                 />
               </Suspense>
             </TabPane>
-            {/* <TabPane
-              tab={
-                <>
-                  <TipsAndUpdatesIcon style={{fontSize:"1.1rem"}}/>
-
-                  <span class=" ml-1">Actions</span>
-
-                  {activeKey === "2" && (
-                    <>
-                    </>
-                  )}
-                </>
-              }
-              key="2"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <ActionNotification />
-              </Suspense>
-            </TabPane> */}
-          
-          
-
-            {/* <TabPane
-              tab={
-                <>
-                 
-               
-                 <FontAwesomeIcon icon={solid('bullseye')} />
-                    <span style={{ marginLeft: "0.25em" }}>Pareto</span>
-                  
-                  {activeKey === "3" && (
-                    <>
-                    
-                    </>
-                  )}
-                </>
-              }
-              key="3"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <Example/>
-         
-              </Suspense>
-            </TabPane> */}
-
-            {/* )} */}
           </StyledTabs>
         </TabsWrapper>
         <Suspense fallback={null}></Suspense>

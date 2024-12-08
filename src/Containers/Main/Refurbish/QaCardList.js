@@ -2,18 +2,22 @@ import React, { useState, lazy, Suspense, useEffect,useRef } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getQAorderlist,updateQAinspection, ClearSearchedDataOfQa,
-  updateDispatchInspectionButton
+  updateDispatchInspectionButton,handleProductionNotesModal
      } from "./RefurbishAction"
-import { Button, Badge ,Input} from "antd";
+import { Button, Badge ,Input, Tooltip} from "antd";
 import dayjs from "dayjs";
+import NoteAltIcon from '@mui/icons-material/NoteAlt';
 import {handlePickupDateModal} from "../../../Containers/Main/Inventory/InventoryAction"
-import { FormattedMessage } from "react-intl";
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { BundleLoader } from '../../../Components/Placeholder';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import DispatchPhoneListModal from '../Inventory/Child/InventoryDetails/Dispatch/DispatchPhoneListModal';
 import RefurbishToggle from './RefurbishToggle';
+import RefurbishNoteAll from './RefurbishNoteAll';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+
 
 
 
@@ -25,6 +29,39 @@ function QaCardList(props) {
   const [isRecording, setIsRecording] = useState(false); //Code for Search
   const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+        "660",  // "Order",//0
+        "780", // "Inspection",//1
+        "760", // "Due Date",//2
+        "781",  // "Move To Dispatch",//3     
+         "1280",   // Search by OrderNo  
+         "100",  // New
+         "158",  // Start
+         "78",  // Completed
+         "144", // In Progress
+         "316", // "Notes"
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
     useEffect(() => {
         // setPageNo(pageNo + 1);
         props.getQAorderlist(props.locationId,pageNo)
@@ -80,7 +117,7 @@ function QaCardList(props) {
         }, minRecordingTime);
       };
       const suffix = (
-        <AudioOutlined
+        <MicIcon
           onClick={handleStartListening}
           style={{
             fontSize: 16,
@@ -145,13 +182,17 @@ function QaCardList(props) {
     const handlePauseResume = () => {
         sethide(!hide)
     }
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    }
+
     return (
         <>
             <div className=' flex sticky  z-auto'>
-                <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                 <div class=" w-64 max-sm:w-24">
         <Input
-          placeholder="Search by OrderNo "
+          placeholder={translatedMenuItems[4]}
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleSearch}
@@ -160,24 +201,27 @@ function QaCardList(props) {
         />
       </div>
 
-                    <div className=" flex max-sm:hidden  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+                    <div className=" flex max-sm:hidden  w-[100%]  p-1 bg-transparent font-bold sticky text-xs font-poppins  z-10">
                         <div className='w-[7.2rem]'></div>
-                        <div className=" w-[9.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Order ID</div>
-                        <div className="w-[7.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]"><FormattedMessage id="app.inspection" defaultMessage="Inspection" /></div>
-                        <div className=" w-[36.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.duedate"
-                            defaultMessage="duedate"
-                        /></div>
-                        {/* <div className=" w-[34.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.lead"
-                            defaultMessage="Lead"
-                        /></div> */}
-
-                        {/* <div className="w-[10.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.status"
-                            defaultMessage="status"
-                        /></div> */}
-                        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Move to Dispatch</div>
+                        <DynamicFeedIcon className='!text-base  text-[#e4eb2f]'
+                        /> 
+                        <div className=" w-[11.92rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[0]}  
+                         
+                          {/* Order ID */}
+                          </div>
+                        <LightbulbIcon className="!text-icon text-[#84a59d]"/>
+                        <div className="w-[17.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]">
+                        {translatedMenuItems[1]}
+                        {/* Inspection */}
+                          </div>
+                        <div className=" w-[26.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[2]} 
+                        {/* Due Date */}
+                        </div>                                        
+                        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {translatedMenuItems[3]} 
+                          {/* Move to Dispatch */}
+                          </div>
                     </div>
                     <div class="">
                         <InfiniteScroll
@@ -185,31 +229,31 @@ function QaCardList(props) {
                             next={handleLoadMore}
                             hasMore={hasMore}
                             loader={props.fetchingQAorderlist ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-                            height={"75vh"}
+                            height={"81vh"}
                             style={{ scrollbarWidth:"thin"}}
-                            endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+                            endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
                         >
                             {props.QAorderList.map((item) => {
                                 const currentdate = dayjs().format("DD/MM/YYYY");
                                 const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                                 return (
                                     <div >
-                                        <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                                        <div className="flex justify-between rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                            <div className=" flex w-[4.7rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                            <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9] w-[4.7rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                     {item.priority === "High" && (
-                                                        <div class="rounded-[50%] h-[2rem] w-[2rem] bg-[red]"></div>
+                                                        <div class="rounded-[50%] h-6 w-6 bg-[red]"></div>
                                                     )}
                                                     {item.priority === "Medium" && (
-                                                        <div class="rounded-[50%] h-[2rem] w-[2rem] bg-[orange]" ></div>
+                                                        <div class="rounded-[50%] h-6 w-6 bg-[orange]" ></div>
                                                     )}
                                                     {item.priority === "Low" && (
-                                                        <div class="rounded-[50%] h-[2rem] w-[2rem] bg-[teal]" ></div>
+                                                        <div class="rounded-[50%] h-6 w-6 bg-[teal]" ></div>
                                                     )}
                                                 </div>
-                                                <div className=" flex font-medium w-[12.01rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
+                                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[12.01rem] max-xl:w-[22.8rem] max-lg:w-[17.8rem] max-sm:w-auto  ">
                                                     <Badge size="small" count={`${item.dispatchPhoneCount} / ${item.phoneReceiveCount}`} overflowCount={5000}>
-                                                        <span class="underline text-xs text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
+                                                        <span class="underline font-bold text-xs text-[#1890ff] cursor-pointer w-[7rem] flex max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs"
 
                                                             onClick={() => {
                                                                 handleRowData(item);
@@ -221,14 +265,15 @@ function QaCardList(props) {
                                                     &nbsp;&nbsp;
                                                     {date === currentdate ? (
                                                         <span
-                                                            class="text-[tomato] font-bold ml-4 text-xs"
+                                                            class="text-[tomato] font-bold ml-4 text-[0.65rem]"
                                                         >
-                                                            New
+                                                           {translatedMenuItems[5]} 
+                                                             {/* New */}
                                                         </span>
                                                     ) : null}
                                                 </div>
                                                 
-                        <div className=" flex w-[6.5rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                        <div className=" flex w-[6.5rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                             <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                               {item.dispatchInspectionInd === 0 ?
                                 <Button
@@ -239,20 +284,20 @@ function QaCardList(props) {
                                    props.updateDispatchInspectionButton({ dispatchInspectionInd: 1 }, item.orderPhoneId, props.locationDetailsId)
                                   }}
                                   style={{ backgroundColor: "#33ad33", color: "white", fontWeight: "500" }}>
-                                  Start
+                                 {translatedMenuItems[6]}   {/* Start */}
                                 </Button>
                                 : item.dispatchInspectionInd === 2 ||
                                   item.dispatchInspectionInd === 3 ||
                                   item.dispatchInspectionInd === 4 ?
-                                  <div class=" text-[green]">Completed</div>
+                                  <div class=" text-[green]">  {translatedMenuItems[7]}</div>
                                   : item.dispatchInspectionInd === 1 ?
                                     <div class=" text-[tomato]">
-                                  In Progress
+                                 {translatedMenuItems[8]}   {/* In Progress */}
                                     </div> :
                                     null}
                             </div>
                           </div>
-                                                <div className=" flex  w-[34rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[27rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.dueDate === null ? "" : dayjs(item.dueDate).format("DD-MM-YYYY")}
                                                     </div>
@@ -260,43 +305,13 @@ function QaCardList(props) {
                                                 </div>
                                             </div>
                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                <div className=" flex w-[5.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[25.61rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
                                                         {item.lead}
                                                     </div>
-
-                                                </div>
-
-                                                {/* <div className=" flex font-medium   w-[18.6rem] max-xl:w-[10.2rem] max-lg:w-[6.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
-                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                        {item.qcInProgressPhoneCount} In Progress
                                                     </div>
-
-                                                </div> */}
-                                                {/* <div className=" flex font-medium  w-[10.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                                                    <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                        {item.qcInspectionInd === 0 ?
-                                                            <Button
-                                                                className="w-32"
-                                                                type="primary"
-                                                                loading={rowData.orderPhoneId === item.orderPhoneId && props.updatingQAinspection}
-                                                                onClick={() => {
-                                                                    handleRowData(item)
-                                                                    props.qcInspectionButton({
-                                                                        productionDispatchId: item.productionDispatchId,
-                                                                        orderPhoneId: item.orderPhoneId,
-                                                                        qcInspectionInd: 1
-                                                                    }, item.orderPhoneId, props.userId)
-                                                                }}
-                                                            >
-                                                                Start Inspection
-
-                                                            </Button> : item.qcInspectionInd === 1 ?
-                                                                <Button className="w-32" onClick={handlePauseResume}>{hide ? "Pause Inspection" : "Resume Inspection"}</Button> : <div class="text-green-600">Inspection Completed</div>}
-
-                                                    </div>
-                                                </div> */}
-                                                 <div className=" flex  w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                                                   
+                                                 <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
                               <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                                
                                 <RefurbishToggle        
@@ -306,6 +321,19 @@ function QaCardList(props) {
                                 />
                               </div>
                             </div>
+                            <div class="   flex w-wk items-center h-8 ml-gap bg-[#eef2f9] justify-end text-green-600 font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                    <Tooltip title=  {translatedMenuItems[9]}>
+                                                        <NoteAltIcon
+                                                            className="!text-icon cursor-pointer"
+                                                           
+                                                            onClick={() => {
+                                                                handleRowData(item);
+                                                                props.handleProductionNotesModal(true);
+                                                            }}
+                                                        />
+
+                                                    </Tooltip>
+                                                </div>
                                             </div>
 
                                         </div>
@@ -321,7 +349,14 @@ function QaCardList(props) {
                         handleOrderPhoneModal={props.handleOrderPhoneModal}
                         rowData={rowData}
                     /> */}
+                      <RefurbishNoteAll
+                     rowData={rowData}
+                     productioNoteModal={props.productioNoteModal}
+                    handleProductionNotesModal={props.handleProductionNotesModal}
+                    />
                     <DispatchPhoneListModal
+                      translateText={props.translateText}
+                      selectedLanguage={props.selectedLanguage}
         rowData={rowData}
         handlePickupDateModal={props.handlePickupDateModal}
         openPickupDateModal={props.openPickupDateModal}
@@ -340,7 +375,8 @@ const mapStateToProps = ({ refurbish, auth ,inventory}) => ({
     QAorderList: refurbish.QAorderList,
     updatingQAinspection: refurbish.updatingQAinspection,
     // showPhoneList: refurbish.showPhoneList,
-    fetchingQAorderlist: refurbish.fetchingQAorderlist
+    fetchingQAorderlist: refurbish.fetchingQAorderlist,
+    productioNoteModal: refurbish.productioNoteModal,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -352,7 +388,8 @@ const mapDispatchToProps = (dispatch) =>
             updateDispatchInspectionButton,
             // qcInspectionButton,
             // inputQcDataSearch,
-            ClearSearchedDataOfQa
+            ClearSearchedDataOfQa,
+            handleProductionNotesModal
         },
         dispatch
     );

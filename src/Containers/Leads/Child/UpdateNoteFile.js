@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button, } from "antd";
 import { Formik, Form, } from "formik";
@@ -140,11 +140,8 @@ class UpdateNoteFile extends Component {
                      
                     }}
                   >
-                    <FormattedMessage
-                      id="app.post"
-                      defaultMessage="Post"
-                    />
-                    {/* Post */}
+                    
+                    Post
                   </Button>
                 </div>
              

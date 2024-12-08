@@ -1,14 +1,10 @@
-import React, { useState,lazy,useEffect } from "react";
+import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import HourglassEmptyIcon from '@mui/icons-material/HourglassEmpty'
-import styled from "styled-components";
-import {
-  CheckCircleOutlined,
-  CloseCircleOutlined,
-  UploadOutlined,
-} from "@ant-design/icons";
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import UploadIcon from '@mui/icons-material/Upload';
 import InfiniteScroll from "react-infinite-scroll-component";
 import FeedbackIcon from '@mui/icons-material/Feedback';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
@@ -16,7 +12,7 @@ import DownloadForOfflineIcon from '@mui/icons-material/DownloadForOffline';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Tooltip, Button,  } from "antd";
 import dayjs from "dayjs";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { StyledPopconfirm, } from "../../Components/UI/Antd";
 import StairsIcon from '@mui/icons-material/Stairs';
  import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
@@ -40,17 +36,15 @@ import {
 } from "../Task/TaskAction";
 import { MultiAvatar, MultiAvatar2, } from "../../Components/UI/Elements";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import AddTaskStepperDrawerModal from "../Task/Child/TaskStepper/AddTaskStepperDrawerModal";
-import AddTaskNotesDrawerModal from "../Task/Child/AddTaskNotesDrawerModal";
-import AddTaskProjectDrawerModal from "../Task/Child/AddTaskProjectDrawerModal";
-import OpenTaskModal from "../Task/Child/OpenTaskModal";
-import DownloadTaskModal from "../Task/Child/DownloadTaskModal";
-import UpdateTaskModal from "../Task/Child/UpdateTaskModal";
-import AddTaskDocumentDrawerModal from "../Task/Child/AddTaskDocumentDrawerModal";
-import UpdateDocumentDrawerModal from "../Task/Child/UpdateDocumentDrawerModal";
-import AddTaskFeedbackDrawerModal from "../Task/Child/AddTaskFeedbackDrawerModal";
-
-
+const UpdateTaskModal=lazy(()=> import("../Task/Child/UpdateTaskModal"));
+const AddTaskDocumentDrawerModal=lazy(()=> import("../Task/Child/AddTaskDocumentDrawerModal"));
+const UpdateDocumentDrawerModal=lazy(()=> import("../Task/Child/UpdateDocumentDrawerModal"));
+const AddTaskFeedbackDrawerModal=lazy(()=> import("../Task/Child/AddTaskFeedbackDrawerModal"));
+const AddTaskStepperDrawerModal =lazy(()=> import("../Task/Child/TaskStepper/AddTaskStepperDrawerModal"));
+const  AddTaskNotesDrawerModal =lazy(()=> import("../Task/Child/AddTaskNotesDrawerModal"));
+const AddTaskProjectDrawerModal=lazy(()=> import("../Task/Child/AddTaskProjectDrawerModal"));
+const OpenTaskModal =lazy(()=> import("../Task/Child/OpenTaskModal"));
+const DownloadTaskModal=lazy(()=> import("./../Task/Child/DownloadTaskModal"));
 const ButtonGroup = Button.Group;
 
 const TaskDataCardList = (props) => {
@@ -143,34 +137,22 @@ const TaskDataCardList = (props) => {
     <>
     
           <div className=' flex justify-end sticky top-28 z-auto'>
-          <div class="rounded-lg max-sm:m-1 m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]"><FormattedMessage
-                          id="app.type"
-                          defaultMessage="type"
-                        /></div>
-        <div className=" w-[8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]"><FormattedMessage
-                          id="app.name"
-                          defaultMessage="name"
-                        /></div>
-             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] "><FormattedMessage
-                          id="app.end"
-                          defaultMessage="end"
-                        /></div>
+          <div class="rounded-lg max-sm:m-1 m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+          <div className=" flex max-sm:hidden justify-between w-[100%]  p-2 bg-transparent font-bold sticky top-0 z-10">
+        <div className=" w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[12.5rem] max-lg:w-[11.5rem]">type
+                       </div>
+        <div className=" w-[8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8rem] max-lg:w-[9rem]">
+                        name</div>
+             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.01rem] max-lg:w-[7.01rem] ">
+                        end</div>
              <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
-        <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]"><FormattedMessage
-                          id="app.ageing"
-                          defaultMessage="Ageing"
-                        /></div>
+        <div className="w-[13.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.51rem] max-lg:w-[11.51rem]">
+                         Ageing</div>
                         <div className="w-[18.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.51rem] max-lg:w-[6.51rem]">Info</div>
-        <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]"><FormattedMessage
-                          id="app.assignedto"
-                          defaultMessage="assignedto"
-                        /></div>
-        <div className="w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]"><FormattedMessage
-                          id="app.owner"
-                          defaultMessage="owner"
-                        /></div>
+        <div className="w-[8.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[6.2rem]">assignedto
+                       </div>
+        <div className="w-[13.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.5rem] max-lg:w-[13.5rem]">owner"
+                       </div>
         <div className="w-[6.01rem]"></div>
         <div className="w-[3%]"></div>
         <div className="w-[5%]"></div>
@@ -476,7 +458,7 @@ const TaskDataCardList = (props) => {
      <div className="flex font-medium flex-col w-[1.7rem] max-xl:w-[1.25rem] max-lg:w-[1.2rem] max-sm:flex-row  max-sm:w-auto  justify-center ">
            
                       
-          <UploadOutlined
+          <UploadIcon
               onClick={() => {
                 props.handleUpdateDocumentDrawerModal(true);
                 handleSetTaskNameId(item);
@@ -511,7 +493,7 @@ const TaskDataCardList = (props) => {
         onClick={() => approveTaskByTaskId(item.taskId, props.employeeId)}
           style={{ backgroundColor: "teal", color: "white" }}
         >
-          <FormattedMessage id="app.approve" defaultMessage="Approve" />
+         Approve
         </Button>
         <Button
           style={{
@@ -520,14 +502,14 @@ const TaskDataCardList = (props) => {
           }}
           onClick={() => rejectTaskByTaskId(item.taskId)}
         >
-          <FormattedMessage id="app.reject" defaultMessage="Reject" />
+          Reject
         </Button>
       </div>
     </>
   ) : (
     <>
       {item.approvedInd === "Approved" ? (
-        <CheckCircleOutlined
+        <CheckCircleOutlineIcon
           type="check-circle"
           theme="twoTone"
           twoToneColor="#52c41a"
@@ -535,7 +517,7 @@ const TaskDataCardList = (props) => {
           style={{ fontSize: "1rem" }}
         />
       ) : item.approvedInd === "Rejected" ? (
-        <CloseCircleOutlined
+        <HighlightOffIcon
           type="close-circle"
           theme="twoTone"
           twoToneColor="red"
@@ -606,21 +588,11 @@ const TaskDataCardList = (props) => {
            
             {item.complitionStatus !== "completed" && (
                           <StyledPopconfirm
-                            // title="Do you want to delete?"
-                            title={
-                              <FormattedMessage
-                                id="app.doyouwishtodelete?"
-                                defaultMessage="Do you wish to delete?"
-                              />
-                            }
+                            title="Do you want to delete?"
                             onConfirm={() => deleteTask(item.taskId, employeeId)}
                           >
                                 <Tooltip title="Delete">
-                            <DeleteOutlined
-                              type="delete"
-                              className="!text-lg cursor-pointer text-[red]"
-                              
-                            />
+                                <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                             </Tooltip>
                           </StyledPopconfirm>
                         )}
@@ -640,6 +612,7 @@ const TaskDataCardList = (props) => {
                  </InfiniteScroll>
       </div>
 </div>
+<Suspense fallback={<BundleLoader />}>
 <UpdateTaskModal
           updateTaskModal={updateTaskModal}
           handleUpdateTaskModal={handleUpdateTaskModal}
@@ -697,7 +670,7 @@ addDocumentTaskDrawerModal={props.addDocumentTaskDrawerModal}
  handleUpdateDocumentDrawerModal={props.handleUpdateDocumentDrawerModal}
  addUpdatedocumentTaskModal={props.addUpdatedocumentTaskModal}
 />
-
+</Suspense>
 
       {/* AddTaskProjectDrawerModal and AddTaskNotesDrawerModal components go here */}
     </>
@@ -840,17 +813,3 @@ addDocumentTaskDrawerModal={props.addDocumentTaskDrawerModal}
           );
         }
       }
-      
-      const AppIcon = (props) => (
-        <i
-          className={`fas fa-heartbeat ${props.className}`}
-          style={{ fontSize: "123%" }}
-        ></i>
-      );
-      const PulseIcon = styled(AppIcon)`
-        color: #df9697;
-        &:hover {
-          // background: yellow;
-          color: blue;
-        }
-      `;

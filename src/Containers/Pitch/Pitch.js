@@ -1,7 +1,7 @@
 import React, {useState,Suspense,lazy } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {handlePitchModal,getPitch,
+import {handlePitchModal,getPitch,updateOwnerPitchById
  } from "../Pitch/PitchAction";
 import { BundleLoader, } from "../../Components/Placeholder";
 const PitchHeader =lazy(()=>import("./Child/PitchHeader"));
@@ -13,9 +13,13 @@ const PitchTeamCardlist =lazy(()=>import("./Child/PitchTeamCardlist"));
 function Pitch (props) {
   const [currentData,setcurrentData]=useState("");
   const [currentUser,setcurrentUser]=useState("");
-  const [filter, setFilter] = useState("creationdate");
+  const [filter, setFilter] = useState("CreationDate");
   const [viewType, setViewType] = useState(null);
   const [teamsAccessInd, setTeamsAccessInd] = useState(props.teamsAccessInd);
+  const [isTransferMode, setIsTransferMode] = useState(true);
+  const [showCheckboxes, setShowCheckboxes] = useState(false);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [selectedDeals, setSelectedDeals] = useState([]);
   // const [filter, setFilter] = useState("creationdate");
 
   const setPitchViewType = (viewType) => {
@@ -36,15 +40,58 @@ function Pitch (props) {
   function handleCurrentData (value){
     setcurrentData(value)
   }
+  const handleCheckboxChange = (dealName) => {
+    console.log(dealName);
+    setSelectedDeals((prevSelectedDeals) => {
+      if (prevSelectedDeals.includes(dealName)) {
+        // Remove dealName if it's already selected
+        return prevSelectedDeals.filter((name) => name !== dealName);
+      } else {
+        // Add dealName if it's not already selected
+        return [...prevSelectedDeals, dealName];
+      }
+    });
+  };
+  const handleUserSelect = (value) => {
+    console.log(value);
+    
+    // Set the data for the API call
+    const data = {
+      invLeadsIds: selectedDeals,
+    };
+    
+    // Update the user by calling the prop function
+    props.updateOwnerPitchById(data, value);
+
+    // Reset the states after the selection
+    setShowCheckboxes(false);
+    setSelectedDeals([]);
+    setSelectedUser(null);
+
+    console.log('Selected Deals:', selectedDeals);
+    // If you need to log selectedUser, it can be done as:
+    // console.log('Selected User:', selectedUser);
+  };
+  const handleTransferClick = () => {
+    if (isTransferMode) {
+      // If we're in Transfer mode, we show the checkboxes and switch to Cancel mode
+      setShowCheckboxes(true);
+      setIsTransferMode(false);
+    } else {
+      // If we're in Cancel mode, we uncheck all checkboxes and switch back to Transfer mode
+      setShowCheckboxes(false);
+      setIsTransferMode(true);
+      setSelectedDeals([]);
+    }
+  };
   const {
     addInvestorModal,
     handleInvestorModal,
-    // viewType,
-    // setPitchViewType,
 
   } = props;
         return (
             <React.Fragment>
+           <Suspense fallback={<BundleLoader />}>
             <PitchHeader
             selectedLanguage={props.selectedLanguage}
             translateText={props.translateText}
@@ -53,6 +100,11 @@ function Pitch (props) {
             teamsAccessInd={teamsAccessInd}
             // handleDropChange={this.handleDropChange}
             // currentUser={this.state.currentUser}
+            selectedDeals={selectedDeals}
+            isTransferMode={isTransferMode}
+            showCheckboxes={showCheckboxes}
+            handleUserSelect={handleUserSelect}
+            handleTransferClick={handleTransferClick}
             handleFilterChange={handleFilterChange}
             filter={filter}
                  handlePitchModal={props.handlePitchModal}
@@ -63,22 +115,22 @@ function Pitch (props) {
                  handleChange={handleChange}
                  handleCurrentData={handleCurrentData}
             />
-             <AddPitchModal
-             
+             <AddPitchModal             
              selectedLanguage={props.selectedLanguage}
              translateText={props.translateText}
-              addPitchModal={props.addPitchModal}
-             
+              addPitchModal={props.addPitchModal}           
               handlePitchModal={props.handlePitchModal}
-            />
-           
-          
-            <Suspense fallback={<BundleLoader />}>
+            />                    
+        
 
 
               
       {teamsAccessInd ? (
       <PitchTeamCardlist
+      handleCheckboxChange={handleCheckboxChange}
+      selectedUser={selectedUser}
+      showCheckboxes={showCheckboxes}
+      selectedDeals={selectedDeals}
       translateText={props.translateText}
       selectedLanguage={props.selectedLanguage}
       translatedMenuItems={props.translatedMenuItems}
@@ -87,20 +139,40 @@ function Pitch (props) {
         ) : (
           <>
             {viewType === 'card' &&     <PitchCardList       filter={filter}
+             handleCheckboxChange={handleCheckboxChange}
+             selectedUser={selectedUser}
+             showCheckboxes={showCheckboxes}
+             selectedDeals={selectedDeals}
              translateText={props.translateText}
              selectedLanguage={props.selectedLanguage}
              translatedMenuItems={props.translatedMenuItems}
             />}
             {viewType === 'all' &&  <PitchAllCardList       filter={filter}
+             handleCheckboxChange={handleCheckboxChange}
+             selectedUser={selectedUser}
+             showCheckboxes={showCheckboxes}
+             selectedDeals={selectedDeals}
              translateText={props.translateText}
              selectedLanguage={props.selectedLanguage}
              translatedMenuItems={props.translatedMenuItems}
             /> }
-            {viewType === 'teams' &&  <PitchTeamCardlist
+            {viewType === 'teams' ? ( <PitchTeamCardlist
              translateText={props.translateText}
              selectedLanguage={props.selectedLanguage}
              translatedMenuItems={props.translatedMenuItems}
-            />}
+            />
+            ):(
+<PitchCardList       filter={filter}
+             handleCheckboxChange={handleCheckboxChange}
+             selectedUser={selectedUser}
+             showCheckboxes={showCheckboxes}
+             selectedDeals={selectedDeals}
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage}
+             translatedMenuItems={props.translatedMenuItems}
+            />
+
+            )}
           </>
         )}
             </Suspense> 
@@ -116,6 +188,7 @@ const mapStateToProps = ({ pitch,auth }) => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     handlePitchModal,
+    updateOwnerPitchById,
     // setPitchViewType,
     getPitch
 }, dispatch)

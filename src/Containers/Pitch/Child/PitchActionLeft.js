@@ -5,19 +5,23 @@ import { StyledSelect } from "../../../Components/UI/Antd";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import PeopleIcon from '@mui/icons-material/People';
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, {useSpeechRecognition } from 'react-speech-recognition';
-import { Input, Tooltip,Badge,Avatar } from "antd";
+import { Input, Tooltip,Badge,Avatar,Button,Select } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
 import {getPitchRecords,getPitchAllRecords,getPitch,ClearReducerDataOfPitch,getPitchCount, getTeamsPitchCount,searchPitchName} from "../PitchAction";
-import { FormattedMessage } from "react-intl";
+
+import { base_url } from "../../../Config/Auth";
 const { Search } = Input;
 const Option = StyledSelect.Option;
 
 const PitchActionLeft = (props) => {
   const [currentData, setCurrentData] = useState("");
+  const [userData, setUserData] = useState([]);
   const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
   const [pageNo, setPage] = useState(0);
+  const [touchedUser, setTouchedUser] = useState(false);
+  const [isLoadingUser, setIsLoadingUser] = useState(false);
   const [startTime, setStartTime] = useState(null);
   const [isRecording, setIsRecording] = useState(false); //Code for Search
   const minRecordingTime = 3000; // 3 seconds
@@ -79,7 +83,7 @@ const PitchActionLeft = (props) => {
     }, minRecordingTime);
   };
   const suffix = (
-    <AudioOutlined
+    <MicIcon
       onClick={handleStartListening}
       style={{
         fontSize: 16,
@@ -147,6 +151,37 @@ const PitchActionLeft = (props) => {
   //   props.getPitchAllRecords
   //   }, [props.userId]);
  
+  const fetchUser = async () => {
+    setIsLoadingUser(true);
+    try {
+   
+
+      const apiEndpoint = `${base_url}/employee/active/user/type/drop-down/${props.orgId}/${"employee"}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setUserData(data);
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      setIsLoadingUser(false);
+    }
+  };
+  const handleSelectUserFocus = () => {
+    if (!touchedUser) {
+      fetchUser();
+      // fetchSector();
+
+      setTouchedUser(true);
+    }
+  };
+
   const { user } = props;
 
   console.log( props.pitchCount.InvestorLeadsDetails)
@@ -170,7 +205,7 @@ const PitchActionLeft = (props) => {
            color: props.viewType === "card" && "#1890ff",
           }}
         >
-          <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#28a355" }}>
         <TocIcon className="text-white !text-icon" />
         </Avatar>
         </span>
@@ -195,7 +230,7 @@ const PitchActionLeft = (props) => {
            color: props.viewType === "teams" && "#1890ff",
           }}
         >
-          <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#28a355" }}>
          <PeopleIcon className="text-white !text-icon"/>
          </Avatar>
         </span>
@@ -218,12 +253,8 @@ const PitchActionLeft = (props) => {
            color: props.viewType === "all" && "#1890ff",
           }}
         >
-           <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-            <FormattedMessage
-            class=" text-white !text-icon"
-                        id="app.all"
-                        defaultMessage="ALL"
-                      />
+           <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
+          ALL
         </Avatar>
         </span>
         </Badge>
@@ -233,8 +264,8 @@ const PitchActionLeft = (props) => {
         size="small"
         count={(props.viewType === "list" && props.leadsCountJunked.junkedList) || 0}
         overflowCount={999}
-      >
-      <Tag
+      > */}
+      <div
                 color={props.viewType === "list" ? "#FFA500" : "orange"}
                 style={{
                   cursor: "pointer",                  
@@ -246,10 +277,10 @@ const PitchActionLeft = (props) => {
                 onClick={() => props.setPitchViewType("list")}
               >
                 Junked
-              </Tag>
-              </Badge> */}
+              </div>
+              {/* </Badge> */}
 
-      <div class=" w-72 ml-4 max-sm:w-28">
+      <div class=" w-[28rem] max-sm:w-28 ml-4 ">
           <Input
             placeholder="Search by Name or Company"
             width={"100%"}
@@ -275,15 +306,43 @@ const PitchActionLeft = (props) => {
             props.handleClear();
           }}
         >
-          <FormattedMessage id="app.clear" defaultMessage="Clear" />
+      >
       
         </Button> */}
           <div class=" w-2/5  ml-2">
-          <StyledSelect placeholder="Sort"  onChange={(e)  => props.handleFilterChange(e)}>
+          <StyledSelect placeholder="Sort" defaultValue="Creation Date" value={props.filter} onChange={(e)  => props.handleFilterChange(e)}>
            <Option value="CreationDate">Creation Date</Option> 
             <Option value="ascending">A To Z</Option>
             <Option value="descending">Z To A</Option>
           </StyledSelect>
+        </div>
+
+        <div class="w-[40%]  ml-2 max-sm:w-[45%]">
+       {/* {!props.showCheckboxes && (  */}
+        <Button type="primary" 
+        onClick={props.handleTransferClick}
+        >
+          {props.isTransferMode ? 'Transfer' : 'Cancel'}
+        </Button>
+       {/* )} */}
+        </div>
+
+        <div class="w-[40%]  ml-2 max-sm:w-[45%]">
+       {props.showCheckboxes && props.selectedDeals.length > 0 && ( 
+        <Select
+       
+       placeholder="Select User"
+       loading={isLoadingUser}
+       onFocus={handleSelectUserFocus}
+       onChange={props.handleUserSelect}
+     >
+       {userData.map(customer => (
+         <Option key={customer.employeeId} value={customer.employeeId}>
+           {customer.empName}
+         </Option>
+       ))}
+     </Select>
+     )}
         </div>
     </div>
   );
@@ -297,6 +356,7 @@ const mapStateToProps = ({pitch,auth}) => ({
   user:auth.userDetails,
   orgId: auth.userDetails.organizationId,
   pitchAllRecord:pitch.pitchAllRecord,
+  token: auth.token,
 
 });
 const mapDispatchToProps = (dispatch) => bindActionCreators({

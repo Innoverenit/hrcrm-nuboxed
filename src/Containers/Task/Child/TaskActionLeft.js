@@ -1,15 +1,41 @@
-import React from "react";
+import React , { useState, useEffect}from "react";
 import {Avatar, Tooltip } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import LeaderboardIcon from '@mui/icons-material/Leaderboard';
 import TocIcon from '@mui/icons-material/Toc';
 
 const TaskActionLeft = props => {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+        "119",  // My Tasks
+          "120",// My Tasks- Gantt View
+         "121", //Approvals
+
+       
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   return (
     <div class=" flex items-center" >
       <Tooltip
-        title={<FormattedMessage id="app.myTasks" defaultMessage="My Tasks" />}
+        title={translatedMenuItems[0]}
       >
         <span class=" mr-1 text-xs"
           onClick={() => props.setTaskViewType("table")}
@@ -17,13 +43,14 @@ const TaskActionLeft = props => {
             color: props.viewType === "table" && "#1890ff",
             
           }}
-        > <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+        > <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355" }}>
            <TocIcon className="text-white !text-icon cursor-pointer "  />
            </Avatar>
         </span>
       </Tooltip>
       <Tooltip
-        title={<FormattedMessage id="app.mytaskView" defaultMessage="My Tasks- Gantt View" />}
+        title={translatedMenuItems[1]}
+       
       >
         <span class=" mr-1 text-xs"
           onClick={() => props.setTaskViewType("gantt")}
@@ -32,13 +59,14 @@ const TaskActionLeft = props => {
            
           }}
         > 
-        <Avatar style={{ background: props.viewType === "gantt" ? "#f279ab" : "#4bc076" }}><LeaderboardIcon className="text-white !text-icon cursor-pointer "   /></Avatar>
+        <Avatar style={{ background: props.viewType === "gantt" ? "#f279ab" : "#28a355" }}><LeaderboardIcon className="text-white !text-icon cursor-pointer "   /></Avatar>
         
         
         </span>
       </Tooltip>
       <Tooltip
-        title={<FormattedMessage id="app.approvals" defaultMessage="Approvals" />}
+        title={translatedMenuItems[2]}
+     
       >  
         
         <span class=" mr-1 text-xs"
@@ -48,26 +76,11 @@ const TaskActionLeft = props => {
             
           }}
         >
-         <Avatar style={{ background: props.viewType === "approve" ? "#f279ab" : "#4bc076" }}><FactCheckIcon className="text-white !text-icon  cursor-pointer  " /></Avatar> 
+         <Avatar style={{ background: props.viewType === "approve" ? "#f279ab" : "#28a355" }}><FactCheckIcon className="text-white !text-icon  cursor-pointer  " /></Avatar> 
         </span>
        
       </Tooltip>
 
-      {/* <Tooltip
-        title={<FormattedMessage id="app.deletedOpportunity" defaultMessage="Deleted Opportunity" />}
-      >  
-        
-        <span class=" mr-2 cursor-pointer text-xs"
-          onClick={() => props.setTaskViewType("dashboard")}
-          style={{
-            color: props.viewType === "dashboard" && "#1890ff",
-          }}
-        >
-          <DeleteIcon />
-        </span>
-       
-      </Tooltip> */}
-    
     </div>
   
   );

@@ -5,7 +5,8 @@ import { Tooltip, Badge, Avatar, Input } from "antd";
 import TocIcon from '@mui/icons-material/Toc';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { inputDataSearch,ClearSearchedDataOfAccount,getAllDistributorsList, getRecords,getCustomerByUser, getAccountRecords, getAllRecords, getDistributorCount ,} from "./AccountAction";
-import { DeleteOutlined, AudioOutlined } from "@ant-design/icons";
+import MicIcon from '@mui/icons-material/Mic';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const AccountActionLeft = (props) => {
     const [currentData, setCurrentData] = useState("");
@@ -64,7 +65,7 @@ const AccountActionLeft = (props) => {
             // Perform the search
             // props.inputDataSearch(currentData);
             if (props.viewType === "list") {
-                props.inputDataSearch(currentData,'list')
+                props.inputDataSearch(currentData,'user')
             }
             else if (props.viewType === "all") {
                 props.inputDataSearch(currentData,'all')
@@ -87,7 +88,7 @@ const AccountActionLeft = (props) => {
         }, minRecordingTime);
       };
       const suffix = (
-        <AudioOutlined
+        <MicIcon
           onClick={handleStartListening}
           style={{
             fontSize: 16,
@@ -102,7 +103,7 @@ const AccountActionLeft = (props) => {
         if (transcript.trim() !== "") {
           setCurrentData(transcript);
           if (props.viewType === "list") {
-            props.inputDataSearch(transcript,'list')
+            props.inputDataSearch(transcript,'user')
         }
         else if (props.viewType === "all") {
             props.inputDataSearch(transcript,'all')
@@ -147,7 +148,12 @@ const AccountActionLeft = (props) => {
                                     color: props.viewType === "list" && "#1890ff",
                                 }}
                             >
-                                <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#4bc076" }}>
+                                <Avatar 
+                                style={{ background: props.viewType === "list" ? "#f279ab" : "#28a355",
+                                    boxShadow: props.viewType === "list" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                                      transform: props.viewType === "list" ? "scale(1.05)" : "scale(1)"}}
+                    
+                                >
                                     <TocIcon className="text-white !text-icon" /></Avatar>
 
                             </span>
@@ -169,7 +175,12 @@ const AccountActionLeft = (props) => {
                                     color: props.viewType === "all" && "#1890ff",
                                 }}
                             >
-                                <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                                <Avatar 
+                                style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355",
+                                    boxShadow: props.viewType === "all" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                                      transform: props.viewType === "all" ? "scale(1.05)" : "scale(1)"}}>
+                    
+                               
                                     <div class="text-white ">ALL</div></Avatar>
 
                             </span>
@@ -187,14 +198,16 @@ const AccountActionLeft = (props) => {
                             color: props.viewType === "dashboard" && "#1890ff",
                         }}
                     >
-                        <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#4bc076" }}>
-                            <DeleteOutlined className="text-white " /></Avatar>
+                        <Avatar   style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#28a355",
+                                    boxShadow: props.viewType === "dashboard" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                                      transform: props.viewType === "dashboard" ? "scale(1.05)" : "scale(1)"}}>
+                            <DeleteOutlineIcon className="text-white !text-icon" /></Avatar>
 
                     </span>
                 </Badge>
             </Tooltip>
 
-            <div class=" w-64 max-sm:w-24">
+            <div class=" w-64 max-sm:w-24 ml-2">
                 <Input
                     placeholder="Search by Name or Sector"
                     width={"100%"}
@@ -203,48 +216,7 @@ const AccountActionLeft = (props) => {
                     onChange={handleChange}
                     value={currentData}
                 /></div>
-            {/* &nbsp; &nbsp;
-            {props.viewType === "table" ?
-                (
-                    <div style={{ fontSize: "0.9375em", fontWeight: "bold", color: "tomato" }}>
-                        # Records -{" "}{props.recordData.distributor || 0}{" "}
-                    </div>
-                )
-                : props.viewType === "all" ?
-                    (
-                        <div style={{ fontSize: "0.9375em", fontWeight: "bold", color: "tomato" }}>
-                            # Records -{" "}{props.recordAllData.distributor || 0}{" "}
-                        </div>
-                    ) : null} */}
-
-            {/* &nbsp;&nbsp;
-            {props.viewType === "table" ?
-                (
-                    <div>
-                        <>
-                            <b> {dayjs().format("ll")}  </b>
-                            &nbsp;&nbsp;
-                            <b>||&nbsp;&nbsp;Balance : ₹ {`${cost}`}  </b>
-                            &nbsp;&nbsp;
-                            <b>||&nbsp;&nbsp;Outstanding : ₹ {`${costA}`}</b>
-                            &nbsp;&nbsp;
-                        </>
-                    </div>
-                )
-                : props.viewType === "all" ?
-                    (
-
-                        <div>
-                            <>
-                                <b> {dayjs().format("ll")}  </b>
-                                &nbsp;&nbsp;
-                                <b>||&nbsp;&nbsp;Balance : ₹ {`${cost1}`}  </b>
-                                &nbsp;&nbsp;
-                                <b>||&nbsp;&nbsp;Outstanding : ₹ {`${costB}`}</b>
-                                &nbsp;&nbsp;
-                            </>
-                        </div>
-                    ) : null} */}
+           
         </div>
     );
 };

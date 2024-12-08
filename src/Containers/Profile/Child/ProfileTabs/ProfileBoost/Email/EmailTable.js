@@ -1,4 +1,4 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy, Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTable, } from "../../../../../../Components/UI/Antd";
@@ -6,7 +6,7 @@ import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { getEmailProfileCredentials } from "../../../../ProfileAction";
 import { handleUpdateEmailModal } from "../../../../../Profile/ProfileAction";
 import { setEditEmail } from "../../../../../Profile/ProfileAction";
-import { EditOutlined } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 const UpdateEmailModal = lazy(() => import("./UpdateEmailModal"));
 const EmailStatusToggle = lazy(() => import("./EmailStatusToggle"));
 class EmailTable extends Component {
@@ -52,7 +52,7 @@ class EmailTable extends Component {
         render: (name, item, i) => {
           //debugger
           return (
-            <EditOutlined
+            <VisibilityIcon
               type="edit"
               style={{ cursor: "pointer" }}
               onClick={() => {
@@ -74,6 +74,7 @@ class EmailTable extends Component {
             <span>
         
         <EmailStatusToggle
+        
         defaultInd={item.defaultInd}
         id={item.id}
         />
@@ -102,10 +103,13 @@ class EmailTable extends Component {
               scroll={{ y: 280 }}
           pagination={false}
             />
+          <  Suspense fallback={<BundleLoader />}>
             <UpdateEmailModal
               addUpdateEmailModal={addUpdateEmailModal}
               handleUpdateEmailModal={handleUpdateEmailModal}
-            />
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+            /></Suspense>
           </>
         {/* )} */}
       </>

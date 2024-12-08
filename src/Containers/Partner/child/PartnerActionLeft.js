@@ -6,7 +6,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 import TableViewIcon from '@mui/icons-material/TableView';
 import { withRouter } from "react-router-dom";
 import SpeechRecognition, {  } from 'react-speech-recognition';
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import {
    inputPartnerDataSearch ,
    getRecords,
@@ -14,11 +14,9 @@ import {
 } 
 from "../PartnerAction";
 import { Button, Input,Badge,Tooltip } from "antd";
-import { FormattedMessage } from "react-intl";
-
 const { Search } = Input;
 const suffix = (
-  <AudioOutlined
+  <MicIcon
     onClick={SpeechRecognition.startListening}
     style={{
       fontSize: 16,
@@ -42,7 +40,7 @@ const PartnerActionLeft = (props) => {
   <div class=" flex items-center" >  
          
        <Tooltip
-        title={<FormattedMessage id="app.vendor" defaultMessage="Vendor"/>}
+        title="Vendor"
       >
         <Badge size="small" count={props.viewType === "list" &&props.recordData.PartnerDetails || 0} overflowCount={5000}>
         <span  class=" mr-2 text-sm cursor-pointer"
@@ -68,7 +66,7 @@ const PartnerActionLeft = (props) => {
 </Badge>
  </Tooltip>
  <Tooltip
-        title={<FormattedMessage id="app.mapview" defaultMessage="Map View" />}
+        title="Map View" 
       >
         <Badge size="small" count={ props.viewType === "map" &&props.recordData.PartnerDetails || 0}>
         <span class=" mr-2 text-sm cursor-pointer"
@@ -110,8 +108,8 @@ const PartnerActionLeft = (props) => {
           }}
           disabled={props.currentData}
         >
-          <FormattedMessage id="app.clear" defaultMessage="Clear" />
-          {/* Clear */}
+        
+          Clear
         </Button>
               
       

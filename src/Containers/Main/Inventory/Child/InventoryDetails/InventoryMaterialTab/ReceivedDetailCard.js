@@ -10,11 +10,10 @@ import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Button, Input, Modal, Select, Switch, Tooltip, message } from 'antd';
 import PoReceiveToggle from './PoReceiveToggle';
-import { FormattedMessage } from 'react-intl';
 import { trnasferGrnItemToStock } from "../../../InventoryAction"
 import AllowGrnToggle from './AllowGrnToggle';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { MultiAvatar, StyledLabel } from '../../../../../../Components/UI/Elements';
+import { MultiAvatar } from '../../../../../../Components/UI/Elements';
 
 const { Option } = Select;
 
@@ -100,40 +99,32 @@ const ReceivedDetailCard = (props) => {
     return (
         <>
             <div className=' flex  sticky z-auto'>
-                <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+                <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+                    <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
                         <div className=""></div>
-                        <div className=" w-[29.51rem]">
-                            {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */} {props.translatedMenuItems[15]}
+                        <div className=" w-[29.51rem]">{props.translatedMenuItems[15]}
                         </div>
-                        <div className=" w-[23.02rem]">
-                            {/* <FormattedMessage id="app.Category" defaultMessage="Category" /> */} {props.translatedMenuItems[16]}
+                        <div className=" w-[23.02rem]"> {props.translatedMenuItems[16]}
                             </div>
-                        <div className=" w-[13.01rem]">
-                            {/* <FormattedMessage id="app.Attribute" defaultMessage="Attribute" /> */} {props.translatedMenuItems[17]}
+                        <div className=" w-[13.01rem]">{props.translatedMenuItems[17]}
                         </div>
-                        {/* <div className=" w-[10.12rem]"><FormattedMessage id="app.Price" defaultMessage="Price" /></div> */}
+                   
                         <div className=" w-[12.02rem]">
-                            {/* <FormattedMessage id="app.Unit" defaultMessage="Units" /> */} {props.translatedMenuItems[18]}
+                       {props.translatedMenuItems[18]}
                         </div>
                         <div className=" w-[18.12rem]">
-                            {/* <FormattedMessage id="app.Received" defaultMessage="Received" /> */}
                             {props.translatedMenuItems[19]}
                         </div>
-                        <div className=" w-[15.21rem]">
-                            {/* <FormattedMessage id="app.Received" defaultMessage="Receive" /> */} {props.translatedMenuItems[5]}
+                        <div className=" w-[15.21rem]"> {props.translatedMenuItems[5]}
                         </div>
-                        <div className=" w-[15.17rem]">
-                            {/* <FormattedMessage id="app.Damaged" defaultMessage="Damaged" /> */} {props.translatedMenuItems[20]}
+                        <div className=" w-[15.17rem]"> {props.translatedMenuItems[20]}
                         </div>
                         <div className=" w-[28.47rem]">
-                            {/* <FormattedMessage id="app.Remark" defaultMessage="Remark" /> */}
                         {props.translatedMenuItems[21]}
                         </div>
 
                         <div className=""></div>
                         <div className=" w-[15.19rem]">
-                            {/* <FormattedMessage id="app.creategrn" defaultMessage="Create GRN" />*/}
                             {props.translatedMenuItems[22]} GRN
                             </div>
                         
@@ -322,10 +313,10 @@ const ReceivedDetailCard = (props) => {
                     onOk={handleOk}
                     onCancel={handleCancelmodal}
                 >
-                    <StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">
                         {/* Select from existing GRN */} {props.translatedMenuItems[27]}
 
-                    </StyledLabel>
+                    </div>
                     <div class=" flex justify-evenly">
                         <Switch
                             checked={existGrn}

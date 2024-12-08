@@ -24,7 +24,7 @@ class ErpNote extends Component {
         
 
         <BorderBox>
-          <div class="h-80 overflow-auto p-[0.3rem]">
+          <div class="h-80 overflow-auto p-[0.8rem]">
             {fetchingNotesListByCustomerId ? (
               <BundleLoader />
             ) : (
@@ -42,8 +42,8 @@ class ErpNote extends Component {
               )}
           </div>
         </BorderBox>
-        <br />
-        <div style={{ backgroundColor: "#dcdcdc" }}>
+       
+        <div class="  bg-gray-100">
           <ErpNoteForm
            type={this.props.type}
            id={this.props.id}

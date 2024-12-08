@@ -6,7 +6,10 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import CountryFlag1 from "../../../Settings/Category/Country/CountryFlag1";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import ReInstateLocation from "./ReInstateLocation";
-
+import LanguageIcon from'@mui/icons-material/Language';
+import AddLocationAltIcon from'@mui/icons-material/AddLocationAlt';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 
 const DeletedLocationCard = (props) => {
   const [hasMore, setHasMore] = useState(true);
@@ -18,11 +21,11 @@ const DeletedLocationCard = (props) => {
       try {
         const itemsToTranslate = [
        
-          "Name",//0
-          "Country",//1
-          "Address",//2
-          "Regions",//3
-          "Reinstate"//4
+        "110",  // "Name",//0
+        "1109",  // "Country",//1
+         "185", // "Address",//2
+       "24",   // "Region",//3
+         "1069" // "Reinstate"//4
          
         ];
 
@@ -57,36 +60,38 @@ const handleLoadMore = () => {
         hasMore={hasMore}
         loader={props.fetchingDeletedLocationHistory?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
         height={"80vh"}
+        style={{scrollbarWidth:"thin"}}
+        endMessage={ <p class="flex  text-center font-bold text-xs font-poppins text-red-500">You have reached the end of page. </p>}
       >
-      <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" md:w-[7.5rem]">
-        {translatedMenuItems[0]}
+      <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky font-poppins !text-lm z-10">
+        <div className=" max-md:w-[14.5rem] w-[14.5rem] text-[#00A2E8] text-sm">
+        <ContactsIcon className="!text-icon  "/> {translatedMenuItems[0]}
         {/* Name */}
         </div>
-        <div className=" md:w-[12.1rem]">
-        {translatedMenuItems[1]} {/* Country */}
+        <div className=" max-md:w-[17.1rem] w-[17.1rem]">
+        <LanguageIcon  className="!text-icon text-[#480CA8]"/> {translatedMenuItems[1]} {/* Country */}
           </div>
-        <div className=" md:w-[4.1rem] ">
-        {translatedMenuItems[2]} {/* Address */}
+        <div className=" max-md:w-[22.1rem] w-[22.1rem] ">
+        <AddLocationAltIcon className="!text-icon text-[#9B2226] "/> {translatedMenuItems[2]} {/* Address */}
           </div>
        
-        <div className="md:w-[1.9rem]">
-        {translatedMenuItems[3]} {/* Regions */}
+        <div className=" max-md:w-[9.9rem] w-[9.9rem]">
+        <LanguageIcon  className="!text-icon text-[#005F73]"/> {translatedMenuItems[3]} {/* Regions */}
           </div>
-        <div className="md:w-[30.9rem]">
-        {translatedMenuItems[54]}{/* Reinstate */}
+        <div className=" max-md:w-[5.9rem] w-[5.9rem]">
+        <ApartmentIcon className="!text-icon text-[#BC4749]"/> {translatedMenuItems[4]}{/* Reinstate */}
           </div>
       </div>
       <div class="">
           {props.deletedLocationHistory.map((item) => {
             return (
               <div >
-                <div class=" flex rounded justify-between  bg-white mt-[0.5rem] h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                <div class=" flex rounded justify-between py-ygap bg-white mt-[0.5rem]  items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                   <div class="flex">
-                  <div className=" flex font-medium  md:w-[15.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                  <div className=" flex  items-center justify-start border-l-2 border-green-500 bg-[#eef2f9] max-md:w-[15.25rem] w-[15.25rem] ">
                       
 
-                      <div class=" font-normal text-[0.82rem]  font-poppins">
+                      <div class=" font-normal items-center ml-gaptext-[0.82rem]  font-poppins">
              
 
                         {item.locationName}
@@ -94,7 +99,7 @@ const handleLoadMore = () => {
                     </div>
                    
 
-                    <div className=" flex font-medium  md:w-[7.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex  w-[7.25rem] max-md:w-[7.25rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] ">
                       
 
                       <div class=" font-normal text-[0.82rem]  font-poppins">
@@ -103,47 +108,32 @@ const handleLoadMore = () => {
                         {item.countryAlpha2Code}
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col md:w-[19rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className=" flex w-[34rem] max-md:w-[34rem] justify-center h-8 ml-gap items-center bg-[#eef2f9]">
                      
 
-                      <div class=" font-normal text-[0.82rem]  font-poppins">
+                      <div class=" font-normal text-[0.82rem]   ml-gap  font-poppins ">
                        
-                      <span>
+                      
   {item.address && item.address.length > 0 ? (
     `${(item.address[0].city || "")} ${(item.address[0].state || "")}`.slice(0, 20)
   ) : (
     "No address available"
-  )}
-</span>            </div>
+  )}        </div>
                     </div>
-                    <div className=" font-medium flex-row md:w-[4.41rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                    <div className="   items-center justify-center h-8 ml-gap  bg-[#eef2f9] flex w-[14.41rem] ">
                       
-                      <div class=" font-normal text-[0.82rem]  font-poppins">
+                      <div class=" font-normal text-[0.82rem] items-center ml-gap font-poppins">
                        {item.regions}
                       </div>
                     </div>
-                    <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
+                    <div className=" flex  w-[7.2rem]  items-center justify-center h-8 ml-gap  bg-[#eef2f9] ">
                             <div class=" font-normal text-[0.82rem] max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                             <ReInstateLocation locationDetailsId={item.locationDetailsId} />
                             </div>
                           
                   </div>
-                </div>
-
-                    {/* <div className=" flex font-medium flex-row md:w-[7.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
-                     
-
-                      <div class=" font-normal text-[0.82rem]  font-poppins">
-                        <RefurbishToggle
-                        locationDetailsId={item.locationDetailsId}
-                        productionInd={item.productionInd}
-                        />
-                      </div>
-                    </div> */}
-               
-                  
-                   
-                    </div>
+                </div>                                                     
+                 </div>
                 </div>
             );
           })}

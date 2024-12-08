@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
-import { FormattedMessage } from 'react-intl';
+
 
 const StatusOfOrder = lazy(() => import("./StatusOfOrder"));
 class StatusOfOrderModal extends Component {
@@ -16,7 +16,7 @@ class StatusOfOrderModal extends Component {
             <>
                 <StyledDrawer
                     title={<div class="flex items-center">
-                        <FormattedMessage id="app.statusoforder" defaultMessage="Status of Order #" /> -
+                       Status of Order # -
                         {particularRowData.newOrderNo}
                     </div>}
                     width="60%"
@@ -27,7 +27,10 @@ class StatusOfOrderModal extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <StatusOfOrder particularRowData={particularRowData} />
+                        <StatusOfOrder particularRowData={particularRowData}
+                        selectedLanguage={this.props.selectedLanguage}
+                        translateText={this.props.translateText}
+                         />
                     </Suspense>
                 </StyledDrawer>
             </>

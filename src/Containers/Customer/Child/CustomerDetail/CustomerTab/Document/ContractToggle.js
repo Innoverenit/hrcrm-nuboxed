@@ -8,50 +8,22 @@ function ContractToggle(props) {
 
     const [toggle, setToggle] = React.useState(props.contractInd)
 
-    function handleToggleCollection(item) {
-        // setPaymentCollection(!paymentCollection);
-        if (props.contractInd) {
-            props.linkCustomerContract(
-                {
-                    documentId: props.documentId,
-                   // userId: props.userId,
-                    // status: true,
-                    contractInd: props.contractInd ? false : true,
-                },
-                props.documentId,
-                props.customerId,
-               // props.userId,
-                //  handleCallbackFalse
-            );
-        } else {
-            props.linkCustomerContract(
-                {
-                    documentId: props.documentId,
-                   // userId: props.userId,
-                    // status: true,
-                    contractInd: props.contractInd ? false : true,
-                },
-                props.documentId,
-                props.customerId,
-                //  handleCallback
-            );
-        }
-    }
-
-    function handleCancel() {
-        if (props.contractInd) {
-            setToggle(true);
-        } else {
-            setToggle(false);
-        }
-    }
+    function handleToggleCollection() {     
+        props.linkCustomerContract(
+            {
+               
+            },
+            props.documentId,
+        props.contractInd ? false : true,
+        );
+      }
     return (
         <>
             <div>
                 <Popconfirm
                     title="Confirm status change?"
                     onConfirm={() => handleToggleCollection()}
-                    onCancel={handleCancel}
+                    onCancel={null}
                     okText="Ok"
                     cancelText="Cancel"
                 >

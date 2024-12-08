@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FormattedMessage } from "react-intl";
-import styled from "styled-components";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { Tooltip, Menu, Dropdown, Progress } from "antd";
 import { CurrencySymbol, } from "../../../../Components/Common";
 import { Link } from 'react-router-dom';
-import moment from "moment";
+import dayjs from "dayjs";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LockIcon from "@mui/icons-material/Lock";
-import { DeleteOutlined } from "@ant-design/icons";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
   MultiAvatar2,
@@ -34,7 +33,7 @@ import {
 } from "../../OpportunityAction";
 import AddOpportunityDrawerModal from "./AddOpportunityDrawerModal";
 import UpdateOpportunityModal from "../UpdateOpportunity/UpdateOpportunityModal";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import EmptyPage from "../../../Main/EmptyPage";
 
 function OpportunityCloseCard(props) {
   const [hasMore, setHasMore] = useState(true);
@@ -75,30 +74,23 @@ function OpportunityCloseCard(props) {
         height={"86vh"}
       >
 <div class="flex  justify-center flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">    
-{ !fetchingCloseOpportunity && closeOpportunity.length === 0 ?<NodataFoundPage />:closeOpportunity.map((item,index) =>  {
+{ !fetchingCloseOpportunity && closeOpportunity.length === 0 ?<EmptyPage/>:closeOpportunity.map((item,index) =>  {
                  
                  var findProbability = 0;
                  return (
 
-                  <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[16rem] 
-                  text-[#444444] m-3 p-1 w-[20vw] flex flex-col max-sm:w-wk scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                  <div class="rounded-md border-2 bg-[#ffffff]  shadow-[#aaa] h-[16rem] 
+                  text-[#444444] w-[20vw] flex flex-col max-sm:w-wk scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
 
                       <div class="flex items-center justify-between ">
                       <div>Name</div>
-                        <Header>
+                      <div class="h-8 overflow-hidden whitespace-nowrap text-lg font-poppins font-bold overflow-ellipsis text-center">
                         <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>
-                        </Header> 
-                       
-               
-            
-                          
-            
+                        </div> 
           </div>                  
                  
-                     
-           
                         <div class="flex  justify-between">
                             <h3>Customer</h3>
                             <div>{item.customer}</div>
@@ -123,7 +115,7 @@ function OpportunityCloseCard(props) {
                     </div>
                     <div class="flex justify-between">
                     <div>Start Date</div> 
-            <div>{moment(item.startDate).format("ll")}</div>
+            <div>{dayjs(item.startDate).format("ll")}</div>
                     </div>
                     <div class="flex justify-between">
                     <div>Value</div> 
@@ -198,7 +190,7 @@ function OpportunityCloseCard(props) {
 <div class="flex  justify-between" >
                            <div>
                            <Tooltip title='Click to Open'><span
-          onClick={() => {
+            onClick={() => {
            props.LinkClosedOpportunity(
              item.opportunityId,
              {
@@ -218,7 +210,7 @@ function OpportunityCloseCard(props) {
      <span
          
          className=" cursor-pointer "
-            onClick={() => {
+              onClick={() => {
                 props.getAllRecruitmentByOppId(item.opportunityId);
                 props.getAllRecruitmentPositionByOppId(item.opportunityId);
                 props.getAllRecruitmentAvgTimeByOppId(item.opportunityId);
@@ -241,19 +233,15 @@ function OpportunityCloseCard(props) {
                            </div>
                            <div>
                            <Tooltip
-          title={
-            <FormattedMessage
-              id="app.edit"
-              defaultMessage="Edit"
-            />
-          }
+          title="Edit"
+           
         >
             {user.opportunityUpdateInd ===true && (
               
             <span
             className=" !text-base cursor-pointer text-[grey]"
              
-              onClick={() => {
+                onClick={() => {
                 props.setEditOpportunity(item);
                 handleUpdateOpportunityModal(true);
                 handleSetCurrentOpportunityId(item);
@@ -270,11 +258,9 @@ function OpportunityCloseCard(props) {
             title="Do you want to delete?"
             onConfirm={() => deleteCloseOpportunity(item.opportunityId)}
           >
-             {/* {user.userType !== "USER" && user.department !== "Recruiter" && (  */}
-             {user.opportunityDeleteInd ===true && (
-            <DeleteOutlined
-            type="delete" className=" !text-base cursor-pointer text-[red]" />
-             )}
+      
+             {/* {user.opportunityDeleteInd ===true && ( */}
+            <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
           </StyledPopconfirm>
                            </div>
               </div>           
@@ -374,32 +360,4 @@ export default connect(
 mapStateToProps,
 mapDispatchToProps
 )(OpportunityCloseCard);
-
-const Header = styled.div`
-  text-overflow: ellipsis;
-
-  white-space: nowrap;
-  overflow: hidden;
-  height: 2em;
-  font-size: 1em;
-padding:4px;
-  color:blue;
-  cursor:pointer;
-  // font-family: Poppins;
-  //font-weight: 700;
-  @media only screen and (max-width: 600px) {
-    text-overflow: ellipsis;
-display: flex;
-    justify-content: flex-end;
-white-space: nowrap;
-overflow: hidden;
-height: 2em;
-font-size: 1.3em;
-font-family: Poppins;
-font-weight: 700;
-width:100%
-
-text-align:center
-  }
-`
 

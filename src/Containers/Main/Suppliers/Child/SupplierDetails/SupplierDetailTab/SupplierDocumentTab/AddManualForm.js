@@ -1,26 +1,52 @@
 import React, { useEffect, useState } from "react";
 import { Button, Input, Select } from "antd";
-import { CloseOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { addProcureDetails, getBrand, getModel } from "../../../../../Account/AccountAction";
-// import ProcureDetailsCardList from "./ProcureDetailsCardList";
+import { getBrand, getModel } from "../../../../../Account/AccountAction";
 import {addManual,getCategorylist} from "../../../../SuppliersAction";
 import {getSaleCurrency} from "../../../../../../Auth/AuthAction";
 import {getAllProductList,getLocationList} from "../../../../../Account/AccountAction";
-import { base_url2 } from "../../../../../../../Config/Auth";
-import LazySelect from "../../../../../../../Components/Forms/Formik/LazySelect";
-import { Field } from "formik";
+import InventoryTableList from "./InventoryTableList";
+import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 const { Option } = Select;
 
 function AddManualForm(props) {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+
   useEffect(() => {
-    // props.getBrand();
+     props.getBrand();
     props.getSaleCurrency();
     props.getCategorylist();
-    // props.getAllProductList();
+    props.getModel();
+     props.getAllProductList();
     props.getLocationList(props.orgId)
   }, []);
+  useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          const itemsToTranslate = [
+          
+           
+            "14",//0 Category
+            "264",//1 Brand
+            "265",//2 Model
+            "259",//3 Attribute
+            "71",//4 type
+            "241",//5 currency
+            "788",//6 Price/ Units
+            "260",//7 Units
+           "85",//Add
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+        } catch (error) {
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
 
   const [rows, setRows] = useState([{ brand: '', model: '', modelId: '', unit: '', spces: '',price:'',quality:'',saleCurrencies:'',id:'',currencyId:'' }]);
   
@@ -53,7 +79,7 @@ function AddManualForm(props) {
       ...prevState,
       model: true
     }));
-    props.getModel(updatedRows[index].category,value);
+   // props.getModel(updatedRows[index].category,value);
   };
 
   const handleCurrencyChange = (value, index) => {
@@ -104,7 +130,7 @@ function AddManualForm(props) {
       ...prevState,
       brand: true
     }));
-    props.getBrand(value);
+  //  props.getBrand(value);
   };
   
 
@@ -118,7 +144,7 @@ function AddManualForm(props) {
       ...prevState,
       attribute: true
     }));
-    props.getAllProductList(updatedRows[index].category, updatedRows[index].brand,value);
+    //props.getAllProductList(updatedRows[index].category, updatedRows[index].brand,value);
   };
 
   const handleSpecsChange = (value, index) => {
@@ -179,16 +205,20 @@ function AddManualForm(props) {
 
   return (
     <>
-      <div>
+
+    <div className="flex justify-between">
+      <div class="w-[22%] box-content p-2 border-blue border-4">
         {rows.map((row, index) => (
           <div key={index}>
-            <div className="flex justify-around w-[30rem]">
+            <div className="flex justify-around  flex-col">
 
             <div>
-                <label>Category</label>
-                <div className="w-[7rem]">
+                <div class="font-bold text-xs font-poppins text-black"> {translatedMenuItems[0]}
+                  {/* Category */}
+                  </div>
+                <div className="w-full">
                   <Select
-                    style={{ width: 100 }}
+                   
                     value={row.category}
                     onChange={(value) => handleCategoryChange(value, index)}
                  >
@@ -201,91 +231,67 @@ function AddManualForm(props) {
               </div>
 
               <div>
-                <label>Brand</label>
-                <div className="w-[7rem]">
+                <div class="font-bold text-xs mt-1 font-poppins text-black"> {translatedMenuItems[1]}
+                  {/* Brand */}
+                  </div>
+                <div className="w-full">
                   <Select
-                    style={{ width: 100 }}
+                   
                     value={row.brand}
                     onChange={(value) => handleBrandChange(value, index)}
-                    disabled={!fieldEnabled.brand}
+                   // disabled={!fieldEnabled.brand}
                  >
                     {props.brand.map((a) => (
-                      <Option key={a.brand} value={a.brand}>{a.brand}</Option>
+                      <Option key={a.brand} value={a.brand}>{a.brandName}</Option>
                     ))}
                   </Select>
                 </div>
               </div>
               <div>
-                <label>Model</label>
-                <div className="w-[12rem]">
+                <div class="font-bold text-xs mt-1 font-poppins text-black"> {translatedMenuItems[2]}
+                  {/* Model */}
+                  </div>
+                <div className="w-full">
                   <Select
-                    style={{ width: 170 }}
+                 
                     value={row.model}
                     onChange={(value) => handleModelChange(value, index)}
-                    disabled={!fieldEnabled.model}
+                   // disabled={!fieldEnabled.model}
                   >
                     {props.model.map((a) => (
-                      <Option key={a.model} value={a.model}>{a.model}</Option>
+                      <Option key={a.phoneMasterListId} value={a.phoneMasterListId}>{a.model}</Option>
                     ))}
                   </Select>
                 </div>
               </div>
               <div>
-                <label>Attribute</label>
-                <div className="w-[7rem]">
+                <div class="font-bold text-xs mt-1 font-poppins text-black"> {translatedMenuItems[3]}
+                  {/* Attribute */}
+                  </div>
+                <div className="">
                   <Select
-                    style={{ width: 100 }}
+                 
                     value={row.attribute}
                     onChange={(value) => handleAttributeChange(value, index)}
-                    disabled={!fieldEnabled.attribute}
+                  //  disabled={!fieldEnabled.attribute}
                  >
-                    {props.allProduct.map((a) => (
-                      <Option key={a.attribute} value={a.attribute}>{a.attributeName}</Option>
-                    ))}
+                  
+                     <Option value="SADG84650329032252024">SADG84650329032252024</Option>
+                    
                   </Select>
                 </div>
               </div>
+        
               <div>
-                <label>Specs</label>
-                <div className="w-28 ">
+                <div class="font-bold text-xs mt-1 font-poppins text-black"> {translatedMenuItems[4]}
+                  {/* Type */}
+                  </div>
+                <div className="w-full">
                   <Select
-                    style={{ width: 100 }}
-                    value={row.spces}
-                    onChange={(value) => handleSpecsChange(value, index)}
-                    disabled={!fieldEnabled.specs}
-                 >
-                    <Option value="US">US</Option>
-                    <Option value="CE">CE</Option>
-                    <Option value="IND">IND</Option>
-                    <Option value="HK">HK</Option>
-                  </Select>
-                </div>
-              </div>
-              <div>
-                <label>Grade</label>
-                <div className="w-28">
-                <Select
-                    style={{ width: 100 }}
-                    value={row.quality}
-                    onChange={(value) => handleQualityChange(value, index)}
-                    disabled={!fieldEnabled.quality}
-                  >
-                     <Option value="A+">A+</Option>
-                    <Option value="A">A</Option>
-                    <Option value="B">B</Option>
-                    <Option value="C">C</Option>
-                    <Option value="D">D</Option>
-                  </Select>
-                </div>
-              </div>
-              <div>
-                <label>Type</label>
-                <div className="w-28 ">
-                  <Select
-                    style={{ width: 100 }}
+                   
                     value={row.type}
                     onChange={(value) => handleTypeChange(value, index)}
-                    disabled={!fieldEnabled.type}
+                    //disabled={!fieldEnabled.type}
                   >
                     <Option value="Finished">Finished</Option>
                     <Option value="UnFinished">UnFinished</Option>
@@ -293,29 +299,17 @@ function AddManualForm(props) {
                 </div>
               </div>
               
+         
               <div>
-                <label>Location</label>
-                <div className="w-[7rem]">
+                <div class="font-bold text-xs mt-1 font-poppins text-black"> {translatedMenuItems[5]}
+                  {/* Currency */}
+                  </div>
+                <div className="">
                   <Select
-                    style={{ width: 100 }}
-                    value={row.locationId}
-                    onChange={(value) => handleLocationChange(value, index)}
-                    disabled={!fieldEnabled.locationId}
-                 >
-                    {props.locationlist.map((a) => (
-                      <Option key={a.locationDetailsId} value={a.locationDetailsId}>{a.locationName}</Option>
-                    ))}
-                  </Select>
-                </div>
-              </div>
-              <div>
-                <label>Currency</label>
-                <div className="w-[7rem]">
-                  <Select
-                    style={{ width: 100 }}
+                   
                     value={row.currencyId}
                     onChange={(value) => handleCurrencyChange(value, index)}
-                    disabled={!fieldEnabled.currencyId}
+                    //disabled={!fieldEnabled.currencyId}
                 >
                     {props.saleCurrencies.map((a) => (
                       <Option key={a.currency_id} value={a.currency_id}>{a.currency_name}</Option>
@@ -323,22 +317,27 @@ function AddManualForm(props) {
                   </Select>
                 </div>
               </div>
-              <div>
-                <label>Price / Unit</label>
-                <div className="w-28">
+              <div class="flex justify-between mt-1 w-[100%]">
+              <div className="w-1/2">
+                <div class="font-bold text-xs mt-1  font-poppins text-black"> {translatedMenuItems[6]}
+                  {/* Price / Unit */}
+                  </div>
+                <div className="w-full">
                   <Input
                     type="text"
                     value={row.price}
                     onChange={(e) => handleUnitChange(index, 'price', e.target.value)}
                     placeholder="Enter Price"
-                    disabled={!fieldEnabled.price}
+                    //disabled={!fieldEnabled.price}
                   />
                 </div>
               </div>
              
-              <div>
-                <label>Units</label>
-                <div className="w-28">
+              <div className="w-1/2 ml-gap mb-2">
+                <div class="font-bold text-xs mt-1  font-poppins text-black">{translatedMenuItems[7]}
+                  {/* Units */}
+                  </div>
+                <div className="w-full">
                   <Input
                     type="text"
                     value={row.unit}
@@ -348,17 +347,24 @@ function AddManualForm(props) {
                   />
                 </div>
               </div>
-
-              <div className="w-4 mt-[1.5rem]">
-                <CloseOutlined onClick={() => handleRemoveRow(index)} />
               </div>
+
             </div>
           </div>
         ))}
-        <Button type="primary" onClick={handleAddRow}>Add</Button>
-        <Button type="primary" loading={props.addingManual} onClick={handleSubmit}>Submit</Button>
+        {/* <Button type="primary" onClick={handleAddRow}>Add</Button> */}
+        <div class="flex justify-end ">
+        
+        <Button type="primary" loading={props.addingManual} onClick={handleSubmit}> <DataSaverOnIcon className="!text-icon"/>{translatedMenuItems[8]}
+          {/* Add */}
+          </Button>
+        </div>
       </div>
-      {/* <ProcureDetailsCardList /> */}
+
+      <InventoryTableList
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}/>
+          </div>
     </>
   );
 }

@@ -1,12 +1,11 @@
 import React, { } from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 import OpportunityStatsCard from "./OpportunityCards/OpportunityStatsCard";
 import { Spin, Tooltip, Icon } from "antd";
-import { RollbackOutlined } from "@ant-design/icons";
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 
 const OpportunityDetailActionLeft = (props) => {
   const { opportunity, fetchingOpportunityById } = props;
@@ -22,17 +21,13 @@ const OpportunityDetailActionLeft = (props) => {
   // }, [opportunity.stageId, opportunity.opportunityId]);
   console.log(stageMapper);
   return (
-    <FlexContainer alignItems="center">
+    <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
       <div style={{ width: "21vw" }}>
         <Tooltip title="Back">
-          <RollbackOutlined
+          <KeyboardReturnIcon
             style={{ marginRight: "0.3rem", color: "#1890ff", fontSize: "1.5625em" }}
             //iconType="rollback"
-            //tooltipTitle="Back"
-            tooltiptitle={<FormattedMessage
-              id="app.back"
-              defaultMessage="Back"
-            />}
+            tooltipTitle="Back"
          
             onClick={() => {
               props.history.goBack();
@@ -47,12 +42,16 @@ const OpportunityDetailActionLeft = (props) => {
         </div>
       ) : (
           // <BundleLoader />
-          <OpportunityStatsCard opportunity={opportunity} />
+          <OpportunityStatsCard opportunity={opportunity}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+          translatedMenuItems={props.translatedMenuItems}
+          />
         )}
-      {/* <FlexContainer justifyContent="center"> */}
+   
 
-      {/* </FlexContainer> */}
-    </FlexContainer>
+     
+    </div>
   );
 };
 const mapStateToProps = ({ opportunity, account, auth }) => ({});

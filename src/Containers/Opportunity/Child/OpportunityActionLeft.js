@@ -1,13 +1,13 @@
 import React, { useEffect,useRef,useState } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { Tooltip, Badge ,Avatar,Input } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import LightbulbIcon from "@mui/icons-material/Lightbulb";
-import { DeleteOutlined } from "@ant-design/icons";
-import { CheckCircleTwoTone } from "@ant-design/icons";
-import { AudioOutlined } from '@ant-design/icons';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import {
@@ -26,7 +26,8 @@ import {
 
 } from "../OpportunityAction";
 import PeopleIcon from '@mui/icons-material/People';
-import { StopTwoTone, TableOutlined } from "@ant-design/icons";
+import GridOnIcon from '@mui/icons-material/GridOn';
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 const { Search } = Input;
 
 const OpportunityActionLeft = (props) => {
@@ -134,7 +135,7 @@ const OpportunityActionLeft = (props) => {
     };
 
     const suffix = (
-      <AudioOutlined
+      <MicIcon
         onClick={handleStartListening}
         style={{
           fontSize: 16,
@@ -204,12 +205,8 @@ const OpportunityActionLeft = (props) => {
         overflowCount={999}
       >
         <Tooltip
-          title={
-            <FormattedMessage
-              id="app.myquotations"
-              defaultMessage="My Quotations"
-            />
-          }
+          title="My Quotations"
+           
         >
           <span
             class=" mr-1 text-sm cursor-pointer"
@@ -219,23 +216,24 @@ const OpportunityActionLeft = (props) => {
             }}
           >
             
-            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "table" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "table" ? "scale(1.05)" : "scale(1)" }}>
             <LightbulbIcon className="text-white !text-icon"/>
             </Avatar>
           </span>
         </Tooltip>
       </Badge>
       <Tooltip
-          title={
-            <FormattedMessage id="app.myquotationsstageview" defaultMessage="My Quotations-Stage View" />
-          }
+          title="My Quotations-Stage View" 
+  
         >
              <Badge
         size="small"
         count={(viewType === "stage" && recordData.opportunityDetails) || 0}
         overflowCount={999}
       >
-          {/*<TableOutlined*/}
+          {/*<GridOnIcon*/}
           <span
             style={{
               fontSize: "1.56em",
@@ -247,8 +245,10 @@ const OpportunityActionLeft = (props) => {
             // tooltipTitle="Stage View"
             onClick={() => props.setOpportunityViewType("stage")}
           >
-             <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#4bc076" }}>
-           <TableOutlined className="text-white !text-icon"/>
+             <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "stage" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "stage" ? "scale(1.05)" : "scale(1)" }}>
+           <GridOnIcon className="text-white !text-icon"/>
            </Avatar>
           </span>
           </Badge>
@@ -272,8 +272,10 @@ const OpportunityActionLeft = (props) => {
             }}
           >
             {" "}
-            <Avatar style={{ background: props.viewType === "won" ? "#f279ab" : "#4bc076" }}>
-            <CheckCircleTwoTone type="check-circle" theme="twoTone" twoToneColor="#24D8A7" className="text-white !text-icon"/>
+            <Avatar style={{ background: props.viewType === "won" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "won" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "won" ? "scale(1.05)" : "scale(1)" }}>
+            <CheckCircleOutlineIcon type="check-circle" theme="twoTone" twoToneColor="#24D8A7" className="text-white !text-icon"/>
             </Avatar>
           </span>
           </Badge>
@@ -298,7 +300,9 @@ const OpportunityActionLeft = (props) => {
             }}
           >
             {" "}
-            <Avatar style={{ background: props.viewType === "close" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "close" ? "#f279ab" : "#28a355" ,
+               boxShadow: props.viewType === "close" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "close" ? "scale(1.05)" : "scale(1)"}}>
             <LockOpenIcon className="text-white !text-icon" />
             </Avatar>
           </span>
@@ -323,8 +327,10 @@ const OpportunityActionLeft = (props) => {
             }}
           >
             {" "}
-            <Avatar style={{ background: props.viewType === "lost" ? "#f279ab" : "#4bc076" }}>
-            <StopTwoTone type="stop" theme="twoTone" twoToneColor="red" className="text-white !text-icon" />
+            <Avatar style={{ background: props.viewType === "lost" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "lost" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "lost" ? "scale(1.05)" : "scale(1)" }}>
+            <DoDisturbIcon type="stop" theme="twoTone" twoToneColor="red" className="text-white !text-icon" />
             </Avatar>
           </span>
         </Badge>
@@ -349,7 +355,9 @@ const OpportunityActionLeft = (props) => {
             }}
           >
             {" "}
-            <Avatar style={{ background:props.teamsAccessInd || props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background:props.teamsAccessInd || props.viewType === "teams" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "teams" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "teams" ? "scale(1.05)" : "scale(1)" }}>
             <PeopleIcon className="text-white !text-icon"/>
             </Avatar>
           </span>
@@ -375,7 +383,9 @@ const OpportunityActionLeft = (props) => {
             }}
           >
             {" "}
-            <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "all" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "all" ? "scale(1.05)" : "scale(1)" }}>
            ALL
            </Avatar>
           </span>
@@ -386,12 +396,7 @@ const OpportunityActionLeft = (props) => {
      
 
       <Tooltip
-        title={
-          <FormattedMessage
-            id="app.deletedOpportunity"
-            defaultMessage=" My Deleted Quotations"
-          />
-        }
+        title=" My Deleted Quotations"
       >
         {" "}
         <Badge
@@ -407,8 +412,10 @@ const OpportunityActionLeft = (props) => {
               color: props.viewType === "dashboard" && "#1890ff",
             }}
           >
-             <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#4bc076" }}>
-            <DeleteOutlined className="text-white !text-icon" />
+             <Avatar style={{ background: props.viewType === "dashboard" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "dashboard" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "dashboard" ? "scale(1.05)" : "scale(1)" }}>
+            <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
             </Avatar>
           </span>
         </Badge>

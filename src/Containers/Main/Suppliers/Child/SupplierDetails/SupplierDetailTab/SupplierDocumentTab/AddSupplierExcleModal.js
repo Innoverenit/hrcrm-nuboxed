@@ -1,8 +1,6 @@
 import React, { lazy, Suspense, Component } from "react";
 import { Button,Switch } from "antd";
 import { StyledDrawer} from "../../../../../../../Components/UI/Antd";
-import AddSupplierDocumentForm from "./AddSupplierDocumentForm";
-import { BundleLoader } from "../../../../../../../Components/Placeholder";
 import AddSupplierExcleForm from "./AddSupplierExcleForm";
 import AddManualForm from "./AddManualForm";
 
@@ -28,7 +26,8 @@ class AddSupplierExcleModal extends Component {
     return (
       <>
         <StyledDrawer
-          title="Add Inventory"
+          title=" Add Inventory"      
+          // {this.props.translatedMenuItems[12]}       
           width="90%"
           visible={supplierExcleUploadModal}
           destroyOnClose
@@ -52,9 +51,11 @@ class AddSupplierExcleModal extends Component {
         <Suspense fallback={<div>Loading...</div>}>
           {this.state.isManual ? (
            
-           <AddManualForm/>
+           <AddManualForm  translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}/>
           ) : (
-            <AddSupplierExcleForm />
+            <AddSupplierExcleForm 
+            selectedLanguage={this.props.selectedLanguage}/>
           )}
         </Suspense>
       </div>

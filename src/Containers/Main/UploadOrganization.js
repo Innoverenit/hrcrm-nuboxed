@@ -1,4 +1,4 @@
-import { UploadOutlined } from '@ant-design/icons'
+import UploadIcon from '@mui/icons-material/Upload';
 import React from 'react'
 import { connect } from "react-redux";
 
@@ -10,7 +10,7 @@ function UploadOrganization(props) {
   return (
     <>
     <div>
-        <UploadOutlined
+        <UploadIcon
           onClick={() => {
           
             props.handleUpdateOrganizationModal(true);

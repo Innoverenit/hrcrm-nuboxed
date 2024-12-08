@@ -36,14 +36,14 @@ export const ViewSwitcher = ({
       </button> */}
 
       <div className="Switch">
-        <label className="Switch_Toggle">
+        <div className="Switch_Toggle">
           <input
             type="checkbox"
             defaultChecked={isChecked}
             onClick={() => onViewListChange(!isChecked)}
           />
           <span className="Slider" />
-        </label>
+        </div>
         Show Task List
       </div>
     </div>

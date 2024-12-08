@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { StyledTable } from "../../../../../Components/UI/Antd";
@@ -10,81 +10,25 @@ import { BundleLoader } from "../../../../../Components/Placeholder";
 function LeadQualifiedTable (props) {
     useEffect(()=>{
       if (props.timeRangeType === "today"){
-        props.getLeadQualified(props.userId,props.startDate,props.endDate);
+        props.getLeadQualified(props.userId,props.endDate,props.startDate);
       }
       else {
-        props.getLeadQualified(props.userId,props.startDate,props.endDate); 
+        props.getLeadQualified(props.userId,props.endDate,props.startDate); 
       }
-    }, [props.userId,props.startDate,props.endDate]);
+    }, [props.userId,props.endDate,props.startDate]);
 
-    // const columns = [
-    //   {
-    //     title: <FormattedMessage
-    //       id="app.name"
-    //       defaultMessage="Name"
-    //     />,
-    //     width: "30%",
-    //     dataIndex: "name",
-    //   },
-     
-    //   {
-    //     title: <FormattedMessage
-    //       id="app.emailId"
-    //       defaultMessage="Email Id"
-    //     />,
-    //     width: "22%",
-    //     dataIndex: "email",
-    //     defaultSortOrder: 'descend',
-    //     // sorter: (a, b) => a.proposalAmount - b.proposalAmount,
-  
-    //     // render: (name, item, i) => {
-    //     //   return (
-    //     //     <span>
-    //     //       <CurrencySymbol currencyType={this.props.currency} />{" "}
-    //     //       {`${item.proposalAmount}`}
-    //     //     </span>
-    //     //   );
-    //     // },
-    //   },
-    //   {
-    //     // title: "Status",
-    //     title: <FormattedMessage
-    //       id="app.companyName"
-    //       defaultMessage="Company Name"
-    //     />,
-    //     width: "25%",
-    //     dataIndex: "companyName",
-    //     // sorter: (a, b) => {
-    //     //   const stageNameA = a.stageName && a.stageName.toLowerCase();
-    //     //   const stageNameB = b.stageName && b.stageName.toLowerCase();
-    //     //   if (stageNameA < stageNameB) {
-    //     //     return -1;
-    //     //   }
-    //     //   if (stageNameA > stageNameB) {
-    //     //     return 1;
-    //     //   }
-    //     //   return 0;
-    //     // },
-    //   },
-    // ];
     if (props.fetchingLeadsQualified) return <BundleLoader/>;
   
     return (
       <>
-        <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
           <div className=" md:w-[6.5rem]">
-        <FormattedMessage
-                  id="app.name"
-                  defaultMessage="Name"
-                /></div>
+       Name</div>
  
-        <div className="md:w-[10.1rem]">  <FormattedMessage id="app.emailId" defaultMessage="Email Id" /></div>
+        <div className="md:w-[10.1rem]"> Email Id</div>
                  <div className="md:w-[10.1rem]">
-                 <FormattedMessage
-          id="app.companyName"
-          defaultMessage="Company Name"
-        /></div>
+               Company Name</div>
                      
                      
       

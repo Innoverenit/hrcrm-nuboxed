@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Input, Tooltip, Avatar } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import GridViewIcon from '@mui/icons-material/GridView';
 import CategoryIcon from '@mui/icons-material/Category';
-import { AreaChartOutlined } from '@ant-design/icons';
+import DonutSmallIcon from '@mui/icons-material/DonutSmall';
 
 const { Search } = Input;
 
@@ -19,7 +19,7 @@ const LeavesActionLeft = (props) => {
   return (
     <div class=" flex items-center">
       <Tooltip
-        title={<FormattedMessage id="app.Myleaves" defaultMessage="My Leaves" />}
+        title="My Leaves"
       >  <span
         class=" mr-1 text-sm cursor-pointer"
         onClick={() => props.setLeavesViewType("tile")}
@@ -27,7 +27,7 @@ const LeavesActionLeft = (props) => {
           color: props.viewType === "tile" && "#1890ff",
         }}
       >
-          <Avatar style={{ background: props.viewType === "tile" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: props.viewType === "tile" ? "#f279ab" : "#28a355" }}>
             <GridViewIcon className='text-white !text-icon' />
           </Avatar>
         </span>
@@ -47,7 +47,7 @@ const LeavesActionLeft = (props) => {
             cursor: "pointer",
           }}
         >
-          <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#28a355" }}>
             <CategoryIcon className='text-white !text-icon'
             // icon={solid('users')}
             />
@@ -68,8 +68,8 @@ const LeavesActionLeft = (props) => {
             cursor: "pointer",
           }}
         >
-          <Avatar style={{ background: props.viewType === "grant" ? "#f279ab" : "#4bc076" }}>
-            <AreaChartOutlined className='text-white !text-icon'
+          <Avatar style={{ background: props.viewType === "grant" ? "#f279ab" : "#28a355" }}>
+            <DonutSmallIcon className='text-white !text-icon'
             // icon={solid('users')}
             />
           </Avatar>
@@ -88,8 +88,8 @@ const LeavesActionLeft = (props) => {
               cursor: 'pointer',
             }}
           >
-            <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-              <FormattedMessage id="app.all" defaultMessage="ALL" />
+            <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355" }}>
+            ALL
 
             </Avatar>
           </span>

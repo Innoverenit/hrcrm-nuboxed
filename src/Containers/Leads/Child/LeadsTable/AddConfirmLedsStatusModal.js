@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import LeadsConfirmStatusForm from "./LeadsConfirmStatusForm";
@@ -10,17 +10,17 @@ const AddConfirmLedsStatusModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.convertasProspect"
-          defaultMessage="Convert as Prospect"
-        />}
+        title="Convert as Prospect"
+      
         width={drawerWidth}
         visible={props.addLeadsConfirmationModal}
         onClose={() => props.handleLeadsConfirmationModal(false)}
       >
         <Suspense fallback={<BundleLoader />}>
           {/* helooo */}
-          <LeadsConfirmStatusForm  rowdata={props.rowdata}  />{" "}
+          <LeadsConfirmStatusForm  rowdata={props.rowdata} 
+             translateText={props.translateText}
+             selectedLanguage={props.selectedLanguage} />{" "}
         </Suspense>
       </StyledDrawer>
     </>

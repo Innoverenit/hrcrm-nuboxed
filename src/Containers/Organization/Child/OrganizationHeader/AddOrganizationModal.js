@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const AddOrganizationForm = lazy(() =>
@@ -11,12 +11,9 @@ const AddOrganizationModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.addOrganization"
-          defaultMessage="Add Organization"
-        />}
+        title="Add Organization"
+       
         width={drawerWidth}
-        style={{marginTop:"3rem"}}
         visible={props.addOrganizationModal}
         closable
         destroyOnClose
@@ -24,7 +21,9 @@ const AddOrganizationModal = (props) => {
         onClose={() => props.handleOrganizationModal(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <AddOrganizationForm />{" "}
+          <AddOrganizationForm 
+           selectedLanguage={props.selectedLanguage}
+           translateText={props.translateText}/>{" "}
         </Suspense>
       </StyledDrawer>
     </>

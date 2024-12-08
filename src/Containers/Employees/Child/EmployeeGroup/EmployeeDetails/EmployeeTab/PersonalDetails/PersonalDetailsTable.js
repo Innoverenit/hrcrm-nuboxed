@@ -1,12 +1,12 @@
 import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import {
   StyledPopconfirm,
 } from "../../../../../../../Components/UI/Antd";
 import DeleteIcon from '@mui/icons-material/Delete';
-import BorderColorIcon from "@mui/icons-material/BorderColor";
+import BorderColorIcon from "@mui/icons-material/BorderColor"; 
 import DownloadIcon from '@mui/icons-material/Download';
 import {
   handleUpdatePersonalDetailsModal,
@@ -15,16 +15,49 @@ import {
   deletePersonalTable,
 } from "../../../../../../Profile/ProfileAction";
 import { base_url } from "../../../../../../../Config/Auth";
-import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 import { Tooltip } from "antd";
+import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdatePersonalDetailsModal =lazy(()=>import("./UpdatePersonalDetailsModal"));
 
 class EducationTable extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+
   componentDidMount() {
     const { getDocumentDetails, employeeId } = this.props;
+    this.fetchMenuTranslations();
+    
 
     getDocumentDetails(this.props.employeeId);
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "110",//0 "Name"
+        "71",//1  type
+        "1698",//2Document ID number
+        "147",//3Description
+       "1259" //  "Do you want to delete?"
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   // }
   render() {
     const {
@@ -39,37 +72,29 @@ class EducationTable extends Component {
 
  
     if (fetchingDocumentDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;
     return (
       <>
 
-<div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-          <div className=" md:w-[6.5rem]">
-        <FormattedMessage
-                  id="app.name"
-                  defaultMessage="Name"
-                /></div>
+<div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+          <div className=" md:w-[6.5rem]"> {this.state.translatedMenuItems[0]}
+        
+                </div>
  
         <div className="md:w-[10.1rem]"> 
-         <FormattedMessage id="app.type" defaultMessage="Type" /></div>
+        {this.state.translatedMenuItems[1]} 
+         </div>
                  <div className="md:w-[10.1rem]">
-                 <FormattedMessage
-          id="app.idNo"
-          defaultMessage="Document ID number"
-        /></div>
+                 {this.state.translatedMenuItems[2]} 
+        </div>
                        <div className=" md:w-[8.1rem]">
-                       <FormattedMessage id="app.description" defaultMessage="Description" /></div>
-
-                      
-       
-        
-        <div className="w-[10.2rem]"></div>
-
-      </div>
+                       {this.state.translatedMenuItems[3]} 
+                       </div>
+                       </div>
    
         
       {documentDetails.map((item) => { 
@@ -165,7 +190,9 @@ class EducationTable extends Component {
 
                                     <div class=" text-xs  font-poppins text-center">
                                     <StyledPopconfirm
-            title="Do you want to delete?"
+            title={this.state.translatedmenuitems[4]}
+            // "Do you want to delete?"
+ 
             onConfirm={() => deletePersonalTable(item.id)}
           >
             <DeleteIcon className=" cursor-pointer !text-icon text-red-600"
@@ -199,6 +226,8 @@ class EducationTable extends Component {
         /> */}
 
         <UpdatePersonalDetailsModal
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
           updatePersonalDetailsModal={updatePersonalDetailsModal}
           handleUpdatePersonalDetailsModal={handleUpdatePersonalDetailsModal}
         />

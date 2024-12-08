@@ -1,7 +1,6 @@
 import React, { Component, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import LockIcon from '@mui/icons-material/Lock';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
 import AddRequirementModal from "../OpportunityTab/Recruitment/AddRequirementModal";
@@ -49,7 +48,7 @@ import {
   getCandidateById,
   getTopicsByCandidateId,
 } from "../../../../Candidate/CandidateAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import EditRecruitForm from "../OpportunityTab/Recruitment/EditRecruitForm";
 import { Suspense } from "react";
 import { elipsize } from "../../../../../Helpers/Function/Functions";
@@ -60,10 +59,8 @@ import {
   deleteRequirementData,
 } from "../../../OpportunityAction";
 import SubTableClickCandidate from "../OpportunityTab/Recruitment/SubTableClickCandidate";
-import {
-  EyeInvisibleOutlined,
-  EyeOutlined,
-} from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 class RecruitmentClosedTable extends Component {
   constructor(props) {
@@ -250,12 +247,7 @@ class RecruitmentClosedTable extends Component {
               <>
                 <Badge count={item.number} style={{ right: "1px" }}>
                   <span
-                  // onClick={() => handleDispatch(item.dispatchId)}
-                  // style={{
-                  //   cursor: "pointer",
-                  //   textDecoration: "underline",
-                  //   color: item.pickUpInd ? "black" : "tomato"
-                  // }}
+                 
                   >
                     {`${item.jobOrder} `} &nbsp;
                   </span>
@@ -266,25 +258,13 @@ class RecruitmentClosedTable extends Component {
         },
       },
 
-      // {
-      //   title:"",
-      //     width: "8%",
-      //   dataIndex:"number",
-
-      // },
       {
-        //title: "Requirement",
-        title: (
-          <FormattedMessage
-            id="app.requirementName"
-            defaultMessage="Requirement"
-          />
-        ),
+        title:"Requirement",
         dataIndex: "requirementName",
         width: "13%",
         render: (name, item, i) => {
-          const currentdate = moment().format("DD/MM/YYYY");
-          const date = moment(item.creationDate).format("DD/MM/YYYY");
+          const currentdate = dayjs().format("DD/MM/YYYY");
+          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           console.log(item);
 
           return {
@@ -389,7 +369,7 @@ class RecruitmentClosedTable extends Component {
         width: "10%",
         dataIndex: "creationDate",
         render: (text, item) => {
-          const creationDate = moment(item.creationDate).format("ll");
+          const creationDate = dayjs(item.creationDate).format("ll");
 
           return {
             props: {
@@ -408,8 +388,7 @@ class RecruitmentClosedTable extends Component {
       },
 
       {
-        //title: "Start",
-        title: <FormattedMessage id="app.processName" defaultMessage="Start" />,
+        title: "Start",
         width: "9%",
         render: (name, item, i) => {
           console.log(item);
@@ -424,7 +403,7 @@ class RecruitmentClosedTable extends Component {
               },
             },
 
-            children: <span>{moment(item.avilableDate).format("ll")}</span>,
+            children: <span>{dayjs(item.avilableDate).format("ll")}</span>,
           };
         },
         sorter: (a, b) => {
@@ -439,7 +418,7 @@ class RecruitmentClosedTable extends Component {
       },
       {
         //title: "Rate/hr",
-        title: <FormattedMessage id="app.billing" defaultMessage="Billing" />,
+        title:"Billing",
         dataIndex: "billing",
         width: "8%",
         //   defaultSortOrder: "descend",
@@ -465,211 +444,6 @@ class RecruitmentClosedTable extends Component {
           };
         },
       },
-      // {
-      //   //title: "Stages",
-      //   title: <FormattedMessage
-      //     id="app.callType"
-      //     defaultMessage="Stages"
-      //   />,
-      //   dataIndex: "callType",
-      //   width: "6%",
-      //   render: (name, item, i) => {
-      //     var findProbability = 0;
-      //     item.stageList.forEach((element) => {
-      //       if (element.stageId === item.stageId) {
-      //         findProbability = element.probability;
-      //       }
-      //     });
-      //     return (
-      //       <span>
-      //         <Dropdown
-      //           overlay={
-      //             <div>
-      //               <Menu mode="horizontal">
-      //                 <Menu.Item
-      //                   style={{
-      //                     paddingLeft: 5,
-      //                     paddingRight: 5,
-      //                     backgroundColor: "#F5F5F5",
-      //                   }}
-      //                 >
-      //                   <RecruitmentStages
-      //                     rec={item}
-      //                     stageId={item.stageId}
-      //                     candidateName={item.candidateName}
-      //                     approveInd={item.approveInd}
-      //                     rejectInd={item.rejectInd}
-      //                     stageClick={(stageId) => {
-      //                       this.props.LinkStageRecruit(
-      //                         {
-      //                           opportunityId: this.props.opportunityId,
-      //                           stageId: stageId,
-      //                           recruitmentProcessId: item.recruitmentProcessId,
-      //                           recruitmentId: item.recruitmentId,
-      //                           profileId: item.profileId,
-      //                         },
-      //                         this.props.emailSendStage({
-      //                           opportunityId: item.opportunityId,
-      //                           userId: this.props.userId,
-      //                           profileId: item.profileId,
-      //                           stageId: stageId,
-      //                           candidateId: item.contactId,
-      //                         })
-      //                       );
-      //                     }}
-      //                   />{" "}
-      //                 </Menu.Item>
-      //               </Menu>
-      //             </div>
-      //           }
-      //           trigger={["click"]}
-      //         >
-      //           <Tooltip title={item.stageName}>
-      //             {" "}
-      //             <Progress
-      //               type="circle"
-      //               style={{ cursor: "pointer" }}
-      //               percent={findProbability}
-      //               width={30}
-      //               strokeColor={"#005075"}
-      //             />
-      //           </Tooltip>
-      //         </Dropdown>
-      //       </span>
-      //     );
-      //   },
-      // },
-
-      // {
-      //   title: "",
-      //   dataIndex: "callType",
-      //   width: "6%",
-      //   render: (name, item, i) => {
-      //     return (
-      //       <span>
-      //         {item.candidateName ? (
-      //           <>
-      //             {item.approveInd ? (
-      //               <>
-      //                 <Tooltip //title={"Offer rolled out"}
-      //                   title={<FormattedMessage
-      //                     id="app.selected"
-      //                     defaultMessage="Selected"
-      //                   />}
-
-      //                 >
-      //                   <Icon
-      //                     type="check-circle"
-      //                     theme="twoTone"
-      //                     twoToneColor="#52c41a"
-      //                     size={140}
-      //                     style={{ fontSize: "1.2em", }}
-      //                   />
-      //                 </Tooltip>
-      //               </>
-      //             ) : item.rejectInd ? (
-      //               <>
-      //                 <Tooltip title={"Dropped"}>
-      //                   {" "}
-      //                   <Icon
-      //                     type="stop"
-      //                     theme="twoTone"
-      //                     twoToneColor="red"
-      //                     size={140}
-      //                     style={{ fontSize: "1.2em", marginLeft: "0.875em" }}
-      //                   />
-      //                 </Tooltip>
-      //               </>
-      //             ) : (
-
-      //               <>
-
-      //                 <Tooltip //title={"Offer"}
-      //                   title={<FormattedMessage
-      //                     id="app.select"
-      //                     defaultMessage="Select"
-      //                   />}
-
-      //                 >
-      //                   <Icon
-      //                     type="check-circle"
-      //                     theme="twoTone"
-      //                     twoToneColor="#52c41a"
-      //                     size={140}
-      //                     style={{ fontSize: "1.2em" }}
-      //                     onClick={() => {
-      //                       this.props.LinkStatusRecruit(
-      //                         {
-      //                           approveInd: true,
-      //                           opportunityId: item.opportunityId,
-      //                           candidateId: item.candidateId,
-      //                           // stageId: item.stageId,
-      //                           // recruitmentProcessId: item.recruitmentProcessId,
-      //                           recruitmentId: item.recruitmentId,
-      //                           profileId: item.profileId,
-      //                         },
-
-      //                         (data) =>
-      //                           this.handleCallBack(
-      //                             data,
-
-      //                             item.opportunityId,
-      //                             item.profileId
-      //                           )
-      //                       );
-      //                     }}
-      //                   />
-      //                 </Tooltip>
-
-      //                 &nbsp; &nbsp;
-      //                 <Tooltip //title={"Drop"}
-      //                   title={<FormattedMessage
-      //                     id="app.drop"
-      //                     defaultMessage="Drop"
-      //                   />}
-
-      //                 >
-      //                   <Icon
-      //                     type="stop"
-      //                     theme="twoTone"
-      //                     twoToneColor="red"
-      //                     size={140}
-      //                     style={{ fontSize: "1.2em" }}
-      //                     onClick={() => {
-      //                       this.props.LinkStatusRecruit(
-      //                         {
-      //                           rejectInd: true,
-      //                           opportunityId: item.opportunityId,
-      //                           // stageId: item.stageId,
-      //                           candidateId: item.candidateId,
-      //                           // recruitmentProcessId: item.recruitmentProcessId,
-      //                           recruitmentId: item.recruitmentId,
-      //                           profileId: item.profileId,
-      //                         },
-      //                         (data) =>
-      //                           this.handleCallBack(
-      //                             data,
-
-      //                             item.opportunityId,
-      //                             item.profileId
-      //                           )
-      //                       );
-      //                     }}
-      //                   />
-      //                 </Tooltip>
-      //               </>
-      //             )}
-      //           </>
-      //         ) : null}
-
-      //       </span>
-
-      //     );
-
-      //   },
-
-      // },
-
       {
         title: "",
         width: "2%",
@@ -729,11 +503,7 @@ class RecruitmentClosedTable extends Component {
         },
       },
       {
-        //title: "Skill Set",
-        title: (
-          <FormattedMessage id="app.callType" defaultMessage="Skill Set" />
-        ),
-
+        title: "Skill Set",
         width: "15%",
         render: (name, item, i) => {
           console.log(this.props.SkillList);
@@ -758,21 +528,6 @@ class RecruitmentClosedTable extends Component {
                   skillName={item.skillName}
                   candidatetList={item.candidatetList}
                   fullName={item.fullName}
-                  // recruitmentId={item.recruitmentId}
-                  // approveInd={item.approveInd}
-                  // stageInd={item.stageInd}
-                  // rejectInd={item.rejectInd}
-                  // filter={(value) => {
-                  //   this.props.LinkSkillsRecruit({
-                  //     opportunityId: item.opportunityId,
-                  //     stageId: item.stageId,
-                  //     recruitmentProcessId: item.recruitmentProcessId,
-                  //     // skillSet: value,
-                  //     skillSetDetailsId:value,
-                  //     recruitmentId: item.recruitmentId,
-                  //     profileId: item.profileId,
-                  //   });
-                  // }}
                 />
               </span>
             ),
@@ -828,46 +583,6 @@ class RecruitmentClosedTable extends Component {
           };
         },
       },
-
-      //     {
-      //       title:"",
-      //         width: "3%",
-      //     render:(name,item,i)=>{
-      //       console.log(this.state.skillSetData)
-      //     // const IconShow = this.state.skillSetData.skillName !== {} ? true : false;
-      //     return(
-      //       <>
-      //       {(this.state.skillSetData || item.skillName) &&
-      //       <span
-      //       // type="edit"
-      //       style={{ cursor: "pointer",color:"tomato" }}
-      //       onClick={() => {
-      //            this.props.LinkSkillsRecruit({
-      //                   opportunityId: item.opportunityId,
-      //                   stageId: item.stageId,
-      //                   recruitmentProcessId: item.recruitmentProcessId,
-      //                   skillName:this.state.skillSetData || item.skillName,
-      //                   recruitmentId: item.recruitmentId,
-      //                   profileId: item.profileId,
-      //                 });
-      //                 this.props.getRecruiter(
-      //                    this.state.skillSetData || item.skillName,
-      //                     item.profileId,
-      //                    item.opportunityId,
-
-      //                 );
-      //                 this.handleCandidateDataSet(item);
-      //             this.props.handleRecruiterModal(true);
-      //       }}
-      //       >
-      //      <FontAwesomeIcon icon={solid('person-circle-question')} />
-      //       </span>
-      //         }
-      //       </>
-      //     )
-      //   }
-      // },
-
       {
         title: "Talent",
         dataIndex: "candidatetList",
@@ -885,13 +600,7 @@ class RecruitmentClosedTable extends Component {
             },
             children: (
               <span>
-                {/* <CandidateLoadMore
-              candidatetList={item.candidatetList}
-              handleClickCandidateName={this.handleClickCandidateName}
-              candidateNo={item.candidateNo}
-              fullName={item.fullName}
-              /> */}
-                <FlexContainer justifyContect="space-evenly">
+               <FlexContainer justifyContect="space-evenly">
                   {item.candidatetList &&
                     item.candidatetList.map((candidate, i) => {
                       console.log(candidate);
@@ -905,9 +614,7 @@ class RecruitmentClosedTable extends Component {
                             }}
                           >
                             <MultiAvatar
-                              primaryTitle={candidate.fullName || ""}
-                              // imageId={item.imageId}
-                              // imageURL={item.imageURL}
+                              primaryTitle={candidate.fullName || ""}                          
                               imgWidth={"30"}
                               imgHeight={"30"}
                             />
@@ -929,102 +636,9 @@ class RecruitmentClosedTable extends Component {
           };
         },
       },
-      // {
-      //   title: "Candidate",
-      //   dataIndex: "candidateName",
-      //   width: "12%",
-      //   render: (name, item, i) => {
-      //     // const fullName = ` ${item.salutation || ""} ${item.firstName ||
-      //     //   ""} ${item.middleName || ""} ${item.lastName || ""}`;
-      //     //   const currentdate = moment().format("DD/MM/YYYY");
-      //     //   const date = moment(item.creationDate).format("DD/MM/YYYY");
-      //     //   console.log(date, currentdate, currentdate === date);
-      //     return (
-      //       <>
-      //         <Link
-      //           toUrl={`/candidate/${item.candidateId}`}
-      //           title={`${item.candidateName || ""} `}
-      //         />
-
-      //       </>
-      //     );
-      //   },
-      //   //  ...this.getColumnSearchProps('candidateName'),
-
-      // },
-      // {
-      //   title: "Cost",
-      //   dataIndex: "candidateBilling",
-      //   width: "6%",
-      //   render: (name, item, i) => {
-      //     console.log(item);
-      //     return (
-      //       <>
-      //         {item.candidateBilling} {item.currency}
-      //       </>
-      //     );
-      //   },
-      //   //  ...this.getColumnSearchProps('candidateName'),
-
-      // },
-
-      // {
-      //   //title: "Candidate",
-      //   title: <FormattedMessage
-      //     id="app.callType"
-      //     defaultMessage="Candidate"
-      //   />,
-      //   dataIndex: "callType",
-      //   width: "24%",
-      //   render: (name, item, i) => {
-      //     return (
-      //       <span>
-      //         <RecruitmentContact
-      //           candidateData={item.candidateList}
-      //           stageInd={item.stageInd}
-      //           name={item.candidateName}
-      //           approveInd={item.approveInd}
-      //           rejectInd={item.rejectInd}
-      //           // contact={(value) => {
-      //           //   //debugger;
-      //           //   this.props.LinkCandidateRecruit({
-      //           //     opportunityId: item.opportunityId,
-      //           //     stageId: item.stageId,
-      //           //     recruitmentProcessId: item.recruitmentProcessId,
-      //           //     contactId: value,
-      //           //     recruitmentId: item.recruitmentId,
-      //           //     profileId: item.profileId,
-      //           //   });
-      //           // }}
-      //         />
-      //       </span>
-      //     );
-      //   },
-      // },
-
-      // {
-      //   title: "OnBoard",
-      //   dataIndex: "callType",
-      //   width: "7%",
-      //   render: (text, item) => {
-      //     return (
-      //       <>
-      //         <RecruitmentSwitch
-      //           contactId={item.contactId}
-      //           profileId={item.profileId}
-      //           opportunityId={item.opportunityId}
-      //           recruitmentId={item.recruitmentId}
-      //           candidateInd={item.candidateInd}
-      //           approveInd={item.approveInd}
-      //           rejectInd={item.rejectInd}
-      //         />
-      //       </>
-      //     );
-      //   },
-      // },
+      
       {
-        //title: "Sponsor",
-        title: <FormattedMessage id="app.callType" defaultMessage="Sponsor" />,
+        title: "Sponsor",
         dataIndex: "callType",
         width: "7%",
         render: (text, item) => {
@@ -1056,34 +670,6 @@ class RecruitmentClosedTable extends Component {
           };
         },
       },
-      // {
-      //   title: "",
-      //   width: "2%",
-      //   render: (name, item, i) => {
-      //     return (
-      //       <Tooltip
-      //         //title={"Copy"}
-      //         title={<FormattedMessage
-      //           id="app.copy"
-      //           defaultMessage="Copy"
-      //         />}
-      //       >
-      //         <Icon
-      //           type="copy"
-      //           style={{ cursor: "pointer" }}
-      //           onClick={() =>
-      //             this.handleCopy(
-      //               item.recruitmentId,
-      //               item.recruitmentProcessId,
-      //               item.stageList[1].stageId,
-      //               this.props.opportunityId
-      //             )
-      //           }
-      //         />
-      //       </Tooltip>
-      //     );
-      //   },
-      // },
       {
         title: "",
         dataIndex: "callType",
@@ -1107,15 +693,10 @@ class RecruitmentClosedTable extends Component {
                 {item.candidateName ? (
                   <>
                     {close ? (
-                      <Tooltip //title="Close Details"
-                        title={
-                          <FormattedMessage
-                            id="app.closedetails"
-                            defaultMessage="Close Details"
-                          />
-                        }
+                      <Tooltip title="Close Details"
+                        
                       >
-                        <EyeInvisibleOutlined
+                        <VisibilityOffIcon
                           type="eye-invisible"
                           onClick={() => this.handleCloseIconClick()}
                           style={{
@@ -1130,15 +711,10 @@ class RecruitmentClosedTable extends Component {
                       </Tooltip>
                     ) : (
                       <>
-                        <Tooltip //title="Access Details"
-                          title={
-                            <FormattedMessage
-                              id="app.accessdetails"
-                              defaultMessage="Access Details"
-                            />
-                          }
+                        <Tooltip title="Access Details"
+                          
                         >
-                          <EyeOutlined
+                          <VisibilityIcon
                             type="eye"
                             onClick={() =>
                               this.handleIconClick(
@@ -1309,42 +885,8 @@ class RecruitmentClosedTable extends Component {
           pagination={false}
           columns={columns}
           dataSource={this.props.closedRequiremnt}
-          //   loading={
-          //     this.props.user.department === "Recruiter"
-          //       ? this.props.fetchingRecruiterRequirement || this.props.fetchingRecruiterRequirementError
-          //       : this.props.fetchingRecruitToOpportunity || this.props.fetchingRecruitToOpportunityError
-          //   }
           onChange={console.log("call onChangeHere...")}
-          // expandedRowRender={(record) => {
-          //   return (
-          //     <div style={{ height: "20vh", overflow: "scroll" }}>
-          //       <p style={{ fontWeight: "bold", margin: 0 }}>Type</p>
-          //       <p>{`${record.type}`}</p>
-
-          //       <p style={{ fontWeight: "bold", margin: 0 }}>Workflow</p>
-          //       <p>{` ${record.processName}`}</p>
-
-          //       <p style={{ fontWeight: "bold", margin: 0 }}>Sponsor</p>
-          //       <p style={{ margin: 0 }}>{` ${record.sponserName || ""}`}</p>
-          //       <p style={{ fontWeight: "bold", margin: 0 }}>
-          //         Sponsor Approved on
-          //       </p>
-          //       <p>{`${record.sponserInd
-          //         ? moment(record.sponserOfferDate).format("lll")
-          //         : ""
-          //         }`}</p>
-          //       <p style={{ fontWeight: "bold", margin: 0 }}>
-          //         Candidate Approved on
-          //       </p>
-          //       <p>{`${record.candidateOfferAccept} ${record.candidateInd
-          //         ? moment(record.candidateOfferDate).format("lll")
-          //         : ""
-          //         }`}</p>
-          //       <p style={{ fontWeight: "bold", margin: 0 }}>Description</p>
-          //       <p>{record.description}</p>
-          //     </div>
-          //   );
-          // }}
+        
         />
         <Suspense fallback={"Loading"}>
           {this.state.subTableVisible && (
@@ -1366,10 +908,7 @@ class RecruitmentClosedTable extends Component {
         )}
 
         <StyledModal
-          //title="Position"
-          title={
-            <FormattedMessage id="app.position" defaultMessage="Position" />
-          }
+          title="Position"        
           width="24%"
           visible={this.state.editModal}
           maskClosable={false}
@@ -1385,13 +924,7 @@ class RecruitmentClosedTable extends Component {
           </Suspense>
         </StyledModal>
         <StyledModal
-          // title="Select Sponsor"
-          title={
-            <FormattedMessage
-              id="app.selectsponsor"
-              defaultMessage="Select Sponsor"
-            />
-          }
+           title="Select Sponsor"
           width="20%"
           visible={this.props.addSponsorModal}
           maskClosable={false}

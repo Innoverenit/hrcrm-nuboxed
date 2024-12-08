@@ -3,16 +3,15 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Formik, Form, Field, FastField } from "formik";
-import { FormWrapper, Input } from "./styled";
+import { Input } from "./styled";
 import { ValidationError} from "../../Components/UI/Elements";
-import { EyeInvisibleOutlined,EyeOutlined,
-} from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import Button from "antd/lib/button";
 import { addOnboard, generateOtpByEmail, validateOtp } from "./AuthAction";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
-   import FWLogo from "../../Assets/Images/logo_22 copy.png";
-import { FlexContainer } from "../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
+   import FWLogo from "../../Assets/Images/logo_22.webp";
+
 
 
 class OnBoardOrganizationPage extends Component {
@@ -93,14 +92,13 @@ class OnBoardOrganizationPage extends Component {
             }}
           >
             <img
-              className="big-logo"
+              className="w-18 h-18"
               src={FWLogo}
-              style={{ width: 200 }}
               alt="Tekorero logo"
             />
             <br />
      
-            <FormWrapper width="25em">
+            <div class=" w-[25rem] p-4  shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white">
               <Formik
                 enableReinitialize
                 initialValues={{
@@ -121,26 +119,15 @@ class OnBoardOrganizationPage extends Component {
                       className="gvbmIs"
                       name="organizationName"
                       type="text"
-                    placeholder="Organization Name"
-                      // placeholder={
-                      //   <FormattedMessage
-                      //   id="app.organizationName"
-                      //   defaultMessage="Organization Name"
-                      // />
-                      // }
-                    
+                    placeholder="Organization Name"                                       
                       component={this.InputComponent}
                     />
                     < div class="mt-3" />
                       <FastField
                       label="Industry"
     name="industry"
-    placeholder={
-      <FormattedMessage
-      id="app.selectedIndustry"
-      defaultMessage="Select Industry"
-    />
-    }
+    placeholder="Select Industry"
+
     // placeholder="Select Industry" 
     isColumn
     options={["Real Estate", "Manufacturing", "Refurbish"]}
@@ -151,13 +138,8 @@ class OnBoardOrganizationPage extends Component {
                     < div class="mt-3" />
                     <FastField
                             name="preferedLanguage"
-                            placeholder={
-                              <FormattedMessage
-                              id="app.selectedLanguage"
-                              defaultMessage="Select Language"
-                            />
-                            }
-                            // placeholder="Select Date"
+                          
+                            placeholder="Select Date"
                             isColumn
                             options={["English", "Dutch"]}
                             component={SelectComponent}
@@ -169,13 +151,8 @@ class OnBoardOrganizationPage extends Component {
                     <div class=" flex flex-row justify-between">
                     <FastField
                             name="fiscalStartDate"
-                            placeholder={
-                              <FormattedMessage
-                              id="app.selectedDate"
-                              defaultMessage="Select Date"
-                            />
-                            }
-                            // placeholder="Select Date"
+                            
+                            placeholder="Select Date"
                             isColumn
                             options={["1", "2","3","4","5", "6","7","8","9", "10","11","12","13", "14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"]}
                             component={SelectComponent}
@@ -238,14 +215,14 @@ class OnBoardOrganizationPage extends Component {
                         />
                       </div>
                       {this.state.show ? (
-                        <EyeOutlined
+                        <VisibilityIcon
                           type="eye"
                           onClick={this.handleClick}
                           style={{ marginLeft: "-1.25em",  }}
                           size="24"
                         />
                       ) : (
-                        <EyeInvisibleOutlined
+                        <VisibilityOffIcon
                           type="eye-invisible"
                           onClick={this.handleClick}
                           size="24"
@@ -255,7 +232,7 @@ class OnBoardOrganizationPage extends Component {
                     </div>
                         < div class="mt-3" />
                         <div className="flex flex-row">
-                      <FlexContainer justifyContent="space-between">
+                        <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                         <div style={{ width: "100%" }}>
                           <Field
                             name="confirmPassword"
@@ -267,7 +244,7 @@ class OnBoardOrganizationPage extends Component {
                           />
                         </div>
                         {this.state.show1 ? (
-                          <EyeOutlined
+                          <VisibilityIcon
                             type="eye"
                             onClick={this.handleClick1}
                             style={{
@@ -277,7 +254,7 @@ class OnBoardOrganizationPage extends Component {
                           // style={{ size: 24 }}
                           />
                         ) : (
-                          <EyeInvisibleOutlined
+                          <VisibilityOffIcon
                             type="eye-invisible"
                             onClick={this.handleClick1}
                             style={{
@@ -286,37 +263,9 @@ class OnBoardOrganizationPage extends Component {
                             }}
                           // style={{ size: 24 }}
                           />
-                        )}
-                        {/* <div >
-                          <Button
-                            type="primary"
-                            onClick={() => {
-                              this.props.generateOtpByEmail({
-                                emailId: this.props.emailId
-                              })
-                              // this.handleOtpField()
-                            }}
-                            style={{ marginLeft: "-6.25em", marginTop: "0.4em" }}
-
-                          >
-                            <ArrowRightOutlined />
-                          </Button>
-                        </div> */}
-                      </FlexContainer>
-                      {/* {values.password.length &&
-                        values.password === values.confirmPassword ? (
-                        <CheckCircleOutlined
-                          type="check-circle"
-                          theme="twoTone"
-                          twoToneColor="#52c41a"
-                          size={80}
-                          style={{
-                            marginLeft: "1.25em",
-                            marginTop: "0.875em",
-                            fontSize: "1.5625em",
-                          }}
-                        />
-                      ) : null}  */}
+                        )}                      
+                      </div>
+                     
                     </div>
                   < div class="mt-3" />
                     <Button
@@ -331,7 +280,7 @@ class OnBoardOrganizationPage extends Component {
                 )}
               </Formik>
            
-            </FormWrapper>
+            </div>
             < div class="mt-3" />
 
            

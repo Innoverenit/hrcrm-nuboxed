@@ -1,13 +1,12 @@
-import React, { useEffect, useState,useMemo,lazy } from 'react'
+import React, { useEffect, useState,} from 'react'
 import { StyledTable } from '../../../../Components/UI/Antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
-import { FormattedMessage } from 'react-intl';
+import {  } from 'react-intl';
 import { Tooltip,Button,Input } from "antd";
 import SearchIcon from '@mui/icons-material/Search';
 import Highlighter from 'react-highlight-words';
-import jsPDF from "jspdf";
+
 import "jspdf-autotable";
 
 import { BundleLoader } from '../../../../Components/Placeholder';
@@ -61,8 +60,7 @@ function TopicTable (props)  {
                 <Button
                   type="primary"
                   onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                  // icon={<SearchOutlined />}
-                 // icon="search"
+                
                   size="small"
                   style={{ width: 90 }}
                 >
@@ -90,7 +88,6 @@ function TopicTable (props)  {
             </div>
           ),
           filterIcon: (filtered) => (
-            // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
             <SearchIcon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
           ),
           onFilter: (value, record) =>

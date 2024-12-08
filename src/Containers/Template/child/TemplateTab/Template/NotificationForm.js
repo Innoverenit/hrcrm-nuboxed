@@ -1,7 +1,7 @@
 import React, {  useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
@@ -67,13 +67,8 @@ function NotificationForm(props) {
                   type="text"
                   isColumn
                   width={"100%"}
-                  //label="Name"
-                  label={
-                    <FormattedMessage
-                      id="app.notificationName"
-                      defaultMessage="Name"
-                    />
-                  }
+                label="Name"
+                
                   component={InputComponent}
                   inlineLabel
                   style={{
@@ -85,13 +80,8 @@ function NotificationForm(props) {
                  <div class=" mt-4">
                 <Field
                   name="description"
-                  //label="Description"
-                  label={
-                    <FormattedMessage
-                      id="app.description"
-                      defaultMessage="Description"
-                    />
-                  }
+                  label="Description"
+                 
                   width={"100%"}
                   isColumn
                   height={"4.375em"}
@@ -151,9 +141,9 @@ function NotificationForm(props) {
                 Loading={props.addingNotificationTemplate}
                 disabled={edit}
               >
-                <FormattedMessage id="app.create" defaultMessage="Create" />
+               
 
-                {/* Create */}
+              Create 
               </Button>
             </div>
           </Form>

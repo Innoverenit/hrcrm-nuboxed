@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer, } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const LocationCustomerList = lazy(() => import("./LocationCustomerList"));
@@ -12,10 +12,8 @@ const LocationCustomerDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.createVirtualLocation"
-          defaultMessage="Create Virtual Location"
-        />}
+        title="Create Virtual Location"
+   
         width={drawerWidth}
         visible={locationCustomerdrawr}
         destroyOnClose
@@ -23,7 +21,9 @@ const LocationCustomerDrawer = (props) => {
         onClose={() => handleLocationCustomerDrawer(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <LocationCustomerList   storedLoc={storedLoc}/>
+          <LocationCustomerList   storedLoc={storedLoc}
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}/>
         </Suspense>
       </StyledDrawer>
     </>

@@ -1,7 +1,7 @@
 import React, {lazy,Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { handleChooserModal } from "../PlannerAction";
 
@@ -16,10 +16,8 @@ class FormChooserModal extends React.Component {
     return (
       <>
         <StyledDrawer
-          title={<FormattedMessage
-            id="app.schedule"
-            defaultMessage="Schedule"
-          />}
+          title="Schedule"
+         
           visible={chooserModal}
           width={"60%"}
           style={{ overflow: "visible"}}

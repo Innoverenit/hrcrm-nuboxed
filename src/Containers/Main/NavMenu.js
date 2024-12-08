@@ -5,14 +5,14 @@ import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import GroupsIcon from '@mui/icons-material/Groups';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import { Menu, Badge } from "antd";
+import CellTowerIcon from '@mui/icons-material/CellTower';
+import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency'
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import ComputerIcon from '@mui/icons-material/Computer';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
-import { FormattedMessage } from "react-intl";
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
-import PermContactCalendarIcon from '@mui/icons-material/PermContactCalendar';
 import FilePresentIcon from '@mui/icons-material/FilePresent'
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
@@ -35,12 +35,19 @@ import CategoryIcon from '@mui/icons-material/Category'
 import ViewInArIcon from '@mui/icons-material/ViewInAr';
 import CrisisAlertIcon from '@mui/icons-material/CrisisAlert';
 import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
-import LocalMallIcon from '@mui/icons-material/LocalMall';
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import ShopTwoIcon from '@mui/icons-material/ShopTwo';
 import PeopleIcon from '@mui/icons-material/People';
 import { BundleLoader } from '../../Components/Placeholder';
-
+import GolfCourseIcon from '@mui/icons-material/GolfCourse';
+import FactoryIcon from '@mui/icons-material/Factory';
+import AssessmentIcon from '@mui/icons-material/Assessment';
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
+import DirectionsCarFilledIcon from '@mui/icons-material/DirectionsCarFilled';
+import DonutSmallIcon from '@mui/icons-material/DonutSmall';
+import LuggageIcon from '@mui/icons-material/Luggage';
+import ModeOfTravelIcon from '@mui/icons-material/ModeOfTravel';
 const SubMenu = Menu.SubMenu;
 
 function NavMenu(props) {
@@ -55,54 +62,57 @@ function NavMenu(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          'Dashboard', // 0
-'Planner', // 1
-'Calls', // 2
-'Task', // 3
-'Events', // 4
-'Reports', // 5
-'Leads', // 6
-'Quotation', // 7
-'Contact', // 8
-'Prospect', // 9
-'Pitch', // 10
-'Data Room', // 11
-'Deals', // 12
-'Contact Invest', // 13
-'Investor', // 14
-'Club', // 15
-'Orders', // 16
-'Customer', // 17
-'Catalogue', // 18
-'Quality', // 19
-'Procure', // 20
-'Material', // 21
-'Suppliers', // 22
-'Trade', // 23
-'Vendor', // 24
-'Procurement', // 25
-'Inventory', // 26
-'Shipper', // 27
-'Leaves', // 28
-'Mileage', // 29
-'Expense', // 30
-'Holiday', // 31
-'Teams', // 32
-'Users', // 33
-'Location', //34
-'KPI Assessment', //35
-'Collections', //36
-'Production', //37
-'Refurbish', //38
-'Subscription', //39
-'Program', //40
-'Course',//41
-'Assessment', //42
-'Demand', //43
-'Project', //44
-'Requirement', //45
-'Talent', //46
-'Promotions',//47
+          '22', // 0
+'43', // 1
+'70', // 2
+'199', // 3
+'35', // 4
+'197', // 5
+'270', // 6
+'213', // 7
+'73', // 8
+'97', // 9
+'426', // 10
+'481', // 11
+'490', // 12
+'517', // 13
+'201', // 14
+'592', // 15
+'202', // 16
+'248', // 17
+'725', // 18
+'654', // 19
+'666', // 20
+'796', // 21
+'824', // 22
+'856', // 23
+'870', // 24
+'1145', // 25
+'880', // 26
+'887', // 27
+'41', // 28
+'1099', // 29
+'1146', // 30
+'1101', // 31
+'495', // 32
+'948', // 33
+'658', //34
+'1147', //35
+'920', //36
+'203', //37
+'758', //38
+'1148', //39
+'1149', //40
+'1150',//41
+'1102', //42
+'1151', //43
+'137', //44
+'1152', //45
+'1153', //46
+'1164',//47
+"1204",
+"1010" ,//Billing 49
+"739",//Publish
             
              
         ];
@@ -118,42 +128,6 @@ function NavMenu(props) {
 
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
-  // useEffect(() => {
-  //   const fetchMenuTranslations = async () => {
-  //     try {
-  //       const translations = await Promise.all([
-  //         translateText('Dashboard', props.selectedLanguage),
-  //         translateText('Planner', props.selectedLanguage),
-  //         translateText('Calls', props.selectedLanguage),
-  //         translateText('Tasks', props.selectedLanguage),
-  //         translateText('Events', props.selectedLanguage),
-  //         translateText('Reports', props.selectedLanguage),
-  //         translateText('Users', props.selectedLanguage),
-  //         translateText('Opportunity', props.selectedLanguage),
-  //         translateText('Contact', props.selectedLanguage),
-  //         translateText('Customer', props.selectedLanguage),
-  //         translateText('Talent', props.selectedLanguage),
-  //         translateText('Requirement', props.selectedLanguage),
-  //         translateText('Demand', props.selectedLanguage),
-  //         translateText('Leads', props.selectedLanguage),
-  //         translateText('Post', props.selectedLanguage),
-  //         translateText('Project', props.selectedLanguage),
-  //         translateText('Hours', props.selectedLanguage),
-  //         translateText('Invoice', props.selectedLanguage),
-  //         translateText('Vendor', props.selectedLanguage),
-  //         translateText('Test', props.selectedLanguage),
-  //         translateText('Courses', props.selectedLanguage),
-  //         translateText('Program', props.selectedLanguage),
-  //       ]);
-
-  //       setTranslatedMenuItems(translations);
-  //     } catch (error) {
-  //       console.error('Error translating menu items:', error);
-  //     }
-  //   };
-
-  //   fetchMenuTranslations();
-  // }, [props.selectedLanguage]);
 
    const [selectedMenuItem, setSelectedMenuItem] = useState("/dashboard");
   // const [selectedMenuItem, setSelectedMenuItem] = useState(user.dashboardRegionalInd ? "/dashboardRegional" : "/dashboard");
@@ -168,6 +142,9 @@ function NavMenu(props) {
   const handleSelect = (menuItemKey) => {
     setSelectedMenuItem(menuItemKey);
     localStorage.setItem('selectedMenuItem', menuItemKey);
+    if (window.innerWidth <= 768) { // Assuming 768px is the breakpoint for mobile screens
+      props.toggle(true);
+    }
     // Additional logic for handling selection
   };
 
@@ -181,38 +158,39 @@ function NavMenu(props) {
     return <div><BundleLoader/></div>;
   }
   return (
-    <div style={{ marginLeft: "-1.1875em" }}>
-
+    <div >
+ <aside
+        className={` text-white w-[10vw] h-[-webkit-fill-available] overflow-x-auto max-sm:w-[34vw] fixed md:relative z-[100] md:translate-x-0 transform ${
+          props.collapsed ? "translate-x-0" : "-translate-x-full"
+        } transition-transform duration-30 ease-in-out`}
+      >
       <Menu
       //  defaultSelectedKeys={[selectedMenuItem]}
         defaultSelectedKeys={["/" + path]}
         defaultOpenKeys={[]}
         mode="inline"
-        // theme={props.theme}
         theme="dark"
         style={{ background: "#38445E", fontFamily: "Poppins", }}
-        inlineCollapsed={props.collapsed}
+         inlineCollapsed={props.collapsed}
         selectedKeys={[selectedMenuItem]}
       >
         {/* dashboard */}
  
  
-          {(user.userType !== "USER" && user.department !== "Vendor" && user.department !== "Customer" && user.dashboardAccessInd === true || user.role === "ADMIN") && (
+          {/* {(user.userType !== "USER" && user.department !== "Vendor" && user.department !== "Customer" && user.dashboardAccessInd === true || user.role === "ADMIN") && ( */}
 
-<Menu.Item key="/dashboard" style={{ height: "1.45rem", 
+<Menu.Item key="/dashboard" style={{ height: "1.45rem", display:"flex", display:"flex", paddingLeft:"1px",
 
-color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
-  <Link to="/dashboard" onClick={() => handleSelect('/dashboard')}>
+color: selectedMenuItem === '/dashboard' ? 'tomato' : '#28a355',}} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '
+
+>
+  <Link to="/dashboard" onClick={() => handleSelect('/dashboard')} >
     <DashboardIcon
 
-      style={{ fontSize: "large" }}
+    className='!text-base  text-[#e4eb2f] '
     />
 
-    <span class="text-white text-ls ml-1">
-      {/* <FormattedMessage
-          id="app.dashboard"
-          defaultMessage="Dashboard"
-        /> */}
+    <span class="text-white text-ls ml-1">     
       {translatedMenuItems[0]}
       {/* Dashboard */}
       {/* RecruitProBoard */}
@@ -220,42 +198,33 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
   </Link>
 </Menu.Item>
 
-)}
+{/* )} */}
 
-
-      
+     
         {(user.imInd === true && user.basicAccessInd === true || user.role === "ADMIN" && user.imInd === true) && (
-          <Menu.Item key="/planner" style={{ height: "1.45rem", 
-          color: selectedMenuItem === '/planner' ? 'tomato' : '#4bc076', }}>
-            <Link to="/planner" onClick={() => handleSelect('/planner')}>
-              {/* <Icon type="calendar" style={{ color: "white" }} /> */}
+          <Menu.Item key="/planner" style={{ height: "1.45rem", display:"flex", 
+          color: selectedMenuItem === '/planner' ? 'tomato' : '#28a355', paddingLeft:"1px"} } className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '> 
+            <Link to="/planner" onClick={() => handleSelect('/planner')}>  
               <CalendarMonthIcon
-                style={{ fontSize: "large" }}
+              className='!text-base  text-[#e4eb2f] '
               />
 
-              <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage id="app.planner" defaultMessage="Planner" /> */}
+              <span class="text-white text-ls ml-1">    
                 {/* Planner */}
                 {translatedMenuItems[1]}
               </span>
             </Link>
           </Menu.Item>
         )}
-     
-
-        
+             
         {(user.basicAccessInd === true || user.role === "ADMIN") && (
-          <Menu.Item key="/call" style={{ height: "1.45rem",
-           color: selectedMenuItem === '/call' ? 'tomato' : '#4bc076', }}>
+          <Menu.Item key="/call" style={{ height: "1.45rem", display:"flex",
+           color: selectedMenuItem === '/call' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/call" onClick={() => handleSelect('/call')}>
-              {/* <Icon style={{ color: "white" }} type="phone" /> */}
-              <VolumeUpIcon
-                // icon={solid("phone-volume")}
-                style={{ fontSize: "large" }}
+              <VolumeUpIcon        
+              className='!text-base  text-[#e4eb2f]'
               />
-              <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage id="app.calls" defaultMessage="Calls" /> */}
-                {/* Calls */}
+              <span class="text-white text-ls ml-1">        
                 {translatedMenuItems[2]}
               </span>
               &nbsp;&nbsp;&nbsp;
@@ -267,15 +236,13 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Menu.Item>
         )}
         {(user.basicAccessInd === true || user.role === "ADMIN") && (
-          <Menu.Item key="task" style={{ height: "1.45rem",
-           color: selectedMenuItem === '/Task' ? 'tomato' : '#4bc076' }}>
-            <Link to="/Task" onClick={() => handleSelect('/Task')}>
-              {/* <Icon type="file-done" /> */}
+          <Menu.Item key="task" style={{ height: "1.45rem", display:"flex",
+           color: selectedMenuItem === '/Task' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+            <Link to="/Task" onClick={() => handleSelect('/Task')}>    
               <FactCheckIcon
-                style={{ fontSize: "large" }}
+              className='!text-base  text-[#e4eb2f]'
               />
-              <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage id="app.task" defaultMessage="Task" /> */}
+              <span class="text-white text-ls ml-1">    
                 {/* Task */}
                 {translatedMenuItems[3]}
               </span>
@@ -287,19 +254,14 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
             </Link>
           </Menu.Item>
         )}
-        {(user.basicAccessInd === true || user.role === "ADMIN") && (
-          <Menu.Item key="/event" style={{ height: "1.45rem",
-           color: selectedMenuItem === '/event' ? 'tomato' : '#4bc076' }}>
+        {(user.basicAccessInd === true && user.eventAccessInd === true || user.role === "ADMIN") &&  (
+          <Menu.Item key="/event" style={{ height: "1.45rem", display:"flex",
+           color: selectedMenuItem === '/event' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/event" onClick={() => handleSelect('/event')}>
-              {/* <Icon type="schedule" /> */}
               <EventAvailableIcon
-                style={{ fontSize: "large" }}
+              className='!text-base  text-[#e4eb2f]'
               />
-              <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage
-                  id="app.events"
-                  defaultMessage="Events"
-                /> */}
+              <span class="text-white text-ls ml-1">               
                 {/* Event */}
                 {translatedMenuItems[4]}
               </span>
@@ -313,14 +275,13 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         )}
 
         {(user.basicAccessInd === true || user.role === "ADMIN") && (
-          <Menu.Item key="/reports" style={{ height: "1.45rem", 
-          color: selectedMenuItem === '/reports' ? 'tomato' : '#4bc076' }}>
+          <Menu.Item key="/reports" style={{ height: "1.45rem", display:"flex", 
+          color: selectedMenuItem === '/reports' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/reports"onClick={() => handleSelect('/reports')}>
               <PictureAsPdfIcon
-                style={{ fontSize: "large" }}
+              className='!text-base  text-[#e4eb2f]'
               />
-              <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage id="app.reports" defaultMessage="Reports" /> */}
+              <span class="text-white text-ls ml-1">      
                 {/* Reports */}
                 {translatedMenuItems[5]}
               </span>
@@ -328,6 +289,21 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Menu.Item>
         )}
 
+{(user.basicAccessInd === true || user.role === "ADMIN") && (
+          <Menu.Item key="/Analytics" style={{ height: "1.45rem", display:"flex", 
+          color: selectedMenuItem === '/Analytics' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+            <Link to="/Analytics"onClick={() => handleSelect('/Analytics')}>
+              <DonutSmallIcon
+              className='!text-base  text-[#e4eb2f]'
+              />
+              <span class="text-white text-ls ml-1">
+               
+                Analytics
+                {/* {translatedMenuItems[5]} */}
+              </span>
+            </Link>
+          </Menu.Item>
+        )}
 
 
 
@@ -335,15 +311,14 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         {(user.leadsAccessInd === true && user.crmInd === true 
         // || user.role === "ADMIN" && user.crmInd === true
       ) && (
-          <Menu.Item key="/leads" style={{ height: "1.45rem",
-           color: selectedMenuItem === '/leads' ? 'tomato' : '#4bc076' }}>
+          <Menu.Item key="/leads" style={{ height: "1.45rem", display:"flex",
+           color: selectedMenuItem === '/leads' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/leads" onClick={() => handleSelect('/leads')}>
               <GroupsIcon
 
-                style={{ fontSize: "large" }}
+              className='!text-base  text-[#e4eb2f]'
               />
-              <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.leads" defaultMessage="Leads" /> */}
+              <span class="text-white text-ls ml-1">  
                 {translatedMenuItems[6]}
                 {/* Leads */}
                 &nbsp;&nbsp;&nbsp;
@@ -359,14 +334,14 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         {(user.opportunityAccessInd === true && user.crmInd === true 
         // || user.role === "ADMIN" && user.crmInd === true
       ) && (
-          <Menu.Item key="/opportunity" style={{ height: "1.45rem",
-            color: selectedMenuItem === '/opportunity' ? 'tomato' : '#4bc076' }}>
+          <Menu.Item key="/opportunity" style={{ height: "1.45rem", display:"flex",
+            color: selectedMenuItem === '/opportunity' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/opportunity" onClick={() => handleSelect('/opportunity')}>
             <LightbulbIcon
-                style={{ fontSize: "large" }}
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.quotation" defaultMessage="Quotation" /> */}
+       {/* Quotation */}
                 {translatedMenuItems[7]}
                 
 
@@ -384,15 +359,15 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         {(user.contactAccessInd === true && user.crmInd === true
         //  || user.role === "ADMIN" && user.crmInd === true
         ) && (
-          <Menu.Item key="/contact" style={{ height: "1.45rem",
-           color: selectedMenuItem === '/contact' ? 'tomato' : '#4bc076' }}>
+          <Menu.Item key="/contact" style={{ height: "1.45rem", display:"flex",
+           color: selectedMenuItem === '/contact' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/contact" onClick={() => handleSelect('/contact')}>
 
               <ContactsIcon
-                style={{ fontSize: "large" }}
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.contact" defaultMessage="Contact" /> */}
+              {/* Contact"*/}
                 {translatedMenuItems[8]}
                 
                 &nbsp;&nbsp;&nbsp;
@@ -409,16 +384,16 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         {(user.customerAccessInd === true && user.crmInd === true 
         // || user.role === "ADMIN" && user.crmInd === true
       ) && (
-          <Menu.Item key="/customer" style={{ height: "1.45rem",
-            color: selectedMenuItem === '/customer' ? 'tomato' : '#4bc076' }}>
+          <Menu.Item key="/customer" style={{ height: "1.45rem", display:"flex",
+            color: selectedMenuItem === '/customer' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/customer" onClick={() => handleSelect('/customer')}>
 
               <ApartmentIcon
 
-                style={{ fontSize: "large" }}
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.prospect" defaultMessage="Prospect" /> */}
+              {/* "Prospect */}
               {translatedMenuItems[9]}
                 &nbsp;&nbsp;&nbsp;
                 <Badge
@@ -430,17 +405,18 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Menu.Item>
         )}
         <hr />
+        
         {(user.imInd === true && user.pitchAccessInd === true
         //  || user.role === "ADMIN" && user.imInd === true 
         ) && (
-          <Menu.Item key="/pitch " style={{ height: "1.45rem",
-            color: selectedMenuItem === '/pitch' ? 'tomato' : '#4bc076' }}>
+          <Menu.Item key="/pitch " style={{ height: "1.45rem", display:"flex",
+            color: selectedMenuItem === '/pitch' ? 'tomato' : '#28a355',paddingLeft:"1px" }}className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/pitch" onClick={() => handleSelect('/pitch')}>
               <FilePresentIcon
-                style={{ fontSize: "large" }}
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.pitch" defaultMessage="Pitch" /> */}
+              {/* "Pitch" */}
                 {translatedMenuItems[10]}
                 &nbsp;&nbsp;&nbsp;
                 <Badge
@@ -452,35 +428,18 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
           </Menu.Item>
         )}
 
-{(user.imInd === true && user.dataRoomAccessInd === true
-//  || user.role === "ADMIN" && user.imInd === true 
-) && (
-          <Menu.Item key="/dataroom " style={{ height: "1.45rem",
-            color: selectedMenuItem === '/dataroom' ? 'tomato' : '#4bc076' }}>
-            <Link to="/dataroom" onClick={() => handleSelect('/dataroom')}>
-              <FilePresentIcon
-                style={{ fontSize: "large" }}
-              />
-              <span class="text-white text-ls ml-1">
-              {/* Data Room */}
-                {translatedMenuItems[11]}
-                &nbsp;&nbsp;&nbsp;
-                
-              </span>
-            </Link>
-          </Menu.Item>
-)}
+
         {(user.imInd === true && user.dealAccessInd === true 
         // || user.role === "ADMIN" && user.imInd === true
       ) && (
-          <Menu.Item key="/deal " style={{ height: "1.45rem", 
-            color: selectedMenuItem === '/deal' ? 'tomato' : '#4bc076' }}>
+          <Menu.Item key="/deal " style={{ height: "1.45rem", display:"flex", 
+            color: selectedMenuItem === '/deal' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/deal" onClick={() => handleSelect('/deal')}>
               <CurrencyExchangeIcon
-                style={{ fontSize: "large" }}
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.deals" defaultMessage="Deals" /> */}
+              {/* "Deals"*/}
                 {translatedMenuItems[12]}
                 <Badge
                   count={props.opportunityRecord.investorOpportunity}
@@ -493,14 +452,14 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         {(user.imInd === true && user.investorContactAccessInd === true 
         // || user.role === "ADMIN" && user.imInd === true
       ) && (
-          <Menu.Item key="/contactInvest" style={{ height: "1.45rem",
-            color: selectedMenuItem === '/contactInvest' ? 'tomato' : '#4bc076' }}>
+          <Menu.Item key="/contactInvest" style={{ height: "1.45rem", display:"flex",
+            color: selectedMenuItem === '/contactInvest' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/contactInvest"  onClick={() => handleSelect('/contactInvest')}>
-              <PermContactCalendarIcon
-                style={{ fontSize: "large" }}
+              <ContactEmergencyIcon
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.contactInvest" defaultMessage="Contact Invest" /> */}
+              {/* Contact Invest*/}
                 {translatedMenuItems[13]}
                 <Badge
                   count={props.opportunityRecord.investorcontact}
@@ -513,16 +472,13 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         {(user.imInd === true && user.investorAccessInd === true 
         // || user.role === "ADMIN" && user.imInd === true
       ) && (
-          <Menu.Item key="/investor" style={{ height: "1.45rem", 
-          color: selectedMenuItem === '/investor' ? 'tomato' : '#4bc076' }}>
+          <Menu.Item key="/investor" style={{ height: "1.45rem", display:"flex", 
+          color: selectedMenuItem === '/investor' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/investor" onClick={() => handleSelect('/investor')}>
 
-              <LocationCityIcon
-
-                style={{ fontSize: "large" }}
-              />
+              <LocationCityIcon className='!text-base  text-[#e4eb2f]'  />
               <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.investor" defaultMessage="Investor" /> */}
+              {/* Investor */}
                 {translatedMenuItems[14]}
                 &nbsp;&nbsp;&nbsp;
                 <Badge
@@ -535,61 +491,456 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         )}
           {(user.imInd === true && user.clubAccessInd === true 
   ) &&  (
-         <Menu.Item key="/club" style={{ height: "1.45rem", 
-          color: selectedMenuItem === '/club' ? 'tomato' : '#4bc076' }}>
+         <Menu.Item key="/club" style={{ height: "1.45rem", display:"flex", 
+          color: selectedMenuItem === '/club' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/club" onClick={() => handleSelect('/club')}>
 
-              <LocationCityIcon
+              <GolfCourseIcon className='!text-base  text-[#e4eb2f]'
 
-                style={{ fontSize: "large" }}
+               
               />
-              <span class="text-white text-ls ml-1">
+              <span class="text-white text-ls ml-1 ">
              {/* Club */}
                 {translatedMenuItems[15]}
-                &nbsp;&nbsp;&nbsp;
-                {/* <Badge
-                  count={props.opportunityRecord.investor}
-                  overflowCount={999}
-                ></Badge> */}
+                &nbsp;&nbsp;&nbsp;             
               </span>
             </Link>
           </Menu.Item>
           )}
-        {/* {user.userType !== "USER" && user.department !== "Customer" &&user.department == "VENDOR" && ( */}
-
-
-        {/*Requirement*/}
-        {/* {user.userType !== "USER" && user.department !== "VENDOR" && user.department !== "Recruiter" &&user.department !== "Customer"&&
-          ( */}
-
-
-        {/*Opportunity*/}
-
-        {/* {user.userType !== "USER" && user.department !== "Recruiter" &&user.department !== "Customer"&&
-            user.department !== "VENDOR" && (  */}
-        {/* {user.talentCreateInd ===true && ( */}
-
-        {/* )}  */}
-        {/* {user.userType !== "USER" && props.department !== "Recruiter" &&user.department !== "VENDOR" &&user.department === "Customer" &&props.role !== "ADMIN" &&props.role !== "USER" &&(   */}
-
-
-        {/*Contact*/}
-        {/* )}  */}
+          {/* {(user.imInd === true && user.dataRoomAccessInd === true */}
+            {/* //  || user.role === "ADMIN" && user.imInd === true  */}
+            {/* ) && ( */}
+                      {/* <Menu.Item key="/dataroom " style={{ height: "1.45rem", display:"flex",
+                        color: selectedMenuItem === '/dataroom' ? 'tomato' : '#28a355',paddingLeft:"1px" }}>
+                        <Link to="/dataroom" onClick={() => handleSelect('/dataroom')}>
+                          <MarkUnreadChatAltIcon
+                          className='!text-base  text-[#e4eb2f]'
+                          />
+                          <span class="text-white text-ls ml-1">
+                          Data Room
+                            {translatedMenuItems[11]}
+                            &nbsp;&nbsp;&nbsp;
+                            
+                          </span>
+                        </Link>
+                      </Menu.Item> */}
+            {/* )} */}
+       
         <hr/>
-        {/* Talent */}
-       {((user.talentAccessInd === true && user.recruitProInd === true) 
-      //  || (user.role === "ADMIN" && user.recruitProInd === true)
+       
+        {(user.orderAccessInd === true && user.erpInd === true 
+        // || user.role === "ADMIN" && user.orderManagementInd === true
       ) &&  (
-            <Menu.Item key="/candidate" style={{ height: "1.45rem", 
-             color: selectedMenuItem === '/candidate' ? 'tomato' : '#4bc076' }}>
+
+          <Menu.Item key="/order" style={{ height: "1.45rem", display:"flex", 
+          color: selectedMenuItem === '/order' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+            <Link to="/order"  onClick={() => handleSelect('/order')}>
+              <DynamicFeedIcon
+              className='!text-base  text-[#e4eb2f]'
+              />
+              <span class="text-white text-ls ml-1">
+                {/*Order"
+               */}
+              {translatedMenuItems[16]}
+              </span>
+            </Link>
+          </Menu.Item>
+        )}
+
+        {(user.accountAccessInd === true && user.erpInd === true 
+        // || user.role === "ADMIN" && user.orderManagementInd === true
+      ) &&  (
+
+          <Menu.Item key="/account" style={{ height: "1.45rem", display:"flex", 
+           color: selectedMenuItem === '/account' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+            <Link to="/account"  onClick={() => handleSelect('/account')}>
+              <AcUnitIcon
+              className='!text-base  text-[#e4eb2f]'
+              />
+              <span class="text-white text-ls ml-1">
+              {translatedMenuItems[17]}
+                {/* Customer"
+              */}
+              </span>
+            </Link>
+          </Menu.Item>
+        )}
+        {(user.catalogAccessInd === true && user.erpInd === true 
+        // || user.role === "ADMIN" && user.productionInd === true
+      ) &&  (
+        <Menu.Item key="/product" style={{ height: "1.45rem", display:"flex", 
+        color: selectedMenuItem === '/product' ? 'tomato' : '#28a355' ,paddingLeft:"1px"}} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+          <Link to="/product" onClick={() => handleSelect('/product')}>
+            <ViewInArIcon
+            className='!text-base  text-[#e4eb2f]'
+            />
+            <span class="text-white text-ls ml-1">
+              {/*Catalogue"
+           */}
+            {translatedMenuItems[18]}
+            </span>
+          </Link>
+        </Menu.Item>
+        )}
+
+          {(user.promotionAccessInd === true && user.moduleMapper.ecomModInd === true 
+        // || user.role === "ADMIN" && user.productionInd === true
+      ) &&  (
+        <Menu.Item key="/promotion" style={{ height: "1.45rem", display:"flex", 
+        color: selectedMenuItem === '/promotion' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+          <Link to="/promotion" onClick={() => handleSelect('/promotion')}>
+            <PointOfSaleIcon 
+            className='!text-base  text-[#e4eb2f]'
+            />
+            <span class="text-white text-ls ml-1">
+              {/*Quality"
+            */}
+             {translatedMenuItems[47]}
+            </span>
+          </Link>
+        </Menu.Item>
+         )}
+
+         {(user.subscriptionAccessInd === true && user.erpInd === true 
+        //  || user.role === "ADMIN" && user.subscriptionAccessInd === true
+        ) &&  (
+        <Menu.Item key="/subscriptionmainapps" style={{ height: "1.45rem", display:"flex", 
+        color: selectedMenuItem === '/subscriptionmainapps' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+          <Link to="/subscriptionmainapps" onClick={() => handleSelect('/subscriptionmainapps')}>
+            <SubscriptionsIcon
+            className='!text-base  text-[#e4eb2f]'
+            />
+            <span class="text-white text-ls ml-1">
+              {/* Subscription"
+            */}
+            {translatedMenuItems[39]}
+            </span>
+          </Link>
+        </Menu.Item>
+         )}
+        <hr />
+        {(user.refurbishWorkshopInd === true && user.repairInd === true 
+        // || user.role === "ADMIN" && user.repairInd === true
+      ) &&  (
+
+          <Menu.Item key="/refurbish" style={{ height: "1.45rem", display:"flex",
+            color: selectedMenuItem === '/refurbish' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+            <Link to="/refurbish" onClick={() => handleSelect('/refurbish')}>
+              <OnDeviceTrainingIcon
+              className='!text-base  text-[#e4eb2f]'
+              />
+              <span class="text-white text-ls ml-1">
+                {/*Refurbish"
+                 */}
+                 {translatedMenuItems[38]}
+              </span>
+            </Link>
+          </Menu.Item>
+        )}
+         {(user.productionAccessInd === true && user.productionInd === true 
+        //  || user.role === "ADMIN" && user.productionInd === true
+        ) &&  (
+        <Menu.Item key="/production" style={{ height: "1.45rem", display:"flex", 
+        color: selectedMenuItem === '/production' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+          <Link to="/production" onClick={() => handleSelect('/production')}>
+            <PrecisionManufacturingIcon
+            className='!text-base  text-[#e4eb2f]'
+            />
+            <span class="text-white text-ls ml-1">
+              {/*Production"
+             */}
+              {translatedMenuItems[37]}
+            </span>
+          </Link>
+        </Menu.Item>
+        )} 
+ {( user.erpInd === true && user.qualityAccessInd === true 
+  ) &&  (
+<Menu.Item key="/quality" style={{ height: "1.45rem", display:"flex", 
+        color: selectedMenuItem === '/quality' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+          <Link to="/quality" onClick={() => handleSelect('/quality')}>
+            <VerifiedUserIcon
+            className='!text-base  text-[#e4eb2f]'
+            />
+            <span class="text-white text-ls ml-1">
+              {/* Quality"
+             */}
+             {translatedMenuItems[19]}
+            </span>
+          </Link>
+        </Menu.Item>
+ )}
+  {(user.warAccInd === true &&  user.erpInd === true 
+  || user.productionInd === true &&  user.repairInd === true 
+       
+      ) &&  (
+<Menu.Item key="/sold" style={{ height: "1.45rem", display:"flex",
+            color: selectedMenuItem === '/sold' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+            <Link to="/sold" onClick={() => handleSelect('/sold')}>
+
+              <ApartmentIcon
+
+              className='!text-base  text-[#e4eb2f]'
+              />
+              <span class="text-white text-ls ml-1">
+              {/* Prospect */}     
+             {translatedMenuItems[48]} 
+             {/* Waranty */}
+                &nbsp;&nbsp;&nbsp;                
+              </span>
+            </Link>
+          </Menu.Item>
+           )}
+<hr/>
+        {(user.materialAccessInd === true && user.erpInd === true 
+        // || user.role === "ADMIN" && user.inventoryInd === true
+      ) &&  (
+
+          <Menu.Item key="/supplies" style={{ height: "1.45rem", display:"flex",
+            color: selectedMenuItem === '/supplies' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+            <Link to="/supplies" onClick={() => handleSelect('/supplies')} >
+              <CategoryIcon
+              className='!text-base  text-[#e4eb2f]'
+              />
+              <span class="text-white text-ls ml-1">
+                {/*Material"
+            */}
+               {translatedMenuItems[21]}
+              </span>
+            </Link>
+          </Menu.Item>
+        )}
+         {(user.supplierAccessInd === true && user.erpInd === true 
+        //  || user.role === "ADMIN" && user.inventoryInd === true
+        ) && (
+
+<Menu.Item key="/suppliers" style={{ height: "1.45rem", display:"flex", 
+ color: selectedMenuItem === '/suppliers' ? 'tomato' : '#28a355',paddingLeft:"1px"}} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+  <Link to="/suppliers" onClick={() => handleSelect('/suppliers')}>
+    <FactoryIcon
+    className='!text-base  text-[#e4eb2f]'
+    />
+    <span class="text-white text-ls ml-1">
+      {/* Suppliers"
+    */}
+     {translatedMenuItems[22]}
+    </span>
+  </Link>
+</Menu.Item>
+ )} 
+  {( user.tradingInd === true 
+       
+      ) &&  (
+<Menu.Item key="/trade" style={{ height: "1.45rem", display:"flex", 
+ color: selectedMenuItem === '/trade' ? 'tomato' : '#28a355',paddingLeft:"1px"}} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+  <Link to="/trade" onClick={() => handleSelect('/trade')}>
+    <ShopTwoIcon
+    className='!text-base  text-[#e4eb2f]'
+    />
+    <span class="text-white text-ls ml-1">
+      {/* Trade */}
+      {translatedMenuItems[23]}
+    </span>
+  </Link>
+</Menu.Item>
+      )}
+
+  {(user.procurementAccessInd === true && user.erpInd === true 
+    // || user.role === "ADMIN" && user.procurementInd === true
+    ) && (
+<Menu.Item key="/procurement" style={{ height: "1.45rem", display:"flex", 
+color: selectedMenuItem === '/procurement' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+            <Link to="/procurement" onClick={() => handleSelect('/procurement')}>
+              <CrisisAlertIcon
+              className='!text-base  text-[#e4eb2f]'
+              />
+              <span class="text-white text-ls ml-1">
+                {/* Procurement"
+               */}
+               {translatedMenuItems[25]}
+              </span>
+            </Link>
+          </Menu.Item>
+  )}
+        <hr />
+        {
+  (user.inventoryAccessInd === true && user.erpInd === true 
+    // || user.role === "ADMIN" && user.inventoryInd === true
+  ) && (
+    <Menu.Item key="/inventory" style={{ height: "1.45rem", display:"flex",  color: selectedMenuItem === '/inventory' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+      <Link to="/inventory" onClick={() => handleSelect('/inventory')}>
+        <InventoryIcon
+        className='!text-base  text-[#e4eb2f]'
+        />
+        <span className="text-white text-ls ml-1">
+          {/* Inventory"
+           */}
+           {translatedMenuItems[26]}
+        </span>
+      </Link>
+    </Menu.Item>
+  )
+}
+
+
+        {(user.shipperAccessInd === true && user.erpInd === true 
+        // ||  user.role === "ADMIN" && user.logisticsInd === true
+      ) &&  (
+
+          <Menu.Item key="/shipper" style={{ height: "1.45rem", display:"flex",
+            color: selectedMenuItem === '/shipper' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+            <Link to="/shipper" onClick={() => handleSelect('/shipper')}>
+              <LocalShippingIcon
+              className='!text-base  text-[#e4eb2f]'
+              />
+              <span class="text-white text-ls ml-1">
+                {/* Shipper"
+              */}
+               {translatedMenuItems[27]}
+              </span>
+            </Link>
+          </Menu.Item>
+        )}
+        <hr />
+
+    
+
+
+        
+  {(user.collectionAccessInd === true && user.financeInd === true 
+  // || user.role === "ADMIN" && user.financeInd === true
+) &&  (
+
+        <Menu.Item key="/collection" style={{ height: "1.45rem", display:"flex",
+         color: selectedMenuItem === '/collection' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+          <Link to="/collection" onClick={() => handleSelect('/collection')} >
+            <ReceiptIcon   className='!text-base  text-[#e4eb2f]' style={{ fontSize: "large" }} />
+            <span class="text-white text-ls ml-1">
+            {/* Collections"
+                */}
+               {translatedMenuItems[36]}
+            </span>
+          </Link>
+        </Menu.Item>
+
+  )}
+
+    
+        <hr />
+        {(user.leaveAccessInd === true   && user.moduleMapper.hrInd === true
+        // || user.role === "ADMIN"
+      ) && ( 
+        <Menu.Item key="/report" style={{ height: "1.45rem", display:"flex", 
+         color: selectedMenuItem === '/report' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+          <Link to="/leave" onClick={() => handleSelect('/report')}>
+            <LuggageIcon className="!text-base  text-[#e4eb2f]"/>
+            <span class="text-white text-ls ml-1 ">
+              {/* Leaves"  */}
+             {translatedMenuItems[28]}
+              &nbsp;&nbsp;&nbsp;
+              <Badge
+                count={props.opportunityRecord.leave}
+                overflowCount={999}
+              ></Badge>
+            </span>
+          </Link>
+        </Menu.Item>
+       )} 
+        {(user.mileageAccessInd === true  && user.moduleMapper.hrInd === true
+        // ||
+        //  user.role === "ADMIN"
+        ) &&( 
+        <Menu.Item key="/mileage" style={{ height: "1.45rem", display:"flex", 
+         color: selectedMenuItem === '/mileage' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+          <Link to="/mileage" onClick={() => handleSelect('/mileage')}>
+            <DirectionsCarFilledIcon className="!text-base  text-[#e4eb2f]"/>
+          
+            <span class="text-white   text-ls ml-1">
+              {/*Mileage"
+             */}
+             {translatedMenuItems[29]}
+              &nbsp;&nbsp;&nbsp;
+              <Badge
+                count={props.opportunityRecord.mileage}
+                overflowCount={999}
+              ></Badge>
+            </span>
+          </Link>
+        </Menu.Item>
+        )}
+     {(user.expenseAccessInd === true    && user.moduleMapper.hrInd === true
+    //  || user.role === "ADMIN"
+    ) && ( 
+        <Menu.Item key="/expense" style={{ height: "1.45rem", display:"flex",
+          color: selectedMenuItem === '/expense' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+          <Link to="/expense" onClick={() => handleSelect('/expense')}>
+            <ReceiptIcon className='!text-base  text-[#e4eb2f]'/>
+            <span class="text-white text-ls ml-1">
+              {/* Expense"
+             */}
+             {translatedMenuItems[30]}
+              &nbsp;&nbsp;&nbsp;
+              <Badge
+                count={props.opportunityRecord.expense}
+                overflowCount={999}
+              ></Badge>
+            </span>
+          </Link>
+        </Menu.Item>
+        )} 
+
+
+{(user.holidayAccessInd === true   
+// || user.role === "ADMIN"
+) && ( 
+        <Menu.Item key="/holiday" style={{ height: "1.45rem", display:"flex", 
+        color: selectedMenuItem === '/holiday' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+          <Link to="/holiday" onClick={() => handleSelect('/holiday')}>
+
+          <ModeOfTravelIcon  className='!text-base  text-[#e4eb2f]'/>
+           
+            <span class="text-white text-ls ml-1">
+              {/* Holiday"
+             */}
+ {translatedMenuItems[31]}
+            </span>
+          </Link>
+        </Menu.Item>
+       )} 
+
+
+{(user.hrInd === true   
+ && user.role === "ADMIN" && user.moduleMapper.recruitProInd === true
+) && ( 
+        <Menu.Item key="/assessment" style={{ height: "1.45rem", display:"flex", 
+        color: selectedMenuItem === '/assessment' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+          <Link to="/assessment" onClick={() => handleSelect('/assessment')}>
+
+            < AssessmentIcon  className="!text-base  text-[#e4eb2f]"/>
+      
+            <span class="text-white text-ls ml-1">
+           {/* KPI Assessment */}
+           {translatedMenuItems[35]}
+            </span>
+          </Link>
+        </Menu.Item>
+        )} 
+
+        {/* 
+           </SubMenu> 
+     )}  */}
+      {((user.talentAccessInd === true && user.moduleMapper.recruitProInd === true) 
+      ) && ( 
+            <Menu.Item key="/candidate" style={{ height: "1.45rem", display:"flex", 
+             color: selectedMenuItem === '/candidate' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
               <Link to="/candidate" onClick={() => handleSelect('/candidate')}>
           
                 <PortraitIcon
             
-                  style={{ fontSize: "large" }}
+                className='!text-base  text-[#e4eb2f]'
                 />
                  <span class="text-white text-ls ml-1">
-                 {/* <FormattedMessage id="app.talent" defaultMessage="Talent" /> */}
+            
               
                   {translatedMenuItems[46]}
                   &nbsp;&nbsp;&nbsp;
@@ -600,23 +951,20 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 </span>
               </Link>
             </Menu.Item>
-          )}  
+          )}   
         {/*Talent*/}
         {/*Requirement*/}
-        {(user.requirementAccessInd === true && user.recruitProInd === true 
-        // || user.role === "ADMIN" && user.recruitProInd === true
-      )
-         &&  (
-          <Menu.Item key="/requirement" style={{ height: "1.45rem",
-            color: selectedMenuItem === '/requirement' ? 'tomato' : '#4bc076' }}>
+        <hr />
+        {((user.requirementAccessInd === true && user.moduleMapper.recruitProInd === true )
+    ) &&  ( 
+          <Menu.Item key="/requirement" style={{ height: "1.45rem", display:"flex",
+            color: selectedMenuItem === '/requirement' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/requirement " onClick={() => handleSelect('/requirement')}>
 
               <RecentActorsIcon
-                style={{ fontSize: "large" }} />
+              className='!text-base  text-[#e4eb2f]' />
 
               <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.requirement" defaultMessage="Requirement" /> */}
-
                 {translatedMenuItems[45]}
                 &nbsp;&nbsp;
                 <Badge
@@ -626,46 +974,44 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               </span>
             </Link>
           </Menu.Item>
-           )}
-          {(user.requirementAccessInd === true && user.recruitProInd === true 
+          )} 
+          {((user.requirementAccessInd === true && user.moduleMapper.recruitProInd === true)
           // || user.role === "ADMIN" && user.recruitProInd === true
         ) &&  (
-         <Menu.Item key="/project" style={{ height: "1.45rem",
-           color: selectedMenuItem === '/project' ? 'tomato' : '#4bc076' }}>
+         <Menu.Item key="/project" style={{ height: "1.45rem", display:"flex",
+           color: selectedMenuItem === '/project' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
               <Link to="/project" onClick={() => handleSelect('/project')}>
                 <LightbulbIcon
-                  style={{ fontSize: "large" }}
+                className='!text-base  text-[#e4eb2f]'
                 />
                 <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage id="app.project" defaultMessage="Project" /> */}
+                {/* Project */}
                 
                   {translatedMenuItems[44]}
                 </span>
               </Link>
             </Menu.Item> 
  )}
-          <hr/>
+          {/* <hr/> */}
         {/* )} */}
         {/*Demand*/}
-        {(user.userType === "USER" && user.department === "Customer" && user.recruitProInd === true 
-        // || user.role === "ADMIN" && user.recruitProInd === true
-      ) && (
-          <Menu.Item key="/demand" style={{ height: "1.45rem", 
-           color: selectedMenuItem === '/demand' ? 'tomato' : '#4bc076' }}>
+        {(user.moduleMapper.recruitProInd === true &&  
+          <Menu.Item key="/demand" style={{ height: "1.45rem", display:"flex", 
+           color: selectedMenuItem === '/demand' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/demand" onClick={() => handleSelect('/demand')}>
               <ContactsIcon
 
-                style={{ fontSize: "large" }} />
+              className='!text-base  text-[#e4eb2f]' />
 
               <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage id="app.demand" defaultMessage="Demand" /> */}
+              {/*Demand */}
               {translatedMenuItems[43]} 
               
                 &nbsp;&nbsp;&nbsp;&nbsp;
               </span>
             </Link>
           </Menu.Item>
-        )}
+         )}
         {/*Demand*/}
 
         {/* {user.userType !== "USER" && user.department !== "Recruiter" &&user.department !== "Customer"&&
@@ -674,48 +1020,40 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         {/*Customer*/}
 
 
-        {/*Publish*/}
+       
+ 
+        {(user.moduleMapper.recruitProInd === true &&  
+        <Menu.Item key="/billing" style={{height:"1.45rem",paddingLeft:"1px"}} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
+            <Link to="/Billing">
+              <AccessAlarmIcon className='!text-base  text-[#e4eb2f]'/>
+             <span class="text-white text-ls "> {translatedMenuItems[49]} </span>
+            </Link>
+          </Menu.Item>
+       )} 
+{/*Publish*/}
         {/* {user.userType !== "USER" && user.department !== "Recruiter" &&user.department !== "Customer"&&
             user.department !== "VENDOR" && (  */}
-        {/* {(user.publishAccessInd === true  && user.recruitProInd === true) || (user.role === "ADMIN"  && user.recruitProInd === true) && (
-          <Menu.Item key="/publish" style={{ height: "1.45rem", 
-          color: selectedMenuItem === '/publish' ? 'tomato' : '#4bc076' }}>
+        {((user.publishAccessInd === true  && user.moduleMapper.recruitProInd === true))  && (
+        <Menu.Item key="/publish" style={{ height: "1.45rem", display:"flex", 
+          color: selectedMenuItem === '/publish' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/publish" onClick={() => handleSelect('/publish')}>
 
-              <CellTowerIcon  style={{ fontSize: "large" }}/>
+              <CellTowerIcon className='!text-base  text-[#e4eb2f]'/>
               <span class="text-white text-ls ml-1">
-                 <FormattedMessage
-                id="app.publish"
-                defaultMessage="Publish"
-              />
-                 
+              {translatedMenuItems[50]}
+                 {/* publish */}
                 </span>
             </Link>
-          </Menu.Item>)} */}
+          </Menu.Item>
+        )} 
 
         {/*Publish*/}
- 
-        {/* {user.department === "Management" && ( */}
-        {/* <Menu.Item key="/billing" style={{height:"1.45rem"}}>
-            <Link to="/Billing">
-              <AccessAlarmIcon
-
-                 style={{ fontSize: "large" }}
-              />
-             <span class="text-white text-ls ml-3">
-            
-                {translatedMenuItems[16]}
-              </span>
-            </Link>
-          </Menu.Item> */}
-        {/* )} */}
-
-        {/* {user.department === "Management" && (
-            <Menu.Item key="/invoice" style={{height:"1.45rem"}}>
+              {/* {user.department === "Management" && user.moduleMapper.recruitProInd === true && (
+            <Menu.Item key="/invoice" style={{height:"1.45rem",paddingLeft:"1px"}} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
               <Link to="/Invoice">
                 <TextSnippetIcon
 
-                    style={{ fontSize: "large" }}
+                  className='!text-base  text-[#e4eb2f]'
                 />
                <span class="text-white text-ls ml-3">
                 
@@ -723,7 +1061,8 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
                 </span>
               </Link>
             </Menu.Item>
-          )} */}
+          )}   */}
+      
 
         {/* {user.userType !== "USER" && user.department !== "VENDOR" && user.department !== "Customer" && user.department !== "Recruiter" &&( */}
         {/* VENDOR */}
@@ -733,7 +1072,7 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
               
                 <HandshakeIcon
              
-                 style={{ fontSize: "large" }}
+               className='!text-base  text-[#e4eb2f]'
                 />
                 <span class="text-white text-ls ml-3">
            
@@ -758,24 +1097,21 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         {/* Accessment */}
 
 
-        <hr />
+        {/* <hr /> */}
         {/* Accessment */}
 
         {(user.eLearningInd === true && user.assessmentAccessInd === true 
         // || user.role === "ADMIN" && user.eLearningInd === true
       ) &&  (
-            <Menu.Item key="/accessment" style={{ height: "1.45rem",
-              color: selectedMenuItem === '/accessment' ? 'tomato' : '#4bc076' }}>
+            <Menu.Item key="/accessment" style={{ height: "1.45rem", display:"flex",
+              color: selectedMenuItem === '/accessment' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
               <Link to="/Accessment" onClick={() => handleSelect('/accessment')}>
                 <ComputerIcon
 
-                    style={{ fontSize: "large" }}
+                  className='!text-base  text-[#e4eb2f]'
                 />
                  <span class="text-white text-ls ml-1">
-                 {/* <FormattedMessage
-                id="app.assessment"
-                defaultMessage="Assessment"
-              /> */}
+               
                  {translatedMenuItems[42]} 
                 </span>
               </Link>
@@ -785,18 +1121,15 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         {(user.eLearningInd === true && user.courseAccessInd === true 
         // || user.role === "ADMIN" && user.eLearningInd === true
       ) && (
-            <Menu.Item key="/course" style={{ height: "1.45rem",
-             color: selectedMenuItem === '/course' ? 'tomato' : '#4bc076' }}>
+            <Menu.Item key="/course" style={{ height: "1.45rem", display:"flex",
+             color: selectedMenuItem === '/course' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
               <Link to="/Course" onClick={() => handleSelect('/course')}>
                 <NewspaperIcon
 
-                  style={{ fontSize: "large" }}
+                className='!text-base  text-[#e4eb2f]'
                 />
                <span class="text-white text-ls ml-1">
-               {/* <FormattedMessage
-                id="app.course"
-                defaultMessage="Course"
-              /> */}
+              
                  {translatedMenuItems[41]}
                 </span>
               </Link>
@@ -806,537 +1139,25 @@ color: selectedMenuItem === '/dashboard' ? 'tomato' : '#4bc076',}}>
         {(user.eLearningInd === true && user.programAccessInd === true 
         // || user.role === "ADMIN" && user.eLearningInd === true
       ) && (
-            <Menu.Item key="/program" style={{ height: "1.45rem",
-              color: selectedMenuItem === '/program' ? 'tomato' : '#4bc076' }}>
+            <Menu.Item key="/program" style={{ height: "1.45rem", display:"flex",
+              color: selectedMenuItem === '/program' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
               <Link to="/Program" onClick={() => handleSelect('/program')}>
                 <LibraryBooksIcon
 
-                   style={{ fontSize: "large" }}
+                 className='!text-base  text-[#e4eb2f]'
                 />
                 <span class="text-white text-ls ml-1">
-              
-                {/* <FormattedMessage
-                id="app.program"
-                defaultMessage="Program"
-              /> */}
+            
                {translatedMenuItems[40]}
                 </span>
               </Link>
             </Menu.Item>
           )}
 
-        <hr />
+        {/* <hr /> */}
 
 
 
-
-        {/* <Menu.Item key="/message">
-            <Link to="/message">
-            <FontAwesomeIcon icon={solid("user-group")} style={{fontSize: "small"}}/>&nbsp;&nbsp;&nbsp;
-              <span style={{ color: "white" }}>
-                <FormattedMessage
-                  id="app.chat"
-                  defaultMessage="Chat"
-                />
-              </span>
-            </Link>
-          </Menu.Item> */}
-        {/* Employees */}
-
-        {/* {user.userType !== "USER" && user.department !== "VENDOR" && ( 
-          <SubMenu
-            key="sub2"
-          style={{ marginBottom: "-1.25em" }}
-         title={
-              <span>
-              
-                 <i class="fab fa-servicestack"></i>&nbsp;&nbsp;&nbsp;&nbsp;
-               <span style={{ color: "white" }}>
-
-                  <FormattedMessage
-                 id="app.selfService"
-                    defaultMessage="Self Service"
-                  />
-                </span>
-              </span>
-            }
-          >
-           */}
-        {(user.orderAccessInd === true && user.erpInd === true 
-        // || user.role === "ADMIN" && user.orderManagementInd === true
-      ) &&  (
-
-          <Menu.Item key="/order" style={{ height: "1.45rem", 
-          color: selectedMenuItem === '/order' ? 'tomato' : '#4bc076' }}>
-            <Link to="/order"  onClick={() => handleSelect('/order')}>
-              <DynamicFeedIcon
-                style={{ fontSize: "large" }}
-              />
-              <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage
-                id="app.order"
-                defaultMessage="Order"
-              /> */}
-              {translatedMenuItems[16]}
-              </span>
-            </Link>
-          </Menu.Item>
-        )}
-
-        {(user.accountAccessInd === true && user.erpInd === true 
-        // || user.role === "ADMIN" && user.orderManagementInd === true
-      ) &&  (
-
-          <Menu.Item key="/account" style={{ height: "1.45rem", 
-           color: selectedMenuItem === '/account' ? 'tomato' : '#4bc076' }}>
-            <Link to="/account"  onClick={() => handleSelect('/account')}>
-              <AcUnitIcon
-                style={{ fontSize: "large" }}
-              />
-              <span class="text-white text-ls ml-1">
-              {translatedMenuItems[17]}
-                {/* <FormattedMessage
-                id="app.customer"
-                defaultMessage="Customer"
-              /> */}
-              </span>
-            </Link>
-          </Menu.Item>
-        )}
-        {(user.catalogAccessInd === true && user.erpInd === true 
-        // || user.role === "ADMIN" && user.productionInd === true
-      ) &&  (
-        <Menu.Item key="/product" style={{ height: "1.45rem", 
-        color: selectedMenuItem === '/product' ? 'tomato' : '#4bc076' }}>
-          <Link to="/product" onClick={() => handleSelect('/product')}>
-            <ViewInArIcon
-              style={{ fontSize: "large" }}
-            />
-            <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage
-              id="app.catalogue"
-              defaultMessage="Catalogue"
-            /> */}
-            {translatedMenuItems[18]}
-            </span>
-          </Link>
-        </Menu.Item>
-        )}
-         {(user.subscriptionAccessInd === true && user.erpInd === true 
-        //  || user.role === "ADMIN" && user.subscriptionAccessInd === true
-        ) &&  (
-        <Menu.Item key="/subscriptionmainapps" style={{ height: "1.45rem", 
-        color: selectedMenuItem === '/subscriptionmainapps' ? 'tomato' : '#4bc076' }}>
-          <Link to="/subscriptionmainapps" onClick={() => handleSelect('/subscriptionmainapps')}>
-            <SubscriptionsIcon
-              style={{ fontSize: "large" }}
-            />
-            <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage
-              id="app.subscription"
-              defaultMessage="Subscription"
-            /> */}
-            {translatedMenuItems[39]}
-            </span>
-          </Link>
-        </Menu.Item>
-         )}
-        <hr />
-        {(user.refurbishWorkshopInd === true && user.repairInd === true 
-        // || user.role === "ADMIN" && user.repairInd === true
-      ) &&  (
-
-          <Menu.Item key="/refurbish" style={{ height: "1.45rem",
-            color: selectedMenuItem === '/refurbish' ? 'tomato' : '#4bc076' }}>
-            <Link to="/refurbish" onClick={() => handleSelect('/refurbish')}>
-              <OnDeviceTrainingIcon
-                style={{ fontSize: "large" }}
-              />
-              <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage
-                  id="app.refurbish"
-                  defaultMessage="Refurbish"
-                /> */}
-                 {translatedMenuItems[38]}
-              </span>
-            </Link>
-          </Menu.Item>
-        )}
-         {(user.productionAccessInd === true && user.productionInd === true 
-        //  || user.role === "ADMIN" && user.productionInd === true
-        ) &&  (
-        <Menu.Item key="/production" style={{ height: "1.45rem", 
-        color: selectedMenuItem === '/production' ? 'tomato' : '#4bc076' }}>
-          <Link to="/production" onClick={() => handleSelect('/production')}>
-            <PrecisionManufacturingIcon
-              style={{ fontSize: "large" }}
-            />
-            <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage
-              id="app.production"
-              defaultMessage="Production"
-            /> */}
-              {translatedMenuItems[37]}
-            </span>
-          </Link>
-        </Menu.Item>
-        )} 
- {( user.erpInd === true && user.qualityAccessInd === true 
-  ) &&  (
-<Menu.Item key="/quality" style={{ height: "1.45rem", 
-        color: selectedMenuItem === '/quality' ? 'tomato' : '#4bc076' }}>
-          <Link to="/quality" onClick={() => handleSelect('/quality')}>
-            <VerifiedUserIcon
-              style={{ fontSize: "large" }}
-            />
-            <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage
-              id="app.quality"
-              defaultMessage="Quality"
-            /> */}
-             {translatedMenuItems[19]}
-            </span>
-          </Link>
-        </Menu.Item>
- )}
-
-<Menu.Item key="/promotion" style={{ height: "1.45rem", 
-        color: selectedMenuItem === '/promotion' ? 'tomato' : '#4bc076' }}>
-          <Link to="/promotion" onClick={() => handleSelect('/promotion')}>
-            <VerifiedUserIcon
-              style={{ fontSize: "large" }}
-            />
-            <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage
-              id="app.quality"
-              defaultMessage="Quality"
-            /> */}
-             {translatedMenuItems[47]}
-            </span>
-          </Link>
-        </Menu.Item>
-{/* <Menu.Item key="/procre" style={{ height: "1.45rem", 
- color: selectedMenuItem === '/procre' ? 'tomato' : '#4bc076'}}>
-  <Link to="/procre" onClick={() => handleSelect('/procre')}>
-    <LocalMallIcon
-      style={{ fontSize: "large" }}
-    />
-    <span class="text-white text-ls ml-1">
-      Procure
-    </span>
-  </Link>
-</Menu.Item> */}
-
-        {(user.materialAccessInd === true && user.erpInd === true 
-        // || user.role === "ADMIN" && user.inventoryInd === true
-      ) &&  (
-
-          <Menu.Item key="/supplies" style={{ height: "1.45rem",
-            color: selectedMenuItem === '/supplies' ? 'tomato' : '#4bc076' }}>
-            <Link to="/supplies" onClick={() => handleSelect('/supplies')} >
-              <CategoryIcon
-                style={{ fontSize: "large" }}
-              />
-              <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage
-                id="app.material"
-                defaultMessage="Material"
-              /> */}
-               {translatedMenuItems[21]}
-              </span>
-            </Link>
-          </Menu.Item>
-        )}
-         {(user.supplierAccessInd === true && user.erpInd === true 
-        //  || user.role === "ADMIN" && user.inventoryInd === true
-        ) && (
-
-<Menu.Item key="/suppliers" style={{ height: "1.45rem", 
- color: selectedMenuItem === '/suppliers' ? 'tomato' : '#4bc076'}}>
-  <Link to="/suppliers" onClick={() => handleSelect('/suppliers')}>
-    <CategoryIcon
-      style={{ fontSize: "large" }}
-    />
-    <span class="text-white text-ls ml-1">
-      {/* <FormattedMessage
-      id="app.suppliers"
-      defaultMessage="Suppliers"
-    /> */}
-     {translatedMenuItems[22]}
-    </span>
-  </Link>
-</Menu.Item>
- )} 
-  {( user.tradingInd === true 
-       
-      ) &&  (
-<Menu.Item key="/trade" style={{ height: "1.45rem", 
- color: selectedMenuItem === '/trade' ? 'tomato' : '#4bc076'}}>
-  <Link to="/trade" onClick={() => handleSelect('/trade')}>
-    <ShopTwoIcon
-      style={{ fontSize: "large" }}
-    />
-    <span class="text-white text-ls ml-1">
-      {/* Trade */}
-      {translatedMenuItems[23]}
-    </span>
-  </Link>
-</Menu.Item>
-      )}
-{/* {(user.supplierAccessInd === true && user.erpInd === true || user.role === "ADMIN" && user.inventoryInd === true) && ( */}
-{/* {( user.erpInd === true &&
-<Menu.Item key="/vendor" style={{ height: "1.45rem", 
- color: selectedMenuItem === '/vendor' ? 'tomato' : '#4bc076'}}>
-  <Link to="/vendor" onClick={() => handleSelect('/vendor')}>
-    <CategoryIcon
-      style={{ fontSize: "large" }}
-    />
-    <span class="text-white text-ls ml-1">
-      Vendor
-    </span>
-  </Link>
-</Menu.Item>
-)}  */} 
-{/* if any body want to use reuse this component */}
-
-
-  {(user.procurementAccessInd === true && user.erpInd === true 
-    // || user.role === "ADMIN" && user.procurementInd === true
-    ) && (
-<Menu.Item key="/procurement" style={{ height: "1.45rem", 
-color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
-            <Link to="/procurement" onClick={() => handleSelect('/procurement')}>
-              <CrisisAlertIcon
-                style={{ fontSize: "large" }}
-              />
-              <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage
-                id="app.procurement"
-                defaultMessage="Procurement"
-              /> */}
-               {translatedMenuItems[25]}
-              </span>
-            </Link>
-          </Menu.Item>
-  )}
-        <hr />
-        {
-  (user.inventoryAccessInd === true && user.erpInd === true 
-    // || user.role === "ADMIN" && user.inventoryInd === true
-  ) && (
-    <Menu.Item key="/inventory" style={{ height: "1.45rem",  color: selectedMenuItem === '/inventory' ? 'tomato' : '#4bc076' }}>
-      <Link to="/inventory" onClick={() => handleSelect('/inventory')}>
-        <InventoryIcon
-          style={{ fontSize: "large" }}
-        />
-        <span className="text-white text-ls ml-1">
-          {/* <FormattedMessage
-            id="app.inventory"
-            defaultMessage="Inventory"
-          /> */}
-           {translatedMenuItems[26]}
-        </span>
-      </Link>
-    </Menu.Item>
-  )
-}
-
-
-        {(user.shipperAccessInd === true && user.erpInd === true 
-        // ||  user.role === "ADMIN" && user.logisticsInd === true
-      ) &&  (
-
-          <Menu.Item key="/shipper" style={{ height: "1.45rem",
-            color: selectedMenuItem === '/shipper' ? 'tomato' : '#4bc076' }}>
-            <Link to="/shipper" onClick={() => handleSelect('/shipper')}>
-              <LocalShippingIcon
-                style={{ fontSize: "large" }}
-              />
-              <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage
-                id="app.shipper"
-                defaultMessage="Shipper"
-              /> */}
-               {translatedMenuItems[27]}
-              </span>
-            </Link>
-          </Menu.Item>
-        )}
-        <hr />
-
-    
-
-
-        
-  {(user.collectionAccessInd === true && user.financeInd === true 
-  // || user.role === "ADMIN" && user.financeInd === true
-) &&  (
-
-        <Menu.Item key="/collection" style={{ height: "1.45rem",
-         color: selectedMenuItem === '/collection' ? 'tomato' : '#4bc076' }}>
-          <Link to="/collection" onClick={() => handleSelect('/collection')} >
-            <ReceiptIcon style={{ fontSize: "large" }} />
-            <span class="text-white text-ls ml-1">
-            {/* <FormattedMessage 
-                    id="app.collections"
-                   defaultMessage="Collections"
-               /> */}
-               {translatedMenuItems[36]}
-            </span>
-          </Link>
-        </Menu.Item>
-
-  )}
-
-        
-        {/* {user.imInd === true  && ( */}
-        {/* <Menu.Item key="/report" style={{ height: "1.45rem", paddingLeft: "1rem" }}>
-          <Link to="/leave">
-            <i class="fas fa-luggage-cart"></i>
-            <span class="text-white text-ls ml-1"><FormattedMessage
-              id="app.leaves"
-              defaultMessage="Leaves"
-            />
-              &nbsp;&nbsp;&nbsp;
-              <Badge
-                count={props.opportunityRecord.leave}
-                overflowCount={999}
-              ></Badge>
-            </span>
-          </Link>
-        </Menu.Item> */}
-        {/* )} */}
-        {/* {user.userType !== "USER" && user.imInd === true  && user.department !== "VENDOR" && (  */}
-        {/* <Menu.Item key="/mileage" style={{ height: "1.45rem", paddingLeft: "1rem" }}>
-          <Link to="/mileage">
-
-            <i class="fas fa-tachometer-alt"></i>
-            <span class="text-white text-ls ml-[0.3rem]"><FormattedMessage
-              id="app.mileage"
-              defaultMessage="Mileage"
-            />
-              &nbsp;&nbsp;&nbsp;
-              <Badge
-                count={props.opportunityRecord.mileage}
-                overflowCount={999}
-              ></Badge>
-            </span>
-          </Link>
-        </Menu.Item> */}
-        <hr />
-        {(user.leaveAccessInd === true   
-        // || user.role === "ADMIN"
-      ) && ( 
-        <Menu.Item key="/report" style={{ height: "1.45rem", 
-         color: selectedMenuItem === '/report' ? 'tomato' : '#4bc076' }}>
-          <Link to="/leave" onClick={() => handleSelect('/report')}>
-            <i class="fas fa-luggage-cart"></i>
-            <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage
-              id="app.leaves"
-              defaultMessage="Leaves"
-            /> */}
-             {translatedMenuItems[28]}
-              &nbsp;&nbsp;&nbsp;
-              <Badge
-                count={props.opportunityRecord.leave}
-                overflowCount={999}
-              ></Badge>
-            </span>
-          </Link>
-        </Menu.Item>
-       )} 
-        {(user.mileageAccessInd === true
-        // ||
-        //  user.role === "ADMIN"
-        ) &&( 
-        <Menu.Item key="/mileage" style={{ height: "1.45rem", 
-         color: selectedMenuItem === '/mileage' ? 'tomato' : '#4bc076' }}>
-          <Link to="/mileage" onClick={() => handleSelect('/mileage')}>
-
-            <i class="fas fa-tachometer-alt"></i>
-            <span class="text-white text-ls ml-[0.3rem]">
-              {/* <FormattedMessage
-              id="app.mileage"
-              defaultMessage="Mileage"
-            /> */}
-             {translatedMenuItems[29]}
-              &nbsp;&nbsp;&nbsp;
-              <Badge
-                count={props.opportunityRecord.mileage}
-                overflowCount={999}
-              ></Badge>
-            </span>
-          </Link>
-        </Menu.Item>
-        )}
-     {(user.expenseAccessInd === true   
-    //  || user.role === "ADMIN"
-    ) && ( 
-        <Menu.Item key="/expense" style={{ height: "1.45rem",
-          color: selectedMenuItem === '/expense' ? 'tomato' : '#4bc076' }}>
-          <Link to="/expense" onClick={() => handleSelect('/expense')}>
-            <ReceiptIcon
-              style={{ fontSize: "large" }}
-            />
-            <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage
-              id="app.expense"
-              defaultMessage="Expense"
-            /> */}
-             {translatedMenuItems[30]}
-              &nbsp;&nbsp;&nbsp;
-              <Badge
-                count={props.opportunityRecord.expense}
-                overflowCount={999}
-              ></Badge>
-            </span>
-          </Link>
-        </Menu.Item>
-        )} 
-
-
-{(user.holidayAccessInd === true   
-// || user.role === "ADMIN"
-) && ( 
-        <Menu.Item key="/holiday" style={{ height: "1.45rem", 
-        color: selectedMenuItem === '/holiday' ? 'tomato' : '#4bc076' }}>
-          <Link to="/holiday" onClick={() => handleSelect('/holiday')}>
-
-            <i class="fas fa-holly-berry"></i>
-            &nbsp;
-            <span class="text-white text-ls ml-1">
-              {/* <FormattedMessage
-              id="app.holiday"
-              defaultMessage="Holiday"
-            /> */}
- {translatedMenuItems[31]}
-            </span>
-          </Link>
-        </Menu.Item>
-       )} 
-
-
-{(user.hrInd === true   
- && user.role === "ADMIN"
-) && ( 
-        <Menu.Item key="/assessment" style={{ height: "1.45rem", 
-        color: selectedMenuItem === '/assessment' ? 'tomato' : '#4bc076' }}>
-          <Link to="/assessment" onClick={() => handleSelect('/assessment')}>
-
-            <i class="fas fa-holly-berry"></i>
-            &nbsp;
-            <span class="text-white text-ls ml-1">
-           {/* KPI Assessment */}
-           {translatedMenuItems[35]}
-            </span>
-          </Link>
-        </Menu.Item>
-        )} 
-
-        {/* 
-           </SubMenu> 
-     )}  */}
         <hr />
         {/* {user.userAccessInd === true || user.role === "ADMIN"  && ( */}
         { (user.teamsAccessInd === true &&  user.hrInd === true 
@@ -1344,16 +1165,13 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
       ) ? (
                
                <Menu.Item key="/teams" style={{height:"1.45rem",
-                color: selectedMenuItem === '/teams' ? 'tomato' : '#4bc076'}}>
+                color: selectedMenuItem === '/teams' ? 'tomato' : '#28a355',paddingLeft:"1px"}} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
                 <Link to="/teams" onClick={() => handleSelect('/teams')}>
                  <PeopleIcon
-                style={{ fontSize: "large" }}
+              className='!text-base  text-[#e4eb2f]'
                   />
                   <span class="text-white text-ls ml-1">
-                    {/* <FormattedMessage 
-                    id="app.teams"
-                   defaultMessage="Teams"
-               /> */}
+                  
                 {translatedMenuItems[32]}
                    </span>
                  </Link> 
@@ -1364,16 +1182,16 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
          || user.role === "ADMIN" &&  user.hrInd === true
       ) ? (
 
-          <Menu.Item key="/employees" style={{ height: "1.45rem",
-            color: selectedMenuItem === '/employees' ? 'tomato' : '#4bc076' }}>
+          <Menu.Item key="/employees" style={{ height: "1.45rem", display:"flex",
+            color: selectedMenuItem === '/employees' ? 'tomato' : '#28a355',paddingLeft:"1px" }} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/Employees" onClick={() => handleSelect('/employees')}>
               <GroupsIcon
 
-                style={{ fontSize: "large" }}
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
               {translatedMenuItems[33]}
-                {/* <FormattedMessage id="app.users" defaultMessage="Users" /> */}
+               
               </span>
               &nbsp;&nbsp;&nbsp;
               <Badge
@@ -1385,31 +1203,26 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
         ):null}
         {/* )} */}
 
-        {/* <Menu.Item key="/plant" style={{ height: "1.45rem", paddingLeft: "1rem" }}>
+        {/* <Menu.Item key="/plant" style={{ height: "1.45rem", display:"flex", paddingLeft: "1rem" }}>
           <Link to="/plant">
             <FactoryIcon
-              style={{ fontSize: "large" }}
+            className='!text-base  text-[#e4eb2f]'
             />
-            <span class="text-white text-ls ml-1"><FormattedMessage
-              id="app.plant"
-              defaultMessage="Plant"
-            />
+            <span class="text-white text-ls ml-1">Plant
+           
             </span>
           </Link>
         </Menu.Item> */}
         {(user.locationAccessInd === true && user.hrInd === true || user.role === "ADMIN" &&  user.hrInd === true) &&  (
 
-          <Menu.Item key="/location" style={{ height: "1.45rem",
-           color: selectedMenuItem === '/location' ? 'tomato' : '#4bc076' }}>
+          <Menu.Item key="/location" style={{ height: "1.45rem", display:"flex",
+           color: selectedMenuItem === '/location' ? 'tomato' : '#28a355' ,paddingLeft:"1px"}} className='scale-[0.99] hover:scale-100 ease-in duration-100  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] '>
             <Link to="/location" onClick={() => handleSelect('/location')}>
               <LocationOnIcon
-                style={{ fontSize: "large" }}
+              className='!text-base  text-[#e4eb2f]'
               />
               <span class="text-white text-ls ml-1">
-                {/* <FormattedMessage
-                id="app.location"
-                defaultMessage="Location"
-              /> */}
+              {/* Location */}
               {translatedMenuItems[34]}
               </span>
             </Link>
@@ -1418,7 +1231,7 @@ color: selectedMenuItem === '/procurement' ? 'tomato' : '#4bc076' }}>
         {/* Employees */}
 
       </Menu>
-
+      </aside>
     </div>
   );
 }

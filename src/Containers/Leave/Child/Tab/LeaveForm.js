@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {Button,Switch } from "antd";
@@ -202,11 +202,7 @@ console.log(this.state.firstCase)
           isRequired
           name="startDate"
 
-          // label="Start Date"
-          label={<FormattedMessage
-            id="app.startDate"
-            defaultMessage="Start Date"
-          />}
+          label="Start Date"
           component={DatePicker}
           // width="100%"
           value={values.startDate}
@@ -223,12 +219,7 @@ console.log(this.state.firstCase)
      <Field
        isRequired
        name="endDate"
-       // label="End Date "
-
-       label={<FormattedMessage
-         id="app.endDate"
-         defaultMessage="End Date"
-       />}
+       label="End Date "
        isColumn
        component={DatePicker}
        value={values.endDate || values.startDate}
@@ -252,12 +243,7 @@ console.log(this.state.firstCase)
      />
    </div>
       <div>
-      {/* <StyledLabel><FormattedMessage
-        id="app.employeetype"
-        defaultMessage="Employee Type"
-      />
-      </StyledLabel> */}
-      
+     
     </div>
     <div class="flex flex-row mt-2">
     <div class=" w-3/12 max-sm:w-wk ml-4"
@@ -312,11 +298,7 @@ console.log(this.state.firstCase)
 <div class="mt-3 w-w47.5 max-sm:w-wk">
     <Field
       name="coverDetails"
-      //label="Cover"
-      label={<FormattedMessage
-        id="app.coverDetails"
-        defaultMessage="Cover"
-      />}
+      label="Cover"
       width={"100%"}
       component={InputComponent}
       isColumn

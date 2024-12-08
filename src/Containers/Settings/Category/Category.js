@@ -7,6 +7,7 @@ import { TabsWrapper } from "../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import {  Badge } from "antd";
 import AccessibilityIcon from '@mui/icons-material/Accessibility';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 
 const Designation = lazy(() => import("../Designation/Designation"));
 const Department = lazy(() => import("../Department/Department"));
@@ -56,14 +57,12 @@ class Category extends Component {
  <TabPane
     tab={
         <>
-            <i className="fas fa-building"></i>
-            <Badge
-                count={this.props.departmentCount.DepartmentCount}
-                overflowCount={999}
-              >
-            <span className="ml-1">Department 
-            {/* <span className="text-red-500 font-bold">{this.props.departmentCount.DepartmentCount}</span> */}
+         <ApartmentIcon className="!text-tab text-[#f0386b]"/>
+            <span className="ml-1 !text-tab">Department 
             </span>
+            <Badge 
+            count={this.props.departmentCount.DepartmentCount}
+            overflowCount={999}  offset={[ 0, -16]}>
             </Badge>
         </>
     }
@@ -74,15 +73,16 @@ class Category extends Component {
                 <TabPane
                   tab={
                     <>
-                      <AccessibilityIcon />
-                      <Badge
-                count={this.props.roleCount.RoleTypeCount}
-                overflowCount={999}
-              >
+                      <AccessibilityIcon  className=" !text-icon"/>
+                     
+             
                       <span className="ml-1">Role (Internal)  
                       {/* <span className="text-red-500 font-bold">{this.props.roleCount.RoleTypeCount}</span> */}
                       </span>
-                      </Badge>
+                      <Badge 
+                   count={this.props.roleCount.RoleTypeCount}
+                   overflowCount={999}  offset={[ 0, -16]}>
+                 </Badge>
                     </>
                   }
                   key="5"
@@ -90,14 +90,15 @@ class Category extends Component {
                 <TabPane
                   tab={
                     <>
-                      <AccessibilityIcon />
-                      <Badge
-                count={this.props.externalRoleCount.RoleTypeExternalCount}
-                overflowCount={999}
-              >
+                      <AccessibilityIcon  className=" !text-icon"/>
                       <span className="ml-1">Role (External) 
                       {/* <span className="text-red-500 font-bold">{this.props.externalRoleCount.RoleTypeExternalCount}</span> */}
                       </span>
+                      <Badge
+                count={this.props.externalRoleCount.RoleTypeExternalCount}
+                overflowCount={999} offset={[ 0, -16]}
+              >
+                   
                       </Badge>
                     </>
                   }
@@ -107,13 +108,14 @@ class Category extends Component {
                   tab={
                     <>
                       <i className="fab fa-artstation"></i>
-                      <Badge
-                count={this.props.designationCount.DesignationCount}
-                overflowCount={999}
-              >
                       <span className="ml-1">Designation 
                       {/* <span className="text-red-500 font-bold">{this.props.designationCount.DesignationCount}</span> */}
                       </span>
+                      <Badge
+                count={this.props.designationCount.DesignationCount}
+                overflowCount={999}  offset={[ 0, -16]}
+              >
+                      
                       </Badge>
                     </>
                   }

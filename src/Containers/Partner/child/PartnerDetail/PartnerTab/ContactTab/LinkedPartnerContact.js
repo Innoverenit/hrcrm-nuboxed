@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button,Input, } from "antd";
 import { 
@@ -16,10 +15,10 @@ import {
 } from "../../../../../../Components/UI/Antd";
 import { Link } from "../../../../../../Components/Common";
 import Highlighter from "react-highlight-words";
-import { ApiOutlined, EditOutlined, SearchOutlined } from "@ant-design/icons"
+import ApiIcon from '@mui/icons-material/Api';
+import SearchIcon from '@mui/icons-material/Search';
 import PartnerContactActiveToggle from "./PartnerContactActiveToggle";
 
-// import { ApiOutlined } from "@ant-design/icons";
 const ButtonGroup = Button.Group;
 function LinkedContact(props) {
   useEffect(() =>{
@@ -57,7 +56,7 @@ function LinkedContact(props) {
             <Button
               type="primary"
               onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-              icon={<SearchOutlined />}
+              icon={<SearchIcon />}
               size="small"
               style={{ width: 90 }}
             >
@@ -85,7 +84,7 @@ function LinkedContact(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+        <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
       ),
       onFilter: (value, record) =>
         record[dataIndex]
@@ -142,8 +141,7 @@ function LinkedContact(props) {
         },
       },
       {
-        // title: "Name",
-        title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+        title: "Name",
         width: "20%",
         ...getColumnSearchProps("fullName"),
          dataIndex: "fullName",
@@ -188,8 +186,8 @@ function LinkedContact(props) {
           },
         },
       {
-        // title: "Designation",
-        title: <FormattedMessage id="app.role2" defaultMessage="Role" />,
+       
+        title: "Role" ,
         width: "15%",
         dataIndex: "designation",
         onFilter: (value, record) => record.designation.indexOf(value) === 0,
@@ -208,7 +206,7 @@ function LinkedContact(props) {
         },
       },
       {
-        title: <FormattedMessage id="e" defaultMessage="Mobile No" />,
+        title:"Mobile No" ,
         width: "18%",
         dataIndex: "mobileNumber",
         render: (name, item, i) => {
@@ -220,7 +218,7 @@ function LinkedContact(props) {
         },
       },
       {
-        title: <FormattedMessage id="emailid" defaultMessage="Email" />,
+        title: "Email" ,
         width: "27%",
         dataIndex: "emailId",
 
@@ -305,11 +303,10 @@ function LinkedContact(props) {
           return (
              <StyledPopconfirm
               placement="bottom"
-              // title="Do you wish to detach?"
-              title={<FormattedMessage id="app.doyouwishtodetach" defaultMessage="Do you wish to detach?" />}
+              title="Do you wish to detach?"
             >
                {user.userType !== "USER" && user.department !== "Recruiter" && ( 
-              <ApiOutlined
+              <ApiIcon
                 tooltipTitle="Detach Contact"
                 //iconType="api"
                 onClick={null}

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import {
   StyledPopconfirm,
 } from "../../../../Components/UI/Antd";
@@ -14,7 +14,7 @@ import {
   deleteDocument 
 } from "../../ContactAction";
 import { elipsize } from "../../../../Helpers/Function/Functions";
-import { DeleteOutlined, } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
@@ -41,22 +41,16 @@ class HospitalDocument extends Component {
   if (fetchingDocumentsByContactId) return <BundleLoader/>;
     return (
       <>
-         <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky top-0 z-10">
+         <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky top-0 z-10">
           <div className=" md:w-[6.9rem]">
-        <FormattedMessage
-                  id="app.date"
-                  defaultMessage="Date"
-                /></div>
+     Date</div>
  
-        <div className="md:w-[11.1rem]">  <FormattedMessage id="app.name" defaultMessage="Name" /></div>
+        <div className="md:w-[11.1rem]"> Name</div>
                  <div className="md:w-[18.12rem]">
-                 <FormattedMessage
-          id="app.description"
-          defaultMessage="Description"
-        /></div>
+               Description</div>
                        <div className=" md:w-[7.1rem]">
-                       <FormattedMessage id="app.uploadedBy" defaultMessage="Uploaded By" /></div>
+                     Uploaded By</div>
 
                       
        
@@ -150,7 +144,7 @@ class HospitalDocument extends Component {
                                       title="Do you want to delete?"
                                         onConfirm={() => deleteDocument(item.documentId)}
                                              >
-                                      <DeleteOutlined type="delete" class="cursor-pointer !text-icon bg-red-600" />
+                                      <DeleteOutlineIcon type="delete" class="cursor-pointer !text-icon bg-red-600" />
                                         </StyledPopconfirm>
 
                                     </div>

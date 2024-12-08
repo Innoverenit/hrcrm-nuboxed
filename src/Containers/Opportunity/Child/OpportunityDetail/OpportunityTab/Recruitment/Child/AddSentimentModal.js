@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
 import { StyledModal } from "../../../../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 
 const SentimentForm = lazy(() => import("./SentimentForm"));
 
@@ -13,7 +13,6 @@ class AddSentimentModal extends Component {
       <>
         <StyledModal
            title="Sentiment"
-          //title={<FormattedMessage id="app.remarks" defaultMessage="Remarks" />}
           width="25%"
           visible={addSentimentModal}
           destroyOnClose

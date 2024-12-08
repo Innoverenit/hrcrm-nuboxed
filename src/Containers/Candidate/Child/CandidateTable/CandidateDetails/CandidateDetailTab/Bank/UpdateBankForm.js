@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch, } from "antd";
 import { Formik, Form, FastField } from "formik";
-import { StyledLabel } from "../../../../../../../Components/UI/Elements";
+
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import * as Yup from "yup";
 import { updateBankDetails } from "../../../../../CandidateAction";
-import { FormattedMessage } from "react-intl";
+
 const documentSchema = Yup.object().shape({
   documentId: Yup.string().required("Input needed !"),
 });
@@ -66,13 +66,8 @@ class UpdateBankForm extends Component {
             >
                 <FastField
                   name="accountHolderName"
-                  //label="Account Number"
-                  label={
-                    <FormattedMessage
-                      id="app.accountHolderName"
-                      defaultMessage="Account Holder Name"
-                    />
-                  }
+                 label="Account Number"
+                
                   isColumn
                   width={"100%"}
                   
@@ -85,13 +80,8 @@ class UpdateBankForm extends Component {
             >
                 <FastField
                   name="accountNo"
-                  //label="Account Number"
-                  label={
-                    <FormattedMessage
-                      id="app.accountNo"
-                      defaultMessage="Account #"
-                    />
-                  }
+             label="Account Number"
+                 
                   isColumn
                   width={"100%"}
                   selectType="number"
@@ -105,13 +95,8 @@ class UpdateBankForm extends Component {
             >
                   <FastField
                     name="ifscCode"
-                    //label="IFSC CODE"
-                    label={
-                      <FormattedMessage
-                        id="app.swiftCode"
-                        defaultMessage="SWIFT Code"
-                      />
-                    }
+                    label="IFSC CODE"
+                    
                     className="field"
                     isColumn
                     width={"100%"}
@@ -124,13 +109,8 @@ class UpdateBankForm extends Component {
             >
                   <FastField
                     name="branchName"
-                    // label="Branch Name"
-                    label={
-                      <FormattedMessage
-                        id="app.branch"
-                        defaultMessage="Branch"
-                      />
-                    }
+                    label="Branch "
+                   
                     type="text"
                     width={"100%"}
                     isColumn
@@ -146,12 +126,8 @@ class UpdateBankForm extends Component {
                   isRequired
                   name="bankName"
                   //label="Bank Name"
-                  label={
-                    <FormattedMessage
-                      id="app.bank"
-                      defaultMessage="Bank"
-                    />
-                  }
+                  label="Bank"
+                    
                   type="text"
                   width={"100%"}
                   isColumn
@@ -162,7 +138,7 @@ class UpdateBankForm extends Component {
               
               <div class=" w-[47%] mt-[1.5em]" style={{margin:"6% 0% 0% 0%"}}>
               <div class=" flex justify-between" >
-              <StyledLabel>Default Bank?</StyledLabel>
+              <div class=" text-xs font-bold font-poppins text-black">Default Bank?</div>
               <Switch
                
                 checked={this.state.defaultBank}

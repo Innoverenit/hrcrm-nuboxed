@@ -3,11 +3,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component"
-import {
-  MailOutlined,
-  SearchOutlined,
-  UpCircleOutlined,
-} from "@ant-design/icons";
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
@@ -16,7 +14,7 @@ import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import WalletIcon from '@mui/icons-material/Wallet';
 import BuildCircleIcon from '@mui/icons-material/BuildCircle';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-import { FormattedMessage } from "react-intl";
+
 import { StyledTable, StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { Button,Select, Tooltip, Input } from "antd";
 import {
@@ -166,7 +164,7 @@ function CandidateDollarTable(props) {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             //icon="search"
             size="small"
             style={{ width: 90 }}
@@ -194,8 +192,8 @@ function CandidateDollarTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-        <SearchOutlined
+        // <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />
@@ -308,8 +306,8 @@ title:"",
 width:"1%"
     },
     {
-      // title: "Name",
-      title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+      title: "Name",
+  
       dataIndex: "fullName",
       width: "13%",
       ...getColumnSearchProps("fullName"),
@@ -332,9 +330,7 @@ width:"1%"
       },
     },
     {
-      // title: <FormattedMessage 
-      // id="app.category" defaultMessage=""
-      //  />,
+     
       dataIndex: "category",
       width: "3%",
       render: (name, item, i) => {
@@ -399,13 +395,13 @@ width:"1%"
 
 
     {
-      title: <FormattedMessage id="app.vendor" defaultMessage="Vendor" />,
+      title:"Vendor" ,
       dataIndex: "partnerName",
       width: "10%",
       ...getColumnSearchProps("partnerName"),
     },
     {
-      title: <FormattedMessage id="app.role" defaultMessage="Role" />,
+      title:"Role" ,
       dataIndex: "roleType",
       width: "8%",
       filters: roleTypeOption,
@@ -421,7 +417,7 @@ width:"1%"
       width:"1%"
           },
     {
-      title: <FormattedMessage id="app.country" defaultMessage="Country" />,
+      title: "Country" ,
       dataIndex: "country",
       align: "left",
       width: "9%",
@@ -438,31 +434,27 @@ width:"1%"
       },
     },
     {
-      title: <FormattedMessage id="app.skills" defaultMessage="Skills" />,
+      title: "Skills" ,
       // dataIndex: "skillList",
       width: "17%",
       ...getColumnSearchProps("skillList"),
       render: (name, item, i) => {
-        const data =
-          item.skillList === null
-            ? []
-            : item.skillList.filter((skill) => {
-                return skill !== null && skill !== "";
-              });
-
-        return (
-          <>
-            {item.skillList === [] ? (
-              "None"
-            ) : (
-              <span>
-                <SkillsLoadMore skillList={data} />
-              </span>
-            )}
-          </>
-        );
+          const data =
+              item.skillList === null
+                  ? []
+                  : item.skillList.filter((skill) => skill !== null && skill !== "");
+  
+          return (
+              data.length === 0 ? (
+                  "None"
+              ) : (
+                  <span>
+                      <SkillsLoadMore skillList={data} />
+                  </span>
+              )
+          );
       },
-    },
+  },
 
     {
       title:"Experience",
@@ -527,9 +519,7 @@ width:"1%"
       },
     },
     {
-      title: (
-        <FormattedMessage id="app.expectation" defaultMessage="Expectation" />
-      ),
+      title: "Expectation" ,
       dataIndex: "billing",
       align: "left",
       width: "8%",
@@ -550,7 +540,7 @@ width:"1%"
       },
     },
     {
-      title: <FormattedMessage id="app.available" defaultMessage="Available" />,
+      title: "Available" ,
       dataIndex: "availableDate",
       width: "7%",
       render: (text, item) => {
@@ -567,7 +557,7 @@ width:"1%"
       },
     },
     {
-      title: <FormattedMessage id="app.owner" defaultMessage="Owner" />,
+      title:"Owner" ,
       // dataIndex: "ownerName",
       width: "6%",
       render: (name, item, i) => {
@@ -589,7 +579,7 @@ width:"1%"
       },
     },
     {
-      title: <FormattedMessage id="app.active" defaultMessage="Active" />,
+      title: "Active" ,
       // dataIndex: "active",
       width: "6%",
       render: (name, item, i) => {
@@ -654,7 +644,7 @@ width:"1%"
         return (
           <>
             {user.talentUpdateInd === true && (
-              <MailOutlined
+              <MailOutlineIcon
                 type="mail"
                 style={{ cursor: "pointer" }}
                 onClick={() => {
@@ -769,7 +759,7 @@ width:"1%"
             title="Do you want to blacklist?"
             onConfirm={() => props.getBlackListCandidate(item.candidateId)}
           >
-            <UpCircleOutlined
+            <ArrowCircleUpIcon
               type="up-circle"
               theme="filled"
               style={{ cursor: "pointer" }}

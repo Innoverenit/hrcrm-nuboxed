@@ -9,6 +9,56 @@ const initialState = {
   addProcessTaskModal: false,
   candidateSequenceModal: false,
 
+  fetchingUOM: false,
+  fetchingUOMError: false,
+  UOMListData:[],
+
+  addingUOM: false,
+  addingUOMError: false,
+
+  fetchingDiscountCat: false,
+  fetchingDiscountCatError: false,
+  discountCat:[],
+
+  fetchingDiscountCatVol: false,
+  fetchingDiscountCatVolError: false,
+  discountCatVol:[],
+
+  addingCategoryVolume: false,
+  addingCategoryVolumeError: false,
+
+  removingUOM: false,
+  removingUOMError: false,
+
+  updatingUOM: false,
+  updatingUOMError: false,
+
+  fetchingUOMCount: false,
+  fetchingUOMCountError: false,
+  UOMCount:[],
+ 
+  removingSuppliers: false,
+  removingSuppliersError: false,
+
+  removingShipper: false,
+  removingShippersError: false,
+
+  updatingSuppliers: false,
+  updatingSuppliersError: false,
+
+  addingPaymentApi:false,
+  addingPaymentApiError:false,
+
+  fetchingIdentifiers: false,
+  fetchingIdentifiersError: false,
+          identifiers:[],
+
+          addingIdentifiers: false,
+          addingIdentifiersError: false,
+
+  removeSkillData:false,
+  removeSkillDataError:false,
+
 
   movingRejectToggleTask:false,
   movingRejectToggleTaskError:false,
@@ -301,6 +351,13 @@ addingShipperCategoryError: false,
   fetchingDepartmentsError: false,
   departments: [],
 
+
+  addingSequenceFlow:false,
+  addingSequenceFlowError:false,
+
+  addingClubToggle:false,
+  addingClubToggleError:false,
+
   fetchingLevels: false,
   fetchingLevelsError: false,
   levels: [],
@@ -313,6 +370,10 @@ addingShipperCategoryError: false,
   fetchingProcessForRecruit: false,
   fetchingProcessForRecruitError: false,
   recruitProcess: [],
+
+
+  addingApi:false,
+  addingApiError:false,
 
   updateProcessNameForRepair: false,
   updateProcessNameForRepairError: false,
@@ -355,6 +416,11 @@ addingShipperCategoryError: false,
   deleteDealsProcessData: false,
   deleteDealsProcessDataError: false,
 
+
+
+  addingPaymentData:false,
+  addingPaymentDataError:false,
+
   fetchingComplianceGdpr: false,
   fetchingComplianceGdprError: false,
   gdprCompliance: [],
@@ -392,6 +458,11 @@ addingShipperCategoryError: false,
   linkingDealsStagesPublishError: false,
   dealsStagesPublish: [],
 
+
+  fetchingApiKey:false,
+  fetchingApiKeyError:false,
+  apikey:[],
+
   fetchingProcessStagesForProduction: false,
   fetchingProcessStagesForProductionError: false,
   productionProcessStages: [],
@@ -404,6 +475,12 @@ addingShipperCategoryError: false,
   addingTaskForRecruitError: false,
 
   setEditingEmail: {},
+
+
+
+
+  updateWords:false,
+  updateWordsError:false,
 
 
   fetchingTaskStagesForRecruit: false,
@@ -513,6 +590,10 @@ addingShipperCategoryError: false,
   fetchingRecruiterTable: false,
   fetchingRecruiterTableError: false,
   tableRecruiter: [],
+
+  fetchingPaymentFinance:false,
+  fetchingPaymentFinanceError:false,
+  paymentFinance:{},
 
   addingWebsite: false,
   addingWebsiteError: false,
@@ -630,6 +711,10 @@ addingShipperCategoryError: false,
 
   addDrawerRecruitmentModal: false,
 
+
+  fetchingWordSearchDataError:false,
+  fetchingWordSearchData:false,
+
   fetchingProcessStagesForOpportunity: false,
   fetchingProcessStagesForOpportunityError: false,
   opportunityProcessStages: [],
@@ -728,6 +813,9 @@ addingShipperCategoryError: false,
   creatingCurrencyConversion: false,
   creatingCurrencyConversionError: false,
 
+  creatingVat: false,
+  creatingVatError: false,
+
   fetchingCurrencyConversion: false,
   fetchingCurrencyConversionError: false,
   conversionCurrencies:[],
@@ -735,6 +823,9 @@ addingShipperCategoryError: false,
   fetchingLangWords: false,
   fetchingLangWordsError:false,
   langWords:[],
+
+  addingHideFlow:false,
+  addingHideFlowError:false,
 
   addingLangWords: false,
   addingLangWordsError:false,
@@ -1318,6 +1409,10 @@ export const settingsReducer = (state = initialState, action) => {
         fetchingSignatureInd: false,
         fetchingSignatureIndError: true,
       };
+
+
+      case types.EMPTY_DISTRIBUTION_AUTOMATION:
+        return { ...state, distributionAutomation: [] };
     case types.HANDLE_EMAIL_MODAL:
       return { ...state, addEmailModal: action.payload };
     case types.HANDLE_WEBSITE_MODAL:
@@ -1631,6 +1726,28 @@ export const settingsReducer = (state = initialState, action) => {
         fetchingRecruiter: false,
         fetchingRecruiterError: true,
       };
+
+
+
+
+      case types.ADD_SEQUENCE_FLOW_REQUEST:
+        return { ...state, addingSequenceFlow: true };
+      case types.ADD_SEQUENCE_FLOW_SUCCESS:
+        // return { ...state, updatingStages: false, states: [...state.states, action.payload] };
+        return {
+          ...state,
+          addingSequenceFlow: false,
+          // dealsProcessStages: state.dealsProcessStages.map((state) =>
+          //   state.stagesId === action.payload.stagesId ? action.payload : state
+          // ),
+        };
+      case types.ADD_SEQUENCE_FLOW_FAILURE:
+        return {
+          ...state,
+          addingSequenceFlow: false,
+          addingSequenceFlowError: true,
+        };
+  
 
     //get RECRUITER table
     case types.GET_RECRUITER_TABLE_REQUEST:
@@ -2299,6 +2416,46 @@ export const settingsReducer = (state = initialState, action) => {
         addingNotificationsError: true,
       };
 
+
+      case types.GET_IDENTIFIER_REQUEST:
+        return { ...state, fetchingIdentifiers: true };
+      case types.GET_IDENTIFIER_SUCCESS:
+        return {
+          ...state,
+          fetchingIdentifiers: false,
+          identifiers: action.payload,
+        };
+      case types.GET_IDENTIFIER_FAILURE:
+        return {
+          ...state,
+          fetchingIdentifiers: false,
+          fetchingIdentifiersError: false,
+        };
+  
+  
+      case types.ADDING_IDENTIFIER_REQUEST:
+        return { ...state, addingIdentifiers: true };
+      case types.ADDING_IDENTIFIER_SUCCESS:
+        return {
+          ...state,
+          addingIdentifiers: false,
+          // identifiers: state.identifiers.map((item) => {
+          //   if (item.notificationRuleId
+          //     === action.payload.notificationRuleId
+          //   ) {
+          //     return action.payload;
+          //   } else {
+          //     return item;
+          //   }
+          // }),
+        };
+      case types.ADDING_IDENTIFIER_FAILURE:
+        return {
+          ...state,
+          addingIdentifiers: false,
+          addingIdentifiersError: true,
+        };
+  
     case types.GET_REQUIREMENTS_DURATION_REQUEST:
       return { ...state, fetchingRequirementsDuration: true };
     case types.GET_REQUIREMENTS_DURATION_SUCCESS:
@@ -2357,6 +2514,68 @@ export const settingsReducer = (state = initialState, action) => {
         fetchingNotificationAccess: false,
         fetchingNotificationAccessError: true,
       };
+        // remove suppliers
+
+     case types.REMOVE_SUPPLIERS_REQUEST:
+      return { ...state,  removingSuppliers: true };
+    case types.DELETE_SUPPLIERS_SUCCESS:
+      return {
+        ...state,
+        removingSuppliers: false,
+        removingSuppliersData: state.removingSuppliersData.filter(
+          (item) => item.supplierCategoryId !== action.payload.supplierCategoryId
+      ), 
+      };
+    case types.REMOVE_SUPPLIERS_FAILURE:
+      return {
+        ...state,
+        removingSuppliers: false,
+        removingSuppliersError: true,
+      };
+
+      // update suppliers
+      case types.UPDATE_SUPPLIERS_REQUEST:
+        return { ...state,   updatingSuppliers: true };
+        
+      case types.UPDATE_SUPPLIERS_SUCCESS:
+       
+       
+  
+        return {
+          ...state,
+          updatingSuppliers: false,
+          supplyCategory: state. supplyCategory.map((sector) =>
+            (item) => item.supplierCategoryId !== action.payload.supplierCategoryId
+              ? action.payload
+              : sector
+          ),
+        }
+      case types.UPDATE_SUPPLIERS_FAILURE:
+        return {
+          ...state,
+          updatingSuppliers: false,
+          updatingSuppliersError: true,
+        };
+
+
+  // remove shipper
+
+  case types.DELETE_SHIPPER_REQUEST:
+    return { ...state,  removingShipper: true };
+  case types.DELETE_SHIPPER_SUCCESS:
+    return {
+      ...state,
+      removingShipper: false,
+      removingShipperData: state.removingShipperData.filter(
+        (item) => item.shipperCategoryId !== action.payload.shipperCategoryId
+    ), 
+    };
+  case types.DELETE_SHIPPER_FAILURE:
+    return {
+      ...state,
+      removingShipper: false,
+      removingShipperError: true,
+    };
 
     case types.DELETE_REPORT_SCHEDULER_INTERNAL_DATA_REQUEST:
       return { ...state, deleteReportSchedulerInternalData: true };
@@ -2485,6 +2704,35 @@ export const settingsReducer = (state = initialState, action) => {
 
 
 
+      case types.UPDATE_WORDS_REQUEST:
+        return { ...state, updateWords: true };
+      case types.UPDATE_WORDS_SUCCESS:
+        return {
+          ...state,
+          updateWords: false,
+          // updatePartnerModal: false,
+          langWords: state.langWords.map((item) => {
+            if (item.id === action.payload.id) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+        };
+      case types.UPDATE_WORDS_FAILURE:
+        return {
+          ...state,
+          updateWords: false,
+          updateWordsError: true,
+        };
+  
+
+
+      case types.EMPTY_SKILL_LEVEL:
+        return { ...state, matrixData: [] };
+
+
+
 
       case types.ADD_SKILL_LEVEL_REQUEST:
       return { ...state, addingSkillLevel: true };
@@ -2497,6 +2745,27 @@ export const settingsReducer = (state = initialState, action) => {
     case types.ADD_SKILL_LEVEL_FAILURE:
       return { ...state, addingSkillLevel: false, 
        
+      };
+
+
+
+
+
+      case types.REMOVE_SKILL_DATA_REQUEST:
+      return { ...state, removeSkillData: true };
+    case types.REMOVE_SKILL_DATA_SUCCESS:
+      return {
+        ...state,
+        removeSkillData: false,
+        matrixData: state.matrixData.filter(
+          (item) => item.skillLevelLinkId !== action.payload
+        ),
+      };
+    case types.REMOVE_SKILL_DATA_FAILURE:
+      return {
+        ...state,
+        removeSkillData: false,
+        removeSkillDataError: false,
       };
 
 
@@ -2605,6 +2874,31 @@ export const settingsReducer = (state = initialState, action) => {
         fetchingRemoteAccess: false,
         fetchingRemoteAccessError: false,
       };
+
+
+
+
+      case types.GET_PAYMENT_FINANCE_REQUEST:
+        return {
+          ...state,
+          fetchingPaymentFinance: true,
+          fetchingPaymentFinanceError: false,
+        };
+      case types.GET_PAYMENT_FINANCE_SUCCESS:
+        return {
+          ...state,
+          fetchingPaymentFinance: false,
+          fetchingPaymentFinanceError: false,
+          paymentFinance:action.payload
+          //conversionCurrencies: [...state.conversionCurrencies, ...action.payload],
+        };
+      case types.GET_PAYMENT_FINANCE_FAILURE:
+        return {
+          ...state,
+          fetchingPaymentFinance: false,
+          fetchingPaymentFinanceError: true,
+        };
+
 
 
 
@@ -2898,6 +3192,32 @@ export const settingsReducer = (state = initialState, action) => {
         addingApproveError: true,
       };
 
+
+
+
+      case types.ADD_PAYMENT_API_REQUEST:
+        return { ...state, addingPaymentApi: true };
+    case types.ADD_PAYMENT_API_SUCCESS:
+        return {
+            ...state,
+            addingPaymentApi: false,
+            // paymentFinance: state.paymentFinance.map((item) => {
+            //   if (item.paymentTypeId === action.payload.paymentTypeId) {
+            //     return action.payload;
+            //   } else {
+            //     return item;
+            //   }
+            // }),
+
+        };
+    case types.ADD_PAYMENT_API_FAILURE:
+        return {
+            ...state,
+            addingPaymentApi: false,
+            addingPaymentApiError: true,
+            // conversionCurrencies:[action.payload,...state.conversionCurrencies]   
+        };
+
     case types.GET_APPROVE_DATA_REQUEST:
       return { ...state, fetchingApproveData: true };
     case types.GET_APPROVE_DATA_SUCCESS:
@@ -3161,6 +3481,19 @@ export const settingsReducer = (state = initialState, action) => {
       };
 
 
+
+      case types.GET_WORDS_SEARCH_REQUEST:
+        return { ...state, fetchingWordSearchDataError: true };
+      case types.GET_WORDS_SEARCH_SUCCESS:
+        return {
+          ...state,
+          fetchingWordSearchDataError: false,
+          langWords: action.payload,
+        };
+      case types.GET_WORDS_SEARCH_FAILURE:
+        return { ...state, fetchingWordSearchDataError: true };
+
+
     case types.LINK_DEALS_STAGES_PUBLISH_REQUEST:
       return {
         ...state,
@@ -3272,6 +3605,102 @@ export const settingsReducer = (state = initialState, action) => {
 
 
 
+
+
+
+      case types.ADD_HIDE_FLOW_REQUEST:
+              return { ...state, addingHideFlow: true };
+            case types.ADD_HIDE_FLOW_SUCCESS:
+              return {
+                ...state,
+                addingHideFlow: false,
+                apikey: state.apikey.map((item) => {
+                  if (item.thirdPartyApiId === action.payload.thirdPartyApiId) {
+                    return action.payload;
+                  } else {
+                    return item;
+                  }
+                }),
+            
+               
+                //opportunityByUserId: [action.payload, ...state.opportunityByUserId],
+                // clearbit: null,
+              };
+            case types.ADD_HIDE_FLOW_FAILURE:
+              return {
+                ...state,
+                addingHideFlow: false,
+                addingHideFlowError: true,
+                //addOpportunityModal: false,
+              };
+
+
+
+
+
+
+
+      case types.GET_API_KEY_REQUEST:
+        return { ...state, fetchingApiKey: true };
+      case types.GET_API_KEY_SUCCESS:
+        return {
+          ...state,
+          fetchingApiKey: false,
+          apikey: action.payload,
+        };
+      case types.GET_API_KEY_FAILURE:
+        return {
+          ...state,
+          fetchingApiKey: false,
+          fetchingApiKeyError: true,
+        };
+
+        case types.GET_DISCOUNT_CAT_REQUEST:
+          return { ...state, fetchingDiscountCat: true };
+        case types.GET_DISCOUNT_CAT_SUCCESS:
+          return {
+            ...state,
+            fetchingDiscountCat: false,
+            discountCat: action.payload,
+          };
+        case types.GET_DISCOUNT_CAT_FAILURE:
+          return {
+            ...state,
+            fetchingDiscountCat: false,
+            fetchingDiscountCatError: true,
+          };
+  
+          case types.GET_DISCOUNT_CATVOL_REQUEST:
+            return { ...state, fetchingDiscountCatVol: true };
+          case types.GET_DISCOUNT_CATVOL_SUCCESS:
+            return {
+              ...state,
+              fetchingDiscountCatVol: false,
+              discountCatVol: action.payload,
+            };
+          case types.GET_DISCOUNT_CATVOL_FAILURE:
+            return {
+              ...state,
+              fetchingDiscountCatVol: false,
+              fetchingDiscountCatVolError: true,
+            };
+
+
+            case types.ADD_CATEGORY_VOLUME_REQUEST:
+              return { ...state, addingCategoryVolume: true };
+            case types.ADD_CATEGORY_VOLUME_SUCCESS:
+              return {
+                ...state,
+                addingCategoryVolume: false,
+                discountCatVol: [action.payload, ...state.discountCatVol],
+               
+              };
+            case types.ADD_CATEGORY_VOLUME_FAILURE:
+              return {
+                ...state,
+                addingCategoryVolume: false,
+                addingCategoryVolumeError: true,
+              };
 
 
       case types.LINK_DEALS_PROCESS_GLOBAL_REQUEST:
@@ -3629,6 +4058,22 @@ export const settingsReducer = (state = initialState, action) => {
             // conversionCurrencies:[action.payload,...state.conversionCurrencies]   
         };
 
+        case types.CREATE_VAT_REQUEST:
+          return { ...state, creatingVat: true };
+      case types.CREATE_VAT_SUCCESS:
+          return {
+              ...state,
+              creatingVat: false,
+  
+          };
+      case types.CREATE_VAT_FAILURE:
+          return {
+              ...state,
+              creatingVat: false,
+              creatingVatError: true,
+              
+          };
+
         case types.GET_CURRENCY_CONVERSION_REQUEST:
           return {
             ...state,
@@ -3648,6 +4093,32 @@ export const settingsReducer = (state = initialState, action) => {
             fetchingCurrencyConversion: false,
             fetchingCurrencyConversionError: true,
           };
+
+
+
+
+          case types.ADD_PAYMENT_DATA_REQUEST:
+            return { ...state, addingPaymentData: true };
+        case types.ADD_PAYMENT_DATA_SUCCESS:
+            return {
+                ...state,
+                addingPaymentData: false,
+                // paymentFinance: state.paymentFinance.map((item) => {
+                //   if (item.paymentTypeId === action.payload.paymentTypeId) {
+                //     return action.payload;
+                //   } else {
+                //     return item;
+                //   }
+                // }),
+    
+            };
+        case types.ADD_PAYMENT_DATA_FAILURE:
+            return {
+                ...state,
+                addingPaymentData: false,
+                addingPaymentDataError: true,
+                // conversionCurrencies:[action.payload,...state.conversionCurrencies]   
+            };
 
           
     case types.ADD_PROCESS_FOR_SUPPLIER_REQUEST:
@@ -3691,6 +4162,32 @@ export const settingsReducer = (state = initialState, action) => {
           fetchingProcessForSupplier: false,
           fetchingProcessForSupplierError: true,
         };
+
+
+
+
+
+        case types.LINK_CLUB_TOGGLE_REQUEST:
+          return { ...state, addingClubToggle: true };
+        case types.LINK_CLUB_TOGGLE_SUCCESS:
+          return {
+            ...state,
+            addingClubToggle: false,
+            clubShareData: state.clubShareData.map((item) => {
+              if (item.clubId === action.payload.clubId) {
+                return action.payload;
+              } else {
+                return item;
+              }
+            }),
+          };
+        case types.LINK_CLUB_TOGGLE_FAILURE:
+          return {
+            ...state,
+            addingClubToggle: false,
+            addingClubToggleError: true,
+          };
+
 
         
     case types.UPDATE_PROCESS_NAME_FOR_SUPPLIER_REQUEST:
@@ -3762,6 +4259,28 @@ export const settingsReducer = (state = initialState, action) => {
               fetchingProcessStagesForSupplier: false,
               fetchingProcessStagesForSupplierError: true,
             };
+
+
+
+
+            case types.ADD_API_REQUEST:
+              return { ...state, addingApi: true };
+            case types.ADD_API_SUCCESS:
+              return {
+                ...state,
+                addingApi: false,
+            
+               
+                //opportunityByUserId: [action.payload, ...state.opportunityByUserId],
+                // clearbit: null,
+              };
+            case types.ADD_API_FAILURE:
+              return {
+                ...state,
+                addingApi: false,
+                addingApiError: true,
+                //addOpportunityModal: false,
+              };
 
             case types.UPDATE_STAGE_FOR_SUPPLIER_REQUEST:
               return { ...state, updatingStagesForSupplier: true };
@@ -4368,13 +4887,25 @@ export const settingsReducer = (state = initialState, action) => {
                                                                     fetchingClubShareError: true,
                                                                   };
 
+                                                                  case types.HANDLE_CLAER_SETTING_DATA:
+                                                                    return { ...state, 
+                                                                      clubShareData: [], 
+
+                                                                    };
+                                                        
+
         case types.UPDATE_CLUB_REQUEST:
       return { ...state, updatingClub: true };
     case types.UPDATE_CLUB_SUCCESS:
       return {
         ...state,
         updatingClub: false,
-        clubShareData: [action.payload, ...state.clubShareData]
+        clubShareData: state.clubShareData.map((club) =>
+          club.clubId === action.payload.clubId
+            ? action.payload
+            : club
+        ),
+        // clubShareData: [action.payload, ...state.clubShareData]
       };
     case types.UPDATE_CLUB_FAILURE:
       return {
@@ -4699,6 +5230,92 @@ case types.ADD_CONFIGURE_GLOBAL_TYPE_FAILURE:
   };
 
 
+
+  case types.GET_UOM_REQUEST:
+    return { ...state,  fetchingUOM: true };
+  case types.GET_UOM_SUCCESS:
+    return {
+      ...state,
+      fetchingUOM: false,
+      UOMListData: action.payload,
+    };
+  case types.GET_UOM_FAILURE:
+    return {
+      ...state,
+      fetchingUOM: false,
+      fetchingUOMError: true,
+    };
+
+ // add sector
+
+ case types.ADD_UOM_REQUEST:
+    return { ...state,  addingUOM: true };
+  case types.ADD_UOM_SUCCESS:
+    return {
+      ...state,
+      addingUOM: false,
+      UOMListData:[action.payload,...state.UOMListData], 
+    };
+  case types.ADD_UOM_FAILURE:
+    return {
+      ...state,
+      addingUOM: false,
+      addingUOMError: true,
+    };
+
+     // remove sector
+
+     case types.REMOVE_UOM_REQUEST:
+        return { ...state,  removingUOM: true };
+      case types.REMOVE_UOM_SUCCESS:
+        return {
+          ...state,
+          removingUOM: false,
+          UOMListData: state.UOMListData.filter(
+            (item) => item.uomId !== action.payload
+        ), 
+        };
+      case types.REMOVE_UOM_FAILURE:
+        return {
+          ...state,
+          removingUOM: false,
+          removingUOMError: true,
+        };
+
+      //   update an existing SECTOR 
+
+      case types.UPDATE_UOM_REQUEST:
+        return { ...state,   updatingUOM: true };
+      case types.UPDATE_UOM_SUCCESS:
+        // return { ...state, updatingCustomers: false, sources: [...state.sources, action.payload] };
+        return {
+          ...state,
+          updatingUOM: false,
+          UOMListData: state.UOMListData.map((sector) =>
+            sector.uomId === action.payload.uomId
+              ? action.payload
+              : sector
+          ),
+        };
+      case types.UPDATE_UOM_FAILURE:
+        return {
+          ...state,
+          updatingUOM: false,
+          updatingUOMError: true,
+        };
+  
+            case types.GET_UOM_COUNT_REQUEST:
+              return { ...state, fetchingUOMCount: true };
+            case types.GET_UOM_COUNT_SUCCESS:
+              return { ...state, fetchingUOMCount: false, 
+                UOMCount: action.payload };
+            case types.GET_UOM_COUNT_FAILURE:
+              return {
+                ...state,
+                fetchingUOMCount: false,
+                fetchingUOMCountError: true,
+              };
+    
 
     default:
       return state;

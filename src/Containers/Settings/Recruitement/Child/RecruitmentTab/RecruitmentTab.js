@@ -1,7 +1,7 @@
 import React, { Component, } from "react";
 import { connect } from "react-redux";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import AssignmentIcon from '@mui/icons-material/Assignment';
 import {
@@ -25,11 +25,9 @@ import {
 import styled from "styled-components";
 import {
   MainWrapper,
-  Spacer,
   TextInput,
 } from "../../../../../Components/UI/Elements";
 import SingleRecruitStages from "./SingleRecruitStages";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import {  Select } from "../../../../../Components/UI/Elements";
 import { elipsize } from "../../../../../Helpers/Function/Functions";
@@ -259,11 +257,11 @@ class RecruitmentTab extends Component {
           <MainWrapper>
             <h1
             >
-              {/* Workflow */}
-              <FormattedMessage id="app.workflow" defaultMessage="Workflow" />
+              Workflow
+           
             </h1>
            
-            <FlexContainer>
+            <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
          
               <StyledTabs
                 style={{ width: "80%" }}
@@ -294,20 +292,12 @@ class RecruitmentTab extends Component {
                 Add
               </Button>
             
-            <Spacer />
-            <FlexContainer
-              flexDirection="column"
-              className="stages"
-              justifyContent="center"
-              style={{
-                width: "100%",
-                alignContent: "center",
-                alignItems:"center"
-              }}
-            >
+            <mt-3 />
+            <div class=" flex flex-col flex-wrap items-center content-center w-full self-start justify-center grow shrink h-auto mr-auto ">
+           
               {this.state.isProcessTextInputOpen ? (
                 <div>
-                  <FlexContainer alignItems="center" justifyContent={"center"}>
+                 <div class=" flex flex-row flex-wrap items-center self-start justify-center grow shrink h-auto mr-auto ">
                     <TextInput
                       placeholder="Process Name"
                       name="recruitmentProcessName"
@@ -318,31 +308,27 @@ class RecruitmentTab extends Component {
                       width={"100%"}
                     />
 
-                    <FlexContainer justifyContent="flex-end">
+<div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                       <Button
                         type="primary"
                         htmlType="submit"
                         onClick={this.handleEditProcessName}
                       >
-                        {/* Save */}
-                        <FormattedMessage id="app.save" defaultMessage="Save" />
+                        Save
+                    
                       </Button>                    
                       <Button
                         type="primary"
                         onClick={this.handleCancel}
                       >
-                        <FormattedMessage
-                          id="app.cancel"
-                          defaultMessage="Cancel"
-                        />
+                     Cancel
                       </Button>
-                    </FlexContainer>
-                  </FlexContainer>
+                    </div>
+                  </div>
                 </div>
               ) : (
                 <>
-                <FlexContainer 
-                >
+               <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                   <h1 style ={{color:"white"}}>
                     {this.state.currentProcess.recruitmentProcessName ||
                       `${"Select Workflow"}`
@@ -432,11 +418,11 @@ class RecruitmentTab extends Component {
                           > */}
                    
                   </h1>
-                  </FlexContainer>
+                  </div>
                 </>
               )}
-            </FlexContainer>
-            </FlexContainer>
+            </div>
+            </div>
                 
             {this.props.recruitProcessStages.map((recruitProcessStages, i) => (
               <SingleRecruitStages
@@ -456,12 +442,11 @@ class RecruitmentTab extends Component {
                 handleUpdateStage={this.handleUpdateStage}
                 handleStagePublishClick={this.handleStagePublishClick}
                 stageId={recruitProcessStages.stageId}
-                className="scrollbar"
-                id="style-3"
+                style={{scrollbarWidth:"thin", backgroundColor:"f5f5f5" }}
               />
             ))}
 
-            <Spacer />
+            <mt-3 />
             {this.state.isTextInputOpen ? (
               <div
                 style={{
@@ -469,7 +454,7 @@ class RecruitmentTab extends Component {
                   justifyContent: "center",
                 }}
               >
-                <FlexContainer justifyContent="space-between">
+           <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                 <TextInput
                   placeholder="Stage name"
                   name="stageName"
@@ -509,20 +494,20 @@ class RecruitmentTab extends Component {
                   onChange={this.handleChange}
                   width={"8%"}
                 />
-                </FlexContainer>
+                </div>
                 <div>
                 <Button
                   type="primary"
                   htmlType="submit"
                   onClick={this.handleAddStage}
                 >
-                  {/* Save */}
-                  <FormattedMessage id="app.save" defaultMessage="Save" />
+                  Save
+                
                 </Button>
                
                 <Button type="primary" ghost onClick={this.toggleInput}>
-                  {/* Cancel */}
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                  Cancel
+             
                 </Button>
                 </div>
               </div>
@@ -531,20 +516,17 @@ class RecruitmentTab extends Component {
               
             ) :this.state.currentProcess.recruitmentProcessName? (
               <>
-                <FlexContainer justifyContent="flex-end">
+               <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   <Button
                     type="primary"
                     ghost
                     htmlType="button"
                     onClick={this.toggleInput}
                   >
-                    {/* Add Stage */}
-                    <FormattedMessage
-                      id="app.addstage"
-                      defaultMessage="Add Stage"
-                    />
+                    Add Stage
+                  
                   </Button>
-                </FlexContainer>
+                </div>
               </>
             ):null}
           </MainWrapper>

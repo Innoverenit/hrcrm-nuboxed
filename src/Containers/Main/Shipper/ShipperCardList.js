@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState,lazy } from "react";
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
-import { Tooltip, Popconfirm, Switch } from "antd";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { Popconfirm, Switch } from "antd";
 import {
   getShipperByUserId,
   setEditShipper,
@@ -11,14 +12,28 @@ import {
   handleShipperOrderModal,
   handleShipperActivityTableModal,
   deleteShipperData,
+  handleShipperAddress,
 } from "./ShipperAction";
+import Swal from 'sweetalert2'
+import {getShipByData} from "../../Settings/Category/ShipBy/ShipByAction";
+import {getAllDialCodeList} from "../../Auth/AuthAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import UpdateShipperModal from "./UpdateShipperModal";
-import AddShipperOrderModal from "./AddShipperOrderModal";
+import { Input,Select } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import ShipperSearchedData from "./ShipperSearchedData";
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import CategoryIcon from '@mui/icons-material/Category'
+import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
+import MarkEmailUnreadIcon from '@mui/icons-material/MarkEmailUnread';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import ApiIcon from '@mui/icons-material/Api';
+import { base_url2 } from "../../../Config/Auth";
+import axios from "axios";
 
+const AddShipperOrderModal =lazy(()=>import("./AddShipperOrderModal"));
+const EmptyPage =lazy(()=>import("../EmptyPage"));
+const ShipperSearchedData =lazy(()=>import("./ShipperSearchedData"));
+const AddShipperAdressModal =lazy(()=>import("./AddShipperAdressModal"));
+const { Option } = Select;
 
 function ShipperCardList(props) {
 
@@ -27,15 +42,32 @@ function ShipperCardList(props) {
   const [page, setPage] = useState(0);
 
   const { handleUpdateShipperModal, updateShipperModal } = props;
-
+  const [dataShipper, setdataShipper] = useState([]);
   const [currentShipperId, setCurrentShipperId] = useState("");
   const [rowdata, setrowData] = useState({});
+  const [toggleYes, settoggleYes] = useState({});
+  const [tempToggleState, setTempToggleState] = useState({});
+  const [SelectedApi,setSelectedApi] =useState("");
+  const [editedFields, setEditedFields] = useState({});
+  const [editsuppliesId, setEditsuppliesId] = useState(null);
+const[storedApiKey,setstoredApiKey]=useState([{apikeyId:"api1",apikeyName:"apiOne"},{apikeyId:"api2",apikeyName:"apiTwos"}]);
+const[ErrorFetchApiKey,setErrorFetchApiKey]=useState(null);
+const [editableField, setEditableField] = useState(null); 
+const [editingValue, setEditingValue] = useState(""); 
 
 
   useEffect(() => {
     setPage(page + 1);
     props.getShipperByUserId(props.userId, page);
+    fetchApiKeyList();
+    props.getAllDialCodeList();
+    props.getShipByData(props.orgId);
   }, []);
+
+  useEffect(() => {
+    setdataShipper(props.shipperByUserId);
+}, [props.shipperByUserId]);
+
 
   const handleRowData = (data) => {
     setrowData(data);
@@ -44,15 +76,82 @@ function ShipperCardList(props) {
   function handleSetCurrentShipperId(shipperId) {
     setCurrentShipperId(shipperId);
   }
+  const handleInputChange = (value, key, dataIndex) => {
+    const updatedData = dataShipper.map((item) =>
+        item.orderId === key ? { ...item, [dataIndex]: value } : item
+    );
+    setdataShipper(updatedData);
+
+};
+const handleEditClick = (orderId) => {
+  setEditsuppliesId(orderId);
+};
+const handleCancelClick = (orderId) => {
+  setEditedFields((prevFields) => ({ ...prevFields, [orderId]: undefined }));
+  setEditsuppliesId(null);
+};
+
+const handleToggleClick = (checked, shipperId) => {
+  setTempToggleState(prevState => ({
+    ...prevState,
+    [shipperId]: checked, 
+  }));
+};
+const handleToggleConfirm = (shipperId) => {
+  settoggleYes(prevState => ({
+    ...prevState,
+    [shipperId]: tempToggleState[shipperId], 
+  }));
+  setEditsuppliesId(shipperId); 
+};
+
+const fetchApiKeyList = async () => {
+  try {
+    const response = await axios.get(`${base_url2}/DUMMY`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    });
+    setstoredApiKey(response.data);
+    // setLoading(false);
+  } catch (error) {
+    setErrorFetchApiKey(error);
+    // setLoading(false);
+  }
+};
+  const handleSelectedApiDropDown =  async (value,item) => {
+    setSelectedApi(value);
+    let payload={
+      apiKey: value,
+      shipperId:item.shipperId,
+  }
+    try {
+      const response = await axios.put(`${base_url2}/ApiKey/getBy/${props.orgId}`,payload,{  
+          headers: {
+              Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+          },
+       });
+       if (response.dataShipper === 'Successfully order created..') {
+        const updatedOrderItems = dataShipper.filter(itm => itm.shipperId !== item.shipperId);
+        setdataShipper(updatedOrderItems);
+      } else {
+        console.log(response.dataShipper);
+      }
+        setEditsuppliesId(null);
+      } catch (error) {
+        console.error("Error updating item:", error);
+        setEditsuppliesId(null);
+      }
+  }
 
   const handleLoadMore = () => {
-    const PageMapd = props.shipperByUserId && props.shipperByUserId.length && props.shipperByUserId[0].pageCount
+    const PageMapd = dataShipper && dataShipper.length && dataShipper[0].pageCount
     setTimeout(() => {
       const {
         getShipperByUserId,
         userId
       } = props;
-      if (props.shipperByUserId) {
+      if (dataShipper) {
         if (page < PageMapd) {
           setPage(page + 1);
           getShipperByUserId(userId, page);
@@ -63,100 +162,320 @@ function ShipperCardList(props) {
       }
     }, 100);
   };
+  const handleEditRowField = (shipperId, field, currentValue) => {
+    setEditableField({ shipperId, field });  
+    setEditingValue(currentValue);  
+  };
+  const handleChangeRowItem = (e) => {
+    setEditingValue(e.target.value);
+  };
+  const handleChangeRowSelectItem = async (value) => {
+    setEditingValue(value);
+
+      const { shipperId, field } = editableField;
+      const updatedData = {};
+      let mappedField = field;
+    
+      // Map the field to the correct key if needed
+      if (field === 'shipByName') {
+        mappedField = 'shipById'; 
+      } else if (field === 'dialCode2') {
+        mappedField = 'dialCode';
+      } else if (field === 'shipperName') {
+        mappedField = 'name';
+      }
+      updatedData[mappedField] = value; // Update the value with selected option
+    
+      try {
+        const response = await axios.put(
+          `${base_url2}/shipper/rowEdit/updateShipper/${shipperId}`,
+          updatedData,
+          {
+            headers: {
+              Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+            },
+          }
+        );
+    
+        // Update the customer list with the response data
+        setdataShipper(prevData =>
+          prevData.map(cat =>
+            cat.shipperId === shipperId ? response.data : cat
+          )
+        );
+        setEditableField(null); // Reset editable field
+        setEditingValue(""); // Reset editing value
+    
+        // Show success message
+        Swal.fire({
+          icon: 'success',
+          title: 'Update successful',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+    
+      } catch (error) {
+        console.error("Error updating item:", error);
+        setEditableField(null); // Reset editable field on error
+      }
+    
+  };
+  const handleUpdateSubmit = async () => {
+    const { shipperId, field } = editableField;
+    const updatedData = {};
+    let mappedField = field;
+    if (field === 'shipByName') {
+      mappedField = 'shipById'; 
+    } else if (field === 'dialCode2') {
+      mappedField = 'dialCode';
+    } else if (field === 'shipperName') {
+      mappedField = 'name';
+    }
+    updatedData[mappedField] = editingValue;
+
+    try {
+      const response = await axios.put(
+        `${base_url2}/shipper/rowEdit/updateShipper/${shipperId}`,
+        updatedData,
+        {
+          headers: {
+            Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+          },
+        }
+      );
+      setdataShipper(prevData => 
+        prevData.map(cat =>
+          cat.shipperId === shipperId ? response.data : cat
+        )
+      );
+      setEditableField(null);
+      setEditingValue("");
+        Swal.fire({
+          icon: 'success',
+          title: 'Update successful',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+
+    } catch (error) {
+      console.error("Error updating item:", error);
+      setEditableField(null);
+    }
+  };
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleUpdateSubmit(); 
+    }
+  };
+
+
 
   return (
     <>
       {props.shipperSerachedData.length > 0 ? (
     <ShipperSearchedData
     shipperSerachedData={props.shipperSerachedData}
+    translatedMenuItems={props.translatedMenuItems}
     />
   ) : (
       <div className=' flex  sticky  z-auto'>
-        <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky -0 z-10">
-            <div className=" w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+        <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent  sticky items-end font-poppins font-bold !text-lm max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
+            <div className=" text-[#00A2E8] truncate text-sm w-[10.5rem]  ">
              {/* Name */}
-              {props.translatedMenuItems[0]}
+             <CategoryIcon
+              className='!text-icon'
+              /> {props.translatedMenuItems[0]}
               </div>
-            <div className=" w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="  w-[7.2rem] max-md:w-[7.2rem] truncate  ">
              {/* Phone */}
-              {props.translatedMenuItems[1]} #
+             <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>  {props.translatedMenuItems[1]} 
               </div>
-            <div className=" w-[6.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[10.8rem]  max-md:w-[10.8rem] truncate  ">
              {/* Email */}
-              {props.translatedMenuItems[2]}
+             <MarkEmailUnreadIcon className='!text-icon mr-1 text-[#ff9f1c]'  />{props.translatedMenuItems[2]}
               </div>
-            <div className="w-[5.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[6.1rem] max-md:w-[6.1rem] truncate  ">
               {/* Ship By */}
-              {props.translatedMenuItems[3]}
+              <LocalShippingIcon className='!text-base mr-1 text-[#7dcfb6]'/>{props.translatedMenuItems[3]}
             </div>
-            <div className="w-[7.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className="  w-[18.7rem] max-md:w-[18.7rem] truncate  ">
              {/* Address */}
-              {props.translatedMenuItems[4]}
+             <LocationOnIcon className='!text-base  text-[#7b36eb]'/> {props.translatedMenuItems[4]}
               </div>
-            <div className="w-[7.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[12.4rem] max-md:w-[12.4rem] truncate  ">
             {/* City */}
-              {props.translatedMenuItems[5]}
+            <LocationOnIcon className='!text-base  text-[#7b36eb]'/> {props.translatedMenuItems[5]}
               </div>
-            <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+            <div className=" w-[5.9rem] max-md:w-[5.9rem] truncate  ">
             {/* Pin Code */}
               {props.translatedMenuItems[6]}
               </div>
-            <div className="w-[10.24rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">API</div>
+            <div className=" w-[13.24rem] max-md:w-[13.24rem] truncate  ">
+            <ApiIcon className='!text-base  text-[#e74139]'/> API</div>
           </div>
           <InfiniteScroll
-            dataLength={props.shipperByUserId.length}
+            dataLength={dataShipper.length}
             next={handleLoadMore}
             hasMore={hasMore}
             loader={props.fetchingShipperByUserId ? <div className="flex justify-center" >{props.translatedMenuItems[8]}...</div> : null}
-            height={"80vh"}
+            height={"88vh"}
           >
-            {props.shipperByUserId.length ? <>
-              {props.shipperByUserId.map((item) => {
+            {dataShipper.length ? <>
+              {dataShipper.map((item) => {
                 return (
                   <>
                     <div  >
-                      <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium flex-col w-[10.9rem] max-xl:w-[7.6rem] max-lg:w-[6.1rem] max-sm:w-auto  ">
+                      <div className="flex rounded max-sm:rounded-lg py-ygap
+                max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 mt-1 bg-white  items-center max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+                        <div class="flex max-sm:justify-between border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-wk items-center max-sm:items-center">
+                          <div className=" flex font-medium w-[9.9rem] max-xl:w-[7.6rem] items-center justify-start h-8   bg-[#eef2f9] max-lg:w-[6.1rem] max-sm:w-auto  ">
+                  
+                         
+                              <div class=" text-xs flex text-blue-500 ml-gap font-poppins font-semibold  cursor-pointer">
 
-                            <div class="flex max-sm:flex-row justify-between w-full md:flex-col">
-                              <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
-
-                                <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
+                                <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer   max-sm:text-xs"
                                   to={`shipper/${item.shipperId}`} title={item.shipperName}>
                                   {item.shipperName}
                                 </Link>
+                                <div>
+                      {editableField?.shipperId === item.shipperId &&
+   editableField?.field === 'shipperName' ? (
+    <div className=" flex  ">
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/></div>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.shipperId, 'shipperName', item.shipperName)} 
+    className="cursor-pointer text-xs font-poppins">
+   <BorderColorIcon  className=" !text-icon cursor-pointer"/>   
+    </div> 
+)}                 
+                      </div>
                               </div>
-
                             </div>
                           </div>
-                          <div className=" flex  w-[6.5rem] max-xl:w-[4.5rem] max-lg:w-[3.5rem]  max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-                            <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                              {item.dialCode} {item.phoneNo}
+                          <div className=" flex max-md:w-44 w-[9rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row ">
+<div class="  text-xs ml-gap items-center  font-poppins flex">
+{/* {item.dialCode} {item.phoneNo} */}
+
+<div>
+{editableField?.shipperId === item.shipperId && editableField?.field === 'dialCode2' ? (
+  <Select
+  style={{ width: "7rem" }}
+  value={editingValue}
+  onChange={handleChangeRowSelectItem} 
+  autoFocus
+>
+{props.dialcodeList.map((country) => (
+   <Option key={country.country_dial_code} value={country.country_dial_code}>
+  {country.country_dial_code}
+   </Option>
+ ))}
+</Select>
+) : (
+<div onClick={() => 
+handleEditRowField(item.shipperId, 'dialCode2', item.dialCode2)} 
+className="cursor-pointer text-xs font-poppins">
+{item.dialCode2 || "Update..."}
+
+</div>         
+                        )}
+                      </div>
+                      <div>
+                      {editableField?.shipperId === item.shipperId &&
+   editableField?.field === 'phoneNo' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.shipperId, 'phoneNo', item.phoneNo)} 
+    className="cursor-pointer text-xs font-poppins">
+    {item.phoneNo || "Update..."}
+    
+    </div> 
+)}                 
+                      </div>
+</div>
+
+</div>
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
+                          <div className=" flex   w-[10.3rem] max-md:w-[10.3rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+
+                            <div class="flex  text-xs ml-gap  font-poppins   max-sm:text-xs">
+                            {editableField?.shipperId === item.shipperId &&
+   editableField?.field === 'emailId' ? (
+<Input
+  type="text"
+  className="h-7 w-[4rem] text-xs"
+  value={editingValue}
+  onChange={handleChangeRowItem}
+  onBlur={handleUpdateSubmit}
+  onKeyDown={handleKeyDown} 
+  autoFocus
+/>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.shipperId, 'emailId', item.emailId)} 
+    className="cursor-pointer text-xs font-poppins">
+    {item.emailId || "Update..."}
+    
+    </div> 
+)}   
+                        
+                       
                             </div>
+                          </div>
+
+                          <div className=" flex  w-[6.12rem] max-md:w-[6.12rem] items-center justify-start h-8 ml-gap  bg-[#eef2f9] max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                            <div class="  text-xs  font-poppins ml-gap   max-sm:text-xs">
+                              {/* {item.shipByName} */}
+                              <div>
+                              {editableField?.shipperId === item.shipperId &&
+   editableField?.field === 'shipByName' ? (
+<Select
+      style={{ width: "6.12rem" }}
+      value={editingValue}
+      onChange={handleChangeRowSelectItem} 
+      autoFocus
+    >
+     {props.ShipByData.map((ship) => (
+                              <Option key={ship.shipById} value={ship.shipById}>
+                                {ship.name}
+                              </Option>
+                            ))}
+    </Select>
+) : (
+<div onClick={() => 
+    handleEditRowField(item.shipperId, 'shipByName', item.shipByName)} 
+    className="cursor-pointer text-xs font-poppins">
+    {item.shipByName || "Update..."}
+    </div> 
+)}
+
+                      </div>
+                            </div>
+
                           </div>
                         </div>
+                        <div class="flex max-sm:justify-between max-sm:w-wk items-center max-sm:items-center">
+                          <div className=" flex  w-[18.31rem] max-md:w-[18.31rem]  items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex   w-[13.3rem] max-xl:w-[7.5rem] max-lg:w-[5.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-
-                            <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                              {item.emailId}
-                            </div>
-                          </div>
-
-                          <div className=" flex  w-[7.12rem] max-xl:w-[3.72rem] max-lg:w-[4.72rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-                            <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                              {item.shipByName}
-                            </div>
-
-                          </div>
-                        </div>
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex  w-[11.31rem] max-xl:w-[9.31rem] max-lg:w-[6.31rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-
-                            <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class="  text-xs  ml-gap font-poppins   max-sm:text-xs">
                               {`${(item.address && item.address.length && item.address[0].address1) || ""}
           ${(item.address && item.address.length && item.address[0].state) || ""}
          
@@ -164,84 +483,96 @@ function ShipperCardList(props) {
                             </div>
                           </div>
                           
-                          <div className=" flex   w-[12.21rem] max-xl:w-[8.81rem] max-lg:w-[6.3rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-                            <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex   w-[12.21rem] max-md:w-[12.21rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[8.81rem] max-lg:w-[6.3rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
+                            <div class="  text-xs  font-poppins ml-gap   max-sm:text-xs">
                               {(item.address &&
                                 item.address.length &&
                                 item.address[0].city) ||
                                 ""}
                             </div>
                           </div>
-                        </div>
+                    
+                          <div className=" flex  w-[5.2rem] max-md:w-[5.2rem] items-center justify-start  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
 
-                        <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex  w-[6.2rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row ">
-
-                            <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div class="  text-xs  ml-gap font-poppins   max-sm:text-xs">
                               {(item.address &&
                                 item.address.length &&
                                 item.address[0].postalCode) ||
                                 ""}
                             </div>
                           </div>
-                          
-                          <div>
-                            <Switch
-                              className="toggle-clr"
-                              //checked={item.productionInd}
-                              isLoading={true}
-                              checkedChildren="Yes"
-                              unCheckedChildren="No"
-                            />
                           </div>
-                        </div>
-                        <div class="flex justify-end max-sm:w-wk items-center">
-                          <div>
-                            <Tooltip title={props.translatedMenuItems[9]}>
-                              <BorderColorIcon
-                                className=" !text-icon cursor-pointer text-[tomato]"
+                          <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
+                          <div className=" flex items-center justify-center w-[10rem] h-8 ml-gap  bg-[#eef2f9]">
+                          <Popconfirm
+          title={`Do you want to change ${tempToggleState[item.shipperId] ? "No" : "Yes"}`}
+          onConfirm={() => handleToggleConfirm(item.shipperId)} 
+          okText="Yes"
+          cancelText="No"
+        >
+          <Switch
+           className="toggle-clr"
+           checked={toggleYes[item.shipperId] || false}
+           onChange={(checked) => handleToggleClick(checked, item.shipperId)}
+            checkedChildren="Yes"
+            unCheckedChildren="No"
+          />
+        </Popconfirm>
+        {toggleYes[item.shipperId] && editsuppliesId === item.shipperId ? (
+          <Select
+           classNames="w-32"
+         value={SelectedApi} 
+          onChange={(value) => { handleSelectedApiDropDown(value,item)}}
+          >
+            {storedApiKey.map((item) => {
+                                    return <Option value={item.apikeyId}>{item.apikeyName}</Option>;
+                                })}
+          {/* <Option value={"closedOrder"}>Opt1</Option>
+          <Option value={"createRemainingOrder"}>Opt2</Option> */}
+           </Select>
+        ) : ""}   
+                          </div>
+                          <div class="flex justify-end max-sm:w-wk items-center">
+                          <div class="flex max-sm:flex-row w-[8rem]  justify-end md:w-[3rem] max-sm:w-[25%] ">
+                           
+                          <div className=" flex items-center justify-center h-8 ml-gap  bg-[#eef2f9]">
+                          <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+          onClick={() => {
+            props.handleShipperAddress(true);
+            handleRowData(item);
+          }}         
+        />      
+       </div>
 
-                                onClick={() => {
-                                  props.setEditShipper(item);
-                                  handleRowData(item);
-                                  handleUpdateShipperModal(true);
-                                  handleSetCurrentShipperId(item.shipperId);
-                                }}
-                              />
-                            </Tooltip>
-                          </div>
-                          <div>
+                  <div className=" flex items-center justify-center h-8  bg-[#eef2f9]">
                             <Popconfirm
                               title={`${props.translatedMenuItems[10]}?`}
                               onConfirm={() => props.deleteShipperData(item.shipperId, props.userId)}
                             >
-                              <DeleteOutlined
-                                className=" !text-icon cursor-pointer text-[red]"
+                             <DeleteOutlineIcon 
+                                className=" !text-icon cursor-pointer text-[red] "
 
                               />
                             </Popconfirm>
-                          </div>
+                            </div>
+                         </div>
+                        </div>
                         </div>
                       </div>
                     </div>
                   </>
                 )
               })}
-            </> : !props.shipperByUserId.length
-              && !props.fetchingShipperByUserId ? <NodataFoundPage /> : null}
+            </> : !dataShipper.length
+              && !props.fetchingShipperByUserId ?<Suspense> <EmptyPage /></Suspense> : null}
 
           </InfiniteScroll>
         </div >
       </div>
       )}
-      <UpdateShipperModal
-        rowdata={rowdata}
-        shipperId={currentShipperId}
-        updateShipperModal={updateShipperModal}
-        handleSetCurrentShipperId={handleSetCurrentShipperId}
-        handleUpdateShipperModal={handleUpdateShipperModal}
-        translatedMenuItems={props.translatedMenuItems}
-      />
+      <Suspense>
+    
       <AddShipperOrderModal
         addShipperOrderModal={props.addShipperOrderModal}
         handleShipperOrderModal={props.handleShipperOrderModal}
@@ -249,18 +580,28 @@ function ShipperCardList(props) {
         handleSetCurrentShipperId={handleSetCurrentShipperId}
         translatedMenuItems={props.translatedMenuItems}
       />
+        <AddShipperAdressModal  
+        item={rowdata}
+         type="shipper"
+         addShipperAddressModal={props.addShipperAddressModal}
+         handleShipperAddress={props.handleShipperAddress}
+      /></Suspense>
     </>
   )
 }
-const mapStateToProps = ({ shipper, auth }) => ({
+const mapStateToProps = ({ shipper, auth,shipBy }) => ({
   shipperByUserId: shipper.shipperByUserId,
   userId: auth.userDetails.userId,
+  orgId: auth.userDetails.organizationId,
   fetchingShipperByUserId: shipper.fetchingShipperByUserId,
   fetchingShipperByUserIdError: shipper.fetchingShipperByUserIdError,
   updateShipperModal: shipper.updateShipperModal,
   addShipperActivityTableModal: shipper.addShipperActivityTableModal,
   addShipperOrderModal: shipper.addShipperOrderModal,
-  shipperSerachedData: shipper.shipperSerachedData
+  shipperSerachedData: shipper.shipperSerachedData,
+  addShipperAddressModal: shipper.addShipperAddressModal,
+  dialcodeList:auth.dialcodeList,
+  ShipByData:shipBy.ShipByData,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -272,6 +613,9 @@ const mapDispatchToProps = (dispatch) =>
       deleteShipperData,
       getShipperByUserId,
       setEditShipper,
+      handleShipperAddress,
+      getAllDialCodeList,
+      getShipByData
     },
     dispatch
   );

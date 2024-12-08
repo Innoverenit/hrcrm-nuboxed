@@ -1,22 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
-import { Icon, Carousel, Button, Tooltip } from "antd";
+import {  Carousel, Tooltip } from "antd";
 import { StyledModal } from "../../../../../../Components/UI/Antd";
 import {
   MainWrapper,
-  FlexContainer,
 } from "../../../../../../Components/UI/Layout";
-import {
-  EnvironmentOutlined,
-  EyeInvisibleOutlined,
-  LeftCircleFilled,
-  LeftCircleTwoTone,
-  RightCircleTwoTone,
- 
-  
-} from '@ant-design/icons';
-import { Leaflet, OpenTripPlanner } from "../../../../../../Components/Utils";
+
+import ArrowCircleLeftIcon from '@mui/icons-material/ArrowCircleLeft';
+import ArrowCircleRightIcon from '@mui/icons-material/ArrowCircleRight';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import { Leaflet} from "../../../../../../Components/Utils";
 
 import { AddressComponent } from "../../../../../../Components/Common";
 import { CarouselIcon } from "../../../../../../Components/UI/Elements";
@@ -48,11 +42,7 @@ class EmployeeDetailMap extends Component {
     } = this.props;
 
     console.log(address);
-    // const userAddressName = `${userAddress.address1 ||
-    //   ""} ${userAddress.address2 || ""} ${userAddress.street ||
-    //   ""} ${userAddress.town || ""} ${userAddress.city ||
-    //   ""} ${userAddress.state || ""} ${userAddress.country ||
-    //   ""} ${userAddress.postalCode || ""}`;
+   
     console.log(userAddress);
     // console.log(userAddressName);
     const position = [];
@@ -64,19 +54,7 @@ class EmployeeDetailMap extends Component {
         name: "slack",
       });
     }
-    // _.forEach(account, component => {
-    //   var latlng = _.get(component, "address");
-    //   //////////debugger;
-    //   _.forEach(address, l => {
-    //     if (l.latitude && l.longitude) {
-    //       position.push({
-    //         lat: Number(l.latitude),
-    //         lng: Number(l.longitude),
-    //         name: component.accountName
-    //       });
-    //     }
-    //   });
-    // });
+    
     const markers = [];
 
     address &&
@@ -124,7 +102,7 @@ class EmployeeDetailMap extends Component {
       <>
         <MainWrapper style={{ padding: 0, position: "relative" }}>
           <Tooltip title="View and update customer addresses">
-            <EnvironmentOutlined
+            <AddLocationAltIcon
               type="environment"
               onClick={this.handleMapModalVisible}
               style={{
@@ -148,12 +126,7 @@ class EmployeeDetailMap extends Component {
               margin={5}
               zoom={9}
               MyPopupMarker={MapPopupMarker}
-              // centerPosition={
-              //   newCenterPosition.length
-              //     ? newCenterPosition
-              //     : [Number(51.92301029999999), Number(4.470038700000032)]
-              // }
-              // centerPosition={newCenterPosition}
+          
               centerPosition={[
                 Number(51.92301029999999),
                 Number(4.470038700000032),
@@ -175,31 +148,24 @@ class EmployeeDetailMap extends Component {
         >
           {/* <MapModal position={markers} /> */}
           <>
-            <FlexContainer
-              justifyContent="space-between"
-              alignItems="flex-start"
-              flexWrap="nowrap"
-            >
+          <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
               <div>
-                <FlexContainer
-                  justifyContent="space-between"
-                  style={{ width: 220, position: "relative" }}
-                >
+              <div class=" flex flex-row flex-wrap items-start self-start justify-between w-[220px] grow shrink h-auto mr-auto relative">
                   <CarouselIcon
                     //type="left-circle"
-                    icon={<LeftCircleTwoTone/>}
+                    icon={<ArrowCircleLeftIcon/>}
                     onClick={this.previous}
                     theme="twoTone"
                     style={{ position: "absolute", left: -5, top: 40 }}
                   />
                   <CarouselIcon
                     //type="right-circle"
-                    icon={<RightCircleTwoTone/>}
+                    icon={<ArrowCircleRightIcon/>}
                     onClick={this.next}
                     theme="twoTone"
                     style={{ position: "absolute", right: -66, top: 40 }}
                   />
-                </FlexContainer>
+                </div>
                 <MainWrapper style={{ width: 220, marginLeft: 32 }}>
                   <Carousel ref={(node) => (this.carousel = node)} {...props}>
                     {address &&
@@ -249,7 +215,7 @@ class EmployeeDetailMap extends Component {
                   />
                 )}
               </div>
-            </FlexContainer>
+            </div>
           </>
         </StyledModal>
       </>

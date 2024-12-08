@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form} from "formik";
+
 import {
   Select,
 } from "../../../../../Components/UI/Elements";
-import { MainWrapper,  } from "../../../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
-import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import { Button, Switch } from "antd";
 import {
     websiteSingleMultiple,
@@ -15,7 +13,7 @@ import {
     getDepartmentwiserUser,
 } from "../../../../Settings/SettingsAction";
 import {getDepartments} from "../../../Department/DepartmentAction"
-import moment from "moment";
+import dayjs from "dayjs";
 const { Option } = Select;
 function WebsiteForm(props) {
  
@@ -38,14 +36,7 @@ console.log("single",single)
     
   }, []);
   useEffect(() => {
-    // const userOptionNameOption = props.distributionAutomation.multyAsignedTOId===null?[]: props.distributionAutomation.multyAsignedTOId.map((item) => {
-    //   return item
-    // }
-    // )
-    // const userOptionNameOption = 
-    // Array.isArray(props.distributionAutomation?.multyAsignedTOId) 
-    // ? props.distributionAutomation.multyAsignedTOId.map((item) => item) 
-    // : [];
+    
     setSingle(props.distributionAutomation.singleMultiInd)
     setSelectedDept(props.distributionAutomation.departmentId)
     
@@ -73,8 +64,6 @@ const handleDeptChange = (value) => {
     setSelectedUser(selectedUser);
   };
 
-
-
   const handleChangeUserName =(value)=>{
     setUserNames(value)
   }
@@ -93,8 +82,6 @@ const handleDeptChange = (value) => {
           //multyAsignedTOId:single === false ? [selectedUser] : [],
           type:"lead",
           departmentId:props.distributionAutomation.departmentId || "",
-        //   timePeriod: props.distributionAutomation.timePeriod === 0 ? "Not Applicable" :props.distributionAutomation.timePeriod|| "",
-        //   orderTimePeriod: props.distributionAutomation.orderTimePeriod === 0 ? "Not Applicable" :props.distributionAutomation.orderTimePeriod || "",
           userId: props.userId,
           orgId: props.organizationId,
         }}
@@ -117,29 +104,16 @@ const handleDeptChange = (value) => {
         }}
       >
         {({ values }) => (
-        <MainWrapper style={{ height: "446px", width: "", overflow: "auto" }}>
+       <div class="mr-5 ml-5 h-[28rem] overflow-auto">
         <Form className="form-background">
-          <div class =" flex  justify-between w-full"
-       
-          >
-            <div class=" w-[44%] flex flex-row mt-[0.625em] ml-[1em]"
-            >
-            
-        
-             
-              <div class=" flex  flex-col w-[44%]"
+          <div class =" flex w-full"
+             >                                   
+              <div class=" flex  flex-col w-[10%]"
               >
-              <p class=" w-[6rem]">Assigned</p>
-                <div>
-                      {/* <Popconfirm
-                        title="Do you wish to change Status ? "
-                        // onConfirm={handleAppClick}
-                        // onCancel={handleCancel}
-                        okText="Yes"
-                        cancelText="No"
-                      > */}
-                        <Switch
-                          style={{ width: "5em" }}
+              
+             <div class=" text-[#444] font-bold text-xs  w-[6rem]" >Assigned</div>
+                <div>                    
+                        <Switch classname="w-[6rem]"                     
                           onChange={handleSingleMultiple}
                           checked={single}
                           checkedChildren="Multiple"
@@ -148,28 +122,15 @@ const handleDeptChange = (value) => {
                       {/* </Popconfirm> */}
                     </div>
               </div>
-      
-              <div class=" flex justify-between width-[50%] ml-4 " >
-                                                    <div class=" w-[35%]" >
-                                                    <label class=" text-[#444] font-bold text-[0.75rem]" >Department</label>
-                      {/* <select  className="customize-select"
-                       
-                      onChange={handleDeptChange}>
-          <option value="">Select Department</option>
-          {props.departments.map((item, index) => (
-            <option 
-           
-            key={index} value={item.departmentId}>
-              {item.departmentName}
-            </option>
-          ))}
-        </select> */}
+            
+              <div class=" flex flex-col justify-between width-[50%] ml-4 " >                                               
+                                                    <div class=" text-[#444] font-bold text-xs" >Department</div>
+                   
         <Select
-        className="customize-select"
+        className="customize-select w-[28%]"
           value={selectedDept}
           onChange={handleDeptChange}
-          // disabled={startInd === true}
-          style={{ width: 146 }}
+          // disabled={startInd === true}      
           placeholder="Select"
         >
           {props.departments.map((item, index) => (
@@ -181,9 +142,8 @@ const handleDeptChange = (value) => {
         </div>
         {selectedDept && (
           <>                                           
-{single === false?(
-            <div class=" w-[35%]" >
-            <label class=" text-[#444] font-bold text-[0.75rem]" >User</label>
+{single === false?(        
+            <div class=" text-[#444] font-bold text-xs ml-4" >User
             <Select className="customize-select"
          value={selectedUser}
                  onChange={handleUserChange}
@@ -202,18 +162,7 @@ const handleDeptChange = (value) => {
 
 ):(   
   <div class=" w-[35%] ml-8" >
-               <label class=" text-[#444] font-bold text-[0.75rem]" >User</label>
-   {/* <Field
-               name="multyAsignedTOId"
-            
-              style={{width:"10rem"}}
-               mode
-               placeholder="Select"
-               component={SelectComponent}
-               options={Array.isArray(employeesData) ? employeesData : []}
-               value={values.multyAsignedTOId}
-             
-             /> */}
+               <div class=" text-[#444] font-bold text-[0.75rem]" >User</div>
               <Select
                        // name="recruitersId"
                         mode="multiple"
@@ -233,30 +182,24 @@ const handleDeptChange = (value) => {
    </div>   
 )}                        
 </> 
-        )}                                                  
-                                                </div>
-             
-            </div>
-          </div>
-       
-         
-              <div class=" flex justify-end mt-[1.25em]" >
+        )}                                                                                                               
+              <div class=" flex justify-end mt-2 ml-8" >
                 <Button
                   type="primary"
                   htmlType="submit"
                   Loading={props.updateRequirement}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
-                  {/* Update */}
+                 Update
                 </Button>
+              </div>
               </div>
               <div class="mt-4">
                 Updated on{" "}
-                {moment(props.distributionAutomation.updationDate).format("ll")} by{" "}
+                {dayjs(props.distributionAutomation.updationDate).format("ll")} by{" "}
                 {props.distributionAutomation.updatedBy}
               </div>
         </Form>
-      </MainWrapper>
+     </div>
         )}
       </Formik>
     </>

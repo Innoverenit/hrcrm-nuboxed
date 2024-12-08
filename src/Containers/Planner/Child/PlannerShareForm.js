@@ -13,14 +13,14 @@ import {
 } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import { FlexContainer } from "../../../Components/UI/Layout";
-import { Spacer } from "../../../Components/UI/Elements";
+
 
 // import { sharePartner, getsharePartnerUsers } from "../PartnerAction";
 // import { getUsers } from "../../Team/TeamAction";
 import { getEmployeelist } from "../../Employees/EmployeeAction";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
-import { FormattedMessage } from "react-intl";
+
 
 function PlannerShareForm(props) {
   useEffect(() => {
@@ -116,7 +116,7 @@ function PlannerShareForm(props) {
               </Popconfirm> */}
             </div>
 
-            <Spacer />
+            <div class=" mt-3" />
           </Form>
         )}
       </Formik>

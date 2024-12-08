@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 import { Formik, Form, Field } from "formik";
 import { Button, Tooltip } from "antd";
-import { FormattedMessage } from "react-intl";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import FormikPlacesAutoComplete from "../../../../../../Components/Forms/Formik/FormikPlacesAutoComplete";
 import {
-  MultiAvatar,
+  MultiAvatar2,
 } from "../../../../../../Components/UI/Elements";
-import { ActionIcon, } from "../../../../../../Components/Utils";
 import L from "leaflet";
 
 delete L.Icon.Default.prototype._getIconUrl;
@@ -32,7 +30,7 @@ class EmployeeOverviewView extends Component {
           <div class=" flex justify-start flex-no-wrap w-[85%]"
           >
             <div class=" w-[20%]" >
-              <MultiAvatar
+              <MultiAvatar2
                 primaryTitle={singleEmployee.firstName}
                 imageId={singleEmployee.imageId}
                 imageURL={singleEmployee.imageURL}
@@ -40,7 +38,7 @@ class EmployeeOverviewView extends Component {
             </div>
           
             <div class=" flex flex-col w-full ml-2" >
-              <div class=" w-wk text-[#444] overflow-hidden text-lg textOverflow-ellipsis"
+              <div class=" w-wk  overflow-hidden text-sm text-ellipsis"
              
               >{`${singleEmployee.fullName || ""} 
                 `}</div>
@@ -65,11 +63,7 @@ class EmployeeOverviewView extends Component {
              
               // iconType="edit"
               onClick={toggleViewType}
-              style={{
-                color: "grey",
-                cursor: "pointer",
-                fontSize: "1rem",
-              }}
+              className=" text-red-500 cursor-pointer !text-icon"
             />
             </Tooltip>
           </div>
@@ -126,119 +120,65 @@ class AddressField extends Component {
               <Form className="form-background">
                 <Field
                   name={`address`}
-                  // label="Work place"
-                  label={
-                    <FormattedMessage
-                      id="app.address"
-                      defaultMessage="Work place"
-                    />
-                  }
+                  label="Work place"
                   component={FormikPlacesAutoComplete}
                   options={{}}
                 />
                 <Field
-                  //label="Address1"
-                  label={
-                    <FormattedMessage
-                      id="app.address.address1"
-                      defaultMessage="Address1"
-                    />
-                  }
+                  label="Address1"
                   name="address.address1"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  //label="address2"
-                  label={
-                    <FormattedMessage
-                      id="app.address.address2"
-                      defaultMessage="address2"
-                    />
-                  }
+                  label="address2"
                   name="address.address2"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  //label="street"
-                  label={
-                    <FormattedMessage
-                      id="app.address.street"
-                      defaultMessage="street"
-                    />
-                  }
+                  label="street"
                   name="address.street"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  // label="town"
-                  label={
-                    <FormattedMessage
-                      id="app.address.town"
-                      defaultMessage="town"
-                    />
-                  }
+                  label="town"
                   name="address.town"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  // label="city"
-                  label={
-                    <FormattedMessage
-                      id="app.address.city"
-                      defaultMessage="city"
-                    />
-                  }
+                  label="city"
                   name="address.city"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  //label="state"
-                  label={
-                    <FormattedMessage
-                      id="app.address.state"
-                      defaultMessage="state"
-                    />
-                  }
+                  label="state"
                   name="address.state"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  //label="country"
-                  label={
-                    <FormattedMessage
-                      id="app.address.country"
-                      defaultMessage="country"
-                    />
-                  }
+                  label="country"
                   name="address.country"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  //  label="postalCode"
-                  label={
-                    <FormattedMessage
-                      id="app.address.postalCode"
-                      defaultMessage="postalCode"
-                    />
-                  }
+                   label="postalCode"
                   name="address.postalCode"
                   component={InputComponent}
                 // defaultValue='low'
                 />
 
                 <Button type="primary" htmlType="submit">
-                  <FormattedMessage id="app.save" defaultMessage="Save" />
+                 Save
                 </Button>
                 <Button type="default" onClick={handleAddAddressVisible}>
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
-                  {/* Cancel */}
+                
+                  Cancel
                 </Button>
               </Form>
             )}

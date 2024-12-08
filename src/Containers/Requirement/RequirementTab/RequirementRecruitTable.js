@@ -1,20 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import HelpIcon from '@mui/icons-material/Help';
 import AddRequirementModal from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/AddRequirementModal"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import RecruitmentStages from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/RecruitmentStages";
 import {
   StyledTable,
   StyledPopconfirm,
   StyledModal,
 } from "../../../Components/UI/Antd";
-import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro';
 import RecruitmentFilter from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/RecruitmentFilter";
 import AddRecruiterModal from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/AddRecruiterModal"
-import RecruitmentContact from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/RecruitmentContact";
+import RecentActorsIcon from '@mui/icons-material/RecentActors';
 import {
   getRecruitByRecruiterId,
   LinkSkillsRecruit,
@@ -47,24 +45,15 @@ import {
   message,
   Icon,
 } from "antd";
-// import { Table, Input, Button, Icon } from 'antd';
 import Highlighter from 'react-highlight-words';
 
-// import { 
-//   CheckCircleOutlined,
-//   StopOutlined,
-//   EditOutlined,
-//   CopyOutlined,
-//   EyeOutlined,
-//   EyeInvisibleOutlined
-// } from '@ant-design/icons';
 import RecruitmentDetails from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/Child/RecruitmentDetails";
 import {
   getCandidateById,
   getTopicsByCandidateId,
   //   getContactDocument,
 } from "../../Candidate/CandidateAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import { CurrencySymbol } from "../../../Components/Common";
 import EditRecruitForm from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/EditRecruitForm";
 import { Suspense } from "react";
@@ -188,11 +177,8 @@ class RecruitmentTable extends Component {
         width: "5%",
       },
       {
-        //title: "Requirement",
-        title: <FormattedMessage
-          id="app.requirementName"
-          defaultMessage="Requirement"
-        />,
+        title: "Requirement",
+      
         dataIndex: "requirementName",
         width: "13%",
         render: (name, item, i) => {
@@ -252,15 +238,13 @@ class RecruitmentTable extends Component {
 
 
       {
-        title: <FormattedMessage
-          id="app.processName"
-          defaultMessage="Start"
-        />,
+        title: "Start"
+       ,
         dataIndex: "processName",
         width: "9%",
         render: (name, item, i) => {
           console.log(item);
-          return <span>{moment(item.avilableDate).format("ll")}</span>;
+          return <span>{dayjs(item.avilableDate).format("ll")}</span>;
         },
         sorter: (a, b) => {
           if (a.avilableDate < b.avilableDate) {
@@ -274,10 +258,8 @@ class RecruitmentTable extends Component {
       },
       {
         //title: "Rate/hr",
-        title: <FormattedMessage
-          id="app.billing"
-          defaultMessage="Billing"
-        />,
+        title: "Billing"
+       ,
         dataIndex: "billing",
         width: "8%",
         defaultSortOrder: "descend",
@@ -292,11 +274,8 @@ class RecruitmentTable extends Component {
         },
       },
       {
-        //title: "Stages",
-        title: <FormattedMessage
-          id="app.callType"
-          defaultMessage="Stages"
-        />,
+        title: "Stages",
+      
         dataIndex: "callType",
         width: "7%",
         render: (name, item, i) => {
@@ -380,10 +359,8 @@ class RecruitmentTable extends Component {
                   {item.approveInd ? (
                     <>
                       <Tooltip //title={"Offer rolled out"}
-                        title={<FormattedMessage
-                          id="app.selected"
-                          defaultMessage="Selected"
-                        />}
+                        title="Selected"
+                       
 
                       >
                         <Icon
@@ -414,10 +391,8 @@ class RecruitmentTable extends Component {
 
 
                       <Tooltip //title={"Offer"}
-                        title={<FormattedMessage
-                          id="app.select"
-                          defaultMessage="Select"
-                        />}
+                        title="Select"
+                       
 
                       >
                         <Icon
@@ -451,11 +426,9 @@ class RecruitmentTable extends Component {
                       </Tooltip>
 
                       &nbsp; &nbsp;
-                      <Tooltip //title={"Drop"}
-                        title={<FormattedMessage
-                          id="app.drop"
-                          defaultMessage="Drop"
-                        />}
+                      <Tooltip 
+                      title={"Drop"}
+                        
 
                       >
                         <Icon
@@ -558,11 +531,8 @@ class RecruitmentTable extends Component {
         },
       },
       {
-        //title: "Skill Set",
-        title: <FormattedMessage
-          id="app.callType"
-          defaultMessage="Skill Set"
-        />,
+        title: "Skill Set",
+      
 
         width: "15%",
         render: (name, item, i) => {
@@ -629,7 +599,7 @@ class RecruitmentTable extends Component {
                     this.props.handleRecruiterModal(true);
                   }}
                 >
-                  <FontAwesomeIcon icon={solid('person-circle-question')} />
+                  <RecentActorsIcon  />
                 </span>
               }
             </>
@@ -664,39 +634,7 @@ class RecruitmentTable extends Component {
 
       },
 
-      // {
-      //   //title: "Candidate",
-      //   title: <FormattedMessage
-      //     id="app.callType"
-      //     defaultMessage="Candidate"
-      //   />,
-      //   dataIndex: "callType",
-      //   width: "24%",
-      //   render: (name, item, i) => {
-      //     return (
-      //       <span>
-      //         <RecruitmentContact
-      //           candidateData={item.candidateList}
-      //           stageInd={item.stageInd}
-      //           name={item.candidateName}
-      //           approveInd={item.approveInd}
-      //           rejectInd={item.rejectInd}
-      //           // contact={(value) => {
-      //           //   //debugger;
-      //           //   this.props.LinkCandidateRecruit({
-      //           //     opportunityId: item.opportunityId,
-      //           //     stageId: item.stageId,
-      //           //     recruitmentProcessId: item.recruitmentProcessId,
-      //           //     contactId: value,
-      //           //     recruitmentId: item.recruitmentId,
-      //           //     profileId: item.profileId,
-      //           //   });
-      //           // }}
-      //         />
-      //       </span>
-      //     );
-      //   },
-      // },
+     
 
       {
         title: "",
@@ -719,11 +657,7 @@ class RecruitmentTable extends Component {
         },
       },
       {
-        //title: "Sponsor",
-        title: <FormattedMessage
-          id="app.callType"
-          defaultMessage="Sponsor"
-        />,
+        title: "Sponsor",
         dataIndex: "callType",
         width: "7%",
         render: (text, item) => {
@@ -744,34 +678,7 @@ class RecruitmentTable extends Component {
           );
         },
       },
-      // {
-      //   title: "",
-      //   width: "2%",
-      //   render: (name, item, i) => {
-      //     return (
-      //       <Tooltip
-      //         //title={"Copy"}
-      //         title={<FormattedMessage
-      //           id="app.copy"
-      //           defaultMessage="Copy"
-      //         />}
-      //       >
-      //         <Icon
-      //           type="copy"
-      //           style={{ cursor: "pointer" }}
-      //           onClick={() =>
-      //             this.handleCopy(
-      //               item.recruitmentId,
-      //               item.recruitmentProcessId,
-      //               item.stageList[1].stageId,
-      //               this.props.opportunityId
-      //             )
-      //           }
-      //         />
-      //       </Tooltip>
-      //     );
-      //   },
-      // },
+     
       {
         title: "",
         dataIndex: "callType",
@@ -785,11 +692,9 @@ class RecruitmentTable extends Component {
               {item.candidateName ? (
                 <>
                   {close ? (
-                    <Tooltip //title="Close Details"
-                      title={<FormattedMessage
-                        id="app.closedetails"
-                        defaultMessage="Close Details"
-                      />}
+                    <Tooltip 
+                    title="Close Details"
+                   
                     >
                       <Icon
                         type="eye-invisible"
@@ -806,12 +711,8 @@ class RecruitmentTable extends Component {
                     </Tooltip>
                   ) : (
                     <>
-                      <Tooltip //title="Access Details"
-                        title={<FormattedMessage
-                          id="app.accessdetails"
-                          defaultMessage="Access Details"
-                        />}
-                      >
+                      <Tooltip 
+                      title="Access Details">
                         <Icon
                           type="eye"
                           onClick={() =>
@@ -939,14 +840,14 @@ class RecruitmentTable extends Component {
         //         Sponsor Approved on
         //       </p>
         //       <p>{`${record.sponserInd
-        //         ? moment(record.sponserOfferDate).format("lll")
+        //         ? dayjs(record.sponserOfferDate).format("lll")
         //         : ""
         //         }`}</p>
         //       <p style={{ fontWeight: "bold", margin: 0 }}>
         //         Candidate Approved on
         //       </p>
         //       <p>{`${record.candidateOfferAccept} ${record.candidateInd
-        //         ? moment(record.candidateOfferDate).format("lll")
+        //         ? dayjs(record.candidateOfferDate).format("lll")
         //         : ""
         //         }`}</p>
         //       <p style={{ fontWeight: "bold", margin: 0 }}>Description</p>
@@ -966,11 +867,7 @@ class RecruitmentTable extends Component {
         )}
 
         <StyledModal
-          //title="Position"
-          title={<FormattedMessage
-            id="app.position"
-            defaultMessage="Position"
-          />}
+          title="Position"
           width="24%"
           visible={this.state.editModal}
           maskClosable={false}
@@ -986,11 +883,7 @@ class RecruitmentTable extends Component {
           </Suspense>
         </StyledModal>
         <StyledModal
-          // title="Select Sponsor"
-          title={<FormattedMessage
-            id="app.selectsponsor"
-            defaultMessage="Select Sponsor"
-          />}
+          title="Select Sponsor"
           width="20%"
           visible={this.props.addSponsorModal}
           maskClosable={false}

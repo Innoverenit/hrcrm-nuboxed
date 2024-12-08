@@ -2,11 +2,9 @@ import React, {  useState,useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Switch,Tooltip } from "antd";
-import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
 import {getAllEmployeelist,getDialCode} from "../../Investor/InvestorAction"
-import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 import {
      updatePitch,
     setEditPitch,
@@ -51,32 +49,32 @@ function UpdatePitchForm (props) {
   const handleReset = (resetForm) => {
     resetForm();
   };
-
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "First Name",//0
-          "Middle Name",//1
-          "Last Name",//2
-          "Email",//3
-          "DialCode",//4
-          "PhoneNo",//5
-          "Company",//6
-          "Url",//7
-          "Share Quantity",//8
-          "Share Value",//9
-          "Category",//10
-          "Date",//11
-          "Currency",//12
-          "Assigned",//13
-          "Address",//14
-          // "Street",//15
-          // "Zip Code",//16
-          // "City",//17
-          // "State",//18
-          // "Country",//19
-          "Notes"//20
+         "295",//0 First Name
+          "353",//1 Middle Name
+          "354",//2 Last Name
+          "140",//3 Email
+          "357",//4 Dial Code
+          "300",//5 Phone No
+          "277",//6 Company
+          "302",//7 Url
+          "454",//8 Share Quantity
+          "455",//9 Share Value
+          "14",//10 Category
+          "74",//11 Date
+          "241",//12 Currency
+          "76",//13 Assigned
+          "185", // 14 "Address",
+        //   "186", // "Street",//15
+        //  "187",//Zip Code",//16
+        //  "188",// "City",17
+        //   "314",// "State",//18
+        //   "1109",// "Country",//19
+          "316",//15 Notes
+           "104",//  Update
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -89,6 +87,7 @@ function UpdatePitchForm (props) {
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
 
+ 
   useEffect (()=>{
     props.getAllEmployeelist();
     props.getDialCode();
@@ -182,20 +181,7 @@ function UpdatePitchForm (props) {
             unitOfShare:props.setEditingPitch.unitOfShare ||"",
             valueOfShare:props.setEditingPitch.valueOfShare ||"",
             businessRegistration:props.setEditingPitch.businessRegistration ||"",
-            assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingPitch.employeeId,
-            // address: [
-            //   {
-            //     addressId: props.setEditingPitch.address.length ? props.setEditingPitch.address[0].addressId : "",
-            //     address1: props.setEditingPitch.address.length ? props.setEditingPitch.address[0].address1 : "",
-            //     address2:  props.setEditingPitch.address.length ? props.setEditingPitch.address[0].address2 : "",
-            //     street:  props.setEditingPitch.address.length ? props.setEditingPitch.address[0].street : "",
-            //     city:  props.setEditingPitch.address.length ? props.setEditingPitch.address[0].city : "",
-            //     state:  props.setEditingPitch.address.length ? props.setEditingPitch.address[0].state : "",
-            //     postalCode:  props.setEditingPitch.address.length ? props.setEditingPitch.address[0].postalCode : "",  
-            //     country: props.setEditingPitch.address.length ? props.setEditingPitch.address[0].country : "",           
-            //   },
-            // ],
-            
+            assignedTo:selectedOption ? selectedOption.employeeId:props.setEditingPitch.employeeId,         
           }}
           // validationSchema={UpdatePitchSchema}
           onSubmit={(values, { resetForm }) => {
@@ -259,17 +245,11 @@ function UpdatePitchForm (props) {
                       <div class=" flex justify-between max-sm:flex-col">
                      
                         <div class="  font-bold  max-sm:w-full text-xs">
-                          <label>{translatedMenuItems[0]}</label>
+                      {translatedMenuItems[0]} 
                           <FastField
                             isRequired
                             name="firstName"
-                            // label="First Name"
-                            // label={
-                            //   <FormattedMessage
-                            //   id="app.firstname"
-                            //   defaultMessage="firstname"
-                            // />
-                            // }
+                            // label="First Name"                        
                             type="text"
                             width={"100%"}
                             isColumn
@@ -280,16 +260,10 @@ function UpdatePitchForm (props) {
                       </div>                  
                       <div class=" flex justify-between max-sm:flex-col">
                         <div class=" font-bold w-2/5 max-sm:w-full text-xs">
-                        <label>{translatedMenuItems[1]}</label>
+                        {translatedMenuItems[1]}  
                           <FastField
                             name="middleName"
-                            //label="Middle Name"
-                            // label={
-                            //   <FormattedMessage
-                            //     id="app.middle"
-                            //     defaultMessage="middle"
-                            //   />
-                            // }
+                            //label="Middle Name"                        
                             type="text"
                             width={"100%"}
                             isColumn
@@ -298,16 +272,10 @@ function UpdatePitchForm (props) {
                           />
                         </div>
                         <div class="  font-bold w-1/2 max-sm:w-full text-xs">
-                        <label>{translatedMenuItems[2]}</label>
+                   {translatedMenuItems[2]}  
                           <FastField
                             name="lastName"
-                            //label="Last Name"
-                            // label={
-                            //   <FormattedMessage
-                            //     id="app.lastname"
-                            //     defaultMessage="lastname"
-                            //   />
-                            // }
+                            //label="Last Name"                       
                             type="text"
                             width={"100%"}
                             isColumn
@@ -318,32 +286,23 @@ function UpdatePitchForm (props) {
                       </div>
                     </div>
                   </div>
-                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                  <label>{translatedMenuItems[3]}</label>
+                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-1">
+                {translatedMenuItems[3]} 
                   <Field
                     name="email"
-                    type="text"                   
-                    // label={
-                    //   <FormattedMessage id="app.email" defaultMessage="Email" />
-                    // }
+                    type="text"                                  
                     isColumn
                     width={"100%"}
                     component={InputComponent}
                     inlineLabel
                     />
                     </div>
-                    <div class=" flex justify-between">
-                    <div class=" w-3/12 max-sm:w-[32%]">
-                    <label>{translatedMenuItems[4]}</label>
+                    <div class=" flex justify-between mt-1">
+                    <div class="font-bold text-xs w-3/12 max-sm:w-[32%]">
+                    {translatedMenuItems[4]}  
                     <FastField
                         name="countryDialCode"
-                        isColumnWithoutNoCreate
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.dialCode"
-                        //     defaultMessage="Dial Code"
-                        //   />
-                        // }
+                        isColumnWithoutNoCreate                      
                         isColumn
                         // width={"100%"}
                         selectType="dialCode"
@@ -352,21 +311,15 @@ function UpdatePitchForm (props) {
                       />
                       
                     </div>
-                    <div class=" w-8/12">
+                    <div class=" w-8/12 mt-1">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                    <label>{translatedMenuItems[5]}</label>
+                   {translatedMenuItems[5]} 
                       <FastField
                         //isRequired
                         type="text"
                         name="phoneNumber"
                         isColumn
-                        component={InputComponent}
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.phoneno#"
-                        //     defaultMessage="phoneno#"
-                        //   />
-                        // }
+                        component={InputComponent}                   
                         inlineLabel
                         width={"100%"}
                         />     
@@ -375,33 +328,25 @@ function UpdatePitchForm (props) {
                   </div>
 
                   <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">
-                  <label>{translatedMenuItems[6]}</label>
+                 {translatedMenuItems[6]} 
                   <Field
              
                     name="companyName"
                     type="text"
-                    //label="Name"
-                    // label={
-                    //   <FormattedMessage id="app.company" defaultMessage="company" />
-                    // }
+                    //label="Company Name            
                     isColumn
                     width={"100%"}
-                    component={InputComponent}
-                    // setClearbitData={props.setClearbitData}
-                    // component={ClearbitImage}
+                    component={InputComponent}                 
                     accounts={accounts}
                     inlineLabel
                     />
                     </div>
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                    <label>{translatedMenuItems[7]}</label>
+                   {translatedMenuItems[7]} 
                   <Field
                     name="url"
                     type="text"
-                    // label="URL"
-                    // label={
-                    //   <FormattedMessage id="app.url" defaultMessage="url" />
-                    // }
+                    // label="URL"                 
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -415,12 +360,8 @@ function UpdatePitchForm (props) {
                       <Field
                         name="vatNo"
                         type="text" 
-                        label={
-                          <FormattedMessage
-                            id="app.vatNumber"
-                            defaultMessage="vatNumber"
-                          />
-                        }
+                        label="vatNumber"
+                          
                         //isRequired
                         isColumn
                         width={"100%"}
@@ -437,12 +378,8 @@ function UpdatePitchForm (props) {
                         name="businessRegistration"
                         type="text"
                         // label="URL"
-                        label={
-                          <FormattedMessage
-                          id="app.businessregistration"
-                          defaultMessage=" businessregistration"
-                        />
-                        }
+                        label=" businessregistration"
+                      
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -454,13 +391,12 @@ function UpdatePitchForm (props) {
                     </div>
 
                     <div class=" flex justify-between">
-                    <div class=" w-w47.5">
+                    <div class=" w-w47.5 mt-1">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-
+                  {translatedMenuItems[8]}   
                       <Field
                         name="unitOfShare"
-                        type="text"
-                        label={translatedMenuItems[8]}
+                        type="text"                     
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -468,12 +404,12 @@ function UpdatePitchForm (props) {
                       />
                       </div>
                     </div>
-                    <div class="w-w47.5">
+                    <div class="w-w47.5 mt-1">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    {translatedMenuItems[9]}  
                       <Field
                         name="valueOfShare"
-                        type="text"
-                        label={translatedMenuItems[9]}
+                        type="text"                    
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -482,9 +418,6 @@ function UpdatePitchForm (props) {
                       </div>
                     </div>
                   </div>
-
-
-
                      <div class=" flex justify-between">
                      {contract ?
                      <div class=" w-w47.5">
@@ -492,12 +425,8 @@ function UpdatePitchForm (props) {
                         name="sectorId"
                         isColumnWithoutNoCreate
                         // selectType="sectorName"
-                        label={
-                          <FormattedMessage
-                            id="app.sector"
-                            defaultMessage="Sector"
-                          />
-                        }
+                        label="Sector"
+                         
                         isColumn
                         component={SelectComponent}
                         options={
@@ -511,12 +440,8 @@ function UpdatePitchForm (props) {
                   
                         <FastField
                           name="source"
-                          label={
-                            <FormattedMessage
-                            id="app.source"
-                            defaultMessage="source"
-                          />
-                          }
+                          label="source"
+                         
                           isColumnWithoutNoCreate
                           defaultValue={{
                             label:props.setEditingPitch.source,
@@ -534,7 +459,7 @@ function UpdatePitchForm (props) {
                 </div>
                 <div class=" flex items-center justify-between">
                 <div class=" flex flex-col   mt-4">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs ">
                     {translatedMenuItems[10]}  {/* Category */}
                       </div>
                     <Switch
@@ -597,11 +522,12 @@ function UpdatePitchForm (props) {
     </div>
                       </div>
                       </div>
-                      <div class=" flex items-center justify-between">
-<div class=" w-w47.5 max-sm:w-wk">
+                      <div class=" flex items-center justify-between mt-2">
+<div class=" font-bold text-xs w-w47.5 max-sm:w-wk">
+{translatedMenuItems[11]} 
+{/* Date */}
                     <Field
-                      name="firstMeetingDate"
-                      label= {translatedMenuItems[11]}
+                      name="firstMeetingDate"                   
                       component={DatePicker}
                       value={values.firstMeetingDate}
                       isColumn
@@ -610,19 +536,14 @@ function UpdatePitchForm (props) {
                   </div>
 
                   <div class="font-bold  w-w47.5 max-sm:w-wk text-xs">
-                 <label>{translatedMenuItems[12]}</label>
+                  <div>{translatedMenuItems[12]} </div>  
                     <Field
                       name="shareCurrency"
                       isColumnWithoutNoCreate
                       defaultValue={{
                         value: props.currency_id
                       }}
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.currency"
-                      //     defaultMessage="Currency"
-                      //   />
-                      // }
+                  //  currency
                       width="100%"
                       isColumn
                       // selectType="currencyName"
@@ -644,11 +565,7 @@ function UpdatePitchForm (props) {
                     {translatedMenuItems[13]}
                     <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
-        <>
-          {/* <Listbox.Label className="block font-semibold text-[0.75rem] mt-[0.6rem]"><FormattedMessage
-                                id="app.assignedto"
-                                defaultMessage="assignedto"
-                              /></Listbox.Label> */}
+        <>        
           <div className="relative ">
               <Listbox.Button style={{ boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em" }} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}
@@ -714,27 +631,19 @@ function UpdatePitchForm (props) {
                     </div>
 
                   <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">
-                <label> {translatedMenuItems[14]}</label>
+             {translatedMenuItems[14]} 
                   <FieldArray
                     name="address"
-                    // label="Address"
-                    // render={(arrayHelpers) => (
-                    //   <AddressFieldArray
-                    //     arrayHelpers={arrayHelpers}
-                    //     values={values}
-                    //   />
-                    // )}
+                    // label="Address"                 
                   />
                   </div>
                  
                   <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">
-                  {translatedMenuItems[15]}
+                 {translatedMenuItems[15]}  
                   <Field
                     name="notes"
                     // label="Notes"
-                    // label={
-                    //   <FormattedMessage id="app.notes" defaultMessage="notes" />
-                    // }
+                    
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -748,7 +657,7 @@ function UpdatePitchForm (props) {
                   htmlType="submit"
                  Loading={props.updatePitchById}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="create" />
+                 <div class="font-bold font-poppins text-xs">{translatedMenuItems[16]} </div>
                   {/* Update */}
                 </Button>
               </div>

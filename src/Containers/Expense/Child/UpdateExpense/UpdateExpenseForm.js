@@ -7,7 +7,7 @@ import {getCurrencyList} from "../../../Settings/Category/Currency/CurrencyActio
 import { connect } from "react-redux";
 import { getExpenses } from "../../../Settings/Expense/ExpenseAction";
 import { updateExpense  } from "../../ExpenseAction";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 const { Option } = Select;
 
 function UpdateExpenseForm(props) {
@@ -293,13 +293,7 @@ function UpdateExpenseForm(props) {
                 ></Select> */}
               </td>
               {row.length > 1 && (
-                <DeleteOutlined
-                  style={{
-                    color: "red",
-                    fontSize: "1.125em",
-                    marginLeft: "0.3125em",
-                  }}
-                  type="delete"
+                <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer" 
                   onClick={() => handleDelete(item)}
                 />
               )}

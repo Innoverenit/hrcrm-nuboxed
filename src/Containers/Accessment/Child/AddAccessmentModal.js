@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledModal, StyledTabs } from "../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 const AccessmentForm = lazy(() => import("../Child/AccessmentForm"));
 
 
@@ -11,11 +11,7 @@ class AddAccessmentModal extends Component {
     return (
       <>
         <StyledModal
-          title={<FormattedMessage
-            id="app.assessment"
-            defaultMessage="Assessment"
-          />}
-
+          title="Assessment"
           width="60%"
           visible={addAccessmentModal}
           destroyOnClose

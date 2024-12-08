@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledModal } from "../../Components/UI/Antd";
 import { BundleLoader } from "../../Components/Placeholder";
 const ProjectForm = lazy(() => import("./ProjectForm"));
@@ -9,11 +9,7 @@ const AddProjectModal = (props) => {
   return (
     <>
       <StyledModal
-        // title="Schedule Project"
-        title={<FormattedMessage
-          id="app.scheduleproject"
-          defaultMessage="Schedule Project"
-        />}
+        title="Schedule Project"
         width="55vw"
         visible={addProjectModal}
         maskClosable={false}

@@ -1,7 +1,7 @@
 import React, { useEffect,lazy,useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Popconfirm, message, Input } from "antd";
 import { MainWrapper } from "../../../../Components/UI/Layout";
@@ -115,8 +115,8 @@ const Quality = (props) => {
       <>
       <div class="" >
        
-       <div class="flex flex-row justify-between">
-             <div class=" flex w-[18vw]" >
+       <div class="flex flex-row justify-end items-center">
+             <div class=" flex w-[18vw] mr-3" >
             <Input
          placeholder="Search by Name"
         style={{width:"100%",marginLeft:"0.5rem"}}
@@ -170,21 +170,8 @@ const Quality = (props) => {
          <MainWrapper className="!h-[69vh] !mt-2" >
             {!props.fetchingQuality && qualityList.length === 0 ? <NodataFoundPage /> : qualityList.slice().sort((a, b) => a.code.localeCompare(b.code)).map((region, index) => (
      
-              <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.qualityId}>
-              {/* Region name display or input field */}
-              
-              {/* {editingId === region.qualityId ? (
-                  <input
-                  style={{border:"2px solid black"}}
-                      type="text"
-                      placeholder="Quality"
-                      value={newQualityName}
-                      onChange={(e) => setQualityName(e.target.value)}
-                  />
-              ) : (
-                  <div className="region" style={{width:"16rem"}}>{region.qualityName}&nbsp;&nbsp;&nbsp;
-                 </div>
-              )} */}
+              <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  border-[#0000001f]  border  shadow-[#a3abb980] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.qualityId}>
+           
                {editingId === region.qualityId ? (
                   <input
                   style={{border:"2px solid black"}}
@@ -236,12 +223,7 @@ const Quality = (props) => {
                           cancelText="No"
                            onConfirm={() =>  props.removeQuality(region.qualityId)}
                         >
-                  <DeleteOutlined  className=" !text-icon text-red-600 cursor-pointer"
-                   
-                // onClick={() => 
-                //     props.removeServiceLine(item.qualityId)
-                //  }
-                   />
+               <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                    </Popconfirm>
               </div>
           </div>

@@ -1,6 +1,5 @@
 import React from "react";
-// import { Icon } from "antd";
-import { CaretRightOutlined} from '@ant-design/icons';
+import ArrowDropDownCircleIcon from '@mui/icons-material/ArrowDropDownCircle';
 import { MainWrapper } from "../../../Components/UI/Layout";
 import { HeaderText, SubTitle } from "../../../Components/UI/Elements";
 import { StyledCollapse } from "../../../Components/UI/Antd";
@@ -15,7 +14,7 @@ export default function ImportHelpGuide(props) {
           bordered={false}
           defaultActiveKey={["1"]}
           expandIcon={({ isActive }) => (
-            <CaretRightOutlined rotate={isActive ? 90 : 0} />
+            <ArrowDropDownCircleIcon rotate={isActive ? 90 : 0} />
           )}
         >
           <Panel header="What file formats can I import?" key="1" style={{}}>

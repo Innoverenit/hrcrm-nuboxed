@@ -5,9 +5,9 @@ import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
+
 import { Badge, Tooltip } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { handleCETactivityContactModal,
   // getContactActivityRecords
 } from "../../ContactAction";
@@ -31,7 +31,13 @@ function ContactCETdrawer (props) {
           onClose={() => props.handleContactCETdrawer(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-          <ContactCETTab currentContact={props.currentContact}/>
+          <ContactCETTab
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
+         
+           contact={props.contact}
+        type={props.type}
+          currentContact={props.currentContact}/>
           </Suspense>
         </StyledDrawer>
       </div>

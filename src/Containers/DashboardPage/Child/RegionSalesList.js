@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  Tooltip, Select,Button,Progress } from "antd";
@@ -8,14 +8,11 @@ import {
     handleSalesQuotationDrawerModal,
     handleSalesOrderDrawerModal
 } from "../RegionalDashAction";
-import OrderPlanDrawerModal from "../Child/OrderPlanDrawerModal"
-import { FormattedMessage } from "react-intl";
-import QuotationPlanDrawerModal from "../Child/QuotationPlanDrawerModal"
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import { BundleLoader } from "../../../Components/Placeholder";
-import SalesPlanDrawerModal from "./SalesPlanDrawerModal";
 
+import { BundleLoader } from "../../../Components/Placeholder";
+const  OrderPlanDrawerModal =lazy(()=>import("../Child/OrderPlanDrawerModal"));
+const  QuotationPlanDrawerModal=lazy(()=>import("../Child/QuotationPlanDrawerModal"));
+const  SalesPlanDrawerModal=lazy(()=>import("./SalesPlanDrawerModal"));
 
 const Option = Select;
 
@@ -84,24 +81,22 @@ function RegionSalesList(props) {
         </div>
 
         <div className=' flex  justify-center  sticky top-28 z-auto'>
-          <div className="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
             <div className="flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
               <div className="md:w-[7.9rem]">
-                <FormattedMessage id="app.kpi" defaultMessage="KPI" />
+              KPI
               </div>
             
               
               <div className="md:w-[9.1rem]">
-                <FormattedMessage id="app.assigned" defaultMessage="Assigned " />
+              Assigned 
               </div>
           
              
-              <div className="md:w-[11.11rem]">
-                <FormattedMessage id="app.achieved" defaultMessage="Achieved " />
+              <div className="md:w-[11.11rem]">Achieved
               </div>
             
-              <div className="md:w-[9.2rem]">
-                <FormattedMessage id="app.actual" defaultMessage="Actual " />
+              <div className="md:w-[9.2rem]">Actual
               </div>
             
             </div>
@@ -200,33 +195,33 @@ function RegionSalesList(props) {
       <div>
        {showHeartCard=== i && (
 <div className=' flex  justify-center  sticky top-28 z-auto'>
-         <div className="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+         <div className="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
            <div className="flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
              <div className="md:w-[9.5rem]">
-               <FormattedMessage id="app.kpi" defaultMessage="KPI" />
+               KPI
              </div>
              <div className="md:w-[5.5rem]">
-               <FormattedMessage id="app.lob" defaultMessage="LOB" />
+            LOB
              </div>
              <div className="md:w-[7.1rem]">
-               <FormattedMessage id="app.assigned" defaultMessage="Assigned" />
+            Assigned
              </div>
              <div className="md:w-[7.11rem]">
-               <FormattedMessage id="app.assigned" defaultMessage=" Total" />
+               Total
              </div>
          
              <div className="md:w-[6.11rem]">
-               <FormattedMessage id="app.achieved" defaultMessage="Achieved" />
+            Achieved
              </div>
              <div className="md:w-[1.51rem]">
-               <FormattedMessage id="app.achieved" defaultMessage=" Total" />
+                Total
              </div>
              <div class="w-[2rem]"></div>
              <div className="md:w-[5.01rem]">
-               <FormattedMessage id="app.actual" defaultMessage="Actual" />
+            Actual
              </div>
              <div className="md:w-[5rem]">
-               <FormattedMessage id="app.actual" defaultMessage="Total" />
+             Total
              </div>
 
            
@@ -472,7 +467,7 @@ width={30}
       <p>None Available</p>
     )}
          
-
+         <Suspense fallback={<BundleLoader />}>
     <SalesPlanDrawerModal
     tabKey={props.tabKey}
             rowdata={rowdata}
@@ -493,6 +488,7 @@ width={30}
             addSalesOrderModal={props.addSalesOrderModal}
            
     />
+    </Suspense>
   </>
   
   );

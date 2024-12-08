@@ -1,10 +1,9 @@
 import React, { useEffect,useState } from "react";
-import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {handleSalesModal} from "../RegionalDashAction"
 import { JumpStartBox } from "../../../Components/UI/Elements";
-// import AddSalesDrawerModal from "./AddSalesDrawerModal";
+
 
 function MultiOrgSales(props) {
   const [totalOrgValue, setTotalOrgValue] = useState(0);

@@ -53,16 +53,16 @@ export const addItemTask = (sectors,orgId, cb) => (dispatch) => {
           Swal.fire({
             icon: 'error',
             title: res.data.message,
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         } else {
          
           Swal.fire({
             icon: 'success',
             title: 'Type added Successfully!',
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         }
         dispatch(getItemTaskCount(orgId));
@@ -103,6 +103,8 @@ export const removeItemTask = ( itemTaskId,orgId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Type deleted Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("ITEM_TASK has been deleted successfully!");
         console.log(res);
@@ -141,6 +143,8 @@ export const updateItemTask = ( data,itemTaskId,cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Type updated Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("ITEM_TASK has been updated successfully!");
         console.log(res);

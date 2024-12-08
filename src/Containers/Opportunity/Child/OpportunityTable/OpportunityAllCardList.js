@@ -2,8 +2,10 @@ import React, { useEffect, useState,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FormattedMessage } from "react-intl";
-import styled from "styled-components";
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import { useDispatch } from 'react-redux';
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { Tooltip, Menu, Dropdown, Progress } from "antd";
 import { CurrencySymbol, } from "../../../../Components/Common";
@@ -11,13 +13,15 @@ import { Link } from 'react-router-dom';
 import dayjs from "dayjs";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LockIcon from "@mui/icons-material/Lock";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import {
   MultiAvatar,
   MultiAvatar2,
 } from "../../../../Components/UI/Elements";
+import { emptyLeads,getCrm}from"./././../../../Leads/LeadsAction";
 import {
+ 
   getRecruiterList,
   handleUpdateOpportunityModal,
   setEditOpportunity,
@@ -32,20 +36,47 @@ import {
          getOpportunitySKill,
          getFullOpportunity,
 } from "../../OpportunityAction";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import SearchedDataOpportunity from "./SearchedDataOpportunity";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import relativeTime from 'dayjs/plugin/relativeTime';
+import { base_url2 } from "../../../../Config/Auth";
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle'; 
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
+import StairsIcon from '@mui/icons-material/Stairs';
+import EmptyPage from "../../../Main/EmptyPage";
+import axios from "axios";
+
 const AddOpportunityDrawerModal =lazy(()=> import("./AddOpportunityDrawerModal"));
 const UpdateOpportunityModal =lazy(()=> import("../UpdateOpportunity/UpdateOpportunityModal"));
 const ReinstateToggleForLost =lazy(()=> import("../../Child/OpportunityTable/ReinstateToggleForLost"));
 
 
+
+dayjs.extend(relativeTime);
+
+const getRelativeTime = (creationDate) => {
+    const now = dayjs();
+    const creationDay = dayjs(creationDate);
+
+    if (creationDay.isSame(now, 'day')) {
+        return 'Today';
+    } else {
+        return creationDay.from(now); 
+    }
+};
+
 function OpportunityAllCardList(props) {
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(0);
+  const [page1, setPage1] = useState(0);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const dispatch = useDispatch();
   useEffect(() => {
     if(props.role==="USER"&&user.department==="Recruiter"){
       props.getRecruiterList(props.recruiterId);     
@@ -54,6 +85,7 @@ function OpportunityAllCardList(props) {
     } 
     props. getFullOpportunity(page);
     setPage(page + 1);
+    // props.getCrm();
   },[]);
   useEffect(() => {
     const handleResize = () => {
@@ -69,19 +101,21 @@ function OpportunityAllCardList(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-        'Name', // 0
-'Prospect', // 1
-'Sponsor', // 2
-'Start Date', // 3
-'Value', // 4
-'Stages', // 5
-'Sales Rep', // 6
-'Owner' // 7
-
-
-
-
-
+          '110', // 0
+          '97', // 1
+          '216', // 2
+          '176', // 3
+          '218', // 4
+          '219', // 5
+          '76', // 6
+          '77', // 7
+         "232", // 'Click to Open'
+         "170", // "Edit"
+          "1259",// "Do you want to delete?"
+          "84",// Delete"
+          "1069",
+          "213",// quotation ID
+          "73",// Contact14
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -95,6 +129,10 @@ function OpportunityAllCardList(props) {
 
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
+  useEffect(() => {
+    return () => props.emptyLeads();
+  }, []);
+
   const handleLoadMore = () => {
     setPage(page + 1);
       props. getFullOpportunity(page);
@@ -103,6 +141,38 @@ function OpportunityAllCardList(props) {
     function handleSetCurrentOpportunityId(opportunityId,opportunityName) {
       setCurrentOpportunityId(opportunityId,opportunityName);
     }
+
+    const viewAnDownloadPdf= async (item) => {  
+      try {
+        const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.opportunityId}`, {
+          responseType: 'blob',
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+    
+        const blob = response.data;
+        const url = window.URL.createObjectURL(blob);
+        const filename = 'custom-pdf-name.pdf';
+    
+        window.open(url, '_blank');
+        const downloadLink = document.createElement('a');
+        downloadLink.href = url;
+        downloadLink.download = filename; 
+        downloadLink.click(); 
+      } catch (error) {
+        console.error('Error fetching PDF:', error);
+      }  
+    };
+
+
+
+    
+    const handleButtonClick = (employeeId) => {
+      props.getCrm(employeeId, page1, "creationdate");
+      props.emptyLeads();
+      setSelectedEmployee(employeeId);
+    };
     const {
         user,
         fetchinglostOpportunity,
@@ -120,26 +190,92 @@ function OpportunityAllCardList(props) {
       if (loading) {
         return <div><BundleLoader/></div>;
       }
+      console.log(selectedEmployee)
       return (    
   <>
     {props.ooportunitySerachedData.length > 0 ? (
     <SearchedDataOpportunity
     ooportunitySerachedData={props.ooportunitySerachedData}
+    translateText={props.translateText}
+    selectedLanguage={props.selectedLanguage}
     />
   ) : (
-   <div className=' flex  sticky  z-auto'>
-<div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-<div className="flex max-sm:hidden  w-[99%] max-xl:w-[87%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[14.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.8rem] "> {translatedMenuItems[0]}</div>
-        <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[1]}</div>
-        <div className=" w-[9.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> {translatedMenuItems[2]}</div>
-        <div className="w-[9.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[3]}</div>
-        <div className="w-[9.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[4]}</div>
-        <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[5]}</div> 
-        <div className="w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> {translatedMenuItems[6]}</div>
-        <div className="w-[7.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[0.2rem]"> {translatedMenuItems[7]}</div>
-        <div className="w-[4.1rem] "></div>
+    <div className="flex">
+       <div className=' flex rounded w-[13vw] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
+      <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[white] mt-1  items-center shadow-[#a3abb980] ">
+       <div class="w-[14vw]"> Search team Member</div>
+        </div>
+        <div class="flex flex-col rounded w-[11vw]  h-[78vh] box-content border bg-[white] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+        {props.crmAllData.map((item,index) =>{
+           return (
+         <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
+                  text-[#444444] mt-1  max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+        <div class="flex items-center  h-16">
+          <div class=" flex  mr-[0.2rem] h-15" >
+            <MultiAvatar
+              primaryTitle={item.empName}
+              imageId={item.imageId}
+              imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
+            />
+          </div>
+          
+          <div class="flex  overflow-hidden">
+          
+          <div class="font-semibold text-[#337df4] cursor-pointer !text-lm font-poppins" 
+              onClick={() => handleButtonClick(item.employeeId)} 
+          >
+        
+          {item.empName}
+
+        </div> 
+        </div>
+          
+       
+        </div>
+        <div className="flex flex-col max-sm:justify-between ">
+          
+        <div class="overflow-hidden text-ellipsis font-poppins cursor-pointer text-lm truncate  flex items-center">
+                </div>
+            
+          <div>
+          <div class="font-medium text-xs ">
+       
+          <div class="overflow-hidden  text-ellipsis font-poppins cursor-pointer text-lm truncate  flex items-center">
+
+              </div>
+           
+            
+          </div>
+          </div>
+          </div>
+      </div>
+           )
+          })}
+        </div>
+        </div>
+   
+   <div className=' flex  sticky  w-[87%] z-auto'>
+<div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+<div className="flex max-sm:hidden  w-[94%]  max-xl:w-[87%] p-1 bg-transparent font-bold sticky items-end   z-10">
+<div className="   flex justify-between w-[88%] font-bold  items-end font-poppins font-bold max-xl:text-[0.65rem] max-lg:text-[0.45rem]  !text-lm ">
+   <div className=" w-[10.1rem] truncate  text-sm text-[#00A2E8]  ">
+   <LightbulbIcon className="!text-icon  text-[#84a59d]"/>{translatedMenuItems[13]} ID</div>
+        <div className=" w-[12.1rem] truncate max-md:w-[16.8rem]  max-xl:w-[15.8rem] ">
+          <RequestQuoteIcon className="!text-icon text-[#aa3e98] "/>
+        {translatedMenuItems[0]}</div>
+       <div className=" w-[16.4rem] truncate max-md:w-[12.2rem]  "> 
+        <ContactPageIcon className='!text-icon text-[#f28482] '  />  {translatedMenuItems[14]}</div> 
+        <div className=" w-[8.3rem] truncate max-md:w-[12.2rem] ">
+        <CurrencyExchangeIcon className='!text-icon text-[#4c0827]' /> {translatedMenuItems[4]}</div>
+        <div className=" w-[8.6rem] truncate max-md:w-[10.6rem]  ">
+        <StairsIcon className='!text-icon text-[#f19953] '  />  {translatedMenuItems[5]}</div> 
+        <div className=" w-[6.12rem] truncate max-md:w-[11.12rem] "> 
+        <AccountCircleIcon className="!text-icon mr-1 text-[#f28482]"/>{translatedMenuItems[6]}</div> 
+        <div className=" w-[6.1rem] truncate  max-md:w-[15.1rem] "> 
+        <AccountCircleIcon className="!text-icon mr-1 text-[#f28482]"/>{translatedMenuItems[7]}</div>      
         <div className="w-12"></div>
+        </div>
       </div>
 
       <InfiniteScroll
@@ -147,11 +283,10 @@ function OpportunityAllCardList(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingAllOpportunity?<div class="flex justify-center" >Loading...</div> :null}
-        height={"82vh"}
+        height={"83vh"}
         style={{scrollbarWidth:"thin"}}
       >
- {/* <CardWrapper>       */}
- { !fetchingAllOpportunity && allOpportunity.length === 0 ?<NodataFoundPage />:allOpportunity.map((item,index) =>  {
+ { !fetchingAllOpportunity && allOpportunity.length === 0 ?<EmptyPage/>:allOpportunity.map((item,index) =>  {
                  
                  var findProbability = item.probability;
                  item.stageList.forEach((element) => {
@@ -162,56 +297,61 @@ function OpportunityAllCardList(props) {
                  return (
 
                   <div className="max-sm:w-wk">
-                   <div
-                className="flex  rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                   <div className="flex  rounded   bg-white mt-1  items-center py-ygap max-sm:rounded-lg max-xl:text-[0.65rem] max-lg:text-[0.45rem]  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
-                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                    <div className=" flex w-[13rem] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
-                              <div>
+                  <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                  <div className=" flex   w-[8.3rem] items-center   border-l-2 border-green-500 h-8  bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
 
-          <MultiAvatar
-            primaryTitle={item.opportunityName}
-            imageId={item.imageId}
-            imgWidth={"1.8rem"}
-            imgHeight={"1.8rem"}
-          />
-        
+<div class=" text-xs ml-gap items-center font-poppins  max-sm:text-sm">   
+
+{item.newOppId}
+
 </div>
-                                 <div class="w-[4%]">
-
-                                 </div>
-                                 
-                                      <Tooltip>
+</div>
+                    <div className=" flex  w-[10rem] h-8 ml-gap bg-[#eef2f9] max-xl:w-[10rem] max-lg:w-[8rem] max-sm:flex-row max-sm:w-auto  ">
+                              <div className=" flex items-center">
+                                  <MultiAvatar
+                                    primaryTitle={item.opportunityName}
+                                    imageId={item.imageId}
+                                    imgWidth={"1.8rem"}
+                                    imgHeight={"1.8rem"}
+                                  />
+                             </div>
+                                        <Tooltip>
                                       <div class=" flex max-sm:w-full  flex-row items-center">
         
-                                          <div class=" text-xs text-blue-500  font-poppins font-semibold cursor-pointer">
+                                          <div class="flex text-xs items-center text-blue-500  ml-gap font-poppins font-semibold cursor-pointer">
                                               
-                                          <Link class="overflow-ellipsis max-sm:text-sm whitespace-nowrap max-xl:text-[0.65rem] max-lg:text-[0.45rem] h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
+                                          <Link class="overflow-ellipsis max-sm:text-sm whitespace-nowrap  h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
-    </Link>&nbsp;&nbsp;
+    </Link>
      
                                           </div>
 </div>
                                       </Tooltip>
                             
                               </div>
+                              </div>
 
-                              <div className=" flex  w-44 max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                                  <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">   
+                              <div className=" flex  w-[14rem] items-center justify-start  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex  w-[9rem] items-center justify-start  max-xl:w-[5.5rem] max-lg:w-[3.9rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+
+                                  <div class=" text-xs ml-gap font-poppins  max-sm:text-sm">   
                                   
                                   {item.customer}
                   
                                   </div>
                               </div>
-                              </div>
+                           
                             
                               
-                              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex  w-[7rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                           
+                              <div className=" flex  w-[5rem] items-center justify-center max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                                 
 
-                                <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                <div class=" text-xs  font-poppins  max-sm:text-sm">
                                
                                 {item.contactName === null ? "None" :
           <MultiAvatar2
@@ -224,19 +364,12 @@ function OpportunityAllCardList(props) {
         }
        
                                 </div>
-                            </div>
-                              <div className=" flex   w-[8.81rem] max-xl:w-[5.51rem] max-lg:w-[3.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
-
-
-                                  <div class=" text-xs justify-center  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                  {dayjs(item.startDate).format("ll")}
-                                  </div>
-                              </div>
-                           
-                              <div className=" flex   w-36 max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                            </div>                         
+                           </div>
+                              <div className=" flex   w-[6.45rem]  items-center justify-start  h-8 ml-gap bg-[#eef2f9] max-xl:w-[5rem] max-lg:w-[4rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
    
 
-                                  <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-xs ml-gap  font-poppins text-center  max-sm:text-sm">
                                   <CurrencySymbol currencyType={item.currency} />
           &nbsp;
           {item.proposalAmount}
@@ -245,29 +378,29 @@ function OpportunityAllCardList(props) {
                               </div>
                               </div>
                               <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                              <div className=" flex w-[7.01rem] max-xl:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                              <div className=" flex   w-[7.01rem] items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[5.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
            
 
-                                  <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                                  <Dropdown
+           <div class=" text-xs  font-poppins text-center  max-sm:text-sm">
+           <Dropdown
 overlay={
 <div>
 <Menu mode="horizontal">
 <Menu.Item
-  style={{
-    paddingLeft: 5,
-    paddingRight: 5,
-    backgroundColor: "#F5F5F5",
-  }}
+style={{
+paddingLeft: 5,
+paddingRight: 5,
+backgroundColor: "#F5F5F5",
+}}
 >
-  
+
 </Menu.Item>
 </Menu>
 </div>
 }
 trigger={["click"]}
 >
-<Tooltip title={item.stageName}>
+<Tooltip title={item.oppStage}>
 {" "}
 <Progress
 type="circle"
@@ -279,12 +412,12 @@ strokeColor={"#005075"}
 </Tooltip>
 </Dropdown>
 
-                                  </div>
-                              </div>
-                              <div className=" flex w-32 max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+           </div>
+       </div>
+                              <div className=" flex w-[5.25rem] items-center  justify-center h-8 ml-gap bg-[#eef2f9] max-xl:w-[4.2rem] max-lg:w-[3.8rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                     
 
-                                  <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                                  <div class=" text-xs items-center font-poppins  max-sm:text-sm">
                                   
                                   <span>
                                   <MultiAvatar2
@@ -296,9 +429,7 @@ strokeColor={"#005075"}
            
                                   </div>
                               </div>
-                              <div className=" flex w-20 max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
-                     
-
+                              <div className=" flex w-20 items-center justify-center  h-8 ml-gap bg-[#eef2f9] max-lg:w-[2rem] max-sm:w-auto max-sm:flex-row  mb-1 max-sm:justify-between ">
 
                         <Tooltip title={item.ownerName}>
                     <span>
@@ -312,8 +443,16 @@ strokeColor={"#005075"}
                       </span>
                         </Tooltip>
                               </div>
+                              <div className=" flex items-center w-[6rem] justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                            <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+                          <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+                          </svg>
+                            {getRelativeTime(item.creationDate)}
+                            </span>
+                            </div>
                               </div>
-                              <div class="flex max-sm:justify-between max-sm:w-wk items-center">
+                              <div class="flex max-sm:justify-between max-sm:w-wk  items-center  h-8 ml-gap bg-[#eef2f9]">
                               <div>
                                 <ReinstateToggleForLost 
                         opportunityId={item.opportunityId} 
@@ -327,7 +466,7 @@ strokeColor={"#005075"}
                  <span
        
        className=" cursor-pointer"
-onClick={() => {
+  onClick={() => {
 props.getAllRecruitmentByOppId(item.opportunityId);
 props.getAllRecruitmentPositionByOppId(item.opportunityId);
 props.getAllRecruitmentAvgTimeByOppId(item.opportunityId);
@@ -348,11 +487,15 @@ handleSetCurrentOpportunityId(item.opportunityName);
        </span>
                       </div>
          
-        
+                      <div>
+                      <PictureAsPdfIcon className="!text-icon text-[red] cursor-pointer" 
+    onClick={()=> viewAnDownloadPdf(item)}
+    />
+          </div> 
                  
                   <div>
-                  <Tooltip title='Click to Open'><span
-       onClick={() => {
+                  <Tooltip title={translatedMenuItems[8]}><span
+         onClick={() => {
         props.LinkClosedOpportunity(
           item.opportunityId,
           {
@@ -376,19 +519,14 @@ handleSetCurrentOpportunityId(item.opportunityName);
                     <div>
                        <Tooltip
                       placement="right"
-                      title={
-                        <FormattedMessage
-                          id="app.edit"
-                          defaultMessage="Edit"
-                        />
-                      }
+                      title={translatedMenuItems[9]}
                     >
                       {user.opportunityUpdateInd ===true && (
             
             <span
             className=" !text-icon cursor-pointer text-[grey]"
              
-              onClick={() => {
+                onClick={() => {
                 props.setEditOpportunity(item);
                 handleUpdateOpportunityModal(true);
                 handleSetCurrentOpportunityId(item);
@@ -406,26 +544,18 @@ handleSetCurrentOpportunityId(item.opportunityName);
                   
                     <div>
                     <StyledPopconfirm
-                      title="Do you want to delete?"
+                      title={translatedMenuItems[10]}
                       onConfirm={() =>
                         deleteLostOpportunity(item.opportunityId)
                       }
                     >
                          <Tooltip
                     
-                      title={
-                        <FormattedMessage
-                          id="app.Delete"
-                          defaultMessage="Delete"
-                        />
-                      }
+                      title={translatedMenuItems[11]}
                     >
                         {user.opportunityDeleteInd ===true && (
                       
-                        <DeleteOutlined
-                          type="delete"
-                          className=" !text-icon cursor-pointer text-[red]"
-                        />
+                      <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                         )}
                         </Tooltip>
                         </StyledPopconfirm>
@@ -441,11 +571,10 @@ handleSetCurrentOpportunityId(item.opportunityName);
                   
 
                  )  
-            })}
-              {/* </CardWrapper> */}
-  
+            })} 
 
       </InfiniteScroll>
+      </div>
       </div>
       </div>
          )} 
@@ -458,7 +587,7 @@ handleSetCurrentOpportunityId(item.opportunityName);
         handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
         translateText={props.translateText}
         selectedLanguage={props.selectedLanguage}
-      translatedMenuItems={props.translatedMenuItems}
+       translatedMenuItems={props.translatedMenuItems}
       />
 
 <AddOpportunityDrawerModal
@@ -483,7 +612,8 @@ allRecruitmentDetailsByOppId={props.allRecruitmentDetailsByOppId}
 }
 
 
-const mapStateToProps = ({ auth, account, opportunity }) => ({
+const mapStateToProps = ({ auth, account, opportunity ,leads}) => ({
+  crmAllData:leads.crmAllData,
   userId: auth.userDetails.userId,
   user: auth.userDetails,
   role: auth.userDetails.role,
@@ -515,6 +645,8 @@ const mapStateToProps = ({ auth, account, opportunity }) => ({
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+      emptyLeads,
+      getCrm,
       getRecruiterList,
       getOpportunitySKill,
       handleUpdateOpportunityModal,
@@ -538,34 +670,3 @@ mapStateToProps,
 mapDispatchToProps
 )(OpportunityAllCardList);
 
-
- 
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  
-  @media only screen and (max-width: 600px) {
-    -webkit-justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-  }
-`
-const CardElement = styled.div`
- 
-border-radius: 0.75rem;
-    border: 3px solid #EEEEEE;
-    background-color: rgb(255,255,255);
-    box-shadow: 0 0.25em 0.62em #aaa;
-    height: 17rem;
-    color: rgb(68,68,68);
-    margin: 1em;
-    padding: 0.2rem;
-    width: 20vw;
-    display: flex;
-    flex-direction: column;
-  @media only screen and (max-width: 600px) {
-    width: -webkit-fill-available;
-    
-  }
-`

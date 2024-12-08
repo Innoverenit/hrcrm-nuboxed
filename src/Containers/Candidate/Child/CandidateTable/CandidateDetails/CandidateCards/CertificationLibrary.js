@@ -5,9 +5,8 @@ import {
 } from "../../../../../Settings/Recruitement/Child/Certification/CertificationAction";
 import { bindActionCreators } from "redux";
 import { Tag, Input, Tooltip, } from "antd";
-import { PlusOutlined,
-} from '@ant-design/icons';
-import { ViewEditCard, Title, } from "../../../../../../Components/UI/Elements";
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import { ViewEditCard,  } from "../../../../../../Components/UI/Elements";
 import {
   addCertificationByCandidateId,
   getCertificationByCandidateId,
@@ -59,7 +58,6 @@ class certificationLibrary extends React.Component {
 
       addCertificationByCandidateId,
     } = this.props;
-    // if (selectValue) {
       addCertificationByCandidateId(
         {
           candidateId: this.props.candidate.candidateId,
@@ -67,11 +65,6 @@ class certificationLibrary extends React.Component {
         },
         this.props.candidate.candidateId
       );
-    
-    // this.setState({
-    //   inputVisible: false,
-    //   selectValue: "",
-    // });
   };
   handleTopicDelete = ({ candiCertiLinkId, candidateId }) => {
     const { deleteCertificationByCandidateId } = this.props;
@@ -98,14 +91,11 @@ class certificationLibrary extends React.Component {
       <ViewEditCard>
         {({ viewType }, toggleViewType) =>
           viewType === "view" ? (
-            <div class=" h-[11em]" >
-            <div class=" flex " >
-              <Title
-                fontSize="0.875em"
-                style={{ fontWeight: 600, marginBottom: "0.2rem" }}
-              >
+            <div class=" h-44" >
+            <div class=" flex items-center justify-around mb-3" >
+            <div className=" font-bold font-poppins text-xs mb-1 ">
                 Certification{" "}
-              </Title>
+              </div>
             
               <div>
                       <CertificationSelect
@@ -165,7 +155,7 @@ class certificationLibrary extends React.Component {
                    visible={this.props.certificationByCandidateId.length===null?[]:this.props.certificationByCandidateId.length !== 30}
                   style={{ background: "#fff", borderStyle: "dashed" }}
                 >
-                  <PlusOutlined type="plus" /> Certification
+                  <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" /> Certification
                 </Tag>
               )}
             </div>

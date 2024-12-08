@@ -1,13 +1,12 @@
 import { Field, Form, Formik } from 'formik'
 import React, {useEffect,useState,lazy} from 'react'
 import * as Yup from "yup";
-import { FormattedMessage } from "react-intl";
+
  import {getCandidatesBillableAmount} from "../../DashboardAction"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { Button, Checkbox, } from 'antd';
-import { MainWrapper } from "../../../../Components/UI/Elements";
 import { InputComponent } from '../../../../Components/Forms/Formik/InputComponent'
 const BillableCandidateListTable = lazy(()=>import("./BillableCandidateListTable"));
 
@@ -36,13 +35,6 @@ function FirstCandidateBillablePage(props) {
     setCustomers(value)
   }
 
-  
-  // const handleSelectCandidate = (data) => {
-  //   var theobj = JSON.parse(data);
-  //   console.log(theobj);
-  //   setChooseCandidate(theobj)
-  //    props.getItemsSelectedForSupplier(theobj.analysisId)
-  // }
   console.log(customers)
   function handleChangeProject(value) {
     setProjects(value)
@@ -60,22 +52,18 @@ function FirstCandidateBillablePage(props) {
     // props.updateInvoiceData(data)
   }
  
-
-
   console.log("cfg",props.customerId)
     return (
         <>
             <Formik
-
 initialValues={{
   month:"",
   userId: "",
   pageNo:"",
   year:"",
 }}
-// validationSchema={InvoiceSchema}
+
 onSubmit={(values, { resetForm }) => {
-//   console.log(values.customerId);
   props.getCandidatesBillableAmount(props.userId,pageNo,values.month,values.year);
   setPageNo(pageNo + 1);
 }}
@@ -90,7 +78,7 @@ onSubmit={(values, { resetForm }) => {
           values,
           ...rest
         }) => (
-          <MainWrapper  >
+          <div class="mr-5 ml-5 ">
                 <Form style={{minHeight: "30vh"}}>
                 <div class=" flex justify-between ">
               <div class=" h-full w-1/2">
@@ -101,12 +89,8 @@ onSubmit={(values, { resetForm }) => {
                         isRequired
                         name="month"
                         //label="Start "
-                        label={
-                          <FormattedMessage
-                            id="app.month"
-                            defaultMessage="Month"
-                          />
-                        }
+                        label="Month"
+                         
                         isColumn
                         options={["Jan", "Feb", "Mar","Apr","May","Jun","July","Aug","Sep","Oct","Nov","Dec"]}
                         component={SelectComponent}
@@ -123,15 +107,9 @@ onSubmit={(values, { resetForm }) => {
                         isRequired
                         name="year"
                         //label="Start "
-                        label={
-                          <FormattedMessage
-                            id="app.year"
-                            defaultMessage="Year"
-                          />
-                        }
-                        isColumn
-                        // options={["Jan", "Feb", "Mar","Apr","May","Jun","July","Aug","Sep","Oct","Nov","Dec"]}
-                        component={InputComponent}
+                        label="Year"                          
+                        isColumn              
+                       component={InputComponent}
                         // value={values.startDate}
                         inlineLabel
                         style={{
@@ -141,9 +119,7 @@ onSubmit={(values, { resetForm }) => {
                     </div>
                   </div>
               </div>
-    
-           
-           </div>
+                         </div>
            <div class=" flex justify-end">
           <Button type="primary" 
              htmlType="submit"
@@ -155,7 +131,7 @@ onSubmit={(values, { resetForm }) => {
         candidatesBillableAmount={props.candidatesBillableAmount}
         />
                 </Form>
-                </MainWrapper>
+                </div>
                  )}
             </Formik>
         </>

@@ -31,7 +31,9 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
         });
         Swal.fire({
           icon: 'error',
-          title: 'Something went wrong , reach out to support!',
+          title: 'Something went wrong, reach out to support!',
+          showConfirmButton: false,
+          timer: 1500
         })
       });
   };
@@ -62,7 +64,9 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
         });
         Swal.fire({
           icon: 'error',
-          title: 'Something went wrong , reach out to support!',
+          title: 'Something went wrong, reach out to support!',
+          showConfirmButton: false,
+          timer: 1500
         })
       });
   };
@@ -93,7 +97,9 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
         });
         Swal.fire({
           icon: 'error',
-          title: 'Something went wrong , reach out to support!',
+          title: 'Something went wrong, reach out to support!',
+          showConfirmButton: false,
+          timer: 1500
         })
       });
   };
@@ -124,7 +130,9 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
         });
         Swal.fire({
           icon: 'error',
-          title: 'Something went wrong , reach out to support!',
+          title: 'Something went wrong, reach out to support!',
+          showConfirmButton: false,
+          timer: 1500
         })
       });
   };
@@ -174,7 +182,9 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
         });
         Swal.fire({
           icon: 'success',
-          title: 'Created Succefully',
+          title: 'Created Succefully!',
+          showConfirmButton: false,
+          timer: 1500
        
         })
         // cb && cb();
@@ -212,9 +222,16 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
       .then((res) => {
         console.log(res);
          dispatch(getPitchCount(userId));
+         dispatch(getTeamPitch(userId,0));
+         dispatch(getPitchHot(userId,0,"creationdate","hot"));
+         dispatch(getPitchCold(userId,0,"creationdate","cold"));
+         dispatch(getPitchWarm(userId,0,"creationdate","warm"));
+         dispatch(getAllPitch(0,"creationdate"));
          Swal.fire({
           icon: 'success',
           title: 'Pitch deleted Succefully!',
+          showConfirmButton: false,
+          timer: 1500
        
         })
         dispatch({
@@ -297,7 +314,9 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
         });
         Swal.fire({
           icon: 'success',
-          title: 'Qualified Succefully',
+          title: 'Qualified Succefully!',
+          showConfirmButton: false,
+          timer: 1500
        
         })
       })
@@ -561,6 +580,13 @@ export const getPitch = (userId,pageNo,filter) => (dispatch) => {
     });
   }
 
+  export const handleAddresspitchModal= (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_ADDRESS_PITCH_MODAL,
+      payload: modalProps,
+    });
+  }
+
   export const getpichTimeline = (investorLeadsId) => (dispatch) => {
     dispatch({
         type: types.GET_PITCH_TIMELINE_REQUEST,
@@ -771,7 +797,9 @@ export const getAllPitch = (pageNo,filter) => (dispatch) => {
       });
       Swal.fire({
         icon: 'error',
-        title: 'Something went wrong , reach out to support!',
+        title: 'Something went wrong, reach out to support!',
+        showConfirmButton: false,
+        timer: 1500
       })
     });
 };
@@ -935,7 +963,9 @@ export const getTeamPitch = (userId,pageNo) => (dispatch) => {
       });
       Swal.fire({
         icon: 'error',
-        title: 'Something went wrong , reach out to support!',
+        title: 'Something went wrong, reach out to support!',
+        showConfirmButton: false,
+        timer: 1500
       })
     });
 };
@@ -1022,5 +1052,36 @@ export const uploadPitchList = (data,userId) => (dispatch) => {
         type: types.UPLOAD_PITCH_LIST_FAILURE,
         payload: err,
       });
+    });
+};
+
+export const updateOwnerPitchById = (data,userId, ) => (dispatch, getState) => {
+  const userId1 = getState().auth.userDetails.userId;
+  dispatch({
+    type: types.UPDATE_OWNER_PITCH_REQUEST,
+  });
+  axios
+    .put(`${base_url}/investorLeads/transfer/one-user-to-another/${userId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // dispatch(getCustomerListByUserId(userId1,0,"creationdate"));
+      // dispatch(getTeamCustomer(userId1,0,));
+      dispatch({
+        type: types.UPDATE_OWNER_PITCH_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb("success");
+      console.log(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_OWNER_PITCH_FAILURE,
+        payload: err,
+      });
+      // cb && cb("error");
     });
 };

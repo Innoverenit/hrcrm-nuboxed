@@ -1,35 +1,47 @@
-import React, { lazy, Suspense, Component } from "react";
+import React, { lazy, Suspense } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import AccountProcureDetails from "./AccountProcureDetails";
+const AccountProcureDetails =lazy(()=> import("./AccountProcureDetails"));
+
+const AccountProcureDetailsModal = (props) => {
+    const isSmallScreen = window.innerWidth <= 600;
+    const drawerWidth = isSmallScreen ? "90%" : "90%";
+
+    console.log("dddph",props.particularRowData)
+    return (
+        <>
+            <StyledDrawer  
+                title={`Order : ${props.particularRowData.newOrderNo}`}
+                width={drawerWidth}
+                visible={props.addProcureDetailsModal}
+                closable
+                destroyOnClose
+                maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
+                onClose={() => props.handleProcureDetailsModal(false)}
+                placement="right"
+            >
+                <Suspense fallback={<BundleLoader />}>
+                
+               <AccountProcureDetails  
+               particularRowData={props.particularRowData}
+               selectedLanguage={props.selectedLanguage}
+               translateText={props.translateText}
+               handleProcureDetailsModal={props.handleProcureDetailsModal}
+               />                  
+                </Suspense>
+            </StyledDrawer>
+        </>
+    );
+};
+
+const mapStateToProps = ({ myorder, auth }) => ({
+    employee_type:auth.userDetails.employee_type
+
+});
+const mapDispatchToProps = (dispatch) => bindActionCreators({
 
 
-class AccountProcureDetailsModal extends Component {
-    render() {
-        const {
-            addProcureDetailsModal,
-            handleProcureDetailsModal,
-            ...formProps
-        } = this.props;
-        return (
-            <>
-                {/* - ${this.props.particularRowData.orderId} */}
-                <StyledDrawer
-                    title={`Order : ${this.props.particularRowData.newOrderNo}`}
-                    width="80%"
-                    visible={addProcureDetailsModal}
-                    onClose={() => handleProcureDetailsModal(false)}
-                    maskClosable={false}
-                    destroyOnClose
-                    footer={null}
-                >
-                    <Suspense fallback={<BundleLoader />}>
-                        <AccountProcureDetails particularRowData={this.props.particularRowData} />
-                    </Suspense>
-                </StyledDrawer>
-            </>
-        );
-    }
-}
-
-export default AccountProcureDetailsModal;
+}, dispatch);
+export default connect(mapStateToProps, mapDispatchToProps)(AccountProcureDetailsModal);

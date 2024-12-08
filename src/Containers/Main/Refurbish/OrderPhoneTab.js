@@ -1,20 +1,22 @@
-import React, { useState, lazy, Suspense } from 'react';
+import React, { useState, lazy, Suspense, useEffect } from 'react';
 import { StyledTabs } from '../../../Components/UI/Antd';
 import TabPane from 'antd/lib/tabs/TabPane';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { BundleLoader } from '../../../Components/Placeholder';
 import HandymanIcon from '@mui/icons-material/Handyman';
+import SpareNewList from './SpareNewList';
 
 const AddCatalogueInProduction = lazy(() => import('./ProductionTab/AddCatalogueInProduction'));
 const OpenRepairTable = lazy(() => import('./OpenRepairTable'));
-const ProductionRepairOrder = lazy(() => import('./ProductionRepairOrder'));
+const ProductionRepairOrder = lazy(() => import('./ProductionRepairOrder'));//2
 const OpenQcTable = lazy(() => import('./OpenQcTable'));
-const ProductionOrderListById = lazy(() => import('./ProductionOrderListById'));
+const ProductionOrderListById = lazy(() => import('./ProductionOrderListById'));//1
 const QaCardList = lazy(() => import('./QaCardList'));
 
 const OrderPhoneTab = (props) => {
-
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [qcMain, setQcMain] = useState(true);
     const [openQc, setOpenQc] = useState(false);
 
@@ -38,19 +40,54 @@ const OrderPhoneTab = (props) => {
         setRepairMain(false)
         setOpenRepair(true)
     }
+
     const [activeKey, setActiveKey] = useState("1");
     const handleTabChange = (key) => setActiveKey(key);
+
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [ 
+             "1068", //  " Process",//0
+              "203",  // " Production",//1
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
 
     const renderTabContent = (key) => {
         switch (key) {
           case "1":
             return     <div> 
-                {openQc ? <OpenQcTable /> : qcMain ? <ProductionOrderListById /> : null}
+                {props.user.refurbishQcInd && (
+                openQc ? <OpenQcTable 
+                  translateText={props.translateText}
+                  selectedLanguage={props.selectedLanguage} /> : qcMain ? <ProductionOrderListById 
+                  translateText={props.translateText}
+                  selectedLanguage={props.selectedLanguage} /> : null)}
                 </div>;
           case "2":
-            return  <div>{repairMain ? <ProductionRepairOrder inspectionRequiredInd={props.inspectionRequiredInd} /> :
-            openRepair ? <OpenRepairTable /> : null}</div>;
-        
+            return  <div>{props.user.refurbishProcesInd && (repairMain ? <ProductionRepairOrder inspectionRequiredInd={props.inspectionRequiredInd} 
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}/> :
+            openRepair ? <OpenRepairTable 
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}/> : null)}</div>;
+            case "4":
+                return  <div>
+                    <SpareNewList
+                translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}/> </div>;
             
           default:
             return null;
@@ -62,7 +99,7 @@ const OrderPhoneTab = (props) => {
             <StyledTabs
            defaultActiveKey={activeKey} onChange={handleTabChange}
             >
-                {!props.inspectionRequiredInd &&
+                {!props.inspectionRequiredInd && props.user.refurbishQcInd &&
                     <TabPane
                         tab={
                             <>
@@ -81,12 +118,13 @@ const OrderPhoneTab = (props) => {
                             {openQc ? <OpenQcTable /> : qcMain ? <ProductionOrderListById /> : null}
                         </Suspense> */}
                     </TabPane>}
+                    { props.user.refurbishProcesInd &&
                 <TabPane
                     tab={
                         <>
                             <span onClick={handleMainRepair}>
 
-                                Process
+                            {translatedMenuItems[0]} {/* Process */}
                             </span>
                             &nbsp;&nbsp;
                             <span onClick={handleOpenRepair}>
@@ -100,7 +138,7 @@ const OrderPhoneTab = (props) => {
                         {/* {repairMain ? <ProductionRepairOrder inspectionRequiredInd={props.inspectionRequiredInd} /> :
                             openRepair ? <OpenRepairTable /> : null} */}
                     </Suspense>
-                </TabPane>
+                </TabPane>}
                 
                 
                 {props.inspectionRequiredInd &&
@@ -110,20 +148,37 @@ const OrderPhoneTab = (props) => {
                             <>
                                 <span>
 
-                                    Production
+                                {translatedMenuItems[1]} {/* Production */}
                                 </span>
                             </>
                         }
                         key="3">
                         <Suspense fallback={<BundleLoader />}>
-                            <AddCatalogueInProduction />
+                            <AddCatalogueInProduction 
+                              translateText={props.translateText}
+                              selectedLanguage={props.selectedLanguage}/>
                         </Suspense>
 
 
                     </TabPane>
                     
                 }
-              
+               <TabPane
+                        tab={
+                            <>
+                                <span>
+
+                               Spares
+                                </span>
+                            </>
+                        }
+                        key="4">
+                        <Suspense fallback={<BundleLoader />}>
+                           
+                        </Suspense>
+
+
+                    </TabPane>
             </StyledTabs>
             <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
                 {renderTabContent(activeKey)}
@@ -134,6 +189,7 @@ const OrderPhoneTab = (props) => {
 
 const mapStateToProps = ({ auth }) => ({
     inspectionRequiredInd: auth.userDetails.inspectionRequiredInd,
+     user: auth.userDetails,
 });
 
 const mapDispatchToProps = (dispatch) =>

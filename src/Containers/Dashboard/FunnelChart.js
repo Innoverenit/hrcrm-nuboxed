@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
- import { WifiLoader  } from "react-awesome-loaders";
 
-import ReactDOM from 'react-dom';
 import { Funnel } from '@ant-design/plots';
 import {getDashboardFunnelRecord} from "../Dashboard/DashboardAction";
-import { BundleLoader } from '../../Components/Placeholder';
-
+import { BundleLoader } from "../../Components/Placeholder";
 
 
 const DemoFunnel = (props) => {
@@ -18,7 +15,7 @@ const DemoFunnel = (props) => {
     return <div style={{
          margin:"10% 0 0 30%"}}
     >
-    <WifiLoader
+    < BundleLoader
     background={"transparent"}
     // desktopSize={"60px"}
     // mobileSize={"150px"}

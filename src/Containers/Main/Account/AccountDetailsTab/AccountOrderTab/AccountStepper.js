@@ -1,14 +1,15 @@
-import React, { Component } from "react";
+import React, { Component , lazy, Suspense} from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
 import { StyledSteps } from "../../../../../Components/UI/Antd";
-import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
+import GroupsIcon from '@mui/icons-material/Groups';
+import CallIcon from '@mui/icons-material/Call';
 import AddOrderInAccount from "./AddOrderInAccount";
-import AccountOrderSecondStep from "./AccountOrderSecondStep";
-import { FormattedMessage } from 'react-intl';
+import { BundleLoader } from '../../../../../Components/Placeholder';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
+const AccountOrderSecondStep = lazy(() => import('./AccountOrderSecondStep'));
 
 const Step = StyledSteps.Step;
 
@@ -40,22 +41,17 @@ class AccountStepper extends Component {
     render() {
         const steps = [
             {
-                title: <FormattedMessage
-                    id="app.order"
-                    defaultMessage="Order"
-                />,
-                icon: <UserOutlined />,
+                title: "Order",
+                icon: <GroupsIcon />,
                 content: <AddOrderInAccount distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
             },
             {
-                title: <FormattedMessage
-                    id="app.phonedetails"
-                    defaultMessage="Phone details"
-                />,
-                icon: <PhoneOutlined
+                title:"Phone details"
+               ,
+                icon: <CallIcon
                     style={{ color: "blue" }}
                 />,
-                content: <AccountOrderSecondStep distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} />,
+                content:  <Suspense fallback={<BundleLoader />}><AccountOrderSecondStep distributorId={this.props.distributorId} inspectionRequiredInd={this.props.inspectionRequiredInd} /></Suspense> ,
             },
 
 
@@ -66,17 +62,11 @@ class AccountStepper extends Component {
                 <StyledSteps current={current}>
                     <Step
                         title={<AddShoppingCartIcon style={{ fontSize: "1rem" }} />}
-                        description={<FormattedMessage
-                            id="app.oderdetails"
-                            defaultMessage="Order Details"
-                        />}
-                    />
+                        description="Order Details"/>
                     <Step
                         title={<ControlPointDuplicateIcon style={{ fontSize: "1rem" }} />}
-                        description={<FormattedMessage
-                            id="app.unitsinfo"
-                            defaultMessage="Units Info"
-                        />}
+                        description="Units Info"
+                       
                     />
 
                 </StyledSteps>
@@ -89,16 +79,15 @@ class AccountStepper extends Component {
                             <>
                                 {current > 1 ? null : (
                                     <>
-                                        {this.props.orderId && <Button style={{ marginRight: "3rem", marginTop: "65px" }}
+                                        {/* {this.props.orderId &&  */}
+                                        <Button style={{ marginRight: "3rem", marginTop: "65px" }}
                                             className=" w-16 absolute top-3/4 right-0"
                                             type="primary"
                                             onClick={() => this.next()}
                                         >
-                                            <FormattedMessage
-                                                id="app.proceed"
-                                                defaultMessage="Proceed"
-                                            />
-                                        </Button>}
+                                          Proceed
+                                        </Button>
+                                        {/* } */}
                                     </>
                                 )}
                             </>
@@ -109,10 +98,7 @@ class AccountStepper extends Component {
                                 className=" w-16 absolute top-3/4 right-0 mt"
                                 style={{ marginRight: "1rem", marginTop: "90px" }} onClick={() => this.prev()}
                             >
-                                <FormattedMessage
-                                    id="app.previous"
-                                    defaultMessage="Previous"
-                                />
+                              Previous
                             </Button>
                         )}
                     </div>

@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 const DealForm = lazy(() => import("../Child/DealForm"));
@@ -11,10 +11,8 @@ const CreateDealModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.deal"
-          defaultMessage="Deal"
-        />}
+        title="Deal"
+      
         width={drawerWidth}
         visible={opencreateDealModal}
         maskClosable={false}
@@ -23,7 +21,13 @@ const CreateDealModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <DealForm />{" "}
+          <DealForm
+      
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
+            translatedMenuItems={props.translatedMenuItems}
+
+          />{" "}
         </Suspense>
       </StyledDrawer>
     </>

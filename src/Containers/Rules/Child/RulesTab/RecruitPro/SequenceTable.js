@@ -4,9 +4,7 @@
 // import dayjs from "dayjs";
 // import { Select } from "../../../../../Components/UI/Elements";
 // import { InputNumber, Popconfirm, Form, Input, Typography, Button, Space, DatePicker,Tooltip } from 'antd';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { FormattedMessage } from "react-intl";
-// import { solid, regular, brands } from '@fortawesome/fontawesome-svg-core/import.macro';
+// 
 // // import AddCandidateSequenceModal from "./AddCandidateSequenceModal"
 // import { StyledPopconfirm, StyledTable } from "../../../../../Components/UI/Antd";
 //  import {getSequence,handleCAndidateSequenceModal,getSequenceDetail,updateSequenceTableData,deleteSequenceData} from "../../../../Settings/SettingsAction";
@@ -232,7 +230,7 @@
               
 //              }}
 //               >
-//               <FontAwesomeIcon style={{fontSize:"1.3em"}} icon={solid("diamond-turn-right")} />
+//               
 //             </span>
 //             </Tooltip>
 //             </>
@@ -373,11 +371,7 @@
 
 // const AppIcon1 = (props) => (
   
-//   <FontAwesomeIcon
-//   icon={solid("pen-to-square")}
-//   className={`pen-to-square ${props.className}`}
-//   >
-//   </FontAwesomeIcon>
+
 // );
 
 // const EditIcon = styled(AppIcon1)`

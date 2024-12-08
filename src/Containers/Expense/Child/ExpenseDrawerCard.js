@@ -8,10 +8,10 @@ import DownloadIcon from '@mui/icons-material/Download';
 import dayjs from "dayjs";
 import { base_url } from "../../../Config/Auth";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { DeleteOutlined, UploadOutlined } from "@ant-design/icons";
+import UploadIcon from '@mui/icons-material/Upload';
 import EditUpload from "../../../Components/Forms/Edit/EditUpload";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
-const AddDocumentModal = lazy(() => import("./AddDocumentModal"));
 const UpdateExpenseModal = lazy(() => import("./UpdateExpense/UpdateExpenseModal"));
 
 function ExpenseDrawerCard(props) {
@@ -89,8 +89,8 @@ function ExpenseDrawerCard(props) {
   return (
     <>
     
-    <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex  w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
+    <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+      <div className=" flex  w-[100%]  p-2 bg-transparent font-bold sticky top-0 z-10">
       <div className=" md:w-[10.1rem]"></div>
         <div className=" md:w-[8.1rem]">ID</div>
         <div className=" md:w-[9.5rem]">Type</div>
@@ -286,7 +286,7 @@ style={{border:"1px solid lightgrey",marginRight:"0.25rem"}}
                                 <div class="flex items-center flex-col ml-2">
                                 {item.status !== 'Approved' && (
                                 <Tooltip title="Upload Document">
-            <UploadOutlined
+            <UploadIcon
               type="upload"
               style={{ cursor: "pointer",fontSize:"1rem" }}
               onClick={() => {
@@ -314,7 +314,7 @@ style={{border:"1px solid lightgrey",marginRight:"0.25rem"}}
                       <div class="ml-2" >
                       {item.status !== 'Approved' && (
                          <Tooltip title="Delete">
-            <DeleteOutlined
+            <DeleteOutlineIcon
               type="delete"
               style={{ cursor: "pointer",fontSize:"1rem" }}
               onClick={() => {
@@ -352,10 +352,10 @@ style={{border:"1px solid lightgrey",marginRight:"0.25rem"}}
       handleUpdateExpenseModal={handleUpdateExpenseModal}
       // handleSetCurrentExpenseId={handleSetCurrentExpenseId}
     />
-    <AddDocumentModal
+    {/* <AddDocumentModal
       documentUploadModal={documentUploadModal}
       handleDocumentUploadModal={handleDocumentUploadModal}
-    />
+    /> */}
     </>
   );
 }

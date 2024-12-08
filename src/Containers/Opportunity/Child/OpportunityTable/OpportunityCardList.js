@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
+import AddOpportunityPulseModal from "../OpportunityTable/AddOpportunityPulseModal"
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import InfiniteScroll from "react-infinite-scroll-component"
-import { FormattedMessage } from "react-intl";
 import OpportunitySelectStages from "../OpportunityTable/OpportunitySelectStages"
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Link } from 'react-router-dom';
 import { Tooltip, Select, Menu, Dropdown, Progress ,Popconfirm} from "antd";
 import { CurrencySymbol, } from "../../../../Components/Common";
-import { CheckCircleTwoTone, StopTwoTone } from "@ant-design/icons";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import { MultiAvatar, MultiAvatar2,  } from "../../../../Components/UI/Elements";
@@ -36,6 +37,7 @@ import {
          lostStatusRecruit,
          LinkStageOpportunity,
          getOpportunityForecast,
+         handleOpportunityPulseModal,
          handleOpportunityRowEmailModal
 } from "../../OpportunityAction";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
@@ -44,10 +46,12 @@ import "jspdf-autotable";
 import AddOpportunityDrawerModal from "../../Child/OpportunityTable/AddOpportunityDrawerModal"
 import UpdateOpportunityModal from "../UpdateOpportunity/UpdateOpportunityModal";
 import AddOpportunityNotesDrawerModal from "./AddOpportunityNotesDrawerModal";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import OpportunityRowEmailModal from "./OpportunityRowEmailModal";
-import { base_url } from "../../../../Config/Auth";
+import { base_url, base_url2 } from "../../../../Config/Auth";
 import SearchedDataOpportunity from "./SearchedDataOpportunity";
+import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
+import EmptyPage from "../../../Main/EmptyPage";
+import axios from "axios";
 const Option =Select;
 
 function OpportunityCardList(props) {
@@ -99,78 +103,30 @@ const handleLoadMore = () => {
   const handleRowData = (data) => {
     setrowdata(data);
   };
-  const exportPDFAnnexure = async () => {
-    var doc = new jsPDF();
-    const {
-      userDetails:
-      {address},
-        imageId
-    }=props
-   
-    let cityd=`${address.city}`
-    let countryd=`${address.country}`
-    let addressde=`${address.state}`
-    let cityde=`${address.street}`
-    var imageUrl = `${base_url}/image/${imageId || ""}`;
-    var name1 = `East Repair Inc `
-    var name2 =`1912 Harvest Lane New York ,NY 12210 ${cityd}`
-    var name3 =`BILL TO`
-    var name4 = `SHIP TO`
-    var name5 = `QUOTE #`
-    var name6 = `QUOTE DATE`
-    var name7 = `P.O.#`
-    var name8 = `Quote Total`
-    var name9 = `QTY`
-    var name10 = `DESCRIPTION`
-    var name11 = `UNIT PRICE`
-    var name12 = `AMOUNT`
-    var name13= `TERM & CONDITIONS`
-    var name14= `Payement id due within 15 days`
-    var name15= `Please make checks payble to: East repair Inc. `
+
+  const viewAnDownloadPdf= async (item) => {  
+    try {
+      const response = await axios.get(`${base_url2}/quotation/customer/pdf/${item.opportunityId}`, {
+        responseType: 'blob',
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      });
   
+      const blob = response.data;
+      const url = window.URL.createObjectURL(blob);
+      const filename = 'custom-pdf-name.pdf';
   
-    doc.setFont("Montserrat");
-    doc.setFillColor(62, 115, 185);
-    doc.rect(0, 0, 230, 13, 'F');
-    doc.setFontSize(25);
-    doc.setFontSize(14);
-    doc.setDrawColor(0, 0, 0)
-    doc.addImage(imageUrl, 'JPEG', 20, 18, 165, 20);
-    doc.text(name1, 8, 25);
-    doc.setFontSize(10);
-    let yPosition = 32;
-    address.forEach(item => {
-      doc.text(` ${item.city}  ${item.country}  ${item.state}  ${item.street}`, 8, yPosition);
-      yPosition += 4
-  });
-    // doc.text(name2, 8, 32);
-    doc.setFontSize(12);
-    doc.text(name3, 8, 50);
-    doc.text(name4, 60, 50);
-    doc.text(name5, 120, 50);
-    doc.text(name6, 120, 58);
-    doc.text(name7, 120, 66);
-    doc.line(8, 80, 200, 80);
-    doc.setFontSize(22);
-    doc.text(name8, 8, 90);
-    doc.line(8, 100, 200, 100);
-    doc.setFontSize(10);
-    doc.text(name9, 8, 110);
-    doc.text(name10, 30, 110);
-    doc.text(name11, 90, 110);
-    doc.text(name12, 140, 110);
-    doc.setFontSize(12);
-    doc.text(name13, 8, 250);
-    doc.setFontSize(9);
-    doc.text(name14, 8, 260);
-    doc.text(name15, 8, 270);
-    //footer
-    doc.setFillColor(62, 115, 185);
-    doc.rect(0, 276, 230, 15, 'F');
+      window.open(url, '_blank');
+      const downloadLink = document.createElement('a');
+      downloadLink.href = url;
+      downloadLink.download = filename; 
+      downloadLink.click(); 
+    } catch (error) {
+      console.error('Error fetching PDF:', error);
+    }  
   
-    doc.save("Quotation.pdf")
-  
-  }
+  };
 
 
 
@@ -226,6 +182,8 @@ console.log(props.userDetails.imageId)
       {props.ooportunitySerachedData.length > 0 ? (
     <SearchedDataOpportunity
     ooportunitySerachedData={props.ooportunitySerachedData}
+    translateText={props.translateText}
+    selectedLanguage={props.selectedLanguage}
     />
   ) : (
        <InfiniteScroll
@@ -246,7 +204,7 @@ console.log(props.userDetails.imageId)
             > */}
 
 <div class="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center justify-center">
-{ !fetchingOpportunity && opportunityByUserId.length === 0 ?<NodataFoundPage />:opportunityByUserId.map((item,index) =>  {
+{ !fetchingOpportunity && opportunityByUserId.length === 0 ?<EmptyPage/>:opportunityByUserId.map((item,index) =>  {
                  
                  var findProbability = item.probability;
                    item.stageList.forEach((element) => {
@@ -255,9 +213,9 @@ console.log(props.userDetails.imageId)
                     });
                  return (
                   <div class="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[7.5rem] 
-                  text-[#444444] m-3 p-1 w-[15.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
-        <div class="flex items-center flex-no-wrap h-[2.81em]">
-          <div class=" flex basis-[15%] mr-[0.2rem]" >
+                  text-[#444444] m-1 w-[15.5vw] max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+        <div class="flex items-center flex-no-wrap h-16">
+          <div class=" flex basis-[15%] mr-[0.2rem] h-15" >
             <MultiAvatar
               primaryTitle={item.opportunityName}
               imageId={item.imageId}
@@ -268,7 +226,7 @@ console.log(props.userDetails.imageId)
           &nbsp;
           <div class="flex flex-col basis-[100%] overflow-hidden">
           
-          <div class="font-semibold text-[#337df4] cursor-pointer text-sm " >
+          <div class="font-semibold text-[#337df4] cursor-pointer text-xs " >
         
     {item.newOppId}
 
@@ -290,7 +248,7 @@ title={`${item.opportunityName}`}>
           </div>
        
         </div>
-        <div className="flex justify-between max-sm:justify-between">
+        <div className="flex justify-between max-sm:justify-between h-15">
           <div>
           {item.customer && (
               <div class="overflow-hidden text-ellipsis cursor-pointer text-xs flex items-center">
@@ -338,12 +296,12 @@ overlay={
       // candidateName={item.candidateName}
       // approveInd={item.approveInd}
       // rejectInd={item.rejectInd}
-      stageClick={(opportunityStagesId) => {
+      stageClick={(stagesId) => {
         props.LinkStageOpportunity(
           {
             opportunityId: item.opportunityId,
             //oppStage: item.oppStage,
-            opportunityStagesId:opportunityStagesId
+            opportunityStagesId:stagesId
             // recruitmentProcessId: item.recruitmentProcessId,
             // recruitmentId: item.recruitmentId,
             // profileId: item.profileId,
@@ -374,7 +332,7 @@ width={30}
 </Dropdown>
 </span>
 </div>
-<div>
+<div className=" flex items-center">
 {<CurrencySymbol currencyType={item.currency} />}
             &nbsp;{  item.proposalAmount || ""}
   </div>
@@ -396,13 +354,11 @@ imgHeight={"1.8rem"}
               {item.approveInd&&item.opportunityOwner ? (
 <>
   <Tooltip 
-    title={<FormattedMessage
-      id="app.Own"
-      defaultMessage="Own"
-    />}
+    title="Own"
+ 
 
   >
-    <CheckCircleTwoTone
+    <CheckCircleOutlineIcon
       type="check-circle"
       theme="twoTone"
       twoToneColor="#24D8A7"
@@ -415,7 +371,7 @@ imgHeight={"1.8rem"}
 <>
   <Tooltip title={"Lost"}>
     {" "}
-    <StopTwoTone
+    <DoDisturbIcon
       type="stop"
       theme="twoTone"
       twoToneColor="red"         
@@ -432,13 +388,11 @@ imgHeight={"1.8rem"}
   cancelText="No"
 >
   <Tooltip 
-    title={<FormattedMessage
-      id="app.Own"
-      defaultMessage="Won"
-    />}
+    title="Won"
+  
 
   >
-    <CheckCircleTwoTone
+    <CheckCircleOutlineIcon
       type="check-circle"
       theme="twoTone"
       twoToneColor="#24D8A7"
@@ -458,12 +412,11 @@ imgHeight={"1.8rem"}
   cancelText="No"
 >
  <Tooltip
-        title={
-          <FormattedMessage id="app.drop" defaultMessage="Lost" />
-        }
+        title="Lost" 
+        
       >
  
-  <StopTwoTone
+  <DoDisturbIcon
           type="stop"
           theme="twoTone"
           twoToneColor="red"
@@ -479,35 +432,41 @@ imgHeight={"1.8rem"}
 )}
 </div>
 <div class="flex items-center">
-<div class="w-6">
+<div >
 <MailOutlineIcon className="!text-icon"
                 type="mail"
                 style={{ cursor: "pointer" }}
-                onClick={() => {
+                  onClick={() => {
                   props.handleOpportunityRowEmailModal(true);
                   handleSetCurrentOpportunityId(item);
                 }}
               />
   </div>
 
-<div class="w-6">
-        <span onClick={() => exportPDFAnnexure()}>
-            <PictureAsPdfIcon className="!text-icon"/>
-                           </span>
+  <div >
+<MonitorHeartIcon className="!text-icon"
+                type="mail"
+                style={{ cursor: "pointer" }}
+                  onClick={() => {
+                  props.handleOpportunityPulseModal(true);
+                  handleSetCurrentOpportunityId(item);
+                }}
+              />
+  </div>
+
+<div >
+ <PictureAsPdfIcon className="!text-icon text-[red] cursor-pointer" 
+    onClick={()=> viewAnDownloadPdf(item)}
+    />
           </div>
 <div class="flex items-center">
 <Tooltip
           placement="right"
-          title={
-            <FormattedMessage
-              id="app.notes"
-              defaultMessage="Notes"
-            />
-          }
+          title="Notes"      
         >
            <span
 
-              onClick={() => {
+                onClick={() => {
               
                 handleOpportunityNotesDrawerModal(true);
                 handleSetCurrentOpportunityId(item);
@@ -519,18 +478,14 @@ imgHeight={"1.8rem"}
           </Tooltip>
 <Tooltip
           placement="right"
-          title={
-            <FormattedMessage
-              id="app.edit"
-              defaultMessage="Edit"
-            />
-          }
+          title="Edit"
+           
         >
             {user.opportunityUpdateInd ===true && user.crmInd === true &&  (
               
             <span
             className="!text-icon cursor-pointer text-[grey] mb-1"
-              onClick={() => {
+                onClick={() => {
                 props.setEditOpportunity(item);
                 handleUpdateOpportunityModal(true);
                 handleSetCurrentOpportunityId(item);
@@ -547,9 +502,7 @@ imgHeight={"1.8rem"}
           >
            
              {user.opportunityDeleteInd ===true && user.crmInd === true &&  (
-            <DeleteOutlined
-            // loading={props.deleteOpportunityData}
-            type="delete" className="!text-icon cursor-pointer text-[red]" />
+          <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
              )}
           </StyledPopconfirm>
 
@@ -595,7 +548,21 @@ imgHeight={"1.8rem"}
         translatedMenuItems={props.translatedMenuItems}
       />
 
+<AddOpportunityPulseModal
+currentOpportunityId={currentOpportunityId}
+updatePulseModal={props.updatePulseModal}
+handleOpportunityPulseModal={props.handleOpportunityPulseModal}
+        // addDrawerOpportunityNotesModal={addDrawerOpportunityNotesModal}
+        // opportunityData={currentOpportunityId}
+        // handleOpportunityNotesDrawerModal={handleOpportunityNotesDrawerModal}
+        // handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
+        // translateText={props.translateText}
+        // selectedLanguage={props.selectedLanguage}
+        // translatedMenuItems={props.translatedMenuItems}
+      />
+
 <AddOpportunityDrawerModal
+
  opportunityData={currentOpportunityId}
 opportunityForecast={props.opportunityForecast}
 opportunityInitiativesSkillsDetails={props.opportunityInitiativesSkillsDetails}
@@ -611,6 +578,9 @@ allRecruitmentDetailsByOppId={props.allRecruitmentDetailsByOppId}
              allRecruitmentPositionByOppId={props.allRecruitmentPositionByOppId}
                handleOpportunityDrawerModal={props.handleOpportunityDrawerModal}
                addDrawerOpportunityModal={props.addDrawerOpportunityModal}
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}
+               translatedMenuItems={props.translatedMenuItems}
       />
     </>
   );
@@ -620,6 +590,7 @@ allRecruitmentDetailsByOppId={props.allRecruitmentDetailsByOppId}
 const mapStateToProps = ({ auth, account, opportunity }) => ({
   userId: auth.userDetails.userId,
   user: auth.userDetails,
+  updatePulseModal:opportunity.updatePulseModal,
   deleteOpportunityData:opportunity.deleteOpportunityData,
   addDrawerOpportunityNotesModal:opportunity.addDrawerOpportunityNotesModal,
   role: auth.userDetails.role,
@@ -671,6 +642,7 @@ const mapDispatchToProps = (dispatch) =>
          LinkClosedOpportunity,
          StatusRecruit,
          lostStatusRecruit,
+         handleOpportunityPulseModal,
          emptyOpportunity,
          LinkStageOpportunity,
          handleOpportunityRowEmailModal

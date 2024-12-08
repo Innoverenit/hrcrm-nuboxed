@@ -4,8 +4,8 @@ import { bindActionCreators } from "redux";
 import { Button,  } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { Spacer } from "../../../../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
+
+
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import {
   getProcessForRecruit,
@@ -147,37 +147,14 @@ function ProfileForm(props) {
                   width: "100%",
                 }}
               >
-                {/* <Field
-                  name="recruitmentId"
-                  // label="Requirement"
-                  label={<FormattedMessage
-                    id="app.recruitmentId"
-                    defaultMessage="Requirement"
-                  />}
-                  width={"100%"}
-                  isRequired
-                  isColumn
-                  style={{
-                    flexBasis: "80%",
-                    width: "100%",
+               
 
-                    // marginTop: "0.25em",
-                  }}
-                  // component={InputComponent}
-                  component={SelectComponent}
-                  options={
-                    Array.isArray(recruitmentName) ? recruitmentName : []
-                  }
-                /> */}
-
-                <Spacer />
+                <div class=" mt-3" />
                 <Field
                   name="recruitmentId"
                   // label="Requirement"
-                  label={<FormattedMessage
-                    id="app.jobid"
-                    defaultMessage="Job ID"
-                  />}
+                  label="Job ID"
+                 
                   width={"100%"}
                   isRequired
                   isColumn
@@ -193,15 +170,11 @@ function ProfileForm(props) {
                     Array.isArray(recruitmentName) ? recruitmentName : []
                   }
                 />
-                  <Spacer />
+                  <div class=" mt-3" />
 
                 <Field
                   name="recruitmentProcessId"
-                  //label="Workflow"
-                  label={<FormattedMessage
-                    id="app.workflow"
-                    defaultMessage="Workflow"
-                  />}
+                  label="Workflow"
                   isRequired
                   isColumn
                   width={"100%"}
@@ -223,15 +196,11 @@ function ProfileForm(props) {
                 
                 />
 
-                <Spacer />
+                <div class=" mt-3" />
 
                 <Field
                   name="stageId"
-                  // label="Stage"
-                  label={<FormattedMessage
-                    id="app.stageId"
-                    defaultMessage="Stage"
-                  />}
+                  label="Stage"
                   // component={InputComponent}
                   component={SelectComponent}
                   isColumn
@@ -249,7 +218,7 @@ function ProfileForm(props) {
                   }
                 />
 
-                <Spacer />
+                <div class=" mt-3" />
               </div>
               &nbsp;
               <div
@@ -259,18 +228,15 @@ function ProfileForm(props) {
                 }}
               ></div>
             </div>
-            <Spacer />
+            <div class=" mt-3" />
             <FlexContainer justifyContent="flex-end">
               <Button
                 type="primary"
                 htmlType="submit"
                 Loading={props.addingRecruitmentProfile}
               >
-                <FormattedMessage
-                  id="app.create"
-                  defaultMessage="Create"
-                />
-                {/* Create */}
+                
+                Create
               </Button>
             </FlexContainer>
           </Form>

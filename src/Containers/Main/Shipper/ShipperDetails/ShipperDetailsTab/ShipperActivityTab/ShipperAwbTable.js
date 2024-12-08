@@ -1,12 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip } from "antd";
-import {
-  FileDoneOutlined,
-  PhoneOutlined,
-  ScheduleOutlined,
-} from "@ant-design/icons";
 import {
   getAwbListByShipperId,
   handleUpdateEventModal,
@@ -15,17 +9,54 @@ import {
 } from "../../../ShipperAction";
 import { setEditEvents } from "../../../../../Event/EventAction";
 import { setEditTask } from "../../../../../Task/TaskAction";
-import moment from "moment";
-import { OnlyWrapCard } from '../../../../../../Components/UI/Layout';
-import { FormattedMessage } from "react-intl";
+import dayjs from "dayjs";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 
 class ShipperAwbTable extends Component {
-  componentDidMount() {
-    this.props.getAwbListByShipperId(this.props.shipperId);
+  
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeKey: "1",
+      translatedMenuItems: [],
+    };
   }
 
+  handleTabChange = (key) => this.setState({ activeKey: key });
+
+  componentDidMount() {
+    this.props.getAwbListByShipperId(this.props.shipperId);
+  } 
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+       
+       "1377", // "Ship Id",
+       "679",// "Created",
+       "1378",// Pick up",
+       "772",  // "Delivery",
+    
+            ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  }; 
   render() {
     const {
       handleUpdateEventModal,
@@ -42,103 +73,77 @@ class ShipperAwbTable extends Component {
 
     return (
       <>
-            <div className=' flex  sticky  z-auto'>
-            <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+            <div className=' flex  sticky h-[78vh]  z-auto'>
+            <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+            <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs items-end sticky  z-10">
                         <div className=" md:w-[0.5rem]"></div>
-                        <div className=" md:w-[7.4rem]"><FormattedMessage id="app.awb#" defaultMessage="AWB #"/></div>
-                        <div className=" md:w-[10.1rem]"><FormattedMessage id="app.created" defaultMessage="Created"/></div>
-                        <div className=" md:w-[8.8rem] "><FormattedMessage id="app.pickUp" defaultMessage="Pick Up"/></div>
-                        <div className="md:w-[3.8rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery"/></div>
-                        <div className="md:w-[6.12rem]"></div>
-                      
-                     
-
-
+                        <div className=" text-[#00A2E8] text-base w-[7.4rem] max-md:w-[7.4rem]">  
+                        <RocketLaunchIcon className=" !text-tab text-[#bdd358] mr-2"/>  Pallete</div>
+                        {/* AWB# */}
+                        <div className="w-[10.1rem] max-md:w-[10.1rem]"> 
+                        <DateRangeIcon className="!text-icon "/> LDM </div>
+                        {/* Created */}
+                        <div className="w-[8.8rem] max-md:w-[8.8rem] ">  Weight</div>
+                        {/* pickUp */}
+                        <div className="w-[4.8rem] max-md:w-[4.8rem]"> 
+                        <LocalShippingIcon className='!text-base  text-[#e4eb2f]'
+              /> Value</div>
+              <div className="w-[4.8rem] max-md:w-[4.8rem]"> 
+                        <LocalShippingIcon className='!text-base  text-[#e4eb2f]'
+              /> Zone</div>
+               <div className="w-[4.8rem] max-md:w-[4.8rem]"> 
+                        <LocalShippingIcon className='!text-base  text-[#e4eb2f]'
+              /> Postcode</div>
+                        {/* Delivery */}
+                        <div className="w-[6.12rem] max-md:w-[6.12rem]"></div>                     
                     </div>
                    
                     {this.props.awbShipper.length > 0 ? (
                this.props.awbShipper.map((item) => (
                             
                             <div key={item.id}>
-                                     <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
-                                        <div class="flex w-3/4">
-                                            <div className=" flex font-medium flex-col md:w-[14.56rem] max-sm:w-full  ">
+                                     <div className="flex rounded  mt-1 bg-white h-8 items-center  max-sm:h-[7rem] max-sm:flex-col ">
+                                        <div class="flex w-3/4 ">
+                                            <div className=" flex font-medium flex-col md:w-[14.56rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full  ">
                                             <div class=" text-xs  font-poppins text-center">
                                                     {item.newAwbNo}
                                                 </div>
 
                                             </div>
 
-                                            <div className=" flex font-medium flex-col  md:w-[9.4rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                            <div className=" flex font-medium flex-col  md:w-[9.4rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
 
                                             <div class=" text-xs  font-poppins text-center">
                                                    
-                                                    {` ${moment(item.createAt).format("lll")}`}
+                                                    {` ${dayjs(item.createAt).format("lll")}`}
                                                 </div>
                                             </div>
 
 
 
-                                            <div className=" flex font-medium flex-col md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex font-medium flex-col md:w-[6.2rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
                                                 {item.topic}
                                                 </div>
                                             </div>
-                                            <div className=" flex font-medium flex-col md:w-[10.1rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex font-medium flex-col md:w-[10.1rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center">
-                                                {` ${moment(item.pickUp).format("lll")}`}
+                                                {` ${dayjs(item.pickUp).format("lll")}`}
                                                 </div>
                                             </div>
 
-                                            <div className=" flex font-medium flex-col md:w-[11.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                            <div className=" flex font-medium flex-col md:w-[11.5rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between ">
                                                
                                                 <div class=" text-xs  font-poppins text-center">
-                                                {/* {` ${moment(item.endDate).format("lll")}`} */}
+                                                {/* {` ${dayjs(item.endDate).format("lll")}`} */}
 
                                                 </div>
                                             </div>
                                         </div>
-{/*                           
-                                        <div className=" flex font-medium flex-col  md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <h4 class=" text-xs  font-poppins">
-                                            <Tooltip title="Edit">
-              {item.activity === "Event" && (
-               <ScheduleOutlined
-                  style={{ cursor: "pointer", fontSize: "12px" }}
-                  onClick={() => {
-                    // this.props.setEditEvents(item);
-                    handleUpdateEventModal(true);
-                  }}
-                />
-              )}
-              {item.activity === "Call" && (
-               <PhoneOutlined
-                  style={{ cursor: "pointer", fontSize: "12px" }}
-                  onClick={() => {
-                    // this.props.setEditCall(item);
-                    handleUpdateCallModal(true);
-                  }}
-                />
-              )}
-              {item.activity === "Task" && (
-               <FileDoneOutlined 
-                  style={{ cursor: "pointer", fontSize: "12px" }}
-                  onClick={() => {
-                    // this.props.setEditTask(item);
-                    handleUpdateTaskModal(true);
-                  }}
-                />
-              )}
-            </Tooltip>
-                                            </h4>
 
-                                        </div> */}
                                     </div>
                                 </div>
-
-
-                          
+                                                   
 ))
 ) : (
   <div className="text-center p-5">

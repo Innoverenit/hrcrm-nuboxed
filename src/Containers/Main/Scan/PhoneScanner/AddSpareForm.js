@@ -3,9 +3,8 @@ import React, { useEffect, useState } from 'react'
 import { getTaggedSuppliesByBrand, addSpareList } from "../../Account/AccountAction";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { CloseOutlined } from "@ant-design/icons"
+import CloseIcon from '@mui/icons-material/Close';
 import { getCurrency } from "../../../Auth/AuthAction";
-import { FormattedMessage } from 'react-intl';
 const { Option } = Select;
 
 const AddSpareForm = (props) => {
@@ -15,7 +14,7 @@ const AddSpareForm = (props) => {
         props.getTaggedSuppliesByBrand(props.phoneDetails.company, props.phoneDetails.model)
     }, [])
 
-    const [rows, setRows] = useState([{ suppliesId: "", noOfSpare: "", hours: "", extraCost: "", spareCurrency: "", id: 1 }]);
+    const [rows, setRows] = useState([{ suppliesId: "", noOfSpare: "", hours: "", extraCost: "", spareCurrency: "", id: 1 ,orgId:props.orgId}]);
     const [id, setId] = useState(1);
     const [level, setLevel] = useState(1);
 
@@ -105,7 +104,7 @@ const AddSpareForm = (props) => {
                     <>
                         <div class="flex justify-between">
                             <div class="w-[30%]">
-                                <label>{`Spare ${i + 1}`}</label>
+                                <div class="font-bold text-xs font-poppins text-black">{`Spare ${i + 1}`}</div>
 
                                 <Select
                                     name={`${row.id}_value`}
@@ -123,13 +122,10 @@ const AddSpareForm = (props) => {
                             </div>
 
                             <div class="w-[15%]">
-                                <label>
-                                    <FormattedMessage
-                                        id="app.units"
-                                        defaultMessage="Units"
-                                    />
+                                <div class="font-bold text-xs font-poppins text-black">
+                                 Units
 
-                                </label>
+                                </div>
                                 <Input
                                     type='text'
                                     value={`${row.noOfSpare}`}
@@ -139,12 +135,9 @@ const AddSpareForm = (props) => {
                                 />
                             </div>
                             <div class="w-[15%]">
-                                <label>
-                                    <FormattedMessage
-                                        id="app.hours"
-                                        defaultMessage="Hours"
-                                    />
-                                </label>
+                                <div class="font-bold text-xs font-poppins text-black">
+                                  Hours
+                                </div>
                                 <Input
                                     type='text'
                                     value={`${row.hours}`}
@@ -156,7 +149,7 @@ const AddSpareForm = (props) => {
 
                             {rows.length > 1 && (row.id + 1 > row.id) ? (
                                 <div class="w-[5%] mt-[30px]">
-                                    <CloseOutlined
+                                    <CloseIcon
                                         onClick={() => handleDelete(row)}
                                         style={{ fontSize: "16px", color: "red" }} />
                                 </div>
@@ -171,20 +164,14 @@ const AddSpareForm = (props) => {
                     type="primary"
                     onClick={handleAddRowClick}
                 >
-                    <FormattedMessage
-                        id="app.addmore"
-                        defaultMessage="Add More"
-                    />
+                   Add More
                 </Button>
                 <Button
                     htmlType='submit'
                     type='primary'
                     onClick={buttonOnClick}
                 >
-                    <FormattedMessage
-                        id="app.save"
-                        defaultMessage="Save"
-                    />
+                   Save
                 </Button>
             </div>
 
@@ -197,6 +184,7 @@ const mapStateToProps = ({ inventory, auth, distributor }) => ({
     addingRoomAndRackInInventory: inventory.addingRoomAndRackInInventory,
     spareByBrand: distributor.spareByBrand,
     userId: auth.userDetails.userId,
+    orgId: auth.userDetails.organizationId,
     currencies: auth.currencies,
 });
 

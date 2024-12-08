@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 import InvoiceStepper from "../InvoiceStepper";
@@ -11,12 +11,9 @@ const AddInvoiceModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.invoice"
-          defaultMessage="Invoice"
-        />}
+        title="Invoice"
+      
         width="60%"
-        style={{marginTop:"5rem"}}
         visible={props.addInvoiceModal}
         closable
         destroyOnClose

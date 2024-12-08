@@ -9,24 +9,7 @@ import { getLibrarys } from "../../../../../Settings/Library/LibraryAction";
 const { Option } = Select;
 function CandidateSelect(props) {
   const [selectType, setSelectType] = useState("");
-  // console.log("myProps",props.SkillList)
-  // function handleChange(value) {
-  //   setSelectType(value);
-  //   const {
-  //       candidateId,
-
-  //       addTopicByCandidateId,
-  //     } = props;
-  //     // if (selectValue) {
-  //       addTopicByCandidateId(
-  //         {
-  //           //candidateId: this.props.candidate.candidateId,
-  //           skillName:selectType,
-  //         },
-  //       //   this.props.candidate.candidateId
-  //       );
-  // }
-  // console.log("set1",selectType)
+  
   function handleChange(selectType) {
     props.addTopicByCandidateId(
       {
@@ -39,8 +22,9 @@ function CandidateSelect(props) {
 
   return (
     <div>
-      <Select style={{ width: "14rem" }} onChange={(e) => handleChange(e)}>
-        {/* <Option value={"item"}>"item" </Option>; */}
+      <Select style={{ width: "9rem" }} onChange={(e) => handleChange(e)}
+        placeholder="Select">
+      
         {props.librarys.map((item, i) => {
           return <Option value={item.name}>{item.name}</Option>;
         })}
@@ -52,18 +36,12 @@ const mapStateToProps = ({ candidate, auth, librarys }) => ({
   user: auth.userDetails,
   librarys: librarys.librarys,
   organizationId: auth.userDetails.organizationId,
-  // fetchingTopicsByCandidateId: candidate.fetchingTopicsByCandidateId,
-  // fetchingTopicsByCandidateIdError: candidate.fetchingTopicsByCandidateIdError,
-  // topicsByCandidateId: candidate.topicsByCandidateId,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       addTopicByCandidateId,
 
-      // getTopicsByCandidateId,
-      // addTopicByCandidateId,
-      // deleteTopicByCandidateId,
       getLibrarys,
     },
     dispatch

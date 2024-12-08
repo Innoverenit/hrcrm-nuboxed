@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, Component } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../../Components/UI/Antd";
 
@@ -17,17 +17,15 @@ class AddContractModal extends Component {
     return (
       <>
         <StyledDrawer
-          // title="Contract"
-          title={<FormattedMessage
-            id="app.contract"
-            defaultMessage="Contract"
-          />}
+          title="Contract"
           width="25%"
           visible={addContractModal}
           onClose={() => handleContractModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <ContractDocumentForm />
+            <ContractDocumentForm 
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}/>
           </Suspense>
         </StyledDrawer>
       </>

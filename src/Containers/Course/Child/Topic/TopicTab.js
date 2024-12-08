@@ -1,7 +1,7 @@
 import React, { Component,lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import EditIcon from "@mui/icons-material/Edit";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button, message, } from "antd";
 import styled from "styled-components";
@@ -9,7 +9,6 @@ import { addTopic,
    getTopics
    } from "../../CourseAction";
 import {
-  MainWrapper,
   TextInput,
 } from "../../../../Components/UI/Elements";
 import SingleTopic from "./SingleTopic";
@@ -82,17 +81,10 @@ class TopicTab extends Component {
     return (
       <>
        <div class="flex flex-no-wrap" >
-          <MainWrapper
-            style={{
-              flexBasis: "100%",
-              overflow: "auto",
-              color: "#FFFAFA",
-            }}
-          >
-         
+       <div class="mr-5 ml-5 text-[#FFFAFA] overflow-auto">                         
             <div class=" flex flex-col" >
              
-              <MainWrapper style={{ height: "30em", marginTop: "0.625em" }}>
+           <div class="mr-5 ml-5 h-8 mt-2">
               {this.props.topicsData.map((topicsData, i) => ( 
              <SingleTopic
                 key={i}
@@ -100,11 +92,10 @@ class TopicTab extends Component {
                 newTopicName="topics"
                 topicsData={topicsData}
                 organization={this.props.organization}
-                className="scrollbar"
-                id="style-3"
+                style={{scrollbarWidth:"thin", backgroundColor:"f5f5f5" }}
               /> 
             ))}
-              </MainWrapper>
+              </div>
             </div>
             {this.state.isTextInputOpen ? (
               <div class=" flex items-center ml-[0.3125em] mt-[0.3125em]">
@@ -132,11 +123,11 @@ class TopicTab extends Component {
                   onClick={this.handleAddTopic}
                 >
                   
-                  <FormattedMessage id="app.save" defaultMessage="Save" />
+              Save
                 </Button>
                 &nbsp;
                 <Button type="primary" ghost onClick={this.toggleInput}>
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+Cancel
                 </Button>
               </div>
             ) : (
@@ -148,16 +139,13 @@ class TopicTab extends Component {
                     htmlType="button"
                     onClick={this.toggleInput}
                   >
-                    <FormattedMessage
-                      id="app.addtopic"
-                      defaultMessage="Add Topic"
-                    />
+                 Add Topic
                   </Button>
                 </div>
                
               </>
             )}
-          </MainWrapper>
+          </div>
          
         </div>
         <Suspense fallback={"Loading"}> 

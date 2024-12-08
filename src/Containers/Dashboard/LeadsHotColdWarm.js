@@ -1,5 +1,5 @@
 import React, { useEffect,lazy } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {getHotColdWarm,handleLeadHCWdrawer} from "./DashboardAction";
@@ -9,12 +9,12 @@ function LeadsHotColdWarm (props) {
      
   useEffect(()=> {
     if (props.timeRangeType === "today") {
-   props.getHotColdWarm(props.userId,props.startDate,props.endDate);
+   props.getHotColdWarm(props.userId,props.endDate,props.startDate);
     }
     else {
-      props.getHotColdWarm(props.userId,props.startDate,props.endDate);
+      props.getHotColdWarm(props.userId,props.endDate,props.startDate);
     }
-  },[props.userId,props.startDate,props.endDate]);
+  },[props.userId,props.endDate,props.startDate]);
 
   const {showHotColdWarm,handleLeadHCWdrawer,openLeadHCWdrawer}=props;
     return (
@@ -22,26 +22,17 @@ function LeadsHotColdWarm (props) {
    
           <div className="grid grid-cols-5 gap-4 p-4">
         <div className="col-span-2 sm:col-span-1">
-          <div className="flex">        <FormattedMessage
-          id="app.hot"
-          defaultMessage="Hot"
-        /></div>
+          <div className="flex">      Hot
+      </div>
           <div class="text-2xl cursor-pointer" onClick={()=>{handleLeadHCWdrawer(true)}}>{showHotColdWarm.hotList}</div></div>
           <div className="col-span-2 sm:col-span-1">
-          <div className="flex">
-          <FormattedMessage
-          id="app.hot"
-          defaultMessage="Cold"
-        />
+          <div className="flex">Cold
             </div>
           <div class="text-2xl cursor-pointer" onClick={()=>{handleLeadHCWdrawer(true)}}>{showHotColdWarm.coldList}</div>
           </div>
           <div className="col-span-2 sm:col-span-1">
           <div className="flex">
-          <FormattedMessage
-          id="app.warm"
-          defaultMessage="Warm"
-        />
+          Warm
             </div>
           <div class="text-2xl cursor-pointer" onClick={()=>{handleLeadHCWdrawer(true)}}>{showHotColdWarm.warmList}</div>
         </div>

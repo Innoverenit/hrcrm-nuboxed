@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useMemo, lazy } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { getSectors } from "../../../Settings/Sectors/SectorsAction";
 import dayjs from "dayjs";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';
 import { getAllSalesList } from "../../../Opportunity/OpportunityAction";
 import { StyledTable } from "../../../../Components/UI/Antd";
 import { Tooltip, Button, Input } from "antd";
@@ -81,7 +81,7 @@ function CustomerBlueTable(props) {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             //icon="search"
             size="small"
             style={{ width: 90 }}
@@ -109,8 +109,8 @@ function CustomerBlueTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-        <SearchOutlined
+        // <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />
@@ -172,8 +172,7 @@ function CustomerBlueTable(props) {
       width: "2%",
     },
     {
-      //title: "Name",
-      title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+      title: "Name",
       dataIndex: "name",
       ...getColumnSearchProps("name"),
       width: "19%",
@@ -217,13 +216,13 @@ function CustomerBlueTable(props) {
       },
     },
     {
-      title: <FormattedMessage id="app.url" defaultMessage="URL" />,
+      title: "URL" ,
       dataIndex: "url",
       width: "15%",
     },
 
     {
-      title: <FormattedMessage id="app.sector" defaultMessage="Sector" />,
+      title: "Sector",
       dataIndex: "sector",
       width: "13%",
       filters: sectorsNameOption,
@@ -234,14 +233,14 @@ function CustomerBlueTable(props) {
     },
 
     {
-      title: <FormattedMessage id="app.email" defaultMessage="Email" />,
+      title:"Email" ,
       dataIndex: "email",
       width: "19%",
       ...getColumnSearchProps("email"),
     },
 
     {
-      title: <FormattedMessage id="app.address" defaultMessage="Address" />,
+      title:"Address",
       // dataIndex: "address[0].address1",
       render: (name, item, i) => {
         console.log(item);
@@ -272,7 +271,7 @@ function CustomerBlueTable(props) {
       width: "30%",
     },
     {
-      title: <FormattedMessage id="app.country" defaultMessage="Country" />,
+      title: "Country",
       dataIndex: "country",
       width: "10%",
       sorter: (a, b) => {
@@ -289,7 +288,7 @@ function CustomerBlueTable(props) {
       },
     },
     {
-      title: <FormattedMessage id="app.owner" defaultMessage="Owner" />,
+      title: "Owner" ,
       dataIndex: "ownerName",
       width: "8%",
       // ...getColumnSearchProps('ownerName'),
@@ -308,8 +307,8 @@ function CustomerBlueTable(props) {
                   primaryTitle={item.ownerName}
                   imageId={item.ownerImageId}
                   imageURL={item.imageURL}
-                  imgWidth={"2.1em"}
-                  imgHeight={"2.1em"}
+                  imgWidth={"2.1rem"}
+                  imgHeight={"2.1rem"}
                 />
               </span>
             </Tooltip>

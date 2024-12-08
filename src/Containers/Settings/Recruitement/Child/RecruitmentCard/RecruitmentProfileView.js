@@ -4,18 +4,20 @@ import { bindActionCreators } from "redux";
 import styled from "styled-components";
 import { ViewEditCard } from "../../../../../Components/UI/Elements";
 
+
 function RecruitmentProfileView(props) {
   return (
     <>
       <div class=" flex justify-around">
-        <h1 class=" flex justify-center items-center text-poppins text-[#40A9FF] "
-        >
+        <div class=" flex justify-center text-sm items-center text-poppins text-[#40A9FF] ">
           Theme
-        </h1>
+        </div>
       </div>
-     
+      
+      <div className=" h-[75vh] overflow-auto ">
       {props.rules.map((item, i) => {
         return (
+          
           <StageWrapper>
             <ViewEditCard>
               {({ viewType }, toggleViewType) =>
@@ -31,14 +33,7 @@ function RecruitmentProfileView(props) {
                         "rgb(161, 185, 185)",
                     }}
                   >
-                    <StageName
-                      style={{
-                        color: "#444 "
-                          ,
-                        cursor:
-                         "pointer",
-                      }}
-                    >
+                    <StageName className="text-[#444] cursor-pointer">                    
                       {
                         item.rulesName
                       
@@ -49,8 +44,11 @@ function RecruitmentProfileView(props) {
               }
             </ViewEditCard>
           </StageWrapper>
+          
         );
       })}
+      </div>
+    
     </>
   );
 }

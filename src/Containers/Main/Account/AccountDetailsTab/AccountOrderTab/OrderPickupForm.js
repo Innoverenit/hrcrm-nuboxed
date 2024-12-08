@@ -8,6 +8,31 @@ const { Option } = Select;
 
 
 const OrderPickupForm = (props) => {
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [dateError, setdateError] = useState("");
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+    '650', // 0 Location650
+    '74', // 1 Date74
+    '154', // 2 Submit
+   
+          ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
     useEffect(() => {
         props.getLocationList(props.orgId);
     }, [])
@@ -18,19 +43,27 @@ const OrderPickupForm = (props) => {
         setLocation(val)
     }
     const handleDate = (val) => {
-        setDate(val)
+        setDate(val);
+        setdateError(""); 
     }
     console.log(location)
     console.log(date)
     console.log(props.particularRowData.creationDate)
 
     const handleSubmit = () => {
+
+        if (!date) {
+            setdateError("Please select a date");
+            return;
+        }
+
         let data = {
             inventoryPickUpDate: date,
             transferInd: 1,
             locationId: location,
             userId: props.userId,
             orderPhoneId: props.particularRowData.orderId,
+            orderType:"Repair"
         }
         props.addLocationInOrder(data, props.distributorId)
     }
@@ -42,11 +75,11 @@ const OrderPickupForm = (props) => {
     };
     return (
         <div>
-            <div class="mt-[10px] flex justify-between">
+            <div class="mt-2 flex ">
                 <div>
-                    <label class="text-[15px] font-semibold m-[10px]">Location</label>
+                    <div class="text-sm font-semibold">{translatedMenuItems[0]}</div>
                     <Select
-                        className="w-[350px]"
+                        className="w-[8rem]"
                         value={location}
                         onChange={(value) => handleLocation(value)}
                     >
@@ -56,14 +89,16 @@ const OrderPickupForm = (props) => {
                     </Select>
                 </div>
 
-                <div>
-                    <label class="text-[15px] font-semibold m-[10px]">Date</label>
+                <div class=" ml-2">
+                    <div class="text-sm font-semibold m-[10px]">{translatedMenuItems[1]}</div>
                     <DatePicker
-                        className="w-[300]"
+                        className="w-[8rem]"
                         value={date}
                         onChange={(value) => handleDate(value)}
-                        disabledDate={current => disabledDate(current, givenDate)}
+                        style={{borderRight:"1px solid red"}}
+                        // disabledDate={current => disabledDate(current, givenDate)}
                     />
+                    {/* {dateError && <div className="text-red-500 text-sm mt-2">{dateError}</div>} */}
                 </div>
                 {(location.length === 0 && date.length === 0) ? null : <div>
                     <Button
@@ -71,7 +106,7 @@ const OrderPickupForm = (props) => {
                         type="primary"
                         onClick={handleSubmit}
 
-                    >Submit</Button>
+                    >{translatedMenuItems[2]}</Button>
                 </div>}
             </div>
         </div>

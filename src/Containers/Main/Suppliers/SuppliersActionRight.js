@@ -6,17 +6,31 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
 import { Tooltip } from "antd";
 import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
-import { handleSuppliersModal } from "../../Main/Suppliers/SuppliersAction";
+import HistoryIcon from '@mui/icons-material/History';
+import { handleSuppliersModal,handleRecall } from "../../Main/Suppliers/SuppliersAction";
+import AddRecallModal from "./AddRecallModal"
 
 const AddSuppliersModal =lazy(()=>import("./Child/AddSuppliersModal"));
 
 
 class SuppliersActionRight extends React.Component {
   render() {
-    const { handleSuppliersModal, addSuppliersModal, user, viewType } = this.props;
+    const { handleSuppliersModal, addSuppliersModal,handleRecall,addRecallModal, user, viewType } = this.props;
 
     return (
       <>
+        <div className="flex">
+      <div className="flex">
+       <Tooltip title="Recall">
+        <Button
+         type="primary"
+         onClick={() => handleRecall(true)}>
+            <HistoryIcon className="!text-icon"/>
+           Recall
+           {/* {this.props.translatedMenuItems[9]} */}
+            </Button>  
+          </Tooltip>
+          </div>
         {user.functionName === "Production" && user.designation === "Manager" &&
           viewType === "grid" ?
           <Tooltip 
@@ -36,17 +50,27 @@ class SuppliersActionRight extends React.Component {
             type="primary"
             // ghost
             onClick={() => handleSuppliersModal(true)}
-          ><DataSaverOnIcon/>
+          ><DataSaverOnIcon className=" !text-icon"/>
            {/* Add */}
             {this.props.translatedMenuItems[9]}
           </Button>
         </Tooltip>
+        </div>
   {/* } */}
 <Suspense fallback={"Loading"}>
 <AddSuppliersModal
           handleSuppliersModal={handleSuppliersModal}
           addSuppliersModal={addSuppliersModal}
           translatedMenuItems={this.props.translatedMenuItems}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        />
+        <AddRecallModal
+          handleRecall={handleRecall}
+          addRecallModal={addRecallModal}
+          translatedMenuItems={this.props.translatedMenuItems}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
         />
 </Suspense>
         
@@ -57,12 +81,14 @@ class SuppliersActionRight extends React.Component {
 
 const mapStateToProps = ({ suppliers, auth }) => ({
   addSuppliersModal: suppliers.addSuppliersModal,
+  addRecallModal:suppliers.addRecallModal,
   user: auth.userDetails,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       handleSuppliersModal,
+      handleRecall
     },
     dispatch
   );

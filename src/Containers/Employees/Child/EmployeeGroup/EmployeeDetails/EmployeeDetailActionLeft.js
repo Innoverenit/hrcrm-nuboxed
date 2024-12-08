@@ -1,21 +1,19 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { FormattedMessage } from "react-intl";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { RollbackOutlined } from "@ant-design/icons";
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 
 class EmployeeDetailActionLeft extends React.Component {
   render() {
     return (
       <div class=" flex items-center">
-        <RollbackOutlined
+        <KeyboardReturnIcon
           style={{ marginRight: "0.3rem",color: "#1890ff" }}
           iconType="rollback"
-          tooltiptitle={<FormattedMessage
-            id="app.back"
-            defaultMessage="Back"
-          />}
+          tooltiptitle="Back"
+
          
           onClick={() => this.props.history.goBack()}
         />{" "}

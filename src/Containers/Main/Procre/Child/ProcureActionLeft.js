@@ -6,8 +6,7 @@ import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition
 import { connect } from "react-redux";
 import {getRecords} from "../ProcreAction"
 import { Avatar, Tooltip,Badge } from "antd";
-import { FormattedMessage } from "react-intl";
-import { AudioOutlined } from "@ant-design/icons"
+import MicIcon from '@mui/icons-material/Mic';
 
 const Option = StyledSelect.Option;
 
@@ -62,7 +61,7 @@ const {
             }
           };
           const suffix = (
-            <AudioOutlined
+            <MicIcon
               onClick={SpeechRecognition.startListening}
               style={{
                 fontSize: 16,
@@ -76,7 +75,7 @@ const {
             <div class="flex items-center">
 
                 <Tooltip
-                    title={<FormattedMessage id="app.cardview" defaultMessage="Active Orders" />}>
+                    title="Active Orders" >
 <Badge
           size="small"
           count={(props.viewType === "card" && props.recordData.order) || 0}
@@ -89,7 +88,7 @@ const {
                         }}
                     >
 
-                        <Avatar style={{ background: viewType === "card" ? "#f279ab" : "#4bc076" }}>
+                        <Avatar style={{ background: viewType === "card" ? "#f279ab" : "#28a355" }}>
                             <TocIcon className="text-white" /></Avatar>
 
                     </span>

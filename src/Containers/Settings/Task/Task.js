@@ -2,7 +2,7 @@
 import React, { useEffect,lazy,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { base_url } from "../../../Config/Auth";
 import DownloadIcon from '@mui/icons-material/Download';
 import { Tooltip } from "antd";
@@ -22,7 +22,6 @@ import {
 } from "./TaskAction";
 import TaskConnetToggle from "./TaskConnetToggle";
 import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import { MainWrapper } from "../../../Components/UI/Layout";
 
 const Task = (props) => {
   const [currentData, setCurrentData] = useState("");
@@ -61,16 +60,7 @@ setEditingId(null);
   }
 
   const handleTask = () => {
-      // if (newRegionName.trim() !== '') {
-      //     console.log("New Region:", newRegionName);
-      //     const newRegion = {
-      //         id: Date.now(),
-      //         item: newRegionName
-      //     };
-      //     setRegions([...regions, newRegion]);
-      //     setNewRegionName('');
-      //     setAddingRegion(false);
-      // }
+     
       let data={
         taskType:newTaskName,
         orgId:props.orgId,
@@ -119,8 +109,8 @@ return <div><BundleLoader/></div>;
 }
   return (
       <div>
-    <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex flex-row justify-end items-center">
+    <div class=" flex w-[18vw] mr-2 mt-7px" >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}
@@ -130,7 +120,7 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <div class="w-[20rem]">
+          <div class="w-[2rem]">
   <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"taskType"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">
@@ -160,11 +150,13 @@ return <div><BundleLoader/></div>;
               )}
           </div>
           </div>
-          <div class=" flex flex-col" >
+          <div class=" flex flex-col w-wk" >
          
-         <MainWrapper className="!h-[69vh] !mt-2" >
+         <div className="!h-[69vh] !mt-2 rounded  border-[#0000001f]  border  shadow-[#a3abb980] border-solid text-black  p-1 w-full font-poppins overflow-auto" >
+
+          
           {!props.fetchingTasks && tasks.length === 0 ? <NodataFoundPage /> : tasks.slice().sort((a, b) => a.taskType.localeCompare(b.taskType)).map((region, index) => (
-            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.taskTypeId}>
+            <div className="flex rounded ml-1  font-bold  border-[#0000001f]  border  shadow-[#a3abb980] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.taskTypeId}>
             {/* Region name display or input field */}
             
             {editingId === region.taskTypeId ? (
@@ -176,16 +168,16 @@ return <div><BundleLoader/></div>;
                     onChange={(e) => setTaskName(e.target.value)}
                 />
             ) : (
-                <div >{region.taskType}&nbsp;&nbsp;&nbsp;
+                <div className="flex w-1/4" >{region.taskType}
                 {dayjs(region.creationDate).format("DD/MM/YYYY") === dayjs().format("DD/MM/YYYY") ?<span class="text-xs text-[tomato] font-bold"
                                       >
                                         New
                                       </span> : null}</div>
             )}
-  <div class="flex w-60">
-                  <div class="ml-2 w-20">Workflow</div>
+  <div class="flex w-1/4">
+                  <div class="w-20 items-center">Workflow</div>
                  
-                  <div class="ml-4 w-[25rem]">
+                  <div class="ml-4 w-1/6">
                     <TaskConnetToggle 
                         taskType={region.taskType}
                         taskTypeId={region.taskTypeId}
@@ -194,7 +186,7 @@ return <div><BundleLoader/></div>;
                     </div>
                     </div>
             {/* Action buttons */}
-            <div >
+            <div className="flex justify-end w-12 items-center">
                 {/* Edit button */}
                 {editingId === region.taskTypeId ? (
                     <div>
@@ -212,17 +204,12 @@ return <div><BundleLoader/></div>;
                         cancelText="No"
                         onConfirm={() =>  props.removeTask(region.taskTypeId)}
                       >
-                <DeleteOutlined 
-                   className=" !text-icon text-red-600 cursor-pointer " 
-              // onClick={() => 
-              //     props.removeServiceLine(item.taskTypeId)
-              //  }
-                 />
+                <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                  </Popconfirm>
             </div>
         </div>
         ))}
-        </MainWrapper>
+        </div>
             </div>
   <div class=" font-bold">Updated on {dayjs(props.tasks && props.tasks.length && props.tasks[0].updationDate).format('YYYY-MM-DD')} by {props.tasks && props.tasks.length && props.tasks[0].name}</div>
       </div>

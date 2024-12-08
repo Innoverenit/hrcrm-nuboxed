@@ -1,6 +1,5 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import {
   StyledTable,
@@ -12,11 +11,14 @@ import {
   setEditTraining,
   handleUpdateTrainingModal,
 } from "../../../../ProfileAction";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { deleteTrainingTable } from "../../../../ProfileAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import { base_url } from "../../../../../../Config/Auth";
-import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility'; 
+
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdateTrainingModal = lazy(() => import("./UpdateTrainingModal"));
 
 class TrainingTable extends Component {
@@ -38,54 +40,34 @@ class TrainingTable extends Component {
 
     const columns = [
       {
-        //title: " Course Name",
-        title: (
-          <FormattedMessage id="app.courseName" defaultMessage=" Course Name" />
-        ),
+        title: " Course Name",
         dataIndex: "courseName",
         // width: "35%"
       },
       {
-        //title: "Start Date",
-        title: (
-          <FormattedMessage id="app.startDate" defaultMessage="Start Date" />
-        ),
+        title: "Start Date",
         dataIndex: "startDate",
         render: (name, item, i) => {
-          return <span>{moment(item.startDate).format("LL")}</span>;
+          return <span>{dayjs(item.startDate).format("LL")}</span>;
         },
       },
       {
-        //title: "End Date",
-        title: <FormattedMessage id="app.endDate" defaultMessage="End Date" />,
+        title: "End Date",
         dataIndex: "endDate",
         render: (name, item, i) => {
-          return <span>{moment(item.endDate).format("LL")}</span>;
+          return <span>{dayjs(item.endDate).format("LL")}</span>;
         },
       },
       {
-        // title: "Organization/Institution",
-        title: (
-          <FormattedMessage
-            id="app.organization"
-            defaultMessage="Organization/Institution"
-          />
-        ),
+         title: "Organization/Institution",
         dataIndex: "organization",
       },
       {
-        //title: "Grade",
-        title: <FormattedMessage id="app.grade" defaultMessage="Grade" />,
+        title: "Grade",
         dataIndex: "grade",
       },
       {
-        //title: "Marks Secured",
-        title: (
-          <FormattedMessage
-            id="app.type"
-            defaultMessage="Type"
-          />
-        ),
+        title: "Marks Secured",
         // dataIndex: "marksSecured",
       },
       {
@@ -118,7 +100,7 @@ class TrainingTable extends Component {
         render: (name, item, i) => {
           //debugger
           return (
-            <EditOutlined
+            <VisibilityIcon
               type="edit"
               style={{ cursor: "pointer" }}
               // onClick={() => handleUpdateTrainingModal(true)}
@@ -140,7 +122,7 @@ class TrainingTable extends Component {
               title="Do you want to delete?"
               onConfirm={() => deleteTrainingTable(item.id)}
             >
-              <DeleteOutlined type="delete" style={{ cursor: "pointer", color: "red" }} />
+              <DeleteOutlineIcon type="delete" style={{ cursor: "pointer", color: "red" }} />
               {/* <Button type="primary" className='edit_hover_class' icon="delete"  /> */}
             </StyledPopconfirm>
           );
@@ -149,7 +131,7 @@ class TrainingTable extends Component {
     ];
 
     if (fetchingTrainingDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     return (
       <>
@@ -161,10 +143,13 @@ class TrainingTable extends Component {
           loading={fetchingTrainingDetails || fetchingTrainingDetailsError}
           onChange={console.log("task onChangeHere...")}
         />
+        <Suspense fallback={<BundleLoader />}>
         <UpdateTrainingModal
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
           updateTrainingModal={updateTrainingModal}
           handleUpdateTrainingModal={handleUpdateTrainingModal}
-        />
+        /></Suspense>
       </>
     );
   }

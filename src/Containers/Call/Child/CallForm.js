@@ -3,10 +3,11 @@ import { connect } from "react-redux";
 import { base_url } from "../../../Config/Auth";
 import { bindActionCreators } from "redux";
 import { getAllSalesList } from "../../Opportunity/OpportunityAction"
-import { FormattedMessage } from "react-intl";
+
 import { Button,  Switch, Tooltip,Select } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
+import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
 import{getAllOpportunityData} from "../../Opportunity/OpportunityAction"
 import { handleCallNotesModal } from "../CallAction";
 import { getFilteredEmailContact } from "../../Candidate/CandidateAction";
@@ -31,13 +32,13 @@ import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { getAssignedToList } from "../../Employees/EmployeeAction";
 import { setClearbitCandidateData } from "../../Candidate/CandidateAction";
 import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import { Listbox } from '@headlessui/react'
 const { Option } = Select;  
 const ButtonGroup = Button.Group;
 
 const suffix = (
-  <AudioOutlined className=" !text-icon  text-[#1890ff]"
+  <MicIcon className=" !text-icon  text-[#1890ff]"
     onClick={SpeechRecognition.startListening}
    
   />
@@ -112,21 +113,22 @@ function CallForm(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Type",//0
-          "Category",//1
-          "Mode",//2
-          "Channel",//3
-          "Subject",//4
-          "Date",//5
-          "Start Time",//6
-          "End Time",//7
-          "Time Zone",//8
-          "Assigned",//9
-          "Include",//10
-          "Prospect",//11
-          "Contact",//12
-          "Opportunity",//13
-          "Notes"//14
+       "71", //  "Type",//0
+         "14", // "Category",//1
+        "26" , // "Mode",//2
+        "90" , // "Channel",//3
+        "72" , // "Subject",//4
+        "74" , // "Date",//5
+        "93" , // "Start Time",//6
+         "94" ,// "End Time",//7
+        "95" , // "Time Zone",//8
+        "76",  // "Assigned",//9
+        "75",  // "Include",//10
+        "97",  // "Prospect",//11
+         "73", // "Contact",//12
+       "99" ,  // "Opportunity",//13
+        "316"  ,// "Notes"//14
+        "104" //Create
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -654,15 +656,12 @@ function CallForm(props) {
                      
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs ">
                         {/* Type */}
-                        {translatedMenuItems[0]} 
-                        {/* <FormattedMessage id="app.type" defaultMessage="type" /> */}
+                        {translatedMenuItems[0]}                 
                       </div>
                       <div class=" flex justify-between">
                         {/* <Tooltip title="Inbound"> */}
                         <Tooltip
-                          title={
-                            <FormattedMessage id="app.introductory" defaultMessage="introductory"/>
-                          }
+                          title="introductory"
                         >
                           <div
                             onClick={() => handleTypeChange("Inbound")}
@@ -679,12 +678,8 @@ function CallForm(props) {
                         </Tooltip>
                         {/* <Tooltip title="Outbound"> */}
                         <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.interview"
-                              defaultMessage="Interview"
-                            />
-                          }
+                          title="Interview"
+                            
                         >
                           <div
                             onClick={() => handleTypeChange("Outbound")}
@@ -701,12 +696,8 @@ function CallForm(props) {
                         </Tooltip>
                         {/* <Tooltip title="Conference"> */}
                         <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.closure"
-                              defaultMessage="Closure"
-                            />
-                          }
+                          title="Closure"
+                           
                         >
                           <div
                             onClick={() => handleTypeChange("Conference")}
@@ -726,10 +717,7 @@ function CallForm(props) {
                     <div class=" w-1/2 mt-3">
                       
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs ">
-                    {translatedMenuItems[1]} {/* <FormattedMessage
-                          id="app.category"
-                          defaultMessage="category"
-                        /> */}
+                    {translatedMenuItems[1]} 
                       </div>
                       
                       <ButtonGroup>
@@ -744,8 +732,8 @@ function CallForm(props) {
                             category === "New" ? "white" : "black",
                           }}
                         >
-                          {/* New */}
-                          <FormattedMessage id="app.new" defaultMessage="new" />
+                          New
+                        
                         </Button>
                         <Button
                           onClick={() => handleCategoryChange("Follow up")}
@@ -760,11 +748,8 @@ function CallForm(props) {
                                 : "black",
                           }}
                         >
-                          {/* Follow up */}
-                          <FormattedMessage
-                            id="app.followup"
-                            defaultMessage="followup"
-                          />
+                          Follow up
+                          
                         </Button>
                       </ButtonGroup>
                     </div>
@@ -773,15 +758,11 @@ function CallForm(props) {
                   <div class=" flex mt-3 justify-between items-end max-sm:flex-col " >
                     <div class=" self-start">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs ">
-                    {translatedMenuItems[2]}   {/* <FormattedMessage
-                            id="app.mode"
-                            defaultMessage="mode"
+                    {translatedMenuItems[2]}   {/* mode"
                           /> */}
                       </div>
                       <Switch
-                        // style={{
-                        //   marginLeft: "0.3125em"
-                        // }}
+                       
                         name="mode"
                         checkedChildren="Video"
                         unCheckedChildren="Audio"
@@ -828,11 +809,7 @@ function CallForm(props) {
                   <Field
                     // isRequired
                     name="callPurpose"
-                    // label="Topic"
-                    // label={
-                      
-                    //   <FormattedMessage id="app.subject"defaultMessage="subject"/>
-                    // }
+                    // label="Topic"            
                     component={InputComponent}
                     isColumn
                     width={"100%"}
@@ -842,10 +819,7 @@ function CallForm(props) {
           <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[5]}</div>
                   <Field
                     name="startDate"
-                    // label="Date"
-                    // label={
-                    //   <FormattedMessage id="app.date" defaultMessage="date" />
-                    // }
+                    // label="Date"                
                     component={DatePicker}
                     isColumn
                     width={"100%"}
@@ -855,23 +829,12 @@ function CallForm(props) {
                   </div>
                   <div class=" flex mt-3 justify-between max-sm:flex-col">
                     <div class=" w-5/12 max-sm:w-wk">
-                    {/* <input
-        type="time"
-        id="startTime"
-        name="startTime"
-        // value={startTime}
-        value={places.startTime}
-        onChange={(e) => handleStartTimeChange(e,  'startTime')}
+                    {/* start
       /> */}        <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</div>   
                     <Field
                         name="startTime"
                         // label="Start Time"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.starttime"
-                        //     defaultMessage="Start Time"
-                        //   />
-                        // }
+                       
                         component={TimePicker}
                         isRequired
                         isColumn
@@ -885,13 +848,7 @@ function CallForm(props) {
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div>
                       <Field
                         name="endTime"
-                        // label="End Time"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.endtime"
-                        //     defaultMessage="End Time"
-                        //   />
-                        // }
+                        // label="End Time"                 
                         component={TimePicker}
                         use12Hours
                         isRequired
@@ -909,13 +866,7 @@ function CallForm(props) {
                     defaultValue={{ label: timeZone, value: userId }}
                     name="timeZone"
                     isColumnWithoutNoCreate
-                    //label="TimeZone "
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.timeZone"
-                    //     defaultMessage="time Zone"
-                    //   />
-                    // }
+                    //label="TimeZone "         
                     selectType="timeZone"
                     isColumn
                     value={values.timeZone}
@@ -923,48 +874,16 @@ function CallForm(props) {
                     inlineLabel
                   />
                   </div>
-                  
-                  {/* {startDate ? (
-                    <span>
-                      {dayjs(startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>
-                            <FormattedMessage
-                              id="app.thiscalloccursinthepast!"
-                              defaultMessage="This Call occurs in the past !"
-                            />
-                          </b>
-                        </span>
-                      )}
-                    </span>
-                  ) : (
-                    <span>
-                      {dayjs(values.startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>
-                            {" "}
-                            <FormattedMessage
-                              id="app.thiscalloccursinthepast!"
-                              defaultMessage="This Call occurs in the past !"
-                            />
-                          </b>
-                        </span>
-                      )}
-                    </span>
-                  )} */}
+                             
                 </div>
                 <div class=" mt-3 h-3/4 w-w47.5 max-sm:w-wk " 
                 >   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[9]}</div>
-                <Listbox value={selected} onChange={setSelected}>
+                <Listbox value={selected} onChange={setSelected} className=" h-[1.88rem]" style={{ height:"1.88rem"}}>
       {({ open }) => (
         <>
                   
-          {/* <Listbox.Label className="block font-semibold text-[0.75rem]"><FormattedMessage
-                        id="app.assignedto"
-                        defaultMessage="assignedto"
-                      />
-            </Listbox.Label> */}
-          <div className="relative mt-1">
+        
+          <div className="relative mt-1 h-[1.88rem]">
               <Listbox.Button  style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="  relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5  pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}
               </Listbox.Button>
@@ -1027,27 +946,7 @@ function CallForm(props) {
       )}
     </Listbox>
     <div class="mt-3">
-    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
-                  {/* <Field
-                    name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.include"
-                        defaultMessage="include"
-                      />
-                    }
-                    mode
-                    placeholder="Select"
-                    component={SelectComponent}
-                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
-                    value={values.included}
-                    defaultValue={{
-                      label: `${empName || ""} `,
-                      value: employeeId,
-                    }}
-                  /> */}
-                  {/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label> */}
+    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>           
                    <Select
           showSearch
           className=" mt-1"
@@ -1071,10 +970,10 @@ function CallForm(props) {
                   {props.user.crmInd === true &&(
               
      <>        
-{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</label> */}
+{/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</div> */}
 
 <Select
-        showSearch
+        showSearch 
         placeholder="Search or select prospect"
         optionFilterProp="children"
         loading={isLoadingCustomer}
@@ -1096,7 +995,7 @@ function CallForm(props) {
                   {props.user.crmInd === true &&(
                   
                   <>
-                  {/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label> */}
+                  {/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</div> */}
 
 <Select
         showSearch
@@ -1119,31 +1018,9 @@ function CallForm(props) {
               
                   <div class="mt-3">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[13]}</div>
-                  {props.user.crmInd === true &&(
-              //    <Field
-              //    name="opportunityId"
-              //    // selectType="customerList"
-              //    isColumnWithoutNoCreate
-              //    label={
-              //      <FormattedMessage
-              //        id="app.opportunity"
-              //        defaultMessage="opportunity"
-              //      />
-              //    }
-              //    //component={SearchSelect}
-              //    component={SelectComponent}
-              //    options={
-              //      Array.isArray(opportunityNameOption)
-              //        ? opportunityNameOption
-              //        : []
-              //    }
-              //    isColumn
-              //    margintop={"0"}
-              //    value={values.opportunityId}
-              //    inlineLabel
-              //  />
+                  {props.user.crmInd === true &&(       
               <>
-{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</label> */}
+{/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</div> */}
               <Select
         showSearch
         placeholder="Search or select opportunity"
@@ -1163,104 +1040,13 @@ function CallForm(props) {
                   )} 
                   </div>
                 
-                  {/* <div >
-                  <Field
-                    disabled="true"
-                    isRequired
-                    name="candidateId"
-                    // type="text"
-                    //label="Talent"
-                    label={
-                      <FormattedMessage
-                        id="app.team"
-                        defaultMessage="Team"
-                      />
-                    }
-                    placeholder="Start typing to search..."
-                    isColumnWithoutNoCreate
-                    setClearbitCandidateData={props.setClearbitCandidateData}
-                    component={CandidateClearbit}
-                    inlineLabel
-                  />
-                   </div>
-                   */}
-                <div class="mt-2">
-              <div>
-            <span class=" text-xs font-bold font-poppins"> {translatedMenuItems[14]}</span>
-            <span>
-                    <span onClick={SpeechRecognition.startListening}>
-                      <Tooltip title="Start">
-                        <span  >
-                          <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={SpeechRecognition.stopListening}>
-                      <Tooltip title="Stop">
-                        <span
-                          
-                           >
-                          <StopCircleIcon  className="!text-icon ml-1 text-green-600" />
-                        </span>
-                      </Tooltip>
-                    </span>
-
-                    <span onClick={resetTranscript}>
-                      <Tooltip title="Clear">
-                        <span  >
-                          <RotateRightIcon className="!text-icon ml-1"/>
-                        </span>
-                      </Tooltip>
-                    </span>
-                  </span> 
-                  
                  
-                  
-                </div>
-                  </div>
-              
-                  {/* <div class=" flex justify-between" >
-                    <div 
-                    class=" w-1/2 font-bold">
-                    <div class=" flex justify-between" >
-                        <div>
-                          <StyledLabel>Set Reminder</StyledLabel>
-                        </div>
-                        <div>
-                          <Switch
-                            onChange={handleReminderChange}
-                            checked={reminder}
-                            checkedChildren="Yes"
-                            unCheckedChildren="No"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class=" w-1/3 font-bold">
-                      {reminder ? (
-                        <div>
-                          <Field
-                            // isRequired
-                            name="remindTime"
-                            label="Reminder"
-                            width={"100%"}
-                            component={SelectComponent}
-                            options={[
-                              "15 min",
-                              "30 min",
-                              "45 min",
-                              "1 hour",
-                              "2 hour",
-                            ]}
-                            defaultValue="30 min"
-                            isColumn
-                            inlineLabel
-                          />
-                        </div>
-                      ) : null}
-                    </div>
-                  </div> */}
+                <div class="mt-2">
+                <ReactDescription
+                setText={setText}
+                text={text}
+                />
+            
                 </div>
               </div>
              
@@ -1268,13 +1054,8 @@ function CallForm(props) {
                 {isEditing && (
                   <>
                     <StyledPopconfirm
-                      // title="Do you want to delete?"
-                      title={
-                        <FormattedMessage
-                          id="app.doyouwanttodelete?"
-                          defaultMessage="doyouwanttodelete?"
-                        />
-                      }
+                      title="Do you want to delete?"
+                    
                       onConfirm={() => deleteCall(prefillCall.callId)}
                     >
                       <Button
@@ -1282,11 +1063,8 @@ function CallForm(props) {
                         htmlType="submit"
                         Loading={deletingCall}
                       >
-                        {/* Delete */}
-                        <FormattedMessage
-                          id="app.delete"
-                          defaultMessage="delete"
-                        />
+                        Delete
+                        
                       </Button>
                     </StyledPopconfirm>
                   </>
@@ -1300,9 +1078,10 @@ function CallForm(props) {
                     "Update"
                   ) : (
                     // "Create"
-                    <FormattedMessage id="app.create" defaultMessage="create" />
+                  <div className="font-bold font-poppins text-xs">{translatedMenuItems[15]}</div>
                   )}
                 </Button>
+              </div>
               </div>
             </Form>
             </div>
@@ -1351,19 +1130,3 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 export default connect(mapStateToProps, mapDispatchToProps)(CallForm);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

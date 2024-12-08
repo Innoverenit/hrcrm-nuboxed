@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
 import { StyledModal } from "../../../../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 const RemarkForm = lazy(() => import("./RemarkForm"));
 
 class AddRemarksModal extends Component {
@@ -13,10 +13,7 @@ class AddRemarksModal extends Component {
       <>
         <StyledModal
           //title="Remarks"
-          title={<FormattedMessage
-            id="app.feedback"
-            defaultMessage="Feedback"
-          />}
+          title="Feedback"
           width="25%"
           visible={addRemarksModal}
           destroyOnClose

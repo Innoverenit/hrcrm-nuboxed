@@ -1,9 +1,8 @@
 import React, { Component,lazy,  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
-import {  StyledLabel } from "../../../../Components/UI/Elements";
 import { Button, Switch } from "antd";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertToRaw, } from "draft-js";
@@ -244,7 +243,7 @@ class EmailCandidateForm extends Component {
               return (
                 <Form className="form-background">
                   <div class=" w-[15%] flex justify-between" >
-                    <StyledLabel>Select</StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">Select</div>
                     <Switch
                       checked={this.state.vendor}
                       onChange={this.handleVendor}
@@ -255,7 +254,7 @@ class EmailCandidateForm extends Component {
                   </div>
                 
                   <div class=" flex justify-between mt-3" >
-                    <div class=" w-[3%]" ><StyledLabel>To</StyledLabel></div>
+                    <div class=" w-[3%]" ><div class=" text-xs font-bold font-poppins text-black">To</div></div>
                     <div class=" w-[26%]" >
                       <Field
                         // style={{ width: "7%" }}
@@ -264,10 +263,7 @@ class EmailCandidateForm extends Component {
                         //selectType="customerList"
                         isColumnWithoutNoCreate
                         label={
-                          <FormattedMessage
-                            id="app.customer"
-                            defaultMessage={this.state.vendor ? "Vendor" : "Customer"}
-                          />
+                         this.state.vendor ? "Vendor" : "Customer"
                         }
                         // component={SearchSelect}
                         component={SelectComponent}
@@ -282,12 +278,8 @@ class EmailCandidateForm extends Component {
                         isRequired
                         //selectType="contactListFilter"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.contact"
-                            defaultMessage="Contact"
-                          />
-                        }
+                        label="Contact"
+                         
                         // component={SearchSelect}
                         isColumn
                         component={SelectComponent}
@@ -305,18 +297,14 @@ class EmailCandidateForm extends Component {
                   </div>
                   <div class=" flex justify-between" >
                     <div class=" w-[3%]" >
-                      <StyledLabel>Cc</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Cc</div>
                     </div>
                     <div class=" w-[26%]" >
                       <Field
                         name="customer2"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.customer"
-                            defaultMessage={this.state.vendor ? "Vendor" : "Customer"}
-                          />
-                        }
+                        label={this.state.vendor ? "Vendor" : "Customer"}
+                         
                         component={SelectComponent}
                         options={Array.isArray(customerOption) ? customerOption : []}
                         isColumn
@@ -328,12 +316,8 @@ class EmailCandidateForm extends Component {
                         name="contact2"
                         //selectType="contactListFilter"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.contact"
-                            defaultMessage="Contact"
-                          />
-                        }
+                        label="Contact"
+                         
                         isColumn
                         component={SelectComponent}
                         options={
@@ -350,19 +334,15 @@ class EmailCandidateForm extends Component {
                   </div>
                   <div class=" flex justify-between" >
                     <div class=" w-[3%]" >
-                      <StyledLabel>Bcc</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Bcc</div>
                     </div>
                     <div class=" w-[26%]" >
                       <Field
                         name="customer3"
                         // selectType="customerList"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.customer"
-                            defaultMessage={this.state.vendor ? "Vendor" : "Customer"}
-                          />
-                        }
+                        label={this.state.vendor ? "Vendor" : "Customer"}
+                          
                         // component={SearchSelect}
                         component={SelectComponent}
                         options={Array.isArray(customerOption) ? customerOption : []}
@@ -375,12 +355,8 @@ class EmailCandidateForm extends Component {
                         name="contact3"
                         //selectType="contactListFilter"
                         isColumnWithoutNoCreate
-                        label={
-                          <FormattedMessage
-                            id="app.contact"
-                            defaultMessage="Contact"
-                          />
-                        }
+                        label="Contact"
+                         
                         isColumn
                         component={SelectComponent}
                         options={
@@ -396,10 +372,7 @@ class EmailCandidateForm extends Component {
                   </div>
                 
                   <div class=" flex items-center mt-3" >
-                    <span><FormattedMessage
-                      id="app.subject"
-                      defaultMessage="Subject"
-                    /></span>
+                    <span>Subject</span>
                     <Field
                       name="subject"
                       inlineLabel
@@ -434,8 +407,8 @@ class EmailCandidateForm extends Component {
                       loading={this.props.addingCandidateEmail}
                       style={{ marginTop: "1.62em" }}
                     >
-                      {/* Send */}
-                      <FormattedMessage id="app.send" defaultMessage="Send" />
+                      Send
+                    
                     </Button>
                   </div>
                 </Form>

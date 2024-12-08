@@ -3,8 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { getTaggedSuppliesByBrand, addSpareList } from "../../AccountAction";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { CloseOutlined } from "@ant-design/icons";
-import { FormattedMessage } from 'react-intl';
+import CloseIcon from '@mui/icons-material/Close';
 import { getCurrency } from "../../../../Auth/AuthAction";
 const { Option } = Select;
 
@@ -15,7 +14,7 @@ const AddMultipleSpare = (props) => {
         props.getTaggedSuppliesByBrand(props.RowData.company, props.RowData.model)
     }, [])
 
-    const [rows, setRows] = useState([{ suppliesId: "", noOfSpare: "", hours: "", extraCost: "", spareCurrency: "", id: 1 }]);
+    const [rows, setRows] = useState([{ suppliesId: "", noOfSpare: "", hours: "", extraCost: "", spareCurrency: "", id: 1,orgId:props.orgId }]);
     const [id, setId] = useState(1);
     const [level, setLevel] = useState(1);
 
@@ -107,7 +106,7 @@ const AddMultipleSpare = (props) => {
                     <>
                         <div class="flex justify-between">
                             <div class="w-[30%]">
-                                <label>{`Spare ${i + 1}`}</label>
+                                <div class="font-bold text-xs font-poppins text-black">{`Spare ${i + 1}`}</div>
 
                                 <Select
                                     name={`${row.id}_value`}
@@ -125,13 +124,9 @@ const AddMultipleSpare = (props) => {
                             </div>
 
                             <div class="w-[15%]">
-                                <label>
-                                    <FormattedMessage
-                                        id="app.units"
-                                        defaultMessage="Units"
-                                    />
-
-                                </label>
+                                <div class="font-bold text-xs font-poppins text-black">
+                              Units
+                                </div>
                                 <Input
                                     type='text'
                                     value={`${row.noOfSpare}`}
@@ -141,12 +136,9 @@ const AddMultipleSpare = (props) => {
                                 />
                             </div>
                             <div class="w-[15%]">
-                                <label>
-                                    <FormattedMessage
-                                        id="app.hours"
-                                        defaultMessage="Hours"
-                                    />
-                                </label>
+                                <div class="font-bold text-xs font-poppins text-black">
+                                  Hours
+                                </div>
                                 <Input
                                     type='text'
                                     value={`${row.hours}`}
@@ -156,13 +148,9 @@ const AddMultipleSpare = (props) => {
                                 />
                             </div>
                             <div class="w-[15%]">
-                                <label>
-                                    <FormattedMessage
-                                        id="app.cost"
-                                        defaultMessage="Cost"
-                                    />
-
-                                </label>
+                                <div class="font-bold text-xs font-poppins text-black">
+                                   Cost
+                                </div>
                                 <Input
                                     type='text'
                                     value={`${row.extraCost}`}
@@ -172,7 +160,7 @@ const AddMultipleSpare = (props) => {
                                 />
                             </div>
                             <div class="w-[15%]">
-                                <label>{`Currency`}</label>
+                                <div class="font-bold text-xs font-poppins text-black">{`Currency`}</div>
 
                                 <Select
                                     name={`${row.id}_value`}
@@ -190,7 +178,7 @@ const AddMultipleSpare = (props) => {
                             </div>
                             {rows.length > 1 && (row.id + 1 > row.id) ? (
                                 <div class="w-[5%] mt-[30px]">
-                                    <CloseOutlined
+                                    <CloseIcon
                                         onClick={() => handleDelete(row)}
                                         style={{ fontSize: "16px", color: "red" }} />
                                 </div>
@@ -205,10 +193,7 @@ const AddMultipleSpare = (props) => {
                     type="primary"
                     onClick={handleAddRowClick}
                 >
-                    <FormattedMessage
-                        id="app.addmore"
-                        defaultMessage="Add More"
-                    />
+                  Add More
                 </Button>
                 <Button
                     htmlType='submit'
@@ -216,10 +201,7 @@ const AddMultipleSpare = (props) => {
                     loading={props.addingSpareList}
                     onClick={buttonOnClick}
                 >
-                    <FormattedMessage
-                        id="app.save"
-                        defaultMessage="Save"
-                    />
+                   Save
                 </Button>
             </div>
 
@@ -232,7 +214,8 @@ const mapStateToProps = ({ inventory, auth, distributor }) => ({
     addingRoomAndRackInInventory: inventory.addingRoomAndRackInInventory,
     spareByBrand: distributor.spareByBrand,
     currencies: auth.currencies,
-    addingSpareList: distributor.addingSpareList
+    addingSpareList: distributor.addingSpareList,
+    orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>

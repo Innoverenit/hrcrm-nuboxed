@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button,} from "antd";
 import { Formik, Form, Field, FastField } from "formik";
@@ -24,15 +24,7 @@ const documentSchema = Yup.object().shape({
 
 class UpdatePersonalForm extends Component {
   render() {
-    // const {
-    //     addingContact,
-    //     users,
-    //     accountId,
-    //     defaultAccounts,
-    //     defaultOpportunities,
-    //     callback,
-    // } = this.props;
-    // console.log(accountId);
+ 
     const { updatingPersonalDetails } = this.props;
     return (
       <>
@@ -87,56 +79,13 @@ class UpdatePersonalForm extends Component {
               <div class=" flex w-full h-full justify-between"
               >
                 <div class=" w-full"
-                >
-                  {/* <FlexContainer flexWrap="no-wrap"> */}
-
-                  {/* <FlexContainer justifyContent="space-between">
-                                            <div style={{ width: "47%" }}>
-                                                <FastField
-                                                    type="text"
-                                                    name="bloodGroup"
-                                                    label="Blood Group"
-                                                    isColumn
-                                                    width={"100%"}
-                                                    component={SelectComponent}
-                                                    options={[
-                                                        "A+",
-                                                        "A-",
-                                                        "B+",
-                                                        "B-",
-                                                        "AB+",
-                                                        "AB-",
-                                                        "O+",
-                                                        "O-",
-                                                    ]}
-                                                    inlineLabel
-                                                    style={{
-                                                        flexBasis: "80%",
-                                                        height: "2.0625em",
-                                                        // marginTop: "0.25em",
-                                                    }}
-                                                />
-                                            </div>
-                                            <Spacer />
-                                            <div style={{ width: "47%" }}>
-                                                <StyledLabel>Date of Birth</StyledLabel>
-                                                <DatePicker onChange={onChange} />
-                                            </div>
-                                        </FlexContainer> */}
-                 
-
+                >                              
                   <div class=" flex justify-between mt-3" >
                     <div class=" w-[25%]" >
                       <FastField
                         name="contactSalutation"
                         type="text"
-                        // label="Salutation"
-                        label={
-                          <FormattedMessage
-                            id="app.contactSalutation"
-                            defaultMessage="Salutation"
-                          />
-                        }
+                        label="Salutation"
                         options={["Mr.", "Ms.", "None"]}
                         component={SelectComponent}
                         inlineLabel
@@ -148,13 +97,7 @@ class UpdatePersonalForm extends Component {
                       <FastField
                         isRequired
                         name="contactFirstName"
-                        //label="First Name"
-                        label={
-                          <FormattedMessage
-                            id="app.contactFirstName"
-                            defaultMessage="First Name"
-                          />
-                        }
+                        label="First Name"
                         type="text"
                         width={"100%"}
                         isColumn
@@ -169,13 +112,7 @@ class UpdatePersonalForm extends Component {
                   <div class=" w-[55%]" >
                       <FastField
                         name="contactLastName"
-                        // label="Last Name"
-                        label={
-                          <FormattedMessage
-                            id="app.contactLastName"
-                            defaultMessage="Last Name"
-                          />
-                        }
+                        label="Last Name"
                         type="text"
                         width={"100%"}
                         isColumn
@@ -186,13 +123,7 @@ class UpdatePersonalForm extends Component {
                     <div class=" w-[38%]" >
                       <FastField
                         name="contactMiddleName"
-                        // label="Middle "
-                        label={
-                          <FormattedMessage
-                            id="app.contactMiddleName"
-                            defaultMessage="Middle"
-                          />
-                        }
+                        label="Middle "
                         type="text"
                         width={"100%"}
                         isColumn
@@ -201,19 +132,13 @@ class UpdatePersonalForm extends Component {
                         />
                     </div>
                   </div>
-                  {/* </FlexContainer> */}
+             
                 
                   <div class=" flex justify-between mt-3" >
                     <div class=" w-[47%]">
                       <Field
                         name="countryDialCode"
-                        // label="Mobile #"
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode"
-                            defaultMessage="Mobile #"
-                          />
-                        }
+                        label="Mobile #"
                         isColumn
                         selectType="dialCode"
                         component={SearchSelect}
@@ -225,12 +150,7 @@ class UpdatePersonalForm extends Component {
                       <Field
                         type="text"
                         name="mobileNo"
-                        label={
-                          <FormattedMessage
-                            id="app.mobileNo"
-                            defaultMessage="Mobile No"
-                          />
-                        }
+                        label="Mobile No"
                         placeholder="Mobile #"
                         component={InputComponent}
                         inlineLabel
@@ -245,13 +165,7 @@ class UpdatePersonalForm extends Component {
                     <div class=" w-[47%]">
                       <Field
                         name="countryDialCode1"
-                        //  label="Phone #"
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode1"
-                            defaultMessage="Phone #"
-                          />
-                        }
+                         label="Phone #"
                         isColumn
                         selectType="dialCode"
                         component={SearchSelect}
@@ -263,12 +177,7 @@ class UpdatePersonalForm extends Component {
                       <Field
                         type="text"
                         name="phoneNo"
-                        label={
-                          <FormattedMessage
-                            id="app.phoneNo"
-                            defaultMessage="Phone No"
-                          />
-                        }
+                        label="Phone No"
                         placeholder="Phone #"
                         component={InputComponent}
                         inlineLabel
@@ -276,33 +185,8 @@ class UpdatePersonalForm extends Component {
                         isColumn
                         />
                     </div>
-                  </div>
-                  {/* <FlexContainer justifyContent="space-between"> */}
-
-                  {/* </FlexContainer> */}
- 
-                </div>
-
-                {/* <div
-                  style={{
-                    width: "45%",
-                    // border: "0.125em solid green"
-                  }}
-                >
-                  <FieldArray
-                    name="Address"
-                    render={(arrayHelpers) => (
-                      <AddressFieldArray
-                        singleAddress
-                        arrayHelpers={arrayHelpers}
-                        values={values}
-                      />
-                    )}
-                  />
-
-                  <Spacer style={{ marginBottom: "0.9375em" }} />
-                </div> */}
-  
+                  </div>             
+                </div>              
               </div>
              
               <div class=" flex justify-end mt-3" >
@@ -311,7 +195,7 @@ class UpdatePersonalForm extends Component {
                   type="primary"
                   Loading={updatingPersonalDetails}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+                 Update
                 </Button>
               </div>
             </Form>

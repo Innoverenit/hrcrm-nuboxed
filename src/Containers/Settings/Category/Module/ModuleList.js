@@ -7,21 +7,24 @@ import { MainWrapper } from "../../../../Components/UI/Layout";
 import { Select } from "../../../../Components/UI/Elements";
 import {  Popconfirm, Switch } from "antd";
 import dayjs from "dayjs";
-import FWLogo from "../../../../Assets/Images/crm.jpg";
-import FWLogo1 from "../../../../Assets/Images/Im.jpg";
-import FWLogo2 from "../../../../Assets/Images/Hr.jpg";
-import FWLogo3 from "../../../../Assets/Images/Recruitpro.jpg";
+import FWLogo from "../../../../Assets/Images/crm.webp";
+import FWLogo1 from "../../../../Assets/Images/Im.webp";
+import FWLogo2 from "../../../../Assets/Images/Hr.webp";
+import FWLogo3 from "../../../../Assets/Images/Recruitpro.webp";
 import FWLogo4 from "../../../../Assets/Images/elearning.jpg";
 import FWLogo5 from "../../../../Assets/Images/payment.jpg";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import ModuleTrading from "./ModuleTrading";
 import {handleStripeModal} from "./ModuleAction";
-import StripePaymentModal from "./Stripe/StripePaymentModal";
 
+const StripePaymentModal = lazy(() =>
+  import("./Stripe/StripePaymentModal")
+);
 const SingleModuleList = lazy(() =>
   import("./SingleModuleList")
 );
-
+const ModuleTrading = lazy(() =>
+  import("./ModuleTrading")
+);
 
 const { Option } = Select;
 
@@ -34,7 +37,6 @@ const ModuleList = (props) => {
   };
   useEffect(() => {
     props.getModules(props.orgId);
-    // props.getRequirementsDuration(props.orgId);
   }, []);
 
   const { crmInd } = props.moduleList;
@@ -73,42 +75,6 @@ const handleFinanceClick = (checked) => {
   props.addingModules(data, props.orgId);
 };
 
-  // const { mandetoryInd } = props.moduleList;
-  // console.log(mandetoryInd);
-  // const [mandatoryStatus, setMandatoryStatus] = useState(mandetoryInd);
-  // function handleMandatoryClick(checked) {
-  //   console.log(mandetoryInd);
-  //   if (mandetoryInd) {
-  //     //disable url
-  //     props.addingModules({
-  //       ...props.moduleList,
-  //       orgId: props.orgId,
-  //       type:"mandatory",
-  //       mandetoryInd: mandetoryInd ? false : true,
-  //     });
-  //     setMandatoryStatus(mandetoryInd ? false : true);
-  //   } else {
-  //     props.addingModules(
-  //       {
-  //         ...props.moduleList,
-  //         orgId: props.orgId,
-  //         type:"mandatory",
-  //         mandetoryInd: mandetoryInd ? false : true,
-  //       },
-  //       props.orgId
-  //     );
-  //     setMandatoryStatus(mandetoryInd ? false : true);
-  //   }
-  // }
-  // function handleMandatoryCancel() {
-  //   if (mandetoryInd) {
-  //     setMandatoryStatus(true);
-  //   } else {
-  //     setMandatoryStatus(false);
-  //   }
-  // }
-
-
   const { erpInd } = props.moduleList;
   console.log(erpInd);
   const [erpStatus, setErpStatus] = useState(erpInd);
@@ -117,7 +83,6 @@ const handleFinanceClick = (checked) => {
   }, [erpInd]);
   
   const handleErpClick = (checked) => {
-  // props.handleStripeModal(true);
     setErpStatus(checked);
     let data = {
       value: checked,
@@ -128,8 +93,6 @@ const handleFinanceClick = (checked) => {
     
   };
 
-
-  
   const { tradingInd } = props.moduleList;
   console.log(tradingInd);
   const [tradingStatus, setTradingStatus] = useState(tradingInd);
@@ -146,7 +109,6 @@ const handleFinanceClick = (checked) => {
     };
     props.addingModules(data, props.orgId);
   };
-
 
   const { ecomModInd } = props.moduleList;
   console.log(ecomModInd);
@@ -199,6 +161,38 @@ const handleFinanceClick = (checked) => {
     props.addingModules(data, props.orgId);
   };
 
+  const { timeTrackInd } = props.moduleList;
+  console.log(timeTrackInd);
+  const [timeTrackStatus, setTimeTrackStatus] = useState(timeTrackInd);
+  useEffect(() => {
+    setTimeTrackStatus(timeTrackInd);
+  }, [timeTrackInd]);
+  const handleTimetrackClick = (checked) => {
+    setTimeTrackStatus(checked);
+    let data = {
+      value: checked,
+      orgId: props.orgId,
+      type: "erp",
+    };
+    props.addingModules(data, props.orgId);
+  };
+
+
+  const { cbmInd   } = props.moduleList;
+  console.log(cbmInd);
+  const [cbmStatus, setcbmStatus] = useState(cbmInd);
+  useEffect(() => {
+    setcbmStatus(cbmInd);
+  }, [cbmInd]);
+  const handleCbmClick = (checked) => {
+    setcbmStatus(checked);
+    let data = {
+      value: checked,
+      orgId: props.orgId,
+      type: "cbm",
+    };
+    props.addingModules(data, props.orgId);
+  };
 
 
   const { imInd } = props.moduleList;
@@ -237,12 +231,6 @@ const handleFinanceClick = (checked) => {
     props.addingModules(data, props.orgId);
   };
  
-
-
-
-
-  
-
   const { productionInd } = props.moduleList;
   console.log(productionInd);
   const [productionStatus, setProductionStatus] = useState(productionInd);
@@ -382,51 +370,59 @@ const handleFinanceClick = (checked) => {
     props.addingModules(data, props.orgId);
   };
   
+  // useEffect(() => {
+  //   const loadStripeScript = () => {
+  //     const script = document.createElement('script');
+  //     script.src = 'https://js.stripe.com/v3/';
+  //     script.async = true;
+  //     script.onload = () => {
+  //       console.log('Stripe script loaded successfully!');
+  //       const stripe = window.Stripe('your-public-key');
+  //     };
+  //     document.body.appendChild(script);
+  //   };
+
+  //   loadStripeScript();
+  //   return () => {
+  //     const script = document.querySelector('script[src="https://js.stripe.com/v3/"]');
+  //     if (script) {
+  //       document.body.removeChild(script);
+  //     }
+  //   };
+  // }, []);
+
   if (props.fetchingModules) return <BundleLoader/>;
     return (
       <>
         <div flexWrap="nowrap">
-          {/* <MainWrapper
-            style={{
-              flexBasis: "100%",
-              overflow: "auto",
-              color: "#FFFAFA",
-              
-            }}
-          > */}
-            <div class=" flex flex-col" >
-              {/* <Title style={{ padding: 8 }}>Designation</Title> */}
-              <MainWrapper style={{  marginTop: "0.625em", cursor:"pointer",height: "79vh", }}>
-              {/* <div class=" w-full cursor-pointer"> */}
+            <div class=" flex flex-col" >   
+              <MainWrapper style={{  marginTop: "0.625em", cursor:"pointer",height: "79vh", }}>    
         <ViewEditCard>
           {({ viewType }, toggleViewType) =>
             viewType === "view" ? (
               <div class="flex" >
                 <div class="w-full flex-row">
               <div class=" flex " >
-             <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+             <div class=" h-[12rem] w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
              <div className=" flex h-28 justify-center "> 
               <img
-              className="big-logo w-36 h-24 m-2"
+              className="w-18 h-18 m-2"
               src={FWLogo}
               alt="Tekorero logo"
             /></div>
-            <div class="flex  flex-col justify-center mt-1">
+            <div class="flex  flex-col justify-center ">
                 <div class="flex flex-row  justify-center"> 
                   <div class=" text-sm font-semibold">CRM</div>
                     <div   class=" ml-2">
                     <Popconfirm
                         title="Do you wish to change Status ? "
-                        onConfirm={() => handleCrmClick(!crmStatus)}
-                        // onCancel={handleCrmCancel}
+                        onConfirm={() => handleCrmClick(!crmStatus)}               
                         okText="Yes"
                         cancelText="No"
                       >
-                        <Switch className="w-[5rem]"
-                          onChange={() => {}}
-                          // onChange={handleCrmClick}
-                          checked={crmStatus || crmInd}
-                          // checked={crmStatus || crmInd}
+                        <Switch  
+                          onChange={() => {}}              
+                          checked={crmStatus || crmInd}            
                           checkedChildren="Yes"
                           unCheckedChildren="No"
                         />
@@ -439,15 +435,15 @@ const handleFinanceClick = (checked) => {
                     </div>
                     
                     </div>
-                    <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+                    <div class=" h-[12rem]  w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
            <div className=" flex h-28 justify-center"> 
               <img
-              className="big-logo w-36 h-24 m-2"
+              className="w-18 h-18 m-2"
               src={FWLogo5}
             
               alt="Tekorero logo"
             /></div>
-            <div class="flex flex-col justify-center mt-1">
+            <div class="flex flex-col justify-center ">
               <div class="flex flex-row  justify-center">
               <div class=" text-sm font-semibold ">Finance</div>
                     <div   class="  ml-2">
@@ -458,8 +454,7 @@ const handleFinanceClick = (checked) => {
                               cancelText="No"
                             >
                                               <Switch
-                              onChange={() => {}}
-                        //  onChange={this.props.handleErpClick}
+                              onChange={() => {}}            
                           style={{ width: "4em" }}
                           checked={financeStatus || props.moduleList.financeInd}
                           checkedChildren="Yes"
@@ -471,27 +466,25 @@ const handleFinanceClick = (checked) => {
                     <div class="text-xs text-center">Handle transactions and invoicing, track budgets.</div>
                     </div>
                     </div>
-                    <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+                    <div class=" h-[12rem]  w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
                      <div className=" flex h-28 justify-center"> 
               <img
-              className="big-logo w-36 h-24 m-2"
+              className="w-18 h-18 m-2"
               src={FWLogo1}
               alt="Tekorero logo"
             /></div>
-             <div class="flex flex-col justify-center mt-1">
+             <div class="flex flex-col justify-center ">
              <div class="flex flex-row  justify-center">
                     <div class=" text-sm font-semibold  ml-2">IM</div>
                     <div   class="  ml-2">
                     <Popconfirm
                         title="Do you wish to change Status ? "
-                        onConfirm={() => handleImClick(!imStatus)}
-                        // onCancel={handleImCancel}
+                        onConfirm={() => handleImClick(!imStatus)}        
                         okText="Yes"
                         cancelText="No"
                       >
                         <Switch
-                          className="w-[5rem]"
-                          // onChange={handleImClick}
+                                           
                           onChange={() => {}}
                           checked={imStatus || imInd}
                           checkedChildren="Yes"
@@ -503,103 +496,59 @@ const handleFinanceClick = (checked) => {
                     <div class="text-xs text-center"> Investor outreach and fund management.</div>
                     </div>
                     </div>
-                    {/* <div>Account</div>
-                    <div   class=" w-[7%] ml-2">
-                    <Popconfirm
-                        title="Do you wish to change Status ? "
-                        onConfirm={handleAccountClick}
-                        onCancel={handleAccountCancel}
-                        okText="Yes"
-                        cancelText="No"
-                      >
-                        <Switch
-                          className="w-[5rem]"
-                          checked={accountStatus || accountInd}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                        />
-                      </Popconfirm>
-                    </div> */}
-                    {/* <div>RecruitOpps</div>
-                    <div   class=" w-[7%] ml-2">
-                    <Popconfirm
-                        title="Do you wish to change Status ? "
-                        onConfirm={handleRecruitClick}
-                        onCancel={handleRecruitCancel}
-                        okText="Yes"
-                        cancelText="No"
-                      >
-                        <Switch
-                          className="w-[5rem]"
-                          checked={recruitStatus || recruitOppsInd}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                        />
-                      </Popconfirm>
-                    </div>
-*/}
- <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+                  
+ <div class=" h-[12rem]  w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
  <div className=" flex h-28 justify-center"> 
               <img
-              className="big-logo w-36 h-24 m-2"
+              className="w-18 h-18 m-2"
               src={FWLogo2}
               alt="Tekorero logo"
             /></div>
-            <div class="flex flex-col justify-center mt-1">
+            <div class="flex flex-col justify-center ">
               
              <div class="flex flex-row  justify-center">
                       <div class=" text-sm  ml-2 font-semibold">HR</div>
                     <div   class="  ml-2">
                     <Popconfirm
                         title="Do you wish to change Status ? "
-                        onConfirm={() => handleHrClick(!hrStatus)}
-                        // onCancel={handleHrCancel}
+                        onConfirm={() => handleHrClick(!hrStatus)}     
                         okText="Yes"
                         cancelText="No"
-                      >
-                   
-                        <Switch
-                         className="w-[5rem]"
-                         onChange={() => {}}
-                        
+                      >                  
+                        <Switch                       
+                         onChange={() => {}}                      
                          checked={hrStatus || hrInd}
                          checkedChildren="Yes"
-                         unCheckedChildren="No"
-                         
+                         unCheckedChildren="No"                     
                         />
-                              </Popconfirm>
-                    
+                              </Popconfirm>                  
                     </div> 
                     </div>
                     <div class="text-xs text-center"> Manage employee goals and performance.</div>
                     </div>
                     </div>
-
-                   
-
-                    <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+                
+                    <div class=" h-[12rem]  w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
                     <div className=" flex h-28 justify-center"> 
               <img
-              className="big-logo w-36 h-24 m-2"
+              className="w-18 h-18 m-2"
               src={FWLogo3}
               alt="Tekorero logo"
             /></div>
-            <div class="flex flex-col justify-center mt-1">
+            <div class="flex flex-col justify-center">
            
             <div class="flex flex-row  justify-center">
                     <div class=" text-sm  ml-2 font-semibold">RecruitPro</div>
                     <div   class=" ml-2">
                     <Popconfirm
                         title="Do you wish to change Status ? "
-                        onConfirm={() => handleRecruitProClick(!recruitProStatus)}
-                        // onCancel={handleRecruitProCancel}
+                        onConfirm={() => handleRecruitProClick(!recruitProStatus)}    
                         okText="Yes"
                         cancelText="No"
                       >
                         <Switch
-                          className="w-[5rem]"
-                          onChange={() => {}}
-                          // onChange={handleRecruitProClick}
+                           
+                          onChange={() => {}}    
                           checked={recruitProStatus || recruitProInd}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
@@ -610,28 +559,26 @@ const handleFinanceClick = (checked) => {
                     <div class="text-xs text-center"> Hire @ Scale.</div>
                     </div>
                     </div>
-                    <div class=" h-[12rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
+                    <div class=" h-[12rem]  w-[16rem] bg-white shadow border-2 flex flex-col rounded-lg scale-95 hover:scale-100">
                     <div className=" flex h-28 justify-center"> 
               <img
-              className="big-logo w-36 h-24 m-2"
+              className="w-18 h-18 m-2"
               src={FWLogo4}
               alt="Tekorero logo"
             /></div>
-            <div class="flex flex-col justify-center mt-1">
+            <div class="flex flex-col justify-center ">
             <div class="flex flex-row  justify-center">
                     <div class=" text-sm  ml-2 font-semibold">Elearning</div>
                     <div   class="  ml-2">
                     <Popconfirm
                         title="Do you wish to change Status ? "
-                        onConfirm={() => handleElearningClick(!elearningStatus)}
-                        // onCancel={handleElearningCancel}
+                        onConfirm={() => handleElearningClick(!elearningStatus)}   
                         okText="Yes"
                         cancelText="No"
                       >
                         <Switch
-                          className="w-[5rem]"
-                          onChange={() => {}}
-                          // onChange={handleElearningClick}
+                           
+                          onChange={() => {}}        
                           checked={elearningStatus || elearningInd}
                           checkedChildren="Yes"
                           unCheckedChildren="No"
@@ -641,80 +588,40 @@ const handleFinanceClick = (checked) => {
                     </div>
                     <div class="text-xs text-center"> Interactive lessons, assessment tools.</div>
                     </div> 
-                    </div>
-                   
-
-                   
-                   
-                
+                    </div>                                                                     
               </div>
               </div>
-              <div>
-                
-              
-                 
+              <div>                                            
                 </div> 
               </div>
               
             ) : (
-              <div class=" flex">
-                  {/* <TextInput
-                    name={name}
-                    // value={value || departmentName}
-                    defaultValue={departmentName}
-                    onChange={handleChange}
-                    style={{ width: "60%" }}
-                  />
-                  <Select 
-              defaultValue={sectorName}
-               style={{width:"40%"}}
-               placeholder="Select Sectors"
-               onChange={this.handleSectorId}
-               >
-                            {this.props.sectors.map((item) => {
-                                return <Option value={item.sectorId}>{item.sectorName} </Option>;
-                            })}
-               </Select> */}
-           
-              
+              <div class=" flex">                            
                 </div>
               )
           }
         </ViewEditCard>
-      {/* </div> */}
-                {/* {departments.length ? (
-                  departments.map((department, i) => ( */}
+            
                     <SingleModuleList
                     handleProcurmentClick={handleProcurmentClick}
-                    // handleProcurmentCancel={handleProcurmentCancel}
+    
                     procurmentStatus={procurmentStatus}
-
 handleLogisticClick={handleLogisticClick}
-// handleLogisticCancel={handleLogisticCancel}
 logisticsStatus={logisticsStatus}
                       handleOrderManagementClick={handleOrderManagementClick}
-                      // handleOrderManagementCancel={handleOrderManagementCancel}
+        
                       orderManagStatus={orderManagStatus}
                    handleInventoryClick={handleInventoryClick}
-                  //  handleInventoryCancel={handleInventoryCancel}
                    inventoryStatus={inventoryStatus}
                    moduleList={props.moduleList}
                       handleErpClick={handleErpClick}
-                      // handleErpCancel={handleErpCancel}
                       erpStatus={erpStatus}
-                      handleRepairClick={handleRepairClick}
-                      // handleRepairCancel={handleRepairCancel}
+                      handleRepairClick={handleRepairClick}            
                       repairStatus={repairStatus}
                       handleRowData={handleRowData}
-                      rowdata={rowdata}
-                      // handleSectorId={this.handleSectorId}
+                      rowdata={rowdata}               
                       handleProductionClick={handleProductionClick}
-                      productionStatus={productionStatus}
-                      //  handleProductionCancel={handleProductionCancel}
-                    //   handleSearchChange={this.handleSearchChange}
-                    //   currentData={this.state.currentData}
-                    //   setCurrentData={this.setCurrentData}
-                    //  handleDeleteDepartment={this.handleDeleteDepartment}
+                      productionStatus={productionStatus}                 
                     handleStripeModal={props.handleStripeModal}
                     addStripeModal={props.addStripeModal}
 
@@ -731,16 +638,14 @@ logisticsStatus={logisticsStatus}
                     catalogueStatus={catalogueStatus}
                     handleMaterialClick={handleMaterialClick}
                     materialStatus={materialStatus}
-                    />
-                  {/* )) */}
-                  {/* ) : (
-                    <p>None Available</p>
-                  )} */}
-
+                    handleTimetrackClick={handleTimetrackClick}
+                    timeTrackStatus={timeTrackStatus}
+                    handleCbmClick={handleCbmClick}
+                    cbmStatus={cbmStatus}
+                    />              
               </MainWrapper>
             </div>
            
-          {/* </MainWrapper> */}
           <div class=" font-bold">Updated on {dayjs(props.moduleList.updationDate).format('YYYY-MM-DD')} by {props.moduleList.updatedBy}</div>
         </div>
      <StripePaymentModal
@@ -750,7 +655,6 @@ addStripeModal={props.addStripeModal}
       </>
     );
   }
-
 
 const mapStateToProps = ({ module, auth }) => ({
   userId: auth.userDetails.userId,

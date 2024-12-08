@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer } from "../../../../../../../Components/UI/Antd";
 
 const UpdateEducationForm = lazy(() =>
@@ -17,11 +17,7 @@ class UpdateEducationModal extends Component {
     return (
       <>
         <StyledDrawer
-          //title="Education"
-          title={<FormattedMessage
-            id="app.education"
-            defaultMessage="Education"
-          />}
+          title="Education"
           width="30%"
           visible={updateEducationModal}
           onClose={() => handleUpdateEducationModal(false)}

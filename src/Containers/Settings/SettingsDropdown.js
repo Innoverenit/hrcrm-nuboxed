@@ -1,22 +1,19 @@
 import React, { Component } from "react";
 import { Menu,  } from "antd";
-import { FormattedMessage } from "react-intl";
+import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import { withRouter } from "react-router-dom";
+import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
+import ToggleOnIcon from '@mui/icons-material/ToggleOn';
 import {
   StyledDropdown,
   StyledMenu,
   StyledMenuItem,
 } from "../../Components/UI/Antd";
-import {
- SettingOutlined
-} from '@ant-design/icons';
-import {
-  ApplicationWrapper,
-  MainWrapper,
-} from "../../Components/UI/Layout";
+import SettingsIcon from '@mui/icons-material/Settings';
+import { MainWrapper} from "../../Components/UI/Layout";
 let path = window.location.href.split("/")[3];
 const SettingsMenu = ({ history, pathName, recruitmentInd }) => (
-  <ApplicationWrapper>
+  <div class=" p-1 bg-light-gray ">
     <MainWrapper>
       <StyledMenu>
 
@@ -29,11 +26,7 @@ const SettingsMenu = ({ history, pathName, recruitmentInd }) => (
             }}
             onClick={() => history.push("/recruite")}
           >
-            <FormattedMessage
-              id="app.configure"
-              defaultMessage="Configure"
-            />
-      {/* RecruitPro */}
+          <ToggleOnIcon className="!text-icon  text-[#7D3C98]"/> Configure
           </a>
         </StyledMenuItem>
         <StyledMenuItem key="2">
@@ -45,11 +38,7 @@ const SettingsMenu = ({ history, pathName, recruitmentInd }) => (
             }}
             onClick={() => history.push("/categoryTab")}
           >
-            <FormattedMessage
-              id="app.category"
-              defaultMessage="Category"
-            />
-      {/* Category */}
+         <FormatListNumberedIcon className='!text-icon    text-[#42858c]' />   Category
           </a>
         </StyledMenuItem>
         <StyledMenuItem key="3">
@@ -63,63 +52,16 @@ const SettingsMenu = ({ history, pathName, recruitmentInd }) => (
             }}
             onClick={() => history.push("/organization")}
           >
-            <FormattedMessage
-              id="app.organization"
-              defaultMessage="Organization"
-            />
-      {/* Organization */}
+           
+           <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/> Organization
           </a>
         </StyledMenuItem>
-        {/* <StyledMenuItem key="0">
-          <a
-            href="#"
-            style={{
-              color: pathName === "/rules" ? "#1890ff" : "rgba(0, 0, 0, 0.65)",
-            }}
-            onClick={() => history.push("/rules")}
-          >
-            <FormattedMessage
-              id="app.rules"
-              defaultMessage="Rules"
-            />
       
-          </a>
-        </StyledMenuItem> */}
-
-        {/* <StyledMenuItem key="1">
-          <a
-            href="#"
-            style={{
-              color:
-                pathName === "/template" ? "#1890ff" : "rgba(0, 0, 0, 0.65)",
-            }}
-            onClick={() => history.push("/template")}
-          >
-            <FormattedMessage
-              id="app.templates"
-              defaultMessage="Templates"
-            />
-          </a>
-        </StyledMenuItem>  */}
-    
-
-        {/* <StyledMenuItem key="8">
-            <a
-              href="#"
-              style={{
-                color:
-                  pathName === "/library" ? "#1890ff" : "rgba(0, 0, 0, 0.65)",
-              }}
-              onClick={() => history.push("/library")}
-            >
-              Library
-            </a>
-          </StyledMenuItem> */}
 
         <Menu.Divider />
       </StyledMenu>
     </MainWrapper>
-  </ApplicationWrapper>
+  </div>
 );
 class SettingsDropdown extends Component {
   render() {
@@ -138,7 +80,7 @@ class SettingsDropdown extends Component {
       >
         <a href="#" style={{ marginRight: 4 }}>
           <div class=" flex items-center" >
-            <SettingOutlined className="!text-xl cursor-pointer text-[blue] "
+            <SettingsIcon className="!text-icon cursor-pointer text-[blue] "
               type="setting"
               style={{
                 color:

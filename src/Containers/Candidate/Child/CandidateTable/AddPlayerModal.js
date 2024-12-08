@@ -1,13 +1,8 @@
 import React, { Component } from "react";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
 import { base_url } from "../../../../Config/Auth";
 import { Player } from "video-react";
-
 import "video-react/dist/video-react.css";
-
-// const YoutubePlayerForm = lazy(() => import("./YoutubePlayerForm"));
-
 class AddPlayerModal extends Component {
     state = { visible: false };
 
@@ -36,11 +31,8 @@ class AddPlayerModal extends Component {
     return (
       <>
         <StyledDrawer
-          // title="Youtube"
-          title={<FormattedMessage
-            id="app.youtube"
-            defaultMessage="Youtube"
-             />}
+          title="Youtube"
+          
           width="60%"
           visible={addPlayerModal}
           onClose={() => handlePlayerModal(false)}

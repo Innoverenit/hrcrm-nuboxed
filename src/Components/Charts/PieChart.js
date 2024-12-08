@@ -83,9 +83,9 @@ class PieChart_ extends Component {
             {data.map((entry, index) => (
               <Cell key={index} fill={entry.color || "lightblue"} />
             ))}
-            <Label width={30} position="center" fontSize="14">
+            <div width={30} position="center" fontSize="14">
               {total}
-            </Label>
+            </div>
           </Pie>
           <Tooltip />
           <Legend
@@ -105,7 +105,7 @@ class PieChart_ extends Component {
             wrapperStyle={{ marginRight: "1.875em" }}
             margin={{ top: 50, left: 0, right: 0, bottom: 0 }}
           />
-          <Label value={chartName || "woeitj"} offset={0} position="top" />
+          <div value={chartName || "woeitj"} offset={0} position="top" />
         </PieChart>
       </div>
     );

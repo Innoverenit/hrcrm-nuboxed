@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Button, Tooltip, } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
@@ -72,10 +72,7 @@ class UpdatePersonalDetailsDocumentForm extends Component {
                   <FastField
                     name="idType"
                     type="text"
-                    //label="Type"
-                    label={
-                      <FormattedMessage id="app.type" defaultMessage="Type" />
-                    }
+                    label="Type"
                     options={[
                       "Aadhar Card",
                       "Voter-Id Card",
@@ -96,13 +93,7 @@ class UpdatePersonalDetailsDocumentForm extends Component {
                       type="text"
                       isColumn
                       width={"100%"}
-                      //label="Document ID number"
-                      label={
-                        <FormattedMessage
-                          id="app.idNo"
-                          defaultMessage="Document ID number"
-                        />
-                      }
+                      label="Document ID number"
                       component={InputComponent}
                       inlineLabel
                       />
@@ -120,13 +111,7 @@ class UpdatePersonalDetailsDocumentForm extends Component {
 
                   <Field
                     name="documentName"
-                    //label="Name"
-                    label={
-                      <FormattedMessage
-                        id="app.documentTitle"
-                        defaultMessage="Name of Document"
-                      />
-                    }
+                    label="Name"
                     width={"100%"}
                     isColumn
                     component={InputComponent}
@@ -135,13 +120,7 @@ class UpdatePersonalDetailsDocumentForm extends Component {
                      <div class=" mt-3">
                   <Field
                     name="description"
-                    //label="Description"
-                    label={
-                      <FormattedMessage
-                        id="app.documentDescription"
-                        defaultMessage="Description of Document"
-                      />
-                    }
+                    label="Description"
                     isRequired
                     isColumn
                     width={"100%"}
@@ -159,7 +138,7 @@ class UpdatePersonalDetailsDocumentForm extends Component {
                   type="primary"
                   Loading={updatingPersonalDocumentDetails}
                 >
-                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
+              Submit
                 </Button>
               </div>
             </Form>

@@ -1,7 +1,8 @@
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
-import React, { lazy } from 'react'
+import React, { lazy ,Suspense } from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { BundleLoader } from "../../Components/Placeholder";
 import { handleRepositoryOrganizationModal } from "../Auth/AuthAction"
 import { Tooltip } from 'antd';
 const RepositoryOrganizationModal = lazy(() =>
@@ -14,7 +15,7 @@ function RepositoryData(props) {
       <div>
         <Tooltip title="Repository">
           <LibraryBooksIcon
-            className="!text-icon cursor-pointer text-[#1890ff] mr-[0.25rem]"
+            className="!text-icon cursor-pointer text-[#1890ff] mr-1"
             onClick={() => {
 
               props.handleRepositoryOrganizationModal(true);
@@ -22,11 +23,14 @@ function RepositoryData(props) {
           />
         </Tooltip>
       </div>
-
+      <Suspense >
       <RepositoryOrganizationModal
         repositoryOrganizationModal={props.repositoryOrganizationModal}
         handleRepositoryOrganizationModal={props.handleRepositoryOrganizationModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
       />
+      </Suspense>
     </>
   )
 }

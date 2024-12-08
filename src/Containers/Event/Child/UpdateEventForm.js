@@ -1,6 +1,5 @@
 import React, { Component,useEffect,useState } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import { Button, Switch,Select } from "antd";
 import { Formik, Form, Field, FieldArray } from "formik";
@@ -42,6 +41,7 @@ function UpdateEventForm (props) {
   //     reminder: true,
   //   };
   // }
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const includeOption = props.setEditingEvents.included===null?[]: props.setEditingEvents.included.map((item) => {
     return item.fullName
   })
@@ -55,6 +55,39 @@ function UpdateEventForm (props) {
   function handleChangeInclude(value) {
     setInclude(value)
   }
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+         "71",//0 Type
+          "72",//1 Subject
+          "176",//2 Start Date
+          "93",//3 Start Time
+          "126",//4 End Date
+          "94",//5 End Time
+          "95",//6 Time Zone
+          "316",//7 Notes
+          "248",//8 Customer
+          "73",//9 Contact
+          "99",//10 Opportunity
+          "76",//11 Assigned
+          "75",//12 Include
+          // "",//13 Team
+          "185",//14 Address
+          // "",//15 Set Reminder
+          // "",//16 Reminder  
+          // "",//Update    
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(()=> {
 
     props.getAllCustomerData(props.userId)
@@ -68,7 +101,7 @@ function UpdateEventForm (props) {
     const includeOption = props.setEditingEvents.included===null?[]: props.setEditingEvents.included.map((item) => {
       return item.fullName
     })
-
+ 
     
    
     setInclude(includeOption)
@@ -300,13 +333,11 @@ function UpdateEventForm (props) {
             <Form className="form-background">
           <div class=" flex justify-between max-sm:flex-col">
               <div class=" h-full w-w47.5 max-sm:w-wk"   >
+              <div className="font-bold font-poppins text-xs">{translatedMenuItems[0]}  </div>
                   <Field
                     isRequired
                     name="eventTypeId"
-                    //label="Type"
-                    label={
-                      <FormattedMessage id="app.type" defaultMessage="type" />
-                    }
+                    //label="Type"                
                     component={SearchSelect}
                     isColumnWithoutNoCreate
                     selectType="eventType"
@@ -320,61 +351,37 @@ function UpdateEventForm (props) {
                   />
                  
                   <div class="mt-3">
+                  <div className="font-bold font-poppins text-xs">{translatedMenuItems[1]}  </div>
                   <Field
                     isRequired
                     name="eventSubject"
-                    //label="Topic"
-                    label={
-                      <FormattedMessage
-                      id="app.subject"
-                      defaultMessage="subject"
-                    />
-                    }
+                    //label="Topic"                 
                     isColumn
                     width={"100%"}
                     component={InputComponent}
                     inlineLabel
-                    style={{
-                      flexBasis: "80%",
-                      // height: "2.0625em",
-                      // marginTop: "0.25em",
-                    }}
                   />
                   </div>
                  
                   <div class=" flex justify-between mt-3" >
                       <div class=" w-1/2">
-                      <Field
+                      <div className="font-bold font-poppins text-xs">{translatedMenuItems[2]}  </div>
+                      <Field class="w-full"
                         isRequired
                         name="startDate"
-                        //label="Start "
-                        label={
-                          <FormattedMessage
-                          id="app.startDate"
-                          defaultMessage="Start Date"
-                        />
-                        }
+                        //label="Start "                  
                         isColumn
                         component={DatePicker}
                         value={values.startDate}
                         inlineLabel
-                        style={{
-                          flexBasis: "80%",
-                          width: "100%",
-                        }}
                       />
                     </div>
                     <div class=" w-5/12">
+                    <div className="font-bold font-poppins text-xs">{translatedMenuItems[3]}  </div>
                       <Field
                         isRequired
                         name="startTime"
-                        // label="Start Time"
-                        label={
-                          <FormattedMessage
-                              id="app.startTime"
-                              defaultMessage="Start Time"
-                            />
-                        }
+                        // label="Start Time"                
                         isColumn
                         component={TimePicker}
                         use12Hours
@@ -390,16 +397,11 @@ function UpdateEventForm (props) {
                 
                   <div class=" flex justify-between mt-3" >
                     <div class=" w-1/2">
+                    <div className="font-bold font-poppins text-xs">{translatedMenuItems[4]}  </div>
                       <Field
                         isRequired
                         name="endDate"
-                        // label="End "
-                        label={
-                          <FormattedMessage
-                            id="app.enddate"
-                            defaultMessage="enddate"
-                          />
-                        }
+                        // label="End "                   
                         component={DatePicker}
                         isColumn
                         value={values.endDate || values.startDate}
@@ -425,16 +427,11 @@ function UpdateEventForm (props) {
                       />
                     </div>
                     <div class=" w-5/12">
+                    <div className="font-bold font-poppins text-xs">{translatedMenuItems[5]}  </div>
                       <Field
                         isRequired
                         name="endTime"
-                        //label="End Time"
-                        label={
-                          <FormattedMessage
-                          id="app.endtime"
-                          defaultMessage="endtime"
-                        />
-                        }
+                        //label="End Time"                 
                         isColumn
                         component={TimePicker}
                         use12Hours
@@ -449,18 +446,13 @@ function UpdateEventForm (props) {
                   </div>
 
                   <div class="mt-3">
+                    <div className="font-bold font-poppins text-xs">{translatedMenuItems[6]}  </div>
                   <Field
                     isRequired
                     defaultValue={{ label: timeZone, value: userId }}
                     isColumnWithoutNoCreate
                     name="timeZone"
-                    //label="TimeZone "
-                    label={
-                      <FormattedMessage
-                        id="app.timeZone"
-                        defaultMessage="timeZone"
-                      />
-                    }
+                    //label="TimeZone "              
                     selectType="timeZone"
                     isColumn
                     // margintop={"0.25em"}
@@ -471,15 +463,10 @@ function UpdateEventForm (props) {
                   />
                   </div>
                   <div class="mt-3">
+                    <div className="font-bold font-poppins text-xs">{translatedMenuItems[7]}  </div>
                   <Field
                     name="eventDescription"
-                    //label="Notes"yy
-                    label={
-                      <FormattedMessage
-                        id="app.notes"
-                        defaultMessage="notes"
-                      />
-                    }
+                    //label="Notes"yy            
                     isColumn
                     width={"100%"}
                     component={TextareaComponent}
@@ -492,17 +479,12 @@ function UpdateEventForm (props) {
                   </div>
   
                   <div class="mt-3">
+                  <div className="font-bold font-poppins text-xs">{translatedMenuItems[8]}  </div>
                   {props.user.crmInd === true &&(
                  <Field
                  name="customerId"
                  // selectType="customerList"
-                 isColumnWithoutNoCreate
-                 label={
-                  <FormattedMessage
-                     id="app.customer"
-                     defaultMessage="customer"
-                   />
-                 }
+                 isColumnWithoutNoCreate            
                  //component={SearchSelect}
                  component={SelectComponent}
                  options={
@@ -519,18 +501,13 @@ function UpdateEventForm (props) {
                   </div>
                   
                   <div class="mt-3">
+                  <div className="font-bold font-poppins text-xs">{translatedMenuItems[9]}  </div>
                   {props.user.crmInd === true &&(
                   <Field
                     name="contactId"
                     //selectType="contactList"
                     isColumnWithoutNoCreate
-                    // label="Contact"
-                    label={
-                      <FormattedMessage
-                        id="app.contact"
-                        defaultMessage="contact"
-                      />
-                    }
+                    // label="Contact"                 
                     component={SelectComponent}
                     isColumn
                     options={Array.isArray(ContactData) ? ContactData : []}
@@ -546,17 +523,12 @@ function UpdateEventForm (props) {
                   </div>
                  
                   <div class="mt-3">
+                  <div className="font-bold font-poppins text-xs">{translatedMenuItems[10]}  </div>
                   {props.user.crmInd === true &&(
                  <Field
                  name="opportunityId"
                  // selectType="customerList"
-                 isColumnWithoutNoCreate
-                 label={
-                  <FormattedMessage
-                     id="app.opportunity"
-                     defaultMessage="opportunity"
-                   />
-                 }
+                 isColumnWithoutNoCreate              
                  //component={SearchSelect}
                  component={SelectComponent}
                  options={
@@ -572,7 +544,7 @@ function UpdateEventForm (props) {
                   )} 
                   </div>
                   
-                  {/* <Spacer />
+                  {/* <div class=" mt-3" />
                   {startDate ? (
                     <span>
                       {dayjs(startDate).isBefore(dayjs()) && (
@@ -593,16 +565,10 @@ function UpdateEventForm (props) {
                 </div>
                 <div class=" h-full w-w47.5 max-sm:w-wk mt-3"   >
               
-
+                <div className="font-bold font-poppins text-xs">{translatedMenuItems[11]}  </div>
               <Field
                   name="assignedTo"
-                  // label="Assigned"
-                  label={
-                    <FormattedMessage
-                      id="app.assignedto"
-                      defaultMessage="Assigned"
-                    />
-                  }
+                  // label="Assigned"              
                   isColumn
                   component={SelectComponent}
                   //value={values.assignedTo}
@@ -615,27 +581,11 @@ function UpdateEventForm (props) {
                   inlineLabel
                 />
                   
-                  {/* <Field
-                    name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.include"
-                        defaultMessage="Include"
-                      />
-                    }
-                    mode
-                    placeholder="Select"
-                    component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
-                    value={values.included}
-                    defaultValue={{
-                      label: `${fullName || ""} `,
-                      value: employeeId,
-                    }}
-                  /> */}
+                  
                      <div class="w-full mt-3">
-                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Include</div> 
+                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">{translatedMenuItems[12]}
+                      {/* Include */}
+                      </div> 
   
                      <Select
   name="included"
@@ -663,6 +613,7 @@ function UpdateEventForm (props) {
   
                     </div>
                   <div class="mt-3">
+                  {/* <div className="font-bold font-poppins text-xs">{translatedMenuItems[13]}  </div> */}
                   <Field
                     isRequired
                     name="candidateId"
@@ -678,6 +629,7 @@ function UpdateEventForm (props) {
                   />
                   </div>
                   <div class="mt-3">
+                  <div className="font-bold font-poppins text-xs">{translatedMenuItems[13]}  </div>
                   <FieldArray
                     name="address"
                     render={(arrayHelpers) => (
@@ -690,19 +642,20 @@ function UpdateEventForm (props) {
                   />
                   </div>
                   <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3 "> 
+                    {/* {translatedMenuItems[15]}  */}
                     Set Reminder
                   </div>
                   <div class=" flex justify-between max-sm:justify-around" >
 
-                    <Switch
-                      style={{ width: "60px" }}
+                    <Switch className="w-[60px]"   
                      // onChange={this.handleReminderChange}
                       // checked={this.state.reminder}
                       checkedChildren="Yes"
                       unCheckedChildren="No"
                     />
                     {/* {this.state.reminder ? ( */}
-                      <div class=" w-1/3 font-bold">
+                      <div class=" w-1/3 font-bold text-xs font-poppins">
+                      {/* {translatedMenuItems[16]}  */}
                         <Field
                           isRequired
                           name="remindTime"
@@ -733,11 +686,10 @@ function UpdateEventForm (props) {
                   htmlType="submit"
                   Loading={updatingEvent}
                 >
-
-                  <FormattedMessage
-                    id="app.update"
-                    defaultMessage="update"
-                  />
+{/* Update */}
+                <div className="font-bold font-poppins text-xs">Update
+                  {/* {translatedMenuItems[17]} */}
+                    </div>
                 </Button>
               </div>
             </Form>

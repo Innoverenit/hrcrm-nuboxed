@@ -4,8 +4,8 @@ import { bindActionCreators } from "redux";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import { Button, message } from "antd";
 import { Formik, Form, Field } from "formik";
-import { Spacer } from "../../../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
+
+
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import * as Yup from "yup";
 import {
@@ -151,11 +151,8 @@ function TemplateView(props) {
                           type="text"
                           isColumn
                           width={"100%"}
-                          //label="Name"
-                          label={<FormattedMessage
-                            id="app.name"
-                            defaultMessage="Name"
-                          />}
+                          label="Name"
+                          
                           component={InputComponent}
                           inlineLabel
                           style={{
@@ -165,7 +162,7 @@ function TemplateView(props) {
                           }}
                         />
                       </div>
-                      <Spacer style={{ marginBottom: "-0.5em" }} />
+                      <div class=" mt-3" style={{ marginBottom: "-0.5em" }} />
 
                       <div class=" w-[90%]" >
                         <Field
@@ -173,11 +170,8 @@ function TemplateView(props) {
                           type="text"
                           isColumn
                           width={"100%"}
-                          // label="Subject"
-                          label={<FormattedMessage
-                            id="app.subject"
-                            defaultMessage="Subject"
-                          />}
+                          label="Subject"
+                        
                           component={InputComponent}
                           inlineLabel
                           style={{
@@ -197,12 +191,8 @@ function TemplateView(props) {
                       
 
                       // label="Sectors"
-                      label={
-                        <FormattedMessage
-                          id="app.customer"
-                          defaultMessage="Customer"
-                        />
-                      }
+                      label="Customer"
+                       
                       isColumn
                       component={SearchSelect}
                       // value={values.sectorId}
@@ -217,11 +207,8 @@ function TemplateView(props) {
                     <div class=" w-[50%]" >
                       <Field
                         name="descripion"
-                        //label="Description"
-                        label={<FormattedMessage
-                          id="app.descripion"
-                          defaultMessage="Description"
-                        />}
+                        label="Description"
+                       
                         width={"100%"}
                         height={"5.9375em"}
                         isColumn
@@ -287,11 +274,8 @@ function TemplateView(props) {
                   Loading={props.udatingEmail}
                   disabled={!edit}
                 >
-                  <FormattedMessage
-                    id="app.update"
-                    defaultMessage="Update"
-                  />
-                  {/* Update */}
+                 
+                  Update
                 </Button>
               </div>
             </Form>

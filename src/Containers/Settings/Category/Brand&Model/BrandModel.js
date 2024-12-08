@@ -1,9 +1,7 @@
-import React, { useEffect,lazy,useState  } from "react";
+import React, { useEffect,useState  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Popconfirm, message, Input } from "antd";
+import { Input } from "antd";
 import { MainWrapper } from "../../../../Components/UI/Layout";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import {
@@ -54,16 +52,7 @@ const BrandModel = (props) => {
     }
   
     const handleBrandModel = () => {
-        // if (newRegionName.trim() !== '') {
-        //     console.log("New Region:", newRegionName);
-        //     const newRegion = {
-        //         id: Date.now(),
-        //         item: newRegionName
-        //     };
-        //     setRegions([...regions, newRegion]);
-        //     setNewRegionName('');
-        //     setAddingRegion(false);
-        // }
+      
         let data={
           brand:newBrandModelName,
           model:newModelName,
@@ -116,8 +105,8 @@ const BrandModel = (props) => {
       <>
       <div class="" >
        
-       <div class="flex flex-row justify-between">
-             <div class=" flex w-[18vw]" >
+       <div class="flex flex-row justify-end items-center">
+             <div class=" flex w-[18vw] mt-1 mr-3" >
             <Input
          placeholder="Search by Name"
         style={{width:"100%",marginLeft:"0.5rem"}}
@@ -162,9 +151,9 @@ const BrandModel = (props) => {
             <div class=" flex flex-col" >
          
          <MainWrapper className="!h-[69vh] !mt-2" >
-            {!props.fetchingBrandModel && brandModel.length === 0 ? <NodataFoundPage /> : brandModel.slice().sort((a, b) => a.brand.localeCompare(b.brand)).map((region, index) => (
+            {!props.fetchingBrandModel && brandModel.length === 0 ? <NodataFoundPage /> : brandModel.map((region, index) => (
      
-              <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center  h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.phoneMasterListId}>
+              <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  border-[#0000001f]  border  shadow-[#a3abb980] bg-white text-[#444] mt-1  p-2 justify-between items-center  h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.phoneMasterListId}>
               {/* Region name display or input field */}
               
               {editingId === region.phoneMasterListId ? (
@@ -195,34 +184,8 @@ const BrandModel = (props) => {
               {/* Action buttons */}
               <div >
                   {/* Edit button */}
-                  {/* {editingId === region.phoneMasterListId ? (
-                      <div>
-                          <button onClick={() => handleUpdateBrandModel(region)}>Save</button>
-                          <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
-                      </div>
-                  ) : (
-                      <BorderColorIcon   style={{fontSize:"1rem"}} 
-                    //   onClick={() => editRegion(region.phoneMasterListId, region.name)} 
-                      />
-                  )} */}
-  
-                  {/* Delete button */}
-                  {/* <Popconfirm
-                          title="Do you want to delete?"
-                          okText="Yes"
-                          cancelText="No"
-                        //   onConfirm={() =>  props.removeShipBy(region.phoneMasterListId)}
-                        >
-                  <DeleteOutlined 
-                    style={{
-                    
-                      color: "red",
-                    }}
-                // onClick={() => 
-                //     props.removeServiceLine(item.phoneMasterListId)
-                //  }
-                   />
-                   </Popconfirm> */}
+                 
+                 
               </div>
           </div>
          ))}

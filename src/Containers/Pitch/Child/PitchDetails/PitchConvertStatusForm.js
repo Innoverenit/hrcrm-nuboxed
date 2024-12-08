@@ -3,10 +3,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Formik, Form, } from "formik";
 import {
-  Select, StyledLabel,
+  Select
 } from "../../../../Components/UI/Elements";
-import { MainWrapper, } from "../../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
+
 import { Button, Switch } from "antd";
 import {
     getDepartmentwiserUser,
@@ -40,7 +39,6 @@ const handleDeptChange = (event) => {
     const selectedUser = event.target.value;
     setSelectedUser(selectedUser);
   };
-  // const filteredUser = props.departmentwiseUser.filter((item) => item.departmentId === selectedDept);
   const employeesData = props.departmentwiseUser.map((item) => {
     return {
       label: `${item.empName}`,
@@ -52,11 +50,8 @@ const handleDeptChange = (event) => {
     <>
       <Formik
         enableReinitialize
-        initialValues={{
-          // multyAsignedTOId: [],
-          type:"lead",
-        //   timePeriod: props.distributionAutomation.timePeriod === 0 ? "Not Applicable" :props.distributionAutomation.timePeriod|| "",
-        //   orderTimePeriod: props.distributionAutomation.orderTimePeriod === 0 ? "Not Applicable" :props.distributionAutomation.orderTimePeriod || "",
+        initialValues={{    
+          type:"lead", 
           userId: props.userId,
           orgId: props.organizationId,
         }}
@@ -77,18 +72,13 @@ const handleDeptChange = (event) => {
         }}
       >
         {({ values }) => (
-        <MainWrapper style={{ height: "446px", width: "", overflow: "auto" }}>
+        <div style={{ height: "446px", width: "", overflow: "auto" }}>
         <Form className="form-background">
           <div class=" flex justify-between w-full"
           >
-            <div class=" flex flex-col w-[44%] mt-[0.625em] ml-[1em]"
-            >
-            
-        
-             
-            <div class=" flex justify-between w-[74%]"
-          >
-              
+            <div class=" flex flex-col w-[44%] mt-[0.625em] ml-[1em]"  >                                     
+            <div class=" flex justify-between w-[74%]">
+                     
                 <div>
                       {/* <Popconfirm
                         title="Do you wish to change Status ? "
@@ -97,7 +87,7 @@ const handleDeptChange = (event) => {
                         okText="Yes"
                         cancelText="No"
                       > */}
-                        <StyledLabel>Assign To</StyledLabel>
+                        <div class="text-xs font-bold text-[#444]">Assign To</div>
                         <Switch
                           style={{ width: "5em" }}
                           onChange={handleSingleMultiple}
@@ -113,13 +103,10 @@ const handleDeptChange = (event) => {
                <div class=" flex justify-between "
                >
                                                     <div class=" w-[35%] mt-4" >
-                                                    <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>
-                                                    <FormattedMessage
-                  id="app.department"
-                  defaultMessage="Department"
-                />
+                                                    <div class="text-xs font-bold text-[#444]">
+                                                    Department
                                                       
-                                                      </label>
+                                                      </div>
                       <select   className="customize-select"
                        
                       onChange={handleDeptChange}>
@@ -137,14 +124,11 @@ const handleDeptChange = (event) => {
           <>                                           
 
             <div class=" w-[35%]" >
-            <label style={{color:"#444",fontWeight:"bold",fontSize:" 0.75rem"}}>
-            <FormattedMessage
-                  id="app.user"
-                  defaultMessage="User"
-                />
+            <div class="text-xs font-bold text-[#444]">
+           User
                   
               
-              </label>
+              </div>
             <select  className="customize-select"
                  onChange={handleUserChange}
               >
@@ -177,13 +161,14 @@ const handleDeptChange = (event) => {
                   htmlType="submit"
                   Loading={props.linkingLeads}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
-                  {/* Update */}
+                
+              
+                  Update
                 </Button>
               </div>
   
         </Form>
-      </MainWrapper>
+      </div>
         )}
       </Formik>
     </>

@@ -24,6 +24,7 @@ class ReportDetails extends Component {
           ) : ( */}
               <div>
                 <Suspense fallback={"Loading..."}>
+                <div className=" flex  flex-row">
                   <div class=" flex  max-sm:flex-col max-sm:overflow-x-auto max-sm:h-[63vh]"
                 >
                     <div class=" w-1/5 max-sm:w-full">
@@ -37,19 +38,33 @@ class ReportDetails extends Component {
             handleSelectChange={this.props.handleSelectChange}
             handleButtonClick={this.props.handleButtonClick}
             buttonData={this.props.buttonData}
-               handleDropChange={this.props.handleDropChange} />
+            visibilityConditions={this.props.visibilityConditions}
+               handleDropChange={this.props.handleDropChange} 
+               selectedButtonIcon={this.props.selectedButtonIcon}
+               handleButtonIcon={this.props.handleButtonIcon}
+               UserOrgFlipClick={this.props.UserOrgFlipClick}
+               userorgflipClick={this.props.userorgflipClick}
+               />
                     </div>
-                    <div class=" w-4/5 max-sm:w-full">
+                    <div class=" w-[70%] max-sm:w-full">
                       <ReportDetailRight 
                       gettingReportProspect={this.props.gettingReportProspect}
                       reportProspect={this.props.reportProspect}
                       selectedCategory={this.props.selectedCategory}
                       customer={customer} 
                       reportTask={this.props.reportTask}
-         
           gettingReportTask={this.props.gettingReportTask}
+          selectedButtonIcon={this.props.selectedButtonIcon}
+          handleButtonIcon={this.props.handleButtonIcon}
+          UserOrgFlipClick={this.props.UserOrgFlipClick}
+          userorgflipClick={this.props.userorgflipClick}
+
                       />
                     </div>
+                  </div>
+                  {/* <div className=" h-[85vh] w-[ ]">
+                  <div>click on the topic on the left pane to generate the report.</div>
+                  </div> */}
                   </div>
                 </Suspense>
               </div>

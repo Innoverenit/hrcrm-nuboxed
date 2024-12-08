@@ -53,16 +53,16 @@ export const addDepartments = (departments,orgId, cb) => (dispatch) => {
         Swal.fire({
           icon: 'error',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+   timer: 1500,
         });
       } else {
        
         Swal.fire({
           icon: 'success',
           title: 'Department added Successfully!',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       }
     
@@ -110,6 +110,8 @@ export const removeDepartments = (departmentId,orgId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Department deleted Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("Department has been deleted successfully!");
         console.log(res);
@@ -156,6 +158,8 @@ export const updateDepartments = (departmentId, departmentName, sectorId, sector
       Swal.fire({
         icon: 'success',
         title: 'Department updated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
     .catch((err) => {

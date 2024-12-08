@@ -1,28 +1,25 @@
 
-import React, { useEffect, useState, lazy } from "react";
+import React, {  useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import ExploreIcon from "@mui/icons-material/Explore";
-
 import dayjs from "dayjs";
 
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import ContactsIcon from '@mui/icons-material/Contacts';
-
-import InfiniteScroll from "react-infinite-scroll-component";
-import { Tooltip, Select, Button, Popconfirm } from "antd";
+import { Tooltip, Select } from "antd";
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 
 import { Link } from 'react-router-dom';
 
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { FormattedMessage } from "react-intl";
-import NodataFoundPage from "../../Helpers/ErrorBoundary/NodataFoundPage";
+
 import { MultiAvatar, MultiAvatar2 } from "../../Components/UI/Elements";
 import CountryFlag1 from "../Settings/Category/Country/CountryFlag1";
 import { BundleLoader } from "../../Components/Placeholder";
+import EmptyPage from "../Main/EmptyPage";
 
 const Option = Select;
 function onChange(pagination, filters, sorter) {
@@ -47,89 +44,46 @@ if(props.gettingReportProspect){
 const {user}=props
   return (
     <>
-       <div className=' flex justify-end sticky top-28 z-auto'>
-        <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden  w-[92.5%] justify-between p-2 bg-transparent font-bold sticky top-0 z-10">
+       <div className=' flex  sticky  z-auto h-[89vh]'>
+        <div class="rounded m-1 max-sm:m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+          <div className=" flex max-sm:hidden  w-[98%] justify-between p-1 bg-transparent font-bold sticky font-poppins text-xs  z-10">
             <div className=" w-[18.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.7rem] max-lg:w-[9.31rem]">
-              <FormattedMessage
-                id="app.name"
-                defaultMessage="Name"
-              />
+            Name
             </div>
             <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem] max-lg:w-[3.32rem] ">
-              <FormattedMessage
-                id="app.work"
-                defaultMessage="Work"
-              />
-
+           Work
             </div>
             <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.33rem]">
-              <FormattedMessage
-                id="app.sector"
-                defaultMessage="Sector"
-              />
-
+           Sector
             </div>
             <div className=" w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
-              <FormattedMessage
-                id="app.source"
-                defaultMessage="Source"
-              />
-
+             Source
             </div>
             <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] max-lg:w-[3.35rem] ">
-              <FormattedMessage
-                id="app.country"
-                defaultMessage="Country"
-              />
-
+             Country
             </div>
             <div className="w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.1rem] max-lg:w-[3.36rem]">
-              <FormattedMessage
-                id="app.quotation"
-                defaultMessage="Quotation"
-              />
-
+             Quotation
             </div>
             <div className="w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[1.8rem]">
-              <FormattedMessage
-                id="app.pipeline"
-                defaultMessage="Pipeline"
-              />
-
+          Pipeline
             </div>
-            {/* <div className="md:w-[3.9rem]">
-        <FormattedMessage
-                        id="app.weighted"
-                        defaultMessage="Weighted"
-                      />
-          
-          </div> */}
             <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:w-[4.2rem]">
-              <FormattedMessage
-                id="app.assigned"
-                defaultMessage="Assigned"
-              />
-
+             Assigned
             </div>
             <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              <FormattedMessage
-                id="app.owner"
-                defaultMessage="Owner"
-              />
+            Owner
             </div>
             <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-              <FormattedMessage
-                id="app.customer"
-                defaultMessage="Customer"
-              />
+              Customer
+           
             </div>
             {/* <div className="w-[3.8rem]"></div> */}
 
           </div>
        
 
-            {!props.gettingReportProspect && props.reportProspect.length === 0 ? <NodataFoundPage /> : props.reportProspect.map((item, index) => {
+            {!props.gettingReportProspect && props.reportProspect.length === 0 ? <EmptyPage /> : props.reportProspect.map((item, index) => {
               const currentdate = dayjs().format("DD/MM/YYYY");
               const date = dayjs(item.creationDate).format("DD/MM/YYYY");
               const countryCode = item.address[0].countryAlpha2Code
@@ -147,7 +101,7 @@ const {user}=props
                 } `;
               return (
                 <div>
-                  <div className="flex rounded-xl justify-between max-sm:flex-col  bg-white mt-[0.5rem] h-[2.75rem] max-sm:h-[9rem] items-center p-3 "
+                  <div className="flex rounded justify-between max-sm:flex-col  bg-white mt-[0.5rem] h-8 max-sm:h-[9rem] items-center p-1 "
 
                   >
                     <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
@@ -411,7 +365,7 @@ const {user}=props
                         <div>
                           <Tooltip title="Pulse">
                             <MonitorHeartIcon
-                              className=" !text-xl cursor-pointer text-[#df9697]"
+                              className=" !text-icon cursor-pointer text-[#df9697]"
                             //   onClick={() => {
                             //     handleCustomerPulseDrawerModal(true);
                             //     handleSetCurrentCustomer(item);
@@ -423,7 +377,7 @@ const {user}=props
                         <div>
                           <Tooltip title="Notes">
                             <NoteAltIcon
-                              className=" !text-xl cursor-pointer text-[#4bc076]"
+                              className=" !text-xl cursor-pointer text-[#28a355]"
                             //   onClick={() => {
                             //     handleCustomerNotesDrawerModal(true);
                             //     handleSetCurrentCustomer(item);

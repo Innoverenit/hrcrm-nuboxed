@@ -1,5 +1,5 @@
-//import "./styles.css";
-import React, { Component,useState, useMemo ,useEffect} from "react";
+
+import React, {useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {getDashBoardCustomerChart} from "../Dashboard/DashboardAction";

@@ -1,23 +1,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Select, Icon, Tag, Switch } from "antd";
-import { FormattedMessage } from "react-intl";
+import { Button, Select } from "antd";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
-import { Spacer } from "../../../../Components/UI/Elements";
-import { ShowOrCollapse } from "../../../../Components/Common";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { updatePartnerContact,setEditPartnerContact } from "../../PartnerAction";
 import Upload from "../../../../Components/Forms/Formik/Upload";
-import { StyledLabel } from "../../../../Components/UI/Elements";
-import { FlexContainer } from "../../../../Components/UI/Layout";
 import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
-import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
-import dayjs from "dayjs";
 import {getSectors} from "../../../Settings/Sectors/SectorsAction";
 import {getDesignations} from "../../../Settings/Designation/DesignationAction";
 const { Option } = Select;
@@ -181,22 +174,16 @@ class UpdatePartnerContactForm extends Component {
                     width: "45%",
                   }}
                 >
-                  <FlexContainer flexWrap="no-wrap">
+           <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                     <FastField name="imageId" component={Upload} />
                     <div>
-                    <Spacer/>
-                      <FlexContainer justifyContent="space-between">
+                    <div class=" mt-3"/>
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                         <div style={{ width: "30%" }}>
                           <FastField
                             name="salutation"
                             type="text"
-                            // label="Salutation"
-                            label={
-                              <FormattedMessage
-                                id="app.salutation"
-                                defaultMessage="Salutation"
-                              />
-                            }
+                            label="Salutation"
                             options={["Mr.", "Ms.", "None"]}
                             component={SelectComponent}
                             inlineLabel
@@ -209,13 +196,7 @@ class UpdatePartnerContactForm extends Component {
                           <FastField
                             isRequired
                             name="firstName"
-                            // label="First Name"
-                            label={
-                              <FormattedMessage
-                                id="app.firstName"
-                                defaultMessage="First Name"
-                              />
-                            }
+                            label="First Name"
                             type="text"
                             width={"100%"}
                             isColumn
@@ -223,19 +204,13 @@ class UpdatePartnerContactForm extends Component {
                             inlineLabel
                           />
                         </div>
-                      </FlexContainer>
-                      <Spacer />
-                      <FlexContainer justifyContent="space-between">
+                      </div>
+                      <div class=" mt-3" />
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                         <div style={{ width: "40%" }}>
                           <FastField
                             name="middleName"
-                            //label="Middle Name"
-                            label={
-                              <FormattedMessage
-                                id="app.middleName"
-                                defaultMessage="Middle Name"
-                              />
-                            }
+                            label="Middle Name"
                             type="text"
                             width={"100%"}
                             isColumn
@@ -246,13 +221,7 @@ class UpdatePartnerContactForm extends Component {
                         <div style={{ width: "55%" }}>
                           <FastField
                             name="lastName"
-                            //label="Last Name"
-                            label={
-                              <FormattedMessage
-                                id="app.lastName"
-                                defaultMessage="Last Name"
-                              />
-                            }
+                            label="Last Name"
                             type="text"
                             width={"100%"}
                             isColumn
@@ -260,23 +229,18 @@ class UpdatePartnerContactForm extends Component {
                             inlineLabel
                           />
                         </div>
-                      </FlexContainer>
+                      </div>
                     </div>
-                  </FlexContainer>
-                  <Spacer />
-                  <Spacer />
-                  <FlexContainer justifyContent="space-between">
+                  </div>
+                  <div class=" mt-3" />
+                  <div class=" mt-3" />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       <FastField
                         name="countryDialCode"
                         isColumnWithoutNoCreate
                         //label="Mobile #"
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        label="Dial Code"
                         isColumn
                         // margintop={"0.25em"}
                         selectType="dialCode"
@@ -293,12 +257,8 @@ class UpdatePartnerContactForm extends Component {
                       <FastField
                         type="text"
                         name="mobileNumber"
-                        label={
-                          <FormattedMessage
-                            id="app.mobileNo"
-                            defaultMessage="Mobile #"
-                          />
-                        }
+                        label="Mobile #"
+                         
                         //placeholder="Mobile #"
                         component={InputComponent}
                         inlineLabel
@@ -306,21 +266,17 @@ class UpdatePartnerContactForm extends Component {
                         isColumn
                       />
                     </div>
-                  </FlexContainer>
-                  <Spacer />
-                  <FlexContainer justifyContent="space-between">
+                  </div>
+                  <div class=" mt-3" />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       <FastField
                         name="countryDialCode1"
                         isColumnWithoutNoCreate
                         selectType="dialCode"
                         //label="Phone No #"
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode1"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        label="Dial Code"
+                         
                         isColumn
                         // margintop={"0.25em"}
                         component={SearchSelect}
@@ -336,33 +292,23 @@ class UpdatePartnerContactForm extends Component {
                         type="text"
                         name="phoneNumber"
                         //placeholder="Phone #"
-                        label={
-                          <FormattedMessage
-                            id="app.phoneNumber"
-                            defaultMessage="Phone #"
-                          />
-                        }
+                        label="Phone #"
+                         
                         isColumn
                         component={InputComponent}
                         inlineLabel
                         width={"100%"}
                       />
                     </div>
-                  </FlexContainer>
+                  </div>
 
-                  <Spacer />
-                  <FlexContainer justifyContent="space-between">
+                  <div class=" mt-3" />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "100%" }}>
                       <FastField
                         type="email"
                         name="emailId"
-                        //label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.emailId"
-                            defaultMessage="Email"
-                          />
-                        }
+                        label="Email"
                         className="field"
                         isColumn
                         width={"100%"}
@@ -370,40 +316,29 @@ class UpdatePartnerContactForm extends Component {
                         inlineLabel
                       />
                     </div>
-                  </FlexContainer>
-                  <Spacer />
-                  <FlexContainer justifyContent="space-between">
+                  </div>
+                  <div class=" mt-3" />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "100%" }}>
                       <FastField
                         type="text"
                         name="linkedinPublicUrl"
-                        //label="Linkedin "
-                        label={
-                          <FormattedMessage
-                            id="app.linkedinPublicUrl"
-                            defaultMessage="Linkedin"
-                          />
-                        }
+                        label="Linkedin "
                         isColumn
                         width={"100%"}
                         component={InputComponent}
                         inlineLabel
                       />
                     </div>
-                  </FlexContainer>
-                  <Spacer />
+                  </div>
+                  <div class=" mt-3" />
 
-                  <FlexContainer justifyContent="space-between">
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       <FastField
                         name="designationTypeId"
                         //label="Designation"
-                        label={
-                          <FormattedMessage
-                            id="app.role"
-                            defaultMessage="Role"
-                          />
-                        }
+                        label="Role"                         
                         isColumnWithoutNoCreate
                         selectType="designationType"
                         isColumn
@@ -411,27 +346,13 @@ class UpdatePartnerContactForm extends Component {
                         inlineLabel
                       />
                     </div>
-                    {/* <div style={{ width: "47%" }}>
-                    <FastField
-                      name="sectorId"
-                      //label="Department"
-                      label={
-                        <FormattedMessage
-                          id="app.sector"
-                          defaultMessage="Sector"
-                        />
-                      }
-                      isColumnWithoutNoCreate
-                      selectType="sectorName"
-                      isColumn
-                      component={SearchSelect}
-                      inlineLabel
-                    />
-                  </div> */}
-                  </FlexContainer>
+               
+                  </div>
                   
-                  <Spacer />
-                  <FlexContainer justifyContent="space-between"></FlexContainer>
+                  <div class=" mt-3" />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+
+                  </div>
                 </div>
                 &nbsp;
                 <div
@@ -442,7 +363,7 @@ class UpdatePartnerContactForm extends Component {
                 >
                   
                   
-                  <Spacer />
+                  <div class=" mt-3" />
                   <FieldArray
                     name="address"
                     label="searxh"
@@ -453,31 +374,27 @@ class UpdatePartnerContactForm extends Component {
                       />
                     )}
                   />
-                  <Spacer  style={{ marginTop: "1.25em" }}/>
+                  <div class=" mt-3"  style={{ marginTop: "1.25em" }}/>
                   <Field
                     name="notes"
-                    // label="Notes"
-                    label={
-                      <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                    }
+                    label="Notes"
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
                   />
                 </div>
               </div>
-              <FlexContainer justifyContent="flex-end">
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
                   // icon={<PoweroffOutlined />}
                   loading={updatePartnerContactById}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
-                  {/*                     
-                    Create */}
+                                    
+                    Create 
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
         </Formik>

@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 const UpdateEventForm = lazy(() => import("./UpdateEventForm"));
@@ -10,16 +10,16 @@ const UpdateEventModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.updateevent"
-          defaultMessage="Update Event"
-        />}
+        title="Update Event"
         width={drawerWidth}
         visible={updateEventModal}
         onClose={() => handleUpdateEventModal(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <UpdateEventForm {...formProps} />
+          <UpdateEventForm {...formProps}
+            selectedLanguage={props.selectedLanguage}
+            translateText={props.translateText}
+          />
         </Suspense>
       </StyledDrawer>
     </>

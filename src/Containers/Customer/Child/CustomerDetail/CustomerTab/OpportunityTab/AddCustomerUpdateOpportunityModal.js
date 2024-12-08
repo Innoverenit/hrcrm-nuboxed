@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
 const UpdateCustomerOpportunityForm = lazy(() => import("./UpdateCustomerOpportunityForm"));
@@ -10,15 +10,17 @@ const AddCustomerUpdateOpportunityModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={
-          <FormattedMessage id="app.updateQuotation" defaultMessage="Update Quotation" />
-        }
+        title="Update Quotation" 
         width="60%"
         visible={props.addUpdateCustomerOpportunityModal}
         onClose={() => props.handleUpdateCustomerOpportunityModal(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <UpdateCustomerOpportunityForm opportunityId={props.opportunityId} {...formProps}/> {" "}
+          <UpdateCustomerOpportunityForm opportunityId={props.opportunityId} {...formProps}
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
+          translatedMenuItems={props.translatedMenuItems}
+          /> {" "}
         </Suspense>
       </StyledDrawer>
     </>

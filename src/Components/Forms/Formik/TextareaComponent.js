@@ -1,6 +1,6 @@
 import React from "react";
 import { get } from "lodash";
-import { StyledTextarea, StyledLabel } from "../../UI/Elements";
+import { StyledTextarea } from "../../UI/Elements";
 import { ValidationError } from "../../UI/Elements";
 export const TextareaComponent = ({
   field,
@@ -15,9 +15,9 @@ export const TextareaComponent = ({
   return (
     <div>
       {!noLabel && (
-        <StyledLabel style={{ flexBasis: labelWidth || "20%" }}>
+        <div class=" text-xs font-bold font-poppins" style={{ flexBasis: labelWidth || "20%" }}>
           {label}
-        </StyledLabel>
+        </div>
       )}
       <StyledTextarea {...field} {...props} validateOnChange={false} />
       {get(touched, field.name) && get(errors, field.name) && (

@@ -1,6 +1,7 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { BundleLoader } from "../../../Components/Placeholder";
 import { Draggable } from "react-beautiful-dnd";
 import {deleteDealsData,sendToWon,lostRecruit} from "../DealAction";
 const DealGroupCard =lazy(()=>import("./DealGroupCard"));
@@ -21,7 +22,7 @@ class DealStageColumn extends Component {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
         >
-  
+   <Suspense fallback={<BundleLoader />}>
             <DealGroupCard
               isDragging={snapshot.isDragging}
               primaryTitle={`${dealDetailsbyID.opportunityName || ""}`}
@@ -50,7 +51,7 @@ class DealStageColumn extends Component {
                 
               }}
               handleDelete={() => this.props.deleteDealsData(dealDetailsbyID.invOpportunityId)}
-            />
+            /></Suspense>
             </div>
             )}
                  </Draggable>

@@ -1,7 +1,6 @@
 import { Button, Checkbox, Divider } from "antd";
 import React, { useEffect, useState } from "react";
-import { Formik, Form, FastField, Field, FieldArray } from "formik";
-import { FormattedMessage } from "react-intl";
+
 import { connect } from "react-redux";
 import dayjs from "dayjs";
 import {
@@ -10,9 +9,7 @@ import {
 } from "../../../SettingsAction";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { bindActionCreators } from "redux";
-import { Spacer } from "../../../../../Components/UI/Elements";
 import {
-  FlexContainer,
   TabsWrapper,
 } from "../../../../../Components/UI/Layout";
 
@@ -544,7 +541,7 @@ const NotificationAccess = (props) => {
           ) : (
             <TabsWrapper style={{overflow: "auto"}}>
               {/* customer */}
-              <FlexContainer justifyContent="space-around">
+              <div class=" flex flex-row flex-wrap items-start self-start justify-around grow shrink h-auto mr-auto ">
                 <div >
                   <h1>Create Customer</h1>
                   <Checkbox
@@ -561,7 +558,7 @@ const NotificationAccess = (props) => {
                     onChange={onCustomerChange}
                   />
                 </div>
-                <Spacer  />
+                <mt-3  />
 
                 {/* Customer */}
                 <div>
@@ -580,13 +577,13 @@ const NotificationAccess = (props) => {
                     onChange={onContactChange}
                   />
                 </div>
-              </FlexContainer>
-              <Spacer 
+              </div>
+              <mt-3 
               // style={{ marginTop: "2.2em" }}
                />
 
               {/* Opportunity */}
-              <FlexContainer justifyContent="space-around">
+              <div class=" flex flex-row flex-wrap items-start self-start justify-around grow shrink h-auto mr-auto ">
                 <div>
                   <h1> Create Opportunity</h1>
                   <Checkbox
@@ -603,7 +600,7 @@ const NotificationAccess = (props) => {
                     onChange={onOpportunityChange}
                   />
                 </div>
-                <Spacer />
+                <mt-3 />
                 {/* Contact */}
                 <div>
                   <h1>Create Requirement</h1>
@@ -621,11 +618,11 @@ const NotificationAccess = (props) => {
                     onChange={onRequirementChange}
                   />
                 </div>
-              </FlexContainer>
-              <Spacer />
+              </div>
+              <mt-3 />
 
               {/* Talent */}
-              <FlexContainer justifyContent="space-around">
+              <div class=" flex flex-row flex-wrap items-start self-start justify-around grow shrink h-auto mr-auto ">
                 <div>
                   <h1>Create Talent</h1>
                   <Checkbox
@@ -643,7 +640,7 @@ const NotificationAccess = (props) => {
                   />
                 </div>
 
-                <Spacer />
+                <mt-3 />
                 <div>
                   <h1>Close Requirement</h1>
                   <Checkbox
@@ -660,9 +657,9 @@ const NotificationAccess = (props) => {
                     onChange={onCloseRequirementChange}
                   />
                 </div>
-              </FlexContainer>
-              <Spacer />
-              <FlexContainer justifyContent="space-around">
+              </div>
+              <mt-3 />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-around grow shrink h-auto mr-auto ">
                 <div>
                   <h1>Add Vendor</h1>
                   <Checkbox
@@ -679,7 +676,7 @@ const NotificationAccess = (props) => {
                     onChange={onVendorChange}
                   />
                 </div>
-                <Spacer />
+                <mt-3 />
                 <div>
                   <h1>Customer Login</h1>
                   <Checkbox
@@ -696,9 +693,9 @@ const NotificationAccess = (props) => {
                     onChange={onCustomerLoginChange}
                   />
                 </div>
-              </FlexContainer>
-              <Spacer  />
-              <FlexContainer justifyContent="space-around">
+              </div>
+              <mt-3  />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-around grow shrink h-auto mr-auto ">
                 <div>
                   <h1>Vendor Login</h1>
                   <Checkbox
@@ -715,7 +712,7 @@ const NotificationAccess = (props) => {
                     onChange={onVendorLoginChange}
                   />
                 </div>
-                <Spacer />
+                <mt-3 />
                 <div>
                   <h1>Candidate Select</h1>
                   <Checkbox
@@ -732,9 +729,9 @@ const NotificationAccess = (props) => {
                     onChange={onCandidateSelectChange}
                   />
                 </div>
-              </FlexContainer>
-              <Spacer />
-              <FlexContainer justifyContent="space-around">
+              </div>
+              <mt-3 />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-around grow shrink h-auto mr-auto ">
                 <div>
                   <h1>Candidate Onboarded</h1>
                   <Checkbox
@@ -751,7 +748,7 @@ const NotificationAccess = (props) => {
                     onChange={onCandidateOnboardChange}
                   />
                 </div>
-                <Spacer />
+                <mt-3 />
                 <div>
                   <h1>Candidate Drop</h1>
                   <Checkbox
@@ -768,9 +765,9 @@ const NotificationAccess = (props) => {
                     onChange={onCandidateDropChange}
                   />
                 </div>
-              </FlexContainer>
-              <Spacer />
-              <FlexContainer justifyContent="space-around">
+              </div>
+              <mt-3 />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-around grow shrink h-auto mr-auto ">
                 <div>
                   <h1>Task</h1>
                   <Checkbox
@@ -787,7 +784,7 @@ const NotificationAccess = (props) => {
                     onChange={onTaskChange}
                   />
                 </div>
-                <Spacer />
+                <mt-3 />
                 <div>
                   <h1>Event</h1>
                   <Checkbox
@@ -804,9 +801,9 @@ const NotificationAccess = (props) => {
                     onChange={onEventChange}
                   />
                 </div>
-              </FlexContainer>
-              <Spacer />
-              <FlexContainer justifyContent="space-around">
+              </div>
+              <mt-3 />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-around grow shrink h-auto mr-auto ">
                 <div>
                   <h1>Call</h1>
                   <Checkbox
@@ -823,7 +820,7 @@ const NotificationAccess = (props) => {
                     onChange={onCallChange}
                   />
                 </div>
-                <Spacer />
+                <mt-3 />
                 <div>
                   <h1> Publish Job</h1>
                   <Checkbox
@@ -840,9 +837,9 @@ const NotificationAccess = (props) => {
                     onChange={onPublishJobChange}
                   />
                 </div>
-              </FlexContainer>
-              <Spacer/>
-              <FlexContainer justifyContent="space-around">
+              </div>
+              <div class="mt-3" />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-around grow shrink h-auto mr-auto ">
                 <div>
                   <h1> Publish Job on Website</h1>
                   <Checkbox
@@ -859,7 +856,7 @@ const NotificationAccess = (props) => {
                     onChange={onWebsiteChange}
                   />
                 </div>
-                <Spacer />
+                <mt-3 />
                 <div>
                   <h1> Publish Job on JobBoard</h1>
                   <Checkbox
@@ -876,9 +873,9 @@ const NotificationAccess = (props) => {
                     onChange={onPublishJobBoardChange}
                   />
                 </div>
-              </FlexContainer>
-              <Spacer  />
-              <FlexContainer justifyContent="space-around">
+              </div>
+              <mt-3  />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-around grow shrink h-auto mr-auto ">
                 <div>
                   <h1>UnPublish Job</h1>
                   <Checkbox
@@ -895,7 +892,7 @@ const NotificationAccess = (props) => {
                     onChange={onUnpublishJobChange}
                   />
                 </div>
-              </FlexContainer>
+              </div>
 
               <div>
                 Updated on{" "}
@@ -903,7 +900,7 @@ const NotificationAccess = (props) => {
                 {props.notificationAcces.name}
               </div>
 
-              <FlexContainer justifyContent="flex-end">
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -912,9 +909,9 @@ const NotificationAccess = (props) => {
                     handleUpdateAccess();
                   }}
                 >
-                  <FormattedMessage id="app.Update" defaultMessage="Update" />
+                 Update
                 </Button>
-              </FlexContainer>
+              </div>
             </TabsWrapper>
           )}
         </div>

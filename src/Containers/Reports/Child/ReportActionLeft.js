@@ -1,16 +1,8 @@
 import React from "react";
 import { bindActionCreators } from "redux";
-import { Badge, Popover,Tooltip } from "antd";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { Tag, } from "antd";
-import ReceiptIcon from '@mui/icons-material/Receipt';
-import PersonIcon from '@mui/icons-material/Person';
-import FactCheckIcon from '@mui/icons-material/FactCheck';
-import LocationCityIcon from '@mui/icons-material/LocationCity';
-import ApartmentIcon from '@mui/icons-material/Apartment';
-import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
-import AcUnitIcon from '@mui/icons-material/AcUnit';
 import { StyledSelect, } from "../../../Components/UI/Antd";
 import {
   setSelectedReportType,
@@ -21,19 +13,39 @@ import {
 } from "../ReportAction";
 const Option = StyledSelect.Option;
 class ReportActionLeft extends React.Component {
-  // state = {
-  //   // dropdownData: {
-  //   //   investorTypes: ["Investor List","Investor all contacts","All Deals","Open Deals","Closed Deals","Pitch"],
-  //   //   prospectTypes: ["Prospect List","Prospect all contacts","All Opportunities","Open Opportunities","Closed Opportunities","Pitch"],
-  //   //   hrTypes: ["Employee","Suspended Employee","All Attendedance","Expenses","Mileages","Leaves"],
-  //   //   recruitProType: ["Requirement", "Selected"],
-  //   //   // Add more icons and corresponding items as needed
-  //   // },
-  //   activeIcon: null,
-  // };
-  // handleIconClick = (iconKey) => {
-  //   this.setState({ activeIcon: iconKey });
-  // };
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+      "198",  // "Enterprise",
+       "23" // "My View"
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
+
+
   render() {
     const {
       reportTypes,
@@ -63,232 +75,114 @@ class ReportActionLeft extends React.Component {
     console.log(selectedSubReportType)
     return (
       <div class=" flex items-center" >
-
-{/* <div class="flex w-[12rem] ">
-        <Badge
-        size="small"
-      >
-        <span class=" cursor-pointer ml-2 "
-          > 
-              <Tooltip title="My Details">
-          <PersonIcon  style={{ fontSize: "1rem" }}/>
-          </Tooltip>
-        
-        </span>
-        </Badge>
-        {user.hrInd === true  && (
-        <Badge
-        size="small"
-      >
-        <span class="cursor-pointer ml-2" 
- onClick={() => handleIconClick("hrTypes")}
-        >
-         <Tooltip title="HR">
-             
-     <FactCheckIcon
-                style={{ fontSize: "1rem", }}
-              />
-              </Tooltip>
-        </span>
-  </Badge>
-          )} 
-    {user.crmInd === true && (
-        <Badge
-        size="small"
-      >
-        <span class="cursor-pointer ml-2"
-          onClick={() => handleIconClick("prospectTypes")}
-      
-        >
-          <Tooltip title="Prospects">
-          <ApartmentIcon
-
-style={{ fontSize: "1rem", }}
-/>
-</Tooltip>        
-        </span>
-        </Badge>
- )} 
-       
-
-   
-    {user.erpInd === true && (
-         <Badge
-         size="small"
-       >
-        <span class="cursor-pointer ml-2"
-
-        >
-          <Tooltip title="Customers">
-          <AcUnitIcon
-                style={{ fontSize: "1rem", }}
-              />
-          </Tooltip>
-        </span>
-        </Badge>
-  )}
-{user.erpInd === true  && (
-      <Badge
-      size="small"
-    >
-        <span class="cursor-pointer ml-2"
-        >  <Tooltip title="Order">
-          <DynamicFeedIcon
-                style={{ fontSize: "1rem", }}
-              />
-           </Tooltip>
-        </span>
-        </Badge>
- )} 
-   
-    {user.erpInd === true && (
-        <Badge
-        size="small"
-        // count={(props.reportViewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-        // overflowCount={999}
-      >
-        <span class="cursor-pointer ml-2"
-            // onClick={() => this.handleIconClick("investorTypes")}
-        // onClick={() => handleButtonClick("Finance")} 
-        // style={{
-        //   color:activeButton === "Finance" && "tomato",
-          
-        // }}
-        >
-           <Tooltip title="Finance">
-          <ReceiptIcon  style={{ fontSize: "1rem" ,}}/>
-          </Tooltip>
-          
-        </span>
-        </Badge>
-     )} 
-        {user.imInd === true  && (
-            <Badge
-            size="small"
-            // count={(props.reportViewType === "card" && props.leadsCountData.LeadsDetails) || 0}
-            // overflowCount={999}
-          >
-        <span class="cursor-pointer ml-2"
-         onClick={() => handleIconClick("investorTypes")}
-        // onClick={() => setReportViewType("investor")} 
-        // style={{
-        //   color:activeButton === "Investors" && "tomato",
-    
-        // }}
-        >  
-        <Tooltip title="Investors">
-          <LocationCityIcon
-
-style={{ fontSize: "1rem" ,}}
-/>
-</Tooltip>       
-        </span>
-        </Badge>
- )} 
-    
-   </div> */}
           {user.department === "Management" && (
               <>
               <div class=" flex ">
               <div>
                   <Tag
-                    color={reportViewType === "ALL" ? "tomato" : "#FFA500"}
+                    color={this.props.userorgflipClick && reportViewType === "ALL" ? "tomato" : "#FFA500"}
                     style={{
                       cursor: "pointer",
-                      fontWeight: reportViewType === "ALL" ? "bold" : null,
+                      fontWeight: this.props.userorgflipClick && reportViewType === "ALL" ? "bold" : null,
                       textAlign: "center",
                       fontFamily:"poppins",
                       borderColor: "tomato",
                     }}
-                    onClick={() => setReportViewType("ALL")}
+                    onClick={() =>{ 
+                      {!this.props.userorgflipClick ? setReportViewType("ALL") : setReportViewType("ME");}
+                      this.props.UserOrgFlipClick();
+                    }}
                   >
-                    {/* Organization */}
-                    <FormattedMessage
-                      id="app.enterprise"
-                      defaultMessage="Enterprise"
-                    />
+                {this.props.userorgflipClick ?
+                    "Enterprise"
+                    
+                     : "My View"
+                  }
                   </Tag>
                 </div>
-                {/* <div>
-                  <Tag
-                    color={reportViewType === "ME" ? "	#FFA500" : "orange"}
+             
+
+{/* {this.props.selectedCategory === "Orders" && (
+                <Badge
+                  size="small"
+                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
+                // overflowCount={999}
+                >
+                  <span class="cursor-pointer mr-1"
+                    onClick={() => this.props.handleButtonIcon("repair")}
                     style={{
-                      cursor: "pointer",
-                      fontWeight: reportViewType === "ME" ? "bold" : null,
-                      textAlign: "center",
-                      borderColor: "orange",
+                      color: this.props.selectedButtonIcon === "repair" && "tomato",
+
                     }}
-                    onClick={() => setReportViewType("ME")}
-                  >My View</Tag>
-                </div> */}
-                {/* <div class=" mt-2">
-              {reportViewType === "ME" ? (
-                <StyledSelect
-                  showSearch
-                  width={"20%"}
-                  placeholder="Select Report"
-                  onChange={(type) => setSelectedReportType(type)}
-                  defaultValue={selectedReportType}
-                  filterOption={(input, option) =>
-                    option.props.children
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0
-                  }
-                >
-                  {reportTypes.map((option, i) => (
-                    <Option key={i} value={option}>
-                      {option}
-                    </Option>
-                  ))}
-                </StyledSelect>
-              ) : (
-                <StyledSelect
-                  showSearch
-                  width={"20%"}
-                  placeholder="Select Report"
-                  onChange={(type) => setSelectedReportType(type)}
-                  defaultValue={selectedReportType}
-                  filterOption={(input, option) =>
-                    option.props.children
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0
-                  }
-                >
-                  {reportType.map((option, i) => (
-                    <Option key={i} value={option}>
-                      {option}
-                    </Option>
-                  ))}
-                </StyledSelect>
+                  >
+                    <Tooltip title="Repair">
+                      <Avatar style={{ background: this.props.selectedButtonIcon === "repair" ? "#f279ab" : "#28a355" }}>
+                        <OnDeviceTrainingIcon className="text-white !text-icon" />
+                      </Avatar>
+                    </Tooltip>
+
+                  </span>
+                </Badge>
               )}
-
-            </div> */}
-            {/* {activeIcon && (
-            <div class=" mt-2">
-            
-              <StyledSelect
-                  showSearch
-                  width={"20%"}
-                  placeholder="Select Report"
-                  onChange={(e) => this.props.handleDropChange(e)}
-                  defaultValue={selectedReportType}
-                  filterOption={(input, option) =>
-                    option.props.children
-                      .toLowerCase()
-                      .indexOf(input.toLowerCase()) >= 0
-                  }
+         
+{this.props.selectedCategory === "Orders" && (     
+ <Badge
+                  size="small"
+                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
+                // overflowCount={999}
                 >
-                   {dropdownData[activeIcon].map((item, i) => (
-                <Option key={i} value={item}>
-                  {item}
-                </Option>
-              ))}
-                 
-                </StyledSelect>
-            
+                  <span class="cursor-pointer mr-1"
+                    onClick={() => this.props.handleButtonIcon("Procure")}
+                    style={{
+                      color: this.props.selectedButtonIcon === "Procure" && "tomato",
 
-            </div>
-               )} */}
+                    }}
+                  >
+                    <Tooltip title="Procure">
+                      <Avatar style={{ background: this.props.selectedButtonIcon === "Procure" ? "#f279ab" : "#28a355" }}>
+                        <ShopIcon className="text-white !text-icon" />
+                      </Avatar>
+                    </Tooltip>
+
+                  </span>
+                </Badge>
+)}
+{this.props.selectedCategory === "Orders" && (   
+<Badge
+                  size="small"
+                // count={(props.viewType === "card" && props.leadsCountData.LeadsDetails) || 0}
+                // overflowCount={999}
+                >
+                  <span class="cursor-pointer mr-1"
+                    onClick={() => this.props.handleButtonIcon("production")}
+                    style={{
+                      color: this.props.selectedButtonIcon === "production" && "tomato",
+
+                    }}
+                  >  <Tooltip title="Production">
+                      <Avatar style={{ background: this.props.selectedButtonIcon === "production" ? "#f279ab" : "#28a355" }}>
+                        <DynamicFeedIcon className="text-white !text-icon"
+
+                        />
+                      </Avatar>
+                    </Tooltip>
+                  </span>
+                </Badge>)} */}
+
+                {/* {this.props.selectedCategory === "Production" && this.props.UserOrgFlipClick && reportViewType === "ALL" && (
+<span class="cursor-pointer mr-1"
+                    onClick={() => this.props.handleButtonIcon("location")}
+                    style={{
+                      color: this.props.selectedButtonIcon === "location" && "tomato",
+                    }}
+                  >
+                    <Tooltip title="Location">
+                      <Avatar style={{ background: this.props.selectedButtonIcon === "location" ? "#f279ab" : "#28a355" }}>
+                        <LocationOnIcon className="text-white !text-icon" />
+                      </Avatar>
+                    </Tooltip>
+                  </span>
+)} */}
                 </div>
               </>
             )}

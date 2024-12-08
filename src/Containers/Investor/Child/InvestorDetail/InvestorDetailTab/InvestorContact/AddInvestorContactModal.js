@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import {handleInvestorContactModal} from "../../../../InvestorAction";
@@ -19,10 +19,7 @@ const AddInvestorContactModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.contact"
-          defaultMessage="Contact"
-        />}
+        title="Contact"
         width="60%"
         visible={openInvestorContactModal}
         closable
@@ -32,7 +29,9 @@ const AddInvestorContactModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <InvestorContactForm   investorDetails={investorDetails} {...formProps} />{" "}
+          <InvestorContactForm 
+          id={props.id}  
+          investorDetails={investorDetails} {...formProps} />{" "}
     
         </Suspense>
       </StyledDrawer>

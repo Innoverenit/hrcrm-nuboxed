@@ -8,7 +8,7 @@ import {
 } from "../../../Components/UI/Layout";
 import { BundleLoader } from "../../../Components/Placeholder";
 import DnsIcon from '@mui/icons-material/Dns';
-import { FormattedMessage } from "react-intl";
+
 const OpportunityRequirementBoard = lazy(() => import("./OpportunityRequirementBoard"));
 const Details = lazy(() => import("./Details"));
 
@@ -69,16 +69,13 @@ class DashboardDetails extends Component {
           
                             <ListAltIcon  />
                     <span class=" ml-[0.25em]" >
-                    <FormattedMessage
-        id="app.kanban"
-        defaultMessage="Kanban"
-      />
+                 Kanban
                       </span>
                   
                   {activeKey === "1" && (
                     <>
                       {/* <ActionIcon
-                        type="plus"
+                       
                         tooltipTitle="Add"
                         handleIconClick={() => handleCandidateBankModal(true)}
                         size="1em"
@@ -105,16 +102,13 @@ class DashboardDetails extends Component {
                  <DnsIcon/>
    
                  <span class=" ml-[0.25em]" >
-                    <FormattedMessage
-        id="app.details"
-        defaultMessage="Details"
-      />
+                   Details
                       </span>
                   
                   {activeKey === "2" && (
                     <>
                       {/* <ActionIcon
-                        type="plus"
+                       
                         tooltipTitle="Add"
                         handleIconClick={() => handleCandidateBankModal(true)}
                         size="1em"
@@ -138,39 +132,6 @@ class DashboardDetails extends Component {
               </Suspense>
             </TabPane>
 
-            {/* <TabPane
-              tab={
-                <>
-                 
-               
-                 <FontAwesomeIcon icon={solid('bullseye')} />
-                    <span style={{ marginLeft: "0.25em" }}>Pareto</span>
-                  
-                  {activeKey === "3" && (
-                    <>
-                    
-                    </>
-                  )}
-                </>
-              }
-              key="3"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <Example/>
-         
-              </Suspense>
-            </TabPane> */}
-
-           
-           
-
-          
-           
-           
-
-            
-            {/* )} */}
           </StyledTabs>
         </TabsWrapper>
         <Suspense fallback={null}>

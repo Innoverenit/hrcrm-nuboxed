@@ -1,5 +1,5 @@
 import * as types from "./SuppliersActionType";
-import moment from "moment";
+import dayjs from "dayjs";
 const initialState = {
   dateRangeList: [
     {
@@ -8,10 +8,10 @@ const initialState = {
       value: "FY",
       starter: true,
       isSelected: true,
-      startDate: moment()
+      startDate: dayjs()
         .startOf("year")
         .toISOString(),
-      endDate: moment()
+      endDate: dayjs()
         .endOf("year")
         .toISOString(),
     },
@@ -21,10 +21,10 @@ const initialState = {
       value: "QTD",
       starter: false,
       isSelected: false,
-      startDate: moment()
+      startDate: dayjs()
         .startOf("quarter")
         .toISOString(),
-      endDate: moment()
+      endDate: dayjs()
         .endOf("quarter")
         .toISOString(),
     },
@@ -34,10 +34,10 @@ const initialState = {
       value: "MTD",
       starter: false,
       isSelected: false,
-      startDate: moment()
+      startDate: dayjs()
         .startOf("month")
         .toISOString(),
-      endDate: moment()
+      endDate: dayjs()
         .endOf("month")
         .toISOString(),
     },
@@ -47,10 +47,10 @@ const initialState = {
       value: "1W",
       starter: false,
       isSelected: false,
-      startDate: moment()
+      startDate: dayjs()
         .startOf("week")
         .toISOString(),
-      endDate: moment()
+      endDate: dayjs()
         .endOf("week")
         .toISOString(),
     },
@@ -58,10 +58,10 @@ const initialState = {
   todoDrawerVisible: false,
   timeRangeType: "year",
   isCustomSelected: false,
-  startDate: moment()
+  startDate: dayjs()
     .startOf("year")
     .toISOString(),
-  endDate: moment()
+  endDate: dayjs()
     .endOf("year")
     .toISOString(),
 
@@ -69,6 +69,24 @@ const initialState = {
   suppliersDashboardType: "All",
 
   addSuppliersModal: false,
+
+  addingContactMand:false,
+  addingContactMandError:false,
+
+  removeAddressData:false,
+  removeAddressDataError:false,
+
+  updateContactAddress:false,
+  updateContactAddressError:false,
+
+  addSuppliersAddressModal:false,
+
+  addingContactAddress:false,
+  addingContactAddressError:false,
+ 
+  fetchingContactAddress:false,
+  fetchingContactAddressError:false,
+  contactAddress:[],
 
   addingSuppliers: false,
   addingSuppliersError: false,
@@ -159,11 +177,23 @@ const initialState = {
    fetchingMaterialWiseQualityError: false ,
    materialwiseQuality:[],
 
+   addingSupplierApproval: false,
+   addingSupplierApprovalError: false,
+
+   fetchingSupplierCountNot: false,
+   fetchingSupplierCountNotError: false,
+   countSupplierNot:{},
+
   suppliersListOpenDrawer:false,
 
   fetchingSuppliesListById: false,
   fetchingSuppliesListByIdError: false,
   suppliesBySupplier: [],
+
+
+
+  addingRecallData:false,
+  addingRecallDataError:false,
 
   addingSuppliersToggle: false,
   addingSuppliersToggleError: false,
@@ -173,6 +203,7 @@ const initialState = {
 
   addingManual: false,
   addingManualError:false,
+  preViewList:[],
 
   feedbackModal: false,
 
@@ -253,6 +284,10 @@ const initialState = {
   addingDocumentBySupplierId: false,
   addingDocumentBySupplierIdError: false,
 
+  fetchingErpContactCount:false,
+  fetchingErpContactCountError: false,
+  erpContactCount:{},
+
   addDeleteSuppliesModal: false,
 
   updatePriceSupplierListItem: false,
@@ -265,6 +300,8 @@ const initialState = {
   fetchingDeletedSuppliesBySuppliesIdError: false,
 
   addDeletePurchaseModal: false,
+
+  addRecallModal:false,
 
   fetchingDeletedPurchaseById: false,
   fetchingDeletedPurchaseByIdError: false,
@@ -280,6 +317,19 @@ const initialState = {
   fetchingDocumentsBySupplierId: false,
   fetchingDocumentsBySupplierIdError: false,
   documentsBySupplierId: [],
+
+  fetchingDocumentsCountBySupplierId: false,
+  fetchingDocumentsCountBySupplierIdError: false,
+  documentCountSupplierId:{},
+
+  deleteErpDocument: false,
+  deleteErpDocumentError: false,
+
+  updateDocumentById: false,
+  updateDocumentByIdError: false,
+
+  updateDocumentSupplier: false,
+  updateDocumentSupplierError: false,
 
   addSupplierContactModal: false,
 
@@ -352,6 +402,10 @@ const initialState = {
   updatePriceByPoListItem: false,
   updatePriceByPoListItemError: false,
 
+  fetchingBatchNo:false,
+  fetchingBatchNoError:false,
+  batchNo:[],
+
   updatingInStockSupplierSuppliesById: false,
   updatingInStockSupplierSuppliesByIdError: false,
 
@@ -422,16 +476,16 @@ const mergeFiscalAndQuarter = (dateRange, newDate) => {
           newDate.metaData.fiscalMapper.metaData.currentQuarterEndDate +
           "T00:00:00Z",
       };
-      // if (moment().isBetween(moment(q1s), moment(q1e))) {
+      // if (dayjs().isBetween(dayjs(q1s), dayjs(q1e))) {
       //   return { ...date, startDate: q1s, endDate: q1e };
       // }
-      // if (moment().isBetween(moment(q2s), moment(q2e))) {
+      // if (dayjs().isBetween(dayjs(q2s), dayjs(q2e))) {
       //   return { ...date, startDate: q2s, endDate: q2e };
       // }
-      // if (moment().isBetween(moment(q3s), moment(q3e))) {
+      // if (dayjs().isBetween(dayjs(q3s), dayjs(q3e))) {
       //   return { ...date, startDate: q3s, endDate: q3e };
       // }
-      // if (moment().isBetween(moment(q4s), moment(q4e))) {
+      // if (dayjs().isBetween(dayjs(q4s), dayjs(q4e))) {
       //   return { ...date, startDate: q4s, endDate: q4e };
       // }
     } else if (date.value === "FY") {
@@ -457,6 +511,13 @@ export const suppliersReducer = (state = initialState, action) => {
 
     case types.HANDLE_SUPPLIERS_MODAL:
       return { ...state, addSuppliersModal: action.payload };
+
+      case types.HANDLE_RECALL_MODAL:
+        return { ...state, addRecallModal: action.payload };
+
+
+      case types.EMPTY_NOT_APPROVED_SUPPLIER_LIST:
+      return { ...state, notApprovalSupplierList: [] };
 
 
       case types.HANDLE_SUPPLIER_INVENTORY_IMPORT_MODAL:
@@ -934,6 +995,59 @@ export const suppliersReducer = (state = initialState, action) => {
       };
 
 
+      case types.ADDING_SUPPLIER_APPROVAL_REQUEST:
+        return { ...state, addingSupplierApproval: true };
+      case types.ADDING_SUPPLIER_APPROVAL_SUCCESS:
+        return {
+          ...state,
+          addingSupplierApproval: false,
+          // supplierList: state.supplierList.map((item) => {
+          //   if (item.supplierId === action.payload.supplierId) {
+          //     return action.payload;
+          //   } else {
+          //     return item;
+          //   }
+          // }),
+          supplierList: state.supplierList.filter(
+            (item) => item.supplierId !== action.payload
+          ),
+        };
+      case types.ADDING_SUPPLIER_APPROVAL_FAILURE:
+        return {
+          ...state,
+          addingSupplierApproval: false,
+          addingSupplierApprovalError: true,
+        };
+
+
+
+
+
+
+        case types.ADD_RECALL_DATA_REQUEST:
+      return { ...state, addingRecallData: true };
+    case types.ADD_RECALL_DATA_SUCCESS:
+      return {
+        ...state,
+        addingRecallData: false,
+        addRecallModal: false,
+        //addedOpportunity:action.payload,
+        //opportunityByUserId: [action.payload, ...state.opportunityByUserId],
+        // clearbit: null,
+      };
+    case types.ADD_RECALL_DATA_FAILURE:
+      return {
+        ...state,
+        addingRecallData: false,
+        addingRecallDataError: true,
+        //addOpportunityModal: false,
+      };
+
+
+
+
+
+
     case types.GET_SUPPLIERS_NOT_APPROVAL_LIST_REQUEST:
       return { ...state, fetchingNotApprovalSupplierList: true };
     case types.GET_SUPPLIERS_NOT_APPROVAL_LIST_SUCCESS:
@@ -986,7 +1100,9 @@ export const suppliersReducer = (state = initialState, action) => {
         ...state,
         addingDocumentBySupplierId: false,
         addingDocumentBySupplierIdError: false,
+        documentsBySupplierId: [action.payload, ...state.documentsBySupplierId],
         supplierDocumentUploadModal: false,
+        
       };
     case types.ADD_SUPPLIER_DOCUMENT_FAILURE:
       return {
@@ -1017,6 +1133,82 @@ export const suppliersReducer = (state = initialState, action) => {
         fetchingDocumentsBySupplierId: false,
         fetchingDocumentsBySupplierIdError: true,
       };
+
+      case types.GET_SUPPLIER_DOCUMENTS_COUNT_REQUEST:
+        return {
+          ...state,
+          fetchingDocumentsCountBySupplierId: true,
+        };
+      case types.GET_SUPPLIER_DOCUMENTS_COUNT_SUCCESS:
+        return {
+          ...state,
+          fetchingDocumentsCountBySupplierId: false,
+          documentCountSupplierId: action.payload,
+        };
+      case types.GET_SUPPLIER_DOCUMENTS_COUNT_FAILURE:
+        return {
+          ...state,
+          fetchingDocumentsCountBySupplierId: false,
+          fetchingDocumentsCountBySupplierIdError: true,
+        };
+
+        case types.DELETE_ERP_DOCUMENT_REQUEST:
+          return { ...state, deleteErpDocument: true };
+        case types.DELETE_ERP_DOCUMENT_SUCCESS:
+          return {
+            ...state,
+            deleteErpDocument: false,
+            documentsBySupplierId: state.documentsBySupplierId.filter(
+              (item) => item.documentId !== action.payload
+            ),
+          };
+        case types.DELETE_ERP_DOCUMENT_FAILURE:
+          return { ...state, 
+             deleteErpDocument: false,
+             deleteErpDocumentError: false };
+
+             case types.UPDATE_ERP_DOCUMENT_BY_ID_REQUEST:
+              return { ...state, updateDocumentById: true };
+            case types.UPDATE_ERP_DOCUMENT_BY_ID_SUCCESS:
+              return {
+                ...state,
+                updateDocumentById: false,
+                documentsBySupplierId: state.documentsBySupplierId.map((item) => {
+                  if (item.documentId === action.payload.documentId) {
+                    return action.payload;
+                  } else {
+                    return item;
+                  }
+                }),
+              };
+            case types.UPDATE_ERP_DOCUMENT_BY_ID_FAILURE:
+              return {
+                ...state,
+                updateDocumentById: false,
+                updateDocumentByIdError: true,
+              };
+        
+              case types.UPDATE_ERP_DOCUMENT_SUPPLIER_REQUEST:
+                return { ...state, updateDocumentSupplier: true };
+              case types.UPDATE_ERP_DOCUMENT_SUPPLIER_SUCCESS:
+                return {
+                  ...state,
+                  updateDocumentSupplier: false,
+                  documentsBySupplierId: state.documentsBySupplierId.map((item) => {
+                    if (item.documentId === action.payload.documentId) {
+                      return action.payload;
+                    } else {
+                      return item;
+                    }
+                  }),
+                };
+              case types.UPDATE_ERP_DOCUMENT_SUPPLIER_FAILURE:
+                return {
+                  ...state,
+                  updateDocumentSupplier: false,
+                  updateDocumentSupplierError: true,
+                };
+    
 
     case types.GENERATE_ORDER_BY_SUPPLIER_ID_REQUEST:
       return {
@@ -1556,6 +1748,21 @@ export const suppliersReducer = (state = initialState, action) => {
         fetchingSupplierCountError: true,
       };
 
+      case types.GET_SUPPLIER_COUNT_NOT_REQUEST:
+      return { ...state, fetchingSupplierCountNot: true };
+    case types.GET_SUPPLIER_COUNT_NOT_SUCCESS:
+      return {
+        ...state,
+        fetchingSupplierCountNot: false,
+        countSupplierNot: action.payload,
+      };
+    case types.GET_SUPPLIER_COUNT_NOT_FAILURE:
+      return {
+        ...state,
+        fetchingSupplierCountNot: false,
+        fetchingSupplierCountNotError: true,
+      };
+
     case types.GET_ALL_SUPPLIER_COUNT_REQUEST:
       return { ...state, fetchingAllSupplierCount: true };
     case types.GET_ALL_SUPPLIER_COUNT_SUCCESS:
@@ -1638,6 +1845,20 @@ export const suppliersReducer = (state = initialState, action) => {
             return item;
           }
         }),
+        notApprovalSupplierList: state.notApprovalSupplierList.map((item) => {
+          if (item.supplierId == action.payload.supplierId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        allSupplierList: state.allSupplierList.map((item) => {
+          if (item.supplierId == action.payload.supplierId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
       };
     case types.UPDATE_SUPPLIERS_BY_ID_FAILURE:
       return {
@@ -1648,6 +1869,27 @@ export const suppliersReducer = (state = initialState, action) => {
 
     case types.SET_SUPPLIERS_EDIT:
       return { ...state, setEditingSuppliers: action.payload };
+
+
+
+
+      case types.GET_BATCH_NO_REQUEST:
+        return { ...state, fetchingBatchNo: true };
+      case types.GET_BATCH_NO_SUCCESS:
+        return {
+          ...state,
+          fetchingBatchNo: false,
+          batchNo:action.payload,
+          // opportunityByUserId: action.payload,
+  
+          //opportunityByUserId: [...state.opportunityByUserId, ...action.payload],
+        };
+      case types.GET_BATCH_NO_FAILURE:
+        return {
+          ...state,
+          fetchingBatchNo: false,
+          fetchingBatchNoError: true,
+        };
 
 
     case types.GET_SUPPLIERS_DELETED_LIST_REQUEST:
@@ -1729,8 +1971,9 @@ export const suppliersReducer = (state = initialState, action) => {
                   return {
                     ...state,
                     addingManual: false,
-                    supplierExcleUploadModal: false,
-                    inventoryList: [...action.payload, ...state.inventoryList],
+                   // supplierExcleUploadModal: false,
+                   preViewList:action.payload,
+                    // inventoryList: [...action.payload, ...state.inventoryList],
                     
                     // inventoryList: state.inventoryList.map((item) => {
                     //   if (item.userId === action.payload.userId) {
@@ -1877,7 +2120,151 @@ export const suppliersReducer = (state = initialState, action) => {
                                       case types.HANDLE_CLAER_SEARCHED_DATA_SUPPLIER:
                                         return { ...state, 
                                           searchSupplierList: [], 
-                                        };  
+                                        }; 
+
+                                        case types.ADD_CONTACT_ADDRESS_REQUEST:
+                                          return { ...state, addingContactAddress: true };
+                                        case types.ADD_CONTACT_ADDRESS_SUCCESS:
+                                          return {
+                                            ...state,
+                                            addingContactAddress: false,
+                                            contactAddress:[action.payload,...state.contactAddress]
+                                            // sectors: [...state.sectors, action.payload],
+                                            
+                                          };
+                                        case types.ADD_CONTACT_ADDRESS_FAILURE:
+                                          return {
+                                            ...state,
+                                            addingContactAddress: false,
+                                            addingContactAddressError: true,
+                                          };       
+                                        
+                                          case types.GET_CONTACT_ADDRESS_DATA_SUCCESS:
+                                            return {
+                                              ...state,
+                                              fetchingContactAddress: false,
+                                              contactAddress: action.payload,
+                                            };
+                                          case types.GET_CONTACT_ADDRESS_DATA_FAILURE:
+                                            return {
+                                              ...state,
+                                              fetchingContactAddress: false,
+                                              fetchingContactAddressError: true,
+                                            };
+
+                                            case types.UPDATE_CONTACT_ADDRESS_REQUEST:
+        return { ...state, updateContactAddress: true };
+      case types.UPDATE_CONTACT_ADDRESS_SUCCESS:
+        return {
+          ...state,
+          //contactAddress
+          updateContactAddress: false,
+          contactAddress: state.contactAddress.map((item) => {
+            if (item.addressId === action.payload.addressId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+          //sectors:[action.payload,...state.sectors]
+          // sectors: [...state.sectors, action.payload],
+          
+        };
+      case types.UPDATE_CONTACT_ADDRESS_FAILURE:
+        return {
+          ...state,
+          updateContactAddress: false,
+          updateContactAddressError: true,
+        };
+
+
+        case types.REMOVE_ADDRESS_DATA_REQUEST:
+          return { ...state, removeAddressData: true };
+        case types.REMOVE_ADDRESS_DATA_SUCCESS:
+          return {
+            ...state,
+            removeAddressData: false,
+            contactAddress: state.contactAddress.filter(
+              (item) => item.addressId !== action.payload
+            ),
+          };
+        case types.REMOVE_ADDRESS_DATA_FAILURE:
+          return {
+            ...state,
+            removeAddressData: false,
+            removeAddressDataError: false,
+          };
+  
+          case types.ADD_CONTACT_MAND_REQUEST:
+            return { ...state, addingContactMand: true };
+          case types.ADD_CONTACT_MAND_SUCCESS:
+            return {
+              ...state,
+              addingContactMand: false,
+              //sectors:[action.payload,...state.sectors]
+              // sectors: [...state.sectors, action.payload],
+              
+            };
+          case types.ADD_CONTACT_MAND_FAILURE:
+            return {
+              ...state,
+              addingContactMand: false,
+              addingContactMandError: true,
+            };
+        
+
+            case types.HANDLE_SUPPLIERS_ADDRESS_MODAL:
+              return { ...state, addSuppliersAddressModal: action.payload };
+
+              case types.INPUT_SEARCH_PO_REQUEST:
+                return { ...state, fetchingSearchPo: true };
+              case types.INPUT_SEARCH_PO_SUCCESS:
+                return {
+                  ...state,
+                  fetchingSearchPo: false,
+                  purchaseList: action.payload,
+                };
+              case types.INPUT_SEARCH_PO_FAILURE:
+                return { ...state, fetchingSearchPoError: true };
+
+                case types.GET_CONTACT_COUNT_REQUEST:
+                  return { ...state, fetchingErpContactCount: true };
+                case types.GET_CONTACT_COUNT_SUCCESS:
+                  return {
+                    ...state,
+                    fetchingErpContactCount: false,
+                    erpContactCount: action.payload,
+                  };
+                case types.GET_CONTACT_COUNT_FAILURE:
+                  return { ...state, fetchingErpContactCountError: true };
+        
+                case types.HANDLE_CLAER_PO_DATA_PROCESS:
+                  return { ...state, 
+                    purchaseList: [], 
+                  };
+                  
+                  case types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_REQUEST:
+                    return { ...state, updateDisributorContactById: true };
+                  case types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_SUCCESS:
+                    return {
+                      ...state,
+                      updateDisributorContactById: false,
+                      updateDistributorContactModal: false,
+                      contactDistributor: state.contactDistributor.map((item) => {
+                        if (item.contactPersonId == action.payload.contactPersonId) {
+                          return action.payload;
+                        } else {
+                          return item;
+                        }
+                      }),
+                    };
+                  case types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_FAILURE:
+                    return {
+                      ...state,
+                      updateDisributorContactById: false,
+                      updateDisributorContactByIdError: true,
+                      updateDistributorContactModal: false,
+                    };
 
 
     default:

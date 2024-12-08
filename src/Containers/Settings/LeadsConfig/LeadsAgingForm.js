@@ -2,10 +2,10 @@ import React, {  useEffect,  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Popconfirm,  } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { Formik, Form, Field, } from "formik";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
-import { StyledLabel } from "../../../Components/UI/Elements";
+
 import { addLeadsaging, getLeadAging } from "../SettingsAction";
 
 function LeadsAgingForm(props) {
@@ -38,213 +38,112 @@ function LeadsAgingForm(props) {
             >
               <div class=" h-full w-[45%] ml-3"
               >
-                <StyledLabel style={{ fontStyle: "italic" }}>
+                <div class=" text-xs font-bold font-poppins "style={{ fontStyle: "italic" }}>
                   Configure rules for ageing of Contacts in Leads section, if
                   not qualified within the stipulated time then they will be
                   automatically transferred to
-                </StyledLabel>
+                </div>
 
 <div class=" mt-3">
-                <StyledLabel style={{ fontStyle: "italic" }}>
+                <div class=" text-xs font-bold font-poppins" style={{ fontStyle: "italic" }}>
                   Junk section. Junk leads will show up in the admin account for
                   future redistribution.
-                </StyledLabel>
+                </div>
                 </div>
                 <div class=" mb-8">
-                <StyledLabel>
-                  l<FormattedMessage
-                    id="app.category"
-                    defaultMessage="Category"
-                  />
-                </StyledLabel>
+                <div class=" text-xs font-bold font-poppins text-black">
+                  l-Category
+              
+                </div>
                 </div>
 
                 <div className="flex flex-col mt-3 ">
                   <div >
                     <div class="flex justify-between w-[18rem]" >
                       <i
-                        className="fas fa-mug-hot"
-                        style={{ fontSize: "1.12em" }}
+                        className="fas fa-mug-hot  !text-icon"
                       />                 
-                      <label class="font-semibold ml-8">
-                        Hot
-                        
-                        </label>      
+                      <div class="font-bold ml-8">
+                        Hot                    
+                        </div>      
                       <div class="flex">
-                        <Field
+                        <Field className="w-40 h-2 text-center bg-[#f5f3f3] "
                           name="hot"
                           // label="To Start"
-
-                          isColumn
-                          
+                          isColumn                         
                           width={"100%"}
                           component={InputComponent}
-                          inlineLabel
-                          style={{
-                            width:"11rem",
-                            marginTop: "0em",
-                            height: "2em",
-                            textAlign: "center",
-                            backgroundColor:"#f5f3f3"
-                          }}
+                          inlineLabel                     
                         />
                         <div >
-                        <StyledLabel>
-                          {/* Days */}
-                          <FormattedMessage
-                            id="app.days"
-                            defaultMessage="Days"
-                          />
-                        </StyledLabel>
-                      </div>
-                      </div>
-                      
-                    </div>
-
-                    <div  class="flex justify-between">
-                      
-                      <div  class="flex justify-between" >
-                    <div>
-                      <i className="	fas fa-burn" style={{ fontSize: "1.12em",marginRight:"2rem" }} />
-                     <label class="mr-[0.7rem] font-semibold">
-                        Warm
-                        
-                        </label>
-                    </div>
-
-                    <div>
-                      <div class="flex" >
-                        <Field
-                          name="worm"
-                     
-                          isColumn
-                          width={"100%"}
-                          
-                          component={InputComponent}
-                          inlineLabel
-                          style={{
-                            flexBasis: "80%",
-                            marginTop: "0em",
-                            width:"10rem",
-                            height: "2em",
-                            textAlign: "center",
-                            backgroundColor:"#f5f3f3"
-                       
-                          }}
-                        />
-                         <div >
-                        <StyledLabel>
-                          {/* Days */}
-                          <FormattedMessage
-                            id="app.days"
-                            defaultMessage="Days"
-                          />
-                        </StyledLabel>
-                      </div>
-                      </div>
-                     
-                      <div >
-                        {/* <StyledLabel>
+                        <div class=" text-xs font-bold font-poppins text-black">
                           Days
-                        </StyledLabel> */}
+                     
+                        </div>
                       </div>
+                      </div>                   
                     </div>
-                  </div>
-                    </div>
-                  </div>
-                  <div class="flex justify-between w-[18rem]">
-                    <div>
+                 {/* .............................................................. */}
+                    <div class="flex justify-between w-[18rem]" >
                       <i
-                        className="far fa-snowflake"
-                        style={{ fontSize: "1.12em",marginRight:"2rem" }}
-                      />
-                    
-                      <label class="font-semibold">
-                        {/* Cold */}
-                        <FormattedMessage
-                          id="app.cold"
-                          defaultMessage="Cold"
+                        className="fas fa-burn  !text-icon"
+                      />                 
+                      <div class="font-bold ml-8">
+                        Warm                  
+                        </div>      
+                      <div class="flex">
+                        <Field className="w-40 h-2 text-center bg-[#f5f3f3] "
+                          name="warm"
+                          // label="To Start"
+                          isColumn                         
+                          width={"100%"}
+                          component={InputComponent}
+                          inlineLabel                     
                         />
-                      </label>
-                    </div>
-                    <div class="flex justify-between">
-                      <div >
-                        <Field
+                        <div >
+                        <div class=" text-xs font-bold font-poppins text-black">
+                          Days
+                        </div>
+                      </div>
+                      </div>                   
+                    </div>               
+                  </div>          
+                  <div class="flex justify-between w-[18rem]" >
+                      <i
+                        className="far fa-snowflake  !text-icon"
+                      />                 
+                      <div class="font-bold ml-8">
+                        Cold                 
+                        </div>      
+                      <div class="flex">
+                        <Field className="w-40 h-2 text-center bg-[#f5f3f3] "
                           name="cold"
                           // label="To Start"
-                          isColumn
-                          disabled={props.subscriptionType === "FREE"}
+                          isColumn                         
                           width={"100%"}
                           component={InputComponent}
-                          inlineLabel
-                          style={{
-                            flexBasis: "80%",
-                            marginTop: "0em",
-                            height: "2em",
-                            textAlign: "center",
-                            backgroundColor:
-                              props.subscriptionType === "FREE"
-                                ? "#f5f3f3"
-                                : null,
-                          }}
+                          inlineLabel                     
                         />
+                        <div >
+                        <div class=" text-xs font-bold font-poppins text-black">
+                          Days
+                          
+                        </div>
                       </div>
-                      <div >
-                        <StyledLabel>
-                          {/* Days */}
-                          <FormattedMessage
-                            id="app.days"
-                            defaultMessage="Days"
-                          />
-                        </StyledLabel>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="flex justify-between w-[18rem]">
-                  
-                    <div >
-                    <label class="font-semibold">Not Defined</label>
-                    </div>
-                    <div class="flex justify-between">
-                      <div >
-                        <Field
-                          name="notDefined"
-                          isColumn
-                          width={"100%"}
-                          component={InputComponent}
-                          inlineLabel
-                          style={{
-                            flexBasis: "80%",
-                            marginTop: "0em",
-                            height: "2em",
-                            textAlign: "center",
-                            backgroundColor:"#f5f3f3"
-                          }}
-                        />
-                      </div>
-                      <div >
-                        <StyledLabel>
-                          <FormattedMessage
-                            id="app.days"
-                            defaultMessage="Days"
-                          />
-                        </StyledLabel>
-                      </div>
-                    </div>
-                  </div>
-                 
+                      </div>                   
+                    </div> 
+                                          
                 </div>
               </div>
 
               <div class=" h-full w-[45%] mr-3"
               >
-                <StyledLabel style={{ color: "white" }}>.</StyledLabel>
+                <div class=" text-xs font-bold font-poppins text-white">.</div>
               <div class=" mt-3">
-                <StyledLabel style={{ color: "white" }}>.</StyledLabel>
+                <div class=" text-xs font-bold font-poppins text-white">.</div>
                 </div>
                <div class=" mb-3">
-                <StyledLabel style={{ color: "white" }}>.</StyledLabel>
+                <div class=" text-xs font-bold font-poppins text-white">.</div>
                 </div>
                 
 
@@ -259,35 +158,18 @@ function LeadsAgingForm(props) {
                 <div class=" flex justify-end mr-3 mt-3"
                 >
                   <Popconfirm
-                    // title="Do you wish to proceed?"
-                    title={<FormattedMessage
-                      id="app.doyouwishtoproceed?"
-                      defaultMessage="Do you wish to proceed?"
-                    />}
+                    title="Do you wish to proceed?"
                     onConfirm={() => props.addLeadsaging(values)}
                     onCancel={props.getLeadAging}
                     okText="Ok"
-                    // cancelText="Cancel"
-                    cancelText={<FormattedMessage
-                      id="app.cancel"
-                      defaultMessage="Cancel"
-                    />}
+                    cancelText="Cancel"
                   >
-                    <Button
+                    <Button className="mr-[-0.43em] mt-[1.25rem] mb-[0.31em]"
                       type="primary"
                       loading={props.addingLeadAging}
                       htmlType="submit"
-                      style={{
-                        marginRight: "-0.43em",
-                        marginTop: "1.25em",
-                        marginBottom: "0.31em",
-                      }}
                     >
-                      {/* Update */}
-                      <FormattedMessage
-                        id="app.update"
-                        defaultMessage="Update"
-                      />
+                      Update
                     </Button>
                   </Popconfirm>
                 </div>

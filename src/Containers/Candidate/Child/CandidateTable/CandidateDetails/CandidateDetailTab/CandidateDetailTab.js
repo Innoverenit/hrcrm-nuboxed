@@ -1,11 +1,9 @@
 import React, { lazy, Suspense, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
-import { translateText, } from '../../../../../Translate/TranslateService';
-import { Tooltip } from "antd";
+import { Tooltip,Badge } from "antd";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import MicIcon from '@mui/icons-material/Mic';
-import AddIcon from '@mui/icons-material/Add';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStation';
@@ -16,19 +14,22 @@ import { StyledTabs } from "../../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../../Components/UI/Layout";
 import SchoolIcon from '@mui/icons-material/School';
 import { handleCandidateEducationModal } from "../../../../CandidateAction";
-import { handleDocumentUploadModal } from "../../../../CandidateAction";
+import { handleDocumentUploadModal } from "../../../../../Customer/CustomerAction";
 import { handleCandidateTrainingModal } from "../../../../CandidateAction";
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import {
   handleCandidateEmploymentModal,
   handleCandidateBankModal,
   handleCandidateActivityModal,
 } from "../../../../CandidateAction";
-import LocalActivityIcon from '@mui/icons-material/LocalActivity';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
-const LinkedDocuments = lazy(() => import("./Document/LinkedDocuments"));
+import AddDocumentModals from "../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
+import LinkedDocuments from "../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments";
+import EducationTable from "../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Education/EducationTable";
+import TrainingTable from "../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Training/TrainingTable";
+import EmploymentTable from "../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Employment/EmploymentTable";
 const ReactCandidateSpeechModal = lazy(() => import("../../ReactCandidateSpeechModal"));
 const ExperienceForm = lazy(() => import("../CandidateDetailTab/Experience/ExperienceForm"));
-const AddDocumentModal = lazy(() => import("./Document/AddDocumentModal"));
 const CandidateEducationTable = lazy(() => import("./Education/CandidateEducationTable"));
 const AddCandidateEducationModal = lazy(() => import("../CandidateDetailTab/Education/AddCandidateEducationModal"));
 const AddCandidateTrainingModal = lazy(() => import("../CandidateDetailTab/Training/AddCandidateTrainingModal"));
@@ -36,61 +37,115 @@ const CandidateTrainingTable = lazy(() => import("./Training/CandidateTrainingTa
 const AddCandidateEmploymentModal = lazy(() => import("./Employment/AddCandidateEmploymentModal"));
 const CandidateEmploymentTable = lazy(() => import("./Employment/CandidateEmploymentTable"));
 const AddBankModal = lazy(() => import("./Bank/AddBankModal"));
-const BankTable = lazy(() => import("./Bank/BankTable"));
+const BankTable = lazy(() => import("../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Bank/BankTable"));
 const PlacementTable = lazy(() => import("./Placement/PlacementTable"));
 const ActivityModal = lazy(() => import("./Activity/ActivityModal"));
 const ActivityTable = lazy(() => import("./Activity/ActivityTable"));
-const LinkedNotes = lazy(() => import("./Notes/LinkedNotes"));
 
 const TabPane = StyledTabs.TabPane;
 
 function CandidateDetailTab(props) {
   const [activeKey, setActiveKey] = useState('1');
   const [translatedContent, setTranslatedContent] = useState('');
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     activeKey: "1",
-  //   };
-  // }
-
-
-  // handleTabChange = (key) => this.setState({ activeKey: key });
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   function handleTabChange(key) {
     setActiveKey(key)
   }
-
   useEffect(() => {
-
-
-
-    const fetchTranslation = async () => {
+    const fetchMenuTranslations = async () => {
       try {
-        const translation = await Promise.all([
-          translateText('RecruitPro', props.selectedLanguage),
-          translateText('Experience', props.selectedLanguage),
-          translateText('Activity', props.selectedLanguage),
-          translateText('Documents', props.selectedLanguage),
-          translateText('Notes', props.selectedLanguage),
-          translateText('Education', props.selectedLanguage),
-          translateText('Employment', props.selectedLanguage),
-          translateText('Training', props.selectedLanguage),
+        setLoading(true); 
+        const itemsToTranslate = [
+          // 'RecruitPro' 
+'1697', // 'Experience', // 0
+"1165",// ' Activity', 1
+"316",// 'Notes', // 2
+"138", // ' Documents',3
+'1195',// Education   4
+'1196',//Employment 5
+ '1194',//Training 6
+ '1198',//Bank Details 8
+      ];
 
-          translateText('Bank Details', props.selectedLanguage),
-        ]);
-
-        setTranslatedContent(translation);
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
         console.error('Error translating menu items:', error);
       }
     };
 
-    fetchTranslation();
+    fetchMenuTranslations();
   }, [props.selectedLanguage]);
 
-
-  // const { activeKey } = this.state;
+  const renderTabContent = (key) => {
+    switch (key) {
+      case "1":
+        return     <div> 
+          <ActivityTable
+                candidate={props.candidate.candidateId}
+                selectedLanguage={props.selectedLanguage}
+                translateText={props.translateText}             
+              />
+            </div>;
+      case "2":
+        return  <div>
+          <PlacementTable
+                 selectedLanguage={props.selectedLanguage}
+                 translateText={props.translateText}
+              />
+        </div>;
+    case "3":
+      return  <div>
+           <ExperienceForm 
+                 selectedLanguage={props.selectedLanguage}
+                 translateText={props.translateText}/>
+      </div>;
+         case "4":
+          return  <div>
+            <LinkedDocuments
+              uniqueId={props.candidate.candidateId}
+              type={"candidate"}
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}
+            translatedMenuItems={props.translatedMenuItems}
+             /> 
+          </div>;
+          case "5":
+            return  <div>
+              
+            </div>;
+            case "6":
+              return  <div>
+                 <EducationTable
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
+              </div>;
+              case "7":
+                return  <div>
+                   <TrainingTable
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
+                </div>;
+ case "8":
+  return  <div>
+    <EmploymentTable
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
+  </div>;
+  case "8":
+    return  <div>
+       <BankTable
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}/>
+    </div>;
+      default:
+        return null;
+    }
+  };  
   const {
     addingEmail,
     handleDocumentUploadModal,
@@ -99,7 +154,7 @@ function CandidateDetailTab(props) {
     addOpportunityModal,
     addCandidateEducationModal,
     handleCandidateEducationModal,
-    handleCandidateTrainingModal,
+    handleCandidateTrainingModal, 
     addCandidateTrainingModal,
     handleCandidateEmploymentModal,
     addCandidateEmploymentModal,
@@ -123,12 +178,10 @@ function CandidateDetailTab(props) {
             tab={
               <>
                 <span>
-                  <LocalActivityIcon style={{ fontSize: "1.1rem" }} />
-                  <span class=" ml-[0.25em]" >
-                    <FormattedMessage
-                      id="app.activity"
-                      defaultMessage="Activity"
-                    />
+                <HourglassFullIcon className="text-[#edf67d] !text-icon" />
+                <span class="ml-1 !text-tab font-poppins ">
+               
+                   Activity
 
 
                   </span>
@@ -137,18 +190,17 @@ function CandidateDetailTab(props) {
                   <>
 
                     {/* {props.user.talentCreateInd === true && props.user.recruitOppsInd === true ( */}
-                    <AddIcon
-                      type="plus"
-                      tooltiptitle={
-                        <FormattedMessage
-                          id="app.Create"
-                          defaultMessage="Create"
-                        />
-                      }
+                    <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                     
+                      tooltiptitle=
+                          "Create"
+                       
+                      
                       onClick={() =>
                         handleCandidateActivityModal(true)
                       }
-                      size="0.875em"
+               
 
                     />
                     {/* )} */}
@@ -160,18 +212,16 @@ function CandidateDetailTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <ActivityTable
-                candidate={props.candidateId}
-              />
+             
             </Suspense>
           </TabPane>
           <TabPane
             tab={
               <>
                 <TransferWithinAStationIcon
-                  style={{ fontSize: "1.1rem" }}
+                  className=" !text-icon"
                 />
-                <span class=" ml-[0.25em]" >
+                <span class=" ml-1 !text-tab" >
                   RecruitPro
                   {/* {translatedContent[0]} */}
                 </span>
@@ -183,17 +233,16 @@ function CandidateDetailTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <PlacementTable
-              />
+            
             </Suspense>
           </TabPane>
           <TabPane
             tab={
               <>
 
-                <WorkspacePremiumIcon style={{ fontSize: "1.1rem" }} />
-                <span class=" ml-[0.25em]" >
-                  {/* {translatedContent[1]} */}
+                <WorkspacePremiumIcon className=" !text-icon" />
+                <span class=" ml-1 !text-tab" >
+                  {/* {translatedContent[0]} */}
                   Experience
                 </span>
               </>
@@ -204,28 +253,30 @@ function CandidateDetailTab(props) {
             {/* <LinkedExperience/> */}
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <ExperienceForm />
+             
             </Suspense>
           </TabPane>
           <TabPane
             tab={
               <>
-                <FileCopyIcon style={{ fontSize: "1.1rem" }} />
-                <span style={{ marginLeft: "0.25em" }}>
+                <FileCopyIcon className=" !text-icon" />
+                <span class=" ml-1 !text-tab">
                   Documents
-                  {/* {translatedContent[3]} */}
+                  {/* {translatedContent[1]} */}
                 </span>
+                <Badge
+                count={props.documentsByCount.document}
+                overflowCount={999}
+              > 
+                   </Badge>
                 {activeKey === "4" && (
                   <>
-                    <AddIcon
+                    <AddBoxIcon className=" !text-icon  ml-1 items-center
+                    text-[#6f0080ad]"
 
                       tooltipTitle="Upload Document"
                       onClick={() => handleDocumentUploadModal(true)}
-                      size="0.875em"
-                      style={{
-                        marginLeft: "0.3125em",
-                        verticalAlign: "center",
-                      }}
+                    
                     />
                   </>
                 )}
@@ -235,21 +286,18 @@ function CandidateDetailTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <LinkedDocuments />
+              
+               
             </Suspense>
           </TabPane>
 
           <TabPane
             tab={
               <>
-                <span>
-                  <NoteAltIcon style={{ fontSize: "1.1rem" }} />
-                  &nbsp;
-                  <FormattedMessage
-                    id="app.notes"
-                    defaultMessage="Notes"
-                  />
-                  {/* {translatedContent[4]} */}
+                <span  className="  !text-tab">
+                  <NoteAltIcon className=" !text-icon mr-1" />
+                Notes
+                  {/* {translatedContent[2]} */}
                   &nbsp;
                   {activeKey === "5" && (
                     <>
@@ -257,7 +305,7 @@ function CandidateDetailTab(props) {
                         <span
                           onClick={() => handleCandidateReactSpeechModal(true)}>
                           <MicIcon
-                            style={{ fontSize: "1.1rem" }}
+                            className=" !text-icon"
                           />
 
                         </span>
@@ -270,14 +318,16 @@ function CandidateDetailTab(props) {
             key="5"
           >
             <Suspense fallback={"Loading ..."}>
-              <LinkedNotes />{" "}
+              {/* <LinkedNotes 
+               translateText={props.translateText}
+                selectedLanguage={props.selectedLanguage}/>{" "} */}
             </Suspense>
           </TabPane>
           <TabPane
             tab={
               <>
-                <SchoolIcon style={{ fontSize: "1.1rem" }} />
-                <span class=" ml-[0.25em]" >
+                <SchoolIcon className=" !text-icon" />
+                <span class=" ml-1 !text-tab" >
                   Education
                   {/* {translatedContent[5]} */}
                 </span>
@@ -287,17 +337,14 @@ function CandidateDetailTab(props) {
                       <></>
                     ) : (
                       <>
-                        <AddIcon
-                          type="plus"
+                        <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                         
                           tooltipTitle="Add"
                           onClick={() =>
                             handleCandidateEducationModal(true)
                           }
-                          size="1em"
-                          style={{
-                            marginLeft: "0.3125em",
-                            verticalAlign: "center",
-                          }}
+                       
                         />
                       </>
                     )}
@@ -309,27 +356,26 @@ function CandidateDetailTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <CandidateEducationTable />
+             
             </Suspense>
           </TabPane>
           <TabPane
             tab={
               <>
-                <HeadphonesIcon style={{ fontSize: "1.1rem" }} />
-                <span class=" ml-[0.25em]" >
+                <HeadphonesIcon className=" !text-icon" />
+                <span class=" ml-1 !text-tab" >
                   Training
                   {/* {translatedContent[7]} */}
                 </span>
                 {activeKey === "7" && (
                   <>
-                    <AddIcon
-                      type="plus"
+                    <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                     
                       tooltipTitle="Add"
                       onClick={() =>
                         handleCandidateTrainingModal(true)
                       }
-                      size="1em"
-                      style={{ marginLeft: "0.3125em", verticalAlign: "center" }}
                     />
                   </>
                 )}
@@ -339,27 +385,26 @@ function CandidateDetailTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <CandidateTrainingTable />
+             
             </Suspense>
           </TabPane>
           <TabPane
             tab={
               <>
-                <AccountBalanceIcon style={{ fontSize: "1.1rem" }} />
-                <span class=" ml-[0.25em]" >
+                <AccountBalanceIcon className=" !text-icon" />
+                <span class=" ml-1 !text-tab" >
                   Employment
                   {/* {translatedContent[6]} */}
                 </span>
                 {activeKey === "8" && (
                   <>
-                    <AddIcon
-                      type="plus"
+                    <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                     
                       tooltipTitle="Add"
                       onClick={() =>
                         handleCandidateEmploymentModal(true)
                       }
-                      size="1em"
-                      style={{ marginLeft: "0.3125em", verticalAlign: "center" }}
                     />
                   </>
                 )}
@@ -369,29 +414,25 @@ function CandidateDetailTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <CandidateEmploymentTable />
+             
             </Suspense>
           </TabPane>
-
-
-
 
           <TabPane
             tab={
               <>
-                <AccountBalanceIcon style={{ fontSize: "1.1rem" }} />
-                <span class=" ml-[0.25em]" >
+                <AccountBalanceIcon className=" !text-icon" />
+                <span class=" ml-1 !text-tab" >
                   Bank Details
                   {/* {translatedContent[8]} */}
                 </span>
                 {activeKey === "9" && (
                   <>
-                    <AddIcon
-                      type="plus"
+                    <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                     
                       tooltipTitle="Add"
                       onClick={() => handleCandidateBankModal(true)}
-                      size="1em"
-                      style={{ marginLeft: "0.3125em", verticalAlign: "center" }}
                     />
                   </>
                 )}
@@ -401,50 +442,70 @@ function CandidateDetailTab(props) {
           >
             <Suspense fallback={"Loading ..."}>
               {" "}
-              <BankTable />
+             
             </Suspense>
           </TabPane>
         </StyledTabs>
+        <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                {renderTabContent(activeKey)}
+              </Suspense>
       </TabsWrapper>
       <Suspense fallback={"Loading..."}>
-        <AddDocumentModal
-          documentUploadModal={documentUploadModal}
-          handleDocumentUploadModal={handleDocumentUploadModal}
-        />
+       
         <AddCandidateEducationModal
           addCandidateEducationModal={addCandidateEducationModal}
           handleCandidateEducationModal={handleCandidateEducationModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         />
         <AddCandidateTrainingModal
           addCandidateTrainingModal={addCandidateTrainingModal}
           handleCandidateTrainingModal={handleCandidateTrainingModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         />
         <AddCandidateEmploymentModal
           addCandidateEmploymentModal={addCandidateEmploymentModal}
           handleCandidateEmploymentModal={handleCandidateEmploymentModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         />
         <AddBankModal
           addCandidateBankModal={addCandidateBankModal}
           handleCandidateBankModal={handleCandidateBankModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         />
         <ActivityModal
           addCandidateActivityModal={addCandidateActivityModal}
           handleCandidateActivityModal={handleCandidateActivityModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         />
-
+           <AddDocumentModals
+           candidateId={props.candidate.candidateId}
+           uniqueId={props.candidate.candidateId}
+           type={"candidate"}
+            documentUploadModal={documentUploadModal}
+            handleDocumentUploadModal={handleDocumentUploadModal}
+            selectedLanguage={props.selectedLanguage}
+            translateText={props.translateText}
+          />
         <ReactCandidateSpeechModal
           candidate={props.candidate}
           handleCandidateReactSpeechModal={handleCandidateReactSpeechModal}
           addCandidateSpeechModal={addCandidateSpeechModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         />
       </Suspense>
     </>
   );
 }
 
-const mapStateToProps = ({ candidate, auth }) => ({
+const mapStateToProps = ({ candidate,customer, auth }) => ({
   user: auth.userDetails,
-  documentUploadModal: candidate.documentUploadModal,
+  documentUploadModal: customer.documentUploadModal,
   addCandidateEducationModal: candidate.addCandidateEducationModal,
   addCandidateTrainingModal: candidate.addCandidateTrainingModal,
   addCandidateEmploymentModal: candidate.addCandidateEmploymentModal,
@@ -453,6 +514,7 @@ const mapStateToProps = ({ candidate, auth }) => ({
   addCandidateSpeechModal: candidate.addCandidateSpeechModal,
   candidateId: candidate.candidateId,
   candidate: candidate.candidate,
+  documentsByCount:customer.documentsByCount
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

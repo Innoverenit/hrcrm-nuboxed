@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -13,10 +13,8 @@ const UpdateLeadsInitiativeModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.updateleads"
-          defaultMessage="Update Leads"
-        />}
+        title="Update Leads"
+      
         width="60%"
         visible={props.updateLeadsInitiativeModal}
         // maskClosable={false}

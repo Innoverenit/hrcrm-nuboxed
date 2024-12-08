@@ -2,7 +2,7 @@ import * as types from "./CollectionActionTypes";
 import { base_url, base_url2 } from "../../Config/Auth";
 import { message } from "antd";
 import axios from "axios";
-import moment from "moment";
+import dayjs from "dayjs";
 
 export const setCollectionViewType = (viewType) => (dispatch) =>
   dispatch({ type: types.SET_VENDOR_VIEW_TYPE, payload: viewType });
@@ -529,7 +529,11 @@ export const DistributorCollectionReceivableToday = (payment) => (dispatch) => {
     type: types.DISTRIBUTOR_COLLECTION_RECEIVABLE_REQUEST,
   });
   axios
-    .post(`${base_url2}/report/orderPaymentList/notApperovedByFinance`, payment)
+    .post(`${base_url2}/orderPayment/orderPaymentList/notApperovedByFinance`, payment, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
     .then((res) => {
       console.log(res);
       dispatch({
@@ -585,6 +589,58 @@ export const getDistributorCreditMemo = () => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_DISTRIBUTOR_CREDIT_MEMO_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getCollection = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_COLLECTION_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/creditMemo/all-creditMemo/${orgId}`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COLLECTION_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_COLLECTION_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getCloseCollection = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_CLOSE_COLLECTION_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/creditMemo/closed/all-creditMemo/${orgId}`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    }  )
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CLOSE_COLLECTION_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CLOSE_COLLECTION_FAILURE,
         payload: err,
       });
     });

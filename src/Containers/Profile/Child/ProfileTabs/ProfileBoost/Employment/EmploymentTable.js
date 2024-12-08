@@ -1,6 +1,5 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy , Suspense} from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import {
   StyledTable,
@@ -12,11 +11,12 @@ import {
   setEditEmployment,
 } from "../../../../ProfileAction";
 import DownloadIcon from '@mui/icons-material/Download';
-import moment from "moment";
+import dayjs from "dayjs";
 import { base_url } from "../../../../../../Config/Auth";
 import { deleteEmploymentTable } from "../../../../ProfileAction";
-import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdateEmploymentModal = lazy(() => import("../Employment/UpdateEmploymentModal"));
 class EmploymentTable extends Component {
   // constructor(props) {
@@ -49,39 +49,26 @@ class EmploymentTable extends Component {
     // const { emailCredential, fetchingEmailCredential } = this.props;
     const columns = [
       {
-        // title: "Company Name",
-        title: (
-          <FormattedMessage
-            id="app.companyname"
-            defaultMessage="Company Name"
-          />
-        ),
+        title: "Company Name",
         dataIndex: "companyName",
         // width: "35%"
       },
       {
-        //title: "Designation",
-        title: (
-          <FormattedMessage id="app.designation" defaultMessage="Designation" />
-        ),
+        title: "Designation",
         dataIndex: "designation",
       },
       {
-        //title: "Start Date",
-        title: (
-          <FormattedMessage id="app.startDate" defaultMessage="Start Date" />
-        ),
+        title: "Start Date",
         dataIndex: "startDate",
         render: (name, item, i) => {
-          return <span>{moment(item.startDate).format("LL")}</span>;
+          return <span>{dayjs(item.startDate).format("LL")}</span>;
         },
       },
       {
-        //title: "End Date",
-        title: <FormattedMessage id="app.endDate" defaultMessage="End Date" />,
+        title: "End Date",
         dataIndex: "endDate",
         render: (name, item, i) => {
-          return <span>{moment(item.endDate).format("LL")}</span>;
+          return <span>{dayjs(item.endDate).format("LL")}</span>;
         },
       },
       //combine and show salary +curr+type
@@ -95,20 +82,12 @@ class EmploymentTable extends Component {
       },
 
       {
-        //title: "Description",
-        title: (
-          <FormattedMessage id="app.description" defaultMessage="Description" />
-        ),
+        title: "Description",
         dataIndex: "description",
       },
       {
-        //title: "Marks Secured",
-        title: (
-          <FormattedMessage
-            id="app.type"
-            defaultMessage="Type"
-          />
-        ),
+        
+        title:"Type"         ,
         // dataIndex: "marksSecured",
       },
       {
@@ -144,7 +123,7 @@ class EmploymentTable extends Component {
               title="Do you want to delete?"
               onConfirm={() => deleteEmploymentTable(item.id)}
             >
-              <DeleteOutlined type="delete" style={{ cursor: "pointer", color: "red" }} />
+              <DeleteOutlineIcon type="delete" style={{ cursor: "pointer", color: "red" }} />
               {/* <Button type="primary" className='edit_hover_class' icon="delete"  /> */}
             </StyledPopconfirm>
           );
@@ -157,7 +136,7 @@ class EmploymentTable extends Component {
         render: (name, item, i) => {
           //debugger
           return (
-            <EditOutlined
+            <VisibilityIcon
               type="edit"
               style={{ cursor: "pointer" }}
               onClick={() => {
@@ -171,7 +150,7 @@ class EmploymentTable extends Component {
     ];
 
     if (fetchingEmploymentDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     return (
       <>
@@ -183,11 +162,13 @@ class EmploymentTable extends Component {
           loading={fetchingEmploymentDetails || fetchingEmploymentDetailsError}
           onChange={console.log("task onChangeHere...")}
         />
-
+       <Suspense fallback={"Loading ..."}>
         <UpdateEmploymentModal
           updateEmploymentModal={updateEmploymentModal}
           handleUpdateEmploymentModal={handleUpdateEmploymentModal}
-        />
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        /></Suspense>
         {/* )} */}
       
       </>

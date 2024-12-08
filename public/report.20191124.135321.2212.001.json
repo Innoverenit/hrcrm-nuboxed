@@ -1949,13 +1949,6 @@
       "type": "fs_event",
       "is_active": "1",
       "is_referenced": "1",
-      "address": "1665750507888",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\Placeholder\\ClockLoader.js"
-    },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
       "address": "1665750518928",
       "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\Placeholder\\index.js"
     },
@@ -2054,20 +2047,6 @@
       "type": "fs_event",
       "is_active": "1",
       "is_referenced": "1",
-      "address": "1665750514144",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\Utils\\ServerCheckbox.js"
-    },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
-      "address": "1665750508992",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\Utils\\TextEditor.js"
-    },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
       "address": "1665750511200",
       "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\Utils\\TwilioDialer.js"
     },
@@ -2077,13 +2056,6 @@
       "is_referenced": "1",
       "address": "1665750511936",
       "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\Utils\\index.js"
-    },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
-      "address": "1665750514880",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Containers\\404\\PageNotFound.js"
     },
     {
       "type": "fs_event",
@@ -3090,13 +3062,6 @@
       "type": "fs_event",
       "is_active": "1",
       "is_referenced": "1",
-      "address": "1665751223248",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\Forms\\Formik\\Check.js"
-    },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
       "address": "1665751223984",
       "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\Forms\\Formik\\DatePicker.js"
     },
@@ -3251,44 +3216,10 @@
       "type": "fs_event",
       "is_active": "1",
       "is_referenced": "1",
-      "address": "1665751240544",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Layout\\ApplicationWrapper.js"
-    },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
       "address": "1665751235760",
       "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Layout\\MainWrapper.js"
     },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
-      "address": "1665751242384",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Layout\\ResponsiveBox.js"
-    },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
-      "address": "1665751242016",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Layout\\NavbarWrapper.js"
-    },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
-      "address": "1665751244224",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Layout\\ResponsiveCard.js"
-    },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
-      "address": "1665751242752",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Layout\\StyledActionHeader.js"
-    },
+   
     {
       "type": "fs_event",
       "is_active": "1",
@@ -3323,20 +3254,6 @@
       "is_referenced": "1",
       "address": "1665751236864",
       "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Elements\\CodeSkeleton.js"
-    },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
-      "address": "1665751296016",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Elements\\ContactBusinessCard.js"
-    },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
-      "address": "1665751300800",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Elements\\DrawerHeaderText.js"
     },
     {
       "type": "fs_event",
@@ -3377,23 +3294,10 @@
       "type": "fs_event",
       "is_active": "1",
       "is_referenced": "1",
-      "address": "1665751310736",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Elements\\Option.js"
-    },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
       "address": "1665751297488",
       "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Elements\\SelectInput.js"
     },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
-      "address": "1665751312576",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Elements\\Spacer.js"
-    },
+
     {
       "type": "fs_event",
       "is_active": "1",
@@ -3415,13 +3319,7 @@
       "address": "1665751315888",
       "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Elements\\StyledCreatable.js"
     },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
-      "address": "1665751308896",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Components\\UI\\Elements\\StyledLabel.js"
-    },
+    
     {
       "type": "fs_event",
       "is_active": "1",
@@ -3702,26 +3600,13 @@
       "address": "1665751294912",
       "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Containers\\Auth\\styled\\Datepicker.js"
     },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
-      "address": "1665751305216",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Containers\\Auth\\styled\\AuthContainer.js"
-    },
+  
     {
       "type": "fs_event",
       "is_active": "1",
       "is_referenced": "1",
       "address": "1665751297120",
       "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Containers\\Auth\\styled\\FormContainer.js"
-    },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
-      "address": "1665751295280",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Containers\\Auth\\styled\\FormWrapper.js"
     },
     {
       "type": "fs_event",
@@ -5088,13 +4973,7 @@
       "address": "1665727582128",
       "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Containers\\Organization\\Child\\OrganizationCards\\OrganizationStatsView.js"
     },
-    {
-      "type": "fs_event",
-      "is_active": "1",
-      "is_referenced": "1",
-      "address": "1665727576608",
-      "details": "filename: \\\\?\\F:\\InnoverenIT\\tekorero\\src\\Containers\\Organization\\Child\\OrganizationCards\\OrganizationTermsCard.js"
-    },
+   
     {
       "type": "fs_event",
       "is_active": "1",
@@ -6982,7 +6861,7 @@
     "npm_package_dependencies_leaflet": "^1.3.4",
     "npm_package_dependencies_leaflet_routing_machine": "^3.2.12",
     "npm_package_dependencies_lodash": "^4.17.15",
-    "npm_package_dependencies_moment": "^2.22.2",
+    "npm_package_dependencies_dayjs": "^2.22.2",
     "npm_package_dependencies_react": "^16.8.6",
     "npm_package_dependencies_react_beautiful_dnd": "^10.0.2",
     "npm_package_dependencies_react_big_calendar": "^0.22.0",

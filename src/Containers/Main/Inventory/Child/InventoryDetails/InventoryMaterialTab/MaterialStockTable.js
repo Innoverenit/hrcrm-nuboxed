@@ -1,18 +1,17 @@
-import React, { useEffect, useState, lazy, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router";
-import { FormattedMessage } from "react-intl";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { Tooltip, Button, Select } from "antd";
+
+import { Tooltip, Select } from "antd";
 import ItemHistoryInStockData from "./ItemHistoryInStockData"
 import { getRoomRackByLocId, getRackList } from "../../../InventoryAction";
 import { getMaterialUnitsData, handleSTockItemModal, handleStockUsedDrawer, trnasferGrnItemToStock } from "../../../InventoryAction"
 import StockItemClickModal from "./StockItemClickModal";
 import InfiniteScroll from "react-infinite-scroll-component";
 import TheStockUsedDrawer from "./TheStockUsedDrawer";
-import { PlusOutlined } from "@ant-design/icons";
-import ItemHistoryInStock from "./ItemHistoryInStock";
+import AddBoxIcon from '@mui/icons-material/AddBox';
+
 
 const { Option } = Select;
 
@@ -88,27 +87,30 @@ const GrnListOfPO = (props) => {
     return (
         <>
             <div className=' flex  sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+                <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+                    <div className=" flex justify-between  w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
                         <div className="w-[2.5rem]"></div>
-                        {/* <div className=" md:w-[4.5rem]"><FormattedMessage id="app.po" defaultMessage="PO #" /></div> */}
+                   {/* po # */}
                         <div className=" md:w-[9.21rem]">
-                            {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */}
+                   {/* name */}
                             {props.translatedMenuItems[15]}
                             </div>
                         <div className=" md:w-[3.82rem]">
-                            {/* <FormattedMessage id="app.category" defaultMessage="Category" /> */}   {props.translatedMenuItems[16]}
+                            {/* Category */}
+                    {props.translatedMenuItems[16]}
                             </div>
-                        {/* <div className=" md:w-[6.82rem]"><FormattedMessage id="app.price" defaultMessage="Price" /></div> */}
+                    {/* price */}
                         <div className=" md:w-[4.25rem]">
-                            {/* <FormattedMessage id="app.attribute" defaultMessage="Attribute" /> */}   {props.translatedMenuItems[17]}
+                            {/* attribute */}
+                               {props.translatedMenuItems[17]}
                             </div>
                         <div className=" md:w-[4.25rem]">
-                            {/* <FormattedMessage id="app.cell" defaultMessage="Cell" /> */}   {props.translatedMenuItems[7]}
+                       {/* cell  {props.translatedMenuItems[7]} */}
                         </div>
-                        <div className=" md:w-[6.10rem]"><FormattedMessage id="app.hsn" defaultMessage="HSN" /></div>
+                        <div className=" md:w-[6.10rem]">HSN</div>
                         <div className=" md:w-[6.10rem]">
-                            {/* <FormattedMessage id="app.instock" defaultMessage="In Stock" /> */}   {props.translatedMenuItems[29]}
+                            {/* in stock  */}
+                             {props.translatedMenuItems[29]}
                         </div>
                        
                         <div className=""></div>
@@ -118,16 +120,18 @@ const GrnListOfPO = (props) => {
                         next={handleLoadMore}
                         hasMore={hasMore}
                         loader={props.fetchingMaterialUnitsData ? <div class="text-center font-semibold text-xs">{props.translatedMenuItems[10]}...</div> : null}
-                        height={"75vh"}
+                        height={"67vh"}
+                        style={{ scrollbarWidth:"thin"}}
                     >
                         {props.materialUnitsData.map((item, index) => {
                             return (
                                 <div>
                                     <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 ">
                                         <div class="flex">
-                                            <div className=" flex font-medium flex-col md:w-[2.1rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-sm  font-semibold  font-poppins ">
-                                                    <PlusOutlined
+                                            <div className=" flex md:w-[2.1rem] max-sm:w-full  ">
+                                                <div class="flex justify-between text-xs  font-semibold  font-poppins ">
+                                          
+ <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
                                                         onClick={() => {
                                                             handleItemHistory()
                                                             handleItemClick(item)
@@ -138,59 +142,45 @@ const GrnListOfPO = (props) => {
                                         </div>
 
                                         <div class="flex">
-                                            <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-sm  font-semibold  font-poppins ">
+                                            <div className=" flex md:w-[9.1rem] max-sm:w-full  ">
+                                                <div class="flex justify-between text-xs  font-semibold  font-poppins ">
                                                     
                                                 </div>
                                             </div>
                                         </div>
 
-                                        {/* <div class="flex">
-                                            <div className=" flex font-medium flex-col md:w-[11.12rem] max-sm:w-full  ">
-                                                <div class="flex justify-between text-sm  font-semibold font-poppins cursor-pointer underline text-blue-600">
-                                                    <span
-                                                        onClick={() => {
-                                                            props.handleSTockItemModal(true)
-                                                            handleItemClick(item)
-                                                        }}
-                                                    >
-                                                        {item.suppliesFullName.substring(0, 20)}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div> */}
 
-                                        <div className=" flex font-medium flex-col  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.suppliesFullName}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.categoryName}  {item.subCategoryName}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex  md:w-[11.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.attributeName}  {item.subAttributeName}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex  md:w-[9.01rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.remainingCorrectUnit}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[11.012rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex  md:w-[11.012rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.unitReceived}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex  md:w-[7.03rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.hsn}
                                             </div>
                                         </div>
-                                        <div className=" flex font-medium flex-col  md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                        <div className=" flex  md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                             <div class=" text-xs  font-poppins">
                                                 {item.balanced}
                                             </div>
@@ -215,108 +205,18 @@ const GrnListOfPO = (props) => {
 
 <div></div>
 </div>
-                                        {/* <div className=" flex font-medium flex-col  md:w-[8.05rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs  font-poppins">
-                                                {item.remark}
-                                            </div>
-                                        </div> */}
-                                        {/* <div className=" flex font-medium flex-col  md:w-[8.04rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs  font-poppins">
-                                                {selectZone && row.poSupplierSuppliesId === item.poSupplierSuppliesId ? (
-
-                                                    <Select
-                                                        classNames="w-32"
-                                                        value={selectedRoomId}
-                                                        onChange={(value) => { handleChangeRoomRack(value) }}
-                                                    >
-                                                        {props.roomRackbyLoc.filter((type) => type.zoneType === "entry")
-                                                            .map((s) => (
-                                                                <Option value={s.roomRackId}>
-                                                                    {s.zone}
-                                                                </Option>
-                                                            ))}
-                                                    </Select>
-                                                ) : (
-                                                    <div className="font-normal text-sm  font-poppins">
-                                                        <div> {item.zone}</div>
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </div> */}
-                                        {/* <div className=" flex font-medium flex-col  md:w-[8.6rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                            <div class=" text-xs  font-poppins">
-                                                {selectZone && row.poSupplierSuppliesId === item.poSupplierSuppliesId ? (
-                                                    <Select
-                                                        classNames="w-32"
-                                                        value={selectedChamberId}
-                                                        onChange={(val) => handleChangeChamber(val)}
-                                                    >
-                                                        {props.rackList.map((chamber) => (
-                                                            <Option value={chamber.roomRackChamberLinkId}>
-                                                                {chamber.chamber}
-                                                            </Option>
-                                                        ))}
-                                                    </Select>
-
-                                                ) : (
-                                                    <div className="font-normal text-sm  font-poppins">
-                                                        <div> {item.chamber}</div>
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </div> */}
-                                        {/* <div class="flex flex-col w-6 items-center max-sm:flex-row max-sm:w-[10%]">
-
-                                            <div>
-                                                <Tooltip title="">
-                                                    <i class="far fa-share-square"
-                                                        //    className="!text-base cursor-pointer text-[tomato]"
-                                                        onClick={() => {
-                                                            handleItemClick(item)
-                                                            props.handleStockUsedDrawer(true);
-                                                        }}
-                                                        style={{ cursor: "pointer" }}
-                                                    />
-                                                </Tooltip>
-                                            </div>
-                                            <div>
-                                                {selectZone && row.poSupplierSuppliesId === item.poSupplierSuppliesId ? (
-                                                    <>
-                                                        <Button
-                                                            type="primary"
-                                                            onClick={() => handleUpdateSupplies()}
-                                                        >
-                                                            Save
-                                                        </Button>
-                                                        <Button
-                                                        // type="primary"
-                                                        // onClick={handleCancelZone()}
-                                                        >
-                                                            Cancel
-                                                        </Button>
-                                                    </>
-
-                                                ) : (
-                                                    <BorderColorIcon
-                                                        className="!text-base cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
-
-                                                        onClick={() => {
-                                                            handleItemClick(item)
-                                                            handleSelectZone()
-                                                        }}
-                                                    />
-                                                )}
-                                            </div>
-
-                                            <div></div>
-                                        </div> */}
+                                      
 
                                     </div>
                                     <div>
                                         {itemHistory && (row.suppliesId === item.suppliesId)
                                             && <ItemHistoryInStockData 
+                                            selectedLanguage={props.selectedLanguage}
+                                            translateText={props.translateText}
                                             row={row} 
                                             inventory={props.inventory}
+                                          
+
                                             />}
                                     </div>
                                 </div>

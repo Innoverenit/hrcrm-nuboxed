@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
@@ -10,6 +10,30 @@ import { movePoToInventory } from "../../../SuppliersAction"
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 
 function AddLocationInPo(props) {
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+
+           "658", // "Location",//0
+           "154"// "Submit",//1
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
     useEffect(() => {
         props.getLocationList(props.orgId);
     }, []);
@@ -57,12 +81,13 @@ function AddLocationInPo(props) {
                     <Form>
                         <div class="flex justify-between">
                             <div class="w-[50%]">
-                                <Field
+                                <div className=" text-xs font-bold font-poppins">{translatedMenuItems[0]}</div>
+                               <Field
                                     name="locationId"
                                     type="text"
                                     width={"100%"}
                                     placeholder="Location"
-                                    label="Location"
+                                    // label="Location"
                                     isRequired
                                     component={SelectComponent}
                                     options={Array.isArray(locationsName) ? locationsName : []}
@@ -74,7 +99,7 @@ function AddLocationInPo(props) {
                                     htmlType="submit"
                                     loading={props.moveToInventory}
                                 >
-                                    Submit
+                                   {translatedMenuItems[1]} {/* Submit */}
                                 </Button>
                             </div>
                         </div>

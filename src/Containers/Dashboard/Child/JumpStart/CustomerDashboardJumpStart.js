@@ -1,267 +1,320 @@
-import React, {} from "react";
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import dayjs from "dayjs";
-import {getJumpDistributorDetail,
+import {getFinaceOrderDetails,
   handleCustomerAddedModal,handleContactAddedModal,handleOrderAddedModal,
-  handleOrderClosedModal,} from "../../DashboardAction";
-// import {getleaveLeftSideDetails} from "../../../Leave/LeavesAction"
+  handleOrderClosedModal,getCustomerAddedList,getContactAddedList,getOrderAddedList,
+  getOrderClosedList
+} from "../../DashboardAction";
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
-import CustomerAddedModal from "./CustomerAddedModal";
-import ContactAddedModal from "./ContactAddedModal";
-import OrdersAddedModal from "./OrdersAddedModal";
-import OrdersClosedModal from "./OrdersClosedModal";
-// import {getDateWiseList,getSalesDateWiseList,getTasklist,getavgHour,} from "../../DashboardAction";
+import { BundleLoader } from "../../../../Components/Placeholder";
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import axios from 'axios';
+import {base_url2} from "../../../../Config/Auth";
+import DynamicPieChart from './DynamicPieChart';
+const CustomerJumpStartDrawer=lazy(()=>import("./CustomerJumpStartDrawer"));
 
-class CustomerDashboardJumpStart extends React.Component{
-  constructor() {
-    super();
-    const startDate = dayjs().startOf("month"); 
-    const endDate = dayjs();
-    var today = new Date(),
-    date =
-      today.getFullYear() +
-      "-" +
-      (today.getMonth() + 1) +
-      "-" +
-      today.getDate();
 
-  this.state = {
-    date: date,
-    startDate,
-    endDate
+function CustomerDashboardJumpStart (props) {
+
+  
+  const [date, setDate] = useState(dayjs().format('YYYY-MM-DD'));
+  const [startDate] = useState(dayjs().startOf('month'));
+  const [endDate] = useState(dayjs());
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [modalData, setModalData] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentOrderType, setCurrentOrderType] = useState("");
+  const [error, setError] = useState(null);
+
+
+  const [dashCustomerCount, setdashCustomerCount] = useState({});
+  const [loading1, setLoading1] = useState(false);
+
+  const fetchDashCutomerCount = async () => {
+    try {
+      const response = await axios.get(`${base_url2}/distributor/distributorCount/${props.userId}/${props.timeRangeType}`,{
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      });
+      setdashCustomerCount(response.data);
+      setLoading1(false);
+    } catch (error) {
+      setError(error);
+      setLoading1(false);
+    }
   };
-}
 
-componentDidMount() {
-   this.props.getJumpDistributorDetail(this.props.timeRangeType);
-}
-// componentDidMount() {
-  
-//    if (this.props.role==="USER"&&this.props.user.department==="Recruiter"){
-//     const startDate = `${this.state.startDate.format("YYYY-MM-DD")}T20:00:00Z`
-//     const endDate = `${this.state.endDate.format("YYYY-MM-DD")}T20:00:00Z`
-//   const { getDateWiseList, recruiterId,   } = this.props;
-//   getDateWiseList(recruiterId,  startDate, endDate);
-//    }else{
-//     const startDate = `${this.state.startDate.format("YYYY-MM-DD")}T20:00:00Z`
-//     const endDate = `${this.state.endDate.format("YYYY-MM-DD")}T20:00:00Z`
-//     const { getSalesDateWiseList, orgId } = this.props;
-//     getSalesDateWiseList(orgId,  startDate, endDate);
-//    }
-   
-// }
-// componentWillReceiveProps(nextProps) {
-//   if (
-//     this.props.startDate !== nextProps.startDate ||
-//     this.props.endDate !== nextProps.endDate
-//   ) {
-//         if(this.props.role==="USER"&&this.props.user.department==="Recruiter"){
-//     const { getDateWiseList, recruiterId, startDate, endDate } = nextProps;
-//     getDateWiseList(recruiterId, startDate, endDate);
-//         }else{
-//           const { getSalesDateWiseList, orgId, startDate, endDate } = nextProps;
-//           getSalesDateWiseList(orgId, startDate, endDate);
-//         }
-        
-//   }
-// }
-// componentDidMount() {
-//   const startDate = `${this.state.startDate.format("YYYY-MM-DD")}T20:00:00Z`
-//   const endDate = `${this.state.endDate.format("YYYY-MM-DD")}T20:00:00Z`
-//   this.props.getTasklist(this.props.userId)
-//    this.props.getavgHour(this.props.userId, startDate, endDate);
-//    this.props.getleaveLeftSideDetails(this.props.userId);
-//   console.log(`Start Date: ${this.state.startDate.format("ll")}`);
-//   console.log(`End Date: ${this.state.endDate.format("ll")}`);
-// }
-//   useEffect(() => { 
-//    props.getDateWiseList(props.recruiterId,props.startDate, props.endDate);
-// }, [props.startDate, props.endDate, props.type]);
-  
-render() {
-  const formattedDate = dayjs(this.props.dateOfJoining).format('DD-MM-YYYY'); // Format the date as per your requirement
-  const { showDatelist, fetchingDatewiseReport } = this.props;
-  console.log( this.props.taskperCount)
-   const startDate = `${this.state.startDate.format('DD-MM-YYYY')}T20:00:00Z`
-  //   const endDate = new Date(this.state.endDate);
+  const [dashContactCount, setdashContactCount] = useState({});
+  const [loading2, setLoading2] = useState(false);
 
-  console.log(startDate)
-  console.log(this.state.endDate.format('DD-MM-YYYY'))
+    const fetchDashContactCount = async () => {
+      try {
+        const response = await axios.get(`${base_url2}/dashboard/contactAdded/${props.userId}/${props.timeRangeType}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setdashContactCount(response.data);
+        setLoading2(false);
+      } catch (error) {
+        setError(error);
+        setLoading2(false);
+      }
+    };
+
+
+  const [cuOrdrAdded, setcuOrdrAdded] = useState({});
+  const [loading3, setLoading3] = useState(false);
+
+    const fetchcuOrdrAdded = async () => {
+      try {
+        const response = await axios.get(`${base_url2}/distributor/ordersAdded/${props.userId}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setcuOrdrAdded(response.data);
+        setLoading3(false);
+      } catch (error) {
+        setError(error);
+        setLoading3(false);
+      }
+    };
+    const [cuOrdrComplete, setcuOrdrComplete] = useState([]);
+    const [loading4, setLoading4] = useState(false);
+
+    const fetchcuOrdrComplete = async () => {
+      try {
+        const response = await axios.get(`${base_url2}/distributor/ordersCompleted/${props.userId}`,{
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        });
+        setcuOrdrComplete(response.data);
+        setLoading3(false);
+      } catch (error) {
+        setError(error);
+        setLoading3(false);
+      }
+    };
+  useEffect(() => {
+    props.getFinaceOrderDetails(props.userId,props.timeRangeType)
+    fetchDashCutomerCount();
+    fetchDashContactCount();  
+  }, [props.timeRangeType]);
+
+  useEffect(() => {
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
+  const fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        '1296', // 0 "Customer Added" 
+        '1297', // 1 "Contacts Added"
+        '1229', // 2 "Orders Added"
+        '1298'  // 3 "Orders Completed"
+      ];
+
+      const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+      setTranslatedMenuItems(translations);
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
+
+
+  useEffect(() => {
+    if (props.contactAddedList) {
+      setModalData(props.contactAddedList);
+    }
+  }, [props.contactAddedList]);
+
+  useEffect(() => {
+    if (props.customerAddedList) {
+      setModalData(props.customerAddedList);
+    }
+  }, [props.customerAddedList]);
+
+  useEffect(() => {
+    if (props.orderAddedList) {
+      setModalData(props.orderAddedList);
+    }
+  }, [props.orderAddedList]);
+
+  useEffect(() => {
+    if (props.orderClosedList) {
+      setModalData(props.orderClosedList);
+    }
+  }, [props.orderClosedList]);
+
+
+
+
+
+  const handleClick = (type) => {
+    setCurrentOrderType(type);
+    setIsModalOpen(true);
+
+    switch(type) {
+      case 'Added':
+        props.getCustomerAddedList(props.userId,props.endDate,props.startDate);
+        break;
+      case 'Contact Added':
+        props.getContactAddedList(props.userId,props.endDate,props.startDate);
+        break;
+      case 'Orders Added':
+        props.getOrderAddedList(props.userId,props.endDate,props.startDate);
+        break;
+      case 'Closed':
+        props.getOrderClosedList(props.userId,props.endDate,props.startDate);
+        break;
+      default:
+        break;
+    }
+  };
+
+
   return(
-    <div class=" flex flex-row w-full" >
-    <div class="flex w-full max-sm:flex-col" >
-    <div class="flex w-wk">
-        <JumpStartBox
-            noProgress
-            bgColor="linear-gradient(270deg,#F15753,orange)"
-            title={
-              <FormattedMessage
-                id="app.customerAdded"
-                defaultMessage="Customer Added"
-              />
-            }
-            value={this.props.distributorinDashboard.totalDistributor}
-            jumpstartClick={()=>this.props.handleCustomerAddedModal(true)}
-          />
-  
-       
-          <JumpStartBox
-            noProgress
-            bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
-            title={
-              <FormattedMessage
-                id="app.ContactsAdded"
-                defaultMessage="Contacts Added"
-              />
-            }
-            value={this.props.distributorinDashboard.totalContactPerson}
-            jumpstartClick={()=>this.props.handleContactAddedModal(true)}
-          />
-          </div>
-          {/* <JumpStartBox
-            noProgress
-            title="Profiles Submitted"
-            bgColor="linear-gradient(270.23deg, #00A843 0.19%, #1FD071 99.8%)"
-            value={this.props.showDatelist.taggedProfile}
-            isLoading={this.props.fetchingDatewiseReport}
-          /> */}
-          <div class="flex w-wk">
-          <JumpStartBox
-            noProgress
-            bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
-            // title="Open Tasks"
-            title={
-              <FormattedMessage
-                id="app.OrdersAdded"
-                defaultMessage="Orders Added"
-              />
-            }
-            value={this.props.distributorinDashboard.totalOrder}
-            jumpstartClick={()=>this.props.handleOrderAddedModal(true)}
-            cursorData={"pointer"}
-            
-          />
-          <JumpStartBox
-            noProgress
-            bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
-            title={
-              <FormattedMessage
-                id="app.ordersCompleted"
-                defaultMessage="Orders Completed"
-              />
-            }
-            value={this.props.distributorinDashboard.completeOrder}
-            jumpstartClick={()=>this.props.handleOrderClosedModal(true)}
-            cursorData={"pointer"}
-            
-          />
-           </div>
-           {/* <JumpStartBox
-            noProgress
-            title="DashBoard6"
-            bgColor="linear-gradient(269.97deg, #FFFFFF 0.02%, #000000 0.03%)"
-          /> */}
-          {/* <JumpStartBox
-                    // jumpstartClick={
-                    //   subscriptionType === "PROFESSIONALPLUS"
-                    //     ? () => this.props.handleLifetimeModal(true)
-                    //     : null
-                    // }
-                    // cursorData={
-                    //   subscriptionType === "PROFESSIONALPLUS" ? "pointer" : "default"
-                    // }
-                    noProgress
-                    currencyType={currencyType}
-                    title="Won"
-                    bgColor="#4cc9f0"
-                />
+    <>
+
+   <div class=" flex flex-col">
+
+    <div className="flex flex-row w-full">
+        <div className="flex w-full max-sm:flex-col">
+          <div className="w-full md:w-1/2 xl:w-1/3 p-2">
+            <div className="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
+              <div className="flex flex-row items-center text-xs">
+                <div className="flex-shrink pr-1">
+                  <div className="rounded-full p-2 bg-green-600"><AcUnitIcon className='text-white'/></div>
+                </div>
                 <JumpStartBox
-                    // jumpstartClick={
-                    //   subscriptionType === "PROFESSIONALPLUS"
-                    //     ? () => this.props.handleLifetimeModal(true)
-                    //     : null
-                    // }
-                    // cursorData={
-                    //   subscriptionType === "PROFESSIONALPLUS" ? "pointer" : "default"
-                    // }
-                    noProgress
-                    currencyType={currencyType}
-                    title="Customers Added"
-                    bgColor="#92defe"
-                /> */}
+                  noProgress
+                  bgColor="linear-gradient(270deg,#F15753,orange)"
+                  title={translatedMenuItems[0]}
+                  value={dashCustomerCount.totalDistributor}
+                  jumpstartClick={()=> handleClick("Added")}
+                  cursorData={"pointer"}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="w-full md:w-1/2 xl:w-1/3 p-2">
+            <div className="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
+              <div className="flex flex-row items-center text-xs">
+                <div className="flex-shrink pr-1">
+                  <div className="rounded-full p-2 bg-pink-600"><ContactsIcon className='text-white'/></div>
+                </div>
+                <JumpStartBox
+                  noProgress
+                  bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
+                  title={translatedMenuItems[1]}
+                  // value={props.finaceOrderinDashboard.totalContactPerson}
+                  jumpstartClick={()=> handleClick("Contact Added")}
+                />
+              </div>
+            </div>
+          </div>
+          <div className="w-full md:w-1/2 xl:w-1/3 p-2">
+            <div className="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
+              <div className="flex flex-row items-center text-xs">
+                <div className="flex-shrink pr-1">
+                  <div className="rounded-full p-2 bg-yellow-600"><DynamicFeedIcon className='text-white'/></div>
+                </div>
+                <JumpStartBox
+                  noProgress
+                  bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
+                  title={translatedMenuItems[2]}
+                  value={props.finaceOrderinDashboard.totalOrder}
+                  jumpstartClick={()=> handleClick("Orders Added")}
+                  cursorData="pointer"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="w-full md:w-1/2 xl:w-1/3 p-2">
+            <div className="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
+              <div className="flex flex-row items-center text-xs">
+                <div className="flex-shrink pr-1">
+                  <div className="rounded-full p-2 bg-blue-600"><DynamicFeedIcon className='text-white'/></div>
+                </div>
+                <JumpStartBox
+                  noProgress
+                  bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
+                  title={translatedMenuItems[3]}
+                  value={props.finaceOrderinDashboard.completeOrder}
+                  jumpstartClick={()=> handleClick("Closed")}
+                  cursorData="pointer"
+                />
+              </div>
+            </div>
+          </div>
         </div>
-
-        {/* <FlexContainer>
-          <JumpStartBox noProgress title="All Products" bgColor="#8791a1" />
-          <JumpStartBox noProgress title="Quantity On Hand" bgColor="#8791a1" />
-          <JumpStartBox
-            noProgress
-            title="Out of Stock Products"
-            bgColor="#8791a1"
-          />
-          <JumpStartBox noProgress title="Total Visitors" bgColor="#8791a1" />
-        </FlexContainer> */}
-         <CustomerAddedModal
-       customerAddedModal={this.props.customerAddedModal}
-       handleCustomerAddedModal={this.props.handleCustomerAddedModal}
-      />
-
-<ContactAddedModal
-       contactAddedModal={this.props.contactAddedModal}
-       handleContactAddedModal={this.props.handleContactAddedModal}
-      />
-        <OrdersAddedModal
-       orderAddedModal={this.props.orderAddedModal}
-       handleOrderAddedModal={this.props.handleOrderAddedModal}
-      />
-      <OrdersClosedModal
-       orderClosedModal={this.props.orderClosedModal}
-       handleOrderClosedModal={this.props.handleOrderClosedModal}
-      />
+        
       </div>
-    
+      <div class=" mt-1 flex flex-row justify-between" >
+        <div>
+        <div class=" font-poppins font-bold text-base ">By Sector</div>
+        <Suspense fallback={<BundleLoader />}>
+        <DynamicPieChart dtype={"Sector"} 
+        userId={props.userId} timeRangeType={props.timeRangeType}/>
+        </Suspense>
+        </div>
+        <div>
+        <div class=" font-poppins font-bold text-base ">By Source</div>
+        <Suspense fallback={<BundleLoader />}>
+        <DynamicPieChart dtype={"Source"} 
+        userId={props.userId} timeRangeType={props.timeRangeType}/>
+        </Suspense>
+        </div>
+        </div>
+</div>
+<Suspense fallback={<BundleLoader />}>
+<CustomerJumpStartDrawer
+viewType={props.viewType}
+ selectedLanguage={props.selectedLanguage}
+ translateText={props.translateText}
+ isModalOpen={isModalOpen}
+ setIsModalOpen={() => setIsModalOpen(false)}
+ modalData={modalData}
+ title={currentOrderType}
+/>
+        
+        
+
+      </Suspense>
+     
+   </>
   ); 
 }
-}
 const mapStateToProps = ({ dashboard,auth ,leave}) => ({
-  user: auth.userDetails,
-  role: auth.userDetails.role,
-  leaveFetching:leave.leaveFetching,
-  showDatelist:dashboard.showDatelist,
   orgId:auth.userDetails.organizationId,
-  showSalesDatelist:dashboard.showSalesDatelist,
-  fetchingSalesDatewiseReport:dashboard.fetchingSalesDatewiseReport,
-  fetchingSalesDatewiseReportError:dashboard.fetchingSalesDatewiseReportError,
-  fetchingDatewiseReport:dashboard.fetchingDatewiseReport,
-  fetchingDatewiseReportError:dashboard.fetchingDatewiseReportError,
-  recruiterId:auth.userDetails.userId,
-  fetchingTaskper:dashboard.fetchingTaskper,
-  userId: auth.userDetails.employeeId,
-  dateOfJoining: auth.userDetails && auth.userDetails.dateOfJoining,
-  taskperCount:dashboard.taskperCount,
-  avgHour:dashboard.avgHour,
-  fetchingAvgHour:dashboard.fetchingAvgHour,
+  userId:auth.userDetails.userId,
   timeRangeType: dashboard.timeRangeType,
-  distributorinDashboard:dashboard.distributorinDashboard,
-  customerAddedModal:dashboard.customerAddedModal,
-  contactAddedModal:dashboard.contactAddedModal,
-  orderAddedModal:dashboard.orderAddedModal,
-  orderClosedModal:dashboard.orderClosedModal,
+  finaceOrderinDashboard:dashboard.finaceOrderinDashboard,
+  contactAddedList:dashboard.contactAddedList,
+  customerAddedList:dashboard.customerAddedList,
+  orderAddedList:dashboard.orderAddedList,
+  orderClosedList:dashboard.orderClosedList
+
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
-  getJumpDistributorDetail,
+  getFinaceOrderDetails,
   handleCustomerAddedModal,
   handleContactAddedModal,
   handleOrderAddedModal,
   handleOrderClosedModal,
-//   getDateWiseList,
-//   getSalesDateWiseList,
-//   getTasklist,
-//   getavgHour,
-//   getleaveLeftSideDetails
+  getCustomerAddedList,
+  getContactAddedList,
+  getOrderAddedList,
+  getOrderClosedList
 }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(CustomerDashboardJumpStart);

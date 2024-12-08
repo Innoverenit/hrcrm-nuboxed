@@ -7,7 +7,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
  import {getUserKpiList,updateActualValue} from "../../../EmployeeAction"
 // import {getKpis} from "../../../../Settings/Category/KPI/KPIAction"
 import { Button } from 'antd';
-import { FormattedMessage } from "react-intl";
+
 const { TabPane } = Tabs;
 const Option = Select;
 function onChange(pagination, filters, sorter) {
@@ -40,6 +40,40 @@ function UserKpiList(props) {
       yearSelectRef.current.value = ""; // Reset the value of the select element
     }
   };
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          "",//0 Fiscal Year
+          "",//1 Select Year
+           "154",//2  Submit
+        "76" , //  Assigned"3
+        "" ,//  Total4
+        "" , //  Achieved5
+        "" ,  //  "Actual6
+        "" ,  //  Weightage7
+        "66" , //  Month8
+        "1078" , //  Save9
+        "1079" ,  //  Cancel10
+          "170" , //  "Edit"11
+                 
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+       
+      } catch (error) {
+   
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   const handleTabClick = async (key) => {
     setActiveTab(key);
     setLoading(true); 
@@ -138,44 +172,41 @@ function UserKpiList(props) {
      </div>
      {activeTab&&(
   <div className=' flex  justify-center  sticky  z-auto'>
-  <div className="rounded m-1 p-1  w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-    <div className="flex justify-between  h-10 w-[99%] p-1 bg-transparent font-bold sticky z-10">
-      <div className="md:w-[8.5rem]">
-        <FormattedMessage id="app.kpi" defaultMessage="KPI" />
+  <div className="rounded m-1 p-1  w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+    <div className="flex justify-between  h-10 w-[100%]  p-1 bg-transparent font-bold sticky z-10">
+      <div className="md:w-[8.5rem]"> KPI
+     
       </div>
-      <div className="md:w-[7.5rem]">
-        <FormattedMessage id="app.lob" defaultMessage="LOB" />
+      <div className="md:w-[7.5rem]"> LOB
+    
       </div>
-      {/* <div className="md:w-[5.5rem]">
-         <FormattedMessage id="app.lob" defaultMessage="Currency" />
-       </div> */}
+     
       <div className="md:w-[11.1rem]">
-        <FormattedMessage id="app.assigned" defaultMessage="Assigned" />
+      {translatedMenuItems[3]}  
       </div>
       <div className="md:w-[9.11rem]">
-        <FormattedMessage id="app.assigned" defaultMessage=" Total" />
+      {translatedMenuItems[4]}   
       </div>
   
       <div className="md:w-[7.11rem]">
-        <FormattedMessage id="app.achieved" defaultMessage="Achieved" />
+      {translatedMenuItems[5]}  
       </div>
       <div className="md:w-[7.51rem]">
-        <FormattedMessage id="app.achieved" defaultMessage=" Total" />
+      {translatedMenuItems[4]} 
       </div>
       <div class="w-[2rem]"></div>
       <div className="md:w-[8.01rem]">
-        <FormattedMessage id="app.actual" defaultMessage="Actual" />
+      {translatedMenuItems[6]} 
       </div>
       <div className="md:w-[3.1rem]">
-        <FormattedMessage id="app.actual" defaultMessage="Total" />
+      {translatedMenuItems[4]} 
 
       </div>
       <div class="w-[2rem]"></div>
-      <div className="md:w-[4.1rem]"><FormattedMessage
-         id="app.weightage"
-         defaultMessage="Weightage"
-       /></div>
-        {/* <div className="w-[2rem]"></div> */}
+       <div className="md:w-[4.1rem]">{translatedMenuItems[7]} 
+     
+       </div>
+        
     </div>
 
     {props.userKpiList.map((item, index) => {
@@ -189,12 +220,12 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((item.completedValue /
      return (
      <>
       <div key={index} className="flex rounded justify-between bg-white mt-[0.5rem] h-8 items-center p-1">
-        <div className="flex font-medium flex-col md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between ">
+        <div className="flex  md:w-[8rem] max-sm:flex-row w-full max-sm:justify-between ">
           <div className="flex max-sm:w-full items-center">
             <div className="max-sm:w-full">
               <Tooltip>
                 <div className="flex max-sm:w-full justify-between flex-row md:flex-col w-[9rem]">
-                  <div className="text-sm text-blue-500  font-poppins font-semibold cursor-pointer">
+                  <div className="text-xs text-blue-500  font-poppins font-semibold cursor-pointer">
                     {item.kpiName}
                   </div>
                 </div>
@@ -203,31 +234,23 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((item.completedValue /
          
           </div>
         </div>
-        <div className="flex font-medium flex-col md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
-          <div className="text-sm  font-poppins">
+        <div className="flex  md:w-[17rem] max-sm:flex-row w-full max-sm:justify-between">
+          <div className="text-xs  font-poppins">
             <>
 
-<div className="font-normal text-sm  font-poppins">{item.lobName}</div>
+<div className=" text-xs  font-poppins">{item.lobName}</div>
 
             </>
           </div>
         </div>
-        {/* <div className="flex font-medium flex-col md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between">
-           <div className="text-sm  font-poppins">
-             <>
-   
-     {props.employeeName.currency}
-     
-             </>
-           </div>
-         </div> */}
+    
 
-        <div className="flex font-medium flex-col md:w-[26.32rem] max-sm:flex-row w-full max-sm:justify-between">
-          <div className="text-sm  font-poppins">
+        <div className="flex  md:w-[26.32rem] max-sm:flex-row w-full max-sm:justify-between">
+          <div className="text-xs  font-poppins">
           <>
-<div className="font-normal flex flex-row text-sm  font-poppins">
+<div className=" flex flex-row text-xs  font-poppins">
  <div className="flex flex-col w-[4rem] items-center">
-   <span className="mr-2">M1</span>
+   <span className="mr-2  !text-tab">M1</span>
    <span className='ml-2 w-20'>
     {item.month1AssignedValue && (
 <span>
@@ -237,7 +260,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((item.completedValue /
 )}</span>
  </div>
  <div className="flex flex-col w-[4rem] items-center">
-   <span className="mr-2">M2</span>
+   <span className="mr-2  !text-tab">M2</span>
    <span className='ml-2 w-20'>{item.month2AssignedValue && (
 <span>
 {item.currencyInd && `${item.userCurrency} `}
@@ -246,7 +269,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((item.completedValue /
 )}</span>
  </div>
  <div className="flex flex-col w-[4rem] items-center">
-   <span className="mr-2 ">M3</span>
+   <span className="mr-2  !text-tab ">M3</span>
 
              <span className='ml-2 w-20'>{item.month3AssignedValue && (
 <span>
@@ -259,10 +282,10 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((item.completedValue /
 </>
           </div>
         </div>
-        <div className="flex font-medium flex-col md:w-[13.3rem] max-sm:flex-row w-full max-sm:justify-between">
-          <div className="text-sm  font-poppins">
+        <div className="flex  md:w-[13.3rem] max-sm:flex-row w-full max-sm:justify-between">
+          <div className="text-xs  font-poppins">
             <>
-              <div className="font-normal flex flex-row text-sm  font-poppins">
+              <div className=" flex flex-row text-xs  font-poppins">
               {item.month3AssignedValue && (
     <span>
         {item.currencyInd && `${item.userCurrency} `}
@@ -274,13 +297,13 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((item.completedValue /
           </div>
         </div>
    
-        <div className="flex font-medium flex-col md:w-[28.3rem] max-sm:flex-row w-full max-sm:justify-between">
-        <div className="text-sm  font-poppins">
+        <div className="flex  md:w-[28.3rem] max-sm:flex-row w-full max-sm:justify-between">
+        <div className="text-xs  font-poppins">
           <>
      
-            <div className="font-normal flex flex-row text-sm  font-poppins">
+            <div className=" flex flex-row text-xs  font-poppins">
               <div className="flex flex-col items-center">
-                <span className="mr-2">M1</span>
+                <span className="mr-2  !text-tab">M1</span>
                 <span className='ml-2 w-[4rem]'>   {item.month1CompletedValue && (
                               <span>
                                   {item.currencyInd && `${item.userCurrency} `}
@@ -289,7 +312,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((item.completedValue /
                           )}</span>
               </div>
               <div className="flex flex-col items-center">
-                <span className="mr-2">M2</span>
+                <span className="mr-2  !text-tab">M2</span>
                 <span className='ml-2 w-[4rem]'>   {item.month2CompletedValue && (
                               <span>
                                   {item.currencyInd && `${item.userCurrency} `}
@@ -298,7 +321,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((item.completedValue /
                           )}</span>
               </div>
               <div className="flex flex-col items-center">
-                <span className="mr-2">M3</span>
+                <span className="mr-2  !text-tab">M3</span>
                 <span className='ml-2 w-[4rem]'>   {item.month3CompletedValue && (
                               <span>
                                   {item.currencyInd && `${item.userCurrency} `}
@@ -311,10 +334,10 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((item.completedValue /
           </>
         </div>
       </div>
-      <div className="flex font-medium flex-col md:w-[11.13rem] max-sm:flex-row w-full max-sm:justify-between">
-        <div className="text-sm  font-poppins">
+      <div className="flex  md:w-[11.13rem] max-sm:flex-row w-full max-sm:justify-between">
+        <div className="text-xs  font-poppins">
           <>
-            <div className="font-normal flex flex-row text-sm  font-poppins">
+            <div className=" flex flex-row text-xs  font-poppins">
             {item.month3CompletedValue && (
             <span>
              {item.currencyInd && `${item.userCurrency} `}
@@ -325,7 +348,7 @@ const acivedPercentage = AssignedTotal !== 0 ? Math.floor((item.completedValue /
           </>
         </div>
       </div>
-      <div className=" flex font-medium flex-col  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+      <div className=" flex   md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
          <div class=" text-xs  font-poppins">
          {/* <Tooltip title={item.oppStage}> */}
@@ -344,8 +367,8 @@ width={30}
       
          </div>
        </div>
-      <div className="flex font-medium flex-col md:w-[24.3rem]  max-sm:flex-row w-full max-sm:justify-between">
-        <div className="text-sm  font-poppins">
+      <div className="flex  md:w-[24.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+        <div className="text-xs  font-poppins">
         {editContactId === item.userKpiLinkId ? (
  <>
  <div class=" flex flex-row">
@@ -398,7 +421,7 @@ width={30}
  </>
 ) : (
  <>
-            <div className="font-normal flex flex-row text-sm  font-poppins">
+            <div className=" flex flex-row text-xs  font-poppins">
               <div className="flex flex-col items-center">
                 <span className="mr-2">M1</span>
                 <span className='ml-2 w-[4rem]'>   {item.month1ActualCompletedValue && (
@@ -433,10 +456,10 @@ width={30}
            )}
         </div>
       </div>
-      <div className="flex font-medium flex-col md:w-[9.1rem] max-sm:flex-row w-full max-sm:justify-between">
-        <div className="text-sm  font-poppins">
+      <div className="flex  md:w-[9.1rem] max-sm:flex-row w-full max-sm:justify-between">
+        <div className="text-xs  font-poppins">
           <>
-            <div className="font-normal flex flex-row text-sm  font-poppins">
+            <div className=" flex flex-row text-xs  font-poppins">
             {item.month3ActualCompletedValue && (
     <span class=" w-[4rem]">
         {item.currencyInd && `${item.userCurrency} `}
@@ -447,7 +470,7 @@ width={30}
           </>
         </div>
       </div>
-      <div className=" flex font-medium flex-col  md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+      <div className=" flex   md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
          <div class=" text-xs  font-poppins">
          {/* <Tooltip title={item.oppStage}> */}
@@ -466,11 +489,11 @@ width={30}
       
          </div>
        </div>
-<div className=" flex font-medium flex-col md:w-[4.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+<div className=" flex  md:w-[4.2rem] max-sm:flex-row w-full max-sm:justify-between ">
            
-           <div class="text-sm  font-poppins">
+           <div class="text-xs  font-poppins">
 
-<div className="font-normal text-sm  font-poppins">
+<div className=" text-xs  font-poppins">
 {item.weitageValue && (
                 <span>
                     {/* {item.currencyInd && `${item.userCurrency} `} */}
@@ -485,16 +508,16 @@ width={30}
            {editContactId === item.userKpiLinkId ? (
                <>
               <Button onClick={() => handleUpdateContact(item.userKpiLinkId, item.month1ActualCompletedValue,item.month2ActualCompletedValue,item.month3ActualCompletedValue)}>
-               Save
+              {translatedMenuItems[9]}   {/* Save */}
              </Button>
                <Button onClick={() => handleCancelClick(item.userKpiLinkId)} style={{ marginLeft: '0.5rem' }}>
-               Cancel
+               {translatedMenuItems[10]}   {/* Cancel */}
              </Button>
              </>
              
            ) : (
              <BorderColorIcon
-               tooltipTitle="Edit"
+               tooltipTitle={translatedMenuItems[11]} 
                iconType="edit"
                 onClick={() => handleEditClick(item.userKpiLinkId)}
                style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '1rem', }}
@@ -538,211 +561,3 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 export default connect(mapStateToProps, mapDispatchToProps)(UserKpiList);
-
-// <div class="rounded-lg m-5 p-2 w-[97%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-// <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
-// <div className=" md:w-[8.5rem]">
-// <FormattedMessage
-//         id="app.name"
-//         defaultMessage="Name"
-//       /></div>
-
-
-//                <div className=" md:w-[7.1rem]"><FormattedMessage
-//         id="app.assigned"
-//         defaultMessage="Assigned"
-//       /></div>
-//        <div className="md:w-[10.1rem]"><FormattedMessage
-//         id="app.achieved"
-//         defaultMessage="Achieved"
-//       /></div>
-//            <div className="md:w-[14.1rem]"><FormattedMessage
-//         id="app.actual"
-//         defaultMessage="Actual"
-//       /></div>
-    
-
-
-
-
-// </div>
-
-
-// {props.userKpiList.map((item) => { 
-
-
-//           return (
-//               <div>
-//                   <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
-//                       >
-                           
-//                            <div className=" flex font-medium flex-col md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
-// <div className="flex max-sm:w-full items-center"> 
-
-// <div class="max-sm:w-full">
-//                               <Tooltip>
-//                                 <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
-                                
-//                                   <div class="text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
-                                      
-// {item.kpiName}
-
-
-//                                   </div>
-//                                   </div>
-//                               </Tooltip>
-//                               </div>
-//                               </div>
-//                       </div>
-//                       <div class="flex">
-
-                  
-//                   <div className=" flex font-medium flex-col md:w-[12.2rem] max-sm:flex-row w-full max-sm:justify-between ">
-                         
-//                          <div class="text-sm  font-poppins">
-    
-//            <div className="font-normal text-sm  font-poppins">
-//            {item.assignedValue && (
-//                               <span>
-//                                   {item.currencyInd && `${item.userCurrency} `}
-//                                   {item.assignedValue}
-//                               </span>
-//                           )}
-//            </div>
-      
-//                          </div>
-//                      </div>
-//                      <div className=" flex font-medium flex-col md:w-[16.3rem]  max-sm:flex-row w-full max-sm:justify-between">
-//                      {item.completedValue && (
-//                               <span>
-//                                   {item.currencyInd && `${item.userCurrency} `}
-//                                   {item.completedValue}
-//                               </span>
-//                           )}
-//                   </div>
-//                   <div className="Ccard__title w-[15rem]">
-//                   <div class="text-sm  font-poppins">
-//                      {editContactId === item.userKpiLinkId ? (
-//     <>
-//     <div class=" flex flex-row">
-//     <input
-//     style={{border:"2px solid black",width:"6rem"}}
-//     placeholder="Month1"
-//       value={editedFields[item.userKpiLinkId]?.month1ActualCompletedValue !== undefined ? editedFields[item.userKpiLinkId].month1ActualCompletedValue : item.month1ActualCompletedValue}
-//       onChange={(e) => {
-//         const inputValue = e.target.value;
-//         if (!isNaN(inputValue)) { 
-//             handleChange(item.userKpiLinkId, 'month1ActualCompletedValue', inputValue);
-//         } else {
-//           alert("Please enter  number.");
-       
-//         }
-//     }}
-//     />
-//     &nbsp;
-//     <input
-//     placeholder="Month2"
-//     style={{border:"2px solid black",width:"6rem"}}
-//       value={editedFields[item.userKpiLinkId]?.month2ActualCompletedValue !== undefined ? editedFields[item.userKpiLinkId].month2ActualCompletedValue : item.month2ActualCompletedValue}
-//       onChange={(e) => {
-//         const inputValue = e.target.value;
-//         if (!isNaN(inputValue)) { 
-//             handleChange(item.userKpiLinkId, 'month2ActualCompletedValue', inputValue);
-//         } else {
-//           alert("Please enter  number.");
-       
-//         }
-//     }}
-//     />
-//        &nbsp;
-//     <input
-//     placeholder="Month3"
-//     style={{border:"2px solid black",width:"6rem"}}
-//       value={editedFields[item.userKpiLinkId]?.month3ActualCompletedValue !== undefined ? editedFields[item.userKpiLinkId].month3ActualCompletedValue : item.month3ActualCompletedValue}
-//       onChange={(e) => {
-//         const inputValue = e.target.value;
-//         if (!isNaN(inputValue)) { 
-//             handleChange(item.userKpiLinkId, 'month3ActualCompletedValue', inputValue);
-//         } else {
-//           alert("Please enter  number.");
-       
-//         }
-//     }}
-//     />
-//        &nbsp;
-//     </div>
-//     </>
-//   ) : (
-//     <>
-
-//     <div className="font-normal flex  flex-row text-sm  font-poppins">
-//     <div class=" flex flex-col">
-// <span className='mr-2'>M1</span>
-// <span className='ml-2'>   {item.month1ActualCompletedValue && (
-//                               <span>
-//                                   {item.currencyInd && `${item.userCurrency} `}
-//                                   {item.month1ActualCompletedValue}
-//                               </span>
-//                           )}</span>
-// </div>
-// <div class=" flex flex-col">
-// <span className='mr-2'>M2</span>
-// <span className='ml-2'>   {item.month2ActualCompletedValue && (
-//                               <span>
-//                                   {item.currencyInd && `${item.userCurrency} `}
-//                                   {item.month2ActualCompletedValue}
-//                               </span>
-//                           )}</span>
-// {/* <span className='ml-2'>{`${item.month2CompletedValue}`}</span> */}
-// </div>
-// <div class=" flex flex-col">
-// <span className='mr-2'>M3</span>
-// <span className='ml-2'>   {item.month3ActualCompletedValue && (
-//                               <span>
-//                                   {item.currencyInd && `${item.userCurrency} `}
-//                                   {item.month3ActualCompletedValue}
-//                               </span>
-//                           )}</span>
-// {/* <span className='ml-2'>{`${item.month3ActualCompletedValue}`}</span> */}
-// </div>
-//     </div>
-    
- 
-//     </>
-//   )}
-//                      </div>
-//         </div>
-
-//         <div className=" flex mt-[1rem] ml-4" style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >
-//           {editContactId === item.userKpiLinkId ? (
-//               <>
-//             <Button onClick={() => handleUpdateContact(item.userKpiLinkId, item.month1ActualCompletedValue,item.month2ActualCompletedValue,item.month3ActualCompletedValue)}>
-//               Save
-//             </Button>
-//               <Button onClick={() => handleCancelClick(item.userKpiLinkId)} style={{ marginLeft: '0.5rem' }}>
-//               Cancel
-//             </Button>
-//             </>
-            
-//           ) : (
-//             <BorderColorIcon
-//               tooltipTitle="Edit"
-//               iconType="edit"
-//               onClick={() => handleEditClick(item.userKpiLinkId)}
-//               style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '0.75rem', marginTop: '0.25rem', marginLeft: '0.25rem' }}
-//             />
-//           )}
-//         </div>
-//                     </div>
-       
-
-                    
-                   
-//                   </div>
-//               </div>
-
-
-//           )
-//       })}
-          
-// </div>

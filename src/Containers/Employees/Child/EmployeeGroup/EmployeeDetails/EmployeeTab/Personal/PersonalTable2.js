@@ -1,6 +1,6 @@
-import React, { Component ,lazy} from "react";
+import React, { Component ,lazy, Suspense} from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import {
   StyledModal,
@@ -22,10 +22,14 @@ import { AddressComponent } from "../../../../../../../Components/Common";
 import FormikPlacesAutoComplete from "../../../../../../../Components/Forms/Formik/FormikPlacesAutoComplete";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import { deleteEmergencyTable } from "../../../../../../Profile/ProfileAction";
-import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
+import PhoneIcon from '@mui/icons-material/Phone';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+
+const EmptyPage = lazy(() => import("../../../../../../Main/EmptyPage"));
 const UpdatePersonalModal = lazy(() => import("../Personal/UpdatePersonalModal"));
 
 class PersonalTable2 extends Component {
@@ -34,6 +38,7 @@ class PersonalTable2 extends Component {
     this.state = {
       mapModalVisible: false,
       addAddressVisible: false,
+      translatedMenuItems: [],
     };
   }
   handleMapModalVisible = () =>
@@ -46,7 +51,29 @@ class PersonalTable2 extends Component {
   componentDidMount() {
     const { getPersonalDetails, employeeId } = this.props;
     getPersonalDetails(employeeId);
+    this.fetchMenuTranslations();
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "110",//0 Name0
+      "546",  // "Mobile No"1
+      "300",  // "Phone No2
+      "154",  // Submit8
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   // }
   render() {
     const {
@@ -93,34 +120,26 @@ class PersonalTable2 extends Component {
  
 
     if (fetchingPersonalDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;
     return (
       <>
-        <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">
-          <div className=" md:w-[6.5rem]">
-        <FormattedMessage
-                  id="app.name"
-                  defaultMessage="Name"
-                /></div>
+        <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky z-10">
+          <div className=" max-md:w-[6.5rem] w-[6.5rem] text-sm text-[#00A2E8]"> {/* Name */}  <ContactsIcon className="!text-icon  "/> {this.state.translatedMenuItems[0]}</div>
  
-        <div className="md:w-[10.1rem]">  <FormattedMessage id="app.mobileNo" defaultMessage="Mobile No" /></div>
-                 <div className="md:w-[10.1rem]">
-                 <FormattedMessage
-          id="app.phoneNo"
-          defaultMessage="Phone No"
-        /></div>
+        <div className="max-md:w-[10.1rem] w-[10.1rem]"> <PhoneIcon className="!text-icon  text-[#4B2206]"/> {this.state.translatedMenuItems[1]}</div>
+       <div className="max-md:w-[10.1rem] w-[10.1rem]"><PhoneIcon className="!text-icon text-[#D64045] "/>{this.state.translatedMenuItems[2]}</div>
               
         
-        <div className="w-[10.2rem]"></div>
+        <div className="w-[10.2rem] max-md:w-[10.2rem]"></div>
 
       </div>
    
         
-      {personal =="" ? "None":personal.map((item) => { 
+      {personal =="" ? <EmptyPage/>:personal.map((item) => { 
           const dataLoc=` Address : ${item.address &&
             item.address.length &&
             item.address[0].address1} 
@@ -142,20 +161,20 @@ class PersonalTable2 extends Component {
                             <div className="flex rounded justify-between bg-white mt-[0.5rem] h-8 items-center p-1"
                                 >
                                      
-                                     <div className=" flex  md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
-<div className="flex max-sm:w-full items-center"> 
+                                     <div className=" flex w-[14rem] max-md:w-[14rem] max-sm:flex-row  max-sm:justify-between  ">
+                                      <div className="flex max-sm: items-center"> 
 
-          <div class="max-sm:w-full">
+                                        <div class="max-sm:">
                                         <Tooltip>
-                                          <div class=" flex max-sm:w-full justify-between flex-row md:  w-[8rem]">
+                                          <div class=" flex max-sm: justify-between w-[8rem] max-md:w-[8rem]">
                                           
                                             <div class="  text-blue-500  font-poppins font-semibold  cursor-pointer">
                                                 
                                             <span>{` ${item.contactSalutation} 
-              ${item.contactFirstName}
-              ${item.contactMiddleName}
-              ${item.contactLastName}`}</span>
-     
+                                                    ${item.contactFirstName}
+                                                    ${item.contactMiddleName}
+                                                    ${item.contactLastName}`}</span>
+                                          
        
                                             </div>
                                             </div>
@@ -164,17 +183,14 @@ class PersonalTable2 extends Component {
                                         </div>
                                 </div>
                                 <div class="flex">
-
-                             
-                              
-                                <div className=" flex  md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                                <div className=" flex  max-md:w-[12.3rem] w-[12.3rem] max-sm:flex-row  max-sm:justify-between">
                                 
                                   <div class="   font-poppins">
                                   {item.mobileNo}
                                   </div>
                               </div>
 
-                              <div className=" flex  md:w-[10.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                              <div className=" flex  max-md:w-[10.3rem] w-[10.3rem max-sm:flex-row  max-sm:justify-between">
                                 
                                 <div class="   font-poppins">
                                 {item.phoneNo}
@@ -188,22 +204,17 @@ class PersonalTable2 extends Component {
                               <Tooltip overlayStyle={{ maxWidth: "300px" }}
           title={dataLoc}>
 
-          <LocationOnIcon  style={{
-            cursor: "pointer",
-            fontSize: "0.8rem"}}
-            
-            iconType="environment"
+          <LocationOnIcon className=" cursor-pointer !text-icon" 
             // handleIconClick={() => {
             //   this.props.setCurrentPersonal(item);
             //   this.handleMapModalVisible();
             // }}
-            size="1em"
           />
            </Tooltip>
           </>
                  
                   </div>
-                                <div className=" flex ml-2 md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex ml-2 max-md:w-[2rem] w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                                     
 
                                     <div class="    font-poppins text-center">
@@ -218,7 +229,7 @@ class PersonalTable2 extends Component {
 
                                     </div>
                                 </div>
-                                <div className=" flex ml-2 md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex ml-2 max-md:w-[2rem] w-[2rem] max-sm:flex-row  max-sm:justify-between ">
                                     
 
                                     <div class="    font-poppins text-center">
@@ -255,11 +266,11 @@ class PersonalTable2 extends Component {
           scroll={{ y: tableHeight }}
           pagination={false}
         /> */}
-
+  <Suspense>
         <UpdatePersonalModal
           updatePersonalModal={updatePersonalModal}
           handleUpdatePersonalModal={handleUpdatePersonalModal}
-        />
+        /></Suspense>
         <StyledModal
           title={`${contactFirstName || ""} 
              ${contactLastName || ""}`}
@@ -286,7 +297,7 @@ class PersonalTable2 extends Component {
               <div class=" flex justify-between items-start flex-no-wrap"
               >
                 <div>
-                  <div className="product3" style={{ width: "180" }}>
+                  <div classname="flex flex-col w-[11rem] h-[40%] px-2 py-5 bg-[f5f5f5] justify-left items-left mb-2 mt-2">
                     {address &&
                       address.map((components, i) => (
                         <AddressComponent
@@ -397,106 +408,64 @@ class AddressField extends Component {
               <Form className="form-background">
                 <Field
                   name={`address`}
-                  //label="Work place"
-                  label={<FormattedMessage
-                    id="app.workplace"
-                    defaultMessage="Work place"
-                  />}
+                  label="Work place"
                   component={FormikPlacesAutoComplete}
                   options={{}}
                 />
                 <Field
-                  //label="Address1"
-                  label={<FormattedMessage
-                    id="app.Address1"
-                    defaultMessage="address.address1"
-                  />}
+                  label="Address1"
                   name="address.address1"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  //label="address2"
-                  label={<FormattedMessage
-                    id="app.Address2"
-                    defaultMessage="address.address2"
-                  />}
+                  label="address2"
                   name="address.address2"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  //label="street"
-                  label={<FormattedMessage
-                    id="app.address.street"
-                    defaultMessage="street"
-                  />}
+                  label="street"
                   name="address.street"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  //label="town"
-                  label={<FormattedMessage
-                    id="app.address.town"
-                    defaultMessage="town"
-                  />}
+                  label="town"
                   name="address.town"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  //  label="city"
-                  label={<FormattedMessage
-                    id="app.address.city"
-                    defaultMessage="city"
-                  />}
+                   label="city"
                   name="address.city"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  //label="state"
-                  label={<FormattedMessage
-                    id="app.address.state"
-                    defaultMessage="state"
-                  />}
+                  label="state"
                   name="address.state"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  //label="country"
-                  label={<FormattedMessage
-                    id="app.address.country"
-                    defaultMessage="country"
-                  />}
+                  label="country"
                   name="address.country"
                   component={InputComponent}
                 // defaultValue='low'
                 />
                 <Field
-                  //label="postalCode"
-                  label={<FormattedMessage
-                    id="app.address.postalCode"
-                    defaultMessage="postalCode"
-                  />}
+                  label="postalCode"
                   name="address.postalCode"
                   component={InputComponent}
                 // defaultValue='low'
                 />
 
                 <Button type="primary" htmlType="submit">
-                  <FormattedMessage
-                    id="app.save"
-                    defaultMessage="Save"
-                  />
+                Save
               </Button>
                 <Button type="default" onClick={handleAddAddressVisible}>
-                  <FormattedMessage
-                    id="app.cancel"
-                    defaultMessage="Cancel"
-                  />
+                 Cancel
               </Button>
               </Form>
             )}

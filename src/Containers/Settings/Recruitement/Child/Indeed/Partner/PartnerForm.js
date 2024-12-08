@@ -1,20 +1,16 @@
-import PropTypes from 'prop-types'
+
 import React, { useState,useEffect } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from 'react-redux';
 import dayjs from "dayjs";
 import {getEmployeeData} from "../../../../../Employees/EmployeeAction"
-import { FlexContainer } from '../../../../../../Components/UI/Layout'
 import { InputComponent } from '../../../../../../Components/Forms/Formik/InputComponent';
 import { SelectComponent } from '../../../../../../Components/Forms/Formik/SelectComponent';
-import { Button,Input,Switch } from "antd";
+import { Button} from "antd";
 import { Formik, Form, Field } from "formik";
-import { Spacer } from "../../../../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
 import { Select } from "antd";
 import { getPartner,addPartner } from '../../../../SettingsAction';
-import { StyledLabel } from "../../../../../../Components/UI/Elements";
-import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
+
 const { Option } = Select;
 
     function PartnerForm(props) {
@@ -64,7 +60,7 @@ const { Option } = Select;
                   width: "60%",
                 }}
               > 
-              <FlexContainer justifyContent= "space-between">  
+             <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto "> 
               <div style={{width:"45%"}}>           
                 <Field
                   label="URL"
@@ -88,28 +84,13 @@ const { Option } = Select;
                   component={InputComponent}
                 />
                 </div>                  
-                </FlexContainer>
-                <Spacer />
-                {/* <FlexContainer justifyContent="space-between">
-                  <StyledLabel>Candidate  From This Channel Will be Assigned</StyledLabel> 
-                  <div style={{ width: "45%" }}>  
-                      <Field
-                        name="assignToUserId"
-                        // isColumnWithoutNoCreate
-                        isColumn
-                        
-                        width={"47%"}
-                       
-                        isRequired
-                        component={SelectComponent}
-                        options={Array.isArray(employeeNameOption) ? employeeNameOption : []}
-                      />
-                      </div>
-                      </FlexContainer> */}
-                      <FlexContainer justifyContent="space-between">
+                </div>
+                <mt-3 />
+              
+                <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                       <div style={{ width: "44%" }}>
-                      <FlexContainer justifyContent="space-between">                 
-                      <StyledLabel >Vendor From This Channel Will be Assigned</StyledLabel>                  
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">          
+                      <div class=" text-xs font-bold font-poppins">Vendor From This Channel Will be Assigned</div>                  
                       {/* <Switch                                              
                         // checked={this.state.availability}
                         // onChange={this.handleAvailability}
@@ -131,7 +112,7 @@ const { Option } = Select;
    
   
 </Select> 
-                      </FlexContainer>
+                      </div>
                       </div>
                       <div style={{ width: "30%" }}>
                       {selectType === "employee" ? (
@@ -164,19 +145,19 @@ const { Option } = Select;
                       ) : null}
                       </div>
                       
-                      </FlexContainer>
+                      </div>
               </div>
               </div>  
               <div>Updated on {dayjs(props.partner && props.partner.length && props.partner[0].lastUpdatedOn).format("ll")} by {props.partner && props.partner.length && props.partner[0].name}</div> 
-              <Spacer style={{ marginTop: "1.25em" }} />
-              <FlexContainer justifyContent="flex-end">
+              <mt-3 style={{ marginTop: "1.25em" }} />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button 
                       type="primary"
                       htmlType="submit"
                    Loading={props.addingPartner}
                     >Update                  
                     </Button>
-                    </FlexContainer>
+                    </div>
                      </Form>
         )}
       </Formik>

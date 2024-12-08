@@ -166,7 +166,7 @@ const AssignPhoneByTechnician = (props) => {
                         className="w-[300]"
                         value={dueDate}
                         onChange={(value) => hanldeOnChange(value)}
-                        disabledDate={disabledDate}
+                        // disabledDate={disabledDate}
 
                     />
                 </div>
@@ -199,6 +199,7 @@ const AssignPhoneByTechnician = (props) => {
                             defaultQcDepartmentId: department
                         },
                             props.rowData.orderPhoneId,
+                            props.userId,
                             props.locationId,
                             handleCallback()
                         )}>

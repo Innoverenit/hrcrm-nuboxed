@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
 import UpdateLeadsOpportunityForm from "./UpdateLeadsOpportunityForm";
@@ -10,9 +10,7 @@ const AddLeadsUpdateOpportunityModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={
-          <FormattedMessage id="app.opportunity" defaultMessage="Update Opportunity" />
-        }
+        title="Update Opportunity" 
         width="45%"
         visible={props.addUpdateLeadsOpportunityModal}
         maskClosable={false}

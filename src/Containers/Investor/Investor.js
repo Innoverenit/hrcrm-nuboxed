@@ -4,12 +4,14 @@ import { bindActionCreators } from "redux";
 import { BundleLoader, } from "../../Components/Placeholder";
 import {
   // setInvestorViewType
-  handleInvestorModal} from "./InvestorAction";
+  handleInvestorModal,updateOwnerinvestorById} from "./InvestorAction";
 import {getInvestorsbyId,emptyInvestor,getInvestorsFilterData} from "./InvestorAction";
 import {
   getLatestCustomer,
   getCustomerCloser, 
 } from "../Customer/CustomerAction";
+
+const InvestorDeleteList = lazy(() => import("./InvestorDeleteList"));
 const InvestorHeader = lazy(() => import("./Child/InvestorHeader"));
 const InvestorTeamCardList = lazy(() => import("./Child/InvestorTable/InvestorTeamCardList"));
 const InvestorAllCardList = lazy(() => import("./Child/InvestorTable/InvestorAllCardList"));
@@ -17,28 +19,21 @@ const InvestorCardList=lazy(() => import("./Child/InvestorTable/InvestorCardList
 const AddInvestorModal=lazy(()=>import("./Child/AddInvestorModal"));
 
 function Investor (props) {
+
+  const [showCheckboxes, setShowCheckboxes] = useState(false);
+  const [selectedDeals, setSelectedDeals] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null);
+  const [isTransferMode, setIsTransferMode] = useState(true)
 const [currentData,setcurrentData]=useState("");
 const [currentUser,setcurrentUser]=useState("");
-const [filter, setFilter] = useState("creationdate");
+const [filter, setFilter] = useState("CreationDate");
 const [viewType, setViewType] = useState(null);
   const [teamsAccessInd, setTeamsAccessInd] = useState(props.teamsAccessInd);
   const setInvestorViewType = (viewType) => {
     setViewType(viewType);
     setTeamsAccessInd(false);
   };
-// function handleClear () {
-//   const startDate = moment()
-//     .startOf("month")
-//     .toISOString();
-//   const endDate = moment()
-//     .endOf("month")
-//     .toISOString();
-//     setcurrentData(currentData);
-// props.emptyInvestor();
-//   this.props.getInvestorsbyId(this.state.currentUser?this.state.currentUser:this.props.userId,0,"creationdate");
-//   this.props.getLatestCustomer(this.props.userId);
-//   this.props.getCustomerCloser(this.props.userId, startDate, endDate);
-// };
+
 const handleClear = () => {
   setcurrentData("");
   props.getInvestorsbyId(currentUser || props.userId, 0, "creationdate");
@@ -46,9 +41,45 @@ const handleClear = () => {
 function handleCurrentData (value){
   setcurrentData(value)
 }
+
+const handleTransferClick = () => {
+  if (isTransferMode) {
+    // If we're in Transfer mode, we show the checkboxes and switch to Cancel mode
+    setShowCheckboxes(true);
+    setIsTransferMode(false);
+  } else {
+    // If we're in Cancel mode, we uncheck all checkboxes and switch back to Transfer mode
+    setShowCheckboxes(false);
+    setIsTransferMode(true);
+    setSelectedDeals([]);
+    setSelectedUser(null); // Reset selected user
+  }
+};
+
+const handleCheckboxChange = (dealName) => {
+  setSelectedDeals((prevSelectedDeals) => {
+    if (prevSelectedDeals.includes(dealName)) {
+      return prevSelectedDeals.filter((name) => name !== dealName);
+    } else {
+      return [...prevSelectedDeals, dealName];
+    }
+  });
+};
+
+const handleUserSelect = (value) => {
+  // const selectedUser = userList.find((user) => user.id === value);
+  // setSelectedUser(selectedUser);
+  let data={
+    investorIds:selectedDeals
+  }
+  props.updateOwnerinvestorById(data,value)
+  // console.log('Selected Deals:', selectedDeals);
+  // console.log('Selected User:', selectedUser);
+};
 const handleFilterChange = (data) => {
   setFilter(data);
   props.getInvestorsFilterData(props.userId, 0, data);
+  // props.getTeamInvestor(props.userId, 0,data);
 };
 const handleChange = (e) => {
   setcurrentData(e.target.value)
@@ -63,7 +94,14 @@ const handleChange = (e) => {
   } = props;
         return (
             <React.Fragment>
+              <Suspense fallback={<BundleLoader />}>
           <InvestorHeader
+          handleUserSelect={handleUserSelect}
+          showCheckboxes={showCheckboxes}
+          selectedDeals={selectedDeals}
+          selectedUser={selectedUser}
+          isTransferMode={isTransferMode}
+          handleTransferClick={handleTransferClick}
           translateText={props.translateText}
           selectedLanguage={props.selectedLanguage}
           viewType={viewType}
@@ -85,9 +123,13 @@ const handleChange = (e) => {
           addInvestorModal={addInvestorModal}
           handleInvestorModal={handleInvestorModal}
           />
- <Suspense fallback={<BundleLoader />}>
+ 
  {teamsAccessInd ? (
        <InvestorTeamCardList
+       showCheckboxes={showCheckboxes}
+             selectedDeals={selectedDeals}
+             selectedUser={selectedUser}
+             handleCheckboxChange={handleCheckboxChange}
        translateText={props.translateText}
          selectedLanguage={props.selectedLanguage}
        />
@@ -95,27 +137,45 @@ const handleChange = (e) => {
           <>
             {viewType === 'list' && <InvestorCardList
              translateText={props.translateText}
+             showCheckboxes={showCheckboxes}
+             selectedDeals={selectedDeals}
+             selectedUser={selectedUser}
+             handleCheckboxChange={handleCheckboxChange}
              selectedLanguage={props.selectedLanguage}
             /> }
             {viewType === 'all' && <InvestorAllCardList  filter={filter}
              translateText={props.translateText}
+             showCheckboxes={showCheckboxes}
+             selectedDeals={selectedDeals}
+             selectedUser={selectedUser}
+             handleCheckboxChange={handleCheckboxChange}
              selectedLanguage={props.selectedLanguage}
             /> }
-            {viewType === 'teams' &&  <InvestorTeamCardList
+            {viewType === 'teams' ?(  <InvestorTeamCardList
+             translateText={props.translateText}
+             showCheckboxes={showCheckboxes}
+             selectedDeals={selectedDeals}
+             selectedUser={selectedUser}
+             handleCheckboxChange={handleCheckboxChange}
+             selectedLanguage={props.selectedLanguage}
+            />
+            ):(
+<InvestorCardList
+             translateText={props.translateText}
+             showCheckboxes={showCheckboxes}
+             selectedDeals={selectedDeals}
+             selectedUser={selectedUser}
+             handleCheckboxChange={handleCheckboxChange}
+             selectedLanguage={props.selectedLanguage}
+            />
+            )}
+             {viewType === 'delete' &&  <InvestorDeleteList
              translateText={props.translateText}
              selectedLanguage={props.selectedLanguage}
             />}
           </>
         )}
- {/* {  viewType === "list" ?
-          <InvestorCardList/> 
- 
-  :viewType==="all" ?
- <InvestorAllCardList  filter={filter}/> 
- :viewType==="teams" ? (<InvestorTeamCardList/>)
-// <CustomerCardView/>  
 
-          :null} */}
  </Suspense>
             </React.Fragment>
         )
@@ -132,6 +192,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   // setInvestorViewType,
   handleInvestorModal,
   getLatestCustomer,
+  updateOwnerinvestorById,
   getCustomerCloser,
   getInvestorsbyId,emptyInvestor,getInvestorsFilterData
 }, dispatch)

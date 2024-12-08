@@ -1,6 +1,6 @@
 import React, {  Suspense,lazy } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
@@ -14,11 +14,8 @@ const AddTaskModal = (props) => {
   return (
     <>
       <StyledDrawer
-        // title="Workflow"
-        title={<FormattedMessage
-          id="app.task"
-          defaultMessage="Task"
-        />}
+         title="Task"
+      
         width="60%"
         visible={props.addTaskDrawer}
         maskClosable={false}

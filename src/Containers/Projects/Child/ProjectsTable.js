@@ -2,14 +2,14 @@ import React, { useEffect, useState, useMemo, lazy } from "react";
 import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import {
   MultiAvatar2,
 } from "../../../Components/UI/Elements";
 import { Link } from 'react-router-dom';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { FormattedMessage } from "react-intl";
+
 import { Tooltip, Button, Input } from "antd";
 import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from "@mui/icons-material/Search";
@@ -21,7 +21,6 @@ import "jspdf-autotable";
   handleUpdateProjectsModal,
   handleInvoiceProjectModal
 } from "../../Projects/ProjectsAction";
-import { BundleLoader } from "../../../Components/Placeholder";
 import { OnlyWrapCard } from "../../../Components/UI/Layout";
 const UpdateProjectsModal =lazy(()=> import('./UpdateProject/UpdateProjectsModal'));
 const AddInvoiceProjectsModal =lazy(()=> import('./ProjectsDetail/AddInvoiceProjectsModal'));
@@ -152,29 +151,20 @@ function ProjectsTable(props) {
   return (
     <>
         <div className=' flex justify-end sticky top-28 z-auto'>
-            <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
-                <div className=" flex  w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-                    <div className=" md:w-[21.1rem]"><FormattedMessage
-                        id="app.project"
-                        defaultMessage="project"
-                    /></div>
-                    <div className=" md:w-[27.1rem]"><FormattedMessage
-                        id="app.customer"
-                        defaultMessage="customer"
-                    /></div>
-                    <div className=" md:w-[9.8rem] "><FormattedMessage
-                        id="app.creator"
-                        defaultMessage="Creator"
-                    /></div>
-                    <div className="md:w-[5.8rem]"></div>
+            <OnlyWrapCard style={{ backgroundColor: "white" }}>
+                <div className=" flex text-xs font-bold font-poppins w-[90%] p-2 bg-transparent sticky top-0 z-10">
+                    <div className="w-[21.1rem] md:w-[21.1rem]">project</div>
+                    <div className="w-[27.1rem] md:w-[27.1rem]">customer</div>
+                    <div className="w-[9.8rem] md:w-[9.8rem] ">Creator</div>
+                    <div className="w-[5.8rem] md:w-[5.8rem]"></div>
                     
                 </div>
                 {props.projectsData.map((item) => {
-                    const currentdate = moment().format("DD/MM/YYYY");
-                    const date = moment(item.creationDate).format("DD/MM/YYYY");
+                    const currentdate = dayjs().format("DD/MM/YYYY");
+                    const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                     return (
                         <div>
-                            <div className="flex rounded-xl  mt-4 bg-white h-12 items-center p-3 "
+                            <div className="flex rounded  mt-4 bg-white h-12 items-center p-3 "
 
                             >
                                 <div class="flex">
@@ -217,7 +207,7 @@ function ProjectsTable(props) {
                                         </div>
 
                                     </div>
-                                    <div className=" flex font-medium  md:w-[8.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                    <div className=" flex font-medium w-[21.2rem]  md:w-[8.2rem] max-sm:flex-row  max-sm:justify-between ">
 
 
 
@@ -232,9 +222,9 @@ function ProjectsTable(props) {
                                         </div>
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[10.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                <div className=" flex font-medium justify-end items-center w-[10.5rem] md:w-[24.5rem] max-sm:flex-row max-sm:justify-between ">
                                 <Tooltip title="Create Invoice">
-            <ReceiptIcon
+            <ReceiptIcon className="!text-icon"
            onClick={()=>{
              props.handleInvoiceProjectModal(true);
             // handlePassRowData(item);
@@ -248,10 +238,9 @@ function ProjectsTable(props) {
             </Tooltip>
 
                                   
-                                </div>
-                                <div className=" flex font-medium  md:w-[10.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                               
                                 <Tooltip title="Edit">
-             <BorderColorIcon 
+             <BorderColorIcon  className="!text-icon"
               type="edit"
               style={{ cursor: "pointer", fontSize:"0.8rem"}}
               onClick={() => {
@@ -261,14 +250,13 @@ function ProjectsTable(props) {
              }}
             />
           </Tooltip>
-                                </div>
-                                <div className=" flex font-medium  md:w-[10.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+                              
                                 <StyledPopconfirm
             title="Do you want to delete?"
              onConfirm={() => removeProjectData(item.projectId)}
           >
-            <DeleteIcon
-            type="delete" style={{ cursor: "pointer", color: "red",fontSize:"0.8rem" }} />
+            <DeleteIcon  className="!text-icon cursor-pointer text-red-600"
+            type="delete" />
           </StyledPopconfirm>
                                 </div>
 

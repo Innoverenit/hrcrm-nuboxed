@@ -1,14 +1,40 @@
 import * as types from "./OrderActionTypes";
-import moment from "moment";
+import dayjs from "dayjs";
 
 const initialState = {
-  viewType: "",
+  viewType: "production",
 
   addOrderModal: false,
+
+  viewItemDrwr: false,
+
+  quotationItemDrwr:false,
+
+  invoiceItemDrwr:false,
+
+  fetchingInvoiceDetails: false,
+  fetchingInvoiceDetailsError: false,
+  ecomInvoiceList:[],
+
+  fetchingQuotationDetails: false,
+  fetchingQuotationDetailsError: false,
+  ecomQuotation:[],
+
+  fetchingProcureOrderDetails: false,
+  fetchingProcureOrderDetailsError: false,
+  orderProcureDetails: [],
+
+  fetchingOrdrSuplrDetails: false,
+  fetchingOrdrSuplrDetailsError:false,
+  ordrSuplrItem:[],
 
   fetchingAllHighOrderList: false,
   fetchingAllHighOrderListError: false,
   allHighCompleteOrder:[],
+
+  fetchingInputOrderNosrch: false,
+  fetchingInputOrderNosrchError: false,
+  orderSearch:[],
 
   fetchingAllLowOrderList: false,
   fetchingAllLowOrderListError: false,
@@ -118,6 +144,10 @@ const initialState = {
   DistributorDeliveryDateError: false,
   disDeliveryDate: [],
 
+  creatCBM: false,
+  creatCBMError: false,
+  cBMData:{},
+
   CustomerDeliveryDate: false,
   CustomerDeliveryDateError: false,
   cusDeliveryDate: [],
@@ -131,6 +161,13 @@ const initialState = {
   fetchingAllOrderListError: false,
   allOrderList: [],
 
+  fetchingEcomList: false,
+  fetchingEcomListError:false,
+  ecomList:[],
+
+  fetchingEcomStatusItem: false,
+  fetchingEcomStatusItemError:false,
+  statusEcomItems:{}
 };
 
 export const orderReducer = (state = initialState, action) => {
@@ -255,6 +292,24 @@ export const orderReducer = (state = initialState, action) => {
         DistributorDeliveryDate: false,
         DistributorDeliveryDateError: true,
       };
+
+      case types.CREAT_CBM_REQUEST:
+        return {
+          ...state,
+          creatCBM: true,
+        };
+      case types.CREAT_CBM_SUCCESS:
+        return {
+          ...state,
+          creatCBM: false,
+          cBMData: action.payload,
+        };
+      case types.CREAT_CBM_FAILURE:
+        return {
+          ...state,
+          creatCBM: false,
+          creatCBMError: true,
+        };
 
     //CUSTOMER
     case types.CUSTOMER_DELIVERY_DATE_REQUEST:
@@ -724,26 +779,129 @@ export const orderReducer = (state = initialState, action) => {
                       return {
                         ...state,
                         fetchingInputOrderNosrch: false,
-                        allHighCompleteOrder: action.payload,
-                        allMediumCompleteOrder: action.payload,
-                        allLowCompleteOrder: action.payload,
-                        completedHighOrder:action.payload,
-                        completedMediumOrder:action.payload,
-                        completedLowOrder:action.payload,
+                        // allHighCompleteOrder: action.payload,
+                        // allMediumCompleteOrder: action.payload,
+                        // allLowCompleteOrder: action.payload,
+                        // completedHighOrder:action.payload,
+                        // completedMediumOrder:action.payload,
+                        // completedLowOrder:action.payload,
+                        orderSearch:action.payload,
                       };
                     case types.INPUT_ORDER_NO_SEARCH_FAILURE:
                       return { ...state, fetchingInputOrderNosrchError: true };   
                       
                       case types.HANDLE_CLAER_SEARCHED_ORDER:
                         return { ...state, 
-                          allHighCompleteOrder: [], 
-                          allMediumCompleteOrder: [],
-                          allLowCompleteOrder: [],
-                          completedHighOrder:[],
-                          completedMediumOrder:[],
-                          completedLowOrder:[],
-
+                          // allHighCompleteOrder: [], 
+                          // allMediumCompleteOrder: [],
+                          // allLowCompleteOrder: [],
+                          // completedHighOrder:[],
+                          // completedMediumOrder:[],
+                          // completedLowOrder:[],
+                          orderSearch:[],
                         };
+
+                        case types.GET_ECOM_LIST_REQUEST:
+                          return { ...state, fetchingEcomList: true };
+                        case types.GET_ECOM_LIST_SUCCESS:
+                          return {
+                            ...state,
+                            fetchingEcomList: false,
+                            ecomList: [
+                              ...state.ecomList,
+                              ...action.payload]
+                          };
+                        case types.GET_ECOM_LIST_FAILURE:
+                          return {
+                            ...state,
+                            fetchingEcomList: false,
+                            fetchingEcomListError: true,
+                          };     
+                          
+                          case types.GET_ECOM_STATUS_ITEM_REQUEST:
+                            return { ...state, fetchingEcomStatusItem: true };
+                          case types.GET_ECOM_STATUS_ITEM_SUCCESS:
+                            return {
+                              ...state,
+                              fetchingEcomStatusItem: false,
+                              statusEcomItems: action.payload,
+                            };
+                          case types.GET_ECOM_STATUS_ITEM_FAILURE:
+                            return {
+                              ...state,
+                              fetchingEcomStatusItem: false,
+                              fetchingEcomStatusItemError: true,
+                            };  
+                            
+
+                            case types.GET_PROCURE_ORDER_DETAILS_REQUEST:
+                              return { ...state, fetchingProcureOrderDetails: true };
+                            case types.GET_PROCURE_ORDER_DETAILS_SUCCESS:
+                              return {
+                                ...state,
+                                fetchingProcureOrderDetails: false,
+                                orderProcureDetails: action.payload,
+                              };
+                            case types.GET_PROCURE_ORDER_DETAILS_FAILURE:
+                              return {
+                                ...state,
+                                fetchingProcureOrderDetails: false,
+                                fetchingProcureOrderDetailsError: true,
+                              };
+
+                              case types.GET_ORDR_SUPLR_DETAILS_REQUEST:
+                                return { ...state, fetchingOrdrSuplrDetails: true };
+                              case types.GET_ORDR_SUPLR_DETAILS_SUCCESS:
+                                return {
+                                  ...state,
+                                  fetchingOrdrSuplrDetails: false,
+                                  ordrSuplrItem: action.payload,
+                                };
+                              case types.GET_ORDR_SUPLR_DETAILS_FAILURE:
+                                return {
+                                  ...state,
+                                  fetchingOrdrSuplrDetails: false,
+                                  fetchingOrdrSuplrDetailsError: true,
+                                };
+                          
+                                case types.GET_INVOICE_ECOM_REQUEST:
+                                return { ...state, fetchingInvoiceDetails: true };
+                              case types.GET_INVOICE_ECOM_SUCCESS:
+                                return {
+                                  ...state,
+                                  fetchingInvoiceDetails: false,
+                                  ecomInvoiceList: action.payload,
+                                };
+                              case types.GET_INVOICE_ECOM_FAILURE:
+                                return {
+                                  ...state,
+                                  fetchingInvoiceDetails: false,
+                                  fetchingInvoiceDetailsError: true,
+                                };
+
+                                case types.GET_QUOTATION_ECOM_REQUEST:
+                                return { ...state, fetchingQuotationDetails: true };
+                              case types.GET_QUOTATION_ECOM_SUCCESS:
+                                return {
+                                  ...state,
+                                  fetchingQuotationDetails: false,
+                                  ecomQuotation: action.payload,
+                                };
+                              case types.GET_QUOTATION_ECOM_FAILURE:
+                                return {
+                                  ...state,
+                                  fetchingQuotationDetails: false,
+                                  fetchingQuotationDetailsError: true,
+                                };
+                            
+    case types.HANDLE_ITEM_VIEW_DRAWER:
+      return { ...state, viewItemDrwr: action.payload };
+
+      case types.HANDLE_QUOTATION_DRAWER:
+        return { ...state, quotationItemDrwr: action.payload };
+
+        case types.HANDLE_INVOICE_DRAWER:
+          return { ...state, invoiceItemDrwr: action.payload };
     
     default:
       return state;

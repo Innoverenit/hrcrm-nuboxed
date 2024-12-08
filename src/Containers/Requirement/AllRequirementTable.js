@@ -1,13 +1,17 @@
-import React, { Component, lazy } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
-import moment from "moment";
-import { OnlyWrapCard } from "../../Components/UI/Layout";
+import dayjs from "dayjs";
 import {getAllRequirementTable} from "../Requirement/RequirementAction"
 import InfiniteScroll from "react-infinite-scroll-component";
-
-
+import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
+import CategoryIcon from '@mui/icons-material/Category';
+import EventIcon from '@mui/icons-material/Event';
+import AcUnitIcon from '@mui/icons-material/AcUnit';
+import RecentActorsIcon from '@mui/icons-material/RecentActors';
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+import PortraitIcon from '@mui/icons-material/Portrait';
+import ContactsIcon from '@mui/icons-material/Contacts';
 
 class AllRequirementTable extends Component {
  
@@ -42,29 +46,6 @@ class AllRequirementTable extends Component {
   handleSkillsetChoose = (data) => {
     this.setState({ skillSetData: data })
   }
-//   handleCallback = () => {
-//     if (this.props.role === "USER" && this.props.user.department === "Recruiter") {
-//       this.props.getRecruiterRequiremnt(this.props.recruiterId);
-//     } else {
-//       this.props.getRecruitByOpportunityId(this.props.opportunityId);
-
-//     }
-//     // this.props.getRecruitByOpportunityId(this.props.opportunityId);
-//   };
-//   handleCopy = (
-//     recruitmentId,
-//     recruitmentProcessId,
-//     stageId,
-//     opportunityId
-//   ) => {
-//     const value = {
-//       recruitmentId: recruitmentId,
-//       recruitmentProcessId: recruitmentProcessId,
-//       stageId: stageId,
-//       opportunityId: opportunityId,
-//     };
-//     this.props.addRecruitProProfile(value, this.handleCallback);
-//   };
 
   handleEditModal = (data) => {
     this.setState({ editModal: data });
@@ -83,19 +64,8 @@ class AllRequirementTable extends Component {
   handleIconClick = (profileId, candidateId, stageList,recruitmentId) => {
     debugger;
     this.setState({ show: true, profileId, candidateId, stageList,recruitmentId });
-    // this.props.getCandidateById(candidateId);
-    // this.props.getTopicsByCandidateId(candidateId);
-    // this.props.getContactDocument(contactId);
+
   };
-
-  // handleDeleteIconClick = (profileId, ) => {
-  //   debugger;
-  //   this.setState({  profileId, });
-  //  this.props.deleteRequirementData(this.props.recruitmentId);
-  //   // this.props.getTopicsByCandidateId(candidateId);
-  //   // this.props.getContactDocument(contactId);
-  // };
-
 
   handleCloseIconClick = () => {
     this.setState({ show: false });
@@ -114,69 +84,41 @@ class AllRequirementTable extends Component {
   this.props.getAllRequirementTable(this.props.orgId)
    
   }
-
-//   handleCallBack = (status, opportunityId, profileId) => {
-//     if (status === "success") {
-//       // message.success("Candidate Selected");
-//       this.props.emailSendRecruitment({
-//         opportunityId: opportunityId,
-//         userId: this.props.userId,
-//         profileId: profileId,
-//       });
-//     }
-//   };
-
-
   render() {
     const{requirementTable,fetchingAllRequirementTable} =this.props;
-   
-// console.log(this.props.requirementTable)
     
-
-    // console.log("?>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<", this.state.stageList);
-   
-    
- 
-
-
-    // if (this.props.fetchingRecruitToOpportunity) {
-    //   return <BundleLoader />;
-    // }
-   
     const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight - 100;
     return (
       <>
-  <div className=' flex justify-end sticky top-28 z-auto'>
-      <OnlyWrapCard style={{backgroundColor:"#eaedf1"}}>
-      <div className=" flex justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[8.1rem]">Job ID</div>
-        <div className=" md:w-[4.2rem] ">Requirement</div>
-        <div className="md:w-[5.8rem]">Category</div>
-        <div className="md:w-[8.5rem]">Customer</div>
-        <div className="md:w-[3.8rem]">Created</div> 
-        <div className="md:w-[5.2rem]">Recruiter</div>
-        <div className="md:w-[1.5rem]">On</div>
-        <div className="md:w-[3.3rem]">Start</div>
-        <div className="w-12">Duration</div>
-        <div className="w-12">Billing</div>
-        <div className="w-12">Talent</div>
-        <div className="w-12">Sponsor</div>
+  <div className=' flex sticky z-auto'>
+  <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-white" >
+  <div className=" flex max-sm:hidden   justify-between items-end !text-lm font-poppins  font-bold   w-[100%]   p-1 bg-transparent sticky max-xl:text-[0.65rem] max-lg:text-[0.45rem]  z-10">
+        <div className=" max-md:w-[8.1rem] w-[6.1rem] text-sm text-[#00A2E8]"> <WorkHistoryIcon className="!text-icon  "/> Job ID</div>
+        <div className=" max-md:w-[4.2rem] w-[6.2rem]"> <RecentActorsIcon className="!text-icon  "/> Requirement</div>
+        <div className="max-md:w-[5.8rem] w-[5.8rem]"> <CategoryIcon className="!text-icon text-[#42858c] "/> Category</div>
+        <div className="max-md:w-[8.5rem] w-[6.5rem]"> <AcUnitIcon className="!text-icon  text-[#c42847]"/> Customer</div>
+        <div className="max-md:w-[3.8rem] w-[4.8rem]"> <EventIcon className="!text-icon text-[#5A189A] "/> Created</div> 
+        <div className="max-md:w-[5.2rem] w-[5.2rem]"> <RecentActorsIcon className="!text-icon text-[#84a59d] "/> Recruiter</div>
+        <div className="max-md:w-[1.5rem] w-[1.5rem]"> On</div>
+        <div className="max-md:w-[3.3rem] w-[3.3rem]"> <EventIcon className="!text-icon  "/> Start</div>
+        <div className="max-md:w-[3.3rem] w-18"> <EventIcon className="!text-icon text-[#f42c04] "/> Duration</div>
+        <div className="max-md:w-[3.3rem] w-16"> <AccessAlarmIcon className="!text-icon  text-[#c42847]"/> Billing</div>
+        <div className="max-md:w-[3.3rem] w-16"> <PortraitIcon className="!text-icon  text-[#e4eb2f]"/> Talent</div>
+        <div className="max-md:w-[3.3rem] w-16"> <ContactsIcon className="!text-icon text-[#d64933] "/> Contact</div>
 
       </div>
       <InfiniteScroll
         dataLength={requirementTable.length}
-        // next={handleLoadMore}
-        // hasMore={hasMore}
         loader={fetchingAllRequirementTable?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
-        height={"75vh"}
+        height={"86vh"}
       >
         {requirementTable.map((item) => {
-          const currentdate = moment().format("DD/MM/YYYY");
-          const date = moment(item.creationDate).format("DD/MM/YYYY");
+          const currentdate = dayjs().format("DD/MM/YYYY");
+          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 
           const diff = Math.abs(
-            moment().diff(moment(item.lastRequirementOn), "days")
+            dayjs().diff(dayjs(item.lastRequirementOn), "days")
           );
           const dataLoc = ` Address : ${
             item.address && item.address.length && item.address[0].address1
@@ -200,104 +142,95 @@ class AllRequirementTable extends Component {
                } `;
           return (
             <div>
-                            <div className="flex rounded-xl justify-between mt-2 bg-white h-11 items-center p-3"
-                                // style={{
-                                //     borderBottom: "3px dotted #515050"
-                                // }}
-                                >
+                              <div className="flex  justify-between text-xs  font-poppins bg-white mt-1 py-ygap items-center  max-xl:p-1 max-sm:h-[9rem] max-sm:scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                               
                                 <div class="flex">
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
+                                <div className=" flex max-md:w-36 w-36 max-sm:flex-row border-l-2 border-green-500 bg-[#eef2f9]  max-sm:justify-between ">
 
                                     <div class=" text-sm justify-center  font-poppins">
                                     {item.jobOrder}
                                     </div>
                                 </div>
                              
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex max-md:w-36 w-36 max-sm:flex-row  max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {item.requirementName}
 
                                     </div>
-                                    <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                    <div className=" flex max-md:w-36 w-36 max-sm:flex-row  max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {item.category}
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex max-md:w-36 w-36 max-sm:flex-row  max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {item.customerName}
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex max-md:w-36  max-sm:flex-row w-36 max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {item.recruitOwner}
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex max-md:w-36 w-36 max-sm:flex-row  max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
+                                
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {item.creationDate}
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex max-md:w-36 w-36 max-sm:flex-row  max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
+                                
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {/* {item.creationDate} */}
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex max-md:w-36 w-36 max-sm:flex-row  max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
+                                
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {/* {item.creationDate} */}
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex max-md:w-36 w-36 max-sm:flex-row  max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
+                                
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {/* {item.creationDate} */}
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex max-md:w-36 w-36 max-sm:flex-row  max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
+                                
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {item.billing}
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex max-md:w-36 w-36 max-sm:flex-row  max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
+                                
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {item.candidatetList}
 
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col md:w-36 max-sm:flex-row w-full max-sm:justify-between ">
-                                    {/* <div class=" text-xs  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                                <div className=" flex max-md:w-36 w-36 max-sm:flex-row  max-sm:justify-between items-center justify-start h-8 ml-gap  bg-[#eef2f9]">
+                                
 
-                                    <div class=" text-sm  font-poppins text-center">
+                                    <div class="  text-center">
                                     {item.candidatetList}
 
                                     </div>
@@ -311,7 +244,7 @@ class AllRequirementTable extends Component {
           );
         })}
          </InfiniteScroll>
-      </OnlyWrapCard>
+      </div>
       </div>
  
     
@@ -339,396 +272,3 @@ const mapDispatchToProps = (dispatch) =>
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllRequirementTable);
 
-// const columns = [
-//   {
-//     title: "",
-//     width: "2%",
-//     // render: (name, item, i) => {
-//     //   const data = ` Profile ID : ${item.profileId}  Recruitment ID : ${item.recruitmentId}`
-//     //   return {
-//     //     props: {
-//     //       style: {
-//     //         background:
-//     //            this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-//     //             ? "rgb(158 183 223)"
-//     //             : null,
-
-//     //       },
-//     //     },
-//     //     children: (
-//     //       <Tooltip
-//     //       // className="ant-tooltip-inner"
-//     //       // placement="rightTop" 
-//     //       overlayStyle={{ maxWidth: '300px', }}
-
-//     //       title={data}
-//     //     >
-//     //       <span
-//     //         // onClick={() => handleReasonOfDelete(item.orderId)}
-//     //         style={{
-//     //           // color:
-//     //           //   showRes && item.orderId === orderId ? "orange" : "#1890ff",
-//     //           cursor: "pointer",
-//     //         }}
-//     //       >
-//     //         <i class="fa fa-info-circle"></i>
-//     //       </span>
-//     //     </Tooltip>
-//     //     ),
-//     //   };
-     
-//     // },
-//   },
-//   {
-//     title: "Job ID",
-//     width: "9%",
-//     dataIndex: "jobOrder",
-//     // render: (name, item, i) => {
-//     //   return {
-//     //     props: {
-//     //       style: {
-//     //         background:
-//     //            this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-//     //             ? "rgb(158 183 223)"
-//     //             : null,
-
-//     //       },
-//     //     },
-//     //     children: (
-//     //       <>
-//     //         <Badge count={item.number} style={{ right: "1px" }}>
-//     //           <span             
-//     //           >
-
-//     //             {`${item.jobOrder} `} &nbsp;
-
-
-//     //           </span>
-//     //         </Badge>
-//     //       </>
-//     //     ),
-//     //   };
-     
-//     // },
-
-//   },
-
-//   // {
-//   //   title:"",
-//   //     width: "8%",
-//   //   dataIndex:"number",
-
-//   // },
-//   {
-//     //title: "Requirement",
-//     title: <FormattedMessage
-//       id="app.requirementName"
-//       defaultMessage="Requirement"
-//     />,
-//     dataIndex: "requirementName",
-//     width: "13%",
-  
-//   },
-//   {
-//     title: "Category",
-//     dataIndex: "category",
-//     width: "9%",
-
-
-//   },
-//   {
-//     title: "Customer",
-//     dataIndex: "customerName",
-//     width: "9%",
-
-
-//   },
- 
-
-//   {
-//     title:"Created",
-//     width: "7%",
-//      dataIndex: "recruitOwner",
-//     //  render: (text, item) => {
-//     //  return <>
-//     //  {/* {item.assignedTo === item.ownerName ? "" : item.assignedTo}  */}
-//     //  <Tooltip title={item.recruitOwner}>
-//     //     <span>
-//     //       <MultiAvatar
-//     //         primaryTitle={item.recruitOwner}
-//     //         // imageId={item.ownerImageId}
-//     //         //  imageURL={item.imageURL}
-//     //         imgWidth={"2.1em"}
-//     //         imgHeight={"2.1em"}
-//     //       />
-//     //       </span>
-//     //      </Tooltip>      
-     
-//     //  </>
-//     // },
-     
-//   },
-//   {
-//     title: "Recruiter",
-//     width: "7%",
-//     // render: (name, item, i) => {
-//     //   return {
-//     //     props: {
-//     //       style: {
-//     //         background:
-//     //            this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-//     //             ? "rgb(158 183 223)"
-//     //             : null,
-
-//     //       },
-//     //     },
-
-//     //     children: 
-        
-//     //       <>
-    
-          
-//     //        <FlexContainer justifyContect="space-evenly">
-//     //        {item.recruiterList && item.recruiterList.map((item, i) => {
-//     //          return (
-//     //           <Tooltip
-//     //           title={item.fullName}
-//     //        >
-//     //           <div style={{ margin: "2px", borderRadius: "50%",cursor:"pointer" }}>
-//     //         <MultiAvatar
-//     //          primaryTitle={item.fullName||""}
-//     //           // imageId={item.imageId}
-//     //           // imageURL={item.imageURL}
-//     //           imgWidth={"2.1em"}
-//     //           imgHeight={"2.1em"}
-//     //         />
-//     //         </div>
-//     //       </Tooltip>
-//     //          );
-//     //     })} 
-//     //     </FlexContainer>
-//     //     </>
-        
-          
-       
-//     //   };
-    
-//     // },
-//   },
-//   {
-//     title: "On",
-//     width: "10%",
-//     dataIndex: "creationDate",
-//     // render: (text, item) => {
-//     //   const creationDate = moment(item.creationDate).format("ll");
-
-//     //   return {
-//     //     props: {
-//     //       style: {
-//     //         background:
-//     //            this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-//     //             ? "rgb(158 183 223)"
-//     //             : null,
-
-//     //       },
-//     //     },
-
-//     //     children: <span>
-          
-//     //    {creationDate}
-//     //     </span>,
-//     //   };
-    
-      
-//     // },
-//   },
-
-
-
-
-
-//   {
-//     //title: "Start",
-//     title: <FormattedMessage
-//       id="app.processName"
-//       defaultMessage="Start"
-//     />,
-//     width: "9%",
-//     // render: (name, item, i) => {
-//     //   console.log(item);
-//     //   return {
-//     //     props: {
-//     //       style: {
-//     //         background:
-//     //            this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-//     //             ? "rgb(158 183 223)"
-//     //             : null,
-
-//     //       },
-//     //     },
-
-//     //     children:<span>{moment(item.avilableDate).format("ll")}</span>
-//     //   };
-    
-//     // },
-//     // sorter: (a, b) => {
-//     //   if (a.avilableDate < b.avilableDate) {
-//     //     return -1;
-//     //   }
-//     //   if (a.avilableDate > b.avilableDate) {
-//     //     return 1;
-//     //   }
-//     //   return 0;
-//     // },
-//   },
-//   {
-//     title:"Duration",
-//     width: "8%",
-// //         render: (text, item) => {
-// //           //const getDate = (date) => moment(date, 'DD/MM/YYYY').startOf('month')
-// // const diff = Math.abs(moment(item.availableDate).diff(moment(item.endDate), 'months'));
-// // const date=diff+1
-// //          // const availableDate = moment(item.availableDate).subtract(item.endDate);
-// //           return <>
-// //           {/* {item.availableDate === null ? "None" : */}
-// //             <span>
-// //               {/* {moment(item.availableDate).subtract(item.endDate).month()} */}
-// //               {date} months
-// //             </span>
-// //           {/* } */}
-// //         </>
-// //         },
-    
-//   },
-//   {
-//     //title: "Rate/hr",
-//     title: <FormattedMessage
-//       id="app.billing"
-//       defaultMessage="Billing"
-//     />,
-//     dataIndex: "billing",
-//     width: "8%",
-//     //   defaultSortOrder: "descend",
-//     // sorter: (a, b) => a.billing - b.billing,
-//     // render: (name, item, i) => {
-//     //   console.log(item);
-//     //   return {
-//     //     props: {
-//     //       style: {
-//     //         background:
-//     //            this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-//     //             ? "rgb(158 183 223)"
-//     //             : null,
-
-//     //       },
-//     //     },
-
-//     //     children:<span>{item.billing} {item.currency}</span>
-//     //   };
-    
-//     // },
-//   },
- 
-
- 
- 
-
-
-
-
-
-//   {
-//     title: "Talent",
-//     dataIndex: "candidatetList",
-//     width: "12%",
-//     // render: (name, item, i) => {
-//     //   return {
-//     //     props: {
-//     //       style: {
-//     //         background:
-//     //            this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-//     //             ? "rgb(158 183 223)"
-//     //             : null,
-
-//     //       },
-//     //     },
-//     //     children: (
-//     //       <span>
-        
-        
-//     //        <FlexContainer justifyContect="space-evenly">
-//     //         {item.candidatetList && item.candidatetList.map((candidate, i) => {
-//     //           console.log(candidate)
-//     //           return (
-                
-//     //             <Tooltip
-//     //             title={candidate.fullName}
-//     //         >
-//     //             <div style={{ margin: "2px", borderRadius: "50%",cursor:"pointer" }}
-//     //             //  onClick={() => {
-//     //             //   this.handleClickCandidateName(item.recruitmentId)
-//     //             //   this.props.getCandidateRequirement(
-//     //             //      item.recruitmentId, 
-
-//     //             //   );
-//     //             //   }}
-             
-//     //             >
-                  
-//     //                 <MultiAvatar
-//     //                    primaryTitle={candidate.fullName||""}
-//     //                   // imageId={item.imageId}
-//     //                   // imageURL={item.imageURL}
-//     //                   imgWidth={"30"}
-//     //                   imgHeight={"30"}
-//     //                 />
-//     //               </div>
-//     //                </Tooltip>
-
-//     //           );                 
-//     //         })} 
-//     //         <div
-//     //         // style={{ 
-//     //         //   margin: "2px", 
-//     //         //   borderRadius: "50%",
-//     //         //   cursor:"pointer" ,
-//     //         //   background:
-//     //         //   this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-//     //         //     ? "rgb(158 183 223)"
-//     //         //     : null,
-          
-//     //         // onClick={() => {
-//     //         //   this.handleClickCandidateName(item.recruitmentId)
-//     //         //   this.props.getCandidateRequirement(
-//     //         //      item.recruitmentId, 
-
-//     //         //   );
-//     //         //   }}
-//     //         >   
-//     //        {/* {item.candidateNo}  */}
-//     //        </div>           
-//     //        </FlexContainer>
-//     //     </span>
-//     //     ),
-//     //   };
-//     // },
-//    },
-
-//   {
-//     //title: "Sponsor",
-//     title: <FormattedMessage
-//       id="app.sponserName"
-//       defaultMessage="Sponsor"
-//     />,
-//     dataIndex: "sponserName",
-//     width: "7%",
-   
-//   },
-
-
- 
- 
-
- 
-
-// ];

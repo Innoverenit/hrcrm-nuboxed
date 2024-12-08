@@ -1,22 +1,11 @@
-import React, { lazy, Suspense, Component, Profiler } from "react";
+import React, {  Component, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
-import { Button, Switch, Tooltip, Icon } from "antd";
-import { Formik, Form, Field, FieldArray, FastField } from "formik";
-import {
-  Spacer,
-  StyledLabel,
-} from "../../../../../../../Components/UI/Elements";
+
+import { Button} from "antd";
+import { Formik, Form,  FastField } from "formik";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
-// import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import * as Yup from "yup";
-import { FlexContainer } from "../../../../../../../Components/UI/Layout";
-// import DragableUpload from "../../../../../../Components/Forms/Formik/DragableUpload";
-// import Upload from "../../../../../../Components/Forms/Formik/Upload";
-// import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
-// import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
-// import { addBankDetails } from "../../../../ProfileAction";
 import { updateBankDetails } from "../../../../../../Profile/ProfileAction";
 const documentSchema = Yup.object().shape({
   documentId: Yup.string().required("Input needed !"),
@@ -66,11 +55,7 @@ class UpdateBankForm extends Component {
                   <div style={{ width: "100%" }}>
                     <FastField
                       name="accountNo"
-                      // label="Account Number"
-                      label={<FormattedMessage
-                        id="app.accountNo"
-                        defaultMessage="Account Number"
-                      />}
+                      label="Account Number"
                       isColumn
                       margintop={"0.25em"}
                       selectType="number"
@@ -79,16 +64,12 @@ class UpdateBankForm extends Component {
                       style={{ flexBasis: "80%", width: "100%" }}
                     />
                   </div>
-                  <Spacer />
-                  <FlexContainer>
+                  <mt-3 />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       <FastField
                         name="ifscCode"
-                        //label="IFSC CODE"
-                        label={<FormattedMessage
-                          id="app.ifscCode"
-                          defaultMessage="IFSC CODE"
-                        />}
+                        label="IFSC CODE"
                         className="field"
                         isColumn
                         width={"100%"}
@@ -101,11 +82,7 @@ class UpdateBankForm extends Component {
                       <FastField
                         isRequired
                         name="branchName"
-                        //label="Branch Name"
-                        label={<FormattedMessage
-                          id="app.branchName"
-                          defaultMessage="Branch Name"
-                        />}
+                        label="Branch Name"
                         type="text"
                         width={"100%"}
                         isColumn
@@ -113,17 +90,13 @@ class UpdateBankForm extends Component {
                         inlineLabel
                         />
                     </div>
-                  </FlexContainer>
-                  <Spacer />
+                  </div>
+                  <mt-3 />
                   <div style={{ width: "100%" }}>
                     <FastField
                       isRequired
                       name="bankName"
-                      //label="Bank Name"
-                      label={<FormattedMessage
-                        id="app.bankName"
-                        defaultMessage="Bank Name"
-                      />}
+                      label="Bank Name"
                       type="text"
                       width={"100%"}
                       isColumn
@@ -133,19 +106,17 @@ class UpdateBankForm extends Component {
                   </div>
                 </div>
 
-                <Spacer style={{ marginTop: "1.25em" }} />
-                <FlexContainer justifyContent="flex-end">
+                <mt-3 style={{ marginTop: "1.25em" }} />
+                <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   <Button
                     htmlType="submit"
                     type="primary"
                     Loading={updatingBankDetails}
                   >
-                    <FormattedMessage
-                      id="app.update"
-                      defaultMessage="Update"
-                    />
+                    
+                    Update
                   </Button>
-                </FlexContainer>
+                </div>
               </Form>
             )}
         </Formik>

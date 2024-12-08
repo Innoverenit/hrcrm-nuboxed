@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import {  StyledTabs } from "../../Components/UI/Antd";
 import TabsWrapper1 from "../../Components/UI/Layout/TabsWrapper1";
-import { FormattedMessage } from "react-intl";
+
 import Piechart1 from "../../Components/Charts/PieChart1";
 // const LeadsHotColdWarm=lazy(()=>import("./LeadsHotColdWarm"));
 
@@ -37,10 +37,7 @@ class CustomerLeadsTab extends Component {
                   <ListAltIcon style={{fontSize:"1.1rem"}}/>
                  
                <span class=" ml-1 font-semibold">
-               <FormattedMessage
-          id="app.leads"
-          defaultMessage="Leads"
-        />
+             Leads
                 </span>
               
 

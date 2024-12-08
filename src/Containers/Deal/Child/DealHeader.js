@@ -1,5 +1,6 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy,Suspense } from "react";
 import { ActionHeader } from "../../../Components/Utils";
+import { BundleLoader} from "../../../Components/Placeholder";
 const DealActionLeft = lazy(()=>import("./DealActionLeft"));
 const DealActionRight = lazy(()=>import("./DealActionRight"));
 
@@ -13,23 +14,27 @@ class DealHeader extends Component {
       opencreateDealModal
     } = this.props;
     return (
-      <div style={{position: "sticky",
-        top: "3.35rem",
-        zIndex: "998"}}>
+      <div className="sticky mt-1 z-50">    
         <ActionHeader
           leftComponent={
+            <Suspense fallback={<BundleLoader />}>
             <DealActionLeft
+              selectedLanguage={this.props.selectedLanguage}
+              translateText={this.props.translateText}
             teamsAccessInd={teamsAccessInd}
               viewType={viewType}
               setDealViewType={setDealViewType}
-            />
+            /></Suspense>
           }
           rightComponent={
-            <DealActionRight
+            <Suspense fallback={<BundleLoader />}>
+               <DealActionRight
+                 selectedLanguage={this.props.selectedLanguage}
+                 translateText={this.props.translateText}
               viewType={viewType}
               opencreateDealModal={opencreateDealModal}
               handleDealModal={handleDealModal}
-            />
+            /></Suspense>
           }
         />
       </div>

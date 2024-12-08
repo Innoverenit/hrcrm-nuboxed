@@ -5,7 +5,6 @@ import { Button } from "antd";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import * as Yup from "yup";
-import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { updateSupplierById } from "../SuppliersAction";
 import {getEmployeelistAsErp} from "../../Shipper/ShipperAction"
@@ -37,23 +36,23 @@ function UpdateSupplierForm (props) {
             emailId: props.setEditingSuppliers.emailId || "",
             orgId: props.orgId,
             assignedTo: selectedOption ? selectedOption.employeeId:props.setEditingSuppliers.userId,
-            address: [
-              {
-              addressType:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].addressType : "",
-                address1: props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].address1 : "",
-                address2:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].address2 : "",
-                addressId:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].addressId : "",
-              town: props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].town :"",
-              street:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].street : "",
-              city:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].city : "",
-              pinCode:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].pinCode : "",
-              country: props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].country :"",
-                latitude: "",
-                longitude: "",
+            // address: [
+            //   {
+            //   addressType:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].addressType : "",
+            //     address1: props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].address1 : "",
+            //     address2:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].address2 : "",
+            //     addressId:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].addressId : "",
+            //   town: props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].town :"",
+            //   street:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].street : "",
+            //   city:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].city : "",
+            //   pinCode:props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].pinCode : "",
+            //   country: props.setEditingSuppliers.address.length ? props.setEditingSuppliers.address[0].country :"",
+            //     latitude: "",
+            //     longitude: "",
 
-              },
-            ],
-            // address: "",
+            //   },
+            // ],
+            address: "",
           }}
           validationSchema={CustomerSchema}
           onSubmit={(values, { resetForm }) => {
@@ -82,24 +81,24 @@ function UpdateSupplierForm (props) {
             <Form className="form-background">
               <div class="flex justify-between max-sm:flex-col">
                 <div class="h-full w-w47.5 max-sm:w-full">
-                
+                <div className="font-bold font-poppins text-xs"> {props.translatedMenuItems[0]}</div>
                   <Field
                     isRequired
                     name="name"
-                    type="text"
-                    label={props.translatedMenuItems[0]} 
+                    type="text"               
                     width={"100%"}
                     component={InputComponent}             
                     isColumn
                     inlineLabel
                   />
+                  </div>
                    <div class=" flex justify-between">
                     <div class="w-[30%] max-sm:w-[40%] ">
                       {/* Dial Code               */}
+                      <div class="font-bold font-poppins text-xs"> {props.translatedMenuItems[14]}</div>
                       <FastField
                         name="dialCode"
                         selectType="dialCode"
-                        label={props.translatedMenuItems[14]} 
                         isColumn
                         component={SearchSelect}
                         defaultValue={{
@@ -112,9 +111,9 @@ function UpdateSupplierForm (props) {
                   
                     </div>
                     <div class="w-[68%] max-sm:w-[50%]">
+                    <div className="font-bold font-poppins text-xs"> {props.translatedMenuItems[15]}</div>
                       <FastField
-                        name="phoneNo"
-                        label={`${props.translatedMenuItems[15]} #`} 
+                        name="phoneNo"               
                         type="text"
                         placeholder="Phone #"
                         isColumn
@@ -126,10 +125,14 @@ function UpdateSupplierForm (props) {
                     </div>
                   </div>
                   <div class="w-full">
+                  <div className="font-bold text-[0.75rem] mb-1 leading-lh1.2 ">         
+                        {/* Email */}
+                        {props.translatedMenuItems[16]}
+         
+                   </div>
                     <FastField
                       type="email"
-                      name="emailId"
-                      label={props.translatedMenuItems[16]} 
+                      name="emailId"                  
                       className="field"
                       isColumn
                       width={"100%"}
@@ -138,17 +141,17 @@ function UpdateSupplierForm (props) {
                     />
                   </div>
           
-                </div>
+             
                 <div class="h-full w-w47.5 max-sm:w-full">
                 <div class=" h-full w-full">
                     <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block font-semibold text-[0.75rem] mb-1 leading-lh1.2 ">         
+            <div className="font-bold text-[0.75rem] mb-1 leading-lh1.2 ">         
                         {/* Assigned */}
                         {props.translatedMenuItems[24]}
          
-            </Listbox.Label>
+            </div>
             <div className="relative ">
               <Listbox.Button style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}
@@ -211,7 +214,7 @@ function UpdateSupplierForm (props) {
         )}
       </Listbox>
       </div>
-                  <div>
+                  {/* <div>
                     <div class="mt-3">
                     <FieldArray
                       name="address"
@@ -224,7 +227,7 @@ function UpdateSupplierForm (props) {
                       )}
                     />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
 

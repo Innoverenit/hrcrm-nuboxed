@@ -3,7 +3,7 @@ import CollectionHeader from "./Child/CollectionHeader";
 import {
   setCollectionViewType,
   getTodayCustomer,
-  setCustomerSubViewType,
+  setCustomerSubViewType, 
   setDistributorViewType,
   getTodayDistributor,
 } from "./CollectionAction";
@@ -65,7 +65,10 @@ class Collection extends Component {
     const { activeKey, activeKey1 } = this.state;
     return (
       <>
+       <Suspense fallback={<BundleLoader />}>
         <CollectionHeader
+         translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage}
           setCollectionViewType={setCollectionViewType}
           setCustomerSubViewType={setCustomerSubViewType}
           setDistributorViewType={setDistributorViewType}
@@ -82,8 +85,10 @@ class Collection extends Component {
           currentData1={this.state.currentData1}
           setCurrentData1={this.setCurrentData1}
         />
-      <Suspense fallback={<BundleLoader />}>
+     
            <CollectionDistributorTab
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
               handleTabChange1={this.handleTabChange1}
              activeKey1={activeKey1}
            /> 

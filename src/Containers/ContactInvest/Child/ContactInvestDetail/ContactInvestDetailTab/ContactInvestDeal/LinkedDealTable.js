@@ -1,52 +1,115 @@
 
 
-import React, { useEffect } from "react";
+import React, { useState,useEffect, lazy } from "react";
 import { connect } from "react-redux";
 import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
-import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
-import { StyledTable } from "../../../../../../Components/UI/Antd";
 import {
   MultiAvatar,
-  SubTitle,
 } from "../../../../../../Components/UI/Elements";
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { getOpportunityListByContactId } from "../../../../../Contact/ContactAction";
+import {getDeallist} from "../../../../ContactInvestAction"
 import { Progress, Tooltip } from "antd";
 import { CurrencySymbol } from "../../../../../../Components/Common";
 import InfoIcon from '@mui/icons-material/Info';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
-
+import ContactsIcon from '@mui/icons-material/Contacts';
+import DateRangeIcon from '@mui/icons-material/DateRange';
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import ContactPageIcon from '@mui/icons-material/ContactPage';
+import UpdateIcon from '@mui/icons-material/Update';
+const EmptyPage =lazy(()=>import("../../../../../Main/EmptyPage"));
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }
 
-function LinkedDealTable(props) {
-  useEffect(() => {
-     props.getOpportunityListByContactId(props.contactInVestDetail.contactId);
-  }, []);
+dayjs.extend(relativeTime);
 
-  const { fetchingContactOpportunity, opportunityByContactId } = props;
+const getRelativeTime = (creationDate) => {
+    const now = dayjs();
+    const creationDay = dayjs(creationDate);
+
+    if (creationDay.isSame(now, 'day')) {
+        return 'Today';
+    } else {
+        return creationDay.from(now); 
+    }
+};
+function LinkedDealTable(props) { 
+
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+        "110",  // "Name",//0
+         "176", // "Start Date",//1
+         "126", // "End Date",//2
+         "218", // "Value",//3
+        "142",// "Status",//4
+        "216",  // "Sponsor",//5     
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+  useEffect(() => {
+    // props.getOpportunityListByContactId(props.contactInVestDetail.contactId);
+     props.getDeallist(props.contactInVestDetail.contactId)
+  }, []); 
+  const { fetchingDealList, dealAllList } = props;
+  
 console.log(props.contactInVestDetail.contactId)
-if (fetchingContactOpportunity) return <BundleLoader/>;
+if (fetchingDealList) return <BundleLoader/>;
+
   return (
     <>
-    <div className=' flex sticky z-auto h-[72vh]'>
-    <div class="rounded m-1 p-1 w-[99%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">
-        <div className=" md:w-[3rem]">Name</div>
-        <div className=" md:w-[4.1rem]">Start Date</div>
-        <div className=" md:w-[4.2rem] ">End Date</div>
-        <div className="md:w-[4.2rem]">Value</div>
-        <div className="md:w-[4.5rem]">Status</div>
-        <div className="md:w-[3.8rem]">Sponsor</div> 
-        <div className="w-[9rem]"></div>
+    <div className=' flex sticky z-auto h-[78vh]'>
+    <div class="rounded m-1 p-1 w-[100%]  overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+      <div className=" flex justify-between w-[83%]  p-1 bg-transparent !text-lm items-end font-bold font-poppins sticky z-10">
+        <div className="text-[#00A2E8] text-sm truncate w-[20.2rem] max-md:w-[22rem]">
+        <ContactsIcon className="!text-icon text-[#4f7cac] "/>  {translatedMenuItems[0]}  
+  
+        {/* Name */}
+
+        </div>
+        <div className="w-[11.2rem] max-md:w-[7.2rem] truncate ">
+        <DateRangeIcon className='!text-icon mr-1 '  /> 
+        {translatedMenuItems[2]}  
+        {/* End Date */}
+          </div>
+          <div className="w-[9.5rem] truncate max-md:w-[5.02rem] ">
+          <CurrencyExchangeIcon className='!text-icon mr-1 text-[#e4eb2f]' />
+        {translatedMenuItems[3]}</div>
+
+        <div className="w-[5.6rem] truncate max-md:w-[4.5rem] ">
+           <UpdateIcon className='!text-icon mr-1 text-[#ff66b3]' />
+        {translatedMenuItems[4]}  
+        {/* Status */}
+          </div>
+        <div className=" truncate w-[4.8rem] max-md:w-[5.8rem]">
+        <ContactPageIcon className='!text-icon  '  /> {translatedMenuItems[5]}  
+        {/*Sponser */}
+          </div> 
+     
 
       </div>
 
-      { !fetchingContactOpportunity && opportunityByContactId.length === 0 ?<NodataFoundPage />:opportunityByContactId.map((item,index) =>  {
+      { !fetchingDealList && dealAllList.length === 0 ?<EmptyPage/>:dealAllList.map((item,index) =>  {
               var findProbability = item.probability;
               item.stageList.forEach((element) => {
                 if (element.oppStage === item.oppStage) {
@@ -81,23 +144,22 @@ if (fetchingContactOpportunity) return <BundleLoader/>;
           return (
             <div>
               <div
-                className="flex rounded justify-between bg-white mt-[0.5rem] h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                className="flex rounded justify-between  py-ygap bg-white mt-1  items-center  scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
                 <div class="flex ">
-                <div className=" flex font-medium flex-col md:w-[6rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                <div className=" flex h-8 border-l-2 border-green-500 bg-[#eef2f9] w-[20rem]  max-md:w-[22rem] max-sm:flex-row  max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
           &nbsp;
           <div class="max-sm:w-full">
                                         <Tooltip>
-                                          <div class=" flex max-sm:w-full justify-between flex-row md:flex-col ">
+                                          <div class=" flex max-sm:w-full justify-between flex-row md:max-sm:w-full ">
                                           
-                                            <div class="text-sm flex text-blue-500  font-poppins font-semibold  cursor-pointer">
-                                            <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`/opportunity/${item.opportunityId}`} title={item.opportunityName}>
+                                            <div class="text-xs flex text-blue-500  font-poppins font-bold  cursor-pointer">
+                                            <Link class="flex items-center overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer"  to={`/opportunity/${item.opportunityId}`} title={item.opportunityName}>
       {item.opportunityName}
     </Link>                                     
-        
         &nbsp;&nbsp;
         {date === currentdate ? (
-          <div class="text-xs mt-[0.4rem]"
+          <div class="text-[0.65rem] "
             style={{
               color: "tomato",
               fontWeight: "bold",
@@ -105,8 +167,7 @@ if (fetchingContactOpportunity) return <BundleLoader/>;
           >
             New
           </div>
-        ) : null}
-       
+        ) : null}    
                                             </div>
                                             </div>
                                         </Tooltip>
@@ -115,36 +176,27 @@ if (fetchingContactOpportunity) return <BundleLoader/>;
                                 </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex font-medium flex-col  md:w-[9rem] max-sm:flex-row w-full max-sm:justify-between ">
-         
-                    <h4 class=" text-xs  font-poppins">
-                    {dayjs(item.startDate).format("DD/MM/YYYY")}
-                 
-                    </h4>
-                  </div>
-                  <div className=" flex font-medium flex-col  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between ">
-         
-         <h4 class=" text-xs  font-poppins">
+                
+                  <div className=" flex md:w-[11rem] h-8 ml-gap bg-[#eef2f9] items-center justify-center max-sm:flex-row w-full max-sm:justify-between ">       
+         <div class=" text-xs  font-poppins">
          {dayjs(item.endDate).format("DD/MM/YYYY")}
-           
-      
-         </h4>
+                
+         </div>
        </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex font-medium justify-center flex-col  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex h-8 ml-gap bg-[#eef2f9] items-center  justify-start max-sm:w-full  md:w-[9.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
-                    <h4 class=" text-xs  font-poppins">
+                    <div class=" text-xs ml-gap font-poppins">
                     <div>
             <CurrencySymbol currencyType={item.currency} />
             &nbsp;&nbsp;{item.proposalAmount}
-          </div>
-                 
-                    </h4>
+          </div>                 
+                    </div>
                   </div>
-                  <div className=" flex font-medium flex-col  md:w-[10.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex  h-8 ml-gap bg-[#eef2f9] items-center justify-center md:w-[5.5rem] max-sm:flex-row w-full max-sm:justify-between ">
          
-         <h4 class=" text-xs  font-poppins">
+         <div class=" text-xs  font-poppins">
          <Tooltip title={item.oppStage}>
 {" "}
 <Progress
@@ -154,70 +206,56 @@ percent={findProbability}
 //disable={true}
 width={30}
  strokeColor={"#005075"}
-
 />
-  
 </Tooltip>
       
-         </h4>
+         </div>
        </div>
                 </div>
                 <div class="flex">
-                  <div className=" flex font-medium flex-col  md:w-32 max-sm:flex-row w-full max-sm:justify-between ">
-         
-                    <h4 class=" text-xs  font-poppins">
-                    <Tooltip title={item.contactName}>
-              <div>
-                <MultiAvatar
-                  primaryTitle={item.contactName}
-                  imageId={item.imageId}
-                  imageURL={item.imageURL}
-                  imgWidth={"1.8em"}
-                  imgHeight={"1.8em"}
-                />
-              </div>
-            </Tooltip>
-                 
-                    </h4>
-                  </div>
-      
+                <div class=" flex w-[5rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
+                    <MultiAvatar
+                      primaryTitle={item.opportunityName}
+                      imageId={item.imageId}
+                      // imageURL={imageURL}
+                      imgWidth={"1.8rem"}
+                      imgHeight={"1.8rem"}
+                    />
+                  </div>            
                 </div>
               
-                <div class="flex md:items-center ">
-                  <div className=" flex font-medium flex-col md:w-[5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                <div className=" flex  w-[8rem] items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:w-auto max-xl:w-[3rem] max-lg:w-[2rem] max-sm:flex-row  max-sm:justify-between ">
+                      <span class="bg-blue-100 text-blue-800 text-[0.6rem] w-[6rem] font-medium inline-flex items-center py-[0.1rem] rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+<svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+<path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
+</svg>
+{getRelativeTime(item.creationDate)}
+</span></div>
+
+                <div class="flex h-8 ml-gap bg-[#eef2f9] items-center justify-end ">
+                  <div className=" flex  max-sm:flex-row w-full max-sm:justify-between ">
                     <div class=" text-xs  font-poppins">
                       <Tooltip title={item.description}>
            
-          <InfoIcon 
+          <InfoIcon className=" !text-icon cursor-pointer"
           
-              // type="edit"
-              style={{ cursor: "pointer",fontSize:"1.25rem" }}
-             
             />
           
           </Tooltip>
                     </div>
                   </div>
-                  <div className=" flex font-medium flex-col md:w-[5rem]  max-sm:flex-row w-full max-sm:justify-between">
-                  <Tooltip title="Edit">
-             {/* {user.opportunityUpdateInd ===true && ( */}
+                  <div className=" flex   max-sm:flex-row w-full max-sm:justify-between">
+                  <Tooltip title="Edit">       
           <BorderColorIcon 
-          
+          className="cursor-pointer !text-icon text-red-600"
               type="edit"
-              style={{ cursor: "pointer",fontSize:"1.25rem" }}
+         
               onClick={() => {
-                props.setEditCustomerOpportunity(item);
-               // handleUpdateCustomerOpportunityModal(true);
-               // handleSetCurrentOpportunityId(item.opportunityId)
-                
+                props.setEditCustomerOpportunity(item);           
               }}
-            />
-            {/* )} */}
+            />      
           </Tooltip>
-                  </div>
-                
-             
-               
+                  </div>                                      
                 </div>
               </div>
             </div>
@@ -225,21 +263,14 @@ width={30}
         })}
       </div>
       </div>
-      {/* <AddCustomerUpdateOpportunityModal
-      opportunityId={currentOpportunityId}
-      defaultCustomers={[{ label: name, value: customerId }]}
-      customerId={{ value: customerId }}
-       addUpdateCustomerOpportunityModal={addUpdateCustomerOpportunityModal}
-        handleUpdateCustomerOpportunityModal={handleUpdateCustomerOpportunityModal}
-        handleSetCurrentOpportunityId={handleSetCurrentOpportunityId}
-        
-      /> */}
     </>
   );
 }
 
-const mapStateToProps = ({ auth,contact }) => ({
+const mapStateToProps = ({ auth,contact,contactinvest }) => ({
   userId: auth.userDetails.userId,
+  dealAllList:contactinvest.dealAllList,
+  fetchingDealList:contactinvest.fetchingDealList,
   fetchingContactOpportunity: contact.fetchingContactOpportunity,
   opportunityByContactId: contact.opportunityByContactId,
   contactId: contact.contact.contactId,
@@ -248,6 +279,7 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
        getOpportunityListByContactId,
+       getDeallist
     },
     dispatch
   );

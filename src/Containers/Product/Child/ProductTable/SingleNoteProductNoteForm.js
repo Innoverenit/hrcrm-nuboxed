@@ -1,11 +1,11 @@
 import React, { useState,useRef } from "react";
 import styled from "styled-components";
 import { Timeline, Button, Popconfirm } from 'antd';
-import moment from "moment";
+import dayjs from "dayjs";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { removeNotesOfProduct,updateNoteOfProduct } from "../../ProductAction";
-import { DeleteOutlined } from "@ant-design/icons";
-import { Spacer, SubTitle } from "../../../../Components/UI/Elements";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import {  SubTitle } from "../../../../Components/UI/Elements";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import Item from "antd/es/list/Item";
@@ -72,11 +72,11 @@ const SingleNoteProductNoteForm = (props) => {
         fontFamily="poppins"
         style={{ color: "rgb(53, 57, 61)", marginTop: "-0.75em" }}
       >
-        <Spacer />
+        <div class=" mt-3" />
 
-        {`${moment.utc(creationDate).fromNow()}`} {ownerName} &nbsp;&nbsp;
+        {`${dayjs(creationDate).fromNow()}`} {ownerName} &nbsp;&nbsp;
      
-          <DeleteOutlined
+        <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  
           onClick={() => {
             const data = {
               productionBuilderId:props.rowdata.productionBuilderId,
@@ -86,10 +86,7 @@ const SingleNoteProductNoteForm = (props) => {
             props.removeNotesOfProduct(data);
           }}
            
-            style={{
-              color: "red",
-              cursor: "pointer"
-            }}
+          
           />
            &nbsp;&nbsp;
            <BorderColorIcon

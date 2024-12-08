@@ -1,54 +1,149 @@
-import React, { lazy, Suspense, useEffect, useState, } from "react";
+import React, { lazy, Suspense, useEffect,useRef, useState, } from "react";
 import { Route, Switch } from "react-router-dom";
-import QRCodeList from "../../Containers/Main/Refurbish/QrCodeList";
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import {
+  handleDistributorModal,
+  handleAccountOpportunityModal,
+  getDistributorByDistributorId,
+  getSearchDistributor
+} from "./Account/AccountAction";
+import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 import { connect } from "react-redux";
-import AssessmentData from "../AssessmentData/AssessmentData"
-import { base_url,login_url } from "../../Config/Auth";
+import { Link } from 'react-router-dom';
+import { login_url } from "../../Config/Auth";
 import {
   handleCandidateResumeModal,
 } from "../Candidate/CandidateAction";
+import {handleCustomerModal} from "../Customer/CustomerAction"
 import { bindActionCreators } from "redux";import {
+  Tooltip,
   Button,
   Layout,
   message,
-  Badge
+  Badge,
+  FloatButton
 } from "antd";
 import { ThemeProvider } from "styled-components";
 import {
-  ApplicationWrapper,
   LayoutWrapper,
-  NavbarWrapper,
 } from "../../Components/UI/Layout";
 import { Select } from "antd";
+import CloseIcon from "@mui/icons-material/Close";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import { handleInTagDrawer } from "../../Containers/Main/Refurbish/RefurbishAction";
 import { getSuscrption } from "../Subscription/SubscriptionAction";
 import { updateUserById, handleActionDrawerModal, getActionRequiredCount, handlePromotion } from "../Auth/AuthAction";
 import { setLanguage } from "../../Language/LanguageAction";
 import { getOpportunityRecord } from "../Opportunity/OpportunityAction";
-import { handleMessageModal } from "../LiveMessages/LiveMessageAction";
+import {handleOpportunityModal} from "../Opportunity/OpportunityAction"
+// import { handleMessageModal } from "../LiveMessages/LiveMessageAction";
 import { handleCallModal } from "../Call/CallAction";
-import { getSupportedLanguages } from '../Translate/TranslateService';
 import { handlePartnerModal } from "../Partner/PartnerAction";
 import { BundleLoader } from "../../Components/Placeholder";
-import AppErrorBoundary from "../../Helpers/ErrorBoundary/AppErrorBoundary";
 import { getPresentNotifications } from "../Notification/NotificationAction";
+import FlashOnIcon from '@mui/icons-material/FlashOn'; 
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 import { MultiAvatar } from "../../Components/UI/Elements";
-import AddActionModal from "./AddActionModal";
-import LanguageSelector from "../Translate/LanguageSelector";
-import FAQPage from "./FAQ/FAQPage";
-import DashboardPage from "../DashboardPage/DashboardPage";
-import DataRoom from "../Data Room/DataRoom";
-import TagInDrawer from "./Refurbish/ProductionTab/TagInDrawer";
-import PhoneScanner from "./Scan/PhoneScanner/PhoneScanner";
-import Vendor from "./Vendor/Vendor";
-import Procre from "./Procre/Procre";
-import Trade from "./Trade/Trade";
-import CreateSubscriptionDrawer from "../Subscription/Child/CreateSubscriptionDrawer";
+import {handleContactModal} from "../Contact/ContactAction"
 import { handleCreateSubscriptionDrawer } from "../Subscription/SubscriptionAction";
-import Quality from "../Quality/Quality";
-import Club from "./Club/Club";
-import PromotionsDrawerr from "./PromotionsDrawerr";
-import Prmotion from "./Promotion/Prmotion";
+
+const NodataFoundPage = lazy(() =>
+  import("../../Helpers/ErrorBoundary/NodataFoundPage")
+);
+const AddActionModal = lazy(() =>
+  import("./AddActionModal")
+);
+const EmptyPage = lazy(() =>
+  import("./EmptyPage")
+);
+
+const LanguageSelector = lazy(() =>
+  import("../Translate/LanguageSelector")
+);
+
+const FAQPage = lazy(() =>
+  import("./FAQ/FAQPage")
+);
+
+const DashboardPage = lazy(() =>
+  import("../DashboardPage/DashboardPage")
+);
+
+const DataRoom = lazy(() =>
+  import("../Data Room/DataRoom")
+);
+
+const PhoneMaterialScanner = lazy(() =>
+  import("../Main/Scan/PhoneScanner/PhoneMaterialScanner")
+);
+const QRCodeList = lazy(() =>
+  import("../../Containers/Main/Refurbish/QrCodeList")
+);
+const AssessmentData = lazy(() =>
+  import("../AssessmentData/AssessmentData")
+);
+
+const Waranty = lazy(() =>
+  import("../Waranty/Waranty")
+);
+const Procre = lazy(() =>
+  import("./Procre/Procre")
+);
+
+const PhoneScanner = lazy(() =>
+  import("./Scan/PhoneScanner/PhoneScanner")
+);
+const TagInDrawer = lazy(() =>
+  import("./Refurbish/ProductionTab/TagInDrawer")
+);
+
+
+const Trade = lazy(() =>
+  import("./Trade/Trade")
+);
+
+
+const CreateSubscriptionDrawer = lazy(() =>
+  import("../Subscription/Child/CreateSubscriptionDrawer")
+);
+
+const Quality = lazy(() =>
+  import("../Quality/Quality")
+);
+
+const Club = lazy(() =>
+  import("./Club/Club")
+);
+
+const PromotionsDrawerr = lazy(() =>
+  import("./PromotionsDrawerr")
+);
+const Prmotion = lazy(() =>
+  import("./Promotion/Prmotion")
+);
+
+const AddCustomerModal = lazy(() =>
+  import("../Customer/Child/AddCustomerModal")
+);
+
+const AddOpportunityModal = lazy(() =>
+  import("../Opportunity/Child/AddOpportunityModal")
+);
+
+const AddContactModal = lazy(() =>
+  import("../Contact/Child/AddContactModal")
+);
+
+const AddAccountModal = lazy(() =>
+  import("./Account/AddAccountModal")
+);
+
+const AddAccountOpportunityModal = lazy(() =>
+  import("./Account/AccountDetailsTab/AccountQuotationDrawer")
+);
+
+
 const NavMenu = lazy(() =>
   import("./NavMenu")
 );
@@ -80,6 +175,9 @@ const Holiday = lazy(() =>
 const Reports = lazy(() =>
   import("../Reports/Reports")
 );
+const Analytics = lazy(() =>
+  import("../Reports/Analytics")
+);
 const Partner = lazy(() =>
   import("../Partner/Partner")
 );
@@ -93,18 +191,16 @@ const CategoryTab = lazy(() =>
   import("../Settings/Category/CategoryTab")
 );
 
-const LiveMesssageModal = lazy(() =>
-  import("../LiveMessages/LiveMesssageModal")
-);
+// const LiveMesssageModal = lazy(() =>
+//   import("../LiveMessages/LiveMesssageModal")
+// );
 const AssessmentDetails = lazy(() =>
   import("../Accessment/Child/AssessmentDetails/AssessmentDetails")
 );
 const Leads = lazy(() =>
   import("../Leads/Leads")
 );
-const LeadDetails = lazy(() =>
-  import("../Leads/Child/LeadsDetailTab/LeadDetails")
-);
+
 const Program = lazy(() =>
   import("../Program/Program")
 );
@@ -137,9 +233,6 @@ const CandidateTotalBilling = lazy(() =>
 );
 const Location = lazy(() =>
   import("../Event/Child/Location/Location")
-);
-const Navmenu2 = lazy(() =>
-  import("./Navmenu2")
 );
 const Teams = lazy(() =>
   import("./Teams/Teams")
@@ -198,9 +291,6 @@ const CandidateDetails = lazy(() =>
 const Customer = lazy(() => import("../Customer/Customer"));
 const Publish = lazy(() => import("../Publish/Publish"));
 const Opportunity = lazy(() => import("../Opportunity/Opportunity"));
-const { Option } = Select;
-
-const { Header, Sider, Content } = Layout;
 const Profile = lazy(() => import("../Profile/Profile"));
 const Permissions = lazy(() => import("../Permissions/Permissions"));
 const Organization = lazy(() => import("../Organization/Organization"));
@@ -219,10 +309,7 @@ const Accessment = lazy(() => import("../Accessment/Accessment"));
 const Task = lazy(() => import("../Task/Task"));
 const Event = lazy(() => import("../Event/Event"));
 const Leave = lazy(() => import("../Leave/Leave"));
-const PageNotFound = lazy(() => import("../404/PageNotFound"));
-const LiveMessage = lazy(() =>
-  import("../../Containers/LiveMessages/LiveMessage")
-);
+
 
 const NotificationPopover = lazy(() =>
   import("../Notification/NotificationPopover")
@@ -244,7 +331,6 @@ const ContactInvest = lazy(() => import("../ContactInvest/ContactInvest"));
 const Investor = lazy(() => import("../Investor/Investor"));
 const InvestorDetail = lazy(() => import("../Investor/Child/InvestorDetail/InvestorDetail"));
 const ContactInvestDetail = lazy(() => import("../ContactInvest/Child/ContactInvestDetail/ContactInvestDetail"));
-const DealDetail = lazy(() => import("../Deal/Child/DealDetail/DealDetail"));
 const Product = lazy(() => import("../Product/Product"));
 const Collection = lazy(() => import("../Collection/Collection"));
 const Plant = lazy(() => import("../Plant/Plant"));
@@ -253,7 +339,13 @@ const Procurement = lazy(() => import("../Procurement/Procurement"));
 const SubscriptionMainApps = lazy(() => import("../Subscription/SubscriptionMainApps"));
 const Production = lazy(() => import("../Production/Production"));
 
+
+const { Option } = Select;
+
+const { Header, Sider, Content } = Layout;
+
 function MainApp(props) {
+  
   const [visible, setVisible] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
 
@@ -261,23 +353,33 @@ function MainApp(props) {
 
   const [supportedLanguages, setSupportedLanguages] = useState([]);
 
-  const [data, setData] = useState('No result');
+  const [data, setData] = useState(null);
   const [scanning, setScanning] = useState(false);
   const [shouldRenderCamera, setShouldRenderCamera] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [rowData, setrowData] = useState({});
+  const [selectedLocation, setSelectedLocation] = useState();
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+  const [hovering, setHovering] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const hoverTimer = useRef(null);
+  
+
   console.log(data)
 
   useEffect(() => {
     props.getOpportunityRecord(props.userId);
     props.getActionRequiredCount(props.userId);
     props.getSuscrption(props.orgId)
+    props.getSearchDistributor(props.userId)
+   
   }, []);
 
   useEffect(() => {
     const fetchSupportedLanguages = async () => {
       try {
-        const languages = await getSupportedLanguages();
+        const languages = await props.getSupportLanguages();
         setSupportedLanguages(languages);
       } catch (error) {
         console.error('Error fetching supported languages:', error);
@@ -297,7 +399,24 @@ function MainApp(props) {
   const showPopconfirm = () => {
     setVisible(true);
   };
+  const toggleSelect = () => {
+    clearTimeout(hoverTimer.current);
+    setIsOpen(!isOpen);
+  };
 
+  const filterLocationOptions = (input, option) => {
+    return option.children.toLowerCase().includes(input.toLowerCase());
+  };
+  const handleSearch = (value) => {
+    setSearchValue(value);
+  };
+  const handleLocationChange = (distributorId) => {
+    setSelectedLocation(distributorId); 
+    if (distributorId) {
+    props.getDistributorByDistributorId(distributorId)
+    props.handleAccountOpportunityModal(true);
+    }
+  };
   const handleOk = () => {
     setConfirmLoading(true);
     setTimeout(() => {
@@ -307,7 +426,7 @@ function MainApp(props) {
   };
 
   const translateText = async (text, targetLanguage) => {
-    const url = `${login_url}/words/convertWord`;
+    const url = `${login_url}/words/convertWordsById`;
 
     const response = await fetch(url, {
       method: 'POST',
@@ -393,6 +512,8 @@ function MainApp(props) {
       setData(result.text);
     }
   };
+
+
   const Subscription = 
   props.suscrptionData.subscriptionType === "1" ? "Starter" :
   props.suscrptionData.subscriptionType === "2" ? "Professional" :
@@ -400,29 +521,25 @@ function MainApp(props) {
   props.suscrptionData.subscriptionType === "4" ? "Custom" :
   "Unknown";
   console.log(props.suscrptionData)
+  console.log(props.distributorId)
   return (
 
     <>
 
       <ThemeProvider theme={props.theme}>
         <LayoutWrapper>
-          <div class="max-sm:hidden overflow-x-auto max-xl:hidden scroller">
-            <Sider
+          <div class="overflow-x-auto  scroller">
+            <Sider className="bg-[#38445E] min-h-[100vh] overflow-auto"
               trigger={null}
               collapsible
               collapsed={collapsed}
-              width={"10vw"}
-              style={{
-                minHeight: "100vh",
-                background: "#38445E",
-                overflow: "auto",
-              }}
+              width={"10vw"}          
             >
               <div class="  h-3 ml-[2.5rem] "
                 className="logo1"
                 style={{
                   display: "flex",
-                  width: "-webkit-fill-available",
+                  width: "90%",
                   justifyContent: !collapsed ? "center" : "center",
 
                 }}
@@ -433,40 +550,59 @@ function MainApp(props) {
               </div>
               <NavMenu
                 collapsed={collapsed}
-                toggleCollapsed={toggle}
-                toggleTheme={toggleTheme}
-                theme={theme}
                 translateText={translateText}
                 selectedLanguage={selectedLanguage}
+                toggle={toggle}
               />
             </Sider>
           </div>
-          <LayoutWrapper>
-            <NavbarWrapper style={{
-              padding: 0, height: 50, alignItems: "center", position: "sticky", zIndex: "999", top: " 0.15rem",
+          <LayoutWrapper class="w-[89%]  max-sm:w-wk" >
+            <div class=" flex flex-row justify-between w-[100%] items-center content-center nowrap sticky z-50  h-10  leading-8  shadow-[0 0.0625em 0.25em 0.0625em] bg-slate-400">
+              <Header class=" flex bg-white w-[100%] box-border border-2 justify-between p-0 items-center">
+              <div className="md:hidden" >
+              <button
+                className="text-[green]"
+                onClick={toggle}
+              >
+                {collapsed ? <CloseIcon /> : <MenuOpenIcon />}
+              </button>
+                  </div>
+
+                  <div class="flex flex-start items-center  ">
+                    <div className="flex items-center  ">            
+                {/* <Button   
+                 type="primary"        
+                 onClick
+                >Data Room</Button> */}
+     <Link to="/dataroom" style={{display:"flex"}}>
+      <Button type="primary">
+      <MeetingRoomIcon  className=" !text-icon"/>  Data Room
+      </Button>
+    </Link>
+                 </div>
+                 <Badge 
+  count={`${props.actionCount.ActionRecordCount === 0 ? "0" : props.actionCount.ActionRecordCount}`}
+  overflowCount={999}
+>
+  <div className="text-base cursor-pointer font-normal text-[blue] ml-1 max-sm:hidden" onClick={() => {
+    props.handleActionDrawerModal(true);
+  }}>
+    <Button type="primary"><FlashOnIcon className="!text-icon"/> Action </Button>
+
+  </div>
+</Badge>
+                  </div>
 
 
-            }}>
-              <Header>
-              <div class="max-xl:text-[0.75rem] max-lg:text-[0.5rem]">
-                  <LanguageSelector
-                    translateText={translateText}
-                    selectedLanguage={selectedLanguage}
-                    setSelectedLanguage={setSelectedLanguage}
-                    onLanguageChange={handleLanguageChange}
-                    supportedLanguages={supportedLanguages}
-                  />
-                </div> 
                 <div class="flex justify-between items-center">
-                  <div class="xl:hidden ml-4 "><Navmenu2 
-                  translateText={translateText}
-                  selectedLanguage={selectedLanguage} /></div>
+                  
                   <StartStop />
                   <div >
                      </div>
                 
                   <div class="ml-2">
-                    <QRCodeList
+                  <Tooltip title= "Scanner" >
+                    <QRCodeList  class
                       handleScan={handleScan}
                       stopScanning={stopScanning}
                       startScanning={startScanning}
@@ -476,40 +612,111 @@ function MainApp(props) {
                       data={data}
                       shouldRenderCamera={shouldRenderCamera}
                     />
+                    </Tooltip>
                   </div>
                 </div>
-            
+          
+                <FloatButton.Group
+      // trigger="hover"
+        shape="square"
+      type="primary"
+      style={{
+        insetInlineEnd: 100,   
+      }}
+      icon={
+      <SubscriptionsIcon className="!text-icon" />
+     
+    }
+    >
+       <FloatButton 
+      icon={
+   
+        <Tooltip title="Order">
+           <DynamicFeedIcon
+           
+        // onClick={() => {
+       
+        //   props.handleContactModal(true);
+          
+  
+        // }}
+        className="!text-icon  text-[blue]"
+        />
+        </Tooltip>
+       
+        } />
+      <FloatButton 
+      icon={
+       
+        <Tooltip title="Quotation">
+       
+         <LightbulbIcon 
+       className="!text-icon  text-[blue]"
+         onClick={toggleSelect} // Open/close Select on click
+         />
 
-                <div class="mr-3 flex items-center h-[2.5rem]"
-                >
-                 
- {/* <div className="flex items-center">           
-                <Button
-                 type="primary"
-                 onClick={() =>{
-                  props.handlePromotion(true)}}
-                >Promotions</Button>
-                 </div> */}
-           <div className="flex items-center">
-                <div className=" text-sm font-semibold font-poppins mr-1">{Subscription}</div>
-                <Button
-                 type="primary"
-                 onClick={() =>{
-                  handleRowData(props.suscrptionData);
-                  props.handleCreateSubscriptionDrawer(true)}}
-                >Upgrade</Button>
-                 </div>
-                  <div class=" text-base cursor-pointer font-normal text-[blue]  ml-1 max-sm:hidden "
-                    onClick={() => {
-                      props.handleActionDrawerModal(true);
-
-                    }}
-                  >Action<Badge
-                    count={props.actionCount.ActionRecordCount}
-                    overflowCount={999}
-                  ></Badge>
-                  </div>
-                  <div class=" text-white bg-mainclr h-[1.75rem] ml-8 mr-3 max-sm:hidden"
+        </Tooltip>
+        } />
+      {/* <FloatButton 
+      icon={
+    
+        <Tooltip title="Customer">
+        <ApartmentIcon
+         style={{color:"blue"}}  
+        onClick={() => {
+       
+          props.handleDistributorModal(true);
+          
+  
+        }}
+        className='!text-icon  text-[#e4eb2f]'
+        />
+        </Tooltip>
+        } /> */}
+    </FloatButton.Group>
+    {isOpen && (
+    <FloatButton.Group
+      // trigger="hover"
+        shape="square"
+      type="primary"
+      style={{
+        insetInlineEnd: 140,   
+      }}
+      icon={
+      <SubscriptionsIcon className="!text-icon" />
+     
+    }
+    >
+    {isOpen && (
+          <Select
+          style={{ width: "12rem" }}
+          onChange={handleLocationChange}
+          showSearch
+          onSearch={handleSearch}
+          filterOption={filterLocationOptions}
+          placeholder="Select Location"
+          value={searchValue}
+        >
+          {props.searchDistributor.map((item) => (
+            <Option key={item.distributorId} value={item.distributorId}>
+              {item.distributorName}
+            </Option>
+          ))}
+        </Select>
+           )} 
+            </FloatButton.Group>
+              )} 
+                <div class="mr-3 flex items-center h-[2.5rem]">            
+                <div class="max-xl:text-[0.75rem]  max-lg:text-[0.5rem] ">
+                  <LanguageSelector
+                    translateText={translateText}
+                    selectedLanguage={selectedLanguage}
+                    setSelectedLanguage={setSelectedLanguage}
+                    onLanguageChange={handleLanguageChange}
+                    supportedLanguages={supportedLanguages}
+                  />
+                </div> 
+                  <div class=" text-[tomato]  bg-white h-[1.75rem] ml-8 mr-3 max-sm:hidden"
                     style={{
                       border: "1px solid tomato",
                       borderRadius: "5px",
@@ -519,52 +726,35 @@ function MainApp(props) {
                   >
                     {props.role}
                   </div>
-
-                  <div class=" text-white bg-mainclr h-[1.75rem] mr-3 max-sm:hidden"
-                    style={{
-                      border: "1px solid tomato",
-                      borderRadius: "5px",
-                      lineHeight: "24px",
-                      padding: "0px 10px",
-                    }}
-                  >
-                    {props.department}
-                  </div>
-                  <div class=" text-white bg-mainclr h-[1.75rem] mr-3 max-sm:hidden"
-                    style={{
-                      border: "1px solid tomato",
-                      borderRadius: "5px",
-                      lineHeight: "24px",
-                      padding: "0px 10px",
-                    }}
-                  >
-                    {props.roleType}
-                  </div>
                 
-                  <div class=" flex items-center h-0">
+                  <div class=" flex items-center h-8">
                     {user.settingsAccessInd === true || user.role === "ADMIN" ?
-                      <SettingsDropdown />
+                
+                      <SettingsDropdown/>
                       : null
                     }
-                    <a href="#" style={{ marginRight: 4 }}>
-                      <div class=" flex items-center "
-                      >
-                        <NotificationPopover />
-                      </div>
+                    <a href="#" className="mr-1">             
+                        <NotificationPopover />          
                     </a>
 
-                    <RepositoryData />
-                    <FAQPage />
-
-                  </div>
+                    <RepositoryData  />
+                    <FAQPage/>
+</div>
+              
                   <ProfileDropdown />
 
                
                 </div>
               </Header>
-            </NavbarWrapper>
-            <ApplicationWrapper>
-              <AppErrorBoundary>
+              {collapsed && (
+        <div
+          className="fixed z-10 md:hidden"
+          onClick={toggle}
+        ></div>
+      )}
+            </div>
+            <div class=" p-1 bg-light-gray ">
+              {/* <NodataFoundPage> */}
                 <Content>
                   <Suspense maxDuration={6000} fallback={<BundleLoader />}>
                     <Switch>
@@ -756,17 +946,7 @@ function MainApp(props) {
                         />
                       )}
                     /> 
-                      <Route
-                      exact
-                      path="/vendor"
-                      render={(props) => (
-                        <Vendor
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
-                    />                  
+                                       
                      <Route
                       exact
                       path="/inventory"
@@ -971,6 +1151,17 @@ function MainApp(props) {
                         />
                       )}
                     />
+                    <Route
+                      exact
+                      path="/analytics"
+                      render={(props) => (
+                        <Analytics
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
                      <Route
                       exact
                       path="/partner"
@@ -1009,6 +1200,18 @@ function MainApp(props) {
                       path="/call"
                       render={(props) => (
                         <Call
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />
+
+<Route
+                      exact
+                      path="/Sold"
+                      render={(props) => (
+                        <Waranty
                           {...props}
                           translateText={translateText}
                            selectedLanguage={selectedLanguage}
@@ -1084,15 +1287,27 @@ function MainApp(props) {
                     />   
                      <Route
                       exact
-                      path="/leads/:leadsId"
+                      path="/emptypage"
                       render={(props) => (
-                        <LeadDetails
+                        <EmptyPage
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />  
+                     <Route
+                      exact
+                      path="/nodatafoundpage"
+                      render={(props) => (
+                        <NodataFoundPage
                           {...props}
                           translateText={translateText}
                            selectedLanguage={selectedLanguage}
                         />
                       )}
                     /> 
+                 
                      <Route
                       exact
                       path="/scan/:phoneId"
@@ -1104,6 +1319,30 @@ function MainApp(props) {
                         />
                       )}
                     /> 
+
+<Route
+                      exact
+                      path="/material/:suppliesId"
+                      render={(props) => (
+                        <PhoneMaterialScanner
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    /> 
+{/* 
+<Route
+                      exact
+                      path="/production/:manufactureId"
+                      render={(props) => (
+                        <ProductionPhoneScanner
+                          {...props}
+                          translateText={translateText}
+                           selectedLanguage={selectedLanguage}
+                        />
+                      )}
+                    />  */}
                     <Route
                       exact
                       path="/course/:courseId"
@@ -1317,7 +1556,7 @@ function MainApp(props) {
                         />
                       )}
                     />          
-                      <Route
+                      {/* <Route
                       exact
                       path="/message"
                       render={(props) => (
@@ -1327,7 +1566,7 @@ function MainApp(props) {
                            selectedLanguage={selectedLanguage}
                         />
                       )}
-                    /> 
+                    />  */}
 
                       <Route
                         exact
@@ -1536,18 +1775,7 @@ function MainApp(props) {
                            selectedLanguage={selectedLanguage}
                         />
                       )}
-                    />
-                      <Route
-                      exact
-                      path="/dealDetails/:invOpportunityId"
-                      render={(props) => (
-                        <DealDetail
-                          {...props}
-                          translateText={translateText}
-                           selectedLanguage={selectedLanguage}
-                        />
-                      )}
-                    />
+                    />                      
                     <Route
                       exact
                       path="/subscriptionmainapps"
@@ -1561,12 +1789,12 @@ function MainApp(props) {
                       )}
                     />
                      
-                      <Route path="**" component={PageNotFound} />
+                     
                     </Switch>
                   </Suspense>
                 </Content>
-              </AppErrorBoundary>
-            </ApplicationWrapper>
+              {/* </NodataFoundPage> */}
+            </div>
           </LayoutWrapper>
         </LayoutWrapper>
       </ThemeProvider>
@@ -1574,9 +1802,23 @@ function MainApp(props) {
         addDrawerActionModal={props.addDrawerActionModal}
         handleActionDrawerModal={props.handleActionDrawerModal}
       />
-      <LiveMesssageModal
+      {/* <LiveMesssageModal
         addMessageModal={props.addMessageModal}
         handleMessageModal={props.handleMessageModal}
+      /> */}
+       <AddOpportunityModal
+          translateText={translateText}
+          selectedLanguage={selectedLanguage}
+        
+          addOpportunityModal={props.addOpportunityModal}
+          handleOpportunityModal={props.handleOpportunityModal}
+        />
+        <AddAccountModal
+       selectedLanguage={selectedLanguage}
+       translateText={translateText}
+       // addPitchModal={addPitchModal}
+        handleDistributorModal={props.handleDistributorModal}
+        addDistributorModal={props.addDistributorModal}
       />
       <AddPartnerModal
         addPartnerModal={props.addPartnerModal}
@@ -1591,6 +1833,29 @@ function MainApp(props) {
         createSubscriptiondrawer={props.createSubscriptiondrawer}
         handleCreateSubscriptionDrawer={props.handleCreateSubscriptionDrawer}
       />
+        <AddCustomerModal
+          addCustomerModal={props.addCustomerModal}
+          handleCustomerModal={props.handleCustomerModal}
+          translateText={translateText}
+          selectedLanguage={selectedLanguage}
+          
+        />
+          <AddContactModal
+        addContactModal={props.addContactModal}
+        handleContactModal={props.handleContactModal}
+        translateText={translateText}
+            selectedLanguage={selectedLanguage}
+        
+      />
+       {props.addAccountOpportunityModal && props.distributorData?.distributorId && (
+  <AddAccountOpportunityModal
+    selectedLanguage={props.selectedLanguage}
+    translateText={props.translateText}
+    distributorId={props.distributorData.distributorId}
+    addAccountOpportunityModal={props.addAccountOpportunityModal}
+    handleAccountOpportunityModal={props.handleAccountOpportunityModal}
+  />
+)}
        <PromotionsDrawerr
         rowData={rowData}
         addPromotionnModal={props.addPromotionnModal}
@@ -1609,18 +1874,22 @@ const mapStateToProps = ({
   auth,
   theme,
   refurbish,
+  customer,
   call,
   task,
   event,
   candidate,
-  partner,
   opportunity,
+  partner,
+  
   contact,
   language,
   message,
-  subscription
+  subscription,
+  distributor
 }) => ({
   language: language.language,
+  addContactModal:contact.addContactModal,
   user: auth.userDetails,
   userDetails: auth.userDetails,
   addDrawerActionModal: auth.addDrawerActionModal,
@@ -1650,16 +1919,22 @@ const mapStateToProps = ({
 
   preferedLanguage: auth.userDetails.preferedLanguage,
   addPartnerModal: partner.addPartnerModal,
+  addDistributorModal: distributor.addDistributorModal,
   organizationDetails: auth.organizationDetails,
   addCandidateResumeModal: candidate.addCandidateResumeModal,
   addCallModal: call.addCallModal,
   suscrptionData: subscription.suscrptionData,
   user: auth.userDetails,
+  addCustomerModal: customer.addCustomerModal,
   actionCount: auth.actionCount,
   token: auth.token,
+  addOpportunityModal:opportunity.addOpportunityModal,
   clickTagInDrawr: refurbish.clickTagInDrawr,
   createSubscriptiondrawer: subscription.createSubscriptiondrawer,
-  addPromotionnModal: auth.addPromotionnModal
+  addPromotionnModal: auth.addPromotionnModal,
+  distributorData: distributor.distributorDetailsByDistributorId,
+  searchDistributor:distributor.searchDistributor,
+  addAccountOpportunityModal: distributor.addAccountOpportunityModal,
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -1669,15 +1944,23 @@ const mapDispatchToProps = (dispatch) =>
       updateUserById,
       handleCandidateResumeModal,
       handleCallModal,
+      handleCustomerModal,
       setLanguage,
       getOpportunityRecord,
       getActionRequiredCount,
-      handleMessageModal,
+      // handleMessageModal,
+      handleContactModal,
+      handleOpportunityModal,
       handleActionDrawerModal,
       handleInTagDrawer,
       handleCreateSubscriptionDrawer,
       getSuscrption,
-      handlePromotion
+      handlePromotion,
+      handleDistributorModal,
+      handleAccountOpportunityModal,
+      getDistributorByDistributorId,
+      getSearchDistributor
+    
     },
     dispatch
   );

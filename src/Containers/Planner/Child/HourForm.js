@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
-import moment from "moment";
+import dayjs from "dayjs";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { TimePicker } from "../../../Components/Forms/Formik/TimePicker";
 import {addHour} from "../../Event/EventAction";
@@ -49,10 +48,10 @@ class HourForm extends Component {
             if (!values.endDate) {
               values.endDate = values.startDate;
             }
-            let newStartDate = moment(values.startDate).format("YYYY-MM-DD");
+            let newStartDate = dayjs(values.startDate).format("YYYY-MM-DD");
             console.log(newStartDate);
 
-            let firstStartTime = moment(values.startTime).format(
+            let firstStartTime = dayjs(values.startTime).format(
               "HH:mm:ss.SSS[Z]"
             ); 
             console.log(firstStartTime);
@@ -83,8 +82,8 @@ class HourForm extends Component {
             let newStartTime = `${finalStartTime}${timeEndPart}`;
             console.log(newStartTime);
 
-            let newEndDate = moment(values.endDate).format("YYYY-MM-DD");
-            let firstEndTime = moment(values.endTime).format("HH:mm:ss.SSS[Z]"); // getting start time from form input
+            let newEndDate = dayjs(values.endDate).format("YYYY-MM-DD");
+            let firstEndTime = dayjs(values.endTime).format("HH:mm:ss.SSS[Z]"); // getting start time from form input
             console.log(firstEndTime);
             let firstEndHours = firstEndTime.substring(0, 5); // getting only hours and minutes
             console.log(firstEndHours);
@@ -161,12 +160,8 @@ class HourForm extends Component {
                   <Field
                     isRequired
                     name="projectName"
-                    label={
-                      <FormattedMessage
-                        id="app.project"
-                        defaultMessage="Project"
-                      />
-                    }
+                    label="Project"
+                     
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -179,13 +174,7 @@ class HourForm extends Component {
                         <Field
                           isRequired
                           name="startDate"
-                          // label="Start Time"
-                          label={
-                            <FormattedMessage
-                              id="app.startTime"
-                              defaultMessage="Start Time"
-                            />
-                          }
+                          label="Start Time"
                           isColumn
                           component={TimePicker}
                           use12Hours
@@ -200,13 +189,7 @@ class HourForm extends Component {
                       <Field
                         isRequired
                         name="endDate"
-                        //label="End Time"
-                        label={
-                          <FormattedMessage
-                            id="app.endtime"
-                            defaultMessage="End Time"
-                          />
-                        }
+                        label="End Time"
                         isColumn
                         component={TimePicker}
                         use12Hours
@@ -222,36 +205,12 @@ class HourForm extends Component {
                 
               </div>
               <div class="flex justify-end mt-3">
-                {/* {isEditing && ( */}
-                  {/* <>
-                    <StyledPopconfirm
-                      title="Do you want to delete?"
-                     // onConfirm={() => deleteEvent(prefillEvent.eventId)}
-                    >
-                      <Button
-                        type="danger"
-                        htmlType="submit"
-                        //Loading={deletingEvent}
-                      >
-                        <FormattedMessage
-                          id="app.delete"
-                          defaultMessage="Delete"
-                        />
-                      </Button>
-                    </StyledPopconfirm>
-                  </> */}
-                {/* )} */}
                 <Button
                   type="primary"
                   htmlType="submit"
                   Loading={this.props.addingPlannerHour}
                 >
-
-                    <FormattedMessage
-                      id="app.create"
-                      defaultMessage="Create"
-                    />
-    
+                Create
                 </Button>
               </div>
             </Form>

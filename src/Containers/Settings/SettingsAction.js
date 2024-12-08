@@ -48,7 +48,142 @@ export const LinkStagePublish = (data, cb) => (dispatch) => {
       cb && cb("Failure");
     });
 };
+// remove supplies
 
+export const removeSuppliers = ( supplierCategoryId,data) => (dispatch) => {
+  // console.log(typeId);
+  dispatch({
+    type: types.REMOVE_SUPPLIERS_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/supplier/delete/${supplierCategoryId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+     
+      dispatch({
+        type: types.DELETE_SUPPLIERS_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Deleted Successfully',
+        showConfirmButton: false,
+        timer: 1500,
+
+      })
+    })
+    // .then((res) => {
+    //   dispatch(getCategoryCount(orgId));
+    //   Swal.fire({
+    //     icon: 'success',
+    //     title: 'Suppliers deleted Successfully!',
+    //   })
+    //   // message.success("CATEGORY has been deleted successfully!");
+    //   console.log(res);
+    //   dispatch({
+    //     type: types.REMOVE_SUPPLIERS_SUCCESS,
+    //     payload:supplierCategoryId,
+    //   });
+    // })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REMOVE_SUPPLIERS_FAILURE,
+      });
+    });
+};
+
+// update suppliers
+export const updateSuppliers = ( data,supplierCategoryId) => (dispatch) => {
+    
+  dispatch({
+    type: types.UPDATE_SUPPLIERS_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url}/supplier/update/${supplierCategoryId}`,
+      data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Supplier updated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      // message.success("CATEGORY has been updated successfully!");
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_SUPPLIERS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_SUPPLIERS_FAILURE,
+      });
+    });
+};
+
+
+// remove shipper
+
+export const removeShipper = ( data,shipperCategoryId) => (dispatch) => {
+  // console.log(typeId);
+  dispatch({
+    type: types.DELETE_SHIPPER_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/shipper/delete/${shipperCategoryId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+     
+      dispatch({
+        type: types.DELETE_SHIPPER_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Deleted Successfully',
+        showConfirmButton: false,
+        timer: 1500,
+
+      })
+    })
+    // .then((res) => {
+    //   dispatch(getCategoryCount(orgId));
+    //   Swal.fire({
+    //     icon: 'success',
+    //     title: 'Suppliers deleted Successfully!',
+    //   })
+    //   // message.success("CATEGORY has been deleted successfully!");
+    //   console.log(res);
+    //   dispatch({
+    //     type: types.REMOVE_SUPPLIERS_SUCCESS,
+    //     payload:supplierCategoryId,
+    //   });
+    // })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_SHIPPER_FAILURE,
+      });
+    });
+};
 
 
 export const LinkOpportunityStagePublish = (data, cb) => (dispatch) => {
@@ -92,6 +227,13 @@ export const handledealStagesModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_DEALS_STAGES_DRAWER_MODAL,
     payload: modalProps,
+  });
+};
+
+
+export const emptyDistributionAutomation = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_DISTRIBUTION_AUTOMATION, 
   });
 };
 
@@ -145,6 +287,13 @@ export const LinkProcessPublish = (data, cb,) => (dispatch) => {
       });
       cb && cb("Failure");
     });
+};
+
+
+export const emptySkillLevel = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_SKILL_LEVEL, 
+  });
 };
 
 
@@ -1749,6 +1898,7 @@ export const addDepartmentAccess = (data, roleTypeId) => (dispatch) => {
         type: types.ADDING_DEPARTMENT_ACCESS_FAILURE,
         payload: err,
       });
+      message.error("Privileges have been Not updated!!")
     });
 };
 
@@ -2332,6 +2482,60 @@ export const addingNotifications = (data, orgId) => (dispatch, getState) => {
       });
     });
 };
+
+export const getIdentifier = (orgId) => (dispath) => {
+  dispath({ type: types.GET_IDENTIFIER_REQUEST });
+  axios
+    .get(`${base_url}/recruit/code/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispath({
+        type: types.GET_IDENTIFIER_SUCCESS,
+        payload: res.data,
+      });
+
+    })
+    .catch((err) => {
+      dispath({
+        type: types.GET_IDENTIFIER_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const addingIdentifier = (data, orgId) => (dispatch, getState) => {
+  //console.log(permissions, userId);
+  const userId = getState().auth.userDetails.userId;
+  dispatch({
+    type: types.ADDING_IDENTIFIER_REQUEST,
+  });
+  axios
+    .put(`${base_url}/recruit/code`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+      console.log(res);
+      dispatch(getIdentifier(orgId))
+      dispatch({
+        type: types.ADDING_IDENTIFIER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADDING_IDENTIFIER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
 export const getRequirementsDuration = (orgId) => (dispath) => {
   dispath({ type: types.GET_REQUIREMENTS_DURATION_REQUEST });
   axios
@@ -2570,13 +2774,13 @@ export const addProcessForOpportunity = (data, orgId, cb) => (
       cb && cb("failure");
     });
 };
-export const getProcessForOpportunity = (orgId) => (dispatch) => {
+export const getProcessForOpportunity = (orgId,navType) => (dispatch) => {
   debugger;
   dispatch({
     type: types.GET_PROCESS_FOR_OPPORTUNITY_REQUEST,
   });
   axios
-    .get(`${base_url}/workflow/opportunityWorkflow/${orgId}`, {
+    .get(`${base_url}/workflow/publish/for_dropdown/${orgId}/${navType}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2770,14 +2974,14 @@ export const addProcessStageForOpportunity = (stage, cb) => (dispatch) => {
     });
 };
 
-export const getProcessStagesForOpportunity = (oppworkFlowId) => (
+export const getProcessStagesForOpportunity = (orgId,workflowId) => (
   dispatch
 ) => {
   dispatch({
     type: types.GET_PROCESS_STAGES_FOR_OPPORTUNITY_REQUEST,
   });
   axios
-    .get(`${base_url}/workflow/opportunityStages/${oppworkFlowId}`, {
+    .get(`${base_url}/workflow/stages/for_dropdown/${orgId}/${workflowId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3282,12 +3486,12 @@ export const addApprove = (data, subProcessName) => (dispatch) => {
       
       console.log(res);
       // dispatch(getIndentApprovalData("Indent", "IndentApproval"))
-      dispatch(getApproveData("Leave"))
-      dispatch(getApproveData("Mileage"))
-      dispatch(getApproveData("Expense"))
-      dispatch(getApproveData("ContactUser"))
-      dispatch(getApproveData("PhonePair"))
-      dispatch(getApproveData("ProspectToCustomer"))
+      // dispatch(getApproveData("Leave"))
+      // dispatch(getApproveData("Mileage"))
+      // dispatch(getApproveData("Expense"))
+      // dispatch(getApproveData("ContactUser"))
+      // dispatch(getApproveData("PhonePair"))
+      // dispatch(getApproveData("ProspectToCustomer"))
       dispatch({
         type: types.ADD_APPROVE_SUCCESS,
         payload: res.data,
@@ -3317,9 +3521,9 @@ export const addCustomerConfigure = (opportunity, cb) => (dispatch, getState) =>
     .then((res) => {
       Swal.fire({
         icon: 'success',
-        title: 'Opportunity created Successfully!',
-        // showConfirmButton: false,
-        // timer: 1500
+        title: 'created Successfully!',
+        showConfirmButton: false,
+        timer: 1500
       })
       console.log(res);
       // const startDate = dayjs()
@@ -3625,13 +3829,12 @@ export const addProcessForDeals = (data,  cb) => (
     });
 };
 
-export const getProcessForDeals = (orgId) => (dispatch) => {
-  debugger;
+export const getProcessForDeals = (orgId,navType) => (dispatch) => {
   dispatch({
     type: types.GET_PROCESS_FOR_DEALS_REQUEST,
   });
   axios
-    .get(`${base_url}/workflow/investorOpportunityWorkflow/${orgId}`, {
+  .get(`${base_url}/workflow/publish/for_dropdown/${orgId}/${navType}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3680,14 +3883,14 @@ export const addProcessStageForDeals = (stage, cb) => (dispatch) => {
 };
 
 
-export const getProcessStagesForDeals = (investorOppWorkflowId) => (
+export const getProcessStagesForDeals = (workflowDetailsId) => (
   dispatch
 ) => {
   dispatch({
     type: types.GET_PROCESS_STAGES_FOR_DEALS_REQUEST,
   });
   axios
-    .get(`${base_url}/workflow/Stages/${investorOppWorkflowId}`, {
+  .get(`${base_url}/workflow/Stages/${workflowDetailsId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -3851,22 +4054,19 @@ export const updateProcessNameForDeals = (process, workflowDetailsId,cb) => (dis
 };
 
 export const updateStageForDeals = (
+  data,
   stagesId,
-  // responsible,
-  stageName,
-
-  probability,
-  days,
+  
   cb
 ) => (dispatch) => {
-  console.log(stageName, probability);
+  // console.log(stageName, probability);
   dispatch({
     type: types.UPDATE_STAGE_FOR_DEALS_REQUEST,
   });
   axios
     .put(
       `${base_url}/workflow/stages/${stagesId}`,
-      { stagesId, stageName, probability, days },
+      data,
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -3918,7 +4118,7 @@ export const getAllVat = () => (
     });
 };
 
-export const websiteSingleMultiple = (process,orgId,type, cb) => (dispatch) => {
+export const websiteSingleMultiple = (process,orgId,activeKey,type, cb) => (dispatch) => {
   dispatch({ type: types.UPDATE_WEBSITE_SINGLE_REQUEST });
 
   axios
@@ -3928,7 +4128,7 @@ export const websiteSingleMultiple = (process,orgId,type, cb) => (dispatch) => {
       },
     })
     .then((res) => {
-      dispatch(getDistributionAutomation(orgId,"lead"));
+      dispatch(getDistributionAutomation(orgId,activeKey));
       console.log(res);
       dispatch({
         type: types.UPDATE_WEBSITE_SINGLE_SUCCESS,
@@ -4433,6 +4633,36 @@ export const createCurrencyConversion = (data,orgId,cb) => (dispatch) => {
         payload: err,
       });
       cb && cb("Failure");
+    });
+};
+
+export const creatVat = (data,orgId,cb) => (dispatch) => {
+    
+  dispatch({
+    type: types.CREATE_VAT_REQUEST,
+  });
+  axios
+    .post(`${base_url2}/vat`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch(getAllVat())
+      dispatch({
+        type: types.CREATE_VAT_SUCCESS,
+        payload: res.data,
+      });
+     // cb && cb("Success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.CREATE_VAT_FAILURE,
+        payload: err,
+      });
+     // cb && cb("Failure");
     });
 };
 
@@ -5578,11 +5808,16 @@ export const getclubShare = (investorId) => (dispatch) => {
       });
     });
 };
+export const clearSettingData = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_SETTING_DATA,
+  });
+};
 
 export const updateClub = (data,clubId) => (dispatch) => {
   dispatch({ type: types.UPDATE_CLUB_REQUEST });
   axios
-    .put(`${base_url}/club/${clubId}`, data, {
+    .put(`${base_url}/club/update/${clubId}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -5655,16 +5890,16 @@ export const addFeedBack = (sectors,orgId, cb) => (dispatch) => {
         Swal.fire({
           icon: 'error',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       } else {
        
         Swal.fire({
           icon: 'success',
           title: 'Feedback added Successfully!',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       }
       dispatch(getFeedBackCount());
@@ -5705,6 +5940,8 @@ export const removeFeedBack = ( feedbackId,orgId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Feedback deleted Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("QUALITY has been deleted successfully!");
       console.log(res);
@@ -5743,6 +5980,8 @@ export const updateFeedBack = ( data,feedbackId,cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Feedback updated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
     
       console.log(res);
@@ -5863,16 +6102,16 @@ export const addSupplierCategory = (sectors,cb) => (dispatch) => {
         Swal.fire({
           icon: 'error',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       } else {
        
         Swal.fire({
           icon: 'success',
           title: 'SUPPLIERCATEGORY added Successfully!',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       }
       console.log(res);
@@ -5943,16 +6182,16 @@ export const addShipperCategory = (sectors,cb) => (dispatch) => {
         Swal.fire({
           icon: 'error',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       } else {
        
         Swal.fire({
           icon: 'success',
           title: 'SUPPLIERCATEGORY added Successfully!',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       }
       console.log(res);
@@ -6018,16 +6257,16 @@ export const addWorkFlowCategory = (sectors,cb) => (dispatch) => {
         Swal.fire({
           icon: 'error',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       } else {
        
         Swal.fire({
           icon: 'success',
           title: 'Workflow added Successfully!',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       }
       console.log(res);
@@ -6268,8 +6507,8 @@ export const updateProcessTaskStage = (data, stagesTaskId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Prospect Info updated Successfully!',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500
       })
       console.log(res);
       dispatch({
@@ -6308,6 +6547,8 @@ export const addGloalType = (sectors,cb) => (dispatch) => {
       Swal.fire({
         icon: 'error',
         title: res.data.message,
+        showConfirmButton: false,
+        timer: 1500,
       });
 
       dispatch({
@@ -6317,6 +6558,8 @@ export const addGloalType = (sectors,cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Type added Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       });
 
       dispatch({
@@ -6362,6 +6605,8 @@ export const addConfigureGlobalType = (orgId,workflowId,workflowType,  cb) => (
         Swal.fire({
           icon: 'error',
           title: res.data.message,
+          showConfirmButton: false,
+        timer: 1500,
         });
   
         dispatch({
@@ -6371,6 +6616,8 @@ export const addConfigureGlobalType = (orgId,workflowId,workflowType,  cb) => (
         Swal.fire({
           icon: 'success',
           title: 'Type added Successfully!',
+          showConfirmButton: false,
+        timer: 1500,
         });
   
         dispatch({
@@ -6388,3 +6635,654 @@ export const addConfigureGlobalType = (orgId,workflowId,workflowType,  cb) => (
       cb && cb("failure");
     });
 };
+
+
+
+export const getPaymentFinance = () => (dispatch) => {
+  dispatch({
+    type: types.GET_PAYMENT_FINANCE_REQUEST,
+  });
+  axios
+    .get(`${base_url}/paymentMode`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PAYMENT_FINANCE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PAYMENT_FINANCE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const addPaymentData = (data,cb) => (dispatch) => {
+    
+  dispatch({
+    type: types.ADD_PAYMENT_DATA_REQUEST,
+  });
+  axios
+    .post(`${base_url}/paymentMode`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch(getPaymentFinance())
+      dispatch({
+        type: types.ADD_PAYMENT_DATA_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("Success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_PAYMENT_DATA_FAILURE,
+        payload: err,
+      });
+      cb && cb("Failure");
+    });
+};
+
+
+
+
+export const removeSkillData = (skillLevelLinkId) => (dispatch) => {
+  dispatch({
+    type: types.REMOVE_SKILL_DATA_REQUEST,
+  });
+  axios
+    .put(`${base_url}/category/skillLevel/delete/${skillLevelLinkId}`,{}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Skill Deleted Successfully',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      // if (res.data) {
+      //   Swal.fire({
+      //     icon: 'success',
+      //     title: res.data,
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // } else {
+       
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Not Deleted',
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // }
+      console.log(res);
+      dispatch({
+        type: types.REMOVE_SKILL_DATA_SUCCESS,
+        payload: skillLevelLinkId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REMOVE_SKILL_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+
+
+export const updateWords = (data,id) => (dispatch) => {
+  dispatch({ type: types.UPDATE_WORDS_REQUEST });
+  axios
+    .put(`${login_url}/words/${id}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_WORDS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_WORDS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const searchWordsName = (word) => (dispatch) => {
+  dispatch({
+    type: types.GET_WORDS_SEARCH_REQUEST,
+  });
+  axios
+    .get(`${login_url}/words/navLangSearch/${word}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      message.success(res.data.message);
+      dispatch({
+        type: types.GET_WORDS_SEARCH_SUCCESS,
+        payload: res.data,
+      });
+    }
+    )
+    .catch((err) => {
+      dispatch({
+        type: types.GET_WORDS_SEARCH_FAILURE,
+        payload: err,
+      });
+    });
+}; 
+
+
+
+export const addPaymentApi = (data,cb) => (dispatch) => {
+    
+  dispatch({
+    type: types.ADD_PAYMENT_API_REQUEST,
+  });
+  axios
+    .post(`${base_url2}/ApiKey`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      // dispatch(getPaymentFinance())
+      dispatch({
+        type: types.ADD_PAYMENT_API_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("Success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_PAYMENT_API_FAILURE,
+        payload: err,
+      });
+      cb && cb("Failure");
+    });
+};
+
+
+
+
+export const linkClubToggle = ( data,clubId) => (dispatch, getState) => {
+  //console.log(permissions, userId);
+  //const orgId = getState().auth.userDetails.organizationId;
+  dispatch({
+    type: types.LINK_CLUB_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url}/club/update/invToCusInd/${clubId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_CLUB_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_CLUB_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};
+
+export const getUOM = () => (dispatch) => {
+  dispatch({
+    type: types.GET_UOM_REQUEST,
+  });
+  axios
+  .get(`${login_url}/uom/all`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_UOM_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_UOM_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+// /**
+//  * add a new sector 
+//  */
+export const addUOM = (sectors,cb) => (dispatch) => {
+  console.log(sectors);
+  dispatch({
+    type: types.ADD_UOM_REQUEST,
+  });
+  axios
+    .post(`${login_url}/uom/saveUOM`, sectors, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      if (res.data.message) {
+        Swal.fire({
+          icon: 'error',
+          title: res.data.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+       
+        Swal.fire({
+          icon: 'success',
+          title: 'Machinary added Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+      dispatch(getUOMCount());
+      console.log(res);
+      dispatch({
+        type: types.ADD_UOM_SUCCESS,
+        payload: { ...sectors, },
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.ADD_UOM_FAILURE,
+      });
+      // message.success(res.data.message);
+      cb();
+    });
+};
+
+/**
+* remove a new sector
+*/
+export const removeUOM = ( uomId,orgId) => (dispatch) => {
+  // console.log(typeId);
+  dispatch({
+    type: types.REMOVE_UOM_REQUEST,
+  });
+  axios
+    .delete(`${base_url}/uom/deleteUom/${uomId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch(getUOMCount());
+      Swal.fire({
+        icon: 'success',
+        title: 'Machinary deleted Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      // message.success("MACHINARY has been deleted successfully!");
+      console.log(res);
+      dispatch({
+        type: types.REMOVE_UOM_SUCCESS,
+        payload:uomId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REMOVE_UOM_FAILURE,
+      });
+    });
+};
+
+/**
+*update label of sector
+*/
+export const updateUOM = ( data,uomId,cb) => (dispatch) => {
+  
+  dispatch({
+    type: types.UPDATE_UOM_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url}/uom/uomId/${uomId}`,
+      data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Machinary updated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      // message.success("MACHINARY has been updated successfully!");
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_UOM_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_UOM_FAILURE,
+      });
+    });
+};
+
+
+
+export const getUOMCount = () => (dispatch) => {
+  dispatch({
+    type: types.GET_UOM_COUNT_REQUEST,
+  });
+  axios
+    .get(`${login_url}/uom/all/count`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_UOM_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_UOM_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+
+
+export const addSequenceFlow = (
+  data,
+  stagesId,
+  
+  cb
+) => (dispatch) => {
+  // console.log(stageName, probability);
+  dispatch({
+    type: types.ADD_SEQUENCE_FLOW_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url}/workflow/stage/sequence/rule`,
+      data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_SEQUENCE_FLOW_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb("success");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_SEQUENCE_FLOW_FAILURE,
+      });
+      cb && cb("error");
+    });
+};
+
+
+
+
+
+export const getApikey = (orgId,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_API_KEY_REQUEST,
+  });
+  axios
+    .get(`${base_url}/thirdPartyApi/get/${orgId}/${type}` ,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_API_KEY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_API_KEY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getDiscountCat = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_DISCOUNT_CAT_REQUEST,
+  });
+  axios
+    .get(`${base_url}/category/dropdown/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    } )
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DISCOUNT_CAT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DISCOUNT_CAT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getDiscountCatVol = (categoryId) => (dispatch) => {
+  dispatch({
+    type: types.GET_DISCOUNT_CATVOL_REQUEST,
+  });
+  axios
+    .get(`${base_url}/category/vol-price/${categoryId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    } )
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DISCOUNT_CATVOL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DISCOUNT_CATVOL_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const addHideFlow = (thirdPartyApiId,hideInd, cb) => (dispatch, getState) => {
+  const userId = getState().auth.userDetails.userId;
+  dispatch({
+    type: types.ADD_HIDE_FLOW_REQUEST,
+  });
+  axios
+    .put(`${base_url}/thirdPartyApi/update/hideInd/${thirdPartyApiId}/${hideInd}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Api added Successfully!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      console.log(res);
+     
+      dispatch({
+        type: types.ADD_HIDE_FLOW_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_HIDE_FLOW_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const categoryVolUpdate = (opportunity, cb) => (dispatch, getState) => {
+  dispatch({
+    type: types.ADD_CATEGORY_VOLUME_REQUEST,
+  });
+  axios
+    .post(`${base_url}/category/vol-price/save`, opportunity, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Volume added Successfully!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      console.log(res);
+     
+      dispatch({
+        type: types.ADD_CATEGORY_VOLUME_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_CATEGORY_VOLUME_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const addApi = (opportunity, cb) => (dispatch, getState) => {
+  const userId = getState().auth.userDetails.userId;
+  dispatch({
+    type: types.ADD_API_REQUEST,
+  });
+  axios
+    .put(`${base_url}/thirdPartyApi/update/api`, opportunity, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Api added Successfully!',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      console.log(res);
+     
+      dispatch({
+        type: types.ADD_API_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_API_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+

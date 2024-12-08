@@ -5,7 +5,7 @@ import {getCompletedTaskTypeDetails} from "./DashboardAction";
 import { OnlyWrapCard } from '../../Components/UI/Layout';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { Button } from "antd";
-import { FormattedMessage } from "react-intl";
+
 
 const ButtonGroup = Button.Group;
 
@@ -24,32 +24,14 @@ function CompletedTaskTypeDrawerTable (props) {
     return (
       <>
          <div className=' flex justify-end sticky top-28 z-auto'>
-        <OnlyWrapCard style={{backgroundColor:"#eaedf1"}}>
+        <OnlyWrapCard style={{backgroundColor:"white"}}>
         <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" md:w-[5.1rem]">    <FormattedMessage
-                id="app.priority"
-                defaultMessage="Priority"
-              /></div>
-        <div className=" md:w-[6rem]">     <FormattedMessage
-                id="app.taskName"
-                defaultMessage="Task Name"
-              /></div>
-        <div className="md:w-24"> <FormattedMessage
-                id="app.assignedTo"
-                defaultMessage="Assigned"
-              /></div>
-        <div className=" md:w-[6.8rem] ">       <FormattedMessage
-                id="app.status"
-                defaultMessage="Status"
-              /></div>
-        <div className="md:w-[5.9rem]"> <FormattedMessage
-                id="app.endDate"
-                defaultMessage="End Date"
-              /></div>
-        <div className="md:w-36">   <FormattedMessage
-                id="app.deviation"
-                defaultMessage="Deviation"
-              /></div>
+        <div className=" md:w-[5.1rem]">   Priority</div>
+        <div className=" md:w-[6rem]"> Task Name</div>
+        <div className="md:w-24"> Assigned</div>
+        <div className=" md:w-[6.8rem] ">  Status</div>
+        <div className="md:w-[5.9rem]">End Date</div>
+        <div className="md:w-36">  Deviation</div>
       </div>
         <InfiniteScroll
         dataLength={props.completedtypeTasks.length}
@@ -59,9 +41,9 @@ function CompletedTaskTypeDrawerTable (props) {
         height={"75vh"}
       >
       {/* {props.completedtypeTasks.map((item) => { 
-        const currentDate = moment();
-        const completionDate = moment(item.completionDate);
-        const endDate = moment(item.endDate);
+        const currentDate = dayjs();
+        const completionDate = dayjs(item.completionDate);
+        const endDate = dayjs(item.endDate);
         const difference = currentDate.diff(endDate, 'days');
         const incompleteDeviationDate = endDate.diff(currentDate, 'days');
         const completeDeviation = endDate.diff(completionDate, 'days');
@@ -187,7 +169,7 @@ function CompletedTaskTypeDrawerTable (props) {
                                  
 
                                     <div class=" text-xs  font-poppins text-center">
-                                    {`${moment(item.endDate).format("ll")}`}
+                                    {`${dayjs(item.endDate).format("ll")}`}
                                     </div>
                                 </div>
                                 <div className=" flex font-medium flex-col md:w-0 max-sm:flex-row w-full max-sm:justify-between ">

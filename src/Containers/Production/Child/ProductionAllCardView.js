@@ -28,19 +28,19 @@ function ProductionAllCardView(props) {
         const fetchMenuTranslations = async () => {
           try {
             const itemsToTranslate = [
-             "MFG ID",//0
-              "Location",//1
-              "Cell",//1
-              "Created",//1
-              "Item",//1
-              "Category",//1
-              "Attribute",//1
-              "Start",//1
-              "End",//1
-              "Workflow",//1
-              "Status",//1
-              "Inspected",//1
-              "Dispatch",//1
+            "1061",//  "MFG ID",//0
+           "658" ,//   "Location",//1
+            "744",//   "Cell",//1
+           "679" ,//   "Created",//1
+            "1044",//   "Item",//1
+           "14", //   "Category",//1
+           "259", //   "Attribute",//1
+            "158",//   "Start",//1
+           "111", //   "End",//1
+            "141",//   "Workflow",//1
+            "142",//   "Status",//1
+           "1051", //   "Inspected",//1
+            "1063"//   "Dispatch",//1
           
           
            
@@ -115,8 +115,8 @@ function ProductionAllCardView(props) {
     return (
         <>
             <div className=' flex  sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex  justify-between w-[99%] p-1 bg-transparent font-bold sticky h-8 z-10">
+                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+                    <div className=" flex  justify-between w-[100%]  p-1 bg-transparent font-bold sticky h-8 z-10">
                         <div className=""></div>
                         <div className=" md:w-[8.1rem]">
                             {/* MFG ID */}
@@ -354,35 +354,9 @@ function ProductionAllCardView(props) {
                                                         {/* <MoveToggleProduction item={item} /> */}
                                                     </div>
                                                 </div>
-                                                {/* <div className=" flex font-medium flex-col md:w-[3rem] max-sm:flex-row w-full max-sm:justify-between ">
-                                                    <div class=" text-xs  font-semibold  font-poppins">
-                                                        <Tooltip title="Print QR Code">
-                                                           <Button type="primary">
-                                                            Print QR 
-                                                           </Button>
-                                                        </Tooltip>
-                                                    </div>
-                                                </div> */}
+                                           
 
-                                                {/* {(user.productionDeleteInd === true || user.role === "ADMIN") && (
-                                                    <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
-                                                        <div class=" text-xs  font-poppins">
-                                                            <Tooltip title="Delete">
-                                                                <Popconfirm
-                                                                    title="Do you want to delete?"
-                                                                //   onConfirm={() => props.deleteShipperData(item.shipperId)}
-                                                                >
-                                                                    <DeleteOutlined
-                                                                        className=" !text-base cursor-pointer text-[red]"
-
-                                                                    />
-                                                                </Popconfirm>
-                                                            </Tooltip>
-                                                        </div>
-
-
-                                                    </div>
-                                                )} */}
+                                              
                                             </div>
                                         </div>
                                     );

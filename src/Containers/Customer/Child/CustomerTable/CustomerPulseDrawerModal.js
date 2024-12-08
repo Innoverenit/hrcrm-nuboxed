@@ -24,6 +24,9 @@ class CustomerPulseDrawerModal extends Component {
         >
           <Suspense fallback={<BundleLoader />}>
             <CustomerPulseJumpstart 
+               translateText={this.props.translateText}
+               selectedLanguage={this.props.selectedLanguage}
+               translatedMenuItems={this.props.translatedMenuItems}
             customer={this.props.customer}
             />
           </Suspense>

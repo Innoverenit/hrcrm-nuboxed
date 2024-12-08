@@ -7,10 +7,11 @@ import { InputComponent } from "../../../../Components/Forms/Formik/InputCompone
 import * as Yup from "yup";
 import {getCustomerConfigure} from "../../../Settings/SettingsAction"
 import AddressFieldArray from "../../../../Components/Forms/Formik/AddressFieldArray";
-import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { addSuppliers } from "../SuppliersAction";
 import {getEmployeelistAsErp} from "../../Shipper/ShipperAction"
 import { Listbox } from '@headlessui/react';
+import { InputComponent1 } from "../../../../Components/Forms/Formik/InputComponent1";
+import SearchSelect1 from "../../../../Components/Forms/Formik/SearchSelect1";
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
@@ -89,29 +90,35 @@ function AddSuppliersForm (props) {
             <Form className="form-background">
               <div class="flex justify-between max-sm:flex-col">
                 <div class="h-full w-w47.5 max-sm:w-full">
-                
+                <div className=" text-xs font-poppins font-bold "> {props.translatedMenuItems[0]} </div>
                   <Field
                     isRequired
                     name="name"
                     type="text"
-                    label={props.translatedMenuItems[0]} 
+                    // label={props.translatedMenuItems[0]} 
                     width={"100%"}
                     component={InputComponent}
                   
                     isColumn
                     inlineLabel
                   />
-                   <div class=" flex justify-between">
-                    <div class="w-[30%] max-sm:w-[40%] ">
+                  <div className="text-xs font-poppins font-bold">
+{props.translatedMenuItems[15]}
+  {/* Dial code */}
+
+</div>
+               
+<div class="  flex justify-between shadow-[0_0.15em_0.3em_#aaa] border border-[#bfbebb] h-8">
+<div class=" w-3/12 max-sm:w-[30%]">
                     {/* dial Code */}
                       {props.customerConfigure.dailCodeInd===true&&
                       <FastField
                         name="dialCode"
                         selectType="dialCode"
-                        label={props.translatedMenuItems[14]} 
+                        // label={props.translatedMenuItems[14]} 
                         
                         isColumn
-                        component={SearchSelect}
+                        component={SearchSelect1}
                         defaultValue={{
                           value: props.user.countryDialCode,
                         }}
@@ -121,15 +128,18 @@ function AddSuppliersForm (props) {
                       />
 }
                     </div>
-                    <div class="w-[68%] max-sm:w-[50%]">
+                    <div class="w-[1px] h-full bg-gray-300">
+  <div class="w-full h-[75%]"></div>
+</div>
+<div class=" w-[76%]">
                     {props.customerConfigure.phoneNoInd===true&&
-                      <FastField
+                      <Field
                         name="phoneNo"
-                        label={`${props.translatedMenuItems[15]} #`} 
+                        // label={`${props.translatedMenuItems[15]} #`} 
                         type="text"
                         placeholder="Phone #"
                         isColumn
-                        component={InputComponent}
+                        component={InputComponent1}
                         inlineLabel
                         width={"100%"}
                       />
@@ -150,12 +160,12 @@ function AddSuppliersForm (props) {
                   </div>
 
 
-                  <div class="w-full">
+                  <div class="w-full flex">
                   {props.customerConfigure.approveInd===true&&
-                    <label>
+                    <div class=" text-xs font-bold font-poppins ">
                      
                       {props.translatedMenuItems[17]} 
-                    </label>
+                    </div>
 }
                     {props.customerConfigure.approveInd===true&&
                   <Switch 

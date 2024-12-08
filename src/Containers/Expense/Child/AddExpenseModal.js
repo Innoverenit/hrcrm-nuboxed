@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 const ExpenseForm=lazy(()=> import("./ExpenseForm"));
@@ -11,10 +11,8 @@ const AddExpenseModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.addVoucher"
-          defaultMessage="Add Voucher"
-        />}
+        title="Add Voucher"
+       
         width={drawerWidth}
         visible={addExpenseModal}
         onClose={() => handleExpenseModal(false)}

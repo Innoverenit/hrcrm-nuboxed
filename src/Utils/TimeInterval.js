@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { renderTooltip } from "../Helpers/Function/UIFunctions";
+
 
 const StyledTimeinterval = styled.div`
   display: flex;
@@ -20,9 +20,11 @@ const StyledSpan = styled.span`
     content: " | ";
   } */
 `;
+            
+{/* <div className=" font-poppins text-sm font-semibold " style={{color: `${(props) => (props.isSelected ? "#1890ff" : props.theme.color)}`, opacity: `${(props) => (props.disabled ? 0.3 : 1)}`,  cursor: ` ${(props) => (props.disabled ? "not-allowed" : "pointer")}`}} */}
 class TimeInterval extends Component {
   render() {
-    const { times, handleClick, subscriptionType } = this.props;
+    const { times, handleClick } = this.props;
     console.log(times);
     return (
       <StyledTimeinterval>

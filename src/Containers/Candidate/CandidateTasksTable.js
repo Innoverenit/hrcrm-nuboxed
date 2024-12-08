@@ -1,31 +1,23 @@
-import React, { useState,useEffect,lazy, Suspense } from "react";
+import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
-import { Icon, Tooltip,Input, Button, message,InputNumber,
-Popconfirm, Form,Typography,} from "antd";
-import moment from "moment";
-import { BundleLoader } from "../../Components/Placeholder";
+
+import { Tooltip,Input, Button,
+ Form} from "antd";
+import dayjs from "dayjs";
 import { MultiAvatar, Select } from "../../Components/UI/Elements";
-import { StyledTable, StyledPopconfirm } from "../../Components/UI/Antd";
-import { FlexContainer, MainWrapper } from "../../Components/UI/Layout";
+import { StyledTable } from "../../Components/UI/Antd";
 import { withRouter } from "react-router-dom";
 import Highlighter from "react-highlight-words";
-
 import SearchIcon from '@mui/icons-material/Search';
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';
-// import TaskNameDrawerModal from "./TaskNameDrawerModal";
-import styled from "styled-components";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 
 const { Option } = Select;
 const ButtonGroup = Button.Group;
 
 function CandidateTasksTable (props) {
 
-    // useEffect(()=> {
-    //     props.getTaskByCandidateId(props.candidateId);
-    //   },[])
+ 
 
         const [rowDataPass,setRowDataPass]=useState({});
         const [visible,setVisible]=useState(false)
@@ -227,7 +219,7 @@ setEditingKey(record.taskId);
         },
       },
       {
-        title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+        title: "Name" ,
     //  dataIndex: "taskName",
      width:"12%",
      ...getColumnSearchProps('taskName'),
@@ -252,15 +244,13 @@ setEditingKey(record.taskId);
      }
      },
         {
-           title: <FormattedMessage
-          id="app.type"
-          defaultMessage="Type"
-        />,
+           title:"Type"
+      ,
         dataIndex: "taskType",
         width:"10%",
         render: (name, item, i) => {     
-          const currentdate = moment().format("DD/MM/YYYY");
-          const date = moment(item.creationDate).format("DD/MM/YYYY");
+          const currentdate = dayjs().format("DD/MM/YYYY");
+          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           console.log(date, currentdate, currentdate === date);
           return (
             <>
@@ -281,7 +271,7 @@ setEditingKey(record.taskId);
         },
         },
         {
-          title: <FormattedMessage id="app.Owner" defaultMessage="Owner" />,
+          title: "Owner",
         dataIndex: "submittedBy",
         field: "submittedBy",
         width:"12%",
@@ -303,54 +293,47 @@ setEditingKey(record.taskId);
       },
         },
         {
-          // title: "Assigned on",
-          title: <FormattedMessage id="app.assignedon" defaultMessage="Assigned on" />,
+          title: "Assigned on",
+         
           dataIndex: "assignedOn",
           width:"15%",
           render: (name, item, i) => {
-            return <span>{` ${moment(item.assignedOn).format("ll")}`}</span>;
+            return <span>{` ${dayjs(item.assignedOn).format("ll")}`}</span>;
           },
         },
-        // {
-        //   // title: "Contact",
-        //   title: <FormattedMessage id="app.talent" defaultMessage="Talent" />,
-        //   dataIndex: "candidateName",
-        //   width:"10%",
-        //   ...getColumnSearchProps('candidateName'),     
-        // },
+       
         {
-          // title: "Start",
-          title: <FormattedMessage id="app.start" defaultMessage="Start" />,
+          title: "Start",
+         
           dataIndex: "startDate",
           width:"12%",
           defaultSortOrder: "descend",
           render: (name, item, i) => {
-            return <span>{` ${moment(item.startDate).format("ll")}`}</span>;
+            return <span>{` ${dayjs(item.startDate).format("ll")}`}</span>;
           },
           sorter: (a, b) => {
             var startDateA = a.startDate;
             var startDateB = b.startDate;
-            return moment.utc(startDateA).diff(moment.utc(startDateB));
+            return dayjs(startDateA).diff(dayjs(startDateB));
           },
         },
         {
-          // title: "End",
-          title: <FormattedMessage id="app.end" defaultMessage="End" />,
+          title: "End",
+        
           dataIndex: "endDate",
           width:"12%",
           render: (name, item, i) => {
-            return <span>{` ${moment(item.endDate).format("ll")}`}</span>;
+            return <span>{` ${dayjs(item.endDate).format("ll")}`}</span>;
           },
           onFilter: (value, record) => record.endDate.indexOf(value) === 0,
           sorter: (a, b) => {
             var endDateA = a.endDate;
             var endDateB = b.endDate;
-            return moment.utc(endDateA).diff(moment.utc(endDateB));
+            return dayjs(endDateA).diff(dayjs(endDateB));
           },
         },
         {
-          // title: "Status",
-          title: <FormattedMessage id="app.status" defaultMessage="Status" />,
+          title: "Status",
           dataIndex: "complitionStatus",
           width:"12%",
           editable: true, 

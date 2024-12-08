@@ -14,13 +14,12 @@ import {
   handleCreateAWB,
   handleInventoryDispatchModal
 } from "../../../InventoryAction"
+import {handleProductionNotesModal} from "../../../../Refurbish/RefurbishAction"
 import { withRouter } from "react-router";
-import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import { BundleLoader } from "../../../../../../Components/Placeholder";
-import { MultiAvatar2 } from "../../../../../../Components/UI/Elements";
 import SubOrderList from "../../../../Account/AccountDetailsTab/AccountOrderTab/SubOrderList";
+import RefurbishNoteAll from "../../../../Refurbish/RefurbishNoteAll";
 
 const DispatchPhoneListModal = lazy(() => import("./DispatchPhoneListModal"));
 const DispatchPackedToggle = lazy(() => import("./DispatchPackedToggle"));
@@ -29,11 +28,46 @@ const DispatchOrderAwbModal = lazy(() => import("./DispatchOrderAwbModal"));
 
 function DispatchTable(props) {
   const [pageNo, setPageNo] = useState(0);
+  const [loading, setLoading] = useState(true);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   useEffect(() => {
     setPageNo(pageNo + 1);
     props.getDispatchList(props.locationDetailsId,pageNo);
     props.getAllShipper()
   }, []);
+
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          '672', // 0
+'260', // 1
+'780', // 2
+'1408', // 3 Packed by
+'772', // 4
+'887', // 5
+"1606",// 'Pick up', // 6
+'1486', // 6 Track
+'142', // 6 status
+
+
+            
+             
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   
   const [hasMore, setHasMore] = useState(true);
   const handleLoadMore = () => {
@@ -431,19 +465,39 @@ const AWBtst=[
     <>
     
         <div className=' flex justify-end sticky  z-auto'>
-          <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-              <div className=" w-[12.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]"><FormattedMessage id="app.order" defaultMessage="Order #" /></div>
-              <div className="w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.5rem]"><FormattedMessage id="app.units" defaultMessage="Units" /></div>
-              <div className="w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]"><FormattedMessage id="app.inspection" defaultMessage="Inspection" /></div>
+          <div class="rounded max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+            <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+              <div className=" w-[12.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]">
+              {translatedMenuItems[0]}
+                </div>
+              <div className="w-[3.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.5rem]">
+               {translatedMenuItems[1]}
+                </div>
+              <div className="w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.001rem]">
+                {translatedMenuItems[2]}
+                </div>
 
-              <div className="w-[6.03rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.03rem]"><FormattedMessage id="app.packed" defaultMessage="Packed ?" /></div>
-              <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem]"><FormattedMessage id="app.delivery" defaultMessage="Delivery" /></div>
-              <div className=" w-[5.03rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.03rem]"><FormattedMessage id="app.shipper" defaultMessage="Shipper" /></div>
-              < div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]"><FormattedMessage id="app.pickup" defaultMessage="pickup" /></div>
-              <div className=" w-[4.10rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.10rem]"><FormattedMessage id="app.awb" defaultMessage="AWB" /></div>
-              <div className=" w-[3.20rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.20rem]"><FormattedMessage id="app.status" defaultMessage="Status" /></div>
-              <div className="w-[3.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.5rem]"><FormattedMessage id="app.pickup" defaultMessage="Pick Up" /></div>
+              <div className="w-[6.03rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.03rem]">
+              {translatedMenuItems[3]}
+                </div>
+              <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem]">
+                {translatedMenuItems[4]}
+                </div>
+              <div className=" w-[5.03rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.03rem]">
+                {translatedMenuItems[5]}
+                </div>
+              < div className=" w-[6.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.5rem]">
+              {translatedMenuItems[6]}
+              </div>
+              <div className=" w-[4.10rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.10rem]">
+                {translatedMenuItems[7]}
+                </div>
+              <div className=" w-[3.20rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.20rem]">
+               {translatedMenuItems[8]}
+                </div>
+              <div className="w-[3.51rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.5rem]">
+                {translatedMenuItems[9]}
+                </div>
               <div className="w-[0.5%]"></div>
             </div>
             <InfiniteScroll
@@ -452,9 +506,9 @@ const AWBtst=[
                next={handleLoadMore}
                hasMore={hasMore}
                loader={props.fetchingDispatchList ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
-              height={"69vh"}
-              style={{ overflowX: "hidden" }}
-              endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </p>}
+              height={"67vh"}
+              style={{ overflowX: "hidden", scrollbarWidth:"thin" }}
+              endMessage={ <div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
             >
               {
               props.allDispatchList.length 
@@ -471,8 +525,8 @@ const AWBtst=[
                       <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[7rem] max-sm:flex-col ">
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
 
-                          <div className=" flex font-medium flex-col w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
-                            <div class="text-sm flex  font-semibold  font-poppins cursor-pointer  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm text-blue-600">
+                          <div className=" flex  w-[7.2rem] max-xl:w-[5.2rem] max-lg:w-[3.7rem] max-sm:w-auto  ">
+                            <div class="text-sm flex  font-bold underline font-poppins cursor-pointer  max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm text-blue-600">
                               <div
                                 onClick={() => {
                                   handleRowData(item);
@@ -480,7 +534,7 @@ const AWBtst=[
                                 }}
                               >{item.newOrderNo}</div>&nbsp;&nbsp;
                               {date === currentdate ? (
-                                <div class="text-xs font-bold text-[tomato]">
+                                <div class="text-[0.65rem] font-bold text-[tomato]">
                                   New
                                 </div>
                               ) : null}
@@ -512,13 +566,13 @@ const AWBtst=[
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center ">
 
 
-                          <div className=" flex font-medium flex-col w-[5.4rem] max-xl:w-[2.6rem] max-lg:w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex  w-[5.4rem] max-xl:w-[2.6rem] max-lg:w-[2.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dispatchPhoneCount}/{item.phoneReceiveCount}
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col w-[6.5rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex  w-[6.5rem] max-xl:w-[5rem] max-lg:w-[3.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dispatchInspectionInd === 0 ?
                                 <Button
                                   loading={rowData.orderPhoneId === item.orderPhoneId && props.updatingDispatchInspectionButton}
@@ -540,8 +594,8 @@ const AWBtst=[
                                     null}
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col w-[4.8rem] max-xl:w-[4.8rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex  w-[4.8rem] max-xl:w-[4.8rem] max-lg:w-[4.5rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dispatchInspectionInd === 0 || item.dispatchInspectionInd === 1 ?
                                 null : <DispatchPackedToggle
                                   locationDetailsId={props.locationDetailsId}
@@ -551,44 +605,44 @@ const AWBtst=[
                           </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-
-                          <div className=" flex font-medium flex-col w-[7.76rem] max-xl:w-[4.26rem] max-lg:w-[3.26rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+{/* 
+                          <div className=" flex  w-[7.76rem] max-xl:w-[4.26rem] max-lg:w-[3.26rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.unloadingAddresses && item.unloadingAddresses[0].city || ""}
                             </div>
-                          </div>
+                          </div> */}
 
-                          <div className=" flex font-medium flex-col w-[6.78rem] max-xl:w-[4.58rem] max-lg:w-[3.58rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex  w-[6.78rem] max-xl:w-[4.58rem] max-lg:w-[3.58rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.shipperName === "null" ? "" : item.shipperName}
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col w-[5.51rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex  w-[5.51rem] max-xl:w-[4.2rem] max-lg:w-[3.2rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.pickUp === "null" ? "" : dayjs(item.pickUp).format("DD-MM-YYYY")}
                             </div>
                           </div>
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                        
-                          <div className=" flex font-medium flex-col w-[7.01rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
-                              {item.unloadingAddresses && item.unloadingAddresses[0].city && item.newAwbNo==="null" ? <Button type="primary"
+                          <div className=" flex  w-[7.01rem] max-xl:w-[5.01rem] max-lg:w-[3.71rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              {/* {item.unloadingAddresses && item.unloadingAddresses[0].city && item.newAwbNo==="null" ? <Button type="primary"
                                 onClick={() => {
                                   handleRowData(item);
                                   props.handleCreateAWB(true)
                                   
-                                }}disabled={item.dispatchReceivedInd} >Create AWB</Button> : item.newAwbNo=== "null" ? "" :item.newAwbNo}
+                                }}disabled={item.dispatchReceivedInd} >Create AWB</Button> : item.newAwbNo=== "null" ? "" :item.newAwbNo} */}
                             </div>
                           </div>
                     
-                          <div className=" flex font-medium flex-col w-[5.2rem] max-xl:w-[4.2rem] max-lg:w-[2.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex  w-[5.2rem] max-xl:w-[4.2rem] max-lg:w-[2.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.status === "null" ? "" : item.status}
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-col w-[5rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
-                            <div class=" text-xs  font-semibold  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                          <div className=" flex  w-[5rem] max-xl:w-[4rem] max-lg:w-[3.8rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                            <div class=" text-xs   font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                               {item.dispatchInspectionInd === 4 && item.newAwbNo &&
                                 <DispatchValidationToggle
                                   locationDetailsId={props.locationDetailsId}
@@ -598,12 +652,17 @@ const AWBtst=[
                           </div>
                           <div class="flex  md:w-[2rem] max-sm:flex-row max-sm:w-[6%]">
                             <div>
-                              <Tooltip title="Notes">
-                                <NoteAltIcon
-                                  className="!text-icon cursor-pointer text-[green]"
-                                />
+                            <Tooltip title="Notes">
+                                                        <NoteAltIcon
+                                                            className="!text-icon cursor-pointer"
+                                                            // style={{ cursor: "pointer" }}
+                                                            onClick={() => {
+                                                                handleRowData(item);
+                                                                props.handleProductionNotesModal(true);
+                                                            }}
+                                                        />
 
-                              </Tooltip>
+                                                    </Tooltip>
                             </div>
                           </div>
                         </div>
@@ -623,7 +682,11 @@ const AWBtst=[
         </div>
 
 
-
+        <RefurbishNoteAll
+                     rowData={rowData}
+                     productioNoteModal={props.productioNoteModal}
+                    handleProductionNotesModal={props.handleProductionNotesModal}
+                    />
       <DispatchPhoneListModalInventory
         rowData={rowData}
         handleInventoryDispatchModal={props.handleInventoryDispatchModal}
@@ -638,7 +701,7 @@ const AWBtst=[
   );
 }
 
-const mapStateToProps = ({ shipper, inventory, auth, dispatch }) => ({
+const mapStateToProps = ({ shipper, inventory, auth, dispatch,refurbish }) => ({
   allDispatchList: inventory.allDispatchList,
   allShipper: shipper.allShipper,
   inventoryDispatchModal:inventory.inventoryDispatchModal,
@@ -648,6 +711,7 @@ const mapStateToProps = ({ shipper, inventory, auth, dispatch }) => ({
   userId: auth.userDetails.userId,
   fetchingDispatchList: inventory.fetchingDispatchList,
   addCreateAwb: inventory.addCreateAwb,
+  productioNoteModal: refurbish.productioNoteModal,
   locationDetailsId: inventory.inventoryDetailById.locationDetailsId,
 });
 
@@ -660,7 +724,8 @@ const mapDispatchToProps = (dispatch) =>
       updateDispatchInspectionButton,
       addFinalDispatchData,
       handleCreateAWB,
-      handleInventoryDispatchModal
+      handleInventoryDispatchModal,
+      handleProductionNotesModal,
     },
     dispatch
   );

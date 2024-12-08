@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button} from "antd";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
@@ -24,6 +24,43 @@ const documentSchema = Yup.object().shape({
 });
 
 class PersonalDocumentForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "1693",//0 "Salutation"
+        "295",//1First Name"
+        "354",//2Last Name"
+        "353",//3Middle"
+      "299",  // Mobile #4
+      "546",  // "Mobile No"5
+      "875",  // "Phone #6
+      "300",  // "Phone No7"
+      "154",  // Submit8
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   render() {
     const {
       addingContact,
@@ -85,24 +122,14 @@ class PersonalDocumentForm extends Component {
               <div class=" flex w-full h-full justify-between"
               >
                 <div class=" w-[45%]"
-                >
-                  {/* <FlexContainer flexWrap="no-wrap"> */}
-
-                
-
+                >                         
                   <div class=" flex justify-between mt-3">
                   <div class=" w-[25%]"
                 >
+                  <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[0]}</div>
                       <FastField
                         name="contactSalutation"
                         type="text"
-                        //label="Salutation"
-                        label={
-                          <FormattedMessage
-                            id="app.contactSalutation"
-                            defaultMessage="Salutation"
-                          />
-                        }
                         options={["Mr.", "Ms.", "None"]}
                         component={SelectComponent}
                         inlineLabel
@@ -111,17 +138,10 @@ class PersonalDocumentForm extends Component {
                          />
                     </div>
                     <div class=" w-[67%]"
-                >
+                ><div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[1]}</div>
                       <FastField
                         isRequired
                         name="contactFirstName"
-                        //label="First Name"
-                        label={
-                          <FormattedMessage
-                            id="app.contactFirstName"
-                            defaultMessage="First Name"
-                          />
-                        }
                         type="text"
                         width={"100%"}
                         isColumn
@@ -134,15 +154,9 @@ class PersonalDocumentForm extends Component {
                 
                   <div class=" flex justify-between mt-3" >
                     <div class=" w-[55%]" >
+                    <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[2]}</div>
                       <FastField
                         name="contactLastName"
-                        //label="Last Name"
-                        label={
-                          <FormattedMessage
-                            id="app.contactLastName"
-                            defaultMessage="Last Name"
-                          />
-                        }
                         type="text"
                         width={"100%"}
                         isColumn
@@ -151,15 +165,9 @@ class PersonalDocumentForm extends Component {
                          />
                     </div>
                     <div class=" w-[38%]" >
+                    <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[3]}</div>
                       <FastField
                         name="contactMiddleName"
-                        //label="Middle "
-                        label={
-                          <FormattedMessage
-                            id="app.contactMiddleName"
-                            defaultMessage="Middle"
-                          />
-                        }
                         type="text"
                         width={"100%"}
                         isColumn
@@ -168,19 +176,12 @@ class PersonalDocumentForm extends Component {
                        />
                     </div>
                   </div>
-                  {/* </FlexContainer> */}
-                
+
                   <div class=" flex justify-between mt-3" >
                   <div class=" w-[47%]" >
+                  <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[4]}</div>
                       <Field
                         name="countryDialCode"
-                        //label="Mobile #"
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode"
-                            defaultMessage="Mobile #"
-                          />
-                        }
                         isColumn
                         isColumnWithoutNoCreate
                         selectType="dialCode"
@@ -189,15 +190,10 @@ class PersonalDocumentForm extends Component {
                         />
                     </div>
                     <div class=" w-[47%]" >
+                    <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[5]}</div>
                       <Field
                         type="text"
                         name="mobileNo"
-                        label={
-                          <FormattedMessage
-                            id="app.mobileNo"
-                            defaultMessage="Mobile No"
-                          />
-                        }
                         placeholder="Mobile #"
                         component={InputComponent}
                         inlineLabel
@@ -210,15 +206,9 @@ class PersonalDocumentForm extends Component {
 
                   <div class=" flex justify-between mt-3" >
                   <div class=" w-[47%]" >
+                  <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[6]}</div>
                       <Field
                         name="countryDialCode1"
-                        // label="Phone #"
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode1"
-                            defaultMessage="Phone #"
-                          />
-                        }
                         isColumn
                         isColumnWithoutNoCreate
                         selectType="dialCode"
@@ -227,15 +217,10 @@ class PersonalDocumentForm extends Component {
                         />
                     </div>
                     <div class=" w-[47%]" >
+                    <div className=" text-xs font-bold font-poppins"> {this.state.translatedMenuItems[7]}</div>
                       <Field
                         type="text"
                         name="phoneNo"
-                        label={
-                          <FormattedMessage
-                            id="app.phoneNo"
-                            defaultMessage="Phone No"
-                          />
-                        }
                         placeholder="Phone #"
                         component={InputComponent}
                         inlineLabel
@@ -243,11 +228,7 @@ class PersonalDocumentForm extends Component {
                         isColumn
                          />
                     </div>
-                  </div>
-                  {/* <FlexContainer justifyContent="space-between"> */}
-
-                  {/* </FlexContainer> */}
-                 
+                  </div>                           
                 </div>
 
                 <div class=" w-[45%]"
@@ -274,7 +255,7 @@ class PersonalDocumentForm extends Component {
                   type="primary"
                   Loading={addingPersonalDetails}
                 >
-                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
+                  {this.state.translatedMenuItems[8]} 
                 </Button>
                </div>
             </Form>

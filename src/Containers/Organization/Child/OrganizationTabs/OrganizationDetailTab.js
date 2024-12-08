@@ -1,17 +1,18 @@
 import React, { Component,lazy,  Suspense } from "react";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
-import SignatureView from "./SignatureView";
-import { MailOutlined, PlusOutlined, 
-} from '@ant-design/icons';
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { handleEmailModal,handleWebsiteModal } from "../../../Settings/SettingsAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import IndustryForm from "./IndustryForm";
-const AddEmailModal = lazy(() => import('../Email/AddEmailModal'))
-const AddWebsiteModal = lazy(() => import('../Website/AddWebsiteModal'))
-const EmailTable = lazy(() => import('../Email/EmailTable'))
-
+import ConstructionIcon from '@mui/icons-material/Construction';
+import EditNoteIcon from '@mui/icons-material/EditNote';
+const AddEmailModal = lazy(() => import('../Email/AddEmailModal'));
+const AddWebsiteModal = lazy(() => import('../Website/AddWebsiteModal'));
+const EmailTable = lazy(() => import('../Email/EmailTable'));
+const IndustryForm = lazy(() => import('./IndustryForm'));
+const SignatureView = lazy(() => import('./SignatureView'));
 
 
 const TabPane = StyledTabs.TabPane;
@@ -21,8 +22,37 @@ class OrganizationDetailTab extends Component {
     super(props);
     this.state = {
       activeKey: "1",
+      translatedMenuItems: [],
     };
   }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        
+          
+         
+        "Signature",
+        "Email",
+        "Industry"
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   handleTabChange = (key) => this.setState({ activeKey: key });
   render() {
     const { activeKey } = this.state;
@@ -47,8 +77,9 @@ class OrganizationDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <i className="fas fa-file-signature"></i>
-                    &nbsp; Signature
+                    <EditNoteIcon className="!text-icon"/>
+                    {this.state.translatedMenuItems[0]} 
+                    {/* Signature */}
                   </span>
                   {activeKey === "1" && <></>}
                 </>
@@ -64,23 +95,19 @@ class OrganizationDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <MailOutlined type="mail" />
-                    Email
+                    <MailOutlineIcon type="mail" className="!text-icon"/>
+                    {this.state.translatedMenuItems[1]} {/* Email */}
                   </span>
                   {activeKey === "2" && (
                     <>
                       <>
-                        <PlusOutlined
-                          type="plus"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                           tooltipTitle="Configure"
                           onClick={() =>
                             this.props.handleEmailModal(true)
                           }
-                          size="1em"
-                          style={{
-                            marginLeft: 10,
-                            verticalAlign: "center",
-                          }}
+                     
                         />
                       </>
                     </>
@@ -98,8 +125,8 @@ class OrganizationDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <MailOutlined type="mail" />
-                   Industry
+                    <ConstructionIcon type="mail"  className="!text-icon"/>
+                    {this.state.translatedMenuItems[2]}  {/* Industry */}
                   </span>
                 
                 </>
@@ -115,14 +142,14 @@ class OrganizationDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <MailOutlined type="mail" />
+                    <MailOutlineIcon type="mail" />
                     Website
                   </span>
                   {activeKey === "3" && (
                     <>
                       <>
-                        <PlusOutlined
-                          type="plus"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                           tooltipTitle="Configure"
                           handleIconClick={() =>
                             this.props.handleWebsiteModal(true)
@@ -149,10 +176,14 @@ class OrganizationDetailTab extends Component {
         </TabsWrapper>
         <Suspense fallback={null}>
         <AddEmailModal
+         selectedLanguage={this.props.selectedLanguage}
+         translateText={this.props.translateText}
           addEmailModal={addEmailModal}
           handleEmailModal={handleEmailModal}
         />
         <AddWebsiteModal
+         selectedLanguage={this.props.selectedLanguage}
+         translateText={this.props.translateText}
         addWebsiteModal={addWebsiteModal}
         handleWebsiteModal={handleWebsiteModal}
         />

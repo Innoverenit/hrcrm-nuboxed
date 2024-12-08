@@ -1,21 +1,12 @@
 import React, { useEffect,useState } from 'react';
-import { ClockCircleOutlined } from '@ant-design/icons';
-import { Button,Select,Steps,Tooltip } from 'antd';
+import { Select, } from 'antd';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
-import moment from 'moment';
-import styled from "styled-components";
- 
-import { Field } from 'formik';
-import {updateProductionstage,getProductionStage} from "../ProductionAction"
 
-import { FormattedMessage } from 'react-intl';
-import { SelectComponent } from '../../../Components/Forms/Formik/SelectComponent';
-//import StageEmployeeColumns1 from './StageEmployeeColumns1';
-import { BundleLoader } from '../../../Components/Placeholder';
+import styled from "styled-components";
+import {updateProductionstage,getProductionStage} from "../ProductionAction"
 import StageProductionColumns from "../Child/StageProductionColumns"
-import NodataFoundPage1 from '../../../Helpers/ErrorBoundary/NodataFoundPage1';
 const { Option } = Select;
 
 const Container = styled.div`
@@ -215,8 +206,7 @@ const handleStages = (val) => {
                                       isDraggingOver={snapshot.isDraggingOver}
                                       {...provided.droppableProps}
                                       droppableProps={{ hello: "world" }}
-                                      className="scrollbar"
-                                      id="style-3"
+                                      style={{scrollbarWidth:"thin", backgroundColor:"f5f5f5" }}
                                     >
                                       
                                         

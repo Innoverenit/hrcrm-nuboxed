@@ -1,11 +1,11 @@
 import React, { useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Button,Select } from "antd";
 import { TimePicker } from "../../../../Components/Forms/Formik/TimePicker";
 import { Formik, Form, Field, } from "formik";
-import { StyledLabel} from "../../../../Components/UI/Elements";
+
 import {
     addDonotcall
 }
@@ -91,7 +91,7 @@ function DonotCallForm (props){
               <div class=" flex justify-between" >
                 <div class=" h-full w-[45%]"
                 >
-                   <StyledLabel>Parameter</StyledLabel> 
+                   <div class=" text-xs font-bold font-poppins text-black">Parameter</div> 
                    <Select
   
    style={{ width: '100%' }}
@@ -107,22 +107,6 @@ function DonotCallForm (props){
     
     
  </Select> 
- {/* <FlexContainer justifyContent="space-between">
-  <div style={{ width: "47%",flexBasis:"44%"}}>
-  {selectType==="donotcall" &&(  
-  <Field
-                          name="callType"
-                          //label="Billing"
-
-
-                          width={"100%"}
-                          isColumn
-                          component={SelectComponent}  
-                          options={[ "donotcall"]}                        
-                        />
-                         )} 
-  </div>
- </FlexContainer> */}
  <div class=" flex justify-between" >
                      
                      <div class=" w-[47%]" style={{ flexBasis:"44%" }}>
@@ -153,13 +137,8 @@ function DonotCallForm (props){
                 <div class=" w-[47%]" >
                       <Field
                         name="startTime"
-                        // label="Start Time"
-                        label={
-                          <FormattedMessage
-                            id="app.starttime"
-                            defaultMessage="Start Time"
-                          />
-                        }
+                        label="Start Time"
+                        
                         component={TimePicker}
                         isRequired
                         isColumn
@@ -175,13 +154,8 @@ function DonotCallForm (props){
                       <div class=" w-[47%]" >
                       <Field
                         name="endTime"
-                        // label="End Time"
-                        label={
-                          <FormattedMessage
-                            id="app.endtime"
-                            defaultMessage="End Time"
-                          />
-                        }
+                        label="End Time"
+                        
                         component={TimePicker}
                         use12Hours
                         isRequired
@@ -234,13 +208,8 @@ function DonotCallForm (props){
                   <div class=" w-[47%]" >
                       <Field
                         name="startTime"
-                        // label="Start Time"
-                        label={
-                          <FormattedMessage
-                            id="app.starttime"
-                            defaultMessage="Start Time"
-                          />
-                        }
+                        label="Start Time"
+                        
                         component={TimePicker}
                         isRequired
                         isColumn
@@ -256,13 +225,8 @@ function DonotCallForm (props){
                       <div class=" w-[47%]" >
                       <Field
                         name="endTime"
-                        // label="End Time"
-                        label={
-                          <FormattedMessage
-                            id="app.endtime"
-                            defaultMessage="End Time"
-                          />
-                        }
+                        label="End Time"
+                       
                         component={TimePicker}
                         use12Hours
                         isRequired
@@ -293,7 +257,7 @@ function DonotCallForm (props){
                   htmlType="submit"
                  Loading={props.donotCall}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+                  Update
                
                 </Button>
               </div>

@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
  const UpdateInvestorContactForm = lazy(() => import("./UpdateInvestorContactForm"));
@@ -10,9 +10,7 @@ const InvestorUpdateContactModal = (props) => {
   return (
     <>
       <StyledDrawer
-         title={
-          <FormattedMessage id="app.contact" defaultMessage="Contact" />
-        }
+         title="Contact" 
         width="60%"
         visible={invstrContactUpdateModal}
         maskClosable={false}
@@ -23,6 +21,8 @@ const InvestorUpdateContactModal = (props) => {
         <Suspense fallback={<BundleLoader />}>
           <UpdateInvestorContactForm 
            currentRowData={currentRowData} 
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
           /> {" "}
   
         </Suspense>

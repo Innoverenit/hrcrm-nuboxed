@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import {
     convertPitchStatus,
 } from "../PitchAction";
-import { FormattedMessage } from "react-intl";
+
 
 function StatusPitchToggle(props) {
     console.log("abc",props.leadsId);
@@ -46,12 +46,8 @@ function StatusPitchToggle(props) {
         <>
             <div>
                 <Popconfirm
-                   title={
-                    <FormattedMessage
-                            id="app.confirmStatusChange"
-                            defaultMessage="Confirm status change?"
-                          />
-                  }
+                   title="Confirm status change?"
+                          
                     // title="Confirm status change?"
                     onConfirm={() => handleToggleCollection()}
                     onCancel={handleCancel}

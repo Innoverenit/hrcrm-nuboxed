@@ -1,11 +1,10 @@
 import React, { Suspense, Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button, Tooltip } from "antd";
 import { Formik, Form, Field } from "formik";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import { Spacer, StyledLabel } from "../../../../Components/UI/Elements";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
@@ -16,7 +15,8 @@ import {
     getLeadsDocument,
 } from "../../LeadsAction";
 import DragableUpload from "../../../../Components/Forms/Formik/DragableUpload";
-import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
+import InputIcon from '@mui/icons-material/Input';
+import VerticalAlignTopIcon from '@mui/icons-material/VerticalAlignTop';
 import { BundleLoader } from "../../../../Components/Placeholder";
 
 const ButtonGroup = Button.Group;
@@ -96,9 +96,7 @@ class AddLeadsDocumentModal extends Component {
     return (
       <>
         <StyledDrawer
-          title={
-            <FormattedMessage id="app.document" defaultMessage="Document" />
-          }
+          title="Document" 
           width="65vw"
           visible={leadsDocumentUploadModal}
           destroyOnClose
@@ -152,18 +150,12 @@ class AddLeadsDocumentModal extends Component {
                           {errors.documentId}
                         </p>
                       )}
-                      <Spacer />
+                      <div class=" mt-3" />
                       <Field
                         name="documentTypeId"
                         selectType="documentTypeName"
                         isColumnWithoutNoCreate
-                        // label="Type"
-                        label={
-                          <FormattedMessage
-                            id="app.type"
-                            defaultMessage="Type"
-                          />
-                        }
+                        label="Type"
                         component={SearchSelect}
                         isColumn
                          value={values.documentId}
@@ -173,36 +165,27 @@ class AddLeadsDocumentModal extends Component {
                     <div class=" h-full w-2/5">
                       <Field
                         name="documentTitle"
-                        label={
-                          <FormattedMessage
-                            id="app.name"
-                            defaultMessage="Name"
-                          />
-                        }
+                        label="Name"
                         width={"100%"}
                         isColumn
                         component={InputComponent}
                         />
-                      <Spacer />
+                      <div class=" mt-3" />
                       <Field
                         name="documentDescription"
-                        label={
-                          <FormattedMessage
-                            id="app.description"
-                            defaultMessage="Description"
-                          />
-                        }
+                        label="Description"
+                          
                         isRequired
                         isColumn
                         width={"100%"}
                         component={TextareaComponent}
                         />
                     
-                      <Spacer />
+                      <div class=" mt-3" />
                       {!this.state.documentshare && this.props.testShow && (
                         <p>Will be shared with customer Owner</p>
                       )}
-                      <Spacer />
+                      <div class=" mt-3" />
                       {this.state.documentshare && (
                      <div class=" flex justify-between w-full ">
                           {/* {organization &&
@@ -233,26 +216,19 @@ class AddLeadsDocumentModal extends Component {
                                   <Field
                                     inlineLabel
                                     name="department"
-                                    label={
-                                      <FormattedMessage
-                                        id="app.department"
-                                        defaultMessage="Function"
-                                      />
-                                    }
+                                    label="Function"
+                                     
                                     isRequired
                                     isColumn
                                     component={InputComponent}
                                   />
                                 </div>
                                 <div>
-                                  <StyledLabel>
+                                  <div class=" text-xs font-bold font-poppins text-black">
                                     {" "}
-                                    <FormattedMessage
-                                      id="app.level"
-                                      defaultMessage="Level"
-                                    />
-                                    ,{/* Level */}
-                                  </StyledLabel>
+                                   Level
+                                    
+                                  </div>
                                   <div class=" flex justify-between">
                                     <ButtonGroup>
                                       <Tooltip title="Specific">
@@ -276,7 +252,7 @@ class AddLeadsDocumentModal extends Component {
                                                 : "rgba(0, 0, 0, 0.65)",
                                           }}
                                         >
-                                          <RightSquareOutlined type="right-square" />
+                                          <InputIcon type="right-square" />
                                         </Button>
                                       </Tooltip>
                                       <Tooltip title="Above">
@@ -300,7 +276,7 @@ class AddLeadsDocumentModal extends Component {
                                                 : "rgba(0, 0, 0, 0.65)",
                                           }}
                                         >
-                                          <ToTopOutlined type="ToTopOutlined" />
+                                          <VerticalAlignTopIcon type="VerticalAlignTopIcon" />
                                         </Button>
                                       </Tooltip>{" "}
                                     </ButtonGroup>
@@ -324,18 +300,14 @@ class AddLeadsDocumentModal extends Component {
                     </div>
                   </div>
 
-                  <Spacer />
+                  <div class=" mt-3" />
                   <div class=" flex justify-end">
                     <Button
                       htmlType="submit"
                       type="primary"
                       Loading={addingDocumentByLeadsId}
                     >
-                      {/* Submit */}
-                      <FormattedMessage
-                        id="app.submit"
-                        defaultMessage="Submit"
-                      />
+                      Submit
                     </Button>
                   </div>
                 </Form>

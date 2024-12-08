@@ -7,7 +7,7 @@ import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectCo
 import { Formik, Form, Field,} from "formik";
 import { getCurrency } from "../../../../Auth/AuthAction";
 import { createCurrencyConversion } from "../../../SettingsAction";
-import { Select, StyledLabel } from "../../../../../Components/UI/Elements";
+import { Select } from "../../../../../Components/UI/Elements";
 import * as Yup from "yup";
 
 const { Option } = Select;
@@ -81,7 +81,7 @@ const CurrencyCoversionForm = (props) => {
 
                                     <div class="flex justify-between">
                                     <div class=" w-[18%]">
-                                        <StyledLabel>From - Currency</StyledLabel>
+                                        <div class=" text-xs font-bold font-poppins text-black">From - Currency</div>
         <Select value={reportingCurrency} onChange={handleSelect1Change}>
           {reportCurr.map((option) => {
           return   <Option key={option.currency_id} value={option.currency_name}>
@@ -95,7 +95,7 @@ const CurrencyCoversionForm = (props) => {
         </div>
 
         <div class=" w-[18%]">
-        <StyledLabel>To - Currency</StyledLabel>
+        <div class=" text-xs font-bold font-poppins text-black">To - Currency</div>
         <Select value={conversionCurrency} onChange={handleSelect2Change}>
           
           {convoCurr.map((option) => {

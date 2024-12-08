@@ -4,8 +4,6 @@ import { bindActionCreators } from "redux";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import {  StyledTabs } from "../../Components/UI/Antd";
 import TabsWrapper1 from "../../Components/UI/Layout/TabsWrapper1";
-import { FormattedMessage } from "react-intl";
-import { BundleLoader } from "../../Components/Placeholder";
 const TaskOrganizationNew=lazy(()=>import("./TaskOrganizationNew"));
 
 const TabPane = StyledTabs.TabPane;
@@ -26,7 +24,7 @@ class TaskOrganizationTab extends Component {
     try {
       this.setState({ loading: true });
       const itemsToTranslate = [
-        ' Tasks', // 0
+        '105',//'Tasks', // 0
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
       this.setState({ translatedMenuItems: translations ,loading: false});
@@ -47,45 +45,26 @@ class TaskOrganizationTab extends Component {
   render() {
     const { activeKey, loading, translatedMenuItems } = this.state;
 
-    if (loading) {
-      return <div><BundleLoader/></div>;
-    } 
+    // if (loading) {
+    //   return <div><BundleLoader/></div>;
+    // } 
     return (
       <>
         <TabsWrapper1>
-          <StyledTabs
-            defaultActiveKey="1"
-            onChange={this.handleTabChange}
-            forceRender={true}
-          >
-            <TabPane
-              tab={
-                <>
-                  <ListAltIcon style={{fontSize:"1.1rem"}}/>
-                 
-               <span class=" ml-1 font-semibold">
-               {translatedMenuItems[0]}
-               {/* <FormattedMessage
-          id="app.tasks"
-          defaultMessage="Tasks"
-        /> */}
-                </span>
-              
 
-                  {activeKey === "1" && (
-                    <>
-                    </>
-                  )}
-                </>
-              }
-              key="1"
-            >
+        <div>
+              <ListAltIcon className="!text-icon"/><span class="ml-1 font-bold font-poppins text-base  ">Task</span>
+
+                
               <Suspense fallback={"Loading ..."}>
                 {" "}
                 <TaskOrganizationNew /> 
               </Suspense>
-            </TabPane>
-          </StyledTabs>
+           
+
+
+            </div>    
+          
         </TabsWrapper1>
      
         <Suspense fallback={null}></Suspense>

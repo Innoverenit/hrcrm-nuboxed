@@ -4,9 +4,7 @@ import Tabs from "react-draggable-tabs";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { Icon } from "antd";
-// import { ShoppingOutlined} from '@ant-design/icons';
-import // addDraggableOpportunity,
-  // getOpportunityCard,
+import 
   "../../../OpportunityAction";
 
 class OpportunityCardTab extends Component {

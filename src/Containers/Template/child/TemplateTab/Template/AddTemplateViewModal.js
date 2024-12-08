@@ -9,10 +9,7 @@ const AddTemplateViewModal = props => {
     <>
       <StyledDrawer
          title="Template"
-        // title={<FormattedMessage
-        //   id="app.updatecandidate"
-        //   defaultMessage="Candidate"
-        // />}
+       
         width="60%"
         visible={templateViewModal}
         closable

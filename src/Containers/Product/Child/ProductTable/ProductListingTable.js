@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../../Components/UI/Antd";
+import ApartmentIcon from '@mui/icons-material/Apartment';
 import {
   getProducts,
   getAllProductCatagory,
@@ -18,18 +19,16 @@ import {
 import { handleCurrencyPriceModal } from "../../../Main/Supplies/SuppliesAction";
 import { CurrencySymbol } from "../../../../Components/Common";
 import { Tooltip, Button, Popconfirm, Switch } from "antd";
-import {
-  EditOutlined,
-  HistoryOutlined,
-  DeleteOutlined,
-  MoneyCollectOutlined,
-} from "@ant-design/icons";
+import PriceChangeIcon from '@mui/icons-material/PriceChange'; 
+import HistoryIcon from '@mui/icons-material/History';  
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {
   MultiAvatar,
   SubTitle,
 } from "../../../../Components/UI/Elements";
 import ProductPublishToggle from "./ProductPublishToggle";
-import moment from "moment";
+import dayjs from "dayjs";
 
 
 function onChange(pagination, filters, sorter) {
@@ -140,7 +139,7 @@ function ProductListingTable(props) {
                 imgRadius={20}
               />
             ) : (
-              <span style={{ fontSize: "0.6em", fontWeight: "bold" }}>
+              <span className=" font bold text-[0.6rem]">
                 No Image
               </span>
             )}
@@ -287,7 +286,7 @@ function ProductListingTable(props) {
       render: (text, item) => {
         return (
           <>
-            {moment(item.dateOfManufacture).format("DD-MM-YY")}
+            {dayjs(item.dateOfManufacture).format("DD-MM-YY")}
           </>
         )
       }
@@ -398,7 +397,7 @@ function ProductListingTable(props) {
         return (
           <>
             <Tooltip title="Add price">
-              <MoneyCollectOutlined
+              <PriceChangeIcon
                 onClick={() => {
                   props.handleCurrencyPriceModal(true);
                   handleParticularRowData(item);
@@ -610,7 +609,7 @@ function ProductListingTable(props) {
                     cursor: "pointer",
                   }}
                 >
-                  <i class="far fa-building"></i>
+            <ApartmentIcon className="!text-tab text-[#f0386b]"/>
                 </span>
               </Tooltip>
             </span>
@@ -744,7 +743,7 @@ function ProductListingTable(props) {
                     cursor: "pointer",
                   }}
                 >
-                  <i class="far fa-building"></i>
+               <ApartmentIcon className="!text-tab text-[#f0386b]"/>
                 </span>
               </Tooltip>
             </span>
@@ -782,7 +781,7 @@ function ProductListingTable(props) {
           children: (
             <span>
               <Tooltip title="Product History">
-                <HistoryOutlined
+                <HistoryIcon
                   onClick={() => {
                     handleHistoryModal(true);
                     handleParticularRowData(item);
@@ -826,7 +825,7 @@ function ProductListingTable(props) {
                 (user.functionName !== "Sales" ||
                   user.designation !== "Manager") && (
                   <Tooltip title="Edit">
-                    <EditOutlined
+                    <VisibilityIcon
                       style={{ cursor: "pointer", fontSize: "12px" }}
                       onClick={() => {
                         props.setEditProducts(item);
@@ -868,7 +867,7 @@ function ProductListingTable(props) {
                       title="Do you want to delete?"
                       onConfirm={() => props.deleteProductData(item.productId)}
                     >
-                      <DeleteOutlined
+                      <DeleteOutlineIcon
                         style={{ cursor: "pointer", color: "red" }}
                       />
                     </Popconfirm>

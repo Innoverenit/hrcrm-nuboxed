@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import moment from "moment";
-import { SearchOutlined } from '@ant-design/icons';
+import dayjs from "dayjs";
+import SearchIcon from '@mui/icons-material/Search';
 import Highlighter from 'react-highlight-words';
 import {
   MultiAvatar,
@@ -10,7 +10,7 @@ import { StyledTable } from "../../../../../../../Components/UI/Antd";
 import { getRemark ,handleUpdateRemarkModal,setEditRemark} from "../../../../../OpportunityAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
 }
@@ -43,7 +43,7 @@ class RemarksTable extends Component {
         <Button
           type="primary"
           onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-          icon={<SearchOutlined />}
+          icon={<SearchIcon />}
           size="small"
           style={{ width: 90, marginRight: 8 }}
         >
@@ -54,7 +54,7 @@ class RemarksTable extends Component {
         </Button>
       </div>
     ),
-    filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+    filterIcon: filtered => <SearchIcon style={{ color: filtered ? '#1890ff' : undefined }} />,
     onFilter: (value, record) =>
       record[dataIndex]
         .toString()
@@ -110,11 +110,11 @@ class RemarksTable extends Component {
           return 0;
         },
         render: (text, item) => {
-          const availableDate = moment(item.creationDate).format("ll");
+          const availableDate = dayjs(item.creationDate).format("ll");
           return <>
           {/* {item.availableDate === null ? "None" : */}
             <span>
-              {moment(item.creationDate).format("l")}
+              {dayjs(item.creationDate).format("l")}
             </span>
           {/* } */}
           
@@ -122,11 +122,7 @@ class RemarksTable extends Component {
         },
       },
       {
-        //title: "Stage",
-        title: <FormattedMessage
-          id="app.stageName"
-          defaultMessage="Stage"
-        />,
+        title: "Stage",
         dataIndex: "stageName",
         width:"10%",
         sorter: (a, b) => {
@@ -142,11 +138,7 @@ class RemarksTable extends Component {
         },
       },
       {
-        //title: "Reviewer",
-        title: <FormattedMessage
-          id="app.reviewer"
-          defaultMessage="Reviewer"
-        />,
+        title: "Reviewer",
         dataIndex: "reviewer",
         width:"10%",
         ...this.getColumnSearchProps('reviewer'),
@@ -180,11 +172,7 @@ class RemarksTable extends Component {
         },
         },
       {
-        //title: "Comments",
-        title: <FormattedMessage
-          id="app.note"
-          defaultMessage="Comments"
-        />,
+        title: "Comments",
         dataIndex: "note",
       },
 

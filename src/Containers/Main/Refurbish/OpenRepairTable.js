@@ -3,14 +3,43 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getOpenRepair } from "./RefurbishAction";
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
+import ContactsIcon from '@mui/icons-material/Contacts';
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 import { Badge } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../Components/Placeholder";
+import DateRangeIcon from '@mui/icons-material/DateRange';
 
 function OpenRepairTable(props) {
 
     const [page, setPage] = useState(0);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+       
+             "1068", // "order",//0
+              "203",  // "duedate",//1
+               "677", //   "Lead"
+                "316",   // "notes"
+    
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
     useEffect(() => {
         setPage(page + 1);
         props.getOpenRepair(props.userId)
@@ -24,25 +53,16 @@ function OpenRepairTable(props) {
     return (
         <>
             {props.fetchingOpenRepairByUser ? <BundleLoader /> : <div className=' flex  sticky  z-auto'>
-                <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-                        <div className=" w-[34.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.order"
-                            defaultMessage="order"
-                        /></div>
-                        <div className=" w-[35.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.duedate"
-                            defaultMessage="duedate"
-                        /></div>
-                        <div className=" md:w-[9.8rem] "><FormattedMessage
-                            id="app.lead"
-                            defaultMessage="Lead"
-                        /></div>
+                <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+                    <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins text-xs sticky  z-10">
+                        <div className=" w-[34.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            {/* "order */} <DynamicFeedIcon className='!text-base mr-1  text-[#e4eb2f]'/>{translatedMenuItems[0]}
+                        </div>
+                        <div className=" w-[35.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> <DateRangeIcon className="!text-icon "/>{translatedMenuItems[1]}</div>
+                        <div className=" md:w-[9.8rem] "> <ContactsIcon className='!text-base  text-[#e4eb2f]'/> {translatedMenuItems[2]}</div>
                         <div className="w-[6.6rem]"></div>
-                        <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.notes"
-                            defaultMessage="notes"
-                        /></div>
+                        <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">{translatedMenuItems[3]}
+                        </div>
                     </div>
                     <div class="overflow-y-auto h-[67vh]">
                         <InfiniteScroll

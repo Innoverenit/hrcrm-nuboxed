@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { Suspense } from "react";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Tooltip,Input,Button,Badge, } from "antd";
 import Highlighter from 'react-highlight-words';
 import dayjs from "dayjs";
@@ -16,7 +16,7 @@ import {
 import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import {getCandidateRequirement} from "../Opportunity/OpportunityAction"
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
 const AddJobDetailModal=lazy(() => import("../Dashboard/Child/AddJobDetailModal"));
 
 function onChange(pagination, filters, sorter) {
@@ -97,12 +97,11 @@ function DashboardAllTable2(props) {
             <Button
               type="primary"
               onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-               icon={<SearchOutlined />}
-              //icon="search"
+             
               size="small"
               style={{ width: 90 }}
             >
-              Search
+            <SearchIcon ClassName="!text-icon" />  Search
             </Button>
             <Button
               onClick={() => handleReset(clearFilters)}
@@ -126,8 +125,8 @@ function DashboardAllTable2(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-        <SearchOutlined type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        // <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
+        <SearchIcon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
       ),
       onFilter: (value, record) =>
         record[dataIndex]
@@ -187,10 +186,8 @@ function DashboardAllTable2(props) {
     },
     {
       //title: "Currency",
-      title: <FormattedMessage
-        id="app.jobId"
-        defaultMessage="Job ID"
-      />,
+      title: "Job ID"
+    ,
      dataIndex: "jobOrder",
       width: "10%",
       ...getColumnSearchProps('jobOrder'),
@@ -227,39 +224,30 @@ function DashboardAllTable2(props) {
   
     },
     {
-      title: <FormattedMessage
-        id="app.role"
-        defaultMessage="Role"
-      />,
+      title: "Role"
+     ,
   
       dataIndex: "role",
        width: "10%",
     },
     {
-     title: <FormattedMessage
-       id="app.customer"
-       defaultMessage="Customer"
-     />,
+     title: "Customer"
+    ,
      dataIndex: "customerName",
      ...getColumnSearchProps('customerName'),
       width: "12%",
    },
  
     {
-       title: <FormattedMessage
-         id="app.sponsor"
-         defaultMessage="Sponsor"
-       />,
+       title: "Sponsor",
  
        dataIndex: "sponserName",
        ...getColumnSearchProps('sponserName'),
         width: "7%",
      },
      {
-      title: <FormattedMessage
-      id="app.ageing"
-      defaultMessage="Ageing"
-    />,
+      title: "Ageing"
+  ,
       // title:"Ageing",
       width: "11%",
        // dataIndex: "sponserName",
@@ -315,10 +303,8 @@ function DashboardAllTable2(props) {
     //        },
       
    {
-     title: <FormattedMessage
-       id="app.created"
-       defaultMessage="Created"
-     />,
+     title: "Created"
+  ,
 
      dataIndex: "creationDate",
      sorter: (a, b) => {
@@ -362,7 +348,6 @@ render: (name, item, i) => {
    >
        <UploadFileIcon
          style={{fontSize:"1.2rem"}}  />
-     {/* <FontAwesomeIcon icon={solid('file-arrow-up')} /> */}
     </span>
     </Badge>
     </Tooltip>
@@ -382,10 +367,8 @@ return {
  },
  children: (
    <>
-   <Tooltip title={<FormattedMessage
-        id="app.dropped"
-        defaultMessage="Dropped"
-      />}>
+   <Tooltip title="Dropped"
+     >
    <Badge count={item.rejected}  style={{ right: "1px" }}>
  <span class=" cursor-pointer "
    style={{
@@ -406,10 +389,8 @@ return {
 },
 },
 {
-     title: <FormattedMessage
-       id="app.progress"
-       defaultMessage="Progress"
-     />,
+     title: "Progress"
+  ,
      dataIndex: "selectedCandidate",
      width: "15%",
      

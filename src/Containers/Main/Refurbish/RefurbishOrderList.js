@@ -2,7 +2,7 @@ import React, { Component, Suspense, lazy, useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../Components/UI/Antd";
-import { Spacer } from "../../../Components/UI/Elements";
+
 import { Input, Tooltip, Space, Button, Badge, Form, Typography, Popconfirm, DatePicker } from "antd";
 import {
     getProductionOrderId,
@@ -15,9 +15,11 @@ import {
     updateFinalPrice
 } from "./RefurbishAction";
 import { withRouter } from "react-router";
-import moment from "moment";
+import dayjs from "dayjs";
 import ProductionNotesModal from "./ProductionNotesModal";
-import { EditFilled, HistoryOutlined, PhoneFilled } from "@ant-design/icons";
+
+import CallIcon from '@mui/icons-material/Call';
+import HistoryIcon from '@mui/icons-material/History';  
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import UserPhoneModal from "./UserPhoneModal";
 import AssignOrderModal from "./AssignOrderModal";
@@ -134,8 +136,8 @@ const RefurbishOrderList = (props) => {
             title: "Order Id",
             width: "12%",
             render: (text, item) => {
-                const currentdate = moment().format("DD/MM/YYYY");
-                const date = moment(item.createAt).format("DD/MM/YYYY");
+                const currentdate = dayjs().format("DD/MM/YYYY");
+                const date = dayjs(item.createAt).format("DD/MM/YYYY");
 
                 return (
                     <>
@@ -200,7 +202,7 @@ const RefurbishOrderList = (props) => {
             width: "10%",
             render: (text, item) => {
                 return (
-                    <>{moment(item.deliveryDate).format("DD-MM-YYYY")}</>
+                    <>{dayjs(item.deliveryDate).format("DD-MM-YYYY")}</>
                 )
             }
         },
@@ -262,7 +264,7 @@ const RefurbishOrderList = (props) => {
                                         handleRowData(item);
                                     }}
                                 >Assign For QC </Button>
-                            </Tooltip> : item.qcStartInd === 3 ? <b>QC Completed on {moment(item.qcEndTime).format("DD-MM-YYYY")}</b> : null}
+                            </Tooltip> : item.qcStartInd === 3 ? <b>QC Completed on {dayjs(item.qcEndTime).format("DD-MM-YYYY")}</b> : null}
                     </>
 
                 );
@@ -288,7 +290,7 @@ const RefurbishOrderList = (props) => {
                                     }}
                                 >Assign For Repair</Button>
                             </Tooltip>
-                            : item.qcRepairInd === 3 ? <b>Repair Completed on {moment(item.repairEndTime).format("DD-MM-YYYY")}</b> : null}
+                            : item.qcRepairInd === 3 ? <b>Repair Completed on {dayjs(item.repairEndTime).format("DD-MM-YYYY")}</b> : null}
                     </>
 
                 );
@@ -320,7 +322,7 @@ const RefurbishOrderList = (props) => {
                 //debugger
                 return (
                     <Tooltip title="History">
-                        <HistoryOutlined
+                        <HistoryIcon
                             onClick={() => {
                                 props.handleTechnicianModal(true)
                                 handleRowData(item);
@@ -337,7 +339,7 @@ const RefurbishOrderList = (props) => {
                 //debugger
                 return (
                     <Tooltip title="Phone List">
-                        <PhoneFilled
+                        <CallIcon
                             onClick={() => {
                                 props.handlePhoneByTechnician(true)
                                 handleRowData(item);
@@ -415,7 +417,7 @@ const RefurbishOrderList = (props) => {
                 addOrderPhone={props.addOrderPhone}
                 handleOrderPhone={props.handleOrderPhone}
             />
-            <Spacer />
+            <div class=" mt-3" />
         </>
     );
 }

@@ -1,8 +1,8 @@
 import React, { lazy, Suspense } from "react";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import InventoryPriceAddTable from "./InventoryPriceAddTable";
 
+const InventoryPriceAddTable = lazy(() => import("./InventoryPriceAddTable"));
 
 const InventoryPriceDrawer = (props) => {
   const { priceInvestorDrawer, handleInvestorPriceDrawer, particularDiscountData, ...formProps } = props;
@@ -11,7 +11,7 @@ const InventoryPriceDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-        title={`Share Own ${props.RowData.allTotalQuantityOfShare}`}
+        title={`${props.RowData.name || ""} - Shares Owned - ${props.RowData.allTotalQuantityOfShare}`}
     
         width={drawerWidth}
         visible={priceInvestorDrawer}
@@ -21,7 +21,9 @@ const InventoryPriceDrawer = (props) => {
         onClose={() => handleInvestorPriceDrawer(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <InventoryPriceAddTable  RowData={props.RowData} />
+          <InventoryPriceAddTable  RowData={props.RowData} 
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}/>
         </Suspense>
       </StyledDrawer>
     </>

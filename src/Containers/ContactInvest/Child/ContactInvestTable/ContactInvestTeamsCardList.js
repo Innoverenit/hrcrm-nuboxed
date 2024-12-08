@@ -1,13 +1,13 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
 import {  Tooltip } from "antd";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
 import {
   handleUpdateContactModal,
@@ -18,7 +18,14 @@ import {
   handleDonotCallModal,
   handleContactDrawerModal,
   handleContactEmailDrawerModal,
+  getTeamUserList
 } from "../../../Contact/ContactAction";
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency'
+import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import ScoreIcon from '@mui/icons-material/Score';
+import SourceIcon from '@mui/icons-material/Source';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import { getDesignations } from "../../../Settings/Designation/DesignationAction";
@@ -26,11 +33,13 @@ import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {getTeamsContactInvest,
   handleContactInvestNotesDrawerModal,
-  emptyContactInvest,handleUpdateContactInvestModal,handleContactInvestPulseDrawerModal} from "../../ContactInvestAction";
-import { FormattedMessage } from "react-intl";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import AddContactInvestPulseModal from "./AddContactInvestPulseModal";
+  handleDealModal,
+  emptyContactInvest,handleUpdateContactInvestModal,handleContactAddressDrawerModal,handleContactInvestPulseDrawerModal} from "../../ContactInvestAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
+const AddContactInvestPulseModal = lazy(() =>  import("./AddContactInvestPulseModal"));
+const AddContactInvestAdressModal = lazy(() =>  import("./AddContactInvestAdressModal"));
+const AddContactInvestDealModal = lazy(() =>  import("./AddContactInvestDealModal"));
+const EmptyPage = lazy(() =>  import("../../../Main/EmptyPage"));
 const AddContactInvestNotesDrawerModal = lazy(() =>
   import("../AddContactInvestNotesDrawerModal")
 );
@@ -64,6 +73,7 @@ function ContactInvestTeamsCardList(props) {
     })
     props.getTeamsContactInvest(props.userId,pageNo);
     setPage(pageNo + 1);
+    props.getTeamUserList(props.userId)
   }, []);
 
   useEffect(() => {
@@ -71,14 +81,20 @@ function ContactInvestTeamsCardList(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          "Name",//0
-           "Company",//1
-           "Designation",//2
-           "Department",//3
-           "Deal",//4
-           "Deal Value",//5
-          "Source",//6
-           "Owner",//7         
+          "110",//0 Name
+           "277",//1 Company
+           "325",//2Designation
+           "326",//3Department
+           "1160",//4 Deal
+           "526",//5 Deal Value
+          "279",// 6 Source
+           "77",//7 Owner    
+           "1581",// Score 8
+           "392",//Pulse 9
+           "316",// Notes 10
+           "185",//Adress 11 
+           "170",//Edit 12
+           "1581",//score 13
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -109,13 +125,27 @@ function ContactInvestTeamsCardList(props) {
   function handleCurrentContactIdata(dta) {
     setContactiData(dta);
   }
-
   const handleLoadMore = () => {
-            setPage(pageNo + 1);
-            props.getTeamsContactInvest(props.currentUser?props.currentUser:pageNo,
-            )  ; 
-            setPage(pageNo + 1);
-  }
+
+    const proPag = props.teamsContactInvestData && props.teamsContactInvestData.length && props.teamsContactInvestData[0].pageCount
+    setTimeout(() => {
+      if (props.teamsContactInvestData) {
+        if (pageNo < proPag) {
+          setPage(pageNo + 1);
+          props.getTeamsContactInvest(props.userId,pageNo);
+        }
+        if (pageNo === proPag) {
+          setHasMore(false)
+        }
+      }
+    }, 100);
+  };
+  // const handleLoadMore = () => {
+  //           setPage(pageNo + 1);
+  //           props.getTeamsContactInvest(props.currentUser?props.currentUser:pageNo,
+  //           )  ; 
+  //           setPage(pageNo + 1);
+  // }
   const {
     user,
     fetchingAllContactInvest,
@@ -133,61 +163,122 @@ function ContactInvestTeamsCardList(props) {
     addDrawerContactInvestPulseModal
   } = props;
 
-//  if(fetchingContactsInvest){
-//   return <BundleLoader/>
-//  }
 if (loading) {
   return <div><BundleLoader/></div>;
 }
 
   return (
     <>
+    <div className=" flex">
+       <div className=' flex rounded w-[13%] h-[85vh] flex-col border border-[#0000001f] items-center justify-center  '>
+      <div class="flex rounded w-[92%] m-1 p-1 box-content border border-[#0000001f] h-6 bg-[white] mt-1  items-center shadow-[#a3abb980] ">
+      <div className="w-[14vw]"  > Search team Member</div>
+        </div>
+        <div class="flex flex-col rounded w-[11vw]  h-[78vh] box-content border bg-[white] mt-1 border-[#0000001f]   shadow-[#a3abb980]">
+        {props.teamUserList.map((item,index) =>{
+           return (
+             <div class="rounded border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[4.8rem] 
+                  text-[#444444] mt-1 max-sm:w-wk flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100   border-solid  p-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
+        <div class="flex items-center  h-16">
+          <div class=" flex  mr-[0.2rem] h-15" >
+            <MultiAvatar
+                  primaryTitle={item.empName}
+                  imageId={item.imageId}
+              imgWidth={"1.8rem"}
+                imgHeight={"1.8rem"}
+            />
+          </div>
+          
+          <div class="flex  overflow-hidden">
+          
+                
+          <div class="font-semibold text-[#337df4] font-poppins cursor-pointer text-lm truncate  "  >
+        
+          {item.empName}
+
+        </div> 
+        </div>
+          
+       
+        </div>
+        <div className="flex flex-col max-sm:justify-between ">
+          
+                 
+        <div class="overflow-hidden text-ellipsis font-poppins cursor-pointer text-lm truncate  flex items-center">
+                 
+                   {item.dailCode1} {item.mobileNo}
+                   </div>
+          <div>
+          <div class="font-medium text-xs ">
+       
+                
+          <div class="overflow-hidden  text-ellipsis font-poppins cursor-pointer text-lm truncate  flex items-center">
+                {item.emailId}  
+              </div>
+           
+            
+          </div>
+          </div>
+          </div>
+          
       
-      <div class="rounded max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" flex  justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" md:w-[15.32rem]">
-        {translatedMenuItems[0]}  
-        {/* name          */}
+       
+      </div>
+  )
+})}
+        </div>
+        </div>
+        <div className=' flex sticky w-[87%] z-auto'>
+      <div class="rounded max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+      <div className=" flex  justify-between max-sm:hidden w-[89%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end  z-10">
+     
+      <div className="  w-[17.7rem] text-[#00A2E8] text-sm  max-md:w-[21.32rem]">
+        <ContactEmergencyIcon className='!text-icon mr-1 text-[#00A2E8] '
+              />{translatedMenuItems[0]}
+        {/* name" */}         
                 </div>
-        <div className=" md:w-[12.72rem]">
-        {translatedMenuItems[1]}
-        {/* company */}          
+        <div className="truncate w-[14.5rem] max-md:w-[13.72rem]">
+        <ApartmentIcon className="!text-icon  text-[#f0386b]"/> {translatedMenuItems[1]}
+        {/* company */}             
                 </div>
-        <div className=" md:w-[9.6rem] ">
-        {translatedMenuItems[2]} 
-        {/* designation */}           
+        <div className="truncate w-[11.3rem] max-md:w-[12.6rem] ">
+        <i className="fab fa-artstation text-[#b744b8]"></i> {translatedMenuItems[2]} 
+        {/* designation */}             
+                </div>      
+                  <div className=" w-[9.8rem] truncate max-md:w-[11.2rem]">
+        <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[6]}
+        {/* source" */}           
                 </div>
-        <div className="md:w-[11.3rem]">
-        {translatedMenuItems[3]} 
-        {/* department  */}
-                </div>
-        <div className="md:w-[6.1rem]">
-        {translatedMenuItems[4]}
-         {/* deals              */}
-                </div>
-        <div className="md:w-[7.21rem]">
-        {translatedMenuItems[5]}
-        {/* dealValue" */}          
-                </div>
-        <div className="md:w-[5.2rem]">
-        {translatedMenuItems[6]}
-        {/* source */}          
-                </div>
-        <div className="md:w-[6.8rem]">
-        {translatedMenuItems[7]}
+        <div className=" w-[12.3rem] truncate max-md:w-[10.1rem]">
+        <CurrencyExchangeIcon className='!text-icon  mr-1  text-[#84a59d]' />{translatedMenuItems[4]}
+        {/* deals" */}           
+                </div>   
+      
+                {props.user.aiInd && (
+            <div className="w-[6.3rem] truncate max-md:w-[5.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.81rem]">
+               <ScoreIcon className="!text-icon  text-[#f28482]"/>{translatedMenuItems[13]}  
+               {/* Score */}
+            </div>
+            )}
+        <div className=" w-[4.8rem] truncate max-md:w-[9.8rem]">
+        <AccountCircleIcon className="!text-icon   text-[#d64933]"/>    {translatedMenuItems[7]}
         {/* owner             */}
                 </div>
+          
         {/* <div className="w-12">Action</div> */}
 
+    
       </div>
           <InfiniteScroll
         dataLength={props.teamsContactInvestData.length}
         next={handleLoadMore}
         hasMore={hasMore}
         loader={props.fetchingTeamsContactInvest?<div style={{ textAlign: 'center' }}>Loading...</div>:null}
-        height={"80vh"}
+        height={"83vh"}
+        style={{scrollbarWidth:"thin"}}
+        endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
       >     
-       { !props.fetchingTeamsContactInvest && props.teamsContactInvestData.length === 0 ?<NodataFoundPage />:props.teamsContactInvestData.map((item,index) =>  {
+       { !props.fetchingTeamsContactInvest && props.teamsContactInvestData.length === 0 ?<EmptyPage />:props.teamsContactInvestData.map((item,index) =>  {
         
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -211,9 +302,9 @@ if (loading) {
             item.address[0].postalCode} `;
                     return (
                       <div>
-                      <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
+                      <div className="flex rounded justify-between  bg-white mt-1  py-ygap  items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500  max-sm:h-[7rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" >
                               <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                          <div className=" flex font-medium  md:w-[15.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                          <div className=" flex w-[14.8rem]  max-md:w-[15.1rem] border-l-2 border-green-500 bg-[#eef2f9] max-sm:w-full max-sm:justify-between  ">
 <div className="flex items-center max-sm:w-full"> 
 <div>
                          
@@ -228,19 +319,15 @@ if (loading) {
     &nbsp;
     <div class="max-sm:w-full md:w-[12.1rem]">
                                   <Tooltip>
-                                    <div class=" flex  max-sm:w-full justify-between flex-row md:flex-col">
+                                    <div class=" flex  max-sm:w-full justify-between  md:flex-col">
                                       
                                       <div class="text-xs flex text-blue-500  font-poppins font-semibold  cursor-pointer">
-                                      <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
+                                      <Link class="overflow-ellipsis whitespace-nowrap  text-[#042E8A] cursor-pointer"  to={`contactinvest/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
-     {/* <Link
-    toUrl={`contactinvest/${item.contactId}`}
-    title={`${item.fullName}`}
-  >{item.fullName}</Link> */}
   &nbsp;&nbsp;
   {date === currentdate ? (
-    <span class="text-[tomato] mt-[0.4rem] font-bold">  New </span>
+    <span class="text-[tomato]  font-bold text-[0.65rem]">  New </span>
   ) : null} 
                                       </div>
                                       </div>
@@ -249,49 +336,57 @@ if (loading) {
                                   </div>
                           </div>       
                           </div>
-                          <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[14.01rem]">
+                          <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center">
+                          <div className=" flex max-sm:w-full max-sm:justify-between   items-center justify-start h-8 ml-gap bg-[#eef2f9] w-[12.01rem]">
                               {/* Company  */}
-                              <div class=" text-xs  font-poppins">   
+                              <div class=" text-xs ml-gap font-poppins">   
                               {item.tagWithCompany}
                               </div>
                           </div>
-                          <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[10.5rem]">
+                          <div className=" flex max-sm:w-full max-sm:justify-between    w-[9.5rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]">
                             {/* Designation */}
-                              <div class="text-xs  font-poppins">
+                              <div class="text-xs ml-gap font-poppins">
                                    {item.designation}
                               </div>
-                          </div>
-                          <div class="flex">
-                          <div className=" flex max-sm:w-full max-sm:justify-between  flex-row  w-[12.2rem]">
+                          </div>         
+                          <div className=" flex max-sm:w-full max-sm:justify-between    w-[8.2rem] items-center justify-start h-8 ml-gap bg-[#eef2f9]">
                           {/* Department */}
-                            <div class="text-xs  font-poppins">
+                            <div class="text-xs ml-gap font-poppins">
                                  {item.department}
                             </div>
                         </div>
-                          <div className=" flex  md:w-[5.22rem] max-sm:flex-row w-full  ">
-                              {/* # Deals */}
+                        </div>
+                        <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center items-center">
+                    
+                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[10.22rem] max-sm:w-full  ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-[7.22rem] max-sm:w-full  ">
+                                    {/* Deals */}
+                                    <div class=" text-xs text-blue-500 cursor-pointer  font-poppins"
+                                        onClick={() => {
+                                        props.handleDealModal(true);
+                                        handleCurrentContactIdata(item);
+                                      }}
+                                    >
+                                     {item.oppNo}
+                                    </div>
+                                </div>
+                                <div className=" flex   md:w-[7.05rem] max-sm:w-full items-center justify-center h-8 ml-gap bg-[#eef2f9] ">
+                                   {/* Deal Value */}
 
-                              <div class=" text-xs  font-poppins">
-                               {item.oppNo}
-                              </div>
-                          </div>
-                          <div className=" flex   md:w-[5.05rem] max-sm:flex-row w-full  ">
-                             {/* Deal Value */}
-
-                              <div class=" text-xs  font-poppins">
-                               {item.totalProposalValue}
-                              </div>
-                          </div>
-                          <div className="flex  max-sm:justify-between  md:w-[6.81rem] max-sm:flex-row w-full ">
-                          {/* Source */}
-
-                              <div class="text-xs  font-poppins">
-
-                              </div>
-                          </div>
-                          </div>
-                          <div class="flex">
-                          <div className="flex    md:w-[3.2rem]  max-sm:flex-row w-full max-sm:justify-between">             
+                                    <div class=" text-xs  font-poppins">
+                                     {item.totalProposalValue}
+                                    </div>
+                                </div>
+                                </div>
+                        
+                          {/* Score */}
+                          {props.user.aiInd && (
+           <div className=" flex    items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:  ">
+            {item.noteScoreInd}
+          
+            </div>
+            )}                   
+                          <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[4rem]  max-sm:w-full max-sm:justify-between">             
                {/* Owner */}
              
         <Tooltip title={item.ownerName}>
@@ -305,39 +400,63 @@ if (loading) {
         /> 
       </div>
     </Tooltip>
-             </div>                       
-                  <div class=" flex justify-end items-center w-[7rem] max-sm:flex   max-sm:w-full">
+             </div>   
+             </div>   
+                           
+                  <div class=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9]  max-sm:flex   max-sm:w-full">
                   <div>
-     <Tooltip title="Pulse">
+     <Tooltip title=     {translatedMenuItems[9]}>
  <MonitorHeartIcon
- className=" !text-icon cursor-pointer text-[#df9697]"
-          onClick={() => {
+ className=" !text-icon cursor-pointer text-[#df9697] max-sm:!text-xl"
+            onClick={() => {
             handleContactInvestPulseDrawerModal(true);
             handleCurrentContactIdata(item);
           }}        
         />
      </Tooltip>
      </div>
+                                            
+                <div>
+              <Tooltip title=     {translatedMenuItems[10]}>
+ <NoteAltIcon
+            onClick={() => {
+            props.handleContactInvestNotesDrawerModal(true);
+            handleCurrentContactIdata(item);
+          }}
+          className="text-green-800 cursor-pointer !text-icon max-sm:!text-xl"
+        />
+     </Tooltip>
+     </div>
+     <Tooltip title=     {translatedMenuItems[11]}>
+     <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0] max-sm:!text-xl"
+            onClick={() => {
+            props.handleContactAddressDrawerModal(true);
+            handleCurrentContactIdata(item);
+          }}
+          
+        />
+        </Tooltip>
                     <div>
                   <Tooltip title={item.mobileNo} >
       {item.doNotCallInd !== true && (
         <span class=" mr-1 text-xs cursor-pointer"
-          onClick={() => {
+            onClick={() => {
             props.handleDonotCallModal(true);
             handleCurrentContactIdata(item);
           }}
         >
-         <PhoneInTalkIcon className=" !text-icon cursor-pointer"/>
+         <PhoneInTalkIcon className=" !text-icon cursor-pointer max-sm:!text-xl"/>
         </span>
       )}
       {item.doNotCallInd === true && (
         <span class=" mr-1 text-xs cursor-pointer"
-          onClick={() => {
+            onClick={() => {
             props.handleDonotCallModal(true);
             handleCurrentContactIdata(item);
           }}
         >
-          <PhoneDisabledIcon className="!text-icon text-[gold]"/>
+          <PhoneDisabledIcon className="!text-icon text-[gold] max-sm:!text-xl"/>
         </span>
       )}
     </Tooltip>
@@ -345,65 +464,24 @@ if (loading) {
     <div>
                   <Tooltip title={item.emailId}>
      
-      <MailOutlineIcon className="!text-icon cursor-pointer text-green-400"
-        type="mail"
+      <MailOutlineIcon className="!text-icon cursor-pointer text-green-800 max-sm:!text-xl"
+        type="mail" 
        
-        onClick={() => {
+          onClick={() => {
           props.getContactById(item.contactId);
           props.handleCurrentContactIdata(true);
         }}
       />
      </Tooltip>
-     </div>                    
-                  <div >
-                  <span class="cursor-pointer"
-        
-        onClick={() => {
-          handleCurrentContactIdata(item);
-          props.handleContactDrawerModal(true);
-        }}
-      >{user.pulseAccessInd === true && (
-        <MonitorHeartIcon className=" !text-icon cursor-pointer text-[#df9697]"/>
-      )}
-      </span>
-                  </div>    
-                <div>
-              <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-      <span class="cursor-pointer"
-       
-      >
-      <LocationOnIcon  className="!text-icon cursor-pointer text-[#960a0a]"/>
-      </span>
-    </Tooltip>
-    </div>
-    {/* <div><Tooltip title={item.email}>
-        <MailOutlineIcon
-          type="mail"
-          style={{ cursor: "pointer",fontSize: "1rem" }}
-          onClick={() => {
-            props.getCustomerById(item.customerId);
-            props.handleCustomerEmailDrawerModal(true);
-          }}
-        />
-      </Tooltip> </div> */}         
-                <div>
-              <Tooltip title="Notes">
- <NoteAltIcon
-          onClick={() => {
-            props.handleContactInvestNotesDrawerModal(true);
-            handleCurrentContactIdata(item);
-          }}
-          className="text-green-500 cursor-pointer !text-icon"
-        />
-     </Tooltip>
-     </div>
+     </div>      
+   
      
      <div>
       {user.imInd === true  && user.investorContactUpdateInd === true &&  (
-      <Tooltip title="Edit">
+      <Tooltip title=     {translatedMenuItems[12]}>
         <BorderColorIcon
-          className="!text-icon cursor-pointer text-[tomato]"
-          onClick={() => {
+          className="!text-icon cursor-pointer text-[tomato] max-sm:!text-xl"
+            onClick={() => {
             handleUpdateContactInvestModal(true);
             handleCurrentContactIdata(item);           
           }}
@@ -412,32 +490,49 @@ if (loading) {
       )}
       </div>
       </div>
-      </div>
+    
                       </div>
                   </div>
                     )
                 })}
        </InfiniteScroll>
       </div>
-
+      </div>
+</div>
+<Suspense fallback={<BundleLoader />}>
       <UpdateContactInvestModal
         contactiData={contactiData}
         updateContactInvestModal={updateContactInvestModal}
         handleUpdateContactInvestModal={handleUpdateContactInvestModal}
         handleCurrentContactIdata={handleCurrentContactIdata}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
       />   
       <AddContactInvestNotesDrawerModal
         contactiData={contactiData}
         addDrawerContactInvestNotesModal={addDrawerContactInvestNotesModal}
         handleContactInvestNotesDrawerModal={handleContactInvestNotesDrawerModal}
         handleCurrentContactIdata={handleCurrentContactIdata}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
       />
       <AddContactInvestPulseModal
         contactiData={contactiData}
         addDrawerContactInvestPulseModal={addDrawerContactInvestPulseModal}
         handleContactInvestPulseDrawerModal={handleContactInvestPulseDrawerModal}
         handleCurrentContactIdata={handleCurrentContactIdata}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
       />
+      <AddContactInvestAdressModal     
+        item={contactiData}
+         type="contact"
+        addContactAddressModal={props.addContactAddressModal}
+        handleContactAddressDrawerModal={props.handleContactAddressDrawerModal}
+      /> 
       {/* <AddContactEmailDrawerModal
         contactData={currentContactId}
         addDrawerContactEmailModal={props.addDrawerContactEmailModal}
@@ -455,6 +550,16 @@ if (loading) {
         addDrawerContactModal={props.addDrawerContactModal}
         handleContactDrawerModal={props.handleContactDrawerModal}
       /> */}
+      <AddContactInvestDealModal
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
+        contactiData={contactiData}
+        addDrawerDealModal={props.addDrawerDealModal}
+        handleDealModal={props.handleDealModal}
+        handleCurrentContactIdata={handleCurrentContactIdata}
+      />  
+        </Suspense>
     </>
   );
 }
@@ -464,7 +569,8 @@ const mapStateToProps = ({
   designations,
   departments,
   opportunity,
-  contactinvest
+  contactinvest,
+  customer
 }) => ({
   userId: auth.userDetails.userId,
   contactByUserId: contact.contactByUserId,
@@ -481,7 +587,10 @@ const mapStateToProps = ({
   contactiNVESTbyId: contactinvest.contactiNVESTbyId,
   allContactInvestData:contactinvest.allContactInvestData,
   teamsContactInvestData:contactinvest.teamsContactInvestData,
-  addDrawerContactInvestPulseModal:contactinvest.addDrawerContactInvestPulseModal
+  addContactAddressModal:contactinvest.addContactAddressModal,
+  addDrawerDealModal: contactinvest.addDrawerDealModal,
+  addDrawerContactInvestPulseModal:contactinvest.addDrawerContactInvestPulseModal,
+  teamUserList:customer.teamUserList
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -499,7 +608,10 @@ const mapDispatchToProps = (dispatch) =>
       getTeamsContactInvest,
       handleUpdateContactInvestModal,
       handleContactInvestNotesDrawerModal,
-      handleContactInvestPulseDrawerModal
+      handleContactInvestPulseDrawerModal,
+      handleContactAddressDrawerModal,
+      handleDealModal,
+      getTeamUserList
     },
     dispatch
   );

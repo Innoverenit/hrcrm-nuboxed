@@ -21,7 +21,9 @@ const OpportunityAllCardList = lazy(() => import("./Child/OpportunityTable/Oppor
 class Opportunity extends Component {
   constructor(props) {
     super(props);
-  this.state = { currentData: "",isMobile: false, viewType: null, // Default viewType
+  this.state = { currentData: "",isMobile: false, 
+    // viewType: "table", // Default viewType
+    viewType: null, // Default viewType
   teamsAccessInd: props.teamsAccessInd , };
   };
   handleClear = () => {
@@ -68,6 +70,9 @@ class Opportunity extends Component {
           handleClear={this.handleClear}
           currentData={this.state.currentData}
           setCurrentData={this.setCurrentData}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
         />
         <AddOpportunityModal
           translateText={this.props.translateText}
@@ -107,11 +112,20 @@ class Opportunity extends Component {
              selectedLanguage={this.props.selectedLanguage}
            translatedMenuItems={this.props.translatedMenuItems}
             />}
-            { viewType === "teams" &&  <OpportunityTeamsCard
+            { viewType === "teams" && <OpportunityTeamsCard
              translateText={this.props.translateText}
              selectedLanguage={this.props.selectedLanguage}
            translatedMenuItems={this.props.translatedMenuItems}
-            />}
+            />
+//             ):(
+// <OpportunityCardList
+//              translateText={this.props.translateText}
+//              selectedLanguage={this.props.selectedLanguage}
+//            translatedMenuItems={this.props.translatedMenuItems}
+            
+//             />
+            // )
+          }
             {   viewType === "lost" &&  <OpportunityLostCard
              translateText={this.props.translateText}
              selectedLanguage={this.props.selectedLanguage}
@@ -169,7 +183,8 @@ const mapStateToProps = ({ opportunity, auth }) => ({
   userId: auth.userDetails.userId,
   addOpportunityModal: opportunity.addOpportunityModal,
   // viewType: opportunity.viewType,
-  teamsAccessInd:auth.userDetails.teamsAccessInd
+  teamsAccessInd:auth.userDetails.teamsAccessInd,
+  teamLeadInd:auth.userDetails.teamLeadInd
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(

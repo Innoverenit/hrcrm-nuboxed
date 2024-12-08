@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import Swal from 'sweetalert2'
 import { base_url,base_url2 } from "../../Config/Auth";
 import { message } from "antd";
-import { ActionHeader } from "../../Components/Utils";
+
 
 /**
  * SET OPPORTUNITY VIEW TYPE
@@ -22,6 +22,7 @@ export const handleRecruitmentEmailDrawerModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+
 
 export const setSelectedClosureTimeIntervalReport = (selectedTime) => (dispatch) => {
   console.log(selectedTime);
@@ -41,6 +42,14 @@ export const handleOpportunityDrawerModal = (modalProps) => (dispatch) => {
 export const handleSentimentModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_SENTIMENT_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+export const handleOpportunityPulseModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_OPPORTUNITY_PULSE_MODAL,
     payload: modalProps,
   });
 };
@@ -302,7 +311,7 @@ export const getCurrency = () => (dispatch) => {
     type: types.GET_CURRENCY_REQUEST,
   });
   axios
-    .get(`${base_url}/currencies`)
+    .get(`${base_url}/currencies/sales`)
     .then((res) => {
       console.log(res);
       dispatch({
@@ -347,8 +356,8 @@ export const addOpportunity = (opportunity, cb) => (dispatch, getState) => {
       Swal.fire({
         icon: 'success',
         title: 'Opportunity created Successfully!',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500
       })
       console.log(res);
       const startDate = dayjs()
@@ -579,8 +588,8 @@ export const setEditOpportunity = (name) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Opportunity Info updated Successfully!',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500
       })
       console.log(res);
       //  dispatch(getOpportunityListByUserId(userId,0));
@@ -797,8 +806,8 @@ export const deleteOpportunityData = (id) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Opportunity Deleted Successfully',
-        // showConfirmButton: false,
-        // timer: 1500
+        showConfirmButton: false,
+        timer: 1500,
       })
       // if (res.data) {
       //   Swal.fire({
@@ -1620,6 +1629,31 @@ export const emailSendStage = (data) => (dispatch) => {
       });
     });
 };
+
+export const getTeamUserList = (reptMngrId) => (dispatch) => {
+  dispatch({ type: types.GET_TEAM_USERLIST_REQUEST });
+  axios
+    .get(`${base_url}/employee/user-list/reptMngr/${reptMngrId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_TEAM_USERLIST_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_TEAM_USERLIST_FAILURE,
+        payload: err,
+      });
+    });
+};
 // export const linkSummaryStatus = (publish ) => (
 //   dispatch,
 //   getState
@@ -2042,6 +2076,38 @@ export const getJobBoardName = () => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_JOB_BOARD_NAME_FAILURE,
+      });
+    });
+};
+
+
+
+
+export const addMoreContact = (opportunity, cb) => (dispatch, getState) => {
+  const userId = getState().auth.userDetails.userId;
+  dispatch({
+    type: types.ADD_MORE_CONTACT_REQUEST,
+  });
+  axios
+    .post(`${base_url}/contact`, opportunity, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+     
+      
+      dispatch({
+        type: types.ADD_MORE_CONTACT_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_MORE_CONTACT_FAILURE,
+        payload: err,
       });
     });
 };
@@ -2528,8 +2594,8 @@ export const lostStatusRecruit = ( opportunityId,data,userId ) => (dispatch) => 
         Swal.fire({
           icon: 'success',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       } else {
        
@@ -2537,7 +2603,7 @@ export const lostStatusRecruit = ( opportunityId,data,userId ) => (dispatch) => 
           icon: 'error',
           title: 'Not updated',
           showConfirmButton: false,
-          // timer: 1500
+          timer: 1500,
         });
       }
       // message.success("Opportunity move to lost category.Better luck next time!");
@@ -2895,16 +2961,16 @@ export const reinstateToggleForLost = (data, opportunityId,userId) => (dispatch)
         Swal.fire({
           icon: 'success',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       } else {
        
         Swal.fire({
           icon: 'error',
           title: 'Not updated',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500
         });
       }
       console.log(res);
@@ -3411,4 +3477,35 @@ export const ClearSearchedDataOfOpportunity = () => (dispatch) => {
   dispatch({
     type: types.HANDLE_CLAER_SEARCHED_DATA_OPPORTUNITY,
   });
+};
+
+
+
+
+
+export const getOppPulseData = (oppId,workflowId) => (dispatch) => {
+  
+  dispatch({
+    type: types.GET_OPP_PULSE_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url}/opportunity/stage/record/details/${oppId}/${workflowId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_OPP_PULSE_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_OPP_PULSE_DATA_FAILURE,
+        payload: err,
+      });
+    });
 };

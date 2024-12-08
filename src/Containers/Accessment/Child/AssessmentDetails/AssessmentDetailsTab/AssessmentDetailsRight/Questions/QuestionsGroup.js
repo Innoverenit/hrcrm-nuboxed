@@ -1,14 +1,10 @@
-import React, { useEffect, Suspense, Component } from "react";
-import { FlexContainer } from "../../../../../../../Components/UI/Layout";
-import { MultiAvatar } from "../../../../../../../Components/UI/Elements";
-import { Button, Tooltip } from "antd";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import styled from "styled-components";
 import QuestionForm from "../QuestionForm";
 import { getQuestionsListByAssId,deleteQuestionsById } from "../../../../../AccessmentAction";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 function QuestionsGroup(props) {
   const { assessmentId } = props;
   useEffect(() => {
@@ -17,67 +13,51 @@ function QuestionsGroup(props) {
 
   return (
     <>
-      <FlexContainer>
+     <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
         <div>
-          <CardWrapper>
+          <div class="flex">
             <div>
-              <CardElement>
+               <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
                 <QuestionForm assessmentId={assessmentId} />
-              </CardElement>
+              </div>
             </div>
             {props.questionsList.map((item, i) => {
               return (
-                <CardElement
-                  style={{
-                    backgroundColor: "#ADD8E6",
-                    borderRadius: "1rem",
-                    boxShadow: "2px 5px #888888",
-                  }}
-                >
-                  <CardImage>
-                    {/* <MultiAvatar
-                    // imageId={item.imageId ? item.imageId : ''}
-                    imgHeight={200}
-                    imgWidth={200}
-                    imgRadius={20}
-                  /> */}
-                    
-                  </CardImage>
-                  <CardDescription>
-                    <Header>{i+1}. {item.question}</Header>
+                <div class="h-[9rem] w-[21vw] rounded p-1 m-1 mt-5 bg-white border-[2px] border-[#eeeeee] text-black">
+                 
+                 <div class="w-7 h-7" >
+                    </div>                             
+                 
+                  <div>
+                  <div class="h-8 overflow-hidden whitespace-nowrap text-lg font-poppins font-bold overflow-ellipsis text-center">{i+1}. {item.question}</div>
                     {/* <Tooltip title={item.description}>
                      
                     </Tooltip> */}
-                    <Price>{item.option1}</Price>
-                    <Price>{item.option2}</Price>
-                    <Price>{item.option3}</Price>
-                    <Price>{item.option4}</Price>
+                    <div class="h-8 font-bold font-poppins text-xs overflow-hidden whitespace-nowrap">{item.option1}</div>
+                    <div class="h-8 font-bold font-poppins text-xs overflow-hidden whitespace-nowrap">{item.option2}</div>
+                    <div class="h-8 font-bold font-poppins text-xs overflow-hidden whitespace-nowrap">{item.option3}</div>
+                    <div class="h-8 font-bold font-poppins text-xs overflow-hidden whitespace-nowrap">{item.option4}</div>
                     <div style={{justifyContent:"space-between"}}>
-                      <FlexContainer justifyContent="flex-end" >
-                      <EditOutlined 
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
+                      <VisibilityIcon 
                       onClick={()=>{
                        // props.deleteQuestionsById(item.id,props.assessmentId)
                       }}
                       />
-                      <DeleteOutlined
+                      <DeleteOutlineIcon
                       onClick={()=>{
                         props.deleteQuestionsById(item.id,props.assessmentId)
                       }}
                       />
-                      </FlexContainer>
-                      
-                    </div>
-                    {/* <Cd>{` ${dayjs(item.creationDate).format("ll")}`}</Cd> */}
-                    {/* <div style={{ display: "flex" }}>
-                      Cancel:<RequirementCancelToggle />
-                    </div> */}
-                  </CardDescription>
-                </CardElement>
+                      </div>                    
+                    </div>          
+                  </div>
+                </div>
               );
             })}
-          </CardWrapper>
+          </div>
         </div>
-      </FlexContainer>
+      </div>
     </>
   );
 }
@@ -95,107 +75,3 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuestionsGroup);
-
-const MainWrapper = styled.div`
-  /* */
-  margin: 0px 20px;
-  @media only screen and (max-width: 600px) {
-  }
-`;
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-
-  @media only screen and (max-width: 600px) {
-    justify-content: center;
-    flex-direction: column;
-  }
-`;
-const CardElement = styled.div`
-  //   width: 20%;
-  border-radius: 0.2rem;
-  border: 2px solid #eeeeee;
-  background-color: rgb(255, 255, 255);
-  //  height: 23em;
-  color: rgb(68, 68, 68);
-  margin: 0.3rem;
-  padding: 0.3rem;
-  width: 20vw;
-  //   padding: 0 20px;
-  //margin-top: 1.5em;
-  /* margin:0px 20px; */
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-  }
-`;
-const CardDescription = styled.div`
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
-const CardImage = styled.div`
-  width: 200;
-  height: 200 @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
-const WithOutImage = styled.div`
-  width: 200px;
-  height: 200px;
-  display: flex;
-  align-items: center;
-  flex-direction:column @media only screen and (max-width: 600px) {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-`;
-
-const Header = styled.div`
-  text-overflow: ellipsis;
-
-  white-space: nowrap;
-  overflow: hidden;
-  height: 2em;
-  font-size: 1.3em;
-  font-family: Poppins;
-  font-weight: 700;
-  @media only screen and (max-width: 600px) {
-    text-overflow: ellipsis;
-
-white-space: nowrap;
-overflow: hidden;
-height: 2em;
-font-size: 1.3em;
-font-family: Poppins;
-font-weight: 700;
-width:100%
-text-align:center
-  }
-`;
-const Desc = styled.p`
-  height: 0px;
-`;
-const Price = styled.div`
-  height: 2em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-`;
-const Cd = styled.div`
-  height: 1.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-`;

@@ -3,9 +3,9 @@ import React, { useEffect, useState } from 'react'
 import { getTaggedSuppliesByBrand, addSpareList } from "../Account/AccountAction";
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { CloseOutlined } from "@ant-design/icons"
+import { message } from "antd";
+import CloseIcon from '@mui/icons-material/Close';
 import { getCurrency } from "../../Auth/AuthAction";
-import { FormattedMessage } from 'react-intl';
 const { Option } = Select;
 
 const AddMultipleQCSpare = (props) => {
@@ -15,22 +15,31 @@ const AddMultipleQCSpare = (props) => {
         props.getTaggedSuppliesByBrand(props.RowData.company, props.RowData.model)
     }, [])
 
-    const [rows, setRows] = useState([{ suppliesId: "", noOfSpare: "", hours: "", extraCost: "", spareCurrency: "", id: 1 }]);
+    const [rows, setRows] = useState([{  phoneTaskId:props.phoneTaskId,suppliesId: "", noOfSpare: "", hours: "", extraCost: "", spareCurrency: "", id: 1,orgId:props.orgId }]);
     const [id, setId] = useState(1);
     const [level, setLevel] = useState(1);
 
     function buttonOnClick() {
+
+        const invalidRows = rows.filter(row => !row.suppliesId || !row.noOfSpare);
+
+        if (invalidRows.length > 0) {
+            message.error('Please fill out all required fields for Spare 1 and Units.');
+            return;
+        }
+
         let data = {
             userId: props.userId,
             spareList: rows,
             phoneId: props.RowData.phoneId,
             orderPhoneId: props.RowData.orderPhoneId,
+           // phoneTaskId:props.phoneTaskId
         }
-        props.addSpareList(data, props.RowData.phoneId, props.RowData.orderPhoneId, handleCallBack);
+        props.addSpareList(data,props.phoneTaskId, props.RowData.phoneId, props.RowData.orderPhoneId, handleCallBack);
     };
 
     function handleCallBack() {
-        setRows([{ suppliesId: "", noOfSpare: "", hours: "", extraCost: "", spareCurrency: "", id: 1 }])
+        setRows([{  phoneTaskId:props.phoneTaskId,suppliesId: "", noOfSpare: "", hours: "", extraCost: "", spareCurrency: "", id: 1 }])
     }
 
     function handleChangeValues1(value, a) {
@@ -105,7 +114,7 @@ const AddMultipleQCSpare = (props) => {
                     <>
                         <div class="flex justify-between">
                             <div class="w-[50%]">
-                                <label>{`Spare ${i + 1}`}</label>
+                                <div class="font-bold text-xs font-poppins text-black">{`Spares ${i + 1}`}</div>
 
                                 <Select
                                     name={`${row.id}_value`}
@@ -123,13 +132,10 @@ const AddMultipleQCSpare = (props) => {
                             </div>
 
                             <div class="w-[15%]">
-                                <label>
-                                    <FormattedMessage
-                                        id="app.units"
-                                        defaultMessage="Units"
-                                    />
+                                <div class="font-bold text-xs font-poppins text-black">
+                                  Units
 
-                                </label>
+                                </div>
                                 <Input
                                     type='text'
                                     value={`${row.noOfSpare}`}
@@ -139,9 +145,9 @@ const AddMultipleQCSpare = (props) => {
                                 />
                             </div>
                             <div class="w-[22%]">
-                                <label>
+                                <div class="font-bold text-xs font-poppins text-black">
                                     Effort (hours)
-                                </label>
+                                </div>
                                 <Input
                                     type='text'
                                     value={`${row.hours}`}
@@ -153,7 +159,7 @@ const AddMultipleQCSpare = (props) => {
 
                             {rows.length > 1 && (row.id + 1 > row.id) ? (
                                 <div class="w-[5%] mt-[30px]">
-                                    <CloseOutlined
+                                    <CloseIcon
                                         onClick={() => handleDelete(row)}
                                         style={{ fontSize: "16px", color: "red" }} />
                                 </div>
@@ -169,11 +175,7 @@ const AddMultipleQCSpare = (props) => {
                     onClick={handleAddRowClick}
                     disabled={ props.RowData.repairStatus === "To Start" || props.RowData.repairStatus === "Complete"}
                 >
-                    <FormattedMessage
-                        id="app.addmore"
-                        defaultMessage="Add More"
-                    />
-                </Button>
+                   Add More</Button>
                 <Button
                     htmlType='submit'
                     type='primary'
@@ -181,10 +183,7 @@ const AddMultipleQCSpare = (props) => {
                     loading={props.addingSpareList}
                     disabled={props.RowData.qcInspectionInd === 0 || props.RowData.repairStatus === "To Start" || props.RowData.repairStatus === "Complete"}
                 >
-                    <FormattedMessage
-                        id="app.save"
-                        defaultMessage="Save"
-                    />
+                   Save
                 </Button>
             </div>
 
@@ -198,7 +197,8 @@ const mapStateToProps = ({ inventory, auth, distributor }) => ({
     spareByBrand: distributor.spareByBrand,
     userId: auth.userDetails.userId,
     currencies: auth.currencies,
-    addingSpareList:distributor.addingSpareList
+    addingSpareList:distributor.addingSpareList,
+    orgId: auth.userDetails.organizationId,
 });
 
 const mapDispatchToProps = (dispatch) =>

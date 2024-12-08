@@ -7,10 +7,15 @@ import Requirement from "../MyViewReports/Requirement";
 import Selected from "../OrganizationView/Selected";
 import OrgSelected from "../OrganizationView/Selected";
 import OrgRequirement from "../OrganizationView/Requirement";
-import ReportsCardList from "../ReportsCardList";
 import { setTimeRangeReport,getAllReportInvestors } from "../../ReportAction";
 import ReportsProspectList from "../../ReportsProspectList";
-
+import OrdeRepairTab from "./OrdeRepairTab";
+import OrdeRepairOrgTab from "./OrdeRepairOrgTab";
+import InvoiceReportUserTab from "./InvoiceReportUserTab";
+import InvoiceReportOrgTab from "./InvoiceReportOrgTab";
+import ProductionReportOrgTab from "./ProductionReportOrgTab";
+import GSTReportUser from "./GSTReportUser";
+import GSTReportOrg from "./GSTReportOrg";
 class ReportDetailRight extends Component {
 
     state = {
@@ -38,7 +43,7 @@ class ReportDetailRight extends Component {
   render() {
     const { reportViewType, selectedReportType, selectedSubReportType } = this.props;
     console.log("selectedSubReportType", selectedSubReportType, selectedReportType)
-    console.log(this.props.customer);
+    console.log("lkj",this.props.customer,this.props.reportViewType,this.props.userorgflipClick);
     return (
       <div class=" w-full">
                   {this.props.selectedCategory === "Productivity" && (
@@ -55,20 +60,64 @@ class ReportDetailRight extends Component {
   )}
             {this.props.selectedCategory === "Task" && (
     <ReportsTaskList 
-    reportTask={this.props.reportTask}
-         
+  
+    reportTask={this.props.reportTask}      
     gettingReportTask={this.props.gettingReportTask} />
   )}
-          {reportViewType === "ME" && (
-            <>
+   
 
+
+          {this.props.reportViewType === "ME" && (
+            <>
+{this.props.selectedCategory === "Orders" && (
+   <OrdeRepairTab               
+   selectedButtonIcon={this.props.selectedButtonIcon}
+   selectedCategory={this.props.selectedCategory}
+   />
+  )}
+
+  {this.props.selectedCategory === "Invoice" && (
+  <InvoiceReportUserTab
+  selectedButtonIcon={this.props.selectedButtonIcon}
+  selectedCategory={this.props.selectedCategory}
+  />
+  )}
+    {this.props.selectedCategory === "GST" && (
+  <GSTReportUser
+  selectedButtonIcon={this.props.selectedButtonIcon}
+  selectedCategory={this.props.selectedCategory}
+  />
+  )}
               {selectedReportType === "Requirement" && <Requirement />}
               {selectedReportType === "Selected" && <Selected />}
             </>
           )}
-          {reportViewType === "ALL" && (
+           {this.props.reportViewType === "ALL" && this.props.userorgflipClick && (
             <>
-
+          {this.props.selectedCategory === "Orders" && (
+   <OrdeRepairOrgTab               
+   selectedButtonIcon={this.props.selectedButtonIcon}
+   selectedCategory={this.props.selectedCategory}
+   />
+  )}
+  {this.props.selectedCategory === "Invoice" && (
+  <InvoiceReportOrgTab
+  selectedButtonIcon={this.props.selectedButtonIcon}
+  selectedCategory={this.props.selectedCategory}
+  />
+  )}
+    {this.props.selectedCategory === "Production" && (
+  <ProductionReportOrgTab
+  selectedButtonIcon={this.props.selectedButtonIcon}
+  selectedCategory={this.props.selectedCategory}
+  />
+  )}
+  {this.props.selectedCategory === "GST" && (
+  <GSTReportOrg
+  selectedButtonIcon={this.props.selectedButtonIcon}
+  selectedCategory={this.props.selectedCategory}
+  />
+  )}
               {selectedReportType === "Requirement" &&
                 <OrgRequirement />}
               {selectedReportType === "Selected" && <OrgSelected />}

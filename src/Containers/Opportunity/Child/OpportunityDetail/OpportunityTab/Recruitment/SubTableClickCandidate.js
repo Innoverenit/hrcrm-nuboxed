@@ -1,6 +1,6 @@
 import React,{Component,} from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { Suspense } from "react";
 import styled from 'styled-components'
 import {
@@ -14,9 +14,8 @@ import dayjs from "dayjs";
 import AddCandidateDateModal from "../Recruitment/AddCandidateDateModal"
 import RecruitmentDetails from "./Child/RecruitmentDetails";
 import RecruitmentStages from "./RecruitmentStages";
-import { SearchOutlined } from '@ant-design/icons';
+import SearchIcon from '@mui/icons-material/Search';
 import Highlighter from 'react-highlight-words';
-import moment from "moment"
 import {
   Tooltip,
   Dropdown,
@@ -26,12 +25,13 @@ import {
 } from "antd";
 import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../../../../Components/UI/Antd";
- import {getCandidateRequirement,LinkStatusRecruit,LinkStageRecruit,handleCandidateDateModal} from "../../../../OpportunityAction"
-import { CheckCircleTwoTone, EyeInvisibleTwoTone,  StopTwoTone } from "@ant-design/icons";
+ import {LinkStatusRecruit,LinkStageRecruit,handleCandidateDateModal} from "../../../../OpportunityAction"
+ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { MultiAvatar } from "../../../../../../Components/UI/Elements";
 import DocumentsLoadMore from "../DocumentsLoadMore";
-
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 class SubTableClickCandidate extends Component {
   constructor(props) {
     super(props);
@@ -78,7 +78,7 @@ class SubTableClickCandidate extends Component {
         <Button
           type="primary"
           onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-          icon={<SearchOutlined />}
+          icon={<SearchIcon />}
           size="small"
           style={{ width: 90, marginRight: 8 }}
         >
@@ -89,7 +89,7 @@ class SubTableClickCandidate extends Component {
         </Button>
       </div>
     ),
-    filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+    filterIcon: filtered => <SearchIcon style={{ color: filtered ? '#1890ff' : undefined }} />,
     onFilter: (value, record) =>
       record[dataIndex]
         .toString()
@@ -266,7 +266,7 @@ class SubTableClickCandidate extends Component {
       return (
         <>
           {/* {item.candidateBilling} {item.currency}  */}
-          {moment(item.avilableDate).format("L")}
+          {dayjs(item.avilableDate).format("L")}
          
         </>
       );
@@ -274,10 +274,7 @@ class SubTableClickCandidate extends Component {
   },
     {
         title: "Stages",
-        // title: <FormattedMessage
-        //   id="app.callType"
-        //   defaultMessage="Stages"
-        // />,
+       
         dataIndex: "callType",
         width: "7%",
         render: (name, item, i) => {
@@ -371,13 +368,11 @@ class SubTableClickCandidate extends Component {
                   {item.approveInd&&item.recruitOwner ? (
                     <>
                       <Tooltip //title={"Offer rolled out"}
-                        title={<FormattedMessage
-                          id="app.selected"
-                          defaultMessage="Selected"
-                        />}
+                        title="Selected"
+                    
 
                       >
-                        <CheckCircleTwoTone
+                        <CheckCircleOutlineIcon
                           type="check-circle"
                           theme="twoTone"
                           twoToneColor="#24D8A7"
@@ -395,7 +390,7 @@ class SubTableClickCandidate extends Component {
                     <>
                       <Tooltip title={"Dropped"}>
                         {" "}
-                        <StopTwoTone
+                        <DoDisturbIcon
                           type="stop"
                           theme="twoTone"
                           twoToneColor="red"         
@@ -406,13 +401,11 @@ class SubTableClickCandidate extends Component {
                   ) : (
                     <>
                       <Tooltip //title={"Offer"}
-                        title={<FormattedMessage
-                          id="app.select"
-                          defaultMessage="Select"
-                        />}
+                        title="Select"
+                       
 
                       >
-                        <CheckCircleTwoTone
+                        <CheckCircleOutlineIcon
                           type="check-circle"
                           theme="twoTone"
                           twoToneColor="#24D8A7"
@@ -453,14 +446,12 @@ class SubTableClickCandidate extends Component {
                       </Tooltip>
 
                       &nbsp; &nbsp;
-                      <Tooltip //title={"Drop"}
-                        title={<FormattedMessage
-                          id="app.drop"
-                          defaultMessage="Drop"
-                        />}
+                      <Tooltip 
+                      title={"Drop"}
+                      
 
                       >
-                        <StopTwoTone
+                        <DoDisturbIcon
                           type="stop"
                           theme="twoTone"
                           twoToneColor="red"
@@ -573,7 +564,7 @@ class SubTableClickCandidate extends Component {
   // },
 
   {
-    title: <FormattedMessage id="app.doucumentsAwaited" defaultMessage="Documents Awaited"  />,
+    title:"Documents Awaited" ,
     // dataIndex: "documentSetList",
     width: "17%",
     // ...getColumnSearchProps("documentSetList"),
@@ -584,19 +575,19 @@ class SubTableClickCandidate extends Component {
           : item.documentSetList.filter((document) => {
               return document !== null && document !== "";
             });
-
+  const data1=item.documentSetList;
       return (
-        <>
-          {item.documentSetList === [] ? (
+       
+          data1.length === 0 ? (
             "None"
           ) : (
             <span>
               <DocumentsLoadMore documentSetList={data} />
             </span>
-          )}
-        </>
+          )
       );
     },
+    
   },
 
 
@@ -623,7 +614,7 @@ class SubTableClickCandidate extends Component {
         return <>
         {item.onboardDate === null ? "None" :
           <span>
-            {moment(item.onboardDate).format("L")}
+            {dayjs(item.onboardDate).format("L")}
           </span>
         }
       </>
@@ -645,13 +636,11 @@ class SubTableClickCandidate extends Component {
           {/* {item.candidateName ? ( */}
             <>
               {close ? (
-                <Tooltip //title="Close Details"
-                  title={<FormattedMessage
-                    id="app.closedetails"
-                    defaultMessage="Close Details"
-                  />}
+                <Tooltip 
+                title="Close Details"
+                
                 >
-                  <EyeInvisibleTwoTone
+                  <VisibilityOffIcon
                     type="eye-invisible"
                     onClick={() => this.handleCloseIconClick()}
                     style={{
@@ -687,11 +676,9 @@ class SubTableClickCandidate extends Component {
                 >{user.pulseAccessInd ===true && (
                     <PulseIcon></PulseIcon>
                     )}          
-                  <Tooltip //title="Access Details"
-                    title={<FormattedMessage
-                      id="app.accessdetails"
-                      defaultMessage="Access Details"
-                    />}
+                  <Tooltip 
+                  title="Access Details"
+                
                   >                  
                   </Tooltip>                
                   </span>

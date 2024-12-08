@@ -3,10 +3,13 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Input} from "antd";
 import dayjs from "dayjs";
+import SearchIcon from '@mui/icons-material/Search';
 import { getActivityListByCandidateId } from "../../../../../CandidateAction";
 import Highlighter from "react-highlight-words";
-import { CheckCircleOutlined, FileDoneOutlined, PhoneOutlined, ScheduleOutlined, SearchOutlined } from "@ant-design/icons";
-
+import ChecklistIcon from '@mui/icons-material/Checklist';
+import CallIcon from '@mui/icons-material/Call';
+import TaskIcon from '@mui/icons-material/Task';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 const ButtonGroup = Button.Group;
 class LinkedCandidateActivity extends Component {
  
@@ -46,7 +49,7 @@ class LinkedCandidateActivity extends Component {
           <Button
             type="primary"
             onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-             icon={<SearchOutlined />}
+             icon={<SearchIcon />}
             //icon="search"
             size="small"
             style={{ width: 90 }}
@@ -77,7 +80,7 @@ class LinkedCandidateActivity extends Component {
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+      <SearchIcon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]
@@ -126,9 +129,9 @@ class LinkedCandidateActivity extends Component {
 
     return (
       <>
-           <div className=' flex justify-end sticky top-28 z-auto'>
-           <div class="rounded-lg m-5 p-2 w-[98%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between w-[97.5%] px-2 bg-transparent font-bold sticky top-0 z-10">
+           <div className=' flex  sticky  z-auto'>
+           <div class="rounded m-1 p-1 w-[99%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+        <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky font-poppins text-lm z-10">
         <div className=" md:w-[10.5rem]">Type</div>
        <div className=" md:w-[8.1rem]">Topic</div>
        <div className=" md:w-[13.1rem] ">Start</div>
@@ -143,67 +146,67 @@ class LinkedCandidateActivity extends Component {
 
                     return (
                       <div class="w-wk">
-                      <div class=" flex rounded-xl justify-between bg-white mt-[0.5rem]  h-[2.75rem] items-center p-3">
+                      <div class=" flex rounded justify-between bg-white mt-[0.5rem]   items-center py-ygap">
                         <div class="flex">
-                          <div className=" flex font-medium flex-row md:w-[20.12rem] max-sm:flex-row w-full max-sm:justify-between ">
+                          <div className=" flex  flex-row md:w-[20.12rem] max-sm:flex-row w-full max-sm:justify-between ">
                             {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                               Name
                             </div> */}
        
-                            <div class=" font-normal text-[0.82rem] font-poppins md:w-[10.1rem]">
-                            {item.activity === "Call" && <PhoneOutlined type="phone" />}
-            {item.activity === "Event" && <ScheduleOutlined type="schedule" />}
-            {item.activity === "Task" && <FileDoneOutlined type="file-done" />}
+                            <div class="  text-[0.82rem] font-poppins md:w-[10.1rem]">
+                            {item.activity === "Call" && <CallIcon type="phone" />}
+            {item.activity === "Event" && <ChecklistIcon type="schedule" />}
+            {item.activity === "Task" && <TaskIcon type="file-done" />}
                             </div>
                          
        
-                          <div className=" flex font-medium flex-col md:w-[2.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                          <div className=" flex   md:w-[2.25rem]  max-sm:flex-row w-full mt-1 max-sm:justify-between">
                             {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                               Country
                             </div> */}
        
-                            <div class=" font-normal text-[0.82rem]  font-poppins">
+                            <div class="  text-[0.82rem]  font-poppins">
        {item.type}
                             </div>
                           </div>
                       
                         </div>
                       
-                          <div className=" flex font-medium flex-row md:w-[9.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                          <div className=" flex  flex-row md:w-[9.21rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
                             {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                               Refurbish
                             </div> */}
        
-                            <div class=" font-normal text-[0.82rem]  font-poppins">
+                            <div class="  text-[0.82rem]  font-poppins">
                           {item.topic}
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-row md:w-[9.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                          <div className=" flex  flex-row md:w-[9.22rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
                             {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                               Inventory
                             </div> */}
        
-                            <div class=" font-normal text-[0.82rem]  font-poppins">
+                            <div class="  text-[0.82rem]  font-poppins">
                             <span>{` ${dayjs(item.startDate).format("DD/MM/YYYY")}`}</span>
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-row md:w-[11.12rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
+                          <div className=" flex  flex-row md:w-[11.12rem] max-sm:flex-row w-full mt-1 max-sm:justify-between">
                             {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                               Inventory
                             </div> */}
        
-                            <div class=" font-normal text-[0.82rem]  font-poppins">
+                            <div class="  text-[0.82rem]  font-poppins">
                             <span>{` ${dayjs(item.endDate).format("DD/MM/YYYY")}`}</span>
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-row md:w-[7.1rem] max-sm:flex-row w-full mt-1 max-sm:justify-between ">
+                          <div className=" flex  flex-row md:w-[7.1rem] max-sm:flex-row w-full mt-1 max-sm:justify-between ">
                             {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                               Billing
                             </div> */}
-                            <div class=" font-normal text-[0.82rem]  font-poppins">
+                            <div class="  text-[0.82rem]  font-poppins">
                             <span>
             {item.completionInd === true && (
-              <CheckCircleOutlined
+              <CheckCircleOutlineIcon
                 type="check-circle"
                 theme="twoTone"
                 twoToneColor="#52c41a"
@@ -214,22 +217,22 @@ class LinkedCandidateActivity extends Component {
           </span>
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-row md:w-[7.1rem] max-sm:flex-row w-full mt-1 max-sm:justify-between ">
+                          <div className=" flex  flex-row md:w-[7.1rem] max-sm:flex-row w-full mt-1 max-sm:justify-between ">
                             {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                               Billing
                             </div> */}
-                            <div class=" font-normal text-[0.82rem]  font-poppins">
+                            <div class="  text-[0.82rem]  font-poppins">
                             <span>
             
             {item.status} 
            </span>
                             </div>
                           </div>
-                          <div className=" flex font-medium flex-row md:w-[7.1rem] max-sm:flex-row w-full mt-1 max-sm:justify-between ">
+                          <div className=" flex  flex-row md:w-[7.1rem] max-sm:flex-row w-full mt-1 max-sm:justify-between ">
                             {/* <div class=" text-sm  font-semibold font-poppins max-sm:hidden">
                               Billing
                             </div> */}
-                            <div class=" font-normal text-[0.82rem]  font-poppins">
+                            <div class="  text-[0.82rem]  font-poppins">
                             <span>
             
             {item.priority} 
@@ -287,9 +290,9 @@ export default connect(
 //     render: (name, item, i) => {
 //       return (
 //         <>
-//           {item.activity === "Call" && <PhoneOutlined type="phone" />}
-//           {item.activity === "Event" && <ScheduleOutlined type="schedule" />}
-//           {item.activity === "Task" && <FileDoneOutlined type="file-done" />}
+//           {item.activity === "Call" && <CallIcon type="phone" />}
+//           {item.activity === "Event" && <ChecklistIcon type="schedule" />}
+//           {item.activity === "Task" && <TaskIcon type="file-done" />}
 //         </>
 //       );
 //     },
@@ -342,7 +345,7 @@ export default connect(
 //       return (
 //         <span>
 //           {item.completionInd === true && (
-//             <CheckCircleOutlined
+//             <CheckCircleOutlineIcon
 //               type="check-circle"
 //               theme="twoTone"
 //               twoToneColor="#52c41a"

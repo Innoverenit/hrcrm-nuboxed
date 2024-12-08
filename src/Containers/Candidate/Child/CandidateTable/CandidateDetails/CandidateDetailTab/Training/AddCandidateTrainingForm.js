@@ -10,7 +10,7 @@ import SearchSelect from "../../../../../../../Components/Forms/Formik/SearchSel
 import { DatePicker } from "../../../../../../../Components/Forms/Formik/DatePicker";
 import { addCandidateTrainingDetails } from "../../../../../CandidateAction";
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
+
 
 const documentSchema = Yup.object().shape({
   // documentId: Yup.string().required("Input needed !"),
@@ -70,12 +70,8 @@ class AddCandidateTrainingForm extends Component {
                         <FastField
                           isRequired
                           name="courseName"                          
-                          label={
-                            <FormattedMessage
-                              id="app.courseName"
-                              defaultMessage="Course Name"
-                            />
-                          }
+                          label="Course Name"
+                          
                           type="text"
                           width={"100%"}
                           isColumn
@@ -90,12 +86,8 @@ class AddCandidateTrainingForm extends Component {
                         <FastField
                           type="Organization"
                           name="organization"
-                          label={
-                            <FormattedMessage
-                              id="app.organization"
-                              defaultMessage="Organization/Institution"
-                            />
-                          }
+                          label="Organization/Institution"
+                           
                           className="field"
                           isColumn
                           width={"100%"}
@@ -107,12 +99,8 @@ class AddCandidateTrainingForm extends Component {
                 >                       
                         <FastField
                           name="grade"
-                          label={
-                            <FormattedMessage
-                              id="app.grade"
-                              defaultMessage="Grade"
-                            />
-                          }
+                          label="Grade"
+                          
                           isColumn
                           selectType="text"
                           width={"30%"}
@@ -127,12 +115,8 @@ class AddCandidateTrainingForm extends Component {
                 >
                         <Field
                           name="startDate"                        
-                          label={
-                            <FormattedMessage
-                              id="app.start"
-                              defaultMessage="Start"
-                            />
-                          }
+                          label="Start"
+                            
                           isRequired
                           component={DatePicker}
                           isColumn
@@ -146,12 +130,8 @@ class AddCandidateTrainingForm extends Component {
                 >
                         <Field
                           name="endDate"                          
-                          label={
-                            <FormattedMessage
-                              id="app.end"
-                              defaultMessage="End"
-                            />
-                          }
+                          label="End"
+                           
                           isRequired
                           isColumn
                           width={"100%"}
@@ -191,12 +171,8 @@ class AddCandidateTrainingForm extends Component {
                 >
                       <Field
                         name="documentTitle"                        
-                        label={
-                          <FormattedMessage
-                            id="app.documentTitle"
-                            defaultMessage="Name of Document"
-                          />
-                        }
+                        label="Name of Document"
+                         
                         width={"100%"}
                         isColumn
                         component={InputComponent}
@@ -208,12 +184,8 @@ class AddCandidateTrainingForm extends Component {
                         name="documentTypeId"
                         isColumnWithoutNoCreate
                         selectType="documentTypeName"                       
-                        label={
-                          <FormattedMessage
-                            id="app.type"
-                            defaultMessage="Type"
-                          />
-                        }                        
+                        label="Type"
+                                                
                         component={SearchSelect}
                         isColumn
                         value={values.documentId}                        
@@ -230,7 +202,7 @@ class AddCandidateTrainingForm extends Component {
                     type="primary"
                     Loading={addingCandidateTrainingDetails}
                   >
-                    <FormattedMessage id="app.submit" defaultMessage="Submit" />
+                   Submit
                   </Button>
                 </div>
               </Form>

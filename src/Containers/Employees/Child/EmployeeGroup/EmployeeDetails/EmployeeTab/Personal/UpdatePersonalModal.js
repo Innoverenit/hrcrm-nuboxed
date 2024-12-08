@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer } from "../../../../../../../Components/UI/Antd";
 const UpdatePersonalForm = lazy(() => import("../Personal/UpdatePersonalForm"));
 
@@ -15,12 +15,8 @@ class UpdatePersonalModal extends Component {
     return (
       <>
         <StyledDrawer
-          //title="Emergency Contact "
-          title={<FormattedMessage
-            id="app.emergencycontact"
-            defaultMessage="Emergency Contact"
-          />}
-          width="35%"
+          title="Emergency Contact "
+          h="35%"
           visible={updatePersonalModal}
           onClose={() => handleUpdatePersonalModal(false)}
         >

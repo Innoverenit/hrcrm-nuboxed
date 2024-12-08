@@ -1,5 +1,5 @@
 import React, { Suspense,useState } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
  import { BundleLoader } from "../../../../../../Components/Placeholder";
@@ -26,11 +26,8 @@ const AddRecruiterModal = (props) => {
   return (
     <>
       <StyledDrawer
-        // title="Partner"
-        title={<FormattedMessage
-          id="app.candidate"
-          defaultMessage="Candidate"
-        />}
+        title="Candidate"
+      
         width="95%"
         visible={props.addRecruiterModal}
         maskClosable={false}

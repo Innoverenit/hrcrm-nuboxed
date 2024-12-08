@@ -9,8 +9,8 @@ import { BundleLoader } from '../../../Components/Placeholder';
 
 function LeavesGanttChart(props){
 
-    // const startDate = moment().startOf("month"); 
-    // const endDate = moment();
+    // const startDate = dayjs().startOf("month"); 
+    // const endDate = dayjs();
     // var today = new Date(),
     // date =
     //   today.getFullYear() +
@@ -72,8 +72,8 @@ props.leavesGantt.forEach((item) => {
     leaveList.forEach((leave) => {
       const leaveId = leave.leaveId;
       const cover=leave.coverDetails;
-      // const startDate = moment(leave.startDate).toDate();
-      // const endDate = moment(leave.endDate).toDate();
+      // const startDate = dayjs(leave.startDate).toDate();
+      // const endDate = dayjs(leave.endDate).toDate();
 
       const task = {
         id: leaveId,

@@ -115,6 +115,8 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Info Updated Succefully',
+          showConfirmButton: false,
+          timer: 1500
         })
         cb();
       })
@@ -147,7 +149,7 @@ export const setLocationViewType = (viewType) => (dispatch) => {
           icon: 'success',
           title: 'Deleted Successfully',
           showConfirmButton: false,
-          timer: 4000
+          timer: 1500
         })
       })
       .catch((err) => {
@@ -298,6 +300,8 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Cell Deleted Succefully!',
+          showConfirmButton: false,
+          timer: 1500
         })
         //dispatch(getProducts(0))
         console.log(res);
@@ -475,6 +479,8 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Status has been changed successfully!',
+          showConfirmButton: false,
+           timer: 1500
         })
       })
       .catch((err) => {
@@ -728,6 +734,8 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Reinstated Successfully',
+          showConfirmButton: false,
+           timer: 1500
         })
         // message.success("Reinstated Successfully");
       })
@@ -787,6 +795,8 @@ export const setLocationViewType = (viewType) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Reinstated Successfully',
+          showConfirmButton: false,
+           timer: 1500
         })
         // message.success("Reinstated Successfully");
       })
@@ -972,4 +982,36 @@ export const setLocationViewType = (viewType) => (dispatch) => {
           payload: err,
         });
       });
+  };
+
+  export const searchLocationName = (name) => (dispatch) => {
+    dispatch({
+      type: types.GET_LOCATION_SEARCH_REQUEST,
+    });
+    axios
+      .get(`${base_url}/locationDetails/search/${name}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+      
+        dispatch({
+          type: types.GET_LOCATION_SEARCH_SUCCESS,
+          payload: res.data,
+        });
+      }
+      )
+      .catch((err) => {
+        dispatch({
+          type: types.GET_LOCATION_SEARCH_FAILURE,
+          payload: err,
+        });
+      });
+  }; 
+
+  export const clearReducerOfLocationSearch = () => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_CLAER_REDUCER_DATA_LOCATION,
+    });
   };

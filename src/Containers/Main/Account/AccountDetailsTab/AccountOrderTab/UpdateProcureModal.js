@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
-import UpdateProcureStepper from "./UpdateProcureStepper";
-// import UpdateOrderStepper from "./UpdateOrderStepper";
+import { BundleLoader } from "../../../../../Components/Placeholder";
 
+const UpdateProcureStepper = lazy(() => import('./UpdateProcureStepper'));
 
 class UpdateProcureModal extends Component {
     render() {
@@ -21,10 +21,13 @@ class UpdateProcureModal extends Component {
                     onClose={() => handleUpdateProcureDetailModal(false)}
                     footer={null}
                 >
+                    <Suspense fallback={<BundleLoader />}>
                     <UpdateProcureStepper
                         distributorId={this.props.distributorId}
-                        particularRowData={this.props.particularRowData} />
-
+                        particularRowData={this.props.particularRowData}
+                        selectedLanguage={this.props.selectedLanguage}
+                        translateText={this.props.translateText}  />
+                    </Suspense>
                 </StyledDrawer>
             </div>
         );

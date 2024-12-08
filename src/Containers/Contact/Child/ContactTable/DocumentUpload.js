@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button, Switch, Tooltip,Select } from "antd";
 import { Formik, Form, Field } from "formik";
@@ -15,9 +15,11 @@ import {
   getselectdrop,
 } from "../../../Customer/CustomerAction";
 import DragableUpload from "../../../../Components/Forms/Formik/DragableUpload";
-import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
+import InputIcon from '@mui/icons-material/Input';
+import VerticalAlignTopIcon from '@mui/icons-material/VerticalAlignTop';
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import HospitalDocument from "./HospitalDocument";
+import {base_url} from "../../../../Config/Auth";
 
 const { Option } = Select;
 const ButtonGroup = Button.Group;
@@ -41,7 +43,7 @@ function DocumentUpload (props){
   const fetchInclude = async () => {
     setIsLoadingInclude(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/employee/active/user/drop-down/${props.orgId}`;
+      const apiEndpoint = `${base_url}/employee/active/user/drop-down/${props.orgId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -165,7 +167,7 @@ console.log(props.currentContactId.contactId)
                       name="documentTypeId"
                       selectType="documentTypeName"
                       isColumnWithoutNoCreate
-                      label={<FormattedMessage id="app.type" defaultMessage="Type" />}
+                      label="Type" 
                       component={SearchSelect}
                       isColumn
                       value={values.documentId}
@@ -186,7 +188,7 @@ console.log(props.currentContactId.contactId)
                 <div class=" h-full w-2/5">
                   <Field
                     name="documentTitle"
-                    label={<FormattedMessage id="app.name" defaultMessage="Name" />}
+                    label="Name"
                     width={"100%"}
                     isColumn
                     component={InputComponent}
@@ -194,7 +196,7 @@ console.log(props.currentContactId.contactId)
                   <div class=" mt-3">
                     <Field
                       name="documentDescription"
-                      label={<FormattedMessage id="app.description" defaultMessage="Description" />}
+                      label="Description"
                       isRequired
                       isColumn
                       width={"100%"}
@@ -202,7 +204,7 @@ console.log(props.currentContactId.contactId)
                     />
                   </div>
                   {/* <div class="mt-1 flex flex-col" >
-<label className=" font-bold text-xs" >Include</label>
+<div className=" font-bold text-xs" >Include</div>
                    <Select
           showSearch
           style={{ width: "-webkit-fill-available" }}
@@ -224,7 +226,7 @@ console.log(props.currentContactId.contactId)
        <div className="mt-1 flex flex-col">
       
       <div className="flex items-center">
-      <label className="font-bold text-xs">Share</label>
+      <div className="font-bold text-xs">Share</div>
         <Switch
           checked={showInclude}
           onChange={handleToggleInclude}
@@ -235,7 +237,7 @@ console.log(props.currentContactId.contactId)
       </div>
       {showInclude && ( // Conditionally render based on showInclude state
       <div className="mt-1 flex flex-col">
-      <label className="font-bold text-xs">Include</label>
+      <div className="font-bold text-xs">Include</div>
         <Select
           showSearch
           style={{ width: "-webkit-fill-available" }}
@@ -258,7 +260,7 @@ console.log(props.currentContactId.contactId)
     </div>
                   <div class=" mt-3">
                     {!documentshare && (
-                      <p>Will be shared with customer Owner</p>
+                      <p>Will be  with customer Owner</p>
                     )}
                   </div>
                   <div class=" mt-3">
@@ -271,7 +273,7 @@ console.log(props.currentContactId.contactId)
                                 <Field
                                   inlineLabel
                                   name="department"
-                                  label={<FormattedMessage id="app.department" defaultMessage="Function" />}
+                                  label="Function"
                                   isRequired
                                   isColumn
                                   component={InputComponent}
@@ -280,7 +282,7 @@ console.log(props.currentContactId.contactId)
                               <div>
                                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                                   {" "}
-                                  <FormattedMessage id="app.level" defaultMessage="Level" />
+                                  Level
                                 </div>
                                 <div class=" flex justify-between">
                                   <ButtonGroup>
@@ -295,7 +297,7 @@ console.log(props.currentContactId.contactId)
                                           color: selectedOwnerAbove === "Specific" ? "white" : "rgba(0, 0, 0, 0.65)",
                                         }}
                                       >
-                                        <RightSquareOutlined type="right-square" />
+                                        <InputIcon type="right-square" />
                                       </Button>
                                     </Tooltip>
                                     <Tooltip title="Above">
@@ -309,7 +311,7 @@ console.log(props.currentContactId.contactId)
                                           color: selectedOwnerAbove === "Above" ? "white" : "rgba(0, 0, 0, 0.65)",
                                         }}
                                       >
-                                        <ToTopOutlined type="ToTopOutlined" />
+                                        <VerticalAlignTopIcon type="VerticalAlignTopIcon" />
                                       </Button>
                                     </Tooltip>{" "}
                                   </ButtonGroup>
@@ -335,7 +337,7 @@ console.log(props.currentContactId.contactId)
               </div>
               <div class=" flex justify-end mt-3">
                 <Button htmlType="submit" type="primary" loading={addingDocumentByCustomerId}>
-                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
+                Submit
                 </Button>
               </div>
             </Form>

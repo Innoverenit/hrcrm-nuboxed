@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledModal } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 // import TaskForm from "./TaskForm";
@@ -10,11 +10,7 @@ const AddLeavesModal = (props) => {
     return (
         <>
             <StyledModal
-                //title="Schedule Task"
-                label={<FormattedMessage
-                    id="app.scheduletask"
-                    defaultMessage="Schedule Task"
-                />}
+                title="Schedule Task"
                 width="55vw"
                 visible={addLeavesModal}
                 maskClosable={false}

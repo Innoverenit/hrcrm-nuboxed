@@ -1,5 +1,5 @@
 import React, { lazy, Suspense,useState } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import ActionSteps from "../Dashboard/ActionSteps"
@@ -13,11 +13,7 @@ const AddActionDrawerModal = (props) => {
     <>
       <StyledDrawer
         title="Action Steps"
-        // title={this.state.message}
-        // title={<FormattedMessage
-        //   id="app.candidate"
-        //   defaultMessage="Candidate"
-        // />}
+      
         width="45%"
         visible={props.addDrawerActionModal}
         maskClosable={false}

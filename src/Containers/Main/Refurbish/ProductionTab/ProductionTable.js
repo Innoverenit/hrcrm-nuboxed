@@ -104,7 +104,7 @@ const ProductionTable = (props) => {
     return (
         <>
             <div className=' flex justify-end sticky top-28 z-auto'>
-                <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
+                <OnlyWrapCard style={{ backgroundColor: "white" }}>
                     <div className=" flex justify-between w-[75%] px-2 bg-transparent font-bold sticky top-0 z-10">
                         <div className=""></div>
                         <div className=" md:w-[6.1rem]">Name</div>
@@ -260,7 +260,7 @@ const ProductionTable = (props) => {
 <div className=" flex font-medium flex-col md:w-[1rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <h4 class=" text-xs  font-poppins">
 <Tooltip title="Edit">
-                                        <EditOutlined
+                                        <VisibilityIcon
                                     style={{ cursor: "pointer", fontSize: "12px" }}
                                             onClick={() => {
                                                 props.setEditProducts(item);

@@ -3,11 +3,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Switch,Button,Select  } from "antd";
 import { getSectors } from "../../../../../Containers/Settings/Sectors/SectorsAction";
-import { FormattedMessage } from "react-intl";
+
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
-import * as Yup from "yup";
 import { getAllCustomerEmployeelist } from "../../../../Employees/EmployeeAction";
-import { HeaderLabel,  } from "../../../../../Components/UI/Elements";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../../../Components/Forms/Formik/AddressFieldArray";
 import {
@@ -283,10 +281,7 @@ console.log(isLastNameVisible)
                     isRequired
                     name="name"
                     type="text"
-                    //label="Name"
-                    label={
-                      <FormattedMessage id="app.name" defaultMessage="Name" />
-                    }
+                    label="Name"
                     isColumn
                     width={"100%"}
                     setClearbitData={props.setClearbitData}
@@ -306,8 +301,7 @@ console.log(isLastNameVisible)
                   <Field
                     name="url"
                     type="text"
-                    // label="URL"
-                    label={<FormattedMessage id="app." defaultMessage="URL" />}
+                    label="URL"
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -317,18 +311,7 @@ console.log(isLastNameVisible)
 
 
               
-                  {/* <Field
-                    name="email"
-                    type="text"
-                    // label="Email"
-                    label={
-                      <FormattedMessage id="app.email" defaultMessage="Email" />
-                    }
-                    isColumn
-                    width={"100%"}
-                    component={InputComponent}
-                    inlineLabel
-                  />                   */}
+                        
                    <div class=" flex justify-between mt-4">
                     <div class=" w-3/12 max-sm:w-[30%]">
                          {/* {!isLastNameVisible&&( */}
@@ -337,12 +320,8 @@ console.log(isLastNameVisible)
                         selectType="dialCode"
                         isColumnWithoutNoCreate
                         // label="Phone #"
-                        label={
-                          <FormattedMessage
-                            id="app.phone"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        label="Dial Code"
+                          
                         isColumn
                         component={SearchSelect}
                         value={values.countryDialCode1}
@@ -385,12 +364,8 @@ console.log(isLastNameVisible)
                   <Field             
                   placeholder="Sector"        
                             name="sectorId"
-                            label={
-                              <FormattedMessage
-                                id="app.sector"
-                                defaultMessage="Sector"
-                              />
-                            }
+                            label="Sector"
+                             
                             isColumn
                             component={SelectComponent}
                             value={values.sectorId}
@@ -412,12 +387,8 @@ console.log(isLastNameVisible)
                     <FastField
                             name="source"
                             type="text"
-                            label={
-                              <FormattedMessage
-                                id="app.source"
-                                defaultMessage="Source"
-                              />
-                            }
+                            label="Source"
+                              
                             isColumnWithoutNoCreate
                             selectType="sourceName"
                             component={SearchSelect}
@@ -441,12 +412,8 @@ console.log(isLastNameVisible)
     <div class="w-24">
       <Field
         name="potentialValue"
-        label={
-          <FormattedMessage
-            id="app.potential"
-            defaultMessage="Potential"
-          />
-        }
+        label="Potential"
+        
         isColumn
         width={"100%"}
         component={InputComponent}
@@ -460,7 +427,7 @@ console.log(isLastNameVisible)
           />
     </div>
     <div class="w-16 ml-2 max-sm:w-wk">
-      <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Currency</label>
+      <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Currency</div>
       <Select
         showSearch
         style={{ width: 100 }}
@@ -487,15 +454,11 @@ console.log(isLastNameVisible)
   </div>
 
 
-  <div class="w-w47.5">
+  <div class="w-w47.5 ">
     <Field
       name="type"
-      label={
-        <FormattedMessage
-          id="app.type"
-          defaultMessage="Type"
-        />
-      }
+      label="Type"
+       
       isColumn
       width={"100%"}
       component={SelectComponent}
@@ -527,11 +490,8 @@ console.log(isLastNameVisible)
                   {/* {!isNotesVisible&&( */}
                   <Field
                     name="notes"
-                    // label="Notes"
-                    label={
-                      <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                    }
-                    width={"100%"}
+                    label="Notes"
+                    h={"100%"}
                     isColumn
                     component={TextareaComponent}
                   />
@@ -552,7 +512,7 @@ console.log(isLastNameVisible)
                     <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            <Listbox.Label className="block font-semibold text-[0.75rem]  leading-lh1.2  "
+            <Listbox.Label className=" font-bold text-xs  leading-lh1.2  "
             // style={{boxShadow:"0em 0.25em 0.625em -0.25em" }}
             >
               Assigned
@@ -628,30 +588,6 @@ console.log(isLastNameVisible)
             unCheckedChildren="Hidden"
           />
 
-      
-                    {/* <Field
-                    name="assignedTo"
-                    selectType="employee"
-                    isColumnWithoutNoCreate
-                    // label="Assigned"
-                    label={
-                      <FormattedMessage
-                        id="app.assignedto"
-                        defaultMessage="Assigned"
-                      />
-                    }
-                    // component={SearchSelect}
-                    isColumn
-                    // value={values.employeeId}
-                    // defaultValue={{
-                    //   label: `${firstName || ""} ${middleName ||
-                    //     ""} ${lastName || ""}`,
-                    //   value: employeeId,
-                    // }}
-                    component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
-                    inlineLabel
-                  /> */}
                   </div>
                     </div>
                    
@@ -661,13 +597,7 @@ console.log(isLastNameVisible)
                       <Field
                         name="vatNo"
                         type="text"
-                        // label="VAT Number"
-                        label={
-                          <FormattedMessage
-                            id="app.vatNumber"
-                            defaultMessage="VAT Number"
-                          />
-                        }
+                        label="VAT Number"
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -689,12 +619,7 @@ console.log(isLastNameVisible)
                         name="businessRegistration"
                         type="text"
                         // label="URL"
-                        label={
-                          <FormattedMessage
-                            id="app.businessregistration"
-                            defaultMessage=" Business Registration#"
-                          />
-                        }
+                        label="Business Registration#"
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -713,7 +638,7 @@ console.log(isLastNameVisible)
                   
                   <div class="mt-8" style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
-                  <HeaderLabel style={{color:"white"}} >Corporate Address</HeaderLabel>
+                      <div class="font-semibold text-xs text-white flex"> Corporate Address</div>
                   </div>
                     </div>
            
@@ -735,29 +660,7 @@ console.log(isLastNameVisible)
           checkedChildren="Visible"
             unCheckedChildren="Hidden"
           />
-                   {/* <div class=" flex justify-between">
-                   <div class=" w-1/2 max-sm:w-wk">
-                     <Field
-                       name="country"
-                       isColumnWithoutNoCreate
-                       label={
-                         <FormattedMessage
-                           id="app.country"
-                           defaultMessage="Country"
-                         />
-                       }
-                       component={SearchSelect}
-                       defaultValue={{
-                         value: props.user.countryName,
-                       }}
-                       value={values.countryName}
-                       selectType="country"
-                       inlineLabel
-                       isColumn
-                       width="100%"
-                     />
-                   </div>
-                 </div> */}
+                  
                
                 </div>
               </div>

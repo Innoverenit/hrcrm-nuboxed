@@ -8,8 +8,7 @@ import {
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { connect } from "react-redux";
 import { Avatar, Input, Tooltip,Badge } from "antd";
-import { FormattedMessage } from "react-intl";
-import { AudioOutlined } from "@ant-design/icons"
+import MicIcon from '@mui/icons-material/Mic';
 
 const Option = StyledSelect.Option;
 
@@ -82,7 +81,7 @@ const {
             }, minRecordingTime);
           };
           const suffix = (
-            <AudioOutlined
+            <MicIcon
             onClick={handleStartListening}
               style={{
                 fontSize: 16,
@@ -121,7 +120,7 @@ const {
             <div class="flex items-center">
 
                 <Tooltip
-                    title={<FormattedMessage id="app.all" defaultMessage="ALL" />}>
+                    title="ALL">
 {/* <Badge
           size="small"
           count={(props.viewType === "table" && props.countSupplier.supplierCount) || 0}
@@ -134,7 +133,7 @@ const {
                         }}
                     >
 
-                        <Avatar style={{ background: viewType === "table" ? "#f279ab" : "#4bc076" }}>
+                        <Avatar style={{ background: viewType === "table" ? "#f279ab" : "#28a355" }}>
                         {/*   <TocIcon className="text-white" />*/}
                         <div className="text-white">ALL</div>
                             </Avatar>

@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const CandidateBillableStepper = lazy(()=>import("./CandidateBillableStepper"));
@@ -11,10 +11,8 @@ const AddCandidateBillableModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.billable"
-          defaultMessage="Billable"
-        />}
+        title="Billable"
+       
         width="60%"
         style={{marginTop:"3rem"}}
         visible={props.billableCandidateModal}

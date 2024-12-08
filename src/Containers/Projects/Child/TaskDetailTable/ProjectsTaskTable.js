@@ -1,23 +1,16 @@
-import React, { useEffect, useState,useMemo,lazy } from 'react'
+import React, { useEffect, useState} from 'react'
 import { StyledTable } from '../../../../Components/UI/Antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import { Tooltip,Button,Input,Avatar } from "antd";
 import SearchIcon from '@mui/icons-material/Search';
 import {getProjectsTaskListById} from "../../ProjectsAction"
 import Highlighter from 'react-highlight-words';
-import jsPDF from "jspdf";
 import "jspdf-autotable";
-import {
-  CheckCircleOutlined,
-  CloseCircleOutlined,
- SearchOutlined, 
- MailOutlined 
-} from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 import { MultiAvatar } from "../../../../Components/UI/Elements";
-import { FormattedMessage } from 'react-intl';
 const ButtonGroup = Button.Group;
 
 function ProjectsTaskTable (props)  {
@@ -67,7 +60,7 @@ function ProjectsTaskTable (props)  {
                 <Button
                   type="primary"
                   onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                  // icon={<SearchOutlined />}
+                  // icon={<SearchIcon />}
                  // icon="search"
                   size="small"
                   style={{ width: 90 }}
@@ -96,7 +89,7 @@ function ProjectsTaskTable (props)  {
             </div>
           ),
           filterIcon: (filtered) => (
-            // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+            // <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
             <SearchIcon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
           ),
           onFilter: (value, record) =>
@@ -192,12 +185,11 @@ function ProjectsTaskTable (props)  {
           width:"8%",
           render: (text, item) => {
             
-            return <span>{` ${moment(item.assignedOn).format("ll")}`}</span>;
+            return <span>{` ${dayjs(item.assignedOn).format("ll")}`}</span>;
           },
         },
         {
           title: "Assigned",
-          //title: <FormattedMessage id="app.assignedon" defaultMessage="Assigned on" />,
           dataIndex: "assignedToName",
           width:"8%",
           render: (text, item) => {
@@ -216,7 +208,6 @@ function ProjectsTaskTable (props)  {
         },
         {
           title: "Team",
-          //title: <FormattedMessage id="app.talent" defaultMessage="Talent" />,
           dataIndex: "candidateName",
           width:"10%",
           render: (text, item) => {
@@ -251,11 +242,10 @@ function ProjectsTaskTable (props)  {
 
         {
           title: "Start",
-          //title: <FormattedMessage id="app.start" defaultMessage="Start" />,
           dataIndex: "startDate",
           width:"8%",
          render: (text, item) => {
-           const date= ` ${moment(item.startDate).format("ll")}`
+           const date= ` ${dayjs(item.startDate).format("ll")}`
             return <span>
   {date}
               </span>;
@@ -264,11 +254,10 @@ function ProjectsTaskTable (props)  {
         },
         {
           title: "End",
-          //title: <FormattedMessage id="app.end" defaultMessage="End" />,
           dataIndex: "endDate",
           width:"8%",
           render: (text, item) => {
-             const data2= ` ${moment(item.endDate).format("ll")}`
+             const data2= ` ${dayjs(item.endDate).format("ll")}`
             return <span>
               {data2}
 
@@ -329,8 +318,7 @@ function ProjectsTaskTable (props)  {
                         // onClick={() => approveTaskByTaskId(item.taskId)}
                         style={{ backgroundColor: "teal", color: "white" }}
                       >
-                        {/* Approve */}
-                        <FormattedMessage id="app.approve" defaultMessage="Approve" />
+                        Approve
                       </Button>
                       <Button
                         style={{
@@ -339,15 +327,14 @@ function ProjectsTaskTable (props)  {
                         }}
                         // onClick={() => rejectTaskByTaskId(item.taskId)}
                       >
-                        {/* Reject */}
-                        <FormattedMessage id="app.reject" defaultMessage="Reject" />
+                        Reject
                       </Button>
                     </div>
                   </>
                 ) : (
                     <>
                       {item.approvedInd === "Approved" ? (
-                        <CheckCircleOutlined
+                        <CheckCircleOutlineIcon
                           type="check-circle"
                           theme="twoTone"
                           twoToneColor="#52c41a"
@@ -355,7 +342,7 @@ function ProjectsTaskTable (props)  {
                           style={{ fontSize: "1.5625em" }}
                         />
                       ) : item.approvedInd === "Rejected" ? (
-                        <CloseCircleOutlined
+                        <HighlightOffIcon
                           type="close-circle"
                           theme="twoTone"
                           twoToneColor="red"

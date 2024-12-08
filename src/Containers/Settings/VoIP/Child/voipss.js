@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Divider } from "antd";
-import { MainWrapper, FlexContainer } from "../../../Components/UI/Layout";
-import { TextInput, SubTitle, Spacer } from "../../../Components/UI/Elements";
+import { MainWrapper } from "../../../Components/UI/Layout";
+import { TextInput, SubTitle } from "../../../Components/UI/Elements";
 import {
   addTwilioCredentials,
   getTwilioCredentials,
@@ -33,13 +33,13 @@ class Voip extends Component {
     } = this.props;
     console.log(twilioCredential);
     return (
-      <FlexContainer justifyContent="center">
+      <div class=" flex flex-row flex-wrap items-start self-start justify-center grow shrink h-auto mr-auto ">
         <MainWrapper style={{ width: "auto", padding: "1rem" }}>
           <h2>VoIP</h2>
           <Button type="primary">Add Twilio Account</Button>
           <br />
-          <Spacer />
-          <FlexContainer flexDirection="column">
+          <mt-3 />
+          <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
             <TextInput
               name="sid"
               placeholder="Account SID"
@@ -47,7 +47,7 @@ class Voip extends Component {
               onChange={this.onChange}
               value={sid}
             />
-            <Spacer />
+            <mt-3 />
             <TextInput
               name="authorizationToken"
               placeholder="Auth token"
@@ -55,7 +55,7 @@ class Voip extends Component {
               onChange={this.onChange}
               value={authorizationToken}
             />
-            <Spacer />
+            <mt-3 />
             <TextInput
               name="phoneNo"
               placeholder="Twilio number"
@@ -63,7 +63,7 @@ class Voip extends Component {
               onChange={this.onChange}
               value={phoneNo}
             />
-            <Spacer />
+            <mt-3 />
             <Button
               type="primary"
               onClick={this.handleSubmit}
@@ -71,7 +71,7 @@ class Voip extends Component {
             >
               Submit
             </Button>
-          </FlexContainer>
+          </div>
           <Divider />
           {fetchingTwilioCredential ? (
             <p>fetching ... </p>
@@ -90,7 +90,7 @@ class Voip extends Component {
               </>
             )}
         </MainWrapper>
-      </FlexContainer>
+      </div>
     );
   }
 }

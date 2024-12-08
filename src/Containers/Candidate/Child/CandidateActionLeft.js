@@ -9,9 +9,9 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import LanguageIcon from '@mui/icons-material/Language';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import { FormattedMessage } from "react-intl";
+
 import PermIdentityIcon from '@mui/icons-material/PermIdentity';
-import { Input, Menu, Button, Tooltip, Radio,  Badge } from "antd";
+import { Input, Menu, Button, Tooltip, Radio,  Badge, Avatar } from "antd";
 import {
   inputCandidateDataSearch,
   inputCandidateSkillDataSearch,
@@ -24,12 +24,15 @@ import {
 } from "../CandidateAction";
 import GroupsIcon from '@mui/icons-material/Groups';
 import { StyledSelect } from "../../../Components/UI/Antd";
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 const Option = StyledSelect.Option;
 const item = [{ type: "Hot" }, { type: "Warm" }, { type: "Cold" }];
 const { Search } = Input;
 
 const CandidateActionLeft = (props) => {
+  
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [currentData, setCurrentData] = useState("");
   const [pageNo, setPage] = useState(0);
   const handleChangeCan = (e) => {
@@ -54,9 +57,38 @@ const CandidateActionLeft = (props) => {
     
   }
 
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+    '', // 0Tile
+'', // 1Billable Candidate
+'228', // 2 All
+'', // 3 White
+'', // 4Blue
+'1003', // 5Map View
+'', // 6 Dollar
+'', // 7 Search by Name, Skills & Identity ID
 
+
+ 
+
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   const suffix = (
-    <AudioOutlined
+    <MicIcon
       onClick={SpeechRecognition.startListening}
 
       // onClick={() => {
@@ -110,7 +142,9 @@ const CandidateActionLeft = (props) => {
   console.log(props.currentData, props.text)
   console.log(props.recordData.candidateDetails || 0)
 
-  const { user } = props;
+  const { 
+    activeButton,
+    user } = props;
 
   const menu = (
     <Menu>
@@ -152,19 +186,25 @@ const CandidateActionLeft = (props) => {
           type={props.currentSkillData ? "primary" : "default"}
         // onClick={props.handleSkillClear}
         >
-          <FormattedMessage id="app.clear" defaultMessage="Clear" />
+        Clear
         </Button>
       )}
-     <Tooltip title={<FormattedMessage id="app.tile" defaultMessage="Tile" />}>
+     <Tooltip title={translatedMenuItems[0]}>
       <Badge size="small" count={ props.viewType === "card" &&props.recordData.candidateDetails || 0} overflowCount={5000}>
-     <span class=" mr-2 cursor-pointer text-4"
+     <span class="mr-1 cursor-pointer "
        onClick={() => props.setCandidateViewType("card")}
        style={{
-         color: props.viewType === "card" && "#1890ff",
+         color: props.viewType === "card" && "tomato",
+        //  "#1890ff",
        }}
      >
-      <TableViewIcon 
-       />
+      <Avatar style={{ background:props.viewType === "card" ? "#f279ab" : "#28a355" ,
+               boxShadow: props.viewType === "card" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)"}}>
+                    <TableViewIcon className="!text-icon text-white "/>
+                    </Avatar>
+      
+       
        </span>
        </Badge>
  </Tooltip>  
@@ -173,87 +213,97 @@ const CandidateActionLeft = (props) => {
 
 
       <Tooltip
-        title={<FormattedMessage id="app.billableCandidate" defaultMessage="Billable Candidate" />}
+        title={translatedMenuItems[1]}
       >
        
-       <span class=" mr-2 cursor-pointer text-4"
+       <span class="mr-1 cursor-pointer "
             onClick={() => props.setCandidateViewType("billable")}
             style={{
               color: props.viewType === "billable" && "#1890ff",
             }}
           >
-            <ReceiptIcon style={{fontSize:"1.4rem"}}  />
+            <Avatar style={{ background:props.viewType === "billable" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "billable" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "billable" ? "scale(1.05)" : "scale(1)" }}>
+            <ReceiptIcon className="!text-icon text-white "/>
+                    </Avatar>
+            
           </span>
        
       </Tooltip>
 
       <Tooltip
-        title={<FormattedMessage id="app.all" defaultMessage="All" />}
+        title={translatedMenuItems[2]}
       >
         <Badge size="small" count={ props.viewType === "table" &&props.recordData.candidateDetails || 0} overflowCount={5000}>
-        <span class=" mr-2 cursor-pointer text-4"
+        <span class="mr-1 cursor-pointer "
             onClick={() => props.setCandidateViewType("table")}
             style={{
               color: props.viewType === "table" && "#1890ff",
 
             }}
           >
-            <GroupsIcon 
-            // icon={solid('users')}
-             />
+
+<Avatar style={{ background:props.viewType === "table" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "table" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "table" ? "scale(1.05)" : "scale(1)" }}>
+             <GroupsIcon className="!text-icon text-white"/>
+            </Avatar>
+           
+            
           </span>
         </Badge>
       </Tooltip>
 
 
       <Tooltip
-        title={<FormattedMessage id="app.white" defaultMessage="White" />}
-      >
+        title={translatedMenuItems[3]}
+        >
         <Badge size="small" count={ props.viewType === "list" &&props.recordCandidateCategoryData.candidateDetails || 0} overflowCount={5000}>
-        <span class=" mr-2 cursor-pointer text-4"
+        <span class="mr-1 cursor-pointer "
             onClick={() => props.setCandidateViewType("list")}
             style={{
               color: props.viewType === "list" && "#1890ff",
             }}
           >
 
-            <PermIdentityIcon />
+<Avatar style={{ background:props.viewType === "list" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "list" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "list" ? "scale(1.05)" : "scale(1)" }}>
+<PermIdentityIcon className="!text-icon text-white" />
+            </Avatar>
+           
+           
           </span>
         </Badge>
       </Tooltip>
 
       <Tooltip
-        title={<FormattedMessage id="app.blue" defaultMessage="Blue" />}
+        title={translatedMenuItems[4]}
       >
         <Badge size="small" count={ props.viewType === "dashboard" &&props.recordCandidateCategoryDataBlue.candidateDetails || 0} overflowCount={5000}>
-        <span class=" mr-2 cursor-pointer text-4"
+        <span class="mr-1 cursor-pointer "
             onClick={() => props.setCandidateViewType("dashboard")}
             style={{
               color: props.viewType === "dashboard" && "#1890ff",
             }}
           >
-            {/* <i class="fa-solid fa-user-helmet-safety"></i> */}
-            {/* <i class="fa-solid fa-user-tie"></i> */}
-            {/* <i class="fa-solid fa-user-gear"></i> */}
-            <ManageAccountsIcon 
-            // icon={solid("user-gear")}
-             />
+            <Avatar style={{ background:props.viewType === "dashboard" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "dashboard" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "dashboard" ? "scale(1.05)" : "scale(1)" }}>
+            <ManageAccountsIcon className="!text-icon text-white"  />
+           </Avatar>
+          
+           
           </span>
         </Badge>
       </Tooltip>
 
-
-
-     
-
-     
- 
-
  <Tooltip
-        title={<FormattedMessage id="app.mapview" defaultMessage="Map View" />}
+        title={translatedMenuItems[5]}
       >
           <Badge size="small"count={ props.viewType === "map" &&props.recordData.candidateDetails || 0}>
-          <span class=" mr-2 cursor-pointer text-4"
+          <span class="mr-1 cursor-pointer "
            onClick={() => props.setCandidateViewType("map")}
           style={{
             color: props.viewType === "map" && "#1890ff",
@@ -261,34 +311,49 @@ const CandidateActionLeft = (props) => {
          
        
         >
-          <LanguageIcon 
-          />
+          <Avatar style={{ background:props.viewType ===  "map" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "map" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "map" ? "scale(1.05)" : "scale(1)" }}>
+          <LanguageIcon className="!text-icon text-white"/>
+           </Avatar>
+          
+         
         </span>
         </Badge>
       </Tooltip>
       <Tooltip>
      
-      <span class=" mr-2 cursor-pointer text-4"
+      <span class="mr-1 cursor-pointer "
        onClick={() => props.setCandidateViewType("black")}
 
      >
-       <CircleIcon 
-      //  icon={solid("circle")}
-        />
+      <Avatar style={{ background:props.viewType === "table" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "table" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "table" ? "scale(1.05)" : "scale(1)" }}>
+      <CircleIcon className="!text-icon text-white"  />  
+           </Avatar>
+          
+    
        </span>
 
  </Tooltip>
  <Tooltip
-        title={<FormattedMessage id="app.dollar" defaultMessage="Dollar" />}
+        title={translatedMenuItems[6]}
       >
        
-       <span class=" mr-2 cursor-pointer text-4"
+       <span class="mr-1 cursor-pointer "
             onClick={() => props.setCandidateViewType("dollar")}
             style={{
               color: props.viewType === "dollar" && "#1890ff",
             }}
           >
-            <LocalAtmIcon />
+            <Avatar style={{ background:props.viewType === "dollar" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "dollar" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "dollar" ? "scale(1.05)" : "scale(1)" }}>
+            <LocalAtmIcon className="!text-icon text-white" />
+           </Avatar>
+          
+           
           </span>
        
       </Tooltip>
@@ -320,80 +385,24 @@ const CandidateActionLeft = (props) => {
       {user.userType !== "USER" && user.department !== "Vendor" && (
         <div class=" w-[15rem]" >
           <Input
-            placeholder="Search by Name, Skills & Identity ID"
+            placeholder={translatedMenuItems[7]}
         
             width={"100%"}
             suffix={suffix}
             onPressEnter={handleSearch}  
             onChange={handleChangeCan}
-            // value={currentData}
           />
         </div>
       )}
-    
-      {/* {user.userType !== "USER" && user.department !== "Vendor" &&  props.currentData  &&(
-        <Button
-          type={props.currentData ? "primary" : "danger"}
-          onClick={() => {
-            props.inputCandidateDataSearch(props.currentData);
-            props.getCandidateCountSearch(props.currentData)
-          }}
-        >
-          Submit
-        </Button>
-      )} */}
- 
-      
-          
-
-        <Button
+    <Button
         onClick={() => props.handleCandidateFilterModal(true)}
      
       >
-        <FilterAltIcon 
-        // icon={solid("filter")}
+        <FilterAltIcon className="!text-icon"
          />
       </Button>
-      {/* &nbsp; */}
-      {/* {user.userType !== "USER" && user.department !== "Vendor" && (
-        <Button
-          type={props.currentData ? "primary" : "danger"}
-          // onClick={props.handleClear}
-          onClick={() => {
-            props.handleClear();
-            props.getCandidateCountSearch()
-          }}
-        >
-          <FormattedMessage id="app.clear" defaultMessage="Clear" />
-     
-        </Button>
-      )} */}
       
-      {/* &nbsp; &nbsp; */}
-      {/* {user.userType !== "USER" && user.department !== "Vendor" && ( 
-      <div style={{ marginLeft: "20px" }}>
-        <Search
-          placeholder="Search By Skill"
-          onSearch={(value) => {
-            props.inputCandidateSkillDataSearch(value);
-            props.setCurrentSkillData(value);
-          }}
-          allowClear={false}
-          enterButton
-        />
-      </div>
-      )} */}
-       {/* &nbsp; &nbsp;  */}
-      {/* {user.userType !== "USER" && user.department !== "Vendor" && ( 
-      <Button
-        type={props.currentSkillData ? "primary" : "default"}
-        onClick={props.handleSkillClear}
-      >
-        <FormattedMessage id="app.clear" defaultMessage="Clear" />
-      </Button>
-      )} */}
       
-       {/* {props.inputCandidateDataSearch&& */}
        {props.candidateCountSearch.count ?<div class=" w-[50%] text-base text-bold text-[tomato] pl-[0.3rem]" >
           # Search - {props.candidateCountSearch.count || 0} records{" "}
         </div>:
@@ -403,20 +412,10 @@ const CandidateActionLeft = (props) => {
       
 
 
- {/* }  */}
- {/* {props.fetchingCandidateCountSearchData? (
-                 <div style={{ fontSize: "15px", fontWeight: "bold", color: "tomato" }}>
-                 # Result of your search - {props.candidateCountSearch.count || 0}{" "}
-               </div>
-              ) : (
-              "Loading..."
-                )} */}
        <div class="w-[30%] mt-2 ml-2 max-sm:w-[45%]">
                <StyledSelect
   
-  //style={{ width: '100%' }}
-  placeholder="Sort"
- //  defaultValue={partners}
+  placeholder="Sort" 
  onChange={(e) => handleChange(e)}
 >
 

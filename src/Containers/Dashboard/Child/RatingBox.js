@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Switch, Checkbox, Popconfirm,Rate, message, Select,Button } from "antd";
+import {  Popconfirm,Rate,Button } from "antd";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
-import { MainWrapper, FlexContainer } from "../../../Components/UI/Layout";
 import { updateTodoEvent, updateTodoCall,updateTodoTask } from "../DashboardAction"
 
 const desc = ["Terrible", "Bad", "Normal", "Good", "Wonderful"];
@@ -145,14 +144,11 @@ function RatingBox(props) {
                           // disabled={todo.completionInd === "false"}
                           onConfirm={() => handleToggleCollection()}
                           okText="Ok"
-                          // cancelText="Cancel"
-                          cancelText={<FormattedMessage
-                            id="app.cancel"
-                            defaultMessage="Cancel"
-                          />}
+                          cancelText="Cancel"
+                         
                         //   onCancel={this.confirm}
                         >
-                          <FlexContainer justifyContent="flex-end">
+                 <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                             <Button
                               style={{ padding: "0px 0.37em" }}
                               // disabled={todo.completionInd === "false"}
@@ -160,12 +156,9 @@ function RatingBox(props) {
                           
                             >
                             
-                              <FormattedMessage
-                                id="app.rating"
-                                defaultMessage="Rating"
-                              />
+                           Rating
                             </Button>
-                          </FlexContainer>
+                          </div>
                         </Popconfirm>
             </div>
         </>

@@ -1,27 +1,53 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getDealsContactList,setDealsContactValue  } from "../../DealAction"
 import {getCurrency} from "../../../Auth/AuthAction";
-import { FormattedMessage } from "react-intl";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import dayjs from "dayjs";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import { Tooltip,Button ,Input} from "antd";
+import { Button ,Input} from "antd";
 import { DatePicker } from "antd";
-import DealsCardToggle from "./DealsCardToggle";
 import { BundleLoader } from "../../../../Components/Placeholder";
-
+const DealsCardToggle = lazy(() => import("./DealsCardToggle"));
 const ButtonGroup = Button.Group;
 
 function LinkedDealContact(props) {
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [newAmount, setNewAmount] = useState('');
   const [newMonth, setNewMonth] = useState('');
   const [newInterest, setNewInterest] = useState('');
   const [currencyId, setCurrencyId] = useState("");
   const [selectedDate, setSelectedDate] = useState(null);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+       "110",   // "Name",//0
+        "1445",   // 'Tag Investor',//1
+        "929",   // "Amount",//2
+       "1445",    // "Payout (in months)",//3
+       "1447",    // "Interested",//4
+        "1448",   // "Collected",//5       
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
 
   useEffect(() => {
     props.getCurrency();
@@ -70,68 +96,54 @@ function LinkedDealContact(props) {
      
       console.log('Selected Year:', selectedYear);
       this.setState({ selectedYear });
-      // this.props.getHolidayyear(this.props.workplace,selectedYear);
     }
    
   };
   const handleDateChange = (date, dateString) => {
-    setSelectedDate(dateString); // Store the selected date as a string
+    setSelectedDate(dateString); 
   };
-
-
-
-
-  
- 
-
-
 if (props.fetchingDealsContactList) {
     return <BundleLoader />;
   }
   
   const currentYear = dayjs().format('YYYY');
-
+  if (loading) {
+    return <div><BundleLoader/></div>;
+  }
   return (
-    
+ 
     <>
       <div className=' flex  sticky  z-auto'>
-        <div class="rounded m-1 p-1 w-[99%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" md:w-[10.1rem]">  <FormattedMessage
-              id="app.name"
-              defaultMessage="Name"
-            /></div>
-            <div className="w-[8.8rem]"><FormattedMessage
-              id="app.tagCustomer"
-              defaultMessage="Tag Investor"
-            />
+        <div class="rounded m-1 p-1 w-[100%]   overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+            <div className=" md:w-[10.1rem]"> 
+            {translatedMenuItems[0]}  
+            {/* name */}   
             </div>
-            <div className="w-[3.8rem]"><FormattedMessage
-              id="app.amount"
-              defaultMessage="Amount"
-            />
+            <div className="w-[8.8rem]"> {translatedMenuItems[1]}  
+            {/* Tag Investor*/}   
+            </div>
+            <div className="w-[3.8rem]">
+            {translatedMenuItems[2]}  
+            {/* Amount */}   
             </div>
           
-            <div className="w-[8.8rem]"><FormattedMessage
-              id="app.payout"
-              defaultMessage="Payout (in months)"
-            />
+            <div className="w-[8.8rem]">
+            {translatedMenuItems[3]}  
+            {/* Payout (In months) */}   
             </div>
-            <div className="w-[3.8rem]"><FormattedMessage
-              id="app.Interest"
-              defaultMessage="Interest"
-            />
+            <div className="w-[3.8rem]">
+            {translatedMenuItems[4]}           
+            {/* Interest */}
             </div>
            
-            <div className="w-[3.8rem]"><FormattedMessage
-              id="app.Collected"
-              defaultMessage="Collected"
-            />
+            <div className="w-[3.8rem]">
+              {/* Collected */}
             </div>
             <div className="w-[2.8rem]">
             </div>
           </div>
-          <div class="overflow-x-auto h-[77vh]">
+          <div class="overflow-x-auto h-[83vh]" style={{ scrollbarWidth:"thin"}}>
             {/* <InfiniteScroll
               dataLength={props.dealsContactList.length}
               next={handleLoadMore}
@@ -145,24 +157,23 @@ if (props.fetchingDealsContactList) {
                     return (
                       <>
                         <div className="flex rounded justify-between mt-[0.5rem] bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
-
-                        >
+                         >                       
                           <div class=" flex flex-row justify-evenly w-wk max-sm:flex-col">
-                            <div className=" flex font-medium flex-col md:w-[34rem] max-sm:justify-between w-full max-sm:flex-row ">
-                              <div class=" font-normal text-[0.85rem]  font-poppins">
+                            <div className=" flex  md:w-[34rem] max-sm:justify-between w-full max-sm:flex-row ">
+                              <div class="  text-xs  font-poppins">
                                {item.name}
 
                               </div>
 
                             </div>
-                            <div className=" flex font-medium flex-col md:w-[30rem] max-sm:justify-between w-full max-sm:flex-row ">
+                            <div className=" flex md:w-[30rem] max-sm:justify-between w-full max-sm:flex-row ">
      
-<div class=" font-normal text-[0.85rem]  font-poppins">
-
+<div class=" text-xs  font-poppins">
+<Suspense fallback={<BundleLoader />}>
  <DealsCardToggle
 item={item}
 invOpportunityId={props.currentItem.invOpportunityId}
- />
+ /></Suspense>
 </div>
 </div>
 
@@ -209,7 +220,7 @@ invOpportunityId={props.currentItem.invOpportunityId}
                 
                          <DatePicker
                             style={{marginLeft:"0.5rem"}}
-                          // defaultValue={dayjs(item.borrowDate)}
+                
   value={selectedDate ? dayjs(selectedDate) : null} 
   onChange={(date, dateString) => setSelectedDate(dateString)}
   picker="date" 
@@ -229,22 +240,13 @@ invOpportunityId={props.currentItem.invOpportunityId}
                       iconType="edit"
                       onClick={() => handleEditAmount(item.contactId, item.amount,item.currency,item.repayMonth,item.interest,item.borrowDate)}
                       className=" text-[tomato] flex justify-center justify-items-center !text-icon"
-                    />
-                    
+                    />                  
                   </div>
                 )}
                 </>
-
-)}
-              
+)}             
   </div>
- 
-
   </div>
-
-
-
-
                           </div>
                         </div>
                       </>
@@ -257,8 +259,6 @@ invOpportunityId={props.currentItem.invOpportunityId}
           </div>
         </div>
       </div>
-
-
     </>
   )
 }

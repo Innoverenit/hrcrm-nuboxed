@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { FormattedMessage } from "react-intl";
+
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Button, Tooltip, Popconfirm, } from "antd";
 import {
@@ -100,11 +100,11 @@ class SingleTaskStages extends Component {
                   {days}D
                 </StageName>
                 {/* <StageName>
-                  {`${ moment(startDate).format("DD/MM/YYYY")}`}
+                  {`${ dayjs(startDate).format("DD/MM/YYYY")}`}
                 </StageName>
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <StageName>
-                {`${ moment(endDate).format("DD/MM/YYYY")}`}
+                {`${ dayjs(endDate).format("DD/MM/YYYY")}`}
                 </StageName> */}
                 <div class=" flex justify-between ml-[5rem] w-4">
                   <>
@@ -177,13 +177,13 @@ class SingleTaskStages extends Component {
                     )
                   }
                 >
-                  {/* Save */}
-                  <FormattedMessage id="app.save" defaultMessage="Save" />
+                  Save
+              
                 </Button>
 
                 <Button      type="cancel" onClick={() => toggleViewType()}>
-                  {/* Cancel */}
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                  Cancel
+             
                 </Button>
               </div>
             )

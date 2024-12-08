@@ -4,8 +4,8 @@ import { bindActionCreators } from "redux";
 import { Button, } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { Spacer } from "../../../../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
+
+
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import {
@@ -50,14 +50,6 @@ function EditRecruitForm(props) {
             ...values,
             avilableDate: values.avilableDate.toISOString(),
           });
-          // props.updateRecruitment(
-          //   {
-          //     ...values,
-          //     avilableDate: values.avilableDate.toISOString(),
-          //   },
-          //   props.opportunityId,
-          //   () => props.handleEditModal(false)
-          // );
         }}
       >
         {({
@@ -79,11 +71,7 @@ function EditRecruitForm(props) {
               >
                 <Field
                   name="description"
-                  // label="Description"
-                  label={<FormattedMessage
-                    id="app.description"
-                    defaultMessage="Description"
-                  />}
+                  label="Description"
                   width={"100%"}
                   isColumn
                   component={TextareaComponent}
@@ -94,17 +82,13 @@ function EditRecruitForm(props) {
                     marginTop: "0.25em",
                   }}
                 />
-                <Spacer />
+                <div class=" mt-3" />
                 <FlexContainer justifyContent="space-between">
                   <div style={{ width: "46%" }}>
                     {" "}
                     <Field
                       name="avilableDate"
-                      //label="Start Date"
-                      label={<FormattedMessage
-                        id="app.avilableDate"
-                        defaultMessage="Start Date"
-                      />}
+                      label="Start Date"
                       isRequired
                       component={DatePicker}
                       isColumn
@@ -122,12 +106,7 @@ function EditRecruitForm(props) {
                   <div style={{ width: "22%" }}>
                     <Field
                       name="billing"
-                      //label="Billing / hour"
-                      label={<FormattedMessage
-                        name="billing"
-                        id="app."
-                        defaultMessage="Billing / hour"
-                      />}
+                      label="Billing / hour"
                       width={"100%"}
                       isRequired
                       isColumn
@@ -155,7 +134,7 @@ function EditRecruitForm(props) {
                   </div>
                 </FlexContainer>
 
-                <Spacer />
+                <div class=" mt-3" />
               </div>
               &nbsp;
               <div
@@ -164,18 +143,15 @@ function EditRecruitForm(props) {
                 }}
               ></div>
             </div>
-            <Spacer />
+            <div class=" mt-3" />
             <FlexContainer justifyContent="flex-end">
               <Button
                 type="primary"
                 htmlType="submit"
               // Loading={props.updatingRecruitment}
               >
-                <FormattedMessage
-                  id="app.update"
-                  defaultMessage="Update"
-                />
-                {/* Update */}
+              
+          Update
               </Button>
             </FlexContainer>
           </Form>

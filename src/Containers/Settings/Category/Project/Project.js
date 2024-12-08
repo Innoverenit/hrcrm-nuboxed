@@ -2,19 +2,16 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
-import { Button, Divider, message ,Input} from "antd";
-import { MainWrapper, FlexContainer } from "../../../../Components/UI/Layout";
-import { TextInput, Title } from "../../../../Components/UI/Elements";
-// import * as Yup from "yup";
+
+import { Button, message ,Input} from "antd";
+import { MainWrapper  } from "../../../../Components/UI/Layout";
+import { TextInput } from "../../../../Components/UI/Elements";
+
 import {addProjectsData,
   getProjectsData,
   updateProjectsData,
   removeProjectData} from "../Project/ProjectAction"
-import axios from "axios";
-import { base_url } from "../../../../Config/Auth";
 import dayjs from "dayjs";
-import SingleUnit from "../../Unit/SingleUnit";
 import SingleProject from "./SingleProject";
 
 
@@ -107,10 +104,10 @@ class Project extends Component {
       linkedTasks,
     } = this.state;
     if (fetchingProjectsData) return <p>Loading ...</p>;
-    // if (fetchingUnitsError) return <p>We are unable to load data</p>;
+
     return (
       <>
-        <FlexContainer flexWrap="nowrap">
+    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
           <MainWrapper
             style={{
               flexBasis: "100%",
@@ -119,24 +116,17 @@ class Project extends Component {
               color: "#FFFAFA",
             }}
           >
-                     <div style={ {width: "18vw",display:"flex"}} >
+                     <div class=" flex w-[18vw]" >
           <Input
             placeholder="Search by Name"
             width={"100%"}
-            // onSearch={(value) => {
-            //   props.inputCandidateDataSearch(value);
-            //   props.setCurrentData(value);
-
-            // }}
+           
             onChange={(e) => this.handleSearchChange(e)}
             value={this.props.currentData}
           />
            <Button
           type={this.props.currentData ? "primary" : "danger"}
-        //   onClick={() => {
-        //     this.props.searchTaskName(this.state.currentData);
-
-        //   }}
+       
         >
           Submit
         </Button>
@@ -147,11 +137,11 @@ class Project extends Component {
             this.handleClear();
           }}
         >
-          <FormattedMessage id="app.clear" defaultMessage="Clear" />
+         Clear
       
         </Button>
         </div>
-            <FlexContainer flexDirection="column">
+        <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
               <MainWrapper style={{ height: "30em", marginTop: "0.625em" }}>
                 {projectsData.length &&
                   projectsData.map((project, i) => (
@@ -169,12 +159,10 @@ class Project extends Component {
                     />
                    ))} 
               </MainWrapper>
-            </FlexContainer>
+            </div>
             {isTextInputOpen ? (
-              <FlexContainer
-                alignItems="center"
-                style={{ marginLeft: "0.3125em", marginTop: "0.3125em" }}
-              >
+               <div class=" flex flex-row flex-wrap items-center ml-1 mt-1 self-start justify-start grow shrink h-auto mr-auto ">
+             
                 <br />
                 <br />
                 <TextInput
@@ -194,19 +182,17 @@ class Project extends Component {
                   onClick={this.handleAddProject}
                   style={{ marginRight: "0.125em" }}
                 >
-                  {/* Save */}
-                  <FormattedMessage id="app.save" defaultMessage="Save" />
+                  Save
                 </Button>
                 &nbsp;
                 <Button type="primary" ghost onClick={this.toggleInput}>
-                  {/* Cancel */}
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                  Cancel
                 </Button>
-              </FlexContainer>
+              </div>
             ) : (
               <>
                 <br />
-                <FlexContainer justifyContent="flex-end">
+                <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   <Button
                     type="primary"
                     ghost
@@ -214,19 +200,15 @@ class Project extends Component {
                      Loading={addingProjectsData}
                     onClick={this.toggleInput}
                   >
-                    {/* Add More */}
-                    <FormattedMessage
-                      id="app.addmore"
-                      defaultMessage="Add More"
-                    />
+                    Add More
                   </Button>
-                </FlexContainer>
+                </div>
                 <div>Updated on {dayjs(this.props.projectsData && this.props.projectsData.length && this.props.projectsData[0].updationDate).format("ll")} by {this.props.projectsData && this.props.projectsData.length && this.props.projectsData[0].name}</div>
               </>
             )}
           </MainWrapper>
          
-        </FlexContainer>
+        </div>
       </>
     );
   }

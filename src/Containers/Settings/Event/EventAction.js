@@ -52,16 +52,16 @@ export const addEvents = (event,orgId, cb) => (dispatch) => {
           Swal.fire({
             icon: 'error',
             title: res.data.message,
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         } else {
          
           Swal.fire({
             icon: 'success',
             title: 'Event added Successfully!',
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         }
         dispatch(getEventCount(orgId));
@@ -102,6 +102,8 @@ export const removeEvents = (eventTypeId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Event deleted Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("Event has been deleted successfully!");
         console.log(res);
@@ -142,6 +144,8 @@ export const removeEvents = (eventTypeId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Event updated Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("Event has been updated successfully!");
         console.log(res);

@@ -1,5 +1,6 @@
-import React, { Component,lazy} from "react";
+import React, { Component,lazy,Suspense} from "react";
 import { ActionHeader } from "../../../Components/Utils";
+import { BundleLoader, } from "../../../Components/Placeholder";
 const PitchActionRight=lazy(()=> import("./PitchActionRight"));
 const PitchActionLeft=lazy(()=> import("./PitchActionLeft"));
 
@@ -21,7 +22,13 @@ class PitchHeader extends Component {
       <div>
         <ActionHeader
           leftComponent={
+            <Suspense fallback={<BundleLoader />}>
             <PitchActionLeft
+            isTransferMode={this.props.isTransferMode}
+            handleUserSelect={this.props.handleUserSelect}
+            selectedDeals={this.props.selectedDeals}
+            handleTransferClick={this.props.handleTransferClick}
+            showCheckboxes={this.props.showCheckboxes}
             setPitchViewType={setPitchViewType}
             viewType={viewType}
             teamsAccessInd={teamsAccessInd}
@@ -33,15 +40,17 @@ class PitchHeader extends Component {
             handleChange={handleChange}
             handleCurrentData={handleCurrentData}
              
-            />
+            /></Suspense>
           }
           rightComponent={
+            <Suspense fallback={<BundleLoader />}>
             <PitchActionRight
             viewType={viewType}
             // currentUser={this.props.currentUser} 
             // handleDropChange={this.props.handleDropChange}
             handlePitchModal={this.props.handlePitchModal} 
             />
+            </Suspense>
           }
         />
       </div>

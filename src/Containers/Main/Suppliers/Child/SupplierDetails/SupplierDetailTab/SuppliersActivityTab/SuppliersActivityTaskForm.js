@@ -2,19 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip } from "antd";
-import {
-  ExclamationCircleOutlined,
-} from "@ant-design/icons";
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import { Formik, Form, Field} from "formik";
 import dayjs from "dayjs";
-import { Spacer } from "../../../../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import { DatePicker } from "../../../../../../../Components/Forms/Formik/DatePicker";
 import {
   addSuppliersActivityTask,
 } from "../../../../SuppliersAction";
-import { StyledLabel } from "../../../../../../../Components/UI/Elements";
-import { FlexContainer } from "../../../../../../../Components/UI/Layout";
+
 import { TextareaComponent } from "../../../../../../../Components/Forms/Formik/TextareaComponent";
 import ButtonGroup from "antd/lib/button/button-group";
 import * as Yup from "yup";
@@ -25,9 +21,7 @@ const FormSchema = Yup.object().shape({
   startDate: Yup.string()
     .nullable()
     .required("Input needed!"),
-  // endDate: Yup.string()
-  //   .nullable()
-  //   .required("Input needed!"),
+
 });
 
 class SuppliersActivityTaskForm extends Component {
@@ -53,7 +47,7 @@ class SuppliersActivityTaskForm extends Component {
 
   handleCallback = (resetForm) => {
     const { callback } = this.props;
-    // this.props.getActivityListByDistributorId(this.props.distributorDistributorId);
+
     callback && callback();
     resetForm();
   };
@@ -148,7 +142,7 @@ class SuppliersActivityTaskForm extends Component {
                     </div>
 
                     <div style={{ width: "30%" }}>
-                      <StyledLabel>Status</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Status</div>
 
                       <div style={{ width: "100%" }}>
                         <ButtonGroup>
@@ -180,26 +174,20 @@ class SuppliersActivityTaskForm extends Component {
                       </div>
                     </div>
                   </div>
-                  <Spacer />
-                  <FlexContainer
-                    justifyContent="spcae-between"
-                    style={{ width: "100%" }}
-                  >
+                  <mt-3 />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between w-full grow shrink h-auto mr-auto ">
                     <div style={{ width: "45%" }}>
-                      <FlexContainer
-                        justifyContent="spcae-between"
-                        style={{ width: "100%" }}
-                      >
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-between w-full grow shrink h-auto mr-auto ">
                         <div style={{ width: "100%" }}>
-                          <StyledLabel>Priority</StyledLabel>
+                          <div class=" text-xs font-bold font-poppins text-black">Priority</div>
 
-                          <FlexContainer>
+                          <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                             <Tooltip title="High">
                               <Button
                                 type="primary"
                                 shape="circle"
                                 icon={
-                                  <ExclamationCircleOutlined
+                                  <ErrorOutlineIcon
                                     style={{ fontSize: "3px" }}
                                   />
                                 }
@@ -218,7 +206,7 @@ class SuppliersActivityTaskForm extends Component {
                                 type="primary"
                                 shape="circle"
                                 icon={
-                                  <ExclamationCircleOutlined
+                                  <ErrorOutlineIcon
                                     style={{ fontSize: "3px" }}
                                   />
                                 }
@@ -237,7 +225,7 @@ class SuppliersActivityTaskForm extends Component {
                                 type="primary"
                                 shape="circle"
                                 icon={
-                                  <ExclamationCircleOutlined
+                                  <ErrorOutlineIcon
                                     style={{ fontSize: "3px" }}
                                   />
                                 }
@@ -250,16 +238,13 @@ class SuppliersActivityTaskForm extends Component {
                                 }}
                               ></Button>
                             </Tooltip>
-                          </FlexContainer>
+                          </div>
                         </div>
-                      </FlexContainer>
+                      </div>
                     </div>
 
                     <div style={{ width: "55%" }}>
-                      <FlexContainer
-                        justifyContent="space-between"
-                        style={{ width: "100%" }}
-                      >
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-between w-full grow shrink h-auto mr-auto ">
                         <div style={{ width: "100%" }}>
                         <Field
                             name="taskTypeId"
@@ -273,15 +258,12 @@ class SuppliersActivityTaskForm extends Component {
                             }}
                           />
                         </div>
-                      </FlexContainer>
+                      </div>
                     </div>
-                  </FlexContainer>
+                  </div>
 
-                  <Spacer />
-                  <FlexContainer
-                    justifyContent="space-between"
-                    style={{ width: "100%" }}
-                  >
+                  <mt-3 />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between w-full grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       <Field
                         isRequired
@@ -300,7 +282,7 @@ class SuppliersActivityTaskForm extends Component {
                         }}
                       />
 
-                      <Spacer />
+                      <mt-3 />
                     </div>
 
                     <div style={{ width: "47%" }}>
@@ -333,9 +315,9 @@ class SuppliersActivityTaskForm extends Component {
                         }}
                       />
                     </div>
-                  </FlexContainer>
+                  </div>
                   <div>
-                    <Spacer style={{ marginBottom: "18px" }} />
+                    <mt-3 style={{ marginBottom: "18px" }} />
 
                     {values.startDate && (
                       <>
@@ -376,11 +358,11 @@ class SuppliersActivityTaskForm extends Component {
                     }}
                   />
 
-                  <Spacer />
+                  <mt-3 />
                 </div>
               </div>
-              <Spacer />
-              <FlexContainer justifyContent="flex-end">
+              <mt-3 />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
@@ -388,7 +370,7 @@ class SuppliersActivityTaskForm extends Component {
                 >
                   Create
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
         </Formik>

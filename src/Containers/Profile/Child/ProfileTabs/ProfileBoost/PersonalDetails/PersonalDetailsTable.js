@@ -1,4 +1,4 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -7,15 +7,16 @@ import {
 } from "../../../../../../Components/UI/Antd";
 import DownloadIcon from '@mui/icons-material/Download';
 import { base_url } from "../../../../../../Config/Auth";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 import {
   handleUpdatePersonalDetailsModal,
   getDocumentDetails,
   setEditDocument,
   deletePersonalTable,
 } from "../../../../ProfileAction";
-import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
-import { FormattedMessage } from "react-intl";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdatePersonalDetailsModal = lazy(() => import("./UpdatePersonalDetailsModal"));
 class EducationTable extends Component {
   componentDidMount() {
@@ -36,16 +37,13 @@ class EducationTable extends Component {
 
     const columns = [
       {
-        //title: " Type",
-        title: <FormattedMessage id="app.type" defaultMessage="Type" />,
+        title: " Type",
         dataIndex: "idType",
         // width: "35%"
       },
       {
-        //title: "Document ID number",
-        title: (
-          <FormattedMessage id="app.idNo" defaultMessage="Document ID number" />
-        ),
+        title: "Document ID number",
+    
         dataIndex: "idNo",
       },
       {
@@ -78,7 +76,7 @@ class EducationTable extends Component {
         render: (name, item, i) => {
           //debugger
           return (
-            <EditOutlined
+            <VisibilityIcon
               tooltipTitle="Edit"
               iconType="edit"
               style={{ fontSize: 16 }}
@@ -100,7 +98,7 @@ class EducationTable extends Component {
               title="Do you want to delete?"
               onConfirm={() => deletePersonalTable(item.id)}
             >
-              <DeleteOutlined type="delete" style={{ cursor: "pointer", color: "red" }} />
+              <DeleteOutlineIcon type="delete" style={{ cursor: "pointer", color: "red" }} />
               {/* <Button type="primary" className='edit_hover_class' icon="delete"  /> */}
             </StyledPopconfirm>
           );
@@ -109,7 +107,7 @@ class EducationTable extends Component {
     ];
 
     if (fetchingDocumentDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     return (
       <>
@@ -121,11 +119,13 @@ class EducationTable extends Component {
           loading={fetchingDocumentDetails || fetchingDocumentDetailsError}
           onChange={console.log("task onChangeHere...")}
         />
-
+        <Suspense fallback={<BundleLoader />}>
         <UpdatePersonalDetailsModal
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
           updatePersonalDetailsModal={updatePersonalDetailsModal}
           handleUpdatePersonalDetailsModal={handleUpdatePersonalDetailsModal}
-        />
+        /></Suspense>
       </>
     );
   }

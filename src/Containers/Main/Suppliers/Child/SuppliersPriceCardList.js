@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -13,8 +13,8 @@ import {
 import dayjs from "dayjs";
 import { Tooltip, Button, Input } from "antd";
 import { BorderColor as BorderColorIcon } from "@mui/icons-material";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
+const EmptyPage =lazy(()=>import("../../EmptyPage"));
 
 function SuppliersPriceCardList(props) {
   const [editRowId, setEditRowId] = useState(null);
@@ -81,8 +81,8 @@ function SuppliersPriceCardList(props) {
         <BundleLoader />
       ) : (
         <div className="flex  sticky z-auto">
-          <div className="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-            <div className="flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+          <div className="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+            <div className="flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
               <div className="w-[9.4rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11.8rem]">
                {/* "Name" */}
                {props.translatedMenuItems[0]}
@@ -177,7 +177,7 @@ function SuppliersPriceCardList(props) {
                   );
                 })
               ) : (
-                <NodataFoundPage />
+                <suspense><EmptyPage /></suspense>
               )}
             </div>
           </div>

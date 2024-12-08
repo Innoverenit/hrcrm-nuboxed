@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import { updateUserById } from "../../../Auth/AuthAction";
 import { Button } from "antd";
@@ -91,20 +90,12 @@ class ProfileDetailEdit extends Component {
             Loading={updatingUserById}
             onClick={this.handleUpdate}
           >
-            {/* Save */}
-            <FormattedMessage
-              id="app.save"
-              defaultMessage="Save"
-            />
+            Save
             
           </Button>
           &nbsp;
           <Button type="ghost" onClick={() => toggleViewType()}>
-            {/* Cancel */}
-            <FormattedMessage
-              id="app.cancel"
-              defaultMessage="Cancel"
-            />
+            Cancel
           </Button>
         </div>
       </>

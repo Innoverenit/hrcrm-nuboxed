@@ -1,7 +1,7 @@
 import React, { Component, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import HelpIcon from "@mui/icons-material/Help";
 import SkillBarChatModal from "../../OpportunityTab/Recruitment/Child/SkillBarChartModal";
 import AddRequirementModal from "./AddRequirementModal";
@@ -47,7 +47,7 @@ import {
   getTopicsByCandidateId,
 } from "../../../../../Candidate/CandidateAction";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import moment from "moment";
+import dayjs from "dayjs";
 import { CurrencySymbol } from "../../../../../../Components/Common";
 import EditRecruitForm from "./EditRecruitForm";
 import { Suspense } from "react";
@@ -59,17 +59,14 @@ import {
 } from "../../../../OpportunityAction";
 import PsychologyAltIcon from "@mui/icons-material/PsychologyAlt";
 import SubTableClickCandidate from "../Recruitment/SubTableClickCandidate";
-import {
-  EyeInvisibleOutlined,
-  EyeOutlined,
-  SearchOutlined,
-} from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+  import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import SearchIcon from '@mui/icons-material/Search';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import Highlighter from "react-highlight-words";
 import LockOpenIcon from "@mui/icons-material/LockOpen";
 import RecruitmentEmailDrawerModal from "./Child/RecruitmentEmailDrawerModal";
 
-// const CandidateDetailsView =lazy(()=>import("../../../../../Candidate/Child/CandidateTable/CandidateDetails/CandidateDetailsView"));
 class RecruitmentTable extends Component {
   constructor(props) {
     super(props);
@@ -117,7 +114,7 @@ class RecruitmentTable extends Component {
         <Button
           type="primary"
           onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-          icon={<SearchOutlined />}
+          icon={<SearchIcon />}
           //icon="search"
           size="small"
           style={{ width: 90 }}
@@ -147,7 +144,7 @@ class RecruitmentTable extends Component {
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined
+      <SearchIcon
         type="search"
         style={{ color: filtered ? "#1890ff" : undefined }}
       />
@@ -383,18 +380,14 @@ class RecruitmentTable extends Component {
       // },
       {
         //title: "Requirement",
-        title: (
-          <FormattedMessage
-            id="app.requirementName"
-            defaultMessage="Requirement"
-          />
-        ),
+        title: "Requirement"
+        ,
         dataIndex: "requirementName",
         ...this.getColumnSearchProps("topic"),
         width: "13%",
         render: (name, item, i) => {
-          const currentdate = moment().format("DD/MM/YYYY");
-          const date = moment(item.creationDate).format("DD/MM/YYYY");
+          const currentdate = dayjs().format("DD/MM/YYYY");
+          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           console.log(item);
 
           return {
@@ -446,21 +439,7 @@ class RecruitmentTable extends Component {
         dataIndex: "category",
         width: "5%",
         render: (name, item, i) => {
-          // return {
-          //   props: {
-          //     // style: {
-          //     //   background:
-          //     //     this.state.subTableVisible &&
-          //     //     this.state.recruitmentId === item.recruitmentId
-          //     //       ? "rgb(158 183 223)"
-
-          //     //       : null,
-          //     // },
-
-          //   },
-
-          //   children: <span>{item.category}</span>,
-          // };
+         
           return (
             <div>
               {item.category === "Blue" && (
@@ -523,40 +502,6 @@ class RecruitmentTable extends Component {
           return (record.category = value);
         },
       },
-      // {
-      //   title: "Created",
-      //   width: "7%",
-      //   dataIndex: "recruitOwner",
-      //   render: (name, item, i) => {
-      //     return {
-      //       props: {
-      //         style: {
-      //           background:
-      //              this.state.subTableVisible&&this.state.recruitmentId === item.recruitmentId
-      //               ? "rgb(158 183 223)"
-      //               : null,
-
-      //         },
-      //       },
-
-      //       children: <span>
-      //          <SubTitle>
-      //         <Tooltip title={item.recruitOwner}>
-      //           <MultiAvatar
-      //             primaryTitle={item.recruitOwner}
-      //             // imageId={item.imageId}
-      //             // imageURL={item.imageURL}
-      //             imgWidth={"2.1em"}
-      //             imgHeight={"2.1em"}
-      //           />
-      //         </Tooltip>
-      //       </SubTitle>
-      //       </span>,
-      //     };
-
-      //   },
-      // },
-
       {
         title: "Created",
         width: "7%",
@@ -595,7 +540,7 @@ class RecruitmentTable extends Component {
           return 0;
         },
         render: (text, item) => {
-          const creationDate = moment(item.creationDate).format("L");
+          const creationDate = dayjs(item.creationDate).format("L");
 
           return {
             props: {
@@ -666,8 +611,7 @@ class RecruitmentTable extends Component {
       
 
       {
-        //title: "Start",
-        title: <FormattedMessage id="app.processName" defaultMessage="Start" />,
+        title: "Start",
         dataIndex: "avilableDate",
         width: "9%",
         render: (name, item, i) => {
@@ -683,7 +627,7 @@ class RecruitmentTable extends Component {
               },
             },
 
-            children: <span>{moment(item.avilableDate).format("L")}</span>,
+            children: <span>{dayjs(item.avilableDate).format("L")}</span>,
           };
         },
         sorter: (a, b) => {
@@ -700,17 +644,17 @@ class RecruitmentTable extends Component {
         title: "Duration",
         width: "8%",
         render: (text, item) => {
-          //const getDate = (date) => moment(date, 'DD/MM/YYYY').startOf('month')
+          //const getDate = (date) => dayjs(date, 'DD/MM/YYYY').startOf('month')
           const diff = Math.abs(
-            moment(item.availableDate).diff(moment(item.endDate), "months")
+            dayjs(item.availableDate).diff(dayjs(item.endDate), "months")
           );
           const date = diff + 1;
-          // const availableDate = moment(item.availableDate).subtract(item.endDate);
+          // const availableDate = dayjs(item.availableDate).subtract(item.endDate);
           return (
             <>
               {/* {item.availableDate === null ? "None" : */}
               <span>
-                {/* {moment(item.availableDate).subtract(item.endDate).month()} */}
+                {/* {dayjs(item.availableDate).subtract(item.endDate).month()} */}
                 {date} months
               </span>
               {/* } */}
@@ -720,7 +664,7 @@ class RecruitmentTable extends Component {
       },
       {
         //title: "Rate/hr",
-        title: <FormattedMessage id="app.billing" defaultMessage="Billing" />,
+        title:"Billing",
         dataIndex: "billing",
         width: "8%",
         //   defaultSortOrder: "descend",
@@ -749,11 +693,8 @@ class RecruitmentTable extends Component {
         },
       },
       {
-        //title: "Skill Set",
-        title: (
-          <FormattedMessage id="app.callType" defaultMessage="Skill Set" />
-        ),
-
+        title: "Skill Set",
+        
         width: "15%",
         render: (name, item, i) => {
           console.log(this.props.SkillList);
@@ -960,10 +901,7 @@ class RecruitmentTable extends Component {
       },
 
       {
-        //title: "Sponsor",
-        title: (
-          <FormattedMessage id="app.sponserName" defaultMessage="Sponsor" />
-        ),
+        title: "Sponsor",
         dataIndex: "sponserName",
         ...this.getColumnSearchProps("sponserName"),
         width: "10%",
@@ -1017,15 +955,9 @@ class RecruitmentTable extends Component {
                 {item.candidateName ? (
                   <>
                     {close ? (
-                      <Tooltip //title="Close Details"
-                        title={
-                          <FormattedMessage
-                            id="app.closedetails"
-                            defaultMessage="Close Details"
-                          />
-                        }
+                      <Tooltip title="Close Details"
                       >
-                        <EyeInvisibleOutlined
+                        <VisibilityOffIcon
                           type="eye-invisible"
                           onClick={() => this.handleCloseIconClick()}
                           style={{
@@ -1040,15 +972,9 @@ class RecruitmentTable extends Component {
                       </Tooltip>
                     ) : (
                       <>
-                        <Tooltip //title="Access Details"
-                          title={
-                            <FormattedMessage
-                              id="app.accessdetails"
-                              defaultMessage="Access Details"
-                            />
-                          }
+                        <Tooltip title="Access Details"
                         >
-                          <EyeOutlined
+                          <VisibilityIcon
                             type="eye"
                             onClick={() =>
                               this.handleIconClick(
@@ -1266,14 +1192,14 @@ class RecruitmentTable extends Component {
           //         Sponsor Approved on
           //       </p>
           //       <p>{`${record.sponserInd
-          //         ? moment(record.sponserOfferDate).format("lll")
+          //         ? dayjs(record.sponserOfferDate).format("lll")
           //         : ""
           //         }`}</p>
           //       <p style={{ fontWeight: "bold", margin: 0 }}>
           //         Candidate Approved on
           //       </p>
           //       <p>{`${record.candidateOfferAccept} ${record.candidateInd
-          //         ? moment(record.candidateOfferDate).format("lll")
+          //         ? dayjs(record.candidateOfferDate).format("lll")
           //         : ""
           //         }`}</p>
           //       <p style={{ fontWeight: "bold", margin: 0 }}>Description</p>
@@ -1331,10 +1257,7 @@ class RecruitmentTable extends Component {
           }
         />
         <StyledModal
-          //title="Position"
-          title={
-            <FormattedMessage id="app.position" defaultMessage="Position" />
-          }
+          title="Position"
           width="24%"
           visible={this.state.editModal}
           maskClosable={false}
@@ -1350,13 +1273,7 @@ class RecruitmentTable extends Component {
           </Suspense>
         </StyledModal>
         <StyledModal
-          // title="Select Sponsor"
-          title={
-            <FormattedMessage
-              id="app.selectsponsor"
-              defaultMessage="Select Sponsor"
-            />
-          }
+          title="Select Sponsor"
           width="20%"
           visible={this.props.addSponsorModal}
           maskClosable={false}

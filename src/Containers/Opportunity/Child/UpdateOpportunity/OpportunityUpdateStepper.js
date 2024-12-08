@@ -2,9 +2,9 @@ import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
-import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
-import { FormattedMessage } from 'react-intl';
+import GroupsIcon from '@mui/icons-material/Groups';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import CallIcon from '@mui/icons-material/Call';
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
 import { StyledSteps } from "../../../../Components/UI/Antd";
 import AddCatalogueForm from "../AddCatalogueForm";
@@ -49,21 +49,20 @@ class OpportunityUpdateStepper extends Component {
         const {  ...formProps } = this.props;
         const steps = [
             {
-                title: <FormattedMessage
-                    id="app.order"
-                    defaultMessage="Order"
-                />,
-                icon: <UserOutlined />,
+                title: "Order"
+               ,
+                icon: <GroupsIcon />,
                 content: <UpdateOpportunityForm
                 opportunityId={this.props.opportunityId}
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
+              translatedMenuItems={this.props.translatedMenuItems}
+
                 />,
             },
             {
-                title: <FormattedMessage
-                    id="app.catalogue"
-                    defaultMessage="Catalogue List"
-                />,
-                icon: <PhoneOutlined style={{ color: "blue" }}/>,
+                title: "Catalogue List",
+                icon: <CallIcon style={{ color: "blue" }}/>,
                 content: <AddCatalogueForm/>,
             },
 
@@ -74,18 +73,14 @@ class OpportunityUpdateStepper extends Component {
             <>
                 <StyledSteps current={current}>
                     <Step
-                        title={<AddShoppingCartIcon style={{ fontSize: "1rem" }} />}
-                        description={<FormattedMessage
-                            id="app.oderdetails"
-                            defaultMessage="Order Details"
-                        />}
+                        title={<AddShoppingCartIcon className="!text-icon" />}
+                        description="Order Details"
+                   
                     />
                     <Step
-                        title={<ControlPointDuplicateIcon style={{ fontSize: "1rem" }} />}
-                        description={<FormattedMessage
-                            id="app.unitsinfo"
-                            defaultMessage="Units Info"
-                        />}
+                        title={<ControlPointDuplicateIcon  className="!text-icon" />}
+                        description="Units Info"
+                      
                     />
 
                 </StyledSteps>
@@ -100,7 +95,7 @@ class OpportunityUpdateStepper extends Component {
                                             type="tertiary"
                                             
                                             onClick={() => this.prev()}>
-                                        <label class="text-base cursor-pointer"> Previous</label>
+                                        <div class="text-base cursor-pointer"> Previous</div>
                                            
                                         </Button>
                                     )}
@@ -113,7 +108,7 @@ class OpportunityUpdateStepper extends Component {
                                                 onClick={() => this.handleComplete()}
                  
                                             >
-                                                <label class="text-base cursor-pointer">Complete</label> 
+                                                <div class="text-base cursor-pointer">Complete</div> 
                                  
                                             </Button>
 
@@ -133,9 +128,9 @@ class OpportunityUpdateStepper extends Component {
                                                 }}
                                           
                                             >
-                                           <label class="text-base cursor-pointer">
+                                           <div class="text-base cursor-pointer">
                                            Proceed
-                                             </label>
+                                             </div>
                                   
                                             </Button> : 
                                             null}

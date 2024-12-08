@@ -1,7 +1,6 @@
 import React, {  Suspense } from "react";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
-import { FormattedMessage } from 'react-intl';
 import LeadsSubscriptionForm from "../../Child/LeadsTable/LeadsSubscriptionForm"
 ;
 
@@ -10,20 +9,21 @@ const AddSubscriptionModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.notes"
-          defaultMessage="Notes"
-         />}
+        title="Subscription"
         width="60%"
         visible={props.addDrawerLeadsSubscriptionModal}
         destroyOnClose
         maskStyle={{ backgroundColor: "rgba(1, 30, 71,0.7)" }}
-        style={{marginTop:"3rem"}}
+       
         onClose={() => props.handleLeadsSubscriptionModal(false)}
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-       <LeadsSubscriptionForm/>
+       <LeadsSubscriptionForm
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        item={props.item}
+       />
         </Suspense>
       </StyledDrawer>
     </>

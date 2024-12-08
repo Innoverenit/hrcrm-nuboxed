@@ -16,7 +16,7 @@ class AddCustomerNotesDrawerModal extends Component {
         <StyledDrawer
         // title="Notes"
           title={this.props.rowdata.name}
-          width="64%"
+        width="38%"
           visible={this.props.addDrawerCustomerNotesModal}
           destroyOnClose
           closable
@@ -25,7 +25,7 @@ class AddCustomerNotesDrawerModal extends Component {
           <Suspense fallback={<BundleLoader />}>
            
             <MainNotes
-             type="customer"
+             type="prospect"
              uniqueId={this.props.rowdata.customerId}
             />
           </Suspense>

@@ -9,7 +9,7 @@ import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState, convertToRaw } from "draft-js";
-import { StyledLabel } from "../../../../Components/UI/Elements";
+
 
 class AddLeadsEmailDrawerModal extends Component {
 
@@ -109,7 +109,7 @@ class AddLeadsEmailDrawerModal extends Component {
                   <div class=" w-full">
                   <div class=" flex items-center">
                     <div class=" w-1/12">
-               <StyledLabel>To</StyledLabel>
+               <div class=" text-xs font-bold font-poppins text-black">To</div>
                     </div>
                     <div class=" w-11/12">
                       
@@ -122,7 +122,7 @@ class AddLeadsEmailDrawerModal extends Component {
                   </div>
                   <div class=" flex items-center">
                   <div class=" w-1/12">
-               <StyledLabel>CC</StyledLabel>
+               <div class=" text-xs font-bold font-poppins text-black">CC</div>
                     </div>
                     <div class=" w-11/12">
                       
@@ -136,7 +136,7 @@ class AddLeadsEmailDrawerModal extends Component {
                  
                  <div class=" flex items-center">
                  <div class=" w-1/12">
-              <StyledLabel>BCC</StyledLabel>
+              <div class=" text-xs font-bold font-poppins text-black">BCC</div>
                    </div>
                    <div class=" w-11/12">
                       
@@ -149,7 +149,7 @@ class AddLeadsEmailDrawerModal extends Component {
                       </div>
                   <div class=" flex items-center">
                   <div class=" w-1/12">
-               <StyledLabel>Subject</StyledLabel>
+               <div class=" text-xs font-bold font-poppins text-black">Subject</div>
                     </div>
                     <div class=" w-11/12">
                       

@@ -1,8 +1,7 @@
-import React, { Suspense } from "react";
+import React, { Suspense, lazy } from "react";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
-import TermsAndConditionForm from "./TermsAndConditionForm";
-
+const TermsAndConditionForm = lazy(() => import("./TermsAndConditionForm"));
 const TermsnConditionModal = (props) => {
     const { addTermsnCondition, handleTermsnConditionModal, ...formProps } = props;
     return (
@@ -17,7 +16,9 @@ const TermsnConditionModal = (props) => {
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <TermsAndConditionForm poSupplierDetailsId={props.rowData.poSupplierDetailsId} />
+                    <TermsAndConditionForm poSupplierDetailsId={props.rowData.poSupplierDetailsId}
+                     translateText={props.translateText}
+                     selectedLanguage={props.selectedLanguage} />
                 </Suspense>
             </StyledDrawer>
         </>

@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer } from "../../Components/UI/Antd";
 import { BundleLoader } from "../../Components/Placeholder";
 import ContactImportForm from "./ContactImportForm";
@@ -11,10 +11,8 @@ const AddContactImportModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.contactImport"
-          defaultMessage="Contact Import"
-        />}
+        title="Contact Import"
+       
         width={drawerWidth}
         visible={addContactImportModal}
         onClose={() => handleContactImportModal(false)}

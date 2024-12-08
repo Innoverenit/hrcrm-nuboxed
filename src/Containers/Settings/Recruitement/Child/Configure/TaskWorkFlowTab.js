@@ -1,7 +1,7 @@
 import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, message, Popconfirm } from "antd";
@@ -13,7 +13,7 @@ import {
 } from "../../../SettingsAction";
 import {
   MainWrapper,
-  Spacer,
+  
   TextInput,
 } from "../../../../../Components/UI/Elements";
 import {
@@ -309,8 +309,8 @@ class TaskWorkflowTab extends Component {
         <StageWrapper>
           <MainWrapper>
             <h1>
-              {/* Workflow */}
-              <FormattedMessage id="app.workFlow" defaultMessage="WorkFlow" />
+              Workflow
+           
             </h1>
 
             <div class=" flex flex-col">
@@ -422,10 +422,7 @@ class TaskWorkflowTab extends Component {
                           htmlType="submit"
                           onClick={this.handleEditProcessName}
                         >
-                          <FormattedMessage
-                            id="app.save"
-                            defaultMessage="Save"
-                          />
+                         Save
                         </Button>
                         <Button
                              type="cancel"
@@ -434,10 +431,7 @@ class TaskWorkflowTab extends Component {
                           color: "black",
                         }}
                           onClick={this.handleCancel}>
-                          <FormattedMessage
-                            id="app.cancel"
-                            defaultMessage="Cancel"
-                          />
+                         Cancel
                         </Button>
                       </div>
                     </div>
@@ -497,12 +491,11 @@ class TaskWorkflowTab extends Component {
                 organization={this.props.organization}
                 taskChecklistStagelinkId={recruitTaskStages.taskChecklistStagelinkId}
                 // taskChecklistStagelinkId={recruitTaskStages.taskChecklistStagelinkId}
-                className="scrollbar"
-                id="style-3"
+                style={{scrollbarWidth:"thin", backgroundColor:"f5f5f5" }}
               />
             ))}
 
-            <Spacer />
+            <div class=" mt-3" />
             {this.state.isTextInputOpen ? (
               <div
                 style={{
@@ -552,13 +545,13 @@ class TaskWorkflowTab extends Component {
                     htmlType="submit"
                     onClick={this.handleAddStage}
                   >
-                    {/* Save */}
-                    <FormattedMessage id="app.save" defaultMessage="Save" />
+                    Save
+                   
                   </Button>
 
                   <Button type="cancel"  onClick={this.toggleInput}>
-                    {/* Cancel */}
-                    <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                    Cancel
+                  
                   </Button>
                 </div>
               </div>
@@ -571,11 +564,8 @@ class TaskWorkflowTab extends Component {
                     htmlType="button"
                     onClick={this.toggleInput}
                   >
-                    {/* Add Stage */}
-                    <FormattedMessage
-                      id="app.addstage"
-                      defaultMessage="Add Stage"
-                    />
+                    Add Stage
+                    
                   </Button>
                 </div>
               </>

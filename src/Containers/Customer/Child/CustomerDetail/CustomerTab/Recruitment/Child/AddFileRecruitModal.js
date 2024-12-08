@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
 import { StyledModal } from "../../../../../../../Components/UI/Antd";
 import RecruitmentFileTable from "./RecruitmentFileTable";
@@ -9,10 +9,8 @@ const AddFileRecruitModal = (props) => {
   return (
     <>
       <StyledModal
-        title={<FormattedMessage
-          id="app.requirement"
-          defaultMessage="File Requirement"
-        />}
+        title="File Requirement"
+  
         width="40%"
         visible={props.addFileRecruitModal}
         maskClosable={false}

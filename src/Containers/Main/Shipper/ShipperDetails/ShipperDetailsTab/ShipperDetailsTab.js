@@ -1,13 +1,18 @@
 import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+import RequestQuoteIcon from '@mui/icons-material/RequestQuote';
+import AddShipperCostModal from "../ShipperDetailsTab/AddShipperCostModal"
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import {
   TabsWrapper,
 } from "../../../../../Components/UI/Layout";
-import { message, Tooltip } from "antd";
+import { Badge, message, Tooltip } from "antd";
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
+import ContactsIcon from '@mui/icons-material/Contacts';
 import {
+  handleShipperCostModal,
   handleLinkShipperOrderConfigureModal,
   handleShipperSubscriptionConfigureModal,
   handleShipperActivityModal,
@@ -19,43 +24,25 @@ import {
 import { handleSupplierDocumentUploadModal } from "../../../Suppliers/SuppliersAction";
 import { handleSupplierContactModal } from "../../../Suppliers/SuppliersAction";
 import dayjs from "dayjs";
-import {
-  PlusOutlined,
-} from "@ant-design/icons";
 import AddSupplierContactModal from "../../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierContactTab/AddSupplierContactModal";
 import AddSupplierDocumentModal from "../../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/AddSupplierDocumentModal";
 import ShipperAwbTable from "./ShipperActivityTab/ShipperAwbTable";
 import ErpNote from "../../../ErpNote/ErpNote";
+import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
+import AddShipperActivityModal from "./ShipperActivityTab/AddShipperActivityModal";
+import DynamicShipTabs from "./ShipperActivityTab/DynamicShipTabs";
+import AccountContactTable from "../../../Account/AccountDetailsTab/AccountContactTab/AccountContactTable";
+import SupplierDocumentTable from "../../../Suppliers/Child/SupplierDetails/SupplierDetailTab/SupplierDocumentTab/SupplierDocumentTable";
 
-const ShipperDocumentTable = lazy(() =>
-  import("./ShipperDocumentTab/ShipperDocumentTable")
+const ShipperCostTable = lazy (() =>
+import ("./ShipperCostTab/ShipperCostTable")
 );
 const ShipperActivityTable = lazy(() => import("./ShipperActivityTab/ShipperActivityTable")
 );
 
-const ContactShipperTable = lazy(() =>
-  import("./ShipperContactTab/ContactShipperTable")
-);
 const AddShipperDocumentModal = lazy(() =>
   import("./ShipperDocumentTab/AddShipperDocumentModal")
 );
-
-const LinkedShipperNotes = lazy(() =>
-  import("../ShipperDetailsTab/ShipperNotetab/LinkedShipperNotes")
-);
-// const AddShipperActivityModal = lazy(() =>import(
-//     "../ShipperDetailsTab/ShipperActivitytab/AddShipperActivityModal"
-//   )
-// );
-// const ShipperSubscriptionConfigureModal = lazy(() =>
-//   import(
-//     "../ShipperDetailsTab/ShipperOrderTab/ShipperSubscriptionConfigureModal"
-//   )
-// );
-// const ShipperOrderGeneratorTable = lazy(() =>
-//   import("../ShipperDetailsTab/ShipperOrderTab/ShipperOrderGeneratorTable")
-// );
-
 
 const TabPane = StyledTabs.TabPane;
 
@@ -69,9 +56,37 @@ class ShipperDetailsTab extends Component {
       value: 1,
       dailyCustomInd: 1,
       showDel: false,
+      translatedMenuItems: [],
     };
   }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
 
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+       
+       "1165",//Activity 0
+       "1377",// "ship id" 1
+       "316",// "Notes" 2
+       "138",  // Document 3
+       "73",  // Contact 4
+       "1219",// Cost 5
+       "104",//Create 6
+            ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  }; 
   handleGenerateOrderInShipper = (data) => {
     console.log({
       shipperId: this.props.shipperShipperId,
@@ -130,8 +145,58 @@ class ShipperDetailsTab extends Component {
   };
 
   handleTabChange = (key) => this.setState({ activeKey: key });
-
+  
   render() {
+    const renderTabContent = (key) => {
+      switch (key) {
+        case "1":
+          return     <div> 
+                 <ShipperActivityTable
+                  shipperId={this.props.shipper.shipperId}
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}
+                />
+              </div>;
+        case "2":
+          return  <div>  <DynamicShipTabs
+          shipperId={this.props.shipper.shipperId}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        /></div>;
+          case "3":
+              return  <div>  <ErpNote
+              type="shipper"
+              id={this.props.shipper.shipperId}
+              translateText={this.props.translateText}
+              selectedLanguage={this.props.selectedLanguage}
+             /> </div>;
+              case "4":
+                  return  <div> 
+                   <SupplierDocumentTable
+                      uniqueId={this.props.shipper.shipperId}
+                      type={"shipper"}
+                      translateText={this.props.translateText}
+                      selectedLanguage={this.props.selectedLanguage}/>
+                      </div>;
+                   case "5":
+                      return  <div> <AccountContactTable
+                      uniqueId={this.props.shipper.shipperId} 
+                       type={"shipper"}
+                       selectedLanguage={this.props.selectedLanguage}
+                       translateText={this.props.translateText}/></div>;
+                      case "6":
+                      return  <div> 
+                        <ShipperCostTable
+                  shipperId={this.props.shipper.shipperId}
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}
+                /> 
+                          </div>;
+                  
+        default:
+          return null;
+      }
+    };
     const { activeKey } = this.state;
     const { orderForGenerating } = this.props;
     console.log(this.props.shipper.shipperId);
@@ -139,40 +204,57 @@ class ShipperDetailsTab extends Component {
       <>
         <TabsWrapper>
           <StyledTabs defaultActiveKey="1" onChange={this.handleTabChange}>
-            {/* <TabPane
+       
+
+            <TabPane
               tab={
                 <>
-                  <i class="far fa-share-square"></i>&nbsp; Dispatch
+                  <span className="!text-tab">
+                  <HourglassFullIcon className="text-blue-500   !text-tab" />&nbsp;
+                  {/* Activity */}
+                    {this.state.translatedMenuItems[0]}
+
+                  </span>
+                  {activeKey === "1" && (
+                    <>
+                <Tooltip title= {this.state.translatedMenuItems[6]}                                        >
+                                            <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                                               
+                                                tooltipTitle= {this.state.translatedMenuItems[6]}
+                                                onClick={() => {
+                                                    this.props.handleShipperActivityModal(true);
+                                                }}
+                                              
+                                            />
+                                        </Tooltip>
+                    </>
+                  )}
                 </>
               }
               key="1"
             >
               <Suspense fallback={"Loading ..."}>
-                <ShipperDispatchTable
+                {/* <ShipperActivityTable
                   shipperId={this.props.shipper.shipperId}
-                />
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}
+                /> */}
               </Suspense>
-            </TabPane> */}
+            </TabPane>
 
             <TabPane
               tab={
                 <>
-                  <span>
-                    <i class="fab fa-connectdevelop"></i>&nbsp;
-                    <FormattedMessage id="app.activity" defaultMessage="Activity" />
-
+                  <span className="!text-tab">
+                    <RocketLaunchIcon className=" !text-tab text-[#bdd358] mr-1">          
+                    {/* ship id */}
+</RocketLaunchIcon>
+{this.state.translatedMenuItems[1]} 
                   </span>
                   {activeKey === "2" && (
                     <>
-                      {/* <Tooltip title="Create">
-                        <PlusOutlined
-                          onClick={() =>
-                            this.props.handleShipperActivityModal(true)
-                          }
-                          size="14px"
-                          style={{ verticalAlign: "center", marginLeft: "5px" }}
-                        />
-                      </Tooltip> */}
+                    
                     </>
                   )}
                 </>
@@ -180,53 +262,34 @@ class ShipperDetailsTab extends Component {
               key="2"
             >
               <Suspense fallback={"Loading ..."}>
-                <ShipperActivityTable
+                {/* <ShipperAwbTable
                   shipperId={this.props.shipper.shipperId}
-                />
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}
+                /> */}
               </Suspense>
             </TabPane>
 
             <TabPane
               tab={
                 <>
-                  <span>
-                    <i class="fab fa-connectdevelop"></i>&nbsp;
-                    <FormattedMessage id="app.awb" defaultMessage="AWB" />
-
+              <span className="!text-tab">
+                    <i  className=" fa fa-sticky-note mr-1 !text-tab text-[#b6465f] " aria-hidden="true"></i>
+                  {this.state.translatedMenuItems[2]}
+                    {/* notes */}
                   </span>
-                  {activeKey === "3" && (
-                    <>
-                    
-                    </>
-                  )}
                 </>
               }
               key="3"
             >
               <Suspense fallback={"Loading ..."}>
-                <ShipperAwbTable
-                  shipperId={this.props.shipper.shipperId}
-                />
-              </Suspense>
-            </TabPane>
-
-            <TabPane
-              tab={
-                <>
-                  <span>
-                    <i className="fa fa-sticky-note" aria-hidden="true"></i>
-                    &nbsp; <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                  </span>
-                </>
-              }
-              key="4"
-            >
-              <Suspense fallback={"Loading ..."}>
                 {" "}
-                <ErpNote
+                {/* <ErpNote
                          type="shipper"
                          id={this.props.shipper.shipperId}
-                        />
+                         translateText={this.props.translateText}
+                         selectedLanguage={this.props.selectedLanguage}
+                        /> */}
               </Suspense>
             </TabPane>
             {/* <TabPane
@@ -248,23 +311,65 @@ class ShipperDetailsTab extends Component {
             <TabPane
               tab={
                 <>
-                  <span>
-                    <i class="far fa-file"></i>
+                  <span className="!text-tab">
+                    <i class="far fa-file text-[#41ead4]"></i>
                     &nbsp;
-                    <FormattedMessage id="app.documents" defaultMessage="Documents" />
+                    {this.state.translatedMenuItems[3]}
+                    {/* Document */}
                   </span>
-                  {activeKey === "5" && (
+                  <Badge
+                                    size="small"
+                                    count={(this.props.documentCountSupplierId.document) || 0}
+                                    overflowCount={999}
+                                    offset={[ 0, -16]}
+                                >
+                              </Badge>
+                  {activeKey === "4" && (
                     <>
                       <Tooltip title="Create">
-                        <PlusOutlined
-                          type="plus"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                           tooltipTitle="Create"
                           onClick={() =>
                             // this.props.handleShipperDocumentUploadModal(true)
                             this.props.handleSupplierDocumentUploadModal(true)
                           }
-                          size="14px"
-                          style={{ verticalAlign: "center", marginLeft: "5px" }}
+          
+                        />
+                      </Tooltip>
+                    </>
+                  )}
+                </>
+              }
+              key="4"
+            >
+              <Suspense fallback={"Loading ..."}>
+                {" "}
+              
+              </Suspense>
+            </TabPane>
+
+            <TabPane
+              tab={
+                <>
+                  <span className="!text-tab">
+                  <ContactsIcon className="!text-icon text-[#96bdc6] " />
+                    &nbsp;
+                    {this.state.translatedMenuItems[4]}
+                    {/* Contact */}
+
+                  </span>
+                  {activeKey === "5" && (
+                    <>
+                      <Tooltip title="Create">
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
+                          tooltipTitle="Create"
+                          onClick={() =>
+                            //this.props.handleShipperContactModal(true)
+                            this.props.handleSupplierContactModal(true)
+                          }
+                   
                         />
                       </Tooltip>
                     </>
@@ -275,33 +380,33 @@ class ShipperDetailsTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <ShipperDocumentTable
-                  shipperId={this.props.shipper.shipperId}
-                />
+                {/* <ContactShipperTable shipperId={this.props.shipper.shipperId}
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}
+                /> */}
               </Suspense>
             </TabPane>
 
             <TabPane
               tab={
                 <>
-                  <span>
-                    <i class="fas fa-file-contract"></i>
+                  <span className="!text-tab">
+                  <RequestQuoteIcon className=" !text-icon "/>
                     &nbsp;
-                    <FormattedMessage id="app.contact" defaultMessage="Contact" />
-
+                    {this.state.translatedMenuItems[5]}
+                    {/* Cost */}
                   </span>
                   {activeKey === "6" && (
                     <>
                       <Tooltip title="Create">
-                        <PlusOutlined
-                          type="plus"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                           tooltipTitle="Create"
                           onClick={() =>
-                            //this.props.handleShipperContactModal(true)
-                            this.props.handleSupplierContactModal(true)
+                            // this.props.handleShipperDocumentUploadModal(true)
+                            this.props.handleShipperCostModal(true)
                           }
-                          size="14px"
-                          style={{ verticalAlign: "center", marginLeft: "5px" }}
+                 
                         />
                       </Tooltip>
                     </>
@@ -312,10 +417,18 @@ class ShipperDetailsTab extends Component {
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <ContactShipperTable shipperId={this.props.shipper.shipperId} />
+                
+                 {/* <ShipperCostTable
+                  shipperId={this.props.shipper.shipperId}
+                  translateText={this.props.translateText}
+                  selectedLanguage={this.props.selectedLanguage}
+                />  */}
               </Suspense>
             </TabPane>
           </StyledTabs>
+          <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                {renderTabContent(activeKey)}
+              </Suspense>
         </TabsWrapper>
         <Suspense fallback={"Loading..."}>
           {/* <LinkShipperOrderConfigureModal
@@ -339,10 +452,7 @@ class ShipperDetailsTab extends Component {
             }
             handleGenerateOrderInShipper={this.handleGenerateOrderInShipper}
           />
-          <AddShipperActivityModal
-            addShipperActivityModal={this.props.addShipperActivityModal}
-            handleShipperActivityModal={this.props.handleShipperActivityModal}
-          />*/}
+        */}
           {/* <AddShipperDocumentModal
             shipperDocumentUploadModal={this.props.shipperDocumentUploadModal}
             handleShipperDocumentUploadModal={
@@ -350,14 +460,42 @@ class ShipperDetailsTab extends Component {
             }
           />  */}
           <AddSupplierDocumentModal
+            translateText={this.props.translateText}
+            uniqueId={this.props.shipper.shipperId}
+            type={"shipper"}
+            selectedLanguage={this.props.selectedLanguage}
             shipperId={this.props.shipper.shipperId}
             supplierDocumentUploadModal={this.props.supplierDocumentUploadModal}
             handleSupplierDocumentUploadModal={
-              this.props.handleSupplierDocumentUploadModal
-            }
+              this.props.handleSupplierDocumentUploadModal}
+          />
+
+<AddShipperActivityModal
+ translateText={this.props.translateText}
+ selectedLanguage={this.props.selectedLanguage}
+            addShipperActivityModal={this.props.addShipperActivityModal}
+            handleShipperActivityModal={this.props.handleShipperActivityModal}
+            defaultValue={[{ label: this.props.shipper.name, value: this.props.shipper.shipperId }]}
+            shipperId={{ value: this.props.shipper.shipperId }}
+            uniqueId={this.props.shipper.shipperId}
+            shipper={this.props.shipper}
+          name={this.props.shipper.name}
+          
+          />
+
+
+<AddShipperCostModal
+addLinkShipperCostModal={this.props.addLinkShipperCostModal}
+handleShipperCostModal={this.props.handleShipperCostModal}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+            shipperId={this.props.shipper.shipperId}
+            
           />
 
           <AddSupplierContactModal
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
             addSupplierContactModal={this.props.addSupplierContactModal}
             handleSupplierContactModal={this.props.handleSupplierContactModal}
             id={this.props.shipper.shipperId}
@@ -374,6 +512,7 @@ const mapStateToProps = ({ shipper, auth, suppliers }) => ({
   addLinkShipperOrderConfigureModal: shipper.addLinkShipperOrderConfigureModal,
   addShipperSubscriptionConfigureModal:
     shipper.addShipperSubscriptionConfigureModal,
+    addLinkShipperCostModal:shipper.addLinkShipperCostModal,
   addShipperActivityModal: shipper.addShipperActivityModal,
   orderForGenerating: shipper.orderForGenerating,
   shipperShipperId: shipper.shipperDetailsByShipperId.shipperId,
@@ -381,11 +520,13 @@ const mapStateToProps = ({ shipper, auth, suppliers }) => ({
   shipperContactModal: shipper.shipperContactModal,
   addSupplierContactModal: suppliers.addSupplierContactModal,
   supplierDocumentUploadModal: suppliers.supplierDocumentUploadModal,
+  documentCountSupplierId:suppliers.documentCountSupplierId
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
+      handleShipperCostModal,
       handleLinkShipperOrderConfigureModal,
       handleShipperSubscriptionConfigureModal,
       handleShipperActivityModal,

@@ -1,10 +1,8 @@
 import React, { lazy, Suspense, Component } from "react";
 import { Button, Icon } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledModal } from "../../../../Components/UI/Antd";
-import { FlexContainer } from "../../../../Components/UI/Layout";
-import { Spacer } from "../../../../Components/UI/Elements";
 const VoIPForm = lazy(() => import("./VoIPForm"));
 const EmailForm = lazy(() => import("../../Email/Child/EmailForm"));
 
@@ -24,11 +22,8 @@ class AddIntegrationModal extends Component {
     return (
       <>
         <StyledModal
-          //title="Integration"
-          title={<FormattedMessage
-            id="app.integration"
-            defaultMessage="Integration"
-          />}
+          title="Integration"
+          
           width="36vw"
           height="30vh"
           visible={addIntegrationModal}
@@ -40,7 +35,7 @@ class AddIntegrationModal extends Component {
           footer={null}
         >
           <Suspense fallback={<BundleLoader />}>
-            <FlexContainer justifyContent="center">
+          <div class=" flex flex-row flex-wrap items-start self-start justify-center grow shrink h-auto mr-auto ">
               <Button.Group size="large">
                 <Button
                   type="default"
@@ -59,8 +54,8 @@ class AddIntegrationModal extends Component {
                   <Icon type="mail" />
                 </Button>
               </Button.Group>
-            </FlexContainer>
-            <Spacer />
+            </div>
+            <mt-3 />
             {this.state.currrentForm === "voip" && <VoIPForm {...formProps} />}
             {this.state.currrentForm === "email" && (
               <EmailForm {...formProps} />

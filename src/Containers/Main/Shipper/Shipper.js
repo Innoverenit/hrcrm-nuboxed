@@ -1,5 +1,4 @@
 import React, { useState,useEffect, Suspense, lazy } from "react";
-import ShipperHeader from "./ShipperHeader";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../Components/Placeholder";
@@ -10,6 +9,7 @@ import {
   getAllShipperList,
 } from "./ShipperAction";
 
+const ShipperHeader =lazy(()=>import("./ShipperHeader"));
 const AddShipperModal =lazy(()=>import("./AddShipperModal"));
 const AllShipperList =lazy(()=>import("./AllShipperList"));
 const ShipperDeleteTable =lazy(()=>import("./ShipperDeleteTable"));
@@ -43,29 +43,30 @@ const handleClear = () => {
       const fetchMenuTranslations = async () => {
         try {
           const itemsToTranslate = [
-           "Name",//0
-            "Phone",//1
-            "Email",//2
-            "Ship By",//3
-            'Address',//4
-            'City',//5
-            'Pin Code',//6
-           'Reinstate',//7
-            'Loading',//8
-            'Edit',//9
-         'Do you want to delete',//10
-         'Shipper',//11
-         'Dial Code',//12
-         'Integrated',//13
-         'Assigned',//14
-         'Create',//15
-         'Update',//16
-         'My Shippers',//17
-         'All',//18
-         'Deleted',//19
-         'Search by Name or Sector',//20
-         'Export Shipper',//21
-         'Add',//22
+     "110",  // "Name",//0
+      "102",   // "Phone",//1
+      "140",   // "Email",//2
+       "891",  // "Ship By",//3
+      "185",   // 'Address',//4
+      "188",   // 'City',//5
+      "879",   // 'Pin Code',//6
+      "1069",   // 'Reinstate',//7
+      "82",   // 'Loading',//8
+      "170",   // 'Edit',//9
+      "1259",   //  'Do you want to delete',//10
+      "887",   //  'Shipper',//11
+       "357",  //  'Dial Code',//12
+       "1269",  //  'Integrated',//13
+      "76",   //  'Assigned',//14
+       "104",  //  'Create',//15
+       "126",  //  'Update',//16
+       "900",  //  'My Shippers',//17
+       "228",  //  'All',//18
+       "902",  //  'Deleted',//19
+       "288",  //  'Search by Name or Sector',//20
+        "1268", //  'Export Shipper',//21
+       "85",  //  'Add',//22
+          "418"         //Corporate Address 23
           ];
   
           const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -81,6 +82,7 @@ const handleClear = () => {
 
     return (
       <>
+      <Suspense fallback={"Loading..."}>
         <ShipperHeader
           viewType={viewType}
           setShipperViewType={setShipperViewType}
@@ -99,7 +101,7 @@ const handleClear = () => {
           translatedMenuItems={translatedMenuItems}
           selectedLanguage={props.selectedLanguage}
         />
-        <Suspense fallback={<BundleLoader />}>
+        
           {props.viewType === "table" ? (
             <ShipperCardList translateText={props.translateText}
             translatedMenuItems={translatedMenuItems}

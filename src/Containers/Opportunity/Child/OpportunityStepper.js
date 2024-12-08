@@ -2,8 +2,8 @@ import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
-import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
-import { FormattedMessage } from 'react-intl';
+import GroupsIcon from '@mui/icons-material/Groups';
+import CallIcon from '@mui/icons-material/Call';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
 import { StyledSteps } from "../../../Components/UI/Antd";
@@ -28,7 +28,8 @@ class OpportunityStepper extends Component {
             comments:"",
             catalogueId:"",
             unit:"",
-            price:""
+            price:"",
+            emialInd:false,
         };
     }
     handleSubmit = (data) => {
@@ -99,36 +100,24 @@ class OpportunityStepper extends Component {
 componentDidMount(){
    // this.props.getCreatedOffers(this.props.rowItem.offerId);
 };
+handleEmailInd = (checked) => {
+    this.setState({ emailInd: checked });
+  };
 
     render() {
         const {  ...formProps } = this.props;
      //   console.log(this.props.offerStep1.offerId)
         const steps = [
             {
-                title: <FormattedMessage
-                    id="app.order"
-                    defaultMessage="Order"
-                />,
-                icon: <UserOutlined />,
+                title:"Order",
+                icon: <GroupsIcon className=" text-green-600" 
+                style={{ backgroundColor:"green"}} />,
                 content: <OpportunityForm {...formProps}/>,
             },
             {
-                title: <FormattedMessage
-                    id="app.catalogue"
-                    defaultMessage="Catalogue List"
-                />,
-                icon: <PhoneOutlined
-                    style={{ color: "blue" }}
-                />,
+                title: "Catalogue List",
+                icon: <CallIcon className=" text-green-500"/>,
                 content: <AddCatalogueForm
-                // handleChooseCatalogue={this.handleChooseCatalogue}
-                // catalogueId={this.state.catalogueId}
-                // handleUnit={this.handleUnit}
-                // unit={this.state.unit}
-                // handlePrice={this.handlePrice}
-                // price={this.state.price}
-                // addedOpportunity={this.props.addedOpportunity}
-                // createdOffers={this.props.createdOffers}
             />,
             },
 
@@ -139,18 +128,14 @@ componentDidMount(){
             <>
                 <StyledSteps current={current}>
                     <Step
-                        title={<AddShoppingCartIcon style={{ fontSize: "1rem" }} />}
-                        description={<FormattedMessage
-                            id="app.oderdetails"
-                            defaultMessage="Order Details"
-                        />}
+                        title={<AddShoppingCartIcon className=" !text-icon"  />}
+                        description="Order Details"
+                      
                     />
                     <Step
-                        title={<ControlPointDuplicateIcon style={{ fontSize: "1rem" }} />}
-                        description={<FormattedMessage
-                            id="app.unitsinfo"
-                            defaultMessage="Units Info"
-                        />}
+                        title={<ControlPointDuplicateIcon className=" !text-icon" />}
+                        description="Units Info"
+                      
                     />
 
                 </StyledSteps>
@@ -165,7 +150,7 @@ componentDidMount(){
                                             type="tertiary"
                                             
                                             onClick={() => this.prev()}>
-                                        <label class="text-base cursor-pointer"> Previous</label>
+                                        <div class="text-base cursor-pointer"> Previous</div>
                                             {/* {this.props.translatedMenuItems[1]} */}
                                         </Button>
                                     )}
@@ -178,7 +163,7 @@ componentDidMount(){
                                                 onClick={() => this.handleComplete()}
                                                 //  disabled={!this.state.checked}
                                             >
-                                                <label class="text-base cursor-pointer">Complete</label> 
+                                                <div class="text-base cursor-pointer">Complete</div> 
                                                 {/* {this.props.translatedMenuItems[2]} */}
                                             </Button>
 
@@ -198,9 +183,9 @@ componentDidMount(){
                                                 }}
                                           
                                             >
-                                           <label class="text-base cursor-pointer">
+                                           <div class="text-base cursor-pointer">
                                            Proceed
-                                             </label>
+                                             </div>
                                   
                                             </Button> : 
                                             null}

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { updateValidationInReceive } from "../../../InventoryAction"
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
-import moment from 'moment';
+import dayjs from 'dayjs';
 import { SelectComponent } from '../../../../../../Components/Forms/Formik/SelectComponent';
 
 function ReceivedPhoneList(props) {
@@ -34,7 +34,7 @@ function ReceivedPhoneList(props) {
                     receiveOS: props.particularRowData.os ?  props.particularRowData.os : "",
                     mismatchInd: true,
                     receivePhoneUser: props.userId,
-                    receivePhoneDate: moment(),
+                    receivePhoneDate: dayjs(),
                     mismatchOrderInd: true
                 }}
 

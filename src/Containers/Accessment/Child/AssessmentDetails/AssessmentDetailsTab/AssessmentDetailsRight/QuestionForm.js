@@ -1,7 +1,7 @@
 import React, { Component, useState, useMemo, useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Button, Tooltip } from "antd";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";

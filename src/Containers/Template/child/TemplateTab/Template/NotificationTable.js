@@ -6,16 +6,13 @@ import {
   StyledTable,
   StyledPopconfirm,
 } from "../../../../../Components/UI/Antd";
-import {
-  EyeInvisibleOutlined, EyeOutlined,
-
-  
-} from '@ant-design/icons';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { withRouter } from "react-router-dom";
 import NotificationView from "./NotificationView";
 import { getNotificationTemplate,setCurrentNotification } from "../../../../Rules/RulesAction";
-import moment from "moment";
-import { FormattedMessage } from "react-intl";
+import dayjs from "dayjs";
+
 
 // const data = [{ templateName: "Birthday", date: "29-10-20" }];
 class NotificationTable extends React.Component {
@@ -47,13 +44,11 @@ class NotificationTable extends React.Component {
 
       {
         //title: "Created on",
-        title: <FormattedMessage
-          id="app.createdon"
-          defaultMessage="Description"
-        />,
+        title: "Description"
+      ,
         width: "15%",
         render: (name, item, i) => {
-          return <span>{moment(item.creationDate).format("YYYY-MM-DD")}</span>;
+          return <span>{dayjs(item.creationDate).format("YYYY-MM-DD")}</span>;
         },
       },
 
@@ -68,7 +63,7 @@ class NotificationTable extends React.Component {
             <>
               {close ? (
                 <Tooltip title="Close Template">
-                  <EyeInvisibleOutlined
+                  <VisibilityOffIcon
                     type="eye-invisible"
                     onClick={this.handleCloseIconClick}
                   
@@ -81,7 +76,7 @@ class NotificationTable extends React.Component {
                 </Tooltip>
               ) : (
                   <Tooltip title="View Template">
-                    <EyeOutlined
+                    <VisibilityIcon
                       type="eye"
                       onClick={() =>{
                         this.handleIconClick(

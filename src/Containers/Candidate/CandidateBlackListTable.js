@@ -1,10 +1,10 @@
 import React, {  useEffect, useState, useMemo, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import styled from "styled-components";
-import { SearchOutlined, UpCircleOutlined } from "@ant-design/icons";
-import { FormattedMessage } from "react-intl";
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
+import SearchIcon from '@mui/icons-material/Search';
 import { StyledTable, StyledPopconfirm } from "../../Components/UI/Antd";
 import { Button, Select, Tooltip, Input } from "antd";
 import { MultiAvatar, SubTitle } from "../../Components/UI/Elements";
@@ -122,7 +122,7 @@ function CandidateBlackListTable(props) {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             size="small"
             style={{ width: 90 }}
           >
@@ -149,7 +149,7 @@ function CandidateBlackListTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />
@@ -272,8 +272,7 @@ function CandidateBlackListTable(props) {
       },
     },
     {
-      // title: "Name",
-      title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+      title: "Name",
       dataIndex: "fullName",
       width: "13%",
       ...getColumnSearchProps("fullName"),
@@ -283,19 +282,19 @@ function CandidateBlackListTable(props) {
       width: "2%",
     },
     {
-      title: <FormattedMessage id="app.category" defaultMessage="Category" />,
+      title: "Category" ,
       dataIndex: "category",
       width: "6%",
     },
 
     {
-      title: <FormattedMessage id="app.vendor" defaultMessage="Vendor" />,
+      title: "Vendor" ,
       dataIndex: "partnerName",
       width: "10%",
       ...getColumnSearchProps("partnerName"),
     },
     {
-      title: <FormattedMessage id="app.role" defaultMessage="Role" />,
+      title:"Role" ,
       dataIndex: "roleType",
       width: "8%",
       filters: roleTypeOption,
@@ -307,7 +306,7 @@ function CandidateBlackListTable(props) {
 
     {
       title: (
-        <FormattedMessage id="app.mobileNumber" defaultMessage="Mobile #" />
+       "Mobile #" 
       ),
       dataIndex: "mobileNumber",
       width: "10%",
@@ -320,7 +319,7 @@ function CandidateBlackListTable(props) {
       },
     },
     {
-      title: <FormattedMessage id="app.country" defaultMessage="Country" />,
+      title: "Country" ,
       dataIndex: "country",
       align: "left",
       sorter: (a, b) => {
@@ -338,13 +337,13 @@ function CandidateBlackListTable(props) {
       width: "8%",
     },
     {
-      title: <FormattedMessage id="app.skills" defaultMessage="Skills" />,
+      title: "Skills" ,
       width: "18%",
       ...getColumnSearchProps("skillList"),
     },
 
     {
-      title: <FormattedMessage id="app.cost" defaultMessage="Cost" />,
+      title: "Cost" ,
       dataIndex: "billing",
       align: "left",
       width: "6%",
@@ -357,7 +356,7 @@ function CandidateBlackListTable(props) {
     },
 
     {
-      title: <FormattedMessage id="app.benefits" defaultMessage="Benefits" />,
+      title: "Benefits" ,
       dataIndex: "benifit",
       width: "6%",
       render: (name, item, i) => {
@@ -372,17 +371,17 @@ function CandidateBlackListTable(props) {
     },
 
     {
-      title: <FormattedMessage id="app.available" defaultMessage="Available" />,
+      title: "Available" ,
       dataIndex: "availableDate",
       width: "7%",
       render: (text, item) => {
-        const availableDate = moment(item.availableDate).format("ll");
+        const availableDate = dayjs(item.availableDate).format("ll");
         return (
           <>
             {item.availableDate === null ? (
               "None"
             ) : (
-              <span>{moment(item.availableDate).format("l")}</span>
+              <span>{dayjs(item.availableDate).format("l")}</span>
             )}
           </>
         );
@@ -391,7 +390,7 @@ function CandidateBlackListTable(props) {
 
     {
       // title: "",
-      title: <FormattedMessage id="app.owner" defaultMessage="Owner" />,
+      title: "Owner" ,
       // dataIndex: "ownerName",
       width: "8%",
       filters: ownerlistType,
@@ -418,7 +417,7 @@ function CandidateBlackListTable(props) {
       },
     },
     {
-      title: <FormattedMessage id="app.active" defaultMessage="Active" />,
+      title: "Active" ,
       // dataIndex: "active",
       width: "5%",
     },
@@ -459,7 +458,7 @@ function CandidateBlackListTable(props) {
             title="Do you want to blacklist?"
             onConfirm={() => props.getBlackListCandidate(item.candidateId)}
           >
-            <UpCircleOutlined
+            <ArrowCircleUpIcon
               type="up-circle"
               theme="filled"
               // type="edit"

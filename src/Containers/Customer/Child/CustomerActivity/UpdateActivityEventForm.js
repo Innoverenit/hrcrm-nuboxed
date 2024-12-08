@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field, FieldArray } from "formik";
@@ -293,17 +293,14 @@ const {
             ...rest
           }) => (
             <div class="overflow-y-auto h-[44rem] overflow-x-hidden max-sm:h-[30rem]">
-            <Form className="form-background">
+            <Form className="form-background h-wk">
               <div class=" flex justify-around max-sm:flex-col">
                 <div class=" h-full w-w47.5 mt-3 max-sm:w-wk">
                   
                   <Field
                     isRequired
                     name="eventTypeId"
-                    //label="Type"
-                    label={
-                      <FormattedMessage id="app.type" defaultMessage="Type" />
-                    }
+                    label="Type"
                     component={SearchSelect}
                     isColumnWithoutNoCreate
                     selectType="eventType"
@@ -315,12 +312,8 @@ const {
                     isRequired
                     name="eventSubject"
                     //label="Topic"
-                    label={
-                      <FormattedMessage
-                        id="app.subject"
-                        defaultMessage="Subject"
-                      />
-                    }
+                    label="Subject"
+                    
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -333,13 +326,8 @@ const {
                         <Field
                           isRequired
                           name="startDate"
-                          //label="Start "
-                          label={
-                            <FormattedMessage
-                              id="app.startDate"
-                              defaultMessage="Start Date"
-                            />
-                          }
+                          label="Start "
+                         
                           isColumn
                           component={DatePicker}
                           value={values.startDate}
@@ -353,13 +341,8 @@ const {
                         <Field
                           isRequired
                           name="startTime"
-                          // label="Start Time"
-                          label={
-                            <FormattedMessage
-                              id="app.startTime"
-                              defaultMessage="Start Time"
-                            />
-                          }
+                          label="Start Time"
+                         
                           isColumn
                           component={TimePicker}
                           use12Hours
@@ -377,13 +360,8 @@ const {
                       <Field
                         isRequired
                         name="endDate"
-                        // label="End "
-                        label={
-                          <FormattedMessage
-                            id="app.enddate"
-                            defaultMessage="End Date"
-                          />
-                        }
+                        label="End "
+                       
                         component={DatePicker}
                         isColumn
                         value={values.endDate || values.startDate}
@@ -411,13 +389,8 @@ const {
                       <Field
                         isRequired
                         name="endTime"
-                        //label="End Time"
-                        label={
-                          <FormattedMessage
-                            id="app.endtime"
-                            defaultMessage="End Time"
-                          />
-                        }
+                        label="End Time"
+                       
                         isColumn
                         component={TimePicker}
                         use12Hours
@@ -434,13 +407,7 @@ const {
                     defaultValue={{ label: timeZone, value: userId }}
                     isColumnWithoutNoCreate
                     name="timeZone"
-                    //label="TimeZone "
-                    label={
-                      <FormattedMessage
-                        id="app.timeZone"
-                        defaultMessage="Time Zone"
-                      />
-                    }
+                    label="TimeZone "
                     selectType="timeZone"
                     isColumn
                     value={values.timeZone}
@@ -449,28 +416,6 @@ const {
                   />
                  
                   
-                    {/* <Field
-                      name="employeesId"
-                      isColumnWithoutNoCreate
-                      selectType="employee"
-                      // label="Assigned"
-                      label={
-                        <FormattedMessage
-                          id="app.assignedto"
-                          defaultMessage="Assigned"
-                        />
-                      }
-                      component={SearchSelect}
-                      isColumn
-                      value={values.employeeId}
-                      defaultValue={{
-                        label: `${firstName || ""} ${middleName || ""} ${
-                          lastName || ""
-                        }`,
-                        value: employeeId,
-                      }}
-                      inlineLabel
-                    /> */}
                  <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
@@ -542,13 +487,7 @@ const {
       <div class=" mt-3">
                   <Field
                     name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.include"
-                        defaultMessage="Include"
-                      />
-                    }
+                    label="Include"
                     mode
                     placeholder="Select"
                     component={SelectComponent}
@@ -566,13 +505,8 @@ const {
                 name="customerId"
                 isColumnWithoutNoCreate
                 selectType="customerList"
-                // label="Tag Company"
-                label={
-                  <FormattedMessage
-                    id="app.tagcompany"
-                    defaultMessage="Tag Company"
-                  />
-                }
+                label="Tag Company"
+              
                 component={SearchSelect}
                 isColumn
                 value={values.customerId}
@@ -592,13 +526,8 @@ const {
                     name="contact"
                     //selectType="contactList"
                     isColumnWithoutNoCreate
-                    // label="Contact"
-                    label={
-                      <FormattedMessage
-                        id="app.contact"
-                        defaultMessage="Contact"
-                      />
-                    }
+                    label="Contact"
+                  
                     component={SelectComponent}
                     isColumn
                     options={Array.isArray(ContactData) ? ContactData : []}
@@ -618,12 +547,8 @@ const {
                  name="opportunity"
                  // selectType="customerList"
                  isColumnWithoutNoCreate
-                 label={
-                   <FormattedMessage
-                     id="app.opportunity"
-                     defaultMessage="Opportunity"
-                   />
-                 }
+                 label="Opportunity"
+                
                  //component={SearchSelect}
                  component={SelectComponent}
                  options={
@@ -686,10 +611,8 @@ const {
               <div class=" mt-3">
                   <Field
                     name="eventDescription"
-                    //label="Notes"
-                    label={
-                      <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                    }
+                    label="Notes"
+                   
                     isColumn
                     width={"100%"}
                     component={TextareaComponent}
@@ -701,7 +624,7 @@ const {
                     <div class=" w-1/2 font-bold">
                       <div class=" flex justify-between">
                         <div>
-                          <StyledLabel>Set Reminder </StyledLabel>
+                          <div class=" text-xs font-bold font-poppins text-black">Set Reminder </div>
                         </div>
                         <div>
                           <Switch
@@ -752,10 +675,7 @@ const {
                         htmlType="submit"
                         Loading={deletingEvent}
                       >
-                        <FormattedMessage
-                          id="app.delete"
-                          defaultMessage="Delete"
-                        />
+                      Delete
                       </Button>
                     </StyledPopconfirm>
                   </>
@@ -769,8 +689,8 @@ const {
                   {isEditing ? (
                     "Update"
                   ) : (
-                    // "Create"
-                    <FormattedMessage id="app.Update" defaultMessage="Update" />
+                  
+                    "Update"
                   )}
                 </Button>
               </div>

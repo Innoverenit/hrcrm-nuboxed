@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 const AddCandidateEmploymentForm = lazy(() =>
   import("./AddCandidateEmploymentForm")
 );
@@ -16,10 +16,8 @@ class AddCandidateEmploymentModal extends Component {
     return (
       <>
         <StyledDrawer
-          // title="Employment"
-          title={
-            <FormattedMessage id="app.employment" defaultMessage="Employment" />
-          }
+       title="Employment"
+       
           width="60%"
           visible={addCandidateEmploymentModal}
           destroyOnClose

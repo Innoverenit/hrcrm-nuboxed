@@ -24,11 +24,16 @@ function MaterialBuilder (props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "HSN",//0      
-          "Name",//1
-          "Category",//1
-          "Sub Category",//1
-          "Unit",//1                              
+    "799" ,   //  "HSN",//0      
+    "110",    //   "Name",//1
+      "14",  //   "Category",//2
+      "1154",  //   "Sub Category",//3
+      "254",  //   "Unit",//4
+      "1078",  // Save 5
+      "1079",  // Cancel
+      "170",   // "Edit"    
+      "1259",   // "Do you want to delete?" 
+      "84",  // "Delete"              
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -83,9 +88,15 @@ function MaterialBuilder (props) {
                             
  <Suspense fallback={"Loading"}>
 {showCard &&
-<MaterialBuilderSearchedCard particularDiscountData={props.particularDiscountData} searchedMaterialBuilders={props.searchedMaterialBuilders}/>
+<MaterialBuilderSearchedCard 
+     translateText={props.translateText}
+     selectedLanguage={props.selectedLanguage}
+     particularDiscountData={props.particularDiscountData}
+      searchedMaterialBuilders={props.searchedMaterialBuilders}/>
 }
 <MaterialbuilderCard 
+   translateText={props.translateText}
+   selectedLanguage={props.selectedLanguage}
 particularDiscountData={props.particularDiscountData}
 translatedMenuItems={translatedMenuItems}
 />

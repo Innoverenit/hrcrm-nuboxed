@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import { Popconfirm,Tooltip,Input } from "antd";
 import { base_url } from "../../../Config/Auth";
 import DownloadIcon from '@mui/icons-material/Download';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { BundleLoader } from "../../../Components/Placeholder";
 import {
@@ -120,8 +120,8 @@ return <div><BundleLoader/></div>;
 }
   return (
       <div>
-    <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw] mt-3"  >
+    <div class=" flex flex-row justify-end items-center">
+    <div class=" flex w-[18vw] mt-7px mr-2"  >
           <Input
        placeholder="Search by Name"
       style={{width:"100%",marginLeft:"0.5rem"}}
@@ -131,7 +131,7 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div>
-          <div class="w-[38rem]">
+          <div class="w-[2rem]">
   <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"idProofType"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">
@@ -165,7 +165,7 @@ return <div><BundleLoader/></div>;
          
          <div className="!h-[69vh] !mt-2" >
           {!props.fetchingIdProofs && idProofs.length === 0 ? <NodataFoundPage /> : idProofs.slice().sort((a, b) => a.idProofType.localeCompare(b.idProofType)).map((region, index) => (
-            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.idProofTypeId}>
+            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  border-[#0000001f]  border  shadow-[#a3abb980] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.idProofTypeId}>
             {/* Region name display or input field */}
             
             {editingId === region.idProofTypeId ? (
@@ -207,12 +207,7 @@ return <div><BundleLoader/></div>;
                         cancelText="No"
                         onConfirm={() =>  props.removeIdProof(region.idProofTypeId,props.orgId)}
                       >
-                <DeleteOutlined className=" !text-icon text-red-600 cursor-pointer"
-                 
-              // onClick={() => 
-              //     props.removeServiceLine(item.idProofTypeId)
-              //  }
-                 />
+                <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                  </Popconfirm>
             </div>
         </div>

@@ -159,43 +159,13 @@ function OpportunityInitiativeForm(props) {
         </span>
       )
     }
-
- 
-  
-   
-
-   
-  
-    
-  
- 
-
-  
-
   ];
 
- 
-
- 
 console.log("check",row)
 
   return (
     <>
-      {/* <Button type="primary" onClick={start} disabled={!hasSelected} loading={loading}> */}
-     
-       {/* <span
-        style={{
-          marginLeft: 8,
-        }}
-      >
-        {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
-      </span> */}
-     
-      
-     
-
-        
-         
+          
       <StyledTable
         rowKey="definationId"
         columns={columns}

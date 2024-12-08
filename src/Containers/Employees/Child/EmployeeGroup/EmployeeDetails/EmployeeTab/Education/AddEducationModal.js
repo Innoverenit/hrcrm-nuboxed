@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, Component } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../../Components/UI/Antd";
 
@@ -17,17 +17,17 @@ class AddEducationModal extends Component {
     return (
       <>
         <StyledDrawer
-          title={<FormattedMessage
-            id="app.education"
-            defaultMessage="Education"
-          />}
+          title="Education"
+       
           width="60%"
           visible={addEducationModal}
           onClose={() => handleEducationModal(false)}
         
         >
           <Suspense fallback={<BundleLoader />}>
-            <EducationDocumentForm />
+            <EducationDocumentForm
+                     translateText={this.props.translateText}
+                     selectedLanguage={this.props.selectedLanguage} />
           </Suspense>
         </StyledDrawer>
       </>

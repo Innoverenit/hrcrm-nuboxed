@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Button } from "antd";
-import { Spacer } from "../../../../Components/UI/Elements";
+
 import { updateOrganizationDetails } from "../../../Auth/AuthAction";
 import EditableInput from "../../../../Components/Forms/Edit/EditableInput";
 import EditableSelect from "../../../../Components/Forms/Edit/EditableSelect";
@@ -88,7 +88,7 @@ class OrganizationAboutEdit extends Component {
             disabled={"disabled"}
             width="100%"
           /> */}
-         <Spacer style={{ margin: "0.125em" }} />
+         <div class=" mt-3" style={{ margin: "0.125em" }} />
 <EditSearchSelect
                         defaultValue={{ value: tradeCurrency, label: tradeCurrency, color: '#FF8B00' }}
                         selectType='currency'
@@ -98,9 +98,9 @@ class OrganizationAboutEdit extends Component {
                         value={this.state.fields.tradeCurrency}
                         width="17.625em"
                     />
-          <Spacer style={{ margin: "0.125em" }} />
+          <div class=" mt-3" style={{ margin: "0.125em" }} />
           <div style={{ width: "100%" }}></div>
-          <Spacer style={{ margin: "0.25em" }} />
+          <div class=" mt-3" style={{ margin: "0.25em" }} />
           {/* <EditableInput
             defaultValue={tradeCurrency}
             handleChange={this.handleChange}
@@ -153,19 +153,13 @@ class OrganizationAboutEdit extends Component {
             Loading={this.props.updatingOrganizationDetails}
             onClick={this.handleUpdate}
           >
-            {/* Save */}
-            <FormattedMessage
-                 id="app.save"
-                 defaultMessage="Save"
-                />
+            Save
+            
           </Button>
           &nbsp;
           <Button type="ghost" onClick={() => toggleViewType()}>
-            {/* Cancel */}
-            <FormattedMessage
-                 id="app.cancel"
-                 defaultMessage="Cancel"
-                />
+            Cancel
+          
           </Button>
         </div>
       </>

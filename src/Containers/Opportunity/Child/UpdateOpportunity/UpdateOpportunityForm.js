@@ -1,13 +1,14 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button,Select } from "antd";
-import { FormattedMessage } from "react-intl";
+import { Button,Select,Tooltip } from "antd";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import {getSaleCurrency} from "../../../Auth/AuthAction"
-import {  StyledLabel } from "../../../../Components/UI/Elements";
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import RotateRightIcon from "@mui/icons-material/RotateRight";
+import StopCircleIcon from "@mui/icons-material/StopCircle";
 import { updateOpportunity, getAllSalesList } from "../../OpportunityAction";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
@@ -20,6 +21,7 @@ import { getCrm} from "../../../Leads/LeadsAction";
 import {getAssignedToList} from "../../../Employees/EmployeeAction"
 import { getAllEmployeelist } from "../../../Investor/InvestorAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import {base_url} from "../../../../Config/Auth";
 
 const { Option } = Select;
 /**
@@ -45,23 +47,27 @@ function UpdateOpportunityForm (props) {
   const [touchedCustomer, setTouchedCustomer] = useState(false);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [transcript, setTranscript] = useState('');
+  const [isListening, setIsListening] = useState(false);
+  const recognitionRef = useRef(null);
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-   ' Name', // 0
-'Start Date', // 1
-'End Date', // 2
-'Value', // 3
-'Currency', // 4
-'Assigned', // 5
-'Include', // 6
-'Customer', // 7
-'Contact', // 8
-'Workflow', // 9
-'Stages', // 10
+       '110', // 0
+'176', // 1
+'126', // 2
+'218', // 3
+'241', // 4
+'76', // 5
+'75', // 6
+'248', // 7
+'73', // 8
+'141', // 9
+'219', // 10
+'1246'//11 update
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -94,22 +100,17 @@ function UpdateOpportunityForm (props) {
     const includeOption = props.setEditingOpportunity.included===null?[]: props.setEditingOpportunity.included.map((item) => {
       return item.empName
     })
-
-    
-   
+      
     setInclude(includeOption)
     console.log("test", includeOption)
   
   }, [props.setEditingOpportunity]);
 
-
-
   const fetchCustomers = async () => {
     setIsLoadingCustomers(true);
     try {
-      // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
-      // setCustomers(response.data);
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}`;
+    
+      const apiEndpoint = `${base_url}/customer/user/${props.userId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -127,7 +128,6 @@ function UpdateOpportunityForm (props) {
     }
   };
 
-
   const handleSelectCustomerFocus = () => {
     if (!touchedCustomer) {
       fetchCustomers();
@@ -140,9 +140,8 @@ function UpdateOpportunityForm (props) {
   const fetchContacts = async (customerId) => {
     setIsLoadingContacts(true);
     try {
-      // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
-      // setContacts(response.data);
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`;
+     
+      const apiEndpoint = `${base_url}/customer/contact/drop/${customerId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -166,7 +165,6 @@ function UpdateOpportunityForm (props) {
   const handleContactChange=(value)=>{
     setSelectedContact(value);
   }
-
 
   const sortedCurrency =props.saleCurrencies.sort((a, b) => {
     const nameA = a.currency_name.toLowerCase();
@@ -302,6 +300,74 @@ function UpdateOpportunityForm (props) {
       const [selected, setSelected] = useState(defaultOption);
       const selectedOption = props.crmAllData.find((item) => item.empName === selected);
 
+      const [text, setText] = useState("");
+      function handletext(e) {
+        setText(e.target.value);
+      }
+    
+      useEffect(() => {
+        if (!('webkitSpeechRecognition' in window)) {
+          console.log('Browser does not support speech recognition.');
+          return;
+        }
+      const recognition = new window.webkitSpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+      recognition.lang = 'en-US';
+    
+      recognition.onresult = (event) => {
+        let finalTranscript = '';
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            finalTranscript += event.results[i][0].transcript;
+          }
+        }
+        finalTranscript = finalTranscript.trim(); // Trim spaces around the transcript
+    
+        // Ensure the final transcript is appended only once
+        setTranscript((prevTranscript) => {
+          setText((prevText) => (prevText + ' ' + finalTranscript).trim());
+          return prevTranscript + ' ' + finalTranscript;
+        });
+      };
+    
+      recognition.onend = () => {
+        setIsListening(false);
+      };
+    
+      recognitionRef.current = recognition;
+    
+      return () => {
+        recognition.stop();
+      };
+    }, []);
+    
+      const startListening = () => {
+        if (recognitionRef.current) {
+          recognitionRef.current.start();
+          setIsListening(true);
+        }
+      };
+    
+      const stopListening = () => {
+        if (recognitionRef.current) {
+          recognitionRef.current.stop();
+          setIsListening(false);
+        }
+      };
+    
+      const handleTextChange = (event) => {
+        setText(event.target.value);
+        setTranscript('');
+      };
+    
+      const resetTranscript = () => {
+        setTranscript('');
+        setText('');
+      };
+     
+
+
       if (loading) {
         return <div><BundleLoader/></div>;
       }
@@ -319,7 +385,7 @@ function UpdateOpportunityForm (props) {
             oppStage:"",
             // oppWorkflow: props.setEditingOpportunity.oppWorkflow || "",
             // oppStage: props.setEditingOpportunity.oppStage || "",
-            
+           
             // description: props.setEditingOpportunity.description || "",
             proposalAmount:
               props.setEditingOpportunity.proposalAmount || "",
@@ -413,6 +479,7 @@ function UpdateOpportunityForm (props) {
                 orgId: props.organizationId,
                 customerId:selectedCustomer,
                 contactId:selectedContact,
+                description: text,
                 // description: transcript ? transcript : text,
                 // customerId: props.customerId,
                 userId: props.userId,
@@ -440,60 +507,39 @@ function UpdateOpportunityForm (props) {
                 <div class=" h-full w-[47.5%] max-sm:w-wk">
                  
                   <div className="mt-3">
+                    <div class="font-bold text-xs">{translatedMenuItems[0]}</div>
                     <Field
                       isRequired
                       name="opportunityName"
                       type="text"
-                      //label="Name"
-                      label={translatedMenuItems[0]}
-                      // {
-                      //   <FormattedMessage
-                      //     id="app.opportunityName"
-                      //     defaultMessage="Name"
-                      //   />
-                      // }
+                      //label="Name"                
                       isColumn
                       width={"100%"}
-                      component={InputComponent}
-                      // accounts={accounts}
+                      component={InputComponent}                   
                       inlineLabel
                     />
                   </div>
                 
                   <div class="flex justify-between max-sm:flex-col mt-3">
                     <div class=" w-1/2 max-sm:w-wk">
-                      <StyledLabel>
+                    <div class="font-bold text-xs">{translatedMenuItems[1]}</div>
                         <Field
                           isRequired
                           name="startDate"
-                          //label="Start Date"
-                          label={translatedMenuItems[1]}
-                          // {
-                          //   <FormattedMessage
-                          //     id="app.startDate"
-                          //     defaultMessage="Start Date"
-                          //   />
-                          // }
+                          //label="Start Date"                       
                           component={DatePicker}
                           value={values.startDate}
                           isColumn
                           inlineLabel
                         />
-                      </StyledLabel>
+                     
                     </div>
                     <div class=" w-2/5 max-sm:w-wk">
-                      <StyledLabel>
+                    <div class="font-bold text-xs">{translatedMenuItems[2]}</div>
                         <Field
                           isRequired
                           name="endDate"
-                          // label="End Date"
-                          label={translatedMenuItems[2]}
-                          // {
-                          //   <FormattedMessage
-                          //     id="app.endDate"
-                          //     defaultMessage="End Date"
-                          //   />
-                          // }
+                          // label="End Date"                      
                           isColumn
                           component={DatePicker}
                           value={values.endDate || values.startDate}
@@ -512,42 +558,29 @@ function UpdateOpportunityForm (props) {
                             }
                           }}
                         />
-                      </StyledLabel>
+                    
                     </div>
                   </div>
                   
-                  <div class="flex justify-between max-sm:flex-col ">
+                  <div class="flex justify-between max-sm:flex-col mt-2">
                     <div class=" w-1/2 max-sm:w-wk">
-                      <StyledLabel>
+                    <div class="font-bold text-xs">{translatedMenuItems[3]}</div>
                         <Field
                           name="proposalAmount"
-                          // label="Value"
-                       label={translatedMenuItems[3]}
-                          // {
-                          //   <FormattedMessage
-                          //     id="app.proposalAmount"
-                          //     defaultMessage="Value"
-                          //   />
-                          // }
+                          // label="Value"                                 
                           isColumn
                           isRequired
                           width={"100%"}
                           component={InputComponent}
                         />
-                      </StyledLabel>
+                   
                     </div>
-                    <div class=" w-2/5 max-sm:w-wk">
+                    <div class=" w-2/5 max-sm:w-wk mt-1">
+                    <div class="font-bold text-xs">{translatedMenuItems[4]}</div>
                       <Field
                         name="currency"
                         isColumnWithoutNoCreate
-                        // label="currencyName"
-                        label={translatedMenuItems[4]}
-                        // {
-                        //   <FormattedMessage
-                        //     id="app.currency"
-                        //     defaultMessage="Currency"
-                        //   />
-                        // }
+                        // label="currencyName"                   
                         isColumn
                         defaultValue={{
                           value: props.user.currency,
@@ -565,28 +598,22 @@ function UpdateOpportunityForm (props) {
                     
                     </div>
                   </div>
-                  {/* 
-                <StyledLabel>Description</StyledLabel>
+                  
+                <div class=" text-xs font-bold font-poppins text-black">Description</div>
                 <div>
                   <div>
-                    <span onClick={SpeechRecognition.startListening}>
+                    <span onClick={startListening}>
                       <Tooltip title="Start">
-                        <span style={{ fontSize: "1.5em", color: "red" }}>
-                          <PlayCircleFilledIcon />
+                      <span >
+                          <RadioButtonCheckedIcon  className="!text-icon ml-1 text-red-600" />
                         </span>
                       </Tooltip>
                     </span>
 
-                    <span onClick={SpeechRecognition.stopListening}>
-                      <Tooltip title="Stop">
-                        <span
-                          style={{
-                            fontSize: "1.5em",
-                            color: "green",
-                            marginLeft: "3px",
-                          }}
-                        >
-                          <StopCircleIcon />
+                    <span onClick={stopListening}>
+                    <Tooltip title="Stop">
+                        <span>
+                          <StopCircleIcon   className="!text-icon ml-1 text-green-600" />
                         </span>
                       </Tooltip>
                     </span>
@@ -608,14 +635,14 @@ function UpdateOpportunityForm (props) {
                       onChange={handletext}
                     ></textarea>
                   </div>
-                </div> */}
+                </div>
                 </div>
                 <div class=" h-full w-[47.5%] max-sm:w-wk mr-1">
                 <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
           <div className=" font-bold text-[0.75rem] mt-[0.6rem]">
-          l{translatedMenuItems[5]}
+          {translatedMenuItems[5]}
             {/* Assigned */}
             </div>
           <div className="relative mt-1">
@@ -681,7 +708,7 @@ function UpdateOpportunityForm (props) {
       )}
     </Listbox>
     <div>
-    <div class=" text-black font-bold text-[0.75rem]" >
+    <div class=" text-black font-bold text-[0.75rem] mt-2" >
      {translatedMenuItems[6]}
       {/* Include */}
       </div>
@@ -702,10 +729,9 @@ function UpdateOpportunityForm (props) {
                       </Select>
    
     </div>
-    <div class="flex justify-between max-sm:flex-col mt-[0.85rem]">       
-    <div class=" w-[47.5%] max-sm:w-wk">
-                
-                 <div class=" text-black font-bold text-[0.75rem]" >
+    <div class="flex justify-between max-sm:flex-col  mt-3">       
+    <div class=" w-[47.5%] max-sm:w-wk">              
+                 <div class=" text-black font-bold text-xs" >
                 {translatedMenuItems[7]}
                     {/* Customer */}
                     </div>
@@ -724,34 +750,8 @@ function UpdateOpportunityForm (props) {
       </Select>
 </div>
               
-                  <div class=" w-[47.5%] max-sm:w-wk ">
-                  {/* <Field
-                    name="contactId"
-                    isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.contactId"
-                        defaultMessage="Contact"
-                      />
-                    }
-                    component={SelectComponent}
-                    isColumn
-                    options={
-                      Array.isArray(
-                        getAreaOptions("customerId", values.customerId)
-                      )
-                        ? getAreaOptions("customerId", values.customerId)
-                        : []
-                    }
-                    filterOption={{
-                      filterType: "customerId",
-                      filterValue: values.customerId,
-                    }}
-                    disabled={!values.customerId}
-                    value={values.contactId}
-                    inlineLabel
-                  /> */}
-              <div class=" text-black font-bold text-[0.75rem]" >
+                  <div class=" w-[47.5%] max-sm:w-wk ">               
+              <div class=" text-black font-bold text-xs" >
               {translatedMenuItems[8]}
                     {/* Contact */}
                     </div>
@@ -773,21 +773,12 @@ function UpdateOpportunityForm (props) {
                 
                   <div class="flex justify-between max-sm:flex-col mt-3">
                     <div class=" w-[47.5%] max-sm:w-wk">
-                      <StyledLabel>
+                    <div class="font-bold text-xs">{translatedMenuItems[9]}</div>
                       <Field
-                        name="oppWorkflow"
-                        // selectType="contactListFilter"
+                        name="oppWorkflow"                     
                         isColumnWithoutNoCreate
                         isRequired
                         placeolder="Select type"
-                        label= {translatedMenuItems[9]}
-                        // {
-                        //   <FormattedMessage
-                        //     id="app.workflow"
-                        //     defaultMessage="Workflow"
-                        //   />
-                        // }
-                        // component={SearchSelect}
                         component={SelectComponent}
                         options={
                           Array.isArray(WorkflowOptions) ? WorkflowOptions : []
@@ -796,22 +787,15 @@ function UpdateOpportunityForm (props) {
                         isColumn
                         inlineLabel
                       />
-                      </StyledLabel>
+                 
                     </div>
                   
-                    <div class=" w-[47.5%] max-sm:w-wk ">
-                      <StyledLabel>
+                    <div class=" w-[47.5%] max-sm:w-wk ">     
+                        <div class="font-bold text-xs">{translatedMenuItems[10]}</div>             
                       <Field
                         name="oppStage"
                         isRequired
-                        isColumnWithoutNoCreate
-                        label= {translatedMenuItems[10]}
-                        // {
-                        //   <FormattedMessage
-                        //     id="app.stages"
-                        //     defaultMessage="Stages"
-                        //   />
-                        // }
+                        isColumnWithoutNoCreate                  
                         component={SelectComponent}
                         options={
                           Array.isArray(
@@ -832,7 +816,7 @@ function UpdateOpportunityForm (props) {
                         isColumn
                         inlineLabel
                       />
-                      </StyledLabel>
+                 
                     </div>
                   </div>
                  
@@ -845,7 +829,7 @@ function UpdateOpportunityForm (props) {
                   htmlType="submit"
                   loading={updateOpportunityById}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+                 <div class="font-bold font-poppins text-xs">{translatedMenuItems[11]}</div>
                   {/* Update */}
                 </Button>
               </div>

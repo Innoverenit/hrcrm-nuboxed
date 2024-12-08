@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
-import { FormattedMessage } from "react-intl";
+
 import { Button } from "antd";
-import { FlexContainer } from "../../../Components/UI/Layout";
 import { TextInput } from "../../../Components/UI/Elements";
 import { ActionIcon } from "../../../Components/Utils";
 import ViewEditCard from "../../../Components/UI/Elements/ViewEditCard";
@@ -24,7 +23,7 @@ class SingleOpportunitySource extends Component {
                     {({ viewType }, toggleViewType) => (
                         viewType === 'view'
                             ?
-                            <FlexContainer justifyContent='space-between'>
+                            <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                                 <SourceName style={{ flexBasis: '70%' }}>{sourceName}</SourceName>
                                 <div>
                                     <ActionIcon
@@ -42,10 +41,10 @@ class SingleOpportunitySource extends Component {
                                         style={{ color: '#666' }}
                                     />}
                                 </div>
-                            </FlexContainer>
+                            </div>
 
                             :
-                            <FlexContainer >
+                           <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                                 <TextInput
                                     name={name}
                                     value={value || sourceName}
@@ -61,11 +60,7 @@ class SingleOpportunitySource extends Component {
                                     Loading={updatingSources}
                                     onClick={() => handleUpdateSource(leadSourceId, value, toggleViewType())}
                                 >
-                                    {/* Save */}
-                                    <FormattedMessage
-                                                id="app.save"
-                                                defaultMessage="Save"
-                                            />
+                                    Save
                                 
                                     </Button>&nbsp;
                             <Button
@@ -73,13 +68,10 @@ class SingleOpportunitySource extends Component {
                                     ghost
                                     onClick={() => toggleViewType()}
                                 >
-                                    {/* Cancel */}
-                                    <FormattedMessage
-                                                id="app.cancel"
-                                                defaultMessage="Cancel"
-                                            />
+                                    Cancel
+                                  
                                     </Button>
-                            </FlexContainer>
+                            </div>
                     )}
                 </ViewEditCard>
             </SourceWrapper>

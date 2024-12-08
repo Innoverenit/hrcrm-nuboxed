@@ -2,7 +2,8 @@ import React, { Component, lazy,Suspense } from "react";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { connect } from "react-redux";
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
+import ViewModuleIcon from '@mui/icons-material/ViewModule';
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 const ModuleList = lazy(() =>
   import("./ModuleList")
 );
@@ -28,14 +29,14 @@ class ModuleTab extends Component {
     return (
       <>
            <div class="flex flex-nowrap " >
-          <div class ="w-[100%]  "style={{scrollbarWidth:"thin"}} >
+          <div class ="w-[100%] scroll-thin" >
             {/* <TabsWrapper> */}
               <StyledTabs defaultActiveKey="0" onChange={this.handleTabChange}>
                 <TabPane
                   tab={
                     <>
-                      <MonetizationOnIcon />
-                      <span class=" ml-[0.25em]" >
+                      <ViewModuleIcon  className=" ml-1 !text-icon"/>
+                      <span >
                       Module
                       </span>
                     </>

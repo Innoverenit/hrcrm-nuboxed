@@ -3,13 +3,13 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FormattedMessage } from "react-intl";
-import {  DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { Tooltip,  Menu, Dropdown, Progress } from "antd";
 import { Link } from 'react-router-dom';
 import { CurrencySymbol, } from "../../../Components/Common";
-import { CheckCircleTwoTone, StopTwoTone } from "@ant-design/icons";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import {
   MultiAvatar,
@@ -145,14 +145,10 @@ function IncludedTaskCardList(props) {
                       {item.approveInd && item.opportunityOwner ? (
                         <>
                           <Tooltip
-                            title={
-                              <FormattedMessage
-                                id="app.Own"
-                                defaultMessage="Own"
-                              />
-                            }
+                            title="Own"
+                              
                           >
-                            <CheckCircleTwoTone
+                            <CheckCircleOutlineIcon
                               type="check-circle"
                               theme="twoTone"
                               twoToneColor="#24D8A7"
@@ -164,7 +160,7 @@ function IncludedTaskCardList(props) {
                         <>
                           <Tooltip title={"Lost"}>
                             {" "}
-                            <StopTwoTone
+                            <DoDisturbIcon
                               type="stop"
                               theme="twoTone"
                               twoToneColor="red"
@@ -178,14 +174,10 @@ function IncludedTaskCardList(props) {
                       ) : (
                         <>
                           <Tooltip
-                            title={
-                              <FormattedMessage
-                                id="app.Own"
-                                defaultMessage="Won"
-                              />
-                            }
+                            title="Won"
+                              
                           >
-                            <CheckCircleTwoTone
+                            <CheckCircleOutlineIcon
                               type="check-circle"
                               theme="twoTone"
                               twoToneColor="#24D8A7"
@@ -204,14 +196,10 @@ function IncludedTaskCardList(props) {
                           </Tooltip>
                           &nbsp; &nbsp;
                           <Tooltip
-                            title={
-                              <FormattedMessage
-                                id="app.drop"
-                                defaultMessage="Lost"
-                              />
-                            }
+                            title="Lost"
+                             
                           >
-                            <StopTwoTone
+                            <DoDisturbIcon
                               type="stop"
                               theme="twoTone"
                               twoToneColor="red"
@@ -230,12 +218,8 @@ function IncludedTaskCardList(props) {
                     <div>
                       <Tooltip
                         placement="right"
-                        title={
-                          <FormattedMessage
-                            id="app.notes"
-                            defaultMessage="Notes"
-                          />
-                        }
+                        title="Notes"
+                          
                       >
                         <span
                           onClick={() => {
@@ -254,12 +238,8 @@ function IncludedTaskCardList(props) {
                       </Tooltip>
                       <Tooltip
                         placement="right"
-                        title={
-                          <FormattedMessage
-                            id="app.edit"
-                            defaultMessage="Edit"
-                          />
-                        }
+                        title="Edit"
+                         
                       >
                         {user.imInd === true && user.dealUpdateInd === true && (
                           <span class="cursor-pointer text-[blue]"
@@ -282,7 +262,7 @@ function IncludedTaskCardList(props) {
                       >
                          <Tooltip title="Delete">
                         {user.imInd === true && user.dealDeleteInd === true && (
-                          <DeleteOutlined
+                          <DeleteOutlineIcon
                             type="delete"
                             style={{
                               cursor: "pointer",

@@ -21,7 +21,9 @@ function  OpenNotifyDrawer (props) {
           footer={null}
         >
         <Suspense fallback={<BundleLoader />}>
-          <NotifyDrawerForm currentEmployeeId={currentEmployeeId}/>
+          <NotifyDrawerForm currentEmployeeId={currentEmployeeId}
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}/>
         </Suspense>
         </StyledDrawer>
       </>

@@ -26,6 +26,10 @@ const initialState = {
   fetchingCallListRangeByUserIdError: false,
   callListRangeByUserId: [],
 
+
+  addCallLocation:false,
+  addCallLocationError:false,
+
   fetchingCallListRangeByUserIdForReport: false,
   fetchingCallListRangeByUserIdForReportError: false,
   callListRangeByUserIdForReport: [],
@@ -147,6 +151,27 @@ export const callReducer = (state = initialState, action) => {
         fetchingCallListRangeByUserId: false,
         fetchingCallListRangeByUserIdError: true,
       };
+
+
+
+
+
+      case types.ADD_CALL_LOCATION_REQUEST:
+        return { ...state, addCallLocation: true };
+      case types.ADD_CALL_LOCATION_SUCCESS:
+        return {
+          ...state,
+          addCallLocation: false,
+          //updateEventModal: false,
+          callListRangeByUserId: state.callListRangeByUserId.map((event) =>
+      event.callId === action.payload.callId
+         ? action.payload
+            : event
+         ),
+          
+        };
+      case types.ADD_CALL_LOCATION_FAILURE:
+        return { ...state, addCallLocation: false, addCallLocationError: false };
 
     case types.GET_CALL_LIST_RANGE_BY_USER_ID_FOR_REPORT_REQUEST:
       return { ...state, fetchingCallListRangeByUserIdForReport: true };

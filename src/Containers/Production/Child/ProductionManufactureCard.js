@@ -1,8 +1,6 @@
 import React,{ useEffect, useState, lazy }  from 'react'
 import { connect } from "react-redux";
-import moment from "moment";
-//import {getReportsProductivityData} from "../../ReportAction"
-import { FormattedMessage } from "react-intl";
+import dayjs from "dayjs";
 import { bindActionCreators } from "redux";
 import ManufactureListData from "../Child/ManufactureListData"
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -38,17 +36,14 @@ function ProductionManufactureCard(props) {
     console.log(props.manufactureLinkData)
   return (
     <div className='flex justify-end sticky z-auto'>
-            <div className="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+            <div className="rounded-lg m-5 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                 <div className="flex w-[95%] px-2 bg-transparent font-bold sticky top-0 z-10">
                     <div className=""></div>
-                    <div className="md:w-[22.12rem]"><FormattedMessage id="app.partname" defaultMessage="Part Name" /></div>
-                    <div className="md:w-[15.5rem]"><FormattedMessage id="app.partno" defaultMessage="Part No" /></div>
-                    <div className="md:w-[15.5rem]"><FormattedMessage id="app.user" defaultMessage="User" /></div>
-                    <div className="md:w-[15.5rem]"><FormattedMessage id="app.date" defaultMessage="Date" /></div>
-                    {/* <div className="md:w-[15.5rem]"><FormattedMessage id="app.totalTimeTaken" defaultMessage="Time Taken" /></div> */}
-                    
-                    <div className=""></div>
-                    {/* <div className="md:w-[15.5rem]"><FormattedMessage id="app.tag" defaultMessage="Tag" /></div> */}
+                    <div className="md:w-[22.12rem]">Part Name</div>
+                    <div className="md:w-[15.5rem]">Part No</div>
+                    <div className="md:w-[15.5rem]">User </div>
+                    <div className="md:w-[15.5rem]">Date</div>
+                  <div className=""></div>
                 </div>
                 <InfiniteScroll
                         dataLength={props.manufactureLinkData.length}
@@ -87,7 +82,7 @@ function ProductionManufactureCard(props) {
                                 <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
                                     <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
                                         
-                                        {`${moment.utc(item.creationDate).format("YYYY/MM/DD")}`}
+                                        {`${dayjs(item.creationDate).format("YYYY/MM/DD")}`}
                                     </div>
                                 </div>
 

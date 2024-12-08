@@ -1,241 +1,378 @@
 import React, { useEffect, useState } from "react";
 import { Button, Input, Select } from "antd";
-import { CloseOutlined } from "@ant-design/icons";
+
 import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { bindActionCreators } from "redux"; 
+import { Formik, Form, Field } from "formik";
 import {getCategorylist,getSupplierSuppliesQuality} from "../../Suppliers/SuppliersAction"
 import { addQuotationPhoneDetails, getBrand, getModel,getAllProductList,getLocationList } from "../AccountAction";
 import QuotationDetailsCardList from "./QuotationDetailsCardList";
+import LazySelect from "../../../../Components/Forms/Formik/LazySelect";
+import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
+import {inputSuppliesDataSearch} from "../../../Main/Supplies/SuppliesAction";
+import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
+import { base_url2 } from "../../../../Config/Auth";
+import axios from "axios";
+import { TextareaComponent } from "../../../../Components/Forms/Formik/TextareaComponent";
 
 const { Option } = Select;
 
 function AddQuotationExcel(props) {
+
   useEffect(() => {
-    // props.getBrand();
-    props.getCategorylist();
-    // props.getAllProductList();
+    // props.getCategorylist();
     props.getLocationList(props.orgId);
-    props.getSupplierSuppliesQuality();
+    // props.getSupplierSuppliesQuality();
   }, []);
 
-  const [rows, setRows] = useState([{ brand: '', model: '', modelId: '', unit: '', specs: '' }]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [SuppliesId, setSuppliesId] = useState("")
 
-  const handleUnitChange = (index, key, value) => {
-    const updatedRows = [...rows];
-    updatedRows[index][key] = value;
-    setRows(updatedRows);
+  const handleMaterialSearch = async (value) => {
+    setSearchTerm(value);
+    if (value) {
+      try {
+        const response = await axios.get(`${base_url2}/supplies/search/${value}`, {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token") || ""}`,
+          },
+        });
+        setSearchResults(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    } else {
+      setSearchResults([]); 
+    }
   };
+  const handleMaterialSelect = (item, setFieldValue) => {
+    setSearchTerm(item.suppliesName);
+    setSuppliesId(item.suppliesId); 
+    setSearchResults([]); 
 
-  const handleBrandChange = (value, index) => {
-    const updatedRows = [...rows];
-    updatedRows[index].brand = value;
-    updatedRows[index].model = ""; // Reset model when brand changes
-    updatedRows[index].modelId = ""; // Reset modelId when brand changes
-    setRows(updatedRows);
-    props.getModel(updatedRows[index].category,value);
-  };
-
-  const handleModelChange = (value, index) => {
-    const selectedModel = props.model.find((model) => model.model === value);
-    const updatedRows = [...rows];
-    updatedRows[index].model = value;
-    updatedRows[index].modelId = selectedModel.id; // Assuming model object has an 'id' field
-    setRows(updatedRows);
-    props.getAllProductList(updatedRows[index].category, updatedRows[index].brand,value);
-  };
-
-  const handleSpecsChange = (value, index) => {
-    const updatedRows = [...rows];
-    updatedRows[index].specs = value;
-    setRows(updatedRows);
-  };
-
-  const handleAddRow = () => {
-    setRows([...rows, { brand: '', model: '', modelId: '', unit: '', specs: '' }]);
-  };
-  const handleCategoryChange = (value, index) => {
-    const updatedRows = [...rows];
-    updatedRows[index].category = value;
-    // updatedRows[index].model = ""; // Reset model when brand changes
-    // updatedRows[index].modelId = ""; // Reset modelId when brand changes
-    setRows(updatedRows);
-    props.getBrand(value);
-  };
-  const handleQualityChange = (value, index) => {
-    const updatedRows = [...rows];
-    updatedRows[index].quality = value;
-    // updatedRows[index].model = ""; // Reset model when brand changes
-    // updatedRows[index].modelId = ""; // Reset modelId when brand changes
-    setRows(updatedRows);
-    //props.getModel(value);
-  };
-  
-  const handleLocationChange = (value, index) => {
-    const updatedRows = [...rows];
-    updatedRows[index].locationId = value;
-    setRows(updatedRows);
-   
-  };
-  const handleAttributeChange = (value, index) => {
-    const updatedRows = [...rows];
-    updatedRows[index].attribute = value;
-    setRows(updatedRows);
-   
+    setFieldValue('brandId', item.brandName || ''); 
+    setFieldValue('modelId', item.modelName || ''); 
+    setFieldValue('attribute', item.attributeName || ''); 
+    setFieldValue('category', item.categoryName || ''); 
+    setFieldValue('price', item.price || '');
+    setFieldValue('description', item.description || '');
   };
 
-  const handleRemoveRow = (index) => {
-    const updatedRows = [...rows];
-    updatedRows.splice(index, 1);
-    setRows(updatedRows);
+  const handleInventorySupplierSearch = async (value) => {
+    setSearchTerm(value);
+    if (value) {
+      try {
+        const response = await axios.get(`${base_url2}/supplier/inventory/supplier/search/${value}`, {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token") || ""}`,
+          },
+        });
+        setSearchResults(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    } else {
+      setSearchResults([]); 
+    }
+  };
+  const handleInventorySupplierSelect = (item, setFieldValue) => {
+    setSearchTerm(item.categoryName);
+    setSuppliesId(item.inventorySupplieId); 
+    setSearchResults([]); 
+
+    setFieldValue('brandId', item.brand || ''); 
+    setFieldValue('modelId', item.model || ''); 
+    setFieldValue('attribute', item.attributeName || ''); 
+    setFieldValue('category', item.categoryName || ''); 
+    setFieldValue('price', item.price || '');
+    setFieldValue('description', item.description || '');
+    setFieldValue('allowedDiscount', item.discount && item.discount.length && item.discount[0].allowedDiscount || '');
   };
 
-  const handleSubmit = () => {
-    const dataToSend = rows.map((row) => ({
-      orderPhoneId: props.orderDetailsId.orderId,
-      brandId: row.brand,
-      modelId: row.model,
-      orderType:"Procure",
-      unit: row.unit,
-      specs: row.specs,
-      category:row.category ,
-      attribute:row.attribute,
-      location:row.locationId,
-      quality: row.quality,
-    }));
-
-    // Make the API call
-    props.addQuotationPhoneDetails(dataToSend, props.orderDetailsId.orderId);
-    setRows([{ brand: '', model: '', modelId: '', unit: '', specs: '' }]);
+  const handleProductSearch = async (value) => {
+    setSearchTerm(value);
+    if (value) {
+      try {
+        const response = await axios.get(`${base_url2}/product/productName/${value}`, {
+          headers: {
+            Authorization: `Bearer ${sessionStorage.getItem("token") || ""}`,
+          },
+        });
+        setSearchResults(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    } else {
+      setSearchResults([]); 
+    }
   };
+  const handleProductSelect = (item, setFieldValue) => {
+    setSearchTerm(item.name);
+    setSuppliesId(item.productId); 
+    setSearchResults([]); 
+
+    setFieldValue('brandId', item.brandName || ''); 
+    setFieldValue('modelId', item.modelName || ''); 
+    setFieldValue('attribute', item.attributeName || ''); 
+    setFieldValue('category', item.categoryName || ''); 
+    setFieldValue('price', item.price || '');
+    setFieldValue('description', item.description || '');
+  };
+
+ const qPtype="Product";
+ console.log("QTN",props.qtionInclItem)
+
 
   return (
     <>
-      <div>
-        {rows.map((row, index) => (
-          <div key={index}>
-            <div className="flex justify-around w-[30rem]">
-            <div>
-                <label>Category</label>
-                <div className="w-[9rem]">
-                  <Select
-                    style={{ width: 120 }}
-                    value={row.category}
-                    onChange={(value) => handleCategoryChange(value, index)}
-                  >
-                    {props.categoryList.map((a) => (
-                      <Option key={a.id} value={a.id}>{a.categoryName}</Option>
-                    ))}
-                  </Select>
+    <Formik
+          initialValues={{
+            // brandId: "",
+            // modelId: "",
+            orgId: props.orgId,
+            userId: props.userId,
+            unit: "",
+            discount:"",
+            // spces: spces,
+            // type: type,
+            price: "",
+            // quality: quality,
+            // currencyId:currencyId,
+            // category:"",
+            // attribute:"",
+            // location:locationId,
+            productId:SuppliesId,
+            productType:props.qtionInclItem === "inventorySuppllier" ? "inventorySuppllier" :
+            props.qtionInclItem === "material" ? "material" :
+            props.qtionInclItem === "product" ? "product" : "",
+
+            // productType:qPtype === "Inventory Material" ? "Inventory Material" :
+            // qPtype === "Material" ? "Material" :
+            // qPtype === "Product" ? "Product" : "",
+
+            orderPhoneId:props.orderDetailsId.quotationId
+          }}
+          onSubmit={(values, { resetForm }) => {
+            console.log(values);
+            props.addQuotationPhoneDetails(
+              {
+                ...values,
+                productId:SuppliesId,
+              },
+              props.orderDetailsId.quotationId
+            );
+          }}
+        >
+          {({
+            errors,
+            touched,
+            isSubmitting,
+            setFieldValue,
+            setFieldTouched,
+            values,
+            ...rest
+          }) => (
+            <Form> 
+    <div class="flex justify-between">
+      <div class="w-[22rem] box-content p-2 border-blue border-4">
+      <div className="mt-4 w-[22rem]">
+                      <div className="font-semibold text-xs font-poppins text-gray-800">Search</div>
+                    {props.qtionInclItem === "material" && (
+                        <> 
+                      <Input
+                        value={searchTerm}
+                        onChange={(e) => handleMaterialSearch(e.target.value)}
+                        placeholder="Type to search..."
+                      />
+                      {searchResults.length > 0 && (
+                        <div className="bg-[pink] overflow-auto h-32">
+                          {searchResults.map(item => (
+                            <div 
+                              key={item.id} 
+                              onClick={() => handleMaterialSelect(item, setFieldValue)} 
+                              className="text-black cursor-pointer"
+                            >
+                              {item.suppliesName} 
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      </> 
+                    )}
+
+{props.qtionInclItem === "inventorySuppllier" && (
+  <>
+<Input
+                        value={searchTerm}
+                        onChange={(e) => handleInventorySupplierSearch(e.target.value)}
+                        placeholder="Type to search..."
+                      />
+                      {searchResults.length > 0 && (
+                        <div className="bg-[pink] overflow-auto h-32">
+                          {searchResults.map(item => (
+                            <div 
+                              key={item.id} 
+                              onClick={() => handleInventorySupplierSelect(item, setFieldValue)} 
+                              className="text-black cursor-pointer"
+                            >
+                              {item.categoryName} 
+                            </div>
+                          ))}
+                        </div>
+                      )}
+</>
+)}
+{props.qtionInclItem === "product" && (
+  <>
+<Input
+                        value={searchTerm}
+                        onChange={(e) => handleProductSearch(e.target.value)}
+                        placeholder="Type to search..."
+                      />
+                      {searchResults.length > 0 && (
+                        <div className="bg-[pink] overflow-auto h-32">
+                          {searchResults.map(item => (
+                            <div 
+                              key={item.id} 
+                              onClick={() => handleProductSelect(item, setFieldValue)} 
+                              className="text-black cursor-pointer"
+                            >
+                              {item.name} 
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                      </>
+                    )} 
+
+
+
+                    </div>
+                    <div class="flex w-wk justify-between mt-4">
+                    <div className="w-wk">
+                      <Field
+                      disabled
+                        name="category"
+                        label="Category"
+                        component={InputComponent}
+                        isColumn
+                        inlineLabel 
+                        style={{cursor:"not-allowed"}}   
+                      />
+                    </div>
+              
+                <div className="w-wk">
+                <Field
+                disabled
+                        name="attribute"
+                        label="Attribute"
+                        component={InputComponent}
+                        isColumn
+                        inlineLabel 
+                        style={{cursor:"not-allowed"}}
+                        />
+                </div>
+                </div>
+
+                
+                    <div class="flex w-wk justify-between mt-4">
+                <div className="w-wk">
+                <Field
+                disabled
+                        name="brandId"
+                        label="Brand"
+                        component={InputComponent}
+                        isColumn
+                        inlineLabel
+                        style={{cursor:"not-allowed"}}
+                      />
+                </div>
+                <div className="w-wk">
+                <Field
+                disabled
+                        name="modelId"
+                        label="Model"
+                        component={InputComponent}
+                        isColumn
+                        inlineLabel 
+                        style={{cursor:"not-allowed"}}
+                        />
                 </div>
               </div>
-           
-              <div>
-                <label>Brand</label>
-                <div className="w-[13rem]">
-                  <Select
-                    style={{ width: 200 }}
-                    value={row.brand}
-                    onChange={(value) => handleBrandChange(value, index)}
-                  >
-                    {props.brand.map((a) => (
-                      <Option key={a.brand} value={a.brand}>{a.brand}</Option>
-                    ))}
-                  </Select>
+              
+              <div class="flex w-wk justify-between mt-4">
+                <div className="w-wk">
+                <Field
+                disabled
+                name="price"
+                label="Price / Unit"
+                placeholder="Price"
+                isColumn
+                width={"100%"}
+                component={InputComponent}
+                inlineLabel
+                style={{cursor:"not-allowed"}}
+               />
+                </div>
+                <div className="w-wk">
+                <Field
+                disabled
+                name="allowedDiscount"
+                label="Max Discount"
+                placeholder="Max Discount"
+                isColumn
+                width={"100%"}
+                component={InputComponent}
+                inlineLabel
+                style={{cursor:"not-allowed"}}
+               />
                 </div>
               </div>
-              <div>
-                <label>Model</label>
-                <div className="w-[13rem]">
-                  <Select
-                    style={{ width: 200 }}
-                    value={row.model}
-                    onChange={(value) => handleModelChange(value, index)}
-                  >
-                    {props.model.map((a) => (
-                      <Option key={a.model} value={a.model}>{a.model}</Option>
-                    ))}
-                  </Select>
+              <div class="flex w-wk justify-between mt-4">
+              <div className="w-wk">
+                <Field
+                name="unit"
+                label="Units"
+                placeholder="Unit"
+                isColumn
+                width={"100%"}
+                component={InputComponent}
+                inlineLabel
+               /></div>
+               <div className="w-wk">
+                <Field
+                name="discount"
+                label="Discount"
+                placeholder="Discount"
+                isColumn
+                width={"100%"}
+                component={InputComponent}
+                inlineLabel
+               />
                 </div>
               </div>
-              <div>
-                <label>Attribute</label>
-                <div className="w-[7rem]">
-                  <Select
-                    style={{ width: 100 }}
-                    value={row.attribute}
-                    onChange={(value) => handleAttributeChange(value, index)}
-                  >
-                    {props.allProduct.map((a) => (
-                      <Option key={a.attribute} value={a.attribute}>{a.attributeName}</Option>
-                    ))}
-                  </Select>
-                </div>
+              <div class="flex w-wk justify-between mt-4">
+              <Field
+                disabled
+                name="description"
+                label="Description"
+                isColumn
+                width={"100%"}
+                component={TextareaComponent}
+                inlineLabel
+                style={{cursor:"not-allowed"}}
+               />
               </div>
-              <div>
-                <label>Quality</label>
-                <div className="w-[9rem]">
-                  <Select
-                    style={{ width: 120 }}
-                    value={row.quality}
-                    onChange={(value) => handleQualityChange(value, index)}
-                  >
-                    {props.supplierSuppliesQuality.map((a) => (
-                      <Option key={a.qualityId} value={a.qualityId}>{a.code}</Option>
-                    ))}
-                  </Select>
-                </div>
-              </div>
-              <div class=" ml-4">
-                <label>Location</label>
-                <div className="w-[7rem]">
-                  <Select
-                    style={{ width: 100 }}
-                    value={row.locationId}
-                    onChange={(value) => handleLocationChange(value, index)}
-                  >
-                    {props.locationlist.map((a) => (
-                      <Option key={a.locationDetailsId} value={a.locationDetailsId}>{a.locationName}</Option>
-                    ))}
-                  </Select>
-                </div>
-              </div>
-              <div>
-                <label>Specs</label>
-                <div className="w-24 ml-2">
-                  <Select
-                    style={{ width: 100 }}
-                    value={row.specs}
-                    onChange={(value) => handleSpecsChange(value, index)}
-                  >
-                    <Option value="US">US</Option>
-                    <Option value="CE">CE</Option>
-                    <Option value="IND">IND</Option>
-                    <Option value="HK">HK</Option>
-                  </Select>
-                </div>
-              </div>
-              <div class=" ml-4">
-                <label>Unit</label>
-                <div className="w-24">
-                  <Input
-                    type="text"
-                    value={row.unit}
-                    onChange={(e) => handleUnitChange(index, 'unit', e.target.value)}
-                    placeholder="Enter unit"
-                  />
-                </div>
-              </div>
-             
-              <div className="w-4 mt-[1.5rem]">
-                <CloseOutlined onClick={() => handleRemoveRow(index)} />
-              </div>
-            </div>
-          </div>
-        ))}
-        <Button type="primary" onClick={handleAddRow}>Add</Button>
-        <Button type="primary" loading={props.addingQuotationPhoneDetails} onClick={handleSubmit}>Submit</Button>
+        <Button htmlType="submit" type="primary" loading={props.addingQuotationPhoneDetails}>Submit</Button>
       </div>
+      <div class="w-[55rem]">
       <QuotationDetailsCardList />
+      </div>
+      </div>
+      </Form>
+       )}
+        </Formik>
     </>
   );
 }
@@ -251,7 +388,8 @@ const mapStateToProps = ({ distributor,suppliers, brandmodel, auth }) => ({
   categoryList:suppliers.categoryList,
   allProduct:distributor.allProduct,
   locationlist:distributor.locationlist,
-  supplierSuppliesQuality:suppliers.supplierSuppliesQuality
+  supplierSuppliesQuality:suppliers.supplierSuppliesQuality,
+  qtionInclItem:auth.userDetails.qtionInclItem
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -266,14 +404,3 @@ const mapDispatchToProps = (dispatch) =>
   }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddQuotationExcel);
-
-
-
-
-
-
-
-
-
-
-

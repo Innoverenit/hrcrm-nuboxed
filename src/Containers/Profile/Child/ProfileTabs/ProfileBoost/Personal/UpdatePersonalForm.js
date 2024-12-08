@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
 import { updatePersonalDetails } from "../../../../ProfileAction";
-import { FormattedMessage } from "react-intl";
+
 function onChange(date, dateString) {}
 
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
@@ -22,16 +22,46 @@ const documentSchema = Yup.object().shape({
 });
 
 class UpdatePersonalForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: "Full Time",
+      translatedMenuItems: [],
+    };
+  }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+
+        "Salutation",
+        "First Name",
+        "Last Name",
+         "Middle ",
+         "Mobile",
+         "Mobile No",
+         "Phone",
+         "Phone No",
+         "Update",
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   render() {
-    // const {
-    //     addingContact,
-    //     users,
-    //     accountId,
-    //     defaultAccounts,
-    //     defaultOpportunities,
-    //     callback,
-    // } = this.props;
-    // console.log(accountId);
+  
     const { updatingPersonalDetails } = this.props;
     return (
       <>
@@ -86,55 +116,14 @@ class UpdatePersonalForm extends Component {
               <div class=" flex w-full h-full justify-between"
               >
                 <div class=" w-full"
-                >
-                  {/* <FlexContainer flexWrap="no-wrap"> */}
-
-                  {/* <FlexContainer justifyContent="space-between">
-                                            <div style={{ width: "47%" }}>
-                                                <FastField
-                                                    type="text"
-                                                    name="bloodGroup"
-                                                    label="Blood Group"
-                                                    isColumn
-                                                    width={"100%"}
-                                                    component={SelectComponent}
-                                                    options={[
-                                                        "A+",
-                                                        "A-",
-                                                        "B+",
-                                                        "B-",
-                                                        "AB+",
-                                                        "AB-",
-                                                        "O+",
-                                                        "O-",
-                                                    ]}
-                                                    inlineLabel
-                                                    style={{
-                                                        flexBasis: "80%",
-                                                        height: "2.0625em",
-                                                        // marginTop: "0.25em",
-                                                    }}
-                                                />
-                                            </div>
-                                            <Spacer />
-                                            <div style={{ width: "47%" }}>
-                                                <StyledLabel>Date of Birth</StyledLabel>
-                                                <DatePicker onChange={onChange} />
-                                            </div>
-                                        </FlexContainer> */}
-
+                >              
                   <div class=" flex justify-between mt-6" >
                     <div class=" w-[25%]" >
+                    <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[0]}</div>
                       <FastField
                         name="contactSalutation"
                         type="text"
-                        // label="Salutation"
-                        label={
-                          <FormattedMessage
-                            id="app.contactSalutation"
-                            defaultMessage="Salutation"
-                          />
-                        }
+                      
                         options={["Mr.", "Ms.", "None"]}
                         component={SelectComponent}
                         inlineLabel
@@ -149,16 +138,11 @@ class UpdatePersonalForm extends Component {
                       />
                     </div>
                     <div class=" w-[67%]" >
+                    <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[1]}</div>
                       <FastField
                         isRequired
                         name="contactFirstName"
-                        //label="First Name"
-                        label={
-                          <FormattedMessage
-                            id="app.contactFirstName"
-                            defaultMessage="First Name"
-                          />
-                        }
+                        
                         type="text"
                         width={"100%"}
                         isColumn
@@ -175,15 +159,10 @@ class UpdatePersonalForm extends Component {
 
                   <div class=" flex justify-between mt-6" >
                   <div class=" w-[55%]" >
+                  <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[2]}</div>
                       <FastField
                         name="contactLastName"
-                        // label="Last Name"
-                        label={
-                          <FormattedMessage
-                            id="app.contactLastName"
-                            defaultMessage="Last Name"
-                          />
-                        }
+                        
                         type="text"
                         width={"100%"}
                         isColumn
@@ -197,15 +176,9 @@ class UpdatePersonalForm extends Component {
                       />
                     </div>
                     <div class=" w-[38%]" >
+                    <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[3]}</div>
                       <FastField
                         name="contactMiddleName"
-                        // label="Middle "
-                        label={
-                          <FormattedMessage
-                            id="app.contactMiddleName"
-                            defaultMessage="Middle"
-                          />
-                        }
                         type="text"
                         width={"100%"}
                         isColumn
@@ -219,19 +192,12 @@ class UpdatePersonalForm extends Component {
                       />
                     </div>
                   </div>
-                  {/* </FlexContainer> */}
                  
                   <div class=" flex justify-between mt-3" >
                   <div class=" w-[47%]" >
+                  <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[4]} #</div>
                       <Field
                         name="countryDialCode"
-                        // label="Mobile #"
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode"
-                            defaultMessage="Mobile #"
-                          />
-                        }
                         isColumn
                         margintop={"0.25em"}
                         selectType="dialCode"
@@ -241,15 +207,10 @@ class UpdatePersonalForm extends Component {
                       />
                     </div>
                     <div class=" w-[47%]" >
+                    <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[5]}</div>
                       <Field
                         type="text"
                         name="mobileNo"
-                        label={
-                          <FormattedMessage
-                            id="app.mobileNo"
-                            defaultMessage="Mobile No"
-                          />
-                        }
                         placeholder="Mobile #"
                         component={InputComponent}
                         inlineLabel
@@ -267,15 +228,9 @@ class UpdatePersonalForm extends Component {
 
                   <div class=" flex justify-between mt-3" >
                   <div class=" w-[47%]" >
+                  <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[6]} #</div>
                       <Field
                         name="countryDialCode1"
-                        //  label="Phone #"
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode1"
-                            defaultMessage="Phone #"
-                          />
-                        }
                         isColumn
                         margintop={"0.25em"}
                         selectType="dialCode"
@@ -285,15 +240,10 @@ class UpdatePersonalForm extends Component {
                       />
                     </div>
                     <div class=" w-[47%]" >
+                    <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[7]}</div>
                       <Field
                         type="text"
                         name="phoneNo"
-                        label={
-                          <FormattedMessage
-                            id="app.phoneNo"
-                            defaultMessage="Phone No"
-                          />
-                        }
                         placeholder="Phone #"
                         component={InputComponent}
                         inlineLabel
@@ -306,33 +256,8 @@ class UpdatePersonalForm extends Component {
                         }}
                       />
                     </div>
-                  </div>
-                  {/* <FlexContainer justifyContent="space-between"> */}
-
-                  {/* </FlexContainer> */}
-               
-                </div>
-
-                {/* <div
-                  style={{
-                    width: "45%",
-                    // border: "0.125em solid green"
-                  }}
-                >
-                  <FieldArray
-                    name="Address"
-                    render={(arrayHelpers) => (
-                      <AddressFieldArray
-                        singleAddress
-                        arrayHelpers={arrayHelpers}
-                        values={values}
-                      />
-                    )}
-                  />
-
-                  <Spacer style={{ marginBottom: "0.9375em" }} />
-                </div> */}
-           
+                  </div>                             
+                </div>                  
               </div>
              
               <div class=" flex justify-end mt-3" >
@@ -341,7 +266,7 @@ class UpdatePersonalForm extends Component {
                   type="primary"
                   Loading={updatingPersonalDetails}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+                 {this.state.translatedMenuItems[7]}
                 </Button>
               </div>
             </Form>

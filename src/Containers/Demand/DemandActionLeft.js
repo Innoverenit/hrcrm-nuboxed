@@ -3,16 +3,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { FlexContainer } from "../../Components/UI/Layout";
 import { Input } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import {
     inputJobOrderSearch,
-    // inputCandidateSkillDataSearch,
-    // getRecords,
-    //  getAllRecords,
   } from "../Opportunity/OpportunityAction";
 import { StyledSelect } from "../../Components/UI/Antd";
-import { AudioOutlined } from '@ant-design/icons';
-import { Button,Tooltip } from "antd";
+import { Button} from "antd";
 const Option = StyledSelect.Option;
 const item = [{ type: "Hot" }, { type: "Warm" }, { type: "Cold" }];
 const { Search } = Input;
@@ -51,8 +47,8 @@ return (
         type={props.currentData ? "primary" : "danger"}
         onClick={props.handleClear}
       >
-        <FormattedMessage id="app.clear" defaultMessage="Clear" />
-        {/* Clear */}
+      
+        Clear
       </Button>
       
 

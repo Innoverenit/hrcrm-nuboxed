@@ -13,7 +13,7 @@ import { DatePicker } from "../../../../../../../Components/Forms/Formik/DatePic
 import { addCandidateEmploymentDetails } from "../../../../../CandidateAction";
 import dayjs from "dayjs";
 import {getSequence} from "../../../../../../Settings/SettingsAction"
-import { FormattedMessage } from "react-intl";
+
 import { getDesignations } from "../../../../../../Settings/Designation/DesignationAction";
 
 const documentSchema = Yup.object().shape({
@@ -83,13 +83,8 @@ class CandidateEmploymentForm extends Component {
                         isColumn
                         width={"100%"}
                         // label="Organization Name"
-                        label={
-                          <FormattedMessage
-                            id="app.companyName"
-                            defaultMessage="Organization"
-                          />
-                    
-                        }
+                        label="Organization"
+                         
                         component={InputComponent}
                         inlineLabel
                         
@@ -101,13 +96,8 @@ class CandidateEmploymentForm extends Component {
                     <div>
                       <FastField
                         name="designationTypeId"
-                        // label="Designations"
-                        label={
-                          <FormattedMessage
-                            id="app.designation"
-                            defaultMessage="Designation"
-                          />
-                        }
+                         label="Designations"
+                       
                         selectType="designationType"
                         isColumn
                         component={SearchSelect}
@@ -126,13 +116,8 @@ class CandidateEmploymentForm extends Component {
                 >
                         <Field
                           name="startDate"
-                          //label="Start Date"
-                          label={
-                            <FormattedMessage
-                              id="app.start"
-                              defaultMessage="Start"
-                            />
-                          }
+                        label="Start Date"
+                          
                           isRequired
                           component={DatePicker}
                           isColumn
@@ -145,13 +130,8 @@ class CandidateEmploymentForm extends Component {
                 >
                         <Field
                           name="endDate"
-                          // label="End Date "
-                          label={
-                            <FormattedMessage
-                              id="app.end"
-                              defaultMessage="End"
-                            />
-                          }
+                          label="End Date "
+                          
                           isRequired
                           isColumn
                           width={"100%"}
@@ -184,13 +164,8 @@ class CandidateEmploymentForm extends Component {
                           type="text"
                           isColumn
                           width="85%"
-                          //label="Salary"
-                          label={
-                            <FormattedMessage
-                              id="app.salary"
-                              defaultMessage="Salary"
-                            />
-                          }
+                         label="Salary"
+                          
                           component={InputComponent}
                           inlineLabel
                         />
@@ -204,13 +179,8 @@ class CandidateEmploymentForm extends Component {
                           type="text"
                           isColumn
                           width="47%"
-                          //label="Salary Type"
-                          label={
-                            <FormattedMessage
-                              id="app.salaryType"
-                              defaultMessage="Salary Type"
-                            />
-                          }
+                        label="Salary Type"
+                          
                           component={SelectComponent}
                           options={["Daily", "Monthly", "Annual"]}
                           inlineLabel
@@ -223,13 +193,8 @@ class CandidateEmploymentForm extends Component {
                           name="currency"
                           isColumnWithoutNoCreate
                           placeholder="Curr"
-                          // label="Curr"
-                          label={
-                            <FormattedMessage
-                              id="app.currency"
-                              defaultMessage="Currency"
-                            />
-                          }
+                       label="Currency"
+                          
                           width="100%"
                           isColumn
                           selectType="currencyName"
@@ -243,13 +208,8 @@ class CandidateEmploymentForm extends Component {
                     <div class=" mt-4">
                       <Field
                         name="description"
-                        //label="Describe your role"
-                        label={
-                          <FormattedMessage
-                            id="app.remarks"
-                            defaultMessage="Remarks"
-                          />
-                        }
+                    label="Describe your role"
+                       
                         // isRequired
                         isColumnWithoutNoCreate
                         isColumn
@@ -272,13 +232,8 @@ class CandidateEmploymentForm extends Component {
                 >
                     <Field
                       name="documentTitle"
-                      // label="Name of Document"
-                      label={
-                        <FormattedMessage
-                          id="app.documentTitle"
-                          defaultMessage="Name of Document"
-                        />
-                      }
+                       label="Name of Document"
+                    
                       width={"100%"}
                       isColumn
                       component={InputComponent}
@@ -290,13 +245,8 @@ class CandidateEmploymentForm extends Component {
                         name="documentTypeId"
                         selectType="documentTypeName"
                         isColumnWithoutNoCreate
-                        // label="Type"
-                        label={
-                          <FormattedMessage
-                            id="app.type"
-                            defaultMessage="Type"
-                          />
-                        }
+                     label="Type"
+                      
                         // isRequired
                         component={SearchSelect}
                         isColumn
@@ -317,7 +267,7 @@ class CandidateEmploymentForm extends Component {
                     type="primary"
                     Loading={addingCandidateEmploymentDetails}
                   >
-                    <FormattedMessage id="app.submit" defaultMessage="Submit" />
+                   Submit
                   </Button>
                 </div>
               </Form>

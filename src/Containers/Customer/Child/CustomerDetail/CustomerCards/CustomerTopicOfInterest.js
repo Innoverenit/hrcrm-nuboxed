@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tag, Input, Tooltip } from "antd";
 import { getLibrarys } from "../../../../Settings/Library/LibraryAction";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import CustomerSelect from "./CustomerSelect";
 import { ViewEditCard, Title } from "../../../../../Components/UI/Elements";
 import {
@@ -167,7 +167,7 @@ class CustomerTopicOfInterest extends React.Component {
                   }
                   style={{ background: "#fff", borderStyle: "dashed" }}
                 >
-                  <PlusOutlined type="plus" /> Skill
+                  <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" /> Skill
                 </Tag>
               )}
             </div>

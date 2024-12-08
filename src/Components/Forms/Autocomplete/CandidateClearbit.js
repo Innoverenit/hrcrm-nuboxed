@@ -1,36 +1,14 @@
 import React, { Component } from "react";
-import AsyncSelect from "react-select/lib/Async";
 import axios from "axios";
 import { get } from "lodash";
-import { base_url, login_url } from "../../../Config/Auth";
-import { ValidationError, StyledLabel, StyledAsync } from "../../UI/Elements";
-import { FlexContainer } from "../../UI/Layout";
+import { base_url } from "../../../Config/Auth";
+import { ValidationError,  StyledAsync } from "../../UI/Elements";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { message } from "antd";
 import { setClearbitCandidateData } from "../../../Containers/Candidate/CandidateAction";
 
 class OrderClearbit extends Component {
-  // loadOptions = (name) => {
-  //   if (!name) {
-  //     return Promise.resolve([]);
-  //   }
-  //   const url = `${base_url}/candidateName/${name}`;
-  //   return axios
-  //     .get(url, {})
-  //     .then((res) => {
-  //       return res.data.map((opt) => ({
-  //         label: opt.fullName,
-  //         value: opt.fullName,
-  //         candidateId: opt.candidateId,
-  //         fullName: opt.fullName,
-         
-        
-  //       }));
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
+ 
   loadOptions = fullName => {
     if (!fullName) {
       return Promise.resolve([]);
@@ -82,15 +60,11 @@ class OrderClearbit extends Component {
     if (isColumnWithoutNoCreate) {
       return (
         <>
-          <StyledLabel
-            // style={{
-            //   flexBasis: "20%",
-            //   marginTop: "-49px",
-            //   marginRight: "-48px",
-            // }}
+          <div class=" text-xs font-bold font-poppins"
+          
           >
             {label}
-          </StyledLabel>
+          </div>
           <StyledAsync
             isRequired={isRequired}
             backspaceRemoveValue
@@ -119,15 +93,10 @@ class OrderClearbit extends Component {
     if (isColumn) {
       return (
         <>
-          <StyledLabel
-            // style={{
-            //   flexBasis: "20%",
-            //   marginTop: "-49px",
-            //   marginRight: "-48px",
-            // }}
+          <div class=" text-xs font-bold font-poppins"      
           >
             {label}
-          </StyledLabel>
+          </div>
           <StyledAsync
             isRequired={isRequired}
             classNamePrefix="sales"
@@ -154,17 +123,12 @@ class OrderClearbit extends Component {
     }
     return (
       <>
-        <FlexContainer>
-          <FlexContainer alignItems="center" flexWrap={inlineLabel && "nowrap"}>
-            <StyledLabel
-              // style={{
-              //   flexBasis: "20%",
-              //   marginTop: "-49px",
-              //   marginRight: "-48px",
-              // }}
+       <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
+        <div class=" flex flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto flex-col">
+            <div class=" text-xs font-bold font-poppins     "       
             >
               {label}
-            </StyledLabel>
+            </div>
             <StyledAsync
               isRequired={isRequired}
               classNamePrefix="sales"
@@ -178,11 +142,10 @@ class OrderClearbit extends Component {
               onBlur={this.handleBlur}
               onChange={(option) => this.handleOnChange(option)}
               styles={{ width: 600 }}
-
-              // components={this.renderOptions}
+             
             />
-          </FlexContainer>
-        </FlexContainer>
+          </div>
+        </div>
         {get(touched, field.name) && get(errors, field.name) && (
           <ValidationError>{get(errors, field.name)}</ValidationError>
         )}

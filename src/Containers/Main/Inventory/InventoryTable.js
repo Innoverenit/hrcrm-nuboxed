@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Input, Space, Button, Tooltip } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
-import moment from "moment";
+import SearchIcon from '@mui/icons-material/Search';;
+import dayjs from "dayjs";
 import { Link } from "../../../Components/Common";
 import { getInventory, handleInventoryRoomRackModal } from "./InventoryAction";
 import Highlighter from "react-highlight-words";
@@ -51,11 +51,11 @@ const InventoryTable = (props) => {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+          
             size="small"
             style={{ width: 90 }}
           >
-            Search
+           <SearchIcon ClassName="!text-icon" /> Search
           </Button>
           <Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
             Reset
@@ -75,7 +75,7 @@ const InventoryTable = (props) => {
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+      <SearchIcon ClassName="!text-icon" style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]
@@ -131,8 +131,8 @@ const InventoryTable = (props) => {
       dataIndex: "locationName",
       // ...this.getColumnSearchProps("locationName"),
       render: (name, item, i) => {
-        const currentdate = moment().format("DD/MM/YYYY");
-        const date = moment(item.creationDate).format("DD/MM/YYYY");
+        const currentdate = dayjs().format("DD/MM/YYYY");
+        const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         // const plantName = `${item.salutation || ""} ${item.firstName ||
         //   ""} ${item.middleName || ""} ${item.lastName || ""} `;
         return (

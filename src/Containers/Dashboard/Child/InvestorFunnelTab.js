@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import {  StyledTabs } from "../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
+
 const FunnelChartInvestor = lazy(()=>import("./FunnelChartInvestor"));
 
 const TabPane = StyledTabs.TabPane;
@@ -46,7 +46,7 @@ class InvestorFunnelTab extends Component {
     const { activeKey } = this.state;
     return (
       <>
-        <TabsWrapper style={{height:"44vh"}}>
+        <TabsWrapper style={{height:"44vh", width:"36rem"}}>
           <StyledTabs
             defaultActiveKey="1"
             onChange={this.handleTabChange}
@@ -57,10 +57,7 @@ class InvestorFunnelTab extends Component {
                 <>
                   <ListAltIcon style={{fontSize:"1.1rem"}}/>
                   <span class=" ml-1">
-                  <FormattedMessage
-              id="app.funnel"
-              defaultMessage="Funnel"
-            />
+                Funnel
                     </span>
 
                 

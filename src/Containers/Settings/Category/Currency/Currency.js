@@ -63,8 +63,8 @@ const Currency = ({ fetchingCurrencyList, currencyList, getCurrencyList, getCurr
   return (
     <>
    <div>
-    <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
+    <div class=" flex flex-row justify-end items-center">
+    <div class=" flex w-[18vw] mr-2 mt-7px"  >
     <Input
             placeholder="Search by Currency"
             style={{ width: "100%", marginLeft: "0.5rem" }}
@@ -72,7 +72,7 @@ const Currency = ({ fetchingCurrencyList, currencyList, getCurrencyList, getCurr
             onChange={handleChangeDes}
           />
           </div>
-          <div className="flex w-[18rem]">
+          <div className="flex w-[4rem]">
           <Button 
             type="primary"
             onClick={handleSelectDeselect}
@@ -80,7 +80,7 @@ const Currency = ({ fetchingCurrencyList, currencyList, getCurrencyList, getCurr
             {selected ? "Clear All" : "Select All"}
           </Button>
         </div>
-        <div className="ml-4 w-[7rem]">
+        <div className="ml-4 w-[3rem]">
          
           <a href={`${base_url}/excel/export/currency/All`}>
           <div className="circle-icon !text-base cursor-pointer text-[green]">
@@ -94,9 +94,9 @@ const Currency = ({ fetchingCurrencyList, currencyList, getCurrencyList, getCurr
           </div>
           <div class=" flex flex-col" >
          
-         <MainWrapper className="!h-[69vh] !mt-2" >
+         <MainWrapper className="!h-[65vh] !mt-2" >
           {!fetchingCurrencyList && currencyList.length === 0 ? <NodataFoundPage /> : currencyList.slice().sort((a, b) => a.currency_name.localeCompare(b.currency_name)).map((region, index) => (
-            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] " key={region.currency_id}>
+            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  border-[#0000001f]  border  shadow-[#a3abb980] bg-white text-[#444] mt-1  p-2 justify-between items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] " key={region.currency_id}>
             {/* Region name display or input field */}
             
             

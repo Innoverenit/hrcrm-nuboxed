@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Button, Select, } from "antd";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
@@ -204,10 +204,7 @@ class InvestorContactForm extends Component {
                             type="text"
                             // label="Salutation"
                             label={
-                              <FormattedMessage
-                                id="app.salutation"
-                                defaultMessage="Salutation"
-                              />
+                         
                             }
                             options={["Mr.", "Ms.", "None"]}
                             component={SelectComponent}
@@ -220,13 +217,7 @@ class InvestorContactForm extends Component {
                           <FastField
                             isRequired
                             name="firstName"
-                            // label="First Name"
-                            label={
-                              <FormattedMessage
-                                id="app.firstName"
-                                defaultMessage="First Name"
-                              />
-                            }
+                            label="First Name"
                             type="text"
                             width={"100%"}
                             isColumn
@@ -240,14 +231,7 @@ class InvestorContactForm extends Component {
                         <div class=" w-2/5">
                           <FastField
                             name="middleName"
-                            //label="Middle Name"
-                            label={
-                              <FormattedMessage
-                                id="app.middle"
-                                defaultMessage="Middle"
-                              />
-                            }
-                            type="text"
+                            label="Middle Name"e="text"
                             width={"100%"}
                             isColumn
                             component={InputComponent}
@@ -257,13 +241,7 @@ class InvestorContactForm extends Component {
                         <div class=" w-2/4">
                           <FastField
                             name="lastName"
-                            //label="Last Name"
-                            label={
-                              <FormattedMessage
-                                id="app.lastName"
-                                defaultMessage="Last Name"
-                              />
-                            }
+                            label="Last Name"
                             type="text"
                             width={"100%"}
                             isColumn
@@ -281,12 +259,8 @@ class InvestorContactForm extends Component {
                         isColumnWithoutNoCreate
                         //label="Mobile #"
                         placeholder='+31'
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        label="Dial Code"
+                          
                         isColumn
                         selectType="dialCode"
                         component={SearchSelect}
@@ -302,12 +276,7 @@ class InvestorContactForm extends Component {
                         type="text"
                         name="mobileNumber"
                         //placeholder="Mobile #"
-                        label={
-                          <FormattedMessage
-                            id="app.mobileNumber"
-                            defaultMessage="Mobile #"
-                          />
-                        }
+                        label="Mobile #"
                         component={InputComponent}
                         inlineLabel
                         width={"100%"}
@@ -335,10 +304,7 @@ class InvestorContactForm extends Component {
                         selectType="dialCode"
                         //label="Phone No #"
                         label={
-                          <FormattedMessage
-                            id="app.countryDialCode1"
-                            defaultMessage="Dial Code"
-                          />
+                         
                         }
                         isColumn
                         component={SearchSelect}
@@ -355,11 +321,7 @@ class InvestorContactForm extends Component {
                         name="phoneNumber"
                         // placeholder="Phone #"
                         label={
-                          <FormattedMessage
-                            id="app.phoneNumber"
-                            defaultMessage="Phone #"
-                          />
-                        }
+                         
                         isColumn
                         component={InputComponent}
                         inlineLabel
@@ -379,12 +341,8 @@ class InvestorContactForm extends Component {
                           selectType="dialCode"
                           //label="Available from"
 
-                          label={
-                            <FormattedMessage
-                              id="app.#whatsApp"
-                              defaultMessage="Dial Code "
-                            />
-                          }
+                          label="Dial Code "
+                           
                           component={SearchSelect}
                           isColumn
                           // value={values.availableDate}
@@ -400,11 +358,8 @@ class InvestorContactForm extends Component {
                           width={"100%"}
                           style={{ flexBasis: "30%" }}
                           component={InputComponent}
-                          label={
-                            <FormattedMessage
-                              id="app.phoneNumber"
-                              defaultMessage="Whatsapp #"
-                            />}
+                          label="Whatsapp #"
+                        
                           inlineLabel
                         />
                       )}
@@ -415,13 +370,7 @@ class InvestorContactForm extends Component {
                       <FastField
                         type="email"
                         name="emailId"
-                        //label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.emailId"
-                            defaultMessage="Email"
-                          />
-                        }
+                        label="Email"
                         className="field"
                         isColumn
                         width={"100%"}
@@ -436,14 +385,7 @@ class InvestorContactForm extends Component {
                       <FastField
                         type="text"
                         name="linkedinPublicUrl"
-                        //label="Linkedin "
-                        label={
-                          <FormattedMessage
-                            id="app.linkedinPublicUrl"
-                            defaultMessage="Linkedin"
-                          />
-                        }
-                        isColumn
+                        label="Linkedin "
                         width={"100%"}
                         component={InputComponent}
                         inlineLabel
@@ -458,12 +400,7 @@ class InvestorContactForm extends Component {
                         <Field
                           name="investorId"
                           isColumnWithoutNoCreate
-                          label={
-                            <FormattedMessage
-                              id="app.tagcompany"
-                              defaultMessage="Tag Company"
-                            />
-                          }
+                          label="Tag Company"
                           component={SelectComponent}
                           isColumn
                           value={values.investorId}
@@ -480,13 +417,9 @@ class InvestorContactForm extends Component {
                     <div class=" w-2/5">
                       <FastField
                         name="designationTypeId"
-                        //label="Designation"
-                        label={
-                          <FormattedMessage
-                            id="app.designation"
-                            defaultMessage="Designation"
-                          />
-                        }
+                        label="Designation"
+                       
+                        
                         selectType="designationType"
                         isColumn
                         component={SearchSelect}
@@ -499,13 +432,10 @@ class InvestorContactForm extends Component {
                   <div class=" w-full">
                     <FastField
                       name="departmentId"
-                      //label="Department"
-                      label={
-                        <FormattedMessage
-                          id="app.department"
-                          defaultMessage="Department"
-                        />
-                      }
+                      label="Department"
+
+              
+                      
                       isColumn
                       isColumnWithoutNoCreate
                       component={SearchSelect}
@@ -529,10 +459,7 @@ class InvestorContactForm extends Component {
               <div class="mt-3">
                   <Field
                     name="notes"
-                    // label="Notes"
-                    label={
-                      <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                    }
+                    label="Notes"
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -547,7 +474,7 @@ class InvestorContactForm extends Component {
                   htmlType="submit"
                   loading={addingInvestorContact}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
+                 Create
 
                 </Button>
               </div>

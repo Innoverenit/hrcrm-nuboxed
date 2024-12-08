@@ -1,5 +1,5 @@
 import React, { Component, lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  StyledTabs } from "../../Components/UI/Antd";
@@ -38,10 +38,7 @@ class DashCustomerChartTab extends Component {
                 <>
                   {/* <ListAltIcon style={{fontSize:"1.1rem"}}/> */}
                  
-               <span class=" ml-1 font-semibold"><FormattedMessage
-              id="app.leadsAdded"
-              defaultMessage="Leads Added"
-            /></span>
+               <span class=" ml-1 font-semibold">Leads Added   </span>
                   {activeKey === "1" && (
                     <>
                     </>
@@ -60,10 +57,7 @@ class DashCustomerChartTab extends Component {
                 <>
                   {/* <EventAvailableIcon style={{fontSize:"1.1rem"}}/> */}
 
-                  <span class=" ml-1 font-semibold"><FormattedMessage
-              id="app.contactsAdded"
-              defaultMessage="Contacts Added"
-            /></span>
+                  <span class=" ml-1 font-semibold">Contacts Added</span>
 
                   {activeKey === "2" && (
                     <>

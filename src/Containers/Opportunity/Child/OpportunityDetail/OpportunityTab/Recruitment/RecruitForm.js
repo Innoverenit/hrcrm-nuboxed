@@ -2,7 +2,7 @@ import React, { useState, useEffect, } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { Formik, Form, Field, FieldArray } from "formik";
 import AddressFieldArray from "../../../../../../Components/Forms/Formik/AddressFieldArray";
 import * as Yup from "yup";
@@ -10,11 +10,6 @@ import dayjs from "dayjs";
 import {
   getTalentRoles,
 } from "../../../../../Settings/Category/Role/RoleAction";
-import {
-  HeaderLabel,
-  Spacer,
-  StyledLabel,
-} from "../../../../../../Components/UI/Elements";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import {
@@ -327,12 +322,8 @@ function RecruitForm(props) {
                     <Field
                       name="jobOrder"
                       //  label="Sponsor"
-                      label={
-                        <FormattedMessage
-                          id="app.joborder"
-                          defaultMessage="Job ID"
-                        />
-                      }
+                      label="Job ID"
+                      
                       isColumn
                       width={"100%"}
                       inlineLabel
@@ -343,10 +334,7 @@ function RecruitForm(props) {
                   <div style={{ width: "47%" }}>
                     <Field
                       name="requirementName"
-                      //label="Name"
-                      label={
-                        <FormattedMessage id="app.name" defaultMessage="Name" />
-                      }
+                      label="Name"
                       width={"100%"}
                       // isRequired
                       isColumn
@@ -360,13 +348,7 @@ function RecruitForm(props) {
                     {" "}
                     <Field
                       name="number"
-                      // label="# Positions"
-                      label={
-                        <FormattedMessage
-                          id="app.number"
-                          defaultMessage="# Positions"
-                        />
-                      }
+                      label="# Positions"
                       width={"100%"}
                       isRequired
                       isColumn
@@ -374,7 +356,7 @@ function RecruitForm(props) {
                     />
                   </div>
                   <div style={{ width: "47%" }}>
-                    <StyledLabel>Type </StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">Type </div>
                    
                     <Switch
                       checked={typeData}
@@ -394,13 +376,7 @@ function RecruitForm(props) {
                     {" "}
                     <Field
                       name="avilableDate"
-                      // label="Start Date"
-                      label={
-                        <FormattedMessage
-                          id="app.avilableDate"
-                          defaultMessage="Start Date"
-                        />
-                      }
+                      label="Start Date"
                       isRequired
                       component={DatePicker}
                       isColumn
@@ -408,53 +384,20 @@ function RecruitForm(props) {
                       value={values.avilableDate}
                       inlineLabel
 
-                      // disabledDate={(currentDate) => {
-                      //   if (values.avilableDate) {
-                      //     if (
-                      //       dayjs(currentDate).isBefore(
-                      //         dayjs(values.avilableDate)
-                      //       )
-                      //     ) {
-                      //       return true;
-                      //     } else {
-                      //       return false;
-                      //     }
-                      //   }
-                      // }}
                     />
                   </div>
                   <div style={{ width: "47%" }}>
                     {" "}
                     <Field
                       name="endDate"
-                      // label="Start Date"
-                      label={
-                        <FormattedMessage
-                          id="app.endate"
-                          defaultMessage="End Date"
-                        />
-                      }
-                      // isRequired
+                      label="End Date"
+                      
                       component={DatePicker}
                       isColumn
                       width={"100%"}
                       value={values.endDate || values.startDate}
                       inlineLabel
 
-                      // disabledDate={(currentDate) => {
-                      //   if (values.endDate) {
-                      //     if (
-
-                      //       dayjs(currentDate).isAfter(
-                      //         dayjs(values.endDate)
-                      //       )
-                      //     ) {
-                      //       return true;
-                      //     } else {
-                      //       return false;
-                      //     }
-                      //   }
-                      // }}
                     />
                   </div>
                 </FlexContainer>
@@ -463,13 +406,9 @@ function RecruitForm(props) {
                   <div style={{ width: "47%" }}>
                     <Field
                       name="experience"
-                      //  label="Sponsor"
-                      label={
-                        <FormattedMessage
-                          id="app.joborder"
-                          defaultMessage="Experience (in Years)"
-                        />
-                      }
+                     
+                      label="Experience (in Years)"
+                       
                       isColumn
                       width={"100%"}
                       inlineLabel
@@ -483,13 +422,9 @@ function RecruitForm(props) {
                       // isRequired
                       // type="email"
                       name="workPreference"
-                      //label="Email"
-                      label={
-                        <FormattedMessage
-                          id="app.workpreference"
-                          defaultMessage="Work Preference"
-                        />
-                      }
+                    
+                      label="Work Preference"
+                       
                       className="field"
                       isColumn
                       width={"100%"}
@@ -533,34 +468,13 @@ function RecruitForm(props) {
                                                             inlineLabel
                                                             style={{ flexBasis: "80%", marginTop: "0px", width: "100%" }}
                                                         /> 
-                    {/* <Field
-                      name="role"
-                      selectType="roleType"
-                      //label="Designation"
-                      label={
-                        <FormattedMessage id="app.role" defaultMessage="Role" />
-                      }
-                      isColumnWithoutNoCreate
-                      // selectType="designationType"
-                      // options={[
-                      //   "Board",
-                      //   "CXO",
-                      //   "Director",
-                      //   "Unit Head",
-                      //   "Mid Level",
-                      //   "Junior",
-                      // ]}
-                      isColumn
-                      component={SearchSelect}
-                      // value={values.designationTypeId}
-                      inlineLabel
-                    /> */}
+                  
                   </div>
                 </FlexContainer>
 
                 <FlexContainer justifyContent="space-between">
                 <div style={{ width: "25%" }}>
-                  <StyledLabel>Category</StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">Category</div>
                  
                   <Switch
                     checked={typeData1}
@@ -578,10 +492,7 @@ function RecruitForm(props) {
                         <Field
                           name="billing"
                           label={typeData ? "Salary" : "Rate/hr"}
-                          // label={<FormattedMessage
-                          //   id="app.billing"
-                          //   defaultMessage="Billing/hour"
-                          // />}
+                          
                           width={"100%"}
                           isRequired
                           isColumn
@@ -592,12 +503,8 @@ function RecruitForm(props) {
                         <Field
                           name="currency"
                           isColumnWithoutNoCreate
-                          label={
-                            <FormattedMessage
-                              id="app.currency"
-                              defaultMessage="Currency"
-                            />
-                          }
+                          label="Currency"
+                           
                           width="100%"
                           isColumn
                           selectType="currencyName"
@@ -613,7 +520,7 @@ function RecruitForm(props) {
 
                 </FlexContainer>
 
-                <Spacer style={{ marginTop: "1.25em" }} />
+                <div class=" mt-3" style={{ marginTop: "1.25em" }} />
                 <FlexContainer justifyContent="space-between">
                   <div style={{ width: "47%" }}>
                   <Field
@@ -621,12 +528,8 @@ function RecruitForm(props) {
                     //selectType="contactList"
                     isColumnWithoutNoCreate
                     // label="Contact"
-                    label={
-                      <FormattedMessage
-                        id="app.customercontact"
-                        defaultMessage=" Customer Contact"
-                      />
-                    }
+                    label=" Customer Contact"
+                     
                     component={SelectComponent}
                     isColumn
                     options={Array.isArray(ContactData) ? ContactData : []}
@@ -638,31 +541,13 @@ function RecruitForm(props) {
                     }}
                     inlineLabel
                   />
-                    {/* <Field
-                      name="sponserId"
-                      //  label="Sponsor"
-                      label={
-                        <FormattedMessage
-                          id="app.customercontact"
-                          defaultMessage="Customer Contact"
-                        />
-                      }
-                      isColumn
-                      width={"100%"}
-                      inlineLabel
-                      component={SelectComponent}
-                      options={Array.isArray(Sponsor) ? Sponsor : []}
-                    /> */}
                   </div>
                   <div style={{ width: "47%" }}>
                   {" "}
                   <Field
                     name="closeByDate"
                     label="Close By"
-                    // label={<FormattedMessage
-                    //   id="app.avilableDate"
-                    //   defaultMessage="Start Date"
-                    // />}
+                  
                     isRequired
                     component={DatePicker}
                     isColumn
@@ -670,38 +555,19 @@ function RecruitForm(props) {
                     //value={values.avilableDate}
                     inlineLabel
 
-                    // disabledDate={(currentDate) => {
-                    //   if (values.avilableDate) {
-                    //     if (
-                    //       dayjs(currentDate).isBefore(
-                    //         dayjs(values.avilableDate)
-                    //       )
-                    //     ) {
-                    //       return true;
-                    //     } else {
-                    //       return false;
-                    //     }
-                    //   }
-                    // }}
                   />
                 </div>
                 
                 </FlexContainer>
-                <Spacer style={{ marginTop: "1.25em" }} />
+                <div class=" mt-3" style={{ marginTop: "1.25em" }} />
 
                 <FlexContainer justifyContent="space-between">
                   <div style={{ width: "100%" }}>
                     <Field
                       name="recruitersId"
-                      //  selectType="contactList"
-                      // isColumnWithoutNoCreate
-                      // label="Contact"
-                      label={
-                        <FormattedMessage
-                          id="app.recruiter"
-                          defaultMessage="Recruiter"
-                        />
-                      }
+                    
+                      label="Recruiter"
+                      
                       mode
                       placeholder="Select"
                       width={"100%"}
@@ -714,18 +580,13 @@ function RecruitForm(props) {
                     />
                   </div>
                 </FlexContainer>
-                <Spacer />
+                <div class=" mt-3" />
                 <FlexContainer justifyContent="space-between">
                   <div style={{ width: "47%" }}>
                     <Field
                       name="recruitmentProcessId"
-                      //label="Workflow"
-                      label={
-                        <FormattedMessage
-                          id="app.recruitmentProcessId"
-                          defaultMessage="Workflow"
-                        />
-                      }
+                      label="Workflow"
+                     
                       isRequired
                       isColumn
                       style={{
@@ -746,12 +607,8 @@ function RecruitForm(props) {
                       name="partnerId"
                       // isColumnWithoutNoCreate
                       //label="Mobile #"
-                      label={
-                        <FormattedMessage
-                          id="app.vendor"
-                          defaultMessage="Vendor"
-                        />
-                      }
+                      label="Vendor"
+                        
                       mode
                       placeholder="Select"
                       width={"100%"}
@@ -765,7 +622,7 @@ function RecruitForm(props) {
                   </div>
                 </FlexContainer>
                 <div style={{ width: "47%" }}>
-                    <StyledLabel>WorkType </StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">WorkType </div>
                    
                     <Switch
                       checked={workTypeData}
@@ -788,7 +645,7 @@ function RecruitForm(props) {
                 <FlexContainer justifyContent="space-between">
                 <div style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
                       <div>
-                  <HeaderLabel style={{color:"white"}}>Location</HeaderLabel>
+                      <div class="font-semibold text-xs flex"> Location</div>
                   </div>
                   </div>
                   <div style={{ width: "100%" }}>
@@ -804,17 +661,11 @@ function RecruitForm(props) {
                     />
                   </div>
                 </FlexContainer>
-                <Spacer style={{ marginTop: "1.25em" }} />
+                <div class=" mt-3" style={{ marginTop: "1.25em" }} />
                 <div style={{ width: "100%" }}>
                   <Field
                     name="description"
-                    //label="Description"
-                    label={
-                      <FormattedMessage
-                        id="app.description"
-                        defaultMessage="Description"
-                      />
-                    }
+                    label="Description"
                      width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -828,15 +679,14 @@ function RecruitForm(props) {
                 </div>
               </div>
             </div>
-            <Spacer />
+            <div class=" mt-3" />
             <FlexContainer justifyContent="flex-end">
               <Button
                 type="primary"
                 htmlType="submit"
                 Loading={props.linkingRecruitToOpportunity}
               >
-                <FormattedMessage id="app.create" defaultMessage="Create" />
-                {/* Create */}
+             Create
               </Button>
             </FlexContainer>
           </Form>

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Tooltip } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import dayjs from "dayjs";
 class EmployeeStatusView extends Component {
@@ -32,23 +32,16 @@ class EmployeeStatusView extends Component {
       <>
         <div class=" flex justify-end" >
         <Tooltip title="Edit">
-          <BorderColorIcon
+          <BorderColorIcon className=" text-red-500 cursor-pointer !text-icon"
           
             onClick={toggleViewType}
-            style={{
-              color: "grey",
-              cursor: "pointer",
-              fontSize: "1rem",
-            }}
           />
                </Tooltip>
         </div>
   
-        <ProfileItemRow //label="Phone #" 
-          label={<FormattedMessage
-            id="app.phone"
-            defaultMessage="Phone #"
-          />}
+        <ProfileItemRow 
+        label="Phone #" 
+         
           value={phone} />
         <ProfileItemRow label="Mobile #" value={mobile} />
         <ProfileItemRow label="Linkedin" value={linkedinPublicUrl || ""} />

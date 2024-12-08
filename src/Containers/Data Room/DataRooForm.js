@@ -2,7 +2,7 @@
 // import { connect } from "react-redux";
 // import { bindActionCreators } from "redux";
 // import { Button,Select } from "antd";
-// import { FormattedMessage } from "react-intl";
+// 
 // import { Formik, Form, Field,  FastField,setFieldValue  } from "formik";
 // import * as Yup from "yup";
 // import  {addDataroom,getuserList} from  "./DataRoomAction";
@@ -191,7 +191,7 @@
 //                htmlType="submit"
 //                   loading={addingDataroom}
 //                 >
-//                   <FormattedMessage id="app.create" defaultMessage="Create" />
+//             
 //                   {/*                     
 //                     Create */}
 //                 </Button>
@@ -239,15 +239,13 @@ import React, { useState,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Select } from "antd";
-import { FormattedMessage } from "react-intl";
-import { Formik, Form, Field,  FastField  } from "formik";
+import { Formik, Form,  FastField  } from "formik";
 import * as Yup from "yup";
 import  {addDataroom,getuserList} from  "./DataRoomAction";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
-import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
 import { BundleLoader } from "../../Components/Placeholder";
+import {base_url} from "../../Config/Auth";
 
-// yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const CustomerSchema = Yup.object().shape({
   name: Yup.string().required("Input needed!"),
@@ -268,8 +266,6 @@ function CustomerForm(props) {
   const [loading, setLoading] = useState(true);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
 
-  
-
   function handleWhiteBlue(checked) {
     setWhiteblue(checked);
   };
@@ -286,7 +282,7 @@ function CustomerForm(props) {
   const fetchInclude = async () => {
     setIsLoadingInclude(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/employee/active/user/drop-down/${props.orgId}`;
+      const apiEndpoint = `${base_url}/employee/active/user/drop-down/${props.orgId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -309,10 +305,9 @@ function CustomerForm(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          ' Name', // 0
-          'Include User '// 1
-
-
+          '110', // 0  Name
+          '1124',// 1 Include User
+          '104' //Create
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -340,7 +335,6 @@ function CustomerForm(props) {
       setTouchedInclude(true);
     }
   };
-
     const {
      
       addingDataroom,
@@ -402,7 +396,7 @@ function CustomerForm(props) {
                       <div class=" flex justify-between max-sm:flex-col">
                        
                         <div class="font-bold text-xs w-wk max-sm:w-full ">
-                        <label>{translatedMenuItems[0]}</label>
+                        <div>{translatedMenuItems[0]} </div>  
                           <FastField
                             isRequired
                             name="name"
@@ -418,21 +412,8 @@ function CustomerForm(props) {
                       <div class=" flex justify-between max-sm:flex-col">
                         
                         <div class=" w-wk max-sm:w-full">
-                         
-                          {/* <Field
-      name="included"
-      label="Include User"
-      isColumn
-      width={"100%"}
-     component={SelectComponent}
-      options={
-        Array.isArray(typeOption)
-          ? typeOption
-          : []
-      }
-      inlineLabel
-    /> */}
-     <label className="font-bold text-xs">{translatedMenuItems[1]}</label>
+                                          
+     <div className="font-bold text-xs">{translatedMenuItems[1]}</div>
         <Select
           showSearch
           style={{ width: "-webkit-fill-available" }}
@@ -453,21 +434,16 @@ function CustomerForm(props) {
                         </div>
                       </div>
                     </div>
-                  </div>
-
-                 
-            
-                </div>
-              
-              </div>
-            
+                  </div>                      
+                </div>            
+              </div>           
               <div class="flex justify-end mt-3 w-wk bottom-2 mr-2 md:absolute ">
                 <Button
                type="primary"
                htmlType="submit"
                   loading={addingDataroom}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
+                           <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[2]}</div>  
                   {/*                     
                     Create */}
                 </Button>

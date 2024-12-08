@@ -6,6 +6,8 @@ const initialState = {
   addOpportunityModal: false,
   addRecruiterModal: false,
 
+  updatePulseModal:false,
+
   fetchingAllOpportunityData: false,
   fetchingAllOpportunityDataError: false,
   allOpportunityData: [],
@@ -296,6 +298,9 @@ const initialState = {
   fetchingRemarkError: false,
   remark: [],
 
+  addingMoreContact:false,
+  addingMoreContactError:false,
+
   fetchingOppLinkedWorkflow: false,
   fetchingOppLinkedWorkflowError: false,
   oppLinkWorkflow: [],
@@ -325,6 +330,11 @@ const initialState = {
   fetchingJobBoardIndustry: false,
   fetchingJobBoardIndustryError: false,
   jobBoardIndustry: [],
+
+  fetchingOppPulseData:false,
+  fetchingOppPulseDataError:false,
+
+  OPPPulseDataList:[],
 
   updateOpportunityName: false,
   updateOpportunityNameError: false,
@@ -587,7 +597,7 @@ export const OpportunityReducer = (state = initialState, action) => {
       return {
         ...state,
         addingOpportunity: false,
-        //addOpportunityModal: false,
+        addOpportunityModal: false,
         addedOpportunity:action.payload,
         opportunityByUserId: [action.payload, ...state.opportunityByUserId],
         // clearbit: null,
@@ -599,6 +609,35 @@ export const OpportunityReducer = (state = initialState, action) => {
         addingOpportunityError: true,
         //addOpportunityModal: false,
       };
+
+
+
+
+
+
+
+
+      case types.ADD_MORE_CONTACT_REQUEST:
+      return { ...state, addingOpportunity: true };
+    case types.ADD_MORE_CONTACT_SUCCESS:
+      return {
+        ...state,
+        addingMoreContact: false,
+        //addOpportunityModal: false,
+        //addedOpportunity:action.payload,
+        //opportunityByUserId: [action.payload, ...state.opportunityByUserId],
+        // clearbit: null,
+      };
+    case types.ADD_MORE_CONTACT_FAILURE:
+      return {
+        ...state,
+        addingMoreContact: false,
+        addingMoreContactError: true,
+        //addOpportunityModal: false,
+      };
+
+      case types.HANDLE_OPPORTUNITY_PULSE_MODAL:
+        return { ...state, updatePulseModal: action.payload };
 
     /* Get a opportunity  */
     case types.GET_OPPORTUNITY_REQUEST:
@@ -1417,6 +1456,8 @@ export const OpportunityReducer = (state = initialState, action) => {
         updatingRecruitmentError: true,
       };
 
+   
+
     case types.HANDLE_REACT_SPEECH_MODAL:
       return { ...state, addSpeechModal: action.payload };
 
@@ -1542,6 +1583,12 @@ export const OpportunityReducer = (state = initialState, action) => {
         fetchingRecruiterRequirementError: true,
       };
 
+      case types.GET_TEAM_USERLIST_REQUEST:
+        return {
+          ...state,
+          fetchingTeamUserList: true,
+          fetchingTeamUserListError: false,
+        }; 
     case types.GET_OPPORTUNITY_RECORD_REQUEST:
       return { ...state, fetchingOpportunityRecord: true };
     case types.GET_OPPORTUNITY_RECORD_SUCCESS:
@@ -1927,6 +1974,25 @@ export const OpportunityReducer = (state = initialState, action) => {
         updateOpportunityName: false,
         updateOpportunityNameError: true,
       };
+
+
+
+
+
+      case types.GET_RECRUITER_LIST_REQUEST:
+        return { ...state, fetchingOppPulseData: true };
+      case types.GET_OPP_PULSE_DATA_SUCCESS:
+        return {
+          ...state,
+          fetchingOppPulseData: false,
+          OPPPulseDataList: action.payload,
+        };
+      case types.GET_OPP_PULSE_DATA_FAILURE:
+        return {
+          ...state,
+          fetchingOppPulseData: false,
+          fetchingOppPulseDataError: true,
+        };
 
     case types.GET_RECRUIT_DELETE_REQUEST:
       return {

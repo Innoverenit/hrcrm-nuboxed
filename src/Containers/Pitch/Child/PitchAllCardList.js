@@ -1,31 +1,39 @@
-import React, { useEffect, useState ,lazy} from "react";
+import React, { useEffect, useState ,lazy,Suspense} from "react";
 import { StyledPopconfirm} from "../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import ExploreIcon from "@mui/icons-material/Explore";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { MultiAvatar } from "../../../Components/UI/Elements";
 import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 import "jspdf-autotable";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import LocationOnIcon from '@mui/icons-material/LocationOn';
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
+import SourceIcon from '@mui/icons-material/Source';
+import FactoryIcon from '@mui/icons-material/Factory';
+import ScoreIcon from '@mui/icons-material/Score';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import CategoryIcon from '@mui/icons-material/Category'
 import {
     getAllPitch,
-    deletePitchData
+    deletePitchData,
+    handleAddresspitchModal
 } from "../PitchAction";
 import dayjs from "dayjs";
-import AddchartIcon from '@mui/icons-material/Addchart';  
-import { Button, Tooltip } from "antd";
-import { FormattedMessage } from "react-intl";
+import { Button, Tooltip,Checkbox } from "antd";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../Components/Placeholder";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
-import PitchSearchedData from "./PitchSearchedData";
+
+const AddPitchAdressModal =lazy(()=>import("./AddPitchAdressModal"));
+const EmptyPage =lazy(()=>import("../../Main/EmptyPage"));
 const AddPitchNotesDrawerModal =lazy(()=>import("./AddPitchNotesDrawerModal"));
 const UpdateLPitchModal =lazy(()=>import("../Child/UpdateLPitchModal"));
-const StatusPitchToggle =lazy(()=>import("../Child/StatusPitchToggle"));
+const PitchSearchedData =lazy(()=>import("./PitchSearchedData"));
 const OpenASSimodal =lazy(()=>import("./OpenASSimodal"));
 
 const ButtonGroup = Button.Group;
@@ -42,14 +50,26 @@ const PitchAllCardList = (props) => {
       try {
         setLoading(true); 
         const itemsToTranslate = [        
-            "Name",//0
-            "Mobile",//1
-            "Company",//2
-            "Source",//3
-            "Sector",//4
-            "Assigned",//5
-            "Owner",//6
-            "Qualify",//7          
+          "110",//0 Name
+          "546",//1 Mobile
+          "277",//2 Company
+          "279",//3 source
+          "278",//4 sector
+            "76",//5 Assigned
+          
+            "1114",//6 Qualify       
+            "271" , // 7 Hot
+            "272",  // 8 Warm
+            "273",  //9 Cold"
+            "100", //10  New
+          "1453", //  11"Qualify? Pitch will move to Investor section!
+          "1454", // 12 Company name is required to enable qualification action
+          "316",// 13 Notes
+          "1165", // 14 Activity
+          "170", // 15 Edit
+          "1259",  // 16 Do you want to delete?
+          "84" ,//Delete
+          "1581" //Score 18
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -111,40 +131,41 @@ const PitchAllCardList = (props) => {
 serachedPitchData={props.serachedPitchData}
 />
 ) : (
- <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
- <div className=" flex justify-between max-sm:hidden w-[99%] p-1 bg-transparent font-bold sticky z-10">
-        <div className=" w-[11.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.6rem]">
-        {translatedMenuItems[0]}
+ <div class="rounded max-lg:w-wk max-sm:w-wk max-sm:m-1 m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+ <div className=" flex justify-between max-sm:hidden w-[98%]  p-1 bg-transparent font-poppins font-bold sticky items-end !text-lm max-xl:text-[0.65rem] max-lg:text-[0.45rem] z-10">
+        <div className=" text-sm  w-[19.1rem] text-[#2cbdaa] max-xl:w-[9.6rem]">
+        <CategoryIcon className=' text-[#2cbdaa]'/>{translatedMenuItems[0]}
         {/* name */}
-                </div>
-        <div className=" w-[5.1rem] max-xl:w-[3rem]"></div>
-        <div className="  w-[5.3rem]  max-xl:w-[5.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-        {translatedMenuItems[1]} 
+                </div>      
+        <div className=" text-xs  w-[11.3rem]  max-xl:w-[5.1rem] ">
+        <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/> {translatedMenuItems[1]} 
         {/* Mobile */}
-                </div>
-        <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"></div>
-        <div className="w-[12.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.122rem]">
-        {translatedMenuItems[2]} 
+                </div>   
+        <div className="  text-xs w-[11.12rem]  max-xl:w-[5.122rem]">
+        <ApartmentIcon className="!text-icon mr-1 "/>  {translatedMenuItems[2]} 
         {/* company */}
                 </div>
-                    <div className="w-[4.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                    {translatedMenuItems[3]}  
+                    <div className=" text-xs w-[7.12rem] ">
+                    <SourceIcon className="!text-icon  text-[#4b5043]"/> {translatedMenuItems[3]}  
                     {/* source */}
                 </div>
-                     <div className="w-[3.121rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                     {translatedMenuItems[4]} 
+                     <div className=" text-xs w-[9.121rem] ">
+                     <FactoryIcon className="!text-icon  text-[#84a59d]"/>{translatedMenuItems[4]} 
                      {/* sector */}
                 </div>
-        <div className="w-[4.122rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                {props.user.aiInd && (
+            <div className="  text-xs w-[5.81rem]  max-xl:w-[3.81rem]">
+            {/* Score */}
+            <ScoreIcon className="!text-icon  text-[#f28482]"/>   {translatedMenuItems[18]}
+            </div>
+            )}
+        <div className=" text-xs w-[7.122rem] ">
           {/* Assigned */}
-        {translatedMenuItems[5]}
+          <AccountCircleIcon className="!text-icon  text-[#d64933]"/>  {translatedMenuItems[5]}
         </div>
-        <div className="w-[3.21rem] max-xl:text-[0.65rem] max-xl:w-[3.2rem] max-lg:text-[0.45rem]">
-        {translatedMenuItems[6]}
-        {/* owner */}
-                </div>
-        <div className="w-[10.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.4rem]">
-        {translatedMenuItems[7]}
+      
+        <div className=" text-xs w-[9.6rem]  max-xl:w-[7.4rem]">
+        <ExploreIcon  className="!text-icon cursor-pointer text-[green]" />  {translatedMenuItems[6]}
         {/* qualify */}
                 </div>
       </div>
@@ -153,11 +174,11 @@ serachedPitchData={props.serachedPitchData}
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingAllPitch?<div class="flex justify-center">Loading...</div>:null}
-        height={"80vh"}
+        height={"83vh"}
         style={{overflowX:"hidden",scrollbarWidth:"thin"}}
     
       >
-  { !fetchingAllPitch && props.allPitchData.length === 0 ?<NodataFoundPage />:props.allPitchData.map((item,index) =>  {
+  { !fetchingAllPitch && props.allPitchData.length === 0 ?<Suspense> <EmptyPage/> </Suspense>:props.allPitchData.map((item,index) =>  {
  const currentdate = dayjs().format("DD/MM/YYYY");
  const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 //  const countryCode = item.address[0].country_alpha2_code   
@@ -183,11 +204,19 @@ serachedPitchData={props.serachedPitchData}
                     return (
                       <div>
                       <div
-          className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+          className="flex rounded justify-between  bg-white mt-1  items-center  max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:h-[9rem] max-sm:flex-col  py-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid   leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
         >
                                 <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium  w-[12rem] max-xl:w-[7rem] max-lg:w-[4.9rem]   max-sm:w-auto">
+                          <div className=" flex   w-[12rem] border-l-2 border-green-500 bg-[#eef2f9] max-xl:w-[6rem] max-lg:w-[4.9rem]   max-sm:w-auto">
                           <div className="flex max-sm:w-full items-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]"> 
+                          <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                        {props.showCheckboxes && (
+                        <Checkbox
+                onChange={() => props.handleCheckboxChange(item.investorLeadsId)}
+              checked={props.selectedDeals.includes(item.investorLeadsId)}
+              />
+                        )}
+                        </div>  
 <div>
 
       <MultiAvatar
@@ -203,18 +232,14 @@ serachedPitchData={props.serachedPitchData}
 
                              </div>
 
-                                  <div class="max-sm:w-full" >
+                                  <div class="max-sm:w-full ml-1" >
                                   <Tooltip>
-                                    <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">
-                                      {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">
-                                      Name
-                                      </div> */}
-                                      <div class=" text-xs max-sm:text-xs flex text-blue-500  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-semibold  cursor-pointer">
+                                    <div class="max-sm:w-full max-sm:justify-between flex md:flex-col">                                    
+                                      {/* Name */}
+                                    
+                                      <div class=" text-xs max-sm:text-xs flex text-blue-500  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] font-semibold  cursor-pointer">                                        
+                                          {/* {/* <Link */}
                                           
-                                          {/* <Link
-                                           toUrl={`customer/${item.customerId}`}
-                                           title={`${item.name}`} 
-                                         > */}
                                          {item.firstName}
                                          &nbsp;
                                          {item.middleName}
@@ -224,7 +249,7 @@ serachedPitchData={props.serachedPitchData}
                                          &nbsp;&nbsp;
                                          {date === currentdate ? (
                                            <span class="text-[tomato] mt-[0.4rem] font-bold" >
-                                             New
+                                           {translatedMenuItems[10]}  {/* New */}
                                            </span>
                                          ) : null}
                                         
@@ -234,25 +259,16 @@ serachedPitchData={props.serachedPitchData}
                                   </div>
                                   </div>
                           </div>
-                          <div class="flex flex-row items-center w-[6.1rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
-
-
-
-
-
-
+                          <div class="flex flex-row items-center  h-8 ml-gap  bg-[#eef2f9]  w-[6rem] max-xl:w-[5rem] max-lg:w-[4.51rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between">
 <div>
 <ButtonGroup>
 <RoleButton
 type="Hot"
 iconType="fas fa-mug-hot"
 // tooltip="Hot"
-tooltip={<FormattedMessage
-id="app.hot"
-defaultMessage="Hot"
-/>}
+tooltip={translatedMenuItems[7]}
 role={item.type}
-onClick={() =>{
+  onClick={() =>{
 const typ="Hot"
 props.updateTypeForPitch(item.investorLeadsId,typ)
 }}
@@ -264,12 +280,9 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 type="Warm"
 iconType="	fas fa-burn"
 // tooltip="Warm"
-tooltip={<FormattedMessage
-id="app.warm"
-defaultMessage="Warm"
-/>}
+tooltip={translatedMenuItems[8]}
 role={item.type}
-onClick={() =>{
+  onClick={() =>{
 const typ="Warm"
 props.updateTypeForPitch(item.investorLeadsId,typ)
 }}
@@ -281,12 +294,9 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 type="Cold"
 iconType="far fa-snowflake"
 // tooltip="Cold"
-tooltip={<FormattedMessage
-id="app.cold"
-defaultMessage="Cold"
-/>}
+tooltip={translatedMenuItems[9]}
 role={item.type}
-onClick={() => {
+  onClick={() => {
 const typ="Cold"
 props.updateTypeForPitch(item.investorLeadsId,typ)
 }}
@@ -297,19 +307,15 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
 </div>  
 </div>  
                   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                          <div className=" flex font-medium   w-[7rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex items-center  h-8 ml-gap  bg-[#eef2f9]   w-[9rem] max-sm:w-auto max-xl:w-[5rem] max-lg:w-[4rem] max-sm:flex-row  max-sm:justify-between ">
                      <div class="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
 {item.countryDialCode && item.phoneNumber
 ? `${item.countryDialCode} ${item.phoneNumber}`
 : 'None'}
 </div>
 
-                 </div>
-                 <div className=" flex  w-[2.5rem] max-xl:w-[5rem] max-lg:w-[4.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">                   
-                            <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">                     
-                              </div>
-                        </div>
-                        <div className=" flex  w-[12.1rem] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
+                 </div>            
+                        <div className=" flex  w-[15.1rem] items-center  h-8 ml-gap  bg-[#eef2f9] max-sm:w-auto max-xl:w-[5.1rem] max-lg:w-[4.12rem] max-sm:flex-row  max-sm:justify-between ">
                   {/* country */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.companyName || "None"}
@@ -318,19 +324,25 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                         </div>
                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
                 
-                 <div className=" flex   w-[5.1rem] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                 <div className=" flex   w-[7.1rem] items-center  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[5.1rem] max-lg:w-[3.31rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                      {/* Company  */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.source || "None"}
 </div>
                  </div>
-                 <div className=" flex   w-[5.12rem] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+                 <div className=" flex   w-[8.12rem] items-center  h-8 ml-gap  bg-[#eef2f9] max-xl:w-[5.1rem] max-lg:w-[3.41rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                {/* sector */}
                      <div className="text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
                      {item.sector || "None"}
 </div>
                  </div>
-                 <div className=" flex  w-[5.21rem] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
+                 {/* Score */}
+                 {props.user.aiInd && (
+           <div className=" flex  justify-center items-center  h-8 ml-gap  bg-[#eef2f9]  w-[9.12rem] max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+            {item.noteScoreInd}
+            </div>
+            )}    
+                 <div className=" flex  w-[5.21rem] items-center justify-center h-8 ml-gap  bg-[#eef2f9] max-xl:w-[5.2rem] max-lg:w-[3.8rem] max-sm:flex-row  max-sm:justify-between ">
                             {/* Assigned */}
                               <div class=" text-xs max-sm:text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">                             
                               <span>
@@ -353,54 +365,19 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                   </>
         )}
                 </span>
-       
-                              </div>
-                          </div>
-                          <div className=" flex  w-[3.5rem] max-xl:w-[2.5rem] max-lg:w-[2.4rem]  max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                          {/* Owner */}
-                 <span>
-                 <Tooltip title={item.ownerName}>
-          <div class="max-sm:flex justify-end">
-          <Tooltip title={item.ownerName}>
-        <MultiAvatar
-          primaryTitle={item.ownerName}
-          imageId={item.ownerImageId}
-          imgWidth={"1.9rem"}
-          imgHeight={"1.9rem"}
-        />
-      </Tooltip>
-      </div>
-    </Tooltip>
-      </span>
-             </div>
-                          </div>                                                                     
-<div class="flex max-sm:justify-between max-sm:w-wk items-center">
-<div class="flex justify-between items-center max-sm:w-[50%] ">                       
-             <div class="rounded-full bg-white  h-5 cursor-pointer w-8 max-xl:w-[1.5rem]">
-              {item.url !== null ? (
-        <Tooltip title={item.url}>
-          <span className=" cursor-pointer"
-            //type="edit"         
-            onClick={() => {}}          >
-            {" "}
-            <a href={`item.url`} target="_blank">
-              <ExploreIcon
-              className="!text-icon cursor-pointer text-[green]"
-              />
-            </a>
-          </span>
-        </Tooltip>
-      ) : null}
-                  </div>  
-             <div className=" flex  w-12 max-xl:w-[2rem] max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
+                    </div>
+                          </div>                        
+                          </div>   
+                                                                         
+<div class="flex max-sm:justify-evenly max-sm:w-wk  items-center justify-center h-8 ml-gap  bg-[#eef2f9] ">
+             <div className=" flex  w-[2rem]  items-center    max-xl:w-[2rem] max-sm:flex-row  max-sm:justify-between max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">
                             {/* Qualify */}                 
-                              <div class=" text-xs  font-poppins">                    
-                              </div>
+                             
                               <div>
                               {item.companyName ? (
-                              <Tooltip title="Qualify? Pitch will move to Investor section!">
+                              <Tooltip title={translatedMenuItems[11]}>
                   <ConnectWithoutContactIcon
-                    onClick={() => {
+                      onClick={() => {
                       handleRowData(item);
                       props.handlePitchConvertModal(true);
                    
@@ -409,7 +386,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                   />
                 </Tooltip>
                   ) : (
-                    <Tooltip title="Company name is required to enable qualification action">
+                    <Tooltip title={translatedMenuItems[12]}>
                       <ConnectWithoutContactIcon
                         className="!text-icon cursor-not-allowed text-gray-400"
                       />
@@ -420,39 +397,54 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
       investorLeadsId={item.investorLeadsId}
       convertInd={item.convertInd}
     /> */}
+    </div>
 </div>
-                          </div>
-                          <div class="flex max-sm:flex-row  justify-between md:w-20 max-sm:w-[25%] ">
+<div class="rounded-full bg-white  h-5 cursor-pointer w-8 max-xl:w-[1.5rem]">
+              {item.url !== null ? (
+        <Tooltip title={item.url}>
+          <span className=" cursor-pointer"
+            //type="edit"         
+              onClick={() => {}}          >
+            {" "}
+            <a href={`item.url`} target="_blank">
+              <ExploreIcon
+              className="!text-icon cursor-pointer text-[green]"
+              />
+            </a>
+          </span>
+        </Tooltip>
+      ) : null}
+                  </div>  
+
+                  <div class="flex max-sm:justify-evenly max-sm:w-wk items-center justify-end">                              
                                                 <div >
-                                    <Tooltip title="Notes">
+                                    <Tooltip title={translatedMenuItems[13]}>
                       <NoteAltIcon
-                                onClick={() => {
+                                  onClick={() => {
                                   props.handlePitchNotesDrawerModal(true);
                                   handleSetCurrentLeadsId(item);
                                 }}
-                                className="!text-icon cursor-pointer text-[green]"
+                                className="!text-icon cursor-pointer text-green-800"
                               />
                           </Tooltip>
                             </div>
+                           
                             <div>
                                 <Tooltip
-                                  title={
-                                    <FormattedMessage id="app.activity" defaultMessage="Activity" />
-                                  }
+                                  title={translatedMenuItems[14]}
                                 >
-                                <AddchartIcon
-                                className="!text-icon cursor-pointer text-blue-500"
-                                onClick={()=>{
+                                  <HourglassFullIcon className="text-blue-500 !text-icon"                                                  
+                                  onClick={()=>{
                                 props.handleAssimodal(true)
                                 handleRowData(item)
                                 }}
-                                />
+                          />
                                 </Tooltip>
                                 </div>                                                                
                                       <div>
                                                 <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
                                         <span class="cursor-pointer" >
-                                        <LocationOnIcon   className="!text-icon cursor-pointer text-[#960a0a]"/>
+                                        <AddLocationAltIcon   className="!text-icon cursor-pointer text-[#8e4bc0]"/>
                                         </span>
                                       </Tooltip>
                                       </div>
@@ -461,7 +453,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                                           <MailOutlineIcon
                                             type="mail"
                                             className="!text-icon cursor-pointer text-green-400"
-                                            // onClick={() => {
+                                            //   onClick={() => {
                                 //   handleSetCurrentLeadsId(item);
                                 //   props.handleLeadsEmailDrawerModal(true);
                                 // }}
@@ -469,10 +461,10 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                             </Tooltip> </div>
                             {user.imInd === true  &&  user.pitchUpdateInd === true && (  
                                                 <div>
-                            <Tooltip title="Edit">
+                            <Tooltip title={translatedMenuItems[15]}>
                               <BorderColorIcon
                                 className="!text-icon cursor-pointer text-[tomato]"
-                                onClick={() => {
+                                  onClick={() => {
                                   props.setEditPitch(item);
                                   props.handleUpdatePitchModal(true);
                                 handleSetCurrentLeadsId(item);                                
@@ -483,21 +475,19 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                                                 )}                                             
                                         <div>
                                         <StyledPopconfirm
-                            title="Do you want to delete?"
+                            title={translatedMenuItems[16]}
                             onConfirm={() => props.deletePitchData(item.investorLeadsId,props.userId)}
-                          > <Tooltip title="Delete">
-                            {user.imInd === true  &&  user.plantDeleteInd === true && ( 
-                            <DeleteOutlined
-                              type="delete"
-                              className="!text-icon text-[red] cursor-pointer"                             
-                            />
+                          > <Tooltip title={translatedMenuItems[17]}>
+                            {user.imInd === true  &&  user.pitchDeleteInd === true && ( 
+                            <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                             )} 
                             </Tooltip>
                           </StyledPopconfirm>
                                         </div>               
+             
               </div>
-              </div>
-                </div>
+           </div>
+               
                       </div>                       
                                 </div>
                     )
@@ -505,6 +495,7 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
                   </InfiniteScroll>
       </div>
          )}
+         <Suspense fallback={<BundleLoader />}>
       <UpdateLPitchModal
         item={currentLeadsId}
         translateText={props.translateText}
@@ -518,11 +509,17 @@ props.updateTypeForPitch(item.investorLeadsId,typ)
         openASSImodal={props.openASSImodal}
       handleAssimodal={props.handleAssimodal}
       />
-         <AddPitchNotesDrawerModal 
+       <AddPitchAdressModal
+        item={rowdata}
+         type="investorLeads"
+         addressPitchModal={props.addressPitchModal}
+         handleAddresspitchModal={props.handleAddresspitchModal}
+      /> 
+         <AddPitchNotesDrawerModal
        item={currentLeadsId}
         addDrawerPitchNotesModal={props.addDrawerPitchNotesModal}
         handlePitchNotesDrawerModal={props.handlePitchNotesDrawerModal}
-      />
+      /></Suspense>
     </>
   );
 };
@@ -535,13 +532,15 @@ user: auth.userDetails,
   updatePitchModal:pitch.updatePitchModal,
   openASSImodal:pitch.openASSImodal,
   allPitchData:pitch.allPitchData,
-  serachedPitchData:pitch.serachedPitchData
+  serachedPitchData:pitch.serachedPitchData,
+  addressPitchModal: pitch.addressPitchModal
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
         getAllPitch,
          deletePitchData,
+         handleAddresspitchModal
      
     },
     dispatch

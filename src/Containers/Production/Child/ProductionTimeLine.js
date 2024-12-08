@@ -12,7 +12,7 @@
 
 //     return (
 //         <div className=' flex justify-end sticky top-28 z-auto'>
-//              <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+//              <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
 //             <h2>Timeline Component</h2>
 //             <Timeline>
 //                 {timelineData.map((item, index) => (
@@ -37,7 +37,7 @@ import AddSpareStepsModal from "../Child/AddSpareStepsModal"
 import { Button, Steps } from 'antd';
 import ControlCameraIcon from '@mui/icons-material/ControlCamera';
 import {addSpareStepsModal,getProductionSteps,addSpareNotesModal} from "../ProductionAction"
-import NodataFoundPage1 from '../../../Helpers/ErrorBoundary/NodataFoundPage1';
+
 
 const { Step } = Steps;
 
@@ -51,8 +51,8 @@ const Component2 = (props) => {
         const fetchMenuTranslations = async () => {
           try {
             const itemsToTranslate = [
-             "Steps",//0
-              "Add Parts",//1
+           "1156", //  "Steps",//0
+           "1054" //   "Add Parts",//1
           
           
            
@@ -93,7 +93,7 @@ const Component2 = (props) => {
     return (
         <>
         <div className=' flex justify-end sticky top-28 z-auto' style={{height:"43em"}}>
-             <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] " style={{scrollbarWidth:"thin"}}>
+             <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white] " style={{scrollbarWidth:"thin"}}>
             <h2>
                 {/* Steps */}
                 {translatedMenuItems[0]}
@@ -129,7 +129,7 @@ const Component2 = (props) => {
                                             </Button>
 
                                             <ControlCameraIcon
-                              className=" !text-icon cursor-pointer text-[#4bc076]"
+                              className=" !text-icon cursor-pointer text-[#28a355]"
                               onClick={() => {
                                 props.addSpareNotesModal(true);
                                 handleSteps(step);

@@ -23,7 +23,9 @@ module.exports = {
 'xxs':'0.62rem',
 'xm':'0.875rem',
 'ls':'0.8rem',
-'icon':'1.1rem'
+'icon':'1.1rem',
+'tab':'0.8rem',
+'lm':'0.65rem',
             },
             colors: {
               "clr": "tomato",
@@ -50,6 +52,8 @@ module.exports = {
             },
             margin:{
         'margin5':'5%',
+        'gap':'0.2rem',
+        'tiny':'0.1rem',
         'margin1':'1%',
         'margin3':'3%',
         'margin10':'10%',
@@ -59,7 +63,8 @@ module.exports = {
         'margin58':'58%',
             },
             padding:{
-              'pd4':'4%'
+              'pd4':'4%',
+              'ygap': '0.1rem'
             }
 
     },

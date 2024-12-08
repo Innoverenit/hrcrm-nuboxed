@@ -1,33 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
-import { base_url } from "../../Config/Auth";
-import LazySelect from "../../Components/Forms/Formik/LazySelect";
 import { bindActionCreators } from "redux";
-import { Button, Icon, Switch } from "antd";
-import { Formik, Form, Field, FastField, FieldArray } from "formik";
-import * as Yup from "yup";
-import dayjs from "dayjs";
-import { Spacer, StyledLabel } from "../../Components/UI/Elements";
-
-import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
+import { Button} from "antd";
+import { Formik, Form, FastField } from "formik";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
-import AddressFieldArray from "../../Components/Forms/Formik/AddressFieldArray";
-import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
-import { DatePicker } from "../../Components/Forms/Formik/DatePicker";
-import { TimePicker } from "../../Components/Forms/Formik/TimePicker";
-import //   addEvent,
-//   deleteEvent,
-//   updateEvent,
-//   handleEventModal,
+import 
 "./PermissionsAction";
-import { FlexContainer } from "../../Components/UI/Layout";
-import { TextareaComponent } from "../../Components/Forms/Formik/TextareaComponent";
-import { StyledPopconfirm } from "../../Components/UI/Antd";
-
-/**
- * yup validation scheme for creating a opportunity
- */
 
 class PermissionForm extends Component {
   constructor(props) {
@@ -37,10 +15,7 @@ class PermissionForm extends Component {
     };
   }
   handleCallback = () => {
-    // const { handleChooserModal, handleEventModal, callback } = this.props;
-    // handleChooserModal(false);
-    // handleEventModal(false);
-    // callback && callback();
+ 
   };
   handleReminderChange = (checked) => {
     this.setState({
@@ -82,42 +57,7 @@ class PermissionForm extends Component {
           enableReinitialize
           initialValues={
             {
-              //   eventType:"",
-              //   eventTypeId:"",
-              //   eventSubject: "",
-              //   eventVenue: "",
-              //   remindAt: "",
-              //   notificationEmail: false,
-              //   eventDescription: "",
-              //   timeZone: timeZone,
-              //   startDate: startDate || dayjs(),
-              //   startTime: startDate || null,
-              //   endDate: endDate || null,
-              //   endTime: endDate || null,
-              //   note: "",
-              //   eventStatus: "",
-              //   allDayInd: true,
-              //   candidateId:"",
-              //   repeatStartDate: "",
-              //   completionInd: "Incomplete",
-              //   repeatEndDate: "",
-              //   repeat_ind: false,
-              //   address: [
-              //     {
-              //       addressType: "",
-              //       address1: "",
-              //       address2: "",
-              //       town: "",
-              //       street: "",
-              //       city: "",
-              //       postalCode: "",
-              //       country: "",
-              //       latitude: "",
-              //       longitude: "",
-              //     },
-              //   ],
-              //   employeesIds: [],
-              //   ownerIds:[],
+             
             }
           }
           //   validationSchema={EventSchema}
@@ -151,18 +91,14 @@ class PermissionForm extends Component {
                       width: "100%",
                     }}
                   >
-                    <FlexContainer style={{ justifyContent: "space-evenly"}}>
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-evenly grow shrink h-auto mr-auto ">
                       <div style={{ width: "16%" }}>
                         <FastField
                           isRequired
                           name="sales"
-                          //label="Start "
-                          label={
-                            <FormattedMessage
-                              id="app.sales"
-                              defaultMessage="Sales"
-                            />
-                          }
+                        
+                          label="Sales"
+                         
                           isColumn
                           component={InputComponent}
                           // value={values.startDate}
@@ -180,12 +116,8 @@ class PermissionForm extends Component {
                           isRequired
                           name="customercare"
                           // label="Start Time"
-                          label={
-                            <FormattedMessage
-                              id="app.CustomerCare"
-                              defaultMessage="Customer Care"
-                            />
-                          }
+                          label="Customer Care"
+                           
                           isColumn
                           component={InputComponent}
                           // value={values.startTime}
@@ -201,13 +133,8 @@ class PermissionForm extends Component {
                         <FastField
                           isRequired
                           name="management"
-                          //label="Start "
-                          label={
-                            <FormattedMessage
-                              id="app.management"
-                              defaultMessage="Management"
-                            />
-                          }
+                          label="Management"
+                            
                           isColumn
                           component={InputComponent}
                           // value={values.startDate}
@@ -225,12 +152,8 @@ class PermissionForm extends Component {
                           isRequired
                           name="production"
                           //label="Start "
-                          label={
-                            <FormattedMessage
-                              id="app.production"
-                              defaultMessage="Production"
-                            />
-                          }
+                          label="Production"
+                           
                           isColumn
                           component={InputComponent}
                           // value={values.startDate}
@@ -248,12 +171,8 @@ class PermissionForm extends Component {
                           isRequired
                           name="recruiter"
                           //label="Start "
-                          label={
-                            <FormattedMessage
-                              id="app.recruiter"
-                              defaultMessage="Recruiter"
-                            />
-                          }
+                          label="Recruiter"
+                         
                           isColumn
                           component={InputComponent}
                           // value={values.startDate}
@@ -266,22 +185,18 @@ class PermissionForm extends Component {
                           }}
                         />
                       </div>
-                    </FlexContainer>
+                    </div>
                   </div>
-
-                  <FlexContainer justifyContent="flex-end">
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                     &nbsp;
                     <Button
                       type="primary"
                       htmlType="submit"
                       //   Loading={addingEvent}
                     >
-                      <FormattedMessage
-                        id="app.create"
-                        defaultMessage="Create"
-                      />
+                     Create
                     </Button>
-                  </FlexContainer>
+                  </div>
                 </div>
            
             </Form>
@@ -293,24 +208,13 @@ class PermissionForm extends Component {
 }
 
 const mapStateToProps = ({}) => ({
-  //   addingEvent: event.addingEvent,
-  //   updatingEvent: event.updatingEvent,
-  //   user: auth.userDetails,
-  //   deletingEvent: event.deleteEvent,
-  //   employees: employee.employees,
-  //   events:events.events,
+  
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      //   addEvent,
-      //   deleteEvent,
-      //   updateEvent,
-      //   handleChooserModal,
-      //   handleEventModal,
-      //   getEmployeelist,
-      //   getEvents,
+      
     },
     dispatch
   );

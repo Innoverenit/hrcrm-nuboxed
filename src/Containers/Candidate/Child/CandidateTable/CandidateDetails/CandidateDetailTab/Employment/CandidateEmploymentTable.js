@@ -1,6 +1,6 @@
 import React, { Component,lazy } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { handleCandidateUpdateEmploymentModal } from "../../../../../CandidateAction";
@@ -15,7 +15,7 @@ import styled from "styled-components";
 import DownloadIcon from '@mui/icons-material/Download';
 import dayjs from "dayjs";
 import { base_url } from "../../../../../../../Config/Auth";
-import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
+import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdateCandidateEmploymentModal = lazy(()=>import("../Employment/UpdateCandidateEmploymentModal"));
 class CandidateEmploymentTable extends Component {
   componentDidMount() {
@@ -41,29 +41,20 @@ class CandidateEmploymentTable extends Component {
         width: "2%",
       },
       {
-        // title: "Company Name",
-        title: (
-          <FormattedMessage
-            id="app.companyname"
-            defaultMessage="Company Name"
-          />
-        ),
+        title: "Company Name",
+    
         dataIndex: "companyName",
          width: "15%"
       },
       {
-        //title: "Designation",
-        title: (
-          <FormattedMessage id="app.designationType" defaultMessage="Designation" />
-        ),
+       title: "Designation",
+        
         dataIndex: "designationType",
         width: "12%"
       },
       {
-        //title: "Start Date",
-        title: (
-          <FormattedMessage id="app.start" defaultMessage="Start" />
-        ),
+       title: "Start Date",
+       
         dataIndex: "startDate",
         width: "12%",
         render: (name, item, i) => {
@@ -71,8 +62,8 @@ class CandidateEmploymentTable extends Component {
         },
       },
       {
-        //title: "End Date",
-        title: <FormattedMessage id="app.end" defaultMessage="End" />,
+      title: "End Date",
+    
         dataIndex: "endDate",
         width: "12%",
         render: (name, item, i) => {
@@ -94,40 +85,13 @@ class CandidateEmploymentTable extends Component {
       },
 
       {
-        title: (
-          <FormattedMessage id="app.remarks" defaultMessage="Remarks" />
-        ),
+        title:"Remarks" ,
         width:"10%",
         dataIndex: "description",
       },
      
      
-      // {
-      //   title:"Document",
-      //   dataIndex:"documentType",
-      //   width:"12%",
-
-      // },
-      // {
-      //   title: "",
-      //   dataIndex: "id",
-      //   width: "2%",
-      //   render: (name, item, i) => {
-      //     return (
-      //       <StyledPopconfirm
-      //         //title="Do you want to delete?"
-      //         title={<FormattedMessage
-      //           id="app.doyouwanttodelete?"
-      //           defaultMessage="Do you want to delete?"
-      //         />}
-      //         onConfirm={() => deleteCandidateEmploymentTable(item.id)}
-      //       >
-      //         <Icon type="delete" style={{ cursor: "pointer", color: "red" }} />
-      //         {/* <Button type="primary" className='edit_hover_class' icon="delete"  /> */}
-      //       </StyledPopconfirm>
-      //     );
-      //   },
-      // },
+     
       {
         title: "",
         dataIndex: "documentTypeId",
@@ -166,12 +130,12 @@ class CandidateEmploymentTable extends Component {
     ];
 
     if (fetchingCandidateEmploymentDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     return (
       <>
      <div className=' flex justify-end sticky top-28 z-auto'>
-     <div class="rounded-lg m-5 p-2 w-[98%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+     <div class="rounded-lg m-5 p-2 w-[98%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex justify-between w-[97.5%] px-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[10.5rem]">Company Name</div>
        <div className=" md:w-[8.1rem]">Designation</div>
@@ -354,14 +318,4 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(CandidateEmploymentTable);
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
 
-  @media only screen and (max-width: 600px) {
-    -webkit-justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-  }
-`;

@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect,lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledTable } from "../../../Components/UI/Antd";
 import { getTeamList } from "./TeamsAction";
-import TeamDetailsView from "./TeamDetailsView";
-import APIFailed from "../../../Helpers/ErrorBoundary/APIFailed";
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+const TeamDetailsView =lazy(()=> import('./TeamDetailsView'));
 
 function TeamsTable(props) {
   useEffect(() => {
@@ -24,7 +25,9 @@ function TeamsTable(props) {
       defaultSortOrder: "descend",
       sorter: (a, b) => a.name.localeCompare(b.name),
       render: (name, item, i) => (
+        <Suspense fallback={<BundleLoader />}>
         <TeamDetailsView teamId={item.teamId} teamName={item.name} />
+        </Suspense>
       ),
     },
     {
@@ -65,7 +68,7 @@ function TeamsTable(props) {
   ];
 
   if (props.fetchingTeamError) {
-    return <APIFailed />;
+    return <NodataFoundPage />;
   }
   const tab = document.querySelector(".ant-layout-sider-children");
   const tableHeight = tab && tab.offsetHeight - 200;

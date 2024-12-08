@@ -12,6 +12,9 @@ const initialState = {
     fetchingPitchHotError: false,
     pitchDataHot:[],
 
+    updatingOwnerPitch: false,
+    updatingOwnerPitchError: false,
+
     fetchingPitchWarm: false,
     fetchingPitchWarmError: false,
     pitchDataWarm:[],
@@ -38,6 +41,8 @@ const initialState = {
       allPitchData:[],
 
       clearbit: {},
+
+      addressPitchModal:false,
 
       addingPitchActivityEvent: false,
       addingPitchActivityEventError: false,
@@ -493,6 +498,10 @@ case types.GET_PITCH_REQUEST:
               case types.HANDLE_ASSI_MODAL:
                 return { ...state, openASSImodal: action.payload };
 
+                case types.HANDLE_ADDRESS_PITCH_MODAL:
+                  return { ...state, addressPitchModal: action.payload };
+  
+
 
                 case types.GET_PITCH_TIMELINE_REQUEST:
                   return { ...state, fetchingPitchStatus: true };
@@ -729,6 +738,59 @@ case types.GET_PITCH_REQUEST:
                             uploadingPitchList: false,
                             uploadingPitchListError: true,
                           };
+
+                          case types.UPDATE_OWNER_PITCH_REQUEST:
+                            return { ...state, updatingOwnerPitch: true };
+                          case types.UPDATE_OWNER_PITCH_SUCCESS:
+                            return {
+                              ...state,
+                              updatingOwnerPitch: false,
+                              pitchDataHot:state.pitchDataHot.filter(
+                                (item)=>{
+                                  console.log("abc",item,action.payload);
+                      
+                                return !action.payload.includes(item.investorLeadsId)  
+                                }
+                              ),
+                              pitchDataWarm:state.pitchDataWarm.filter(
+                                (item)=>{
+                                  console.log("abc",item,action.payload);
+                      
+                                return !action.payload.includes(item.investorLeadsId)  
+                                }
+                              ),
+                              pitchDataCold:state.pitchDataCold.filter(
+                                (item)=>{
+                                  console.log("abc",item,action.payload);
+                      
+                                return !action.payload.includes(item.investorLeadsId)  
+                                }
+                              ),
+                              teamPitch:state.teamPitch.filter(
+                                (item)=>{
+                                  console.log("abc",item,action.payload);
+                      
+                                return !action.payload.includes(item.investorLeadsId)  
+                                }
+                              ),
+                      
+                      
+                      
+                              allPitchData:state.allPitchData.filter(
+                                (item)=>{
+                                  console.log("abc",item,action.payload);
+                      
+                                return !action.payload.includes(item.investorLeadsId)  
+                                }
+                              )
+                            };
+                          case types.UPDATE_OWNER_PITCH_FAILURE:
+                            return {
+                              ...state,
+                              updatingOwnerPitch: false,
+                              updatingOwnerPitchError: true,
+                            };
+                            
                     
 
 

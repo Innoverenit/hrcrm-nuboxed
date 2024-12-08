@@ -62,14 +62,7 @@ class AddRecruiterDrawerModal extends Component {
         
         >
           <Suspense fallback={<BundleLoader />}>
-          {/* <FontAwesomeIcon 
-          style={{fontSize:"64px",color:"blue"}}
-          icon={solid("file")} /> */}
-          {/* <CandidateDocumentView
-           candidateId={candidateId}
-           documentsByCandidateId={this.props.documentsByCandidateId}
-          //candidate={candidate}
-          /> */}
+        
           <RecruitmentDetails
       candidateId={this.props.candidateId}
       candidate={this.props.candidate}

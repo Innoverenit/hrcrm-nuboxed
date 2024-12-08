@@ -1,5 +1,5 @@
 import React, {Suspense,lazy } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 const PitchHCWDrawerTab = lazy(()=>import("./PitchHCWDrawerTab"));
@@ -9,10 +9,8 @@ const PitchHCWdrawer = (props) => {
   return (
     <>
       <StyledDrawer
-        title={      <FormattedMessage
-          id="app.pitchHCW"
-          defaultMessage="Pitch HCW"
-        />}
+        title="Pitch HCW"
+      
       
         width="60%"
         visible={props.openPitchHCWdrawer}

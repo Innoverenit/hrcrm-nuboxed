@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState,lazy } from "react";
+import React, { useEffect, useMemo, useState,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
@@ -6,6 +6,7 @@ import styled from "styled-components";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { StyledTabs} from "../../../Components/UI/Antd";
 import { MainWrapper, } from "../../../Components/UI/Layout";
+import { BundleLoader} from "../../../Components/Placeholder";
 import {
     getProcessForDeals,
     getProcessStagesForDeals,
@@ -77,15 +78,15 @@ function DealsBoard(props) {
     let id = props.dealsProcess[0];
     return id;
   }, [props.dealsProcess]);
-
+let type="Deals"
   useEffect(() => {
-    props.getProcessForDeals(props.orgId);
+    props.getProcessForDeals(props.orgId,type);
      props.getAllDealsbyUserId(props.userId)
   }, []);
 
   useEffect(() => {
     if (!processData) return;
-    props.getProcessStagesForDeals(processData.investorOppWorkflowId);
+    props.getProcessStagesForDeals(props.orgId,processData.workflowDetailsId);
   }, [processData]);
 
 
@@ -139,7 +140,7 @@ function DealsBoard(props) {
 
   function handleProcessClick(item) {
     setCurrentProcess(item);
-    props.getProcessStagesForDeals(item.investorOppWorkflowId);
+    props.getProcessStagesForDeals(props.orgId,item.workflowDetailsId);
   }
 
 
@@ -186,7 +187,7 @@ function DealsBoard(props) {
                       .map((stage, index) => (
                         <Droppable
                           key={index}
-                          droppableId={stage.investorOppStagesId}
+                          droppableId={stage.stagesId}
                           type="stage"
                         
                         >
@@ -207,17 +208,17 @@ function DealsBoard(props) {
                                       isDraggingOver={snapshot.isDraggingOver}
                                       {...provided.droppableProps}
                                       droppableProps={{ hello: "world" }}
-                                      className="scrollbar"
-                                      id="style-3"
+                                      style={{scrollbarWidth:"thin", backgroundColor:"f5f5f5" }}
                                     >
                                       {props.aLLdealsList
                                       //props.dealsByuserId
                                         .filter(
                                           (opp, index) =>
-                                            opp.invOpportunityStagesId === stage.investorOppStagesId
+                                            opp.invOpportunityStagesId === stage.stagesId
                                         )
                                         .map((opp, index) => {
                                           return (
+                                            <Suspense fallback={<BundleLoader />}>
                                             <DealStageColumn
                                               key={index}
                                               dealDetailsbyID={opp}
@@ -225,6 +226,7 @@ function DealsBoard(props) {
                                               history={props.history}
                                              // aLLdealsList={props.aLLdealsList}
                                             />
+                                            </Suspense>
                                           );
                                         })}
          {/* {props.aLLdealsList.length === 0 && (

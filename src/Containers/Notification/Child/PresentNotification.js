@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
+import { Link } from 'react-router-dom';
 import {
   getPresentNotifications,
   updateNotifcation
 } from "../NotificationAction";
 import { List, Button, Spin } from "antd";
-import moment from "moment/moment";
 
 class PresentNotification extends Component {
   constructor(props) {
@@ -72,8 +72,8 @@ class PresentNotification extends Component {
             <Spin />
           </div>
         ) : (
-            <List
-              style={{ height: 400, overflow: "auto" }}
+            <List className="w-[34vw] h-[78vh] overflow-auto"
+              // style={{ height: 400, overflow: "auto" }}
               dataSource={this.props.presentNotifications.slice(
                 0,
                 this.state.itemsToShow
@@ -89,6 +89,11 @@ class PresentNotification extends Component {
                     cursor:
                       item.notificationReadInd === true ? "default" : "pointer"
                   }}
+                  onClick={
+                    item.notificationReadInd === false
+                      ? () => this.handleClick(item)
+                      : null
+                  }
                 >
                   <List.Item.Meta
                     // avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
@@ -98,8 +103,28 @@ class PresentNotification extends Component {
                           color:
                             item.notificationReadInd === true ? "grey" : "white"
                         }}
+                        onClick={(event) => event.stopPropagation()}
                       >
+                        {/* <Link class="overflow-ellipsis whitespace-nowrap  text-xs  text-[#042E8A] max-sm:text-sm   cursor-pointer" to={`/${item.notificationProcess}/${item.uniqueId}`} title={item.notificationMessage}>
                         {item.notificationMessage}
+                        </Link> */}
+                        {item.uniqueId ? (
+  <Link
+    className="overflow-ellipsis whitespace-nowrap text-xs text-[#042E8A] max-sm:text-sm cursor-pointer"
+    to={`/${item.notificationProcess}/${item.uniqueId}`}
+    title={item.notificationMessage}
+  >
+    {item.notificationMessage}
+  </Link>
+) : (
+  <span
+    className="overflow-ellipsis whitespace-nowrap text-xs text-[#042E8A] max-sm:text-sm cursor-not-allowed"
+    title={item.notificationMessage}
+  >
+    {item.notificationMessage}
+  </span>
+)}
+
                       </h4>
                     }
                     description={
@@ -109,14 +134,10 @@ class PresentNotification extends Component {
                             item.notificationReadInd === true ? "grey" : "white"
                         }}
                       >
-                        {moment(item.notificationDate).format("LLL")}
+                        {dayjs(item.notificationDate).format("LLL")}
                       </h4>
                     }
-                    onClick={
-                      item.notificationReadInd === false
-                        ? () => this.handleClick(item)
-                        : null
-                    }
+                  
                   />
                   {/* <div>Content</div> */}
                 </List.Item>
@@ -125,7 +146,7 @@ class PresentNotification extends Component {
           )}
         {this.props.presentNotifications &&
           this.props.presentNotifications.length > this.state.itemsToShow && (
-            <Button style={{ marginTop: "1.25em" }} onClick={this.showMore}>
+            <Button type="primary" style={{ marginTop: "1.25em" }} onClick={this.showMore}>
               {this.state.expanded ? (
                 <span>Show less</span>
               ) : (

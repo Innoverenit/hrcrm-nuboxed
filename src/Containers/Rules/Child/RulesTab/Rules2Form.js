@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Switch, Icon, Tooltip } from "antd";
+import { Button, Switch } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
-import { FlexContainer } from "../../../../Components/UI/Layout";
-import { StyledLabel } from "../../../../Components/UI/Elements";
-import { Spacer } from "../../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
+
+
 function Rules2Form() {
   const [visible, setVisible] = useState(false);
 
@@ -34,9 +32,9 @@ function Rules2Form() {
                   width: "53%",
                 }}
               >
-                <FlexContainer justifyContent="space-between">
+                     <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "50%", marginTop: "0.625em" }}>
-                    <StyledLabel>Opportunity Closure</StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">Opportunity Closure</div>
                     <Switch
                       style={{ width: "5em", marginLeft: "0.625em" }}
                       onChange={handleChange}
@@ -58,20 +56,15 @@ function Rules2Form() {
                       />
                     </div>
                   )}
-                </FlexContainer>
-                <Spacer />
+                </div>
+                <mt-3 />
                 {values.type && (
-                  <FlexContainer justifyContent="space-between">
+                         <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "65%" }}>
                       <Field
                         name="unit"
-                        //label="Time"
-                        label={
-                          <FormattedMessage
-                            id="app.unit"
-                            defaultMessage="Time"
-                          />
-                        }
+                        label="Time"
+                       
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -87,12 +80,8 @@ function Rules2Form() {
                       <FastField
                         name="unitValue"
                         isRequired
-                        label={
-                          <FormattedMessage
-                            id="app.unitValue"
-                            defaultMessage="text"
-                          />
-                        }
+                        label="text"
+                         
                         type="text"
                         isColumn
                         options={["Days", "Hours"]}
@@ -105,13 +94,13 @@ function Rules2Form() {
                         }}
                       />
                     </div>
-                    <Spacer />
-                    <FlexContainer justifyContent="flex-end">
+                    <mt-3 />
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                       <Button type="primary" htmlType="submit">
                         Add Rule
                       </Button>
-                    </FlexContainer>
-                  </FlexContainer>
+                    </div>
+                  </div>
                 )}
               </div>
             </div>

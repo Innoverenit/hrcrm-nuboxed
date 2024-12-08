@@ -12,7 +12,10 @@ class ShipperDetailsRight extends Component {
     return (
       <div class="w-full">
         <Suspense fallback={<BundleLoader />}>
-          <ShipperDetailsTab shipper={this.props.shipper} />
+          <ShipperDetailsTab shipper={this.props.shipper}
+           translateText={this.props.translateText}
+           selectedLanguage={this.props.selectedLanguage}
+          />
         </Suspense>
       </div>
     );

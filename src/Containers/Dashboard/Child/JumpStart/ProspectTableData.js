@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 
 import { connect } from "react-redux";
@@ -22,152 +22,53 @@ import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 //import { BundleLoader } from "../../Components/Placeholder";
 
 function ProspectTableData (props) {
-    useEffect(()=>{
-     props.getProspectTableData(props.selectedCountry)
-    }, []);
+    // useEffect(()=>{
+    //  props.getProspectTableData(props.selectedCountry)
+    // }, []);
 
-    useEffect(() => {
-      // Check if data is available
-      if (props.prospectTableData.length > 0) {
-        // Update activeTab when data is available
-        
-      }
-    }, [props.prospectTableData]);
-
-
-    if(props.fetchingProspectTableData){
-      return <BundleLoader/>;
-    }
-    // const columns = [
-    //   {
-    //     title: <FormattedMessage
-    //       id="app.name"
-    //       defaultMessage="Name"
-    //     />,
-    //     width: "30%",
-    //     dataIndex: "name",
-    //   },
-     
-    //   {
-    //     title: <FormattedMessage
-    //       id="app.emailId"
-    //       defaultMessage="Email Id"
-    //     />,
-    //     width: "22%",
-    //     dataIndex: "email",
-    //     defaultSortOrder: 'descend',
-    //     // sorter: (a, b) => a.proposalAmount - b.proposalAmount,
-  
-    //     // render: (name, item, i) => {
-    //     //   return (
-    //     //     <span>
-    //     //       <CurrencySymbol currencyType={this.props.currency} />{" "}
-    //     //       {`${item.proposalAmount}`}
-    //     //     </span>
-    //     //   );
-    //     // },
-    //   },
-    //   {
-    //     // title: "Status",
-    //     title: <FormattedMessage
-    //       id="app.companyName"
-    //       defaultMessage="Company Name"
-    //     />,
-    //     width: "25%",
-    //     dataIndex: "companyName",
-    //     // sorter: (a, b) => {
-    //     //   const stageNameA = a.stageName && a.stageName.toLowerCase();
-    //     //   const stageNameB = b.stageName && b.stageName.toLowerCase();
-    //     //   if (stageNameA < stageNameB) {
-    //     //     return -1;
-    //     //   }
-    //     //   if (stageNameA > stageNameB) {
-    //     //     return 1;
-    //     //   }
-    //     //   return 0;
-    //     // },
-    //   },
-    // ];
-    // if (props.fetchingProspectTableData) return <BundleLoader/>;
+    
   const{user}=props
     return (
       <>
-       <div className=' flex justify-end sticky top-28 z-auto'>
-        <div class="rounded m-1 max-sm:m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+       <div className=' flex justify-end sticky z-auto'>
+        <div class="rounded m-1 max-sm:m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
           <div className=" flex max-sm:hidden  w-[92.5%] justify-between p bg-transparent font-bold sticky  z-10">
             <div className=" w-[18.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.7rem] max-lg:w-[9.31rem]">
-              <FormattedMessage
-                id="app.name"
-                defaultMessage="Name"
-              />
+              Name
             </div>
             <div className=" w-[5.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.5rem] max-lg:w-[3.32rem] ">
-              <FormattedMessage
-                id="app.work"
-                defaultMessage="Work"
-              />
+             Work
 
             </div>
             <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.33rem]">
-              <FormattedMessage
-                id="app.sector"
-                defaultMessage="Sector"
-              />
+             Sector
 
             </div>
             <div className=" w-[6.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.12rem] max-lg:w-[2.34rem]">
-              <FormattedMessage
-                id="app.source"
-                defaultMessage="Source"
-              />
+          Source
 
             </div>
             <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[3.35rem] ">
-              <FormattedMessage
-                id="app.country"
-                defaultMessage="Country"
-              />
-
+             Country
             </div>
             <div className="w-[6.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.1rem] max-lg:w-[3.36rem]">
-              <FormattedMessage
-                id="app.quotation"
-                defaultMessage="Quotation"
-              />
+            Quotation
 
             </div>
             <div className="w-[3.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.8rem] max-lg:w-[1.8rem]">
-              <FormattedMessage
-                id="app.pipeline"
-                defaultMessage="Pipeline"
-              />
+             Pipeline
 
             </div>
-            {/* <div className="md:w-[3.9rem]">
-        <FormattedMessage
-                        id="app.weighted"
-                        defaultMessage="Weighted"
-                      />
-          
-          </div> */}
+         
             <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[4.2rem] max-lg:w-[4.2rem]">
-              <FormattedMessage
-                id="app.assigned"
-                defaultMessage="Assigned"
-              />
+            Assigned
 
             </div>
             <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.8rem] ">
-              <FormattedMessage
-                id="app.owner"
-                defaultMessage="Owner"
-              />
+             Owner
             </div>
             <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[3.81rem]">
-              <FormattedMessage
-                id="app.customer"
-                defaultMessage="Customer"
-              />
+             Customer
             </div>
             <div className="w-[3.8rem]"></div>
 
@@ -180,7 +81,7 @@ function ProspectTableData (props) {
             height={"75vh"}
           > */}
 
-            {!props.fetchingProspectTableData && props.prospectTableData.length === 0 ? <NodataFoundPage /> : props.prospectTableData.map((item, index) => {
+            { props.modalData.map((item, index) => {
               const currentdate = dayjs().format("DD/MM/YYYY");
               const date = dayjs(item.creationDate).format("DD/MM/YYYY");
               const countryCode = item.address[0].countryAlpha2Code
@@ -440,7 +341,7 @@ function ProspectTableData (props) {
                         <div>
                           <Tooltip title="Contact">
                             <ContactsIcon
-                              className=" !text-xl cursor-pointer text-[#709ab3]"
+                              className=" !text-xl cursor-pointer text-[#4f7cac]"
                               // onClick={() => {
                               //   handleCustomerContactDrawerModal(true);
                               //   handleSetCurrentCustomer(item);
@@ -480,7 +381,7 @@ function ProspectTableData (props) {
                         <div>
                           <Tooltip title="Notes">
                             <NoteAltIcon
-                              className=" !text-xl cursor-pointer text-[#4bc076]"
+                              className=" !text-xl cursor-pointer text-[#28a355]"
                               // onClick={() => {
                               //   handleCustomerNotesDrawerModal(true);
                               //   handleSetCurrentCustomer(item);

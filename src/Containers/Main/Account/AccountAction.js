@@ -13,6 +13,30 @@ export const handleDistributorModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+export const handleOpenNewModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_OPENNEW_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+
+
+export const handleSupplierTicketModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIER_TICKET_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+export const handleUpdateAccountUserModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_UPDATE_ACCOUNT_USER_MODAL,
+    payload: modalProps,
+  });
+};
 
 /**
  * SET DISTRIBUTOR VIEW TYPE
@@ -66,6 +90,44 @@ export const addDistributor = (distributor) => (dispatch) => {
     });
 };
 
+export const addPi = (data) => (dispatch) => {
+  dispatch({
+    type: types.ADD_PI_REQUEST,
+  });
+  axios
+    .post(`${base_url2}/pi/piInquire`, data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      if (res.data.message) {
+        message.success(res.data.message)
+
+      } else {
+        Swal.fire({
+          icon: 'success',
+          title: 'Customer Created Successfully',
+          showConfirmButton: false,
+   timer: 1500,
+        })
+      }
+
+      dispatch({
+        type: types.ADD_PI_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_PI_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 
 
 export const handleAccountImportModal = (modalProps) => (dispatch) => {
@@ -100,6 +162,92 @@ export const getDistributorsByUserId = (userId, pageNo) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_DISTRIBUTORS_BY_USER_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getCustomerOrder = (distributorId, pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_CUSTOMER_ORDER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/all-phoneOrders/procure-repair/${distributorId}/${pageNo}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CUSTOMER_ORDER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CUSTOMER_ORDER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getPibyItem = (orderPhoneId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PI_BY_ITEM_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/pi/piRepairList/${orderPhoneId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PI_BY_ITEM_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PI_BY_ITEM_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getPiFirststep = (piId,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_PI_FIRSTSTEP_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/pi/firstStep/${piId}/${type}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PI_FIRSTSTEP_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PI_FIRSTSTEP_FAILURE,
         payload: err,
       });
     });
@@ -354,7 +502,7 @@ export const addOrderForm = (customer, distributorId) => (dispatch, getState) =>
         showConfirmButton: false,
    timer: 1500,
       })
-      dispatch(getOrderRecords(distributorId));
+      dispatch(getOrderRecords(distributorId,"repair"));
       // dispatch(getDistributorOrderOfHigh(distributorId,"0","repair","High"));
       // dispatch(getDistributorOrderOfMedium(distributorId,"0","repair","Medium"));
       // dispatch(getDistributorOrderOfLow(distributorId,"0","repair","Low"));
@@ -389,7 +537,7 @@ export const addQuotationOrderForm = (customer) => (dispatch, getState) => {
     .then((res) => {
       Swal.fire({
         icon: 'success',
-        title: 'Order Created',
+        title: 'Quotation Saved',
         showConfirmButton: false,
         timer: 1500,
       })
@@ -1007,6 +1155,30 @@ export const inputDataSearch = (name,type) => (dispatch) => {
       });
     });
 };
+
+export const searchInoice = (distributorId,invoiceId) => (dispatch) => {
+  dispatch({
+    type: types.INPUT_SEARCH_INVOICE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/invoice/searchInvoiceList/${distributorId}/${invoiceId}`,  {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.INPUT_SEARCH_INVOICE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      dispatch({
+        type: types.INPUT_SEARCH_INVOICE_FAILURE,
+        payload: err,
+      });
+    });
+};
 /**
  * Get Order Details
  */
@@ -1279,9 +1451,7 @@ export const addProcureDetails = (customer, orderPhoneId, cb) => (dispatch, getS
       dispatch(getProcureDetails(orderPhoneId))
       Swal.fire({
         icon: 'success',
-        title: 'list added',
-        showConfirmButton: false,
-        timer: 1500,
+        title: 'Items added to cart',
       })
       dispatch({
         type: types.ADD_PROCURE_DETAILS_SUCCESS,
@@ -1390,6 +1560,12 @@ export const handlePaidModal = (modalProps) => (dispatch) => {
     payload: modalProps,
   });
 };
+export const handlePIModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_PI_MODAL,
+    payload: modalProps,
+  });
+};
 export const handleOrderPickupModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_ORDER_PICKUP_MODAL,
@@ -1406,10 +1582,12 @@ export const handleOrderPaymentModal = (modalProps) => (dispatch) => {
 /**
  * Link paid in distributor
  */
-export const addPaidOrder = (data, orderId,) => (dispatch) => {
+export const addPaidOrder = (data,procureOrderInvoiceId, orderId) => (dispatch) => {
   dispatch({ type: types.ADD_PAID_BY_DISTRIBUTOR_ID_REQUEST });
   axios
-    .post(`${base_url2}/orderPayment/payment`, data, {
+    // .post(`${base_url2}/orderPayment/payment`,
+    .put(`${base_url2}/invoice/procure/${procureOrderInvoiceId}`,
+       data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1424,8 +1602,8 @@ export const addPaidOrder = (data, orderId,) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Payment Successful!',
-        showConfirmButton: false,
-        timer: 1500,
+        // showConfirmButton: false,
+        // timer: 1500,
       })
     })
     .catch((err) => {
@@ -1938,7 +2116,7 @@ export const getPulseList = (distributorId) => (dispatch) => {
     type: types.GET_PULSE_LIST_REQUEST,
   });
   axios
-    .get(`${base_url}/orderListByYear/${distributorId}`, {
+    .get(`${base_url2}/distributor/orderData/${distributorId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1976,34 +2154,7 @@ export const handleUpdateDistributorContactModal = (modalProps) => (
   });
 };
 
-export const updateDistributorContact = (data, contactPersonId) => (
-  dispatch
-) => {
-  dispatch({
-    type: types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_REQUEST,
-  });
-  axios
-    .put(`${base_url2}/contactPerson/${contactPersonId}`, data, {
-      headers: {
-        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-      },
-    })
-    .then((res) => {
-      console.log(res);
-      // dispatch(getDistributorsByUserId(userId));
-      dispatch({
-        type: types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_SUCCESS,
-        payload: res.data,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
-      dispatch({
-        type: types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_FAILURE,
-        payload: err,
-      });
-    });
-};
+
 export const setEditPaymentData = (name) => (dispatch) => {
   dispatch({
     type: types.SET_EDIT_PAYMENT_DATA,
@@ -2183,6 +2334,51 @@ export const addBillingAddress = (data, distributorId) => (dispatch) => {
 /**
  * get all contact distributor list
  */
+
+
+
+
+export const addTicket = (customer) => (dispatch, getState) => {
+  const userId = getState().auth.userDetails.userId;
+
+  // const opportunityId = getState().opportunity.opportunity.opportunityId;
+  console.log("inside add customer");
+  dispatch({
+    type: types.ADD_TICKET_REQUEST,
+  });
+
+  axios
+    .post(`${base_url}/ticket/save`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+     
+     
+      console.log(res);
+      // dispatch(
+      //   linkCustomersToOpportunity(opportunityId, { CustomerIds: [res.data] }, cb)
+      // );
+     
+     
+
+      dispatch({
+        type: types.ADD_TICKET_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_TICKET_FAILURE,
+        payload: err,
+      });
+      message.error(err.data.message)
+      // cb && cb();
+    });
+};
 export const getBillingAddress = (distributorId) => (dispatch) => {
   dispatch({
     type: types.GET_BILLING_ADDRESS_BY_ID_REQUEST,
@@ -2717,7 +2913,7 @@ export const checkTaskComplition = (data, phoneId) => (dispatch) => {
       });
     });
 };
-export const addSpareList = (data, phoneId, orderId, cb) => (dispatch) => {
+export const addSpareList = (data, phoneTaskId, orderId, cb) => (dispatch) => {
   // debugger;
   dispatch({ type: types.ADD_SPARE_LIST_REQUEST });
   axios
@@ -2727,9 +2923,15 @@ export const addSpareList = (data, phoneId, orderId, cb) => (dispatch) => {
       },
     })
     .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Spares Added SucessFully',
+        showConfirmButton: false,
+        timer: 1500,
+      })
       console.log(res);
-      dispatch(getSpareListByPhoneId(phoneId))
-      dispatch(getPhonelistById(orderId))
+      dispatch(getSpareListByPhoneTaskId(phoneTaskId))
+     // dispatch(getPhonelistById(orderId))
       dispatch({
         type: types.ADD_SPARE_LIST_SUCCESS,
         payload: res.data,
@@ -2744,7 +2946,7 @@ export const addSpareList = (data, phoneId, orderId, cb) => (dispatch) => {
       cb && cb();
     });
 };
-export const deleteSpareList = (data, phoneSpareId, orderPhoneId, userId) => (dispatch) => {
+export const deleteSpareList = (data, phoneSpareId,phoneTaskId, orderPhoneId, userId) => (dispatch) => {
   dispatch({
     type: types.DELETE_SPARE_LIST_REQUEST,
   });
@@ -2755,6 +2957,7 @@ export const deleteSpareList = (data, phoneSpareId, orderPhoneId, userId) => (di
       },
     })
     .then((res) => {
+      //dispatch(getSpareListByPhoneTaskId(phoneTaskId))
       dispatch({
         type: types.DELETE_SPARE_LIST_SUCCESS,
         payload: res.data,
@@ -2799,6 +3002,34 @@ export const getSpareListByPhoneId = (phoneId) => (
       console.log(err);
       dispatch({
         type: types.GET_SPARE_LIST_BY_PHONEID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getSpareListByPhoneTaskId = (phoneTaskId) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.GET_SPARE_LIST_BY_PHONETASKID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneSpare/task/spareList/${phoneTaskId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SPARE_LIST_BY_PHONETASKID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SPARE_LIST_BY_PHONETASKID_FAILURE,
         payload: err,
       });
     });
@@ -3011,6 +3242,65 @@ export const setClearbitData = (data) => (dispatch) => {
   });
 };
 
+
+
+
+export const updateTicketStage = (
+  data,
+    
+  sourceStageId,
+  destinationStageId,
+  opportunityId,
+  cb
+) => (dispatch) => {
+  console.log(sourceStageId, destinationStageId, opportunityId);
+  if (destinationStageId === "won") {
+    message.success("stage is won");
+  }
+  if (destinationStageId === "loss") {
+    message.error("stage is loss");
+  }
+  dispatch({
+    type: types.UPDATE_TICKET_STAGE_REQUEST,
+    payload: {
+      sourceStageId,
+      destinationStageId,
+      opportunityId,
+    },
+  });
+  axios
+    .put(
+      `${base_url}/ticket/update/stage`,data, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      }
+    )
+    .then((res) => {
+      console.log(res);
+      // if (res.data.stageName === "Won") {
+      //   message.error("Won");
+      // } else {
+      //   message.error("Loss");
+      // }
+
+      dispatch({
+        type: types.UPDATE_TICKET_STAGE_SUCCESS,
+        payload: res.data,
+      });
+      cb && cb(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+
+      dispatch({
+        type: types.UPDATE_TICKET_STAGE_FAILURE,
+        payload: err,
+      });
+      cb && cb("failure");
+    });
+};
+
 export const getAccountRecords = (userId) => (dispatch) => {
   dispatch({
     type: types.GET_ACCOUNT_RECORDS_REQUEST,
@@ -3185,8 +3475,8 @@ export const getAllProductList = (category,brand,model) => (dispatch) => {
     type: types.GET_ALL_PRODUCT_LIST_REQUEST,
   });
   axios
-    // .get(`${base_url2}/product/all-product`, 
-    .get(`${base_url2}/product/attributeName/${category}/${brand}/${model}`, 
+    .get(`${base_url2}/supplies/all-attribute`, 
+    // .get(`${base_url2}/product/attributeName/${category}/${brand}/${model}`, 
     {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -3459,20 +3749,23 @@ export const updateOrderPayment = (data, paymentId) => (
 };
 
 
-export const removeOrderAcc = (orderId) => (dispatch) => {
+export const removeOrderAcc = (data,orderPhoneId,distributorId) => (dispatch) => {
   dispatch({
     type: types.REMOVE_ORDER_ACC_REQUEST,
   });
   axios
-    .put(`${base_url2}/order/delete/${orderId}`,{}, {
+    .put(`${base_url2}/phoneOrder/reinstate/${orderPhoneId}`,data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
+    //  window.location.reload()
+     dispatch(getDistributorOrderOfHigh(distributorId, 0, "repair","High"))
+    // dispatch(getDistributorOrderOfHigh(distributorId, 0, "repair","Low"))
     .then((res) => {
       dispatch({
         type: types.REMOVE_ORDER_ACC_SUCCESS,
-        payload: orderId,
+        payload: res.data,
       });
       message.success("Confirmation Successfull");
     })
@@ -3947,8 +4240,9 @@ export const getBrand = (category) => (dispatch) => {
       type: types.GET_BRAND_REQUEST,
   });
   axios
-      // .get(`${base_url2}/masterlist/brand/drop-down`, 
-      .get(`${base_url2}/product/brandName/${category}`, 
+      // .get(`${base_url2}/masterlist/brand/drop-down`,
+      // .get(`${base_url2}/product/brandName/${category}`, 
+      .get(`${base_url2}/supplies/allSuppliesBrand`, 
       {
           headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -3976,7 +4270,8 @@ export const getModel = (category,brand) => (dispatch) => {
   });
   axios
       // .get(`${base_url2}/masterlist/model/drop-down/${brandName}`,
-      .get(`${base_url2}/product/modelName/${category}/${brand}`,
+      .get(`${base_url2}/masterlist/masterList`,
+      // .get(`${base_url2}/product/modelName/${category}/${brand}`,
        {
           headers: {
               Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -4069,6 +4364,8 @@ export const deleteProcureData = (id,orgId) => (dispatch, getState) => {
       Swal.fire({
         icon: 'success',
         title: 'Item deleted Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       console.log(res);
       //  dispatch(getScheduler(orgId));
@@ -4094,7 +4391,7 @@ export const updateProcureDetails = (data, id,cb) => (dispatch) => {
   });
   axios
     .put(
-      `${base_url2}/phoneOrder/procure/order/update/${id}`,
+      `${base_url2}/quotation/procure/order/update/${id}`,
      data,
       {
         headers: {
@@ -4106,6 +4403,8 @@ export const updateProcureDetails = (data, id,cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Item updated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("Sector has been updated successfully!");
       console.log(res);
@@ -4197,7 +4496,7 @@ export const addQuotationCarDetails = (customer, id, cb) => (dispatch, getState)
   });
 
   axios
-    .post(`${base_url2}/`, customer, {
+    .post(`${base_url2}/DUMMY`, customer, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -4263,6 +4562,12 @@ export const addQuotationPhoneDetails = (customer, orderPhoneId, cb) => (dispatc
 export const ClearSearchedDataOfAccount = () => (dispatch) => {
   dispatch({
     type: types.HANDLE_CLAER_SEARCHED_DATA_ACCOUNT,
+  });
+};
+
+export const ClearSearchedInvoice = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_SEARCHED_INVOICE,
   });
 };
 
@@ -4376,6 +4681,19 @@ export const handleStatuShowDrawer = (modalProps) => (dispatch) => {
     payload: modalProps
   })
 };
+export const handlenvoiceOrderModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_INVOICE_ORDER_DRAWER,
+    payload: modalProps
+  })
+};
+
+export const handleInvoiceModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_INVOICE_DRAWER,
+    payload: modalProps
+  })
+};
 
 export const getProcureStatusItem = (orderId) => (dispatch) => {
   dispatch({
@@ -4453,12 +4771,12 @@ export const getLocationNamesByProductId = (productId) => (dispatch) => {
     });
 }
 
-export const getAccountInvoiveList = (distributorId,pageNo) => (dispatch) => {
+export const getAccountInvoiveList = (distributorId) => (dispatch) => {
   dispatch({
     type: types.GET_ACCOUNT_INVOICE_REQUEST,
   });
   axios
-    .get(`${base_url2}/phoneOrder/inVoice/allOrders/${distributorId}/${pageNo}`, {
+    .get(`${base_url2}/invoice/noInvoice/${distributorId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -4478,3 +4796,635 @@ export const getAccountInvoiveList = (distributorId,pageNo) => (dispatch) => {
       });
     });
 }
+
+export const getGeneratedInvoiveList = (distributorId) => (dispatch) => {
+  dispatch({
+    type: types.GET_GENERATED_INVOICE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/invoice/invoiceList/${distributorId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_GENERATED_INVOICE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_GENERATED_INVOICE_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const upadtePayment = (data,paymentId,distributorId) => (dispatch) => {
+  dispatch({
+    type: types.ORDER_INVOICE_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/orderPayment/invoiceUpdate/${paymentId}`,data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch(getAccountInvoiveList(distributorId));
+      dispatch(getGeneratedInvoiveList(distributorId));
+      
+      dispatch({
+        type: types.ORDER_INVOICE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ORDER_INVOICE_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const getInvoiveL = (procureOrderInvoiceId) => (dispatch) => {
+  dispatch({
+    type: types.GET_INVOICEL_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/invoice/procureInvoice/${procureOrderInvoiceId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_INVOICEL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_INVOICEL_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const getPaymentClik = (contactUserId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_PAYMENTCLICK_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/payment/clicks/${contactUserId}?startDate=${startDate}&endDate=${endDate}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PAYMENTCLICK_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PAYMENTCLICK_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const getQuationClik = (contactUserId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_QUATATIONCLICK_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/quotation/cart/clicks/${contactUserId}?startDate=${startDate}&endDate=${endDate}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_QUATATIONCLICK_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_QUATATIONCLICK_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const getQuationCheckout = (contactUserId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_QUATATIONCHECKOUT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/quotation/checkout/clicks/${contactUserId}?startDate=${startDate}&endDate=${endDate}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_QUATATIONCHECKOUT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_QUATATIONCHECKOUT_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const getQuationShipping = (contactUserId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_QUATATIONSHIPPING_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/quotation/quotation/toShipping/clicks/${contactUserId}?startDate=${startDate}&endDate=${endDate}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_QUATATIONSHIPPING_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_QUATATIONSHIPPING_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const getLoginCount = (contactUserId,startDate,endDate) => (dispatch) => {
+  dispatch({
+    type: types.GET_LOGINCOUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url}/employee/getLoginCount/${contactUserId}?startDate=${startDate}&endDate=${endDate}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_LOGINCOUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_LOGINCOUNT_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const getInvoiceCount = (distributorId) => (dispatch) => {
+  dispatch({
+    type: types.GET_INVOICECOUNT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderPayment/invoiceList/count/${distributorId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_INVOICECOUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_INVOICECOUNT_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const getPiListByDistributor = (distributorId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PILISTBY_DISTRIBUTOR_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/pi/piListByDistriubutor/${distributorId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PILISTBY_DISTRIBUTOR_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PILISTBY_DISTRIBUTOR_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const getPiListByOrder = (phoneOrderId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PILISTBY_ORDER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/pi/piListByOrder/${phoneOrderId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PILISTBY_ORDER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PILISTBY_ORDER_FAILURE,
+        payload: err,
+      });
+    });
+}
+
+export const addNewList = (customer) => (dispatch) => {
+
+  dispatch({
+    type: types.ADD_NEWLIST_REQUEST,
+  });
+
+  axios
+    .post(`${base_url2}/phone/row-add`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+     // dispatch(getInventorylist(userId,"0"))
+      Swal.fire({
+        icon: 'success',
+        title: 'list added',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      dispatch({
+        type: types.ADD_NEWLIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_NEWLIST_FAILURE,
+        payload: err,
+      });
+      //cb && cb();
+    });
+};
+
+export const distributorAccountCredit = ( data,distributorId) => (dispatch, getState) => {
+  dispatch({
+    type: types.DISTRIBUTOR_ACCOUNT_CREDIT_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/distributor/distributoCreditInd/update/${distributorId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.DISTRIBUTOR_ACCOUNT_CREDIT_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DISTRIBUTOR_ACCOUNT_CREDIT_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+}
+
+export const paidUnpaidInvoice = ( data,procureOrderInvoiceId) => (dispatch, getState) => {
+  dispatch({
+    type: types.PAID_UNPAID_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/invoice/procure/${procureOrderInvoiceId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.PAID_UNPAID_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.PAID_UNPAID_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+}
+
+export const getStatusTimeline = (orderPhoneId) => (dispatch) => {
+  dispatch({
+      type: types.GET_STATUS_TIMELINE_REQUEST,
+  });
+  axios
+      .get(`${base_url2}/orderPayment/process/${orderPhoneId}`, {
+          headers: {
+              Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+      })
+      .then((res) => {
+          console.log(res);
+          dispatch({
+              type: types.GET_STATUS_TIMELINE_SUCCESS,
+              payload: res.data,
+          });
+      })
+      .catch((err) => {
+          console.log(err);
+          dispatch({
+              type: types.GET_STATUS_TIMELINE_FAILURE,
+              payload: err,
+          });
+      });
+};
+
+export const handleAccountAddress = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ACCOUNT_ADDRESS_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const searchimeiNamePhone = (imei,orderPhoneId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SEARCH_IMEIPHONE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phone/search/${imei}/${orderPhoneId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_SEARCH_IMEIPHONE_SUCCESS,
+        payload: res.data,
+      });
+    }
+    )
+    .catch((err) => {
+      dispatch({
+        type: types.GET_SEARCH_IMEIPHONE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const ClearPhoneDataOfrefurbish = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_PHONEREDUCER_DATA_REFURBISH,
+  });
+};
+
+export const ClearReducerData= () => (dispatch) => {
+  dispatch({
+    type: types.CLAER_REDUCERS_DATA,
+  });
+};
+
+export const searchCustomerOrderNoData = (imei) => (dispatch) => {
+  dispatch({
+    type: types.SEARCH_CUSTOMER_ORDERNO_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/ORDER/DUMMY/${imei}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.SEARCH_CUSTOMER_ORDERNO_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+     
+      dispatch({
+        type: types.SEARCH_CUSTOMER_ORDERNO_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+
+
+export const getDistibutorBarChart = (distributorId,productId) => (dispatch) => {
+  dispatch({
+    type: types.GET_DISTRIBUTION_BAR_CHART_REQUEST,
+  });
+  axios
+    .get(`${base_url}/phoneOrder/monthlyUnits/${distributorId}/${productId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DISTRIBUTION_BAR_CHART_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_DISTRIBUTION_BAR_CHART_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getSearchDistributor = (userId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SEARCH_DISTRIBUTIOR_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/distributor/drop-down/user/${userId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SEARCH_DISTRIBUTIOR_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_SEARCH_DISTRIBUTIOR_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const codInventoryOrder = (data,cb) => (dispatch) => {
+  dispatch({ type: types.ADD_COD_INVENTORY_REQUEST });
+
+  axios
+    .post(`${base_url2}/payment/protal/prosess `, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+  console.log(res);
+Swal.fire({
+  icon: 'success',
+  title: `${res.data.orderId} - Quotation converted successfully`,
+  showConfirmButton: false,
+  timer: 1500,
+})
+
+      console.log("resp",res)
+  // if(res.data){
+  //   const orderPhoneId = localStorage.getItem("orderPhoneId");
+  //   localStorage.removeItem('orderPhoneId') 
+  // }      
+  dispatch({
+        type: types.ADD_COD_INVENTORY_SUCCESS,
+        payload: res.data,
+      });
+      //cb && cb ("success")
+    })
+    .catch((err) => {
+      console.log("errr",err,err && err.response && err.response.data.error)
+      dispatch({
+        type: types.ADD_COD_INVENTORY_FAILURE,
+      });
+    //  cb && cb ("error",err && err.response && err.response.data.error)
+    });
+};       
+export const updateAccountUser = ( id,userId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_ACCOUNT_USER_REQUEST });
+  axios
+    .put(`${base_url2}/distributor/changesAssignTo/${id}/${userId}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Account User updated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_ACCOUNT_USER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_ACCOUNT_USER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const getTicket = (orgId) => (dispatch) => {
+  // let api_url = "";
+  // if (userId) {
+  //   api_url = `/sort/all/contacts/user/${userId}`;
+  // } else {
+  //   api_url = `/contacts`;
+  // }
+  dispatch({
+    type: types.GET_TICKET_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url}/ticket/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_TICKET_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_TICKET_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};

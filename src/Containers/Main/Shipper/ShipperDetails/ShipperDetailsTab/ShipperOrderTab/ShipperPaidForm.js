@@ -4,8 +4,6 @@ import { bindActionCreators } from "redux";
 import { Button, message } from "antd";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field } from "formik";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
-import { Spacer } from "../../../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { addPaidOrder } from "../../../../DistributorAction";
 import * as Yup from "yup";
@@ -16,11 +14,7 @@ const FormSchema = Yup.object().shape({
 });
 
 function ShipperPaidForm(props) {
-  // function handleCallback(data) {
-  //     if (data === "success") {
-  //         props.getOrderTableData(props.customerId)
-  //     }
-  // }
+
   const { userId } = props;
 
   return (
@@ -84,7 +78,7 @@ function ShipperPaidForm(props) {
               />
             </div>
 
-            <Spacer />
+            <div class=" mt-3" />
             <div>
               <Field
                 name="paymentMode"
@@ -100,7 +94,7 @@ function ShipperPaidForm(props) {
               />
             </div>
 
-            <FlexContainer justifyContent="flex-end">
+            <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
               <Button
                 type="primary"
                 htmlType="submit"
@@ -113,7 +107,7 @@ function ShipperPaidForm(props) {
               >
                 Submit
               </Button>
-            </FlexContainer>
+            </div>
           </Form>
         )}
       </Formik>

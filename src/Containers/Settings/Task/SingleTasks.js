@@ -1,8 +1,8 @@
 import React, { Component ,lazy} from "react";
 import { Button, Tooltip,Popconfirm } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { FormattedMessage } from "react-intl";
+
 import dayjs from "dayjs";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -81,17 +81,7 @@ class SingleTasks extends Component {
                           cancelText="No"
                           onConfirm={() => this.props.removeTask(taskTypeId )}
                         >
-                    <DeleteOutlined
-                    
-                      // onClick={() => handleDeleteTask(taskTypeId)}
-                    
-                      style={{
-                        verticalAlign: "center",
-                        marginLeft: "1rem",
-                        fontSize:"1rem",
-                        color: "red",
-                      }}
-                    />
+                   <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                        </Popconfirm>
                   </Tooltip>
  
@@ -117,13 +107,13 @@ class SingleTasks extends Component {
                       handleUpdateTask(taskTypeId, value, toggleViewType())
                     }
                   >
-                    {/* Save */}
-                    <FormattedMessage id="app.update" defaultMessage="Update" />
+                    Save
+              
                   </Button>
                
                   <Button type="cancel"  onClick={() => toggleViewType()}>
-                    {/* Cancel */}
-                    <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                    Cancel
+                  
                   </Button>
                 </div>
               </div>

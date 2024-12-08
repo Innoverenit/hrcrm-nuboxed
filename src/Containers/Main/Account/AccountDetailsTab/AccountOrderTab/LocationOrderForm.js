@@ -8,6 +8,30 @@ import { BundleLoader } from "../../../../../Components/Placeholder";
 const { Option } = Select;
 
 function LocationOrderForm(props) {
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+    '946', // 0Team Member
+    '326', // 1 326Department
+    '154', // 154Submit
+     
+          ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
     useEffect(() => {
         props.getDepartments()
     }, []);
@@ -24,7 +48,10 @@ function LocationOrderForm(props) {
         props.getUserByLocationDepartment(location, val);
     }
     const handleSubmit = () => {
-        props.addSupervisor({ supervisorUserId: technician }, props.particularRowData.orderId)
+        props.addSupervisor({
+             supervisorUserId: technician,
+             supervisorAssignedBy:props.userId,
+         }, props.particularRowData.orderId)
     }
     return (
         <>
@@ -32,7 +59,7 @@ function LocationOrderForm(props) {
                 <>
                     <div class=" flex justify-between">
                         <div className=" w-2/5">
-                            <label>Department</label>
+                            <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[0]}</div>
                             <Select
                                 placeholder="Select"
                                 className="w-[350px]"
@@ -46,7 +73,7 @@ function LocationOrderForm(props) {
                         </div>
 
                         <div className=" w-2/5">
-                            <label>Team Member</label>
+                            <div class="font-bold text-xs font-poppins text-black">{translatedMenuItems[1]}</div>
                             <Select
                                 placeholder="Select"
                                 className="w-[350px]"
@@ -58,14 +85,16 @@ function LocationOrderForm(props) {
                                 })}
                             </Select>
                         </div>
-                    </div>
-                    <div>
+                        <div>
                         <Button
                             disabled={!technician.length}
                             type="primary"
                             loading={props.addingSupervisor}
-                            onClick={handleSubmit}>Submit</Button>
+                            onClick={handleSubmit}>{translatedMenuItems[2]}</Button>
                     </div>
+                    </div>
+
+                   
                 </>}
         </>
     );

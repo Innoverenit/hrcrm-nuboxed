@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Checkbox, } from "antd";
-import { ScheduleOutlined, } from '@ant-design/icons';
-import moment from "moment";
+import ChecklistIcon from '@mui/icons-material/Checklist';
+import dayjs from "dayjs";
 import {
   SubTitle,
 } from "../../../Components/UI/Elements";
@@ -104,11 +104,11 @@ class TodoItem extends Component {
               <SubTitle
                 style={{ fontSize: 14, color: "#93a6c4", width: "auto" }}
               >
-                <ScheduleOutlined
+                <ChecklistIcon
                   // type={todo.title === "Call" ? "phone" : "schedule"}
                   theme="twoTone"
                 />{" "}
-                &nbsp; {moment(todo.startTime).format("LT")}
+                &nbsp; {dayjs(todo.startTime).format("LT")}
               </SubTitle>
               &nbsp;&nbsp; &nbsp;&nbsp;
             
@@ -118,43 +118,7 @@ class TodoItem extends Component {
                  {/* {``} */}
                  </SubTitle>
             </div>
-          </div>
-
-          {/* <div>
-            <FlexContainer>
-              <SubTitle
-                style={{
-                  fontWeight: 500,
-                  fontSize: 13,
-                  color: "#888",
-                  marginLeft: "1.56em",
-                }}
-              > */}
-               
-
-                {/* {contactName === " " ? null : <>{`${contactName} / `}</>}
-
-                {opportunity === " " ? null : <>{`${opportunity}`}</>}
-    
-              </SubTitle>
-            </FlexContainer>
-          </div> */}
-          {/* <div>
-            <FlexContainer>
-              <SubTitle
-                style={{
-                  fontWeight: 500,
-                  fontSize: 13,
-                  color: "#888",
-                  marginLeft: "1.56em",
-                }}
-              >
-              
-                <div></div>
-             
-              </SubTitle>
-            </FlexContainer>
-          </div> */}
+          </div>              
         </div>
       </>
     );

@@ -1,11 +1,19 @@
 import * as types from "./ProductActionTypes";
-import moment from "moment";
+import dayjs from "dayjs";
 const initialState = {
   addWeightedModal: false,
   addAbsoluteModal: false,
   addWinModal: false,
   addWonModal: false,
   addCustomerModal: false,
+
+
+  uploadImageList:false,
+
+
+  fetchingProductBrandDetails:false,
+  fetchingProductBrandDetailsError:false,
+  productBrandDetails:[],
 
 
   fetchingQualityProducts:false,
@@ -19,10 +27,10 @@ const initialState = {
       value: "FY",
       starter: true,
       isSelected: true,
-      startDate: moment()
+      startDate: dayjs()
         .startOf("year")
         .toISOString(),
-      endDate: moment()
+      endDate: dayjs()
         .endOf("year")
         .toISOString(),
     },
@@ -32,10 +40,10 @@ const initialState = {
       value: "QTD",
       starter: false,
       isSelected: false,
-      startDate: moment()
+      startDate: dayjs()
         .startOf("quarter")
         .toISOString(),
-      endDate: moment()
+      endDate: dayjs()
         .endOf("quarter")
         .toISOString(),
     },
@@ -45,10 +53,10 @@ const initialState = {
       value: "MTD",
       starter: false,
       isSelected: false,
-      startDate: moment()
+      startDate: dayjs()
         .startOf("month")
         .toISOString(),
-      endDate: moment()
+      endDate: dayjs()
         .endOf("month")
         .toISOString(),
     },
@@ -58,10 +66,10 @@ const initialState = {
       value: "1W",
       starter: false,
       isSelected: false,
-      startDate: moment()
+      startDate: dayjs()
         .startOf("week")
         .toISOString(),
-      endDate: moment()
+      endDate: dayjs()
         .endOf("week")
         .toISOString(),
     },
@@ -167,6 +175,12 @@ const initialState = {
   updateServiceById: false,
   updateServiceByIdError: false,
 
+
+
+  fetchingBrandCatalogueList:false,
+  fetchingBrandCatalogueListError:false,
+  brandCatalogueListData:[],
+
   fetchingProductsDesc:false,
   fetchingProductsDescError:false,
   productsDesc:[],
@@ -181,6 +195,9 @@ const initialState = {
   updateProductModal: false,
 
   categoryProductModal:false,
+
+
+  addProductBrandModal:false,
 
   addDiscountModal: false,
 
@@ -205,6 +222,10 @@ const initialState = {
   fetchingProductHistory: false,
   fetchingProductHistoryError: false,
   productsHistory: [],
+
+
+  addingBrandProductList:false,
+  addingBrandProductListError:false,
 
   deletingProductData: false,
   deletingProductDataError: false,
@@ -238,6 +259,10 @@ const initialState = {
 
   productQualityDrawer:false,
 
+  fetchingBrandProduct:false,
+  fetchingBrandProductError:false,
+  brandProduct:[],
+
   addProductOfferModal: false,
 
   addingOffer: false,
@@ -249,6 +274,11 @@ const initialState = {
   fetchingCustomerOfferHistory: false,
   fetchingCustomerOfferHistoryError: false,
   customerOfferHistory: [],
+
+
+  fetchingBrandDeleteProduct:false,
+  fetchingBrandDeleteProductError:false,
+  brandDeleteProduct:[],
 
   fetchingDistributorOfferHistory: false,
   fetchingDistributorOfferHistoryError: false,
@@ -270,6 +300,9 @@ const initialState = {
   updateDistributorOfferModal: false,
 
   setEditingDistributorOffer: {},
+
+  addingProductBrand:false,
+  addingProductBrandError:false,
 
   updateCustomerOfferById: false,
   updateCustomerOfferByIdError: false,
@@ -340,6 +373,9 @@ const initialState = {
   fetchingProductCurrencyError: false,
   ProductCurrency: [],
 
+  deleteProductBrandData:false,
+  deleteProductBrandDataError:false,
+
   creatingProductCurrency: false,
   creatingProductCurrencyError: false,
 
@@ -375,6 +411,25 @@ const initialState = {
 
   fetchingCatalogueCatSrch: false,
   fetchingCatalogueCatSrchError: false,
+  categorySearch:[],
+
+  fetchingProductsByProductId: false,
+  fetchingProductsByProductIdError: false,
+  productsByproductId: {},
+
+
+  updatingBrandProduct:false,
+  updatingBrandProductError:false,
+
+  productPUblishToggle: false,
+  productPUblishToggleError:false,
+
+  warrentyProductToggle: false,
+  warrentyProductToggleError:false,
+
+  updateDateYearProduct: false,
+  updateDateYearProductError:false,
+  
 };
 const newDateRange = (dateRange, newDate) =>
   dateRange.map((range) => {
@@ -424,6 +479,11 @@ export const productReducer = (state = initialState, action) => {
         fetchingServiceByIdError: true,
       };
 
+
+
+      case types.HANDLE_IMAGE_PRODUCT_MODAL:
+        return { ...state, uploadImageList: action.payload };
+
     /**
      * update a single contact by its ID
      */
@@ -441,6 +501,30 @@ export const productReducer = (state = initialState, action) => {
         updateServiceById: false,
         updateServiceByIdError: true,
       };
+
+
+
+
+      case types.ADD_BRAND_PRODUCT_LIST_REQUEST:
+        return { ...state, addingBrandProductList: true };
+      case types.ADD_BRAND_PRODUCT_LIST_SUCCESS:
+        // return { ...state, updatingDocuments: false, Documents: [...state.Documents, action.payload] };
+        return {
+          ...state,
+          addingBrandProductList: false,
+          // brandProduct: state.brandProduct.map((document) =>
+          //   document.brand === action.payload.brand
+          //     ? action.payload
+          //     : document
+          // ),
+        };
+      case types.ADD_BRAND_PRODUCT_LIST_FAILURE:
+        return {
+          ...state,
+          addingBrandProductList: false,
+          addingBrandProductListError: true,
+        };
+
 
 
       case types.EMPTY_PRODUCT_LIST:
@@ -946,7 +1030,31 @@ export const productReducer = (state = initialState, action) => {
         addingDistributorOffer: false,
         addingDistributorOfferError: true,
         addProductOfferModal: false,
+        addProductBrandDetailsModal:false,
       };
+
+
+
+      case types.GET_PRODUCT_BRAND_DETAILS_REQUEST:
+        return { ...state, fetchingProductBrandDetails: true };
+      case types.GET_PRODUCT_BRAND_DETAILS_SUCCESS:
+        return {
+          ...state,
+          fetchingProductBrandDetails: false,
+          productBrandDetails: action.payload,
+          // opportunityByUserId: action.payload,
+  
+          //opportunityByUserId: [...state.opportunityByUserId, ...action.payload],
+        };
+      case types.GET_PRODUCT_BRAND_DETAILS_FAILURE:
+        return {
+          ...state,
+          fetchingProductBrandDetails: false,
+          fetchingProductBrandDetailsError: true,
+        };
+
+      case types.HANDLE_PRODUCT_BRAND_DETAILS_MODAL:
+        return { ...state, addProductBrandDetailsModal: action.payload };
 
     case types.GET_CUSTOMER_OFFER_HISTORY_REQUEST:
       return { ...state, fetchingCustomerOfferHistory: true };
@@ -1197,6 +1305,98 @@ export const productReducer = (state = initialState, action) => {
       };
 
 
+
+
+      case types.DELETE_PRODUCT_BRAND_DATA_REQUEST:
+        return { ...state, deleteProductBrandData: true };
+      case types.DELETE_PRODUCT_BRAND_DATA_SUCCESS:
+        return {
+          ...state,
+          deleteProductBrandData: false,
+          brandProduct: state.brandProduct.filter(
+            (item) => item.productBrandId !== action.payload
+          ),
+        };
+      case types.DELETE_PRODUCT_BRAND_DATA_FAILURE:
+        return {
+          ...state,
+          deleteProductBrandData: false,
+          deleteProductBrandDataError: false,
+        };
+
+
+        case types.UPDATE_BRAND_PRODUCT_REQUEST:
+        return { ...state, updatingBrandProduct: true };
+      case types.UPDATE_BRAND_PRODUCT_SUCCESS:
+        // return { ...state, updatingDocuments: false, Documents: [...state.Documents, action.payload] };
+        return {
+          ...state,
+          updatingBrandProduct: false,
+          brandProduct: state.brandProduct.map((document) =>
+            document.brand === action.payload.brand
+              ? action.payload
+              : document
+          ),
+        };
+      case types.UPDATE_BRAND_PRODUCT_FAILURE:
+        return {
+          ...state,
+          updatingBrandProduct: false,
+          updatingBrandProductError: true,
+        };
+
+
+
+
+        case types.GET_BRAND_PRODUCT_REQUEST:
+          return { ...state, fetchingBrandProduct: true, fetchingBrandProduct: false };
+        case types.GET_BRAND_PRODUCT_SUCCESS:
+          //const newData = action.payload.filter(item => !state.products.includes(item));
+          return { ...state, fetchingBrandProduct: false, 
+            // products: [
+            // ...state.products,
+            // ...action.payload] };
+            brandProduct: action.payload
+          }
+        case types.GET_BRAND_PRODUCT_FAILURE:
+          return { ...state, fetchingBrandProduct: false, fetchingBrandProductError: true };
+
+      case types.GET_BRAND_DELETE_PRODUCT_REQUEST:
+      return { ...state, fetchingBrandDeleteProduct: true,  };
+    case types.GET_BRAND_DELETE_PRODUCT_SUCCESS:
+      //const newData = action.payload.filter(item => !state.products.includes(item));
+      return { ...state, fetchingBrandDeleteProduct: false, 
+        // products: [
+        // ...state.products,
+        // ...action.payload] };
+        brandDeleteProduct: action.payload
+      }
+    case types.GET_BRAND_DELETE_PRODUCT_FAILURE:
+      return { ...state, fetchingBrandDeleteProduct: false, fetchingBrandDeleteProductError: true };
+
+
+
+
+      case types.GET_BRAND_CATALOGUE_LIST_REQUEST:
+      return { ...state, fetchingBrandCatalogueList: true, fetchingBrandCatalogueListError: false };
+    case types.GET_BRAND_CATALOGUE_LIST_SUCCESS:
+      //const newData = action.payload.filter(item => !state.products.includes(item));
+      return { ...state, fetchingBrandCatalogueList: false, 
+        // products: [
+        // ...state.products,
+        // ...action.payload] };
+        brandCatalogueListData: action.payload
+      }
+    case types.GET_BRAND_CATALOGUE_LIST_FAILURE:
+      return { ...state, fetchingBrandCatalogueList: false, fetchingBrandCatalogueListError: true };
+
+
+
+
+      case types.HANDLE_PRODUCT_BRAND_MODAL:
+        return { ...state, addProductBrandModal: action.payload };
+
+
       case types.ADD_CATEGORY_REQUEST:
         return { ...state, addingCategory: true };
       case types.ADD_CATEGORY_SUCCESS:
@@ -1331,6 +1531,26 @@ export const productReducer = (state = initialState, action) => {
         removingProductBuilder: false,
         removingProductBuilderError: true,
       };
+
+
+
+
+      case types.ADD_PRODUCT_BRAND_REQUEST:
+      return { ...state, addingProductBrand: true };
+    case types.ADD_PRODUCT_BRAND_SUCCESS:
+      return {
+        ...state, addingProductBrand: false, 
+        // addConfigureModal: false,
+        brandProduct: [action.payload, ...state.brandProduct]
+      };
+    case types.ADD_PRODUCT_BRAND_FAILURE:
+      return {
+        ...state,
+        addingProductBrand: false,
+        addingProductBrandError: true,
+        // addConfigureModal: false,
+      };
+
 
     case types.UPDATE_PRO_SUPPL_BUILDER_REQUEST:
       return { ...state, addingProductBuilder: true };
@@ -1625,13 +1845,121 @@ export const productReducer = (state = initialState, action) => {
                                           return {
                                             ...state,
                                             fetchingCatalogueCatSrch: false,
-                                            categoryProducts: action.payload,
+                                            categorySearch: action.payload,
                                          
                                           };
                                         case types.CATALOGUE_CATEGORY_SEARCH_FAILURE:
                                           return { ...state, fetchingCatalogueCatSrchError: true };                     
 
-                                          
+                                          case types.CATALOUGE_CLEAR:
+                                          return { ...state, 
+                                            categorySearch: [], 
+                        
+                                                  };
+      
+                                          case types.GET_PRODUCTS_BY_PRODUCTID_REQUEST:
+                                            return {
+                                              ...state,
+                                              fetchingProductsByProductId: true,
+                                              fetchingProductsByProductIdError: false,
+                                            };
+                                          case types.GET_PRODUCTS_BY_PRODUCTID_SUCCESS:
+                                            return {
+                                              ...state,
+                                              fetchingProductsByProductId: false,
+                                              productsByproductId: action.payload,
+                                            };
+                                          case types.GET_PRODUCTS_BY_PRODUCTID_FAILURE:
+                                            return {
+                                              ...state,
+                                              fetchingProductsByProductId: false,
+                                              fetchingProductsByProductIdError: true,
+                                            };   
+
+                                            case types.PRODUCT_PUNBLISH_TOGGLE_REQUEST:
+                                              return { ...state, productPUblishToggle: true };
+                                            case types.PRODUCT_PUNBLISH_TOGGLE_SUCCESS:
+                                              return {
+                                                ...state,
+                                                productPUblishToggle: false,
+                                                categoryProducts: state.categoryProducts.map((item) => {
+                                                  if (item.categoryId === action.payload.categoryId) {
+                                                    return action.payload;
+                                                  } else {
+                                                    return item;
+                                                  }
+                                                }),
+                                              };
+                                            case types.PRODUCT_PUNBLISH_TOGGLE_FAILURE:
+                                              return {
+                                                ...state,
+                                                productPUblishToggle: false,
+                                                productPUblishToggleError: true,
+                                              };
+
+                                              case types.WARRENTY_PRODUCT_TOGGLE_REQUEST:
+                                                return { ...state, warrentyProductToggle: true };
+                                              case types.WARRENTY_PRODUCT_TOGGLE_SUCCESS:
+                                                return {
+                                                  ...state,
+                                                  warrentyProductToggle: false,
+                                                  products: state.products.map((item) => {
+                                                    if (item.productId === action.payload.productId) {
+                                                      return action.payload;
+                                                    } else {
+                                                      return item;
+                                                    }
+                                                  }),
+                                                };
+                                              case types.WARRENTY_PRODUCT_TOGGLE_FAILURE:
+                                                return {
+                                                  ...state,
+                                                  warrentyProductToggle: false,
+                                                  warrentyProductToggleError: true,
+                                                };
+                                                case types.UPDATE_DATE_YEAR_PRODUCT_REQUEST:
+                                                  return { ...state, updateDateYearProduct: true };
+                                                case types.UPDATE_DATE_YEAR_PRODUCT_SUCCESS:
+                                                  return {
+                                                    ...state,
+                                                    updateDateYearProduct: false,
+                                                    products: state.products.map((item) => {
+                                                      if (item.productId === action.payload.productId) {
+                                                        return action.payload;
+                                                      } else {
+                                                        return item;
+                                                      }
+                                                    }),
+                                                  };
+                                                case types.UPDATE_DATE_YEAR_PRODUCT_FAILURE:
+                                                  return {
+                                                    ...state,
+                                                    updateDateYearProduct: false,
+                                                    updateDateYearProductError: true,
+                                                  };
+  
+                                                  case types.ADD_QUALITY_PRODUCT_REQUEST:
+                                                    return { ...state, addingQualityProduct: true };
+                                                  case types.ADD_QUALITY_PRODUCT_SUCCESS:
+                                                    return {
+                                                      ...state, addingQualityProduct: false, 
+                                                      categoryProducts: state.categoryProducts.map((item) => {
+                                                        if (item.categoryId === action.payload.categoryId) {
+                                                          return action.payload;
+                                                        } else {
+                                                          return item;
+                                                        }
+                                                      }),
+                                                      
+                                                    };
+                                                  case types.ADD_QUALITY_PRODUCT_FAILURE:
+                                                    return {
+                                                      ...state,
+                                                      addingQualityProduct: false,
+                                                      addingQualityProductError: true,
+                                                    }
+
+
     default:
       return state;
   }

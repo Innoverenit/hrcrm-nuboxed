@@ -1,31 +1,17 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, {  } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
-import { Button, message, Input, Switch } from "antd";
+import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import dayjs from "dayjs";
-import { Spacer } from "../../../../../../Components/UI/Elements";
-
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
-
-// import {
-//   getProcessForRecruit,
-//   getProcessStagesForRecruit,
-//   getAllProcessStagesForRecruit,
-// } from "../../../../../Settings/SettingsAction";
-// import { getCurrency, updateRecruitment } from "../../../../OpportunityAction";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
-// import { addRecruit } from "../../../../OpportunityAction";
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
-// import { opportunityReducer } from "../../../../OpportunityReducer";
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 
-/**
- * yup validation scheme for creating a opportunity
- */
+
 
 const OpportunitySchema = Yup.object().shape({});
 
@@ -36,11 +22,6 @@ function EditRecruitForm(props) {
       value: item.currencyName,
     };
   });
-
-  // useEffect(() => {
-  //   props.getCurrency();
-  // }, []);
-  // console.log("djbhfkdhg", props.currentRecruitmentData);
 
   return (
     <>
@@ -58,14 +39,7 @@ function EditRecruitForm(props) {
             ...values,
             avilableDate: values.avilableDate.toISOString(),
           });
-          // props.updateRecruitment(
-          //   {
-          //     ...values,
-          //     avilableDate: values.avilableDate.toISOString(),
-          //   },
-          //   props.opportunityId,
-          //   () => props.handleEditModal(false)
-          // );
+       
         }}
       >
         {({
@@ -87,11 +61,7 @@ function EditRecruitForm(props) {
                 >
                   <Field
                     name="description"
-                    //label="Description"
-                    label={<FormattedMessage
-                      id="app.description"
-                      defaultMessage="Description"
-                    />}
+                    label="Description"
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -102,17 +72,13 @@ function EditRecruitForm(props) {
                       marginTop: "0.25em",
                     }}
                   />
-                  <Spacer />
-                  <FlexContainer justifyContent="space-between">
+                  <div class=" mt-3" />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "46%" }}>
                       {" "}
                       <Field
                         name="avilableDate"
-                        //label="Start Date"
-                        label={<FormattedMessage
-                          id="app.avilableDate"
-                          defaultMessage="Start Date"
-                        />}
+                        label="Start Date"
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -130,11 +96,8 @@ function EditRecruitForm(props) {
                     <div style={{ width: "22%" }}>
                       <Field
                         name="billing"
-                        //label="Billing / hour"
-                        label={<FormattedMessage
-                          id="app.billing"
-                          defaultMessage="Billing / hour"
-                        />}
+                        label="Billing / hour"
+                      
                         width={"100%"}
                         isRequired
                         isColumn
@@ -163,9 +126,9 @@ function EditRecruitForm(props) {
                         }}
                       />
                     </div>
-                  </FlexContainer>
+                  </div>
 
-                  <Spacer />
+                  <div class=" mt-3" />
                 </div>
               &nbsp;
               <div
@@ -174,20 +137,16 @@ function EditRecruitForm(props) {
                   }}
                 ></div>
               </div>
-              <Spacer />
-              <FlexContainer justifyContent="flex-end">
+              <div class=" mt-3" />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
                   Loading={props.updatingRecruitment}
                 >
-                  <FormattedMessage
-                    id="app.update"
-                    defaultMessage="Update"
-                  />
-                  {/* Update */}
+                  Update
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
       </Formik>
@@ -204,9 +163,7 @@ const mapStateToProps = ({
   settings,
   partner,
 }) => ({
-  // currencies: opportunity.currencies,
-  // currentRecruitmentData: opportunity.currentRecruitmentData,
-  // updatingRecruitment: opportunity.updatingRecruitment,
+
   opportunityId: opportunity.opportunity.opportunityId,
   user: auth.userDetails,
 });

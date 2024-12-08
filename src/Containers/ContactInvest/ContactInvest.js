@@ -20,7 +20,7 @@ function ContactInvest (props) {
     const [selectedCountry, setSelectedCountry] = useState('');
     const [filterText, setFilterText] = useState('');
   const [filteredData, setFilteredData] = useState(props.contactiNVESTbyId);
-  const [filter, setFilter] = useState("creationdate");
+  const [filter, setFilter] = useState("CreationDate");
   const [viewType, setViewType] = useState(null);
   const [teamsAccessInd, setTeamsAccessInd] = useState(props.teamsAccessInd);
   const handleCountryChange = (event) => {
@@ -104,6 +104,7 @@ const{handleContactInvestModal,addContactInvestModal,
 }=props;
         return (
             <React.Fragment>
+             <Suspense fallback={<BundleLoader />}>
                 <ContactInvestHeader
                 selectedLanguage={props.selectedLanguage}
                 translateText={props.translateText}
@@ -127,18 +128,18 @@ const{handleContactInvestModal,addContactInvestModal,
                 filter={filter}
               />
              <AddContactInvestModal
-             selectedLanguage={props.selectedLanguage}
-             translateText={props.translateText}
-        addContactInvestModal={addContactInvestModal}
-        handleContactInvestModal={handleContactInvestModal}
+              selectedLanguage={props.selectedLanguage}
+              translateText={props.translateText}
+             addContactInvestModal={addContactInvestModal}
+             handleContactInvestModal={handleContactInvestModal}
       />
-       <Suspense fallback={<BundleLoader />}>
+      
 
        {teamsAccessInd ? (
         <ContactInvestTeamsCardList   
         translateText={props.translateText}
-      selectedLanguage={props.selectedLanguage}
-      translatedMenuItems={props.translatedMenuItems}
+         selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}
         />
         ) : (
           <>
@@ -165,7 +166,6 @@ const{handleContactInvestModal,addContactInvestModal,
 }
 const mapStateToProps = ({ contactinvest,auth }) => ({
     addContactInvestModal:contactinvest.addContactInvestModal,
-    // viewType:contactinvest.viewType,
     teamsAccessInd:auth.userDetails.teamsAccessInd,
     contactiNVESTbyId: contactinvest.contactiNVESTbyId,
     userId: auth.userDetails.userId,
@@ -173,7 +173,6 @@ const mapStateToProps = ({ contactinvest,auth }) => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     handleContactInvestModal,
-    // setContactInvetViewType,
     getContactInvestByUserId,
     getContactInvestFilterData
 }, dispatch)

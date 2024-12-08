@@ -18,7 +18,10 @@ function ContactInvestDetails (props) {
     return (
       <>
         <>
-          <ContactInvestDetailHeader />
+        <Suspense fallback={"Loading..."}>
+          <ContactInvestDetailHeader    selectedLanguage={props.selectedLanguage}
+            translateText={props.translateText}/>
+            </Suspense>
           {fetchingContactInvestByContactId ? (
             <MainWrapper>
               <BundleLoader />
@@ -28,10 +31,15 @@ function ContactInvestDetails (props) {
                 <Suspense fallback={"Loading..."}>
                   <div class=" flex flex-nowrap w-full">
                     <div class=" w-1/4">
-                      <ContactInvestDetailsLeft contactInVestDetail={contactInVestDetail} />
+                      <ContactInvestDetailsLeft contactInVestDetail={contactInVestDetail} 
+                         selectedLanguage={props.selectedLanguage}
+                         translateText={props.translateText}
+                      />
                     </div>
                     <div class=" w-3/4">
-                      <ContactInvestDetailsRight contactInVestDetail={contactInVestDetail} />
+                      <ContactInvestDetailsRight contactInVestDetail={contactInVestDetail}
+                         selectedLanguage={props.selectedLanguage}
+                         translateText={props.translateText} />
                     </div>
                   </div>
                 </Suspense>

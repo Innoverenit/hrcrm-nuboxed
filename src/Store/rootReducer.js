@@ -4,10 +4,11 @@ import { LOGOUT } from "../Containers/Auth/AuthTypes";
  *  All of application reducers import goes here...
  */
 import { authReducer } from "../Containers/Auth/AuthReducer";
+import {WarantyReducer} from "../Containers/Waranty/WarantyReducer"
 import { pitchReducer } from "../Containers/Pitch/PitchReducer";
+import { activityReducer } from "../Containers/Activity/ActivityReducer";
 import { regionsReducer } from "../Containers/Settings/Category/Region/RegionReducer";
 import { serviceLineReducer } from "../Containers/Settings/Category/ServiceLine/ServiceLineReducer";
-import { messageReducer } from "../Containers/LiveMessages/MessageReducer";
 import { dashboardReducer } from "../Containers/Dashboard/DashboardReducer";
 import { brandmodelReducer } from "../Containers/Settings/Category/Brand&Model/BrandModelReducer"
 import { plannerReducer } from "../Containers/Planner/PlannerReducer";
@@ -104,7 +105,6 @@ import { qualityReducer } from "../Containers/Settings/Category/Quality/QualityR
 import { equipmentReducer } from "../Containers/Settings/Category/Equipment/EquipmentReducer";
 import { industryReducer } from "../Containers/Settings/Category/Industry/IndustryReducer";
 import { categoryListReducer } from "../Containers/Settings/Category/CategoryList/CategoryListReducer";
-import { vendorReducer } from "../Containers/Main/Vendor/VendorReducer";
 import { mainNoteReducer } from "../Containers/CustomNote/MainNoteReducer";
 import { erpNoteReducer } from "../Containers/Main/ErpNote/ErpNoteReducer";
 import { procreReducer } from "../Containers/Main/Procre/ProcreReducer";
@@ -124,6 +124,7 @@ const appReducer = combineReducers({
   theme: themeReducer,
   leave: LeavesReducer,
   holiday: holidayReducer,
+  waranty: WarantyReducer,
   report: reportReducer,
   course: courseReducer,
   notification: notificationReducer,
@@ -147,6 +148,7 @@ const appReducer = combineReducers({
   candidate: candidateReducer,
   language: languageReducer,
   pitch: pitchReducer,
+  activity:activityReducer,
   sector: sectorsReducer,
   education: educationsReducer,
   functions: functionsReducer,
@@ -166,7 +168,6 @@ const appReducer = combineReducers({
   requirement: requirementReducer,
   publish: publishReducer,
   idProof: idProofsReducer,
-  message: messageReducer,
   assessment: accessmentReducer,
   leads: leadsReducer,
   level: levelsReducer,
@@ -214,7 +215,6 @@ const appReducer = combineReducers({
   equipment:equipmentReducer,
   industry:industryReducer,
   categoryList:categoryListReducer,
-  vendorList:vendorReducer,
   procre:procreReducer,
   machinary:machinaryReducer,
   brandCategory:brandCategoryReducer,

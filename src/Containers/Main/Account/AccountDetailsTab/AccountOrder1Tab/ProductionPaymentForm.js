@@ -7,9 +7,9 @@ import { Formik, Form, Field } from "formik";
 import { DatePicker } from "../../../../../Components/Forms/Formik/DatePicker";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { addPaidOrder, getPaymentMode } from "../../../Account/AccountAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
-import { FormattedMessage } from "react-intl";
+
 import { getCurrency } from "../../../../Auth/AuthAction";
 import DragableUpload from "../../../../../Components/Forms/Formik/DragableUpload";
 
@@ -37,7 +37,7 @@ function ProductionPaymentForm(props) {
             <Formik
                 enableReinitialize
                 initialValues={{
-                    date: moment(),
+                    date: dayjs(),
                     paymentAmount: "",
                     paymentMode: "",
                     remarks: "",
@@ -53,7 +53,7 @@ function ProductionPaymentForm(props) {
                 }}
 
                 onSubmit={(values, { resetForm }) => {
-                    let newEndDate = moment(values.date).format("YYYY-MM-DD");
+                    let newEndDate = dayjs(values.date).format("YYYY-MM-DD");
                     props.addPaidOrder(
                         {
                             ...values,
@@ -81,11 +81,8 @@ function ProductionPaymentForm(props) {
                                     <div class="w-[31%]">
                                         <Field
                                             name="paymentAmount"
-                                            label={
-                                                <FormattedMessage
-                                                    id="app.amount"
-                                                    defaultMessage="Amount"
-                                                />}
+                                            label="Amount"
+                                            
                                             isRequired
                                             isColumn
                                             inlineLabel
@@ -98,13 +95,9 @@ function ProductionPaymentForm(props) {
                                         <Field
                                             disabled
                                             name="orderCurrencyId"
-                                            label={
-                                                <FormattedMessage
-                                                    id="app.currency"
-                                                    defaultMessage="currency"
-                                                />
-                                            }
-
+                                            label="currency"
+                                           
+                                            
                                             isColumn
                                             inlineLabel
                                             component={SelectComponent}
@@ -126,11 +119,8 @@ function ProductionPaymentForm(props) {
                                 <div class="w-full">
                                     <Field
                                         name="remarks"
-                                        label={
-                                            <FormattedMessage
-                                                id="app.reason"
-                                                defaultMessage="Reason"
-                                            />}
+                                        label="Reason"
+                                           
                                         component={TextareaComponent}
                                     />
                                 </div>
@@ -140,11 +130,8 @@ function ProductionPaymentForm(props) {
                                     <div class="w-[48%]">
                                         <Field
                                             name="transactionNumber"
-                                            label={
-                                                <FormattedMessage
-                                                    id="app.transactionid"
-                                                    defaultMessage="Transaction ID"
-                                                />}
+                                            label="Transaction ID"
+                                           
                                             isColumn
                                             inlineLabel
                                             width={"100%"}
@@ -157,11 +144,8 @@ function ProductionPaymentForm(props) {
                                     <div class="w-[48%]">
                                         <Field
                                             name="paymentMode"
-                                            label={
-                                                <FormattedMessage
-                                                    id="app.mode"
-                                                    defaultMessage="Mode"
-                                                />}
+                                            label="Mode"
+
                                             isRequired
                                             isColumn
                                             inlineLabel
@@ -175,12 +159,8 @@ function ProductionPaymentForm(props) {
                                 <div class="w-full">
                                     <Field
                                         name="docId"
-                                        label={
-                                            <FormattedMessage
-                                                id="app.documentId"
-                                                defaultMessage="Document Id"
-                                            />
-                                        }
+                                        label="Document Id"
+                                         
                                         isRequired
                                         component={DragableUpload}
                                     />
@@ -195,10 +175,7 @@ function ProductionPaymentForm(props) {
                                 htmlType="submit"
                                 loading={props.addingPaidByDistributorId}
                             >
-                                <FormattedMessage
-                                    id="app.submit"
-                                    defaultMessage="Submit"
-                                />
+                               Submit
 
                             </Button>
                         </div>

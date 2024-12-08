@@ -1,17 +1,13 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
-import styled from 'styled-components';
-import {
-  CheckCircleOutlined,
-  CloseCircleOutlined,
- SearchOutlined,  
-} from '@ant-design/icons';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import SearchIcon from '@mui/icons-material/Search';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import AddTaskProjectDrawerModal from "../Child/AddTaskProjectDrawerModal"
 import { Tooltip,Input, Button, Avatar } from "antd";
-import moment from "moment";
+import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { withRouter } from "react-router-dom";
@@ -87,7 +83,7 @@ class TaskDeletedTable extends React.Component {
           <Button
             type="primary"
             onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-             icon={<SearchOutlined />}
+             icon={<SearchIcon />}
             //icon="search"
             size="small"
             style={{ width: 90 }}
@@ -118,7 +114,7 @@ class TaskDeletedTable extends React.Component {
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+      <SearchIcon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]
@@ -286,7 +282,6 @@ class TaskDeletedTable extends React.Component {
       },
       {
         headerName: "Owner",
-       // title: <FormattedMessage id="app.submittedby" defaultMessage="Submitted by" />,
        field: "submittedBy",
         width:70,
         renderCell: (cellValues) => {
@@ -309,17 +304,15 @@ class TaskDeletedTable extends React.Component {
       },
       {
         headerName: "Assigned on",
-        //title: <FormattedMessage id="app.assignedon" defaultMessage="Assigned on" />,
         field: "",
         width:100,
         renderCell: (cellValues,row) => {
           const data=cellValues.row
-          return <span>{` ${moment(data.assignedOn).format("ll")}`}</span>;
+          return <span>{` ${dayjs(data.assignedOn).format("ll")}`}</span>;
         },
       },
       {
         headerName: "Assigned",
-        //title: <FormattedMessage id="app.assignedon" defaultMessage="Assigned on" />,
         field: "assignedToName",
         width:90,
         renderCell: (cellValues) => {
@@ -339,8 +332,7 @@ class TaskDeletedTable extends React.Component {
       },
       {
         headerName: "Talent",
-        //title: <FormattedMessage id="app.talent" defaultMessage="Talent" />,
-        field: "candidateName",
+              field: "candidateName",
         width:70,
         renderCell: (cellValues) => {
           const data=cellValues.row
@@ -393,14 +385,13 @@ class TaskDeletedTable extends React.Component {
       },
       {
         headerName: "Start",
-        //title: <FormattedMessage id="app.start" defaultMessage="Start" />,
-        field: "startDate",
+      field: "startDate",
         width:90,
        // defaultSortOrder: "descend",
        renderCell: (cellValues,row) => {
         console.log("cell",cellValues)
          const data=cellValues.row
-         const date= ` ${moment(data.startDate).format("ll")}`
+         const date= ` ${dayjs(data.startDate).format("ll")}`
           return <span>
 {date}
             {/* <Tooltip title={date}>
@@ -411,18 +402,18 @@ class TaskDeletedTable extends React.Component {
         // sorter: (a, b) => {
         //   var startDateA = a.startDate;
         //   var startDateB = b.startDate;
-        //   return moment.utc(startDateA).diff(moment.utc(startDateB));
+        //   return dayjs(startDateA).diff(dayjs(startDateB));
         // },
       },
       {
         headerName: "End",
-        //title: <FormattedMessage id="app.end" defaultMessage="End" />,
+      
         field: "endDate",
         width:90,
         renderCell: (cellValues,row) => {
           console.log("cell",cellValues)
            const data=cellValues.row
-           const data2= ` ${moment(data.endDate).format("ll")}`
+           const data2= ` ${dayjs(data.endDate).format("ll")}`
           return <span>
             {data2}
            {/* <Tooltip title={data2}>
@@ -434,12 +425,12 @@ class TaskDeletedTable extends React.Component {
         // sorter: (a, b) => {
         //   var endDateA = a.endDate;
         //   var endDateB = b.endDate;
-        //   return moment.utc(endDateA).diff(moment.utc(endDateB));
+        //   return dayjs(endDateA).diff(dayjs(endDateB));
         // },
       },
       {
         headerName: "Status",
-        //title: <FormattedMessage id="app.status" defaultMessage="Status" />,
+    
         field: "taskStatus",
         width:20,
         renderCell: (cellValues,row) => {
@@ -495,8 +486,8 @@ class TaskDeletedTable extends React.Component {
                       onClick={() => approveTaskByTaskId(data.taskId)}
                       style={{ backgroundColor: "teal", color: "white" }}
                     >
-                      {/* Approve */}
-                      <FormattedMessage id="app.approve" defaultMessage="Approve" />
+                      Approve
+                  
                     </Button>
                     <Button
                       style={{
@@ -505,15 +496,15 @@ class TaskDeletedTable extends React.Component {
                       }}
                       onClick={() => rejectTaskByTaskId(data.taskId)}
                     >
-                      {/* Reject */}
-                      <FormattedMessage id="app.reject" defaultMessage="Reject" />
+                      Reject
+                  
                     </Button>
                   </div>
                 </>
               ) : (
                   <>
                     {data.approvedInd === "Approved" ? (
-                      <CheckCircleOutlined
+                      <CheckCircleOutlineIcon
                         type="check-circle"
                         theme="twoTone"
                         twoToneColor="#52c41a"
@@ -521,7 +512,7 @@ class TaskDeletedTable extends React.Component {
                         style={{ fontSize: "1.5625em" }}
                       />
                     ) : data.approvedInd === "Rejected" ? (
-                      <CloseCircleOutlined
+                      <HighlightOffIcon
                         type="close-circle"
                         theme="twoTone"
                         twoToneColor="red"
@@ -571,8 +562,8 @@ class TaskDeletedTable extends React.Component {
             <>
             {data.complitionStatus !== "completed" &&(
             <StyledPopconfirm
-              // title="Do you want to delete?"
-              title={<FormattedMessage id="app.doyouwishtodelete?" defaultMessage="Do you wish to delete?" />}
+            title="Do you want to delete?"
+           
               onConfirm={() => deleteTask(data.taskId, employeeId)}
             >
               <DeleteIcon type="delete" style={{ cursor: "pointer" }} />
@@ -683,6 +674,8 @@ class TaskDeletedTable extends React.Component {
            <UpdateTaskModal
           updateTaskModal={updateTaskModal}
           handleUpdateTaskModal={handleUpdateTaskModal}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
         />
 
 
@@ -690,7 +683,8 @@ class TaskDeletedTable extends React.Component {
 handleTaskProjectDrawerModal={this.props.handleTaskProjectDrawerModal}
 addDrawerTaskProjectModal={this.props.addDrawerTaskProjectModal}
 data={this.state.data}
-
+translateText={this.props.translateText}
+selectedLanguage={this.props.selectedLanguage}
       />
           
          
@@ -782,17 +776,3 @@ function overdue(pendingDays) {
   }
 }
 
-
-const AppIcon = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "123%" }}
-  ></i>
-);
-const PulseIcon = styled(AppIcon)`
-  color: #df9697;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;

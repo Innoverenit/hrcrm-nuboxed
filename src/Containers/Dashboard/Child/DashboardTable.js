@@ -2,11 +2,11 @@
  import React, { useEffect, useState } from "react";
  import { connect } from "react-redux";
  import { bindActionCreators } from "redux";
- import { FormattedMessage } from "react-intl";
+ 
  import { Tooltip, Icon,Input,Button, Table,  InputNumber, Popconfirm, Form, Typography  } from "antd";
  import Highlighter from 'react-highlight-words';
  import { CurrencySymbol } from "../../../Components/Common";
- import moment from "moment";
+ import dayjs from "dayjs";
  import { StyledTable, StyledPopconfirm } from "../../../Components/UI/Antd";
  import { MultiAvatar, SubTitle } from "../../../Components/UI/Elements";
  import { FlexContainer } from "../../../Components/UI/Layout";
@@ -20,7 +20,7 @@
  // import UpdateOpportunityModal from "../UpdateOpportunity/UpdateOpportunityModal";
  import APIFailed from "../../../Helpers/ErrorBoundary/APIFailed";
 import { candidateReducer } from "../../Candidate/CandidateReducer";
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
  
  function onChange(pagination, filters, sorter) {
    console.log("params", pagination, filters, sorter);
@@ -95,12 +95,11 @@ import { SearchOutlined } from "@ant-design/icons";
              <Button
                type="primary"
                onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                icon={<SearchOutlined />}
-               //icon="search"
+               
                size="small"
                style={{ width: 90 }}
              >
-               Search
+              <SearchIcon ClassName="!text-icon" /> Search
              </Button>
              <Button
                onClick={() => handleReset(clearFilters)}
@@ -124,8 +123,8 @@ import { SearchOutlined } from "@ant-design/icons";
          </div>
        ),
        filterIcon: (filtered) => (
-         // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-         <SearchOutlined type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+         // <SearchIcon ClassName="!text-icon" style={{ color: filtered ? "#1890ff" : undefined }} />
+         <SearchIcon ClassName="!text-icon " type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
        ),
        onFilter: (value, record) =>
          record[dataIndex]
@@ -186,10 +185,7 @@ import { SearchOutlined } from "@ant-design/icons";
  
      {
        //title: "Name",
-       title: <FormattedMessage
-         id="app.jobId"
-         defaultMessage="Job ID"
-       />,
+       title: "Job ID",
  
        dataIndex: "jobOrder",
      //   ...getColumnSearchProps('opportunityName'),
@@ -199,8 +195,8 @@ import { SearchOutlined } from "@ant-design/icons";
      //     const fullName = ` ${item.salutation || ""} ${item.firstName ||
      //       ""} ${item.middleName || ""} ${item.lastName || ""}`;
  
-     //     const currentdate = moment().format("DD/MM/YYYY");
-     //     const date = moment(item.creationDate).format("DD/MM/YYYY");
+     //     const currentdate = dayjs().format("DD/MM/YYYY");
+     //     const date = dayjs(item.creationDate).format("DD/MM/YYYY");
      //     console.log(date, currentdate, currentdate === date);
      //     return (
      //       <>
@@ -225,10 +221,8 @@ import { SearchOutlined } from "@ant-design/icons";
      },
      {
        //title: "Currency",
-       title: <FormattedMessage
-         id="app.requirement"
-         defaultMessage="Requirement"
-       />,
+       title:"Requirement"
+       ,
  
        dataIndex: "requirementName",
      //   ...getColumnSearchProps('customer'),
@@ -236,30 +230,26 @@ import { SearchOutlined } from "@ant-design/icons";
      },
      {
         //title: "Currency",
-        title: <FormattedMessage
-          id="app.createdOn"
-          defaultMessage="Created On"
-        />,
+        title: "Created On"
+     ,
   
         dataIndex: "creationDate",
       //   ...getColumnSearchProps('customer'),
          width: "12%",
          render: (text, item) => {
-          const startDate = moment(item.creationDate).format("ll");
+          const startDate = dayjs(item.creationDate).format("ll");
           return <span>{startDate}</span>;
         }, 
       },
      {
        //title: "Start Date",
-       title: <FormattedMessage
-         id="app.start"
-         defaultMessage="Start"
-       />,
+       title: "Start"
+     ,
  
        dataIndex: "avilableDate",
        width:"12%",
        render: (text, item) => {
-        const startDate = moment(item.avilableDate).format("ll");
+        const startDate = dayjs(item.avilableDate).format("ll");
         return <span>{startDate}</span>;
       },
        //defaultSortOrder: "descend",
@@ -276,16 +266,14 @@ import { SearchOutlined } from "@ant-design/icons";
      //     return 0;
      //   },
      //   render: (text, item) => {
-     //     const startDate = moment(item.startDate).format("ll");
+     //     const startDate = dayjs(item.startDate).format("ll");
      //     return <span>{startDate}</span>;
      //   },
      },
      {
        //title: "End Date",
-       title: <FormattedMessage
-         id="app.billing"
-         defaultMessage="Billing"
-       />,
+       title: "Billing"
+    ,
        dataIndex: "billing",
        width:"8%",
        //defaultSortOrder: "descend",
@@ -302,16 +290,14 @@ import { SearchOutlined } from "@ant-design/icons";
      //     return 0;
      //   },
      //   render: (text, item) => {
-     //     const endDate = moment(item.endDate).format("ll");
+     //     const endDate = dayjs(item.endDate).format("ll");
      //     return <span>{endDate}</span>;
      //   },
      },
      {
        //title: "Value",
-       title: <FormattedMessage
-         id="app.stages"
-         defaultMessage="Stages"
-       />,
+       title: "Stages"
+    ,
       //  dataIndex: "stageList",
        width: "7%",
        render: (name, item, i) => {
@@ -486,7 +472,7 @@ import { SearchOutlined } from "@ant-design/icons";
     
      {
        //title: "Email",
-       title: <FormattedMessage id="app.sponsor" defaultMessage="Sponsor" />,
+       title:"Sponsor" ,
        dataIndex: "sponserName",
      //   ...getColumnSearchProps('ownerName'),
      //   render: (name, item, i) => {
@@ -513,7 +499,7 @@ import { SearchOutlined } from "@ant-design/icons";
  
      // {
      //   //title: "Email",
-     //   title: <FormattedMessage id="app.recruiter" defaultMessage="Recruiter" />,
+     // 
      //   dataIndex: "fullName",
      //   // ...getColumnSearchProps('recruiterDetails'),
      //   render: (name, item, i) => {
@@ -562,9 +548,7 @@ import { SearchOutlined } from "@ant-design/icons";
      //       // <Tooltip title="Edit">
      //       <Tooltip
      //       title={
-     //         <FormattedMessage
-     //           id="app.edit"
-     //           defaultMessage="Edit"
+     //    
      //         />
      //       }
      //     >

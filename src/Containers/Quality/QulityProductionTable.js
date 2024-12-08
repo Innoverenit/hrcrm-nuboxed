@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react'
 import { connect } from 'react-redux'
-import { FormattedMessage } from "react-intl";
+
 import ButtonGroup from "antd/lib/button/button-group";
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
  import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
@@ -42,15 +42,17 @@ export const QulityProductionTable = (props) => {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Manufacture ID",//0
-          "Name",//1
-          "Date",//2
-          "Status",//3
-          "To Dispatch",//5
-          "Assignedto",//6
-          "Manufacture",//7
-          "Step",//8
-          
+        "774",//  "Manufacture ID",
+         "110", // "Name",
+         "74" ,// "Date",//2
+         "142", // "Status",//3
+        "778" , // "To Dispatch",//4
+         "76", // "Assignedto",//5
+        "1042",  // "Manufacture",//6
+         "1043" ,// "Step",//7
+        "143" ,  //  To Start8
+       "1098", //  Select zone"9
+        "1508",//  "Select rack" 10
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -88,8 +90,7 @@ export const QulityProductionTable = (props) => {
 const fetchZone = async () => {
     setIsLoadingZone(true);
     try {
-      // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
-      // setCustomers(response.data);
+  
       const apiEndpoint = `${base_url2}/roomrack/roomAndRackDetails/quality/${props.locationId}/${props.orgId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
@@ -123,8 +124,7 @@ const fetchZone = async () => {
   const fetchRack = async (roomRackId) => {
     setIsLoadingRack(true);
     try {
-      // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
-      // setContacts(response.data);
+    
       const apiEndpoint = `${base_url2}/roomrack/${roomRackId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
@@ -180,29 +180,24 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
   return (
     <>
     <div className='flex sticky z-auto'>
-            <div className="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className="flex w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+            <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+                <div className="flex w-[100%]  p-1 bg-transparent font-bold sticky text-xs font-poppins  z-10">
                     <div className=""></div>
                     <div className="md:w-[22.12rem]">
                     {translatedMenuItems[0]}
-                      {/* <FormattedMessage id="app.manufactureid" defaultMessage="Manufacture ID" /> */}
                       </div>
                     <div className="md:w-[22.12rem]">
                     {translatedMenuItems[1]}
-                      {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */}
                       </div>
                     <div className="md:w-[15.5rem]">
                     {translatedMenuItems[2]}
-                      {/* <FormattedMessage id="app.date" defaultMessage="Date" /> */}
                       </div>
                     <div className="md:w-[15.5rem]">
                     {translatedMenuItems[3]}
-                      {/* <FormattedMessage id="app.status" defaultMessage="Status" /> */}
                       </div>
                     <div className=""></div>
                     <div className="md:w-[15.5rem]">
                     {translatedMenuItems[4]}
-                      {/* <FormattedMessage id="app.todispatch" defaultMessage="To Dispatch" /> */}
                       </div>
                 
                 </div>
@@ -211,15 +206,15 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
             next={handleLoadMore}
             hasMore={hasMore}
             loader={props.fetchingProductionQualityData ? <div class="text-center font-semibold text-xs">Loading...</div> : null}
-            height={"79vh"}
+            height={"81vh"}
             style={{scrollbarWidth:"thin"}}
             endMessage={<div class="flex text-center font-bold text-xs text-red-500">You have reached the end of page. </div>}
           >
                 {props.productionQualityData.map((item, index) => {
                     return (
                         <div key={index}>
-                            <div className="flex rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                                <div className="flex  md:w-[16.1rem] max-sm:w-full ">
+                            <div className="flex justify-between rounded mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                                <div className="flex  border-l-2 h-8 border-green-500 bg-[#eef2f9] md:w-[12.1rem] max-sm:w-full ">
                                     <div 
                                     className="flex justify-between text-xs text-[#1890ff] underline font-semibold font-poppins cursor-pointer"
                                     onClick={() => {
@@ -231,27 +226,27 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                     </div>
                                 </div>
 
-                                <div className="flex  md:w-[23rem] max-sm:justify-between  max-sm:flex-row">
+                                <div className="flex  md:w-[20rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:justify-between  max-sm:flex-row">
                                     <div className="text-xs text-[0.85rem]  font-poppins ml-[9em] " style={{ marginLeft: "9em" }}>
                                    {item.categoryName} {item.subCategoryName} {item.attributeName} {item.subAttributeName}
                                     </div>
                                 </div>
 
-                                <div className="flex md:w-[13rem] max-sm:justify-between max-sm:flex-row">
+                                <div className="flex md:w-[22rem]  items-center justify-center h-8 ml-gap bg-[#eef2f9] max-sm:justify-between max-sm:flex-row">
                                     <div className="text-xs text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
                                     {`  ${dayjs(item.creationDate).format("DD-MM-YYYY")}`}
                                     </div>
                                 </div>
 
 
-                                <div className=" flex items-center md:w-[6.2rem] max-sm:flex-row max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[6.2rem] max-sm:flex-row max-sm:justify-between ">
                                                     <div class=" text-xs  font-semibold  font-poppins">
                                      
                                                         <ButtonGroup>
                                                         {(item.qualityStatus === "To Start" || item.qualityStatus === null) && (
     <StatusIcon
         type="In Progress"
-        tooltip="To Start"
+        tooltip={translatedMenuItems[8]}
         role={item.qualityStatus}
         iconType={<HourglassTopIcon className=' !text-icon text-orange-600'/>}
         // onClick={() => {
@@ -310,10 +305,10 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                                     </div>
                                                 </div>
 
-                                                <div className=" flex font-medium  items-center md:w-[17.023rem] max-sm:flex-row  max-sm:justify-between ">
+                                                <div className=" flex   items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[17.023rem] max-sm:flex-row  max-sm:justify-between ">
                                                     <div class="flex text-xs  font-semibold  font-poppins" >
                                                          {item.qualityStatus === "Complete"&&(
-                                                    <Select placeholder="Select zone" 
+                                                    <Select placeholder={translatedMenuItems[9]}
                                                     loading={isLoadingZone}
                                                     onFocus={handleSelectZoneFocus}
                                                     onChange={handleZoneChange}
@@ -328,7 +323,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
       )}
                                                     
 {item.qualityStatus === "Complete"&&(
-      <Select placeholder="Select rack" 
+      <Select placeholder={translatedMenuItems[10]} 
       
       loading={isLoadingRack}
       onChange={handleRackChange}
@@ -345,7 +340,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                                     </div>
                                                 </div>
 
-                                <div className=" flex font-medium items-center md:w-[5.01rem] max-sm:flex-row  max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-[5.01rem] max-sm:flex-row  max-sm:justify-between ">
                                                     <div class=" text-xs  font-semibold  font-poppins">
                                                     {item.qualityStatus === "Complete"&&
                                                         <MoveToggleQuality 
@@ -361,7 +356,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                                     </div>
                                                 </div>
 
-                                {/* <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                                {/* <div className="flex flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
                                     <div className="md:w-[15.5rem]">
                                     <Popconfirm
                             title="Do you want to change the state?"
@@ -379,7 +374,7 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
                                     </div>
                                 </div>
                                 {item.usedInd===true&&(
-                                <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                                <div className="flex flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
                                     <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
                                        <Button>Damage</Button>
                                     </div>

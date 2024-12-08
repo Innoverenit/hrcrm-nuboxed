@@ -3,18 +3,16 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../../Components/UI/Antd";
 import PlantDetailView from "./PlantDetailView";
-// import UpdatePlantModal from "../UpdatePlant/UpdatePlantModal";
 import { Tooltip, Button, Input, Space } from "antd";
-import APIFailed from "../../../../Helpers/ErrorBoundary/APIFailed";
 import {
   getPlant,
   setEditPlant,
   handleUpdatePlantModal,
 } from "../../PlantAction";
 import Highlighter from "react-highlight-words";
-import { SearchOutlined } from "@ant-design/icons";
-// import { getLocationsType } from "../../../Locations/LocationsAction";
-import moment from "moment";
+import SearchIcon from '@mui/icons-material/Search';
+import dayjs from "dayjs";
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 class PlantTable extends Component {
   componentDidMount() {
@@ -52,11 +50,11 @@ class PlantTable extends Component {
           <Button
             type="primary"
             onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+         
             size="small"
             style={{ width: 90 }}
           >
-            Search
+            <SearchIcon ClassName="!text-icon" /> Search
           </Button>
           <Button
             onClick={() => this.handleReset(clearFilters)}
@@ -82,7 +80,7 @@ class PlantTable extends Component {
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+      <SearchIcon ClassName="!text-icon" style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]
@@ -141,8 +139,8 @@ class PlantTable extends Component {
         dataIndex: "name",
         ...this.getColumnSearchProps("name"),
         render: (name, item, i) => {
-          const currentdate = moment().format("DD/MM/YYYY");
-          const date = moment(item.creationDate).format("DD/MM/YYYY");
+          const currentdate = dayjs().format("DD/MM/YYYY");
+          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           // const plantName = `${item.salutation || ""} ${item.firstName ||
           //   ""} ${item.middleName || ""} ${item.lastName || ""} `;
           return (
@@ -263,7 +261,7 @@ class PlantTable extends Component {
     ];
 
     if (this.props.fetchingPlantError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight - 300;

@@ -18,6 +18,7 @@ class TaskOrganizationNew extends Component {
     if (this.props.fetchingTasks) {
       return <BundleLoader/>
     }
+    
     return (
       <>
   
@@ -27,10 +28,10 @@ class TaskOrganizationNew extends Component {
       const randomNumber = Math.floor(Math.random() * 100) + 1;
       return (
         <div className="col-span-2 sm:col-span-1">
-          <div className="flex">
+          <div className="flex text-sm max-sm:text-xs">
             {item.taskType}
           </div>
-          <div class="text-2xl">
+          <div class="text-lg max-sm:text-sm">
             {randomNumber}
                         </div>
         </div>

@@ -14,21 +14,27 @@ class CandidateDetailLeft extends Component {
     const { candidate } = this.props;
     // console.log(userDetails);
     return (
-      <div class=" flex flex-col block"  >
+      <div class=" flex flex-col "  >
         <CandidateOverViewCard 
        
         candidate={candidate} />
         <ProfileTopicOfIntrest 
         candidate={candidate}
-        selectedLanguage={this.props.selectedLanguage} 
+        translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
+      translatedMenuItems={this.props.translatedMenuItems}
         />
         <CertificationLibrary 
         candidate={candidate} 
-        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
         />
         <CandidateExtraDetailCard 
         candidate={candidate} 
-        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.props.translatedMenuItems}
         />
         <ExtraCandidateCardView candidate={candidate}/>
         

@@ -1,9 +1,10 @@
 import React, { useEffect, useState,useMemo,lazy } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { SearchOutlined,} from '@ant-design/icons';
+
+import SearchIcon from '@mui/icons-material/Search';
 import {getSectors} from "../../../Settings/Sectors/SectorsAction";
 import dayjs from "dayjs";
 import { getAllSalesList} from "../../../Opportunity/OpportunityAction";
@@ -79,7 +80,7 @@ function CustomerWhiteTable(props) {
             <Button
               type="primary"
               onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-               icon={<SearchOutlined />}
+               icon={<SearchIcon />}
               //icon="search"
               size="small"
               style={{ width: 90 }}
@@ -108,8 +109,8 @@ function CustomerWhiteTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-        <SearchOutlined type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        // <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
+        <SearchIcon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
       ),
       onFilter: (value, record) =>
         record[dataIndex]
@@ -175,8 +176,7 @@ function CustomerWhiteTable(props) {
       width: "2%",
     },
     {
-      //title: "Name",
-      title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+      title: "Name",
       dataIndex: "name",
       ...getColumnSearchProps('name'),
       width: "19%",
@@ -220,14 +220,14 @@ function CustomerWhiteTable(props) {
     },
     {
      
-      title: <FormattedMessage id="app.url" defaultMessage="URL" />,
+      title: "URL",
       dataIndex: "url",
       width:"15%",
     },
    
     {
     
-      title: <FormattedMessage id="app.sector" defaultMessage="Sector" />,
+      title: "Sector" ,
       dataIndex: "sector",
        width: "13%",
        filters: sectorsNameOption,
@@ -240,19 +240,14 @@ function CustomerWhiteTable(props) {
 
     {
     
-      title: <FormattedMessage id="app.email" defaultMessage="Email" />,
+      title: "Email",
       dataIndex: "email",
       width: "19%",
       ...getColumnSearchProps('email'),
     },
     
     {
-    title: (
-        <FormattedMessage
-          id="app.address"
-          defaultMessage="Address"
-        />
-      ),
+    title:"Address" ,
       // dataIndex: "address[0].address1",
       render: (name, item, i) => {
         console.log(item);
@@ -274,7 +269,7 @@ function CustomerWhiteTable(props) {
       width: "30%",
     },
     {
-      title: <FormattedMessage id="app.country" defaultMessage="Country" />,
+      title:"Country",
       dataIndex: "country",
       width: "10%",
       sorter: (a, b) => {
@@ -291,7 +286,7 @@ function CustomerWhiteTable(props) {
       },
     },
     {
-      title: <FormattedMessage id="app.owner" defaultMessage="Owner" />,
+      title: "Owner" ,
       dataIndex: "ownerName",
       width: "8%",
       // ...getColumnSearchProps('ownerName'),

@@ -4,11 +4,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { StyledTabs } from "../../../Components/UI/Antd";
-
 import { TabsWrapper } from "../../../Components/UI/Layout";
 import ContactsIcon from '@mui/icons-material/Contacts';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
-import EmployeeTreeMap from "../../Employees/Child/EmployeeTable/EmployeeTreeMap";
+const EmployeeTreeMap = lazy(() => import("../../Employees/Child/EmployeeTable/EmployeeTreeMap"));
 const KpiList = lazy(() => import("./KpiList"));
 const TabPane = StyledTabs.TabPane;
 
@@ -42,35 +41,6 @@ console.log(this.props.rowdata)
                       Performance
                     </span>
                   </span>
-                  {/* {activeKey === "1" && (
-                    <>
-                      <Tooltip 
-                        title={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
-                      >
-                      
-                          <PlusOutlined
-                            type="plus"
-                           
-                            tooltiptitle={
-                              <FormattedMessage
-                                id="app.Create"
-                                defaultMessage="Create"
-                              />
-                            }
-                            onClick={() => {
-                              handleInvestorContactModal(true);
-                            }}
-                            size="0.875em"
-                          />
-                       
-                      </Tooltip>
-                    </>
-                  )} */}
                 </>
               }
               key="1"
@@ -83,8 +53,6 @@ console.log(this.props.rowdata)
               </Suspense>
             </TabPane>
 
-           
-
             <TabPane
               tab={
                 <>
@@ -95,25 +63,7 @@ console.log(this.props.rowdata)
                     360 View
                     
                   </span>
-                  {/* {activeKey === "2" && (
-                    <>
-                      <PlusOutlined
-                        type="plus"
-                        title={
-                          <FormattedMessage
-                            id="app.uploaddocument"
-                            defaultMessage="Upload Document"
-                          />
-                        }
-                        onClick={() => handleInvestorDocumentUploadModal(true)}
-                        size="0.875em"
-                        style={{
-                          marginLeft: "0.3125em",
-                          verticalAlign: "center",
-                        }}
-                      />
-                    </>
-                  )} */}
+                 
                 </>
               }
               key="2"
@@ -125,15 +75,7 @@ console.log(this.props.rowdata)
           />
               </Suspense>
             </TabPane>
-
-
-
-        
-            
-
-           
-          
-          </StyledTabs>
+        </StyledTabs>
         </TabsWrapper>
         
            

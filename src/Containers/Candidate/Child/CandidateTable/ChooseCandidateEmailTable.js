@@ -1,8 +1,8 @@
 import React, { useEffect,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
-import moment from "moment";
+
+import dayjs from "dayjs";
 import { StyledTable } from "../../../../Components/UI/Antd";
 const EmailSkillLoadMore = lazy(() =>
   import("../CandidateTable/EmailSkillLoadMore")
@@ -42,10 +42,8 @@ function ChooseCandidateEmailTable(props) {
    
     },
     {
-      // title: "Name",
-      title: (
-        <FormattedMessage id="app.name" defaultMessage="Name" />
-      ),
+      title: "Name",
+      
       hidden:tablevalue.includes("Name") ? false : true,
       dataIndex: "name",
       defaultSortOrder: "ascend",
@@ -75,24 +73,19 @@ function ChooseCandidateEmailTable(props) {
     
   
     {
-      //title: "End Date",
-      title: <FormattedMessage id="app.availlabillity" defaultMessage="Availability" />,
+      title: "Availability",
      hidden:tablevalue.includes("Available") ? false : true,
       dataIndex: "availableDate",
       width: "20%",
       render: (text, item) => {
-        const endDate = moment(item.availableDate).format("ll");
+        const endDate = dayjs(item.availableDate).format("ll");
         return <span>{endDate}</span>;
     },
   },
     {
       //title: "Value",
-      title: (
-        <FormattedMessage
-          id="app.mobile"
-          defaultMessage="Mobile"
-        />
-      ),
+      title: "Mobile"
+       ,
      hidden:tablevalue.includes("Mobile") ? false : true,
       dataIndex: "mobileNo",
       width: "20%",
@@ -101,12 +94,8 @@ function ChooseCandidateEmailTable(props) {
 
     {
       //title: "sponsor",
-      title: (
-        <FormattedMessage
-          id="app.email"
-          defaultMessage="Email"
-        />
-      ),
+      title:"Email"
+        ,
      hidden:tablevalue.includes("Email") ? false : true,
       dataIndex: "email",
       width: "20%",

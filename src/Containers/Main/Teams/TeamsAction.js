@@ -694,16 +694,16 @@ export const addKpi = (data,employeeId,year,quarter) => (dispatch) => {
         Swal.fire({
           icon: 'error',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500
         });
       } else {
        
         Swal.fire({
           icon: 'success',
           title: 'KPI added Successfully!',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500
         });
       }
       dispatch({
@@ -790,6 +790,8 @@ export const deleteKpiData = (employeeKpiLinkId,orgId) => (dispatch, getState) =
       Swal.fire({
         icon: 'success',
         title: 'KPI deleted Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       console.log(res);
       //  dispatch(getScheduler(orgId));
@@ -825,6 +827,8 @@ export const updateCompletedValue= (data,employeeId, cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'KPI Value updated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("Value has been updated successfully!");
       console.log(res);
@@ -860,6 +864,8 @@ export const updateAssignedValue= (data,employeeId, cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'KPI Value updated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("Value has been updated successfully!");
       console.log(res);

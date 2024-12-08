@@ -1,20 +1,15 @@
 
-import React, { Component, useEffect, useState } from "react";
+import React, {  useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Input, Popconfirm, Space, Button, Badge } from "antd";
-import { EditOutlined, SearchOutlined } from "@ant-design/icons";
-import Highlighter from "react-highlight-words";
+import { Tooltip, Badge } from "antd";
 import OnlyWrapCard from "../../../../Components/UI/Layout/OnlyWrapCard"
-import moment from "moment";
-
-import InfiniteScroll from "react-infinite-scroll-component";
+import dayjs from "dayjs";
 
 import PaidIcon from '@mui/icons-material/Paid';
  import {getOrderClosedList} from "../../DashboardAction"
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import EventRepeatIcon from '@mui/icons-material/EventRepeat';
-import { dashboardReducer } from "../../DashboardReducer";
 import { MultiAvatar2 } from "../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
@@ -31,7 +26,7 @@ useEffect(()=>{
     }else {
         props.getOrderClosedList(props.orgId,props.endDate,props.startDate,)
       }
-   }, [props.orgId,props.startDate,props.endDate]);
+   }, [props.orgId,props.endDate,props.startDate]);
 
 
 
@@ -39,15 +34,15 @@ useEffect(()=>{
   return (
     <>
    
-   <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
+   <OnlyWrapCard style={{ backgroundColor: "white" }}>
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
-          <div className=" md:w-[12rem]">Order ID</div>
-          <div className=" md:w-[10.4rem]">Customer</div>
-          <div className=" md:w-[12.01rem] ">Contact</div>
-          <div className="md:w-[8.12rem]">#Units</div>
-          <div className="md:w-[4rem]">Owner</div>
-          <div className="md:w-[7.1rem]">Creation Date</div>
-          <div className="md:w-[37rem]">Revised</div>
+          <div className="text-xs font-poppins font-bold md:w-[12rem]">Order ID</div>
+          <div className="text-xs font-poppins font-bold md:w-[10.4rem]">Customer</div>
+          <div className="text-xs font-poppins font-bold md:w-[12.01rem] ">Contact</div>
+          <div className="text-xs font-poppins font-bold md:w-[8.12rem]">#Units</div>
+          <div className="text-xs font-poppins font-bold md:w-[4rem]">Owner</div>
+          <div className="text-xs font-poppins font-bold md:w-[7.1rem]">Creation Date</div>
+          <div className="text-xs font-poppins font-bold md:w-[37rem]">Revised</div>
 
 
         </div>
@@ -61,11 +56,11 @@ useEffect(()=>{
           {props.orderClosedList.length ?
             <>
               {props.orderClosedList.map((item) => {
-                const currentdate = moment().format("DD/MM/YYYY");
-                const date = moment(item.creationDate).format("DD/MM/YYYY");
+                const currentdate = dayjs().format("DD/MM/YYYY");
+                const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 
                 const diff = Math.abs(
-                  moment().diff(moment(item.lastRequirementOn), "days")
+                  dayjs().diff(dayjs(item.lastRequirementOn), "days")
                 );
                 const dataLoc = ` Address : ${item.address && item.address.length && item.address[0].address1
                   } 

@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import {  StyledTabs } from "../../Components/UI/Antd";
 import TabsWrapper1 from "../../Components/UI/Layout/TabsWrapper1";
-import { FormattedMessage } from "react-intl";
+
 const PitchHotColdWarm = lazy(()=>import("./PitchHotColdWarm"));
 
 const TabPane = StyledTabs.TabPane;
@@ -35,10 +35,7 @@ class InvestorsPitchTab extends Component {
                 <>
                   <ListAltIcon style={{fontSize:"1.1rem"}}/>
                  
-               <span class=" ml-1 font-semibold"><FormattedMessage
-              id="app.pitch"
-              defaultMessage="Pitch"
-            /></span>
+               <span class=" ml-1 font-semibold">Pitch</span>
               
 
                   {activeKey === "1" && (

@@ -1,6 +1,5 @@
 import * as types from "./RefurbishActionTypes";
 import dayjs from "dayjs";
-import moment from "moment";
 
 const initialState = {
   viewType: "list",
@@ -8,9 +7,26 @@ const initialState = {
   fetchingTodayProductionError: false,
   production: [],
 
+  fetchingTabSpareList: false,
+          fetchingTabSpareListError: false,
+          tabSpareList:[],
+
+  fetchingLevelData:false,
+  fetchingLevelDataError:false,
+  levelData:[],
+
   fetchingNoOfRepairTechnicianById: false,
   fetchingNoOfRepairTechnicianByIdError: false,
   repairByTechnician: [],
+
+  updatingProcessNwTask: false,
+  updatingProcessNwTaskError: false,
+
+  allTaskModal:false,
+
+  allSpareProcessModal:false,
+
+  addRefurbishLevelModal:false,
 
   fetchingProductionUrgent: false,
   fetchingProductionUrgentError: false,
@@ -81,6 +97,9 @@ const initialState = {
   fetchingTaskByPhoneId: false,
   fetchingTaskByPhoneIdError: false,
   taskByPhone: [],
+
+  getToExchange: false,
+  getToExchangeError: false,
 
   fetchingAllInputSearchData:false,
   fetchingAllInputSearchDataError:false,
@@ -720,6 +739,9 @@ export const refurbishReducer = (state = initialState, action) => {
     case types.HANDLE_ALL_SPARE_MODAL:
       return { ...state, approveSpareModal: action.payload };
 
+      case types.HANDLE_ALL_SPARE_PROCESS_MODAL:
+        return { ...state, allSpareProcessModal: action.payload };
+
     case types.GET_PRODUCTION_USER_BYID_REQUEST:
       return { ...state, fetchingProductionUserById: true };
     case types.GET_PRODUCTION_USER_BYID_SUCCESS:
@@ -740,6 +762,9 @@ export const refurbishReducer = (state = initialState, action) => {
 
     case types.HANDLE_PRODUCTION_ORDERID_MODAL:
       return { ...state, productionOrderIdModal: action.payload };
+
+      case types.HANDLE_REFURBISH_LEVEL_MODAL:
+        return { ...state, addRefurbishLevelModal: action.payload };
 
     case types.HANDLE_PHONE_NOTE_PRODUCTION_MODAL:
       return { ...state, phoNoteProductionModal: action.payload };
@@ -1074,6 +1099,40 @@ export const refurbishReducer = (state = initialState, action) => {
         fetchingRepairorderById: false,
         fetchingRepairorderByIdError: true,
       };
+
+      case types.GET_TAB_SPARE_LIST_REQUEST:
+        return { ...state, fetchingTabSpareList: true };
+      case types.GET_TAB_SPARE_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingTabSpareList: false,
+          tabSpareList: [...state.tabSpareList, ...action.payload],
+        };
+      case types.GET_TAB_SPARE_LIST_FAILURE:
+        return {
+          ...state,
+          fetchingTabSpareList: false,
+          fetchingTabSpareListError: true,
+        };
+
+
+      case types.GET_LEVEL_DATA_REQUEST:
+      return { ...state, fetchingLevelData: true };
+    case types.GET_LEVEL_DATA_SUCCESS:
+      return {
+        ...state,
+        fetchingLevelData: false,
+         levelData: action.payload,
+
+        //opportunityByUserId: [...state.opportunityByUserId, ...action.payload],
+      };
+    case types.GET_LEVEL_DATA_FAILURE:
+      return {
+        ...state,
+        fetchingLevelData: false,
+        fetchingLevelDataError: true,
+      };
+
     case types.HANDLE_REPAIR_PHONE_NOTES_ORDER_MODAL:
       return { ...state, phoNotesRepairOrderModal: action.payload };
 
@@ -1082,6 +1141,9 @@ export const refurbishReducer = (state = initialState, action) => {
 
         case types.HANDLE_SPARE_PROCESS:
           return { ...state, processSpareModal: action.payload };
+
+          case types.HANDLE_ALL_TASK_MODAL:
+            return { ...state, allTaskModal: action.payload };
 
     case types.HANDLE_QC_PHONE_NOTES_ORDER_MODAL:
       return { ...state, phoNotesQCOrderModal: action.payload };
@@ -1470,6 +1532,27 @@ export const refurbishReducer = (state = initialState, action) => {
         updatingProcessTaskError: true,
       };
 
+      case types.UPDATE_PROCESS_NWTASK_REQUEST:
+      return { ...state, updatingProcessNwTask: true };
+    case types.UPDATE_PROCESS_NWTASK_SUCCESS:
+      return {
+        ...state,
+        updatingProcessNwTask: false,
+        taskByPhone: state.taskByPhone.map((item) => {
+          if (item.phoneTaskId == action.payload.phoneTaskId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.UPDATE_PROCESS_NWTASK_FAILURE:
+      return {
+        ...state,
+        updatingProcessNwTask: false,
+        updatingProcessNwTaskError: true,
+      };
+
     case types.GET_TASK_ITEM_COUNT_REQUEST:
       return { ...state, fetchingItemTaskCount: true };
     case types.GET_TASK_ITEM_COUNT_SUCCESS:
@@ -1578,6 +1661,26 @@ export const refurbishReducer = (state = initialState, action) => {
         updatingPauseStatus: false,
         updatingPauseStatusError: true,
       };
+
+      case types.GET_TO_EXCHANGE_REQUEST:
+        return { ...state, getToExchange: true };
+      case types.GET_TO_EXCHANGE_SUCCESS:
+        return {
+          ...state,
+          getToExchange: false,
+          repairPhone: state.repairPhone.map((item) =>
+            item.phoneId === action.payload.phoneId
+              ? action.payload
+              : item
+          ),
+  
+        };
+      case types.GET_TO_EXCHANGE_FAILURE:
+        return {
+          ...state,
+          getToExchange: false,
+          getToExchangeError: true,
+        };
 
     case types.ADD_LEAD_REQUEST:
       return { ...state, addingLead: true };
@@ -1731,6 +1834,24 @@ export const refurbishReducer = (state = initialState, action) => {
                     orderPhoneList: [], 
                   };
 
+
+                  case types.GET_SEARCH_SPARE_IMEI_REQUEST:
+                    return { ...state, fetchingimeiSearchData: true };
+                  case types.GET_SEARCH_SPARE_IMEI_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingimeiSearchData: false,
+                      tabSpareList: action.payload,
+                     
+                    };
+                  case types.GET_SEARCH_SPARE_IMEI_FAILURE:
+                    return { ...state, fetchingimeiSearchDataError: true };
+            
+                    case types.HANDLE_CLAER_REDUCER_SPARE_REFURBISH:
+                              return { ...state, 
+                                tabSpareList: [], 
+                              };
+
                   case types.GET_SEARCH_IMEIPHONE_REQUEST:
         return { ...state, fetchingimeiSearchPhoneData: true };
       case types.GET_SEARCH_IMEIPHONE_SUCCESS:
@@ -1741,7 +1862,9 @@ export const refurbishReducer = (state = initialState, action) => {
          
         };
       case types.GET_SEARCH_IMEIPHONE_FAILURE:
-        return { ...state, fetchingimeiSearchPhoneDataError: true };
+        return { ...state, 
+          fetchingimeiSearchPhoneData: false,
+          fetchingimeiSearchPhoneDataError: true };
 
         case types.HANDLE_CLAER_PHONEREDUCER_DATA_REFURBISH:
                   return { ...state, 

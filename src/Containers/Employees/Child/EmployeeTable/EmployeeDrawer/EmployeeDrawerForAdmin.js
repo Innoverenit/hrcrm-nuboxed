@@ -1,30 +1,56 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
-import UserAdminForm from "../EmployeeDrawer/UserAdminForm"
 import {
   MainWrapper,
 } from "../../../../../Components/UI/Layout";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
 import {
-  DrawerHeaderText,
   TextInput,
 } from "../../../../../Components/UI/Elements";
+import { BundleLoader } from "../../../../../Components/Placeholder";
 import { handleEmployeeDrawerForAdmin } from "../../../EmployeeAction";
 import { MultiAvatar } from "../../../../../Components/UI/Elements";
-import EmployeeJumpStartForAdmin from "./EmployeeJumpStartForAdmin";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
+const UserAdminForm =lazy(()=>import("../EmployeeDrawer/UserAdminForm"));
+const EmployeeJumpStartForAdmin =lazy(()=>import("./EmployeeJumpStartForAdmin"));
 class EmployeeDrawerForAdmin extends Component {
   constructor(props) {
     super(props);
     this.state = {
       isLevelTextInputOpen: false,
       isAddModuleNameInputOpen: false,
+      translatedMenuItems: [],
     };
   }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "1024",//0   Functions
+        "1643",//1 Custom Function
+        "1078",//2Save"
+        "1079",//3 Cancel"
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
 
   handleAddCustomModule = () => {
     this.setState((prevState) => ({
@@ -63,26 +89,13 @@ class EmployeeDrawerForAdmin extends Component {
         <StyledDrawer
           title={
             <div className="HeaderText">
-              <DrawerHeaderText fontSize={"1.375em"}>
-                <span
-                  style={{
-                    fontSize: "1em",
-
-                    marginLeft: "0.3125em",
-                    cursor: "pointer",
-                  }}
-                >
+              <div class="text-lg">
+                <span className="ml-1 cursor-pointer" >
                 </span>
-              </DrawerHeaderText>
+              </div>
               <div
-                className="logo"
-                style={{
-                  position: "absolute",
-                  marginLeft: "15.9375em",
-                  bottom: "-20.1875em",
-                  boxShadow: " 0 0.75em 0.375em -0.375em rgb(46,44,44)",
-                }}
-              >
+                className="logo absolute ml-[15.9375rem] bottom-[-20.1875rem] box-[0 0.75em 0.375em -0.375em rgb(46,44,44)] "
+                             >
                 <MultiAvatar
                   imgHeight={30}
                   imgWidth={30}
@@ -96,48 +109,42 @@ class EmployeeDrawerForAdmin extends Component {
           onClose={this.handleCloseDrawer}
           visible={employeeDrawerVisibleForAdmin}
         >
+           <Suspense fallback={<BundleLoader />}>
           <UserAdminForm
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
            employeeId={this.props.employeeId}
           />
           <EmployeeJumpStartForAdmin
-
+  translateText={this.props.translateText}
+  selectedLanguage={this.props.selectedLanguage}
           />
+          </Suspense>
           <div class=" flex justify-between">
             <div class=" h-full w-full"
             >
               <div class=" w-full" >
               <div class=" flex justify-between">
-                  <div 
-                    style={{
-                      paddingLeft: "0.625em",
-                      fontSize: "1.25em",
-                      fontWeight: "bold",
-                      position: "sticky",
-                      marginTop: "0.9375em",
-                    }}
-                  >
-                    Functions
+                  <div  className=" pl-2 text-sm font-bold sticky mt-3" >
+                  {this.state.translatedMenuItems[0]}{/* Functions */}
                   </div>
 
                   <div class=" mt-1">
                     <Button type="primary" onClick={this.handleAddCustomModule}>
-                      <PlusOutlined type="plus" />
+                      <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" />
                     </Button>
                   </div>
                 </div>
                 <MainWrapper style={{ height: "30em", marginTop: "0.625em" }}>
                   <div class=" mt-1">
+                  <div className=" text-xs font-poppins font-bold text-black ">{this.state.translatedMenuItems[1]}</div>
                     {this.state.isAddModuleNameInputOpen && (
+                     
                       <div>
                         <TextInput
-                          placeholder="Custom Function"
+                          placeholder={this.state.translatedMenuItems[1]}
                           name="departmentName"
-                          label={
-                            <FormattedMessage
-                              id="app.departmentName"
-                              defaultMessage="Custom Function"
-                            />
-                          }
+                         
                           onChange={this.handleChange}
                           width={"58%"}
                         />
@@ -148,11 +155,7 @@ class EmployeeDrawerForAdmin extends Component {
                           }}
                           htmlType="submit"
                           onClick={this.handleAddCustomeDepartment}
-                        >
-                          <FormattedMessage
-                            id="app.save"
-                            defaultMessage="Save"
-                          />
+                        >{this.state.translatedMenuItems[2]}
                         </Button>
                         &nbsp;
                         <Button
@@ -162,10 +165,7 @@ class EmployeeDrawerForAdmin extends Component {
                           }}
                           onClick={this.handleCancelCustomeDepartment}
                         >
-                          <FormattedMessage
-                            id="app.cancel"
-                            defaultMessage="Cancel"
-                          />
+                         {this.state.translatedMenuItems[3]}
                         </Button>
                       </div>
                     )}

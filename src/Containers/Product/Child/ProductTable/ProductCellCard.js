@@ -34,6 +34,27 @@ const ProductCellCard = (props) => {
         props.getCatalogueCell(props.orgId)
     },[]);
 
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+   
+    useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          const itemsToTranslate = [
+        "744",  //  "Cell",//0
+         "1622", //   "Tag Production",//1
+         "1623", //   "Target Units/day",//2
+          "154",//   "Submit"
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+        } catch (error) {
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
 
     useEffect(() => {
       const fetchData = async () => {
@@ -123,12 +144,18 @@ if(props.fetchingCatalogueCell){
              <BundleLoader/>
            </div>
           ) : (
-            <div className=' flex justify-end sticky z-auto'>
-            <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-              <div className=" flex justify-between w-[48%] px-2 bg-transparent font-bold sticky top-0 z-10">          <div className=""></div>
-                <div className=" md:w-[6rem]">#Cell</div>
-                <div className="md:w-[7.2rem] ">Tag Production</div>
-                <div className="w-[7rem]">Target Units/day</div>    </div>
+            <div className=' flex sticky z-auto'>
+            <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+              <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">      
+                <div className=""></div>
+                <div className=" md:w-[6rem]">#{translatedMenuItems[0]}</div>
+                <div className="md:w-[7.2rem] ">
+                {translatedMenuItems[1]}
+                {/* Tag Production */}
+                </div>
+                <div className="w-[7rem]">
+                {translatedMenuItems[2]} {/* Target Units/day */}
+                  </div>    </div>
                 
     
                {props.cellCardList .sort((a, b) => b.usedInd - a.usedInd)
@@ -137,19 +164,19 @@ if(props.fetchingCatalogueCell){
                   <div >
                     <div className="flex rounded  mt-1 bg-white h-8 items-center p-1">
     
-                      <div className=" flex font-medium flex-col md:w-[9.1rem] max-sm:w-full  ">
-                        <div class="text-sm  font-semibold  font-poppins cursor-pointer">
-                          <div className="font-normal text-sm  font-poppins">
+                      <div className=" flex   md:w-[9.1rem] max-sm:w-full  ">
+                        <div class="text-xs  font-bold  font-poppins cursor-pointer h-8  shadow-[#a3abb980] bg-[white]">
+                          <div className="font-poppins ">
                             <div> {item.cellChamber}</div>
                           </div>
                         </div>
                       </div>
     
-                      <div className=" flex font-medium flex-col  md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                      <div className=" flex    md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between  h-8 shadow-[#a3abb980] bg-[white] ">
     
                         <div class=" text-xs  font-poppins">
                         
-                          <div className="font-normal text-sm  font-poppins">
+                          <div className="   font-poppins">
                             <ProductCellToggle 
                             cellId={item.cellId}
                             usedInd={item.usedInd}
@@ -161,15 +188,9 @@ if(props.fetchingCatalogueCell){
                         </div>
     
                       </div>
-
-
-                     
-
-
-
-                      <div className="flex font-medium flex-col md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between">
+                      <div className="flex   md:w-[7.1rem] max-sm:flex-row w-full max-sm:justify-between">
               <div className="text-xs  font-poppins">
-                <div className="font-normal text-sm  font-poppins" style={{display:"flex",width:"14em"}}>
+                <div className="   font-poppins" style={{display:"flex",width:"14em"}}>
                   {item.usedInd ? (
                     <>
                       <Input
@@ -185,7 +206,7 @@ if(props.fetchingCatalogueCell){
                         type="primary"
                         onClick={() => handleSubmit(item.cellChamberLinkId)}
                       >
-                        Submit
+                        {translatedMenuItems[3]}{/* Submit */}
                       </Button>
                     </>
                    ) : null} 
@@ -195,8 +216,8 @@ if(props.fetchingCatalogueCell){
 
 
 
-            <div className="flex font-medium flex-col md:w-26 max-sm:justify-between w-full max-sm:flex-row">
-                                    <div className="font-normal text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
+            <div className="flex   md:w-26 max-sm:justify-between w-full max-sm:flex-row">
+                                    <div className="  text-[0.85rem]  font-poppins" style={{ marginLeft: "9em" }}>
                                       {item.updatedBy!=null&&
                                     <MultiAvatar
                                                                     primaryTitle={item.updatedBy}

@@ -18,13 +18,14 @@ class EmployeesActionRight extends React.Component {
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
   handleClicked = (value) => {
     this.setState({
-      isClicked: value,
-      
+      isClicked: value,    
     });
-    this.fetchMenuTranslations();
+    
   };
   componentDidUpdate(prevProps) {
     if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
@@ -35,7 +36,7 @@ class EmployeesActionRight extends React.Component {
   fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-       'Add'
+     "85" //  'Add'
        ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -58,7 +59,7 @@ class EmployeesActionRight extends React.Component {
               <a
                 href={`${base_url}/excel/export/vendor/user/employee/${userId}`}
               >
-                <InsertDriveFileIcon style={{ fontSize: "x-large" }} />
+                <InsertDriveFileIcon className="!text-icon" />
               </a>
             </Tooltip>
           )}

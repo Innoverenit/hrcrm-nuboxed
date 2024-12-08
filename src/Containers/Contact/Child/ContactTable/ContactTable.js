@@ -1,18 +1,15 @@
-import React, { Component, useEffect, useState, useMemo, lazy } from "react";
+import React, { Component, useEffect, useState, useMemo, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import InfiniteScroll from "react-infinite-scroll-component";
-import moment from "moment";
-import {
-  SearchOutlined, MailOutlined
-} from "@ant-design/icons";
-import EditIcon from '@mui/icons-material/Edit';
-import styled from "styled-components";
+import dayjs from "dayjs";
+import SearchIcon from '@mui/icons-material/Search';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
 import { StyledTable, } from "../../../../Components/UI/Antd";
+import { BundleLoader } from "../../../../Components/Placeholder";
 import { Button, Tooltip, Input, Select } from "antd";
 import Highlighter from "react-highlight-words";
 import { MultiAvatar, MultiAvatar2, SubTitle } from "../../../../Components/UI/Elements";
@@ -180,7 +177,7 @@ function ContactTable(props) {
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
             // icon="search"
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             size="small"
             style={{ width: 90 }}
           >
@@ -207,7 +204,7 @@ function ContactTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />
@@ -317,8 +314,8 @@ function ContactTable(props) {
       },
     },
     {
-      //title: "Name",
-      title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+      title: "Name",
+      
       dataIndex: "fullName",
       ...getColumnSearchProps("fullName"),
       width: "15%",
@@ -326,14 +323,17 @@ function ContactTable(props) {
       render: (name, item, i) => {
         const fullName = `${item.salutation || ""} ${item.firstName ||
           ""} ${item.middleName || ""} ${item.lastName || ""} `;
-        const currentdate = moment().format("DD/MM/YYYY");
-        const date = moment(item.creationDate).format("DD/MM/YYYY");
+        const currentdate = dayjs().format("DD/MM/YYYY");
+        const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         console.log(date, currentdate, currentdate === date);
         return (
           <>
             <ContactDetailView
               contactId={item.contactId}
               contactName={fullName}
+              translateText={props.translateText}
+              selectedLanguage={props.selectedLanguage}
+            translatedMenuItems={props.translatedMenuItems}
             />
             &nbsp;&nbsp;
             {date === currentdate ? (
@@ -351,25 +351,16 @@ function ContactTable(props) {
       },
     },
 
-    // {
-    //   //title: "Type",
-    //   title: <FormattedMessage id="app.contactType" defaultMessage="Type" />,
-    //   dataIndex: "contactType",
-    //   // width: "15%",
-    // },
-    // specify the condition of filtering result
-    // here is that finding the name started with `value`
+    
     {
-      title: <FormattedMessage id="app.company" defaultMessage="Company" />,
+      title: "Company" ,
       dataIndex: "tagWithCompany",
       width: "12%",
       ...getColumnSearchProps("tagWithCompany"),
     },
     {
-      //title: "Designation",
-      title: (
-        <FormattedMessage id="app.designation" defaultMessage="Designation" />
-      ),
+     title: "Designation",
+     
       dataIndex: "designation",
       width: "12%",
       defaultSortOrder: "descend",
@@ -381,10 +372,8 @@ function ContactTable(props) {
       },
     },
     {
-      //title: "Department",
-      title: (
-        <FormattedMessage id="app.department" defaultMessage="Department" />
-      ),
+    title: "Department",
+     
       width: "12%",
       dataIndex: "department",
       filters: departmentNameOption,
@@ -393,13 +382,13 @@ function ContactTable(props) {
       },
     },
     {
-      title: <FormattedMessage id="app.lastPost" defaultMessage="Last Posted on" />,
+      title: "Last Posted on" ,
       dataIndex: "lastRequirementOn",
       width: "19%",
       sorter: (a, b) => a.lastRequirementOn - b.lastRequirementOn,
       render: (text, item) => {
-        // const lastRequirementOn = moment(item.lastRequirementOn ).format("ll");
-        const diff = Math.abs(moment().diff(moment(item.lastRequirementOn), 'days'));
+        // const lastRequirementOn = dayjs(item.lastRequirementOn ).format("ll");
+        const diff = Math.abs(dayjs().diff(dayjs(item.lastRequirementOn), 'days'));
         const date = diff + 1
         return <>
           {item.lastRequirementOn === null ? "None" :
@@ -412,13 +401,13 @@ function ContactTable(props) {
     },
 
     {
-      title: <FormattedMessage id="app.Portal Acess" defaultMessage="Portal Acess" />,
+      title: "Portal Acess" ,
       width: "8%",
     },
 
 
     {
-      title: <FormattedMessage id="app.owner" defaultMessage="Owner" />,
+      title: "Owner" ,
       dataIndex: "ownerName",
       // ...getColumnSearchProps('ownerName'),
       width: "7%",
@@ -566,7 +555,7 @@ function ContactTable(props) {
       render: (name, item, i) => {
         return (
           <Tooltip
-            title={<FormattedMessage id="app.edit" defaultMessage="Edit" />}
+            title="Edit"
           >
             <span
               style={{ cursor: "pointer" }}
@@ -650,6 +639,7 @@ function ContactTable(props) {
         dataSource={props.contactByUserId}
       />
       </InfiniteScroll>
+      <Suspense fallback={<BundleLoader />}>      
       <UpdateContactModal
         contactData={currentContactId}
         // fullName={currentContactId}
@@ -680,6 +670,7 @@ function ContactTable(props) {
         addDrawerContactModal={props.addDrawerContactModal}
         handleContactDrawerModal={props.handleContactDrawerModal}
       />
+      </Suspense>
     </>
   );
 }
@@ -725,36 +716,3 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 export default connect(mapStateToProps, mapDispatchToProps)(ContactTable);
-const AppIcon = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "123%" }}
-  ></i>
-);
-
-const PulseIcon = styled(AppIcon)`
-  color: #df9697;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;
-
-const AppIcon1 = (props) => (
-
-  <EditIcon
-    className={`pen-to-square ${props.className}`}
-
-  />
-
-
-
-);
-
-const EditIcon1 = styled(AppIcon1)`
-  color: black;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;

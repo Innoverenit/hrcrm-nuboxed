@@ -1,6 +1,6 @@
 import React, { lazy, Component,Suspense } from "react";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../Components/Placeholder";
 const EmployeeForm = lazy(() => import("../Child/EmployeeForm"));
 
@@ -12,11 +12,8 @@ class AddEmployeeModal extends Component {
     return (
       <>
         <StyledDrawer
-          title={<FormattedMessage
-            id="app.newjoinee"
-            defaultMessage="New Joinee"
-          />}
-
+          title="New Joinee"
+       
           width={drawerWidth}
           visible={addEmployeeModal}
           onClose={() => handleEmployeeModal(false)}

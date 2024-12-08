@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip, Switch } from "antd";
 import { getTasks } from "../../../../Containers/Settings/Task/TaskAction";
-import { FormattedMessage } from "react-intl";
+
 import { Formik, Form, Field, FastField } from "formik";
 import dayjs from "dayjs";
 import {
@@ -11,7 +11,8 @@ import {
     getOpportunityListByCustomerId,
   } from "../../CustomerAction";
 import {getAllCustomerData} from "../../../Customer/CustomerAction"
-import { ExclamationCircleOutlined } from "@ant-design/icons";
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+
 import { getUnits } from "../../../../Containers/Settings/Unit/UnitAction";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
@@ -509,7 +510,7 @@ const [priority,setpriority]=useState(props.selectedTask
             ...rest
           }) => (
             <div class="overflow-y-auto h-[34rem] overflow-x-hidden max-sm:h-[30rem]">
-            <Form className="form-background">
+            <Form className="form-background h-wk">
               <div class="flex justify-around pr-2 max-sm:flex-col">
                
                 <div class=" h-full w-w47.5 max-sm:w-wk">
@@ -534,12 +535,8 @@ const [priority,setpriority]=useState(props.selectedTask
                       <div class=" flex justify-between flex-col w-full">
                         
                       <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                            {/* Priority */}
-                            <FormattedMessage
-                              id="app.priority"
-                              defaultMessage="priority"
-                            />
-                            
+                            Priority
+                           
                           </div>
                         
                           <div class="flex">
@@ -601,10 +598,7 @@ const [priority,setpriority]=useState(props.selectedTask
                  
                     <div class=" w-1/2  max-sm:w-wk ">
                       
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
-                              id="app.type"
-                              defaultMessage="type"
-                            /></div>
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">type</div>
                       <select 
                         style={{ border: "0.06em solid #aaa" }}
                        onChange={handleTaskTypeChange}
@@ -616,7 +610,7 @@ const [priority,setpriority]=useState(props.selectedTask
             </option>
           ))}
         </select>
-                      {/* <StyledLabel>Type</StyledLabel>
+                      {/* <div class=" text-xs font-bold font-poppins text-black">Type</div>
                       <Field
                     name="taskTypeId"
                     // selectType="customerList"
@@ -646,10 +640,7 @@ const [priority,setpriority]=useState(props.selectedTask
                     {/* {values.taskTypeId === "TSK42340139329302023" && ( */}
                       <div class=" w-1/2 ml-2 max-sm:w-wk">
                           
-                      <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col"><FormattedMessage
-                              id="app.workflow"
-                              defaultMessage="workflow"
-                            /></div>
+                      <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Type</div>
                           <select
                  style={{ border: "0.06em solid #aaa" }}
                        onChange={handleWorkflowChange}
@@ -664,93 +655,15 @@ const [priority,setpriority]=useState(props.selectedTask
             </option>
           ))}
         </select>
-                      {/* <StyledLabel> Workflow</StyledLabel>
-
-                      <Field
-                    name="taskType"
-                    // selectType="contactListFilter"
-                    isColumnWithoutNoCreate
-                 
-                    // component={SearchSelect}
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        this.handleCheckListOptions("taskTypeId", values.taskTypeId)
-                      )
-                        ? this.handleCheckListOptions("taskTypeId", values.taskTypeId)
-                        : []
-                    }
-                    value={values.taskType}
-                    filterOption={{
-                      filterType: "taskTypeId",
-                      filterValue: values.taskTypeId,
-                    }}
-                    disabled={!values.taskTypeId}
-                    isColumn
-                    inlineLabel
-                  /> */}
-                          {/* <Field
-                            name="taskChecklistId"
-                            // selectType="contactListFilter"
-                            isColumnWithoutNoCreate
-                            isRequired
-                            placeolder="Select type"
-                            // label={
-                            //   <FormattedMessage
-                            //     id="app.taskList"
-                            //     defaultMessage="Task CheckList"
-                            //   />
-                            // }
-                            // component={SearchSelect}
-                            component={SelectComponent}
-                            options={
-                              Array.isArray(TaskOptions) ? TaskOptions : []
-                            }
-                            value={values.taskChecklistId}
-                            isColumn
-                            inlineLabel
-                          /> */}
+                     
                      
                       </div>
-                    {/* )} */}
-                      {/* <div class=" w-1/2">
-             
-                      <StyledLabel>Task Stages</StyledLabel>
-                      <Field
-                    name="taskChecklistId"
-                 
-                    isColumnWithoutNoCreate
                 
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        this.taskStageOptions("taskTypeId", values.taskTypeId)
-                      )
-                        ? this.taskStageOptions("taskTypeId", values.customerId)
-                        : []
-                    }
-                     value={values.taskChecklistId}
-                    filterOption={{
-                      filterType: "taskTypeId",
-                      filterValue: values.taskTypeId,
-                    }}
-                    disabled={!values.taskTypeId}
-                    isColumn
-                    inlineLabel
-                  />
-                    
-                     
-                      </div> */}
-
-
                  
                     <div class="w-[24%]">
                      
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                        <FormattedMessage
-                          id="app.status"
-                          defaultMessage="status"
-                        />
+                     status
                       
                       </div>
 
@@ -761,12 +674,8 @@ const [priority,setpriority]=useState(props.selectedTask
                             type="To Start"
                             iconType="fa-hourglass-start"
                             tooltip="To Start"
-                            tooltipTitle={
-                              <FormattedMessage
-                                id="app.tostart"
-                                defaultMessage="To Start"
-                              />
-                            }
+                            tooltipTitle="To Start"
+                             
                             status={active}
                             onClick={() => glassButtoClick("To Start")}
                           />
@@ -775,12 +684,8 @@ const [priority,setpriority]=useState(props.selectedTask
                             type="In Progress"
                             iconType="fa-hourglass-half"
                             tooltip="In Progress"
-                            tooltipTitle={
-                              <FormattedMessage
-                                id="app.inprogress"
-                                defaultMessage="inprogress"
-                              />
-                            }
+                            tooltipTitle="inprogress"
+                            
                             status={active}
                             onClick={() => glassButtoClick("In Progress")}
                           />
@@ -789,12 +694,7 @@ const [priority,setpriority]=useState(props.selectedTask
                             type="Completed"
                             iconType="fa-hourglass"
                             tooltip="Completed"
-                            tooltipTitle={
-                              <FormattedMessage
-                                id="app.completed"
-                                defaultMessage="completed"
-                              />
-                            }
+                            tooltipTitle="completed"
                             status={active}
                             onClick={() => glassButtoClick("Completed")}
                             //  status={item.taskStatus}
@@ -809,76 +709,9 @@ const [priority,setpriority]=useState(props.selectedTask
             
                   <div class="mt-3 flex justify-between w-full max-sm:flex-col">
                    
-                    {/* <div class=" w-5/12 max-sm:w-wk">
-                      <div class=" flex justify-between w-full">
-                        <div class=" w-full">
-                          <Field
-                            isRequired
-                            name="taskName"
-                            //label="Name"
-                            // value={values.taskName}
-                            label={
-                              <FormattedMessage
-                                id="app.name"
-                                defaultMessage="Name"
-                              />
-                            }
-                            component={InputComponent}
-                            isColumn
-                            width={"100%"}
-                            inlineLabel
-                          />
-                        </div>
-                      </div>
-                    </div> */}
+                 
                   </div>
                  
-                  {/* <div class=" flex justify-between">
-                    <div class=" w-1/2">
-                      <Field
-                        isRequired
-                        name="startDate"
-                        //label="Start "
-                        label={
-                          <FormattedMessage
-                            id="app.startDate"
-                            defaultMessage="Start Date"
-                          />
-                        }
-                        isColumn
-                        component={DatePicker}
-                        value={values.startDate}
-                        inlineLabel
-                        style={{
-                          width: "100%",
-                        }}
-                      />
-                    </div>
-                    <Spacer />
-                    <div class=" w-5/12">
-                      <Field
-                        // isRequired
-                        name="startTime"
-                        // label="Start Time"
-                        label={
-                          <FormattedMessage
-                            id="app.startTime"
-                            defaultMessage="Start Time"
-                          />
-                        }
-                        isColumn
-                        component={TimePicker}
-                        use12Hours
-                        value={values.startTime}
-                        inlineLabel
-                        style={{
-                          width: "100%",
-                        }}
-                      />
-                    </div>
-                  </div>
-                  <Spacer /> */}
-
                
                   <div class=" flex justify-between mt-3">
                     <div class=" w-1/2 ">
@@ -886,12 +719,7 @@ const [priority,setpriority]=useState(props.selectedTask
                         isRequired
                         name="endDate"
                         // label="End "
-                        label={
-                          <FormattedMessage
-                            id="app.endDate"
-                            defaultMessage="End Date"
-                          />
-                        }
+                        label="End Date"                        
                         component={DatePicker}
                         isColumn
                         value={values.endDate || values.startDate}
@@ -921,39 +749,15 @@ const [priority,setpriority]=useState(props.selectedTask
                             name="taskName"
                             //label="Name"
                             // value={values.taskName}
-                            label={
-                              <FormattedMessage
-                                id="app.name"
-                                defaultMessage="Name"
-                              />
-                            }
+                            label="Name"
+                            
                             component={InputComponent}
                             isColumn
                             width={"100%"}
                             inlineLabel
                           />
                         </div>
-                    {/* <div class=" w-5/12">
-                      <Field
-                        // isRequired
-                        name="endTime"
-                        //label="End Time"
-                        label={
-                          <FormattedMessage
-                            id="app.endTime"
-                            defaultMessage="End Time"
-                          />
-                        }
-                        isColumn
-                        component={TimePicker}
-                        use12Hours
-                        value={values.endTime}
-                        inlineLabel
-                        style={{
-                          width: "100%",
-                        }}
-                      />
-                    </div> */}
+                   
                   </div>
                   <div class=" w-full mt-4">
                         <Field
@@ -1064,7 +868,7 @@ const [priority,setpriority]=useState(props.selectedTask
                                 <Button
                                   type="primary"
                                   shape="circle"
-                                  icon={<ExclamationCircleOutlined />}
+                                  icon={<ErrorOutlineIcon />}
                                   onClick={() =>
                                     handleComplexityClick("Easy")
                                   }
@@ -1081,7 +885,7 @@ const [priority,setpriority]=useState(props.selectedTask
                                 <Button
                                   type="primary"
                                   shape="circle"
-                                  icon={<ExclamationCircleOutlined />}
+                                  icon={<ErrorOutlineIcon />}
                                   onClick={() =>
                                     handleComplexityClick("Medium")
                                   }
@@ -1098,7 +902,7 @@ const [priority,setpriority]=useState(props.selectedTask
                                 <Button
                                   type="primary"
                                   shape="circle"
-                                  icon={<ExclamationCircleOutlined />}
+                                  icon={<ErrorOutlineIcon />}
                                   onClick={() =>
                                     handleComplexityClick("Hard")
                                   }
@@ -1160,27 +964,7 @@ const [priority,setpriority]=useState(props.selectedTask
                 </div>
                 <div class="h-full w-w47.5 ml-[3rem] max-sm:w-wk">
                  
-                  {/* <Field
-                    name="assignedTo"
-                    selectType="employee"
-                    isColumnWithoutNoCreate
-                    // label="Assigned"
-                    label={
-                      <FormattedMessage
-                        id="app.assignedto"
-                        defaultMessage="Assigned"
-                      />
-                    }
-                    component={SearchSelect}
-                    isColumn
-                    value={values.assignedTo}
-                    defaultValue={{
-                      label: `${firstName || ""} ${middleName ||
-                        ""} ${lastName || ""}`,
-                      // value: employeeId,
-                    }}
-                    inlineLabel
-                  /> */}
+                 
                                    <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
@@ -1278,26 +1062,7 @@ const [priority,setpriority]=useState(props.selectedTask
                       }}
                     />
                   )} */}
-                  {/* {values.taskTypeId !== "TSK52434477391272022" && ( */}
-                  {/* <Field
-                    name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.team"
-                        defaultMessage="Team"
-                      />
-                    }
-                    mode
-                    placeholder="Select"
-                    component={SelectComponent}
-                    options={Array.isArray(employeesData) ? employeesData : []}
-                    value={values.included}
-                    defaultValue={{
-                      label: `${fullName || ""} `,
-                      value: employeeId,
-                    }}
-                  /> */}
+                 
               
                  
                  
@@ -1307,13 +1072,7 @@ const [priority,setpriority]=useState(props.selectedTask
                  name="customerId"
                  isColumnWithoutNoCreate
                  selectType="customerList"
-                 // label="Tag Company"
-                 label={
-                   <FormattedMessage
-                     id="app.tagcompany"
-                     defaultMessage="Tag Company"
-                   />
-                 }
+                 label="Tag Company"
                  component={SearchSelect}
                  isColumn
                  value={values.customerId}
@@ -1333,13 +1092,8 @@ const [priority,setpriority]=useState(props.selectedTask
                     name="contact"
                     //selectType="contactList"
                     isColumnWithoutNoCreate
-                    // label="Contact"
-                    label={
-                      <FormattedMessage
-                        id="app.contact"
-                        defaultMessage="Contact"
-                      />
-                    }
+                    label="Contact"
+                    
                     component={SelectComponent}
                     isColumn
                     options={Array.isArray(ContactData) ? ContactData : []}
@@ -1359,12 +1113,8 @@ const [priority,setpriority]=useState(props.selectedTask
                  name="opportunity"
                  // selectType="customerList"
                  isColumnWithoutNoCreate
-                 label={
-                   <FormattedMessage
-                     id="app.opportunity"
-                     defaultMessage="Opportunity"
-                   />
-                 }
+                 label="Opportunity"
+                  
                  //component={SearchSelect}
                  component={SelectComponent}
                  options={
@@ -1382,9 +1132,7 @@ const [priority,setpriority]=useState(props.selectedTask
                   <Field
                     name="taskDescription"
                     //label="Notes"
-                    label={
-                      <FormattedMessage id="app.description" defaultMessage="Description" />
-                    }
+                    label="Description" 
                     width={"21.875em"}
                     isColumn
                     component={TextareaComponent}
@@ -1396,12 +1144,8 @@ const [priority,setpriority]=useState(props.selectedTask
                             name="link"
                             //label="Name"
                             // value={values.taskName}
-                            label={
-                              <FormattedMessage
-                                id="app.link"
-                                defaultMessage="Link"
-                              />
-                            }
+                            label="Link"
+                             
                             component={InputComponent}
                             isColumn
                             width={"100%"}
@@ -1419,8 +1163,7 @@ const [priority,setpriority]=useState(props.selectedTask
                           <div>
                           <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">Set Reminder </div>
                           </div>
-                          <div>
-                            {/* <FlexContainer justifyContent="space-between"> */}
+                          <div>                       
                             <Switch
                               onChange={handleReminderChange}
                               checked={reminder}
@@ -1464,13 +1207,8 @@ const [priority,setpriority]=useState(props.selectedTask
                 {isEditing && (
                   <>
                     <StyledPopconfirm
-                      //title="Do you want to delete?"
-                      title={
-                        <FormattedMessage
-                          id="app.doyouwanttodelete?"
-                          defaultMessage="Do you want to delete?"
-                        />
-                      }
+                      title="Do you want to delete?"
+                    
                       onConfirm={() => deleteTask(prefillTask.taskId)}
                     >
                       <Button
@@ -1478,11 +1216,7 @@ const [priority,setpriority]=useState(props.selectedTask
                         htmlType="submit"
                         Loading={deletingTask}
                       >
-                        <FormattedMessage
-                          id="app.delete"
-                          defaultMessage="Delete"
-                        />
-                        {/* Delete */}
+                     Delete
                       </Button>
                     </StyledPopconfirm>
                   </>
@@ -1496,7 +1230,7 @@ const [priority,setpriority]=useState(props.selectedTask
                     "Update"
                   ) : (
                     // "Create"
-                    <FormattedMessage id="app.update" defaultMessage="Update" />
+                  "Update"
                   )}
                 </Button>
               </div>

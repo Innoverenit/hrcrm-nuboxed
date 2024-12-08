@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import dayjs from "dayjs";
@@ -22,36 +22,20 @@ class Delivery extends Component {
     console.log(fetchingDeliveries);
     const columns = [
       {
-        //title: "Name",
-        title: <FormattedMessage
-          id="app.deliveryUserName"
-          defaultMessage="Name"
-        />,
+        title: "Name",
         dataIndex: "deliveryUserName"
       },
 
       {
-        //title: "Designation",
-        title: <FormattedMessage
-          id="app.designation"
-          defaultMessage="Designation"
-        />,
+        title: "Designation",
         dataIndex: "designation"
       },
       {
-        //title: "Billing Rate",
-        title: <FormattedMessage
-          id="app.billingRate"
-          defaultMessage="Billing Rate"
-        />,
+        title: "Billing Rate",
         dataIndex: "billingRate"
       },
       {
-        //title: " Start date",
-        title: <FormattedMessage
-          id="app.deliveryStartDate"
-          defaultMessage="Start date"
-        />,
+        title: " Start date",
         dataIndex: "deliveryStartDate",
         render: (name, item, i) => {
           return (
@@ -60,11 +44,7 @@ class Delivery extends Component {
         }
       },
       {
-        // title: " End date",
-        title: <FormattedMessage
-          id="app.deliveryEndDate"
-          defaultMessage="End date"
-        />,
+        title: " End date",
         dataIndex: "deliveryEndDate",
         render: (name, item, i) => {
           return <span>{` ${dayjs(item.deliveryEndDate).format("ll")}`}</span>;

@@ -1,19 +1,15 @@
 import React, { useEffect, useState, useMemo, lazy } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
 import ExploreIcon from '@mui/icons-material/Explore';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { bindActionCreators } from "redux";
 import StatusToggle from "./StatusToggle";
 import dayjs from "dayjs";
-import styled from "styled-components";
-import {
-  SearchOutlined,
-  MailOutlined,
-} from "@ant-design/icons";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import SearchIcon from '@mui/icons-material/Search';
 import Highlighter from "react-highlight-words";
 import { StyledTable } from "../../../../Components/UI/Antd";
-import { Tooltip, Icon, Button, Input, Select } from "antd";
+import { Tooltip,  Button, Input, Select } from "antd";
 import { MultiAvatar, MultiAvatar2, SubTitle } from "../../../../Components/UI/Elements";
 import {
   getPartnerListByUserId,
@@ -30,11 +26,11 @@ import {
 } from "../../../Opportunity/OpportunityAction";
 import { getOwnsalesList } from "../../PartnerAction";
 import PartnerDetailView from "./PartnerDetailView";
-import APIFailed from "../../../../Helpers/ErrorBoundary/APIFailed";
 import PartnerSkillsLoadMore from "../PartnerDetail/PartnerTab/PartnerSkillsLoadMore";
 import AddPartnerEmailDrawerModal from "./AddPartnerEmailDrawerModal";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
+import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdatePartnerModal = lazy(() =>
   import("../UpdatePartner/UpdatePartnerModal")
 );
@@ -196,7 +192,7 @@ function PartnerTable(props) {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             //icon="search"
             size="small"
             style={{ width: 90 }}
@@ -224,7 +220,7 @@ function PartnerTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />
@@ -399,7 +395,7 @@ function PartnerTable(props) {
       },
     },
     {
-      title: <FormattedMessage id="app.sector" defaultMessage="Sector" />,
+      title: "Sector" ,
       dataIndex: "sector",
       width: "15%",
       filters: sectorNameOption,
@@ -409,7 +405,7 @@ function PartnerTable(props) {
     },
     {
       //title: "Email",
-      title: <FormattedMessage id="app.country" defaultMessage="Country" />,
+      title:"Country" ,
       dataIndex: "country",
       width: "9%",
       sorter: (a, b) => {
@@ -427,8 +423,7 @@ function PartnerTable(props) {
     },
 
     {
-      // title: "Skills",
-      title: <FormattedMessage id="app.skills" defaultMessage="Skills" />,
+      title: "Skills",
       //dataIndex: "skillName",
       width: "18%",
       ...getColumnSearchProps("skillName"),
@@ -473,7 +468,7 @@ function PartnerTable(props) {
 
     {
       //title: "Email",
-      title: <FormattedMessage id="app.owner" defaultMessage="Owner" />,
+      title:"Owner" ,
       dataIndex: "ownerName",
       width: "9%",
       filters: ownerlistType,
@@ -502,7 +497,7 @@ function PartnerTable(props) {
     },
     {
       //title: "Type",
-      title: <FormattedMessage id="app.approved" defaultMessage="Approved" />,
+      title:"Approved" ,
       dataIndex: "status",
       width: "8%",
       render(name, item) {
@@ -577,7 +572,7 @@ function PartnerTable(props) {
         return (
           <>
             <Tooltip title={item.email}>
-              <MailOutlined type="mail"
+              <MailOutlineIcon type="mail"
                style={{ cursor: "pointer" }} 
                onClick={() => {
                props.getPartnerDetailsById(item.partnerId );
@@ -598,7 +593,7 @@ function PartnerTable(props) {
       render: (name, item, i) => {
         return (
           <Tooltip
-            title={<FormattedMessage id="app.edit" defaultMessage="Edit" />}
+            title="Edit"
           >
             {/* {user.userType !== "USER" && user.department !== "Recruiter" && (  */}
             {props.user.vendorUpdateInd === true && (
@@ -623,7 +618,7 @@ function PartnerTable(props) {
     },
   ];
   if (fetchingPartnersError) {
-    return <APIFailed />;
+    return <NodataFoundPage />;
   }
 
   const tab = document.querySelector(".ant-layout-sider-children");
@@ -730,20 +725,5 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 export default connect(mapStateToProps, mapDispatchToProps)(PartnerTable);
-const AppIcon = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "123%" }}
-  ></i>
-);
-
-const PulseIcon = styled(AppIcon)`
-  color: #df9697;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;
-
 
 

@@ -4,11 +4,32 @@ import { bindActionCreators } from "redux";
 import { getMaterialInventory,removeMaterialBuilder,updateMaterialBuilder } from "../SuppliesAction";
 
 function MaterialInventoryCard (props) {
-
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   useEffect(()=> {
     props.getMaterialInventory(props.particularDiscountData.suppliesId);
   },[]);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+      "658" , //  "Location",//0
+        "1077",
+        "1073",
+        "260",
+        "824" ,
+      "248",  //   "Unit",
+          
+        ];
 
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   const [editedFields, setEditedFields] = useState({});
   const [editlinkSuppliesId, setEditlinkSuppliesId] = useState(null);
 
@@ -57,24 +78,35 @@ function MaterialInventoryCard (props) {
 return (
     <>
   
-  <div className=' flex justify-end sticky z-auto'> 
-  <div class="rounded-lg m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-         <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
+  <div className=' flex sticky z-auto'> 
+  <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+         <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
          <div className=""></div>
          <div className=" md:w-[7%]">
-          Location
+         {translatedMenuItems[0]} {/* Location */}
           </div>
         <div className=" md:w-[4.2rem] ">
-          Unit
+        {translatedMenuItems[1]}  {/* Unit */}
           {/* {props.translatedMenuItems[2]} */}
           </div>
         <div className="md:w-[5.8rem]">
-         
+        {translatedMenuItems[2]}
+          </div>
+          <div className=" md:w-[4.2rem] ">
+      Batch
           </div>
         <div className=" md:w-[4.2rem] ">
-        
+        {translatedMenuItems[3]}
           </div>
-        <div className="w-12"></div>
+        <div className="w-40">
+          Best Use Before
+        </div>
+        <div className="w-12">
+        {translatedMenuItems[4]}
+        </div>
+        <div className="w-12">
+       Po#
+        </div>
             </div>
       
              {props.materialInventory.map((item) => {
@@ -83,7 +115,7 @@ return (
 <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 "    >
        
     <div className=" flex font-medium flex-col md:w-[13.1rem] max-sm:w-full  ">
-    <div class="text-sm  font-semibold  font-poppins cursor-pointer">
+    <div class="text-xs  font-semibold  font-poppins cursor-pointer">
                               {item.locationName}
                             </div>
     </div>
@@ -112,55 +144,13 @@ return (
                        />
                        
                     ) : (
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className=" text-xs  font-poppins">
                         <span> {item.quantity}</span>
                       </div>
                     )}
                     </div>
   </div>
-  {/* <div class="flex flex-row justify-between max-sm:flex-row max-sm:w-[10%]">
-    <div>
-      
-    {editlinkSuppliesId === item.linkSuppliesId ? (
-                        <>
-                      <Button onClick={() => handleUpdateSupplies(item.linkSuppliesId,item.supplySupplyLinkId,item.suppliesName,item.description,item.categoryName,item.subCategoryName)}>
-                        Save
-                      </Button>
-                        <Button 
-                        className="ml-2"
-                        onClick={() => handleCancelClick(item.linkSuppliesId)}>
-                        Cancel
-                      </Button>
-                      </>
-                      
-                    ) : (
-                      <Tooltip title="Edit">
-                      <BorderColorIcon
-                      className=" flex justify-items-center justify-center !text-icon cursor-pointer  text-[tomato] "
-                        onClick={() => handleEditClick(item.linkSuppliesId)}
-                        // style={{ color: 'blue', display: 'flex', justifyItems: 'center', justifyContent: 'center', fontSize: '0.75rem', marginTop: '0.25rem', marginLeft: '0.25rem' }}
-                      /></Tooltip>
-                    )}
-    </div>
-    <div>
-      <StyledPopconfirm
-                          title="Do you want to delete?"
-                          onConfirm={() => props.removeMaterialBuilder({active:false},item.supplySupplyLinkId)}
-                          >
-                     <Tooltip title="Delete">
-                          <DeleteOutlined
-                          className="!text-icon cursor-pointer "
-                          style={{
-                       
-                            color: "red",
-                          
-                          }}
-                           
-                          />
-                       </Tooltip>
-                       </StyledPopconfirm>
-                       </div>
-                        </div> */}
+
 </div>
 </div>
           );

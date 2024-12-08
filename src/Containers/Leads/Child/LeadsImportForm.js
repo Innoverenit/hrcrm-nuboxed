@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { Button, Select } from "antd";
 import { Formik, Form, Field } from "formik";
 import {addLeadsImportForm} from "../LeadsAction"
-import { FlexContainer } from "../../../Components/UI/Layout";
 import ImportTaskUpload from "../../../Components/Forms/Formik/ImportTaskUpload";
 
 
@@ -44,16 +43,9 @@ class LeadsImportForm extends Component {
         name:"Image"  
       },
    ]
-
-
-  
-
- 
  
     return (
-      <>
-       
-         
+      <>             
             <Formik
               // enableReinitialize
               initialValues={{
@@ -118,15 +110,15 @@ class LeadsImportForm extends Component {
                   </div>
 
                   <mt-3 />
-                  <FlexContainer justifyContent="flex-end">
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                     <Button
                       htmlType="submit"
                       type="primary"
                     loading={this.props.addingLeadsImportForm}
                     >
-                      Submit
+                     Upload
                     </Button>
-                  </FlexContainer>
+                  </div>
                 </Form>
               )}
             </Formik>      

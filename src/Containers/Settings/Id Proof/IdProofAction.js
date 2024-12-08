@@ -52,16 +52,16 @@ export const addIdProofs = (idProofs,orgId, cb) => (dispatch) => {
           Swal.fire({
             icon: 'error',
             title: res.data.message,
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         } else {
          
           Swal.fire({
             icon: 'success',
             title: 'Identity added Successfully!',
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         }
         dispatch(getIdProofCount(orgId));
@@ -101,6 +101,8 @@ export const addIdProofs = (idProofs,orgId, cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Identity updated Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("Identity has been updated successfully!");
         console.log(res);
@@ -159,6 +161,8 @@ export const addIdProofs = (idProofs,orgId, cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Identity deleted Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("Identity has been deleted successfully!");
         console.log(res);

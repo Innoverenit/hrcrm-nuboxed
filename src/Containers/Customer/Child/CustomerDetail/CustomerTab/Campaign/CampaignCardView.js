@@ -3,12 +3,14 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { FormattedMessage } from "react-intl";
+
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { Tooltip,Input,Button,Avatar,Select } from "antd";
 import { StyledPopconfirm } from "../../../../../../Components/UI/Antd";
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import ApartmentIcon from '@mui/icons-material/Apartment';
 import {
   deleteEvent,
   setEditEvents,
@@ -19,7 +21,9 @@ import { MultiAvatar2, SubTitle } from "../../../../../../Components/UI/Elements
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import {geCustomerCampaignEvent,addCustomerCampaignEvent} from "../../../../CustomerAction";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
-// const UpdateEventModal = lazy(() => import("../UpdateEventModal"));
+import EmptyPage from "../../../../../Main/EmptyPage";
+import DateRangeIcon from '@mui/icons-material/DateRange';
+
 
 const { Option } = Select;
 
@@ -29,7 +33,32 @@ function CampaignCardView (props) {
   const [isCopied, setIsCopied] = useState(false);
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 768);
   const [data, setData] = useState([]);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
  
+       "71", //  //0Type
+       "72", //   Subject,//1
+       "176", //   startDate,//2
+          "126",  //EndDate 3
+       "277", //   "Company",//4   
+        "316",  // "Notes",5
+         "1078", // "Save"6
+         "84", // "Delete"7
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   useEffect(() => {
          props.geCustomerCampaignEvent(props.customer.customerId,page);
         setPage(page + 1);
@@ -101,7 +130,7 @@ if(fetchingCustomerCampaign){
       return (
         <>
         <div className=' flex justify-end sticky z-auto'>
-        <div class="rounded  p-1 w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class="rounded   w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
      
           
         <InfiniteScroll
@@ -121,26 +150,17 @@ if(fetchingCustomerCampaign){
               };
                       return (
                           <div>
-                             <div className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col  ">
+                             <div className="flex rounded justify-between  bg-white mt-1  items-center max-sm:h-[9rem] max-sm:flex-col  ">
                                       <div class="flex items-center  justify-between">
-                                 
- 
-           
+      
                                           <Tooltip>
-                                         
-                                            
-                                              <div class="text-[0.82rem]  font-poppins cursor-pointer">                                       
+                                        <div class="text-xs font-poppins cursor-pointer">                                       
                                               {item.eventType}
          
                                               </div>
                                                 
                                           </Tooltip>
-                                         
-                                         
-                                 
-  
-                                 
-                                     
+                     
                                       <div class=" text-[0.82rem]  font-poppins">   
                                       {item.eventSubject}
                                       </div>
@@ -158,13 +178,7 @@ if(fetchingCustomerCampaign){
                                       <div class="text-[0.82rem]  font-poppins">
                                       {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
                                       </div>
-                                 
-                                 
-                                     
-                                  
-                                 
-                                    
-  
+                                                                                                                                                                                                        
                                       <div class=" text-[0.82rem]  font-poppins">
                                       <Avatar.Group
                      maxCount={7}
@@ -179,7 +193,7 @@ if(fetchingCustomerCampaign){
                      console.log("datas", data1);
                       return (
                         <Tooltip title={candidate.empName} key={i}>
-                        <Avatar style={{ backgroundColor: "#f56a00" }}>
+                        <Avatar className="bg-[#f56a00]">
                         {data1}
                       
                       </Avatar>
@@ -268,29 +282,17 @@ if(fetchingCustomerCampaign){
      <EventNoteIcon className="text-icon cursor-pointer" />
    </Tooltip>
                    </div>
-                   
-                   {/* <Tooltip title="Edit">
-                <BorderColorIcon
-                  type="edit"
-                  className="!text-xl cursor-pointer text-[tomato]"
-                  onClick={() => {
-                    props.setEditEvents(item);
-                    handleUpdateEventModal(true);
-                  }}
-                />
-              </Tooltip>
-              */}
+                                
+        
               <div>
              
              <StyledPopconfirm
                // title="Do you want to delete?"
-               title={<FormattedMessage id="app.doyouwanttodelete" defaultMessage="Do you want to delete" />}
+               title="Do you want to delete"
                onConfirm={() => deleteEvent(item.eventId, employeeId)}
              >
-                <Tooltip title="Delete">
-               <DeleteOutlined  type="delete"
-                 className="!text-icon cursor-pointer text-[red]"
-               />
+                <Tooltip title={translatedMenuItems[16]}>
+                <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                </Tooltip>
              </StyledPopconfirm>
        
@@ -318,40 +320,28 @@ if(fetchingCustomerCampaign){
     return (
       <>
       <div className=' flex  sticky  z-auto'>
-      <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
    
-         <div className=" flex  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" md:w-[7.8rem]"><FormattedMessage
-                  id="app.type"
-                  defaultMessage="type"
-                /></div>
-        <div className=" md:w-[6.23rem]"><FormattedMessage
-                  id="app.subject"
-                  defaultMessage="subject"
-                /></div>
-        <div className=" md:w-[7.25rem] "><FormattedMessage
-                  id="app.start"
-                  defaultMessage="start"
-                /></div>
-        <div className=" md:w-[5.43rem] "><FormattedMessage
-                  id="app.end"
-                  defaultMessage="end"
-                /></div>
+         <div className=" flex  w-[100%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end  z-10">
+        <div className="w-[10.8rem] text-[#00A2E8] truncate text-sm max-md:w-[10.8rem]">
+        <LocationCityIcon className='!text-icon  '  />{translatedMenuItems[0]} </div>
+        {/* Type */}
+        <div className="w-[7.23rem] truncate max-md:w-[7.23rem]">{translatedMenuItems[1]} </div>
+        {/* Subject */}
+        <div className="w-[6.25rem] truncate max-md:w-[6.25rem] "><DateRangeIcon className="!text-icon "/>{translatedMenuItems[2]} </div>
+        {/* Start */}
+        <div className="w-[5.43rem] truncate max-md:w-[5.43rem] ">
+      <DateRangeIcon className="!text-icon "/>{translatedMenuItems[3]} </div>
+        {/* End */}
      
-        <div className="md:w-[5.32rem]"><FormattedMessage
-                  id="app.include"
-                  defaultMessage="include"
-                /></div>
-     
-        <div className="md:w-[6.15rem]"><FormattedMessage
-                  id="app.assignedto"
-                  defaultMessage="assignedto"
-                /></div>
-        <div className="md:w-[24rem]"><FormattedMessage
-                  id="app.owner"
-                  defaultMessage="owner"
-                /></div>
-                   
+        {/* <div className="font-bold font-poppins text-xs md:w-[5.32rem]">{translatedMenuItems[4]} </div> */}
+     {/* dial code */}
+        {/* <div className="font-bold font-poppins text-xs md:w-[6.15rem]">
+          {translatedMenuItems[5]} </div> */}
+        {/* phone no */}
+        <div className="w-[24rem] truncate max-md:w-[24rem]">
+        <ApartmentIcon className="!text-icon mr-1 "/>{translatedMenuItems[4]} </div>
+                {/* company    */}
       </div>
       <InfiniteScroll
         dataLength={props.customerCampaign.length}
@@ -360,22 +350,22 @@ if(fetchingCustomerCampaign){
         loader={fetchingCustomerCampaign?<div class="flex items-center">Loading...</div>:null}
         height={"79vh"}
       >
-      {data.map((item) => { 
+      { ! props.fetchingCustomerCampaign && props.customerCampaign.length === 0 ?<EmptyPage/> :  props.customerCampaign.map((item,index) => { 
                     return (
                         <div key={item.eventId}>
                              <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                className="flex rounded justify-between  bg-white mt-1 py-ygap  items-center  max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                      <div class="flex ">
-                                <div className=" flex font-medium  w-[6.98rem] max-sm:w-full ">
-<div className="flex max-sm:w-full"> 
+                                <div className=" flex border-l-2 border-green-500 bg-[#eef2f9]  w-[9.98rem] max-md:[9.98rem] max-sm:w-full ">
+<div className="flex items-center max-sm:w-full"> 
           <div class="max-sm:w-full">
                                         <Tooltip>
-                                        <div class=" flex max-sm:justify-between flex-row w-full md:flex-col">
+                                        <div class=" flex  max-sm:justify-between flex-row w-full md:flex-col">
                                             {/* <div class="text-[0.875rem]  font-poppins max-sm:hidden">
                                             Type
                                             </div> */}
-                                            <div class="text-[0.82rem]  font-poppins cursor-pointer">                                       
+                                            <div class="flex items-center text-[0.82rem] ml-gap font-poppins text-xs cursor-pointer">                                       
                                             {item.eventType}
        
                                             </div>
@@ -385,27 +375,27 @@ if(fetchingCustomerCampaign){
                                         </div>
                                 </div>
 
-                                <div className=" flex font-medium   md:w-[4.26rem] max-sm:flex-row  w-full ">
+                                <div className=" flex w-[10.26rem]   max-md:w-[10.26rem] items-center justify-start h-8 ml-gap bg-[#eef2f9] max-sm:flex-row  w-full ">
                                     {/* <div class=" text-[0.875rem]  font-[0.875rem] font-poppins max-sm:hidden"> Subject </div> */}
-                                    <div class=" text-[0.82rem]  font-poppins">   
+                                    <div class=" text-[0.82rem] ml-gap flex  font-poppins">   
                                     {item.eventSubject}
                                     </div>
                                 </div>
                                 </div>
                                 <div class="flex  items-center ">
-                                <div className=" flex font-medium  md:w-[5.9rem] max-sm:flex-row  w-full">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.9rem]  max-md:w-[5.9rem] max-sm:flex-row  ">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Start</div> */}
                                     <div class="text-[0.82rem]  font-poppins">
                                     {` ${dayjs(item.startDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[5.32rem] max-sm:flex-row  w-full">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[9.32rem] max-md:w-[5.32rem] max-sm:flex-row ">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">End</div> */}
                                     <div class="text-[0.82rem]  font-poppins">
                                     {` ${dayjs(item.endDate).format('YYYY-MM-DD')}`}
                                     </div>
                                 </div>
-                                <div className=" flex font-medium  md:w-[5.31rem] max-sm:flex-row  w-full ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.31rem] max-md:w-[5.31rem] max-sm:flex-row  ">
                                     {/* <div class=" text-[0.875rem]  font-poppins max-sm:hidden">Include</div> */}
 
                                     <div class=" text-[0.82rem]  font-poppins">
@@ -435,10 +425,7 @@ if(fetchingCustomerCampaign){
             </Avatar.Group>
                                     </div>
                                 </div>
-                                <div className="flex font-medium  md:w-[4.69rem] max-sm:flex-row  w-full ">
-
-                                  
-                                  
+                                <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.69rem]  max-md:w-[4.69rem] max-sm:flex-row  w-full ">                   
               <SubTitle>
               <span>
               {item.assignedTo === null ? (
@@ -459,10 +446,9 @@ if(fetchingCustomerCampaign){
               )}
             </span>
               </SubTitle>
-
-                                   
+           
                                 </div>
-                                <div className="flex font-medium  md:w-[4.12rem] max-sm:flex-row  w-full ">
+                                <div className="flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.12rem]   max-md:w-[4.12rem] max-sm:flex-row  ">
                    <div class="max-sm:flex justify-end">
 
             <SubTitle>
@@ -482,23 +468,22 @@ if(fetchingCustomerCampaign){
                                 <div class="flex ">
                                
                              
-                   <div className=" flex font-medium  md:w-[6.32rem] max-sm:flex-row  w-full">
+                   <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.32rem] max-md:w-[5.32rem] max-sm:flex-row  w-full">
                                     
                                     <div class="text-[0.82rem]  font-poppins">
                                     {/* {item.budgetValue} */}
-                                    <Input
-  style={{ width: "5rem" }}
+                                    <Input className="w-[5rem]"
   value={item.budgetValue}
   onChange={(e) => handleInputChange(e.target.value, item.key, 'budgetValue')}
 />
                     </div>
   </div>
-  <div className=" flex font-medium  md:w-[5.321rem] max-sm:flex-row  w-full">
+  <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.321rem]  max-md:w-[5.321rem] max-sm:flex-row  w-full">
                                     
                                     <div class="text-[0.82rem]  font-poppins">
                                     
-                                    <Select
-                        style={{width:"5rem"}}
+                                    <Select className="w-[5rem]"
+                   
                         value={item.currencyName}
                         onChange={(value) => handleSelectChange(value, item.key, 'currencyName')}
                       >
@@ -510,9 +495,9 @@ if(fetchingCustomerCampaign){
                       </Select>
                     </div>
   </div>
-  <div className=" flex font-medium  md:w-[6.2rem] max-sm:flex-row w-full max-sm:justify-between ">
+  <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.2rem] max-md:w-[4.2rem] max-sm:flex-row w-full max-sm:justify-between ">
   <Button type="primary" onClick={() => handleSave(item.key)}>
-          Save
+  {translatedMenuItems[7]}   {/* Save */}
         </Button>
                                     </div>
                                 </div>     

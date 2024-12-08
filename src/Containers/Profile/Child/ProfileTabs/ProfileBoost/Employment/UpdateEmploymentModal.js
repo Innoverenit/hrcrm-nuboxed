@@ -1,12 +1,54 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 const UpdateEmploymentForm = lazy(() =>
   import("../Employment/UpdateEmploymentForm")
 );
 
 class UpdateEmploymentModal extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: "Full Time",
+      translatedMenuItems: [],
+    };
+  }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+      
+       "Organization Name",
+       "Designation",
+       "Start Date",
+        "End Date",
+        "Salary",
+        "Salary Type",
+        "Currency",
+        "Describe your role",
+        "Name of Document",
+        "Description of Document",
+        "Submit",
+     "Type"
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
+
   render() {
     const {
       updateEmploymentModal,
@@ -16,10 +58,8 @@ class UpdateEmploymentModal extends Component {
     return (
       <>
         <StyledDrawer
-          //title="Employment"
-          title={
-            <FormattedMessage id="app.employment" defaultMessage="Employment" />
-          }
+          title="Employment"
+          
           width="60%"
           visible={updateEmploymentModal}
           destroyOnClose

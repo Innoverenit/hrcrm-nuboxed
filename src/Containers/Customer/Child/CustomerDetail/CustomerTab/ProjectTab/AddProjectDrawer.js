@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
 import CustomerProjectForm from "./CustomerProjectForm";
@@ -10,9 +10,7 @@ const AddProjectDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-        title={
-          <FormattedMessage id="app.project" defaultMessage="Project" />
-        }
+        title="Project" 
         width="45%"
         visible={props.addCustomerProjectDrawer}
         maskClosable={false}

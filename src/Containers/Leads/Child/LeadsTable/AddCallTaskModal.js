@@ -3,7 +3,7 @@ import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
+
 
 const LeadsCallForm = lazy(() => import("./LeadsCallForm"));
 const LeadsEventForm = lazy(() =>import("./LeadsEventForm"));
@@ -19,10 +19,8 @@ const AddCallTaskModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.schedulecall"
-          defaultMessage="Schedule"
-        />}
+        title="Schedule"
+     
         width={drawerWidth}
         visible={addCallTaskModal}
         destroyOnClose
@@ -32,7 +30,11 @@ const AddCallTaskModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}>
-          <LeadsActivityTab   rowdata={props.rowdata}/>
+          <LeadsActivityTab   rowdata={props.rowdata}
+           translateText={props.translateText}
+           selectedLanguage={props.selectedLanguage}
+           translatedMenuItems={props.translatedMenuItems}
+          />
 
         </Suspense>
       </StyledDrawer>
@@ -46,8 +48,8 @@ const AddCallTaskModal = (props) => {
         <>
           <TabsWrapper>
             <StyledTabs
-              defaultActiveKey="1"
-              style={{ overflow: "visible", width: "53vw", padding: "15px" }}
+              defaultActiveKey="1"             
+              // style={{ overflow: "visible", width: "52vw", padding: "5px" }}
               animated={false}
             >
               <TabPane
@@ -60,7 +62,11 @@ const AddCallTaskModal = (props) => {
                 key="1"
               >
                 <Suspense fallback={"loading ..."}>
-                  <LeadsCallForm  rowdata={props.rowdata} {...formProps} />
+                  <LeadsCallForm  rowdata={props.rowdata} {...formProps}
+                   translateText={props.translateText}
+                   selectedLanguage={props.selectedLanguage}
+                   translatedMenuItems={props.translatedMenuItems}
+                  />
                 </Suspense>
               </TabPane>
           
@@ -74,7 +80,11 @@ const AddCallTaskModal = (props) => {
                 key="2"
               >
                 <Suspense fallback={"loading ..."}>
-                  <LeadsEventForm rowdata={props.rowdata} {...formProps}/>
+                  <LeadsEventForm rowdata={props.rowdata} {...formProps}
+                   translateText={props.translateText}
+                   selectedLanguage={props.selectedLanguage}
+                   translatedMenuItems={props.translatedMenuItems}
+                  />
                 </Suspense>
               </TabPane>
               <TabPane
@@ -87,7 +97,11 @@ const AddCallTaskModal = (props) => {
                 key="3"
               >
                 <Suspense fallback={"loading ..."}>
-                  <LeadsTaskForm rowdata={props.rowdata} {...formProps}/>
+                  <LeadsTaskForm rowdata={props.rowdata} {...formProps}
+                   translateText={props.translateText}
+                   selectedLanguage={props.selectedLanguage}
+                   translatedMenuItems={props.translatedMenuItems}
+                  />
                 </Suspense>
               </TabPane>
             </StyledTabs>
@@ -96,6 +110,9 @@ const AddCallTaskModal = (props) => {
           rowdata={props.rowdata}
             addCallTaskModal={addCallTaskModal}
             handleLeadCallModal={handleLeadCallModal}
+            translateText={props.translateText}
+                   selectedLanguage={props.selectedLanguage}
+                   translatedMenuItems={props.translatedMenuItems}
           />
         </>
       );

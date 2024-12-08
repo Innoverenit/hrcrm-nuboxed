@@ -3,9 +3,8 @@ import React, { useState, useEffect } from "react";
 import { TextInput } from "../../../Components/UI/Elements";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import {
-  DeleteOutlined,
-} from '@ant-design/icons';
+
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { addMileage, getMileageByUserId } from "../MileageAction";
 import { getCurrency } from "../../Auth/AuthAction";
 import dayjs from "dayjs";
@@ -304,7 +303,7 @@ function MileageForm(props) {
               </td>        
 
               {row.length > 1 && (
-                <DeleteOutlined
+                <DeleteOutlineIcon
                   style={{
                     color: "red",
                     fontSize: "1.125em",

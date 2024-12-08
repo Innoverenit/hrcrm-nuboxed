@@ -7,6 +7,28 @@ import {getChatgpt} from "../Account/AccountAction"
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 
 function AccountIconForm(props) {
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+  
+    useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [
+              "Description"
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
     const [showDescription, setShowDescription] = useState(false);
     // useEffect(() => {
     //     props.getChatgpt()
@@ -46,7 +68,7 @@ function AccountIconForm(props) {
                                      <div className="mt-3">
                                          <Field
                                              name="comments"
-                                             label="Description"
+                                             label= {translatedMenuItems[0]}
                                              width={"100%"}
                                              isColumn
                                              component={TextareaComponent}

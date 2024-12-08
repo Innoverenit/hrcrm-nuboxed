@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from "react";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
+
 const CallForm = lazy(() => import("./CallForm"));
 const AddCallModal = (props) => {
   const { addCallModal, handleCallModal, ...formProps } = props;
@@ -10,16 +10,17 @@ const AddCallModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.schedulecall"
-          defaultMessage="Schedule Call"
-        />}
+        title="Schedule Call"
+        
         width={drawerWidth}
         visible={addCallModal}
         onClose={() => handleCallModal(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <CallForm {...formProps} selectedCall={props.selectedCall} />
+          <CallForm {...formProps} selectedCall={props.selectedCall}
+           selectedLanguage={props.selectedLanguage}
+           translateText={props.translateText}
+          />
         </Suspense>
       </StyledDrawer>
     </>

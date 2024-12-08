@@ -1,4 +1,5 @@
 import * as types from "./NotificationActionTypes";
+import Notificationdrawermodal from "./Notificationdrawermodal";
 
 const initialState = {
   isError: false,
@@ -18,7 +19,9 @@ const initialState = {
 
   fetchingFutureNotifications: false,
   fetchingFutureNotificationsError: false,
-  futureNotifications: []
+  futureNotifications: [],
+
+  Notificationdrawermodal: false,
 };
 export const notificationReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -95,10 +98,12 @@ export const notificationReducer = (state = initialState, action) => {
     case types.UPDATE_NOTIFICATION_BY_ID_FAILURE:
       return {
         ...state,
-        updatingNotification: false,
+        updatingNotification: false, 
         updatingNotificationError: false
       };
 
+      case types.HANDLE_NOTIFICATION_DRAWER_MODAL:
+        return { ...state, Notificationdrawermodal: action.payload };
     default:
       return state;
   }

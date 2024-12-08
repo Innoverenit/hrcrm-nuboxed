@@ -8,7 +8,11 @@ class CustomerDetailRight extends Component {
     console.log(this.props.customer);
     return (
       <div class=" w-full">
-        <CustomerDetailTab customer={this.props.customer} />
+        <CustomerDetailTab customer={this.props.customer}
+         translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage}
+       translatedMenuItems={this.props.translatedMenuItems}
+        />
       </div>
     );
   }

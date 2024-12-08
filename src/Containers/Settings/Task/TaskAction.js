@@ -48,16 +48,16 @@ export const addTasks = (task,orgId, cb) => (dispatch) => {
         Swal.fire({
           icon: 'error',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+   timer: 1500,
         });
       } else {
        
         Swal.fire({
           icon: 'success',
           title: 'Task added Successfully!',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500,
         });
       }
       dispatch(getTaskCount(orgId));
@@ -96,7 +96,8 @@ export const updateTasks = (data,taskTypeId, cb) => (
       Swal.fire({
         icon: 'success',
         title: 'Task updated Successfully!',
-     
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("Task has been updated successfully!");
       console.log(res);
@@ -152,7 +153,8 @@ export const removeTask = ( taskTypeId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Task deleted Successfully!',
-     
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("Task has been deleted successfully!");
       console.log(res);

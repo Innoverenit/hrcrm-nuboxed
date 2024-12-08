@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
@@ -12,11 +12,8 @@ const AddTemplateModal = (props) => {
   return (
     <>
       <StyledDrawer
-        //title="Template"
-        title={<FormattedMessage
-          id="app.Template"
-          defaultMessage="Template"
-        />}
+        title="Template"
+       
         width="60%"
         visible={props.addTemplateModal}
         maskClosable={false}

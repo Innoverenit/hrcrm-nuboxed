@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { Component,lazy,Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import EmployeeGroupCard from "../EmployeeCard/EmployeeGroupCard"
+import { BundleLoader } from "../../../../Components/Placeholder";
 import { Draggable } from "react-beautiful-dnd";
-// import OpportunityGroupCard from "../Child/OpportunityGroupCard";
 import { elipsize } from "../../../../Helpers/Function/Functions";
+const EmployeeGroupCard =lazy(()=>import("../EmployeeCard/EmployeeGroupCard"));
 
 
 class StageEmployeeColumns1 extends Component {
@@ -24,13 +24,16 @@ class StageEmployeeColumns1 extends Component {
           {...provided.dragHandleProps}
         >
     {employee.onboardingEmpName===null?"":
+    <Suspense fallback={<BundleLoader/>}>
             <EmployeeGroupCard
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
               isDragging={snapshot.isDragging}
             //   opportunityId={opportunity.opportunityId}
               primaryTitle={`${elipsize(employee.onboardingEmpName, 60)}`} 
             
              
-            />
+            /></Suspense>
       }
          </div>
              )}

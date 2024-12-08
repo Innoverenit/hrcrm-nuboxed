@@ -70,11 +70,6 @@ const StageHeader = styled.div`
 function OpportunityBoard(props) {
   const { udatingOpp } = props;
 
-  // const processData = useMemo(() => {
-  //   if (!props.opportunityProcess) return null;
-  //   let id = props.opportunityProcess[0];
-  //   return id;
-  // }, [props.opportunityProcess]);
   const processData = useMemo(() => {
     if (!props.opportunityProcess) return null;
 
@@ -83,16 +78,16 @@ console.log("publishIndTrueItem",publishIndTrueItem)
     return publishIndTrueItem ? publishIndTrueItem : null;
 }, [props.opportunityProcess]);
 
-
+let type="Quotation"
   useEffect(() => {
-    props.getProcessForOpportunity(props.orgId);
+    props.getProcessForOpportunity(props.orgId,type);
      props.getAllOpportunityListByUserId(props.userId)
   }, []);
 
   useEffect(() => {
     if (!processData) return;
     console.log("processData",processData)
-    props.getProcessStagesForOpportunity(processData.opportunityWorkflowDetailsId);
+    props.getProcessStagesForOpportunity(props.orgId,processData.workflowDetailsId);
   }, [processData]);   
 
   const [isDragging, setIsDragging] = useState(false);
@@ -145,7 +140,7 @@ console.log("publishIndTrueItem",publishIndTrueItem)
 
   function handleProcessClick(item) {
     setCurrentProcess(item);
-    props.getProcessStagesForOpportunity(item.opportunityWorkflowDetailsId);
+    props.getProcessStagesForOpportunity(props.orgId,item.workflowDetailsId);
   }
 
   return (
@@ -191,7 +186,7 @@ console.log("publishIndTrueItem",publishIndTrueItem)
                       .map((stage, index) => (
                         <Droppable
                           key={index}
-                          droppableId={stage.opportunityStagesId}
+                          droppableId={stage.stagesId}
                           type="stage"
                         
                         >
@@ -214,14 +209,13 @@ console.log("publishIndTrueItem",publishIndTrueItem)
                                       isDraggingOver={snapshot.isDraggingOver}
                                       {...provided.droppableProps}
                                       droppableProps={{ hello: "world" }}
-                                      className="scrollbar"
-                                      id="style-3"
-                                      style={{scrollbarWidth:"thin"}}
+                                      style={{scrollbarWidth:"thin", backgroundColor:"f5f5f5" }}
+                                   
                                     >
                                       {props.opportunityByUserId
                                         .filter(
                                           (opp, index) =>
-                                            opp.opportunityStagesId === stage.opportunityStagesId
+                                            opp.opportunityStagesId === stage.stagesId
                                         )
                                         .map((opp, index) => {
                                           return (

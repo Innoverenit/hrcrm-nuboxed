@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 const UpdateBankForm = lazy(() => import("../Bank/UpdateBankForm"));
 
 class UpdateBankModal extends Component {
@@ -10,8 +10,7 @@ class UpdateBankModal extends Component {
     return (
       <>
         <StyledDrawer
-          //title="Bank"
-          title={<FormattedMessage id="app.bank" defaultMessage="Bank" />}
+          title="Bank"
           width="25%"
           visible={updateBankModal}
           destroyOnClose
@@ -22,7 +21,9 @@ class UpdateBankModal extends Component {
           footer={null}
         >
           <Suspense fallback={<BundleLoader />}>
-            <UpdateBankForm />
+            <UpdateBankForm
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage} />
           </Suspense>
         </StyledDrawer>
       </>

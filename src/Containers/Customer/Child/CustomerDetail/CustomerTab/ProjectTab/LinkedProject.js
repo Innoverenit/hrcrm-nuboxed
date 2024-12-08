@@ -2,7 +2,7 @@ import React, { useEffect, useState,useMemo,lazy } from 'react'
 import { StyledTable } from '../../../../../../Components/UI/Antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import { elipsize } from "../../../../../../Helpers/Function/Functions";
 import { Tooltip,Button,Input } from "antd";
 import SearchIcon from '@mui/icons-material/Search';
@@ -66,8 +66,7 @@ function LinkedProject (props)  {
                 <Button
                   type="primary"
                   onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                  // icon={<SearchOutlined />}
-                 // icon="search"
+          
                   size="small"
                   style={{ width: 90 }}
                 >
@@ -95,7 +94,7 @@ function LinkedProject (props)  {
             </div>
           ),
           filterIcon: (filtered) => (
-            // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+           
             <SearchIcon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
           ),
           onFilter: (value, record) =>
@@ -150,7 +149,7 @@ function LinkedProject (props)  {
             dataIndex: "logo",
             width:"2%",
             render: (text, item) => {
-              const startDate = moment(item.actualEndDate).format("ll");
+              const startDate = dayjs(item.actualEndDate).format("ll");
               return <span>{startDate}</span>;
             },
         },
@@ -159,7 +158,7 @@ function LinkedProject (props)  {
             //dataIndex: "logo",
             width:"2%",
             render: (text, item) => {
-              const startDate = moment(item.onboardDate).format("ll");
+              const startDate = dayjs(item.onboardDate).format("ll");
               return <span>{startDate}</span>;
             },
         },

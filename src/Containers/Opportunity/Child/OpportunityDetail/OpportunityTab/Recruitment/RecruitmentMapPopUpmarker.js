@@ -7,17 +7,16 @@ import {Checkbox} from "antd";
 import dayjs from "dayjs";
 import { Link } from "../../../../../../Components/Common";
 import {
-  Title,
-  Spacer,
+  Title
 } from "../../../../../../Components/UI/Elements";
 import { LinkCandidateRecruit,LinkRecruitCandidate } from "../../../../OpportunityAction";
 import L from "leaflet";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require("../../../../../../Assets/Images/download.png"),
-  iconUrl: require("../../../../../../Assets/Images/download.png"),
-  shadowUrl: require("../../../../../../Assets/Images/download.png"),
+  iconRetinaUrl: require("../../../../../../Assets/Images/download.webp"),
+  iconUrl: require("../../../../../../Assets/Images/download.webp"),
+  shadowUrl: require("../../../../../../Assets/Images/download.webp"),
   iconSize: [15, 25], // size of the icon
   shadowSize: [35, 25], // size of the shadow
   shadowAnchor: [15, 40],
@@ -127,7 +126,7 @@ L.Icon.Default.mergeOptions({
 
   const image = new L.Icon({
     iconUrl: props.mark.timeToConnect
-      ? require("../../../../../../Assets/Images/download.png")
+      ? require("../../../../../../Assets/Images/download.webp")
       : require("leaflet/dist/images/marker-icon.png"),
     shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
     iconSize: props.mark.timeToConnect ? [25, 35] : [15, 25], // size of the icon
@@ -140,7 +139,7 @@ L.Icon.Default.mergeOptions({
   position={[props.mark.lat, props.mark.lng]}
    // position={[mark.address&&mark.address.length&&mark.address[0].latitude, mark.address&&mark.address.length&&mark.address[0].longitude]}
      // icon={image}
-      // icon={<FontAwesomeIcon icon={solid('flag-checkered')} />}
+     
      >
       <Popup className="!w-[18rem]">
       
@@ -176,7 +175,7 @@ L.Icon.Default.mergeOptions({
           {(pinCode && pinCode) || ""}&nbsp; */}
         </div>
       </div>
-      <Spacer />
+      <div class=" mt-3" />
         <FlexContainer style={{ width: "100%" }} justifyContent="space-between">
           <div
             style={{

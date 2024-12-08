@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer, } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 const MileageForm=lazy(()=>import("./MileageForm"));
@@ -11,10 +11,7 @@ const AddMileageModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.Addvoucher"
-          defaultMessage="Add Voucher"
-        />}
+        title="Add Voucher"
         width={drawerWidth}
         visible={addMileageModal}
         onClose={() => handleMileageModal(false)}

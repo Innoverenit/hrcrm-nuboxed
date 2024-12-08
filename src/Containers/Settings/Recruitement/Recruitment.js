@@ -3,8 +3,23 @@ import {
    getProcessForRecruit,
     dataClear,
 } from "../SettingsAction";
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import CircleNotificationsIcon from '@mui/icons-material/CircleNotifications';
+import AspectRatioIcon from '@mui/icons-material/AspectRatio';
+import WorkHistoryIcon from '@mui/icons-material/WorkHistory'; 
+import SpaceDashboardIcon from '@mui/icons-material/SpaceDashboard';
+import EngineeringIcon from '@mui/icons-material/Engineering';
+import ShareIcon from '@mui/icons-material/Share';
+import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
+import PaymentsIcon from '@mui/icons-material/Payments';
+import SettingsInputCompositeIcon from '@mui/icons-material/SettingsInputComposite';
+import LibraryAddCheckIcon from '@mui/icons-material/LibraryAddCheck';
+import BrightnessAutoIcon from '@mui/icons-material/BrightnessAuto';
+import FormatShapesIcon from '@mui/icons-material/FormatShapes';
+import DesktopAccessDisabledIcon from '@mui/icons-material/DesktopAccessDisabled';
+import RecruitTab from "../../Rules/Child/RulesTab/RecruitPro/RecruitTab";
 const SalaryTab = lazy(() => import("./Child/Salary/SalaryTab"));
 const RecruitmentActionLeft = lazy(() => import("./RecruitmentActionLeft"));
 const RecruitmentActionRight = lazy(() => import("./RecruitmentActionRight"));
@@ -19,6 +34,7 @@ const ApprovalTab = lazy(() => import("./Child/Approval/ApprovalTab"));
 const SettingsHolidayTab = lazy(() => import("./Child/Holiday/SettingsHolidayTab"));
 const LeadsTab = lazy(() => import("../../Rules/Child/RulesTab/LeadsTab"));
 const DistributionTab = lazy(() => import("./Child/DistributionTab/DistributionTab"));
+const ThirdParty= lazy(() => import("./Child//thirdparty/ThirdParty"));
 const FinanceTab = lazy(() => import("./Child/FinanceTab/FinanceTab"));
 const ReportScheduler = lazy(() =>
   import("../Recruitement/Child/ReportScheduler/ReportScheduler")
@@ -29,22 +45,40 @@ function Recruitment(props) {
   const name = [
 
     {
-      rulesName: "Access",
+       rulesName:(
+        <span>
+          <DesktopAccessDisabledIcon className=" !text-icon text-[#D00000] mr-2" />Access
+        </span>
+      ),
       ruleId: "1",
       component: <Access />,
     },
     {
-      rulesName: "Approval",
+       rulesName:(
+        <span>
+          <LibraryAddCheckIcon className=" !text-icon text-[#A7C957] mr-2" />Approval
+        </span>
+      ),
       ruleId: "2",
       component: <ApprovalTab />,
     },
     {
-      rulesName: "Automation",
+      rulesName:(
+        <span>
+          <BrightnessAutoIcon className=" !text-icon text-[#B5E2FA] mr-2" />Automation
+        </span>
+      ),
+     
       ruleId: "3",
       component: <DistributionTab />,
     },
     {
-      rulesName: "Form",
+      rulesName:(
+        <span>
+          <FormatShapesIcon className=" !text-icon text-[#0FA3B1] mr-2" />Form
+        </span>
+      ),
+   
       ruleId: "4",
       component: <Form
       translateText={props.translateText}
@@ -53,12 +87,21 @@ function Recruitment(props) {
     },
     
     {
-      rulesName: "General",
+      rulesName:(
+      <span>
+      <AspectRatioIcon className=" !text-icon text-[#432818] mr-2" />General
+    </span>
+  ),
+     
       ruleId: "5",
       component: <General/>,
     },
     {
-      rulesName: "Holidays & Leaves",
+      rulesName:(
+        <span>
+        <i class="fas fa-luggage-cart mr-2 text-[#e4eb3f] "></i>Holidays & Leaves
+      </span>
+    ),
       ruleId: "6",
       component: <SettingsHolidayTab />,
     },
@@ -69,7 +112,12 @@ function Recruitment(props) {
     // },
     
     {
-      rulesName: "Report Scheduler",
+      rulesName:(
+        <span>
+        <WorkHistoryIcon className=" !text-icon mr-2 text-[#6F1D1B]" /> Reports
+      </span>
+    ),
+     
       ruleId: "7",
       component: <ReportScheduler />,
     },
@@ -79,50 +127,91 @@ function Recruitment(props) {
     //   component: <LeadsTab />,
     // },
     {
-      rulesName: "Skills and Certifications",
+      rulesName:(
+        <span>
+        <WorkspacePremiumIcon className=" !text-icon text-[#C9ADA7] mr-2" />Skills & Certification
+      </span>
+    ),
+    
       ruleId: "9",
       component: <SkillsTab/>,
     },
     {
-      rulesName: "Template",
+      rulesName:(
+        <span>
+        <SpaceDashboardIcon className=" !text-icon text-[#22223B] mr-2" />Template
+      </span>
+    ), 
       ruleId: "10",
       component: <Template />,
     },
     {
-      rulesName: "Workflow",
+   rulesName:(
+        <span>
+        <ShareIcon className=" !text-icon text-[#390099] mr-2" />Workflow
+      </span>
+    ), 
       ruleId: "11",
        component: <WorkFlow/>,
     },
     {
-      rulesName: "Finance",
+    rulesName:(
+        <span>
+        <HourglassFullIcon className=" !text-icon text-[#DC2F02] mr-2" />Finance
+      </span>
+    ),
       ruleId: "12",
       component: <FinanceTab/>,
     },
     {
-      rulesName: "Effort Cost",
+      rulesName:(
+        <span>
+        <EngineeringIcon className=" !text-icon text-[#6A994E] mr-2" />Labour Cost
+      </span>
+    ),
+     
       ruleId: "13",
       component: <Matrix/>,
     },
    {
-      rulesName: "Notification",
+    rulesName:(
+      <span>
+      <CircleNotificationsIcon className=" !text-icon text-[#FFD60A] mr-2" />Notification
+    </span>
+  ),
+     
       ruleId: "14",
       component: <NotificationToggleForm />,
     },
     {
-      rulesName: "Pay Roll(Only for GCC)",
+      rulesName:(
+        <span>
+        <PaymentsIcon className=" !text-icon text-[#003566] mr-2" />Pay Roll(Only for GCC)
+      </span>
+    ),
       ruleId: "15",
       component: <SalaryTab />,
     },
-    // {
-    //   rulesName: "Automation",
-    //   ruleId: "2",
-    //   component: <RecruitTab />,
-    // },
-    // {
-    //   rulesName: "Search",
-    //   ruleId: "3",
-    //   component: <SeachTab />,
-    // },
+     {
+      rulesName:(
+        <span>
+        <HourglassFullIcon className=" !text-icon text-[#D8E2DC] mr-2" />Automation1
+      </span>
+    ),
+      ruleId: "21",
+      component: <RecruitTab/>,
+    },
+    
+    {
+      rulesName:(
+        <span>
+        <SettingsInputCompositeIcon className=" !text-icon text-[#9D8189] mr-2" />3rd Party Integration
+      </span>
+    ),
+   
+      ruleId: "22",
+      component: <ThirdParty />,
+    },
     // {
     //   rulesName: "Sourcing",
     //   ruleId: "5",

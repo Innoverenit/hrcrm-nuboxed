@@ -1,19 +1,15 @@
-import React, { Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
-import AddPurchaseOrder from "./AddPurchaseOrder";
-// const AddSuppliersForm = lazy(() => import("./AddSuppliersForm"));
 
+const AddPurchaseOrder  = lazy(() => import("./AddPurchaseOrder"));
 const AddPoModal = (props) => {
     const { addLinkSuppliersOrderConfigureModal, handleLinkSuppliersOrderConfigureModal, ...formProps } = props;
     return (
         <>
             <StyledDrawer
-                title={<FormattedMessage
-                    id="app.purchaseorder"
-                    defaultMessage="Purchase Order"
-                />}
+                title="Purchase Order"
+               
 
                 width="65%"
                 visible={addLinkSuppliersOrderConfigureModal}
@@ -23,7 +19,9 @@ const AddPoModal = (props) => {
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <AddPurchaseOrder supplier={props.supplier} />
+                    <AddPurchaseOrder supplier={props.supplier}                    
+                      translateText={props.translateText}
+                      selectedLanguage={props.selectedLanguage}/>
                 </Suspense>
             </StyledDrawer>
         </>

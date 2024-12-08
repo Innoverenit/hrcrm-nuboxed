@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { StyledModal } from "../../../../../../Components/UI/Antd";
  const MonsterForm = lazy(() => import("./MonsterForm"));
@@ -11,11 +11,8 @@ const AddMonsterModal = (props) => {
   return (
     <>
       <StyledModal
-        // title="Opportunity"
-        title={<FormattedMessage
-          id="app.monsterModal"
-          defaultMessage="Monster Modal"
-        />}
+        title="Monster Modal"
+       
         width="50%"
         visible={props.addMonsterModal}
         maskClosable={false}

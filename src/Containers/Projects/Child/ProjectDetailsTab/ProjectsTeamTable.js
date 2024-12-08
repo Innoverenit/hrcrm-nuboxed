@@ -2,7 +2,7 @@ import React, { useEffect, useState, } from 'react'
 import { StyledTable } from '../../../../Components/UI/Antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import { Link } from 'react-router-dom';
 import { Button,Input, } from "antd";
 import SearchIcon from '@mui/icons-material/Search';
@@ -61,8 +61,8 @@ function ProjectsTeamTable (props)  {
                 <Button
                   type="primary"
                   onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                  // icon={<SearchOutlined />}
-                 // icon="search"
+               
+                  
                   size="small"
                   style={{ width: 90 }}
                 >
@@ -90,7 +90,7 @@ function ProjectsTeamTable (props)  {
             </div>
           ),
           filterIcon: (filtered) => (
-            // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+         
             <SearchIcon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
           ),
           onFilter: (value, record) =>
@@ -181,7 +181,7 @@ function ProjectsTeamTable (props)  {
   
   width:"5%",  
   render: (text, item) => {
-    const date= ` ${moment(item.onboardDate).format("ll")}`
+    const date= ` ${dayjs(item.onboardDate).format("ll")}`
      return <span>
 {date}
        </span>;
@@ -191,7 +191,7 @@ function ProjectsTeamTable (props)  {
   title: "End Date",
   dataIndex: "actualEndDate",
   render: (text, item) => {
-    const date2= ` ${moment(item.actualEndDate).format("ll")}`
+    const date2= ` ${dayjs(item.actualEndDate).format("ll")}`
      return <span>
 {date2}
        </span>;

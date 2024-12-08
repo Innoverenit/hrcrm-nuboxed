@@ -1,6 +1,7 @@
 import React, { Component } from "react";
+
 import { FlexContainer } from "../../../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
+
 
 class ShipperDetailView extends Component {
   render() {
@@ -11,9 +12,15 @@ class ShipperDetailView extends Component {
 
     return (
       <>
-        <ShipperItemRow label={<FormattedMessage id="app.phone" defaultMessage="Phone #"/>} value={phoneNo} />
-        <ShipperItemRow label={<FormattedMessage id="app.email" defaultMessage="Email"/>} value={emailId} />
-        <ShipperItemRow label={<FormattedMessage id="app.shipby" defaultMessage="Ship By"/>} value={shipByName} />
+        <ShipperItemRow 
+        label="Phone"
+        value={phoneNo} />
+        <ShipperItemRow 
+        label="Email"
+        value={emailId} />
+        <ShipperItemRow 
+        label="Ship By"
+        value={shipByName} />
       </>
     );
   }

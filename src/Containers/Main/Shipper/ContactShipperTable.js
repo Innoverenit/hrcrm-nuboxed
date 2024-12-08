@@ -7,7 +7,7 @@ import {
   setEditShipperContact,
 } from "./ShipperAction";
 import { Tooltip, Input, Button, Space } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 // import UpdateShipperContactModal from "./UpdateShipperContactModal";
 import Highlighter from "react-highlight-words";
@@ -49,11 +49,11 @@ class ShipperContactTable extends Component {
           <Button
             type="primary"
             onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+         
             size="small"
             style={{ width: 90 }}
           >
-            Search
+<SearchIcon ClassName="!text-icon" />Search
           </Button>
           <Button
             onClick={() => this.handleReset(clearFilters)}
@@ -79,7 +79,7 @@ class ShipperContactTable extends Component {
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+      <SearchIcon ClassName="!text-icon" style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]
@@ -180,24 +180,24 @@ class ShipperContactTable extends Component {
     return (
       <>
         <div className="flex justify-end sticky top-28 z-auto">
-          <div className="rounded-lg max-sm:m-1 m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+          <div className="rounded-lg max-sm:m-1 m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
             <div className="flex max-sm:hidden justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
               <div className="md:w-[0.5rem]"></div>
 
               <div className="md:w-[5.1rem]">
-                <FormattedMessage id="app.name" defaultMessage="Name" />
+                Name
               </div>
               <div className="md:w-[8.8rem]">
-                <FormattedMessage id="app.Email" defaultMessage="Email" />
+             Email
               </div>
               <div className="md:w-[8.8rem]">
-                <FormattedMessage id="app.MobileNo" defaultMessage="Mobile No " />
+               Mobile No 
               </div>
               <div className="md:w-[8.8rem]">
-                <FormattedMessage id="app.Designation" defaultMessage="Designation" />
+             Designation
               </div>
               <div className="md:w-[8.8rem]">
-                <FormattedMessage id="app.Department" defaultMessage="Department" />
+               Department
               </div>
               <div class=" w-[2rem]"></div>
             </div>

@@ -6,28 +6,6 @@ import {
   SubTitle,
 } from "../../../Components/UI/Elements";
 
-// const menu = (
-//   <Menu>
-//     <Menu.Item>
-//       <a target="_blank" rel="noopener noreferrer" href="#">
-//         {/* Call */}
-//         <FormattedMessage
-//           id="app.calls"
-//           defaultMessage="Call"
-//         />,
-//       </a>
-//     </Menu.Item>
-//     <Menu.Item>
-//       <a target="_blank" rel="noopener noreferrer" href="#">
-//         {/* Email */}
-//         <FormattedMessage
-//           id="app.email"
-//           defaultMessage="Email"
-//         />,
-//       </a>
-//     </Menu.Item>
-//   </Menu>
-// );
 
 const BussinessCard = (props) => {
   const {
@@ -71,7 +49,7 @@ const BussinessCard = (props) => {
               {primaryTitle || ""}
             </Title>
             <SubTitle>
-              {/* <UserOutlined theme="filled" /> */}
+           
               {/* <i class="far fa-address-book"></i> */}
               &nbsp;&nbsp;
               {/* {currencyType && <CurrencySymbol currencyType={currencyType} />}

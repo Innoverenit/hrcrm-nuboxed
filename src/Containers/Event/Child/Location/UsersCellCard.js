@@ -1,17 +1,14 @@
-import React, { useEffect,useState } from "react";
+import React, { useEffect,useState,Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button ,Select} from "antd";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
-
 import {getDepartments} from "../../../../Containers/Settings/Department/DepartmentAction"
 import {getUserListLocation} from "../../Child/Location/LocationAction"
-import AddUserCellModal from "./AddUserCellModal"
-//import { Select } from "../../../../Components/UI/Elements";
 import{getAlLoCell,createUserCell,deleteUserCell,getCellCode,getUserCell,handleUserCellModal} from "../../../Event/Child/Location/LocationAction";
-import { DeleteOutlined } from "@ant-design/icons";
-// import ProductCellToggle from "./ProductCellToggle";
-
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import { BundleLoader } from "../../../../Components/Placeholder";
+const AddUserCellModal = lazy(() => ("/AddUserCellModal"));
 
 
 const { Option } = Select;
@@ -29,6 +26,36 @@ const UsersCellCard = (props) => {
     { value: '3', label: 'David Johnson' },
     { value: '4', label: 'Emily Brown' },
   ];
+
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+       
+        "1631",  //Cell Code,//0
+         "1630", // Select a cell",//1
+         "326", // Department,//2
+         "1590", // "Select a department",//3
+         "1507",//  User 
+          "1633",//  "Select a user"
+          "154",//  Submit
+          "1628",//  Machine
+          "1259",//  Do you want to delete?
+         
+       
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
     useEffect(()=>{
         props.getAlLoCell();
         props.getDepartments();
@@ -58,8 +85,7 @@ const UsersCellCard = (props) => {
       setDepartment(value)
       props.getUserListLocation(props.storedLoc.locationDetailsId,value)
       
-      // console.log(`Selected user: ${value}`);
-      // You can handle the selected user value here
+  
     }
 
 
@@ -67,10 +93,6 @@ const UsersCellCard = (props) => {
     const handleCellChange=(value)=> {
     
       setCell(value)
-      //props.getUserListLocation(props.storedLoc.locationDetailsId,value)
-      
-      // console.log(`Selected user: ${value}`);
-      // You can handle the selected user value here
     }
 
 
@@ -90,17 +112,11 @@ const UsersCellCard = (props) => {
       setCell("");
       setDepartment("");
       setUser("");
-      // console.log(`Selected user: ${value}`);
-      // You can handle the selected user value here
     }
 
 
     const handleDelete = (item) => {
-      // let data = {
-      // active:false,
-      //   reason: "",
-      //   productId:item.productId,
-      // };
+      
        props.deleteUserCell(item.cellChamberUserLinkId);
     };
 
@@ -108,9 +124,9 @@ const UsersCellCard = (props) => {
       <>
       <div class="flex justify-between" >
       <div class="ml-2">
-<label class="block" >Cell Code</label>
+<div class="block" >{translatedMenuItems[0]}</div>
     <Select
-      placeholder="Select a cell"
+      placeholder={translatedMenuItems[1]}
       style={{ width: 200 }}
       onChange={handleCellChange}
       value={cell} 
@@ -123,9 +139,9 @@ const UsersCellCard = (props) => {
     </Select>
     </div>
       <div >
-        <label style={{display: 'block'}}>Department</label>
+        <div style={{display: 'block'}}>{translatedMenuItems[2]}</div>
     <Select
-      placeholder="Select a department"
+      placeholder={translatedMenuItems[3]}
       style={{ width: 200 }}
       onChange={handleChangeDepartment}
       value={department} 
@@ -141,9 +157,9 @@ const UsersCellCard = (props) => {
 
 
     <div >
-    <label style={{display: 'block'}}>User </label>
+    <div style={{display: 'block'}}>{translatedMenuItems[4]}</div>
     <Select
-      placeholder="Select a user"
+      placeholder={translatedMenuItems[5]}
       style={{ width: 200 }}
       onChange={handleChange}
       value={user} 
@@ -167,18 +183,18 @@ const UsersCellCard = (props) => {
                                     //     marginLeft: "286px",
                                     // }}
                                 >
-                                    Submit
+                                   {translatedMenuItems[6]} {/* Submit */}
                                 </Button>
                                 </div>
     
     </div>
 
 <div className=' flex  sticky mt-1 h-[31rem] z-auto'>
-        <div class="rounded m-1 p-1  w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">   
-          <div className=" md:w-[8.1rem]">User </div>
-          <div className=" md:w-[4.2rem] ">Department</div>
-            <div className=" md:w-[6rem]">Cell Code</div>
+        <div class="rounded m-1 p-1  w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">   
+          <div className=" md:w-[8.1rem]">{translatedMenuItems[4]} </div>
+          <div className=" md:w-[4.2rem] ">{translatedMenuItems[2]}</div>
+            <div className=" md:w-[6rem]">{translatedMenuItems[0]}</div>
             
          
            
@@ -191,7 +207,7 @@ const UsersCellCard = (props) => {
                 <div className="  w-32 max-md:w-[6.5rem] max-sm:flex-row  max-sm:justify-between ">
                     <div class=" text-xs  font-poppins">
                    
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className=" text-xs  font-poppins">
                         <div> {item.userName}</div>
                       </div>
                     </div>
@@ -200,7 +216,7 @@ const UsersCellCard = (props) => {
 
 <div class=" text-xs  font-poppins">
 
-  <div className="font-normal text-sm  font-poppins">
+  <div className=" text-xs  font-poppins">
     <div> {item.departmentName}</div>
   </div>
 
@@ -208,8 +224,8 @@ const UsersCellCard = (props) => {
 
 </div>
                   <div className="   md:w-[12.1rem] max-sm:w-full  ">
-                    <div class="text-sm  font-semibold  font-poppins cursor-pointer">
-                      <div className="font-normal text-sm  font-poppins">
+                    <div class="text-xs  font-semibold  font-poppins cursor-pointer">
+                      <div className=" text-xs  font-poppins">
                         <div> {item.cellChamber}</div>
                       </div>
                     </div>
@@ -220,7 +236,7 @@ const UsersCellCard = (props) => {
 
 
                  
-                  <div class="flex flex-col w-20 max-sm:flex-row max-sm:w-[10%]">
+                  <div class="flex  w-20 max-sm:flex-row max-sm:w-[10%]">
                             <div>
                             
                           <Button
@@ -228,20 +244,20 @@ const UsersCellCard = (props) => {
                             props.handleUserCellModal(true);
                             handleSetCurrentItems(item);
                           }}
-                          >Machine</Button>
+                          >{translatedMenuItems[7]}</Button>
                             </div>
 
                           </div>
                           <div className="flex justify-end  md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
                     <div class=" flex justify-end text-xs  font-poppins">
                    
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className=" text-xs  font-poppins">
                       <StyledPopconfirm
-                            title="Do you want to delete?"
+                            title={translatedMenuItems[8]}
                             onConfirm={() => handleDelete(item)}
 
                           >
-                        <DeleteOutlined className="!text-red-500 !text-icon"/>
+                        <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                         </StyledPopconfirm>
                       </div>
                     </div>
@@ -252,7 +268,7 @@ const UsersCellCard = (props) => {
                   {/* <div class="flex md:items-center">
 
 
-                    <div class="flex flex-col w-20 max-sm:flex-row max-sm:w-[10%]">
+                    <div class="flex  w-20 max-sm:flex-row max-sm:w-[10%]">
                    <div>
                     <ProductCellToggle item={item}  particularDiscountData={props.particularDiscountData}/>
                    </div>
@@ -268,6 +284,7 @@ const UsersCellCard = (props) => {
         </div>
       </div> 
 
+      <Suspense fallback={<BundleLoader />}>
       <AddUserCellModal
       addUserCellModal={props.addUserCellModal}
       handleUserCellModal={props.handleUserCellModal}
@@ -277,7 +294,9 @@ const UsersCellCard = (props) => {
       // handleLocationMachineModal={props.handleLocationMachineModal}
       
       />
+      </Suspense>
       </>
+      
     );
    }
 

@@ -52,16 +52,16 @@ export const addDesignations = (designation,orgId, cb) => (dispatch) => {
           Swal.fire({
             icon: 'error',
             title: res.data.message,
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         } else {
          
           Swal.fire({
             icon: 'success',
             title: 'Designation added Successfully!',
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         }
      
@@ -104,7 +104,8 @@ export const removeDesignations = (designationTypeId,orgId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Designation deleted Successfully!',
-       
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("Designation has been deleted successfully!");
         console.log(res);
@@ -145,7 +146,8 @@ export const removeDesignations = (designationTypeId,orgId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Designation updated Successfully!',
-       
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("Designation has been updated successfully!");
         console.log(res);
@@ -175,7 +177,8 @@ export const removeDesignations = (designationTypeId,orgId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: res.data.message,
-       
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success(res.data.message);
         dispatch({

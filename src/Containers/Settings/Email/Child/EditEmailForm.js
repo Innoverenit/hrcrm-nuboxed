@@ -4,11 +4,9 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { Spacer } from "../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { updateEmailCredentials } from "../EmailAction";
-import { FlexContainer } from "../../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
+
 
 /**
  * yup validation scheme for creating a Team
@@ -79,103 +77,59 @@ class EditEmailForm extends Component {
                   >
                     <Field
                       name="email"
-                      //label="Email Id"
-                      label={<FormattedMessage
-                        id="app.email"
-                        defaultMessage="Email Id"
-                      />}
+                      label="Email Id"
                       inlineLabel
                       isRequired
                       width={"100%"}
                       component={InputComponent}
                       style={{ flexBasis: "80%" }}
                     />
-                    <Spacer />
+                    <mt-3 />
                     <Field
                       type="password"
                       isRequired
                       name="password"
-                      //label="Password"
-                      label={<FormattedMessage
-                        id="app.password"
-                        defaultMessage="Password"
-                      />}
+                      label="Password"
                       inlineLabel
                       width={"100%"}
                       component={InputComponent}
                       style={{ flexBasis: "80%" }}
                     />
-                    <Spacer />
-                    {/* <Field
-                                        name="serverType"
-                                        label="Server Type"
-                                        component={InputComponent}
-                                        inlineLabel
-                                        style={{ flexBasis: "80%" }}
-                                    />
-                                    <Spacer /> */}
+                    <mt-3 />             
                     <Field
                       isMulti
-                      isRequired
-                      name="host"
-                      name="host"
-                      // label="Host Name"
-                      label={<FormattedMessage
-                        id="app.host"
-                        defaultMessage="Host Name"
-                      />}
+                      isRequired                 
+                     name="host"
+                      label="Host Name"
                       component={InputComponent}
                       inlineLabel
                       width={"100%"}
                       style={{ flexBasis: "80%" }}
                     />
-                    <Spacer />
+                    <mt-3 />
                     <Field
                       name="port"
-                      //label="Port"
-                      label={<FormattedMessage
-                        id="app.port"
-                        defaultMessage="Port"
-                      />}
+                      label="Port"
                       inlineLabel
                       isRequired
                       width={"100%"}
                       component={InputComponent}
                       style={{ flexBasis: "80%" }}
-                    />
-                    {/* <Spacer /> */}
-                    {/* <Field
-                                        name="connectionSecurity"
-                                        label="Connection Security"
-                                        inlineLabel
-                                        component={InputComponent}
-                                        style={{ flexBasis: "80%" }}
-                                    />
-                                    <Spacer />
-                                    <Field
-                                        name="AuthType"
-                                        label="Auth Type"
-                                        inlineLabel
-                                        component={InputComponent}
-                                        style={{ flexBasis: "80%" }}
-                                    /> */}
-                    <Spacer />
+                    />                
+                    <mt-3 />
                   </div>
                 </div>
-                <FlexContainer justifyContent="flex-end">
+                <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   <Button
                     type="primary"
                     htmlType="submit"
                     Loading={updatingEmailCredential}
                   >
-                    <FormattedMessage
-                      id="app.update"
-                      defaultMessage="Update"
-                    />
+                  
 
-                    {/* Update */}
+                    Update
                   </Button>
-                </FlexContainer>
+                </div>
               </Form>
             )}
         </Formik>

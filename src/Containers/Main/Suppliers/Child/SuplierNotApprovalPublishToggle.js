@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import { Switch, Checkbox, Popconfirm} from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -9,7 +9,10 @@ import {
 
 function SuplierNotApprovalPublishToggle(props) {
     //const [toggle, setToggle] = React.useState(props.item.completeInd)
-
+    const [data, setData] = useState(props.notApprovalSupplierList);
+    useEffect(() => {
+      setData(props.notApprovalSupplierList);
+    }, [props.notApprovalSupplierList]);
     function handleDispatchToggle() {
         props.linkSupplierNotApproval(
         //   {     
@@ -32,7 +35,7 @@ function SuplierNotApprovalPublishToggle(props) {
                     cancelText="Cancel"
                 >
                     <Switch className="toggle-clr"
-            checked={props.approveInd}
+            checked={props.approvedInd}
                         // isLoading={true}
                         checkedChildren="Yes"
                         unCheckedChildren="No"
@@ -43,10 +46,11 @@ function SuplierNotApprovalPublishToggle(props) {
     );
 }
 
-const mapStateToProps = ({ auth, partner }) => ({
+const mapStateToProps = ({ auth, partner,suppliers }) => ({
     userId: auth.userDetails.userId,
     updatePartnerById: partner.updatePartnerById,
     updatePartnerByIdError: partner.updatePartnerByIdError,
+    notApprovalSupplierList:suppliers.notApprovalSupplierList,
 });
 
 const mapDispatchToProps = (dispatch) =>

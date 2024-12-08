@@ -1,6 +1,6 @@
 import React, {  lazy} from "react";
 import { StyledSelect, } from "../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 import {
   setDashboardViewType,
 } from "../DashboardAction";
@@ -26,10 +26,7 @@ const HeaderActionRight  = (props) => {
   return (
     <div class=" flex items-center max-sm:-mr-[0.75rem]">
          { user.department=== "Management" && (  
-            <>
-            
-      
-                  
+            <>          
             </>
              )}
 
@@ -45,10 +42,7 @@ const HeaderActionRight  = (props) => {
                 }}
                onClick={() => setDashboardViewType("ALL")}
               >
-                <FormattedMessage
-                  id="app.enterprise"
-                  defaultMessage="Enterprise"
-                />
+              Enterprise
               </Tag>
             )}
              {viewType==="ALL" && (

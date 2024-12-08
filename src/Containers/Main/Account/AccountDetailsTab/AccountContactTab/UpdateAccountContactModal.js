@@ -19,7 +19,7 @@ const UpdateAccountContactModal = (props) => {
                 footer={null}
             >
                 <Suspense fallback={<BundleLoader />}>
-                    <UpdateAccountContactForm />
+                    <UpdateAccountContactForm handleUpdateDistributorContactModal={props.handleUpdateDistributorContactModal}/>
                 </Suspense>
             </StyledDrawer>
         </>

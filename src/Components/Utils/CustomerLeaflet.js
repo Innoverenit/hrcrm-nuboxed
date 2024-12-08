@@ -1,7 +1,7 @@
 
 import React, { Component } from "react";
 import { Button } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import L from "leaflet";
 import { MapLayer, Map, TileLayer, withLeaflet } from "react-leaflet";
 import "leaflet-routing-machine";
@@ -82,10 +82,7 @@ class MapContainer extends Component {
               >
                 &nbsp;&nbsp;&nbsp;&nbsp;
                NEAR BY 
-                {/* <FormattedMessage
-                  id="app.nearby"
-                  defaultMessage="NEAR BY"
-                /> */}
+               
                 &nbsp;&nbsp;&nbsp;&nbsp;
               </Button>
             )}
@@ -95,10 +92,7 @@ class MapContainer extends Component {
                 onClick={() => this.toggleMapZoom(true)}
               >
                  WORLD WIDE 
-                {/* <FormattedMessage
-                  id="app.worldwide"
-                  defaultMessage="WORLD WIDE"
-                /> */}
+              
               </Button>
             )}
           </Button.Group>

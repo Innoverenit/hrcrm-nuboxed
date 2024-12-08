@@ -7,13 +7,12 @@ import {
   getLibrarys,
 } from "../../../../../Settings/Library/LibraryAction";
 import { ViewEditCard, } from "../../../../../../Components/UI/Elements";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import {
   addTopicByUserId,
   getTopicsByUserId,
   deleteTopicByUserId,
 } from "../../../../../Employees/EmployeeAction";
-import { PlusOutlined,
-} from '@ant-design/icons';
 const EmployeeSelect = lazy(() => import("./EmployeeSelect"));
 class EmployeeTopicOfInterest extends React.Component {
   constructor(props) {
@@ -98,8 +97,8 @@ class EmployeeTopicOfInterest extends React.Component {
         {({ viewType }, toggleViewType) =>
           viewType === "view" ? (
             <div class=" h-[11rem]" >
-              <div class=" flex justify-between" >
-              <div class=" font-semibold mb-[0.2rem] text-[0.875em]"
+              <div class=" flex justify-between items-center" >
+              <div class=" flex items-center justify-center font-semibold mb-[0.2rem] text-xs"
               
               >
                 Skills{" "}
@@ -155,15 +154,17 @@ class EmployeeTopicOfInterest extends React.Component {
                   onPressEnter={this.handleInputConfirm}
                 />
               )}
+              <div className=" mt-1">
               {!inputVisible && (
                 <Tag
                   onClick={this.showInput}
                   visible={this.props.topicsByUserId.length !== 30}
                   style={{ background: "#fff", borderStyle: "dashed" }}
                 >
-                  <PlusOutlined type="plus" /> Skill
+                  <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" /> Skill
                 </Tag>
               )}
+              </div>
             </div>
           ) : null
         }

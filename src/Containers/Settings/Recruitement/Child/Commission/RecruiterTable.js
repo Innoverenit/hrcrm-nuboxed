@@ -1,18 +1,9 @@
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {
-  DeleteOutlined,
-  EditOutlined,
-  SearchOutlined,
-  ShoppingOutlined,
-} from "@ant-design/icons";
-import { InputNumber, Popconfirm, Form, Input, Typography, Button, Space, DatePicker } from 'antd';
-import { FormattedMessage } from "react-intl";
-import { StyledModal, StyledTable } from "../../../../../Components/UI/Antd";
+import { StyledTable } from "../../../../../Components/UI/Antd";
 import { getRecruiterTable} from "../../../../Settings/SettingsAction";
-import dayjs from "dayjs";
 
 function RecruiterTable (props) {
     

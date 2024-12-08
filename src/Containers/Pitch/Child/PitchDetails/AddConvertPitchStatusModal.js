@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const PitchConvertStatusForm =lazy(()=>import("./PitchConvertStatusForm"));
@@ -10,10 +10,7 @@ const AddConvertPitchStatusModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.convertasInvestor"
-          defaultMessage="Convert as Investor"
-        />}
+        title="Convert as Investor"
         width={drawerWidth}
         visible={props.addPitchConvertModal}
         closable

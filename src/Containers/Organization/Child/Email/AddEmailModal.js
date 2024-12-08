@@ -15,7 +15,9 @@ class AddEmailModal extends Component {
           onClose={() => handleEmailModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <EmailForm />
+            <EmailForm 
+             selectedLanguage={this.props.selectedLanguage}
+             translateText={this.props.translateText}/>
           </Suspense>
         </StyledDrawer>
       </>

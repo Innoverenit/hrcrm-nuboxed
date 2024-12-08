@@ -2,27 +2,18 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTable } from "../../../../../../Components/UI/Antd";
-import moment from "moment";
+import dayjs from "dayjs";
 import { Input, Space, Tooltip, Button } from "antd";
-import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
-// import {
-//   getProductionExecutive,
-//   handleAssignShiftModal,
-//   getShift,
-// } from "../../../../Shift/ShiftAction";
 import {
   handleDeputeButtonModal,
   setEditPlantAllocation,
 } from "../../../../PlantAction";
-// import DeputeButtonModal from "./DeputeButtonModal";
-// import AssignShiftModal from "./AssignShiftModal";
 import Highlighter from "react-highlight-words";
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+;
 
 class AllocationTable extends Component {
   componentDidMount() {
-    // this.props.getProductionExecutive(this.props.locationDetailsId);
-    // this.props.getShift(this.props.locationDetailsId);
   }
   state = {
     searchText: "",
@@ -55,11 +46,11 @@ class AllocationTable extends Component {
           <Button
             type="primary"
             onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+         
             size="small"
             style={{ width: 90 }}
           >
-            Search
+           <SearchIcon ClassName="!text-icon" /> Search
           </Button>
           <Button
             onClick={() => this.handleReset(clearFilters)}
@@ -85,7 +76,7 @@ class AllocationTable extends Component {
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+      <SearchIcon ClassName="!text-icon" style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]
@@ -184,7 +175,7 @@ class AllocationTable extends Component {
         width:"10%",
         dataIndex: "shiftStartDate",
         render: (name, item, i) => {
-          return <>{moment(item.shiftStartDate).format("ll")}</>;
+          return <>{dayjs(item.shiftStartDate).format("ll")}</>;
         },
       },
       {
@@ -192,7 +183,7 @@ class AllocationTable extends Component {
         width:"10%",
         dataIndex: "shiftEndDate",
         render: (name, item, i) => {
-          return <>{moment(item.shiftEndDate).format("ll")}</>;
+          return <>{dayjs(item.shiftEndDate).format("ll")}</>;
         },
       },
 
@@ -264,7 +255,7 @@ class AllocationTable extends Component {
     ];
 
     if (this.props.fetchingProductionExecutiveError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight - 200;

@@ -1,15 +1,16 @@
 
-import React, { Component } from "react";
+import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
 import { bindActionCreators } from "redux";
 import { StyledSteps } from "../../../../../Components/UI/Antd";
-import { PhoneOutlined, UserOutlined } from "@ant-design/icons";
-import { FormattedMessage } from 'react-intl';
+import GroupsIcon from '@mui/icons-material/Groups';
+import CallIcon from '@mui/icons-material/Call';
+import { BundleLoader } from '../../../../../Components/Placeholder';
 import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import ControlPointDuplicateIcon from '@mui/icons-material/ControlPointDuplicate';
-import AddAddressDetail from "./AddAddressDetail";
-import AddCatalogueForm from "./AddCatalogueForm";
+const AddAddressDetail= lazy(() => import('./AddAddressDetail'));
+const AddCatalogueForm  = lazy(() => import('./AddCatalogueForm'));
 
 const Step = StyledSteps.Step;
 
@@ -43,22 +44,18 @@ class AccountOrder1Stepper extends Component {
         console.log(this.props.orderId)
         const steps = [
             {
-                title: <FormattedMessage
-                    id="app.order"
-                    defaultMessage="Order"
-                />,
-                icon: <UserOutlined />,
-                content: <AddAddressDetail distributorId={this.props.distributorId} />,
+                title: "Order"
+               ,
+                icon: <GroupsIcon />,
+                content:<Suspense fallback={<BundleLoader />}> <AddAddressDetail distributorId={this.props.distributorId} /></Suspense>,
             },
             {
-                title: <FormattedMessage
-                    id="app.catalogue"
-                    defaultMessage="Catalogue List"
-                />,
-                icon: <PhoneOutlined
+                title: "Catalogue List"
+              ,
+                icon: <CallIcon
                     style={{ color: "blue" }}
                 />,
-                content: <AddCatalogueForm distributorId={this.props.distributorId} />,
+                content: <Suspense fallback={<BundleLoader />}><AddCatalogueForm distributorId={this.props.distributorId} /></Suspense>,
             },
 
 
@@ -69,17 +66,13 @@ class AccountOrder1Stepper extends Component {
                 <StyledSteps current={current}>
                     <Step
                         title={<AddShoppingCartIcon style={{ fontSize: "1rem" }} />}
-                        description={<FormattedMessage
-                            id="app.oderdetails"
-                            defaultMessage="Order Details"
-                        />}
+                        description="Order Details"
+                       
                     />
                     <Step
                         title={<ControlPointDuplicateIcon style={{ fontSize: "1rem" }} />}
-                        description={<FormattedMessage
-                            id="app.unitsinfo"
-                            defaultMessage="Units Info"
-                        />}
+                        description="Units Info"
+                      
                     />
 
                 </StyledSteps>
@@ -92,16 +85,16 @@ class AccountOrder1Stepper extends Component {
                             <>
                                 {current > 1 ? null : (
                                     <>
-                                        {this.props.orderId && <Button style={{ marginRight: "3rem", marginTop: "65px" }}
+                                        {this.props.orderId && 
+                                        <Button style={{ marginRight: "3rem", marginTop: "65px" }}
                                             className=" w-16 absolute top-3/4 right-0"
                                             type="primary"
                                             onClick={() => this.next()}
                                         >
-                                            <FormattedMessage
-                                                id="app.proceed"
-                                                defaultMessage="Proceed"
-                                            />
-                                        </Button>}
+                                           Proceed
+                                            
+                                        </Button>
+                                         } 
                                     </>
                                 )}
                             </>
@@ -109,10 +102,7 @@ class AccountOrder1Stepper extends Component {
 
                         {current > 0 && (
                             <Button className=" w-16 absolute top-3/4 right-0 mt" style={{ marginRight: "1rem", marginTop: "90px" }} onClick={() => this.prev()}>
-                                <FormattedMessage
-                                    id="app.previous"
-                                    defaultMessage="Previous"
-                                />
+                             Previous
                             </Button>
                         )}
                     </div>

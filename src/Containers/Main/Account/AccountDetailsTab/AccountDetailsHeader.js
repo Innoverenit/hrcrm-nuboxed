@@ -7,7 +7,9 @@ class AccountDetailsHeader extends Component {
         return (
             <div>
                 <ActionHeader
-                    leftComponent={<AccountDetailsHeaderLeft distributorData={this.props.distributorData} />}
+                    leftComponent={<AccountDetailsHeaderLeft distributorData={this.props.distributorData}
+                    selectedLanguage={this.props.selectedLanguage}
+                    translateText={this.props.translateText} />}
                     rightComponent={<></>}
                 />
             </div>

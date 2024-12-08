@@ -4,7 +4,7 @@ import { bindActionCreators } from "redux";
 import { Tooltip, Select,Timeline } from "antd";
 import {getCustomerActivityTimeline} from "../../CustomerAction"
 import { BundleLoader } from "../../../../Components/Placeholder";
-import moment from "moment";
+import dayjs from "dayjs";
 const Option = Select;
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
@@ -50,7 +50,7 @@ function CustrActivityJumpstartCardList(props) {
   if (fetchingCusActivityTimelineStatus) {
     return <BundleLoader />;
   }
-  const currentDate = moment().format("DD/MM/YYYY");
+  const currentDate = dayjs().format("DD/MM/YYYY");
   return (
     <>
 
@@ -65,11 +65,11 @@ function CustrActivityJumpstartCardList(props) {
               <div className="flex flex-row justify-between items-center">           
                 <div>                
                 
-{currentDate === moment(status.creationDate).format("DD/MM/YYYY") ? (
+{currentDate === dayjs(status.creationDate).format("DD/MM/YYYY") ? (
                       <span className="text-xs text-[tomato] font-bold">
                         New
                       </span>
-                    ) : null}    {status.category} {status.activityType} Completed by {moment(status.endDate).format('DD/MM/YYYY')}
+                    ) : null}    {status.category} {status.activityType} Completed by {dayjs(status.endDate).format('DD/MM/YYYY')}
                   </div>
                 
                 </div>

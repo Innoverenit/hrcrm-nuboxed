@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Select } from "antd";
-import { CloseOutlined } from "@ant-design/icons";
+import CloseIcon from '@mui/icons-material/Close';
 import { getDepartments } from "../../../Department/DepartmentAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -17,13 +17,14 @@ function LevelApproveForm(props) {
 
   const [rows, setRows] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  console.log(rows)
 
   useEffect(() => {
     if (props.approvalData.level) {
       setRows(
         props.approvalData.level.map((level, index) => ({
           ...level,
-          roleType: props.approvalData.roleType ? props.approvalData.roleType[index] : "",
+          roleType: level.roleType
         }))
       );
       setIsLoading(false);
@@ -128,7 +129,7 @@ function LevelApproveForm(props) {
                 </div>
                 <div className="ml-4">
                   {rows.length > 1 ? (
-                    <CloseOutlined onClick={() => handleDelete(index)} />
+                    <CloseIcon onClick={() => handleDelete(index)} />
                   ) : null}
                 </div>
               </div>

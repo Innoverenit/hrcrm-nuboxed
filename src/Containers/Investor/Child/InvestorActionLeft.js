@@ -1,25 +1,27 @@
 import React, { useEffect, useState,useRef } from "react";
-import { FormattedMessage } from "react-intl";
+
 import TocIcon from '@mui/icons-material/Toc';
 import { StyledSelect } from "../../../Components/UI/Antd";
-import { Tooltip, Badge, Avatar } from "antd";
+import { Tooltip, Badge, Avatar,Button,Select } from "antd";
 import { connect } from "react-redux";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { bindActionCreators } from "redux";
 import PeopleIcon from '@mui/icons-material/People';
 import { withRouter } from "react-router-dom";
-import { AudioOutlined } from "@ant-design/icons";
-import SpeechRecognition, {
-  useSpeechRecognition,
-} from "react-speech-recognition";
+import MicIcon from '@mui/icons-material/Mic';
+import SpeechRecognition, {  useSpeechRecognition,} from "react-speech-recognition";
 import { getInvestor, ClearReducerDataOfInvestor, getInvestorsbyId, getInvestorTeam, searchInvestorName, getInvestorAll } from "../InvestorAction";
 import { Input } from "antd";
-
+import { base_url } from "../../../Config/Auth";
+import MoveUpIcon from '@mui/icons-material/MoveUp';
 const Option = StyledSelect.Option;
 const { Search } = Input;
 
 const InvestorActionLeft = (props) => {
-  const [filter, setFilter] = useState("creationdate")
   const [currentData, setCurrentData] = useState("");
+  const [userData, setUserData] = useState([]);
+  const [isLoadingUser, setIsLoadingUser] = useState(false);
+  const [touchedUser, setTouchedUser] = useState(false);
   const [searchOnEnter, setSearchOnEnter] = useState(false);  //Code for Search
   const [pageNo, setPage] = useState(0);
   const [startTime, setStartTime] = useState(null);
@@ -49,6 +51,15 @@ const InvestorActionLeft = (props) => {
       props.getInvestorsbyId(props.userId, pageNo, "creationdate");
       props.ClearReducerDataOfInvestor()
       setSearchOnEnter(false);
+    }
+  };
+
+  const handleSelectUserFocus = () => {
+    if (!touchedUser) {
+      fetchUser();
+      // fetchSector();
+
+      setTouchedUser(true);
     }
   };
 
@@ -86,7 +97,7 @@ const InvestorActionLeft = (props) => {
   };
   const dummy = ["cloud", "azure", "fgfdg"];
   const suffix = (
-    <AudioOutlined
+    <MicIcon
       onClick={handleStartListening}
       style={{
         fontSize: 16,
@@ -133,11 +144,7 @@ const InvestorActionLeft = (props) => {
     }
   }, [listening, isRecording, startTime]);
 
-  function handleFilterChange(data) {
-    setFilter(data)
-    props.getInvestorsbyId(props.userId, pageNo, data);
-    setPage(pageNo + 1);
-  }
+
 
   useEffect(() => {
 
@@ -160,11 +167,33 @@ const InvestorActionLeft = (props) => {
     //   props.setCurrentData(transcript);
     // }
   }, [props.viewType, props.userId, props.orgId]);
+  const fetchUser = async () => {
+    setIsLoadingUser(true);
+    try {
+   
+
+      const apiEndpoint = `${base_url}/employee/active/user/drop-down/${props.orgId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setUserData(data);
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      setIsLoadingUser(false);
+    }
+  };
   const teamCount = props.teamsAccessInd && props.investorTeamRecord ? props.investorTeamRecord.investorTeam : 0;
   return (
     <div class=" flex items-center">
 
-      <Tooltip title={<FormattedMessage id="app.myInvestors" defaultMessage="My Investors" />}>
+      <Tooltip title="My Investors">
         <Badge
           size="small"
           count={(props.viewType === "list" && props.investorRecord.investor) || 0}
@@ -177,7 +206,9 @@ const InvestorActionLeft = (props) => {
               color: props.viewType === "list" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "list" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "list" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "list" ? "scale(1.05)" : "scale(1)" }}>
               <TocIcon  className="text-white !text-icon" />
             </Avatar>
           </span>
@@ -186,7 +217,7 @@ const InvestorActionLeft = (props) => {
 
       {props.user.teamsAccessInd === true && (
         <Tooltip
-          title={<FormattedMessage id="app.teamView" defaultMessage="Team View" />}
+          title="Team View"
         >
           <Badge
             size="small"
@@ -200,7 +231,9 @@ const InvestorActionLeft = (props) => {
                 color: props.viewType === "teams" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: props.teamsAccessInd || props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background: props.teamsAccessInd || props.viewType === "teams" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "teams" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "teams" ? "scale(1.05)" : "scale(1)" }}>
                 <PeopleIcon  className="text-white !text-icon" />
               </Avatar>
             </span>
@@ -208,7 +241,7 @@ const InvestorActionLeft = (props) => {
         </Tooltip>
       )}
       {(props.user.investorFullListInd === true || props.user.role === "ADMIN") && (
-        <Tooltip title={<FormattedMessage id="app.all" defaultMessage="All" />}>
+        <Tooltip title="All" >
           <Badge
             size="small"
             count={(props.viewType === "all" && props.allinvestorRecord.investor) || 0}
@@ -221,13 +254,34 @@ const InvestorActionLeft = (props) => {
                 color: props.viewType === "all" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                <FormattedMessage id="app.all" defaultMessage="ALL" class=" text-white !text-icon"/>
+              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "all" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "all" ? "scale(1.05)" : "scale(1)" }}>
+              All
               </Avatar>
             </span>
           </Badge>
         </Tooltip>
       )}
+       <Tooltip title="Delete List">
+                {/* <Badge
+          size="small"
+          count={(props.viewType === "delete" && props.deletedCountSupplier.deletedSupplier) || 0}
+          overflowCount={999}
+        > */}
+                    <span class=" mr-1 !text-icon cursor-pointer"
+                        onClick={() => props.setInvestorViewType("delete")}
+                        style={{
+                            color: props.viewType === "delete" && "#1890ff",
+                        }}
+                    >
+                        <Avatar style={{ background: props.viewType === "delete" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "delete" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "delete" ? "scale(1.05)" : "scale(1)" }}>
+                  <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  /></Avatar>
+                    </span>
+                    {/* </Badge> */}
+                </Tooltip>
       {/* <Tooltip>
         <Badge
           size="small"
@@ -248,7 +302,7 @@ const InvestorActionLeft = (props) => {
 
 
       {/* <Tooltip
-        title={<FormattedMessage id="app.mapview" defaultMessage="Map View" />}
+        
       >
         <Badge
           size="small"
@@ -267,7 +321,7 @@ const InvestorActionLeft = (props) => {
       </Tooltip> */}
       <div class=" flex items-center justify-between"
       >
-        <div class=" w-72 md:ml-4 max-sm:w-16 ml-0">
+        <div class=" w-[26rem] md:ml-4 max-sm:w-16 ml-0">
           <Input
             placeholder="Search by Name, Company"
             class="w-96"
@@ -291,14 +345,42 @@ const InvestorActionLeft = (props) => {
             props.handleClear();
           }}
         >
-          <FormattedMessage id="app.clear" defaultMessage="Clear" />
+        
         </Button> */}
-        <div class=" w-[40%] mt-2 ml-2" >
-          <StyledSelect placeholder="Sort" onChange={(e) => props.handleFilterChange(e)}>
-            <Option value="CreationDate">Creation Date</Option>
+        <div class=" w-[40%]  ml-2" >
+          <StyledSelect placeholder="Sort" defaultValue="Creation Date" value={props.filter} onChange={(e) => props.handleFilterChange(e)}>
+            <Option value="Creation Date">Creation Date</Option>
             <Option value="ascending">A To Z</Option>
             <Option value="descending">Z To A</Option>
           </StyledSelect>
+        </div>
+
+        <div class="w-[40%]  ml-2 max-sm:w-[45%]">
+       {/* {!props.showCheckboxes && (  */}
+        <Button type="primary" 
+        onClick={props.handleTransferClick}
+        ><MoveUpIcon className="!text-icon"/>
+          {props.isTransferMode ? 'Transfer' : 'Cancel'}
+        </Button>
+       {/* )} */}
+        </div>
+
+        <div class="w-[40%]  ml-2 max-sm:w-[45%]">
+       {props.showCheckboxes && props.selectedDeals.length > 0 && ( 
+        <Select
+       
+       placeholder="Select User"
+       loading={isLoadingUser}
+       onFocus={handleSelectUserFocus}
+       onChange={props.handleUserSelect}
+     >
+       {userData.map(customer => (
+         <Option key={customer.employeeId} value={customer.employeeId}>
+           {customer.empName}
+         </Option>
+       ))}
+     </Select>
+     )}
         </div>
       </div>
     </div>
@@ -310,6 +392,7 @@ const mapStateToProps = ({ investor, auth, candidate }) => ({
   investorTeamRecord: investor.investorTeamRecord,
   Candidatesort: candidate.Candidatesort,
   userId: auth.userDetails.userId,
+  token: auth.token,
   orgId: auth.userDetails.organizationId,
   allinvestorRecord: investor.allinvestorRecord
 });

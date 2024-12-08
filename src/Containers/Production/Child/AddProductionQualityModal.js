@@ -1,7 +1,7 @@
 
 import React, { lazy, Component, Suspense } from "react";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 import ProductionQualityData from "../Child/ProductionQualityData"
 //import QualityProductForm from "../ProductTable/QualityProductForm"
 import { BundleLoader } from "../../../Components/Placeholder";

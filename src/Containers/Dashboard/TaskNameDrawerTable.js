@@ -9,7 +9,7 @@ import { OnlyWrapCard } from '../../Components/UI/Layout';
 import {
   MultiAvatar,
 } from "../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
+
 
 const ButtonGroup = Button.Group;
 
@@ -30,44 +30,26 @@ function TaskNameDrawerTable (props) {
       <>
         
         <div className=' flex justify-end sticky top-28 z-auto'>
-        <OnlyWrapCard style={{backgroundColor:"#eaedf1"}}>
+        <OnlyWrapCard style={{backgroundColor:"white"}}>
         <div className=" flex justify-between w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
           {/* <div class=" w-4"></div> */}
         <div className=" md:w-[7.1rem]">
-        <FormattedMessage
-                id="app.priority"
-                defaultMessage="Priority"
-              />
+     Priority
           </div>
         <div className=" md:w-[6rem]">
-        <FormattedMessage
-                id="app.taskName"
-                defaultMessage="Task Name"
-              />
+      Task Name
           </div>
         <div className="md:w-24">
-        <FormattedMessage
-                id="app.assignedTo"
-                defaultMessage="Assigned"
-              />
+       Assigned
           </div>
         <div className=" md:w-[6.8rem] ">
-        <FormattedMessage
-                id="app.status"
-                defaultMessage="Status"
-              />
+     Status
           </div>
         <div className="md:w-[9.9rem]">
-        <FormattedMessage
-                id="app.endDate"
-                defaultMessage="End Date"
-              />
+       End Date
           </div>
         <div className="md:w-[5rem]">
-        <FormattedMessage
-                id="app.deviation"
-                defaultMessage="Deviation"
-              />
+     Deviation
           </div>
           <div class="w-[1rem]"></div>
       </div>

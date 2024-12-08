@@ -9,8 +9,8 @@ import { Editor } from "react-draft-wysiwyg";
 import draftToHtml from "draftjs-to-html";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { EditorState, convertToRaw, } from "draft-js";
-import { StyledLabel } from "../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
+
+
 
 class CandidateRowEmailModal extends Component {
 
@@ -71,11 +71,9 @@ class CandidateRowEmailModal extends Component {
     return (
       <div>
         <StyledDrawer
-              // title="Opportunity"
-        title={<FormattedMessage
-          id="app.email"
-          defaultMessage="Email"
-        />}
+            
+        title="Email"
+       
         width={"60%"}
         visible={this.props.addCandidateRowEmailModal}
         // maskClosable={false}
@@ -146,7 +144,7 @@ class CandidateRowEmailModal extends Component {
                   <div class=" flex items-center" >
                     {/* <Title type='user' style={{ fontSize: 18, display: 'inline'}} >To</Title> */}
                     <div class="w-[12%]" >
-               <StyledLabel>To</StyledLabel>
+               <div class=" text-xs font-bold font-poppins text-black">To</div>
                     </div>
                     <div class="w-[88%]" >
                       
@@ -159,7 +157,7 @@ class CandidateRowEmailModal extends Component {
                   </div>
                   <div class=" flex items-center" >
                   <div class=" w-[12%]" >
-               <StyledLabel>CC</StyledLabel>
+               <div class=" text-xs font-bold font-poppins text-black">CC</div>
                     </div>
                     <div class="w-[88%]" >
                       
@@ -173,7 +171,7 @@ class CandidateRowEmailModal extends Component {
                  
                   <div class=" flex items-center" >
                   <div class=" w-[12%]" >
-               <StyledLabel>BCC</StyledLabel>
+               <div class=" text-xs font-bold font-poppins text-black">BCC</div>
                     </div>
                     <div class="w-[88%]" >
                       
@@ -186,7 +184,7 @@ class CandidateRowEmailModal extends Component {
                   </div>
                   <div class=" flex items-center" >
                   <div class=" w-[12%]" >
-               <StyledLabel>Subject</StyledLabel>
+               <div class=" text-xs font-bold font-poppins text-black">Subject</div>
                     </div>
                     <div class="w-[88%]" >
                       

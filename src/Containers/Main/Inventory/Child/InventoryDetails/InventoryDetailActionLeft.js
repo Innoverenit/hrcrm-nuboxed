@@ -2,9 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip } from "antd";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
 import { emptyInventory } from "../../InventoryAction"
-import { RollbackOutlined } from "@ant-design/icons";
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import { Link } from 'react-router-dom';
 class InventoryDetailActionLeft extends Component {
   constructor(props) {
@@ -23,12 +22,12 @@ class InventoryDetailActionLeft extends Component {
     const { setInventoryDetailViewType, viewType1 } = this.props
     return (
       <>
-        <FlexContainer alignItems="center">
+    <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
 
           {/* {user.designation === "Manager" && */}
           <Link to="/inventory">
           <Tooltip title={this.props.translatedMenuItems[3]}>
-                        <RollbackOutlined
+                        <KeyboardReturnIcon
                             style={{ marginRight: "0.3rem", color: "#1890ff" }}
                             // onClick={() => {
                             //     this.this.props.history.goBack();
@@ -46,7 +45,7 @@ class InventoryDetailActionLeft extends Component {
       onClick={() => setInventoryDetailViewType("material")}
     >
       <Button type={viewType1 === "material" ? "primary" : ""} style={{ backgroundColor: viewType1 === "material" ? "" : "tomato" }}>
-        <label class="text-white cursor-pointer">{this.props.translatedMenuItems[0]}</label>
+        <div class="text-white cursor-pointer">{this.props.translatedMenuItems[0]}</div>
       </Button>
     </div>
 
@@ -62,7 +61,7 @@ class InventoryDetailActionLeft extends Component {
             >
              {/* <Button type="primary">  */}
              <Button type={viewType1 === "production" ? "primary" : ""} style={{ backgroundColor: viewType1 === "production" ? "" : "tomato" }}>
-             <label class="text-white cursor-pointer">{this.props.translatedMenuItems[1]}</label></Button>
+             <div class="text-white cursor-pointer">{this.props.translatedMenuItems[1]}</div></Button>
             </div>
           </Tooltip>}
           {this.props.repairInd && <Tooltip title={this.props.translatedMenuItems[2]}>
@@ -75,11 +74,11 @@ class InventoryDetailActionLeft extends Component {
             >
               <Button type={viewType1 === "repair" ? "primary" : ""} style={{ backgroundColor: viewType1 === "repair" ? "" : "tomato" }}>
                 
-              <label class="text-white cursor-pointer">{this.props.translatedMenuItems[2]}</label></Button>
+              <div class="text-white cursor-pointer">{this.props.translatedMenuItems[2]}</div></Button>
             </div>
           </Tooltip>}
 
-        </FlexContainer>
+        </div>
 
       </>
     );

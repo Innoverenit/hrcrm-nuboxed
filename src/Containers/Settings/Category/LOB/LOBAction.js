@@ -54,16 +54,16 @@ export const addLob = (sectors,orgId, cb) => (dispatch) => {
           Swal.fire({
             icon: 'error',
             title: res.data.message,
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         } else {
          
           Swal.fire({
             icon: 'success',
             title: 'LOB added Successfully!',
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         }
         // message.success("LOB has been added successfully!");
@@ -105,6 +105,8 @@ export const removeLob = ( lobDetailsId,orgId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'LOB deleted Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("LOB has been deleted successfully!");
         console.log(res);
@@ -143,6 +145,8 @@ export const updateLob = (data, lobDetailsId,cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'LOB updated Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("LOB has been updated successfully!");
         console.log(res);

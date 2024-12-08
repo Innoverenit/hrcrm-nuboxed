@@ -7,7 +7,7 @@ import { Tooltip } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { SubTitle } from "../../../../../Components/UI/Elements";
-import { RollbackOutlined } from "@ant-design/icons";
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import { emptyInventory } from "../../InventoryAction"
 
 class InventoryDetailActionRight extends React.Component {
@@ -29,7 +29,7 @@ class InventoryDetailActionRight extends React.Component {
 
                         <div class=" flex flex-row w-[50rem] items-center justify-between"  >
                             <Title width="25%">
-                                <label class=" text-sm font-medium"> {` ${locationName || ""} `}</label>
+                                <div class=" text-sm font-medium"> {` ${locationName || ""} `}</div>
                             </Title>
 
                             <div class=" flex  justify-center ml-[1rem]"  >
@@ -42,7 +42,7 @@ class InventoryDetailActionRight extends React.Component {
                         </div>
                     </div>
                     {/* <Tooltip title="Back">
-                        <RollbackOutlined
+                        <KeyboardReturnIcon
                             style={{ marginRight: "0.3rem", color: "#1890ff" }}
                             onClick={() => {
                                 this.props.history.goBack();

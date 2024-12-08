@@ -1,7 +1,7 @@
 import React, {  Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Button, Switch, Tooltip, } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import {getCountries} from "../../../../../../Auth/AuthAction"
@@ -101,10 +101,7 @@ class UserVisaForm extends Component {
                   <div> <FastField
                     name="documentTypeId"
                     type="text"
-                    //label="Type"
-                    label={
-                      <FormattedMessage id="app.type" defaultMessage="Type" />
-                    }
+                    label="Type"
                  
                     options={
                       Array.isArray(documentNameOption)
@@ -122,10 +119,7 @@ class UserVisaForm extends Component {
                         name="country"
                         isColumnWithoutNoCreate
                         //label="Mobile #"
-                        label={<FormattedMessage
-                          id="app.country"
-                          defaultMessage="Country"
-                        />}
+                        label="Country"
                         isColumn
                         options={
                           Array.isArray(countryNameOption)
@@ -141,12 +135,7 @@ class UserVisaForm extends Component {
                           <FastField
                             name="type"
                             type="text"
-                            label={
-                              <FormattedMessage
-                                id="app.type"
-                                defaultMessage="Type"
-                              />
-                            }
+                            label="Type"
                             options={["Business", "Work Permit"]}
                             component={SelectComponent}
                             inlineLabel
@@ -160,13 +149,7 @@ class UserVisaForm extends Component {
                     <div class=" w-[47%]" >
                       <Field
                         name="startDate"
-                        //label="Start Date"
-                        label={
-                          <FormattedMessage
-                            id="app.startDate"
-                            defaultMessage="Start Date"
-                          />
-                        }
+                        label="Start Date"
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -178,13 +161,7 @@ class UserVisaForm extends Component {
                     <div class=" w-[47%]" >
                       <Field
                         name="endDate"
-                        // label="End Date "
-                        label={
-                          <FormattedMessage
-                            id="app.endDate"
-                            defaultMessage="End Date"
-                          />
-                        }
+                        label="End Date "
                         isRequired
                         isColumn
                         width={"100%"}
@@ -225,12 +202,7 @@ class UserVisaForm extends Component {
                 >
                   <Field
                     name="documentId"
-                    label={
-                      <FormattedMessage
-                        id="app.documentId"
-                        defaultMessage="Document Id"
-                      />
-                    }
+                    label="Document Id"
                     isRequired
                     component={DragableUpload}
                   />
@@ -244,7 +216,7 @@ class UserVisaForm extends Component {
                   type="primary"
                   loading={addingVisaDetails}
                 >
-                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
+                Submit
                 </Button>
               </div>
             </Form>

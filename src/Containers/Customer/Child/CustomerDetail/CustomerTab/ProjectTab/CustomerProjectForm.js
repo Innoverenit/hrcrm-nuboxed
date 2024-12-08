@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
-import { FormattedMessage } from "react-intl";
-import {  Spacer } from "../../../../../../Components/UI/Elements";
+
 import { Formik, Form, Field, FastField } from "formik";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
@@ -69,13 +68,8 @@ function CustomerProjectForm(props) {
                      isRequired
                     name="projectName"
                     type="text"
-                    //label="Name"
-                    label={
-                      <FormattedMessage
-                        id="app.projectName"
-                        defaultMessage="Project Name"
-                      />
-                    }
+                    label=" Project Name"
+                    
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -87,12 +81,8 @@ function CustomerProjectForm(props) {
                               name="taskTypeId"
                               selectType="taskType"
                               //label="Designation"
-                              label={
-                                <FormattedMessage
-                                  id="app.taskList"
-                                  defaultMessage="Task List"
-                                />
-                              }
+                              label="Task List"
+                               
                               isColumnWithoutNoCreate
                               isColumn
                               component={SearchSelect}
@@ -105,11 +95,8 @@ function CustomerProjectForm(props) {
                       {" "}
                       <Field
                         name="avilableDate"
-                        //label="Start Date"
-                        label={<FormattedMessage
-                          id="app.avilableDate"
-                          defaultMessage="Start Date"
-                        />}
+                        label="Start Date"
+                       
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -128,11 +115,8 @@ function CustomerProjectForm(props) {
                       {" "}
                       <Field
                         name="avilableDate"
-                        //label="Start Date"
-                        label={<FormattedMessage
-                          id="app.avilableDate"
-                          defaultMessage="End Date"
-                        />}
+                        label="End Date"
+                        
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -159,16 +143,15 @@ function CustomerProjectForm(props) {
                
              
           
-              <Spacer />
+              <div class=" mt-3" />
               <div class=" flex justify-end">
                 <Button
                   type="primary"
                   htmlType="submit"
                 //   loading={addingCourse}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
-                  {/*                     
-                    Create */}
+                               
+                    Create
                 </Button>
               </div>
             </Form>

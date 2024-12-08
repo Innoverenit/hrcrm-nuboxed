@@ -2,14 +2,56 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip } from "antd";
-import { EditOutlined, FileDoneOutlined, PhoneOutlined, ScheduleOutlined } from "@ant-design/icons";
+import TaskIcon from '@mui/icons-material/Task';
+import CallIcon from '@mui/icons-material/Call';
 import {  StyledTable } from "../../../../../../../Components/UI/Antd";
 import dayjs from "dayjs";
 import {getActivityListBySupplierId} from "../../../../SuppliersAction";
-
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import ChecklistIcon from '@mui/icons-material/Checklist';
 class SuppliersActivityTable extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          activeKey: "1",
+          translatedMenuItems: [],
+        };
+      }
+    
+      handleTabChange = (key) => this.setState({ activeKey: key });
+    
+      componentDidMount() {
+        this.props.getTodayPurchaseOrder(this.props.supplier.supplierId)
+        this.fetchMenuTranslations();
+      }
+      componentDidUpdate(prevProps) {
+        if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+          this.fetchMenuTranslations();
+        }
+      }
+    
+      fetchMenuTranslations = async () => {
+        try {
+          const itemsToTranslate = [
+           
+           "831", // "Purchase Order", 0
+           "880",// "Inventory",1
+           "1235",// "Materials",2
+           "73",  // "Contact",3
+           "138",  // "Document",4
+           "1165", // "Activity" 5
+                ];
+    
+          const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+          this.setState({ translatedMenuItems: translations });
+        } catch (error) {
+          console.error('Error translating menu items:', error);
+        }
+      }; 
+
     componentDidMount() {
-        this.props.getActivityListBySupplierId(this.props.supplier.supplierId);
+        this.props.getActivityListBySupplierId(this.props.supplierId);
     }
     render() {
         const {
@@ -20,6 +62,7 @@ class SuppliersActivityTable extends Component {
             handleUpdateTaskModal,
             updateTaskModal,
         } = this.props;
+        console.log(this.props.supplier)
         const columns = [
             {
                 title: "",
@@ -34,15 +77,15 @@ class SuppliersActivityTable extends Component {
                         <>
                             {item.activity === "Call" && (
                                 // <Icon type="phone" />
-                                <PhoneOutlined/>
+                                <CallIcon className=""/>
                             )}
                             {item.activity === "Event" && (
                                 // <Icon type="schedule" />
-                                <ScheduleOutlined/>
+                                <ChecklistIcon/>
                             )}
                             {item.activity === "Task" && (
                                 // <Icon type="file-done" />
-                                <FileDoneOutlined/>
+                                <TaskIcon/>
                             )}
                         </>
                     )
@@ -85,7 +128,7 @@ class SuppliersActivityTable extends Component {
                     return (
                         <Tooltip title="Edit">
                             {item.activity === "Event" && (
-                                <EditOutlined className="cursor-pointer text-12px"
+                                <VisibilityIcon className="cursor-pointer text-12px"
                                     // type="edit"                                
                                     onClick={() => {
                                         // this.props.setEditEvents(item);
@@ -94,7 +137,7 @@ class SuppliersActivityTable extends Component {
                                 />
                             )}
                             {item.activity === "Call" && (
-                                <EditOutlined className="cursor-pointer text-12px"
+                                <VisibilityIcon className="cursor-pointer text-12px"
                                     // type="edit"                                
                                     onClick={() => {
                                         // this.props.setEditCall(item);
@@ -104,7 +147,7 @@ class SuppliersActivityTable extends Component {
                                 />
                             )}
                             {item.activity === "Task" && (
-                                <EditOutlined className="cursor-pointer text-12px"
+                                <VisibilityIcon className="cursor-pointer text-12px"
                                     // type="edit"                               
                                     onClick={() => {
                                         // this.props.setEditTask(item);

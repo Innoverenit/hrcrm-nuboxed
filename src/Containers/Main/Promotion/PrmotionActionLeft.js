@@ -3,8 +3,8 @@ import LanguageIcon from '@mui/icons-material/Language';
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
-import { FormattedMessage } from "react-intl";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+
 import { Badge, Tooltip,Avatar } from "antd";
 //import {getLocationRecords,getLocationDeletedCount} from "./LocationAction";
 
@@ -34,7 +34,7 @@ const PrmotionActionLeft = (props) => {
               color: props.viewType === "card" && "#1890ff",            
             }}
           >
-             <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
+             <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#28a355" }}>
   
              <LanguageIcon  className="text-white !text-icon"/>
             </Avatar>

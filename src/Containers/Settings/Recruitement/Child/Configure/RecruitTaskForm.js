@@ -41,10 +41,7 @@ class RecruitTaskForm extends Component {
                 <Field
                   name="taskChecklistName"
                   label="Name"
-                  // label={<FormattedMessage
-                  //   id="app.recruitmentProcessName"
-                  //   defaultMessage="Enter Workflow name"
-                  // />}
+              
                   component={InputComponent}
                   isColumn
                   width={"100%"}

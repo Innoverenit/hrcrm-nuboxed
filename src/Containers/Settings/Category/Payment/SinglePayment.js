@@ -4,8 +4,8 @@ import dayjs from "dayjs";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {removePayment} from "../Payment/PaymentAction"
-import { FormattedMessage } from "react-intl";
-import { DeleteOutlined } from "@ant-design/icons";
+
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { TextInput } from "../../../../Components/UI/Elements";
 
@@ -67,16 +67,7 @@ class SinglePayment extends Component {
                           cancelText="No"
                           onConfirm={() => this.props.removePayment(paymentCatagoryId )}
                         >
-                    <DeleteOutlined
-                        // onClick={() => handleDeletePayment(paymentCatagoryId)}
-                   
-                      style={{
-                        verticalAlign: "center",
-                        marginLeft: "1rem",
-                        fontSize:"1rem",
-                        color: "red",
-                      }}
-                    />
+                    <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                          </Popconfirm>
                   </Tooltip>
   
@@ -104,13 +95,13 @@ class SinglePayment extends Component {
                     }}>
 
                   
-                    {/* Save */}
-                    <FormattedMessage id="app.update" defaultMessage="Update" />
+                    Save
+                   
                   </Button>
             
                   <Button type="cancel"  onClick={() => toggleViewType()}>
-                    {/* Cancel */}
-                    <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                    Cancel
+                  
                   </Button>
                 </div>
               </div>

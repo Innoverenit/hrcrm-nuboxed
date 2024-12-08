@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Button } from "antd";
 import { Formik, Form, Field, } from "formik";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
@@ -66,13 +66,7 @@ class UpdateContractForm extends Component {
                                         <div class=" w-[47%]" >
                                             <Field
                                                 name="previous_start_date"
-                                                //label="Start Date"
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.startDate"
-                                                        defaultMessage="Start Date"
-                                                    />
-                                                }
+                                                label="Start Date"
                                                 isRequired
                                                 component={DatePicker}
                                                 isColumn
@@ -90,13 +84,7 @@ class UpdateContractForm extends Component {
                                         <div class=" w-[47%]" >
                                             <Field
                                                 name="previous_end_date"
-                                                // label="End Date "
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.endDate"
-                                                        defaultMessage="End Date"
-                                                    />
-                                                }
+                                                label="End Date "
                                                 isRequired
                                                 isColumn
                                                 width={"100%"}
@@ -133,13 +121,7 @@ class UpdateContractForm extends Component {
                                                 type="text"
                                                 isColumn
                                                 width={"100%"}
-                                                //label="Course Name"
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.contractType"
-                                                        defaultMessage="Contract Type"
-                                                    />
-                                                }
+                                                label="Course Name"
                                                 component={InputComponent}
                                                 inlineLabel
                                                 style={{
@@ -154,10 +136,7 @@ class UpdateContractForm extends Component {
                                   <div class=" mt-3">
                                     <Field
                                         name="notes"
-                                        // label="Notes"
-                                        label={
-                                            <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                                        }
+                                        label="Notes"
                                         width={"100%"}
                                         isColumn
                                         component={TextareaComponent}
@@ -178,7 +157,7 @@ class UpdateContractForm extends Component {
                                     type="primary"
                                     Loading={updatingContractDetails}
                                 >
-                                    <FormattedMessage id="app.update" defaultMessage="Update" />
+                                   Update
                                 </Button>
                             </div>
                         </Form>

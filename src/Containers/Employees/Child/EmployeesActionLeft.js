@@ -5,8 +5,8 @@ import { StyledSelect } from "../../../Components/UI/Antd";
 import { withRouter } from "react-router-dom";
 import { inputEmployeeDataSearch,getEmployeelist,ClearReducerDataOfEmployee, getRecords } from "../EmployeeAction";
 import {  Input, Tooltip, Badge,Avatar } from "antd";
-import { AudioOutlined } from '@ant-design/icons';
-import { FormattedMessage } from "react-intl";
+import MicIcon from '@mui/icons-material/Mic';
+
 import {getDepartments} from "../../Settings/Department/DepartmentAction"
 import { getlocation } from "../../Event/Child/Location/LocationAction";
 import GridViewIcon from '@mui/icons-material/GridView';
@@ -22,28 +22,66 @@ const EmployeesActionLeft = (props) => {
   const [isRecording, setIsRecording] = useState(false);
   const minRecordingTime = 3000; // 3 seconds
   const timerRef = useRef(null);
+ 
+
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+       "949", //  "Active Users",
+        "228", //  "All"   
+        "1238", // "Search By Name"   
+       "289",  // Creation Date
+       "954",  // All Locations
+       "955",  // All Departments
+     "1706" //  sort
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
   const {
     transcript,
     listening,
     resetTranscript,
     browserSupportsSpeechRecognition
   } = useSpeechRecognition();
+  
+  useEffect(() => {
+    // props.getCustomerRecords();
+    if (transcript) {
+      console.log(">>>>>>>", transcript);
+      setCurrentData(transcript);
+    }
+    }, [ transcript]);
 
- 
   const handleChange = (e) => {
     setCurrentData(e.target.value);
 
-    if (searchOnEnter&&e.target.value.trim() === "") {  //Code for Search
-      //setPage(pageNo + 1);
+    if (searchOnEnter && e.target.value.trim() === "") {  //Code for Search
+      // setPage(pageNo + 1);
       if (props.viewType === "tile") {
         props.getEmployeelist("cretiondate","active");
-      }else if (props.viewType === "table") {
+      } else if (props.viewType === "table") {
         props.getEmployeelist("cretiondate","all");
       }
       props.ClearReducerDataOfEmployee()
       setSearchOnEnter(false);
     }
   };
+
   const handleSearch = () => {
     if (currentData.trim() !== "") {
       // Perform the search
@@ -56,6 +94,7 @@ const EmployeesActionLeft = (props) => {
     } else {
       console.error("Input is empty. Please provide a value.");
     }
+    props.ClearReducerDataOfEmployee()
   };
   const handleStartListening = () => {
     setStartTime(Date.now());
@@ -70,7 +109,7 @@ const EmployeesActionLeft = (props) => {
     }, minRecordingTime);
   };
   const suffix = (
-    <AudioOutlined
+    <MicIcon
       onClick={handleStartListening}
       style={{
         fontSize: 16,
@@ -128,7 +167,7 @@ const EmployeesActionLeft = (props) => {
   return (
     <div class=" flex items-center">
       <Tooltip
-        title={<FormattedMessage id="app.activeuser" defaultMessage="Active Users" />}
+        title={translatedMenuItems[1]}
       > 
        <Badge
           size="small"
@@ -146,14 +185,14 @@ const EmployeesActionLeft = (props) => {
               color: props.viewType === "tile" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "tile" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "tile" ? "#f279ab" : "#28a355" }}>
             <GridViewIcon className="text-white !text-icon"/>
             </Avatar>
           </span>
           </Badge> 
       </Tooltip>
   
-      <Tooltip title={<FormattedMessage id="app.allusers" defaultMessage="All " />}>
+      <Tooltip title={translatedMenuItems[1]}>
       <Badge
           size="small"
           count={
@@ -170,19 +209,20 @@ const EmployeesActionLeft = (props) => {
               color: props.viewType === "table" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
-            <div class="text-white ">ALL</div>
+            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355" }}>
+            <div class="text-white ">{translatedMenuItems[1]}</div>
             </Avatar>
           </span>
           </Badge>
       </Tooltip>
 
-      <div class=" ml-6 h-6 w-72">
+      <div class=" ml-6  w-72">
       <Input
-     placeholder="Search By Name"
+     placeholder={translatedMenuItems[2]}
       width={"100%"}
             suffix={suffix}
-            onPressEnter={handleSearch}  
+             onBlur={handleSearch}  
+             onPressEnter={handleSearch}
             onChange={handleChange}
              value={currentData}
           />
@@ -190,22 +230,23 @@ const EmployeesActionLeft = (props) => {
       </div>
    
         <div  class=" w-[35%]  ml-2">
-          <StyledSelect placeholder="Sort"  defaultValue="cretiondate" onChange={(e)  => props.handleFilterChange(e)}>
-          <Option value="cretiondate">Creation Date</Option>
+          <StyledSelect placeholder={translatedMenuItems[6]}  defaultValue={translatedMenuItems[1]} onChange={(e)  => props.handleFilterChange(e)}>
+          <Option value="cretiondate">{translatedMenuItems[3]}</Option>
           <Option value="AtoZ">A To Z</Option>
             <Option value="ZtoA">Z To A</Option>
            
           </StyledSelect>
         </div>
-        <div class=" flex items-center ml-4"  style={{border:"0.5px solid lightgray "}} >
+        <div class=" flex items-center ml-4 border border-gray-400"   >
                   <select
+                  className=" w-auto h-[3vh] m-auto"
                     // placeholder="Select Location"
                     //  defaultValue={partners}
-                    style={{ width: "auto",margin:"auto"}}
+                    // style={{ width: "auto",margin:"auto", height:"5vh" }}
                      onChange={props.handleLocationChange}
                      value={props.selectedLocation}
                   >
-                    <option value="">All Locations</option>
+                    <option value="">{translatedMenuItems[4]}</option>
                     {props.showLocation.map((item) => {
                       return (
                         <option value={item.locationName}>
@@ -215,16 +256,16 @@ const EmployeesActionLeft = (props) => {
                     })}
                   </select>
                 </div>
-                <div class=" flex items-center ml-4"  style={{border:"0.5px solid lightgray "}} >
-                  <select
+                <div class=" flex items-center ml-4 border border-gray-400" >
+                  <select  className=" w-auto h-[3vh] m-auto"
                     // placeholder="Select Location"
                     //  defaultValue={partners}
-                    style={{ width: "auto",margin:"auto"}}
+                    // style={{ width: "auto",margin:"auto"}}
                      onChange={props.handleDepartmentChange}
                      value={props.selectedDepartment}
                     //  disabled={!props.selectedLocation}
                   >
-                    <option value="">All Departments</option>
+                    <option value="">{translatedMenuItems[5]}</option>
                     {props.departments.map((item) => {
                       return (
                         <option value={item.departmentName}>

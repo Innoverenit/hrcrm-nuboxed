@@ -1,18 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,Suspense, lazy  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+
+import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledTable } from "../../../Components/UI/Antd";
 import dayjs from "dayjs";
-import { Tooltip, Button, Input, Space, Form } from "antd";
+import { Tooltip, Button, Input, Space } from "antd";
 import Highlighter from "react-highlight-words";
-import { SearchOutlined } from "@ant-design/icons";
-import UpdateTeamsAllocationModal from "./UpdateTeamsAllocationModal";
-import APIFailed from "../../../Helpers/ErrorBoundary/APIFailed";
+import SearchIcon from '@mui/icons-material/Search';
 import {
   getProductionExecutiveAndManager,
   setEditTeamsAllocation,
   handleUpdateTeamsAllocationModal,
 } from "./TeamsAction";
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+const  UpdateTeamsAllocationModal =lazy(()=> import('./UpdateTeamsAllocationModal'));
 
 function TeamsAllocationTable({
   productionExecutiveAndManager,
@@ -48,11 +50,11 @@ function TeamsAllocationTable({
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+           
             size="small"
             style={{ width: 90 }}
           >
-            Search
+           <SearchIcon ClassName="!text-icon" /> Search
           </Button>
           <Button onClick={() => handleReset(clearFilters)} size="small" style={{ width: 90 }}>
             Reset
@@ -72,7 +74,7 @@ function TeamsAllocationTable({
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+      <SearchIcon ClassName="!text-icon" style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]
@@ -210,7 +212,7 @@ function TeamsAllocationTable({
   ];
 
   if (fetchingProductionExecutiveAndManagerError) {
-    return <APIFailed />;
+    return <NodataFoundPage />;
   }
 
   const tab = document.querySelector(".ant-layout-sider-children");
@@ -218,6 +220,7 @@ function TeamsAllocationTable({
 
   return (
     <>
+      <Suspense fallback={<BundleLoader />}>
       <StyledTable
         columns={columns}
         dataSource={productionExecutiveAndManager}
@@ -226,10 +229,12 @@ function TeamsAllocationTable({
         pagination={false}
         scroll={{ y: tableHeight }}
       />
+
       <UpdateTeamsAllocationModal
         updateTeamsAllocationModal={updateTeamsAllocationModal}
         handleUpdateTeamsAllocationModal={handleUpdateTeamsAllocationModal}
       />
+      </Suspense>
     </>
   );
 }

@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import QRCodeModal from "../../../../../Components/UI/Elements/QRCodeModal";
 import { SubTitle } from "../../../../../Components/UI/Elements";
 import { getSubOrderPhone } from "../../AccountAction"
-import { FormattedMessage } from "react-intl";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 
@@ -16,37 +15,18 @@ function SubOrderDetailsList(props) {
     return (
         <>
             {props.fetchingSuborderPhone ? <BundleLoader /> :
-                <div className='flex justify-end sticky top-0 z-auto'>
-                    <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                        <div className=" flex  w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
-                            <div className=" md:w-[7rem]"><FormattedMessage
-                                id="app.OEM"
-                                defaultMessage="OEM"
-                            /></div>
-                            <div className=" md:w-[7rem]"><FormattedMessage
-                                id="app.model"
-                                defaultMessage="Model"
-                            /></div>
-                            <div className="md:w-[7rem]"><FormattedMessage
-                                id="app.IMEI"
-                                defaultMessage="IMEI"
-                            /></div>
-                            <div className=" md:w-[7rem]"><FormattedMessage
-                                id="app.os"
-                                defaultMessage="OS"
-                            /></div>
-                            <div className=" md:w-[7rem]"><FormattedMessage
-                                id="app.gb"
-                                defaultMessage="GB"
-                            /></div>
-                            <div className=" md:w-[7rem]"><FormattedMessage
-                                id="app.color"
-                                defaultMessage="Color"
-                            /></div>
-                            <div className=" md:w-[7rem]"><FormattedMessage
-                                id="app.condition"
-                                defaultMessage="Condition"
-                            /></div>
+                <div className='flex sticky z-auto'>
+                    <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+                        <div className=" flex  w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+                            <div className=" md:w-[7rem]">OEM
+                           </div>
+                            <div className=" md:w-[7rem]">Model</div>
+                            <div className="md:w-[7rem]">IMEI
+                        </div>
+                            <div className=" md:w-[7rem]">OS</div>
+                            <div className=" md:w-[7rem]">GB</div>
+                            <div className=" md:w-[7rem]">Color</div>
+                            <div className=" md:w-[7rem]">Condition</div>
 
                             <div className=" md:w-[2rem]"></div>
 
@@ -59,46 +39,46 @@ function SubOrderDetailsList(props) {
                             {props.subOrderPhoneList.map((item) => {
                                 return (
                                     <div>
-                                        <div className="flex rounded-xl  mt-4 bg-white h-10 items-center p-3 " >
+                                        <div className="flex rounded  mt-1 bg-white h-8 items-center p-1 " >
                                             <div class="flex">
-                                                <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex md:w-[7rem] border-l-2  h-8 border-green-500 bg-[#eef2f9] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
                                                         {item.company}
                                                     </div>
                                                 </div>
 
-                                                <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9]  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
                                                         {item.model}
                                                     </div>
 
                                                 </div>
-                                                <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex  items-center justify-end h-8 ml-gap bg-[#eef2f9]  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
                                                         {item.imei}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9]  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
                                                         {item.os}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9]  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
                                                         {item.gb}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9]  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
                                                         {item.color}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium   md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9]  md:w-[7rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
                                                         {item.condition}
                                                     </div>
                                                 </div>
-                                                <div className=" flex font-medium   md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                                <div className=" flex items-center justify-end h-8 ml-gap bg-[#eef2f9]  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between  ">
                                                     <div class=" text-xs  font-poppins">
                                                         <SubTitle>
                                                             {item.qrCodeId ? (

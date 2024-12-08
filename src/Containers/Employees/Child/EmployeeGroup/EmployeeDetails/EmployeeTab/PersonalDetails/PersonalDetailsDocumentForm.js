@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Tooltip } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
-import { FormattedMessage } from "react-intl";
+
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from "../../../../../../../Components/Forms/Formik/TextareaComponent";
 import DragableUpload from "../../../../../../../Components/Forms/Formik/DragableUpload";
@@ -84,10 +84,7 @@ class PersonalDetailsDocumentForm extends Component {
                   <FastField
                     name="documentTypeId"
                     type="text"
-                    //label="Type"
-                    label={
-                      <FormattedMessage id="app.type" defaultMessage="Type" />
-                    }
+                    label="Type"
                  
                     options={
                       Array.isArray(documentNameOption)
@@ -107,13 +104,7 @@ class PersonalDetailsDocumentForm extends Component {
                       type="text"
                       isColumn
                       width={"100%"}
-                      //label="Document ID number"
-                      label={
-                        <FormattedMessage
-                          id="app.idNo"
-                          defaultMessage="Document ID number"
-                        />
-                      }
+                      label="Document ID number"
                       component={InputComponent}
                       inlineLabel
                        />
@@ -130,13 +121,7 @@ class PersonalDetailsDocumentForm extends Component {
                  <div class=" mt-3">
                   <Field
                     name="documentName"
-                    //label="Name of Document"
-                    label={
-                      <FormattedMessage
-                        id="app.documentTitle"
-                        defaultMessage="Name of Document"
-                      />
-                    }
+                    label="Name of Document"
                     width={"100%"}
                     isColumn
                     component={InputComponent}
@@ -145,13 +130,7 @@ class PersonalDetailsDocumentForm extends Component {
                   <div class=" mt-3">
                   <Field
                     name="description"
-                    //label="Description of Document"
-                    label={
-                      <FormattedMessage
-                        id="app.documentDescription"
-                        defaultMessage="Description of Document"
-                      />
-                    }
+                    label="Description of Document"
                     isRequired
                     isColumn
                     width={"100%"}
@@ -168,8 +147,7 @@ class PersonalDetailsDocumentForm extends Component {
                   htmlType="submit"
                   type="primary"
                   Loading={addingPersonalDocumentDetails}
-                >
-                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
+                >Submit
                 </Button>
               </div>
             </Form>

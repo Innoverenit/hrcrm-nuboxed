@@ -1,8 +1,7 @@
-import React, {useEffect, useState,Component } from "react";
+import React, {Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch,Select } from "antd";
-import { FormattedMessage } from "react-intl";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { Formik, Form, Field, FieldArray } from "formik";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
@@ -14,11 +13,10 @@ import { getTimeZone } from "../../../Auth/AuthAction";
 import { getDepartmentwiserUser } from "../../../Settings/SettingsAction"
 import { getRoles } from "../../../Settings/Category/Role/RoleAction"
 import { getDepartments } from "../../../Settings/Department/DepartmentAction";
-// const FormSchema = Yup.object().shape({
-//   name: Yup.string().required("Input required!"),
-//   management: Yup.string().required("Input required!"),
-//   locationtypeId: Yup.string().required("Input required!"),
-// });
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import LocalAtmIcon from '@mui/icons-material/LocalAtm';
+import PointOfSaleIcon from '@mui/icons-material/PointOfSale';
+import InventoryIcon from'@mui/icons-material/Inventory';
 const { Option } = Select;
 
 class LocationForm extends Component {
@@ -73,9 +71,7 @@ class LocationForm extends Component {
     this.setState({ reportingManager: val });
   }
   componentDidMount() {
-    // this.props.getSalesManagerUser();
-    // this.props.getProductionManager();
-    // this.props.getLocationsType();
+    
     this.props.getRoles(this.props.organizationId);
     this.props.getDepartments(); 
     this.props.getTimeZone();
@@ -91,19 +87,19 @@ class LocationForm extends Component {
   fetchMenuTranslations = async () => {
     try {
       const itemsToTranslate = [
-          "Name",
-          "Region",
-          "inventory",
-         "Production",
-        "Corporate",
-        "Retail",
-        "Billing",
-        " 3rd Party Location",
-        "Department",
-        "User",
-        "Address",
-        "Create",
-        "Time Zone"
+       "110",   // "Name", 0
+       "24"  , // "Region", 1
+       "880"  , // "inventory", 2 
+       "203"  , //  "Production",3
+       "1011"  , // "Corporate", 4
+       "1013"  ,  // "Retail",5
+       "1010"  , // "Billing",6
+       "1030"  , // " 3rd Party Location", 7
+       "326"  , // "Department",8
+       "95", // Time Zone 9
+       "185"  ,  // "Address", 10
+       "104"  ,  // "Create", 11
+       "95"  , // "Time Zone" 12
       ];
 
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -114,12 +110,7 @@ class LocationForm extends Component {
   };
   render() {
     const { locationsTypeName } = this.props;
-    // const currencyType = props.currencies.map((item) => {
-    //   return {
-    //     label: item.currencyName || "",
-    //     value: item.currencyName,
-    //   };
-    // })
+   
    
     const timeZoneOption = this.props.timeZone.map((item) => {
       return {
@@ -130,28 +121,6 @@ class LocationForm extends Component {
       };
     });
 
-    // const managementOption = this.props.salesManagementUsers.map((item) => {
-    //   return {
-    //     label: `${item.salutation || ""} ${item.firstName ||
-    //       ""} ${item.middleName || ""} ${item.lastName || ""}`,
-    //     value: item.userId,
-    //   };
-    // });
-
-    // const productionOption = this.props.productionManagement.map((item) => {
-    //   return {
-    //     label: `${item.salutation || ""} ${item.firstName ||
-    //       ""} ${item.middleName || ""} ${item.lastName || ""}`,
-    //     value: item.userId,
-    //   };
-    // });
-
-    // const locationsTypeOption = this.props.locationsType.map((item) => {
-    //   return {
-    //     label: item.locationType || "",
-    //     value: item.locationtypeId,
-    //   };
-    // });
 
     console.log("3rDep-",this.state.department,"3rDUs-",this.state.reportingManager);
     return (
@@ -255,111 +224,20 @@ class LocationForm extends Component {
                         selectType="DRegion"
                         isColumnWithoutNoCreate
                         component={SearchSelect}
-                        // value={values.countryDialCode}
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.region"
-                        //     defaultMessage="Region"
-                        //   />
-                        // }
-                        // label={this.state.translatedMenuItems[1]}
+                     
                         isColumn
-                        // defaultValue={{
-                        //   label:`+${props.user.countryDialCode}`,
-                        // }}
+                      
                         inlineLabel
                       />
                     </div>
-                  {/* <div style={{ width: "100%" }}>
-                    <Field
-                      label="Management"
-                      name="management"
-                      placeholder="Management"
-                      //noLabel
-                      isRequired
-                      component={SelectComponent}
-                      options={
-                        Array.isArray(managementOption) ? managementOption : []
-                      }
-                    />
-                  </div> */}
-                  {/* <div style={{ width: "100%" }}>
-                    <StyledLabel>Production Manager</StyledLabel>
-                    <Field
-                      name="productionManager"
-                      placeholder="Production Manager"
-                      noLabel
-                      isRequired
-                      component={SelectComponent}
-                      options={
-                        Array.isArray(productionOption) ? productionOption : []
-                      }
-                    />
-                  </div> */}
-                  {/* <div style={{ width: "100%" }}>
-                    <StyledLabel>Type</StyledLabel>
-                    <Field
-                      name="locationtypeId"
-                      type="text"
-                      placeholder="Type"
-                      noLabel
-                      isRequired
-                      component={SelectComponent}
-                      options={
-                        Array.isArray(locationsTypeOption)
-                          ? locationsTypeOption
-                          : []
-                      }
-                    />
-                  </div> */}
-                  {/* <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
-                      <StyledLabel>Storage Cost</StyledLabel>
-                      <Field
-                        name="storage cost"
-                        type="text"
-                        isColumn
-                        inlineLabel
-                        isRequired
-                        component={InputComponent}
-                        style={{
-                          width: "100%"
-                        }}
-                      />
-                    </div>
-                    <div style={{ width: "47%" }}>
-                      <StyledLabel>Currency</StyledLabel>
-                      <Field
-                        name="contactCurrency"
-                        label="Currency"
-                        isColumn
-                        inlineLabel
-                        // component={SelectComponent}
-                        // options={Array.isArray(currencyType) ? currencyType : []}
-                        style={{
-                          width: "100%",
-                        }}
-                      />
-                    </div>
-                  </FlexContainer> */}
+                                                      
                   <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">Functions</div>
                   <div class=" flex ">
-                    {/* <div class=" w-[47%] mt-2" >
-                      <div class="font-bold text-xs">Refurbish &nbsp;<i class="fas fa-cogs text-base"></i></div>
-                      <div>
-                        <Switch
-                          style={{ width: "6.25em" }}
-                          checked={this.state.production}
-                          onChange={this.handleProduction}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                        />
-                      </div>
-                    </div> */}
+                    
                     <div class=" w-[47%] mt-2" >
                     <div class=" text-xs font-bold font-poppins">
                       {this.state.translatedMenuItems[2]}  {/* Inventory */}
-                         &nbsp;<i class="fas fa-warehouse text-base"></i></div>
+                         &nbsp;  <InventoryIcon className=" !text-icon text-[#480CA8]"/></div>
                       {/* inventory auto on when production on. if user wants to close inventory then ask what is inventory location */}
                       <div>
                         <Switch
@@ -376,7 +254,7 @@ class LocationForm extends Component {
                   <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs font-poppins">
                       {this.state.translatedMenuItems[3]}{/* Production */}
-                         &nbsp;<PrecisionManufacturingIcon/></div>
+                         &nbsp;<PrecisionManufacturingIcon className=" !text-icon text-[#4361EE]"/></div>
                       <div>
                       <Switch
                           style={{ width: "6.25em" }}
@@ -390,7 +268,7 @@ class LocationForm extends Component {
                     <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs font-poppins">
                        {this.state.translatedMenuItems[4]} {/* Corporate */}
-                         &nbsp;<i class="fas fa-building text-base"></i></div>
+                         &nbsp; <ApartmentIcon className="!text-icon text-[#f0386b]"/></div>
                       <div>
                         <Switch
                           style={{ width: "6.25em" }}
@@ -406,7 +284,7 @@ class LocationForm extends Component {
                   <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs font-poppins">
                       {this.state.translatedMenuItems[5]}{/* Retail */}
-                        <i class="fas fa-money-check text-base"></i></div>
+                      <PointOfSaleIcon  className="!text-icon text-[#005F73]"/></div>
                       <div>
                         <Switch
                           style={{ width: "6.25em" }}
@@ -417,25 +295,13 @@ class LocationForm extends Component {
                         />
                       </div>
                     </div>
-                    {/* <div class=" w-[47%] mt-2" >
-                      <div class="font-bold text-xs">Project &nbsp;<i class="fas fa-project-diagram text-base"></i></div>
-                      <div>
-                        <Switch
-                          style={{ width: "6.25em" }}
-                          checked={this.state.project}
-                          onChange={this.handleProject}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                        />
-                      </div>
-                    </div> */}
-                  
+               
                   </div>
                   <div class=" flex">
                   <div class=" w-[47%] mt-2" >
                       <div class="font-bold text-xs font-poppins">
                       {this.state.translatedMenuItems[6]} {/* Billing  */}
-                       <i class="far fa-money-bill-alt text-base"></i></div>
+                      <LocalAtmIcon  className="!text-icon text-[#001219]"/></div>
                       <div>
                         <Switch
                           style={{ width: "6.25em" }}
@@ -445,22 +311,9 @@ class LocationForm extends Component {
                           unCheckedChildren="No"
                         />
                       </div>
-                    </div>
-               
-                    {/* <div style={{ width: "47%" }} class="mt-2">
-                      <div class="font-bold text-xs">Project &nbsp;<i class="fas fa-project-diagram text-base"></i></div>
-                      <div>
-                        <Switch
-                          style={{ width: "6.25em" }}
-                          checked={this.state.project}
-                          onChange={this.handleProject}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                        />
-                      </div>
-                    </div> */}
+                    </div>           
                   
-                  </div>
+                </div>
                   <div className="flex  items-center mt-4">
         <div className="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col font-poppins">
         {this.state.translatedMenuItems[7]}{/* 3rd Party Location */}
@@ -592,128 +445,4 @@ export default connect(mapStateToProps, mapDispatchToProps)(LocationForm);
 
 
 
-// import React, { Component, useState, useMemo, useEffect } from "react";
-// import { connect } from "react-redux";
-// import { bindActionCreators } from "redux";
-// import { FormattedMessage } from "react-intl";
-// import { Button, Tooltip } from "antd";
-// import { Formik, Form, Field,  } from "formik";
-// import { Spacer, StyledLabel } from "../../../../Components/UI/Elements";
-// import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
-// import dayjs from "dayjs";
-// import { addLocation } from "./LocationAction";
-// /**
-//  * yup validation scheme for creating a opportunity
-//  */
 
-
-// function LocationForm(props) {
-//   const { translatedMenuItems} =props;
-//   const [newimageId, setnewimageId] = useState("");
-//   console.log("newImage",newimageId)
-//   function handleSetImage(imageId) {
-//     setnewimageId(imageId);
-//   }
-//   console.log(newimageId.imageId)
-//   useEffect(() => {
-//    // props.getCountry()
-//     // props.getAllUserData()
-//   }, []);
-
-
-//   const {
-  
-//   } = props;
-//   //console.log(customerId);
-//   return (
-//     <>
-//       <Formik
-//         enableReinitialize
-//         initialValues={{  
-//             locationName:""
-         
-//         }}
-       
-//         onSubmit={(values, { resetForm }) => {
-//           props.addLocation(
-//             {
-//               ...values,
-             
-             
-//             },
-          
-//             resetForm()
-//           );
-//         }}
-//       >
-//         {({
-//           errors,
-//           touched,
-//           isSubmitting,
-//           setFieldValue,
-//           setFieldTouched,
-//           values,
-//           ...rest
-//         }) => (
-//           <Form className="form-background">
-           
-        
-                 
-//            <div class=" flex justify-between">
-
-//            <Field
-//                   isRequired
-//                   name="locationName"
-//                   type="text"
-//                   //label="Name"
-
-//                   label={
-//                     <FormattedMessage id="app.name" defaultMessage="Name" />
-//                   }
-//                   isColumn
-//                   width={"100%"}
-//                   component={InputComponent}
-//                   // accounts={accounts}
-//                   inlineLabel
-//                 />
-          
-   
-    
-   
-          
-          
-                  
-          
-//            </div>
-//            <Spacer />
-//            <div class=" flex justify-end">
-//              <Button
-//                type="primary"
-//                htmlType="submit"
-//                Loading={props.addingLocation}
-//              >
-             
-//                Update
-//              </Button>
-//            </div>
-//          </Form>
-//         )}
-//       </Formik>
-//     </>
-//   );
-// }
-
-// const mapStateToProps = ({ location }) => ({
-//     addingLocation: location.addingLocation,
-
-// });
-
-// const mapDispatchToProps = (dispatch) =>
-//   bindActionCreators(
-//     {
-//         addLocation
-//     },
-//     dispatch
-//   );
-
-// export default connect(mapStateToProps, mapDispatchToProps)(LocationForm);

@@ -33,7 +33,7 @@ function LeaveApprovedStatusCard(props) {
 
   return (
     <>
-       <div class="rounded m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+       <div class="rounded m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         {props.leaveListRangeByUserId
           .filter((sts) => sts.status === "Approved")
           .map((item) => {

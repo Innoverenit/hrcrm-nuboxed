@@ -1,9 +1,9 @@
 import React, { useState,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Select } from "antd";
-import { StyledLabel } from "../../../Components/UI/Elements";
+
 import { Button, Switch } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
@@ -62,7 +62,7 @@ function CandidateFilterForm(props) {
               <div class=" flex justify-evenly" >
                 <div class=" w-[36%]"
                 >
-                  <StyledLabel>Parameter
+                  <div class=" text-xs font-bold font-poppins text-black">Parameter
                   <Select
                     style={{ width: "100%" }}
                     placeholder="Select"
@@ -71,19 +71,15 @@ function CandidateFilterForm(props) {
                     <Option value="Role">Role</Option>
                     <Option value="Cost">Cost</Option>
                   </Select>
-                  </StyledLabel>
+                  </div>
                   <div class=" flex justify-between mt-4" >
                     <div style={{ flexBasis: "100%" }}>
                       {selectType === "Role" ? (
                         <FastField
                           name="roleType"
                           selectType="roleType"
-                          label={
-                            <FormattedMessage
-                              id="app.role"
-                              defaultMessage="Role"
-                            />
-                          }
+                          label="Role"
+                            
                           isColumnWithoutNoCreate
                           isColumn
                           component={SearchSelect}
@@ -105,12 +101,8 @@ function CandidateFilterForm(props) {
                           name="currency"
                           isColumnWithoutNoCreate
                           placeholder="Currency"
-                          label={
-                            <FormattedMessage
-                              id="app.currency"
-                              defaultMessage="Currency"
-                            />
-                          }
+                          label="Currency"
+                           
                           style={{
                             width: "70%",
                           }}
@@ -136,7 +128,7 @@ function CandidateFilterForm(props) {
                 </div>
                 <div class=" w-[36%]"
                 >
-                  <StyledLabel>
+                  <div class=" text-xs font-bold font-poppins text-black">
                     Parameter
                     <Select
                       style={{ width: "100%" }}
@@ -146,19 +138,15 @@ function CandidateFilterForm(props) {
                       <Option value="Work Preference">Work Preference</Option>
                       <Option value="Location">Location</Option>
                     </Select>
-                  </StyledLabel>
+                  </div>
 
                   <div class=" flex justify-between mt-4" >
                     <div style={{ flexBasis: "100%" }}>
                       {selectFilter === "Work Preference" && (
                         <FastField
                           name="workPreference"
-                          label={
-                            <FormattedMessage
-                              id="app.workpreference"
-                              defaultMessage="Work Preference"
-                            />
-                          }
+                          label="Work Preference"
+                            
                           options={["Remote", "Hybrid", "Office"]}
                           isColumn
                           component={SelectComponent}
@@ -168,12 +156,8 @@ function CandidateFilterForm(props) {
                       {selectFilter === "Location" && (
                         <FastField
                           name="workLocation"
-                          label={
-                            <FormattedMessage
-                              id="app.location"
-                              defaultMessage="Location"
-                            />
-                          }
+                          label="Location"
+                            
                           isColumn
                           component={InputComponent}
                           inlineLabel
@@ -192,8 +176,8 @@ function CandidateFilterForm(props) {
                 type="primary"
                 htmlType="submit"
               >
-                <FormattedMessage id="app.create" defaultMessage="Create" />
-                {/* Create */}
+               
+                Create
               </Button>
             </div>
           </Form>

@@ -1,15 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getSuppliersDeletedList, emptysUPPLIERS ,deleteSupplierData,handleUpdateSupplierModal,setEditSuppliers} from "../SuppliersAction"
-import { FormattedMessage } from "react-intl";
-import dayjs from "dayjs";
-import { Link } from 'react-router-dom';
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
-import UpdateSupplierModal from "./UpdateSupplierModal";
-import { BundleLoader } from "../../../../Components/Placeholder";
-import ReInstateSuppliers from "../ReInstateSuppliers";
 
+import dayjs from "dayjs";
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import WifiCalling3Icon from '@mui/icons-material/WifiCalling3';
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import CategoryIcon from '@mui/icons-material/Category';
+import LinkIcon from '@mui/icons-material/Link';
+import LocationCityIcon from '@mui/icons-material/LocationCity';
+import { Link } from 'react-router-dom';
+import FlipCameraAndroidIcon from '@mui/icons-material/FlipCameraAndroid';
+import { BundleLoader } from "../../../../Components/Placeholder";
+
+const EmptyPage =lazy(()=>import("../../EmptyPage"));
+const UpdateSupplierModal =lazy(()=>import("./UpdateSupplierModal"));
+const SupplierSearchedData =lazy(()=>import("./SupplierSearchedData"));
+const ReInstateSuppliers =lazy(()=>import("../ReInstateSuppliers"));
 function SuppliersDeletedCardList(props) {
 
   const [hasMore, setHasMore] = useState(true);
@@ -40,31 +49,50 @@ function SuppliersDeletedCardList(props) {
     }
   return (
     <>
+     {props.searchSupplierList.length > 0 ? (
+    <SupplierSearchedData
+    searchSupplierList={props.searchSupplierList}
+    translatedMenuItems={props.translatedMenuItems}
+    />
+  ) : (
       <div className=' flex  sticky  z-auto'>
-        <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-            <div className=" w-[14.5rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">  {props.translatedMenuItems[0]}
+        <div class="rounded m-1 max-sm:m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+          <div className=" flex ml-4 max-sm:hidden justify-between w-[98%]  p-1 bg-transparent font-bold font-poppins !text-lm sticky items-end max-lg:text-[0.45rem] max-xl:text-[0.65rem] z-10">
+          <div className=" w-[8.3rem] truncate max-xl:text-[0.65rem] text-[#00A2E8]  max-xl:w-[10.9rem] text-sm"> 
+               {/* Supplier ID */}
+               <CategoryIcon className=" text-base"/> 
+               {props.translatedMenuItems[40]} ID
+               </div>
+            <div className=" w-[12.9rem] truncate  "> <ApartmentIcon className="!text-icon text-[#4f5d75] "/>  {props.translatedMenuItems[0]}
               </div>
-            <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-            {props.translatedMenuItems[1]}
+            <div className=" w-[9.8rem] truncate  ">
+            <WifiCalling3Icon className="!text-icon  text-[#4f5d75]"/>  {props.translatedMenuItems[1]}
             </div>
-            <div className=" w-[13.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "> 
-               <FormattedMessage id="app.email" defaultMessage="Email" /></div>
-            <div className="w-[14.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-            {props.translatedMenuItems[34]}
+            <div className=" w-[9.7rem] truncate   "> 
+            <MailOutlineIcon className="!text-icon mr-1 text-[#4f5d75]"/> 
+           Email
+            </div>
+               <div className=" w-[7.91rem] truncate   max-xl:w-[14.9rem] "> 
+               {/* url */}
+               <LinkIcon  className="!text-icon  text-[#4f5d75]"/>   {props.translatedMenuItems[41]}
+               </div>
+            <div className="w-[14.8rem] truncate  ">
+           <AddLocationAltIcon className="!text-icon  text-[#4f5d75]"/> {props.translatedMenuItems[34]}
 
             </div>
-            <div className="w-[7.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-            {props.translatedMenuItems[35]}
+           
+            <div className="w-[13.9rem] truncate  ">
+           <LocationCityIcon className="!text-icon  text-[#4f5d75]" /> {props.translatedMenuItems[35]}
 
             </div>
-            <div className="w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-            {props.translatedMenuItems[36]}
+            <div className="w-[5.8rem] truncate  ">
+            <LocationCityIcon className="!text-icon  text-[#4f5d75]" /> {props.translatedMenuItems[36]}
 
             </div>
-            <div className="w-[3.8rem]">  {props.translatedMenuItems[37]}</div>
+            <div className="w-[5.81rem] truncate  "> <FlipCameraAndroidIcon className="!text-icon  text-[#4f5d75]" /> {props.translatedMenuItems[37]}</div>
+            
           </div>
-          <div class="overflow-x-auto h-[85vh]">
+          <div class="overflow-x-auto h-[83vh]">
         
               {props.supplierDeletedList.length ?
                 <>
@@ -74,12 +102,20 @@ function SuppliersDeletedCardList(props) {
                     return (
                       <>
                       <div
-                  className="flex  rounded justify-between bg-white mt-1 h-8 items-center p-1  max-sm:h-[6rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
-                          <div class=" flex flex-row justify-between w-wk max-sm:flex-col">
+                  className="flex  rounded justify-between bg-white items-center py-ygap   max-sm:h-[7rem] max-sm:rounded-lg  max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500 max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                          <div class=" flex flex-row justify-between max-sm:flex-col">
                           <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className="font-medium  flex items-center w-[16.1rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
+                          <div className="border-l-2 border-green-500 bg-[#eef2f9] h-8 flex items-center w-[8.5rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[10.1rem] max-lg:w-[8.06rem] ">
+                          <div class=" text-xs ml-gap  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            {item.newSuppNo}
+                            
+</div>
+
+
+</div>
+                            <div className=" h-8  ml-gap flex items-center w-[12.1rem] bg-[#eef2f9] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
                               <div class=" font-semibold text-[0.85rem]  font-poppins">
-                                <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
+                                <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 text-[#042E8A] cursor-pointer max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm"
                                   to={`supplier/${item.supplierId}`}
                                   title={`${item.shipperName}`}
                                 >{item.name}</Link>
@@ -93,21 +129,27 @@ function SuppliersDeletedCardList(props) {
                                   ) : null}
                             </div>
              
-                            <div className=" flex  w-[8.12rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
-                              <div class=" font-normal text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div className=" flex items-center h-8 ml-gap bg-[#eef2f9] w-[8.12rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
+                              <div class=" font-normal text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {item.dialCode} {item.phoneNo}
                               </div>
                             </div>
                             </div>
                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                            <div className=" flex  w-[18.26rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
+                            <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-[9.26rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
 
-                              <div class="  text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class="  text-xs ml-gap font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {item.emailId}
                               </div>
                             </div>
-                            <div className=" flex  w-[17.22rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
-                              <div class=" text-xs  font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-evenly  max-sm:flex-row ">
+
+
+                              
+</div>
+
+                            <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-[13.22rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
+                              <div class=" text-xs ml-gap font-poppins max-w-[25ch] truncate max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {`${(item.address && item.address.length && item.address[0].address1) || ""}
           ${(item.address && item.address.length && item.address[0].state) || ""}
           ${(item.address && item.address.length && item.address[0].street) || ""}`}
@@ -115,9 +157,9 @@ function SuppliersDeletedCardList(props) {
 
                             </div>
                             </div>
-                            <div className=" flex  w-[13.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
+                            <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9]  w-[13.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
 
-                              <div class="  text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                              <div class="  text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {(item.address &&
                                   item.address.length &&
                                   item.address[0].city) ||
@@ -125,20 +167,18 @@ function SuppliersDeletedCardList(props) {
                               </div>
 
                             </div>
-                            <div className=" flex  w-[8.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
-                              <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
+                            <div className=" flex items-center  h-8 ml-gap bg-[#eef2f9] w-[6.01rem] max-sm:justify-between max-sm:w-auto max-sm:flex-row max-xl:w-[9rem] max-lg:w-[7rem] ">
+                              <div class=" text-xs ml-gap  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-sm">
                                 {(item.address &&
                                   item.address.length &&
                                   item.address[0].postalCode) ||
                                   ""}
                               </div>
+                              
                             </div>
-
-                            <div className=" flex  w-[7.2rem] max-xl:w-[5rem] max-lg:w-[3rem] max-sm:w-auto max-sm:justify-between  max-sm:flex-row ">
-                            <div class="  text-xs max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
-                            <ReInstateSuppliers supplierId={item.supplierId} />
+                            <div class="flex items-center w-[5.01rem] justify-center h-8 ml-gap bg-[#eef2f9]  text-xs max-sm:text-[0.82rem]  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <Suspense fallback={<BundleLoader />}> <ReInstateSuppliers supplierId={item.supplierId} /></Suspense>
                             </div>
-                          </div>
                           </div>
                         </div>
                       </>
@@ -146,11 +186,12 @@ function SuppliersDeletedCardList(props) {
                   })}
                 </> :
                 !props.supplierDeletedList.length &&
-                  !props.fetchingSupplierDeletedList ? <NodataFoundPage /> : null}
+                  !props.fetchingSupplierDeletedList ? <EmptyPage /> : null}
           </div>
         </div>
       </div>
-
+)}
+ <Suspense fallback={<BundleLoader />}>
       <UpdateSupplierModal
         rowdata={rowdata}
         updateSupplierModal={props.updateSupplierModal}
@@ -158,6 +199,7 @@ function SuppliersDeletedCardList(props) {
         handleUpdateSupplierModal={props.handleUpdateSupplierModal}
         translatedMenuItems={props.translatedMenuItems}
       />
+      </Suspense>
     </>
   )
 }
@@ -170,6 +212,7 @@ const mapStateToProps = ({ shipper, suppliers, auth }) => ({
   addShipperActivityTableModal: shipper.addShipperActivityTableModal,
   addShipperOrderModal: shipper.addShipperOrderModal,
   updateSupplierModal:suppliers.updateSupplierModal,
+  searchSupplierList:suppliers.searchSupplierList
 });
 
 const mapDispatchToProps = (dispatch) =>

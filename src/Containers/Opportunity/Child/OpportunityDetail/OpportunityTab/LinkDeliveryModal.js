@@ -1,7 +1,7 @@
 import React from "react";
 import { StyledModal } from "../../../../../Components/UI/Antd";
 import LinkDeliveryForm from "./LinkDeliveryForm";
-import { FormattedMessage } from "react-intl";
+
 
 const LinkDeliveryModal = props => {
   const { visible, handleLinkDeliveryModal } = props;
@@ -9,11 +9,7 @@ const LinkDeliveryModal = props => {
   return (
     <>
       <StyledModal
-        //title="Link Delivery"
-        title={<FormattedMessage
-          id="app.linkdelivery"
-          defaultMessage="Link Delivery"
-        />}
+        title="Link Delivery"
         width="40vw"
         visible={visible}
         maskClosable={false}

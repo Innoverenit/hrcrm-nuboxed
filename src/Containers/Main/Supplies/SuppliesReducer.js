@@ -1,13 +1,108 @@
 import * as types from "./SuppliesActionType";
-import moment from "moment";
+import dayjs from "dayjs";
 const initialState = {
     viewType: "all",
 
     addSuppliesModal: false,
+    uploadingMaterialList:false,
+    uploadingMaterialListError:false,
+
+    fetchingbestBeforeEmailList: false,
+    fetchingbestBeforeEmailListError: false,
+    bestBeforeEmailList:[],
+
+    fetchingBarcodeViewer: false,
+    fetchingBarcodeViewerError: false,
+    barCodeViewer:[],
+
+
+    fetchingPriceUpdated: false,
+    fetchingPriceUpdatedError: false,
+    priceUpdated:[],
+
+    fetchingPriceUpdatedCount: false,
+    fetchingPriceUpdatedCountError: false,
+    priceUpdatedCount:[],
+
+    fetchingPriceFactor: false,
+    fetchingPriceFactorError: false,
+    priceFactorData:{},
+
+    fetchingReOrder: false,
+    fetchingReOrderError: false,
+    reOrderCount:{},
+
+    fetchingBestBeforeJumpList: false,
+    fetchingBestBeforeJumpListError: false,
+    bestBeforeSuppliesList:[],
+
+    fetchingBestBeforeCountSupplies: false,
+     fetchingBestBeforeCountSuppliesError: false,
+       suppliesBestBeforeCount:{},            
+
+    fetchingSuppliesInputSearchData:false,
+    fetchingSuppliesInputSearchDataError: false,
+    suppliesSerachedData:[],
+
+    fetchingBestBeforeContactList: false,
+    fetchingBestBeforeContactListError: false,
+    bestBeforeContactList:[],
+
+    fetchingNewArrivalContactList: false,
+    fetchingNewArrivalContactListError: false,
+    newArrivalContactList:[],
+
+    fetchingArrivalContact: false,
+    fetchingArrivalContactError: false,
+    arrivalContact:[],
+
+    fetchingEmailContact: false,
+    fetchingEmailContactError: false,
+    emailContact:[],
+
+    deletingEmailList: false,
+    deletingEmailListError: false,
+
+    fetchingNewArrivalList: false,
+    fetchingNewArrivalListError: false,
+    newArrivalDataList:[],
+
+    deletingNewArrival: false,
+    deletingNewArrivalError: false,
+
+    fetchingItemData: false,
+    fetchingItemDataError: false,
+    newStepItemData:[],
+
+    fetchingbestBefore: false,
+    fetchingbestBeforeError: false,
+    bestBeforeData:[],
+
+    bestBeforemodal:false,
+
+    erpDocumentUploadModal:false,
+
+    deletingSuppliesDocumentData: false,
+    deletingSuppliesDocumentDataError: false,
+
+    fetchingDocumentsBySupplies: false,
+    fetchingDocumentsBySuppliesError: false,
+    documentsBySuppliesId:[],
+
+    addingLocationSuppliesValue:false,
+    addingLocationSuppliesValueError:false,
+
+
+    locationSuppliesModal:false,
+
+    uploadImageListSupplies:false,
+
+    newArivalmodal:false,
 
     addBrandModel: false,
 
     priceOpenModal:false,
+    addSuppliesBrandModal:false,
 
     creatingMaterialCurrency: false,
     creatingMaterialCurrencyError: false,
@@ -15,6 +110,16 @@ const initialState = {
     fetchingMaterialCurrency: false,
     fetchingMaterialCurrencyError: false,
     materialCurrency:[],
+
+
+    uploadSuppliesList:false,
+
+    materialCpmplementary: false,
+    materialCpmplementaryError: false,
+
+    fetchingComplementaryList: false,
+    fetchingComplementaryListError: false,
+    complementaryList:[],
     
     creatingMaterialDiscount: false,
     creatingMaterialDiscountError: false,
@@ -40,9 +145,17 @@ const initialState = {
     addingMasterList: false,
     addingMasterListError: false,
 
+
+    updatingBrandMaterial:false,
+    updatingBrandMaterialError:false,
+
     fetchingPurchaseList: false,
     fetchingPurchaseListError: false,
     purchaseList: [],
+
+    fetchingBrandProductList:false,
+    fetchingBrandProductListError:false,
+    brandProductListData:[],
 
     updateSuppliesDrawer: false,
 
@@ -60,6 +173,9 @@ const initialState = {
     fetchingSuppliesHistoryError: false,
     suppliesHistory: [],
 
+
+    addSuppliesLocationModal:false,
+
     addingMaterialFifoToggle: false,
     addingMaterialFifoToggleError: false,
 
@@ -67,6 +183,11 @@ const initialState = {
 
     deletingSuppliesData: false,
     deletingSuppliesDataError: false,
+
+
+    fetchingSuppliesLocationItem:false,
+    fetchingSuppliesLocationItemError:false,
+    suppliesLocationItem:[],
 
     fetchingDeletedSuppliesHistory: false,
     fetchingDeletedSuppliesHistoryError: true,
@@ -79,10 +200,21 @@ const initialState = {
     reInstatedSuppliesById: false,
     reInstatedSuppliesByIdError: false,
 
+    updateMaterialImage:false,
+    updateMaterialImageError:false,
+
+
+    addingQualityCategory:false,
+    addingQualityCategoryError:false,
+
     updateToCatalogue: false,
     updateToCatalogueError: false,
 
     addCurrencyValue: false,
+
+
+    addingSuppliesBrand:false,
+    addingSuppliesBrandError:false,
 
     addingPriceRate: false,
     addingPriceRateError: false,
@@ -98,6 +230,10 @@ const initialState = {
     fetchingBrandModel: false,
     fetchingBrandModelError: false,
     brandModel: [],
+
+    fetchingBrandSupplies:false,
+    fetchingBrandSuppliesError:false,
+    brandSupplies:[],
 
     fetchingSuppliescount: false,
     fetchingSuppliescountError: false,
@@ -124,6 +260,11 @@ const initialState = {
     removingMaterialBuilder: false,
     removingMaterialBuilderError: false,
 
+
+    fetchingLocationSupplies:false,
+    fetchingLocationSuppliesError:false,
+    locationSupplies:[],
+
     updatingMaterialBuilder: false,
     updatingMaterialBuilderError: false,
 
@@ -142,12 +283,32 @@ const initialState = {
     materialInventory:[],
     fetchingMaterialInventoryError: false,
 
+
+    deleteSuppliesBrandData:false,
+    deleteSuppliesBrandDataError:false,
+
     featuredMaterialToggle: false,
     featuredMaterialToggleError:false,
 
     fetchingMaterialCategory: false, materialCategorys:[],fetchingMaterialCategoryError: false,
 
     fetchingMaterialCatSrchError:true,
+
+    uploadMaterialModal:false,
+
+    fetchingMaterialsBySuppliesId: false,
+                                  fetchingMaterialsBySuppliesIdError:false,
+                                  materialsBySuppliesId:{},
+                                  
+                                  suppliesPUblishToggle: false,
+                                      suppliesPUblishToggleError: false,
+
+                                      materialRecommendingToggle: false,
+                                        materialRecommendingToggleError:false,
+
+                                        materialPriceType: false,
+                                        materialPriceTypeError:false,   
+
 };
 
 export const suppliesReducer = (state = initialState, action) => {
@@ -155,6 +316,10 @@ export const suppliesReducer = (state = initialState, action) => {
 
         case types.SET_SUPPLIES_VIEW_TYPE:
             return { ...state, viewType: action.payload };
+
+
+            case types.HANDLE_SUPPLIES_BRAND_MODAL:
+              return { ...state, addSuppliesBrandModal: action.payload };
 
         case types.HANDLE_SUPPLIES_MODAL:
             return { ...state, addSuppliesModal: action.payload };
@@ -181,10 +346,18 @@ export const suppliesReducer = (state = initialState, action) => {
         case types.GET_SUPPLIES_LIST_REQUEST:
             return { ...state, fetchingPurchaseList: true };
         case types.GET_SUPPLIES_LIST_SUCCESS:
+          // const newsupplieslist = action.payload.filter(
+          //   (item) =>
+          //     !state.purchaseList.some(
+          //       (existingItem) => existingItem.suppliesId === item.suppliesId
+          //     )
+          // );
             return {
                 ...state,
                 fetchingPurchaseList: false,
-                purchaseList: action.payload,
+                // purchaseList: [...state.purchaseList, ...newsupplieslist],
+                // purchaseList: action.payload,
+                purchaseList: [...state.purchaseList, ...action.payload],
             };
         case types.GET_SUPPLIES_LIST_FAILURE:
             return {
@@ -198,6 +371,146 @@ export const suppliesReducer = (state = initialState, action) => {
 
         case types.SET_EDIT_SUPPLIES:
             return { ...state, setEditingSupplies: action.payload };
+
+
+            case types.GET_SUPPLIES_LOCATION_ITEM_REQUEST:
+        return { ...state, fetchingSuppliesLocationItem: true };
+      case types.GET_SUPPLIES_LOCATION_ITEM_SUCCESS:
+        return {
+          ...state,
+          fetchingSuppliesLocationItem: false,
+        suppliesLocationItem: action.payload
+        };
+      case types.GET_SUPPLIES_LOCATION_ITEM_FAILURE:
+        return {
+          ...state,
+          fetchingSuppliesLocationItem: false,
+          fetchingSuppliesLocationItemError: true,
+        };
+
+
+        case types.GET_ITEM_DATA_REQUEST:
+          return { ...state, fetchingItemData: true };
+        case types.GET_ITEM_DATA_SUCCESS:
+          return {
+            ...state,
+            fetchingItemData: false,
+         newStepItemData: action.payload
+          };
+        case types.GET_ITEM_DATA_FAILURE:
+          return {
+            ...state,
+            fetchingItemData: false,
+            fetchingItemDataError: true,
+          };
+
+          case types.GET_BEST_BEFORE_REQUEST:
+            return { ...state, fetchingbestBefore: true };
+          case types.GET_BEST_BEFORE_SUCCESS:
+            return {
+              ...state,
+              fetchingbestBefore: false,
+           bestBeforeData: action.payload
+            };
+          case types.GET_BEST_BEFORE_FAILURE:
+            return {
+              ...state,
+              fetchingbestBefore: false,
+              fetchingbestBeforeError: true,
+            };
+  
+            case types.GET_BEST_BEFORE_EMAILLIST_REQUEST:
+              return { ...state, fetchingbestBeforeEmailList: true };
+            case types.GET_BEST_BEFORE_EMAILLIST_SUCCESS:
+              return {
+                ...state,
+                fetchingbestBeforeEmailList: false,
+             bestBeforeEmailList: action.payload
+              };
+            case types.GET_BEST_BEFORE_EMAILLIST_FAILURE:
+              return {
+                ...state,
+                fetchingbestBeforeEmailList: false,
+                fetchingbestBeforeEmailListError: true,
+              };
+
+
+              case types.GET_NEW_ARRIVALLIST_REQUEST:
+                return { ...state, fetchingNewArrivalList: true };
+              case types.GET_NEW_ARRIVALLIST_SUCCESS:
+                return {
+                  ...state,
+                  fetchingNewArrivalList: false,
+               newArrivalDataList: action.payload
+                };
+              case types.GET_NEW_ARRIVALLIST_FAILURE:
+                return {
+                  ...state,
+                  fetchingNewArrivalList: false,
+                  fetchingNewArrivalListError: true,
+                };
+
+                case types.GET_BEST_BEFORE_CONTACTLIST_REQUEST:
+                  return { ...state, fetchingBestBeforeContactList: true };
+                case types.GET_BEST_BEFORE_CONTACTLIST_SUCCESS:
+                  return {
+                    ...state,
+                    fetchingBestBeforeContactList: false,
+                 bestBeforeContactList: action.payload
+                  };
+                case types.GET_BEST_BEFORE_CONTACTLIST_FAILURE:
+                  return {
+                    ...state,
+                    fetchingBestBeforeContactList: false,
+                    fetchingBestBeforeContactListError: true,
+                  };
+
+                  case types.GET_NEW_ARRIVAL_CONTACTLIST_REQUEST:
+                    return { ...state, fetchingNewArrivalContactList: true };
+                  case types.GET_NEW_ARRIVAL_CONTACTLIST_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingNewArrivalContactList: false,
+                   newArrivalContactList: action.payload
+                    };
+                  case types.GET_NEW_ARRIVAL_CONTACTLIST_FAILURE:
+                    return {
+                      ...state,
+                      fetchingNewArrivalContactList: false,
+                      fetchingNewArrivalContactListError: true,
+                    };
+
+
+                    case types.GET_ARRIVAL_CONTACT_REQUEST:
+                      return { ...state, fetchingArrivalContact: true };
+                    case types.GET_ARRIVAL_CONTACT_SUCCESS:
+                      return {
+                        ...state,
+                        fetchingArrivalContact: false,
+                     arrivalContact: action.payload
+                      };
+                    case types.GET_ARRIVAL_CONTACT_FAILURE:
+                      return {
+                        ...state,
+                        fetchingArrivalContact: false,
+                        fetchingArrivalContactError: true,
+                      };
+
+                      case types.GET_EMAIL_CONTACT_REQUEST:
+                      return { ...state, fetchingEmailContact: true };
+                    case types.GET_EMAIL_CONTACT_SUCCESS:
+                      return {
+                        ...state,
+                        fetchingEmailContact: false,
+                     emailContact: action.payload
+                      };
+                    case types.GET_EMAIL_CONTACT_FAILURE:
+                      return {
+                        ...state,
+                        fetchingEmailContact: false,
+                        fetchingEmailContactError: true,
+                      };
+
 
         case types.UPDATE_SUPPLIES_BY_ID_REQUEST:
             return { ...state, updateSuppliesById: true };
@@ -243,6 +556,57 @@ export const suppliesReducer = (state = initialState, action) => {
                 fetchingSuppliesHistoryError: true,
             };
 
+
+            case types.GET_BESTBEFORE_JUMPLIST_REQUEST:
+              return { ...state, fetchingBestBeforeJumpList: true };
+          case types.GET_BESTBEFORE_JUMPLIST_SUCCESS:
+              return {
+                  ...state,
+                  fetchingBestBeforeJumpList: false,
+                  bestBeforeSuppliesList: action.payload,
+              };
+          case types.GET_BESTBEFORE_JUMPLIST_FAILURE:
+              return {
+                  ...state,
+                  fetchingBestBeforeJumpList: false,
+                  fetchingBestBeforeJumpListError: true,
+              };
+
+
+              case types.GET_BEST_BEFORE_JUMP_REQUEST:
+                return { ...state, fetchingBestBeforeCountSupplies: true };
+            case types.GET_BEST_BEFORE_JUMP_SUCCESS:
+                return {
+                    ...state,
+                    fetchingBestBeforeCountSupplies: false,
+                    suppliesBestBeforeCount: action.payload,
+                };
+            case types.GET_BEST_BEFORE_JUMP_FAILURE:
+                return {
+                    ...state,
+                    fetchingBestBeforeCountSupplies: false,
+                    fetchingBestBeforeCountSuppliesError: true,
+                };
+
+
+                case types.GET_REORDER_REQUEST:
+                  return { ...state, fetchingReOrder: true };
+              case types.GET_REORDER_SUCCESS:
+                  return {
+                      ...state,
+                      fetchingReOrder: false,
+                      reOrderCount: action.payload,
+                  };
+              case types.GET_REORDER_FAILURE:
+                  return {
+                      ...state,
+                      fetchingReOrder: false,
+                      fetchingReOrderError: true,
+                  };
+
+            case types.HANDLE_UPLOAD_MATERIAL_MODAL:
+      return { ...state, uploadMaterialModal: action.payload };
+
         case types.HANDLE_DELETE_FEEDBACK_MODAL:
             return { ...state, addDeleteFeedbackModal: action.payload };
 
@@ -266,6 +630,51 @@ export const suppliesReducer = (state = initialState, action) => {
                 deletingSuppliesDataError: true,
                 addDeleteSuppliesModal: false,
             };
+
+            case types.DELETE_SUPPLIES_DATA_REQUEST:
+              return { ...state, deletingSuppliesDocumentData: true };
+          case types.DELETE_SUPPLIES_DATA_SUCCESS:
+              return {
+                  ...state,
+                  deletingSuppliesDocumentData: false,
+                  //addDeleteSuppliesModal: false,
+                  documentsBySuppliesId: state.documentsBySuppliesId.filter(
+                      (item) => item.documentId !== action.payload
+                  ),
+              };
+          case types.DELETE_SUPPLIES_DATA_FAILURE:
+              return {
+                  ...state,
+                  deletingSuppliesDocumentData: false,
+                  deletingSuppliesDocumentDataError: true,
+                  //addDeleteSuppliesModal: false,
+              };
+
+
+
+
+
+              case types.ADD_QUALITY_CATEGORY_REQUEST:
+                return { ...state, addingQualityCategory: true };
+              case types.ADD_QUALITY_CATEGORY_SUCCESS:
+                return {
+                  ...state, addingQualityCategory: false, 
+                  materialCategorys: state.materialCategorys.map((item) => {
+                    if (item.categoryId === action.payload.categoryId) {
+                      return action.payload;
+                    } else {
+                      return item;
+                    }
+                  }),
+                  //materialCategorys: [action.payload, ...state.materialCategorys]
+                };
+              case types.ADD_QUALITY_CATEGORY_FAILURE:
+                return {
+                  ...state,
+                  addingQualityCategory: false,
+                  addingQualityCategoryError: true,
+                }
+                  
 
         case types.GET_DELETE_HISTORY_REQUEST:
             return { ...state, fetchingDeletedSuppliesHistory: true };
@@ -326,7 +735,26 @@ export const suppliesReducer = (state = initialState, action) => {
                 ...state,
                 updateToCatalogue: false,
                 updateToCatalogueError: true,
+
             };
+
+
+
+
+            case types.GET_LOCATION_SUPPLIES_REQUEST:
+              return { ...state, fetchingLocationSupplies: true };
+            case types.GET_LOCATION_SUPPLIES_SUCCESS:
+              return {
+                ...state,
+                fetchingLocationSupplies: false,
+                locationSupplies: action.payload,
+              };
+            case types.GET_LOCATION_SUPPLIES_FAILURE:
+              return {
+                ...state,
+                fetchingLocationSupplies: false,
+                fetchingLocationSuppliesError: true,
+              };
 
         case types.HANDLE_CURENCY_PRICE_MODAL:
             return { ...state, addCurrencyValue: action.payload };
@@ -342,6 +770,23 @@ export const suppliesReducer = (state = initialState, action) => {
                 addingPriceRateError: true,
 
             };
+
+
+
+            case types.UPLOAD_MATERIAL_LIST_REQUEST:
+                return { ...state, uploadingMaterialList: true };
+              case types.UPLOAD_MATERIAL_LIST_SUCCESS:
+                return {
+                  ...state,
+                  uploadingMaterialList: false,
+                //   uploadProductList: false
+                };
+              case types.UPLOAD_MATERIAL_LIST_FAILURE:
+                return {
+                  ...state,
+                  uploadingMaterialList: false,
+                  uploadingMaterialListError: true,
+                };
 
         case types.GET_SUPPLIES_BY_GROUP_ID_REQUEST:
             return { ...state, fetchingPurchaseByGroupId: true };
@@ -418,6 +863,10 @@ export const suppliesReducer = (state = initialState, action) => {
             return { ...state, fetchingBrandModel: false, brandModel: action.payload };
         case types.GET_BRAND_MODEL_FAILURE:
             return { ...state, fetchingBrandModel: false, fetchingBrandModelError: true };
+
+
+            case types.HANDLE_SUPPLIES_LOCATION_MODAL:
+              return { ...state, addSuppliesLocationModal: action.payload };
 
         case types.GET_SUPPLIES_COUNT_REQUEST:
             return { ...state, fetchingSuppliescount: true };
@@ -539,6 +988,43 @@ export const suppliesReducer = (state = initialState, action) => {
                 deletingSuppliesDataError: true,
             };
 
+
+
+
+            case types.GET_BRAND_PRODUCT_LIST_REQUEST:
+      return { ...state, fetchingBrandProductList: true, fetchingBrandProductListError: false };
+    case types.GET_BRAND_PRODUCT_LIST_SUCCESS:
+      //const newData = action.payload.filter(item => !state.products.includes(item));
+      return { ...state, fetchingBrandProductList: false, 
+        // products: [
+        // ...state.products,
+        // ...action.payload] };
+        brandProductListData: action.payload
+      }
+    case types.GET_BRAND_PRODUCT_LIST_FAILURE:
+      return { ...state, fetchingBrandProductList: false, fetchingBrandProductError: true };
+
+
+
+
+      case types.DELETE_SUPPLIES_BRAND_DATA_REQUEST:
+        return { ...state, deleteSuppliesBrandData: true };
+      case types.DELETE_SUPPLIES_BRAND_DATA_SUCCESS:
+        return {
+          ...state,
+          deleteSuppliesBrandData: false,
+          brandSupplies: state.brandSupplies.filter(
+            (item) => item.suppliesBrandId !== action.payload
+          ),
+        };
+      case types.DELETE_SUPPLIES_BRAND_DATA_FAILURE:
+        return {
+          ...state,
+          deleteSuppliesBrandData: false,
+          deleteSuppliesBrandDataError: false,
+        };
+
+
         case types.HANDLE_SUPPLIERSLIST_DRAWER:
             return { ...state, suppliersListDrwr: action.payload };
 
@@ -598,6 +1084,37 @@ export const suppliesReducer = (state = initialState, action) => {
                 };
 
 
+                case types.HANDLE_LOCATION_SUPPLIES_MODAL:
+                  return { ...state, locationSuppliesModal: action.payload };
+                case types.HANDLE_UPLOAD_SUPPLIES_MODAL:
+                  return { ...state, uploadSuppliesList: action.payload };
+
+
+
+                  case types.UPDATE_MATERIAL_IMAGE_REQUEST:
+                    return { ...state, updateMaterialImage: true };
+                  case types.UPDATE_MATERIAL_IMAGE_SUCCESS:
+                    return {
+                      ...state,
+                      updateMaterialImage: false,
+                      //updatePartnerModal: false,
+                      // partnerByUserId: state.partnerByUserId.map((item) => {
+                      //   if (item.partnerId === action.payload.partnerId) {
+                      //     return action.payload;
+                      //   } else {
+                      //     return item;
+                      //   }
+                      // }),
+                    };
+                  case types.UPDATE_MATERIAL_IMAGE_FAILURE:
+                    return {
+                      ...state,
+                      updateMaterialImage: false,
+                      updateMaterialImageError: true,
+                    };
+              
+
+
                 
             case types.LINK_MATERIAL_FIFO_TOGGLE_REQUEST:
                 return { ...state, addingMaterialFifoToggle: true };
@@ -626,20 +1143,43 @@ export const suppliesReducer = (state = initialState, action) => {
                     return {
                       ...state,
                       fetchingSuppliesInputSearchData: false,
-                      purchaseList: action.payload,
-                       deleteSuppliesHistory: action.payload,
+                      suppliesSerachedData: action.payload,
                    
                     };
                   case types.INPUT_SUPPLIES_SEARCH_DATA_FAILURE:
-                    return { ...state, fetchingSuppliesInputSearchDataError: true };
+                    return { ...state, 
+                      fetchingSuppliesInputSearchDataError: true };
+
+
+
+                    case types.ADD_LOCATION_SUPPLIES_VALUE_REQUEST:
+                      return { ...state, addingLocationSuppliesValue: true };
+                    case types.ADD_LOCATION_SUPPLIES_VALUE_SUCCESS:
+                      return {
+                        ...state,
+                        addingLocationSuppliesValue: false,
+                        // regiondata:action.payload,
+                        //regions:[action.payload,...state.regions],
+                        // documents: [...state.documents, action.payload],
+                      };
+                    case types.ADD_LOCATION_SUPPLIES_VALUE_FAILURE:
+                      return { ...state, addingLocationSuppliesValue: false, addingLocationSuppliesValueError: true };
                   
                     case types.HANDLE_CLAER_REDUCER_DATA_MATERIAL:
                         return {
                           ...state,
+                          suppliesSerachedData:[],
                           purchaseList: [],
                           materialCategorys:[],
                           // deletedTruck: []
                         };   
+                        case types.HANDLE_CLAER_REDUCER_FACTOR:
+                          return {
+                            ...state,
+                            priceFactorData:{},
+                           
+                          }; 
+
                         case types.HANDLE_MATERIAL_INVENTORY:
                             return { ...state, materialInveDawer: action.payload };
 
@@ -707,6 +1247,21 @@ export const suppliesReducer = (state = initialState, action) => {
           creatingMaterialDiscount: false,
           creatingMaterialDiscountError: true,
         };
+
+
+
+        case types.GET_BRAND_SUPPLIES_REQUEST:
+      return { ...state, fetchingBrandSupplies: true, fetchingBrandProduct: false };
+    case types.GET_BRAND_SUPPLIES_SUCCESS:
+      //const newData = action.payload.filter(item => !state.products.includes(item));
+      return { ...state, fetchingBrandSupplies: false, 
+        // products: [
+        // ...state.products,
+        // ...action.payload] };
+        brandSupplies: action.payload
+      }
+    case types.GET_BRAND_SUPPLIES_FAILURE:
+      return { ...state, fetchingBrandSupplies: false, fetchingBrandSuppliesError: true };
   
         case types.GET_MATERIAL_DISCOUNT_REQUEST:
         return {
@@ -812,7 +1367,296 @@ export const suppliesReducer = (state = initialState, action) => {
                            
                             };
                           case types.MATERIAL_CATEGORY_SEARCH_FAILURE:
-                            return { ...state, fetchingMaterialCatSrchError: true };                     
+                            return { ...state, fetchingMaterialCatSrchError: true };   
+                            
+                            
+                            case types.GET_MATERIALS_BY_SUPPLIES_ID_REQUEST:
+                                return {
+                                  ...state,
+                                  fetchingMaterialsBySuppliesId: true,
+                                  fetchingMaterialsBySuppliesIdError: false,
+                                };
+                              case types.GET_MATERIALS_BY_SUPPLIES_ID_SUCCESS:
+                                return {
+                                  ...state,
+                                  fetchingMaterialsBySuppliesId: false,
+                                  materialsBySuppliesId: action.payload,
+                                };
+                              case types.GET_MATERIALS_BY_SUPPLIES_ID_FAILURE:
+                                return {
+                                  ...state,
+                                  fetchingMaterialsBySuppliesId: false,
+                                  fetchingMaterialsBySuppliesIdError: true,
+                                };                                      
+
+                                case types.GET_COMPLEMENTARY_LIST_REQUEST:
+                                return {
+                                  ...state,
+                                  fetchingComplementaryList: true,
+                                  fetchingComplementaryListError: false,
+                                };
+                              case types.GET_COMPLEMENTARY_LIST_SUCCESS:
+                                return {
+                                  ...state,
+                                  fetchingComplementaryList: false,
+                                  complementaryList: action.payload,
+                                };
+                              case types.GET_COMPLEMENTARY_LIST_FAILURE:
+                                return {
+                                  ...state,
+                                  fetchingComplementaryList: false,
+                                  fetchingComplementaryListError: true,
+                                };
+
+                                case types.SUPPLIES_PUNBLISH_TOGGLE_REQUEST:
+                                    return { ...state, suppliesPUblishToggle: true };
+                                  case types.SUPPLIES_PUNBLISH_TOGGLE_SUCCESS:
+                                    return {
+                                      ...state,
+                                      suppliesPUblishToggle: false,
+                                      materialCategorys: state.materialCategorys.map((item) => {
+                                        if (item.categoryId === action.payload.categoryId) {
+                                          return action.payload;
+                                        } else {
+                                          return item;
+                                        }
+                                      }),
+                                    };
+                                  case types.SUPPLIES_PUNBLISH_TOGGLE_FAILURE:
+                                    return {
+                                      ...state,
+                                      suppliesPUblishToggle: false,
+                                      suppliesPUblishToggleError: true,
+                                    };
+
+                                    case types.MATERIAL_RECOMMEND_TOGGLE_REQUEST:
+                                      return { ...state, materialRecommendingToggle: true };
+                                    case types.MATERIAL_RECOMMEND_TOGGLE_SUCCESS:
+                                      return {
+                                        ...state,
+                                        materialRecommendingToggle: false,
+                                        purchaseList: state.purchaseList.map((item) => {
+                                          if (item.suppliesId === action.payload.suppliesId) {
+                                            return action.payload;
+                                          } else {
+                                            return item;
+                                          }
+                                        }),
+                                      };
+                                    case types.MATERIAL_RECOMMEND_TOGGLE_FAILURE:
+                                      return {
+                                        ...state,
+                                        materialRecommendingToggle: false,
+                                        materialRecommendingToggleError: true,
+                                      };
+                                      case types.MATERIAL_PRICE_TYPE_REQUEST:
+                                        return { ...state, materialPriceType: true };
+                                      case types.MATERIAL_PRICE_TYPE_SUCCESS:
+                                        return {
+                                          ...state,
+                                          materialPriceType: false,
+                                          materialCurrency: state.materialCurrency.map((item) => {
+                                            if (item.id === action.payload.id) {
+                                              return action.payload;
+                                            } else {
+                                              return item;
+                                            }
+                                          }),
+                                        };
+                                      case types.MATERIAL_PRICE_TYPE_FAILURE:
+                                        return {
+                                          ...state,
+                                          materialPriceType: false,
+                                          materialPriceTypeError: true,
+                                        };
+
+                                        case types.MATERIAL_COMPLEMENTARY_REQUEST:
+                                          return { ...state, materialCpmplementary: true };
+                                        case types.MATERIAL_COMPLEMENTARY_SUCCESS:
+                                          return {
+                                            ...state,
+                                            materialCpmplementary: false,
+                                            complementaryList: state.complementaryList.map((item) => {
+                                              if (item.suppliesId === action.payload.suppliesId) {
+                                                return action.payload;
+                                              } else {
+                                                return item;
+                                              }
+                                            }),
+                                          };
+                                        case types.MATERIAL_COMPLEMENTARY_FAILURE:
+                                          return {
+                                            ...state,
+                                            materialCpmplementary: false,
+                                            materialCpmplementaryError: true,
+                                          };
+
+
+
+
+                                          case types.ADD_SUPPLIES_BRAND_REQUEST:
+      return { ...state, addingSuppliesBrand: true };
+    case types.ADD_SUPPLIES_BRAND_SUCCESS:
+      return {
+        ...state, addingSuppliesBrand: false, 
+        // addConfigureModal: false,
+        brandSupplies: [action.payload, ...state.brandSupplies]
+      };
+    case types.ADD_SUPPLIES_BRAND_FAILURE:
+      return {
+        ...state,
+        addingSuppliesBrand: false,
+        addingSuppliesBrandError: true,
+        // addConfigureModal: false,
+      };
+
+
+
+
+      case types.UPDATE_BRAND_MATERIAL_REQUEST:
+        return { ...state, updatingBrandMaterial: true };
+      case types.UPDATE_BRAND_MATERIAL_SUCCESS:
+        // return { ...state, updatingDocuments: false, Documents: [...state.Documents, action.payload] };
+        return {
+          ...state,
+          updatingBrandMaterial: false,
+          brandSupplies: state.brandSupplies.map((document) =>
+            document.brand === action.payload.brand
+              ? action.payload
+              : document
+          ),
+        };
+      case types.UPDATE_BRAND_MATERIAL_FAILURE:
+        return {
+          ...state,
+          updatingBrandMaterial: false,
+          updatingBrandMaterialError: true,
+        };
+
+        case types.GET_SUPPLIES_DOCUMENTS_REQUEST:
+          return {
+            ...state,
+            fetchingDocumentsBySupplies: true,
+                   };
+        case types.GET_SUPPLIES_DOCUMENTS_SUCCESS:
+          return {
+            ...state,
+            fetchingDocumentsBySupplies: false,
+            documentsBySuppliesId: action.payload,
+          };
+        case types.GET_SUPPLIES_DOCUMENTS_FAILURE:
+          return {
+            ...state,
+            fetchingDocumentsBySupplies: false,
+            fetchingDocumentsBySuppliesError: true,
+          };
+
+        case types.HANDLE_IMAGE_SUPPLIES_MODAL:
+          return { ...state, uploadImageListSupplies: action.payload };
+
+          case types.HANDLE_NEWARRIVAL_MODAL:
+            return { ...state, newArivalmodal: action.payload };
+
+            case types.HANDLE_BESTBEFORE_MODAL:
+              return { ...state, bestBeforemodal: action.payload };
+  
+          case types.HANDLE_ERP_DOCUMENT_UPLOAD_MODAL:
+            return { ...state, erpDocumentUploadModal: action.payload };
+
+            case types.DELETE_EMAILLIST_REQUEST:
+              return { ...state, deletingEmailList: true };
+          case types.DELETE_EMAILLIST_SUCCESS:
+              return {
+                  ...state,
+                  deletingEmailList: false,
+                  bestBeforeEmailList: state.bestBeforeEmailList.filter(
+                      (item) => item.orgId !== action.payload
+                  ),
+              };
+          case types.DELETE_EMAILLIST_FAILURE:
+              return {
+                  ...state,
+                  deletingEmailList: false,
+                  deletingEmailListError: true,
+              };
+  
+              case types.DELETE_NEWARRIVAL_REQUEST:
+                return { ...state, deletingNewArrival: true };
+            case types.DELETE_NEWARRIVAL_SUCCESS:
+                return {
+                    ...state,
+                    deletingNewArrival: false,
+                    newArrivalDataList: state.newArrivalDataList.filter(
+                        (item) => item.orgId !== action.payload
+                    ),
+                };
+            case types.DELETE_NEWARRIVAL_FAILURE:
+                return {
+                    ...state,
+                    deletingNewArrival: false,
+                    deletingNewArrivalError: true,
+                };
+    
+
+                case types.GET_PRICE_FACTOR_REQUEST:
+                  return { ...state,  fetchingPriceFactor: true };
+                case types.GET_PRICE_FACTOR_SUCCESS:
+                  return {
+                    ...state,
+                    fetchingPriceFactor: false,
+                    priceFactorData: action.payload,
+                  };
+                case types.GET_PRICE_FACTOR_FAILURE:
+                  return {
+                    ...state,
+                    fetchingPriceFactor: false,
+                    fetchingPriceFactorError: true,
+                  };
+
+                  case types.GET_BAR_CODE_VIEWER_REQUEST:
+                  return { ...state,  fetchingBarcodeViewer: true };
+                case types.GET_BAR_CODE_VIEWER_SUCCESS:
+                  return {
+                    ...state,
+                    fetchingBarcodeViewer: false,
+                    barCodeViewer: action.payload,
+                  };
+                case types.GET_BAR_CODE_VIEWER_FAILURE:
+                  return {
+                    ...state,
+                    fetchingBarcodeViewer: false,
+                    fetchingBarcodeViewerError: true,
+                  };
+
+                  case types.GET_PRICE_UPDATED_REQUEST:
+                    return { ...state,  fetchingPriceUpdated: true };
+                  case types.GET_PRICE_UPDATED_SUCCESS:
+                    return {
+                      ...state,
+                      fetchingPriceUpdated: false,
+                      priceUpdated: action.payload,
+                    };
+                  case types.GET_PRICE_UPDATED_FAILURE:
+                    return {
+                      ...state,
+                      fetchingPriceUpdated: false,
+                      fetchingPriceUpdatedError: true,
+                    };
+
+                    case types.GET_PRICE_UPDATED_COUNT_REQUEST:
+                      return { ...state,  fetchingPriceUpdatedCount: true };
+                    case types.GET_PRICE_UPDATED_COUNT_SUCCESS:
+                      return {
+                        ...state,
+                        fetchingPriceUpdatedCount: false,
+                        priceUpdatedCount: action.payload,
+                      };
+                    case types.GET_PRICE_UPDATED_COUNT_FAILURE:
+                      return {
+                        ...state,
+                        fetchingPriceUpdatedCount: false,
+                        fetchingPriceUpdatedCountError: true,
+                      };
 
         default:
             return state;

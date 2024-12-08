@@ -1,5 +1,5 @@
 import * as types from "./ContactActionTypes";
-import moment from "moment";
+import dayjs from "dayjs";
 
 
 const initialState = {
@@ -11,6 +11,10 @@ const initialState = {
   fetchingOpportunityRecord: false,
   fetchingOpportunityRecordError: false,
   opportunityRecord:[],
+
+  fetchingContactDistributor: false,
+                fetchingContactDistributorError: false,
+                contactDistributor:[],
 
   fetchingContactRecords: false,
   fetchingContactRecordsError: true,
@@ -98,6 +102,9 @@ const initialState = {
   fetchingContactActivityCountError: false,
   contactActivityCount:{},
 
+  updateContactAddress:false,
+  updateContactAddressError:false,
+
   updateContactModal: false,
 
   linkingOpportunityContact:false,
@@ -134,8 +141,8 @@ const initialState = {
   fetchingAllContactsPartner: false,
   fetchingAllContactsPartnerError: false,
   allcontactPartnerByUserId: [],
-  startDate: moment().toISOString(),
-  endDate: moment().startOf("month"). add(1, "days").toISOString(),
+  startDate: dayjs().toISOString(),
+  endDate: dayjs().startOf("month"). add(1, "days").toISOString(),
   dateStackedRangeList: [
     // {
     //   id: 1,
@@ -143,10 +150,10 @@ const initialState = {
     //   value: "FY",
     //   starter: true,
     //   isSelected: true,
-    //   startDate: moment()
+    //   startDate: dayjs()
     //     .startOf("year")
     //     .toISOString(),
-    //   endDate: moment()
+    //   endDate: dayjs()
     //     .endOf("year")
     //     .toISOString(),
     // },
@@ -156,10 +163,10 @@ const initialState = {
     //     value: "Today",
     //     starter: false,
     //     isSelected: true,
-    //     startDate: moment()
+    //     startDate: dayjs()
     //         // .subtract(1, "days")
     //         .toISOString(),
-    //     endDate: moment().toISOString(),
+    //     endDate: dayjs().toISOString(),
     // },
     // {
     //     id: 2,
@@ -167,11 +174,11 @@ const initialState = {
     //     value: "Yesterday",
     //     starter: false,
     //     isSelected: false,
-    //     startDate: moment()
+    //     startDate: dayjs()
     //         .subtract(1, "days")
 
     //         .toISOString(),
-    //     endDate: moment().toISOString(),
+    //     endDate: dayjs().toISOString(),
     // },
     // {
     //     id: 3,
@@ -179,11 +186,11 @@ const initialState = {
     //     value: "Last 7 days",
     //     starter: false,
     //     isSelected: false,
-    //     startDate: moment()
+    //     startDate: dayjs()
     //         .subtract(7, "days")
 
     //         .toISOString(),
-    //     endDate: moment().toISOString(),
+    //     endDate: dayjs().toISOString(),
     // },
 
     // {
@@ -192,11 +199,11 @@ const initialState = {
     //     value: "Last 30 days",
     //     starter: false,
     //     isSelected: false,
-    //     startDate: moment()
+    //     startDate: dayjs()
     //         .subtract(30, "days")
 
     //         .toISOString(),
-    //     endDate: moment().toISOString(),
+    //     endDate: dayjs().toISOString(),
     // },
     {
         id: 5,
@@ -204,8 +211,8 @@ const initialState = {
         value: "This month",
         starter: true,
         isSelected: true,
-        endDate: moment().startOf("month"). add(1, "days").toISOString(),
-        startDate: moment().toISOString(),
+        endDate: dayjs().startOf("month"). add(1, "days").toISOString(),
+        startDate: dayjs().toISOString(),
         
     },
     {
@@ -214,8 +221,8 @@ const initialState = {
         value: "Last month",
         starter: false,
         isSelected: false,
-        endDate: moment().startOf("month") .subtract(30, "days").toISOString(),
-        startDate: moment().toISOString(),
+        endDate: dayjs().startOf("month") .subtract(30, "days").toISOString(),
+        startDate: dayjs().toISOString(),
         
     },
 ],
@@ -229,6 +236,11 @@ addingNotesByContactId:false,
   fetchingContactAddress:false,
   fetchingContactAddressError:false,
   contactAddress:[],
+
+
+
+  removeAddressData:false,
+  removeAddressDataError:false,
 
   uploadingContactList: false,
   uploadingContactListError: false,
@@ -462,6 +474,35 @@ export const contactReducer = (state = initialState, action) => {
         fetchingNotesListByContactIdError: true,
       };
 
+
+
+
+      case types.UPDATE_CONTACT_ADDRESS_REQUEST:
+        return { ...state, updateContactAddress: true };
+      case types.UPDATE_CONTACT_ADDRESS_SUCCESS:
+        return {
+          ...state,
+          //contactAddress
+          updateContactAddress: false,
+          contactAddress: state.contactAddress.map((item) => {
+            if (item.addressId === action.payload.addressId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+          //sectors:[action.payload,...state.sectors]
+          // sectors: [...state.sectors, action.payload],
+          
+        };
+      case types.UPDATE_CONTACT_ADDRESS_FAILURE:
+        return {
+          ...state,
+          updateContactAddress: false,
+          updateContactAddressError: true,
+        };
+    
+
     /* Add a contact opportunity */
     case types.ADD_CONTACT_OPPORTUNITY_REQUEST:
       return { ...state, addingContactOpportunity: true };
@@ -524,6 +565,27 @@ export const contactReducer = (state = initialState, action) => {
         updateContactByIdError: true,
       };
 
+
+
+
+      
+      case types.REMOVE_ADDRESS_DATA_REQUEST:
+        return { ...state, removeAddressData: true };
+      case types.REMOVE_ADDRESS_DATA_SUCCESS:
+        return {
+          ...state,
+          removeAddressData: false,
+          contactAddress: state.contactAddress.filter(
+            (item) => item.addressId !== action.payload
+          ),
+        };
+      case types.REMOVE_ADDRESS_DATA_FAILURE:
+        return {
+          ...state,
+          removeAddressData: false,
+          removeAddressDataError: false,
+        };
+
     //SEARCH
     case types.INPUT_CONTACT_SEARCH_DATA_REQUEST:
       return { ...state, fetchingContactInputSearchData: true };
@@ -532,6 +594,8 @@ export const contactReducer = (state = initialState, action) => {
         ...state,
         fetchingContactInputSearchData: false,
         contactByUserId: action.payload,
+        allContacts:action.payload,
+        teamContact:action.payload,
         // serachedData: action.payload,
       };
     case types.INPUT_CONTACT_SEARCH_DATA_FAILURE:
@@ -679,7 +743,7 @@ export const contactReducer = (state = initialState, action) => {
     return {
       ...state,
       addingContactAddress: false,
-      //sectors:[action.payload,...state.sectors]
+      contactAddress:[action.payload,...state.contactAddress]
       // sectors: [...state.sectors, action.payload],
       
     };
@@ -829,6 +893,21 @@ export const contactReducer = (state = initialState, action) => {
               fetchingContactData: false,
               fetchingContactDataError: true,
             };
+
+            case types.GET_CONTACT_DISTRIBUTOR_REQUEST:
+              return { ...state, fetchingContactDistributor: true };
+            case types.GET_CONTACT_DISTRIBUTOR_SUCCESS:
+              return {
+                ...state,
+                fetchingContactDistributor: false,
+                 contactDistributor: action.payload,
+              };
+            case types.GET_CONTACT_DISTRIBUTOR_FAILURE:
+              return {
+                ...state,
+                fetchingContactDistributor: false,
+                fetchingContactDistributorError: true,
+              };
 
             case types.GET_DEALS_CONTACT_DATA_REQUEST:
               return { ...state, fetchingDelasContactData: true };
@@ -1004,6 +1083,8 @@ export const contactReducer = (state = initialState, action) => {
             case types.HANDLE_CLAER_REDUCER_DATA_CONTACT:
               return { ...state, 
                 contactByUserId: [], 
+                allContacts:[],
+                teamContact:[]
               };
               case types.HANDLE_CONTACT_CET_DRAWER:
                 return { ...state, contactCETdrawer: action.payload };
@@ -1099,7 +1180,12 @@ export const contactReducer = (state = initialState, action) => {
         fetchingContactActivityCount: false,
         fetchingContactActivityCountError: true,
       };
-
+      case types.GET_TEAM_USERLIST_REQUEST:
+        return {
+          ...state,
+          fetchingTeamUserList: true,
+          fetchingTeamUserListError: false,
+        };
 
       case types.GET_CONTACT_ALL_RECORDS_REQUEST:
         return { ...state, fetchingContactAllRecords: true };

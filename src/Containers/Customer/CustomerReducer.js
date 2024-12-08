@@ -6,9 +6,24 @@ const initialState = {
 
   addCustomerContactJumpstartModal: false,
 
+  fetchingTeamUserList: false,
+  fetchingTeamUserListError: false,
+  teamUserList:[],
+
+  fetchingContactCount: false,
+  fetchingContactCountError: false,
+  contactCount:{},
+
+  fetchingDocumentsCount: false,
+  fetchingDocumentsCountError: false,
+  documentsByCount:{},
+
+
   fetchingWonCusmWeightedValue: false,
   fetchingWonCusmWeightedValueError: false,
   WonCustomerWeighted: {},
+
+  addAddressCustomerModal:false,
 
   fetchingSelectdrop: false,
   fetchingSelectdropError: false,
@@ -39,6 +54,9 @@ const initialState = {
 
   fetchingFilterCustomers: false,
   fetchingFilterCustomersError: false,
+
+  deletingCustomerById: false,
+  deletingCustomerByIdError: false,
 
   addingCustomerActivityCall: false,
   addingCustomerActivityCallError: false,
@@ -83,6 +101,9 @@ const initialState = {
 
   fetchingAllCustomerByPosition: false,
   fetchingAllCustomerByPosition: false,
+
+
+
 
   fetchingCustomerRequirement: false,
   fetchingCustomerRequirementError: false,
@@ -321,6 +342,12 @@ const initialState = {
   fetchingContactValueError: false,
   contactValue: {},
 
+
+  fetchingCustomerDonut:false,
+  fetchingCustomerDonutError:false,
+
+  customerDonut:{},
+
   updatingActivityEventForm: false,
   updatingActivityEventFormError: false,
 
@@ -356,6 +383,10 @@ const initialState = {
   fetchingCustomerActivityCount: false,
   fetchingCustomerActivityCountError: false,
   customerActivityCount: {},
+
+
+  updateProspectUserById:false,
+  updateProspectUserByIdError:false,
 
   fetchingCustomerCloser: false,
   fetchingCustomerCloserError: false,
@@ -695,12 +726,49 @@ export const customerReducer = (state = initialState, action) => {
             return item;
           }
         }),
+        teamCustomer: state.teamCustomer.map((item) => {
+          if (item.customerId === action.payload.customerId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+
+        allCustomers: state.allCustomers.map((item) => {
+          if (item.customerId === action.payload.customerId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
       };
     case types.UPDATE_CUSTOMER_BY_ID_FAILURE:
       return {
         ...state,
         updateCustomerById: false,
         updateCustomerByIdError: true,
+      };
+
+
+      case types.UPDATE_DOCUMENT_BY_ID_REQUEST:
+      return { ...state, updateDocumentById: true };
+    case types.UPDATE_DOCUMENT_BY_ID_SUCCESS:
+      return {
+        ...state,
+        updateDocumentById: false,
+        documentsByCustomerId: state.documentsByCustomerId.map((item) => {
+          if (item.documentId === action.payload.documentId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.UPDATE_DOCUMENT_BY_ID_FAILURE:
+      return {
+        ...state,
+        updateDocumentById: false,
+        updateDocumentByIdError: true,
       };
 
     /*add/link customer document */
@@ -775,6 +843,26 @@ export const customerReducer = (state = initialState, action) => {
         fetchingDocumentsByCustomerIdError: true,
       };
 
+
+      case types.GET_DOCUMENTS_COUNT_REQUEST:
+      return {
+        ...state,
+        fetchingDocumentsCount: true,
+      };
+    case types.GET_DOCUMENTS_COUNT_SUCCESS:
+      return {
+        ...state,
+        fetchingDocumentsCount: false,
+        documentsByCount: action.payload,
+      };
+    case types.GET_DOCUMENTS_COUNT_FAILURE:
+      return {
+        ...state,
+        fetchingDocumentsCount: false,
+        fetchingDocumentsCountError: true,
+      };
+
+      
     case types.ADD_LOCATION_DETAILS_REQUEST:
       return { ...state, addingLocationDetails: true };
     case types.ADD_LOCATION_DETAILS_SUCCESS:
@@ -1053,6 +1141,67 @@ export const customerReducer = (state = initialState, action) => {
         addingRecruitmentProfileError: true,
       };
 
+
+
+      case types.UPDATE_PROSPECT_USER_REQUEST:
+        return { ...state, updateProspectUserById: true };
+      case types.UPDATE_PROSPECT_USER_SUCCESS:
+        return {
+          ...state,
+          updateProspectUserById: false,
+          updateUserModal: false,
+          teamCustomer: state.teamCustomer.map((item) => {
+            if (item.customerId === action.payload.customerId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+
+
+
+          allCustomers: state.allCustomers.map((item) => {
+            if (item.customerId === action.payload.customerId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+
+
+          customerByUserId: state.customerByUserId.map((item) => {
+            if (item.customerId === action.payload.customerId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+        };
+      case types.UPDATE_PROSPECT_USER_FAILURE:
+        return {
+          ...state,
+          updateProspectUserById: false,
+          updateProspectUserByIdError: true,
+        };
+  
+      case types.GET_CUSTOMER_DONUT_REQUEST:
+        return { ...state, fetchingCustomerDonut: true };
+      case types.GET_CUSTOMER_DONUT_SUCCESS:
+        return {
+          ...state,
+          fetchingCustomerDonut: false,
+        customerDonut: action.payload,
+  
+          //opportunityByUserId: [...state.opportunityByUserId, ...action.payload],
+        };
+      case types.GET_CUSTOMER_DONUT_FAILURE:
+        return {
+          ...state,
+          fetchingCustomerDonut: false,
+          fetchingCustomerDonutError: true,
+        };
+  
+
     case types.SET_CURRENT_RECRUITMENT_DATA:
       return { ...state, currentRecruitmentData: action.payload };
 
@@ -1113,7 +1262,7 @@ export const customerReducer = (state = initialState, action) => {
         ...state,
         puttingCustContcToggle: false,
         contactByCustomerId: state.contactByCustomerId.map((item) => {
-          if (item.contactId === action.payload.contactId) {
+          if (item.contactPersonId === action.payload.contactPersonId) {
             return action.payload;
           } else {
             return item;
@@ -1247,15 +1396,41 @@ export const customerReducer = (state = initialState, action) => {
         ...state,
         updatingCustomerOwenership: false,
         // updateCandidateEmploymentModal: false,
-        employmentDetails: state.employmentDetails.map((employment, i) => {
-          if (employment.id === action.payload.id) {
-            return action.payload;
-          } else {
-            return employment;
+        // employmentDetails: state.employmentDetails.map((employment, i) => {
+        //   if (employment.id === action.payload.id) {
+        //     return action.payload;
+        //   } else {
+        //     return employment;
+        //   }
+        // }),
+
+        customerByUserId:state.customerByUserId.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.customerId)  
           }
-        }),
+        ),
+
+        teamCustomer:state.teamCustomer.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.customerId)  
+          }
+        ),
+
+
+
+        allCustomers:state.allCustomers.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.customerId)  
+          }
+        )
       };
-    case types.UPDATE_CUSTOMER_OWNERSHIP_SUCCESS:
+    case types.UPDATE_CUSTOMER_OWNERSHIP_FAILURE:
       return {
         ...state,
         updatingCustomerOwenership: false,
@@ -1774,6 +1949,9 @@ export const customerReducer = (state = initialState, action) => {
     case types.HANDLE_CUSTOMER_OPPORTUNITY_DRAWER_MODAL:
       return { ...state, addDrawerCustomerOpportunityModal: action.payload };
 
+      case types.HANDLE_ADDRESS_CUSTOMER_MODAL:
+        return { ...state, addAddressCustomerModal: action.payload };
+
     case types.GET_OPPORTUNITY_RECORD_REQUEST:
       return { ...state, fetchingOpportunityRecord: true };
     case types.GET_OPPORTUNITY_RECORD_SUCCESS:
@@ -1842,6 +2020,23 @@ export const customerReducer = (state = initialState, action) => {
         ...state,
         fetchingAllCustomerList: false,
         fetchingAllCustomerListError: true,
+      };
+
+      case types.DELETE_CUSTOMER_REQUEST:
+      return { ...state, deletingCustomerById: true };
+    case types.DELETE_CUSTOMER_SUCCESS:
+      return {
+        ...state,
+        deletingCustomerById: false,
+        customerByUserId: state.customerByUserId.filter(
+          (item) => item.customerId !== action.payload.customerId
+        ),
+      };
+    case types.DELETE_CUSTOMER_FAILURE:
+      return {
+        ...state,
+        deletingCustomerById: false,
+        deletingCustomerByIdError: true,
       };
 
     case types.ADD_CUSTOMER_ACTIVITY_CALL_REQUEST:
@@ -2010,6 +2205,26 @@ export const customerReducer = (state = initialState, action) => {
         ...state,
         fetchingContactValue: false,
         fetchingContactValueError: true,
+      };
+
+      case types.GET_PROSPECT_CONTACT_COUNT_REQUEST:
+      return {
+        ...state,
+        fetchingContactCount: true,
+        fetchingContactCountError: false,
+      };
+    case types.GET_PROSPECT_CONTACT_COUNT_SUCCESS:
+      return {
+        ...state,
+        fetchingContactCount: false,
+        fetchingContactCountError: false,
+        contactCount: action.payload,
+      };
+    case types.GET_PROSPECT_CONTACT_COUNT_FAILURE:
+      return {
+        ...state,
+        fetchingContactCount: false,
+        fetchingContactCountError: true,
       };
 
     case types.GET_CUSTOMER_ACTIVITY_RECORDS_REQUEST:
@@ -2304,6 +2519,27 @@ export const customerReducer = (state = initialState, action) => {
         fetchingDocumentsByInvestorId: false,
         fetchingDocumentsByInvestorIdError: true,
       };
+
+      case types.GET_TEAM_USERLIST_REQUEST:
+      return {
+        ...state,
+        fetchingTeamUserList: true,
+        fetchingTeamUserListError: false,
+      };
+    case types.GET_TEAM_USERLIST_SUCCESS:
+      return {
+        ...state,
+        fetchingTeamUserList: false,
+        fetchingTeamUserListError: false,
+        teamUserList: action.payload,
+      };
+    case types.GET_TEAM_USERLIST_FAILURE:
+      return {
+        ...state,
+        fetchingTeamUserList: false,
+        fetchingTeamUserListError: true,
+      };
+
 
       case types.HANDLE_CUSTOMER_ACTIVITY_MODAL:
         return { ...state, addCustomerActivityDrawerModal: action.payload };

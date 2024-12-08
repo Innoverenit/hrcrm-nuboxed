@@ -1,10 +1,9 @@
 import React, { useEffect, useState,useMemo,lazy } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
+import SearchIcon from '@mui/icons-material/Search';
 import { bindActionCreators } from "redux";
-import { SearchOutlined,
-  } from '@ant-design/icons';
-import moment from "moment";
+import dayjs from "dayjs";
 import { StyledTable } from "../../../Components/UI/Antd";
 import { Tooltip,Button,Input } from "antd";
 import Highlighter from 'react-highlight-words';
@@ -83,7 +82,7 @@ function CandidateWhiteTable(props) {
             <Button
               type="primary"
               onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-               icon={<SearchOutlined />}
+               icon={<SearchIcon />}
               //icon="search"
               size="small"
               style={{ width: 90 }}
@@ -112,7 +111,7 @@ function CandidateWhiteTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        <SearchIcon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
       ),
       onFilter: (value, record) =>
         record[dataIndex]
@@ -208,8 +207,8 @@ function CandidateWhiteTable(props) {
       },
     },
     {
-      // title: "Name",
-      title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+      title: "Name",
+     
       width: "13%",
       ...getColumnSearchProps('name'),
       sorter: (a, b) => {
@@ -227,8 +226,8 @@ function CandidateWhiteTable(props) {
       render: (name, item, i) => {
         const fullName = ` ${item.salutation || ""} ${item.firstName ||
           ""} ${item.middleName || ""} ${item.lastName || ""}`;
-          const currentdate = moment().format("DD/MM/YYYY");
-          const date = moment(item.creationDate).format("DD/MM/YYYY");
+          const currentdate = dayjs().format("DD/MM/YYYY");
+          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
           console.log(date, currentdate, currentdate === date);
         return (
           <>
@@ -282,16 +281,14 @@ function CandidateWhiteTable(props) {
    
     {
       
-      title: (
-        <FormattedMessage id="app.vendor" defaultMessage="Vendor" />
-      ),
+      title:"Vendor",
       dataIndex: "partnerName",
       width: "10%",
       ...getColumnSearchProps('partnerName'),
     },
      {
      
-      title: <FormattedMessage id="app.role" defaultMessage="Role" />,
+      title: "Role" ,
        dataIndex: "roleType",
       width: "10%",
       filters:roleTypeOption,
@@ -303,8 +300,8 @@ function CandidateWhiteTable(props) {
     },
 
     {
-      // title: "Mobile #",
-      title: <FormattedMessage id="app.mobileNumber" defaultMessage="Mobile #" />,
+      title: "Mobile #",
+     
       dataIndex: "mobileNumber",
       width: "10%",
       render: (name, item, i) => {
@@ -316,8 +313,8 @@ function CandidateWhiteTable(props) {
       },
     },
     {
-      // title: "Country",
-      title: <FormattedMessage id="app.country" defaultMessage="Country" />,
+      title: "Country",
+   
       dataIndex: "country",
       align: "left",
       sorter: (a, b) => {
@@ -336,7 +333,7 @@ function CandidateWhiteTable(props) {
     
     },
     {
-      title: <FormattedMessage id="app.skills" defaultMessage="Skills" />,
+      title: "Skills" ,
       // dataIndex: "skillList",
       width: "17%",
       ...getColumnSearchProps("skillList"),
@@ -364,7 +361,7 @@ function CandidateWhiteTable(props) {
   
     {
       // title: "Designation",
-      title: <FormattedMessage id="app.cost" defaultMessage="Cost" />,
+      title: "Cost" ,
        dataIndex: "billing",
       align: "left",
       width: "6%",
@@ -381,7 +378,7 @@ function CandidateWhiteTable(props) {
       },
     },
     {
-      title: <FormattedMessage id="app.benefits" defaultMessage="Benefits" />,
+      title:"Benefits" ,
        dataIndex: "benifit",
       width: "6%", 
       render: (name, item, i) => {        
@@ -398,15 +395,15 @@ function CandidateWhiteTable(props) {
     },
 {
       // title: "Designation",
-      title: <FormattedMessage id="app.available" defaultMessage="Available" />,
+      title: "Available" ,
        dataIndex: "availableDate",
       width: "7%",
       render: (text, item) => {
-        const availableDate = moment(item.availableDate).format("ll");
+        const availableDate = dayjs(item.availableDate).format("ll");
         return <>
         {item.availableDate === null ? "None" :
           <span>
-            {moment(item.availableDate).format("l")} 
+            {dayjs(item.availableDate).format("l")} 
           </span>
         }
       </>
@@ -417,7 +414,7 @@ function CandidateWhiteTable(props) {
     
   {
    //title: "",
-    title: <FormattedMessage id="app.owner" defaultMessage="Owner" />,
+    title:"Owner" ,
    //dataIndex: "ownerName",
    width: "8%",
   //  ...getColumnSearchProps('ownerName'),
@@ -448,7 +445,7 @@ function CandidateWhiteTable(props) {
  },
     {
       // title: "Status",
-      title: <FormattedMessage id="app.active" defaultMessage="Active" />,
+      title: "Active" ,
       // dataIndex: "active",
       width: "6%",
       render: (name, item, i) => {

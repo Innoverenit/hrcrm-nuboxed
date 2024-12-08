@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Input } from "antd";
-import { CloseOutlined } from "@ant-design/icons";
+import CloseIcon from '@mui/icons-material/Close';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {AddLangWords} from "../../SettingsAction";
@@ -48,7 +48,7 @@ function AddWords(props) {
                     <b>{`Word ${index + 1}`}</b>
                   </div>
               <div>
-              <label>English</label>
+              <div class="font-bold text-xs font-poppins text-black">English</div>
              <div class="w-24">
             <Input
               type="text"
@@ -59,7 +59,7 @@ function AddWords(props) {
             </div>
             </div>
             <div>
-              <label>Dutch</label>
+              <div class="font-bold text-xs font-poppins text-black">Dutch</div>
             <div class="w-24">
             <Input
               type="text"
@@ -70,7 +70,7 @@ function AddWords(props) {
             </div>
             </div>
             <div class="w-4">
-         <CloseOutlined onClick={() => handleRemoveRow(index)}/>
+         <CloseIcon onClick={() => handleRemoveRow(index)}/>
          </div>
          </div>
           </div>

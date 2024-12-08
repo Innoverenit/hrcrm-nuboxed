@@ -1,14 +1,14 @@
 import React, {Suspense,lazy,useEffect } from "react";
-import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
 import {handlePitchActivityModal,getPitchActivityRecords} from "../../PitchAction"
-import { PlusOutlined } from "@ant-design/icons";
-import { FormattedMessage } from "react-intl";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { Tooltip,Badge } from "antd";
+import { BundleLoader, } from "../../../../Components/Placeholder";
+
+
 const PitchTimeline =lazy(()=>import("../../../Pitch/Child/PitchTimeline"));
 const AddPitchActivityModal =lazy(()=>import("../PtchActivity/AddPitchActivityModal"));
 
@@ -27,7 +27,7 @@ const TabPane = StyledTabs.TabPane;
         <TabsWrapper>
           <StyledTabs
             defaultActiveKey="1"
-            style={{ overflow: "visible", width: "53vw", padding: "15px" }}
+            style={{ overflow: "visible", width: "52vw", padding: "5px" }}
             animated={false}
           >
             <TabPane
@@ -39,36 +39,24 @@ const TabPane = StyledTabs.TabPane;
                 overflowCount={999}
               > 
                        <i class="fas fa-phone-square"></i>&nbsp;
-                       <FormattedMessage
-                        id="app.activity"
-                        defaultMessage="Activity"
-                      />
+                      Activity
                        </Badge>
                   </span>
                 
                     <>
                       <Tooltip 
-                        title={
-                          <FormattedMessage
-                            id="app.create"
-                            defaultMessage="Create"
-                          />
-                        }
+                        title="Create"
+                         
                       >
                        
-                        <PlusOutlined
-                          type="plus"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                           
-                          tooltiptitle={
-                            <FormattedMessage
-                              id="app.Create"
-                              defaultMessage="Create"
-                            />
-                          }
+                          tooltiptitle="Create"                            
                           onClick={() => {
                             handlePitchActivityModal(true);
                           }}
-                          size="0.875em"
+                        
                         />
                        
                       </Tooltip>
@@ -91,11 +79,13 @@ const TabPane = StyledTabs.TabPane;
           
           </StyledTabs>
         </TabsWrapper>
+        <Suspense fallback={<BundleLoader />}>
         <AddPitchActivityModal
         rowdata={props.rowdata}
         addPitchactivityModal={addPitchactivityModal}
         handlePitchActivityModal={handlePitchActivityModal}
         />
+        </Suspense>
       </>
     );
 }

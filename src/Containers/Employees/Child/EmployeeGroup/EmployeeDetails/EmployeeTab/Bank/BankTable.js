@@ -1,6 +1,6 @@
-import React, { Component ,lazy} from "react";
+import React, { Component ,lazy, Suspense} from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import {
   StyledPopconfirm,
@@ -13,18 +13,54 @@ import {
 } from "../../../../../../Profile/ProfileAction";
 import { getBankDetails } from "../../../../../../Profile/ProfileAction";
 import { deleteBankTable } from "../../../../../../Profile/ProfileAction";
-import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 import { Tooltip } from "antd";
+import PasswordIcon from '@mui/icons-material/Password';
+import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
+import AccountTreeIcon from '@mui/icons-material/AccountTree';
+import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
+const EmptyPage = lazy(() => import("../../../../../../Main/EmptyPage"));
 const DefultToggle = lazy(() => import("./DefultToggle"));
 const UpdateBankModal = lazy(() => import("../../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Bank/UpdateBankModal"));
 
 
 class BankTable extends Component {
- 
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
   componentDidMount() {
     const { getBankDetails, employeeId } = this.props;
     getBankDetails(this.props.employeeId);
+    this.fetchMenuTranslations();
   }
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "1186",//0 Account Holder
+        "1187",//1 Bank Name
+        "1188",//2  Branch Name
+        "1189",//3Account#
+        "1190",// SWIFT Code
+        "1259"// Do you want to delete?"
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
+
   render() {
     const {
       fetchingBankDetails,
@@ -38,31 +74,21 @@ class BankTable extends Component {
    
 
     if (fetchingBankDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     const tab = document.querySelector(".ant-layout-sider-children");
     const tableHeight = tab && tab.offsetHeight * 0.75;
     return (
       <>
-             <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">
-          <div className=" md:w-[6.5rem]">
-        <FormattedMessage
-                  id="app.bankName"
-                  defaultMessage="Account Holder"
-                /></div>
+             <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold font-poppins text-lm sticky z-10">
+          <div className=" max-md:w-[6.5rem] text-sm w-[7.5rem] text-[#00A2E8]"><AccountCircleIcon className=" !text-icon"/>{this.state.translatedMenuItems[0]}</div>
  
-        <div className="md:w-[6.1rem]">  <FormattedMessage id="app.bankName" defaultMessage="Bank Name" /></div>
-                 <div className="md:w-[10.1rem]">
-                 <FormattedMessage
-          id="app.branchName"
-          defaultMessage="Branch Name"
-        /></div>
-                       <div className=" md:w-[8.1rem]">
-                       <FormattedMessage id="app.accountNo" defaultMessage="Account#" /></div>
+        <div className="max-md:w-[6.1rem] w-[6.1rem]"> <AccountBalanceIcon className=" !text-icon text-[#1E213D]"/>  {this.state.translatedMenuItems[1]}</div>
+                 <div className="max-md:w-[10.1rem] w-[10.5rem]"> <AccountTreeIcon className=" !text-icon text-[#006600]"/> {this.state.translatedMenuItems[2]}</div>
+                       <div className=" max-md:w-[8.1rem] w-[8.1rem]"> <AssignmentIndIcon className=" !text-icon text-[#4B2206] "/> {this.state.translatedMenuItems[3]}</div>
 
-                       <div className=" md:w-[8.1rem]">
-                       <FormattedMessage id="app.ifscCode" defaultMessage="SWIFT Code" /></div>
+                       <div className=" max-md:w-[8.1rem] w-[8.1rem]"><PasswordIcon className=" !text-icon text-[#D64045]"/>  {this.state.translatedMenuItems[4]}</div>
        
         
         <div className="w-[10.2rem]"></div>
@@ -70,7 +96,7 @@ class BankTable extends Component {
       </div>
    
         
-      {bank =="" ? "None":bank.map((item) => { 
+      {bank =="" ? <Suspense><EmptyPage/></Suspense>:bank.map((item) => { 
         
         
                     return (
@@ -136,12 +162,13 @@ class BankTable extends Component {
                               <div className=" flex  " style={{ filter: 'drop-shadow(0px 0px 4px rgba(0,0,0,0.1 ))' }} >
                    
                               <>
+                              <Suspense>
                               <DefultToggle
               // partnerId={item.partnerId}
                defaultInd={item.defaultInd}
               // assignedIndicator={item.assignedInd}
               id={item.id}
-            />
+            /></Suspense>
           </>
                  
                   </div>
@@ -149,8 +176,8 @@ class BankTable extends Component {
                                     
 
                                     <div class="  text-xs  font-poppins text-center">
-                                    <BorderColorIcon 
-            style={{ cursor: "pointer", fontSize: "1rem" }}
+                                    <BorderColorIcon  className=" text-red-600 !text-icon cursor-pointer "
+
             onClick={() => {
               setEditBank(item);
               handleUpdateBankModal(true);
@@ -164,12 +191,12 @@ class BankTable extends Component {
 
                                     <div class="  text-xs  font-poppins text-center">
                                     <StyledPopconfirm
-            title="Do you want to delete?"
+            title={this.state.translatedMenuItems[5]}
             onConfirm={() => deleteBankTable(item.id)}
           >
             <DeleteIcon
               type="delete"
-              style={{ cursor: "pointer", fontSize: "1rem", color: "red" }}
+             className=" text-red-600 !text-icon cursor-pointer "
             />
           </StyledPopconfirm>
 
@@ -195,12 +222,12 @@ class BankTable extends Component {
           scroll={{ y: tableHeight }}
           pagination={false}
         /> */}
-
+<Suspense>
         <UpdateBankModal
           updateBankModal={updateBankModal}
           handleUpdateBankModal={handleUpdateBankModal}
         />
-
+</Suspense>
         {/* )} */}
         {/* <StyledModal
                     title={"Configure"}

@@ -95,7 +95,7 @@ const QRCodeGenerator = ({ data }) => {
                 >
                     <div style={{ marginBottom: "10px", fontWeight: "bold" }}>Product: {item.product}</div>
                     <div style={{ marginBottom: "10px" }}>IMEI: {item.imei}</div>
-                    <QRCode value={item.imei} size={128} />
+                    <QRCode value={item.phoneId} size={128} />
                     <ReactToPrint
                         trigger={() => <button onClick={handlePrint}>Print</button>}
                         content={() => componentRefs.current[index]}
@@ -110,12 +110,14 @@ const QRCodeGenerator = ({ data }) => {
                                 display: "flex",
                                 flexDirection: "column",
                                 alignItems: "center",
+                                  height:"-webkit-fill-available",
+                                                    justifyContent:"center"
                             }}
                         >
                             <div style={{ marginBottom: "10px", fontWeight: "bold" }}>Product: {item.product}</div>
                             <div style={{ marginBottom: "10px" }}>IMEI: {item.imei}</div>
                             <div style={{ marginBottom: "10px" }}>
-                                <QRCode value={item.imei} size={128} />
+                                <QRCode value={item.phoneId} size={128} />
                             </div>
                         </div>
                     </div>

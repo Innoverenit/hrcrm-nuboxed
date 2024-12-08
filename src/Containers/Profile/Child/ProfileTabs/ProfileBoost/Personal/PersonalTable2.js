@@ -1,6 +1,7 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+
 import { bindActionCreators } from "redux";
 import {
   StyledTable,
@@ -16,6 +17,7 @@ import {
   getPersonalDetails,
   setCurrentPersonal,
 } from "../../../../ProfileAction";
+import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { Leaflet } from "../../../../../../Components/Utils";
 import { Field, Form, Formik } from "formik";
 import MapPopupMarker from "../../../ProfileCards/MapPopupMarker";
@@ -23,8 +25,9 @@ import { AddressComponent } from "../../../../../../Components/Common";
 import FormikPlacesAutoComplete from "../../../../../../Components/Forms/Formik/FormikPlacesAutoComplete";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 import { deleteEmergencyTable } from "../../../../ProfileAction";
-import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
-import { DeleteOutlined, EditOutlined, EnvironmentOutlined } from "@ant-design/icons";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdatePersonalModal = lazy(() => import("../Personal/UpdatePersonalModal"));
 class PersonalTable2 extends Component {
   constructor(props) {
@@ -90,8 +93,7 @@ class PersonalTable2 extends Component {
       });
     const columns = [
       {
-        //title: "Name",
-        title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+        title: "Name",
         render: (name, item, i) => {
           return (
             <span>{` ${item.contactSalutation} 
@@ -103,33 +105,15 @@ class PersonalTable2 extends Component {
       },
 
       {
-        //title: "Mobile No",
-        title: (
-          <FormattedMessage id="app.mobileNo" defaultMessage="Mobile No" />
-        ),
+        title: "Mobile No",
         dataIndex: "mobileNo",
       },
       {
-        //title: "Phone No",
-        title: <FormattedMessage id="app.phoneNo" defaultMessage="Phone No" />,
+        title: "Phone No",
         dataIndex: "phoneNo",
       },
 
-      // {
-      //   title: "Address",
-      //   dataIndex: "contactAddress",
-      //   width: "35%",
-      //   render: (name, item, i) => {
-      //     //debugger
-      //     return item.address.map((item) => {
-      //       return (
-      //         <span>
-      //           {item.country}-{item.state}
-      //         </span>
-      //       );
-      //     });
-      //   },
-      // },
+    
 
       {
         title: "",
@@ -137,7 +121,7 @@ class PersonalTable2 extends Component {
         render: (name, item, i) => {
           //debugger
           return (
-            <EnvironmentOutlined
+            <AddLocationAltIcon
               tooltipTitle="Address"
               iconType="environment"
               handleIconClick={() => {
@@ -155,7 +139,7 @@ class PersonalTable2 extends Component {
         render: (name, item, i) => {
           //debugger
           return (
-            <EditOutlined
+            <VisibilityIcon
               type="edit"
               style={{ cursor: "pointer" }}
               onClick={() => {
@@ -177,7 +161,7 @@ class PersonalTable2 extends Component {
               title="Do you want to delete?"
               onConfirm={() => deleteEmergencyTable(item.id)}
             >
-              <DeleteOutlined type="delete" style={{ cursor: "pointer", color: "red" }} />
+              <DeleteOutlineIcon type="delete" style={{ cursor: "pointer", color: "red" }} />
               {/* <Button type="primary" className='edit_hover_class' icon="delete"  /> */}
             </StyledPopconfirm>
           );
@@ -186,7 +170,7 @@ class PersonalTable2 extends Component {
     ];
 
     if (fetchingPersonalDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     return (
       <>
@@ -198,11 +182,13 @@ class PersonalTable2 extends Component {
           loading={fetchingPersonalDetails || fetchingPersonalDetailsError}
           onChange={console.log("task onChangeHere...")}
         />
-
+   <Suspense fallback={<BundleLoader />}>
         <UpdatePersonalModal
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
           updatePersonalModal={updatePersonalModal}
           handleUpdatePersonalModal={handleUpdatePersonalModal}
-        />
+        /></Suspense>
         <StyledModal
           title={`${contactFirstName || ""} 
              ${contactLastName || ""}`}
@@ -230,7 +216,7 @@ class PersonalTable2 extends Component {
         
               >
                 <div>
-                  <div className="product3" style={{ width: "180" }}>
+                  <div classname="flex flex-col w-[11rem] h-[40%] px-2 py-5 bg-[f5f5f5] justify-left items-left mb-2 mt-2" >
                     {address &&
                       address.map((components, i) => (
                         <AddressComponent
@@ -340,118 +326,64 @@ class AddressField extends Component {
             <Form className="form-background">
               <Field
                 name={`address`}
-                //label="Work place"
-                label={
-                  <FormattedMessage
-                    id="app.workplace"
-                    defaultMessage="Work place"
-                  />
-                }
+                label="Work place"
                 component={FormikPlacesAutoComplete}
                 options={{}}
               />
               <Field
-                //label="Address1"
-                label={
-                  <FormattedMessage
-                    id="app.Address1"
-                    defaultMessage="address.address1"
-                  />
-                }
+                label="Address1"
                 name="address.address1"
                 component={InputComponent}
                 // defaultValue='low'
               />
               <Field
-                //label="address2"
-                label={
-                  <FormattedMessage
-                    id="app.Address2"
-                    defaultMessage="address.address2"
-                  />
-                }
+                label="address2"
                 name="address.address2"
                 component={InputComponent}
                 // defaultValue='low'
               />
               <Field
-                //label="street"
-                label={
-                  <FormattedMessage
-                    id="app.address.street"
-                    defaultMessage="street"
-                  />
-                }
+                label="street"
                 name="address.street"
                 component={InputComponent}
                 // defaultValue='low'
               />
               <Field
-                //label="town"
-                label={
-                  <FormattedMessage
-                    id="app.address.town"
-                    defaultMessage="town"
-                  />
-                }
+                label="town"
                 name="address.town"
                 component={InputComponent}
                 // defaultValue='low'
               />
               <Field
-                //  label="city"
-                label={
-                  <FormattedMessage
-                    id="app.address.city"
-                    defaultMessage="city"
-                  />
-                }
+                 label="city"
                 name="address.city"
                 component={InputComponent}
                 // defaultValue='low'
               />
               <Field
-                //label="state"
-                label={
-                  <FormattedMessage
-                    id="app.address.state"
-                    defaultMessage="state"
-                  />
-                }
+                label="state"
                 name="address.state"
                 component={InputComponent}
                 // defaultValue='low'
               />
               <Field
-                //label="country"
-                label={
-                  <FormattedMessage
-                    id="app.address.country"
-                    defaultMessage="country"
-                  />
-                }
+                label="country"
                 name="address.country"
                 component={InputComponent}
                 // defaultValue='low'
               />
               <Field
-                //label="postalCode"
-                label={
-                  <FormattedMessage
-                    id="app.address.postalCode"
-                    defaultMessage="postalCode"
-                  />
-                }
+                label="postalCode"
                 name="address.postalCode"
                 component={InputComponent}
                 // defaultValue='low'
               />
 
               <Button type="primary" htmlType="submit">
-                <FormattedMessage id="app.save" defaultMessage="Save" />
+               Save
               </Button>
               <Button type="default" onClick={handleAddAddressVisible}>
-                <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                Cancel
               </Button>
             </Form>
           )}

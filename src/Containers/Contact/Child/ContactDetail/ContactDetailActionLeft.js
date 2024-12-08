@@ -1,9 +1,8 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { RollbackOutlined } from "@ant-design/icons";
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import { Tooltip } from "antd";
 
 class ContactDetailActionLeft extends React.Component {
@@ -11,7 +10,7 @@ class ContactDetailActionLeft extends React.Component {
     return (
       <div class=" flex items-center">
       <Tooltip title="Back">
-        <RollbackOutlined
+        <KeyboardReturnIcon
           iconType="rollback"
              onClick={() => this.props.history.goBack()}
         />

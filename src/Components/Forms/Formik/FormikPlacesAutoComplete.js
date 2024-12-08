@@ -5,19 +5,18 @@ import PlacesAutocomplete, {
 } from "react-places-autocomplete";
 import _ from "lodash";
 import styled from "styled-components";
-import { FlexContainer } from "../../UI/Layout";
 
 const StyledInput = styled.input.attrs({
   type: "text",
   size: (props) => (props.small ? 4 : undefined),
 })`
- // border: 0.0625em solid ${(props) => props.theme.inputBorderColor};
+
   background-color: ${(props) => props.theme.backgroundColor};
   color: ${(props) => props.theme.color};
   display: block;
   margin: 0 0 0.42rem 0;  
   outline: none;
-  height: 1.48rem;
+  height: 1.88rem;
   position: relative !important;
   box-shadow: 0em 0.25em 0.625em -0.25em ${(props) => props.theme.boxShadowColor};
   padding: 0.3rem 1rem;
@@ -39,7 +38,6 @@ const StyledDropDownContainer = styled.div`
   box-shadow: 0em 0.25em 0.625em -0.25em ${(props) => props.theme.boxShadowColor};
   position: absolute;
   top: 2.5em;
-  width: 21.875em;
   z-index: 1000;
   .suggestion-item {
     background-color: ${(props) => props.theme.backgroundColor};
@@ -67,16 +65,16 @@ class FormikPlacesAutoComplete extends Component {
   }
   handleChange = (address) => {
     this.setState(() => {
-      // this.props.form.setFieldTouched(`${this.state.name}.value`);
+
       this.props.form.setFieldTouched(`${this.props.field.name}.country`);
-      // this.props.form.setFieldValue(this.state.name, { value: address });
+
       return { address };
     });
   };
 
   handleSelect = (address) => {
     this.setState({ address });
-    // this.props.form.resetForm({ country: '',})
+    
     this.props.form.setFieldValue(`${this.props.field.name}.latitude`, "");
     this.props.form.setFieldValue(`${this.props.field.name}.longitude`, "");
     this.props.form.setFieldValue(`${this.props.field.name}.address1`, "");
@@ -113,10 +111,7 @@ class FormikPlacesAutoComplete extends Component {
             locality1
           );
         }
-        // if (_.includes(types, 'sublocality_level_1')) {
-        //   locality2 = _.get(component, 'long_name');
-        //   this.props.form.setFieldValue(`${this.props.field.name}.address2`, locality2);
-        // }
+     
         if (_.includes(types, "route")) {
           street = _.get(component, "long_name");
           this.props.form.setFieldValue(
@@ -170,7 +165,7 @@ class FormikPlacesAutoComplete extends Component {
     if (isColumn) {
       return (
         <>
-          {/* <StyledLabel style={{ marginTop: "0.75em" }}>{label}</StyledLabel> */}
+         
           <PlacesAutocomplete
             name={name}
             id={name}
@@ -200,7 +195,7 @@ class FormikPlacesAutoComplete extends Component {
                       const className = suggestion.active
                         ? "suggestion-item--active"
                         : "suggestion-item";
-                      // inline style for demonstration purpose
+                   
                       const style = suggestion.active
                         ? { cursor: "pointer" }
                         : { cursor: "pointer" };
@@ -225,9 +220,8 @@ class FormikPlacesAutoComplete extends Component {
       );
     }
     return (
-      <FlexContainer>
-        {/* <FlexContainer alignItems="center">
-          <StyledLabel style={{ flexBasis: "20%" }}>{label}</StyledLabel> */}
+      <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
+       
         <PlacesAutocomplete
           name={name}
           id={name}
@@ -257,7 +251,7 @@ class FormikPlacesAutoComplete extends Component {
                     const className = suggestion.active
                       ? "suggestion-item--active"
                       : "suggestion-item";
-                    // inline style for demonstration purpose
+               
                     const style = suggestion.active
                       ? { cursor: "pointer" }
                       : { cursor: "pointer" };
@@ -278,10 +272,7 @@ class FormikPlacesAutoComplete extends Component {
               </AutoCompleteWrapper>
             )}
         </PlacesAutocomplete>
-        {/* </FlexContainer> */}
-        {/* {_.get(touched, field.name) &&
-          _.get(errors, field.name) && <ValidationError>{_.get(errors, field.name)}</ValidationError>} */}
-      </FlexContainer>
+      </div>
     );
   }
 }

@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledDrawer, StyledTabs } from "../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 
 const LeadsForm = lazy(() => import("../Child/LeadsForm"));
 const TabPane = StyledTabs.TabPane;
@@ -17,10 +17,8 @@ class AddLeadsModal extends Component {
     return (
       <>
         <StyledDrawer
-          title={<FormattedMessage
-            id="app.leads"
-            defaultMessage="Add Leads"
-          />}
+          title="Add Leads"
+       
           width={drawerWidth}
           destroyOnClose
           visible={addLeadsModal}

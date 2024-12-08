@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import moment from "moment";
+import dayjs from "dayjs";
 const NotesWrapper = styled.div``;
 export default function MainSingleNotes(props) {
   console.log(props);
@@ -13,6 +13,7 @@ export default function MainSingleNotes(props) {
     //   creatorDetails: { firstName, lastName }
     // }
   } = props;
+  const relativeTimeString = dayjs(creationDate).format('MMMM D, YYYY h:mm A');
   return (
     <NotesWrapper>
       {/* <SubTitle fontSize='1.125em' whiteSpace='normal' fontFamily='Abel' style={{ color: '#393a3a' }}>
@@ -23,7 +24,9 @@ export default function MainSingleNotes(props) {
        
         
         <div class="mt-3">
-        {`${moment(creationDate).fromNow()}`}  {props.ownerName}
+        {/* {`${dayjs(creationDate).fromNow()}`} */}
+        {relativeTimeString}
+          {props.ownerName}
         </div>
         {/* <b>
           {userId !== creatorId

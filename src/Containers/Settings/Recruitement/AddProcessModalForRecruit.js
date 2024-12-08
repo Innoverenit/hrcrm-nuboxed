@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledModal } from "../../../Components/UI/Antd";
@@ -14,11 +14,8 @@ const AddProcessModal = (props) => {
   return (
     <>
       <StyledModal
-        // title="Workflow"
-        title={<FormattedMessage
-          id="app.workflow"
-          defaultMessage="Workflow"
-        />}
+        title="Workflow"
+       
         width="30%"
         visible={props.addProcessModal}
         maskClosable={false}

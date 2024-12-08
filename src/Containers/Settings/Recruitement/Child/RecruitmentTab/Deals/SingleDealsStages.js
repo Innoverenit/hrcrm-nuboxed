@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { FormattedMessage } from "react-intl";
+
 import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
  import {deleteDealsStagesData,handledealStagesModal} from "../../../../../Settings/SettingsAction";
@@ -11,7 +11,7 @@ import { ViewEditCard } from "../../../../../../Components/UI/Elements";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import AddDealsStagesModal from "../AddDealsStagesModal"
-import { EnvironmentOutlined } from "@ant-design/icons";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 const { Option } = Select;
 
 class SingleDealsStages extends Component {
@@ -199,7 +199,7 @@ class SingleDealsStages extends Component {
                                </Button> 
                                } */}
 
-                               <EnvironmentOutlined
+                               <AddLocationAltIcon
                                 onClick={() => {
                                   this.props.handledealStagesModal(true)
                                   this.props.handleSetCurrentItem(dealsProcessStages)
@@ -278,19 +278,14 @@ class SingleDealsStages extends Component {
                   
                   }
                 >
-                  {/* Save */}
-                  <FormattedMessage
-                    id="app.save"
-                    defaultMessage="Save"
-                  />
+                  Save
+                
                 </Button>
                 &nbsp;
                 <Button     type="cancel" onClick={() => toggleViewType()}>
-               {/* Cancel */}
-                  <FormattedMessage
-                    id="app.cancel"
-                    defaultMessage="Cancel"
-                  />
+             
+                 Cancel
+                  
                 </Button>
               </div>
             )

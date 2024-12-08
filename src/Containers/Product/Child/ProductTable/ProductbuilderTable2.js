@@ -6,7 +6,7 @@ import { getBuilderByProId,removeProductBuilder,updateProductSuplrBuilder,handle
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { MultiAvatar } from "../../../../Components/UI/Elements";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import AddProductNotesDrawerModal from "./AddProductNotesDrawerModal";
 function ProductbuilderTable2 (props) {
 
@@ -24,6 +24,36 @@ function ProductbuilderTable2 (props) {
     setData(props.builderbyProductId.map((item, index) => ({ ...item, key: String(index) })));
   }, [props.builderbyProductId]);
 
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+      "110",  //  "Name",//0
+       "799", //   "HSN",//1
+      "14",  //   "Category",//2
+       "259", //   "Attribute",
+       "254", //   "Unit",//4
+      "1043",  //   "Step",5
+       "147", //   "Description"  6
+      "316",  // Notes
+      "1078",  // Save
+      "179",  // Cancel
+     "170",   // "Edit"
+     "1259",   // "Do you want to delete?"
+      "84",  // "Delete"
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
   const handleChange = (suppliesId, fieldName, value) => {
     setEditedFields((prevFields) => ({
@@ -55,30 +85,8 @@ function ProductbuilderTable2 (props) {
     setEditedFields((prevFields) => ({ ...prevFields, [productionBuilderId]: undefined }));
     setEditsuppliesId(null);
   };
-
-  // const handleUpdateSupplies = (suppliesId,suppliesName,categoryName,subCategoryName, quantity,steps,description,productionBuilderId
-  //   ) => {
-  //   const data = {
-  //     suppliesId:suppliesId,
-  //     suppliesName:editedFields[suppliesId]?.suppliesName !== undefined ? editedFields[suppliesId].suppliesName : suppliesName,
-  //     categoryName:editedFields[suppliesId]?.categoryName !== undefined ? editedFields[suppliesId].categoryName : categoryName,
-  //     subCategoryName: editedFields[suppliesId]?.subCategoryName !== undefined ? editedFields[suppliesId].subCategoryName : subCategoryName,                 
-  //     quantity: editedFields[suppliesId]?.quantity !== undefined ? editedFields[suppliesId].quantity : quantity,        
-  //     productId:props.particularDiscountData.productId,  
-  //     productionBuilderId:productionBuilderId,   
-  //     steps:steps,
-  //     description:description      
-  //   };
-  
-  //   props.updateProductSuplrBuilder(data)
-  //     setEditedFields((prevFields) => ({ ...prevFields, [suppliesId]: undefined }));
-  //     setEditsuppliesId(null);
-    
-  // };
 const handleSave = (key) => {
     console.log(key)
-    // const targetRow = data.find((row) => row.key === key);
-      // const { } = targetRow;
   
       const result = {
         hsn: key.hsn,
@@ -105,28 +113,27 @@ const handleSave = (key) => {
 return (
     <>
   
-  <div className=' flex justify-end sticky z-auto'> 
-
-  <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-         <div className=" flex justify-between w-[99%] px-2 bg-transparent font-bold sticky top-0 z-10">
+  <div className=' flex sticky z-auto'> 
+  <div class="rounded m-1 p-1  w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+         <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
          <div className=""></div>
-         <div className=" md:w-[9.5rem]">Name</div>
-         <div className=" md:w-[8.2rem] ">HSN</div>
-        <div className=" md:w-[8.2rem] ">Category</div>
-        <div className="md:w-[9.8rem]">Attribute</div>
+         <div className=" md:w-[9.5rem]">{translatedMenuItems[0]}</div>
+         <div className=" md:w-[8.2rem] ">{translatedMenuItems[1]}</div>
+        <div className=" md:w-[8.2rem] ">{translatedMenuItems[2]}</div>
+        <div className="md:w-[9.8rem]">{translatedMenuItems[3]}</div>
     
-        <div className=" md:w-[4.21rem] ">Unit</div>
-        <div className=" md:w-[3.22rem] ">Step</div>
-         <div className=" md:w-[10.23rem] ">Description</div>
+        <div className=" md:w-[4.21rem] ">{translatedMenuItems[4]}</div>
+        <div className=" md:w-[3.22rem] ">{translatedMenuItems[5]}</div>
+         <div className=" md:w-[10.23rem] ">{translatedMenuItems[6]}</div>
         <div className="w-12"></div>
             </div>
-            <div className="z-auto" style={{ maxHeight: "500px", overflowX: "hidden",overflowY:"auto",position: "sticky" }}>
+            <div className="z-auto" style={{ maxHeight: "500px", overflowX: "hidden",overflowY:"auto",position: "sticky", scrollbarWidth:"thin" }}>
              {data.map((item) => {
           return (
 <div key={item.productionBuilderId}>
 
 <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1  "    >
-<div className=" flex font-medium  w-[9rem]   max-sm:w-full">
+<div className=" flex    w-[9rem]   max-sm:w-full">
                     <div className="flex max-sm:w-full ">
                       <div>
                        
@@ -141,7 +148,7 @@ return (
 
                       <div class="max-sm:w-full md:flex items-center">
                      
-                      <div className=" flex font-medium  md:w-[8.1rem] max-sm:w-full  ">
+                      <div className=" flex    md:w-[8.1rem] max-sm:w-full  ">
     <div class="text-xs    font-poppins cursor-pointer">
                               {item.suppliesName}
                             </div>
@@ -149,7 +156,7 @@ return (
                       </div>
                     </div>
                   </div>
-                  <div className=" flex font-medium  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+                  <div className=" flex    md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
     <div class=" text-xs  font-poppins">
                       
                       {item.hsn}
@@ -157,23 +164,23 @@ return (
                     </div>
     </div>
 
-    <div className=" flex font-medium  md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex    md:w-[8.5rem] max-sm:flex-row w-full max-sm:justify-between ">
     <div class=" text-xs  font-poppins">
                       
                       {item.categoryName} {item.subCategoryName}
                      
                     </div>
     </div>
-    <div className=" flex font-medium  md:w-[10.21rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex    md:w-[10.21rem] max-sm:flex-row w-full max-sm:justify-between ">
       
         <div class=" text-xs    font-poppins">
         {item.attributeName} {item.subAttributeName}
        
                     </div>
     </div>
-    <div className=" flex font-medium  md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
+    <div className=" flex  md:w-[4.22rem] max-sm:flex-row w-full max-sm:justify-between ">
       
-      <div class=" text-xs  font-semibold  font-poppins">
+      <div class=" text-xs  font-bold  font-poppins">
                    {editsuppliesId === item.productionBuilderId ? (
                        <Input
                        style={{ width: "3rem" }}
@@ -182,15 +189,15 @@ return (
                      />
                        
                     ) : (
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className="  text-xs  font-poppins">
                         <div> {item.quantity}</div>
                       </div>
                     )}
                     </div>
   </div>
-  <div className=" flex font-medium  md:w-[4.23rem] max-sm:flex-row w-full max-sm:justify-between ">
+  <div className=" flex md:w-[4.23rem] max-sm:flex-row w-full max-sm:justify-between ">
       
-      <div class=" text-xs  font-semibold  font-poppins">
+      <div class=" text-xs  font-bold  font-poppins">
                    {editsuppliesId === item.productionBuilderId ? (
                                          <Input
                                          style={{ width: "3rem" }}
@@ -199,15 +206,15 @@ return (
                                        />
                        
                     ) : (
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className="  text-xs  font-poppins">
                         <div> {item.steps}</div>
                       </div>
                     )}
                     </div>
   </div>
-  <div className=" flex font-medium  md:w-[6.24rem] max-sm:flex-row w-full max-sm:justify-between ">
+  <div className=" flex    md:w-[6.24rem] max-sm:flex-row w-full max-sm:justify-between ">
       
-      <div class=" text-xs  font-semibold  font-poppins">
+      <div class=" text-xs  font-bold  font-poppins">
                    {editsuppliesId === item.productionBuilderId ? (
                                              <Input
                                              style={{ width: "3rem" }}
@@ -215,7 +222,7 @@ return (
                                              onChange={(e) => handleInputChange(e.target.value, item.key, 'description')}
                                            />
                     ) : (
-                      <div className="font-normal text-sm  font-poppins">
+                      <div className="  text-xs  font-poppins">
                         <Tooltip title={item.description}>
                         <div> {item.description}</div>
                         </Tooltip>
@@ -226,9 +233,9 @@ return (
   <div class="flex max-sm:justify-between max-sm:w-wk items-center">
  
                         <div>
-                          <Tooltip title="Notes">
+                          <Tooltip title={translatedMenuItems[7]}>
                             <NoteAltIcon
-                              className=" !text-xl cursor-pointer text-[#4bc076]"
+                              className=" !text-icon cursor-pointer text-[#28a355]"
                               onClick={() => {
                                 handleProductNotesDrawerModal(true);
                                 handleSetCurrentCustomer(item);
@@ -239,42 +246,40 @@ return (
                           </Tooltip>
 
                         </div>
-                        <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                        <div className=" flex    md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
     {editsuppliesId === item.productionBuilderId ? (
                         <>
                       <Button 
                       type="primary"
                       onClick={() => handleSave(item)}>
-                        Save
+                       {translatedMenuItems[8]} {/* Save */}
                       </Button>
                         <Button 
                          type="primary"
                         onClick={() => handleCancelClick(item.productionBuilderId)} className="ml-[0.5rem]">
-                        Cancel
+                        {translatedMenuItems[9]}{/* Cancel */}
                       </Button>
                       </>
                       
                     ) : (
                       <BorderColorIcon
-                      className="!text-xl cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
-                        tooltipTitle="Edit"
+                      className="!text-icon cursor-pointer text-[tomato] flex justify-center items-center mt-1 ml-1"
+                        tooltipTitle={translatedMenuItems[10]}
                         iconType="edit"
                         onClick={() => handleEditClick(item.productionBuilderId)}
                       />
                     )}
     </div>
-  <div class="flex flex-col w-4 max-sm:flex-row max-sm:w-[10%]">
+  <div class="flex  w-4 max-sm:flex-row max-sm:w-[10%]">
    
     <div>
       <Popconfirm
-                          title="Do you want to delete?"
+                          title={translatedMenuItems[11]}
                           onConfirm={() => props.removeProductBuilder(item.productionBuilderId,props.particularDiscountData.productId)}
 
                           >
-                     <Tooltip title="Delete">
-                          <DeleteOutlined
-                           className=" !text-xl cursor-pointer !text-[red]"
-                          />
+                     <Tooltip title={translatedMenuItems[12]}>
+                     <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                        </Tooltip>
                        </Popconfirm>
                        </div>

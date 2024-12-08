@@ -1,7 +1,7 @@
 import React from "react";
 import { get } from "lodash";
 import { FlexContainer } from "../../UI/Layout";
-import { SelectInput, ValidationError, StyledLabel } from "../../UI/Elements";
+import { SelectInput, ValidationError } from "../../UI/Elements";
 const Option = SelectInput.Option;
 export const SelectComponent = ({
   field,
@@ -43,7 +43,7 @@ export const SelectComponent = ({
     return (
       <>
         {!noLabel && (
-          <StyledLabel style={{ flexBasis: "20%" }}>{label}</StyledLabel>
+          <div class=" text-xs font-bold font-poppins" style={{ flexBasis: "20%" }}>{label}</div>
         )}
         <SelectInput
           style={{ height: "1.8125em" }}
@@ -84,7 +84,7 @@ export const SelectComponent = ({
     return (
       <>
         {!noLabel && (
-          <StyledLabel style={{ flexBasis: "20%" }}>{label}</StyledLabel>
+          <div class=" text-xs font-bold font-poppins" style={{ flexBasis: "20%" }}>{label}</div>
         )}
         <SelectInput
           style={{ height: "1.8125em" }}
@@ -127,7 +127,7 @@ export const SelectComponent = ({
       <FlexContainer>
         <FlexContainer alignItems="center" flexWrap={inlineLabel && "nowrap"}>
           {!noLabel && (
-            <StyledLabel style={{ flexBasis: "20%" }}>{label}</StyledLabel>
+            <div class=" text-xs font-bold font-poppins" style={{ flexBasis: "20%" }}>{label}</div>
           )}
           <SelectInput
             style={{ height: "1.8125em" }}

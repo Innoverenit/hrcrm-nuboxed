@@ -1,7 +1,41 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
 
 class ContactDetailView extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        
+          "277",//0
+          "326",//1
+          "325",//2
+          "140",//3
+          "546",//4
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   render() {
     const {
       contact: {
@@ -15,34 +49,19 @@ class ContactDetailView extends Component {
     return (
       <>
         <ContactItemRow //label="Company" 
-          label={<FormattedMessage
-            id="app.company"
-            defaultMessage="Company"
-          />}
+        label= {this.state.translatedMenuItems[0]}
           value={tagWithCompany} />
         <ContactItemRow //label="Department" 
-          label={<FormattedMessage
-            id="app.department"
-            defaultMessage="Department"
-          />}
+          label= {this.state.translatedMenuItems[1]}
           value={department} />
         <ContactItemRow //label="Designation" 
-          label={<FormattedMessage
-            id="app.designation"
-            defaultMessage="Designation"
-          />}
+          label= {this.state.translatedMenuItems[2]}
           value={designation} />
         <ContactItemRow //label="Email" 
-          label={<FormattedMessage
-            id="app.emailId"
-            defaultMessage="Email"
-          />}
+          label=  {this.state.translatedMenuItems[3]}
           value={emailId} />
         <ContactItemRow //label="Mobile #" 
-          label={<FormattedMessage
-            id="app.mobileNumber"
-            defaultMessage="Mobile #"
-          />}
+          label=     {this.state.translatedMenuItems[4]}
           value={mobileNumber} />
       </>
     );

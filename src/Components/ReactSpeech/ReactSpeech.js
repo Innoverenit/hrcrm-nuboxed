@@ -7,13 +7,7 @@ import { bindActionCreators } from "redux";
 import RotateRightIcon from '@mui/icons-material/RotateRight';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
-import { FlexContainer } from '../UI/Layout';
 import { addNote,getNotesListByOpportunityId } from "../../Containers/Opportunity/OpportunityAction";
-
-// const options = {
-//   autoStart: false,
-//   continous: false
-// };
 
 const Dictaphone = (props) => {
   const {
@@ -50,22 +44,19 @@ const Dictaphone = (props) => {
       <Tooltip title="Start">
          <span style={{ fontSize: "1.5em",
     color: "red" }}>
-        {/* <FontAwesomeIcon icon={solid("record-vinyl")} /> */}
+       
          <PlayCircleFilledIcon/>
         </span>
         </Tooltip>
       </span>
      
       <span
-      // onClick={()=>{
-      // SpeechRecognition.stopListening
-      // }}
+     
       onClick={SpeechRecognition.stopListening}
       >
          <Tooltip title="Stop">
          <span style={{ fontSize: "1.5em",color:"green",marginLeft:"3px" }}>
-         
-        {/* <FontAwesomeIcon icon={solid("stop")} /> */}
+
         <StopCircleIcon/>
        
         </span>
@@ -78,7 +69,6 @@ const Dictaphone = (props) => {
       >
           <Tooltip title="Clear">
              <span style={{ fontSize: "1.5em",marginLeft:"3px" }}>
-        {/* <FontAwesomeIcon icon={solid("rotate-right")} /> */}
         <RotateRightIcon/>
         </span>
         </Tooltip>
@@ -94,7 +84,7 @@ const Dictaphone = (props) => {
         </textarea>
       {/* <p>{transcript}</p> */}
       </div>
-      <FlexContainer justifyContent="flex-end">
+    <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
       <Button 
       type='primary'
       htmlType='submit'
@@ -102,7 +92,7 @@ const Dictaphone = (props) => {
       >
         Submit
       </Button>
-      </FlexContainer>
+      </div>
     </div>
   );
 };

@@ -1,15 +1,9 @@
-import React,{useEffect,useState,useRef} from "react";
-import TocIcon from '@mui/icons-material/Toc';
+import React,{useState,useRef} from "react";
 import { StyledSelect } from "../../Components/UI/Antd";
 import { bindActionCreators } from "redux";
-// import {
-//     inputTradeSearch,ClearReducerDataOfTrade,getInventoryAlllist
-// } from "./TradeAction";
-import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import { connect } from "react-redux";
-import { Avatar, Input, Tooltip,Badge, Button } from "antd";
-import { FormattedMessage } from "react-intl";
-import { AudioOutlined } from "@ant-design/icons"
+import {  Tooltip,Button } from "antd";
+
 
 const Option = StyledSelect.Option;
 
@@ -36,7 +30,7 @@ function QulityActionLeft (props) {
         const {
             user,
             viewType,
-            setQualityViewType,
+            handleViewChange,
         } = props;
 // const {
 //         transcript,
@@ -82,7 +76,7 @@ function QulityActionLeft (props) {
 //             }, minRecordingTime);
 //           };
 //           const suffix = (
-//             <AudioOutlined
+//             <MicIcon
 //             onClick={handleStartListening}
 //               style={{
 //                 fontSize: 16,
@@ -119,7 +113,7 @@ function QulityActionLeft (props) {
 
         return (
             <div class="flex items-center">
- {props.user.productionInd === true && (
+ {props.user.moduleMapper.productionInd === true && (
                 <Tooltip
                     title="Production">
 {/* <Badge
@@ -128,7 +122,7 @@ function QulityActionLeft (props) {
           overflowCount={999}
         > */}
                     <span class=" mr-2 text-sm cursor-pointer"
-                        onClick={() => setQualityViewType("production")}
+                        onClick={() => handleViewChange("production")}
                         style={{
                             color: viewType === "production" && "#1890ff",
                         }}
@@ -141,7 +135,7 @@ function QulityActionLeft (props) {
                     {/* </Badge> */}
                 </Tooltip>
 )}
-{props.user.repairInd === true && (
+{props.user.qualityAccessInd === true && (
                 <Tooltip
                     title="Reapir">
 {/* <Badge
@@ -150,7 +144,7 @@ function QulityActionLeft (props) {
           overflowCount={999}
         > */}
                     <span class=" mr-2 text-sm cursor-pointer"
-                        onClick={() => setQualityViewType("repair")}
+                        onClick={() => handleViewChange("repair")}
                         style={{
                             color: viewType === "repair" && "#1890ff",
                         }}

@@ -1,5 +1,5 @@
 import React from "react";
-import ContentLoader, { Facebook } from "react-content-loader";
+import { Facebook } from "react-content-loader";
 import styled from "styled-components";
 
 const Skeleton = () => (<Facebook primaryColor="red"

@@ -14,6 +14,13 @@ export const handleContactInvestModal = (modalProps) => (dispatch) => {
       payload: modalProps,
     });
   }
+
+  export const handleContactAddressDrawerModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_CONTACT_ADDRESS_MODAL,
+      payload: modalProps,
+    });
+  }
   
  export const addContactInvest = (contact) => (dispatch, getState) => {
     const userId = getState().auth.userDetails.userId;
@@ -74,7 +81,9 @@ export const handleContactInvestModal = (modalProps) => (dispatch) => {
         });
         Swal.fire({
           icon: 'error',
-          title: 'Something went wrong , reach out to support!',
+          title: 'Something went wrong, reach out to support!',
+          showConfirmButton: false,
+        timer: 1500,
         })
       });};
 
@@ -250,6 +259,13 @@ export const handleContactInvestNotesDrawerModal = (modalProps) => (dispatch) =>
   });
 };
 
+export const handleDealModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_DEAL_MODAL,
+    payload: modalProps,
+  });
+};
+
 
 export const getAllContactInvest = (pageNo,type) => (dispatch) => {
  
@@ -277,7 +293,9 @@ export const getAllContactInvest = (pageNo,type) => (dispatch) => {
       });
       Swal.fire({
         icon: 'error',
-        title: 'Something went wrong , reach out to support!',
+        title: 'Something went wrong, reach out to support!',
+        showConfirmButton: false,
+        timer: 1500,
       })
     });
 };
@@ -308,7 +326,9 @@ export const getTeamsContactInvest = (userId,pageNo) => (dispatch) => {
       });
       Swal.fire({
         icon: 'error',
-        title: 'Something went wrong , reach out to support!',
+        title: 'Something went wrong, reach out to support!',
+        showConfirmButton: false,
+        timer: 1500,
       })
     });
 };
@@ -497,6 +517,58 @@ export const getContactInvestAllRecord = (orgId,type) => (dispatch) => {
       console.log(err.response);
       dispatch({
         type: types.GET_CONTACT_INVEST_ALL_RECORDS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getDeallist = (contactId) => (dispatch) => {
+  dispatch({
+    type: types.GET_DEAL_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url}/investorOpportunity/contact/${contactId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DEAL_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_DEAL_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getContactDeal = (contactId) => (dispatch) => {
+  dispatch({
+    type: types.GET_CONTACT_DEAL_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url}/investorOpportunit/open/List/contact/${contactId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_DEAL_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_CONTACT_DEAL_LIST_FAILURE,
         payload: err,
       });
     });

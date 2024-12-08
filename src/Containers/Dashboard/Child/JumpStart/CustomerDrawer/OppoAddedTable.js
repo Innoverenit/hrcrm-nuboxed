@@ -1,5 +1,5 @@
 import React, {useEffect } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { StyledTable } from "../../../../../Components/UI/Antd";
@@ -8,26 +8,22 @@ import {getOppoAdded} from "../../../DashboardAction";
 function OppoAddedTable (props) {
     useEffect(()=>{
       if (props.timeRangeType === "today"){
-        props.getOppoAdded(props.userId,props.startDate,props.endDate);
+        props.getOppoAdded(props.userId,props.endDate,props.startDate);
       }else {
-        props.getOppoAdded(props.userId,props.startDate,props.endDate);
+        props.getOppoAdded(props.userId,props.endDate,props.startDate);
       }
-    },[props.startDate,props.endDate]);
+    },[props.endDate,props.startDate]);
     const columns = [
       {
-        title: <FormattedMessage
-          id="app.name"
-          defaultMessage="Name"
-        />,
+        title: "Name"
+      ,
         width: "30%",
         dataIndex: "opportunityName",
       },
      
       {
-        title: <FormattedMessage
-          id="app.proposalvalue"
-          defaultMessage="Proposal Value"
-        />,
+        title: "Proposal Value"
+       ,
         width: "22%",
         dataIndex: "proposalAmount",
         defaultSortOrder: 'descend',
@@ -43,11 +39,8 @@ function OppoAddedTable (props) {
         // },
       },
       {
-        // title: "Status",
-        title: <FormattedMessage
-          id="app.status"
-          defaultMessage="Status"
-        />,
+        title: "Status",
+      
         width: "25%",
         dataIndex: "stageName",
         // sorter: (a, b) => {

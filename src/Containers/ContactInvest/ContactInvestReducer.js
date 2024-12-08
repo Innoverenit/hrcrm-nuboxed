@@ -1,10 +1,20 @@
 import * as types from "./ContactInvestActionType";
-import moment from "moment";
+import dayjs from "dayjs";
 const initialState = {
     viewType:"card",
 
     addingContactInvest: false, 
     addContactInvestModal: false,
+
+    addDrawerDealModal:false,
+
+    fetchingDealList: false,
+    ffetchingDealListError: false,
+    dealAllList:[],
+
+    fetchingContactDealList: false,
+    fetchingContactDealListError: false,
+    contactdealAllList:[],
 
     addDrawerContactInvestPulseModal:false,
 
@@ -42,6 +52,8 @@ const initialState = {
     fetchingTeamsContactInvest: false,
     fetchingTeamsContactInvestError: false,
     teamsContactInvestData:[],
+
+    addContactAddressModal:false,
 
     contactInvestorActivityModal:false,
 
@@ -82,6 +94,9 @@ export const contactInvestReducer = (state = initialState, action) => {
 
     case types.HANDLE_CONTACT_INVEST_MODAL:
         return { ...state, addContactInvestModal: action.payload };
+
+        case types.HANDLE_CONTACT_ADDRESS_MODAL:
+        return { ...state, addContactAddressModal: action.payload };
         
     case types.ADD_CONTACT_INVEST_REQUEST:
       return { ...state, addingContactInvest: true };
@@ -219,7 +234,8 @@ export const contactInvestReducer = (state = initialState, action) => {
             case types.HANDLE_CONTACT_INVEST_NOTES_DRAWER_MODAL:
               return { ...state, addDrawerContactInvestNotesModal: action.payload };
 
-
+              case types.HANDLE_DEAL_MODAL:
+                return { ...state, addDrawerDealModal: action.payload };
               
               case types.GET_ALL_CONTACT_INVEST_REQUEST:
 
@@ -228,7 +244,9 @@ export const contactInvestReducer = (state = initialState, action) => {
     return {
       ...state,
       fetchingAllContactInvest: false,
-      allContactInvestData: action.payload,
+      // allContactInvestData: action.payload,
+      allContactInvestData: [ ...state.allContactInvestData,
+        ...action.payload],
     };
   case types.GET_ALL_CONTACT_INVEST_FAILURE:
     return {
@@ -244,7 +262,9 @@ export const contactInvestReducer = (state = initialState, action) => {
     return {
       ...state,
       fetchingTeamsContactInvest: false,
-      teamsContactInvestData: action.payload,
+      teamsContactInvestData: [ ...state.teamsContactInvestData,
+        ...action.payload],
+      // teamsContactInvestData: action.payload,
     };
   case types.GET_TEAMS_CONTACT_INVEST_FAILURE:
     return {
@@ -351,6 +371,36 @@ export const contactInvestReducer = (state = initialState, action) => {
                         fetchingContactInvestAllRecordsError: true,
                       };
 
+                      case types.GET_DEAL_LIST_REQUEST:
+                        return { ...state, fetchingDealList: true };
+                      case types.GET_DEAL_LIST_SUCCESS:
+                        return {
+                          ...state,
+                          fetchingDealList: false,
+                          dealAllList: action.payload,
+                        };
+                      case types.GET_DEAL_LIST_FAILURE:
+                        return {
+                          ...state,
+                          fetchingDealList: false,
+                          ffetchingDealListError: true,
+                        };
+
+
+                        case types.GET_CONTACT_DEAL_LIST_REQUEST:
+                        return { ...state, fetchingContactDealList: true };
+                      case types.GET_CONTACT_DEAL_LIST_SUCCESS:
+                        return {
+                          ...state,
+                          fetchingContactDealList: false,
+                          contactdealAllList: action.payload,
+                        };
+                      case types.GET_CONTACT_DEAL_LIST_FAILURE:
+                        return {
+                          ...state,
+                          fetchingContactDealList: false,
+                          fetchingContactDealListError: true,
+                        };
 
                       case types.HANDLE_UPLOAD_CONTACTINVEST_MODAL:
                         return { ...state, uploadContactInvestList: action.payload };    

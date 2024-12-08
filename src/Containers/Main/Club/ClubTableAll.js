@@ -1,27 +1,61 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import {
-    getClubAlllist  
+    getClubAlllist,
+    clearInitialData  
 } from "./ClubAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import ReactCountryFlag from 'react-country-flag';
 import { Link } from 'react-router-dom';
-import { Button, Select, Tooltip } from 'antd';
-import dayjs from "dayjs";
+import {  Select, Tooltip } from 'antd';
 import InfiniteScroll from "react-infinite-scroll-component";
 import { MultiAvatar, MultiAvatar2 } from "../../../Components/UI/Elements";
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
+import { BundleLoader } from "../../../Components/Placeholder";
+import EmptyPage from "../EmptyPage";
 
 const { Option } = Select;
 
 function ClubTableAll(props) {
     const [pageNo, setPageNo] = useState(0);
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
     useEffect(() => {
         setPageNo(pageNo + 1);
-        props.getClubAlllist(props.userId,pageNo,props.clubId)
+        props.getClubAlllist("All",pageNo,props.clubId)
+        props.clearInitialData()
     }, []);
+
+    useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [         
+              
+"110", // 0
+"278", // 1
+"579", // 2
+"14",  // 3
+"589", // 4
+"1161", // 5
+"218", // 6
+"279", // 7
+"76",  // 8
+"77"   // 9
+
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
     const [rowData, setRowData] = useState({})
     const handleRowData = (item) => {
         setRowData(item)
@@ -53,7 +87,7 @@ function ClubTableAll(props) {
           {
             if (pageNo < callPageMapd) {
                 setPageNo(pageNo + 1);
-                getClubAlllist(props.userId,pageNo,props.clubId);
+                getClubAlllist("All",pageNo,props.clubId);
           }
           if (pageNo === callPageMapd){
             setHasMore(false)
@@ -62,72 +96,46 @@ function ClubTableAll(props) {
         }, 100);
       };
       console.log(props.clubName)
+      if (props.fetchingClub) {
+        return <BundleLoader />;
+      }
+      if (loading) {
+        return <div><BundleLoader/></div>;
+      }
     return (
         <>
-             <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className=" flex justify-between max-sm:hidden  w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[11.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
-          <FormattedMessage
-                  id="app.name"
-                  defaultMessage="Name"
-                /></div>
-        <div className=" w-[10.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
-          <FormattedMessage
-                  id="app.sector"
-                  defaultMessage="Sector"
-                /></div>
-        <div className=" w-[2.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[8.2rem] "></div>
-        <div className="w-[3.12rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.12rem] max-lg:w-[8.12rem]"># <FormattedMessage
-                  id="app.deals"
-                  defaultMessage="Deals"
-                /></div>
-        <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        <FormattedMessage
-                  id="app.inprogress"
-                  defaultMessage="In Progress"
-                />
+             <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+        <div className=" flex justify-between max-sm:hidden  w-[99%]  p-1 bg-transparent font-bold sticky  z-10">
+        <div className="text-xs font-bold font-poppins w-[14.6rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[14.4rem] ">
+        {translatedMenuItems[0]} </div>
+        <div className="text-xs font-bold font-poppins w-[2.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[16.1rem] max-lg:w-[18.1rem]">
+        {translatedMenuItems[1]} </div>
+        <div className="text-xs font-bold font-poppins w-[1.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.2rem] max-lg:w-[8.2rem] "></div>
+          <div className="text-xs font-bold font-poppins w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          {translatedMenuItems[2]} 
           </div>
-          <div className="w-[5.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        <FormattedMessage
-                  id="app.Signed"
-                  defaultMessage="Signed"
-                />
+          <div className="text-xs font-bold font-poppins w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          {translatedMenuItems[3]} 
           </div>
-          <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        <FormattedMessage
-                  id="app.Category"
-                  defaultMessage="Category"
-                />
+          <div className="text-xs font-bold font-poppins w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          {translatedMenuItems[4]} 
           </div>
-          <div className="w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-      First Meeting
-          </div>
-          <div className="w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-       Shares #
+          <div className="text-xs font-bold font-poppins w-[4.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          {translatedMenuItems[5]} 
           </div>
          
-          <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        Value
+          <div className="text-xs font-bold font-poppins w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
+          {translatedMenuItems[6]} 
+          </div> 
+          <div className="text-xs font-bold font-poppins w-[5.34rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
+          {translatedMenuItems[7]} 
           </div>
-          <div className="w-[3.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.2rem]">
-        Club
-          </div>
-        <div className="w-[4.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
-        <FormattedMessage
-                  id="app.assigned"
-                  defaultMessage="Assigned"
-                />
+        <div className="text-xs font-bold font-poppins w-[4.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.3rem]">
+        {translatedMenuItems[8]} 
          </div>
-        <div className="w-[2.813rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.21rem]"><FormattedMessage
-                  id="app.owner"
-                  defaultMessage="owner"
-                /></div>
-        <div className="w-[5.34rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[9.34rem] max-lg:w-[12.34rem]">
-        <FormattedMessage
-                  id="app.source"
-                  defaultMessage="Source"
-                />
-          </div>
+        <div className="text-xs font-bold font-poppins w-[2.813rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[8.21rem]">
+        {translatedMenuItems[9]} </div>
+      
         {/* <div className="w-12">Action</div> */}
 
       </div>
@@ -139,7 +147,7 @@ function ClubTableAll(props) {
         height={"80vh"}
       >
         
-        { !props.fetchingClub && props.clubAllData.length === 0 ?<NodataFoundPage />:props.clubAllData.map((item,index) =>  {
+        { !props.fetchingClub && props.clubAllData.length === 0 ?<EmptyPage/>:props.clubAllData.map((item,index) =>  {
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
          const diff = Math.abs(
@@ -164,7 +172,7 @@ function ClubTableAll(props) {
               className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" 
             >
                                      <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex font-medium  w-[13.5rem] max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto ">
+                                <div className=" flex border-l-2 border-green-500 bg-[#eef2f9]   w-[13.5rem] max-xl:w-[8.8rem] max-lg:w-[5.8rem] max-sm:flex-row max-sm:w-auto ">
                                 <div>
 
                                                    <MultiAvatar
@@ -201,7 +209,7 @@ function ClubTableAll(props) {
                               
                                 </div>
 
-                                <div className=" flex  items-center  w-[10.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[10.1rem] max-xl:w-[7.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                            
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden"> Sector </div> */}
                                     <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">   
@@ -213,7 +221,7 @@ function ClubTableAll(props) {
                                 
                                 
                                 <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                                <div className=" flex  items-center w-8 max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-8 max-xl:w-[6.21rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                               {/* Country */}
                                   <div class="text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                               <ReactCountryFlag
@@ -228,7 +236,7 @@ function ClubTableAll(props) {
                                 {item.countryAlpha2Code}
                                               </div>
                                           </div>
-                                <div className=" flex items-center w-[3.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                    {/* Deals */}
 
                                     <div class=" text-sm justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
@@ -236,7 +244,7 @@ function ClubTableAll(props) {
                                     </div>
                                 </div>
                              
-                                <div className=" flex  items-center w-[6.124rem] max-xl:w-[6.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.124rem] max-xl:w-[6.124rem] max-lg:w-[5.124rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* Pipeline Value */}
 
                                     {item.totalProposalValue && (
@@ -245,29 +253,29 @@ function ClubTableAll(props) {
       </div>
     )}
                                 </div>
-                                <div className=" flex  items-center w-[5.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* # Deals */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">
                                     {item.signed}
                                     </div>
                                 </div>
-                                <div className=" flex items-center w-[6.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[6.11rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                  {/* Deals */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">
                                     {item.category}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[5.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[5.181rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">
                                    
-                                    {item.firstMeetingDate ? moment.utc(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
+                                    {item.firstMeetingDate ? dayjs(item.firstMeetingDate).format("DD/MM/YYYY") : "None"}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[4.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.117rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
                                     <div class=" text-xs text-[blue] cursor-pointer justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
@@ -279,21 +287,21 @@ function ClubTableAll(props) {
                             >{item.allTotalQuantityOfShare}</div>
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[3.118rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.118rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">
                                    {item.allTotalAmountOfShare}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[3.118rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.118rem] max-xl:w-[3.1rem] max-lg:w-[1.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden"># Deals</div> */}
 
                                     <div class=" text-xs justify-center  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">
                                    {item.club}
                                     </div>
                                 </div>
-                                <div className=" flex  items-center w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                                <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.1rem] max-xl:w-[6.1rem] max-lg:w-[4.1rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                     {/* <div class=" text-xs  font-poppins max-sm:hidden">Assigned</div> */}
 
                                     <div class=" text-xs  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-xs">
@@ -320,7 +328,7 @@ function ClubTableAll(props) {
             </span>             
                                     </div>
                                 </div>
-                                <div className=" flex font-medium flex-col w-[2.12rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
+                                <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[2.12rem] max-xl:w-[2.1rem] max-lg:w-[3.1rem] max-sm:flex-row max-sm:w-auto mb-1 max-sm:justify-between ">
                                           {/* Owner */}
 
                        <span>
@@ -340,7 +348,7 @@ function ClubTableAll(props) {
                    </div>
                    </div>
                    <div class="flex max-sm:justify-between max-sm:w-wk max-sm:items-center">
-                   <div className=" flex font-medium items-center  w-[8.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
+                   <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  w-[8.211rem] max-xl:w-[4.911rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                   {/* Source */}
                                  <div class=" text-sm  font-poppins max-xl:text-xs max-lg:text-[0.45rem] max-sm:text-sm">
                                     {item.source}
@@ -369,7 +377,8 @@ const mapStateToProps = ({ trade, auth,club }) => ({
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            getClubAlllist
+            getClubAlllist,
+            clearInitialData
             // getPurchaseSuppliersList,
             // handlePoLocationModal,
             // handlePoListModal,

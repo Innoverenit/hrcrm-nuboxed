@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
-import {Tooltip, Button ,Select} from "antd";
+import {Tooltip, Button ,Radio,Select} from "antd";
 import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import {getAllCustomerData} from "../../Customer/CustomerAction"
@@ -13,6 +13,7 @@ import { InputComponent } from "../../../Components/Forms/Formik/InputComponent"
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
 import { TimePicker } from "../../../Components/Forms/Formik/TimePicker";
+import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
@@ -28,7 +29,8 @@ import { StyledPopconfirm } from "../../../Components/UI/Antd";
 import { getAssignedToList } from "../../Employees/EmployeeAction";
 import { setClearbitCandidateData } from "../../Candidate/CandidateAction";
 import SpeechRecognition, { useSpeechRecognition,} from 'react-speech-recognition';
-import { Listbox } from '@headlessui/react'
+import { Listbox } from '@headlessui/react';
+import {base_url} from "../../../Config/Auth";
 
 const { Option } = Select; 
 // yup validation scheme for creating a opportunity
@@ -51,6 +53,12 @@ function EventForm (props) {
       const [defaultOption, setDefaultOption] = useState(props.fullName);
       const [selected, setSelected] = useState(defaultOption);
 
+
+
+      const [isLoadingContacts, setIsLoadingContacts] = useState(false);
+      const [contacts, setContacts] = useState([]);
+
+
  function handleCallback  () {
     const { handleChooserModal, handleEventModal, callback }= props;
     handleChooserModal(false);
@@ -70,25 +78,25 @@ function EventForm (props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-         "Type",//0
-         "Subject",//1
-         "Start Date",//2
-         "Start Time",//3
-          "End Date",//4
-          "End Time",//5
-          " Time Zone",//6
-          "Prospect",//7
-          "Contact",//8
-          "Opportunity",//9
-          "Assigned",//10
-          "Include",//11
-          "Address",//12
+        "71",//  "Type",//0
+       "72", //  "Subject",//1
+       "176", //  "Start Date",//2
+       "93", //  "Start Time",//3
+        "126" , // "End Date",//4
+         "94", // "End Time",//5
+        "95",  // " Time Zone",//6
+        "97" , // "Prospect",//7
+          "73",// "Contact",//8
+         "99", // "Opportunity",//9
+         "76", // "Assigned",//10
+          "75",// "Include",//11
+      "185", //"Address",//12
           // "Street",//13
           // "Zip Code",//14
           // "City", //15
           //  "State",//16
           //  "Country",///17
-           "Notes"//18
+         "316" //  "Notes"//18
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -201,7 +209,7 @@ const [customer, setCustomer] = useState([]);
    const [isLoadingOpportunity, setIsLoadingOpportunity] = useState(false);
    const [touchedOpportunity, setTouchedOpportunity] = useState(false);
 
-
+   const [selectedValue, setSelectedValue] = useState('Prospect');
    const [include, setInclude] = useState([]);
   const [isLoadingInclude, setIsLoadingInclude] = useState(false);
   const [touchedInclude, setTouchedInclude] = useState(false);
@@ -209,10 +217,151 @@ const [customer, setCustomer] = useState([]);
 
 
 
+
+  const [investor, setInvestor] = useState([]);
+  const [selectedInvestor, setSelectedInvestor] = useState(null);
+  const [isLoadingInvestor, setIsLoadingInvestor] = useState(false);
+  const [touchedInvestor, setTouchedInvestor] = useState(false);
+
+
+
+
+
+  const [investorContact, setInvestorContact] = useState([]);
+  const [selectedContactInvestor, setSelectedContactInvestor] = useState(null);
+  const [isLoadingContactInvestor, setIsLoadingCOntactInvestor] = useState(false);
+
+
+  const [deal, setDeal] = useState([]);
+  const [selectedDeal, setSelectedDeal] = useState(null);
+  const [isLoadingDeal, setIsLoadingDeal] = useState(false);
+  
+
+  const handleRadioChange = (e) => {
+    setSelectedValue(e.target.value);
+  };
+
+
+
+
+
+
+
+  const handleSelectChangeInvestorContact = (value) => {
+    setSelectedContactInvestor(value)
+   
+    // fetchContacts(value);
+    // fetchOpportunity(value)
+    // console.log('Selected user:', value);
+  };
+
+
+
+
+  const handleSelectInvestorFocus = () => {
+    if (!touchedInvestor) {
+     
+    fetchInvestor();
+
+      setTouchedInvestor(true);
+    }
+  };
+
+
+  const fetchInvestor = async () => {
+    setIsLoadingInvestor(true);
+    try {
+      const apiEndpoint = `
+     ${base_url}/investor/user/${props.userId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setInvestor(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    } finally {
+      setIsLoadingInvestor(false);
+    }
+  };
+
+
+  const handleSelectChangeInvestor = (value) => {
+    setSelectedInvestor(value)
+    fetchContactInvestor(value);
+    fetchDeal(value)
+    // fetchContacts(value);
+    // fetchOpportunity(value)
+    // console.log('Selected user:', value);
+  };
+
+
+
+
+
+  const fetchContactInvestor = async (value) => {
+    setIsLoadingCOntactInvestor(true);
+    try {
+   
+      const apiEndpoint = `${base_url}/investor/contacts/${value}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setInvestorContact(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingCOntactInvestor(false);
+    }
+  };
+
+
+
+
+
+
+  const fetchDeal = async (value) => {
+    setIsLoadingDeal(true);
+    try {
+   
+      const apiEndpoint = `${base_url}/investorOpportunity/details/investor/${value}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setDeal(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingDeal(false);
+    }
+  };
+
+
+  const handleContactChange=(value)=>{
+    setSelectedContact(value);
+  }
+
   const fetchInclude = async () => {
     setIsLoadingInclude(true);
     try {
-      const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/employee/active/user/drop-down/${props.orgId}`;
+      const apiEndpoint = `${base_url}/employee/active/user/drop-down/${props.orgId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -249,7 +398,7 @@ const [customer, setCustomer] = useState([]);
     setIsLoadingCustomer(true);
     try {
       const apiEndpoint = `
-      https://develop.tekorero.com/employeePortal/api/v1/customer/drop/customer-list/${props.userId}`;
+     ${base_url}/customer/drop/customer-list/${props.userId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -269,6 +418,8 @@ const [customer, setCustomer] = useState([]);
 
   const handleSelectChangeCustomer = (value) => {
     setSelectedCustomer(value)
+    fetchContacts(value);
+    fetchOpportunity(value)
     console.log('Selected user:', value);
   };
 
@@ -287,7 +438,7 @@ const [customer, setCustomer] = useState([]);
     setIsLoadingContact(true);
     try {
       const apiEndpoint = `
-      https://develop.tekorero.com/employeePortal/api/v1/contact/user/${props.userId}`;
+     ${base_url}/contact/user/${props.userId}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -322,12 +473,12 @@ const [customer, setCustomer] = useState([]);
 
 
 
-  const fetchOpportunity = async () => {
+  const fetchOpportunity = async (value) => {
     setIsLoadingOpportunity(true);
     try {
       const apiEndpoint = `
       
-https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityList/${props.userId}`;
+${base_url}/opportunity/open/${value}`;
       const response = await fetch(apiEndpoint,{
         method: 'GET',
         headers: {
@@ -351,6 +502,11 @@ https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityL
     console.log('Selected user:', value);
   };
 
+  const handleSelectChangeDeal = (value) => {
+    setSelectedDeal(value)
+    
+  };
+
   const handleSelectOpportunityFocus = () => {
     if (!touchedOpportunity) {
      
@@ -359,6 +515,35 @@ https://develop.tekorero.com/employeePortal/api/v1/opportunity/drop-opportunityL
       setTouchedOpportunity(true);
     }
   };
+
+
+  const fetchContacts = async (value) => {
+    setIsLoadingContacts(true);
+    try {
+   
+      const apiEndpoint = `${base_url}/customer/contact/drop/${value}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setContacts(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingContacts(false);
+    }
+  };
+
+
+
+
+
+ 
    
 const {
       user: { userId, firstName,empName, fullName, middleName, lastName, timeZone },
@@ -532,9 +717,14 @@ const {
                     endDate: `${newEndDate}T20:00:00Z`,
                     startTime: 0,
                     endTime: 0,
-                    contactId: selectedContact,
-                    opportunityId:selectedOpportunity,
-                    customerId:selectedCustomer,
+                    customer:selectedCustomer,
+                    contacts:selectedValue === 'Investor'?selectedContactInvestor:selectedContact,
+                    oppertunity:selectedOpportunity,
+                    investorId:selectedInvestor,
+                    invOpp:selectedDeal,
+                    // contactId: selectedContact,
+                    // opportunityId:selectedOpportunity,
+                    // customerId:selectedCustomer,
                     remindInd: reminder ? true : false,
                     assignedTo: selectedOption ? selectedOption.employeeId:userId,
                   },
@@ -552,18 +742,15 @@ const {
             values,
             ...rest
           }) => (
-            <div class="overflow-y-auto h-[36rem] overflow-x-hidden max-sm:h-[30rem]"  style={{scrollbarWidth:"thin"}}>
-            <Form className="form-background">
+            <div class="overflow-y-auto h-[36rem] overflow-x-hidden max-sm:h-[30rem]  "  style={{scrollbarWidth:"thin"}}>
+            <Form className="form-background max-sm:w-[90%]">
               <div class=" flex justify-between max-sm:flex-col">
-                <div class=" h-full w-w47.5  mt-3 max-sm:w-wk">
+                <div class=" h-full w-w47.5  max-sm:w-wk">
                 <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[0]}</div>
                   <Field
                     isRequired
                     name="eventTypeId"
-                    //label="Type"
-                    // label={
-                    //   <FormattedMessage id="app.type" defaultMessage="type" />
-                    // }
+                    //label="Type"               
                     component={SearchSelect}
                     isColumnWithoutNoCreate
                     selectType="eventType"
@@ -575,13 +762,7 @@ const {
                   <Field
                     isRequired
                     name="eventSubject"
-                    //label="Topic"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.subject"
-                    //     defaultMessage="subject"
-                    //   />
-                    // }
+                    //label="Topic"             
                     isColumn
                   style={{ width:"100%"}}
                     component={InputComponent}
@@ -590,18 +771,12 @@ const {
               
                   <div class="mt-3">
                     <div class=" flex justify-between">
-                      <div class=" w-5/12">
+                      <div class=" w-5/12 flex flex-col">
                       <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[2]}</div>
                         <Field
                           isRequired
                           name="startDate"
-                          //label="Start "
-                          // label={
-                          //   <FormattedMessage
-                          //     id="app.startDate"
-                          //     defaultMessage="Start Date"
-                          //   />
-                          // }
+                          //label="Start "                    
                           isColumn
                           component={DatePicker}
                           value={values.startDate}
@@ -609,18 +784,12 @@ const {
                         
                         />
                       </div>
-                      <div class=" w-5/12">
+                      <div class=" w-5/12 flex flex-col">
                       <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[3]}</div>
                         <Field
                           isRequired
                           name="startTime"
-                          // label="Start Time"
-                          // label={
-                          //   <FormattedMessage
-                          //     id="app.startTime"
-                          //     defaultMessage="Start Time"
-                          //   />
-                          // }
+                          // label="Start Time"                    
                           isColumn
                           component={TimePicker}
                           use12Hours
@@ -632,18 +801,12 @@ const {
                     </div>
                   </div>
                   <div class=" flex justify-between">
-                    <div class=" w-5/12">
+                    <div class=" w-5/12 flex flex-col mt-1">
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[4]}</div>
                       <Field
                         isRequired
                         name="endDate"
-                        // label="End "
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.enddate"
-                        //     defaultMessage="enddate"
-                        //   />
-                        // }
+                        // label="End "               
                         component={DatePicker}
                         isColumn
                         value={values.endDate || values.startDate}
@@ -665,18 +828,12 @@ const {
                         }}
                       />
                     </div>
-                    <div class=" w-5/12">
+                    <div class=" w-5/12 flex flex-col mt-1">
                     <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[5]}</div>
                       <Field
                         isRequired
                         name="endTime"
-                        //label="End Time"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.endtime"
-                        //     defaultMessage="endtime"
-                        //   />
-                        // }
+                        //label="End Time"              
                         isColumn
                         component={TimePicker}
                         use12Hours
@@ -686,57 +843,31 @@ const {
                       />
                     </div>
                   </div>
-                  <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[6]}</div>
+                  <div class=" text-xs font-bold font-poppins mt-1"> {translatedMenuItems[6]}</div>
                   <Field
                     isRequired
                     defaultValue={{ label: timeZone, value: userId }}
                     isColumnWithoutNoCreate
                     name="timeZone"
-                    //label="TimeZone "
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.timeZone"
-                    //     defaultMessage="timeZone"
-                    //   />
-                    // }
+                    //label="TimeZone "        
                     selectType="timeZone"
                     isColumn
                     value={values.timeZone}
                     component={SearchSelect}
                     inlineLabel
                   />
-       
-
-                    {/* <Field
-                      name="employeesId"
-                      isColumnWithoutNoCreate
-                      selectType="employee"
-                      // label="Assigned"
-                      label={
-                        <FormattedMessage
-                          id="app.assignedto"
-                          defaultMessage="Assigned"
-                        />
-                      }
-                      component={SearchSelect}
-                      isColumn
-                      value={values.employeeId}
-                      defaultValue={{
-                        label: `${firstName || ""} ${middleName || ""} ${
-                          lastName || ""
-                        }`,
-                        value: employeeId,
-                      }}
-                      inlineLabel
-                    /> */}
-                   
-                
+                  <Radio.Group onChange={handleRadioChange} value={selectedValue}>
+        <Radio value="Prospect">Prospect</Radio>
+        <Radio value="Investor">Investor</Radio>
+      </Radio.Group> 
+      {selectedValue === 'Prospect' && ( 
+        <div>    
                    <div class="mt-3" >
                    <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[7]}</div>
                   {props.user.crmInd === true &&(
               
      <>        
-{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Prospect</label> */}
+
 
 <Select
         showSearch
@@ -761,18 +892,19 @@ const {
                   {props.user.crmInd === true &&(
                   
                   <>
-                  {/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Contact</label> */}
+                 
 
 <Select
         showSearch
       
         placeholder="Search or select contact"
         optionFilterProp="children"
-        loading={isLoadingContact}
-        onFocus={handleSelectContactFocus}
-        onChange={handleSelectChangeContact}
+        loading={isLoadingContacts}
+      mode="multiple"
+        onChange={handleContactChange}
+        disabled={!selectedCustomer}
       >
-        {contact.map(contacts => (
+        {contacts.map(contacts => (
           <Option key={contacts.contactId} value={contacts.contactId}>
             {contacts.fullName}
           </Option>
@@ -784,37 +916,17 @@ const {
                   <div class="mt-3">
                   <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[9]}</div>
                   {props.user.crmInd === true &&(
-              //    <Field
-              //    name="opportunityId"
-              //    // selectType="customerList"
-              //    isColumnWithoutNoCreate
-              //    label={
-              //      <FormattedMessage
-              //        id="app.opportunity"
-              //        defaultMessage="opportunity"
-              //      />
-              //    }
-              //    //component={SearchSelect}
-              //    component={SelectComponent}
-              //    options={
-              //      Array.isArray(opportunityNameOption)
-              //        ? opportunityNameOption
-              //        : []
-              //    }
-              //    isColumn
-              //    margintop={"0"}
-              //    value={values.opportunityId}
-              //    inlineLabel
-              //  />
+             
               <>
-{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Opportunity</label> */}
+
               <Select
         showSearch
       
         placeholder="Search or select opportunity"
         optionFilterProp="children"
         loading={isLoadingOpportunity}
-        onFocus={handleSelectOpportunityFocus}
+        // onFocus={handleSelectOpportunityFocus}
+        disabled={!selectedContact}
         onChange={handleSelectChangeOpportunity}
       >
         {opportunity.map(opp => (
@@ -826,39 +938,102 @@ const {
       </>
                   )} 
                   </div>
-                
-                  {/* <Field
-                    disabled="true"
-                    isRequired
-                    name="candidateId"
-                    // type="text"
-                    label="Team"
-                    placeholder="Start typing to search..."
-                    isColumnWithoutNoCreate
-                    setClearbitCandidateData={
-                      props.setClearbitCandidateData
-                    }
-                    component={CandidateClearbit}
-                    inlineLabel
-                  /> */}
-                  {/* {startDate ? (
-                    <span>
-                      {dayjs(startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>This Event occurs in the past !</b>
-                        </span>
-                      )}
-                    </span>
-                  ) : (
-                    <span>
-                      {dayjs(values.startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>This Event occurs in the past !</b>
-                        </span>
-                      )}
-                    </span>
-                  )} */}
+                  </div>
+                   )}
+
+
+
+{selectedValue === 'Investor' && ( 
+        <div>    
+                   <div class="mt-3" >
+                   <div class=" text-xs font-bold font-poppins"> 
+                    {/* {translatedMenuItems[7]} */}
+Investor
+                   </div>
+                  {props.user.crmInd === true &&(
+              
+     <>        
+
+
+<Select
+        showSearch
+       
+        placeholder="Search or select investor"
+        optionFilterProp="children"
+        loading={isLoadingInvestor}
+        onFocus={handleSelectInvestorFocus}
+        onChange={handleSelectChangeInvestor}
+      >
+        {investor.map(investor => (
+          <Option key={investor.investorId} value={investor.investorId}>
+            {investor.name}
+          </Option>
+        ))}
+      </Select>
+      </> 
+                  )} 
+                  </div>
+                  <div class="mt-3 "  >
+                  <div class=" text-xs font-bold font-poppins"> 
+                  Investor Contact
+                    </div>
+                  {props.user.crmInd === true &&(
                   
+                  <>
+                 
+
+<Select
+        showSearch
+      
+        placeholder="Search or select contact"
+        optionFilterProp="children"
+        loading={isLoadingContactInvestor}
+        disabled={!selectedInvestor}
+        mode="multiple"
+        //onFocus={handleSelectContactFocus}
+        onChange={handleSelectChangeInvestorContact}
+      >
+        {investorContact.map(inv => (
+          <Option key={inv.contactId} value={inv.contactId}>
+            {inv.fullName}
+          </Option>
+        ))}
+      </Select>
+      </>
+                  )} 
+                  </div>
+                  <div class="mt-3">
+                  <div class=" text-xs font-bold font-poppins"> 
+                    {/* {translatedMenuItems[9]} */}
+                    Deal
+                    </div>
+                  {props.user.crmInd === true &&(
+             
+              <>
+
+              <Select
+        showSearch
+      
+        placeholder="Search or select deal"
+        optionFilterProp="children"
+        loading={isLoadingDeal}
+        disabled={!selectedContactInvestor}
+        //onFocus={handleSelectOpportunityFocus}
+        onChange={handleSelectChangeDeal}
+      >
+        {deal.map(opp => (
+          <Option key={opp.opportunityId} value={opp.opportunityId}>
+            {opp.opportunityName}
+          </Option>
+        ))}
+      </Select>
+      </>
+                  )} 
+                  </div>
+                  </div>
+                   )}
+                
+                               
                 </div>
                 <div class="h-full w-w47.5 max-sm:w-wk ">
                 <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[10]}</div>
@@ -866,12 +1041,8 @@ const {
                  <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <>
-            {/* <Listbox.Label className="block text-sm font-semibold text-gray-700">            
-              <FormattedMessage
-                        id="app.assignedto"
-                        defaultMessage="assignedto"
-                      />
-            </Listbox.Label> */}
+                           {/* assignedto" */}
+                 
             <div className="relative ">
             <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm" style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}}>
                 {selected}
@@ -935,29 +1106,10 @@ const {
         )}
       </Listbox>
       </div>
-      <div class="mt-1">
+      <div class="mt-2">
       <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[11]}</div>
-                  {/* <Field
-                    name="included"
-                    // label="Include"
-                    label={
-                      <FormattedMessage
-                        id="app.include"
-                        defaultMessage="include"
-                      />
-                    }
-                    mode
-                    placeholder="Select"
-                    component={SelectComponent}
-                    options={Array.isArray(filteredEmployeesData) ? filteredEmployeesData : []}
-                    value={values.included}
-                    defaultValue={{
-                      label: `${empName || ""} `,
-                      value: employeeId,
-                    }}
-                  /> */}
-
-{/* <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</label> */}
+              
+{/* <div style={{fontWeight:"bold",fontSize:"0.75rem"}}>Include</div> */}
                    <Select
           showSearch
           
@@ -976,7 +1128,7 @@ const {
           ))}
         </Select>
                  </div>
-                 <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[12]}</div>
+                 <div class=" text-xs font-bold font-poppins mt-1"> {translatedMenuItems[12]}</div>
                   <FieldArray
                     name="address"
                     render={(arrayHelpers) => (
@@ -988,7 +1140,11 @@ const {
                     )}
                   />
               <div class="mt-2">
-              <div>
+              <ReactDescription
+                setText={setText}
+                text={text}
+                />
+              {/* <div>
             <span class=" text-xs font-bold font-poppins"> {translatedMenuItems[13]}</span>
             <span>
                     <span onClick={SpeechRecognition.startListening}>
@@ -1028,7 +1184,7 @@ const {
                       onChange={handletext}
                     ></textarea>
                   </div>
-                </div>
+                </div> */}
                   </div>
                  
           
@@ -1036,7 +1192,7 @@ const {
                     <div class=" w-1/2 font-bold">
                       <div class=" flex justify-between">
                         <div>
-                          <StyledLabel>Set Reminder </StyledLabel>
+                          <div class=" text-xs font-bold font-poppins text-black">Set Reminder </div>
                         </div>
                         <div>
                           <Switch
@@ -1087,10 +1243,7 @@ const {
                         htmlType="submit"
                         Loading={deletingEvent}
                       >
-                        <FormattedMessage
-                          id="app.delete"
-                          defaultMessage="delete"
-                        />
+                        delete
                       </Button>
                     </StyledPopconfirm>
                   </>
@@ -1104,8 +1257,8 @@ const {
                   {isEditing ? (
                     "Update"
                   ) : (
-                    // "Create"
-                    <FormattedMessage id="app.create" defaultMessage="create" />
+                    "Create"
+                 
                   )}
                 </Button>
               </div>

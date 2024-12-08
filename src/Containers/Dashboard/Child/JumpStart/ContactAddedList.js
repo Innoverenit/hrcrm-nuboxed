@@ -2,29 +2,21 @@
 import React, {  useEffect,  } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Tooltip, Badge } from "antd";
-import moment from "moment";
-import PaidIcon from '@mui/icons-material/Paid';
+import { Tooltip} from "antd";
+import dayjs from "dayjs";
 import {getContactAddedList} from "../../DashboardAction"
-import NoteAltIcon from "@mui/icons-material/NoteAlt";
-import EventRepeatIcon from '@mui/icons-material/EventRepeat';
-import { MultiAvatar2 } from "../../../../Components/UI/Elements";
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 
 function ContactAddedList(props) {
- 
-//   useEffect(() => {
-//     props.getAllOrderList(props.orgId, page);
-//     setPage(page + 1);
-//   }, []);
+
 useEffect(()=>{
     if (props.timeRangeType === "today") {
-    props.getContactAddedList(props.orgId,props.startDate,props.endDate)
+    props.getContactAddedList(props.orgId,props.endDate,props.startDate)
     }else {
-        props.getContactAddedList(props.orgId,props.startDate,props.endDate)
+        props.getContactAddedList(props.orgId,props.endDate,props.startDate)
       }
-   }, [props.orgId,props.startDate,props.endDate]);
+   }, [props.orgId,props.endDate,props.startDate]);
 
 
 
@@ -32,14 +24,14 @@ useEffect(()=>{
   return (
     <>
    
-   <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+   <div class="rounded-lg m-5 max-sm:m-1 p-2 w-[96%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex justify-between w-full p-2 bg-transparent font-bold sticky top-0 z-10">
-          <div className=" md:w-[12rem]">Name</div>
-          <div className=" md:w-[10.4rem]">Email</div>
-          <div className=" md:w-[12.01rem] ">Mobile No
+          <div className="text-xs font-bold font-poppins md:w-[12rem]">Name</div>
+          <div className="text-xs font-bold font-poppins md:w-[10.4rem]">Email</div>
+          <div className="text-xs font-bold font-poppins md:w-[12.01rem] ">Mobile No
 </div>
-          <div className="md:w-[8.12rem]">Designation</div>
-          <div className="md:w-[8rem]">Department</div>
+          <div className="text-xs font-bold font-poppins md:w-[8.12rem]">Designation</div>
+          <div className="text-xs font-bold font-poppins md:w-[8rem]">Department</div>
          
 
 
@@ -55,11 +47,11 @@ useEffect(()=>{
           {props.contactAddedList.length ?
             <>
               {props.contactAddedList.map((item) => {
-                const currentdate = moment().format("DD/MM/YYYY");
-                const date = moment(item.creationDate).format("DD/MM/YYYY");
+                const currentdate = dayjs().format("DD/MM/YYYY");
+                const date = dayjs(item.creationDate).format("DD/MM/YYYY");
 
                 const diff = Math.abs(
-                  moment().diff(moment(item.lastRequirementOn), "days")
+                  dayjs().diff(dayjs(item.lastRequirementOn), "days")
                 );
                 const dataLoc = ` Address : ${item.address && item.address.length && item.address[0].address1
                   } 

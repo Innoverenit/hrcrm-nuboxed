@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { StyledTable } from "../../../../../../../Components/UI/Antd";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 
@@ -10,10 +10,8 @@ class RecruitmentFileTable extends Component {
   render() {
     const columns = [
       {
-        title: <FormattedMessage
-          id="app.stageName"
-          defaultMessage="Invoice#"
-        />,
+        title: "Invoice#"
+       ,
         dataIndex: "stageName",
         sorter: (a, b) => {
           const stageA = a.stageA && a.stageA.toLowerCase();
@@ -29,10 +27,8 @@ class RecruitmentFileTable extends Component {
       },
       {
         // title: "Reviewer",
-        title: <FormattedMessage
-          id="app.reviewer"
-          defaultMessage="Date"
-        />,
+        title: "Date"
+        ,
         dataIndex: "reviewer",
         sorter: (a, b) => {
           const reviewerA = a.reviewerA && a.reviewerA.toLowerCase();
@@ -47,10 +43,8 @@ class RecruitmentFileTable extends Component {
         },
       },
       {
-        title: <FormattedMessage
-          id="app.note"
-          defaultMessage="Amount" 
-        />,
+        title: "Amount" 
+      ,
         dataIndex: "note",
         sorter: (a, b) => {
           const commentsA = a.commentsA && a.commentsA.toLowerCase();
@@ -66,10 +60,8 @@ class RecruitmentFileTable extends Component {
       },
 
       {
-        title: <FormattedMessage
-          id="app.note"
-          defaultMessage="Currency" 
-        />,
+        title: "Currency" 
+     ,
         dataIndex: "note",
         sorter: (a, b) => {
           const commentsA = a.commentsA && a.commentsA.toLowerCase();
@@ -85,10 +77,8 @@ class RecruitmentFileTable extends Component {
       },
 
       {
-        title: <FormattedMessage
-          id="app.note"
-          defaultMessage="Contact" 
-        />,
+        title: "Contact" 
+   ,
         dataIndex: "note",
         sorter: (a, b) => {
           const commentsA = a.commentsA && a.commentsA.toLowerCase();

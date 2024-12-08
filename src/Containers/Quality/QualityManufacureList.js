@@ -1,7 +1,5 @@
 import React,{useEffect,useState} from 'react'
 import { connect } from 'react-redux'
-import { FormattedMessage } from "react-intl";
-
 import { Tooltip, Button,Card, Popconfirm, Switch } from "antd";
 import { bindActionCreators } from "redux";
 import QualityManufactureToggle from "./QualityManufactureToggle"
@@ -104,21 +102,20 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
         Show Data
       </Button>
     <div className='flex sticky z-auto' style={{width:"62em"}}>
-            <div className="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className="flex w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+            <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+                <div className="flex w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
                     <div className=""></div>
                     <div className="md:w-[22.12rem]">
                     {props.translatedMenuItems[0]}
-                      {/* <FormattedMessage id="app.name" defaultMessage="Name" /> */}
+                    
                       </div>
                     <div className="md:w-[22.12rem]">
                     {props.translatedMenuItems[8]}
-                      {/* <FormattedMessage id="app.step" defaultMessage="Step" /> */}
+                    
                       </div>
-                    {/* <div className="md:w-[15.5rem]"><FormattedMessage id="app.date" defaultMessage="Date" /></div>
-                    <div className="md:w-[15.5rem]"><FormattedMessage id="app.status" defaultMessage="Status" /></div> */}
+                    
                     <div className=""></div>
-                    {/* <div className="md:w-[15.5rem]"><FormattedMessage id="app.todispatch" defaultMessage="To Dispatch" /></div> */}
+                  
                 
                 </div>
                 {/* <InfiniteScroll
@@ -204,21 +201,16 @@ function StatusIcon({ type, role, iconType, tooltip, size, status, id, onClick, 
         </div>
         {showMessage && 
         <div className='flex sticky z-auto' style={{width:"62em"}}>
-            <div className="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                <div className="flex w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+            <div className="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+                <div className="flex w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
                     <div className=""></div>
                     <div className="md:w-[22.12rem]">
-                  
-                      <FormattedMessage id="app.cell" defaultMessage="Cell" />
+                     Cell
+                     
                       </div>
-                    {/* <div className="md:w-[22.12rem]">
-                   
-                      <FormattedMessage id="app.cell" defaultMessage="Cell" />
-                      </div> */}
-                    {/* <div className="md:w-[15.5rem]"><FormattedMessage id="app.date" defaultMessage="Date" /></div>
-                    <div className="md:w-[15.5rem]"><FormattedMessage id="app.status" defaultMessage="Status" /></div> */}
+                    
                     <div className=""></div>
-                    <div className="md:w-[15.5rem]"><FormattedMessage id="app.unitsinqueue" defaultMessage="Units (in queue)" /></div>
+                    <div className="md:w-[15.5rem]">Units (in queue)</div>
                 
                 </div>
             

@@ -1,4 +1,3 @@
-
 import * as types from "./AccountActionType";
 
 const initialState = {
@@ -6,19 +5,107 @@ const initialState = {
 
   clearbit: {},
 
+  addingCODinventory: false, 
+  addingCODinventoryError: false,
+  codInventryorDr:{},
+
+  fetchingSearchDistributor: false,
+            fetchingSearchDistributorError: false,
+            searchDistributor:[],
+
   updateAccountModal: false,
+
+  addAccountAddressModal: false,
+
+  fetchingimeiSearchPhoneData: false,
+  fetchingimeiSearchPhoneDataError: false,
+
+  fetchingOrderCustomer: false,
+  fetchingOrderCustomerError: false,
+  orderCustomerList:[],
+
+  addingTicket:false,
+  addingTicketError:false,
+
+  fetchingPiByItem: false,
+  fetchingPiByItemError: false,
+  piByItem: [],
+
+  fetchingPiFirststep: false,
+  fetchingPiFirststepError: false,
+  piFirstStep: [],
 
   showStatusDrwr: false,
 
+  fetchingPilistByDistributor: false,
+  fetchingPilistByDistributorError: false,
+  piListByDistributor: [],
+
+  fetchingPilistByOrder: false,
+  fetchingPilistByOrderError: false,
+  piListByOrder: [],
+
+  piButtonModal: false,
+
+  fetchingInputInvoiceData: false,
+  fetchingInputInvoiceDataError: false,
+  invoiceSearch: [],
+
+  fetchingInvoiceCount: false,
+  fetchingInvoiceCountError: false,
+  invoiceCount: {},
+
+  invoiceO: false,
+
+  fetchingGeneratedInvoice: false,
+  fetchingGeneratedInvoiceError: false,
+  generatedInvoice: [],
+
+  fetchingPaymentClick: false,
+  fetchingPaymentClickError: false,
+  paymentclick: {},
+
+  fetchingQuatationClick: false,
+  fetchingQuatationClickError: false,
+  quatationClick: {},
+
+  fetchingQuatationCheckout: false,
+  fetchingQuatationCheckoutError: false,
+  quatationCheckout: {},
+
+  fetchingQuatationShipping: false,
+  fetchingQuatationShippingError: false,
+  quatationShipping: {},
+
+  fetchingLoginCount: false,
+  fetchingLoginCountError: false,
+  loginCount: {},
+
+
+  fetchingDistributorChartList:false,
+  fetchingDistributorChartListError:false,
+  distributorChartList:[],
+
+  fetchingInvoiceL: false,
+  fetchingInvoiceLError: true,
+  invoiceL: [],
+
   fetchingAccountInvoice: false,
   fetchingAccountInvoiceError: false,
-  accountInvoice:[],
+  accountInvoice: [],
+
+  fetchingSpareListByPhoneTaskId: false,
+  fetchingSpareListByPhoneTaskIdError: false,
+  phoneTaskIdSpareList: [],
+
+  fetchingOrderInvoice: false,
+  fetchingOrderInvoiceError: false,
 
   updatingOrdrSuplrItems: false,
   updatingOrdrSuplrItemsError: false,
 
-  addingAccountImportForm:false,
-  addingAccountImportFormError:false,
+  addingAccountImportForm: false,
+  addingAccountImportFormError: false,
 
   updateOrderModal: false,
 
@@ -71,6 +158,8 @@ const initialState = {
 
   setEdittingOrder: {},
 
+  invoiceOrders: false,
+
   addDistributorSubscriptionConfigureModal: false,
 
   fetchingActivityDistributor: false,
@@ -86,11 +175,20 @@ const initialState = {
   addingDistributorActivityCall: false,
   addingDistributorActivityCallError: false,
 
+
+
+  fetchingTicketList:false,
+  fetchingTicketListError:false,
+  ticketList:[],
+
   addingDistributorActivityEvent: false,
   addingDistributorActivityEventError: false,
 
   addingDistributorActivityTask: false,
   addingDistributorActivityTaskError: false,
+
+
+  updateAccountUserModal:false,
 
   fetchingNotesListByDistributorId: false,
   fetchingNotesListByDistributorIdError: false,
@@ -98,11 +196,11 @@ const initialState = {
 
   fetchingQuotationRepairOrder: false,
   fetchingQuotationRepairOrderError: true,
-  quotationRepairOrder:[],
+  quotationRepairOrder: [],
 
   fetchingBrand: false,
-   fetchingBrandError: false,
-   brand:[],
+  fetchingBrandError: false,
+  brand: [],
 
   fetchingAllProductList: false,
   fetchingAllProductListError: false,
@@ -133,7 +231,6 @@ const initialState = {
   updateEventModal: false,
   updateCallModal: false,
   updateTaskModal: false,
-
 
   fetchingOrderById: false,
   fetchingOrderByIdError: false,
@@ -167,7 +264,6 @@ const initialState = {
   updatingAccountPrice: false,
   updatingAccountPriceError: false,
 
-
   setEdittingProcure: {},
 
   updateOrderDetailModal: false,
@@ -175,17 +271,19 @@ const initialState = {
   updateDisributorOrderById: false,
   updateDisributorOrderByIdError: false,
 
-  fetchingProcureDetails: false, 
+  fetchingProcureDetails: false,
   fetchingProcureDetailsError: false,
-  procureDetails:[],
+  procureDetails: [],
 
   fetchingOrderHistoryById: false,
   fetchingOrderHistoryByIdError: true,
   orderHistory: [],
 
+  addSupplierTicketModal:false,
+
   fetchingModel: false,
-   fetchingModelError: false.valueOf,
-   model:[],
+  fetchingModelError: false.valueOf,
+  model: [],
 
   updatingDistributorById: false,
   updatingDistributorByIdError: false,
@@ -194,13 +292,17 @@ const initialState = {
   fetchingFeedbackByDistributorIdError: false,
   feedbacks: [],
 
+  addingPi: false,
+  addingPiError: false,
+  piIdFromPreview: null,
+
   fetchingRecords: false,
   fetchingRecordsError: false,
   accountRecordData: {},
 
   fetchingDistributorOfHigh: false,
   fetchingDistributorOfHighError: false,
-  highDistributorOrder:[],
+  highDistributorOrder: [],
 
   accountModal: false,
 
@@ -215,7 +317,7 @@ const initialState = {
 
   fetchingHighCompleteOrders: false,
   fetchingHighCompleteOrdersError: false,
-  highCompleteOrder:[],
+  highCompleteOrder: [],
 
   addingOrderProcurement: false,
   addingOrderProcurementError: false,
@@ -257,6 +359,9 @@ const initialState = {
 
   generateOrderModal: false,
 
+  updateAccountUserById:false,
+  updateAccountUserByIdError:false,
+
   updatingOrderStep1: false,
   updatingOrderStep1Error: false,
 
@@ -274,12 +379,14 @@ const initialState = {
 
   fetchingMediumCompleteOrders: false,
   fetchingMediumCompleteOrdersError: false,
-  mediumCompleteOrder:[],
+  mediumCompleteOrder: [],
 
   updateProcureDetailModal: false,
 
   updatingDistributorEvent: false,
   updatingDistributorEventError: false,
+
+  updatingTicketStage:false,
 
   updatingDistributorTask: false,
   updatingDistributorTaskError: false,
@@ -293,11 +400,11 @@ const initialState = {
 
   fetchingLowCompleteOrders: false,
   fetchingLowCompleteOrdersError: false,
-  lowCompleteOrder:[],
+  lowCompleteOrder: [],
 
   fetchingDistributorOfMedium: false,
   fetchingDistributorOfMediumError: false,
-  mediumDistributorOrder:[],
+  mediumDistributorOrder: [],
 
   fetchingRecordsByUserId: false,
   fetchingRecordsByUserIdError: false,
@@ -337,13 +444,16 @@ const initialState = {
 
   setEditingOrderDetail: {},
 
+  addingNewList: false,
+  addingNewListError: false,
+
   fetchingPhoneListById: false,
   fetchingPhoneListByIdError: false,
   phoneListById: [],
 
   fetchingDistributorOfLow: false,
   fetchingDistributorOfLowError: false,
-  lowDistributorOrder:[],
+  lowDistributorOrder: [],
 
   //document
   distributorDocumentUploadModal: false,
@@ -355,7 +465,7 @@ const initialState = {
   addingCarError: false,
 
   addingProcureDetails: false,
-          addingProcureDetailsError:false,
+  addingProcureDetailsError: false,
 
   //get document
   fetchingDocumentsByDistributorId: false,
@@ -363,7 +473,7 @@ const initialState = {
   documentsByDistributorId: [],
 
   addingQuotationPhoneDetails: false,
-  addingQuotationPhoneDetailsError:false,
+  addingQuotationPhoneDetailsError: false,
 
   fetchingDocumentsByTable: false,
   fetchingDocumentsByTableError: false,
@@ -372,7 +482,6 @@ const initialState = {
   fetchingRenewOrderByOrderId: false,
   fetchingRenewOrderByOrderIdError: false,
   RenewOrder: [],
-
 
   updatingProcureDetails: false,
   updatingProcureDetailsError: false,
@@ -400,8 +509,8 @@ const initialState = {
   addingContactDistributorError: false,
 
   fetchingQuotationExcelDetails: false,
-   fetchingQuotationExcelDetailsError: false ,
-   quotationPhoneDetails:[],
+  fetchingQuotationExcelDetailsError: false,
+  quotationPhoneDetails: [],
 
   fetchingLocationList: false,
   fetchingLocationListError: false,
@@ -419,14 +528,13 @@ const initialState = {
 
   fetchingQuotationProcureOrder: false,
   fetchingQuotationProcureOrderError: false,
-  quotationProcureOrder:[],
+  quotationProcureOrder: [],
 
   setEditingPayment: {},
 
   updatePaymentModal: false,
 
-
-  addAccountImportModal:false,
+  addAccountImportModal: false,
 
   updateOrderPayment: false,
   updateOrderPaymentError: false,
@@ -484,7 +592,7 @@ const initialState = {
   fetchingTaggedSuppliesByBrandError: false,
   spareByBrand: [],
 
-  addProcureDetailsModal:false,
+  addProcureDetailsModal: false,
 
   fetchingDistributorByGroup: false,
   fetchingDistributorByGroupError: false,
@@ -586,18 +694,44 @@ const initialState = {
   addingSupervisor: false,
   addingSupervisorError: false,
 
+  addNewModal: false,
+
   addingLead: false,
   addingLeadError: false,
 
   deletingProcureData: false,
-   deletingProcureDataError: false,
+  deletingProcureDataError: false,
 
   updatingSpareListItem: false,
   updatingSpareListItemError: false,
 
   fetchingLocationNamesByProductId: false,
-          fetchingLocationNamesByProductIdError:false,
-          locationNamesByProductId:[],
+  fetchingLocationNamesByProductIdError: false,
+  locationNamesByProductId: [],
+
+  distributorAccountCrediting: false,
+  distributorAccountCreditingError: false,
+  paidUnpaidToggling: false,
+  paidUnpaidTogglingError: false,
+
+  fetchingTimelineStatus: false,
+  fetchingTimelineStatusError: false,
+  statusActivityTimeline: [],
+
+  fetchingCustomerOrderNo: false,
+};
+
+
+const updatedDragTicket = (item, newProps) => {
+  return item.map((opp, index) => {
+    console.log("Author7", opp);
+    console.log("Author8", newProps);
+    if (opp.tckId === newProps.tckId) {
+      console.log("inside opp");
+      opp.stageId = newProps.stageId;
+    }
+    return opp;
+  });
 };
 
 export const distributorReducer = (state = initialState, action) => {
@@ -607,11 +741,21 @@ export const distributorReducer = (state = initialState, action) => {
       return { ...state, viewType: action.payload };
 
     case types.HANDLE_DISTRIBUTOR_MODAL:
-      return { ...state, addDistributorModal: action.payload, };
+      return { ...state, addDistributorModal: action.payload };
+
+    case types.HANDLE_OPENNEW_MODAL:
+      return { ...state, addNewModal: action.payload };
 
 
-      case types.HANDLE_ACCOUNT_IMPORT_MODAL:
-        return { ...state, addAccountImportModal: action.payload };
+      case types.HANDLE_SUPPLIER_TICKET_MODAL:
+        return { ...state, addSupplierTicketModal: action.payload };
+
+    case types.HANDLE_ACCOUNT_IMPORT_MODAL:
+      return { ...state, addAccountImportModal: action.payload };
+
+
+      case types.HANDLE_UPDATE_ACCOUNT_USER_MODAL:
+        return { ...state, updateAccountUserModal: action.payload };
 
     /**
      * Add a distributor
@@ -623,7 +767,7 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         addingDistributor: false,
         addDistributorModal: false,
-        customerListByUser: [action.payload, ...state.customerListByUser]
+        customerListByUser: [action.payload, ...state.customerListByUser],
       };
     case types.ADD_DISTRIBUTOR_FAILURE:
       return {
@@ -632,6 +776,25 @@ export const distributorReducer = (state = initialState, action) => {
         addingDistributorError: true,
         addDistributorModal: false,
       };
+
+    case types.ADD_PI_REQUEST:
+      return { ...state, addingPi: true };
+    case types.ADD_PI_SUCCESS:
+      return {
+        ...state,
+        addingPi: false,
+        piIdFromPreview: action.payload,
+        //addDistributorModal: false,
+        //customerListByUser: [action.payload, ...state.customerListByUser]
+      };
+    case types.ADD_PI_FAILURE:
+      return {
+        ...state,
+        addingPi: false,
+        addingPiError: true,
+        // addDistributorModal: false,
+      };
+
     case types.EMPTY_DISTRIBUTOR_LIST:
       return {
         ...state,
@@ -639,7 +802,7 @@ export const distributorReducer = (state = initialState, action) => {
         customerListByUser: [],
         distributorOrder: [],
         productionOrder: [],
-        contactDistributor: []
+        contactDistributor: [],
       };
 
     /**
@@ -658,6 +821,70 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         fetchingDistributorsByUserId: false,
         fetchingDistributorsByUserIdError: true,
+      };
+
+      case types.GET_CUSTOMER_ORDER_REQUEST:
+        return { ...state, fetchingOrderCustomer: true };
+      case types.GET_CUSTOMER_ORDER_SUCCESS:
+        return {
+          ...state,
+          fetchingOrderCustomer: false,
+          orderCustomerList: [...state.orderCustomerList, ...action.payload],
+          //  orderCustomerList: action.payload,
+        };
+
+
+
+
+        case types.GET_TICKET_LIST_REQUEST:
+          return { ...state, fetchingTicketList: true };
+        case types.GET_TICKET_LIST_SUCCESS:
+          return {
+            ...state,
+            fetchingTicketList: false,
+            ticketList: action.payload,
+          };
+        case types.GET_TICKET_LIST_FAILURE:
+          return {
+            ...state,
+            fetchingTicketList: false,
+            fetchingTicketListError: true,
+          };
+      case types.GET_CUSTOMER_ORDER_FAILURE:
+        return {
+          ...state,
+          fetchingOrderCustomer: false,
+          fetchingOrderCustomerError: true,
+        };
+
+    case types.GET_PI_BY_ITEM_REQUEST:
+      return { ...state, fetchingPiByItem: true };
+    case types.GET_PI_BY_ITEM_SUCCESS:
+      return {
+        ...state,
+        fetchingPiByItem: false,
+        piByItem: action.payload,
+      };
+    case types.GET_PI_BY_ITEM_FAILURE:
+      return {
+        ...state,
+        fetchingPiByItem: false,
+        fetchingPiByItemError: true,
+      };
+
+    case types.GET_PI_FIRSTSTEP_REQUEST:
+      return { ...state, fetchingPiFirststep: true };
+    case types.GET_PI_FIRSTSTEP_SUCCESS:
+      return {
+        ...state,
+        fetchingPiFirststep: false,
+        piFirstStep: action.payload,
+      };
+    case types.GET_PI_FIRSTSTEP_FAILURE:
+      return {
+        ...state,
+        fetchingPiFirststep: false,
+        fetchingPiFirststepError: true,
       };
 
     case types.GET_DISTRIBUTOR_BY_DISTRIBUTOR_ID_REQUEST:
@@ -682,7 +909,7 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         addLinkDistributorOrderConfigureModal: action.payload,
-        orderDetailsId: {}
+        orderDetailsId: {},
       };
 
     case types.HANDLE_LINK_CUSTOMER_PROCUREMENT_MODAL:
@@ -870,7 +1097,7 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingDistributorByDistributorId: false,
-        distributorOrder: [...state.distributorOrder, ...action.payload]
+        distributorOrder: [...state.distributorOrder, ...action.payload],
       };
     case types.GET_DISTRIBUTOR_ORDER_BY_DISTRIBUTOR_ID_FAILURE:
       return {
@@ -879,51 +1106,56 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingDistributorByDistributorIdError: true,
       };
 
+    case types.GET_DISTRIBUTOR_ORDER_OF_HIGH_REQUEST:
+      return { ...state, fetchingDistributorOfHigh: true };
+    case types.GET_DISTRIBUTOR_ORDER_OF_HIGH_SUCCESS:
+      return {
+        ...state,
+        fetchingDistributorOfHigh: false,
+        highDistributorOrder: [
+          ...state.highDistributorOrder,
+          ...action.payload,
+        ],
+      };
+    case types.GET_DISTRIBUTOR_ORDER_OF_HIGH_FAILURE:
+      return {
+        ...state,
+        fetchingDistributorOfHigh: false,
+        fetchingDistributorOfHighError: true,
+      };
 
-      case types.GET_DISTRIBUTOR_ORDER_OF_HIGH_REQUEST:
-        return { ...state, fetchingDistributorOfHigh: true };
-      case types.GET_DISTRIBUTOR_ORDER_OF_HIGH_SUCCESS:
-        return {
-          ...state,
-          fetchingDistributorOfHigh: false,
-          highDistributorOrder: [...state.highDistributorOrder, ...action.payload]
-        };
-      case types.GET_DISTRIBUTOR_ORDER_OF_HIGH_FAILURE:
-        return {
-          ...state,
-          fetchingDistributorOfHigh: false,
-          fetchingDistributorOfHighError: true,
-        };
+    case types.GET_DISTRIBUTOR_ORDER_OF_MEDIUM_REQUEST:
+      return { ...state, fetchingDistributorOfMedium: true };
+    case types.GET_DISTRIBUTOR_ORDER_OF_MEDIUM_SUCCESS:
+      return {
+        ...state,
+        fetchingDistributorOfMedium: false,
+        mediumDistributorOrder: [
+          ...state.mediumDistributorOrder,
+          ...action.payload,
+        ],
+      };
+    case types.GET_DISTRIBUTOR_ORDER_OF_MEDIUM_FAILURE:
+      return {
+        ...state,
+        fetchingDistributorOfMedium: false,
+        fetchingDistributorOfMediumError: true,
+      };
 
-        case types.GET_DISTRIBUTOR_ORDER_OF_MEDIUM_REQUEST:
-          return { ...state, fetchingDistributorOfMedium: true };
-        case types.GET_DISTRIBUTOR_ORDER_OF_MEDIUM_SUCCESS:
-          return {
-            ...state,
-            fetchingDistributorOfMedium: false,
-            mediumDistributorOrder: [...state.mediumDistributorOrder, ...action.payload]
-          };
-        case types.GET_DISTRIBUTOR_ORDER_OF_MEDIUM_FAILURE:
-          return {
-            ...state,
-            fetchingDistributorOfMedium: false,
-            fetchingDistributorOfMediumError: true,
-          };
-
-          case types.GET_DISTRIBUTOR_ORDER_OF_LOW_REQUEST:
-            return { ...state, fetchingDistributorOfLow: true };
-          case types.GET_DISTRIBUTOR_ORDER_OF_LOW_SUCCESS:
-            return {
-              ...state,
-              fetchingDistributorOfLow: false,
-              lowDistributorOrder: [...state.lowDistributorOrder, ...action.payload]
-            };
-          case types.GET_DISTRIBUTOR_ORDER_OF_LOW_FAILURE:
-            return {
-              ...state,
-              fetchingDistributorOfLow: false,
-              fetchingDistributorOfLowError: true,
-            };
+    case types.GET_DISTRIBUTOR_ORDER_OF_LOW_REQUEST:
+      return { ...state, fetchingDistributorOfLow: true };
+    case types.GET_DISTRIBUTOR_ORDER_OF_LOW_SUCCESS:
+      return {
+        ...state,
+        fetchingDistributorOfLow: false,
+        lowDistributorOrder: [...state.lowDistributorOrder, ...action.payload],
+      };
+    case types.GET_DISTRIBUTOR_ORDER_OF_LOW_FAILURE:
+      return {
+        ...state,
+        fetchingDistributorOfLow: false,
+        fetchingDistributorOfLowError: true,
+      };
     /**
      * renewal modal
      */
@@ -934,7 +1166,11 @@ export const distributorReducer = (state = initialState, action) => {
      * Pause modal
      */
     case types.HANDLE_PAUSE_BUTTON_MODAL:
-      return { ...state, addOrderDetailsModal: action.payload, phoneListById: [] };
+      return {
+        ...state,
+        addOrderDetailsModal: action.payload,
+        phoneListById: [],
+      };
 
     /**
      * post renwal form
@@ -995,30 +1231,26 @@ export const distributorReducer = (state = initialState, action) => {
         linkingPauseByDistributorIdError: true,
         addOrderDetailsModal: false,
       };
-      case types.ADD_ACCOUNT_IMPORT_FORM_REQUEST:
-        return { ...state, addingAccountImportForm: true };
-      case types.ADD_ACCOUNT_IMPORT_FORM_SUCCESS:
-        return {
-          ...state,
-          addingAccountImportForm: false,
-          //addLeadsImportModal: false,
-          // organizationDocumentDrawer: false,
-          // repositoryData: [
-          //   action.payload,
-          //   ...state.repositoryData,
-          //  ],
-  
-        };
-      case types.ADD_ACCOUNT_IMPORT_FORM_FAILURE:
-        return {
-          ...state, addingAccountImportForm: false,
-          //addingLeadsImportFormError:true,
-          // addCustomerModal: false 
-        };
-
-
-
-
+    case types.ADD_ACCOUNT_IMPORT_FORM_REQUEST:
+      return { ...state, addingAccountImportForm: true };
+    case types.ADD_ACCOUNT_IMPORT_FORM_SUCCESS:
+      return {
+        ...state,
+        addingAccountImportForm: false,
+        //addLeadsImportModal: false,
+        // organizationDocumentDrawer: false,
+        // repositoryData: [
+        //   action.payload,
+        //   ...state.repositoryData,
+        //  ],
+      };
+    case types.ADD_ACCOUNT_IMPORT_FORM_FAILURE:
+      return {
+        ...state,
+        addingAccountImportForm: false,
+        //addingLeadsImportFormError:true,
+        // addCustomerModal: false
+      };
 
     /**
      * update event modal
@@ -1108,9 +1340,7 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingOrderById: false,
-        orderShowById: [
-          ...state.orderShowById,
-          ...action.payload]
+        orderShowById: [...state.orderShowById, ...action.payload],
       };
     case types.GET_ORDER_BY_ID_FAILURE:
       return {
@@ -1136,6 +1366,17 @@ export const distributorReducer = (state = initialState, action) => {
     case types.INPUT_SEARCH_DATA_FAILURE:
       return { ...state, fetchingInputDistributorDataError: true };
 
+    case types.INPUT_SEARCH_INVOICE_REQUEST:
+      return { ...state, fetchingInputInvoiceData: true };
+    case types.INPUT_SEARCH_INVOICE_SUCCESS:
+      return {
+        ...state,
+        fetchingInputInvoiceData: false,
+        invoiceSearch: action.payload,
+      };
+    case types.INPUT_SEARCH_INVOICE_FAILURE:
+      return { ...state, fetchingInputInvoiceDataError: true };
+
     case types.GET_ORDER_DETAILS_BY_ID_REQUEST:
       return { ...state, fetchingOrderDetailsById: true };
     case types.GET_ORDER_DETAILS_BY_ID_SUCCESS:
@@ -1159,7 +1400,7 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         fetchingAllDistributors: false,
         allDistributors: [...state.allDistributors, ...action.payload],
-        clearbit: null
+        clearbit: null,
         // allDistributors: action.payload,
       };
     case types.GET_ALL_DISTRIBUTORS_LIST_FAILURE:
@@ -1211,8 +1452,7 @@ export const distributorReducer = (state = initialState, action) => {
         updateDisributorOrderByIdError: true,
       };
 
-
-      case types.UPDATE_SUSCRIPTION_REQUEST:
+    case types.UPDATE_SUSCRIPTION_REQUEST:
       return { ...state, updateSuscription: true };
     case types.UPDATE_SUSCRIPTION_SUCCESS:
       return {
@@ -1248,6 +1488,48 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingOrderHistoryById: false,
         fetchingOrderHistoryByIdError: true,
       };
+
+
+
+      case types.ADD_TICKET_REQUEST:
+      return { ...state, addingTicket: true };
+    case types.ADD_TICKET_SUCCESS:
+      return {
+        ...state,
+        addSupplierTicketModal:false,
+       
+        ticketList: [action.payload, ...state.ticketList],
+        
+      };
+    case types.ADD_TICKET_FAILURE:
+      return { ...state, addingTicket: false, addingTicketError: false };
+
+
+
+      case types.UPDATE_TICKET_STAGE_REQUEST:
+        return {
+          ...state,
+          updatingTicketStage: true,
+  
+          // candidateRequirement: action.payload,
+        };
+      case types.UPDATE_TICKET_STAGE_SUCCESS:
+        return {
+          ...state,
+          updatingTicketStage: false,
+          ticketList: updatedDragTicket(
+            state.ticketList,
+            action.payload
+          ),
+          // regionQuotationSalesList: updatedDragQuotation(
+          //   state.regionQuotationSalesList,
+          //   action.payload
+          // ),
+          // candidateRequirement: [action.payload]
+        };
+      case types.UPDATE_TICKET_STAGE_FAILURE:
+        return { ...state };
+
 
     case types.UPDATE_DISTRIBUTOR_CARD_REQUEST:
       return { ...state, updatingDistributorById: true };
@@ -1331,13 +1613,14 @@ export const distributorReducer = (state = initialState, action) => {
     case types.HANDLE_ACCOUNT_UPDATE_MODAL:
       return { ...state, updateAccountModal: action.payload };
 
-
     case types.HANDLE_ACCOUNT_MODAL:
       return { ...state, accountModal: action.payload };
 
-
     case types.HANDLE_PAID_BUTTON_MODAL:
       return { ...state, addPaidButtonModal: action.payload };
+
+    case types.HANDLE_PI_MODAL:
+      return { ...state, piButtonModal: action.payload };
 
     /**
      * post paid form
@@ -1352,7 +1635,6 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         addingPaidByDistributorId: false,
-
       };
     case types.ADD_PAID_BY_DISTRIBUTOR_ID_FAILURE:
       return {
@@ -1566,7 +1848,6 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingAllRecordsError: true,
       };
 
-
     case types.ADD_CAR_REQUEST:
       return { ...state, addingCar: true };
     case types.ADD_CAR_SUCCESS:
@@ -1585,33 +1866,34 @@ export const distributorReducer = (state = initialState, action) => {
       };
     case types.ADD_CAR_FAILURE:
       return {
-        ...state, addingCar: false,
-        // addCustomerModal: false 
+        ...state,
+        addingCar: false,
+        // addCustomerModal: false
       };
 
-
-      case types.ADD_PROCURE_DETAILS_REQUEST:
-        return { ...state, addingProcureDetails: true };
-      case types.ADD_PROCURE_DETAILS_SUCCESS:
-        return {
-          ...state,
-          addingProcureDetails: false,
-          // updateOrderModal: false,
-          // addLinkDistributorOrderConfigureModal: false,
-          // distributorOrder: state.distributorOrder.map((item) => {
-          //   if (item.orderId == action.payload.orderId) {
-          //     return action.payload;
-          //   } else {
-          //     return item;
-          //   }
-          // }),
-        };
-      case types.ADD_PROCURE_DETAILS_FAILURE:
-        return {
-          ...state, addingProcureDetails: false,
-          addingProcureDetailsError:true,
-          // addCustomerModal: false 
-        };
+    case types.ADD_PROCURE_DETAILS_REQUEST:
+      return { ...state, addingProcureDetails: true };
+    case types.ADD_PROCURE_DETAILS_SUCCESS:
+      return {
+        ...state,
+        addingProcureDetails: false,
+        // updateOrderModal: false,
+        // addLinkDistributorOrderConfigureModal: false,
+        // distributorOrder: state.distributorOrder.map((item) => {
+        //   if (item.orderId == action.payload.orderId) {
+        //     return action.payload;
+        //   } else {
+        //     return item;
+        //   }
+        // }),
+      };
+    case types.ADD_PROCURE_DETAILS_FAILURE:
+      return {
+        ...state,
+        addingProcureDetails: false,
+        addingProcureDetailsError: true,
+        // addCustomerModal: false
+      };
 
     /**
      * update product detail modal
@@ -1648,54 +1930,65 @@ export const distributorReducer = (state = initialState, action) => {
         distributorDocumentUploadModal: false,
       };
 
-
     case types.ADD_ORDER_REQUEST:
       return { ...state, addingOrder: true };
     case types.ADD_ORDER_SUCCESS:
       return {
         ...state,
         addingOrder: false,
-     
+
         // distributorOrder: [action.payload, ...state.distributorOrder],
-        highDistributorOrder: action.payload.priority === 'High' ? [action.payload, ...state.highDistributorOrder] : state.highDistributorOrder,
-        mediumDistributorOrder: action.payload.priority === 'Medium' ? [action.payload, ...state.mediumDistributorOrder] : state.mediumDistributorOrder,
-        lowDistributorOrder: action.payload.priority === 'Low' ? [action.payload, ...state.lowDistributorOrder] : state.lowDistributorOrder,
+        highDistributorOrder:
+          action.payload.priority === "High"
+            ? [action.payload, ...state.highDistributorOrder]
+            : state.highDistributorOrder,
+        mediumDistributorOrder:
+          action.payload.priority === "Medium"
+            ? [action.payload, ...state.mediumDistributorOrder]
+            : state.mediumDistributorOrder,
+        lowDistributorOrder:
+          action.payload.priority === "Low"
+            ? [action.payload, ...state.lowDistributorOrder]
+            : state.lowDistributorOrder,
         // highDistributorOrder: [action.payload, ...state.highDistributorOrder],
         // mediumDistributorOrder: [action.payload, ...state.mediumDistributorOrder],
         // lowDistributorOrder: [action.payload, ...state.lowDistributorOrder],
-        orderDetailsId: action.payload
+        orderDetailsId: action.payload,
         // addDriverModal: false,
-
-
       };
     case types.ADD_ORDER_FAILURE:
       return {
         ...state,
         addingOrder: false,
         addingOrderError: true,
-        // addCustomerModal: false 
+        // addCustomerModal: false
       };
 
-
-      case types.ADD_QUOTATION_ORDER_REQUEST:
-        return { ...state, addingQuotationOrder: true };
-      case types.ADD_QUOTATION_ORDER_SUCCESS:
-        return {
-          ...state,
-          addingQuotationOrder: false,   
-          quotationRepairOrder: action.payload.orderType === 'Repair' ? [action.payload, ...state.quotationRepairOrder] : state.quotationRepairOrder,
-          quotationProcureOrder: action.payload.orderType === 'Procure' ? [action.payload, ...state.quotationProcureOrder] : state.quotationProcureOrder,  
-          // quotationRepairOrder: [action.payload, ...state.quotationRepairOrder],
-          // quotationProcureOrder: [action.payload, ...state.quotationProcureOrder],
-          orderDetailsId: action.payload
-        };
-      case types.ADD_QUOTATION_ORDER_FAILURE:
-        return {
-          ...state,
-          addingQuotationOrder: false,
-          addingQuotationOrderError: true,
-          // addCustomerModal: false 
-        };
+    case types.ADD_QUOTATION_ORDER_REQUEST:
+      return { ...state, addingQuotationOrder: true };
+    case types.ADD_QUOTATION_ORDER_SUCCESS:
+      return {
+        ...state,
+        addingQuotationOrder: false,
+        quotationRepairOrder:
+          action.payload.orderType === "Repair"
+            ? [action.payload, ...state.quotationRepairOrder]
+            : state.quotationRepairOrder,
+        quotationProcureOrder:
+          action.payload.orderType === "Procure"
+            ? [action.payload, ...state.quotationProcureOrder]
+            : state.quotationProcureOrder,
+        // quotationRepairOrder: [action.payload, ...state.quotationRepairOrder],
+        // quotationProcureOrder: [action.payload, ...state.quotationProcureOrder],
+        orderDetailsId: action.payload,
+      };
+    case types.ADD_QUOTATION_ORDER_FAILURE:
+      return {
+        ...state,
+        addingQuotationOrder: false,
+        addingQuotationOrderError: true,
+        // addCustomerModal: false
+      };
     /**
      * get list of documents of a DISTRIBUTOR
      */
@@ -1716,7 +2009,6 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingDocumentsByDistributorId: false,
         fetchingDocumentsByDistributorIdError: true,
       };
-
 
     case types.GET_DISTRIBUTOR_TABLE_REQUEST:
       return {
@@ -1822,35 +2114,11 @@ export const distributorReducer = (state = initialState, action) => {
      * get  distributor's contact list
      */
 
-
     case types.SET_DISTRIBUTOR_CONTACT_EDIT:
       return { ...state, setEditingDistributorContact: action.payload };
 
     case types.HANDLE_UPDATE_DISTRIBUTOR_CONTACT_MODAL:
       return { ...state, updateDistributorContactModal: action.payload };
-
-    case types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_REQUEST:
-      return { ...state, updateDisributorContactById: true };
-    case types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_SUCCESS:
-      return {
-        ...state,
-        updateDisributorContactById: false,
-        updateDistributorContactModal: false,
-        contactDistributor: state.contactDistributor.map((item) => {
-          if (item.contactPersonId == action.payload.contactPersonId) {
-            return action.payload;
-          } else {
-            return item;
-          }
-        }),
-      };
-    case types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_FAILURE:
-      return {
-        ...state,
-        updateDisributorContactById: false,
-        updateDisributorContactByIdError: true,
-        updateDistributorContactModal: false,
-      };
 
     case types.SET_EDIT_PAYMENT_DATA:
       return { ...state, setEditingPayment: action.payload };
@@ -2023,6 +2291,41 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingChoosenCurrencyIdError: true,
       };
 
+
+
+
+      case types.GET_DISTRIBUTION_BAR_CHART_REQUEST:
+        return { ...state, fetchingDistributorChartList: true };
+      case types.GET_DISTRIBUTION_BAR_CHART_SUCCESS:
+        return {
+          ...state,
+          fetchingDistributorChartList: false,
+          distributorChartList: action.payload,
+  
+          //opportunityByUserId: [...state.opportunityByUserId, ...action.payload],
+        };
+      case types.GET_DISTRIBUTION_BAR_CHART_FAILURE:
+        return {
+          ...state,
+          fetchingDistributorChartList: false,
+          fetchingDistributorChartListError: true,
+        };
+
+        case types.GET_SEARCH_DISTRIBUTIOR_REQUEST:
+          return { ...state, fetchingSearchDistributor: true };
+        case types.GET_SEARCH_DISTRIBUTIOR_SUCCESS:
+          return {
+            ...state,
+            fetchingSearchDistributor: false,
+            searchDistributor: action.payload,
+          };
+        case types.GET_SEARCH_DISTRIBUTIOR_FAILURE:
+          return {
+            ...state,
+            fetchingSearchDistributor: false,
+            fetchingSearchDistributorError: true,
+          };
+
     case types.GET_PRODUCT_BY_CURRENCY_REQUEST:
       return { ...state, fetchingProductByCurrency: true };
     case types.GET_PRODUCT_BY_CURRENCY_SUCCESS:
@@ -2073,10 +2376,8 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         fetchingDistributorQuoteByDistributorId: false,
         fetchingDistributorQuoteByDistributorIdError: true,
-        generateQuoteInDistributor: false
+        generateQuoteInDistributor: false,
       };
-
-
 
     case types.HANDLE_INVENTORY_LOCATION_IN_ORDER_MODAL:
       return { ...state, addInventoryInOrder: action.payload };
@@ -2169,7 +2470,7 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingPhoneListById: false,
-        phoneListById: [...state.phoneListById, ...action.payload]
+        phoneListById: [...state.phoneListById, ...action.payload],
       };
     case types.GET_PHONE_LIST_BY_ID_FAILURE:
       return {
@@ -2264,6 +2565,21 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingSpareListByPhoneIdError: true,
       };
 
+    case types.GET_SPARE_LIST_BY_PHONETASKID_REQUEST:
+      return { ...state, fetchingSpareListByPhoneTaskId: true };
+    case types.GET_SPARE_LIST_BY_PHONETASKID_SUCCESS:
+      return {
+        ...state,
+        fetchingSpareListByPhoneTaskId: false,
+        phoneTaskIdSpareList: action.payload,
+      };
+    case types.GET_SPARE_LIST_BY_PHONETASKID_FAILURE:
+      return {
+        ...state,
+        fetchingSpareListByPhoneTaskId: false,
+        fetchingSpareListByPhoneTaskIdError: true,
+      };
+
     case types.GET_SUBORDER_DATA_REQUEST:
       return { ...state, fetchingSuborderData: true };
     case types.GET_SUBORDER_DATA_SUCCESS:
@@ -2278,8 +2594,6 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingSuborderData: false,
         fetchingSuborderDataError: true,
       };
-
-
 
     case types.UPDATE_OFFER_PRICE_REQUEST:
       return { ...state, updatingOfferPriceOfOrder: true };
@@ -2344,7 +2658,7 @@ export const distributorReducer = (state = initialState, action) => {
         updatingOfferPriceOfOrderError: true,
       };
 
-      case types.UPDATE_ACCOUNT_PRICE_REQUEST:
+    case types.UPDATE_ACCOUNT_PRICE_REQUEST:
       return { ...state, updatingAccountPrice: true };
     case types.UPDATE_ACCOUNT_PRICE_SUCCESS:
       return {
@@ -2499,8 +2813,9 @@ export const distributorReducer = (state = initialState, action) => {
       return { ...state, fetchingOpportunityRecord: true };
     case types.GET_OPPORTUNITY_RECORD_SUCCESS:
       return {
-        ...state, fetchingOpportunityRecord: false,
-        opportunityRecord: action.payload
+        ...state,
+        fetchingOpportunityRecord: false,
+        opportunityRecord: action.payload,
       };
     case types.GET_OPPORTUNITY_RECORD_FAILURE:
       return {
@@ -2510,9 +2825,10 @@ export const distributorReducer = (state = initialState, action) => {
       };
     case types.HANDLE_ADD_ORDER_MODAL:
       return {
-        ...state, addCatalogueOrderModal: action.payload,
+        ...state,
+        addCatalogueOrderModal: action.payload,
         productByDistributor: [],
-        productionOrderId: {}
+        productionOrderId: {},
       };
 
     case types.HANDLE_UPDATE_ORDER_MODAL:
@@ -2525,8 +2841,9 @@ export const distributorReducer = (state = initialState, action) => {
       return { ...state, fetchingAllProductList: true };
     case types.GET_ALL_PRODUCT_LIST_SUCCESS:
       return {
-        ...state, fetchingAllProductList: false,
-        allProduct: action.payload
+        ...state,
+        fetchingAllProductList: false,
+        allProduct: action.payload,
       };
     case types.GET_ALL_PRODUCT_LIST_FAILURE:
       return {
@@ -2539,7 +2856,8 @@ export const distributorReducer = (state = initialState, action) => {
       return { ...state, addingUnitForCatalogueItem: true };
     case types.SAVE_UNIT_FOR_CATALOGUE_ITEM_SUCCESS:
       return {
-        ...state, addingUnitForCatalogueItem: false,
+        ...state,
+        addingUnitForCatalogueItem: false,
         productByDistributor: state.productByDistributor.map((item) => {
           if (item.productId == action.payload.productId) {
             return action.payload;
@@ -2559,8 +2877,9 @@ export const distributorReducer = (state = initialState, action) => {
       return { ...state, fetchingProductByDistributor: true };
     case types.GET_PRODUCT_BY_DISTRIBUTOR_SUCCESS:
       return {
-        ...state, fetchingProductByDistributor: false,
-        productByDistributor: action.payload
+        ...state,
+        fetchingProductByDistributor: false,
+        productByDistributor: action.payload,
       };
     case types.GET_PRODUCT_BY_DISTRIBUTOR_FAILURE:
       return {
@@ -2601,16 +2920,44 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         addingProductionLocationInOrder: false,
         accountOrderProduction: false,
-        distributorOrder: [action.payload, ...state.distributorOrder]
-
+        distributorOrder: [action.payload, ...state.distributorOrder],
       };
     case types.ADD_PRODUCTION_LOCATION_IN_ORDER_FAILURE:
       return {
         ...state,
         addingProductionLocationInOrder: false,
         addingProductionLocationInOrderError: true,
-        accountOrderProduction: false
+        accountOrderProduction: false,
       };
+
+
+
+
+      case types.UPDATE_ACCOUNT_USER_REQUEST:
+        return { ...state, updateAccountUserById: true };
+      case types.UPDATE_ACCOUNT_USER_SUCCESS:
+        return {
+          ...state,
+          updateAccountUserById: false,
+          updateAccountUserModal: false,
+          allDistributors: state.allDistributors.map((item) => {
+            if (item.distributorId === action.payload.distributorId) {
+              return action.payload;
+            } else {
+              return item;
+            }
+          }),
+
+
+
+         
+        };
+      case types.UPDATE_ACCOUNT_USER_FAILURE:
+        return {
+          ...state,
+          updateAccountUserById: false,
+          updateAccountUserByIdError: true,
+        };
 
     case types.GET_PAYMENT_MODE_REQUEST:
       return { ...state, fetchingPaymentMode: true };
@@ -2618,7 +2965,7 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingPaymentMode: false,
-        paymentModee: action.payload
+        paymentModee: action.payload,
       };
     case types.GET_PAYMENT_MODE_FAILURE:
       return {
@@ -2633,7 +2980,7 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingProductById: false,
-        catalogueById: action.payload
+        catalogueById: action.payload,
       };
     case types.GET_DISTRIBUTORS_BY_USER_ID_FAILURE:
       return {
@@ -2669,15 +3016,36 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         removingOrderAcc: false,
-        highDistributorOrder: state.highDistributorOrder.filter(
-          (item) => item.orderId !== action.payload.orderId
-        ),
-        mediumDistributorOrder: state.mediumDistributorOrder.filter(
-          (item) => item.orderId !== action.payload.orderId
-        ),
-        lowDistributorOrder: state.lowDistributorOrder.filter(
-          (item) => item.orderId !== action.payload.orderId
-        ),
+        highDistributorOrder: state.highDistributorOrder.map((item) => {
+          if (item.orderPhoneId == action.payload.orderPhoneId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        mediumDistributorOrder: state.mediumDistributorOrder.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        lowDistributorOrder: state.lowDistributorOrder.map((item) => {
+          if (item.orderId == action.payload.orderId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        // highDistributorOrder: state.highDistributorOrder.filter(
+        //   (item) => item.orderId !== action.payload.orderId
+        // ),
+        // mediumDistributorOrder: state.mediumDistributorOrder.filter(
+        //   (item) => item.orderId !== action.payload.orderId
+        // ),
+        // lowDistributorOrder: state.lowDistributorOrder.filter(
+        //   (item) => item.orderId !== action.payload.orderId
+        // ),
       };
     case types.REMOVE_ORDER_ACC_FAILURE:
       return {
@@ -2690,7 +3058,11 @@ export const distributorReducer = (state = initialState, action) => {
       return { ...state, showProductList: action.payload };
 
     case types.HANDLE_SEARCH_ITEMS_MODAL:
-      return { ...state, searchItemsInLocation: action.payload, searchedItem: [] };
+      return {
+        ...state,
+        searchItemsInLocation: action.payload,
+        searchedItem: [],
+      };
 
     case types.CREATE_ORDER_FOR_PRODUCTION_REQUEST:
       return { ...state, creatingOrderForProduction: true };
@@ -2700,7 +3072,7 @@ export const distributorReducer = (state = initialState, action) => {
         creatingOrderForProduction: false,
         productionOrder: [action.payload, ...state.productionOrder],
         // orderDetailsId: action.payload
-        productionOrderId: action.payload
+        productionOrderId: action.payload,
       };
     case types.CREATE_ORDER_FOR_PRODUCTION_FAILURE:
       return {
@@ -2715,7 +3087,7 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingProductionOrderById: false,
-        productionOrder: action.payload
+        productionOrder: action.payload,
       };
     case types.GET_PRODUCTION_ORDER_FAILURE:
       return {
@@ -2730,7 +3102,7 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingProductionDetailById: false,
-        productionOrderDetail: action.payload
+        productionOrderDetail: action.payload,
       };
     case types.GET_PRODUCTION_ORDER_DETAIL_FAILURE:
       return {
@@ -2745,14 +3117,13 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingUsersByDepartmentAndLocation: false,
-        departmentUser: action.payload
+        departmentUser: action.payload,
       };
     case types.GET_USERS_BY_DEPARTMENT_LOCATION_FAILURE:
       return {
         ...state,
         fetchingUsersByDepartmentAndLocation: false,
         fetchingUsersByDepartmentAndLocationError: true,
-
       };
 
     case types.GET_CUSTOMER_BY_USER_REQUEST:
@@ -2761,16 +3132,13 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingCustomerByUser: false,
-        customerListByUser: [
-          ...state.customerListByUser,
-          ...action.payload]
+        customerListByUser: [...state.customerListByUser, ...action.payload],
       };
     case types.GET_CUSTOMER_BY_USER_FAILURE:
       return {
         ...state,
         fetchingCustomerByUser: false,
         fetchingCustomerByUserError: true,
-
       };
 
     case types.GET_COMPLETE_ORDERS_REQUEST:
@@ -2779,9 +3147,7 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingCompleteOrders: false,
-        completeOrder: [
-          ...state.completeOrder,
-          ...action.payload]
+        completeOrder: [...state.completeOrder, ...action.payload],
       };
     case types.GET_COMPLETE_ORDERS_FAILURE:
       return {
@@ -2790,59 +3156,50 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingCompleteOrdersError: true,
       };
 
+    case types.GET_HIGH_COMPLETE_ORDERS_REQUEST:
+      return { ...state, fetchingHighCompleteOrders: true };
+    case types.GET_HIGH_COMPLETE_ORDERS_SUCCESS:
+      return {
+        ...state,
+        fetchingHighCompleteOrders: false,
+        highCompleteOrder: [...state.highCompleteOrder, ...action.payload],
+      };
+    case types.GET_HIGH_COMPLETE_ORDERS_FAILURE:
+      return {
+        ...state,
+        fetchingHighCompleteOrders: false,
+        fetchingHighCompleteOrdersError: true,
+      };
 
-      case types.GET_HIGH_COMPLETE_ORDERS_REQUEST:
-        return { ...state, fetchingHighCompleteOrders: true };
-      case types.GET_HIGH_COMPLETE_ORDERS_SUCCESS:
-        return {
-          ...state,
-          fetchingHighCompleteOrders: false,
-          highCompleteOrder: [
-            ...state.highCompleteOrder,
-            ...action.payload]
-        };
-      case types.GET_HIGH_COMPLETE_ORDERS_FAILURE:
-        return {
-          ...state,
-          fetchingHighCompleteOrders: false,
-          fetchingHighCompleteOrdersError: true,
-        };
+    case types.GET_MEDIUM_COMPLETE_ORDERS_REQUEST:
+      return { ...state, fetchingMediumCompleteOrders: true };
+    case types.GET_MEDIUM_COMPLETE_ORDERS_SUCCESS:
+      return {
+        ...state,
+        fetchingMediumCompleteOrders: false,
+        mediumCompleteOrder: [...state.mediumCompleteOrder, ...action.payload],
+      };
+    case types.GET_MEDIUM_COMPLETE_ORDERS_FAILURE:
+      return {
+        ...state,
+        fetchingMediumCompleteOrders: false,
+        fetchingMediumCompleteOrdersError: true,
+      };
 
-
-        case types.GET_MEDIUM_COMPLETE_ORDERS_REQUEST:
-          return { ...state, fetchingMediumCompleteOrders: true };
-        case types.GET_MEDIUM_COMPLETE_ORDERS_SUCCESS:
-          return {
-            ...state,
-            fetchingMediumCompleteOrders: false,
-            mediumCompleteOrder: [
-              ...state.mediumCompleteOrder,
-              ...action.payload]
-          };
-        case types.GET_MEDIUM_COMPLETE_ORDERS_FAILURE:
-          return {
-            ...state,
-            fetchingMediumCompleteOrders: false,
-            fetchingMediumCompleteOrdersError: true,
-          };
-
-
-          case types.GET_LOW_COMPLETE_ORDERS_REQUEST:
-            return { ...state, fetchingLowCompleteOrders: true };
-          case types.GET_LOW_COMPLETE_ORDERS_SUCCESS:
-            return {
-              ...state,
-              fetchingLowCompleteOrders: false,
-              lowCompleteOrder: [
-                ...state.lowCompleteOrder,
-                ...action.payload]
-            };
-          case types.GET_LOW_COMPLETE_ORDERS_FAILURE:
-            return {
-              ...state,
-              fetchingLowCompleteOrders: false,
-              fetchingLowCompleteOrdersError: true,
-            };
+    case types.GET_LOW_COMPLETE_ORDERS_REQUEST:
+      return { ...state, fetchingLowCompleteOrders: true };
+    case types.GET_LOW_COMPLETE_ORDERS_SUCCESS:
+      return {
+        ...state,
+        fetchingLowCompleteOrders: false,
+        lowCompleteOrder: [...state.lowCompleteOrder, ...action.payload],
+      };
+    case types.GET_LOW_COMPLETE_ORDERS_FAILURE:
+      return {
+        ...state,
+        fetchingLowCompleteOrders: false,
+        fetchingLowCompleteOrdersError: true,
+      };
 
     case types.SEARCH_ITEM_IN_LOCATION_REQUEST:
       return { ...state, searchingItemInLocation: true };
@@ -2892,7 +3249,7 @@ export const distributorReducer = (state = initialState, action) => {
         ...state,
         deletingSpareList: false,
         spareList: state.spareList.filter(
-          (item) => item.phoneSpareId !== action.payload.phoneSpareId
+          (item) => item.phoneTaskId !== action.payload.phoneTaskId
         ),
         // orderPhoneList: state.orderPhoneList.map((item) => {
         //   if (item.phoneId == action.payload.phoneId) {
@@ -2936,7 +3293,7 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingSuborderPhone: false,
-        subOrderPhoneList: action.payload
+        subOrderPhoneList: action.payload,
       };
     case types.GET_SUB_ORDER_PHONE_LIST_FAILURE:
       return {
@@ -3019,7 +3376,7 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingLobList: false,
-        lobList: action.payload
+        lobList: action.payload,
       };
     case types.GET_LOB_LIST_FAILURE:
       return {
@@ -3034,7 +3391,7 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingDispatchItemList: false,
-        searchedItem: action.payload
+        searchedItem: action.payload,
       };
     case types.GET_DISPATCH_ITEM_LIST_FAILURE:
       return {
@@ -3049,14 +3406,13 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingPulseList: false,
-        pulseList: action.payload
+        pulseList: action.payload,
       };
     case types.GET_PULSE_LIST_FAILURE:
       return {
         ...state,
         fetchingPulseList: false,
         fetchingPulseListError: true,
-
       };
 
     case types.UPDATE_CONTACT_ROLE_BY_ACCOUNT_REQUEST:
@@ -3064,20 +3420,16 @@ export const distributorReducer = (state = initialState, action) => {
     case types.UPDATE_CONTACT_ROLE_BY_ACCOUNT_SUCCESS:
       return {
         ...state,
-        contactDistributor: state.contactDistributor.map(
-          (item) => {
-            if (item.contactPersonId === action.payload.contactPersonId) {
-              return action.payload;
-            } else {
-              return item;
-            }
-          }),
+        contactDistributor: state.contactDistributor.map((item) => {
+          if (item.contactPersonId === action.payload.contactPersonId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
       };
     case types.UPDATE_CONTACT_ROLE_BY_ACCOUNT_FAILURE:
       return { ...state };
-
-
-
 
     case types.GET_ORDER_STATUS_REQUEST:
       return { ...state, fetchingOrderStatus: true };
@@ -3085,16 +3437,14 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingOrderStatus: false,
-        orderStatus: action.payload
+        orderStatus: action.payload,
       };
     case types.GET_ORDER_STATUS_FAILURE:
       return {
         ...state,
         fetchingOrderStatus: false,
         fetchingOrderStatusError: true,
-
       };
-
 
     case types.ADD_ORDER_PROCUREMENT_REQUEST:
       return { ...state, addingOrderProcurement: true };
@@ -3102,13 +3452,21 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         addingOrderProcurement: false,
-        highDistributorOrder: action.payload.priority === 'High' ? [action.payload, ...state.highDistributorOrder] : state.highDistributorOrder,
-        mediumDistributorOrder: action.payload.priority === 'Medium' ? [action.payload, ...state.mediumDistributorOrder] : state.mediumDistributorOrder,
-        lowDistributorOrder: action.payload.priority === 'Low' ? [action.payload, ...state.lowDistributorOrder] : state.lowDistributorOrder,
+        highDistributorOrder:
+          action.payload.priority === "High"
+            ? [action.payload, ...state.highDistributorOrder]
+            : state.highDistributorOrder,
+        mediumDistributorOrder:
+          action.payload.priority === "Medium"
+            ? [action.payload, ...state.mediumDistributorOrder]
+            : state.mediumDistributorOrder,
+        lowDistributorOrder:
+          action.payload.priority === "Low"
+            ? [action.payload, ...state.lowDistributorOrder]
+            : state.lowDistributorOrder,
         // procurementOrder: [action.payload, ...state.procurementOrder],
         orderDetailsId: action.payload,
         // addLinkCustomerProcurementModal: false,
-
       };
     case types.ADD_ORDER_PROCUREMENT_FAILURE:
       return {
@@ -3123,7 +3481,7 @@ export const distributorReducer = (state = initialState, action) => {
       return {
         ...state,
         fetchingOrderProcurement: false,
-        procurementOrder: [...state.procurementOrder, ...action.payload]
+        procurementOrder: [...state.procurementOrder, ...action.payload],
       };
     case types.GET_ORDER_PROCUREMENT_FAILURE:
       return {
@@ -3131,7 +3489,6 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingOrderProcurement: false,
         fetchingOrderProcurementError: true,
       };
-
 
     case types.GET_CHATGPT_REQUEST:
       return { ...state, fetchingChatgpt: true };
@@ -3151,10 +3508,8 @@ export const distributorReducer = (state = initialState, action) => {
     case types.HANDLE_UPDATE_PROCURE_ORDER_MODAL:
       return { ...state, updateProcureDetailModal: action.payload };
 
-
     case types.SET_PROCURE_EDIT:
       return { ...state, setEdittingProcure: action.payload };
-
 
     case types.UPDATE_PROCURE_STEP1_REQUEST:
       return { ...state, updatingProcureStep1: true };
@@ -3181,189 +3536,216 @@ export const distributorReducer = (state = initialState, action) => {
     case types.EMPTY_CLEARBIT_TABLE:
       return { ...state, clearbit: {} };
 
-
     case types.HANDLE_ACCOUNT_OPPORTUNITY_MODAL:
       return { ...state, addAccountOpportunityModal: action.payload };
 
-
-      case types.GET_BRAND_REQUEST:
-        return { ...state, fetchingBrand: true };
+    case types.GET_BRAND_REQUEST:
+      return { ...state, fetchingBrand: true };
     case types.GET_BRAND_SUCCESS:
-        return { ...state, fetchingBrand: false, brand: action.payload };
+      return { ...state, fetchingBrand: false, brand: action.payload };
     case types.GET_BRAND_FAILURE:
-        return { ...state, fetchingBrand: false, fetchingBrandError: true };
+      return { ...state, fetchingBrand: false, fetchingBrandError: true };
 
+    case types.GET_MODEL_REQUEST:
+      return { ...state, fetchingModel: true };
+    case types.GET_MODEL_SUCCESS:
+      return { ...state, fetchingModel: false, model: action.payload };
+    case types.GET_MODEL_FAILURE:
+      return { ...state, fetchingModel: false, fetchingModelError: true };
 
+    case types.GET_PROCURE_DETAILS_REQUEST:
+      return { ...state, fetchingProcureDetails: true };
+    case types.GET_PROCURE_DETAILS_SUCCESS:
+      return {
+        ...state,
+        fetchingProcureDetails: false,
+        procureDetails: action.payload,
+      };
+    case types.GET_PROCURE_DETAILS_FAILURE:
+      return {
+        ...state,
+        fetchingProcureDetails: false,
+        fetchingProcureDetailsError: true,
+      };
 
-        case types.GET_MODEL_REQUEST:
-          return { ...state, fetchingModel: true };
-      case types.GET_MODEL_SUCCESS:
-          return { ...state, fetchingModel: false, model: action.payload };
-      case types.GET_MODEL_FAILURE:
-          return { ...state, fetchingModel: false, fetchingModelError: true };
+    case types.GET_QUOTATION_EXCEL_DETAILS_REQUEST:
+      return { ...state, fetchingQuotationExcelDetails: true };
+    case types.GET_QUOTATION_EXCEL_DETAILS_SUCCESS:
+      return {
+        ...state,
+        fetchingQuotationExcelDetails: false,
+        quotationPhoneDetails: action.payload,
+      };
+    case types.GET_QUOTATION_EXCEL_DETAILS_FAILURE:
+      return {
+        ...state,
+        fetchingQuotationExcelDetails: false,
+        fetchingQuotationExcelDetailsError: true,
+      };
 
+    case types.DELETE_PROCURE_DATA_REQUEST:
+      return { ...state, deletingProcureData: true };
+    case types.DELETE_PROCURE_DATA_SUCCESS:
+      return {
+        ...state,
+        deletingProcureData: false,
+        procureDetails: state.procureDetails.filter(
+          (item) => item.id !== action.payload
+        ),
+      };
+    case types.DELETE_PROCURE_DATA_FAILURE:
+      return {
+        ...state,
+        deletingProcureData: false,
+        deletingProcureDataError: false,
+      };
 
-          case types.GET_PROCURE_DETAILS_REQUEST:
-            return { ...state, fetchingProcureDetails: true };
-        case types.GET_PROCURE_DETAILS_SUCCESS:
-            return { ...state, fetchingProcureDetails: false, procureDetails: action.payload };
-        case types.GET_PROCURE_DETAILS_FAILURE:
-            return { ...state, fetchingProcureDetails: false, fetchingProcureDetailsError: true };
+    case types.UPDATE_PROCURE_DETAILS_REQUEST:
+      return { ...state, updatingProcureDetails: true };
+    case types.UPDATE_PROCURE_DETAILS_SUCCESS:
+      // return { ...state, updatingCustomers: false, sources: [...state.sources, action.payload] };
+      return {
+        ...state,
+        updatingProcureDetails: false,
+        procureDetails: state.procureDetails.map((sector) =>
+          sector.id === action.payload.id ? action.payload : sector
+        ),
+      };
+    case types.UPDATE_PROCURE_DETAILS_FAILURE:
+      return {
+        ...state,
+        updatingProcureDetails: false,
+        updatingProcureDetailsError: true,
+      };
 
+    case types.HANDLE_PROCURE_DETAILS_MODAL:
+      return {
+        ...state,
+        addProcureDetailsModal: action.payload,
+        phoneListById: [],
+      };
 
+    case types.GET_QUOTATION_REPAIR_ORDER_REQUEST:
+      return { ...state, fetchingQuotationRepairOrder: true };
+    case types.GET_QUOTATION_REPAIR_ORDER_SUCCESS:
+      return {
+        ...state,
+        fetchingQuotationRepairOrder: false,
+        quotationRepairOrder: [
+          ...state.quotationRepairOrder,
+          ...action.payload,
+        ],
+      };
+    case types.GET_QUOTATION_REPAIR_ORDER_FAILURE:
+      return {
+        ...state,
+        fetchingQuotationRepairOrder: false,
+        fetchingQuotationRepairOrderError: true,
+      };
 
-            
-          case types.GET_QUOTATION_EXCEL_DETAILS_REQUEST:
-            return { ...state, fetchingQuotationExcelDetails: true };
-        case types.GET_QUOTATION_EXCEL_DETAILS_SUCCESS:
-            return { ...state, fetchingQuotationExcelDetails: false, quotationPhoneDetails: action.payload };
-        case types.GET_QUOTATION_EXCEL_DETAILS_FAILURE:
-            return { ...state, fetchingQuotationExcelDetails: false, fetchingQuotationExcelDetailsError: true };
-    
-    
-  
-            case types.DELETE_PROCURE_DATA_REQUEST:
-              return { ...state, deletingProcureData: true };
-            case types.DELETE_PROCURE_DATA_SUCCESS:
-              return {
-                ...state,
-                deletingProcureData: false,
-                procureDetails: state.procureDetails.filter(
-                  (item) => item.id !== action.payload
-                ),
-              };
-            case types.DELETE_PROCURE_DATA_FAILURE:
-              return { ...state, deletingProcureData: false, deletingProcureDataError: false };
-    
+    case types.GET_QUOTATION_PROCURE_ORDER_REQUEST:
+      return { ...state, fetchingQuotationProcureOrder: true };
+    case types.GET_QUOTATION_PROCURE_ORDER_SUCCESS:
+      return {
+        ...state,
+        fetchingQuotationProcureOrder: false,
+        quotationProcureOrder: [
+          ...state.quotationProcureOrder,
+          ...action.payload,
+        ],
+      };
+    case types.GET_QUOTATION_PROCURE_ORDER_FAILURE:
+      return {
+        ...state,
+        fetchingQuotationProcureOrder: false,
+        fetchingQuotationProcureOrderError: true,
+      };
 
+    case types.ADD_QUOTATION_CAR_REQUEST:
+      return { ...state, addingQuotationCar: true };
+    case types.ADD_QUOTATION_CAR_SUCCESS:
+      return {
+        ...state,
+        addingQuotationCar: false,
+        addAccountOpportunityModal: false,
+        // addLinkDistributorOrderConfigureModal: false,
+        quotationRepairOrder: state.quotationRepairOrder.map((item) => {
+          if (item.quotationId == action.payload.quotationId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.ADD_QUOTATION_CAR_FAILURE:
+      return {
+        ...state,
+        addingQuotationCar: false,
+        // addCustomerModal: false
+      };
 
-              case types.UPDATE_PROCURE_DETAILS_REQUEST:
-                return { ...state, updatingProcureDetails: true };
-              case types.UPDATE_PROCURE_DETAILS_SUCCESS:
-                // return { ...state, updatingCustomers: false, sources: [...state.sources, action.payload] };
-                return {
-                  ...state,
-                  updatingProcureDetails: false,
-                  procureDetails: state.procureDetails.map((sector) =>
-                    sector.id === action.payload.id
-                      ? action.payload
-                      : sector
-                  ),
-                };
-              case types.UPDATE_PROCURE_DETAILS_FAILURE:
-                return {
-                  ...state,
-                  updatingProcureDetails: false,
-                  updatingProcureDetailsError: true,
-                };
+    case types.ADD_QUOTATION_PHONE_DETAILS_REQUEST:
+      return { ...state, addingQuotationPhoneDetails: true };
+    case types.ADD_QUOTATION_PHONE_DETAILS_SUCCESS:
+      return {
+        ...state,
+        addingQuotationPhoneDetails: false,
+      };
+    case types.ADD_QUOTATION_PHONE_DETAILS_FAILURE:
+      return {
+        ...state,
+        addingQuotationPhoneDetails: false,
+        addingQuotationPhoneDetailsError: true,
+        // addCustomerModal: false
+      };
 
+    case types.QUOTATION_TO_ORDER_CONVERT_REQUEST:
+      return {
+        ...state,
+        convertingQuotationToOrder: true,
+      };
+    case types.QUOTATION_TO_ORDER_CONVERT_SUCCESS:
+      return {
+        ...state,
+        convertingQuotationToOrder: false,
+        quotationRepairOrder: state.quotationRepairOrder.filter(
+          (item) => item.quotationId !== action.payload
+        ),
+        quotationProcureOrder: state.quotationProcureOrder.filter(
+          (item) => item.quotationId !== action.payload
+        ),
+      };
+    case types.QUOTATION_TO_ORDER_CONVERT_FAILURE:
+      return {
+        ...state,
+        convertingQuotationToOrder: false,
+        convertingQuotationToOrderError: true,
+      };
 
-                case types.HANDLE_PROCURE_DETAILS_MODAL:
-                  return { ...state, addProcureDetailsModal: action.payload, phoneListById: [] };
-            
-                  case types.GET_QUOTATION_REPAIR_ORDER_REQUEST:
-                    return { ...state, fetchingQuotationRepairOrder: true };
-                  case types.GET_QUOTATION_REPAIR_ORDER_SUCCESS:
-                    return {
-                      ...state,
-                      fetchingQuotationRepairOrder: false,
-                      quotationRepairOrder: [...state.quotationRepairOrder, ...action.payload]
-                    };
-                  case types.GET_QUOTATION_REPAIR_ORDER_FAILURE:
-                    return {
-                      ...state,
-                      fetchingQuotationRepairOrder: false,
-                      fetchingQuotationRepairOrderError: true,
-                    };
+    case types.HANDLE_CLAER_SEARCHED_DATA_ACCOUNT:
+      return {
+        ...state,
+        distributorSearch: [],
+        // deletedTruck: []
+      };
 
+    case types.HANDLE_CLAER_SEARCHED_INVOICE:
+      return {
+        ...state,
+        invoiceSearch: [],
+        // deletedTruck: []
+      };
 
-                    case types.GET_QUOTATION_PROCURE_ORDER_REQUEST:
-                      return { ...state, fetchingQuotationProcureOrder: true };
-                    case types.GET_QUOTATION_PROCURE_ORDER_SUCCESS:
-                      return {
-                        ...state,
-                        fetchingQuotationProcureOrder: false,
-                        quotationProcureOrder: [...state.quotationProcureOrder, ...action.payload]
-                      };
-                    case types.GET_QUOTATION_PROCURE_ORDER_FAILURE:
-                      return {
-                        ...state,
-                        fetchingQuotationProcureOrder: false,
-                        fetchingQuotationProcureOrderError: true,
-                      };
+    case types.HANDLE_STATUS_SHOW_DRAWER:
+      return { ...state, showStatusDrwr: action.payload };
 
+    case types.HANDLE_INVOICE_ORDER_DRAWER:
+      return { ...state, invoiceOrders: action.payload };
 
-                      case types.ADD_QUOTATION_CAR_REQUEST:
-                        return { ...state, addingQuotationCar: true };
-                      case types.ADD_QUOTATION_CAR_SUCCESS:
-                        return {
-                          ...state,
-                          addingQuotationCar: false,
-                          addAccountOpportunityModal: false,
-                          // addLinkDistributorOrderConfigureModal: false,
-                          quotationRepairOrder: state.quotationRepairOrder.map((item) => {
-                            if (item.quotationId == action.payload.quotationId) {
-                              return action.payload;
-                            } else {
-                              return item;
-                            }
-                          }),
-                        };
-                      case types.ADD_QUOTATION_CAR_FAILURE:
-                        return {
-                          ...state, addingQuotationCar: false,
-                          // addCustomerModal: false 
-                        };
+    case types.HANDLE_INVOICE_DRAWER:
+      return { ...state, invoiceO: action.payload };
 
-                        case types.ADD_QUOTATION_PHONE_DETAILS_REQUEST:
-                          return { ...state, addingQuotationPhoneDetails: true };
-                        case types.ADD_QUOTATION_PHONE_DETAILS_SUCCESS:
-                          return {
-                            ...state,
-                            addingQuotationPhoneDetails: false,
-                       
-                          };
-                        case types.ADD_QUOTATION_PHONE_DETAILS_FAILURE:
-                          return {
-                            ...state, addingQuotationPhoneDetails: false,
-                            addingQuotationPhoneDetailsError:true,
-                            // addCustomerModal: false 
-                          };
-
-
-                          case types.QUOTATION_TO_ORDER_CONVERT_REQUEST:
-                            return {
-                              ...state,
-                              convertingQuotationToOrder: true,
-                            };
-                          case types.QUOTATION_TO_ORDER_CONVERT_SUCCESS:
-                            return {
-                              ...state,
-                              convertingQuotationToOrder: false,
-                              quotationRepairOrder: state.quotationRepairOrder.filter(
-                                (item) => item.quotationId !== action.payload
-                              ),
-                              quotationProcureOrder: state.quotationProcureOrder.filter(
-                                (item) => item.quotationId !== action.payload
-                              ),
-                            };
-                          case types.QUOTATION_TO_ORDER_CONVERT_FAILURE:
-                            return {
-                              ...state,
-                              convertingQuotationToOrder: false,
-                              convertingQuotationToOrderError: true,
-                            };
-
-                          case types.HANDLE_CLAER_SEARCHED_DATA_ACCOUNT:
-                            return { ...state, 
-                              distributorSearch: [], 
-                              // deletedTruck: [] 
-                            };
-
-                            case types.HANDLE_STATUS_SHOW_DRAWER:
-                              return { ...state, showStatusDrwr: action.payload };
-
-                              case types.GET_PROCURE_STATUS_ITEM_REQUEST:
+    case types.GET_PROCURE_STATUS_ITEM_REQUEST:
       return { ...state, fetchingProcureStatusItem: true };
     case types.GET_PROCURE_STATUS_ITEM_SUCCESS:
       return {
@@ -3378,8 +3760,7 @@ export const distributorReducer = (state = initialState, action) => {
         fetchingProcureStatusItemError: true,
       };
 
-
-      case types.UPDATE_ORDR_SUPLR_ITEMS_REQUEST:
+    case types.UPDATE_ORDR_SUPLR_ITEMS_REQUEST:
       return {
         ...state,
         updatingOrdrSuplrItems: true,
@@ -3404,37 +3785,336 @@ export const distributorReducer = (state = initialState, action) => {
         updatingOrdrSuplrItemsError: true,
       };
 
-      case types.GET_LOCATION_NAMES_BY_PRODUCTID_REQUEST:
-        return { ...state, fetchingLocationNamesByProductId: true };
-      case types.GET_LOCATION_NAMES_BY_PRODUCTID_SUCCESS:
-        return {
-          ...state,
-          fetchingLocationNamesByProductId: false,
-          locationNamesByProductId: action.payload,
-        };
-      case types.GET_LOCATION_NAMES_BY_PRODUCTID_FAILURE:
-        return {
-          ...state,
-          fetchingLocationNamesByProductId: false,
-          fetchingLocationNamesByProductIdError: true,
-        };
+    case types.GET_LOCATION_NAMES_BY_PRODUCTID_REQUEST:
+      return { ...state, fetchingLocationNamesByProductId: true };
+    case types.GET_LOCATION_NAMES_BY_PRODUCTID_SUCCESS:
+      return {
+        ...state,
+        fetchingLocationNamesByProductId: false,
+        locationNamesByProductId: action.payload,
+      };
+    case types.GET_LOCATION_NAMES_BY_PRODUCTID_FAILURE:
+      return {
+        ...state,
+        fetchingLocationNamesByProductId: false,
+        fetchingLocationNamesByProductIdError: true,
+      };
 
+    case types.GET_ACCOUNT_INVOICE_REQUEST:
+      return { ...state, fetchingAccountInvoice: true };
+    case types.GET_ACCOUNT_INVOICE_SUCCESS:
+      return {
+        ...state,
+        fetchingAccountInvoice: false,
+        accountInvoice: action.payload,
+        // accountInvoice: [...state.accountInvoice, ...action.payload]
+      };
+    case types.GET_ACCOUNT_INVOICE_FAILURE:
+      return {
+        ...state,
+        fetchingAccountInvoice: false,
+        fetchingAccountInvoiceError: true,
+      };
 
-        case types.GET_ACCOUNT_INVOICE_REQUEST:
-          return { ...state, fetchingAccountInvoice: true };
-        case types.GET_ACCOUNT_INVOICE_SUCCESS:
-          return {
-            ...state,
-            fetchingAccountInvoice: false,
-            accountInvoice: [...state.accountInvoice, ...action.payload]
-          };
-        case types.GET_ACCOUNT_INVOICE_FAILURE:
-          return {
-            ...state,
-            fetchingAccountInvoice: false,
-            fetchingAccountInvoiceError: true,
-          };
-  
+    case types.GET_GENERATED_INVOICE_REQUEST:
+      return { ...state, fetchingGeneratedInvoice: true };
+    case types.GET_GENERATED_INVOICE_SUCCESS:
+      return {
+        ...state,
+        fetchingGeneratedInvoice: false,
+        generatedInvoice: action.payload,
+      };
+    case types.GET_GENERATED_INVOICE_FAILURE:
+      return {
+        ...state,
+        fetchingGeneratedInvoice: false,
+        fetchingGeneratedInvoiceError: true,
+      };
+
+    case types.ORDER_INVOICE_REQUEST:
+      return { ...state, fetchingOrderInvoice: true };
+    case types.ORDER_INVOICE_SUCCESS:
+      return {
+        ...state,
+        fetchingOrderInvoice: false,
+
+        accountInvoice: state.accountInvoice.map((item) => {
+          if (item.paymentId == action.payload.paymentId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.ORDER_INVOICE_FAILURE:
+      return {
+        ...state,
+        fetchingOrderInvoice: false,
+        fetchingOrderInvoiceError: true,
+      };
+
+    case types.GET_INVOICEL_REQUEST:
+      return { ...state, fetchingInvoiceL: true };
+    case types.GET_INVOICEL_SUCCESS:
+      return {
+        ...state,
+        fetchingInvoiceL: false,
+        // accountInvoice: [...state.accountInvoice, ...action.payload]
+        invoiceL: action.payload,
+      };
+    case types.GET_INVOICEL_FAILURE:
+      return {
+        ...state,
+        fetchingInvoiceL: false,
+        fetchingInvoiceLError: true,
+      };
+
+    case types.GET_PAYMENTCLICK_REQUEST:
+      return { ...state, fetchingPaymentClick: true };
+    case types.GET_PAYMENTCLICK_SUCCESS:
+      return {
+        ...state,
+        fetchingPaymentClick: false,
+        // accountInvoice: [...state.accountInvoice, ...action.payload]
+        paymentclick: action.payload,
+      };
+    case types.GET_PAYMENTCLICK_FAILURE:
+      return {
+        ...state,
+        fetchingPaymentClick: false,
+        fetchingPaymentClickError: true,
+      };
+
+    case types.GET_QUATATIONCLICK_REQUEST:
+      return { ...state, fetchingQuatationClick: true };
+    case types.GET_QUATATIONCLICK_SUCCESS:
+      return {
+        ...state,
+        fetchingQuatationClick: false,
+        // accountInvoice: [...state.accountInvoice, ...action.payload]
+        quatationClick: action.payload,
+      };
+    case types.GET_QUATATIONCLICK_FAILURE:
+      return {
+        ...state,
+        fetchingQuatationClick: false,
+        fetchingQuatationClickError: true,
+      };
+
+    case types.GET_QUATATIONCHECKOUT_REQUEST:
+      return { ...state, fetchingQuatationCheckout: true };
+    case types.GET_QUATATIONCHECKOUT_SUCCESS:
+      return {
+        ...state,
+        fetchingQuatationCheckout: false,
+        // accountInvoice: [...state.accountInvoice, ...action.payload]
+        quatationCheckout: action.payload,
+      };
+    case types.GET_QUATATIONCHECKOUT_FAILURE:
+      return {
+        ...state,
+        fetchingQuatationCheckout: false,
+        fetchingQuatationCheckoutError: true,
+      };
+
+    case types.GET_QUATATIONSHIPPING_REQUEST:
+      return { ...state, fetchingQuatationShipping: true };
+    case types.GET_QUATATIONSHIPPING_SUCCESS:
+      return {
+        ...state,
+        fetchingQuatationShipping: false,
+        // accountInvoice: [...state.accountInvoice, ...action.payload]
+        quatationShipping: action.payload,
+      };
+    case types.GET_QUATATIONSHIPPING_FAILURE:
+      return {
+        ...state,
+        fetchingQuatationShipping: false,
+        fetchingQuatationShippingError: true,
+      };
+
+    case types.GET_LOGINCOUNT_REQUEST:
+      return { ...state, fetchingLoginCount: true };
+    case types.GET_LOGINCOUNT_SUCCESS:
+      return {
+        ...state,
+        fetchingLoginCount: false,
+        // accountInvoice: [...state.accountInvoice, ...action.payload]
+        loginCount: action.payload,
+      };
+    case types.GET_LOGINCOUNT_FAILURE:
+      return {
+        ...state,
+        fetchingLoginCount: false,
+        fetchingLoginCountError: true,
+      };
+
+    case types.GET_INVOICECOUNT_REQUEST:
+      return { ...state, fetchingInvoiceCount: true };
+    case types.GET_INVOICECOUNT_SUCCESS:
+      return {
+        ...state,
+        fetchingInvoiceCount: false,
+        // accountInvoice: [...state.accountInvoice, ...action.payload]
+        invoiceCount: action.payload,
+      };
+    case types.GET_INVOICECOUNT_FAILURE:
+      return {
+        ...state,
+        fetchingInvoiceCount: false,
+        fetchingInvoiceCountError: true,
+      };
+
+    case types.GET_PILISTBY_DISTRIBUTOR_REQUEST:
+      return { ...state, fetchingPilistByDistributor: true };
+    case types.GET_PILISTBY_DISTRIBUTOR_SUCCESS:
+      return {
+        ...state,
+        fetchingPilistByDistributor: false,
+        // accountInvoice: [...state.accountInvoice, ...action.payload]
+        piListByDistributor: action.payload,
+      };
+    case types.GET_PILISTBY_DISTRIBUTOR_FAILURE:
+      return {
+        ...state,
+        fetchingPilistByDistributor: false,
+        fetchingPilistByDistributorError: true,
+      };
+
+    case types.GET_PILISTBY_ORDER_REQUEST:
+      return { ...state, fetchingPilistByOrder: true };
+    case types.GET_PILISTBY_ORDER_SUCCESS:
+      return {
+        ...state,
+        fetchingPilistByOrder: false,
+        // accountInvoice: [...state.accountInvoice, ...action.payload]
+        piListByOrder: action.payload,
+      };
+    case types.GET_PILISTBY_ORDER_FAILURE:
+      return {
+        ...state,
+        fetchingPilistByOrder: false,
+        fetchingPilistByOrderError: true,
+      };
+
+    case types.ADD_NEWLIST_REQUEST:
+      return { ...state, addingNewList: true };
+    case types.ADD_NEWLIST_SUCCESS:
+      return {
+        ...state,
+        addingNewList: false,
+        addNewModal: false,
+        addLinkDistributorOrderConfigureModal: false,
+        //inventoryList: [...action.payload, ...state.inventoryList],
+      };
+    case types.ADD_NEWLIST_FAILURE:
+      return {
+        ...state,
+        addingNewList: false,
+        addingNewListError: true,
+      };
+
+    case types.DISTRIBUTOR_ACCOUNT_CREDIT_TOGGLE_REQUEST:
+      return { ...state, distributorAccountCrediting: true };
+    case types.DISTRIBUTOR_ACCOUNT_CREDIT_TOGGLE_SUCCESS:
+      return {
+        ...state,
+        distributorAccountCrediting: false,
+        customerListByUser: state.customerListByUser.map((item) => {
+          if (item.distributorId === action.payload.distributorId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.DISTRIBUTOR_ACCOUNT_CREDIT_TOGGLE_FAILURE:
+      return {
+        ...state,
+        distributorAccountCrediting: false,
+        distributorAccountCreditingError: true,
+      };
+
+    case types.PAID_UNPAID_TOGGLE_REQUEST:
+      return { ...state, paidUnpaidToggling: true };
+    case types.PAID_UNPAID_TOGGLE_SUCCESS:
+      return {
+        ...state,
+        paidUnpaidToggling: false,
+        generatedInvoice: state.generatedInvoice.map((item) => {
+          if (
+            item.procureOrderInvoiceId === action.payload.procureOrderInvoiceId
+          ) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+      };
+    case types.PAID_UNPAID_TOGGLE_FAILURE:
+      return {
+        ...state,
+        paidUnpaidToggling: false,
+        paidUnpaidTogglingError: true,
+      };
+
+    case types.GET_STATUS_TIMELINE_REQUEST:
+      return { ...state, fetchingTimelineStatus: true };
+    case types.GET_STATUS_TIMELINE_SUCCESS:
+      return {
+        ...state,
+        fetchingTimelineStatus: false,
+        statusActivityTimeline: action.payload,
+      };
+    case types.GET_STATUS_TIMELINE_FAILURE:
+      return {
+        ...state,
+        fetchingTimelineStatus: false,
+        fetchingTimelineStatusError: true,
+      };
+
+    case types.HANDLE_ACCOUNT_ADDRESS_MODAL:
+      return { ...state, addAccountAddressModal: action.payload };
+    case types.GET_SEARCH_IMEIPHONE_REQUEST:
+      return { ...state, fetchingimeiSearchPhoneData: true };
+    case types.GET_SEARCH_IMEIPHONE_SUCCESS:
+      return {
+        ...state,
+        fetchingimeiSearchPhoneData: false,
+        phoneListById: action.payload,
+      };
+    case types.GET_SEARCH_IMEIPHONE_FAILURE:
+      return { ...state, fetchingimeiSearchPhoneDataError: true };
+
+    case types.HANDLE_CLAER_PHONEREDUCER_DATA_REFURBISH:
+      return { ...state, phoneListById: [] };
+
+    case types.CLAER_REDUCERS_DATA:
+      return {
+        ...state,
+        highDistributorOrder: [],
+        lowDistributorOrder: [],
+      };
+
+    case types.SEARCH_CUSTOMER_ORDERNO_DATA_REQUEST:
+      return { ...state, fetchingCustomerOrderNo: true };
+    case types.SEARCH_CUSTOMER_ORDERNO_DATA_SUCCESS:
+      return {
+        ...state,
+        fetchingCustomerOrderNo: false,
+        highDistributorOrder: action.payload,
+        lowDistributorOrder: action.payload,
+      };
+    case types.SEARCH_CUSTOMER_ORDERNO_DATA_FAILURE:
+      return { ...state, fetchingCustomerOrderNoError: true };
+
+      case types.ADD_COD_INVENTORY_REQUEST:
+        return { ...state, addingCODinventory: true };
+      case types.ADD_COD_INVENTORY_SUCCESS:
+        return { ...state, addingCODinventory: false, codInventryorDr: action.payload };
+      case types.ADD_COD_INVENTORY_FAILURE:
+        return { ...state, addingCODinventory: false, addingCODinventoryError: true };
+
     default:
       return state;
   }

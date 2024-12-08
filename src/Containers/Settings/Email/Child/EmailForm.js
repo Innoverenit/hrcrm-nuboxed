@@ -4,14 +4,10 @@ import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import { Spacer } from "../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { addEmailCredentials } from "../EmailAction";
-import { FlexContainer } from "../../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
-/**
- * yup validation scheme for creating a Team
- */
+
+
 const EmailSchema = Yup.object().shape({
   email: Yup.string().
     email("Enter a valid Email")
@@ -64,50 +60,30 @@ class EmailForm extends Component {
                   >
                     <Field
                       name="email"
-                      //label="Email Id"
-                      label={<FormattedMessage
-                        id="app.email"
-                        defaultMessage="Email Id"
-                      />}
-                      inlineLabel
+                      label="Email Id"
                       isRequired
                       component={InputComponent}
                       style={{ flexBasis: "80%" }}
                       width={"100%"}
                     />
-                    <Spacer />
+                    <mt-3 />
                     <Field
                       type="password"
                       isRequired
                       name="password"
-                      //label="Password"
-                      label={<FormattedMessage
-                        id="app.password"
-                        defaultMessage="Password"
-                      />}
+                      label="Password"
                       inlineLabel
                       width={"100%"}
                       component={InputComponent}
                       style={{ flexBasis: "80%" }}
                     />
-                    <Spacer />
-                    {/* <Field
-                  name="serverType"
-                  label="Server Type"
-                  component={InputComponent}
-                  inlineLabel
-                  style={{ flexBasis: "80%" }}
-                />
-                <Spacer /> */}
+                    <mt-3 />
+                  
                     <Field
                       isMulti
                       isRequired
                       name="host"
-                      // label="Host Name"
-                      label={<FormattedMessage
-                        id="app.host"
-                        defaultMessage="Host Name"
-                      />}
+                      label="Host Name"
                       component={InputComponent}
                       inlineLabel
                       width={"100%"}
@@ -116,49 +92,21 @@ class EmailForm extends Component {
                     <span style={{ fontSize: "0.75em", fontStyle: "italic", marginLeft: "5.1875em" }}>Example for Outlook users - smtp-mail.outlook.com </span>
                     <br />
                     <span style={{ fontSize: "0.75em", fontStyle: "italic", marginLeft: "5.1875em" }}>Example for other webmail host - mail.example.com </span>
-                    <Spacer />
+                    <mt-3 />
                     <Field
                       name="port"
-                      //label="Port"
-                      label={<FormattedMessage
-                        id="app.port"
-                        defaultMessage="Port"
-                      />}
+                      label="Port"
                       inlineLabel
                       isRequired
                       width={"100%"}
                       component={InputComponent}
                       style={{ flexBasis: "80%" }}
                     />
-                    <Spacer />
-                    {/* <Spacer />
-                <Field
-                  name="connectionSecurity"
-                  label="Connection Security"
-                  inlineLabel
-                  component={InputComponent}
-                  style={{ flexBasis: "80%" }}
-                />
-                <Spacer />
-                <Field
-                  name="AuthType"
-                  label="Auth Type"
-                  inlineLabel
-                  component={InputComponent}
-                  style={{ flexBasis: "80%" }}
-                /> */}
-
-                    {/* <Button
-                    type="primary"
-                    htmlType="submit"
-                    Loading={addingEmailCredential}
-                   
-                  >
-                    Create
-                </Button> */}
+                    <mt-3 />
+               
                   </div>
                 </div>
-                <FlexContainer justifyContent="flex-end">
+                <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   <Button
                     type="primary"
                     htmlType="submit"
@@ -166,13 +114,10 @@ class EmailForm extends Component {
                     Loading={addingEmailCredential}
                   >
 
-                    <FormattedMessage
-                      id="app.create"
-                      defaultMessage="Create"
-                    />
-                    {/* Create */}
+                   
+                    Create
                   </Button>
-                </FlexContainer>
+                </div>
               </Form>
             )}
         </Formik>

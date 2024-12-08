@@ -1,8 +1,7 @@
-import React, { Suspense } from "react";
+import React, { Suspense, lazy } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
-import SuppliersListForm from "./SuppliersListForm";
-
+const SuppliersListForm =lazy(()=>import("./SuppliersListForm"));
 const SupplierAddListModal = (props) => {
   const { ...formProps } = props;
   return (
@@ -20,6 +19,8 @@ const SupplierAddListModal = (props) => {
           <SuppliersListForm
             rowdata={props.rowdata}
             translatedMenuItems={props.translatedMenuItems}
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}
           />
         </Suspense>
       </StyledDrawer>

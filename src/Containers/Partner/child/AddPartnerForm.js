@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
-import { FormattedMessage } from "react-intl";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
-import { Spacer } from "../../../Components/UI/Elements";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
@@ -16,7 +14,7 @@ import { getOwnsalesList } from "../PartnerAction";
 import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
-import { StyledLabel } from "../../../Components/UI/Elements";
+
 
 /**
  * yup validation scheme for creating a account
@@ -149,46 +147,40 @@ class PartnerForm extends Component {
                       </a>
                     ) : null}
                   </div>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     isRequired
                     name="name"
                     type="text"
                     setClearbitData={this.props.setClearbitData}
                     component={ClearbitImage}
-                    label={
-                      <FormattedMessage id="app.name" defaultMessage="Name" />
-                    }
+                    label="Name" 
                     isColumn
                     width={"100%"}
                     accounts={accounts}
                     inlineLabel
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="url"
                     type="text"
-                    label={
-                      <FormattedMessage id="app.url" defaultMessage=" URL" />
-                    }
+                    label=" URL"
                     isColumn
                     width={"100%"}
                     component={InputComponent}
                     inlineLabel
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="email"
                     type="text"
-                    label={
-                      <FormattedMessage id="app.email" defaultMessage="Email" />
-                    }
+                    label="Email" 
                     isColumn
                     width={"100%"}
                     component={InputComponent}
                     inlineLabel
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
 
                   <div class=" flex justify-between">
                     <div class=" w-3/12">
@@ -196,12 +188,8 @@ class PartnerForm extends Component {
                         name="countryDialCode"
                         isColumnWithoutNoCreate
                         selectType="dialCode"
-                        label={
-                          <FormattedMessage
-                            id="app.phone"
-                            defaultMessage="Dial Code"
-                          />
-                        }
+                        label="Dial Code"
+                         
                         isColumn
                         component={SearchSelect}
                         value={values.countryDialCode1}
@@ -227,13 +215,7 @@ class PartnerForm extends Component {
                         name="sectorId"
                         isColumnWithoutNoCreate
                         selectType="sectorName"
-                        // label="Sectors"
-                        label={
-                          <FormattedMessage
-                            id="app.sector"
-                            defaultMessage="Sector"
-                          />
-                        }
+                        label="Sectors"
                         isColumn
                         component={SearchSelect}
                         value={values.sectorId}
@@ -241,7 +223,7 @@ class PartnerForm extends Component {
                     </div>
                     <div class=" w-2/5">
                       <div>
-                        <StyledLabel>Status</StyledLabel>
+                        <div class=" text-xs font-bold font-poppins text-black">Status</div>
                       </div>
                       <div>
                         <Switch
@@ -253,19 +235,15 @@ class PartnerForm extends Component {
                       </div>
                     </div>
                   </div>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <div class=" flex justify-between">
                     <div class=" w-2/4">
                       <Field
                         name="taxRegistrationNumber"
                         type="text"
                         // label="URL"
-                        label={
-                          <FormattedMessage
-                            id="app.taxregistration"
-                            defaultMessage=" Tax Registration#"
-                          />
-                        }
+                        label=" Tax Registration#"
+                         
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -277,12 +255,8 @@ class PartnerForm extends Component {
                         name="businessRegistrationNumber"
                         type="text"
                         // label="URL"
-                        label={
-                          <FormattedMessage
-                            id="app.businessregistration"
-                            defaultMessage=" Business Registration#"
-                          />
-                        }
+                        label=" Business Registration#"
+                         
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -296,12 +270,8 @@ class PartnerForm extends Component {
                         name="bankName"
                         type="text"
                         // label="URL"
-                        label={
-                          <FormattedMessage
-                            id="app.bankname"
-                            defaultMessage=" Bank Name"
-                          />
-                        }
+                        label=" Bank Name"
+                        
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -313,12 +283,8 @@ class PartnerForm extends Component {
                         name="accountNumber"
                         type="text"
                         // label="URL"
-                        label={
-                          <FormattedMessage
-                            id="app.account"
-                            defaultMessage="Account #"
-                          />
-                        }
+                        label="Account #"
+                          
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -328,16 +294,12 @@ class PartnerForm extends Component {
                   </div>
                 </div>
                 <div class=" h-full w-2/5">
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="assignedTo"
                     isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.assignedto"
-                        defaultMessage="Assigned"
-                      />
-                    }
+                    label="Assigned"
+                     
                     component={SelectComponent}
                     options={
                       Array.isArray(salesNameOption) ? salesNameOption : []
@@ -360,14 +322,7 @@ class PartnerForm extends Component {
                     <Field
                       name="country"
                       isColumnWithoutNoCreate
-                      // label="Country"
-
-                      label={
-                        <FormattedMessage
-                          id="app.country"
-                          defaultMessage="Country"
-                        />
-                      }
+                      label="Country"
                       component={SearchSelect}
                       defaultValue={{
                         value: this.props.user.countryName,
@@ -378,12 +333,10 @@ class PartnerForm extends Component {
                       width="100%"
                     />
                   </div>
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="notes"
-                    label={
-                      <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                    }
+                    label="Notes"
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -396,7 +349,7 @@ class PartnerForm extends Component {
                   htmlType="submit"
                   loading={addingPartner}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
+                  Create
                 </Button>
               </div>
             </Form>

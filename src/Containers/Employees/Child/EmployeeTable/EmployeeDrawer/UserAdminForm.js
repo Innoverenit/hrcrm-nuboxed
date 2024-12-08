@@ -1,35 +1,46 @@
-import React, { Component, useMemo } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import { Button, Switch } from "antd";
-import { Formik, Form, Field, FieldArray, FastField } from "formik";
-import * as Yup from "yup";
-// import { base_url } from "../../../../../../Config/Auth";
-import { Spacer } from "../../../../../Components/UI/Elements";
-
-// import {
-//     addCandidateDate
-// }
-//   from "../../../../OpportunityAction";
+import { Formik, Form, Field } from "formik";
 import {addUserAdmin} from "../../../EmployeeAction"
-import { FlexContainer } from "../../../../../Components/UI/Layout";
-
 import { DatePicker } from "../../../../../Components/Forms/Formik/DatePicker";
 import dayjs from "dayjs";
-
-/**
- * yup validation scheme for creating a opportunity
- */
-
 
 class UserAdminForm extends Component {
     constructor(props) {
         super(props);
         this.state = {
             convert: false,
+            translatedMenuItems: [],
         };
     }
+    componentDidMount() {
+      this.fetchMenuTranslations();
+    }
+  
+    componentDidUpdate(prevProps) {
+      if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+        this.fetchMenuTranslations();
+      }
+    }
+  
+    fetchMenuTranslations = async () => {
+      try {
+        const itemsToTranslate = [
+          "10",//0Admin
+          "1507",//1User"
+          "74",//2Date
+          "1246",//3"Update
+          
+        ];
+  
+        const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+        this.setState({ translatedMenuItems: translations });
+      } catch (error) {
+        console.error('Error translating menu items:', error);
+      }
+    };
   handleReset = (resetForm) => {
     resetForm();
   };
@@ -38,49 +49,22 @@ class UserAdminForm extends Component {
     this.setState({ convert: checked });
   };
 
-//   componentDidMount() {
-//     this.props.getRecruiterName();
-//     this.props.getAllSalesList();
-//   }
-
   render() {
 
- 
-
-
-
-    // const {
-    //   user: { userId },
-    //   candidateDate,
-    //   onboardDate
-     
-    // } = this.props;
-    // console.log("profile",this.props.profileId);
     return (
       <>
         <Formik
           initialValues={{
             provideDate: this.props.provideDate || dayjs(),
             // onboardInd:true,
-            role: this.state.convert ? "ADMIN" : "USER",
-            // profileId:this.props.profileId,
-            // candidateId:this.props.candidateId,
-
-           
-           
-
+            role: this.state.convert ? "ADMIN" : "USER",                         
 
           }}
           
           onSubmit={(values, { resetForm }) => {
             console.log(values);
             console.log(values);
-            
-
-           
-
-            //let newStartDate = dayjs(values.date).format("YYYY-MM-DD");
-
+                       
             this.props.addUserAdmin(
               {
                 ...values,
@@ -106,35 +90,27 @@ class UserAdminForm extends Component {
             ...rest
           }) => (
             <Form className="form-background">
-              <div style={{ display: "flex", justifyContent: "space-between" }}>
-                <div
-                  style={{
-                    height: "100%",
-                    width: "45%",
-                  }}
-                >
+              <div className=" flex justify-between">
+                <div className=" h-[100%] w-[45%]" >
                  
                 
                  <Switch
                               checked={this.state.convert}
                               onChange={this.handleChange}
                               // disabled={this.state.availability}
-                              checkedChildren="Admin"
-                              unCheckedChildren="User"
-                            />
-                 
-                  
-                
-                </div>
-               
-               
+                              checkedChildren={this.state.translatedMenuItems[0]}
+                              unCheckedChildren={this.state.translatedMenuItems[1]}
+                            />                                            
+                </div>                          
               </div>
-              <FlexContainer justifyContent="space-between">
+            
+              <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+                <div>{this.state.translatedMenuItems[2]}</div>
               {this.state.convert&&(
               <Field
                       isRequired
                       name="provideDate"
-                      label="Date"
+                      // label="Date"
                       component={DatePicker}
                     value={values.provideDate}
                       inlineLabel
@@ -145,20 +121,20 @@ class UserAdminForm extends Component {
                     />
                     )}
              
-                </FlexContainer>
+                </div>
               
                 
-              <Spacer />
-              <FlexContainer justifyContent="flex-end">
+              <mt-3 />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
                    Loading={this.props.userAdmin}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
-                  {/* Create */}
+                 
+                  {this.state.translatedMenuItems[3]}
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
         </Formik>
@@ -169,14 +145,6 @@ class UserAdminForm extends Component {
 
 const mapStateToProps = ({ auth, employee, contact, customer }) => ({
     userAdmin:employee.userAdmin,
-    
-    // user: auth.userDetails,
-    //  employeeId: auth.userDetails.userId,
-    // candidateDate:opportunity.candidateDate,
-    // candidateRequirement:opportunity.candidateRequirement,
-    // profileId:opportunity.candidateRequirement.profileId
-    
-  
 });
 
 const mapDispatchToProps = (dispatch) =>

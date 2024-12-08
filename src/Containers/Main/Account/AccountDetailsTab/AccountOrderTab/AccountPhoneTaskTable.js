@@ -1,12 +1,12 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getPhoneTasklist } from "../../AccountAction";
 import { addTaskByPhoneId, getTaskListByPhone } from "../../../Refurbish/RefurbishAction"
 import { Button, Input, Select } from "antd";
 import { BundleLoader } from "../../../../../Components/Placeholder";
-import AccountPhoneTaskList from "./AccountPhoneTaskList";
 
+const AccountPhoneTaskList = lazy(() => import('./AccountPhoneTaskList'));
 const { Option } = Select;
 
 function AccountPhoneTaskTable(props) {
@@ -16,6 +16,7 @@ function AccountPhoneTaskTable(props) {
     }, []);
 
     const [task, setTask] = useState("")
+    const [selectedLevel, setSelectedLevel] = useState(null);
     const [customName, setCustomeName] = useState("")
     const [type, setType] = useState(false)
     const handleTask = (value) => {
@@ -30,20 +31,26 @@ function AccountPhoneTaskTable(props) {
             phoneId: props.phoneId,
             itemTaskId: task === "custom" ? "" : task,
             taskName: customName,
-            userId: props.userId
+            userId: props.userId,
+            orgId:props.orgId,
+            level:task === "custom" ? selectedLevel : ""
         }, props.phoneId, handleCallback())
     }
     function handleCallback() {
         setCustomeName("")
         setTask("")
     }
+    const handleChangeValue = (value) => {
+        console.log("Selected Level:", value);
+        setSelectedLevel(value); // Update selected value in state
+      };
     return (
         <>
             <div class="flex justify-around max-sm:flex-col">
                 <div class=" h-full w-w47.5 max-sm:w-wk">
                     <div class="flex justify-between">
                         <div class="w-[45%]">
-                            <div class="font-semibold text-sm">Task List</div>
+                            <div class="font-semibold text-xs">Task List</div>
                             <Select onChange={handleTask}>
                                 <Option value={"custom"}>{"Custom"} </Option>
                                 {props.phoTasklist.map((a) => {
@@ -60,6 +67,18 @@ function AccountPhoneTaskTable(props) {
                                 <Input type="text" value={customName} placeholder="Enter Custome Task" onChange={(value) => { handleCustomeName(value) }} />
                             </div>
                         }
+                        {task === "custom" &&
+                        <Select
+        style={{ width: 200 }}
+        placeholder="Select a Level"
+        onChange={handleChangeValue} 
+        value={selectedLevel}   
+      >
+        <Option value="L1">L1</Option>
+        <Option value="L2">L2</Option>
+        <Option value="L3">L3</Option>
+      </Select>
+}
                     </div>
 
                 </div>

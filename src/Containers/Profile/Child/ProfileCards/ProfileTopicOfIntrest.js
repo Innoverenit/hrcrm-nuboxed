@@ -2,9 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tag, Input, Tooltip, } from "antd";
-import { PlusOutlined,
-} from '@ant-design/icons';
 import { ViewEditCard, Title } from "../../../../Components/UI/Elements";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import {
   addTopicByUserId,
   getTopicsByUserId,
@@ -124,7 +123,7 @@ class ProfileTopicOfInterest extends React.Component {
                   visible={this.props.topicsByUserId.length !== 20}
                   style={{ background: "#fff", borderStyle: "dashed" }}
                 >
-                  <PlusOutlined type="plus" /> Skill
+                  <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" /> Skill
                 </Tag>
               )}
             </div>

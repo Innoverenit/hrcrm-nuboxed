@@ -205,10 +205,7 @@ class UpcomingEvents extends Component {
                     onConfirm={this.onConfirm}
                     okText="Ok"
                     // cancelText="Cancel"
-                    cancelText={<FormattedMessage
-                      id="app.cancel"
-                      defaultMessage="Cancel"
-                    />}
+                   
                     onCancel={this.confirm}
                   >
                     <FlexContainer justifyContent="flex-end"

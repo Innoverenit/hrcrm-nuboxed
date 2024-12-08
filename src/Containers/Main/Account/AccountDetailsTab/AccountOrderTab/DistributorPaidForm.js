@@ -1,24 +1,68 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import * as Yup from "yup";
 import { Button } from "antd";
 import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field } from "formik";
 import { DatePicker } from "../../../../../Components/Forms/Formik/DatePicker";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { addPaidOrder, getPaymentMode } from "../../../Account/AccountAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
-import { FormattedMessage } from "react-intl";
+
 import { getCurrency } from "../../../../Auth/AuthAction";
 import DragableUpload from "../../../../../Components/Forms/Formik/DragableUpload";
+import Swal from 'sweetalert2';
 
+const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+const DistributorSchema = Yup.object().shape({
+  paymentMode: Yup.string().required("Input required"),
+  entryAmount: Yup.string().required("Input required"),
+  date: Yup.string().required("Input required"),
+  orderCurrencyId:Yup.string().required("Input required"),
+  
+});
 function DistributorPaidForm(props) {
+
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+        "929",  // Amount 0
+        "241",   // "currency" 1
+        "74",  // Date 2
+        "1422",  // Reason 3
+        "926",   // Transaction ID 4
+        "1169",   // Invoice Id 5
+        "86",   // "Mode" 6
+        "138",   // "Document Id" 7 
+        "154",   // "Submit" 8
+      
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
 
   const currencyOption = props.currencies.map((item) => {
     return {
-      label: item.currencyName || "",
-      value: item.currencyId,
+      label: item.currency_name || "",
+      value: item.currency_id,
     };
   });
   const payOption = props.paymentModee.map((item) => {
@@ -38,29 +82,49 @@ function DistributorPaidForm(props) {
         enableReinitialize
         initialValues={{
           date: "",
-          paymentAmount: "",
+          entryAmount: "",
+          invoiceId:props.particularRowData.invoiceId || "",
           paymentMode: "",
           remarks: "",
           docId: "",
           userId: props.userId,
-          orderPaymentType: "Repair",
+          distributorId:props.distributorId,
+          orderPhoneId: props.particularRowData.orderId,
+          active: true,
           transactionNumber: "",
           orderCurrencyId: props.particularRowData.orderCurrencyName || "",
           orgId: props.orgId,
           approveByFinanceInd: false,
-          orderId: props.particularRowData.orderId,
+          orderPaymentType:"Procure",
+          remainingTotalValue:props.particularRowData.remainingTotalValue || 0,
+      
         }}
-
+        validationSchema={DistributorSchema}
+      
         onSubmit={(values, { resetForm }) => {
-          // let newEndDate = moment(values.date).format("YYYY-MM-DD");
+if  (Number(values.entryAmount) <= Number(props.particularRowData.remainingTotalValue) 
+  && Number(values.entryAmount) >= 0 ) {
           props.addPaidOrder(
             {
               ...values,
               // date: `${newEndDate}T00:00:00Z`,
             },
-            props.particularRowData.orderId,
+            props.particularRowData.procureOrderInvoiceId,
+            props.particularRowData.orderPhoneId ? props.particularRowData.orderPhoneId:props.particularRowData.procureOrderInvoiceId,
             props.distributorId,
-          );
+          ); 
+        }
+          else {
+            Swal.fire({
+              title: 'Validation Error!',
+              text: 'Amount can not exceed remaining total value or be less than 0!',
+              icon: 'error',
+              confirmButtonText: 'OK',
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+
           resetForm();
         }}
       >
@@ -74,58 +138,41 @@ function DistributorPaidForm(props) {
           ...rest
         }) => (
           <Form>
-            <div class="flex justify-around max-sm:flex-col">
-              <div class=" h-full w-w47.5 max-sm:w-wk">
+            <div class="max-sm:flex-col">
+              <div class=" h-full w-wk max-sm:w-wk">
                 <div class="flex justify-between">
-                  <div class="w-[31%]">
+                  <div class="w-[40%]">
+                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[0]}</div>
                     <Field
-                      name="paymentAmount"
-                      label={
-                        <FormattedMessage
-                          id="app.amount"
-                          defaultMessage="Amount"
-                        />}
+                      name="entryAmount"
                       isRequired
                       isColumn
                       inlineLabel
                       width={"100%"}
                       component={InputComponent}
-                      value={values.paymentAmount}
+                      value={values.entryAmount}
                     />
                   </div>
-                  <div class="w-[31%]">
+                
+                  <div class="w-[40%]">
+                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[1]}</div>
                     <Field
-                      name="paymentAmount"
-                      label="Invoice Id"
-                      isRequired
-                      isColumn
-                      inlineLabel
-                      width={"100%"}
-                      component={InputComponent}
-                      value={values.paymentAmount}
-                    />
-                  </div>
-                  <div class="w-[31%]">
-                    <Field
-                      disabled
                       name="orderCurrencyId"
-                      label={
-                        <FormattedMessage
-                          id="app.currency"
-                          defaultMessage="currency"
-                        />
-                      }
-
+                      isRequired
                       isColumn
                       inlineLabel
                       component={SelectComponent}
                       options={Array.isArray(currencyOption) ? currencyOption : []}
                     />
                   </div>
-                  <div class="w-[31%]">
+                </div>
+                <div class="flex justify-between">
+                <div class="w-[40%]">
+                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[2]}</div>
                     <Field
+                      isRequired
                       name="date"
-                      label="Date "
+                      // label="Date "
                       isColumn
                       inlineLabel
                       width={"100%"}
@@ -135,45 +182,10 @@ function DistributorPaidForm(props) {
                     />
 
                   </div>
-                </div>
-                <div class="flex justify-between">
-                <div class="w-[47.5%]">
-                  <Field
-                    name="remarks"
-                    label={
-                      <FormattedMessage
-                        id="app.reason"
-                        defaultMessage="Reason"
-                      />}
-                    component={TextareaComponent}
-                     style={{height:"9rem"}}
-                  />
-                </div>
-                <div class="w-[47.5%] mt-4">
-                  <Field
-                    name="docId"
-                    label={
-                      <FormattedMessage
-                        id="app.documentId"
-                        defaultMessage="Document Id"
-                      />
-                    }
-                    isRequired
-                    component={DragableUpload}
-                  />
-                </div>
-                </div>
-              </div>
-              <div class=" h-full w-w47.5 max-sm:w-wk">
-                <div class="flex justify-between">
-                  <div class="w-[48%]">
+                  <div class="w-[40%]">
+                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[4]} ID</div>
                     <Field
                       name="transactionNumber"
-                      label={
-                        <FormattedMessage
-                          id="app.transactionid"
-                          defaultMessage="Transaction ID"
-                        />}
                       isColumn
                       inlineLabel
                       width={"100%"}
@@ -182,16 +194,27 @@ function DistributorPaidForm(props) {
 
                     />
                   </div>
-
-                  <div class="w-[48%]">
+                  </div>
+                  <div class="flex justify-between">
+                  
+                  <div class="w-[42%]">
+                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[5]} ID</div>
                     <Field
-                      name="paymentMode"
-                      label={
-                        <FormattedMessage
-                          id="app.mode"
-                          defaultMessage="Mode"
-                        />}
+                      name="invoiceId"
+                      // label="Invoice Id"
+                      disabled
+                      isColumn
+                      inlineLabel
+                      width={"100%"}
+                      component={InputComponent}
+                      value={values.invoiceId}
+                    />
+                  </div>
+                  <div class="w-[42%]">
+                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[6]}</div>
+                    <Field
                       isRequired
+                      name="paymentMode"
                       isColumn
                       inlineLabel
                       width={"100%"}
@@ -200,21 +223,35 @@ function DistributorPaidForm(props) {
 
                     />
                   </div>
+                  
                 </div>
-                {/* <div class="w-full">
+                <div class="flex justify-between ">
+                <div class="w-[47.5%]">
+                <div class="text-xs font-poppins font-bold">{translatedMenuItems[3]}</div>
+                  <Field
+                    name="remarks"
+                    component={TextareaComponent}
+                     style={{height:"3rem",width:"16em"}}
+                  />
+               
+                
+                </div>
+               
+                </div>
+                <div class=" ">
+                  <div class="mt-1 justify-end">
+                  <div class="text-xs font-poppins font-bold">{translatedMenuItems[7]}</div>
                   <Field
                     name="docId"
-                    label={
-                      <FormattedMessage
-                        id="app.documentId"
-                        defaultMessage="Document Id"
-                      />
-                    }
                     isRequired
                     component={DragableUpload}
+                    // style={{height:"3rem",width:"27rem"}}
                   />
-                </div> */}
+                </div>
+                </div>
+               
               </div>
+              
             </div>
 
 
@@ -224,16 +261,11 @@ function DistributorPaidForm(props) {
                 htmlType="submit"
                 loading={props.addingPaidByDistributorId}
               >
-                <FormattedMessage
-                  id="app.submit"
-                  defaultMessage="Submit"
-                />
-
+              {translatedMenuItems[8]} 
               </Button>
             </div>
           </Form>
         )}
-        {/*  */}
       </Formik>
     </>
   );

@@ -2,7 +2,7 @@ import React,{useEffect,useState,useRef} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Avatar, Tooltip,Badge,Input } from "antd";
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
 import {
   getRefurbishAllCount,
@@ -10,8 +10,7 @@ import {
   ClearSearchedDataOfAll
 
 } from "../Refurbish/RefurbishAction"
-import { FlexContainer } from "../../../Components/UI/Layout";
-import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
+import BuildCircleIcon from '@mui/icons-material/BuildCircle';
 
 function RefurbishActionLeft (props) {
   const [currentData, setCurrentData] = useState("");
@@ -20,6 +19,8 @@ function RefurbishActionLeft (props) {
   const [startTime, setStartTime] = useState(null);
   const [isRecording, setIsRecording] = useState(false); //Code for Search
   const minRecordingTime = 3000; // 3 seconds
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   const timerRef = useRef(null);
   const {
     transcript,
@@ -83,7 +84,7 @@ function RefurbishActionLeft (props) {
         }, minRecordingTime);
       };
       const suffix = (
-        <AudioOutlined
+        <MicIcon
           onClick={handleStartListening}
           style={{
             fontSize: 16,
@@ -101,6 +102,25 @@ function RefurbishActionLeft (props) {
           setSearchOnEnter(true);
         }
       };
+      useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            const itemsToTranslate = [
+             "663",//0 My Repair Orders
+              "228",//1 ALL
+             "1280",    //  "Search by OrderID"
+           
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+          } catch (error) {
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
       useEffect(() => {
         if (!listening && isRecording) {
           handleStopListening();
@@ -120,20 +140,24 @@ function RefurbishActionLeft (props) {
 
         return (
           <>
-            <FlexContainer alignItems="center">
-    
+            
+            <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto  ">
               {/* {user.designation === "Executive" && */}
     
     
-              <Tooltip title="My Repair Orders">
+              <Tooltip title={translatedMenuItems[0]}>
                 <span class=" text-sm cursor-pointer"
                   onClick={() => setProductionViewType("list")}
                   style={{
                     color: viewType === "list" && "#1890ff",
                   }}
                 >
-                  <Avatar style={{ background: viewType === "list" ? "#f279ab" : "#4bc076" }}>
-                    <HomeRepairServiceIcon className="text-white cursor-pointer" /></Avatar>
+                  <Avatar style={{ background: viewType === "list" ? "#f279ab" : "#28a355",
+                     boxShadow: props.viewType === "list" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "list" ? "scale(1.05)" : "scale(1)"
+                   }}             
+                  >
+                    <BuildCircleIcon className="text-white cursor-pointer !text-icon" /></Avatar>
     
                 </span>
               </Tooltip>
@@ -149,16 +173,20 @@ function RefurbishActionLeft (props) {
                   color: viewType === "all" && "#1890ff",
                 }}
               >
-                <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                  <div className="text-white">ALL</div></Avatar>
+                <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#28a355",
+                  boxShadow: props.viewType === "all" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "all" ? "scale(1.05)" : "scale(1)"
+                 }}>
+                  <div className="text-white">{translatedMenuItems[1]}</div></Avatar>  
+                  {/* ALL */}
     
               </span>
               </Badge>
               </Tooltip>
 {viewType === "all"?
-              <div class=" w-64 max-sm:w-24">
+              <div class=" w-64 max-sm:w-40 ml-4">
         <Input
-          placeholder="Search by OrderID"
+          placeholder={translatedMenuItems[2]}
           width={"100%"}
           suffix={suffix}
           onPressEnter={handleSearch}
@@ -169,7 +197,7 @@ function RefurbishActionLeft (props) {
       :null}
 
 
-            </FlexContainer>
+            </div>
     
           </>
         );

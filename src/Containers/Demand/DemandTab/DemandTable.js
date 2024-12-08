@@ -1,19 +1,18 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import PsychologyAltIcon from '@mui/icons-material/PsychologyAlt';
 import AddRequirementModal from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/AddRequirementModal"
-import RecruitmentStages from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/RecruitmentStages";
 import {
   StyledTable,
   StyledPopconfirm,
   StyledModal,
 } from "../../../Components/UI/Antd";
+import { Tooltip } from "antd";
 import HelpIcon from '@mui/icons-material/Help';
 import RecruitmentFilter from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/RecruitmentFilter";
 import AddRecruiterModal from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/AddRecruiterModal"
-import RecruitmentContact from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/RecruitmentContact";
 import {
   getRecruitByRecruiterId,
   LinkSkillsRecruit,
@@ -35,45 +34,24 @@ import {
   emailSendStage,
 } from "../../Opportunity/OpportunityAction";
 import { BundleLoader } from "../../../Components/Placeholder";
-import {
-
-  Popconfirm,
-  Tooltip,
-  Dropdown,
-  Menu,
-  Progress,
-  Table, Input, Button,
-  message,
-  Icon,
-} from "antd";
-// import { Table, Input, Button, Icon } from 'antd';
-import Highlighter from 'react-highlight-words';
-
-// import { 
-//   CheckCircleOutlined,
-//   StopOutlined,
-//   EditOutlined,
-//   CopyOutlined,
-//   EyeOutlined,
-//   EyeInvisibleOutlined
-// } from '@ant-design/icons';
 import RecruitmentDetails from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/Child/RecruitmentDetails";
 import {
   getCandidateById,
   getTopicsByCandidateId,
   //   getContactDocument,
 } from "../../Candidate/CandidateAction";
-import moment from "moment";
-import { CurrencySymbol } from "../../../Components/Common";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import dayjs from "dayjs";
 import EditRecruitForm from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/EditRecruitForm";
 import { Suspense } from "react";
 import { elipsize } from "../../../Helpers/Function/Functions";
 import RecruitmentSwitch from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/RecruitmentSwitch";
-import RecruitmentSwitchSponsor from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/RecruitmentSwitchSponsor";
 import SelectSponsorForm from "../../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/SelectSponsorForm";
 import { addRecruitProProfile, deleteRequirementData } from "../../Opportunity/OpportunityAction";
-import { map } from "lodash";
-import { CheckCircleOutlined, CheckCircleTwoTone, DeleteOutlined, EyeInvisibleOutlined, EyeOutlined, StopTwoTone } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 class DemandTable extends Component {
   constructor(props) {
     super(props);
@@ -188,11 +166,7 @@ class DemandTable extends Component {
         width: "5%",
       },
       {
-        //title: "Requirement",
-        title: <FormattedMessage
-          id="app.requirementName"
-          defaultMessage="Requirement"
-        />,
+        title: "Requirement",
         dataIndex: "requirementName",
         width: "13%",
         render: (name, item, i) => {
@@ -255,16 +229,12 @@ class DemandTable extends Component {
         dataIndex: "number"
       },
       {
-        //title: "Start",
-        title: <FormattedMessage
-          id="app.processName"
-          defaultMessage="Start"
-        />,
+        title: "Start",
         dataIndex: "processName",
         width: "9%",
         render: (name, item, i) => {
           console.log(item);
-          return <span>{moment(item.avilableDate).format("ll")}</span>;
+          return <span>{dayjs(item.avilableDate).format("ll")}</span>;
         },
         sorter: (a, b) => {
           if (a.avilableDate < b.avilableDate) {
@@ -278,10 +248,8 @@ class DemandTable extends Component {
       },
       {
         //title: "Rate/hr",
-        title: <FormattedMessage
-          id="app.billing"
-          defaultMessage="Billing"
-        />,
+        title: "Billing"
+      ,
         dataIndex: "billing",
         width: "8%",
         defaultSortOrder: "descend",
@@ -307,13 +275,11 @@ class DemandTable extends Component {
                   {item.approveInd ? (
                     <>
                       <Tooltip //title={"Offer rolled out"}
-                        title={<FormattedMessage
-                          id="app.selected"
-                          defaultMessage="Selected"
-                        />}
+                        title="Selected"
+                      
 
                       >
-                        <CheckCircleOutlined
+                        <CheckCircleOutlineIcon
                           type="check-circle"
                           theme="twoTone"
                           twoToneColor="#52c41a"
@@ -326,7 +292,7 @@ class DemandTable extends Component {
                     <>
                       <Tooltip title={"Dropped"}>
                         {" "}
-                        <StopTwoTone
+                        <DoDisturbIcon
                           type="stop"
                           size={140}
                           style={{ fontSize: "1.2em", marginLeft: "0.875em" }}
@@ -336,12 +302,10 @@ class DemandTable extends Component {
                   ) : (
                     <>
                       <Tooltip //title={"Offer"}
-                        title={<FormattedMessage
-                          id="app.select"
-                          defaultMessage="Select"
-                        />}
+                        title="Select"
+                      
                       >
-                        <CheckCircleTwoTone
+                        <CheckCircleOutlineIcon
                           type="check-circle"
                           theme="twoTone"
                           twoToneColor="#52c41a"
@@ -370,13 +334,10 @@ class DemandTable extends Component {
                       </Tooltip>
 
                       &nbsp; &nbsp;
-                      <Tooltip //title={"Drop"}
-                        title={<FormattedMessage
-                          id="app.drop"
-                          defaultMessage="Drop"
-                        />}
-                      >
-                        <StopTwoTone
+                      <Tooltip 
+                      title={"Drop"}
+                        >
+                        <DoDisturbIcon
                           type="stop"
                           theme="twoTone"
                           twoToneColor="red"
@@ -477,11 +438,7 @@ class DemandTable extends Component {
         },
       },
       {
-        //title: "Skill Set",
-        title: <FormattedMessage
-          id="app.callType"
-          defaultMessage="Skill Set"
-        />,
+        title: "Skill Set",
 
         width: "15%",
         render: (name, item, i) => {
@@ -548,7 +505,7 @@ class DemandTable extends Component {
                     this.props.handleRecruiterModal(true);
                   }}
                 >
-                  {/* <FontAwesomeIcon icon={solid('person-circle-question')} /> */}
+                  
                   <PsychologyAltIcon/>
                 </span>
               }
@@ -586,7 +543,7 @@ class DemandTable extends Component {
 
       // {
       //   //title: "Candidate",
-      //   title: <FormattedMessage
+      //   title: <
       //     id="app.callType"
       //     defaultMessage="Candidate"
       //   />,
@@ -640,9 +597,7 @@ class DemandTable extends Component {
       },
     //   {
     //     //title: "Sponsor",
-    //     title: <FormattedMessage
-    //       id="app.callType"
-    //       defaultMessage="Sponsors"
+    //     title:"Sponsors"
     //     />,
     //     dataIndex: "callType",
     //     width: "7%",
@@ -671,9 +626,7 @@ class DemandTable extends Component {
       //     return (
       //       <Tooltip
       //         //title={"Copy"}
-      //         title={<FormattedMessage
-      //           id="app.copy"
-      //           defaultMessage="Copy"
+      //         title=Copy"
       //         />}
       //       >
       //         <Icon
@@ -706,12 +659,10 @@ class DemandTable extends Component {
                 <>
                   {close ? (
                     <Tooltip //title="Close Details"
-                      title={<FormattedMessage
-                        id="app.closedetails"
-                        defaultMessage="Close Details"
-                      />}
+                      title="Close Details"
+                   
                     >
-                      <EyeInvisibleOutlined
+                      <VisibilityOffIcon
                         type="eye-invisible"
                         onClick={() => this.handleCloseIconClick()}
                         style={{
@@ -726,13 +677,10 @@ class DemandTable extends Component {
                     </Tooltip>
                   ) : (
                     <>
-                      <Tooltip //title="Access Details"
-                        title={<FormattedMessage
-                          id="app.accessdetails"
-                          defaultMessage="Access Details"
-                        />}
+                      <Tooltip 
+                      title="Access Details"
                       >
-                        <EyeOutlined
+                        <VisibilityIcon
                           type="eye"
                           onClick={() =>
                             this.handleIconClick(
@@ -779,7 +727,7 @@ class DemandTable extends Component {
               }
             >
               {/* {user.userType !== "USER" && user.department !== "Recruiter" && (  */}
-              <DeleteOutlined type="delete"
+              <DeleteOutlineIcon type="delete"
                 // onClick={() =>
                 //   this.props.deleteRequirementData(
                 //     item.profileId,
@@ -859,14 +807,14 @@ class DemandTable extends Component {
         //         Sponsor Approved on
         //       </p>
         //       <p>{`${record.sponserInd
-        //         ? moment(record.sponserOfferDate).format("lll")
+        //         ? dayjs(record.sponserOfferDate).format("lll")
         //         : ""
         //         }`}</p>
         //       <p style={{ fontWeight: "bold", margin: 0 }}>
         //         Candidate Approved on
         //       </p>
         //       <p>{`${record.candidateOfferAccept} ${record.candidateInd
-        //         ? moment(record.candidateOfferDate).format("lll")
+        //         ? dayjs(record.candidateOfferDate).format("lll")
         //         : ""
         //         }`}</p>
         //       <p style={{ fontWeight: "bold", margin: 0 }}>Description</p>
@@ -886,11 +834,7 @@ class DemandTable extends Component {
         )}
 
         <StyledModal
-          //title="Position"
-          title={<FormattedMessage
-            id="app.position"
-            defaultMessage="Position"
-          />}
+          title="Position"
           width="24%"
           visible={this.state.editModal}
           maskClosable={false}
@@ -906,11 +850,8 @@ class DemandTable extends Component {
           </Suspense>
         </StyledModal>
         <StyledModal
-          // title="Select Sponsor"
-          title={<FormattedMessage
-            id="app.selectsponsor"
-            // defaultMessage="Select Sponsor"
-          />}
+          title="Select Sponsor"
+        
           width="20%"
           visible={this.props.addSponsorModal}
           maskClosable={false}

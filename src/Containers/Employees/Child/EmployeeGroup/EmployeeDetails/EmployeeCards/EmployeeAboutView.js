@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
+
 
 class EmployeeAboutView extends Component {
   render() {
@@ -27,91 +27,26 @@ class EmployeeAboutView extends Component {
     return (
       <>
         <div class=" flex justify-end" >
-          {/* <ActionIcon
-            //tooltipTitle="Edit"
-            tooltiptitle={<FormattedMessage
-              id="app.edit"
-              defaultMessage="Edit"
-            />}
-            iconType="edit"
-            handleIconClick={toggleViewType}
-            size="1em"
-          /> */}
+        
         </div>
-        <ProfileItemRow //label="Email" 
-          label={<FormattedMessage
-            id="app.emailId"
-            defaultMessage="Email"
-          />}
+        <ProfileItemRow 
+        label="Email" 
+        
           value={emailId} />
-        <ProfileItemRow //label="Emp Id" 
-          label={<FormattedMessage
-            id="app.employeeId"
-            defaultMessage="Emp ID"
-          />}
+        <ProfileItemRow 
+        label="Emp Id" 
+         
           value={employeeId} />
-        {/* <ProfileItemRow
-          //label="Date of Joining"
-          label={<FormattedMessage
-            id="app.dateOfJoining"
-            defaultMessage="Date of Joining"
-          />}
-          value={dayjs(dateOfJoining).format("YYYY-MM-DD")}
-        /> */}
-        {/* <ProfileItemRow //label="Currency" 
-          label={<FormattedMessage
-            id="app.tradeCurrency"
-            defaultMessage="Currency"
-          />}
-          value={tradeCurrency}
-        /> */}
-        {/* <ProfileItemRow //label="Designation" 
-          label={<FormattedMessage
-            id="app.designation"
-            defaultMessage="Designation"
-          />}
-          value={designation} /> */}
-        {/* <ProfileItemRow //label="Function" 
-          label={<FormattedMessage
-            id="app.department"
-            defaultMessage="Function"
-          />}
-          value={department} /> */}
-        {/* <ProfileItemRow // label="Level"
-          label={<FormattedMessage
-            id="app.level"
-            defaultMessage="Level"
-          />}
-          value={level || ""} /> */}
-        {/* <ProfileItemRow //label="Details" 
-          label={<FormattedMessage
-            id="app.details"
-            defaultMessage="Details"
-          />}
-          value={departmentDetails} /> */}
+       
            <ProfileItemRow label="Department" value={department} />
            <ProfileItemRow label="Role " value={roleType} />
             <ProfileItemRow label="Designation" value={designation} />
         <ProfileItemRow label="Level" value={label || ""} />
         <ProfileItemRow 
-          label={<FormattedMessage
-            id="app.userType"
-            defaultMessage="User type"
-          />}
+          label="User type"
+       
           value={employee_type
           } />
-{/* 
-        <ProfileItemRow
-          // label="Reporting Manager"
-          label={<FormattedMessage
-            id="app.reportingmanager"
-            defaultMessage="Reporting Manager"
-          />}
-          // value={metaData.email || ""}
-          // value={`${metaData.firstName} ${metaData.lastName || ""}`}
-        /> */}
-        {/* <ProfileItemRow label="TimeZone" value={timeZone} /> */}
-        {/* <ProfileItemRow label="Role" value={role} /> */}
       </>
     );
   }

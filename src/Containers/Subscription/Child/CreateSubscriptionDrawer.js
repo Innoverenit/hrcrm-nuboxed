@@ -1,6 +1,6 @@
 import React, { lazy, Component,Suspense } from "react";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../Components/Placeholder";
 import SuscriptionForm from "./SuscriptionForm";
 // const EmployeeForm = lazy(() => import("../Child/EmployeeForm"));
@@ -13,10 +13,8 @@ class CreateSubscriptionDrawer extends Component {
     return (
       <>
         <StyledDrawer
-          title={<FormattedMessage
-            id="app.subscription"
-            defaultMessage="Subscription"
-          />}
+          title="Subscription"
+         
 
           width={drawerWidth}
           visible={createSubscriptiondrawer}

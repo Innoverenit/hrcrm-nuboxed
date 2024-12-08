@@ -3,14 +3,16 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getCustomerData,getInvestorData } from "../../Customer/CustomerAction";
 import { getdealsContactdata } from "../../Contact/ContactAction";
-import { FormattedMessage } from "react-intl";
+
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
+import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
 import {getInvestorCurrency} from "../../Auth/AuthAction"
 import {getAllEmployeelist} from "../../Investor/InvestorAction"
-import { Button, Tooltip,message } from "antd";
-import { Formik, Form, Field, FastField } from "formik";
+import { Button, Tooltip,Select } from "antd";
+import { Formik, Form, Field} from "formik";
 import * as Yup from "yup";
 import {
   getRecruiterName,
@@ -18,7 +20,6 @@ import {
   getStages,
 } from "../../Opportunity/OpportunityAction";
 import {getSources} from "../../Settings/Category/Source/SourceAction"
-import PlayCircleFilledIcon from "@mui/icons-material/PlayCircleFilled";
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
@@ -31,19 +32,26 @@ import {createDeals,  getAllDealStages,
   getDealLinkedStages,
   getActiveAssignedToList
 } from "../DealAction";
-import Swal from 'sweetalert2'
-/**
- * yup validation scheme for creating a opportunity
- */
+import { base_url } from "../../../Config/Auth";
+
+const { Option } = Select; 
 
 const OpportunitySchema = Yup.object().shape({
   opportunityName: Yup.string().required("Input needed!"),
-  oppWorkflow: Yup.string().required("Input needed!"),
+ // oppWorkflow: Yup.string().required("Input needed!"),
   currency: Yup.string().required("Input needed!"),
-  oppStage: Yup.string().required("Input needed!"),
+  //oppStage: Yup.string().required("Input needed!"),
 });
 function DealForm(props) {
   const [loading, setLoading] = useState(true);
+  const [workflow, setWorkflow] = useState([]);
+  const[stage,setStage]=useState([])
+const [isLoadingStage, setIsLoadingStage] = useState(false);
+const [selectedStage, setSelectedStage] = useState(null);
+  const [selectedWorkflow, setSelectedWorkflow] = useState(null);
+  const [selectedWorkFlowType, setSelectedWorkFlowType] = useState(null);
+  const [isLoadingWorkflowType, setIsLoadingWorkflowType] = useState(false);
+  const [touchedWorkFlowType, setTouchedWorkFlowType] = useState(false);
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   
   useEffect(() => {
@@ -63,22 +71,21 @@ function DealForm(props) {
     const fetchMenuTranslations = async () => {
       try {
         const itemsToTranslate = [
-          " Name",//0
-          "Start Date",//1
-              "End Date",//2
-              "Fund Value",//3
-              "Currency",//4
-              "Assigned",//5
-              "Include",//6
-              "Investor",//7
-              "Contact",//8
-              "Workflow",//9
-              "Stages"//10
-
-
-
+          "110",//0 Name
+          "176",//1 Start Date
+              "126",//2 End Date
+              "218",//3 Value
+              "241",// 4 Currency
+              "147",//5 Description
+              "76",//13 Assigned
+              "75",//7 Include
+              "511",//8 Investor
+              "73",//9 Contact
+              "141",//10 Workflow
+              "219",//11 Stages
+              '104'// Create
         ];
-
+     
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);
       } catch (error) {
@@ -181,21 +188,8 @@ function DealForm(props) {
     };
   });
 
-
   const customerNameOption = props.investorData
-    // .sort((a, b) => {
-    //   const libraryNameA = a.name && a.name.toLowerCase();
-    //   const libraryNameB = b.name && b.name.toLowerCase();
-    //   if (libraryNameA < libraryNameB) {
-    //     return -1;
-    //   }
-    //   if (libraryNameA > libraryNameB) {
-    //     return 1;
-    //   }
-
-    //   // names must be equal
-    //   return 0;
-    // })
+  
     .map((item) => {
       return {
         label: `${item.name || ""}`,
@@ -231,14 +225,74 @@ function DealForm(props) {
   });
   const [text, setText] = useState("");
   function handletext(e) {
-  //   if (e.target.value.length === 10) {
-  //     window.alert(
-  //         "Description shouldn't exceed 10 characters"
-  //     );
-  // }
+ 
     setText(e.target.value);
 
   }
+
+
+  const handleWorkflowChange=(workflowDetailsId)=>{
+    setSelectedWorkflow(workflowDetailsId);
+    fetchStage(workflowDetailsId)
+  }
+
+
+  const fetchStage= async (workflowId) => {
+    setIsLoadingStage(true);
+    try {
+      // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
+      // setContacts(response.data);
+      const apiEndpoint = `${base_url}/workflow/stages/for_dropdown/${props.orgId}/${workflowId}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setStage(data);
+    } catch (error) {
+      console.error('Error fetching contacts:', error);
+    } finally {
+      setIsLoadingStage(false);
+    }
+  };
+  const handleSelectWorkflowTypeFocus = () => {
+    if (!touchedWorkFlowType) {
+      fetchWorkFlowType();
+      // fetchSector();
+  
+      setTouchedWorkFlowType(true);
+    }
+  };
+  const handleStageChange=(value)=>{
+    setSelectedStage(value);
+  }
+
+  const fetchWorkFlowType = async () => {
+    setIsLoadingWorkflowType(true);
+    try {
+      // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
+      // setCustomers(response.data);
+      const apiEndpoint = `${base_url}/workflow/publish/for_dropdown/${props.organizationId}/Deals`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setWorkflow(data);
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      setIsLoadingWorkflowType(false);
+    }
+  };
   const {
     transcript,
     listening,
@@ -369,6 +423,8 @@ function DealForm(props) {
             {
               ...values,
               startDate: `${newStartDate}T20:00:00Z`,
+              oppStage: selectedStage,
+              oppWorkflow: selectedWorkflow,
               endDate: `${newEndDate}T20:00:00Z`,
               description: transcript ? transcript : text,
               salesUserIds: selectedOption ? selectedOption.employeeId:props.userId,
@@ -392,54 +448,36 @@ function DealForm(props) {
           <Form className="form-background">
             <div class=" flex justify-around max-sm:flex-col">
               <div class=" h-full w-w47.5 max-sm:w-wk">
-              <div class=" text-xs mt-3">
-              <label>{translatedMenuItems[0]} </label>
+              <div class=" text-xs font-bold font-poppins ">
+               {translatedMenuItems[0]} 
                 <Field
                   isRequired
                   name="opportunityName"
                   type="text"
-                  //label="Name"
-
-                  // label={
-                  //   <FormattedMessage id="app.name" defaultMessage="name" />
-                  // }
+                  //label="Name"             
                   isColumn
                   width={"100%"}
-                  component={InputComponent}
-                  // accounts={accounts}
+                  component={InputComponent}         
                   inlineLabel
                 />
                </div>
                 <div class="flex justify-between max-sm:flex-col mt-3">
-                <div class=" text-xs w-w47.5 max-sm:w-wk">
-                <label>{translatedMenuItems[1]} </label>
+                <div class=" text-xs font-bold font-poppins w-w47.5 max-sm:w-wk">
+               {translatedMenuItems[1]}
                     <Field
                       name="startDate"
-                      //label="Start "
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.startdate"
-                      //     defaultMessage="startdate"
-                      //   />
-                      // }
+                      //label="Start "                 
                       component={DatePicker}
                       value={values.startDate}
                       isColumn
                       inlineLabel
                     />
                   </div>
-                  <div class=" text-xs w-w47.5 max-sm:w-wk">
-                  <label>{translatedMenuItems[2]} </label>
-                    <Field
-                      // isRequired
+                  <div class=" text-xs font-bold font-poppins w-w47.5 max-sm:w-wk">
+               {translatedMenuItems[2]} 
+                    <Field         
                       name="endDate"
-                      // label="End Date"
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.enddate"
-                      //     defaultMessage="enddate"
-                      //   />
-                      // }
+                      // label="End Date"                   
                       isColumn
                       component={DatePicker}
                       value={values.endDate || values.startDate}
@@ -460,38 +498,24 @@ function DealForm(props) {
                 </div>
                
                 <div class="flex justify-between max-sm:flex-col mt-3">
-                <div class="  text-xs w-w47.5 max-sm:w-wk">
-                <label>{translatedMenuItems[3]} </label>
+                <div class="  text-xs font-bold font-poppins w-w47.5 max-sm:w-wk">
+               {translatedMenuItems[3]} 
                     <Field
                       name="proposalAmount"
                       //label="Value"
-
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.fundValue"
-                      //     defaultMessage="fundValue"
-                      //   />
-                      // }
                       isColumn
                       width={"100%"}
                       component={InputComponent}
                     />
                   </div>
-                  <div class="  text-xs w-w47.5 max-sm:w-wk">
-                  <label>{translatedMenuItems[4]} </label>
+                  <div class=" text-xs font-bold font-poppins w-w47.5 max-sm:w-wk">
+                  {translatedMenuItems[4]} 
                   <Field
                       name="currency"
                       isColumnWithoutNoCreate
                       defaultValue={{
-                        //value: props.user.currency,
                         value: props.currency_name
-                      }}
-                      // label={
-                      //   <FormattedMessage
-                      //     id="app.currency"
-                      //     defaultMessage="Currency"
-                      //   />
-                      // }
+                      }}               
                       width="100%"
                       isColumn
                       // selectType="currencyName"
@@ -505,43 +529,40 @@ function DealForm(props) {
                     />
                   </div>
                 </div>
-                <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">
-                  <FormattedMessage
-                          id="app.description"
-                          defaultMessage="Description (up to 150 characters)"
-                        /></div>
-                <div>
-                  <div>
+                <div class="mt-3">   
+                <ReactDescription
+                setText={setText}
+                text={text}
+                />
+                {/* <div>
+                <span class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs ">
+                  {translatedMenuItems[5]}     
+                Description         
+                        </span>
+               
+                  <span>
                     <span onClick={SpeechRecognition.startListening}>
                       <Tooltip title="Start">
-                        <span style={{ fontSize: "1.5em", color: "red" }}>
-                          <PlayCircleFilledIcon />
-                        </span>
+                      <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>                         
                       </Tooltip>
                     </span>
 
                     <span onClick={SpeechRecognition.stopListening}>
                       <Tooltip title="Stop">
-                        <span
-                          style={{
-                            fontSize: "1.5em",
-                            color: "green",
-                            marginLeft: "3px",
-                          }}
-                        >
-                          <StopCircleIcon />
+                        <span   >
+                        <StopCircleIcon className="!text-icon ml-1 text-green-600" />                                
                         </span>
                       </Tooltip>
                     </span>
 
                     <span onClick={resetTranscript}>
                       <Tooltip title="Clear">
-                        <span style={{ fontSize: "1.5em", marginLeft: "3px" }}>
-                          <RotateRightIcon />
+                        <span>
+                        <RotateRightIcon  className="!text-icon ml-1"/>
                         </span>
                       </Tooltip>
                     </span>
-                  </div>
+                  </span>
                   <div>
                     <textarea
                
@@ -552,20 +573,18 @@ function DealForm(props) {
                       onChange={handletext}
                     ></textarea>
                   </div>
-                </div>
+                  </div> */}
+                  </div>
+                  
+                
               </div>
             <div
-               class=" h-full w-w47.5 max-sm:w-wk">
-                 <label>{translatedMenuItems[5]} </label>
+               class="text-xs font-bold font-poppins h-full w-w47.5 max-sm:w-wk">
+                  {translatedMenuItems[6]} 
+                  {/* Assigned */}
               <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
-          <>
-            {/* <Listbox.Label className="block font-semibold text-[0.75rem] mt-[0.6rem]">
-             <FormattedMessage
-                          id="app.assignedto"
-                          defaultMessage="assignedto"
-                        />
-            </Listbox.Label> */}
+          <>         
             <div className="relative ">
               <Listbox.Button className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm"style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} >
                 {selected}
@@ -628,17 +647,11 @@ function DealForm(props) {
           </>
         )}
       </Listbox>
-<div class="text-xs mt-1">
-<label>{translatedMenuItems[6]} </label>
+<div class="text-xs font-bold font-poppins mt-2">
+{translatedMenuItems[7]} 
 <Field
                     name="included"
-                    // label="Include"
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.include"
-                    //     defaultMessage="include"
-                    //   />
-                    // }
+                    // label="Include"                
                     mode
                     placeholder="Select"
                     component={SelectComponent}
@@ -652,28 +665,20 @@ function DealForm(props) {
   </div>
                 
 <div class="mt-2 flex justify-between max-sm:flex-col">
-<div class=" w-w47.5 max-sm:w-wk">
-<div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-<label>{translatedMenuItems[7]} </label>
+<div class=" w-w47.5 max-sm:w-wk mt-1">
+<div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+{translatedMenuItems[8]}
                   <Field
                     name="investorId"
                     // selectType="customerList"
-                    isColumnWithoutNoCreate
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.investor"
-                    //     defaultMessage="investor"
-                    //   />
-                    // }
-                    //component={SearchSelect}
+                    isColumnWithoutNoCreate                
                     component={SelectComponent}
                     options={
                       Array.isArray(customerNameOption)
                         ? customerNameOption
                         : []
                     }
-                    isColumn
-                    margintop={"0"}
+                    isColumn                 
                     value={values.investorId}
                     inlineLabel
                   />
@@ -682,12 +687,7 @@ function DealForm(props) {
                 <div class=" w-w47.5 max-sm:w-wk">
                 <Field
                             name="source"
-                             label={
-                              <FormattedMessage
-                                id="app.source"
-                                defaultMessage="source"
-                              />
-                            }
+                             label="source"                             
                             isColumnWithoutNoCreate
                             component={SelectComponent}
                     options={
@@ -699,19 +699,12 @@ function DealForm(props) {
                           />
                         </div>
                         </div>
-                        <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                        <label>{translatedMenuItems[8]} </label>
+                        <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-2">
+                       {translatedMenuItems[9]} 
                   <Field
                     name="contactId"
                     // selectType="contactListFilter"
-                    isColumnWithoutNoCreate
-                    // label={
-                    //   <FormattedMessage
-                    //     id="app.contact"
-                    //     defaultMessage="contact"
-                    //   />
-                    // }
-                    // component={SearchSelect}
+                    isColumnWithoutNoCreate               
                     component={SelectComponent}
                     options={
                       Array.isArray(
@@ -730,54 +723,18 @@ function DealForm(props) {
                     inlineLabel
                   />
                 </div>
-                {/* <StyledLabel>
-                  <Field
-                    name="oppInnitiative"
-                    //selectType="initiativeName"
-                    isColumnWithoutNoCreate
-                    label={
-                      <FormattedMessage
-                        id="app.initiative"
-                        defaultMessage="Initiative"
-                      />
-                    }
-                    component={SelectComponent}
-                    options={
-                      Array.isArray(
-                        getInitiativeOptions("customerId", values.customerId)
-                      )
-                        ? getInitiativeOptions("customerId", values.customerId)
-                        : []
-                    }
-                    value={values.initiativeDetailsId}
-                    filterOption={{
-                      filterType: "customerId",
-                      filterValue: values.customerId,
-                    }}
-                    disabled={!values.customerId}
-                    isColumn
-                    inlineLabel
-                  />
-                </StyledLabel> */}
                
-
+           
                 <div class="flex justify-between max-sm:flex-col mt-3">
                   <div class=" w-w47.5 max-sm:w-wk">
-                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                  <label>{translatedMenuItems[9]} </label>
-                      <Field
+                  <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+               {translatedMenuItems[10]} 
+                      {/* <Field
                         name="oppWorkflow"
                         // selectType="contactListFilter"
                         isColumnWithoutNoCreate
                         isRequired
-                        placeolder="Select type"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.workflow"
-                        //     defaultMessage="workflow"
-                        //   />
-                        // }
-                        // component={SearchSelect}
+                        placeolder="Select type"                     
                         component={SelectComponent}
                         options={
                           Array.isArray(WorkflowOptions) ? WorkflowOptions : []
@@ -785,42 +742,42 @@ function DealForm(props) {
                         value={values.oppWorkflow}
                         isColumn
                         inlineLabel
-                      />
+                      /> */}
+
+<Select
+       
+       placeholder="Select Workflow"
+     loading={isLoadingWorkflowType}
+       onChange={handleWorkflowChange}
+       onFocus={handleSelectWorkflowTypeFocus}
+       // disabled={!selectedWorkFlowType}
+     >
+       {workflow.map(work => (
+         <Option key={work.workflowDetailsId} value={work.workflowDetailsId}>
+           {work.workflowName}
+         </Option>
+       ))}
+     </Select>
                     </div>
                   </div>
                   
                   <div class=" w-w47.5 max-sm:w-wk ">
-                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                  <label>{translatedMenuItems[10]} </label>
-                      <Field
-                        name="oppStage"
-                        isRequired
-                        isColumnWithoutNoCreate
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.stages"
-                        //     defaultMessage="stages"
-                        //   />
-                        // }
-                        component={SelectComponent}
-                        options={
-                          Array.isArray(
-                            getStagesOptions("oppWorkflow", values.oppWorkflow)
-                          )
-                            ? getStagesOptions(
-                                "oppWorkflow",
-                                values.oppWorkflow
-                              )
-                            : []}  
-                        value={values.oppStage}
-                        filterOption={{
-                          filterType: "oppWorkflow",
-                          filterValue: values.oppWorkflow,
-                        }}
-                        disabled={!values.oppWorkflow}
-                        isColumn
-                        inlineLabel
-                      />
+                  <div class="font-bold font-poppins m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                  {translatedMenuItems[11]} 
+
+      <Select
+       
+        placeholder="Select Stage"
+        loading={isLoadingStage}
+        onChange={handleStageChange}
+      disabled={!selectedWorkflow}
+      >
+        {stage.map(stage => (
+          <Option key={stage.stagesId} value={stage.stagesId}>
+            {stage.stageName}
+          </Option>
+        ))}
+      </Select>
                     </div>
                   </div>
                 </div>
@@ -834,7 +791,7 @@ function DealForm(props) {
                 htmlType="submit"
                 loading={creatingDeal}
               >
-                <FormattedMessage id="app.create" defaultMessage="create" />
+                 <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[12]}</div> 
                 {/* Create */}
               </Button>
             </div>
@@ -870,6 +827,7 @@ const mapStateToProps = ({ auth,source,investor, opportunity,deal,settings,emplo
   dealsProcess: settings.dealsProcess,
   customerData: customer.customerData,
   investorData:customer.investorData,
+  token: auth.token,
   dealsContactData: contact.dealsContactData,
   fullName: auth.userDetails.fullName,
   sources: source.sources,

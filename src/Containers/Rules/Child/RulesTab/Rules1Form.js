@@ -1,21 +1,15 @@
 
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import * as Yup from "yup";
-import { Button, Switch, Icon, Tooltip } from "antd";
+import { Button, Switch } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
-import dayjs from "dayjs";
-import { Spacer } from "../../../Components/UI/Elements";
+
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
-import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
-import { FormattedMessage } from "react-intl";
+
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
-import { DatePicker1 } from "../../../Components/Forms/Formik/DatePicker1";
-import { FlexContainer } from "../../../Components/UI/Layout";
-import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
-import { StyledLabel } from "../../../Components/UI/Elements";
+
 
 class Rules1Form extends Component {
     constructor(props) {
@@ -55,9 +49,9 @@ class Rules1Form extends Component {
 
                                     }}
                                 >
-                                    <FlexContainer justifyContent="space-between" >
+                                 <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                                         <div style={{ width: "50%", marginTop: "0.625em" }}>
-                                            <StyledLabel>Stage Progress</StyledLabel>
+                                            <div class=" text-xs font-bold font-poppins text-black">Stage Progress</div>
                                             <Switch
                                                 style={{ width: "5em", marginLeft: "0.625em" }}
                                                 onChange={this.handleChange}
@@ -88,20 +82,15 @@ class Rules1Form extends Component {
                                         )}
 
 
-                                    </FlexContainer>
-                                    <Spacer />
+                                    </div>
+                                    <div class=" mt-3" />
                                     {
                                         values.type && (
-                                            <FlexContainer justifyContent="space-between">
+                                            <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                                                 <div style={{ width: "65%" }}>
                                                     <Field
                                                         name="unit"
-                                                        //label="Time"
-                                                        label={<FormattedMessage
-                                                            id="app.unit"
-                                                            defaultMessage="Time"
-                                                        />}
-                                                        isColumn
+                                                        label="Time"
                                                         width={"100%"}
                                                         component={InputComponent}
                                                         inlineLabel
@@ -117,10 +106,7 @@ class Rules1Form extends Component {
                                                     <FastField
                                                         name="unitValue"
                                                         isRequired
-                                                        label={<FormattedMessage
-                                                            id="app.unitValue"
-                                                            defaultMessage="text"
-                                                        />}
+                                                        label="text"                                                      
                                                         type="text"
                                                         isColumn
                                                         options={["Days", "Hours"]}
@@ -134,7 +120,7 @@ class Rules1Form extends Component {
                                                     />
 
                                                 </div>
-                                            </FlexContainer>
+                                            </div>
                                         )
                                     }
 
@@ -142,8 +128,8 @@ class Rules1Form extends Component {
 
 
                             </div>
-                            <Spacer />
-                            <FlexContainer justifyContent="flex-end">
+                            <div class=" mt-3" />
+                            <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                                 <Button
                                     type="primary"
                                     htmlType="submit"
@@ -151,7 +137,7 @@ class Rules1Form extends Component {
                                 >
                                     Add Rule
                                 </Button>
-                            </FlexContainer>
+                            </div>
                         </Form>
                     )}
                 </Formik>

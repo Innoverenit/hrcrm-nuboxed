@@ -1,7 +1,7 @@
 import * as types from "./ShipperActionType";
 import axios from "axios";
 import { base_url, base_url2 } from "../../../Config/Auth";
-import moment from "moment";
+import dayjs from "dayjs";
 import Swal from 'sweetalert2'
 import { message } from "antd"
 /**
@@ -25,6 +25,16 @@ export const setShipperViewType = (viewType) => (dispatch) => {
   });
 };
 
+
+export const handleShipperCostModal = (modalProps) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.HANDLE_SHIPPER_COST_MODAL,
+    payload: modalProps,
+  });
+};
+
 /**
  * request for adding a Shipper
  */
@@ -40,7 +50,7 @@ export const addShipper = (shipper, userId) => (dispatch) => {
     })
     .then((res) => {
       console.log(res);
-      dispatch(getShipperByUserId(userId));
+      // dispatch(getShipperByUserId(userId));
       dispatch({
         type: types.ADD_SHIPPER_SUCCESS,
         payload: res.data,
@@ -1241,6 +1251,8 @@ export const deleteShipperData = (id,userId) => (dispatch, getState) => {
       Swal.fire({
         icon: 'success',
         title: 'Deleted Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       console.log(res);
       dispatch(getShipperRecords(userId));
@@ -1312,6 +1324,18 @@ export const setEditShipperContact = (name) => (dispatch) => {
   });
 };
 
+export const setEditShipperCost = (name) => (dispatch) => {
+  dispatch({
+    // type: types.SET_SHIPPER_CONTACT_EDIT,
+    // payload: name,
+  });
+};
+export const handleUpdateShipperCostModal = (modalProps) => (dispatch) => {
+  dispatch({
+    // type: types.HANDLE_UPDATE_SHIPPER_CONTACT_MODAL,
+    // payload: modalProps,
+  });
+};
 export const handleUpdateShipperContactModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_UPDATE_SHIPPER_CONTACT_MODAL,
@@ -1391,8 +1415,8 @@ export const setTimeRange = (startDate, endDate) => (dispatch) => {
   dispatch({
     type: types.SET_TIME_INTERVAL,
     payload: {
-      startDate: moment(startDate).toISOString(),
-      endDate: moment(endDate).toISOString(),
+      startDate: dayjs(startDate).toISOString(),
+      endDate: dayjs(endDate).toISOString(),
     },
   });
 };
@@ -1526,6 +1550,8 @@ export const reinstateToggleForShipper = (data, shipperId,userId) => (
       Swal.fire({
         icon: 'success',
         title: 'Reinstated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("Reinstated Successfully");
     })
@@ -1536,5 +1562,107 @@ export const reinstateToggleForShipper = (data, shipperId,userId) => (
         payload: err,
       });
       message.error("Something went wrong")
+    });
+};
+
+export const handleShipperAddress = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SHIPPER_ADDRESS_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+
+
+export const addShipperCost = (data, cb) => (dispatch) => {
+  console.log(data);
+  dispatch({ type: types.ADD_SHIPPER_COST_REQUEST });
+  axios
+    .post(`${base_url2}/shipper/shippingTransferCost`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_SHIPPER_COST_SUCCESS,
+        payload: res.data,
+      });
+      // dispatch(getCandidateDocument(candidateId));
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_SHIPPER_COST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const updateCostShipper = (data,shippingTransferCostId, cb) => (dispatch) => {
+  console.log(data);
+  dispatch({ type: types.UPDATE_SHIPPER_COST_REQUEST });
+  axios
+    .put(`${base_url2}/shipper/updateShippingTransferCost/${shippingTransferCostId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_SHIPPER_COST_SUCCESS,
+        payload: res.data,
+      });
+      // dispatch(getCandidateDocument(candidateId));
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_SHIPPER_COST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const getCostShipperList = (shipperId) => (dispatch) => {
+  // let api_url = "";
+  // if (userId) {
+  //   api_url = `/sort/all/contacts/user/${userId}`;
+  // } else {
+  //   api_url = `/contacts`;
+  // }
+  dispatch({
+    type: types.GET_COST_SHIPPER_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/shipper/shippingTransferCost/${shipperId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COST_SHIPPER_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_COST_SHIPPER_LIST_FAILURE,
+        payload: err,
+      });
     });
 };

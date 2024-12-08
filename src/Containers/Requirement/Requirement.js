@@ -5,10 +5,11 @@ import RequirementHeader from "./RequirementHeader";
 import AllRequirementTable from "../Requirement/AllRequirementTable"
 
 import {
-    getRecruitByOpportunityId,
+    getRecruitByOpportunityId,  handleRecruitModal,
   } from "../Opportunity/OpportunityAction";
 
   import { setRequirementViewType } from "./RequirementAction";
+import AddRecruitModal from "../Opportunity/Child/OpportunityDetail/OpportunityTab/Recruitment/AddRecruitModal";
 class Requirement extends Component  {
     state = { currentData: undefined,responseData:null,text:undefined,currentSkillData: "" };
     handleClear = () => {
@@ -26,6 +27,7 @@ class Requirement extends Component  {
         const {
             viewType,
             setRequirementViewType,
+            handleRecruitModal,
           } = this.props;
     return (
         <>
@@ -37,6 +39,15 @@ class Requirement extends Component  {
         currentData={this.state.currentData}
         text={this.state.text}
         setCurrentData={this.setCurrentData}
+        handleRecruitModal={handleRecruitModal}
+        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText}
+        />
+        <AddRecruitModal
+        addRecruitModal={this.props.addRecruitModal}
+        handleRecruitModal={this.props.handleRecruitModal}
+        selectedLanguage={this.props.selectedLanguage}
+        translateText={this.props.translateText}
         />
         <AllRequirementTable/>
         </>
@@ -46,6 +57,7 @@ class Requirement extends Component  {
 const mapStateToProps = ({ requirement,opportunity }) => ({
   viewType:requirement.viewType,
   opportunityId: opportunity.opportunity.opportunityId,
+  addRecruitModal: opportunity.addRecruitModal,
    
   });
   
@@ -54,6 +66,7 @@ const mapStateToProps = ({ requirement,opportunity }) => ({
       {
         getRecruitByOpportunityId,
         setRequirementViewType,
+        handleRecruitModal,
       },
       dispatch
     );

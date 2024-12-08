@@ -75,12 +75,12 @@ function generateRandomColor() {
         </>
       )} 
      {props.skill.length ?
-      <p className="load1"
-        styles={{ cursor: "pointer" }}
+    <div
+    className="cursor-pointer text-xs mt-2 font-bold ml-1" 
         onClick={() => (!isViewAll ? setIsViewAll(true) : setIsViewAll(false))}
       >
         {!isViewAll ? " Load More" : " View Less"}
-      </p>
+      </div>
       :null}
 
 

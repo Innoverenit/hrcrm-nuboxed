@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 const UpdateEducationForm = lazy(() =>
   import("../Education/UpdateEducationForm")
 );
@@ -16,10 +16,7 @@ class UpdateEducationModal extends Component {
     return (
       <>
         <StyledDrawer
-          //title="Education"
-          title={
-            <FormattedMessage id="app.education" defaultMessage="Education" />
-          }
+          title="Education"
           width="30%"
           visible={updateEducationModal}
           destroyOnClose
@@ -30,7 +27,9 @@ class UpdateEducationModal extends Component {
           footer={null}
         >
           <Suspense fallback={<BundleLoader />}>
-            <UpdateEducationForm />
+            <UpdateEducationForm
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage} />
           </Suspense>
         </StyledDrawer>
       </>

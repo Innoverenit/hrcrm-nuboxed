@@ -1,13 +1,10 @@
-import React, { Component, useEffect, useState, useMemo, lazy } from "react";
+import React, { useEffect, useState, useMemo, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
-import {
-  EyeInvisibleOutlined,
-  MailOutlined,
-  SearchOutlined,
-  UpCircleOutlined,
-} from "@ant-design/icons";
+import dayjs from "dayjs";
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
+import SearchIcon from '@mui/icons-material/Search';
 import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import EditIcon from '@mui/icons-material/Edit';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
@@ -15,24 +12,18 @@ import WalletIcon from '@mui/icons-material/Wallet';
 import BuildCircleIcon from '@mui/icons-material/BuildCircle';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import Box from "@mui/material/Box";
-import { DataGrid, GridColDef,GridRenderCellParams, GridToolbar } from "@mui/x-data-grid";
+import { DataGrid,GridToolbar } from "@mui/x-data-grid";
 import CandidateRowEmailModal from "./Child/CandidateRowEmailModal";
 import SkillsLoadMore from "../Candidate/Child/CandidateTable/SkillsLoadMore";
 import AddChoiceCandidateModal from "./Child/CandidateTable/AddChoiceCandidateModal";
-import { FormattedMessage } from "react-intl";
-import { StyledTable, StyledPopconfirm } from "../../Components/UI/Antd";
+import {  StyledPopconfirm } from "../../Components/UI/Antd";
 import { Button,Select, Tooltip, Input } from "antd";
 import {
-  MultiAvatar,
-  Spacer,
-  SubTitle,
-  StyledLabel,
-  MultiAvatar2,
+  MultiAvatar,SubTitle, MultiAvatar2,
 } from "../../Components/UI/Elements";
 
 import InfiniteScroll from "react-infinite-scroll-component";
 import AddCandidateDrawerModal from "./AddCandidateDrawerModal";
-import { CurrencySymbol } from "../../Components/Common";
 import {
   getCandidateListByUserId,
   getCandidateById,
@@ -54,11 +45,8 @@ import {
 import AddDonotCallModal from "./Child/CandidateTable/AddDonotCallModal";
 import AddPlayerModal from "./Child/CandidateTable/AddPlayerModal"
 import { getRoles } from "../Settings/Category/Role/RoleAction";
-//import { getDesignations } from "../../../Settings/Designation/DesignationAction";
 import { getCountries } from "../Auth/AuthAction";
 import UpdateCandidateResumeModal from "./Child/CandidateTable/UpdateCandidateResumeModal";
-import { BundleLoader } from "../../Components/Placeholder";
-import { FlexContainer } from "../../Components/UI/Layout";
 import StatusToggle from "./Child/CandidateTable/StatusToggle";
 import styled from "styled-components";
 import Highlighter from "react-highlight-words";
@@ -201,7 +189,7 @@ function CandidateGridTable(props) {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             //icon="search"
             size="small"
             style={{ width: 90 }}
@@ -229,8 +217,8 @@ function CandidateGridTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-        <SearchOutlined
+        // <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />
@@ -362,8 +350,8 @@ function CandidateGridTable(props) {
               primaryTitle={data.firstName}
               imageId={data.imageId}
               imageURL={data.imageURL}
-              imgWidth={"2.1em"}
-              imgHeight={"2.1em"}
+              imgWidth={"1.8rem"}
+              imgHeight={"1.8rem"}
             />
           </SubTitle>
         );
@@ -375,7 +363,7 @@ function CandidateGridTable(props) {
 //     },
     {
         headerName: "Name",
-      //title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+    
       field: "fullName",
       width: 120,
       //...getColumnSearchProps("fullName"),
@@ -384,8 +372,8 @@ function CandidateGridTable(props) {
          const data=cellValues.row
         // const fullName = ` ${item.salutation || ""} ${item.firstName ||
         //   ""} ${item.middleName || ""} ${item.lastName || ""}`;
-        const currentdate = moment().format("DD/MM/YYYY");
-        const date = moment(data.creationDate).format("DD/MM/YYYY");
+        const currentdate = dayjs().format("DD/MM/YYYY");
+        const date = dayjs(data.creationDate).format("DD/MM/YYYY");
         //   console.log(date, currentdate, currentdate === date);
         return (
           <>
@@ -400,9 +388,7 @@ function CandidateGridTable(props) {
       },
     },
     {
-      // title: <FormattedMessage 
-      // id="app.category" defaultMessage=""
-      //  />,
+      
       headerName: "",
       field: "category",
       width: 20,
@@ -457,10 +443,8 @@ function CandidateGridTable(props) {
             <Tooltip title="Video">
               {data.videoClipsId!==null&&(
               <span>
-                {/* <FontAwesomeIcon icon={solid("wallet")} /> */}
+      
                 <PlayCircleIcon 
-                // icon={solid("play")}
-                // style={{ color: "red" }}
                 onClick={() => {
                   props.handlePlayerModal(true);
                   handleSetCurrentVideoId(data.videoClipsId)
@@ -478,14 +462,12 @@ function CandidateGridTable(props) {
 
     {
         headerName: "Vendor",
-      //title: <FormattedMessage id="app.vendor" defaultMessage="Vendor" />,
       field: "partnerName",
       width: 90,
       //...getColumnSearchProps("partnerName"),
     },
     {
         headerName: "Role",
-      //title: <FormattedMessage id="app.role" defaultMessage="Role" />,
       field: "roleType",
       width: 80,
     //   filters: roleTypeOption,
@@ -495,77 +477,35 @@ function CandidateGridTable(props) {
     //   },
     },
 
-    // {
-    //   title: (
-    //     <FormattedMessage id="app.mobileNumber" defaultMessage="Mobile #" />
-    //   ),
-    //   dataIndex: "mobileNumber",
-    //   width: "10%",
-    //   render: (name, item, i) => {
-    //     return (
-    //       <span>
-    //         {item.countryDialCode} {item.mobileNumber}
-    //       </span>
-    //     );
-    //   },
-    // },
-   
-    // {
-    //     headerName: "",
-    //   width:5
-    //       },
+    
     {
         headerName: "Country",
-      //title: <FormattedMessage id="app.country" defaultMessage="Country" />,
       field: "country",
       //align: "left",
       width: 80,
-    //   filters: CountryTypeOption,
-    //   onFilter: (value, record) => {
-    //     return record.country === value;
-    //   },
-    //   sorter: (a, b) => {
-    //     var nameA = a.country; // ignore upper and lowercase
-    //     var nameB = b.country; // ignore upper and lowercase
-    //     if (nameA < nameB) {
-    //       return -1;
-    //     }
-    //     if (nameA > nameB) {
-    //       return 1;
-    //     }
-    //     return 0;
-    //   },
     },
     {
-        headerName: "Skills",
-        field: "skill",
-      //title: <FormattedMessage id="app.skills" defaultMessage="Skills" />,
-      // dataIndex: "skillList",
-      width:150,
-     // ...getColumnSearchProps("skillList"),
-     renderCell: (cellValues,row) => {
-        console.log("cell",cellValues)
-         const data1=cellValues.row
-        const data =
-        data1.skillList === null
-            ? []
-            : data1.skillList.filter((skill) => {
-                return skill !== null && skill !== "";
-              });
-
-        return (
-          <>
-            {data1.skillList === [] ? (
-              "None"
-            ) : (
-              <span>
-                <SkillsLoadMore skillList={data} />
-              </span>
-            )}
-          </>
-        );
+      headerName: "Skills",
+      field: "skill",
+      width: 150,
+      renderCell: (params) => {
+          console.log("cell", params);
+          const data1 = params.row;
+          const data = data1.skillList === null ? [] : data1.skillList.filter((skill) => skill !== null && skill !== "");
+  
+          return (
+              <>
+                  {data.length === 0 ? (
+                      "None"
+                  ) : (
+                      <span>
+                          <SkillsLoadMore skillList={data} />
+                      </span>
+                  )}
+              </>
+          );
       },
-    },
+  },
     {
         headerName: "",
         field: "skilll",
@@ -618,9 +558,7 @@ function CandidateGridTable(props) {
       },
     },
     {
-    //   title: (
-    //     <FormattedMessage id="app.expectation" defaultMessage="Expectation" />
-    //   ),
+   
     headerName: "Expectation",
       field: "billing",
       //align: "left",
@@ -645,19 +583,18 @@ function CandidateGridTable(props) {
     },
     {
         headerName: "Available",
-      //title: <FormattedMessage id="app.available" defaultMessage="Available" />,
       field: "availableDate",
       width: 70,
       renderCell: (cellValues,row) => {
         console.log("cell",cellValues)
          const data=cellValues.row
-        const availableDate = moment(data.availableDate).format("ll");
+        const availableDate = dayjs(data.availableDate).format("ll");
         return (
           <>
             {data.availableDate === null ? (
               "None"
             ) : (
-              <span>{moment(data.availableDate).format("l")}</span>
+              <span>{dayjs(data.availableDate).format("l")}</span>
             )}
           </>
         );
@@ -666,14 +603,8 @@ function CandidateGridTable(props) {
     {
         headerName: "Owner",
         field: "ownerName",
-     // title: <FormattedMessage id="app.owner" defaultMessage="Owner" />,
-      // dataIndex: "ownerName",
       width: 80,
-      // ...getColumnSearchProps('ownerName'),
-    //   filters: ownerlistType,
-    //   onFilter: (value, record) => {
-    //     return record.fullName === value;
-    //   },
+     
     renderCell: (cellValues,row) => {
         console.log("cell",cellValues)
          const data=cellValues.row
@@ -685,8 +616,8 @@ function CandidateGridTable(props) {
                   primaryTitle={data.ownerName}
                   imageId={data.ownerImageId}
                   imageURL={data.imageURL}
-                  imgWidth={"2.1em"}
-                  imgHeight={"2.1em"}
+                  imgWidth={"1.8rem"}
+                  imgHeight={"1.8rem"}
                 />
               </span>
             </Tooltip>
@@ -698,8 +629,6 @@ function CandidateGridTable(props) {
 
         headerName: "Active",
         field: "active",
-      //title: <FormattedMessage id="app.active" defaultMessage="Active" />,
-      // dataIndex: "active",
       width: 70,
       renderCell: (cellValues,row) => {
         console.log("cell",cellValues)
@@ -751,7 +680,6 @@ function CandidateGridTable(props) {
                   cursor: "pointer",
                 }}
               >
-                {/* <FontAwesomeIcon icon={solid("phone-volume")} /> */}
                 <PhoneDisabledIcon 
                 // icon={solid("phone-slash")}
                  />
@@ -772,7 +700,7 @@ function CandidateGridTable(props) {
         return (
           <>
             {user.talentUpdateInd === true && (
-              <MailOutlined
+              <MailOutlineIcon
                 type="mail"
                 style={{ cursor: "pointer" }}
                 onClick={() => {
@@ -877,16 +805,6 @@ function CandidateGridTable(props) {
                 <EditIcon1></EditIcon1>
               </span>
 
-              // <FontAwesomeIcon
-              //   icon={solid("pen-to-square")}
-              //   type="edit"
-              //   style={{ cursor: "pointer" }}
-              //   onClick={() => {
-              //     props.setEditCandidate(item);
-              //     handleupdateCandidateResumeModal(true);
-              //     handleSetCurrentCandidateId(item.candidateId);
-              //   }}
-              // />
             )}
           </>
         );
@@ -905,7 +823,7 @@ function CandidateGridTable(props) {
             title="Do you want to blacklist?"
             onConfirm={() => props.getBlackListCandidate(data.candidateId)}
           >
-            <UpCircleOutlined
+            <ArrowCircleUpIcon
               type="up-circle"
               theme="filled"
               style={{ cursor: "pointer" }}

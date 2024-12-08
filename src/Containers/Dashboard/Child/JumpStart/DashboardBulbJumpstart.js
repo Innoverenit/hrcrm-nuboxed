@@ -5,7 +5,7 @@ import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { JumpStartBox, } from "../../../../Components/UI/Elements";
 import {getDateWiseList,getSalesDateWiseList,getJumpBulblist,getJumpBulblist2,getJumpBulblist3,getavgHour} from "../../DashboardAction";
-import { FormattedMessage } from "react-intl";
+
 
 class DashboardBulbJumpstart extends React.Component{
   constructor() {
@@ -76,12 +76,10 @@ render() {
           <JumpStartBox
  bgColor="linear-gradient(270deg,#F15753,orange)"
             noProgress
-            title={
-              <FormattedMessage
-                id="app.leadsQualified"
-                defaultMessage="Leads Qualified"
-              />
-            }
+            title=
+             "Leads Qualified"
+             
+          
             // title="Leads Qualified"
 
             value={this.props.jumpstartBulbCount.qualifiedLeadsList}
@@ -91,13 +89,9 @@ render() {
           <JumpStartBox
                         bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
             noProgress
-            title={
-              <FormattedMessage
-                id="app.openOpportunity"
-                defaultMessage="Open Opportunity"
-              />
-            }
-            // title="Open Opportunity"
+          
+             
+            title="Open Opportunity"
             value={
   
               this.props.avgHour.hours
@@ -110,12 +104,8 @@ render() {
           <JumpStartBox
  bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
             noProgress
-            title={
-              <FormattedMessage
-                id="app.orderGenerated"
-                defaultMessage="Order Generated"
-              />
-            }
+            title="Order Generated"
+             
             // title="Order Generated"
 
             value={
@@ -127,12 +117,8 @@ render() {
           <JumpStartBox
                        bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
             noProgress
-            title={
-              <FormattedMessage
-                id="app.pipeline"
-                defaultMessage="Pipeline"
-              />
-            }
+            title="Pipeline"
+             
             // title="Pipeline"
             value={
               this.props.jumpstartBulb3Count.junkedLeadsList

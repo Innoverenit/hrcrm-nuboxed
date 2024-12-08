@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledModal } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 const UpdateMileageForm=lazy(()=>import("./UpdateMileageForm"));
@@ -10,10 +10,8 @@ const UpdateMileageModal = (props) => {
     <>
       <StyledModal
         // title="Mileage"
-        title={<FormattedMessage
-          id="app.mileage"
-          defaultMessage="Mileage"
-        />}
+        title="Mileage"
+ 
         width="70%"
         visible={updateMileageModal}
         onCancel={() => handleUpdateMileageModal(false)}

@@ -9,7 +9,7 @@ import {
   StyledTable,
   StyledPopconfirm,
 } from "../../../../Components/UI/Antd";
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
 import {
   Tooltip,
   Input,
@@ -25,8 +25,8 @@ import {
 } from "../../LeadsAction";
 import DownloadIcon from '@mui/icons-material/Download';
 import { elipsize } from "../../../../Helpers/Function/Functions";
-import { FormattedMessage } from "react-intl";
-import { DeleteOutlined } from "@ant-design/icons";
+
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 class LeadsDocuments extends Component {
   constructor(props) {
@@ -70,11 +70,11 @@ class LeadsDocuments extends Component {
         <Button
           type="primary"
           onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-          icon={<SearchOutlined />}
+         
           size="small"
           style={{ width: 90, marginRight: 8 }}
         >
-          Search
+<SearchIcon ClassName="!text-icon" />Search
         </Button>
         <Button
           onClick={() => this.handleReset(clearFilters)}
@@ -86,7 +86,7 @@ class LeadsDocuments extends Component {
       </div>
     ),
     filterIcon: (filtered) => (
-      <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
+      <SearchIcon ClassName="!text-icon" style={{ color: filtered ? "#1890ff" : undefined }} />
     ),
     onFilter: (value, record) =>
       record[dataIndex]
@@ -133,7 +133,7 @@ class LeadsDocuments extends Component {
 
     const columns = [
       {
-        title: <FormattedMessage id="app.date" defaultMessage="Date" />,
+        title:"Date" ,
         dataIndex: "creationDate",
         sorter: (a, b) => {
           var creationDateA = a.creationDate; // ignore upper and lowercase
@@ -152,20 +152,17 @@ class LeadsDocuments extends Component {
         },
       },
       {
-        //title: "Name",
-        title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+        title: "Name",
         dataIndex: "documentTitle",
         ...this.getColumnSearchProps("documentTitle"),
       },
       {
-        title: <FormattedMessage id="app.type" defaultMessage="Type" />,
+        title:"Type",
         dataIndex: "documentContentType",
       },
       {
-        //title: "Description",
-        title: (
-          <FormattedMessage id="app.description" defaultMessage="Description" />
-        ),
+        title: "Description",
+        
         dataIndex: "documentDescription",
         width: "20%",
         render: (name, item, i) => {
@@ -176,10 +173,7 @@ class LeadsDocuments extends Component {
         sorter: (a, b) => a.taskType.length - b.taskType.length,
       },
       {
-        //title: "Uploaded By",
-        title: (
-          <FormattedMessage id="app.uploadedBy" defaultMessage="Uploaded By" />
-        ),
+        title: "Uploaded By",
         dataIndex: "uploadedBy",
         render: (name, item, i) => {
           return (
@@ -222,19 +216,10 @@ class LeadsDocuments extends Component {
         render: (name, item, i) => {
           return (
             <StyledPopconfirm
-              //title="Do you want to delete?"
-              title={
-                <FormattedMessage
-                  id="app.doyouwanttodelete?"
-                  defaultMessage="Do you want to delete?"
-                />
-              }
+              title="Do you want to delete?"
               onConfirm={() => deleteLeadsDocument(item.documentId)}
             >
-              <DeleteOutlined
-                type="delete"
-                style={{ cursor: "pointer", color: "red" }}
-              />
+             <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
             </StyledPopconfirm>
           );
         },

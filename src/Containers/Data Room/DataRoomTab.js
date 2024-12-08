@@ -4,20 +4,14 @@ import TabPane from 'antd/lib/tabs/TabPane';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { BundleLoader } from '../../Components/Placeholder';
-import HandymanIcon from '@mui/icons-material/Handyman';
-import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import {handleDataroomNotesDrawerModal} from "./DataRoomAction";
 import { Tooltip } from 'antd';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
-import AddDataRoomNotesDrawerModal from './AddDataRoomNotesDrawerModal';
-import AddDocumentModals from '../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals';
-import {
-    handleDocumentUploadModal,
-
-  } from "../Customer/CustomerAction";
-  import { PlusOutlined } from "@ant-design/icons";
-import { FormattedMessage } from 'react-intl';
-import TaskDataCardList from './TaskDataCardList';
+import {handleDocumentUploadModal} from "../Customer/CustomerAction";
+  import AddBoxIcon from '@mui/icons-material/AddBox';
+const AddDocumentModals=lazy(()=> import("../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals"));
+const AddDataRoomNotesDrawerModal=lazy(()=> import("./AddDataRoomNotesDrawerModal"));
+const TaskDataCardList=lazy(()=> import("./TaskDataCardList"));
 
 const DataRoomTab = (props) => {
     const [rowdata, setrowData] = useState({});
@@ -81,41 +75,22 @@ const DataRoomTab = (props) => {
                     <TabPane
               tab={
                 <>
-                  <InsertDriveFileIcon 
-                  style={{fontSize:"1.1rem"}}
-                  />
+                  <InsertDriveFileIcon className='!text-icon'  />
                   <span class=" ml-1">
-                    <FormattedMessage
-                      id="app.documents"
-                      defaultMessage="Documents"
-                    />
-                    {/* Documents */}
+                   
+                    Documents
                   </span>
                   {/* {activeKey === "2" && ( */}
                     <>
                      <Tooltip //title="Create"
-                        title={
-                          <FormattedMessage
-                          id="app.uploaddocument"
-                          defaultMessage="Upload Document"
-                        />
-                        }
+                        title="Upload Document"
+                      
                       >
-                      <PlusOutlined
-                        type="plus"
-                        //tooltipTitle="Upload Document"
-                        tooltiptitle={
-                          <FormattedMessage
-                            id="app.uploaddocument"
-                            defaultMessage="Upload Document"
-                          />
-                        }
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                      
+                        tooltiptitle="Upload Document"
                         onClick={() => handleDocumentUploadModal(true)}
-                        size="0.875em"
-                        style={{
-                          marginLeft: "0.3125em",
-                          verticalAlign: "center",
-                        }}
+                     
                        
                       />
                      </Tooltip>
@@ -149,6 +124,7 @@ const DataRoomTab = (props) => {
                     </TabPane>
              
             </StyledTabs>
+            <Suspense fallback={<BundleLoader />}>
             <AddDataRoomNotesDrawerModal
         rowdata={rowdata}
         addDrawerDataroomNotesModal={props.addDrawerDataroomNotesModal}
@@ -159,6 +135,7 @@ const DataRoomTab = (props) => {
             documentUploadModal={props.documentUploadModal}
             handleDocumentUploadModal={props.handleDocumentUploadModal}
           />
+          </Suspense>
         </div>
     )
 }

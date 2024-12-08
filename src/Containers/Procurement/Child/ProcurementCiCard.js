@@ -42,8 +42,8 @@ function ProcurementCiCard(props) {
   return (
     <>
        <div className=' flex justify-end sticky top-28 z-auto'>
-       <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-       <div className=" flex justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
+       <div class="rounded-lg m-5 p-2 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+       <div className=" flex justify-between w-[100%]  p-2 bg-transparent font-bold sticky top-0 z-10">
        <div className=" md:w-[8.1rem]">CI #</div>
         <div className=" md:w-[6.1rem]">Created</div>
         <div className="w-12"></div>
@@ -83,7 +83,7 @@ function ProcurementCiCard(props) {
    
               </div>
               <div class="flex  flex-col md:w-[14.35rem] max-sm:flex-row max-sm:justify-between w-full">
-              <p> {moment(item.startDate).format("llll")}</p>
+              <p> {dayjs(item.startDate).format("llll")}</p>
               </div>
         
               </div>

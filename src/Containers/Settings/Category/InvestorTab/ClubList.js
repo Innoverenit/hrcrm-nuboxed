@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import ClubStatusToggle from "./ClubStatusToggle"
 import { Button, Input, Select,Tooltip } from "antd";
 import {clubShare,getclubShare,updateClub} from "../../SettingsAction";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
+import { SketchPicker } from "react-color"; 
 
 const { Option } = Select;
 
@@ -19,6 +21,7 @@ function ClubList(props) {
   const [editsuppliesId, setEditsuppliesId] = useState(null);
   const [data, setData] = useState([]);
   const [errors, setErrors] = useState({});
+  const [colorPickerVisible, setColorPickerVisible] = useState(false); // State for showing color picker
 
   useEffect(() => {
     props.getclubShare();
@@ -35,7 +38,7 @@ function ClubList(props) {
   }, []);
 
   useEffect(() => {
-    setData(props.clubShareData.map((item, index) => ({ ...item, key: String(index) })));
+    setData(props.clubShareData.map((item, index) => ({ ...item, key: String(index), color: item.color || '#4A90E2', })));
   }, [props.clubShareData]);
 
 
@@ -47,8 +50,8 @@ function ClubList(props) {
       // key: String(data.length + 1),
       clubName: '',
       noOfShare: '',
-      discount:''
-      
+      discount:'',
+      color: '#4A90E2', 
 
 
     };
@@ -71,7 +74,11 @@ function ClubList(props) {
       setRows(updatedRows);
     }
   };
-
+  const handleColorChange = (color, index) => {
+    const updatedRows = [...rows];
+    updatedRows[index].color = color.hex;
+    setRows(updatedRows);
+  };
   const handleSelectChange = (value, key, dataIndex) => {
     const updatedData = data.map((row) =>
       row.key === key ? { ...row, [dataIndex]: value, currency_id: value } : row
@@ -95,17 +102,19 @@ function ClubList(props) {
         clubName: row.clubName,
         noOfShare: row.noOfShare,
         discount: row.discount,
-       
+        color: row.color, 
       };
       props.clubShare(result)
-      setRows([{  noOfShare: '', clubName: '', }]);
+      setRows([{  noOfShare: '', clubName: '', color: '#4A90E2' }]);
   };
   const handleEditClick = (clubId) => {
     setEditsuppliesId(clubId);
+    setColorPickerVisible(true); // Show color picker on edit
   };
   const handleCancelClick = (clubId) => {
     setEditedFields((prevFields) => ({ ...prevFields, [clubId]: undefined }));
     setEditsuppliesId(null);
+    setColorPickerVisible(false); // Hide color picker on cancel
   };
 //   const { clubShareData } = props;
 //   if (clubShareData && clubShareData.length > 0) {
@@ -127,16 +136,16 @@ function ClubList(props) {
 //     props.updateClub(updatedData,clubId);
 //     setEditsuppliesId(null);
 //   };
-const { clubShareData } = props;
-let clubId; // Declare clubId outside
+// const { clubShareData } = props;
+// let clubId; // Declare clubId outside
 
-if (clubShareData && clubShareData.length > 0) {
-  const firstItem = clubShareData[0];
-  clubId = firstItem.clubId;
-  console.log(clubId); // or use the clubId as needed
-} else {
-  console.error("clubShareData is undefined or empty");
-}
+// if (clubShareData && clubShareData.length > 0) {
+//   const firstItem = clubShareData[0];
+//   clubId = firstItem.clubId;
+//   console.log(clubId); // or use the clubId as needed
+// } else {
+//   console.error("clubShareData is undefined or empty");
+// }
 
 function handleUpdate(key) {
   console.log('Submitting Row:', key);
@@ -144,13 +153,15 @@ function handleUpdate(key) {
     clubName: key.clubName,
     noOfShare: key.noOfShare,
     discount: key.discount,
+    color: key.color || '#4A90E2', // Ensure color is not null
   };
-  if (clubId) {
-    props.updateClub(updatedData, clubId);
-  } else {
-    console.error("clubId is undefined");
-  }
+  // if (clubId) {
+    props.updateClub(updatedData, key.clubId);
+  // } else {
+  //   console.error("clubId is undefined");
+  // }
   setEditsuppliesId(null);
+  setColorPickerVisible(false); // Hide color picker after update
 };
 console.log(props.clubShareData)
   return (
@@ -160,11 +171,11 @@ console.log(props.clubShareData)
       </Button>
       {rows.map((row, index) => (
           <div key={index} class="flex items-center">
-            <div class="flex justify-around w-[30rem]  ">
+            <div class="flex justify-between w-wk  ">
               
 
               <div>
-                <label>Name</label>
+                <div class="font-bold text-xs font-poppins text-black">Name</div>
                 <div class="w-24"></div>
                 <Input
                 type="text"
@@ -177,7 +188,7 @@ console.log(props.clubShareData)
                         {errors[`clubName${index}`] && <span className="text-red-500">{errors[`clubName${index}`]}</span>}
                       </div>
               <div>
-                <label># Shares</label>
+                <div class="font-bold text-xs font-poppins text-black"># Shares</div>
                 <div class="w-24">
                 <Input
                  inputMode="numeric"
@@ -188,7 +199,7 @@ console.log(props.clubShareData)
                        {errors[`noOfShare${index}`] && <span className="text-red-500">{errors[`noOfShare${index}`]}</span>}
                       </div></div>
               <div>
-                <label>Discount %</label>
+                <div class="font-bold text-xs font-poppins text-black">Discount %</div>
                 <div class="w-24">
                 <Input
                  inputMode="numeric"
@@ -198,7 +209,29 @@ console.log(props.clubShareData)
                       />
                         {errors[`discount${index}`] && <span className="text-red-500">{errors[`discount${index}`]}</span>}
                 </div>
+               
+
               </div>
+              <div>
+              <div className="font-bold text-xs font-poppins text-black">Color</div>
+              <SketchPicker
+              styles={{
+                default: {
+                  picker: {
+                    boxShadow: 'none',
+                    borderRadius: '8px',
+                    width: '16rem', // Adjust width as needed 
+                    height:"5rem",overflowX:"auto"
+                  },
+                  saturation: {
+                    borderRadius: '8px',
+                  },
+                },
+              }}
+                color={row.color}
+                onChange={(color) => handleColorChange(color, index)}
+              />
+            </div>
             </div>
             <div class="mt-4">
             <Button type="primary" onClick={() => handleSave(index)}>
@@ -210,8 +243,8 @@ console.log(props.clubShareData)
         ))}
 
       <div className=' flex sticky z-auto'>
-        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">         
+        <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">         
             <div className=" md:w-[10rem]">Name</div>
             <div className=" md:w-[10.1rem]"># Shares</div>
             <div className=" md:w-[11.2rem] ">Discount %</div>
@@ -221,7 +254,7 @@ console.log(props.clubShareData)
           {data.length ? data.map((item) => {
             return (
               <div key={item.clubId}>
-                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                <div className="flex rounded justify-between mt-1 bg-white h-16 items-center p-1 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
                 >
 
 <div className=" flex font-medium flex-col md:w-[6.5rem] max-sm:flex-row w-full max-sm:justify-between ">
@@ -270,11 +303,48 @@ console.log(props.clubShareData)
                     </div>
                      ):(
                       <div className="font-normal text-sm  font-poppins">
-                      <div> {item.discount}</div>
+                      <div> {item.discount} %</div>
                     </div>
                     )}
                   </div>
-
+                  
+                <div class="w-24">
+                <ClubStatusToggle
+                                  invToCusInd={item.invToCusInd}
+                                  clubId={item.clubId}
+                                  // suppliesId={item.suppliesId}
+                                />
+                </div>
+                <div>
+                  {editsuppliesId === item.clubId ? (
+                    <SketchPicker
+                    styles={{
+                      default: {
+                        picker: {
+                          boxShadow: 'none',
+                          borderRadius: '8px',
+                          width: '10rem', // Adjust width as needed 
+                          height:"3rem",overflowX:"auto"
+                        },
+                        saturation: {
+                          borderRadius: '8px',
+                        },
+                      },
+                    }}
+                      color={item.color || '#4A90E2'} // Ensure default color is used if null
+                      onChange={(color) => handleInputChange(color.hex, item.key, 'color')}
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        width: '20px',
+                        height: '20px',
+                        backgroundColor: item.color || '#4A90E2', // Ensure color shows even if null
+                        borderRadius: '50%',
+                      }}
+                    ></div>
+                  )}
+                </div>
                   <div class="flex md:items-center">
 
 
@@ -307,10 +377,8 @@ console.log(props.clubShareData)
 
                           >
                      <Tooltip title="Delete">
-                     <DeleteOutlined
-                      
-                         className=" !text-icon text-red-600 cursor-pointer flex justify-center "
-                          />
+                    
+                     <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                        </Tooltip>
                        </StyledPopconfirm>
                        </div>
@@ -355,4 +423,3 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(ClubList);
-

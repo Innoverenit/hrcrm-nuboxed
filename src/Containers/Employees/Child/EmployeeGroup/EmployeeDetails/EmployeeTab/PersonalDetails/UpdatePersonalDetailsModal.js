@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, Component } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../../Components/UI/Antd";
 const UpdatePersonalDetailsDocumentForm = lazy(() =>
@@ -12,11 +12,7 @@ class UpdatePersonalDetailsModal extends Component {
         return (
             <>
                 <StyledDrawer
-                    //title="Personal Details"
-                    title={<FormattedMessage
-                        id="app.personaldetails"
-                        defaultMessage="Personal Details"
-                      />}
+                    title="Personal Details"
                     width="60%"
 
                     visible={updatePersonalDetailsModal}

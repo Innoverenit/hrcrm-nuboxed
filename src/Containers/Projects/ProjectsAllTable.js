@@ -8,7 +8,6 @@ import {
 } from "../../Components/UI/Elements";
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { FormattedMessage } from "react-intl";
 import { Tooltip, Button, Input } from "antd";
 import DeleteIcon from '@mui/icons-material/Delete';
 import SearchIcon from "@mui/icons-material/Search";
@@ -152,20 +151,12 @@ function ProjectsAllTable(props) {
   return (
     <>
         <div className=' flex justify-end sticky top-28 z-auto'>
-            <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
+            <OnlyWrapCard style={{ backgroundColor: "white" }}>
                 <div className=" flex  w-[97.5%] p-2 bg-transparent font-bold sticky top-0 z-10">
-                    <div className=" md:w-[21.1rem]"><FormattedMessage
-                        id="app.project"
-                        defaultMessage="project"
-                    /></div>
-                    <div className=" md:w-[27.1rem]"><FormattedMessage
-                        id="app.customer"
-                        defaultMessage="customer"
-                    /></div>
-                    <div className=" md:w-[9.8rem] "><FormattedMessage
-                        id="app.creator"
-                        defaultMessage="Creator"
-                    /></div>
+                    <div className=" md:w-[21.1rem]">project
+                </div>
+                    <div className=" md:w-[27.1rem]">customer</div>
+                    <div className=" md:w-[9.8rem] ">Creator</div>
                     <div className="md:w-[5.8rem]"></div>
                     
                 </div>

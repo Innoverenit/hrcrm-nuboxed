@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-import { Icon } from "antd";
-import { ApplicationWrapper, FlexContainer, MainWrapper } from "../Layout";
-import {
-  BellOutlined, PlusOutlined,FileFilled
-  
-} from '@ant-design/icons';
+import TextSnippetIcon from '@mui/icons-material/TextSnippet';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 import { Title, SubTitle } from "./";
 
@@ -14,28 +10,10 @@ class NoData extends Component {
 
     return (
       <>
-        <ApplicationWrapper>
-          <FlexContainer
-            justifyContent="center"
-            alignItems="center"
-            style={{ margin: "0em auto", height: "80vh" }}
-          >
-            <FlexContainer
-              flexDirection="column"
-              justifyContent="center"
-              alignItems="center"
-              alignSelf="center"
-            >
-              <FileFilled  type="file"  style={{ fontSize: "3.125em" }} />
-              {/* <FlexContainer
-                flexWrap="nowrap"
-                alignItems="center"
-                justifyContent="content"
-                display="content"
-                alignSelf="center"
-              >
-                
-              </FlexContainer> */}
+        <div class=" p-1 bg-light-gray ">
+        <div class=" flex flex-row flex-wrap items-center  self-start justify-center grow shrink h-[80vh] mr-auto ">
+          
+              <TextSnippetIcon  type="file"  style={{ fontSize: "3.125em" }} />           
               <Title style={{ textAlign: "center" }}>
                 Welcome to the {this.props.content || "Data"} tab.
               </Title>
@@ -47,109 +25,14 @@ class NoData extends Component {
                 }}
                 onClick={this.props.onClick || undefined}
               >
-                Let us help you get started, click <PlusOutlined type="plus" /> Create{" "}
+                Let us help you get started, click <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" /> Create{" "}
                 {this.props.content || "Data"}
               </SubTitle>
-            </FlexContainer>
-          </FlexContainer>
-        </ApplicationWrapper>
+            </div>
+        </div>
       </>
     );
   }
 }
-//       <>
-//         <BundleLoader />
-//         {content === "ViewPort" ? (
-//           <>
-//             <ApplicationWrapper>
-//               <FlexContainer
-//                 justifyContent="center"
-//                 alignItems="center"
-//                 style={{ margin: "0em auto", height: "80vh" }}
-//               >
-//                 <FlexContainer
-//                   flexDirection="column"
-//                   justifyContent="center"
-//                   alignItems="center"
-//                   alignSelf="center"
-//                 >
-//                   <Icon
-//                     type="file"
-//                     theme="filled"
-//                     style={{ fontSize: "3.125em" }}
-//                   />
-//                   <FlexContainer
-//                     flexWrap="nowrap"
-//                     alignItems="center"
-//                     justifyContent="center"
-//                     alignSelf="center"
-//                   >
-//                     <Title style={{ textAlign: "center" }}>
-//                       Welcome to the {this.props.content || "Data"} tab.
-//                     </Title>
-//                   </FlexContainer>
-//                   <SubTitle
-//                     style={{
-//                       textAlign: "center",
-//                       color: "#1890ff",
-//                       cursor: "pointer"
-//                     }}
-//                   // onClick={this.props.onClick || undefined}
-//                   >
-//                     Let us help you get started, select user from top left.
-//                   </SubTitle>
-//                 </FlexContainer>
-//               </FlexContainer>
-//             </ApplicationWrapper>
-//           </>
-//         ) : (
-//             <>
-//               <ApplicationWrapper>
-//                 <FlexContainer
-//                   justifyContent="center"
-//                   alignItems="center"
-//                   style={{ margin: "0em auto", height: "80vh" }}
-//                 >
-//                   <FlexContainer
-//                     flexDirection="column"
-//                     justifyContent="center"
-//                     alignItems="center"
-//                     alignSelf="center"
-//                   >
-//                     <Icon
-//                       type="file"
-//                       theme="filled"
-//                       style={{ fontSize: "3.125em" }}
-//                     />
-//                     <FlexContainer
-//                       flexWrap="nowrap"
-//                       alignItems="center"
-//                       justifyContent="center"
-//                       alignSelf="center"
-//                     >
-//                       <Title style={{ textAlign: "center" }}>
-//                         Welcome to the {this.props.content || "Data"} tab.
-//                     </Title>
-//                     </FlexContainer>
-//                     <SubTitle
-//                       style={{
-//                         textAlign: "center",
-//                         color: "#1890ff",
-//                         cursor: "pointer"
-//                       }}
-//                       onClick={this.props.onClick || undefined}
-//                     >
-//                       Let us help you get started, click <Icon type="plus" />{" "}
-//                       Create {this.props.content || "Data"}
-//                     </SubTitle>
-//                   </FlexContainer>
-//                 </FlexContainer>
-//               </ApplicationWrapper>
-//             </>
-//           )}
-//       </>
-//     );
-//   }
-// }
 
 export default NoData;

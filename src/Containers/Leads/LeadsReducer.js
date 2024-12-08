@@ -7,6 +7,9 @@ const initialState = {
   removingLeadsNote: false,
   removingLeadsNoteError: false,
 
+  updatingLeadjunk: false,
+  updatingLeadjunkError: false, 
+
   addDrawerLeadsSubscriptionModal:false,
 
   addingLeadsActivityCall: false,
@@ -37,6 +40,10 @@ const initialState = {
   fetchingTeamLeadsCold: false,
   fetchingTeamLeadsColdError: true,
   teamLeadsCold:[],
+
+
+  addingLeadsSubscriptionData:false,
+  addingLeadsSubscriptionDataError:false,
 
   fetchingTeamLeads: false,
             fetchingTeamLeadsError: false,
@@ -152,6 +159,11 @@ const initialState = {
   addingLeadsActivityTask: false,
   addingLeadsActivityTaskError: false,
 
+
+
+  updatingLeadOwenership:false,
+  updatingLeadOwenershipError:false,
+
   addingLeadsContact: false,
   addingLeadsContactError: false,
   addLeadsContactModal: false,
@@ -194,6 +206,8 @@ const initialState = {
   leadsDocumentUploadModal:false,
 
   addLeadsImportModal:false,
+
+  addDrawerLeadsAddressModal:false,
 
   updatingLeadsNoteDrawerModal:false,
 
@@ -254,6 +268,16 @@ const initialState = {
 
   openCETmodal:false,
 
+
+  fetchingSubscriptionCompare:false,
+  fetchingSubscriptionCompareError:false,
+  compareSubscription:{},
+
+
+  fetchingLeadsSubscriptionData:false,
+  fetchingLeadsSubscriptionDataError:false,
+  subscriptionLeadsData:[],
+
   
   fetchingAllLeads:false,
   fetchingAllLeadsError:false,
@@ -271,7 +295,8 @@ case types.HANDLE_LEADS_MODAL:
       case types.HANDLE_LEADS_CONFIRMATION_MODAL:
       return { ...state, addLeadsConfirmationModal: action.payload };
 
-     
+      case types.HANDLE_LEADS_ADDRESS_DRAWER_MODAL:
+        return { ...state, addDrawerLeadsAddressModal: action.payload };
 
       case types.HANDLE_LEADS_SUBSCRIPTION_DRAWER_MODAL:
         return { ...state, addDrawerLeadsSubscriptionModal: action.payload };
@@ -317,12 +342,13 @@ case types.HANDLE_LEADS_MODAL:
         case types.GET_LEADS_HOT_REQUEST:
           return { ...state, fetchingLeadsHot: true };
         case types.GET_LEADS_HOT_SUCCESS:
-          const newHotData = action.payload.filter(item => !state.leadsAllDataHot.some(existingItem => existingItem.id === item.id));
+         // const newHotData = action.payload.filter(item => !state.leadsAllDataHot.some(existingItem => existingItem.id === item.id));
           return {
             ...state,
             fetchingLeadsHot: false,
-            leadsAllDataHot: [...state.leadsAllDataHot, ...newHotData],
-            clearbit:null
+            leadsAllDataHot: [...state.leadsAllDataHot, ...action.payload]
+            //leadsAllDataHot: [...state.leadsAllDataHot, ...newHotData],
+            // clearbit:null
           };
         case types.GET_LEADS_HOT_FAILURE:
           return {
@@ -334,11 +360,11 @@ case types.HANDLE_LEADS_MODAL:
           case types.GET_LEADS_WARM_REQUEST:
           return { ...state, fetchingLeadsWarm: true };
         case types.GET_LEADS_WARM_SUCCESS:
-          const newWarmData = action.payload.filter(item => !state.leadsAllDataWarm.some(existingItem => existingItem.id === item.id));
+          //const newWarmData = action.payload.filter(item => !state.leadsAllDataWarm.some(existingItem => existingItem.id === item.id));
           return {
             ...state,
             fetchingLeadsWarm: false,
-            leadsAllDataWarm: [...state.leadsAllDataWarm, ...newWarmData],
+            leadsAllDataWarm: [...state.leadsAllDataWarm, ...action.payload],
             clearbit:null
           };
         case types.GET_LEADS_WARM_FAILURE:
@@ -351,11 +377,11 @@ case types.HANDLE_LEADS_MODAL:
           case types.GET_LEADS_COLD_REQUEST:
           return { ...state, fetchingLeadsCold: true };
         case types.GET_LEADS_COLD_SUCCESS:
-          const newColdData = action.payload.filter(item => !state.leadsAllDataCold.some(existingItem => existingItem.id === item.id));
+          //const newColdData = action.payload.filter(item => !state.leadsAllDataCold.some(existingItem => existingItem.id === item.id));
           return {
             ...state,
             fetchingLeadsCold: false,
-            leadsAllDataCold:[...state.leadsAllDataCold, ...newColdData],
+            leadsAllDataCold:[...state.leadsAllDataCold, ...action.payload],
             clearbit:null
           };
         case types.GET_LEADS_COLD_FAILURE:
@@ -391,6 +417,38 @@ case types.HANDLE_LEADS_MODAL:
           linkingCustomerStatus: false,
           addLeadsConfirmationModal:false,
           leadsAllData: state.leadsAllData.filter(
+            (item) => item.leadsId !== action.payload
+          ),
+          leadsAllDataCold: state.leadsAllDataCold.filter(
+            (item) => item.leadsId !== action.payload
+          ),
+          leadsAllDataWarm: state.leadsAllDataWarm.filter(
+            (item) => item.leadsId !== action.payload
+          ),
+          teamLeadsHot: state.teamLeadsHot.filter(
+            (item) => item.leadsId !== action.payload
+          ),
+
+          teamLeadsCold: state.teamLeadsCold.filter(
+            (item) => item.leadsId !== action.payload
+          ),
+
+          leadsAllDataWarm: state.leadsAllDataWarm.filter(
+            (item) => item.leadsId !== action.payload
+          ),
+
+          teamLeadsWarm: state.teamLeadsWarm.filter(
+            (item) => item.leadsId !== action.payload
+          ),
+
+          allleadsInfoHot: state.allleadsInfoHot.filter(
+            (item) => item.leadsId !== action.payload
+          ),
+
+          allleadsInfoCold: state.allleadsInfoCold.filter(
+            (item) => item.leadsId !== action.payload
+          ),
+          allleadsInfoWarm: state.allleadsInfoWarm.filter(
             (item) => item.leadsId !== action.payload
           ),
         };
@@ -599,6 +657,42 @@ case types.HANDLE_LEADS_MODAL:
               addingDocumentByLeadsId: false,
               addingDocumentByLeadsIdError: true,
             };
+
+
+
+
+            case types.ADD_SUBSCRIPTION_DATA_REQUEST:
+              return { ...state, addingLeadsSubscriptionData: true };
+            case types.ADD_SUBSCRIPTION_DATA_SUCCESS:
+              return { ...state, 
+                addDrawerLeadsSubscriptionModal:false,
+                addingLeadsSubscriptionData: true
+           
+                // leadsAllDataHot: [action.payload,...state.leadsAllDataHot],
+                // leadsAllDataWarm: [action.payload,...state.leadsAllDataWarm],
+                // leadsAllDataCold: [action.payload,...state.leadsAllDataCold]
+              };
+            case types.ADD_SUBSCRIPTION_DATA_FAILURE:
+              return { ...state, addingLeadsSubscriptionData: false, addLeadsModal: false };    
+       
+
+
+
+            case types.GET_LEADS_SUBSCRIPTION_DATA_REQUEST:
+              return { ...state, fetchingLeadsSubscriptionData: true };
+            case types.GET_LEADS_SUBSCRIPTION_DATA_SUCCESS:
+              return {
+                ...state,
+                fetchingLeadsSubscriptionData: false,
+                subscriptionLeadsData: action.payload
+                // clearbit:null
+              };
+            case types.GET_LEADS_SUBSCRIPTION_DATA_FAILURE:
+              return {
+                ...state,
+                fetchingLeadsSubscriptionData: false,
+                fetchingLeadsSubscriptionDataError: true,
+              };
 
 
             case types.GET_LEADS_DOCUMENTS_REQUEST:
@@ -960,7 +1054,151 @@ case types.HANDLE_LEADS_MODAL:
                     reInstateJunkedLeads: false,
                     reInstateJunkedLeadsError: true,
                   }; 
-                         
+
+
+
+
+
+                  case types.UPDATE_LEAD_OWNERSHIP_REQUEST:
+      return { ...state, updatingLeadOwenership: true };
+    case types.UPDATE_LEAD_OWNERSHIP_SUCCESS:
+      return {
+        ...state,
+        updatingLeadOwenership: false,
+        // updateCandidateEmploymentModal: false,
+        // employmentDetails: state.employmentDetails.map((employment, i) => {
+        //   if (employment.id === action.payload.id) {
+        //     return action.payload;
+        //   } else {
+        //     return employment;
+        //   }
+        // }),
+
+        leadsAllDataHot:state.leadsAllDataHot.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.leadsId)  
+          }
+        ),
+
+        leadsAllDataWarm:state.leadsAllDataWarm.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.leadsId)  
+          }
+        ),
+
+
+
+        leadsAllDataCold:state.leadsAllDataCold.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.leadsId)  
+          }
+        ),
+
+
+
+
+
+
+        teamLeadsCold:state.teamLeadsCold.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.leadsId)  
+          }
+        ),
+
+
+        teamLeadsWarm:state.teamLeadsWarm.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.leadsId)  
+          }
+        ),
+
+
+        teamLeadsHot:state.teamLeadsHot.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.leadsId)  
+          }
+        ),
+
+
+
+
+        allleadsInfoHot:state.allleadsInfoHot.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.leadsId)  
+          }
+        ),
+
+
+        allleadsInfoCold:state.allleadsInfoCold.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.leadsId)  
+          }
+        ),
+
+
+
+        allleadsInfoWarm:state.allleadsInfoWarm.filter(
+          (item)=>{
+            console.log("abc",item,action.payload);
+
+          return !action.payload.includes(item.leadsId)  
+          }
+        ),
+
+        
+
+
+
+      
+      };
+    case types.UPDATE_LEAD_OWNERSHIP_FAILURE:
+      return {
+        ...state,
+        updatingLeadOwenership: false,
+        updatingLeadOwenershipError: true,
+      };
+           
+      
+      case types.UPDATE_LEAD_JUNK_REQUEST:
+        return { ...state, updatingLeadjunk: true };
+      case types.UPDATE_LEAD_JUNK_SUCCESS:
+        return {
+          ...state,
+          updatingLeadjunk: false,
+  
+          junkedLeadsData:state.junkedLeadsData.filter(
+            (item)=>{
+              console.log("abc",item,action.payload);
+  
+            return !action.payload.includes(item.leadsId)  
+            }
+          ),
+
+        };
+      case types.UPDATE_LEAD_JUNK_FAILURE:
+        return {
+          ...state,
+          updatingLeadjunk: false,
+          updatingLeadjunkError: true,
+        };
+
+
                   case types.HANDLE_CET_MODAL:
                     return { ...state, openCETmodal: action.payload };
 
@@ -1020,12 +1258,12 @@ case types.HANDLE_LEADS_MODAL:
       case types.GET_ALL_LEADSHOT_REQUEST:
         return { ...state, fetchingAllLeadsHot: true };
       case types.GET_ALL_LEADSHOT_SUCCESS:
-        const newAllHotData = action.payload.filter(item => !state.allleadsInfoHot.some(existingItem => existingItem.id === item.id));
+        //const newAllHotData = action.payload.filter(item => !state.allleadsInfoHot.some(existingItem => existingItem.id === item.id));
         return {
           ...state,
           fetchingAllLeadsHot: false,
           // allleadsInfoHot: action.payload,
-          allleadsInfoHot: [...state.allleadsInfoHot, ...newAllHotData],
+          allleadsInfoHot: [...state.allleadsInfoHot, ...action.payload],
         };
       case types.GET_ALL_LEADSHOT_FAILURE:
         return {
@@ -1037,12 +1275,12 @@ case types.HANDLE_LEADS_MODAL:
         case types.GET_ALL_LEADSWARM_REQUEST:
       return { ...state, fetchingAllLeadsWarm: true };
     case types.GET_ALL_LEADSWARM_SUCCESS:
-      const newAllWarmData = action.payload.filter(item => !state.allleadsInfoWarm.some(existingItem => existingItem.id === item.id));
+      //const newAllWarmData = action.payload.filter(item => !state.allleadsInfoWarm.some(existingItem => existingItem.id === item.id));
       return {
         ...state,
         fetchingAllLeadsWarm: false,
         // allleadsInfoWarm: action.payload,
-        allleadsInfoWarm: [...state.allleadsInfoWarm, ...newAllWarmData],
+        allleadsInfoWarm: [...state.allleadsInfoWarm, ...action.payload],
         
       };
     case types.GET_ALL_LEADSWARM_FAILURE:
@@ -1052,15 +1290,35 @@ case types.HANDLE_LEADS_MODAL:
         fetchingAllLeadsWarmError: true,
       };
 
+
+
+
+      case types.GET_SUBSCRIPTION_COMPARE_REQUEST:
+        return { ...state, fetchingSubscriptionCompare: true };
+      case types.GET_SUBSCRIPTION_COMPARE_SUCCESS:
+        return {
+          ...state,
+          fetchingSubscriptionCompare: false,
+          compareSubscription: action.payload
+          // clearbit:null
+        };
+      case types.GET_SUBSCRIPTION_COMPARE_FAILURE:
+        return {
+          ...state,
+          fetchingSubscriptionCompare: false,
+          fetchingSubscriptionCompareError: true,
+        };
+
+
       case types.GET_ALL_LEADSCOLD_REQUEST:
       return { ...state, fetchingAllLeadsCold: true };
     case types.GET_ALL_LEADSCOLD_SUCCESS:
-      const newAllColdData = action.payload.filter(item => !state.allleadsInfoCold.some(existingItem => existingItem.id === item.id));
+      //const newAllColdData = action.payload.filter(item => !state.allleadsInfoCold.some(existingItem => existingItem.id === item.id));
       return {
         ...state,
         fetchingAllLeadsCold: false,
         // allleadsInfoCold: action.payload,
-        allleadsInfoCold: [...state.allleadsInfoCold, ...newAllColdData],
+        allleadsInfoCold: [...state.allleadsInfoCold, ...action.payload],
       };
     case types.GET_ALL_LEADSCOLD_FAILURE:
       return {
@@ -1133,12 +1391,12 @@ case types.HANDLE_LEADS_MODAL:
           case types.GET_TEAM_LEADSHOT_REQUEST:
           return { ...state, fetchingTeamLeadsHot: true };
         case types.GET_TEAM_LEADSHOT_SUCCESS:
-          const newteamlHotData = action.payload.filter(item => !state.teamLeadsHot.some(existingItem => existingItem.id === item.id));
+          //const newteamlHotData = action.payload.filter(item => !state.teamLeadsHot.some(existingItem => existingItem.id === item.id));
           return {
             ...state,
             fetchingTeamLeadsHot: false,
         // teamLeadsHot:action.payload,
-        teamLeadsHot: [...state.teamLeadsHot, ...newteamlHotData],
+        teamLeadsHot: [...state.teamLeadsHot, ...action.payload],
           };
         case types.GET_TEAM_LEADSHOT_FAILURE:
           return {
@@ -1150,12 +1408,12 @@ case types.HANDLE_LEADS_MODAL:
           case types.GET_TEAM_LEADSWARM_REQUEST:
           return { ...state, fetchingTeamLeadsWarm: true };
         case types.GET_TEAM_LEADSWARM_SUCCESS:
-          const newteamlWarmData = action.payload.filter(item => !state.teamLeadsWarm.some(existingItem => existingItem.id === item.id));
+          //const newteamlWarmData = action.payload.filter(item => !state.teamLeadsWarm.some(existingItem => existingItem.id === item.id));
           return {
             ...state,
             fetchingTeamLeadsWarm: false,
         // teamLeadsWarm:action.payload,
-        teamLeadsWarm: [...state.teamLeadsWarm, ...newteamlWarmData],
+        teamLeadsWarm: [...state.teamLeadsWarm, ...action.payload],
           };
         case types.GET_TEAM_LEADSWARM_FAILURE:
           return {
@@ -1167,12 +1425,12 @@ case types.HANDLE_LEADS_MODAL:
           case types.GET_TEAM_LEADSCOLD_REQUEST:
           return { ...state, fetchingTeamLeadsCold: true };
         case types.GET_TEAM_LEADSCOLD_SUCCESS:
-          const newteamlColdData = action.payload.filter(item => !state.teamLeadsCold.some(existingItem => existingItem.id === item.id));
+         // const newteamlColdData = action.payload.filter(item => !state.teamLeadsCold.some(existingItem => existingItem.id === item.id));
           return {
             ...state,
             fetchingTeamLeadsCold: false,
         // teamLeadsCold:action.payload,
-        teamLeadsCold: [...state.teamLeadsCold, ...newteamlColdData],
+        teamLeadsCold: [...state.teamLeadsCold, ...action.payload],
           };
         case types.GET_TEAM_LEADSCOLD_FAILURE:
           return {

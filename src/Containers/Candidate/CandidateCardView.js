@@ -1,14 +1,14 @@
 import React, { useEffect, useState,  lazy } from "react";
-import { MultiAvatar, MultiAvatar2,  StyledLabel } from '../../Components/UI/Elements'
+import { MultiAvatar, MultiAvatar2   } from '../../Components/UI/Elements'
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-import BuildCircleIcon from '@mui/icons-material/BuildCircle';
-import VolumeUpIcon from '@mui/icons-material/VolumeUp';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import MonitorHeartIcon from '@mui/icons-material/MonitorHeart';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DraftsIcon from '@mui/icons-material/Drafts';
 import CircleIcon from '@mui/icons-material/Circle';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import {  Tooltip } from 'antd'
 import {
   getCandidateById,
@@ -25,7 +25,8 @@ import {
     getCandidateListByUserId,
     handleCandidatesTasksDrawerModal,
     getCandidateTasksInfo,
-    emptyCandidate
+    emptyCandidate,
+    handleemaildrawermodal
     
   } from "../Candidate/CandidateAction";
   import { Link } from 'react-router-dom';
@@ -33,52 +34,22 @@ import {
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Select } from "antd";
-import styled from 'styled-components'
 import { StyledPopconfirm  } from '../../Components/UI/Antd';
-import { UpCircleOutlined } from '@ant-design/icons';
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import { BundleLoader } from "../../Components/Placeholder";
-import { FlexContainer } from '../../Components/UI/Layout'
-const AddCandidatesTasksDrawerModal = lazy(() =>
-  import("./AddCandidatesTasksDrawerModal")
-);
-const AddPlayerModal = lazy(() =>
-  import("./Child/CandidateTable/AddPlayerModal")
-);
-const SkillsLoadMore = lazy(() =>
-  import("../../Containers/Candidate/Child/CandidateTable/SkillsLoadMore")
-);
-const UpdateCandidateResumeModal = lazy(() =>
-  import("./Child/CandidateTable/UpdateCandidateResumeModal")
-);
+import CandidateRowEmailModal from "./Child/CandidateTable/CandidateRowEmailModal";
 
-
-const UpdateCandidateModal = lazy(() =>
-  import("./Child/UpdateCandidate/UpdateCandidateModal")
-);
-const AddCandidateDrawerModal = lazy(() =>
-  import("../Candidate/AddCandidateDrawerModal")
-);
+const AddCandidatesTasksDrawerModal = lazy(() =>import("./AddCandidatesTasksDrawerModal"));
+const AddPlayerModal = lazy(() =>import("./Child/CandidateTable/AddPlayerModal"));
+const SkillsLoadMore = lazy(() =>import("../../Containers/Candidate/Child/CandidateTable/SkillsLoadMore"));
+const UpdateCandidateResumeModal = lazy(() =>import("./Child/CandidateTable/UpdateCandidateResumeModal"));
+const UpdateCandidateModal = lazy(() =>import("./Child/UpdateCandidate/UpdateCandidateModal"));
+const AddCandidateDrawerModal = lazy(() =>import("../Candidate/AddCandidateDrawerModal"));
 
 const { Option } = Select;
 function CandidateCardView (props) {
   const [page, setPage] = useState(0);
  
-//   handleAddPlusClick = (productId, merchantDetailsId) => {
-//     const cartId = sessionStorage.getItem('cartId')
-
-//     let data = {
-//       itemId: productId,
-//       cartId: cartId,
-//       identifierType: '',
-//       quantity: 1,
-//       storeTerminal: {
-//         storeId: merchantDetailsId,
-//       },
-//     }
-
-//     props.LinkProductInfo(data)
-//   }
-
 useEffect(() => {
   props.getCandidateListByUserId(props.userId,page);
   setPage(page + 1);
@@ -88,19 +59,14 @@ useEffect(() => {
 }, []);
 function handleChange(data) {
   props.Candidatesorttype(props.userId,data);
-  
 }
-
 const [currentCandidateId, setCurrentCandidateId] = useState("");
 function handleSetCurrentCandidateId(candidateId) {
     setCurrentCandidateId(candidateId);
-    
     console.log(candidateId);
   } 
   if (props.fetchingCandidates) {
-    return <BundleLoader/>
-  
-    
+    return <BundleLoader/>  
 ;
   }
   const{address,
@@ -118,29 +84,14 @@ function handleSetCurrentCandidateId(candidateId) {
   fetchingCandidatesError,
   updateCandidateResumeModal,
   updateCandidateModal,
-
+  handleemaildrawermodal,
+  addemaildrawermodal
 }=props;
-    return (
-      
+    return (   
             <>
-               {/* <div  style={{width:"10%" }}>
-               <Select
-  
-  style={{ width: '100%' }}
-  placeholder="Select"
- //  defaultValue={partners}
- onChange={(e) => handleChange(e)}
->
-
-  
-<Option value="aToz">A To Z</Option>
-   <Option value="zToa">Z To A</Option>
-   
-  
-</Select> 
-            </div> */}
-              <div class=" h-h72 overflow-auto overflow-x-auto">
-              <CardWrapper>      
+         
+              <div class=" h-h86 overflow-auto overflow-x-auto">
+              <div class="flex  flex-wrap justify-evenly w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">      
               {props.candidateByUserId.map((item) => {
                 console.log("found",item.skillList);
                 const data =
@@ -165,15 +116,15 @@ function handleSetCurrentCandidateId(candidateId) {
                        item.address[0].postalCode} `;
       
                  return (
-                    <CardElement>
-                      <CardImage>
-                   <Tooltip 
+                  <div class="rounded-md border-2 bg-[#ffffff]  shadow-[#aaa] h-[7.5rem] 
+                  text-[#444444] my-3 p-1 ml-3 w-[15vw] flex flex-col  max-sm:w-wk max-sm:ml-0 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]">
+                     <div class="flex  w-[100%] justify-between items-center" >
+                      <div class="flex  w-[100%] justify-start items-center"> 
+                      <Tooltip 
                    title={item.country}
-                   >
-                 
-                   </Tooltip>
-                   <FlexContainer justifyContent ="space-around">               
-                   <div >
+                   >               
+                   </Tooltip>  
+                      <div >
                           <MultiAvatar2
 
                            primaryTitle={item.fullName}
@@ -183,111 +134,97 @@ function handleSetCurrentCandidateId(candidateId) {
                             imgRadius={20}
                           />
                          </div>
-                      {/* <CardDescription> */}
-                      <div>
-                        <Header>
+                  
+                        <div>
+                      {/* <div class="h-8 overflow-hidden whitespace-nowrap text-lg font-poppins font-bold overflow-ellipsis text-center"> */}
                         <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`candidate/${item.candidateId}`} title={item.fullName}>
       {item.fullName}
-    </Link>
-                        {/* <a class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[blue] cursor-pointer" 
-                            href={`candidate/${item.candidateId}`}>{item.fullName}</a> */}
-                        {/* <CandidateDetailsView
-            candidateId={item.candidateId}
-            candidateName={item.fullName}
-          />        */}
-                        </Header> 
+    </Link>                     
+                        {/* </div>  */}
+                        </div>
                         </div>
                         {/* {item.Video !== null?( */}
-                        <FlexContainer justifyContent ="flex-end">
+                        <div class=" flex flex-row justify-end w-full items-center ">  
                            <div >
                            {item.videoClipsId!==null&&( 
                         <Tooltip title="Video">
-             
-                {/* <FontAwesomeIcon icon={solid("wallet")} /> */}
-                <PlayCircleIcon
-                
-                style={{ color: "grey",fontSize:"0.8rem",cursor: "pointer"}}
+                <PlayCircleIcon    className=" cursor-pointer !text-icon text-gray-600"
                 onClick={() => {
-                  props.handlePlayerModal(true);
-                  // this.handleYoutubeIconClick(item.youtubeLink);
+                  props.handlePlayerModal(true);             
                 }}
-                 />
-             
+                 />            
             </Tooltip>
                            )}
             </div>
                         {/* ):(null
                           )}
                        */}
-             <div style={{ cursor: "pointer",padding:"2px"}}
-              // style={{ cursor: "pointer" }}
+             <div className=" flex justify-end cursor-pointer w-full"
               onClick={() => {
                      props.setEditCandidate(item);
                    handleupdateCandidateResumeModal(true);
                      handleSetCurrentCandidateId(item.candidateId);
                    }}
               >
-                <BorderColorIcon
-              style={{ color: "grey",fontSize:"1.2rem",padding:"2px" }}/>
+                <BorderColorIcon className="text-red-600 !text-icon"/>
               </div>
             
-              </FlexContainer>
-          </FlexContainer>                  
-                        </CardImage>
-                     
-                        <FlexContainer alignItems="baseline">  
-                      
-                        <StyledLabel> <SkillsLoadMore 
+              </div>
+                  
+                        </div>                    
+                        <div class=" flex flex-row  ">                        
+                        <div class=" text-xs font-bold font-poppins text-black"> <SkillsLoadMore 
                         skillList={data} 
                         viewType={props.viewType}
-                        /></StyledLabel>
+                        /></div>
                         
                         <Tooltip  title={item.skillList}>
-                        <BuildCircleIcon   style={{fontSize:"1.1rem",color:"#24d8a7",padding:"2px"}}  /> 
-                        </Tooltip>  
-            
-                        </FlexContainer> 
-                        {/* <Price>{item.mobileNumber}</Price> */}
-                        {/* <StyledLabel>{item.roleType}</StyledLabel> */}
-                        {/* <Price>100</Price> */}
-                      
-                        <div class=" flex flex-row justify-around w-full items-end">
-                        <div style={{alignItems:"center"}}>
+                        <MoreHorizIcon className="text-[#24d8a7] !text-icon"/> 
+                        </Tooltip>            
+                        </div>                             
+                        <div class=" flex flex-row justify-around w-full flex-wrap  mb-1 items-center absolute bottom-0">
+                        <div className=" items-center">
               <Tooltip title={item.category}>
               <CircleIcon
              style={{ borderRadius: "45%", backgroundColor:
                   item.category === "White" ?"bisque":item.category === "Blue" ?  "#00afff":item.category==="Both"&&"grey",fontSize:"0.8rem" }}/>
               </Tooltip>
               </div>     
-                     <span>
+                     {/* <span>
                         <Tooltip  title={item.mobileNumber}>
-                        <VolumeUpIcon  style={{fontSize:"0.8rem",color:"#24d8a7"}}  />
+                        <VolumeUpIcon className="text-[#24d8a7] !text-icon" />
                         </Tooltip> 
-                        </span>
+                        </span> */}
                         <span>
                         <Tooltip  title={item.emailId}>
-                   <DraftsIcon 
-                   style={{fontSize:"0.8rem",color:"#24d8a7"}}
-                  // icon={regular("envelope")}  
-                  />
+                   <DraftsIcon className=" !text-icon text-[#24d8a7]"
+                  
+                   onClick={() => {
+                    
+                  handleemaildrawermodal(true);
+                  // addemaildrawermodal(item.emailId);
+                      }}    />
+          </Tooltip> 
+          </span>
+          <span>
+                        <Tooltip  title={item.emailId}>
+                   <WhatsAppIcon className=" !text-icon text-[#24d8a7]"
+                  
+                   onClick={() => {
+                    
+                  handleemaildrawermodal(true);
+                  // addemaildrawermodal(item.emailId);
+                      }}    />
           </Tooltip> 
           </span>
           <Tooltip
             overlayStyle={{ maxWidth: "300px" }}
             title={dataLoc}
           >
-            <span
-              style={{
-                cursor: "pointer",
-                
-              }}
-            >
-               <LocationOnIcon  style={{fontSize:"0.8rem",color:"grey"}} 
-              //  icon={solid("location-dot")}
-                />
+            <span className=" cursor-pointer" >
+              <LocationOnIcon className=" !text-icon text-gray-600" />
             </span>
-          </Tooltip>
-         
+          </Tooltip>         
                         <span 
                       className="hover:bg-black"
                         onClick={() => {
@@ -301,26 +238,19 @@ function handleSetCurrentCandidateId(candidateId) {
                         }}
                    
                         >{user.pulseAccessInd ===true && ( 
-                          <MonitorHeartIcon 
-                          // icon={solid('heart-pulse')} 
-                          style={{color:"#993333",fontSize:"0.8rem",cursor: "pointer"}} />
-                           )}
-                        
+                          <MonitorHeartIcon className=" cursor-pointer !text-icon text-[#993333]"
+                        />
+                           )}                       
                         </span>
-
                         <span 
                        className="hover:bg-black"
                         onClick={() => {
                         
                       props.getCandidateTasksInfo(item.candidateId);
                           props.handleCandidatesTasksDrawerModal(true);
-                        }}
-                   
-                        >
-                          
-                          <FactCheckIcon
-               style={{ fontSize: "large" }}
-              />
+                        }}                  
+                        >                      
+                          <FactCheckIcon className=" cursor-pointer !text-icon"     />
                         
                         
                         </span>
@@ -329,11 +259,10 @@ function handleSetCurrentCandidateId(candidateId) {
             title="Do you want to blacklist?"
             onConfirm={() => props.getBlackListCandidate(item.candidateId)}
           >
-            <UpCircleOutlined
+            <ArrowCircleUpIcon
               type="up-circle"
               theme="filled"
-              style={{ cursor: "pointer",fontSize:"0.8rem",color:"grey" }}
-            />
+              className=" cursor-pointer !text-icon text-gray-600"  />
           </StyledPopconfirm>
           </span>
           <Tooltip title={item.ownerName}>
@@ -342,21 +271,16 @@ function handleSetCurrentCandidateId(candidateId) {
                   primaryTitle={item.ownerName}
                   imageId={item.ownerImageId}
                   imageURL={item.imageURL}
-                  imgWidth={"1.3rem"}
-                  imgHeight={"1.3rem"}
+                  imgWidth={"1.8rem"}
+                  imgHeight={"1.8rem"}
                  />
                 </span>
                </Tooltip>
-                        </div>
-                        {/* <Desc dangerouslySetInnerHTML={{ __html: item.description }}></Desc> */}
-
-                      
-                      {/* </CardDescription> */}
-
-                    </CardElement>
+                        </div>                      
+                    </div>
                  )  
             })}
-              </CardWrapper>
+              </div>
               </div>
               
               <AddCandidateDrawerModal
@@ -367,7 +291,7 @@ function handleSetCurrentCandidateId(candidateId) {
               handleCandidateDrawerModal={props.handleCandidateDrawerModal}
               countries={props.countries}
               topicsByCandidateId={props.topicsByCandidateId}
-             // candidateByUserId={props.candidateByUserId}
+           
       />
            
            <AddCandidatesTasksDrawerModal
@@ -376,12 +300,15 @@ function handleSetCurrentCandidateId(candidateId) {
               addDrawerCandidatesTasksModal={props.addDrawerCandidatesTasksModal}
               candidateTasksInfoDetails={props.candidateTasksInfoDetails}
               
-             // candidateByUserId={props.candidateByUserId}
+        
+      />
+      <CandidateRowEmailModal
+       handleemaildrawermodal={props.handleemaildrawermodal}
+       addemaildrawermodal={props.addemaildrawermodal}
       />
  <AddPlayerModal
         addPlayerModal={props.addPlayerModal}
         handlePlayerModal={props.handlePlayerModal}
-      
       />
        
        <UpdateCandidateModal
@@ -399,8 +326,6 @@ function handleSetCurrentCandidateId(candidateId) {
         handleupdateCandidateResumeModal={handleupdateCandidateResumeModal}
       />
             </>
-      
-    
     )
               
 }
@@ -429,11 +354,8 @@ const mapStateToProps = ({ candidate, auth,dashboard}) => ({
   fetchingDashBoardFunnelError:dashboard.fetchingDashBoardFunnelError,
   dashboardFunnel:dashboard.dashboardFunnel,
   candidateTasksInfoDetails:candidate.candidateTasksInfoDetails,
-  addDrawerCandidatesTasksModal:candidate.addDrawerCandidatesTasksModal
-    //opportunityByUserId: opportunity.opportunityByUserId,
-//   customerSrchdata: customer.customerSrchdata,
-//   mrchantDetailsId: auth.userDetails.mrchantDetailsId,
-//   linkingProductInfo: customer.linkingProductInfo,
+  addDrawerCandidatesTasksModal:candidate.addDrawerCandidatesTasksModal,
+  addemaildrawermodal:candidate.addemaildrawermodal
 })
 
 const mapDispatchToProps = (dispatch) =>
@@ -455,7 +377,8 @@ const mapDispatchToProps = (dispatch) =>
         handleupdateCandidateResumeModal,
         Candidatesorttype,
         getCandidateListByUserId,
-        getCandidateTasksInfo
+        getCandidateTasksInfo,
+        handleemaildrawermodal
         //getDashboardFunnelRecord
     //   LinkProductInfo
     },
@@ -463,140 +386,3 @@ const mapDispatchToProps = (dispatch) =>
   )
 
 export default connect(mapStateToProps, mapDispatchToProps)(CandidateCardView)
-
-const MainWrapper = styled.div`
-  /* */
-  margin: 0px 20px;
-  @media only screen and (max-width: 600px) {
-  }
-`
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  
-  @media only screen and (max-width: 600px) {
-    -webkit-justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-  }
-`
-const CardElement = styled.div`
- 
-border-radius: 0.75rem;
-    border: 3px solid #EEEEEE;
-    background-color: rgb(255,255,255);
-    box-shadow: 0 0.25em 0.62em #aaa;
-    height: 8rem;
-    color: rgb(68,68,68);
-    margin: 1em;
-    padding: 0.2rem;
-    width: 15vw;
-    display: flex;
-    flex-direction: column;
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    
-  }
-`
-const CardDescription = styled.div`
-  
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display:flex;
-    align-items: center;
-    flex-direction:column
-  }
-`
-const CardImage = styled.div`
-  
-  width:200;
-  display:flex;
-  height:200
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display:flex;
-    align-items: center;
-    flex-direction:column
-  }
-`
-const WithOutImage = styled.div`
-  
-  width:200px;
-  height:200px;
-  display:flex;
-    align-items: center;
-    flex-direction:column
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display:flex;
-    align-items: center;
-    flex-direction:column
-  }
-`
-
-const Header = styled.div`
-  text-overflow: ellipsis;
-
-  white-space: nowrap;
-  overflow: hidden;
-  height: 2em;
-  font-size: 1em;
-padding:4px;
-  color:blue;
-  cursor:pointer;
-  // font-family: Poppins;
-  //font-weight: 700;
-  @media only screen and (max-width: 600px) {
-    text-overflow: ellipsis;
-
-white-space: nowrap;
-overflow: hidden;
-height: 2em;
-font-size: 1.3em;
-font-family: Poppins;
-font-weight: 700;
-width:100%
-
-text-align:center
-  }
-`
-const Desc = styled.p`
-  height: 0px;
-`
-const Price = styled.div`
-  height: 1.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-  white-space: nowrap;
-`
-
-const AppIcon = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "123%" }}
-  ></i>
-);
-
-const AppIcon1 = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "145%" }}
-  ></i>
-);
-
-const PulseIcon = styled(AppIcon)`
-  color: #df9697;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;
-const PulseIcon1 = styled(AppIcon1)`
-  color: green;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;

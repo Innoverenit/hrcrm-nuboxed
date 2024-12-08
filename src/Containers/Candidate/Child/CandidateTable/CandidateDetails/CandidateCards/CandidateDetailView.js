@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { SubTitle } from "../../../../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
-import moment from "moment";
+
+import dayjs from "dayjs";
 import { Tooltip } from "antd";
 
 class CandidateDetailView extends Component {
@@ -13,61 +13,40 @@ class CandidateDetailView extends Component {
     } = this.props;
     return (
       <>     
-      <CandidateItemRow //label="Mobile Number" 
-          label={<FormattedMessage
-            id="app.availability"
-            defaultMessage="Availability"
-          />}
+      <CandidateItemRow 
+          label="Availability"
+        
 
           value={this.props.candidate.availableDate === null ? "None" :
           <>
           
-          {moment(availableDate).format("ll")}
+          {dayjs(availableDate).format("ll")}
           </>
           }
            />
   
-        <CandidateItemRow //label="Company" 
-          label={<FormattedMessage
-            id="app.company"
-            defaultMessage="Company"
-          />}
+        <CandidateItemRow 
+        label="Company" 
+          
           value={tag_with_company } />
        
-            {/* <CandidateItemRow //label="Mobile Number" 
-          label={<FormattedMessage
-            id="app.department"
-            defaultMessage="Department"
-          />}
-          value={department} /> */}
-           <CandidateItemRow //label="Mobile Number" 
-          label={<FormattedMessage
-            id="app.designation"
-            defaultMessage="Designation"
-          />}
+            
+           <CandidateItemRow 
+          label="Designation"
+       
           value={designation
           } />
            
            <CandidateItemRow //label="Mobile Number" 
-          label={<FormattedMessage
-            id="app.identification"
-            defaultMessage="Identification"
-          />}
+          label="Identification"
+         
          
           value={`${idProof || ""} ${idNumber || ""}`}/>
 
           
-           {/* <CandidateItemRow //label="Mobile Number" 
-          label={<FormattedMessage
-            id="app.dateOfBirth"
-            defaultMessage="Date of Birth"
-          />}
-           value={dateOfBirth} /> */}
             <CandidateItemRow //label="Mobile Number" 
-          label={<FormattedMessage
-            id="app.gender"
-            defaultMessage="Gender"
-          />}
+          label="Gender"
+         
            value={gender} />
             
 

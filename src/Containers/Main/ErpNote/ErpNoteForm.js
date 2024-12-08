@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import VoiceOverOffIcon from '@mui/icons-material/VoiceOverOff';
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
@@ -183,16 +183,16 @@ class ErpNoteForm extends Component {
                 type="primary"
                 htmlType="submit"
                 disabled={this.state.edit}
-                style={{ marginRight: "1.3125em", marginTop: "1.3125em" }}
+                style={{  marginTop: "1.3125em" }}
               >
-                <FormattedMessage id="app.post" defaultMessage="Post" />
+               Post
               </Button>
               <Button
                 type="default"
                 onClick={recognizing ? this.stopRecognition : this.startRecognition}
-                style={{ marginLeft: "1.3125em", marginTop: "1.3125em" }}
+                style={{  marginTop: "1.3125em" }}
               >
-                {recognizing ? <VoiceOverOffIcon /> : <RadioButtonCheckedIcon />}
+                {recognizing ? <VoiceOverOffIcon  className="!text-icon "/> : <RadioButtonCheckedIcon  className="!text-icon "/>}
               </Button>
             </div>
           </Form>

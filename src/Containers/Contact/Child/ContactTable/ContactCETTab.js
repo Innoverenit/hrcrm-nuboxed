@@ -2,13 +2,14 @@ import React, { lazy,Suspense,useEffect } from "react";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
+
 import { Badge, Tooltip } from "antd";
-import { PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
+import {handleCallActivityModal} from "../../../Activity/ActivityAction"
 import { handleCETactivityContactModal,getContactActivityRecords} from "../../ContactAction";
+import ActivityListData from "../../../Activity/ActivityListData";
 const ContactCETdr =lazy(()=>import("./ContactCETdr"));
 const ContactCETcard =lazy(()=>import("./ContactCETcard"));
 
@@ -30,7 +31,7 @@ function ContactCETTab (props) {
               <TabsWrapper>
                 <StyledTabs
                   defaultActiveKey="1"
-                  style={{ overflow: "visible", width: "53vw", padding: "15px" }}
+                  style={{ overflow: "visible", width: "52vw", padding: "5px" }}
                   animated={false}
                 >
                   <TabPane
@@ -42,34 +43,24 @@ function ContactCETTab (props) {
                 count={props.contactActivityCount.count}
                 overflowCount={999}
               > 
-                             <i class="fas fa-phone-square"></i>&nbsp;
+                             <i class="fas fa-phone-square mr-1"></i>
                         Activity
                      </Badge>
                         </span>
                      
                           <>
                             <Tooltip 
-                              title={
-                                <FormattedMessage
-                                  id="app.create"
-                                  defaultMessage="Create"
-                                />
-                              }
+                              title="Create"
+                               
                             >
-                             &nbsp;
-                              <PlusOutlined
-                                type="plus"
-                                style={{color:"blue"}}
-                                tooltiptitle={
-                                  <FormattedMessage
-                                    id="app.Create"
-                                    defaultMessage="Create"
-                                  />
-                                }
+                          
+                               <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"                                                       
+                                tooltiptitle="Create"
+                                  
                                 onClick={() => {
-                                    handleCETactivityContactModal(true);
+                                    props.handleCallActivityModal(true);
                                 }}
-                                size="0.875em"
+                              
                               />
                              
                             </Tooltip>
@@ -81,8 +72,12 @@ function ContactCETTab (props) {
                   >
                     <Suspense fallback={"Loading ..."}>
                       {" "}
-                      <ContactCETcard
+                      {/* <ContactCETcard
                         currentContact={props.currentContact}
+                      /> */}
+                      <ActivityListData
+                      uniqueId={props.contact}
+                      type={props.type}
                       />
                     </Suspense>
                   </TabPane>
@@ -91,21 +86,27 @@ function ContactCETTab (props) {
               </TabsWrapper>
               <Suspense fallback={<BundleLoader/>}>
               <ContactCETdr
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}
+                       contact={props.contact}
+                       type={props.type}
               currentContact={props.currentContact}
-                clickCETcontactActivity={clickCETcontactActivity}
-                handleCETactivityContactModal={handleCETactivityContactModal}
+              callActivityModal={props.callActivityModal}
+              handleCallActivityModal={props.handleCallActivityModal}
               />
               </Suspense>
             </>
           );
       }
-const mapStateToProps = ({ contact }) => ({
+const mapStateToProps = ({ contact,activity }) => ({
     clickCETcontactActivity:contact.clickCETcontactActivity,
+    callActivityModal:activity.callActivityModal,
     contactActivityCount:contact.contactActivityCount
 });
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
     handleCETactivityContactModal,
+    handleCallActivityModal,
     getContactActivityRecords
 }, dispatch);
 

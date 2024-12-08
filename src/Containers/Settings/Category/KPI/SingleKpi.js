@@ -3,8 +3,8 @@ import { Button, Tooltip, Popconfirm} from "antd";
 import {removeKpi} from "../KPI/KPIAction"
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
-import { DeleteOutlined } from "@ant-design/icons";
+
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import dayjs from "dayjs";
 import { Select } from "../../../../Components/UI/Elements";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -79,16 +79,7 @@ class SingleKpi extends Component {
                           cancelText="No"
                           onConfirm={() => this.props.removeKpi(performanceManagementId )}
                         >
-                    <DeleteOutlined
-                        // onClick={() => handleDeleteKpi(performanceManagementId)}
-                    
-                      style={{
-                        verticalAlign: "center",
-                        marginLeft: "1rem",
-                        fontSize:"1rem",
-                        color: "red",
-                      }}
-                    />
+                  <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                         </Popconfirm>
                   </Tooltip>
                 </div>
@@ -126,13 +117,11 @@ class SingleKpi extends Component {
                     }}>
 
                   
-                    {/* Save */}
-                    <FormattedMessage id="app.update" defaultMessage="Update" />
+                    Save
                   </Button>
                
                   <Button type="cancel"  onClick={() => toggleViewType()}>
-                    {/* Cancel */}
-                    <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                    Cancel
                   </Button>
                 </div>
               </div>

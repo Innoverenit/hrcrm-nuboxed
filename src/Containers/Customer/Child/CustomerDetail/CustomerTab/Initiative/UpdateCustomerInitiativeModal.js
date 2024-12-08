@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
@@ -12,10 +12,7 @@ const UpdateCustomerInitiativeModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.updatecustomer"
-          defaultMessage="Initiative"
-        />}
+        title="Initiative"
         width="60%"
         visible={props.updateCustomerInitiativeModal}
         destroyOnClose

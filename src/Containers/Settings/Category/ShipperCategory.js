@@ -3,16 +3,16 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import DownloadIcon from '@mui/icons-material/Download';
 import { base_url } from "../../../Config/Auth";
-import { DeleteOutlined } from "@ant-design/icons";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Popconfirm, Input,Tooltip } from "antd";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
+import BorderColorIcon from '@mui/icons-material/BorderColor';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {
   getShipperCategory,
   //getSectorCount,
   addShipperCategory,
-  //removeSectors,
+  removeShipper,
   //updateSectors,
   //searchSectorName,
   //ClearReducerDataOfSupplierCategory
@@ -46,16 +46,16 @@ const ShipperCategory = (props) => {
       setCategoryName("")
   };
 
-//   const handleUpdateSector=(region)=>{
-//       console.log(region)
-//       let data={
-//         sectorId:region.sectorId,
-//         sectorName:newSectorName
+  const handleUpdateSector=(region)=>{
+      console.log(region)
+      let data={
+        sectorId:region.sectorId,
+        // sectorName:newSectorName
        
-//       }
-// props.updateSectors(data,region.sectorId)
-// setEditingId(null);
-//   }
+      }
+props.updateSectors(data,region.sectorId)
+setEditingId(null);
+  }
 
   const handleSector = () => {
       let data={
@@ -106,7 +106,7 @@ return <div><BundleLoader/></div>;
 }
   return (
       <div>
-    <div class=" flex flex-row justify-between">
+    <div class=" flex flex-row  justify-end items-center">
     {/* <div class=" flex w-[18vw]" style={{marginTop:"12px"}} >
           <Input
        placeholder="Search by Name"
@@ -117,7 +117,7 @@ return <div><BundleLoader/></div>;
           // value={currentData}
         />
           </div> */}
-          <div class="w-[18rem]">
+          <div class="w-[2rem]">
   <a href={`${base_url}/excel/export/catagory/All/${props.orgId}?type=${"sector"}`}>
     <div className="circle-icon !text-base cursor-pointer text-[green]">
       <Tooltip placement="top" title="Download XL">
@@ -153,7 +153,7 @@ return <div><BundleLoader/></div>;
          
          <MainWrapper className="!h-[69vh] !mt-2" >
           {!props.fetchingShipperCategory && shipperCategory.length === 0 ? <NodataFoundPage /> : shipperCategory.slice().sort((a, b) => a.shipperCatName.localeCompare(b.shipperCatName)).map((region, index) => (
-            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.sectorId}>
+            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  border-[#0000001f]  border  shadow-[#a3abb980] bg-white text-[#444] mt-1  p-2 justify-between items-center h-8 scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.sectorId}>
             {/* Region name display or input field */}
             
             {editingId === region.sectorId ? (
@@ -181,26 +181,24 @@ return <div><BundleLoader/></div>;
                         <button  className=" ml-4"  onClick={cancelEdit}>Cancel</button>
                     </div>
                 ) : (
-                    // <BorderColorIcon   style={{fontSize:"1rem", cursor:"pointer"}} onClick={() => editRegion(region.sectorId, region.sectorName)} />
-                    <></>
+                     <BorderColorIcon    className=" !text-icon text-red-600 cursor-pointer "
+                      // onClick={() => editRegion(region.sectorId, region.sectorName)}
+                       />
+                    
                 )}
 
                 {/* Delete button */}
-                {/* <Popconfirm
+                <Popconfirm
                         title="Do you want to delete?"
                         okText="Yes"
                         cancelText="No"
-                        onConfirm={() =>  props.removeSectors(region.sectorId,props.orgId)}
+                        onConfirm={() =>  props.removeShipper(region.shipperCategoryId)}
                       >
-                <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                    cursor:"pointer"
-                  }}
+             <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+               
             
-                 />
-                 </Popconfirm> */}
+                
+                 </Popconfirm>
             </div>
         </div>
         ))}
@@ -233,7 +231,7 @@ const mapDispatchToProps = (dispatch) =>
       //getSectorCount,
       getShipperCategory,
       addShipperCategory,
-      //removeSectors,
+      removeShipper,
      // updateSectors,
       //searchSectorName,
       //ClearReducerDataOfSupplierCategory

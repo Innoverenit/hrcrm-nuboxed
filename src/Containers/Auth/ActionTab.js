@@ -1,13 +1,12 @@
 import { Badge } from "antd";
 import React, { Component, lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import FactCheckIcon from '@mui/icons-material/FactCheck';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import CurrencyExchangeIcon from '@mui/icons-material/CurrencyExchange';
 import {  StyledTabs } from "../../Components/UI/Antd";
-import TabsWrappers from "../../Components/UI/Layout/TabsWrappers";
 import IncludedDealCardList from "./ActionRequired/IncludedDealCardList";
 import IncludedTaskCardList from "./ActionRequired/IncludedTaskCardList";
 import OppIncludedCardList from "./ActionRequired/OppIncludedCardList";
@@ -32,7 +31,7 @@ class ActionTab extends Component {
       <>
         <div class=" flex flex-no-wrap" >
         <div class=" w-full" >
-        <TabsWrappers style={{ height:"80vh"}}>
+        <div class="m-1 w-[98%] bg-slate-500 rounded border-[#0000001f]  border  shadow-[#a3abb980] h-[80vh]" >
           <StyledTabs
             defaultActiveKey="1"
             onChange={this.handleTabChange}
@@ -76,10 +75,8 @@ class ActionTab extends Component {
                  
                   <span class="font-poppins ml-[0.25em]" >
                   <Badge count={this.props.dealsIncludedCount.InvestorOppCount} overflowCount={999}>
-               <FormattedMessage
-          id="app.Deals"
-          defaultMessage="Deals"
-        />
+              Deals
+       
               </Badge>
                 </span>
           
@@ -106,10 +103,8 @@ class ActionTab extends Component {
               />
                   <span class="font-poppins ml-[0.25em]" >
                   <Badge count={this.props.taskIncludedCount.TaskCount} overflowCount={999}>
-               <FormattedMessage
-          id="app.Task"
-          defaultMessage="Task"
-        />
+              Task
+    
           </Badge>
                 </span>
             
@@ -129,7 +124,7 @@ class ActionTab extends Component {
             </TabPane>
          
           </StyledTabs>
-        </TabsWrappers>
+        </div>
         </div>
         </div>
       </>

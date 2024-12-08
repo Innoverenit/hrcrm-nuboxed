@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Select, } from "antd";
-import { FormattedMessage } from "react-intl";
-import { Formik, Form, FastField, Field, FieldArray } from "formik";
+import { base_url } from "../../../../Config/Auth";
+import { Formik, Form, FastField, Field } from "formik";
 import * as Yup from "yup";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
@@ -15,6 +15,7 @@ import { getDesignations } from "../../../Settings/Designation/DesignationAction
 import { getDepartments } from "../../../Settings/Department/DepartmentAction";
 import { getCustomerData } from "../../../Customer/CustomerAction";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import { InputComponent1 } from "../../../../Components/Forms/Formik/InputComponent1";
 
 
 const { Option } = Select;
@@ -45,33 +46,116 @@ class UpdateContactForm extends Component {
       candidate: false,
       availability: false,
       translatedMenuItems: [],
-      loading: true
+      loading: true,
+      customers: [],
+      contacts:[],
+      isLoadingCustomers: false,
+      isLoadingContacts:false,
+      loading: true,
+      touchedCustomer: false,
+      selectedCustomer: props.setEditingContact.customerId,
+      selectedContact:props.setEditingContact.contactId,
 
     };
+    this.handleSelectCustomerFocus=this.handleSelectCustomerFocus.bind(this)
+    this.handleCustomerChange = this.handleCustomerChange.bind(this);
+    this.fetchCustomers = this.fetchCustomers.bind(this);
+    this.fetchContacts=this.fetchContacts.bind(this)
   }
 
   componentDidMount() {
     this.fetchMenuTranslations();
+    this.fetchContacts()
+    this.fetchCustomers()
+  }
+
+
+
+  async fetchCustomers() {
+    this.setState({ isLoadingCustomers: true });
+
+    try {
+      const apiEndpoint = `${base_url}/customer/user/${this.props.userId}`;
+      const response = await fetch(apiEndpoint, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${this.props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      this.setState({ customers: data });
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      this.setState({ isLoadingCustomers: false });
+    }
+  }
+
+
+  handleSelectCustomerFocus() {
+    const { touchedCustomer } = this.state;
+    if (!touchedCustomer) {
+      this.fetchCustomers();
+      // this.fetchSector();
+
+      this.setState({ touchedCustomer: true });
+    }
+  }
+
+
+  handleCustomerChange(customerId) {
+    this.setState({ selectedCustomer: customerId });
+  this.fetchContacts(customerId);
+  }
+
+  handleContactChange=(contactId)=>{
+    this.setState({ selectedContact: contactId });
+  }
+
+
+  async fetchContacts(customerId) {
+    this.setState({ isLoadingContacts: true });
+
+    try {
+      const apiEndpoint = `${base_url}/contact-list/drop-down/${this.props.setEditingContact.customerId||customerId}`;
+      const response = await fetch(apiEndpoint, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${this.props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      this.setState({ contacts: data });
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      this.setState({ isLoadingContacts: false });
+    }
   }
 
   async fetchMenuTranslations() {
     try {
       this.setState({ loading: true });
       const itemsToTranslate = [
-       'First Name', // 0
-'Middle Name', // 1
-'Last Name', // 2
-'Email', // 3
-'Alternate Email', // 4
-'Dial Code', // 5
-'Mobile', // 6
-'WhatsApp', // 7
-'Linkedin', // 8
-'Tag Company', // 9
-'Source', // 10
-'Department', // 11
-'Designation', // 12
-'Notes' //13
+        '295', // 0
+'353', // 1
+'354', // 2
+'140', // 3
+'1117', // 4
+'357', // 5
+'546', // 6
+'1157', // 7
+'547', // 8
+'361', // 9
+'279', // 10
+'326', // 11
+'325' ,// 12
+'316', //13
+'1246'// 'Update'
 
       ];
       const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
@@ -184,8 +268,8 @@ class UpdateContactForm extends Component {
             departmentId: this.props.setEditingContact.department || "",
             departmentDetails:
               this.props.setEditingContact.departmentDetails || "",
-              source:
-              this.props.setEditingContact.source || "",
+              sourceId:
+              this.props.setEditingContact.sourceId || "",
             userId: this.props.userId,
             firstName: this.props.setEditingContact.firstName || "",
             middleName: this.props.setEditingContact.middleName || "",
@@ -199,7 +283,7 @@ class UpdateContactForm extends Component {
             phoneNumber: this.props.setEditingContact.phoneNumber || "",
             mobileNumber: this.props.setEditingContact.mobileNumber || "",
             emailId: this.props.setEditingContact.emailId || "",
-            alternateEmail: this.props.setEditingContact.alternateEmail || "",
+            alternateEmailId: this.props.setEditingContact.alternateEmailId || "",
             
             customerId:this.props.setEditingContact.customerId||"",
             linkedinPublicUrl:
@@ -226,6 +310,8 @@ class UpdateContactForm extends Component {
               {
                 ...values,
                 contactId: this.props.contactId,
+                customerId:this.state.selectedCustomer,
+                reportsTo:this.state.selectedContact,
               },
               this.props.contactId,
               () => this.handleReset(resetForm)
@@ -250,30 +336,15 @@ class UpdateContactForm extends Component {
                     <FastField name="imageId" component={PostImageUpld} />
                     <div>
                     <div class=" flex justify-between max-sm:flex-col">
-                        {/* <div class=" w-w47.5 max-sm:w-full">
-                          <FastField
-                            name="salutation"
-                            type="text"
-                            // label="Salutation"
-                            label={
-                              <FormattedMessage
-                                id="app.salutation"
-                                defaultMessage="Salutation"
-                              />
-                            }
-                            options={["Mr.", "Ms.", "None"]}
-                            component={SelectComponent}
-                            inlineLabel
-                            className="field"
-                            isColumn
-                          />
-                        </div> */}
+                     
+                            {/* // label="Salutation" */}
+                           
                         <div class=" w-wk max-sm:w-full">
+                        <div class="text-xs font-poppins font-bold ">{translatedMenuItems[0]}</div>
                           <FastField
                             isRequired
                             name="firstName"
-                            // label="First Name"
-                            label= {translatedMenuItems[0]}
+                            // label="First Name"                         
                             type="text"
                             width={"100%"}
                             isColumn
@@ -284,10 +355,10 @@ class UpdateContactForm extends Component {
                       </div>
                       <div class=" flex justify-between max-sm:flex-col">
                         <div class=" w-2/5 max-sm:w-full">
+                        <div class="text-xs font-poppins font-bold ">{translatedMenuItems[1]}</div>
                           <FastField
                             name="middleName"
-                            //label="Middle Name"
-                            label={translatedMenuItems[1]}
+                            //label="Middle Name"                        
                             type="text"
                             width={"100%"}
                             isColumn
@@ -296,10 +367,11 @@ class UpdateContactForm extends Component {
                           />
                         </div>
                         <div class=" w-1/2 max-sm:w-full">
+                        <div class="text-xs font-poppins font-bold ">{translatedMenuItems[2]}</div>
                           <FastField
                             name="lastName"
                             //label="Last Name"
-                            label={translatedMenuItems[2]}
+                     
                             type="text"
                             width={"100%"}
                             isColumn
@@ -311,12 +383,13 @@ class UpdateContactForm extends Component {
                     </div>
                   </div>
                   <div class=" flex justify-between">
-                    <div class=" w-full">
+                    <div class="text-xs font-bold font-poppins w-full">
+                   {translatedMenuItems[3]}
                       <FastField
                         type="email"
                         name="emailId"
                         //label="Email"
-                        label={translatedMenuItems[3]}
+                      
                         className="field"
                         isColumn
                         width={"100%"}
@@ -327,12 +400,13 @@ class UpdateContactForm extends Component {
                     </div>
                   </div>
                   <div class=" flex justify-between">
-                    <div class=" w-full">
+                    <div class=" text-xs font-bold font-poppins w-full">
+                    {translatedMenuItems[4]}
                       <FastField
                         type="email"
-                        name="alternateEmail"
+                        name="alternateEmailId"
                         //label="Email"
-                        label={translatedMenuItems[4]}
+                      
                         className="field"
                         isColumn
                         width={"100%"}
@@ -343,12 +417,14 @@ class UpdateContactForm extends Component {
                     </div>
                   
                   </div>  
-                  <div class=" flex justify-between">
-                    <div class=" w-2/6 max-sm:w-2/5">
+                  
+                  <div class="text-xs font-poppins font-bold mt-2 ">{translatedMenuItems[6]}</div>
+                  <div class=" flex justify-between shadow-[0_0.15em_0.3em_#aaa] border border-[#bfbebb] h-8">
+                  <div class=" w-3/12 max-sm:w-[35%]">     
                       <FastField
                         name="countryDialCode"
                         isColumnWithoutNoCreate
-                        label={translatedMenuItems[5]}
+                        // label={translatedMenuItems[5]}
                         isColumn
                         selectType="dialCode"
                         component={SearchSelect}
@@ -358,69 +434,33 @@ class UpdateContactForm extends Component {
                         inlineLabel
                       />
                     </div>
-                    <div class=" w-[60%] max-sm:w-2/4">
-                      <FastField
+                    <div class="w-[1px] h-full bg-gray-300">
+  <div class="w-full h-[75%]"></div>
+</div>
+<div class=" w-[76%]">
+                    <div class="text-xs font-bold font-poppins  ">
+                    {/* {translatedMenuItems[6]} */}
+                      <Field
                         type="text"
                         name="mobileNumber"
-                        label={translatedMenuItems[6]}
+                     
                         //placeholder="Mobile #"
-                        component={InputComponent}
+                        component={InputComponent1}
                         inlineLabel
                         width={"100%"}
                         isColumn
                       />
                     </div>
-                  </div>
-                  {/* <div class=" flex justify-between">
-                    <div class=" w-2/4">
-                      <FastField
-                        name="countryDialCode1"
-                        isColumnWithoutNoCreate
-                        selectType="dialCode"
-                        //label="Phone No #"
-                        label={
-                          <FormattedMessage
-                            id="app.countryDialCode1"
-                            defaultMessage="Dial Code"
-                          />
-                        }
-                        isColumn
-                        component={SearchSelect}
-                        defaultValue={{
-                          value: this.props.user.countryDialCode,
-                        }}
-                        value={values.countryDialCode1}
-                        inlineLabel
-                      />
                     </div>
-                    <div class=" w-2/4">
-                      <FastField
-                        type="text"
-                        name="phoneNumber"
-                        //placeholder="Phone #"
-                        label={
-                          <FormattedMessage
-                            id="app.phoneNumber"
-                            defaultMessage="Phone #"
-                          />
-                        }
-                        isColumn
-                        component={InputComponent}
-                        inlineLabel
-                        width={"100%"}
-                      />
-                    </div>
-                  </div> */}
-
-                 
-                  
+                  </div>                                     
                   < div class=" flex justify-between mt-3">
-                    <div class=" w-full">
+                    <div class="text-xs font-bold font-poppins w-full">
+                    {translatedMenuItems[8]}
                       <FastField
                         type="text"
                         name="linkedinPublicUrl"
                         //label="Linkedin "
-                        label={translatedMenuItems[8]}
+                      
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -430,57 +470,95 @@ class UpdateContactForm extends Component {
                   </div>
                  
                   
-                  <div class="mt-4">
+                  {/* <div class="mt-3 text-xs font-bold font-poppins">
+                  {translatedMenuItems[13]}
                   <Field
                     name="notes"
                     // label="Notes"
-                    label={translatedMenuItems[13]}
+                  
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
                   />                 
-                  </div>
+                  </div> */}
                 </div>
                 
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk "
                 > 
-                <div class=" flex  justify-between max-sm:mt-20">
-                <div class=" w-1/2">
-                      <Field
-                        name="customerId"
-                        // selectType="customerList"
-                        isColumnWithoutNoCreate
-                        label={translatedMenuItems[9]}
-                        component={SelectComponent}
-                        isColumn
-                        value={values.customerId}
-                        isDisabled={defaultCustomers}
-                        options={Array.isArray(customerNameOption) ? customerNameOption : []}
-                        // defaultValue={defaultCustomers ? defaultCustomers : null}
-                        inlineLabel
-                      />
+               <div class="  flex justify-between max-sm:mt-20">
+        <div class="flex flex-col w-w47.5">
+                
+                  <div class=" text-xs font-bold font-poppins"> 
+                    {/* {translatedMenuItems[9]} */}
+                    Tag Company
                     </div>
+                  {/* Tag Company */}
+
+                    <div class="  w-wk">
+                   
+                    
+                      <Select
+        value={this.state.selectedCustomer}
+                      placeholder="Select Customer"
+                      loading={this.state.isLoadingCustomers}
+                      onFocus={this.handleSelectCustomerFocus}
+                      onChange={this.handleCustomerChange}
+                    >
+                      {this.state.customers.map(customer => (
+                        <Option key={customer.customerId} value={customer.customerId}>
+                          {customer.name}
+                        </Option>
+                      ))}
+                    </Select>
+                    
+                    </div>
+                    </div>              
                
-                <div class=" w-w47.5 mt-3">
+
+<div class=" w-w47.5 ">
+                   
+                    <div class=" text-xs font-bold font-poppins"> Reports To</div>
+                    
+  
+                    {/* {this.props.customerConfigure.sourceInd===true&& */}
+                    <Select
+                    value={this.state.selectedContact}
+        placeholder="Select Contact"
+      loading={this.state.isLoadingContacts}
+        onChange={this.handleContactChange}
+      disabled={!this.state.selectedCustomer} // Disable Contact dropdown if no customer is selected
+      >
+        {this.state.contacts.map(contact => (
+          <Option key={contact.contactId} value={contact.contactId}>
+            {contact.fullName}
+          </Option>
+        ))}
+      </Select> 
+                    {/* } */}
+                        </div>
+                     
+                     
+                  </div>
+              <div class=" text-xs font-bold font-poppins w-w47.5">
+                {translatedMenuItems[10]}
                     <FastField
-                            name="source"
-                            label={translatedMenuItems[10]}
+                            name="sourceId"
+                        
                             isColumnWithoutNoCreate
                             selectType="sourceName"
                             component={SearchSelect}
-                            value={values.source}
+                            value={values.sourceId}
                             isColumn
                           />
                         </div>
-               
-              </div>
               
                   <div class=" flex justify-between mt-3">      
-              <div class="w-1/2">
+              <div class="text-xs font-bold font-poppins w-1/2">
+              {translatedMenuItems[11]}
                     <FastField
                       name="departmentId"
                       //label="Department"
-                      label={translatedMenuItems[11]}
+                 
                       width="100%"
                       isColumn
                       isColumnWithoutNoCreate
@@ -491,11 +569,12 @@ class UpdateContactForm extends Component {
                       inlineLabel
                     />
                   </div>
-                  <div class=" w-[47.5%]">
+                  <div class="text-xs font-bold font-poppins w-[47.5%]">
+                  {translatedMenuItems[12]}
                   <FastField
                     name="designationTypeId"
                     //label="Designation"
-                    label={translatedMenuItems[12]}
+                  
                     selectType="designationType"
                     isColumn
                     component={SearchSelect}
@@ -505,24 +584,6 @@ class UpdateContactForm extends Component {
                   />
                 </div>
                  </div>
-                 
-               
-                  {/* <div class="mt-8" style={{ width: "100%",backgroundImage: "linear-gradient(-90deg, #00162994, #94b3e4)" }}>
-                      <div>
-                  <HeaderLabel style={{color:"white"}} > Address</HeaderLabel>
-                  </div>
-                    </div>
-                  <FieldArray
-                    name="address"
-                    label="Address"
-                    render={(arrayHelpers) => (
-                      <AddressFieldArray
-                        arrayHelpers={arrayHelpers}
-                        values={values}
-                      />
-                    )}
-                  /> */}
-
                
                 {this.props.orgType==="Real Estate"&&(
                   <div class=" h-3/4 max-sm:w-wk mt-4 "
@@ -534,20 +595,10 @@ class UpdateContactForm extends Component {
                         // selectType="customerList"
                         isColumnWithoutNoCreate
                         label="Bedrooms"
-                       
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.tagCompany"
-                        //     defaultMessage="Tag Company"
-                        //   />
-                        // }
                         options={["1", "2", "3","4","5","6"]}
                         component={SelectComponent}
                         isColumn
-                        //value={values.customerId}
-                        //isDisabled={defaultCustomers}
-                        //options={Array.isArray(customerNameOption) ? customerNameOption : []}
-                        // defaultValue={defaultCustomers ? defaultCustomers : null}
+                    
                         inlineLabel
                       />
                     </div>
@@ -589,146 +640,17 @@ class UpdateContactForm extends Component {
                 
                   </div>
                  
-                 
-
-                
-                  {/* <Field
-                    name="address[0].address1"
-                    // label="Address"
-                    label={
-                      <FormattedMessage
-                        id="app.address[0].address1"
-                        defaultMessage="Address"
-                      />
-                    }
-                    component={InputComponent}
-                    isColumn
-                    width="100%"
-                  />
-                   */}
-                  {/* <Field
-                    name="address[0].street"
-                    //label="Street"
-
-                    label={
-                      <FormattedMessage
-                        id="app.street"
-                        defaultMessage="Street"
-                      />
-                    }
-                    component={InputComponent}
-                    isColumn
-                    width="100%"
-                  /> */}
-                 
                   <div class=" flex  justify-between mt-3">
-                    {/* <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].city"
-                        //label="City"
-                        label={
-                          <FormattedMessage
-                            id="app.ddress[0].city"
-                            defaultMessage="City"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div> */}
+                   {/* City */}
                   </div>
                   
-                  {/* <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].state"
-                        //label="State"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].State"
-                            defaultMessage="State"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].postalCode"
-                        //label="Zip Code"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].postalCode"
-                            defaultMessage="Pin Code"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                  </FlexContainer> */}
                 </div>
                 )}
-                 
-                 
+                                 
                   <div class=" flex  justify-between mt-3">
-                    {/* <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].city"
-                        //label="City"
-                        label={
-                          <FormattedMessage
-                            id="app.ddress[0].city"
-                            defaultMessage="City"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                      </div> */}
+                   
                   </div>
                   
-                  {/* <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].state"
-                        //label="State"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].State"
-                            defaultMessage="State"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].postalCode"
-                        //label="Zip Code"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].postalCode"
-                            defaultMessage="Pin Code"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                  </FlexContainer> */}
                 </div>
               </div>
              
@@ -738,7 +660,7 @@ class UpdateContactForm extends Component {
                   htmlType="submit"
                   loading={updateContactById}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+                  <div class="text-xs font-bold font-poppins"> {translatedMenuItems[14]}</div>
 
                   {/* Update */}
                 </Button>
@@ -757,6 +679,7 @@ const mapStateToProps = ({ auth, contact,customer, departments, designations, op
   updateContactById: contact.updateContactById,
   updateContactByIdError: contact.updateContactByIdError,
   user: auth.userDetails,
+  token: auth.token,
   orgType:auth.userDetails.orgType,
   customerData:customer.customerData,
   userId: auth.userDetails.userId,

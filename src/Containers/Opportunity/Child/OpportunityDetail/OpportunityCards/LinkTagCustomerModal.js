@@ -1,7 +1,7 @@
 import React, { } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import LinkTagCustomerForm from "../OpportunityCards/LinkTagCustomerForm"
 import {linktagCustomer} from "../../../OpportunityAction";
 import { StyledModal } from "../../../../../Components/UI/Antd";
@@ -16,10 +16,7 @@ const LinkTagContactModal = (props) => {
   return (
     <>
        <StyledModal
-          title={<FormattedMessage
-            id="app.tagcustomer"
-            defaultMessage="Tag Customer"
-          />}
+          title="Tag Customer"
           width="35%"
           visible={props.linkContactModalVisible}
           maskClosable={false}

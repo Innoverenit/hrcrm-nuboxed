@@ -1,9 +1,9 @@
 import React, { lazy, Suspense } from 'react'
-import RefurbishHeader from './RefurbishHeader'
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { setProductionViewType } from "./RefurbishAction";
 import { BundleLoader } from '../../../Components/Placeholder';
+const RefurbishHeader = lazy(() => import('./RefurbishHeader'));
 const RefurbishMainTable = lazy(() => import('./RefurbishMainTable'));
 const OrderPhoneTab = lazy(() => import('./OrderPhoneTab'));
 
@@ -11,16 +11,23 @@ const Refurbish = (props) => {
 
   return (
     <div>
+       <Suspense fallback={  <BundleLoader/>}> 
       <RefurbishHeader
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
         setProductionViewType={props.setProductionViewType}
         viewType={props.viewType}
       />
-      <Suspense fallback={<BundleLoader />}>
+     
         {props.viewType === "list" ? (
-          <OrderPhoneTab />
+          <OrderPhoneTab 
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}/>
         ) : props.viewType === "all" ?
           (
-            <RefurbishMainTable />
+            <RefurbishMainTable 
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}/>
           ) : null}
       </Suspense>
 

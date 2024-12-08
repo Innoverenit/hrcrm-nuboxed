@@ -2,8 +2,7 @@ import React from "react";
 import { message, Upload } from "antd";
 import { base_url } from "../../../Config/Auth";
 import axios from "axios";
-import { FormattedMessage } from "react-intl";
-import { InboxOutlined } from "@ant-design/icons";
+import InboxIcon from '@mui/icons-material/Inbox';
 
 const { Dragger } = Upload;
 const token = sessionStorage.getItem("token");
@@ -75,11 +74,11 @@ class CategoryImportUpload extends React.Component {
           onChange={this.handleChange}
         >
           <p className="ant-upload-drag-icon">
-            <InboxOutlined type="inbox" />
+             < InboxIcon  className="!text-icon" type="inbox" />
           </p>
           <p className="ant-upload-text">
-          {<FormattedMessage id="app.clickordragfiletothisareatoupload" defaultMessage="Click or drag file to this area to upload"/>}
-            {/* Click or drag file to this area to upload. */}
+      
+            Click or drag file to this area to upload.
           </p>
         </Dragger>
       </div>

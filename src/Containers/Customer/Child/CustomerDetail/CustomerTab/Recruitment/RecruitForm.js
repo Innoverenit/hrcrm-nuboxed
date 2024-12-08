@@ -2,13 +2,9 @@ import React, { useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import {
-  Spacer,
-  StyledLabel,
-} from "../../../../../../Components/UI/Elements";
 import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
 
@@ -149,11 +145,7 @@ function RecruitForm(props) {
                       {" "}
                       <Field
                         name="requirementName"
-                        //label="Name"
-                        label={<FormattedMessage
-                          id="app.requirementName"
-                          defaultMessage="Name"
-                        />}
+                        label="Name"
                         width={"100%"}
                         isRequired
                         isColumn
@@ -164,11 +156,8 @@ function RecruitForm(props) {
                     <div class=" w-2/4">
                       <Field
                         name="sponserId"
-                        //  label="Sponsor"
-                        label={<FormattedMessage
-                          id="app.sponserId"
-                          defaultMessage="Sponsor"
-                        />}
+                         label="Sponsor"
+                        
                         isColumn                       
                         // component={InputComponent}
                       component={SelectComponent}
@@ -177,18 +166,14 @@ function RecruitForm(props) {
                       />
                     </div>
                   </div>
-                  <Spacer />
+                  <div class=" mt-3" />
 
                   <div class=" flex justify-between">
                     <div class=" w-2/4">
                       {" "}
                       <Field
                         name="number"
-                        // label="# Positions"
-                        label={<FormattedMessage
-                          id="app.number"
-                          defaultMessage="# Positions"
-                        />}
+                        label="# Positions"
                         width={"100%"}
                         isRequired
                         isColumn
@@ -196,7 +181,7 @@ function RecruitForm(props) {
                       />
                     </div>
                     <div class=" w-2/4">
-                      <StyledLabel>Type </StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Type </div>
                       <br/>
                     <Switch
                         checked={typeData}
@@ -206,15 +191,11 @@ function RecruitForm(props) {
                       />
                     </div>
                   </div>
-                  <Spacer />
+                  <div class=" mt-3" />
 
                   <Field
                     name="description"
-                    //label="Description"
-                    label={<FormattedMessage
-                      id="app.description"
-                      defaultMessage="Description"
-                    />}
+                    label="Description"
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -222,29 +203,25 @@ function RecruitForm(props) {
                       height: "5em",                      
                     }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="recruitmentProcessId"
                   
-                    label={<FormattedMessage
-                      id="app.recruitmentProcessId"
-                      defaultMessage="Workflow"
-                    />}
+                    label="Workflow"
+                 
                     isRequired
                     isColumn                   
                   component={SelectComponent}
                   options={Array.isArray(processOption) ? processOption : []}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <div class=" flex justify-between">
                     <div class=" w-2/6">
                       {" "}
                       <Field
                         name="avilableDate"                       
-                        label={<FormattedMessage
-                          id="app.avilableDate"
-                          defaultMessage="Start Date"
-                        />}
+                        label="Start Date"
+                    
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -258,10 +235,8 @@ function RecruitForm(props) {
                       <Field
                         name="billing"
                         
-                        label={<FormattedMessage
-                          id="app.billing"
-                          defaultMessage="Billing/hour"
-                        />}
+                        label="Billing/hour"
+                      
                         width={"100%"}
                         isRequired
                         isColumn
@@ -284,25 +259,21 @@ function RecruitForm(props) {
                       />
                     </div>
                   </div>
-                  <Spacer />
+                  <div class=" mt-3" />
                 </div>
               &nbsp;
               <div class=" h-full"
                 
                 ></div>
               </div>
-              <Spacer />
+              <div class=" mt-3" />
               <div class=" flex justify-end">
                 <Button
                   type="primary"
                   htmlType="submit"
                   Loading={props.linkingRecruitToCustomer}
                 >
-                  <FormattedMessage
-                    id="app.create"
-                    defaultMessage="Create"
-                  />
-                  {/* Create */}
+                Create
                 </Button>
               </div>
             </Form>

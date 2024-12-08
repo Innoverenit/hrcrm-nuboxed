@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Button, Select, } from "antd";
 import { Formik, Form, FastField, Field, FieldArray } from "formik";
 import * as Yup from "yup";
@@ -14,6 +14,7 @@ import PostImageUpld from "../../../../../../Components/Forms/Formik/PostImageUp
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import {getDesignations} from "../../../../../Settings/Designation/DesignationAction";
 import {getDepartments} from "../../../../../Settings/Department/DepartmentAction";
+import { base_url } from "../../../../../../Config/Auth";
 
 const { Option } = Select;
 /**
@@ -38,7 +39,92 @@ class UpdateInvestorContactForm extends Component {
       currentOption: "",
       candidate: false,
       availability: false,
+      customers: [],
+      contacts:[],
+      isLoadingCustomers: false,
+      isLoadingContacts:false,
+      loading: true,
+      touchedCustomer: false,
+      selectedCustomer: props.currentRowData.customerId,
+      selectedContact:props.currentRowData.contactId,
     };
+    this.handleSelectCustomerFocus=this.handleSelectCustomerFocus.bind(this)
+    this.handleCustomerChange = this.handleCustomerChange.bind(this);
+    this.fetchCustomers = this.fetchCustomers.bind(this);
+    this.fetchContacts=this.fetchContacts.bind(this)
+  }
+
+
+
+  componentDidMount() {
+    // this.fetchMenuTranslations();
+    this.fetchContacts()
+    this.fetchCustomers()
+  }
+
+  async fetchCustomers() {
+    this.setState({ isLoadingCustomers: true });
+
+    try {
+      const apiEndpoint = `${base_url}/customer/user/${this.props.userId}`;
+      const response = await fetch(apiEndpoint, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${this.props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      this.setState({ customers: data });
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      this.setState({ isLoadingCustomers: false });
+    }
+  }
+
+
+  handleSelectCustomerFocus() {
+    const { touchedCustomer } = this.state;
+    if (!touchedCustomer) {
+      this.fetchCustomers();
+      // this.fetchSector();
+
+      this.setState({ touchedCustomer: true });
+    }
+  }
+
+  handleCustomerChange(customerId) {
+    this.setState({ selectedCustomer: customerId });
+  this.fetchContacts(customerId);
+  }
+
+  handleContactChange=(contactId)=>{
+    this.setState({ selectedContact: contactId });
+  }
+
+
+  async fetchContacts(customerId) {
+    this.setState({ isLoadingContacts: true });
+
+    try {
+      const apiEndpoint = `${base_url}/contact-list/drop-down/${this.props.currentRowData.customerId||customerId}`;
+      const response = await fetch(apiEndpoint, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${this.props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      this.setState({ contacts: data });
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      this.setState({ isLoadingContacts: false });
+    }
   }
   handleCandidate = (checked) => {
     this.setState({ candidate: checked });
@@ -146,6 +232,8 @@ class UpdateInvestorContactForm extends Component {
             updateInvestorContact(
               {
                 ...values,
+                customerId:this.state.selectedCustomer,
+                reportsTo:this.state.selectedContact,
                 contactId: currentRowData.contactId,
                 
               },
@@ -175,13 +263,7 @@ class UpdateInvestorContactForm extends Component {
                             <FastField
                               isRequired
                               name="firstName"
-                              // label="First Name"
-                              label={
-                                <FormattedMessage
-                                  id="app.firstName"
-                                  defaultMessage="First Name"
-                                />
-                              }
+                              label="First Name"
                               type="text"
                               width={"100%"}
                               isColumn
@@ -195,13 +277,7 @@ class UpdateInvestorContactForm extends Component {
                           <div class=" w-2/5">
                             <FastField
                               name="middleName"
-                              //label="Middle Name"
-                              label={
-                                <FormattedMessage
-                                  id="app.middle"
-                                  defaultMessage="Middle"
-                                />
-                              }
+                              label="Middle Name"
                               type="text"
                               width={"100%"}
                               isColumn
@@ -212,13 +288,7 @@ class UpdateInvestorContactForm extends Component {
                           <div class=" w-2/4">
                             <FastField
                               name="lastName"
-                              //label="Last Name"
-                              label={
-                                <FormattedMessage
-                                  id="app.lastName"
-                                  defaultMessage="Last Name"
-                                />
-                              }
+                              label="Last Name"
                               type="text"
                               width={"100%"}
                               isColumn
@@ -235,12 +305,7 @@ class UpdateInvestorContactForm extends Component {
                           name="countryDialCode"
                           isColumnWithoutNoCreate
                           //label="Mobile #"
-                          label={
-                            <FormattedMessage
-                              id="app.countryDialCode"
-                              defaultMessage="Dial Code"
-                            />
-                          }
+                          label="Dial Code"
                           isColumn
                           selectType="dialCode"
                           component={SearchSelect}
@@ -256,12 +321,7 @@ class UpdateInvestorContactForm extends Component {
                           type="text"
                           name="mobileNumber"
                           //placeholder="Mobile #"
-                          label={
-                            <FormattedMessage
-                              id="app.mobileNumber"
-                              defaultMessage="Mobile #"
-                            />
-                          }
+                          label="Mobile #"
                           component={InputComponent}
                           inlineLabel
                           width={"100%"}
@@ -276,12 +336,7 @@ class UpdateInvestorContactForm extends Component {
                           isColumnWithoutNoCreate
                           selectType="dialCode"
                           //label="Phone No #"
-                          label={
-                            <FormattedMessage
-                              id="app.countryDialCode1"
-                              defaultMessage="Dial Code"
-                            />
-                          }
+                          label="Dial Code"
                           isColumn
                           component={SearchSelect}
                           defaultValue={{
@@ -296,12 +351,7 @@ class UpdateInvestorContactForm extends Component {
                           type="text"
                           name="phoneNumber"
                           // placeholder="Phone #"
-                          label={
-                            <FormattedMessage
-                              id="app.phoneNumber"
-                              defaultMessage="Phone #"
-                            />
-                          }
+                          label="Phone #"
                           isColumn
                           component={InputComponent}
                           inlineLabel
@@ -317,13 +367,7 @@ class UpdateInvestorContactForm extends Component {
                           isRequired
                           type="email"
                           name="emailId"
-                          //label="Email"
-                          label={
-                            <FormattedMessage
-                              id="app.emailId"
-                              defaultMessage="Email"
-                            />
-                          }
+                          label="Email"
                           className="field"
                           isColumn
                           width={"100%"}
@@ -338,13 +382,7 @@ class UpdateInvestorContactForm extends Component {
                         <FastField
                           type="text"
                           name="linkedinPublicUrl"
-                          //label="Linkedin "
-                          label={
-                            <FormattedMessage
-                              id="app.linkedinPublicUrl"
-                              defaultMessage="Linkedin"
-                            />
-                          }
+                          label="Linkedin "
                           isColumn
                           width={"100%"}
                           component={InputComponent}
@@ -352,40 +390,67 @@ class UpdateInvestorContactForm extends Component {
                          />
                       </div>
                     </div>
-                  
+                    <div class="  flex justify-between max-sm:mt-20">
+        <div class="flex flex-col w-w47.5">
+                
+                  <div class=" text-xs font-bold font-poppins"> 
+                    {/* {translatedMenuItems[9]} */}
+                    Tag Company
+                    </div>
+                  {/* Tag Company */}
+
+                    <div class="  w-wk">
+                   
+                    
+                      <Select
+        value={this.state.selectedCustomer}
+                      placeholder="Select Customer"
+                      loading={this.state.isLoadingCustomers}
+                      onFocus={this.handleSelectCustomerFocus}
+                      onChange={this.handleCustomerChange}
+                    >
+                      {this.state.customers.map(customer => (
+                        <Option key={customer.customerId} value={customer.customerId}>
+                          {customer.name}
+                        </Option>
+                      ))}
+                    </Select>
+                    
+                    </div>
+                    </div>              
+               
+
+<div class=" w-w47.5 ">
+                   
+                    <div class=" text-xs font-bold font-poppins"> Reports To</div>
+                    
+  
+                    {/* {this.props.customerConfigure.sourceInd===true&& */}
+                    <Select
+                    value={this.state.selectedContact}
+        placeholder="Select Contact"
+      loading={this.state.isLoadingContacts}
+        onChange={this.handleContactChange}
+      disabled={!this.state.selectedCustomer} // Disable Contact dropdown if no customer is selected
+      >
+        {this.state.contacts.map(contact => (
+          <Option key={contact.contactId} value={contact.contactId}>
+            {contact.fullName}
+          </Option>
+        ))}
+      </Select> 
+                    {/* } */}
+                        </div>
+                     
+                     
+                  </div>
 
                     <div class=" flex justify-between mt-3">
-                      <div class=" w-2/5">
-                        <>
-                        <Field
-                    name="customerId"
-                    selectType="customerList"
-                    isColumnWithoutNoCreate
-                    // label="Tag Company"
-                    label={
-                      <FormattedMessage
-                        id="app.tagWithCompany"
-                        defaultMessage="Tag Company"
-                      />
-                    }
-                    component={SearchSelect}
-                    isColumn
-                    value={values.tagWithCompany}
-                    // defaultValue={{ label: firstName, value: documentId }}
-                    inlineLabel
-                  />
-                        </>
-                      </div>
+                     
                       <div class=" w-2/5">
                         <FastField
                          name="designationTypeId"
-                         //label="Designation"
-                         label={
-                           <FormattedMessage
-                             id="app.designation"
-                             defaultMessage="Designation"
-                           />
-                         }
+                         label="Designation"
                          selectType="designationType"
                            isColumn
                          component={SearchSelect}
@@ -397,13 +462,7 @@ class UpdateInvestorContactForm extends Component {
                      <div class=" w-2/5">
                       <FastField
                         name="departmentId"
-                        //label="Department"
-                        label={
-                          <FormattedMessage
-                            id="app.department"
-                            defaultMessage="Department"
-                          />
-                        }
+                        label="Department"
                         isColumn
                         isColumnWithoutNoCreate
                         component={SearchSelect}
@@ -433,10 +492,7 @@ class UpdateInvestorContactForm extends Component {
                         <div class="mt-3">          
                     <Field
                       name="notes"
-                      // label="Notes"
-                      label={
-                        <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                      }
+                      label="Notes"
                       width={"100%"}
                       isColumn
                       component={TextareaComponent}
@@ -451,7 +507,7 @@ class UpdateInvestorContactForm extends Component {
                     htmlType="submit"
                     loading={updateInvestorContactById}
                   >
-                    <FormattedMessage id="app.update" defaultMessage="Update" />
+                  Update
                     {/*                     
                     Create */}
                   </Button>
@@ -469,6 +525,7 @@ const mapStateToProps = ({ auth, investor, customer,departments,designations }) 
   updateInvestorContactByIdError: customer.updateInvestorContactByIdError,
   user: auth.userDetails,
   userId: auth.userDetails.userId,
+  token: auth.token,
   customerId: customer.customer.customerId,
   departmentId:departments.departmentId,
   designationTypeId:designations.designationTypeId,

@@ -2,10 +2,7 @@ import React, { useEffect, useState, useMemo, lazy } from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, Button, Input } from "antd";
-
-// import AddBundleModal from "./Child/AddBundleModal"
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import {
     inputCareerDataSearch,
     getLeadsTabData,
@@ -22,19 +19,14 @@ import {
     notUpdatePaidLeads, 
      getRecords, 
      handleEmptyTruckModal, 
-    //  handleEmptyTruckCarrierModal
 } from '../../Leads/LeadsAction';
-//  import "../leads.scss";
 import { handleLoadCarModal, setRequirementsData } from '../../Requirement/RequirementAction'
 import { FloatButton } from 'antd';
 import { MainForBroker } from '../../../Components/UI/Layout';
-import moment from "moment";
-import InfiniteScroll from "react-infinite-scroll-component";
+import dayjs from "dayjs";
 import AddEmptyTruckModal from "../../Leads/Child/AddEmptyTruckModal"
-import ReactCountryFlag from 'react-country-flag';
-import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
  import AddLeadsModal from '../../Leads/Child/AddLeadsModal';
-import { AudioOutlined, StarOutlined} from '@ant-design/icons';
+ import MicIcon from '@mui/icons-material/Mic';
 import AddROwCarDetails from '../../Requirement/Child/AddROwCarDetails'
 
 const { Search } = Input;
@@ -131,7 +123,7 @@ function Myleads(props) {
     //   };
 
       const suffix = (
-        <AudioOutlined
+        <MicIcon
           onClick={SpeechRecognition.startListening}
     
           // onClick={() => {
@@ -160,6 +152,29 @@ function Myleads(props) {
           setCurrentData(transcript);
         }
         }, [ transcript]);
+
+        // useEffect(() => {
+        //     const loadStripeScript = () => {
+        //       const script = document.createElement('script');
+        //       script.src = 'https://js.stripe.com/v3/';
+        //       script.async = true;
+        //       script.onload = () => {
+        //         console.log('Stripe script loaded successfully!');
+        //         const stripe = window.Stripe('your-public-key');
+        //       };
+        //       document.body.appendChild(script);
+        //     };
+        
+        //     loadStripeScript();
+        //     return () => {
+        //       const script = document.querySelector('script[src="https://js.stripe.com/v3/"]');
+        //       if (script) {
+        //         document.body.removeChild(script);
+        //       }
+        //     };
+        //   }, []);
+        
+
     return (
         <>
             <div className=' flex justify-end sticky top-28 z-auto'>
@@ -169,7 +184,7 @@ function Myleads(props) {
                    style={{backgroundColor:"#5f92ff",borderRadius: "1rem",padding: "0.25rem 1rem"}}
                    onClick={() => props.handleEmptyTruckModal(true)}
                 >
-            <h10 class="text-white"> +</h10> <label class=" font-montserrat cursor-pointer text-white text-base font-bold">{translatedMenuItems[34]}</label>
+            <h10 class="text-white"> +</h10> <div class=" font-montserrat cursor-pointer text-white text-base font-bold">{translatedMenuItems[34]}</div>
                 
                 </button>
 
@@ -217,8 +232,8 @@ function Myleads(props) {
         <div className="header-item"></div> */}
       </div>
                 {props.showLeadsAllTable.map((item) => {
-                    const currentdate = moment().format("YYYY/MM/DD");
-                    const date = moment(item.creationDate).format("YYYY/MM/DD");
+                    const currentdate = dayjs().format("YYYY/MM/DD");
+                    const date = dayjs(item.creationDate).format("YYYY/MM/DD");
                     const result = currentdate === date
                     const LocAdd = `${item.loadingAddresses[0].city}`;
                     const LocAdd1 = `${item.unloadingAddresses
@@ -238,7 +253,7 @@ function Myleads(props) {
                                     <Tooltip title={item.categoryName}>
                                         <h4 class=" text-sm  font-montserrat">
                                             {/* {result ? <span style={{ color: "red", fontWeight: "600" }}>New</span> : null} {translatedMenuItems[2]}:  */}
-                                            {` ${moment(item.availabilityDate).subtract(1, 'day').format("DD-MM-YYYY")}`}
+                                            {` ${dayjs(item.availabilityDate).subtract(1, 'day').format("DD-MM-YYYY")}`}
                                         </h4>
                                         {/* <h4 class=" text-sm  font-montserrat flex items-center">
                                             <ReactCountryFlag
@@ -281,7 +296,7 @@ function Myleads(props) {
                                     {/* {delivery date} */}
                                     <h4 class=" text-sm  font-montserrat"> 
                                     {/* {props.translatedMenuItems[3]}:  */}
-                                    {`  ${moment(item.deliveryFromDate).subtract(1, 'day').format("DD-MM-YYYY")}`}</h4>
+                                    {`  ${dayjs(item.deliveryFromDate).subtract(1, 'day').format("DD-MM-YYYY")}`}</h4>
                                     {/* <h4 class=" text-sm  font-montserrat flex items-center">
                                         <ReactCountryFlag
                                             countryCode={country1}
@@ -299,14 +314,14 @@ function Myleads(props) {
                                     </h4> */}
 
                                     {/* <h4 class=" text-sm  font-montserrat">
-                        {item.endDate === null ? null : moment(item.endDate).format("ll")}
+                        {item.endDate === null ? null : dayjs(item.endDate).format("ll")}
                       </h4> */}
                                 </div>
                                 
                                 {/* <div className=" flex font-bold flex-col ">
                                         <Tooltip title={item.subCategoryName}>
                                             Delivery Date
-                                            <h4 class=" text-sm  font-montserrat">{translatedMenuItems[3]}: {`  ${moment(item.endDate).format("DD-MM-YYYY")}`}</h4>
+                                            <h4 class=" text-sm  font-montserrat">{translatedMenuItems[3]}: {`  ${dayjs(item.endDate).format("DD-MM-YYYY")}`}</h4>
 
                                             <h4 class="text-sm  font-montserrat">
                                                 {item.endDate}

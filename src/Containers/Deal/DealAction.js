@@ -37,7 +37,9 @@ export const setDealViewType = (viewType) => (dispatch) => {
         });
         Swal.fire({
           icon: 'error',
-          title: 'Something went wrong , reach out to support!',
+          title: 'Something went wrong, reach out to support!',
+          showConfirmButton: false,
+        timer: 1500,
         })
       });
   };
@@ -454,7 +456,8 @@ export const LinkStageDeal = (data,userId, cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: res.data.message,
-       
+          showConfirmButton: false,
+          timer: 1500,
         });
       }
 
@@ -557,7 +560,9 @@ export const getWonDeals = (userId,pageNo) => (dispatch) => {
       });
       Swal.fire({
         icon: 'error',
-        title: 'Something went wrong , reach out to support!',
+        title: 'Something went wrong, reach out to support!',
+        showConfirmButton: false,
+        timer: 1500,
       })
     });
 };
@@ -732,7 +737,9 @@ export const getAllDeals = (userId,pageNo) => (dispatch) => {
       });
       Swal.fire({
         icon: 'error',
-        title: 'Something went wrong , reach out to support!',
+        title: 'Something went wrong, reach out to support!',
+        showConfirmButton: false,
+        timer: 1500,
       })
     });
 };
@@ -763,7 +770,9 @@ export const getTeamsDeals = (userId,pageNo) => (dispatch) => {
       });
       Swal.fire({
         icon: 'error',
-        title: 'Something went wrong , reach out to support!',
+        title: 'Something went wrong, reach out to support!',
+        showConfirmButton: false,
+        timer: 1500,
       })
     });
 };
@@ -926,7 +935,8 @@ export const deleteDealsData = (invOpportunityId,userId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Deal Deleted Successfully',
-      
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.DELETE_DEAL_DATA_SUCCESS,
@@ -1024,7 +1034,9 @@ export const getLostDeals = (userId,pageNo) => (dispatch) => {
       });
       Swal.fire({
         icon: 'error',
-        title: 'Something went wrong , reach out to support!',
+        title: 'Something went wrong, reach out to support!',
+        showConfirmButton: false,
+        timer: 1500,
       })
     });
 };
@@ -1105,6 +1117,8 @@ export const setDealsContactValue = (data,invOpportunityId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Updated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.SET_DEALS_CONTACT_VALUE_SUCCESS,

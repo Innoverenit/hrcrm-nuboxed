@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Button, Tooltip,Popconfirm } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import dayjs from "dayjs";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {removeIdProof} from "../Id Proof/IdProofAction"
 import { TextInput } from "../../../Components/UI/Elements";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import ViewEditCard from "../../../Components/UI/Elements/ViewEditCard";
 
@@ -65,17 +65,7 @@ class SingleIdProof extends Component {
                           cancelText="No"
                           onConfirm={() => this.props.removeIdProof(IdProofTypeId )}
                         >
-                    <DeleteOutlined
-                    
-                      // onClick={() => handleDeleteIdProof(IdProofTypeId)}
-                    
-                      style={{
-                        verticalAlign: "center",
-                        marginLeft: "1rem",
-                        fontSize:"1rem",
-                        color: "red",
-                      }}
-                    />
+                 <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                        </Popconfirm>
                   </Tooltip>
                
@@ -105,13 +95,11 @@ class SingleIdProof extends Component {
                       )
                     }
                   >
-                    {/* Save */}
-                    <FormattedMessage id="app.update" defaultMessage="Update" />
+                    Save
                   </Button>
                
                   <Button type="cancel"  onClick={() => toggleViewType()}>
-                    {/* Cancel */}
-                    <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                    Cancel
                   </Button>
                 </div>
               </div>

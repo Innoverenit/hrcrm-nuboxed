@@ -1,7 +1,7 @@
 
 import React, { Component } from "react";
 import { Button } from "antd";
-import { FormattedMessage } from "react-intl";
+
 
 import L from "leaflet";
 import { MapLayer, Map, TileLayer, withLeaflet,CircleMarker } from "react-leaflet";
@@ -93,13 +93,9 @@ class MapContainer extends Component {
                 style={{ border: "0.06em solid #aaa" }}
                 onClick={() => this.toggleMapZoom(false)}
               >
-                &nbsp;&nbsp;&nbsp;&nbsp;
+                
                NEAR BY 
-                {/* <FormattedMessage
-                  id="app.nearby"
-                  defaultMessage="NEAR BY"
-                /> */}
-                &nbsp;&nbsp;&nbsp;&nbsp;
+               
               </Button>
             )}
             {!zoomedOut && (
@@ -108,10 +104,7 @@ class MapContainer extends Component {
                 onClick={() => this.toggleMapZoom(true)}
               >
                  WORLD WIDE 
-                {/* <FormattedMessage
-                  id="app.worldwide"
-                  defaultMessage="WORLD WIDE"
-                /> */}
+                
               </Button>
             )}
           </Button.Group>
@@ -119,8 +112,7 @@ class MapContainer extends Component {
         <Map
           ref={this.mapRef}
           center={position || null}
-          // icon={image}
-          //icon={<FontAwesomeIcon icon={solid('flag-checkered')} />}
+       
           zoom={zoomedOut ? 2 : zoom}
           style={{
             width: width || "auto",

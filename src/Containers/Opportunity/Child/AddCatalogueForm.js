@@ -4,8 +4,6 @@ import { InputComponent } from '../../../Components/Forms/Formik/InputComponent'
 import { Button,Select,Input } from 'antd';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
-import { BundleLoader } from '../../../Components/Placeholder';
 import OppoProduLinkedCard from "./OppoProduLinkedCard";
 // import {getCatalogueById,addCatalogueOnebyOne,getAllCatalogueSearch} from "../../CustomerAction";
 import {linkProductWithOpportunity,getAllCatalogueSearch} from "../OpportunityAction";
@@ -76,28 +74,9 @@ const handleSearchChange = (value) => {
                                 <div class="justify-between flex">
                                 <div class="h-full w-[45%]">
                                 <div class="w-wk">
-                                        {/* <Field
-                                            name="catalogueId"
-                                            label={<FormattedMessage
-                                                id="app.items"
-                                                defaultMessage="Items"
-                                            />}
-                                            isRequired
-                                            isColumn
-                                            inlineLabel
-                                            width={"100%"}
-                                            component={SelectComponent}
-                                            onSelect={(e) => {
-                                                props.handleChooseCatalogue(e);
-                                                handleProductList(e, setFieldValue);
-                                            }}
-                                            options={Array.isArray(catOption) ? catOption : []}
-                                            value={props.catalogueId}
-                                        /> */}
-                                        <div class="font-medium m-[0.1rem-0-0.02rem-0.2rem]  flex flex-col"><FormattedMessage
-                                                id="app.items"
-                                                defaultMessage="Items"
-                                            /></div>
+                                       
+                                        <div class="font-medium m-[0.1rem-0-0.02rem-0.2rem]  flex flex-col">Items
+                                     </div>
                                         <Input
                                         style={{backgroundColor:"white",borderRadius:"2rem"}}
     type="text"
@@ -124,10 +103,7 @@ const handleSearchChange = (value) => {
                                     <div class="w-wk">
                                         <Field
                                             name="unit"
-                                            label={<FormattedMessage
-                                                id="app.unit"
-                                                defaultMessage="Unit"
-                                            />}
+                                            label="Unit"
                                             isRequired
                                             isColumn
                                             inlineLabel
@@ -141,10 +117,7 @@ const handleSearchChange = (value) => {
                                         <Field
                                         name="suggestedPrice"
                                             disabled
-                                            label={<FormattedMessage
-                                                id="app.suggestedPrice"
-                                                defaultMessage="Suggested Price"
-                                            />}
+                                            label="Suggested Price"
                                             isColumn
                                             inlineLabel
                                             width={"100%"}
@@ -158,10 +131,7 @@ const handleSearchChange = (value) => {
                                     <div class="w-[45%]">
                                         <Field
                                             name="inputPrice"
-                                            label={<FormattedMessage
-                                                id="app.inputprice"
-                                                defaultMessage="Input Price"
-                                            />}
+                                            label="Input Price"
                                             isRequired
                                             isColumn
                                             inlineLabel
@@ -179,10 +149,7 @@ const handleSearchChange = (value) => {
                 <div class="w-[45%]">
                                         <Field
                                             name="categoryName"
-                                            label={<FormattedMessage
-                                                id="app.category"
-                                                defaultMessage="Category"
-                                            />}
+                                            label="Category"
                                             disabled
                                             isColumn
                                             inlineLabel
@@ -194,10 +161,7 @@ const handleSearchChange = (value) => {
                                     <div class="w-[45%]">
                                         <Field
                                             name="subCategoryName"
-                                            label={<FormattedMessage
-                                                id="app.subcategory"
-                                                defaultMessage="Sub Category"
-                                            />}
+                                            label="Sub Category"
                                             disabled
                                             isColumn
                                             inlineLabel
@@ -211,10 +175,7 @@ const handleSearchChange = (value) => {
                 <div class="w-[45%]">
                                         <Field
                                             name="attributeName"
-                                            label={<FormattedMessage
-                                                id="app.attribute"
-                                                defaultMessage="Attribute"
-                                            />}
+                                            label="Attribute"
                                             disabled
                                             isColumn
                                             inlineLabel
@@ -226,10 +187,7 @@ const handleSearchChange = (value) => {
                                     <div class="w-[45%]">
                                         <Field
                                             name="subAttributeName"
-                                            label={<FormattedMessage
-                                                id="app.subattribute"
-                                                defaultMessage="Sub Attribute"
-                                            />}
+                                            label="Sub Attribute"
                                             disabled
                                             isColumn
                                             inlineLabel
@@ -243,10 +201,7 @@ const handleSearchChange = (value) => {
                 <div class="w-[45%]">
                                         <Field
                                             name="brand"
-                                            label={<FormattedMessage
-                                                id="app.brand"
-                                                defaultMessage="Brand"
-                                            />}
+                                            label="Brand"
                                             disabled
                                             isColumn
                                             inlineLabel
@@ -258,10 +213,7 @@ const handleSearchChange = (value) => {
                                     <div class="w-[45%]">
                                         <Field
                                             name="model"
-                                            label={<FormattedMessage
-                                                id="app.model"
-                                                defaultMessage="Model"
-                                            />}
+                                            label="Model"
                                             disabled
                                             isColumn
                                             inlineLabel

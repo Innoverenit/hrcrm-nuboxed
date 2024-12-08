@@ -1,13 +1,9 @@
-import { Checkbox } from 'antd';
 import React ,{useEffect,useState}from 'react';
-import { Formik, Form, Field } from "formik";
-import { Icon, Switch, Button, Popconfirm } from "antd";
+import { Switch, Popconfirm } from "antd";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
 import { connect } from "react-redux";
-import { SwitchComponent } from "../../../../../Components/Forms/Formik/SwitchComponent";
-import { FlexContainer, MainWrapper } from "../../../../../Components/UI/Layout";
-import {StyledLabel,Spacer} from "../../../../../Components/UI/Elements";
+import { MainWrapper } from "../../../../../Components/UI/Layout";
 import {addingPermissionAccess,getPermissionAccess} from "../../../SettingsAction";
 function SearchForm(props) {
   useEffect(() => {
@@ -147,14 +143,11 @@ function SearchForm(props) {
     setSearchInd(false);
    }
  }
-
-
    return (
     
-
     <MainWrapper style={{ height: "446px", width: "", overflow: "auto" }}>
-    <Spacer />
-    <FlexContainer justifyContent="space-between" style={{ width: "100%" }}>
+    <div class=" mt-3" />
+    <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto w-[100%] ">
       <div
         style={{
           width: "44%",
@@ -164,7 +157,7 @@ function SearchForm(props) {
         }}
       >
         <div>
-          <StyledLabel
+          <div class=" text-xs font-bold font-poppins"
             style={{
               flexBasis: "13%",
               marginTop: "0.625em",
@@ -173,11 +166,11 @@ function SearchForm(props) {
             }}
           >
             Employee
-          </StyledLabel>
+          </div>
         </div>
-        <Spacer />
-        <FlexContainer justifyContent="space-between">
-              <div><StyledLabel>Access talent of all users</StyledLabel></div>
+        <div class=" mt-3" />
+        <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  ">
+              <div><div class=" text-xs font-bold font-poppins text-black">Access talent of all users</div></div>
                
               <div>
               <Popconfirm
@@ -195,11 +188,11 @@ function SearchForm(props) {
             />
           </Popconfirm>
                     </div>
-                </FlexContainer>
-                <Spacer />
-                <Spacer style={{ marginTop: "1.25em" }} />
-              <FlexContainer justifyContent="space-between">
-              <div><StyledLabel>Talent visible to user on search</StyledLabel></div>
+                </div>
+                <div class=" mt-3" />
+                <div class=" mt-3" style={{ marginTop: "1.25em" }} />
+                <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto">
+              <div><div class=" text-xs font-bold font-poppins text-black">Talent visible to user on search</div></div>
                 
               <div>
               <Popconfirm
@@ -217,13 +210,8 @@ function SearchForm(props) {
             />
           </Popconfirm>
                     </div>
-                 </FlexContainer>
-        
-     
-
-       
-       
-      
+                 </div>
+              
       </div>
 
       <div
@@ -235,7 +223,7 @@ function SearchForm(props) {
         }}
       >
         <div>
-          <StyledLabel
+          <div class=" text-xs font-bold font-poppins"
             style={{
               flexBasis: "13%",
               marginTop: "0.625em",
@@ -244,11 +232,11 @@ function SearchForm(props) {
             }}
           >
             Contractor
-          </StyledLabel>
+          </div>
         </div>
-        <Spacer />
-        <FlexContainer justifyContent="space-between">
-            <div><StyledLabel>Access talent of all users</StyledLabel></div>
+        <div class=" mt-3" />
+        <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  ">
+            <div><div class=" text-xs font-bold font-poppins text-black">Access talent of all users</div></div>
                    <div>
                    <Popconfirm
             title="Do you wish to change Status ? "
@@ -265,11 +253,11 @@ function SearchForm(props) {
             />
           </Popconfirm>
                     </div>
-              </FlexContainer>
-              <Spacer />
-              <FlexContainer justifyContent="space-between">
+              </div>
+              <div class=" mt-3" />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto  ">
               <div>
-                <StyledLabel>Talent visible to user on search</StyledLabel></div>
+                <div class=" text-xs font-bold font-poppins text-black">Talent visible to user on search</div></div>
                 
               <div>
 
@@ -289,11 +277,11 @@ function SearchForm(props) {
           </Popconfirm>
  
                     </div>
-                </FlexContainer>  
-                <Spacer />
+                </div>  
+                <div class=" mt-3" />
                
       </div>
-    </FlexContainer>
+    </div>
     <div>Updated on {dayjs(props.permissionAccess.lastUpdatedOn).format("ll")} by {props.permissionAccess.name}</div> 
  
   </MainWrapper>

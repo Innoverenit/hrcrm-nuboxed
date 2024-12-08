@@ -1,4 +1,4 @@
-import React, { Component,lazy} from "react";
+import React, { Component,lazy, Suspense} from "react";
 import { ActionHeader } from "../../Components/Utils";
 const OrganizationActionRight = lazy(() =>
   import("./Child/OrganizationHeader/OrganizationActionRight")
@@ -18,11 +18,11 @@ class OrganizationHeader extends Component {
       setOrganizationViewType,
     } = this.props;
     return (
-      <div style={{position: "sticky",
-        top: "3.35rem",
-        zIndex: "998"}}>
+      <div className="sticky mt-1 z-50"> 
+      
         <ActionHeader
           leftComponent={
+            <Suspense fallback={"Loading..."}>
             <OrganizationActionLeft
             viewType={viewType}
             activeTab={this.props.activeTab}
@@ -31,15 +31,19 @@ class OrganizationHeader extends Component {
             handleOnClick={this.props.handleOnClick}
             // handleChange={handleChange}
             setOrganizationViewType={setOrganizationViewType}
-
-            />
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}
+            /></Suspense>
           }
        
           rightComponent={
+            <Suspense fallback={"Loading..."}>
             <OrganizationActionRight
             viewType={viewType}
             handleOrganizationModal={handleOrganizationModal}
-           />
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText}
+           /></Suspense>
           }
         />
       </div>

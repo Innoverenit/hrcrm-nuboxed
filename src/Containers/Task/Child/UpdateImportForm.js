@@ -1,29 +1,11 @@
-import React, { lazy, Suspense, Component } from "react";
+import React, {  Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
 import {updateTaskImportForm} from "../TaskAction"
-
-import { Button, Switch, Tooltip, Icon,Select } from "antd";
-
-// import { RightSquareOutlined, ToTopOutlined } from '@ant-design/icons';
-import { Formik, Form, Field, FieldArray,FastField } from "formik";
-import { StyledDrawer, StyledModal } from "../../../Components/UI/Antd";
-import { Spacer, StyledLabel } from "../../../Components/UI/Elements";
-
-
-
-
-import * as Yup from "yup";
-
-// import { getOppoStages, getLevels } from "../../Settings/SettingsAction";
-import { FlexContainer } from "../../../Components/UI/Layout";
+import { Button,Select } from "antd";
+import { Formik, Form, Field,  } from "formik";
 import DragableUpload from "../../../Components/Forms/Formik/DragableUpload";
-import LazySelect from "../../../Components/Forms/Formik/LazySelect";
 
-import { FormattedMessage } from "react-intl";
-import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
-import ImportTaskUpload from "../../../Components/Forms/Formik/ImportTaskUpload";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 const ButtonGroup = Button.Group;
 
@@ -41,32 +23,18 @@ class UpdateImportForm extends Component {
       data: [1],
     };
   }
-
-
-  render() {
-   
-    
-
-  
-
- 
-
-    return (
+ render() {  
+   return (
       <>
-       
-         
+             
             <Formik
-              // enableReinitialize
-              initialValues={{
-              
-              
-                
+       
+              initialValues={{                                     
                 taskId:this.props.currentNameId.taskId,
                 documentId:"",
                 documentTitle:"",
                
-              }}
-            //    validationSchema={documentSchema}
+              }}       
               onSubmit={(values, { resetForm }) => {
                 console.log(values);
                 this.props.updateTaskImportForm(
@@ -112,9 +80,9 @@ class UpdateImportForm extends Component {
                           {errors.documentId}
                         </p>
                       )}
-                      <Spacer />
+                      <mt-3 />
                  
-                  <Spacer />
+                  <mt-3 />
                 
                     </div>
                     <div
@@ -122,36 +90,26 @@ class UpdateImportForm extends Component {
                         height: "100%",
                         width: "45%",
                       }}
-                    >
-                  
-                      <Spacer />
-                   
-
-
-                      <Spacer style={{ marginBottom: "0.9375em" }} />
+                    >                 
+                      <mt-3 />
+                      <mt-3 style={{ marginBottom: "0.9375em" }} />
 
                       <Field
                         name="documentTitle"
                         //label="Name"
-                        label={
-                          <FormattedMessage
-                            id="app.title"
-                            defaultMessage="Title"
-                          />
-                        }
+                        label="Title"
+                          
                         width={"100%"}
                         isColumn
                         component={InputComponent}
                         style={{ height: "2em",  }}
                       />
-      
-
-                     
+                        
                     </div>
                   </div>
 
-                  <Spacer />
-                  <FlexContainer justifyContent="flex-end">
+                  <mt-3 />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                     <Button
                       htmlType="submit"
                       type="primary"
@@ -159,7 +117,7 @@ class UpdateImportForm extends Component {
                     >
                       Submit
                     </Button>
-                  </FlexContainer>
+                  </div>
                 </Form>
               )}
             </Formik>
@@ -169,10 +127,6 @@ class UpdateImportForm extends Component {
     );
   }
 }
-// const DocumentUploadModal = (props) => {
-//     console.log(props)
-
-// }
 
 const mapStateToProps = ({ document, settings,employee, task,departments,auth }) => ({
     updatingTaskImportForm:task.updatingTaskImportForm,

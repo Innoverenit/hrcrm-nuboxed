@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Tag, Checkbox } from "antd";
 import styled from "styled-components";
-import { FlexContainer } from "../../Components/UI/Layout";
 import { Title, HeaderText, SubTitle } from "../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
+
 
 class SubscriptionConfirmationContent extends Component {
   handleChange = (type) => {
@@ -17,13 +16,11 @@ class SubscriptionConfirmationContent extends Component {
       <div>
         <>
           <HeaderText>
-            <FormattedMessage
-              id="app.changeinsubscriptionwillbeappliedforallyourusers"
-              defaultMessage="Change in Subscription will be applied for all your users"
-            />,
+           Change in Subscription will be applied for all your users
+        
       {/* Change in Subscription will be applied for all your users */}
           </HeaderText>
-          <FlexContainer flexDirection="row" flexWrap="nowrap">
+          <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
             <PlanBox isActive={type === "STARTER"}>
               <Checkbox
                 checked={type === "STARTER"}
@@ -149,7 +146,7 @@ class SubscriptionConfirmationContent extends Component {
               </SubTitle>
               <br />
             </PlanBox>
-          </FlexContainer>
+          </div>
         </>
       </div>
     );

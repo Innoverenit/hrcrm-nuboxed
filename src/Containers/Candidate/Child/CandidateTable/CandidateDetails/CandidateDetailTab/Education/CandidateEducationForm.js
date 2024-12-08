@@ -4,14 +4,14 @@ import { bindActionCreators } from "redux";
 import { Button, Tooltip,  } from "antd";
 import { Formik, Form, Field,  FastField } from "formik";
 import {
-  StyledLabel,
+  
 } from "../../../../../../../Components/UI/Elements";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import * as Yup from "yup";
 import DragableUpload from "../../../../../../../Components/Forms/Formik/DragableUpload";
 import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
 import ButtonGroup from "antd/lib/button/button-group";
-import { FormattedMessage } from "react-intl";
+
 import { addCandidateEducationDetails } from "../../../../../CandidateAction";
 import SearchSelect from "../../../../../../../Components/Forms/Formik/SearchSelect";
 import { getEducations } from "../../../../../../Settings/Educations/EducationAction";
@@ -90,13 +90,8 @@ class CandidateEducationForm extends Component {
                   <FastField
                     name="educationTypeId"
                     type="text"
-                    //label="Education"
-                    label={
-                      <FormattedMessage
-                        id="app.education"
-                        defaultMessage="Education"
-                      />
-                    }
+                    label="Education"
+                  
                     // options={[
                     //   "Matriculation",
                     //   "Intermediate",
@@ -123,13 +118,8 @@ class CandidateEducationForm extends Component {
                       type="text"
                       isColumn
                       width={"100%"}
-                      //label="Course Name"
-                      label={
-                        <FormattedMessage
-                          id="app.courseName"
-                          defaultMessage="Course Name"
-                        />
-                      }
+                      label="Course Name"
+                     
                       component={InputComponent}
                       inlineLabel
                      
@@ -143,7 +133,7 @@ class CandidateEducationForm extends Component {
                 >
                 <div class=" w-[47%]"
                 >
-                    <StyledLabel>Course Type</StyledLabel>
+                    <div class=" text-xs font-bold font-poppins text-black">Course Type</div>
                   <div class=" mt-4">
                     <ButtonGroup>
                       <StatusIcon
@@ -186,13 +176,8 @@ class CandidateEducationForm extends Component {
                       type="text"
                       isColumn
                       width={"100%"}
-                      //label="Specialization"
-                      label={
-                        <FormattedMessage
-                          id="app.Specialization"
-                          defaultMessage="Specialization"
-                        />
-                      }
+                     label="Specialization"
+                     
                       component={InputComponent}
                       inlineLabel
                       />
@@ -206,13 +191,8 @@ class CandidateEducationForm extends Component {
                       type="text"
                       isColumn
                       width={"100%"}
-                      //label="University/Institute "
-                      label={
-                        <FormattedMessage
-                          id="app.university"
-                          defaultMessage="University/Institute"
-                        />
-                      }
+                   label="University/Institute "
+                    
                       component={InputComponent}
                       inlineLabel
                     />
@@ -223,13 +203,8 @@ class CandidateEducationForm extends Component {
                 >
                       <Field
                         name="yearOfPassing"
-                        //label="Year of Passing"
-                        label={
-                          <FormattedMessage
-                            id="app.yearOfPassing"
-                            defaultMessage="Year of Passing"
-                          />
-                        }
+                       label="Year of Passing"
+                       
                         component={InputComponent}
                         isColumn
                         width={"100%"}
@@ -242,14 +217,8 @@ class CandidateEducationForm extends Component {
                     <div class=" w-[47%]"
                 >
                       <Field
-                        // isRequired
-                        //label="Marks Secured"
-                        label={
-                          <FormattedMessage
-                            id="app.marksSecured"
-                            defaultMessage="Marks Secured"
-                          />
-                        }
+                        label="Marks Secured"
+                       
                         name="marksSecured"
                         type="text"
                         isColumn
@@ -262,12 +231,8 @@ class CandidateEducationForm extends Component {
                 >
                       <Field
                         name="marksType"
-                        label={
-                          <FormattedMessage
-                            id="app.marksType"
-                            defaultMessage="Marks Type"
-                          />
-                        }
+                        label="Marks Type"
+                          
                         type="text"
                         component={SelectComponent}
                         options={["%", "Out of 10", "Out of 5"]}
@@ -285,12 +250,8 @@ class CandidateEducationForm extends Component {
                   
                   <Field
                     name="documentId"
-                    label={
-                      <FormattedMessage
-                        id="app.documentId"
-                        defaultMessage="Document Id"
-                      />
-                    }
+                    label="Document Id"
+                    
                     // isRequired
                     component={DragableUpload}
                   />
@@ -300,13 +261,8 @@ class CandidateEducationForm extends Component {
                 >
                   <Field
                     name="documentTitle"
-                    //label="Name of Document"
-                    label={
-                      <FormattedMessage
-                        id="app.documentTitle"
-                        defaultMessage="Name of Document"
-                      />
-                    }
+                 label="Name of Document"
+                   
                     width={"100%"}
                     isColumn
                     component={InputComponent}
@@ -318,13 +274,8 @@ class CandidateEducationForm extends Component {
                         name="documentTypeId"
                         selectType="documentTypeName"
                         isColumnWithoutNoCreate
-                        // label="Type"
-                        label={
-                          <FormattedMessage
-                            id="app.type"
-                            defaultMessage="Type"
-                          />
-                        }
+                     label="Type"
+                       
                         // isRequired
                         component={SearchSelect}
                         isColumn
@@ -345,7 +296,7 @@ class CandidateEducationForm extends Component {
                   type="primary"
                   Loading={addingCandidateEducationDetails}
                 >
-                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
+                 Submit
                 </Button>
               </div>
             </Form>

@@ -1,13 +1,10 @@
 import React, {  useEffect, useState, useMemo, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
-import {
-  SearchOutlined,
-  UpCircleOutlined,
-} from "@ant-design/icons";
+import dayjs from "dayjs";
+import SearchIcon from '@mui/icons-material/Search';
+import ArrowCircleUpIcon from '@mui/icons-material/ArrowCircleUp';
 import { Link } from 'react-router-dom';
-import { translateText, } from '../../../Translate/TranslateService';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
@@ -84,38 +81,39 @@ const UpdateCandidateModal = lazy(() =>
 
 function CandidateTable(props) {
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [visibleselect, setvisibleselect] = useState(false);
   const [selectedValue, setselectedValue] = useState("");
   const [translatedContent, setTranslatedContent] = useState('');
-
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
   console.log("trans5",translatedContent)
 
   useEffect(() => {
-    
-    
-
-    const fetchTranslation = async () => {
+    const fetchMenuTranslations = async () => {
       try {
-        const translation = await Promise.all([
-          translateText('Name', props.selectedLanguage),
-              translateText('Vendor', props.selectedLanguage),
-              translateText('Role', props.selectedLanguage),
-              translateText('Country', props.selectedLanguage),
-              translateText('Skills', props.selectedLanguage),
-              translateText('Expectation', props.selectedLanguage),
-              translateText('Available', props.selectedLanguage),
-              translateText('Owner', props.selectedLanguage),
-              translateText('Active', props.selectedLanguage),
-        ]);
+        setLoading(true); 
+        const itemsToTranslate = [
+      "110",//Name
+           "824",//supplier
+           "980",//Role
+           "1109",// Country
+           "1191",// Skills
+           "",//Expectation
+           "1225 ",// Available
+           "77",//Owner
+          "",//Active
+      ];
 
-        setTranslatedContent(translation);
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
         console.error('Error translating menu items:', error);
       }
     };
 
-    fetchTranslation();
+    fetchMenuTranslations();
   }, [props.selectedLanguage]);
 
   function handleTransferClick() {
@@ -241,7 +239,7 @@ function CandidateTable(props) {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             //icon="search"
             size="small"
             style={{ width: 90 }}
@@ -269,7 +267,7 @@ function CandidateTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />
@@ -411,13 +409,13 @@ function CandidateTable(props) {
     },
     {
        title:"Name",
-      // title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+ 
       dataIndex: "fullName",
       width: "13%",
       ...getColumnSearchProps("fullName"),
       render: (name, item, i) => {
-        const currentdate = moment().format("DD/MM/YYYY");
-        const date = moment(item.creationDate).format("DD/MM/YYYY");
+        const currentdate = dayjs().format("DD/MM/YYYY");
+        const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         return (
           <>
 <Link class="overflow-ellipsis whitespace-nowrap h-8 text-sm p-1 text-[#042E8A] cursor-pointer"  to={`candidate/${item.candidateId}`} title={item.candidateName}>
@@ -495,15 +493,14 @@ function CandidateTable(props) {
     },
 
     {
-       title:"Vendor",
-      // title: <FormattedMessage id="app.vendor" defaultMessage="Vendor" />,
+       title:"Supplier",
+     
       dataIndex: "partnerName",
       width: "10%",
       ...getColumnSearchProps("partnerName"),
     },
     {
        title:"Role",
-      // title: <FormattedMessage id="app.role" defaultMessage="Role" />,
       dataIndex: "roleType",
       width: "8%",
       filters: roleTypeOption,
@@ -519,7 +516,6 @@ function CandidateTable(props) {
     },
     {
      
-      // title: <FormattedMessage id="app.country" defaultMessage="Country" />,
       dataIndex: "country",
       align: "left",
       width: "4%",
@@ -552,7 +548,6 @@ function CandidateTable(props) {
     },
     {
        title:"Skills",
-      // title: <FormattedMessage id="app.skills" defaultMessage="Skills" />,
       // dataIndex: "skillList",
       width: "17%",
       ...getColumnSearchProps("skillList"),
@@ -627,9 +622,7 @@ function CandidateTable(props) {
     },
     {
        title:"Expectation",
-      // title: (
-      //   <FormattedMessage id="app.expectation" defaultMessage="Expectation" />
-      // ),
+     
       dataIndex: "billing",
       align: "left",
       width: "8%",
@@ -649,17 +642,16 @@ function CandidateTable(props) {
     },
     {
        title:"Available",
-      // title: <FormattedMessage id="app.available" defaultMessage="Available" />,
       dataIndex: "availableDate",
       width: "7%",
       render: (text, item) => {
-        const availableDate = moment(item.availableDate).format("ll");
+        const availableDate = dayjs(item.availableDate).format("ll");
         return (
           <>
             {item.availableDate === null ? (
               "None"
             ) : (
-              <span>{moment(item.availableDate).format("l")}</span>
+              <span>{dayjs(item.availableDate).format("l")}</span>
             )}
           </>
         );
@@ -667,7 +659,6 @@ function CandidateTable(props) {
     },
     {
        title:"Owner",
-      // title: <FormattedMessage id="app.owner" defaultMessage="Owner" />,
       // dataIndex: "ownerName",
       width: "6%",
       filters: ownerlistType,
@@ -694,7 +685,6 @@ function CandidateTable(props) {
     },
     {
       title:"Active",
-      // title: <FormattedMessage id="app.active" defaultMessage="Active" />,
       // dataIndex: "active",
       width: "6%",
       render: (name, item, i) => {
@@ -860,7 +850,7 @@ function CandidateTable(props) {
             title="Do you want to blacklist?"
             onConfirm={() => props.getBlackListCandidate(item.candidateId)}
           >
-            <UpCircleOutlined
+            <ArrowCircleUpIcon
               type="up-circle"
               theme="filled"
               style={{ cursor: "pointer" }}
@@ -943,6 +933,8 @@ function CandidateTable(props) {
         updateCandidateModal={updateCandidateModal}
         handleUpdateCandidateModal={handleUpdateCandidateModal}
         handleSetCurrentCandidateId={handleSetCurrentCandidateId}
+        selectedLanguage={props.selectedLanguage}
+        translateText={props.translateText}
       />
       <AddEmailCandidateModal
         selectedValue={selectedValue}
@@ -950,11 +942,15 @@ function CandidateTable(props) {
         candidateEmailDrawerProps={props.candidateEmailDrawerProps}
         addCandidateEmailModal={props.addCandidateEmailModal}
         handleCandidateEmailModal={props.handleCandidateEmailModal}
+        selectedLanguage={props.selectedLanguage}
+        translateText={props.translateText}
       />
       <AddDonotCallModal
         addDonotCallModal={props.addDonotCallModal}
         candidateId={currentCandidateId}
         handleDonotCallModal={props.handleDonotCallModal}
+        selectedLanguage={props.selectedLanguage}
+        translateText={props.translateText}
       />
       <AddChoiceCandidateModal
         selectedValue={selectedValue}
@@ -986,6 +982,8 @@ function CandidateTable(props) {
         documentsByCandidateId={props.documentsByCandidateId}
         addDrawerCandidateModal={props.addDrawerCandidateModal}
         handleCandidateDrawerModal={props.handleCandidateDrawerModal}
+        selectedLanguage={props.selectedLanguage}
+        translateText={props.translateText}
         // candidateByUserId={this.props.candidateByUserId}
       />
     </>
@@ -1052,20 +1050,6 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 export default connect(mapStateToProps, mapDispatchToProps)(CandidateTable);
-const AppIcon = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "123%" }}
-  ></i>
-);
-
-const PulseIcon = styled(AppIcon)`
-  color: #df9697;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;
 
 
 

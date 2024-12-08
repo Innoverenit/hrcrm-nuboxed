@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import { base_url } from "../../../Config/Auth";
 import { Button, Tooltip } from "antd";
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
-import { FormattedMessage } from "react-intl";
+
 class CourseActionRight extends React.Component {
  
   render() {
@@ -34,7 +34,7 @@ class CourseActionRight extends React.Component {
             type="primary"
             onClick={() => handleCourseModal(true)}
           >
-            <FormattedMessage id="app.add" defaultMessage="Add"/>
+           "Add"
           </Button>
            )} 
         </Tooltip>

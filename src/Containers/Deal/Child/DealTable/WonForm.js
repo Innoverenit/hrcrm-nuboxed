@@ -3,11 +3,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
-import SpeechRecognition, { useSpeechRecognition } from "react-speech-recognition";
-import { Button, Tooltip, message } from "antd";
+
+import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
-import * as Yup from "yup";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
 import dayjs from "dayjs";
@@ -133,7 +131,7 @@ function WonForm(props) {
                   htmlType="submit"
                   loading={sendingCardWon}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="create" />
+                  create
                 </Button>
               </div>
             </Form>

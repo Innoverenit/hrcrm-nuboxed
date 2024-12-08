@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { FormattedMessage } from "react-intl";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import ExploreIcon from '@mui/icons-material/Explore';
 import PersonIcon from '@mui/icons-material/Person';
@@ -18,7 +17,7 @@ const PublishActionLeft = (props) => {
     <div class=" flex items-center"
     >
        <Tooltip
-        title={<FormattedMessage id="app.website" defaultMessage="Website" />}
+        title="Website" 
       >
         <span class="mr-2 text-sm cursor-pointer"
           style={{
@@ -29,7 +28,7 @@ const PublishActionLeft = (props) => {
         </span>
       </Tooltip>
       <Tooltip
-        title={<FormattedMessage id="app.jobSites" defaultMessage="Job Sites" />}
+        title="Job Sites" 
       >
         <span  class=" mr-2 text-sm cursor-pointer"
           style={{

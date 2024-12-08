@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { FlexContainer } from "../../../../../Components/UI/Layout";
 import { Title, MultiAvatar } from "../../../../../Components/UI/Elements";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { handleFeedbackModal } from "../../ShipperAction";
-import ShipperFeedbackModal from "./ShipperFeedbackModal";
 import { Tooltip } from "antd";
+const ShipperFeedbackModal =lazy(()=>import("./ShipperFeedbackModal"));
 
 class ShipperOverViewView extends Component {
   render() {
@@ -49,10 +49,12 @@ class ShipperOverViewView extends Component {
             </Tooltip>
           </FlexContainer>
         </FlexContainer>
+        <Suspense fallback={"Loading..."}>
         <ShipperFeedbackModal
           handleFeedbackModal={handleFeedbackModal}
           feedbackModal={feedbackModal}
         />
+        </Suspense>
       </>
     );
   }

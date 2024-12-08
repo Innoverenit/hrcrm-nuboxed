@@ -2,7 +2,7 @@ import React, { } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import dayjs from "dayjs";
-import { base_url } from "../../../../Config/Auth";
+import { base_url, base_url2 } from "../../../../Config/Auth";
 import { Empty, Button, Tooltip, Modal } from "antd";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -296,28 +296,21 @@ class Selected extends React.Component {
          
             style={{ padding: "0em 1.25em" }}
           >
-            {/* <Tooltip title={"Generate PDF"}>
-              <Button
-                icon="file-pdf"
-                style={{
-                  color: "white",
-
-                  border: "0.125em solid red",
-                  fontSize: "1.125em",
-                  backgroundColor: "red",
-                  padding: "0.125em",
-                }}
-              ></Button>
-            </Tooltip> */}
+         
            <Tooltip title={"Generate Pdf "}>
+           <a
+              href={`${base_url2}/customer/pdf/${'item.opportunityId'}`}
+            target="_blank"
+            >
               <Button
                  type="primary"
                 // onClick={this.showModal}
-                onClick={() => exportPDF()}
+                // onClick={() => exportPDF()}
     
               >
                 <PictureAsPdfIcon style={{ fontSize: "large", color: "#AA0000" }} />
               </Button>
+              </a>
               <Modal
               title="Select your Header for Download Report"
               open={this.state.isModalOpen}
@@ -343,48 +336,18 @@ class Selected extends React.Component {
             }?type=${"expense"}&startDate=${this.props.startDate}&endDate=${this.props.endDate
             }=${this.props.userId}
           `}
-           // onClick={() => props.setCandidateViewType("table")}
+
          
           >
             <InsertDriveFileIcon />
-          </span>
-            {/* <Tooltip title={"Generate XL"}>
-              <Button
-                icon="file-excel"
-                // type="primary"
-                href={`${base_url}/excel/export/user/${this.props.userId
-                  }?type=${"expense"}&startDate=${this.props.startDate}&endDate=${this.props.endDate
-                  }=${this.props.userId}
-                `}
-                style={{
-                  color: "white",
-                  border: "0.125em solid green",
-                  fontSize: "1.125em",
-                  // padding: "0.4375em",
-                  backgroundColor: "green",
-                }}
-              ></Button>
-            </Tooltip> */}
-        
+          </span>      
         <span class=" ml-4 mr-2 cursor-pointer text-4"
            // onClick={() => props.setCandidateViewType("table")}
          
           >
-           <InsertDriveFileIcon/>
+           <InsertDriveFileIcon className="!text-icon text-[#b288c0]"/>
           </span>
-            {/* <Tooltip title={"Generate CSV"}>
-              <Button
-                icon="file-text"
-                target="blank"
-                style={{
-                  color: "white",
-                  border: "0.125em solid green",
-                  fontSize: "1.125em",
-                  // padding: "0.4375em",
-                  backgroundColor: "blue",
-                }}
-              ></Button>
-            </Tooltip> */}
+         
           </div>
         </PDFPreviewTable>
       </div>

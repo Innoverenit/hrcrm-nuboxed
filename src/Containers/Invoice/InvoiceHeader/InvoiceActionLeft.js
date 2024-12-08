@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import TableViewIcon from '@mui/icons-material/TableView';
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { } from 'react-speech-recognition';
 import { Input, Tooltip } from "antd";
 
@@ -15,7 +15,7 @@ const InvoiceActionLeft = (props) => {
     
   }
   const suffix = (
-    <AudioOutlined
+    <MicIcon
       onClick={SpeechRecognition.startListening}
       style={{
         fontSize: 16,

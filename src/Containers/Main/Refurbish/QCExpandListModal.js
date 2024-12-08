@@ -17,7 +17,7 @@ const QCExpandListModal = (props) => {
         <Modal
         //  title="Task"
           title={props.RowData.imei}
-          width="64%"
+          width="50%"
           destroyOnClose
           closable
           placement="right"

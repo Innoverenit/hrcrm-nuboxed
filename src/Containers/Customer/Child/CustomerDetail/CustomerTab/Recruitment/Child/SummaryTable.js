@@ -2,17 +2,17 @@ import React, { Component } from "react";
 import { StyledTable } from "../../../../../../../Components/UI/Antd";
 // import { getAllRecruitmentDetailsByOppId } from "../../../../../OpportunityAction";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button, Progress, Tooltip } from "antd";
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
-import { MultiAvatar,SubTitle, Spacer } from "../../../../../../../Components/UI/Elements";
+import { MultiAvatar,SubTitle } from "../../../../../../../Components/UI/Elements";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 
 import styled from "styled-components";
-import { base_url } from "../../../../../../../Config/Auth";
-import moment from "moment";
+import { base_url, base_url2 } from "../../../../../../../Config/Auth";
+import dayjs from "dayjs";
 import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
 function onChange(pagination, filters, sorter) {
   console.log("Clicked", pagination, filters, sorter);
@@ -126,7 +126,7 @@ class SummaryTable extends Component {
           data.settings.margin.left + 70,
           20
         );
-        var before = `Published on ${moment().format("Do MMM YYYY")}`;
+        var before = `Published on ${dayjs().format("Do MMM YYYY")}`;
         doc.text(before, 75, 30);
 
         // Footer
@@ -150,7 +150,7 @@ class SummaryTable extends Component {
       doc.putTotalPages(totalPagesExp);
     }
     doc.save(
-      `${opportunityName && opportunityName} Requirement ${moment().format(
+      `${opportunityName && opportunityName} Requirement ${dayjs().format(
         "L"
       )}`
     );
@@ -165,26 +165,18 @@ class SummaryTable extends Component {
       },
       {
         title: "Requirement",
-        title: <FormattedMessage
-          id="app.requirementName"
-          defaultMessage="Requirement"
-        />,
+        title: "Requirement",
         dataIndex: "requirementName",
       },
       {
         title: "# Positions",
-        title: <FormattedMessage
-          id="app.number"
-          defaultMessage="# Positions"
-        />,
+        title: "# Positions"
+     ,
         dataIndex: "number",
       },
       {
         title: "Sponsor",
-        title: <FormattedMessage
-          id="app.sponserName"
-          defaultMessage="Sponsor"
-        />,
+        title: "Sponsor",
         dataIndex: "sponserName",
         render: (name, item, i) => {
           return (
@@ -202,34 +194,22 @@ class SummaryTable extends Component {
       },
       {
         title: "Filled",
-        title: <FormattedMessage
-          id="app.closedPosition"
-          defaultMessage="Filled"
-        />,
+        title: "Filled",
         dataIndex: "closedPosition",
       },
       {
-        //title: "Unfilled",
-        title: <FormattedMessage
-          id="app.openedPosition"
-          defaultMessage="Unfilled"
-        />,
+        title: "Unfilled",
+      
         dataIndex: "openedPosition",
       },
       {
-        //title: "Submitted",
-        title: <FormattedMessage
-          id="app.offered"
-          defaultMessage="Submitted"
-        />,
+        title: "Submitted",
+      
         dataIndex: "offered",
       },
       {
-        // title: "Rejected",
-        title: <FormattedMessage
-          id="app.rejected"
-          defaultMessage="Rejected"
-        />,
+        title: "Rejected",
+        
         dataIndex: "rejected",
       },
       {
@@ -274,14 +254,18 @@ class SummaryTable extends Component {
               scroll={{ y: tableHeight }}
           pagination={false}
             />
-            <Spacer />
+            <div class=" mt-3" />
             <div class=" justify-end"
               style={{ padding: "0em 1.25em" }}
             >
               <Tooltip title={"Generate PDF"}>
+              <a
+              href={`${base_url2}/customer/pdf/${"id"}`}
+            target="_blank"
+            >
                 <Button
                   type="primary"
-                  onClick={this.handleDownloadPdf}
+                  // onClick={this.handleDownloadPdf}
                   style={{
                     color: "white",
                     border: "0.125em solid red",
@@ -292,6 +276,7 @@ class SummaryTable extends Component {
                    <PictureAsPdfIcon 
                    />
                 </Button>
+                </a>
               </Tooltip>
               <Tooltip title={"Generate XL"}>
                 <Button

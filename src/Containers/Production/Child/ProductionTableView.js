@@ -1,14 +1,14 @@
-import React, { useState,useEffect } from "react";
+import React, { useState,useEffect,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import QRCode from "qrcode.react";
+import ReactToPrint from "react-to-print";
+import QrCodeIcon from '@mui/icons-material/QrCode';
 import HourglassTopIcon from '@mui/icons-material/HourglassTop';  
  import HourglassBottomIcon from '@mui/icons-material/HourglassBottom'
 import { Tooltip, Button, Select } from "antd";
 import OnboardingProduction from "../Child/OnboardingProduction.js"
 import dayjs from "dayjs";
-
-import { FormattedMessage } from "react-intl";
-import ReactToPrint from "react-to-print";
 import VerifiedUserIcon from '@mui/icons-material/VerifiedUser';
 import ButtonGroup from "antd/lib/button/button-group";
 import {updateProStatus,handleProductionQuality,updateProductionPauseStatus} from "../ProductionAction"
@@ -18,13 +18,16 @@ import InpectProductionToggle from "./InpectProductionToggle.js";
 import { base_url2 } from "../../../Config/Auth";
 import AddProductionQualityModal from "../Child/AddProductionQualityModal.js"
 import MoveToggleProduction from "../Child/MoveToggleProduction.js"
-import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage.js";
+
 
 const { Option } = Select;
 
 function ProductionTableView(props) {
     const [zone, setZone] = useState([]);
   const [rack, setRack] = useState([]);
+  const componentRefs = useRef([]);
+
+  
   const [particularDiscountData, setParticularDiscountData] = useState({});
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [isLoadingZone, setIsLoadingZone] = useState(false);
@@ -82,13 +85,16 @@ function ProductionTableView(props) {
         setParticularDiscountData(item);
       }
 
+      const handlePrint = () => {
+        window.print();
+    };
+
 
 
     const fetchZone = async () => {
         setIsLoadingZone(true);
         try {
-          // const response = await axios.get('https://develop.tekorero.com/employeePortal/api/v1/customer/user/${props.userId}');
-          // setCustomers(response.data);
+       
           const apiEndpoint = `${base_url2}/roomrack/roomAndRackDetails/quality/${props.locationId}/${props.orgId}`;
           const response = await fetch(apiEndpoint,{
             method: 'GET',
@@ -122,18 +128,18 @@ function ProductionTableView(props) {
         const fetchMenuTranslations = async () => {
           try {
             const itemsToTranslate = [
-             "Manufacture ID",//0
-              "Cell",//1
-              "Created",//2
-              "Item",//3
-              "Category",//5
-              "Attribute",//6
-              "Status",//7
-              "Workflow",//8
-              "Stage",//8
-              "Inspected",//8
-              "Store",//8
-              "To Quality",//8
+           "774" ,//  "Manufacture ID",//0
+           "744", //   "Cell",//1
+           "679", //   "Created",//2
+           "1044", //   "Item",//3
+            "14",//   "Category",//5
+              "259",//6
+           "142", //   "Status",//7
+           "141", //   "Workflow",//8
+           "1050" ,//   "Stage",//8
+            "1051",//   "Inspected",//8
+           "1052", //   "Store",//8
+            "1053"//   "To Quality",//8
               
             ];
     
@@ -152,8 +158,7 @@ function ProductionTableView(props) {
       const fetchRack = async (roomRackId) => {
         setIsLoadingRack(true);
         try {
-          // const response = await axios.get(`https://develop.tekorero.com/employeePortal/api/v1/customer/contact/drop/${customerId}`);
-          // setContacts(response.data);
+         
           const apiEndpoint = `${base_url2}/roomrack/${roomRackId}`;
           const response = await fetch(apiEndpoint,{
             method: 'GET',
@@ -187,8 +192,8 @@ function ProductionTableView(props) {
     return (
         <>
             <div className=' flex justify-end sticky  z-auto'>
-                <div class="rounded m-1  mt-5 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
+                <div class="rounded m-1  mt-5 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+                    <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
                         <div className=""></div>
                         <div className=" md:w-[9rem]"> 
                             {/* MFG ID */}
@@ -396,7 +401,34 @@ function ProductionTableView(props) {
                                                     </div>
                                                 </div>
                                                
-                                               
+                                                <div className=" flex ml-1  w-[4.01rem] max-xl:w-[3.01rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between  ">
+                                                    <div class=" text-xs  font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
+                                                        <Tooltip title="Print"
+                                                       
+                                                        >
+                                                           
+                                                            <ReactToPrint
+                                                              trigger={() => <Button style={{cursor:"pointer", width:"-webkit-fill-available" }} onClick={handlePrint}>
+                                                               Print 
+                                                                <QrCodeIcon className="!text-icon"/></Button>}
+                                                                content={() => componentRefs.current[index]}
+                                                            />
+                                                        </Tooltip>
+
+                                                    </div>
+                                                </div>
+
+                                                <div style={{ display: "none", textAlign: "center" }}>
+
+<div className=" flex flex-col mt-5 text-sm items-center"
+    ref={(el) => (componentRefs.current[index] = el)}>
+   
+    <div   className=" text-5xl mt-8">
+        <QRCode size={150} value={`production/${item.manufactureId}`} />
+    </div>
+    <div style={{ fontSize: "1.5rem" }}><span style={{ fontWeight: "bold" }}>Manufacture Id:</span> {item.manufactureId}</div>
+</div>
+</div>
                                                
                                             </div>
                                             
@@ -413,8 +445,8 @@ function ProductionTableView(props) {
 
 
             <div className=' flex  sticky z-auto'>
-                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">                       
+                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+                    <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">                       
                         <div className=" md:w-[9rem]">
                             {/* Workflow */}
                             {translatedMenuItems[8]}

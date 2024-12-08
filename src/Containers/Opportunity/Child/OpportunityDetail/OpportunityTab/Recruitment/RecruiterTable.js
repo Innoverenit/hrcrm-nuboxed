@@ -2,7 +2,7 @@ import React, { useEffect, useState,useMemo } from "react";
 import { connect } from "react-redux";
 import SkillsLoadMore from "../../../../../Candidate/Child/CandidateTable/SkillsLoadMore";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import { getCountries } from "../../../../../Auth/AuthAction";
 import { LinkCandidateRecruit,LinkRecruitCandidate,getSkillsCount,getRecruiter } from "../../../../OpportunityAction";
 import { StyledTable } from "../../../../../../Components/UI/Antd";
@@ -10,7 +10,7 @@ import { Tooltip, Button, Input, } from "antd";
 import Highlighter from 'react-highlight-words';
 import { MultiAvatar, SubTitle } from "../../../../../../Components/UI/Elements";
 import RecruiterSkillLoadMore from "./RecruiterSkillLoadMore";
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';
 import { CurrencySymbol } from "../../../../../../Components/Common";
 
 const includesMulti = (elements, inArray) => {
@@ -159,12 +159,11 @@ function RecruiterTable(props) {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-             icon={<SearchOutlined />}
-            //icon="search"
+           
             size="small"
             style={{ width: 90 }}
           >
-            Search
+           <SearchIcon ClassName="!text-icon" /> Search
           </Button>
           &nbsp;
           <Button
@@ -190,8 +189,7 @@ function RecruiterTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-        <SearchOutlined type="search" style={{ color: filtered ? 'tomato' : '1890ff' }} />
+        <SearchIcon ClassName="!text-icon" type="search" style={{ color: filtered ? 'tomato' : '1890ff' }} />
       ),
       onFilter: (value, record) =>
         record[dataIndex]
@@ -296,7 +294,7 @@ function RecruiterTable(props) {
 
     {
       title: "Name",
-      //   title: <FormattedMessage id="app.url" defaultMessage="URL" />,
+     
       dataIndex: "fullName",
       ...getColumnSearchProps('fullName'),
       width: "12%",
@@ -417,7 +415,6 @@ function RecruiterTable(props) {
     },
     {
       title: "Vendor",
-      //   title: <FormattedMessage id="app.url" defaultMessage="URL" />,
       dataIndex: "partnerName",
       ...getColumnSearchProps('partner'),
       width: "9%",
@@ -425,7 +422,6 @@ function RecruiterTable(props) {
     },
     {
       title: "Country",
-      //   title: <FormattedMessage id="app.url" defaultMessage="URL" />,
       dataIndex: "country",
       filters: countryTypeOption,
 
@@ -438,7 +434,6 @@ function RecruiterTable(props) {
     },
     {
       title: "Role",
-      //   title: <FormattedMessage id="app.url" defaultMessage="URL" />,
       dataIndex: "roleType",
       ...getColumnSearchProps('role'),
       width: "7%",
@@ -446,7 +441,6 @@ function RecruiterTable(props) {
     },
     {
       title: "Availability",
-      //   title: <FormattedMessage id="app.url" defaultMessage="URL" />,
       dataIndex: "availableDate",
 
       width: "8%",
@@ -463,11 +457,11 @@ function RecruiterTable(props) {
         return 0;
       },
       render: (text, item) => {
-        const availableDate = moment(item.availableDate).format("ll");
+        const availableDate = dayjs(item.availableDate).format("ll");
         return <>
           {item.availableDate === null ? "None" :
             <span>
-              {moment(item.availableDate).format("l")} &nbsp;&nbsp;
+              {dayjs(item.availableDate).format("l")} &nbsp;&nbsp;
             </span>
           }
         </>
@@ -476,9 +470,7 @@ function RecruiterTable(props) {
 
     },
     {
-      // title: <FormattedMessage 
-      // id="app.category" defaultMessage=""
-      //  />,
+     
       dataIndex: "category",
       width: "3%",
       render: (name, item, i) => {
@@ -700,379 +692,3 @@ const mapDispatchToProps = (dispatch) =>
   );
 export default connect(mapStateToProps, mapDispatchToProps)(RecruiterTable);
 
-
-
-
-
-
-
-
-
-
-// import React, { useEffect, useState } from "react";
-// import { connect } from "react-redux";
-// import SkillsLoadMore from "../../../../../Candidate/Child/CandidateTable/SkillsLoadMore";
-// import { FormattedMessage } from "react-intl";
-// import { bindActionCreators } from "redux";
-// import moment from "moment";
-// // import StatusToggle from "./StatusToggle";
-// // import moment from "moment";
-// // import Highlighter from 'react-highlight-words';
-// // import { EditOutlined, SearchOutlined } from "@ant-design/icons";
-// import { StyledTable } from "../../../../../../Components/UI/Antd";
-// import { FlexContainer } from "../../../../../../Components/UI/Layout";
-// import { Tooltip, Icon,Button,Input, } from "antd";
-// import Highlighter from 'react-highlight-words';
-// import CandidateActivity from "./CandidateActivity";
-//  import { MultiAvatar, SubTitle } from "../../../../../../Components/UI/Elements";
-// import { 
-//   // getAllPartnerListByUserId,
-//   // getRecruiter,
-  
-//  } from "../../../../OpportunityAction";
-// // import { BundleLoader } from "../../../../Components/Placeholder";
-// // import PartnerDetailView from "./PartnerDetailView";
-// // import APIFailed from "../../../../Helpers/ErrorBoundary/APIFailed";
-// // import UpdatePartnerModal from "../UpdatePartner/UpdatePartnerModal";
-
-
-
-// function RecruiterTable(props) {
-
-//   const [searchText, setSearchText] = useState("");
-//   const [searchedColumn, setSearchedColumn] = useState("");
-
-//   function getColumnSearchProps(dataIndex) {
-//     return {
-//       filterDropdown: ({
-//         setSelectedKeys,
-//         selectedKeys,
-//         confirm,
-//         clearFilters,
-//       }) => (
-//         <div style={{ padding: 8 }}>
-//           <Input
-//             // ref={node => {
-//             //   this.searchInput = node;
-//             // }}
-//             placeholder={`Search ${dataIndex}`}
-//             value={selectedKeys[0]}
-//             onChange={(e) =>
-//               setSelectedKeys(e.target.value ? [e.target.value] : [])
-//             }
-//             onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
-//             style={{ width: 240, marginBottom: 8, display: "block" }}
-//           />
-          
-//             <Button
-//               type="primary"
-//               onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-//               // icon={<SearchOutlined />}
-//               icon="search"
-//               size="small"
-//               style={{ width: 90 }}
-//             >
-//               Search
-//             </Button>
-//             &nbsp;
-//             <Button
-//               onClick={() => handleReset(clearFilters)}
-//               size="small"
-//               style={{ width: 90 }}
-//             >
-//               Reset
-//             </Button>
-//             &nbsp;
-//             <Button
-//               type="link"
-//               size="small"
-//               onClick={() => {
-//                 confirm({ closeDropdown: false });
-//                 setSearchText(selectedKeys[0]);
-//                 setSearchedColumn(dataIndex);
-//               }}
-//             >
-//               Filter
-//             </Button>
-          
-//         </div>
-//       ),
-//       filterIcon: (filtered) => (
-//         // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-//         <Icon type="search" style={{ color: filtered ? 'tomato' : '1890ff' }} />
-//       ),
-//       onFilter: (value, record) =>
-//         record[dataIndex]
-//           .toString()
-//           .toLowerCase()
-//           .includes(value.toLowerCase()),
-//       onFilterDropdownVisibleChange: (visible) => {
-//         if (visible) {
-//           // setTimeout(() => this.searchInput.select());
-//         }
-//       },
-//       render: (text) =>
-//         searchedColumn === dataIndex ? (
-//           <Highlighter
-//             highlightStyle={{ backgroundColor: "#ffc069", padding: 0 }}
-//             searchWords={[searchText]}
-//             autoEscape
-//             textToHighlight={text.toString()}
-//           />
-//         ) : (
-//           text
-//         ),
-//     };
-//   }
-
-//   function handleSearch(selectedKeys, confirm, dataIndex) {
-//     confirm();
-//     setSearchText(selectedKeys[0]);
-//     setSearchedColumn(dataIndex);
-//   }
-
-//   function handleReset(clearFilters) {
-//     clearFilters();
-//     setSearchText("");
-//   }
-  
-
-//   const {
-//     recruiter
-//   } = props;
-//   console.log(recruiter);
-   
-//   const columns=[
-
-//     {
-//       title: "",
-//       width: "2%",
-//       render: (name, item, i) => {
-//         console.log(name);
-//         console.log(item);
-//         return (
-//           <>
-//             <FlexContainer justifyContect="space-evenly">
-//               <CandidateActivity
-//                 item={item}
-//                 fullName={item.fullName}
-//                 opportunityId={props.opportunityId}
-//                 candidatePostData={props.candidatePostData}
-//                 // completionInd={item.completionInd}
-//               />
-//             </FlexContainer>
-//             {/* )} */}
-//           </>
-//         );
-//       },
-//     },
-//     {
-//       title: "",
-//       dataIndex: "imageId",
-//       width: "3%",
-//       render: (name, item, i) => {
-//         return (
-//           <SubTitle>
-//             <MultiAvatar
-//               primaryTitle={item.firstName}
-//               imageId={item.imageId}
-//               imageURL={item.imageURL}
-//               imgWidth={"2.5em"}
-//               imgHeight={"2.5em"}
-//             />
-//           </SubTitle>
-//         );
-//       },
-//     },
-  
-//     {
-//       title: "Name",
-//     //   title: <FormattedMessage id="app.url" defaultMessage="URL" />,
-//        dataIndex: "fullName",
-//        ...getColumnSearchProps('fullName'),
-//       width: "12%",
-//       render: (name, item, i) => {        
-//         return (
-//           <>
-//             {item.fullName} &nbsp;&nbsp;
-//             <span
-//                 style={{
-//                   color: "tomato",
-//                   fontWeight: "bold",
-//                   fontSize:"0.9em",
-//                 }}
-                
-//               >
-//                 {item.match}
-//               </span>
-//           </>
-//         );
-//       },
-//     },
-//     {
-//        title: "Skills",
-//         dataIndex: "skillList",
-//        ...getColumnSearchProps('skillList'),
-//       width: "28%",
-//       render: (name, item, i) => {
-//         return (
-//           <span>
-//             <SkillsLoadMore
-//             skillList={item.skillList}
-//             />
-//           </span>
-
-//         // return (
-//         //   // <span>{item.skill && item.skill[0].skillName}</span>
-//         //   //   <>
-//         //   //   <SkillsForm topics={item.skill} />
-//         //   // </>
-//         //   <>
-//         //     <div
-//         //       style={{
-//         //         display: "flex",
-//         //         flexWrap: "wrap",
-//         //         width: "100%",
-//         //       }}
-//         //     >
-//         //       {item.skillList && item.skillList.map((option, i) => {
-//         //         return (
-  
-//         //           <div key={i} style={{
-//         //             border: "2px solid rgb(125 241 193)",
-//         //             padding: "0px 0.62em",
-//         //             textAlign: "center",
-//         //             margin: "2px",
-//         //             borderRadius: "0.62em",
-//         //           }}>
-//         //             {option}
-//         //           </div>
-  
-//         //         );
-//         //       })}
-//         //     </div>
-//         //   </>
-//          );
-//       }
-      
-
-//     },
-
-//     {
-//       title: "Cost",
-//       dataIndex: "billing",
-//      width: "7%",
-//      sorter: (a, b) => {
-//       var nameA = a.billing; // ignore upper and lowercase
-//       var nameB = b.billing; // ignore upper and lowercase
-//       if (nameA < nameB) {
-//         return -1;
-//       }
-//       if (nameA > nameB) {
-//         return 1;
-//       }
-
-//       return 0;
-//     },
-//      render: (name, item, i) => {        
-//       return (
-//         <>
-//           {item.billing} {item.currency}
-//         </>
-//       );
-//     },
-   
-     
-
-//    },
-//    {
-//     title: "Partner",
-//   //   title: <FormattedMessage id="app.url" defaultMessage="URL" />,
-//      dataIndex: "partner",
-//      ...getColumnSearchProps('partner'),
-//     width: "9%",
-    
-//   },
-//   {
-//     title: "Country",
-//   //   title: <FormattedMessage id="app.url" defaultMessage="URL" />,
-//      dataIndex: "country",
-//     //  ...getColumnSearchProps('partner'),
-//     width: "7%",
-    
-//   },
-//   {
-//     title: "Role",
-//   //   title: <FormattedMessage id="app.url" defaultMessage="URL" />,
-//      dataIndex: "role",
-//      ...getColumnSearchProps('role'),
-//     width: "7%",
-    
-//   },
-//    {
-//     title: "Availability",
-//   //   title: <FormattedMessage id="app.url" defaultMessage="URL" />,
-//       dataIndex: "availableDate",
-     
-//     width: "10%",
-//     render: (text, item) => {
-//       const availableDate = moment(item.availableDate).format("ll");
-//       return <>
-//       {item.availableDate === null ? "None" :
-//         <span>
-//           {moment(item.availableDate).format("l")} &nbsp;&nbsp;
-//         </span>
-//       }
-//     </>
-//     },
-  
-    
-//   },
-//   {
-//     title:"Category"
-//   },
-
-// ];
-// //   if (fetchingPartnersError) {
-// //     return <APIFailed />;
-// //   }
-//   return (
-//     <>
-//       <StyledTable
-//         rowKey="profileId"
-//         columns={columns}
-//          dataSource={recruiter}
-//         //  rowSelection={props.rowSelectionForRecruiter}
-//         // dataSource={allpartnerByUserId}
-//         // Loading={fetchingPartners || fetchingPartnersError}
-//         scroll={{ y: 460 }}
-//         // pagination={false
-//           // defaultPageSize: 15,
-//           // showSizeChanger: true,
-//           // pageSizeOptions: ["15", "25", "40", "50"],
-//         // }
-//           pagination={false}
-//       />
-
-//       {/* <UpdatePartnerModal
-//         partnerId={currentPartnerId}
-//         updatePartnerModal={updatePartnerModal}
-//         handleUpdatePartnerModal={handleUpdatePartnerModal}
-//         handleSetCurrentPartnerId={handleSetCurrentPartnerId}
-//       /> */}
-//     </>
-//   );
-// }
-// // }
-// const mapStateToProps = ({ auth, opportunity }) => ({
- 
-//   fetchingRecruiter:opportunity.fetchingRecruiter,
-// });
-// const mapDispatchToProps = (dispatch) =>
-//   bindActionCreators(
-//     {
-//       //  getRecruiter
-//     },
-//     dispatch
-//   );
-// export default connect(mapStateToProps, mapDispatchToProps)(RecruiterTable);

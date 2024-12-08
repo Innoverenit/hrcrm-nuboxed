@@ -1,4 +1,4 @@
-import React, { Component, lazy } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
@@ -10,7 +10,11 @@ class EmployeeDetailRight extends Component {
   render() {
     return (
       <div class="w-full">
-        <EmployeeDetailTab singleEmployee={this.props.singleEmployee}/>
+        <Suspense>
+        <EmployeeDetailTab singleEmployee={this.props.singleEmployee}
+         translateText={this.props.translateText}
+         selectedLanguage={this.props.selectedLanguage}/>
+         </Suspense>
       </div>
     );
   }

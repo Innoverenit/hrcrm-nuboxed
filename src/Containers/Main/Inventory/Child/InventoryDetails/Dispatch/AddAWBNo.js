@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Formik, Form, Field, FieldArray } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { InputComponent } from '../../../../../../Components/Forms/Formik/InputComponent';
 import { Button } from 'antd';
-import { FlexContainer } from '../../../../../../Components/UI/Layout';
 import { createAwbNo,handleAddAWB } from "../../../InventoryAction"
 import { StyledModal } from '../../../../../../Components/UI/Antd';
 
@@ -81,7 +80,7 @@ console.log(props.rowData.shipperId)
         >
            {() => (
                 <Form>
-                    <FlexContainer justifyContent="space-between">
+                   <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                         <div class=" w-[60%]"  >
                             <Field
                                 label="AWB"
@@ -99,7 +98,7 @@ console.log(props.rowData.shipperId)
                                 Add
                             </Button>
                         </div>
-                    </FlexContainer>
+                    </div>
                 </Form>
             )}
         </Formik>

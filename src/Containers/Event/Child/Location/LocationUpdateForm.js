@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch,Select } from "antd";
-import { FormattedMessage } from "react-intl";
 import SearchSelect from "../../../../Components/Forms/Formik/SearchSelect";
 import PrecisionManufacturingIcon from '@mui/icons-material/PrecisionManufacturing';
 import { Formik, Form, Field, FieldArray } from "formik";
@@ -13,6 +12,7 @@ import { updateLocation } from "../../../Event/Child/Location/LocationAction";
 import { getTimeZone } from "../../../Auth/AuthAction";
 import { getDepartmentwiserUser } from "../../../Settings/SettingsAction"
 import { getDepartments } from "../../../Settings/Department/DepartmentAction";
+import ApartmentIcon from '@mui/icons-material/Apartment';
 
 const { Option } = Select;
 class LocationUpdateForm extends Component {
@@ -24,11 +24,11 @@ class LocationUpdateForm extends Component {
       corporate: this.props.storedLoc.corporateInd,
       inventory: this.props.storedLoc.inventoryInd,
       project: this.props.storedLoc.projectInd,
-      // productionManufac: this.props.storedLoc.prodManufactureInd,
       retail: this.props.storedLoc.retailInd,
       contract: false,
       department: "",
-      reportingManager: ""
+      reportingManager: "",
+      translatedMenuItems: [],
     };
     this.handleDepartment = this.handleDepartment.bind(this);
     this.handlereportingManager = this.handlereportingManager.bind(this);
@@ -43,43 +43,61 @@ class LocationUpdateForm extends Component {
       billing: !prevState.billing,
     }));
   };
-  // handleBilling = () => {
-  //   const { setFieldValue, storedLoc } = this.props;
-  //   const newBillingValue = !this.state.billing;
-  //   setFieldValue('billingInd', newBillingValue);
-  // };
+ 
   handleCorporate = () => {
     this.setState((prevState) => ({
       corporate: !prevState.corporate,
     }));
   };
   
-//   handleCorporate = () => {
-//     if (this.props.storedLoc.corporateInd){
-//     this.setState({ corporate: false });}
-// else{
-//   this.setState({ corporate: true });}
-//   };
+
+componentDidUpdate(prevProps) {
+  if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+    this.fetchMenuTranslations();
+  }
+}
+
+fetchMenuTranslations = async () => {
+  try {
+    const itemsToTranslate = [
+      "110",//0Name"
+      "24",//1 "Region"
+      "1024",//2Functions
+      "880",//3 Inventory
+     "80", // Yes 4
+     "81",  // "No5
+     "203",  // Production6
+     "1011",  // Corporate7
+     "1013",  // Retail8
+     "1010", // Billing9
+     "1030", // 3rd Party Location10
+     "326",  // Department11
+     "95",// Time Zone
+     "95", // Time Zone12
+     "154", // Submit
+     "1246", // Update14
+
+    ];
+
+    const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+    this.setState({ translatedMenuItems: translations });
+  } catch (error) {
+    console.error('Error translating menu items:', error);
+  }
+};
+
 handleInventory = () => {
   this.setState((prevState) => ({
     inventory: !prevState.inventory,
   }));
 };
-  // handleInventory = () => {
-  //   if(this.props.storedLoc.inventoryInd){
-  //   this.setState({ inventory: false });}
-  //   else{this.setState({ inventory: true });}
-  // };
+ 
   handleProject = () => {
     this.setState((prevState) => ({
       project: !prevState.project,
     }));
   };
-  // handleProject = () => {
-  //   if(this.props.storedLoc.projectInd){
-  //   this.setState({ project: false });}
-  //   else{ this.setState({ project: true });}
-  // };
+ 
   handleProdManuf = () => {
     this.setState((prevState) => ({
       prodmanuf: !prevState.prodmanuf,
@@ -108,21 +126,15 @@ handleInventory = () => {
     this.setState({ reportingManager: val });
   }
   componentDidMount() {
-    // this.props.getSalesManagerUser();
-    // this.props.getProductionManager();
-    // this.props.getLocationsType();
+
     this.props.getTimeZone();
     this.props.getDepartments();
+    this.fetchMenuTranslations();
   }
 
   render() {
     const { locationsTypeName } = this.props;
-    // const currencyType = props.currencies.map((item) => {
-    //   return {
-    //     label: item.currencyName || "",
-    //     value: item.currencyName,
-    //   };
-    // })
+   
 
     const timeZoneOption = this.props.timeZone.map((item) => {
       return {
@@ -132,28 +144,7 @@ handleInventory = () => {
         ,
       };
     });
-    // const managementOption = this.props.salesManagementUsers.map((item) => {
-    //   return {
-    //     label: `${item.salutation || ""} ${item.firstName ||
-    //       ""} ${item.middleName || ""} ${item.lastName || ""}`,
-    //     value: item.userId,
-    //   };
-    // });
-
-    // const productionOption = this.props.productionManagement.map((item) => {
-    //   return {
-    //     label: `${item.salutation || ""} ${item.firstName ||
-    //       ""} ${item.middleName || ""} ${item.lastName || ""}`,
-    //     value: item.userId,
-    //   };
-    // });
-
-    // const locationsTypeOption = this.props.locationsType.map((item) => {
-    //   return {
-    //     label: item.locationType || "",
-    //     value: item.locationtypeId,
-    //   };
-    // });
+  
 
     return (
       <>
@@ -230,9 +221,10 @@ handleInventory = () => {
               <div class="flex justify-between max-sm:flex-col">
                 <div class="h-full w-[47.5%] max-sm:w-wk">
                   <div>
+                  <div className=" text-xs font-poppins font-bold text-black"  > {this.state.translatedMenuItems[0]}</div>
                     <Field
                       name="locationName"
-                      label="Name"
+                      // label="Name"
                       type="text"
                       width={"100%"}
                       component={InputComponent}
@@ -242,18 +234,13 @@ handleInventory = () => {
                     />
                   </div>
                   <div class=" w-[45%] mt-3 max-sm:w-[30%]">
+                  <div className=" text-xs font-poppins font-bold text-black"  > {this.state.translatedMenuItems[1]}</div>
                       <Field
                         name="regionsId"
                         selectType="DRegion"
                         isColumnWithoutNoCreate
                         component={SearchSelect}
-                        // value={values.countryDialCode}
-                        label={
-                          <FormattedMessage
-                            id="app.region"
-                            defaultMessage="Region"
-                          />
-                        }
+                        
                         isColumn
                         defaultValue={{
                           label:`${this.props.storedLoc.regions===null?"Select":this.props.storedLoc.regions}`,
@@ -262,25 +249,25 @@ handleInventory = () => {
                       />
                     </div>
                     
-                  <div class="font-bold mt-3" >Functions</div>
+                    <div className=" text-xs font-poppins font-bold text-black"  > {this.state.translatedMenuItems[2]}</div>
                   <div class=" flex ">
                    
                     <div  class=" w-[47%] mt-2">
-                      <div class="font-bold text-xs">Inventory &nbsp;<i class="fas fa-warehouse text-base"></i></div>
+                    <div className=" text-xs font-poppins font-bold text-black"  > {this.state.translatedMenuItems[3]}<i class="fas fa-warehouse text-base"></i></div>
                       <div>
                         <Switch
                           style={{ width: "6.25em" }}
                           checked={this.state.inventory}
                           onChange={this.handleInventory}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
+                          checkedChildren={this.state.translatedMenuItems[4]}
+          unCheckedChildren={this.state.translatedMenuItems[5]}
                         />
                       </div>
                     </div>
                   </div>
                   <div class=" flex">
                   <div  class=" w-[47%] mt-2">
-                      <div class="font-bold text-xs">Production &nbsp;<PrecisionManufacturingIcon/></div>
+                  <div className=" text-xs font-poppins font-bold text-black"  > {this.state.translatedMenuItems[6]}<PrecisionManufacturingIcon/></div>
                       <div>
                       <Switch
                         style={{
@@ -289,83 +276,70 @@ handleInventory = () => {
                         }}
                           checked={this.state.production}
                           onChange={this.handleProduction}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
+                          checkedChildren={this.state.translatedMenuItems[4]}
+                          unCheckedChildren={this.state.translatedMenuItems[5]}
                         />
                       </div>
                     </div>
                     <div  class=" w-[47%] mt-2">
-                      <div class="font-bold text-xs">Corporate &nbsp;<i class="fas fa-building text-base"></i></div>
+                    <div className=" text-xs font-poppins font-bold text-black"  > {this.state.translatedMenuItems[7]} <ApartmentIcon className="!text-tab text-[#f0386b]"/></div>
                       <div>
                         <Switch
                           style={{ width: "6.25em" }}
                           checked={this.state.corporate}
                           onChange={this.handleCorporate}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
+                          checkedChildren={this.state.translatedMenuItems[4]}
+                          unCheckedChildren={this.state.translatedMenuItems[5]}
                         />
                       </div>
                     </div>
                   </div>
                   <div class=" flex">
                   <div  class=" w-[47%] mt-2">
-                      <div class="font-bold text-xs">Retail &nbsp;<i class="fas fa-money-check text-base"></i></div>
+                  <div className=" text-xs font-poppins font-bold text-black"  > {this.state.translatedMenuItems[8]}<i class="fas fa-money-check text-base"></i></div>
                       <div>
                         <Switch
                           style={{ width: "6.25em" }}
                           checked={this.state.retail}
                           onChange={this.handleRetail}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
+                          checkedChildren={this.state.translatedMenuItems[4]}
+                          unCheckedChildren={this.state.translatedMenuItems[5]}
                         />
                       </div>
                     </div>
-                    {/* <div  class=" w-[47%] mt-2">
-                      <div class="font-bold text-xs">Project &nbsp;<i class="fas fa-project-diagram text-base"></i></div>
-                      <div>
-                        <Switch
-                          style={{ width: "6.25em" }}
-                          checked={this.state.project}
-                          onChange={this.handleProject}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
-                        />
-                      </div>
-                    </div> */}
-                 
-                   
-                  
+                    
                   </div>
                   <div  class=" w-[47%] mt-2">
-                      <div class="font-bold text-xs">Billing &nbsp;<i class="far fa-money-bill-alt text-base"></i></div>
+                  <div className=" text-xs font-poppins font-bold text-black"  > {this.state.translatedMenuItems[9]}<i class="far fa-money-bill-alt text-base"></i></div>
                       <div>
                         <Switch
                           style={{ width: "6.25em" }}
                           checked={this.state.billing}
                           onChange={this.handleBilling}
-                          checkedChildren="Yes"
-                          unCheckedChildren="No"
+                          checkedChildren={this.state.translatedMenuItems[4]}
+                          unCheckedChildren={this.state.translatedMenuItems[5]}
                         />
                       </div>
                     </div>
                     <div className="flex  items-center mt-4">
         <div className="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-          3rd Party Location
+        {this.state.translatedMenuItems[10]}  {/* 3rd Party Location */}
         </div>
         <Switch
           style={{ width: '6.25em', marginLeft: '0.625em' }}
           onChange={this.handleContract}
           checked={this.state.contract}
-          checkedChildren="Yes"
-          unCheckedChildren="No"
+          checkedChildren={this.state.translatedMenuItems[4]}
+          unCheckedChildren={this.state.translatedMenuItems[5]}
         />
       </div>
       {this.state.contract?
       <div className="flex justify-between max-sm:flex-col">
         <div className="w-w48 max-sm:w-wk">
-          <label style={{ color: "#444", fontWeight: "bold", fontSize: "0.75rem" }}>
+        <div className=" text-xs font-poppins font-bold text-black"  > {this.state.translatedMenuItems[11]}</div>
+          {/* <div style={{ color: "#444", fontWeight: "bold", fontSize: "0.75rem" }}>
             Department
-          </label>
+          </div> */}
           <Select
   className="w-[250px]"
   value={this.state.department}
@@ -385,9 +359,9 @@ handleInventory = () => {
         </div>
 
         <div className="w-w48 max-sm:w-wk">
-          <label style={{ color: "#444", fontWeight: "bold", fontSize: "0.75rem" }}>
-            User
-          </label>
+        <div className=" text-xs font-poppins font-bold text-black"  > {this.state.translatedMenuItems[12]}</div>
+            {/* Time Zone */}
+          
           <Select
             className="w-[250px]"
             value={this.state.reportingManager}
@@ -405,11 +379,11 @@ handleInventory = () => {
                 </div>
                 <div class="h-full w-[47.5%] max-sm:w-wk mt-2">
                   <div class=" w-full">
-                  <div  >Time Zone</div>
+                  <div className=" text-xs font-poppins font-bold text-black"  > {this.state.translatedMenuItems[12]}</div>
                     <Field
                       name="timeZone"
                       type="text"
-                      placeholder="Select Time Zone"
+                      placeholder= {this.state.translatedMenuItems[13]}
                       noLabel
                       isRequired
                       component={SelectComponent}
@@ -438,7 +412,7 @@ handleInventory = () => {
                   htmlType="submit"
                   loading={this.props.updatingLocations}
                 >
-                 Update
+               {this.state.translatedMenuItems[14]}   {/* Update */}
                 </Button>
               </div>
             </Form>

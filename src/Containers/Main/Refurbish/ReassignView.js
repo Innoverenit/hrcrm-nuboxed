@@ -138,7 +138,7 @@ const ReassignView = (props) => {
 
             <div class="mt-[10px] flex justify-between">
                 <div>
-                    <label class="text-[15px] font-semibold m-[10px]">Department</label>
+                    <div class="text-[15px] font-semibold m-[10px]">Department</div>
                     <Select
                         className="w-[350px]"
                         value={department}
@@ -150,7 +150,7 @@ const ReassignView = (props) => {
                     </Select>
                 </div>
                 <div>
-                    <label class="text-[15px] font-semibold m-[10px]">Technician</label>
+                    <div class="text-[15px] font-semibold m-[10px]">Technician</div>
                     <Select
                         className="w-[350px]"
                         value={technician}
@@ -162,7 +162,7 @@ const ReassignView = (props) => {
                     </Select>
                 </div>
                 <div>
-                    <label class="text-[15px] font-semibold m-[10px]">Due Date</label>
+                    <div class="text-[15px] font-semibold m-[10px]">Due Date</div>
                     <DatePicker
                         className="w-[250px]"
                         value={dueDate}

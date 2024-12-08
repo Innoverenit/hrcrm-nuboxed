@@ -1,14 +1,13 @@
-import React, { Component, useState, useMemo, useEffect } from "react";
+import React, {useEffect, useState } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
-import { Button, Switch } from "antd";
+import { Button, } from "antd";
 import { Formik, Form, Field, FieldArray } from "formik";
 import * as Yup from "yup";
 import { getAllCustomerData,addCustomerActivityEvent } from "../../../../Customer/CustomerAction"
 import { getFilteredEmailContact } from "../../../../Candidate/CandidateAction";
 import dayjs from "dayjs";
-import { Spacer, StyledLabel } from "../../../../../Components/UI/Elements";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import AddressFieldArray from "../../../../../Components/Forms/Formik/AddressFieldArray";
@@ -27,10 +26,9 @@ import { TextareaComponent } from "../../../../../Components/Forms/Formik/Textar
 import { StyledPopconfirm } from "../../../../../Components/UI/Antd";
 import { getAssignedToList } from "../../../../Employees/EmployeeAction";
 import { getEvents } from "../../../../Settings/Event/EventAction";
-// import CandidateClearbit from "../../../Components/Forms/Autocomplete/CandidateClearbit";
 import { setClearbitCandidateData } from "../../../../Candidate/CandidateAction";
-import { Listbox, Transition } from '@headlessui/react'
-import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid';
+import { Listbox,  } from '@headlessui/react'
+
 // yup validation scheme for creating a opportunity
 const EventSchema = Yup.object().shape({
     eventTypeId: Yup.string().required("Select event type"),
@@ -288,14 +286,11 @@ function ActivityEventForm(props) {
                         <Form className="form-background">
                             <div class=" flex justify-around max-sm:flex-col">
                                 <div class=" h-full w-w47.5 max-sm:w-wk">
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <Field
                                         isRequired
                                         name="eventTypeId"
-                                        //label="Type"
-                                        label={
-                                            <FormattedMessage id="app.type" defaultMessage="Type" />
-                                        }
+                                        label="Type"
                                         component={SearchSelect}
                                         isColumnWithoutNoCreate
                                         selectType="eventType"
@@ -307,18 +302,13 @@ function ActivityEventForm(props) {
                                         isRequired
                                         name="eventSubject"
                                         //label="Topic"
-                                        label={
-                                            <FormattedMessage
-                                                id="app.subject"
-                                                defaultMessage="Subject"
-                                            />
-                                        }
+                                        label="Subject"
                                         isColumn
                                         width={"100%"}
                                         component={InputComponent}
                                         inlineLabel
                                     />
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div>
                                         <div class=" flex justify-between">
                                             <div class=" w-1/2">
@@ -326,12 +316,7 @@ function ActivityEventForm(props) {
                                                     isRequired
                                                     name="startDate"
                                                     //label="Start "
-                                                    label={
-                                                        <FormattedMessage
-                                                            id="app.startDate"
-                                                            defaultMessage="Start Date"
-                                                        />
-                                                    }
+                                                    label="Start Date"
                                                     isColumn
                                                     component={DatePicker}
                                                     value={values.startDate}
@@ -346,12 +331,7 @@ function ActivityEventForm(props) {
                                                     isRequired
                                                     name="startTime"
                                                     // label="Start Time"
-                                                    label={
-                                                        <FormattedMessage
-                                                            id="app.startTime"
-                                                            defaultMessage="Start Time"
-                                                        />
-                                                    }
+                                                    label="Start Time"
                                                     isColumn
                                                     component={TimePicker}
                                                     use12Hours
@@ -370,12 +350,7 @@ function ActivityEventForm(props) {
                                                 isRequired
                                                 name="endDate"
                                                 // label="End "
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.enddate"
-                                                        defaultMessage="End Date"
-                                                    />
-                                                }
+                                                label="End Date"
                                                 component={DatePicker}
                                                 isColumn
                                                 value={values.endDate || values.startDate}
@@ -403,13 +378,7 @@ function ActivityEventForm(props) {
                                             <Field
                                                 isRequired
                                                 name="endTime"
-                                                //label="End Time"
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.endtime"
-                                                        defaultMessage="End Time"
-                                                    />
-                                                }
+                                                label="End Time"
                                                 isColumn
                                                 component={TimePicker}
                                                 use12Hours
@@ -426,44 +395,15 @@ function ActivityEventForm(props) {
                                         defaultValue={{ label: timeZone, value: userId }}
                                         isColumnWithoutNoCreate
                                         name="timeZone"
-                                        //label="TimeZone "
-                                        label={
-                                            <FormattedMessage
-                                                id="app.timeZone"
-                                                defaultMessage="Time Zone"
-                                            />
-                                        }
+                                        label="TimeZone "
                                         selectType="timeZone"
                                         isColumn
                                         value={values.timeZone}
                                         component={SearchSelect}
                                         inlineLabel
                                     />
-                                    <Spacer />
-                                    <Spacer />
-
-                                    {/* <Field
-                      name="employeesId"
-                      isColumnWithoutNoCreate
-                      selectType="employee"
-                      // label="Assigned"
-                      label={
-                        <FormattedMessage
-                          id="app.assignedto"
-                          defaultMessage="Assigned"
-                        />
-                      }
-                      component={SearchSelect}
-                      isColumn
-                      value={values.employeeId}
-                      defaultValue={{
-                        label: `${firstName || ""} ${middleName || ""} ${
-                          lastName || ""
-                        }`,
-                        value: employeeId,
-                      }}
-                      inlineLabel
-                    /> */}
+                                    < div class="mt-3" />
+                                    < div class="mt-3" />
                                     <Listbox value={selected} onChange={setSelected}>
                                         {({ open }) => (
                                             <>
@@ -529,16 +469,10 @@ function ActivityEventForm(props) {
                                             </>
                                         )}
                                     </Listbox>
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <Field
                                         name="included"
-                                        // label="Include"
-                                        label={
-                                            <FormattedMessage
-                                                id="app.include"
-                                                defaultMessage="Include"
-                                            />
-                                        }
+                                        label="Include"
                                         mode
                                         placeholder="Select"
                                         component={SelectComponent}
@@ -549,20 +483,14 @@ function ActivityEventForm(props) {
                                             value: employeeId,
                                         }}
                                     />
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div>
                                         {props.user.crmInd === true && (
                                             <Field
                                                 name="contactId"
                                                 //selectType="contactList"
                                                 isColumnWithoutNoCreate
-                                                // label="Contact"
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.contact"
-                                                        defaultMessage="Contact"
-                                                    />
-                                                }
+                                                label="Contact"
                                                 component={SelectComponent}
                                                 isColumn
                                                 options={Array.isArray(ContactData) ? ContactData : []}
@@ -576,19 +504,14 @@ function ActivityEventForm(props) {
                                             />
                                         )}
                                     </div>
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div>
                                         {props.user.crmInd === true && (
                                             <Field
                                                 name="customerId"
                                                 // selectType="customerList"
                                                 isColumnWithoutNoCreate
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.customer"
-                                                        defaultMessage="Customer"
-                                                    />
-                                                }
+                                                label="Customer"
                                                 //component={SearchSelect}
                                                 component={SelectComponent}
                                                 options={
@@ -603,19 +526,14 @@ function ActivityEventForm(props) {
                                             />
                                         )}
                                     </div>
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <div>
                                         {props.user.crmInd === true && (
                                             <Field
                                                 name="opportunityId"
                                                 // selectType="customerList"
                                                 isColumnWithoutNoCreate
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.opportunity"
-                                                        defaultMessage="Opportunity"
-                                                    />
-                                                }
+                                                label="Opportunity"
                                                 //component={SearchSelect}
                                                 component={SelectComponent}
                                                 options={
@@ -630,41 +548,10 @@ function ActivityEventForm(props) {
                                             />
                                         )}
                                     </div>
-                                    <Spacer />
-                                    {/* <Field
-                    disabled="true"
-                    isRequired
-                    name="candidateId"
-                    // type="text"
-                    label="Team"
-                    placeholder="Start typing to search..."
-                    isColumnWithoutNoCreate
-                    setClearbitCandidateData={
-                      props.setClearbitCandidateData
-                    }
-                    component={CandidateClearbit}
-                    inlineLabel
-                  /> */}
-                                    {/* {startDate ? (
-                    <span>
-                      {dayjs(startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>This Event occurs in the past !</b>
-                        </span>
-                      )}
-                    </span>
-                  ) : (
-                    <span>
-                      {dayjs(values.startDate).isBefore(dayjs()) && (
-                        <span>
-                          <b>This Event occurs in the past !</b>
-                        </span>
-                      )}
-                    </span>
-                  )} */}
-                                </div>
+                                    < div class="mt-3" />
+                                       </div>
                                 <div class=" h-full w-w47.5 max-sm:w-wk ">
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <FieldArray
                                         name="address"
                                         render={(arrayHelpers) => (
@@ -675,62 +562,20 @@ function ActivityEventForm(props) {
                                             />
                                         )}
                                     />
-                                    <Spacer />
+                                    < div class="mt-3" />
                                     <Field
                                         name="eventDescription"
-                                        //label="Notes"
-                                        label={
-                                            <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                                        }
+                                        label="Notes"
                                         isColumn
                                         width={"100%"}
                                         component={TextareaComponent}
                                         inlineLabel
                                     />
-                                    <Spacer />
-                                    {/* <div class=" flex justify-between">
-                    <div class=" w-1/2 font-bold">
-                      <div class=" flex justify-between">
-                        <div>
-                          <StyledLabel>Set Reminder </StyledLabel>
-                        </div>
-                        <div>
-                          <Switch
-                            onChange={handleReminderChange}
-                            checked={reminder}
-                            checkedChildren="Yes"
-                            unCheckedChildren="No"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class=" w-1/3 font-bold">
-                      {reminder ? (
-                        <div>
-                          <Field
-                            // isRequired
-                            name="remindTime"
-                            label="Reminder"
-                            width={"100%"}
-                            component={SelectComponent}
-                            options={[
-                              "15 min",
-                              "30 min",
-                              "45 min",
-                              "1 hour",
-                              "2 hour",
-                            ]}
-                            defaultValue="30 min"
-                            isColumn
-                            inlineLabel
-                          />
-                        </div>
-                      ) : null}
-                    </div>
-                  </div> */}
+                                    < div class="mt-3" />
+                                
                                 </div>
                             </div>
-                            <Spacer />
+                            < div class="mt-3" />
                             <div class=" flex justify-end">
                                 {isEditing && (
                                     <>
@@ -743,10 +588,7 @@ function ActivityEventForm(props) {
                                                 htmlType="submit"
                                                 Loading={deletingEvent}
                                             >
-                                                <FormattedMessage
-                                                    id="app.delete"
-                                                    defaultMessage="Delete"
-                                                />
+                                              Delete
                                             </Button>
                                         </StyledPopconfirm>
                                     </>
@@ -760,8 +602,7 @@ function ActivityEventForm(props) {
                                     {isEditing ? (
                                         "Update"
                                     ) : (
-                                        // "Create"
-                                        <FormattedMessage id="app.create" defaultMessage="Create" />
+                                        "Create"
                                     )}
                                 </Button>
                             </div>

@@ -1,22 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
-import { Button, Icon } from "antd";
-import { Formik, Form, Field } from "formik";
-//  import ReactSpeeech from "../../../../../Components/ReactSpeech/ReactSpeech";
+import { Button } from "antd";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState, convertToRaw, ContentState } from "draft-js";
+import { EditorState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
-//import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
   import { addNote } from "../CallAction";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
-
-/**
- * yup validation scheme for creating a note
- */
 const NoteSchema = Yup.object().shape({
   notes: Yup.string().required(""),
 });
@@ -30,7 +23,7 @@ const toolbarOption = {
     "colorPicker",
     "link",
   ],
-  // options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image', 'remove', 'history'],
+ 
   inline: {
     inDropdown: false,
     className: undefined,
@@ -76,16 +69,11 @@ class NoteFile extends Component {
       callback,
       teamId,
       callId,
-      // leadsAccountId,
-      // contactLeadsId,
       leadsId,
       eventId,
       taskId,
       type,
       vendorId,
-
-      // partnerId,
-      // userIdFromPartner,
       fetchingNotesListByLeadsId,
     } = this.props;
     const { editorState, placeholder } = this.state;
@@ -97,9 +85,6 @@ class NoteFile extends Component {
             // comment: ""
             callId: callId ? callId : "",
             notes: "",
-            // taskId:this.props.taskId,
-            // providerId:this.props.userId,
-            // orgId:this.props.organizationId,
           }}
           onSubmit={(values, { resetForm }) => {
             console.log(
@@ -108,8 +93,6 @@ class NoteFile extends Component {
             const htmlBody = draftToHtml(
               convertToRaw(editorState.getCurrentContent())
             );
-            // const htmlBody = 'draftToHtml(convertToRaw(editorState.getCurrentContent()))'
-
             console.log({ ...values, notes: htmlBody });
              addNote({ ...values, notes: htmlBody }, this.createCallback);
             resetForm();
@@ -127,14 +110,7 @@ class NoteFile extends Component {
             console.log(editorState.getCurrentContent());
 
             return (
-              <Form className="form-background">
-                {/* <Field
-                                name='description'
-                                placeholder='Leave notes here ...'
-                                component={TextareaComponent}
-                            /> */}
-               {/* <ReactSpeeech/>  */}
-             
+              <Form className="form-background">            
                 <Editor
                   editorState={editorState}
                   wrapperClassName="demo-wrapper"
@@ -158,12 +134,8 @@ class NoteFile extends Component {
                       marginBottom: "0.3125em",
                       marginRight: "0.3125em",
                     }}
-                  >
-                    <FormattedMessage
-                      id="app.post"
-                      defaultMessage="Post"
-                    />
-                    {/* Post */}
+                  >                 
+                    Post
                   </Button>
                 </div>
              

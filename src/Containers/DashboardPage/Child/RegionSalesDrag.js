@@ -1,5 +1,5 @@
 import React,{useEffect,useRef,useState} from 'react'
-import moment from "moment";
+import dayjs from "dayjs";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
@@ -143,9 +143,9 @@ function RegionSalesDrag(props) {
          <div style={{display:"flex"}}>
            {weeks.map((week, index) => {
              const startDate = getWeekStartDate(week);
-             //const moment = require('moment-timezone');
+             //const dayjs = require('dayjs-timezone');
              const originalDateString =startDate;
-             const convertedDateString = moment(originalDateString).format('YYYY-MM-DD');
+             const convertedDateString = dayjs(originalDateString).format('YYYY-MM-DD');
              const endDate = getWeekEndDate(week);
              const filteredTasks = filterTasksForWeek(week);
              //const formattedStartDate = startDate.toISOString().split('T')[0];
@@ -187,8 +187,7 @@ function RegionSalesDrag(props) {
                                        isDraggingOver={snapshot.isDraggingOver}
                                        {...provided.droppableProps}
                                        droppableProps={{ hello: "world" }}
-                                       className="scrollbar"
-                                       id="style-3"
+                                       style={{scrollbarWidth:"thin", backgroundColor:"f5f5f5" }}
  
                                      >
                  {filteredTasks.map((task, taskIndex) => (

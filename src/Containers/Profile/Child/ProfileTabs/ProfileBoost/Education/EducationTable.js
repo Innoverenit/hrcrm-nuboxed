@@ -1,4 +1,4 @@
-import React, { Component ,lazy} from "react";
+import React, { Component ,lazy ,Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {
@@ -15,9 +15,9 @@ import { handleUpdateEducationModal } from "../../../../ProfileAction";
 import {
   deleteEducationTable,
 } from "../../../../ProfileAction";
-import APIFailed from "../../../../../../Helpers/ErrorBoundary/APIFailed";
-import { FormattedMessage } from "react-intl";
-import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import NodataFoundPage from "../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdateEducationModal = lazy(() => import("../../ProfileBoost/Education/UpdateEducationModal"));
 class EducationTable extends Component {
   componentDidMount() {    
@@ -41,21 +41,12 @@ class EducationTable extends Component {
 
     const columns = [
       {
-        //title: "Education Type",
-        title: (
-          <FormattedMessage
-            id="app.educationType"
-            defaultMessage="Education Type"
-          />
-        ),
+        title: "Education Type",
         dataIndex: "educationType",
         // width: "35%"
       },
       {
-        //title: "Course Name",
-        title: (
-          <FormattedMessage id="app.courseName" defaultMessage="Course Name" />
-        ),
+        title: "Course Name",
         dataIndex: "courseName",
       },
       // {
@@ -63,26 +54,12 @@ class EducationTable extends Component {
       //   dataIndex: "courseType",
       // },
       {
-        //title: "Year of Passing",
-        title: (
-          <FormattedMessage
-            id="app.yearOfPassing"
-            defaultMessage="Year of Passing"
-          />
-        ),
+        title: "Year of Passing",
         dataIndex: "yearOfPassing",
-        // render: (name, item, i) => {
-        //   return <span>{moment(item.yearOfPassing).format("LL")}</span>;
-        // },
+        
       },
       {
-        //title: "University/Institute Name",
-        title: (
-          <FormattedMessage
-            id="app.university"
-            defaultMessage="University/Institute Name"
-          />
-        ),
+        title: "University/Institute Name",
         dataIndex: "university",
       },
       // {
@@ -90,24 +67,13 @@ class EducationTable extends Component {
       //   dataIndex: "specialization",
       // },
       {
-        //title: "Marks Secured",
-        title: (
-          <FormattedMessage
-            id="app.marksSecured"
-            defaultMessage="Marks Secured"
-          />
-        ),
+        title: "Marks Secured",
         dataIndex: "marksSecured",
       },
       {
-        //title: "Marks Secured",
-        title: (
-          <FormattedMessage
-            id="app.type"
-            defaultMessage="Type"
-          />
-        ),
-        // dataIndex: "marksSecured",
+       
+        title: "Type"
+       ,
       },
       {
         title: "",
@@ -139,7 +105,7 @@ class EducationTable extends Component {
         render: (name, item, i) => {
           //debugger
           return (
-            <EditOutlined
+            <VisibilityIcon
               type="edit"
               style={{ cursor: "pointer" }}
               onClick={() => {
@@ -162,7 +128,7 @@ class EducationTable extends Component {
               title="Do you want to delete?"
               onConfirm={() => deleteEducationTable(item.id)}
             >
-              <DeleteOutlined type="delete" style={{ cursor: "pointer", color: "red" }} />
+              <DeleteOutlineIcon type="delete" style={{ cursor: "pointer", color: "red" }} />
               {/* <Button type="primary" className='edit_hover_class' icon="delete"  /> */}
             </StyledPopconfirm>
           );
@@ -171,7 +137,7 @@ class EducationTable extends Component {
     ];
 
     if (fetchingEducationDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     return (
       <>
@@ -192,11 +158,13 @@ class EducationTable extends Component {
             );
           }}
         />
-
+<Suspense fallback={"Loading ..."}>
         <UpdateEducationModal
           updateEducationModal={updateEducationModal}
           handleUpdateEducationModal={handleUpdateEducationModal}
-        />
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        /></Suspense>
       </>
     );
   }

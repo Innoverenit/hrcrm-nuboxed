@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer, } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const LocationCreateShiftForm=lazy(()=>import("./LocationCreateShiftForm"));
@@ -12,16 +12,16 @@ const LocationCreateShiftDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.create"
-          defaultMessage="Create"
-        />}
+        title="Create"
+     
         width={drawerWidth}
         visible={createShiftDrawer}
         onClose={() => handleCreateShiftDrawer(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <LocationCreateShiftForm storedLoc={storedLoc}/>
+          <LocationCreateShiftForm storedLoc={storedLoc}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}/>
         </Suspense>
       </StyledDrawer>
     </>

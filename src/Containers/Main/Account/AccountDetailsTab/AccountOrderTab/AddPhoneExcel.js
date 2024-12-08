@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { Button, Switch } from "antd";
 import { Formik, Form, Field } from "formik";
-import { addCarDetails } from "../../AccountAction"
+import { addCarDetails,handleOpenNewModal } from "../../AccountAction"
 import DraggableUpload1 from "../../../../../Components/Forms/Formik/DraggableUpload1";
-import { FormattedMessage } from 'react-intl';
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
+import AddOpenNewModal from "./AddOpenNewModal";
 
 function AddPhoneExcel(props) {
 
@@ -59,7 +60,7 @@ function AddPhoneExcel(props) {
                     <div class="overflow-y-auto h-[32rem] overflow-x-hidden max-sm:h-[30rem]">
                         <Form class="form-background">
                             <div class="justify-between flex mt-3">
-                                <div class="h-full w-[45%]">
+                                <div class="h-full w-[45%] flex flex-col">
                                     <div class="mt-3">
                                         <Field
                                             name="excelId"
@@ -67,7 +68,14 @@ function AddPhoneExcel(props) {
                                             component={DraggableUpload1}
                                         />
                                     </div>
+                                    <AddBoxIcon className=" !text-icon  ml-1 items-center
+ text-[#6f0080ad]"
+                                onClick={() => {
+                                    props.handleOpenNewModal(true);
+                                }}
+                                />
                                 </div>
+                               
                                 <div class="h-full w-[45%]">
                                     <div class="mt-3">
                                         <Field
@@ -91,7 +99,7 @@ function AddPhoneExcel(props) {
                                             />
                                         </div>
                                         <div class="w-[45%]">
-                                            <label>Required bulk QR code</label>
+                                            <div class="font-bold text-xs font-poppins text-black">Required bulk QR code</div>
                                             <Switch
                                                 onChange={handleBulkQr}
                                                 checked={bulkQr}
@@ -102,7 +110,7 @@ function AddPhoneExcel(props) {
                                     </div>
                                     <div class=" flex justify-between">
                                     <div class="w-[70%] mt-2">
-                                            <label>Send back non repaired units </label>
+                                            <div class="font-bold text-xs font-poppins text-black">Send back non repaired units </div>
                                             <Switch
                                                 onChange={handleRepaired}
                                                 checked={nonRepaied}
@@ -118,16 +126,18 @@ function AddPhoneExcel(props) {
                                     htmlType="submit"
                                     loading={props.addingCar}
                                 >
-                                    <FormattedMessage
-                                        id="app.finish"
-                                        defaultMessage="Finish"
-                                    />
+                                    Finish
                                 </Button>
                             </div>
                         </Form>
                     </div>
                 )}
             </Formik>
+            <AddOpenNewModal           
+                handleOpenNewModal={props.handleOpenNewModal}
+                addNewModal={props.addNewModal}
+                distributorId={props.distributorId}
+            />
         </>
     );
 }
@@ -136,12 +146,14 @@ const mapStateToProps = ({ auth, distributor }) => ({
     orderDetailsId: distributor.orderDetailsId,
     addingCar: distributor.addingCar,
     orgId: auth.userDetails.organizationId,
+    addNewModal: distributor.addNewModal
 });
 
 const mapDispatchToProps = (dispatch) =>
     bindActionCreators(
         {
-            addCarDetails
+            addCarDetails,
+            handleOpenNewModal
         },
         dispatch
     );

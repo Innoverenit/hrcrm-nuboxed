@@ -7,6 +7,7 @@ const AddCallModal = lazy(() => import("./Child/AddCallModal"));
 const CallHeader = lazy(() => import("./Child/CallHeader"));
 const CallTable = lazy(() => import("./Child/CallTable/CallTable"));
 
+
 function Call (props) {
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
@@ -16,25 +17,23 @@ function Call (props) {
       const fetchMenuTranslations = async () => {
         try {
             const itemsToTranslate = [
-              'Create',//0
-              'Add',//1
-              'Type',//2
-              'Subject',//3
-              'Contact',//4
-              'Date', //5
-              'Include',//6
-              'Assigned',//7
-              'Owner',//8
-              'Completed',//9
-              'Loading',//10
-              'You have reached the end of page',//11
-              'None',//12
-              'Not available',//13
-              'Yes',//14
-              'No',//15
-              'Notes',//16
-              'Delete',//17
-              '',//
+             "104" ,// 'Create',//0
+            "71" , // 'Type',//1
+           "72" ,  // 'Subject',//2
+            "73"  ,// 'Contact',//3
+             "74", // 'Date', //4
+             "78" ,// 'Completed',//5
+             "75" ,// 'Include',//6
+             "76", // 'Assigned',//7
+            "77",  // 'Owner',//8
+             "82" ,// 'Loading',//9
+             "222", // 'None',//10
+             "118", // 'Not available',//11
+             "80" ,// 'Yes',//12
+             "81", // 'No',//13
+             "316" ,// 'Notes',//14
+             "84", // 'Delete',//15   
+             "85"         //Add 16
 
             ];
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -50,6 +49,7 @@ function Call (props) {
     return (
 
       <React.Fragment>
+         <Suspense fallback={<BundleLoader />}>
         <CallHeader 
         handleCallModal={handleCallModal} 
         translatedMenuItems={translatedMenuItems}
@@ -63,10 +63,7 @@ function Call (props) {
           handleCallModal={handleCallModal}
 
         />
-
-        <Suspense fallback={<BundleLoader />}>
-        
-          <CallTable 
+        <CallTable 
           translatedMenuItems={translatedMenuItems}
           selectedLanguage={props.selectedLanguage}
           translateText={props.translateText}

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { StyledTable } from "../../../Components/UI/Antd";
@@ -8,27 +8,23 @@ import {getLeadHotList} from "../DashboardAction";
 function LeadHotTable (props) {
     useEffect(()=>{
       if (props.timeRangeType === "today"){
-        props.getLeadHotList(props.userId,props.startDate,props.endDate);
+        props.getLeadHotList(props.userId,props.endDate,props.startDate);
       }
       else {
-        props.getLeadHotList(props.userId,props.startDate,props.endDate);
+        props.getLeadHotList(props.userId,props.endDate,props.startDate);
       }
-    }, [props.userId,props.startDate,props.endDate]);
+    }, [props.userId,props.endDate,props.startDate]);
     const columns = [
       {
-        title: <FormattedMessage
-          id="app.name"
-          defaultMessage="Name"
-        />,
+        title:"Name"
+        ,
         width: "30%",
         dataIndex: "name",
       },
      
       {
-        title: <FormattedMessage
-          id="app.emailId"
-          defaultMessage="Email Id"
-        />,
+        title:"Email Id"
+     ,
         width: "22%",
         dataIndex: "email",
         defaultSortOrder: 'descend',
@@ -45,10 +41,8 @@ function LeadHotTable (props) {
       },
       {
         // title: "Status",
-        title: <FormattedMessage
-          id="app.companyName"
-          defaultMessage="Company Name"
-        />,
+        title:"Company Name"
+        ,
         width: "25%",
         dataIndex: "companyName",
         // sorter: (a, b) => {

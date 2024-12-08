@@ -19,6 +19,45 @@ const EmailSchema = Yup.object().shape({
 });
 
 class UpdateEmailForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      active: "Full Time",
+      translatedMenuItems: [],
+    };
+  }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+      
+       "Email Id",
+      "Password",
+       "Host Name",
+        "Example for Outlook users",
+        "Example for other webmail host",
+        "Port",
+        "Update",
+   
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
+
+
   render() {
     const {
       updatingEmailCredential,
@@ -55,10 +94,10 @@ class UpdateEmailForm extends Component {
               <Form className="form-background">
                 <div class=" flex justify-between" >
                   <div class=" w-full h-full"
-                  >
+                  > <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[0]}</div>
                     <Field
                       name="email"
-                      label="Email Id"
+                      // label="Email Id"
                       inlineLabel
                       isRequired
                       component={InputComponent}
@@ -66,11 +105,12 @@ class UpdateEmailForm extends Component {
                       width={"100%"}
                     />
                    <div class=" mt-3">
+                   <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[1]}</div>
                     <Field
                       type="password"
                       isRequired
                       name="password"
-                      label="Password"
+                      // label="Password"
                       inlineLabel
                       width={"100%"}
                       component={InputComponent}
@@ -85,12 +125,13 @@ class UpdateEmailForm extends Component {
                   inlineLabel
                   style={{ flexBasis: "80%" }}
                 />
-                <Spacer /> */}
+                <div class=" mt-3" /> */}
+                 <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[2]}</div>
                     <Field
                       isMulti
                       isRequired
                       name="host"
-                      label="Host Name"
+                      // label="Host Name"
                       component={InputComponent}
                       inlineLabel
                       width={"100%"}
@@ -99,14 +140,15 @@ class UpdateEmailForm extends Component {
                      </div>
                     <span class=" text-[0.75em] text-[italic] ml-[6.25em]"
                     >
-                      Example for Outlook users - smtp-mail.outlook.com{" "}
+                     {this.state.translatedMenuItems[3]} - smtp-mail.outlook.com{" "}
                     </span>
                     <br />
                     <span class=" text-[0.75em] text-[italic] ml-[6.25em]"
                     >
-                      Example for other webmail host - mail.example.com{" "}
+                     {this.state.translatedMenuItems[4]} - mail.example.com{" "}
                     </span>
                    <div class=" mt-3">
+                   <div class=" font-poppins font-bold text-xs">{this.state.translatedMenuItems[5]}</div>
                     <Field
                       name="port"
                       label="Port"
@@ -127,7 +169,7 @@ class UpdateEmailForm extends Component {
                     // style={{ float: "right" }}
                     Loading={updatingEmailCredential}
                   >
-                    Update
+                   {this.state.translatedMenuItems[6]} {/* Update */}
                 </Button>
                 </div>
               </Form>

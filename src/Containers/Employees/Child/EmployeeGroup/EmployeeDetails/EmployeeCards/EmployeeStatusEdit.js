@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { updateEmployeeById } from "../../../../EmployeeAction";
@@ -52,35 +52,7 @@ class EmployeeStatusEdit extends Component {
     return (
       <>
          <div className="flex flex-col p-4">
-          {/* <EditableInput
-            isRequired
-            defaultValue={emailId}
-            handleChange={this.handleChange}
-            name={"emailId"}
-            label={<FormattedMessage
-              id="app.emailId"
-              defaultMessage="Email"
-            />}
-            placeholder={"Email"}
-            value={this.state.fields.emailId}
-            width="100%"
-          />
-          <Spacer style={{ margin: "0.125em" }} />
-
-          <FlexContainer
-            flexDirection="column"
-            style={{ padding: "0.625em 1.25em 0.625em 1.25em" }}
-          >
-            <EditableDatePicker
-              defaultValue={dateOfJoining}
-              handleChange={this.handleChange}
-              name={"dateOfJoining"}
-              placeholder={"Date of Joining"}
-              value={this.state.fields.dateOfJoining}
-              style={{ width: "100%" }}
-            /> */}
-            {/* <Spacer style={{ margin: "0.125em" }} /> */}
-          {/* </FlexContainer> */}
+       
 
           <div class=" flex justify-between w-full"
           >
@@ -171,7 +143,7 @@ class EmployeeStatusEdit extends Component {
             width="100%"
           />
             </div>
-           {/* <Spacer style={{ margin: "0.125em" }} />
+           {/* <div class=" mt-3" style={{ margin: "0.125em" }} />
             <EditableInput
             // defaultValue={twitter}
             handleChange={this.handleChange}
@@ -222,19 +194,11 @@ class EmployeeStatusEdit extends Component {
             Loading={updatingEmployeeById}
             onClick={this.handleUpdate}
           >
-            <FormattedMessage
-              id="app.save"
-              defaultMessage="Save"
-            />
-            {/* Save */}
+           Save
           </Button>
      <div class=" ml-2">
           <Button type="ghost" onClick={() => toggleViewType()}>
-            <FormattedMessage
-              id="app.cancel"
-              defaultMessage="Cancel"
-            />
-            {/* Cancel */}
+            Cancel
           </Button>
           </div>
         </div>

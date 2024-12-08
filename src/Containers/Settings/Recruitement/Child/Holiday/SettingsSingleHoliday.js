@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import styled from "styled-components";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { DatePicker } from "antd";
@@ -10,7 +10,6 @@ import { Button, Switch } from "antd";
 import { TextInput } from "../../../../../Components/UI/Elements";
 import ViewEditCard from "../../../../../Components/UI/Elements/ViewEditCard";
 import { elipsize } from "../../../../../Helpers/Function/Functions";
-import moment from "moment";
 import dayjs from "dayjs";
 import { date } from "yup";
 
@@ -95,7 +94,8 @@ class SettingsSingleHoliday extends Component {
                     // marginRight: "8%",
                   }}
                 >
-                  {`${moment(date).format("ll")}`}
+                  {dayjs(date).format("YYYY-MM-DD")}
+                  {/* {`${dayjs(date).format("ll")}`} */}
                 </StageValue>
                 <StageValue
                   style={{
@@ -185,28 +185,10 @@ class SettingsSingleHoliday extends Component {
                     checkedChildren="Optional"
                     unCheckedChildren="Mandatory"
                   />
-                  {/* <TextInput
-                                        name={newProbability}
-                                        defaultValue={probability}
-                                        // disabled={disabled}
-                                        // style={{ cursor: disabled ? "not-allowed" : "pointer" }}
-                                        onChange={this.handleChange}
-
-                                        width={"25%"}
-                                    /> */}
-                &nbsp;
-                  {/* <TextInput
-                                        name={newDays}
-                                        defaultValue={days}
-
-
-                                        // style={{ cursor: disabled ? "not-allowed" : "pointer" }}
-                                        onChange={this.handleChange}
-                                        placeholder="Days"
-                                        width={"24%"}
-                                    /> */}
-               
                  
+                &nbsp;
+                 
+                            
                   <div class=" flex justify-end mr-[0.3125em] mt-[0.625em] mb-[0.625em]"
                 
                   >
@@ -227,19 +209,13 @@ class SettingsSingleHoliday extends Component {
                         )
                       }
                     >
-                      {/* Save */}
-                      <FormattedMessage
-                 id="app.save"
-                 defaultMessage="Save"
-                />
+                      Save
+                     
                   </Button>
                   &nbsp;
                   <Button type="primary" ghost onClick={() => toggleViewType()}>
-                      {/* Cancel */}
-                      <FormattedMessage
-                 id="app.cancel"
-                 defaultMessage="Cancel"
-                />
+                      Cancel
+                    
                   </Button>
                   </div>
                 </div>

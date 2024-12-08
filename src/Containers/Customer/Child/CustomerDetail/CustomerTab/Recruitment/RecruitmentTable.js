@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import {
   StyledTable,
 } from "../../../../../../Components/UI/Antd";
 import {
   Tooltip,
-  Table, Input, Button,
+  Input, Button,
   message,
   Badge,
 } from "antd";
 import { Link } from "../../../../../../Components/Common";
 import Highlighter from 'react-highlight-words';
-import moment from "moment";
+import dayjs from "dayjs";
 import { getCustomerRecruit } from "../../../../CustomerAction";
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
 import { MultiAvatar,SubTitle } from "../../../../../../Components/UI/Elements";
 class RecruitmentTable extends Component {
   constructor(props) {
@@ -50,7 +50,7 @@ class RecruitmentTable extends Component {
         <Button
           type="primary"
           onClick={() => this.handleSearch(selectedKeys, confirm, dataIndex)}
-          icon={<SearchOutlined />}
+          icon={<SearchIcon />}
           size="small"
           style={{ width: 90, marginRight: 8 }}
         >
@@ -74,7 +74,7 @@ class RecruitmentTable extends Component {
             </Button>
       </div>
     ),
-    filterIcon: filtered => <SearchOutlined style={{ color: filtered ? '#1890ff' : undefined }} />,
+    filterIcon: filtered => <SearchIcon style={{ color: filtered ? '#1890ff' : undefined }} />,
     onFilter: (value, record) =>
       record[dataIndex]
         .toString()
@@ -172,10 +172,7 @@ class RecruitmentTable extends Component {
     const columns = [
       {
         //title: "Currency",
-        title: <FormattedMessage
-          id="app.jobId"
-          defaultMessage="Job ID"
-        />,
+        title: "Job ID"  ,
        dataIndex: "jobOrder",
         width: "9%",
         ...this.getColumnSearchProps('jobOrder'),
@@ -199,10 +196,8 @@ class RecruitmentTable extends Component {
     
       },
       {
-        title: <FormattedMessage
-          id="app.requirementName"
-          defaultMessage="Requirement"
-        />,
+        title: "Requirement"
+        ,
         dataIndex: "requirementName",
         width: "10%",
         ...this.getColumnSearchProps('requirementName'),
@@ -240,21 +235,18 @@ class RecruitmentTable extends Component {
         return 0;
       },
       render: (text, item) => {
-        const closeByDate = moment(item.closeByDate).format("ll");
+        const closeByDate = dayjs(item.closeByDate).format("ll");
         return <span>{closeByDate}</span>;
       },
   },
   {
-        // title: "Start",
-        title: <FormattedMessage
-          id="app.processName"
-          defaultMessage="Start"
-        />,
+        title: "Start",
+
         dataIndex: "processName",
         width: "7%",
         render: (name, item, i) => {
           console.log(item);
-          return <span>{moment(item.avilableDate).format("ll")}</span>;
+          return <span>{dayjs(item.avilableDate).format("ll")}</span>;
         },
         sorter: (a, b) => {
           if (a.avilableDate < b.avilableDate) {
@@ -267,20 +259,14 @@ class RecruitmentTable extends Component {
         },
       },
       {
-        //title: "Rate/hr",
-        title: <FormattedMessage
-          id="app.billing"
-          defaultMessage="Rate/hr"
-        />,
+        title: "Rate/hr",
         dataIndex: "billing",
         width: "6%",
       },
       {
-        //title: "Stages",
-        title: <FormattedMessage
-          id="app.experience"
-          defaultMessage="Experience"
-        />,
+      
+        title: "Experience"
+      ,
         dataIndex: "experience",
         width: "9%",
         sorter: (a, b) => {
@@ -297,11 +283,8 @@ class RecruitmentTable extends Component {
         },
       },
       {
-        //title: "Skill Set",
-        title: <FormattedMessage
-          id="app.skillset"
-          defaultMessage="Skills Set"
-        />,
+        title: "Skill Set",
+        
         dataIndex: "skillName",
         width: "9%",
         ...this.getColumnSearchProps('skillName'),
@@ -325,10 +308,8 @@ class RecruitmentTable extends Component {
   },
 {
   //title: "Sponsor",
-  title: <FormattedMessage
-    id="app.recruitOwner"
-    defaultMessage="Recruit Owner"
-  />,
+  title: "Recruit Owner"
+  ,
    dataIndex: "recruitOwner",
   width: "10%",
   render: (name, item, i) => {
@@ -346,11 +327,8 @@ class RecruitmentTable extends Component {
   },
 },
 {
-        //title: "Sponsor",
-        title: <FormattedMessage
-          id="app.sponsor"
-          defaultMessage="Sponsor"
-        />,
+        title: "Sponsor",
+       
         dataIndex: "sponserName",
         width: "7%",
         render: (name, item, i) => {

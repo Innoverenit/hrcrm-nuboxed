@@ -54,16 +54,16 @@ export const addPayment = (sectors,orgId, cb) => (dispatch) => {
           Swal.fire({
             icon: 'error',
             title: res.data.message,
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         } else {
          
           Swal.fire({
             icon: 'success',
             title: 'Payment added Successfully!',
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+   timer: 1500,
           });
         }
         // message.success("PAYMENT has been added successfully!");
@@ -105,6 +105,8 @@ export const removePayment = ( paymentCatagoryId,orgId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Payment deleted Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("PAYMENT has been deleted successfully!");
         console.log(res);
@@ -143,6 +145,8 @@ export const updatePayment = (data, paymentCatagoryId,cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Payment updated Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("PAYMENT has been updated successfully!");
         console.log(res);

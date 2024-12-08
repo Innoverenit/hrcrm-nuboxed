@@ -1,8 +1,7 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
-import { AudioOutlined } from "@ant-design/icons";
+import MicIcon from '@mui/icons-material/Mic';
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import SpeechRecognition, {
   useSpeechRecognition,
@@ -49,7 +48,7 @@ const ContactInvestActionLeft = (props) => {
   };
 
   const suffix = (
-    <AudioOutlined
+    <MicIcon
       onClick={SpeechRecognition.startListening}
       style={{
         fontSize: 16,
@@ -65,7 +64,7 @@ const ContactInvestActionLeft = (props) => {
   } = useSpeechRecognition();
   console.log(transcript);
   useEffect(() => {
-    // props.getCustomerRecords();
+
     if (transcript) {
       console.log(">>>>>>>", transcript);
       setCurrentData(transcript);
@@ -76,9 +75,7 @@ const ContactInvestActionLeft = (props) => {
     props.getContactInvestByUserId(props.userId, page,data);
     setPage(page + 1);
   }
-  // useEffect(() => {
-  // props.getContactInvest(props.userId)
-  // }, [props.userId]);
+
   useEffect(() => {
     if (props.teamsAccessInd) {
       props.getTeamContactInvest(props.userId);
@@ -94,12 +91,6 @@ const ContactInvestActionLeft = (props) => {
     else if (props.viewType === "all") {
       props.getContactInvestAllRecord(props.orgId,"Investor");
     } 
-    
-   
-    // if (transcript) {
-    //   console.log(">>>>>>>", transcript);
-    //   props.setCurrentData(transcript);
-    // }
   }, [props.viewType, props.userId]);
    
  
@@ -108,7 +99,7 @@ const ContactInvestActionLeft = (props) => {
   return (
     <div class=" flex  items-center">
       <Tooltip
-        title={<FormattedMessage id="app.myinvestorcontacts" defaultMessage="My Investor Contacts" />}
+        title="My Investor Contacts"
       >
         <Badge
           size="small"
@@ -126,7 +117,9 @@ const ContactInvestActionLeft = (props) => {
               color: props.viewType === "card" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#28a355" ,
+               boxShadow: props.viewType === "card" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "card" ? "scale(1.05)" : "scale(1)" }}>
             <AccountBalanceIcon className=" !text-icon cursor-pointer "  />
             </Avatar>
           </div>
@@ -134,7 +127,7 @@ const ContactInvestActionLeft = (props) => {
       </Tooltip>
       {user.teamsAccessInd === true && (
       <Tooltip
-       title={<FormattedMessage id="app.teamview" defaultMessage="Team View" />}
+       title="Team View"
       >
       <Badge
           size="small"
@@ -153,15 +146,17 @@ const ContactInvestActionLeft = (props) => {
               color: props.viewType === "teams" && "#1890ff",
             }}
           >
-             <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
-           <PeopleIcon className=" !sr-onlytext-icon cursor-pointer"/>
+             <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "teams" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "teams" ? "scale(1.05)" : "scale(1)"  }}>
+              <PeopleIcon  className="text-white !text-icon" />
            </Avatar>
           </div>
         </Badge>
       </Tooltip> 
       )}
       <Tooltip
-       title={<FormattedMessage id="app.all" defaultMessage="All" />}
+       title="All"
       >
         <Badge
           size="small"
@@ -179,15 +174,17 @@ const ContactInvestActionLeft = (props) => {
               color: props.viewType === "all" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-   <FormattedMessage id="app.all" defaultMessage="All" class="!text-icon " />
+            <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "all" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "all" ? "scale(1.05)" : "scale(1)"  }}>
+ All
    </Avatar>
           </div>
         </Badge>
       </Tooltip>
     
    
-      <div class=" w-72 md:ml-4 max-sm:w-16 ml-3">
+      <div class=" w-[19rem] md:ml-4 max-sm:w-16 ml-3">
    
           <Input
        placeholder="Search by Name or Company"
@@ -197,26 +194,9 @@ const ContactInvestActionLeft = (props) => {
             onChange={handleChange}
              value={currentData}
           />
-      </div>
-      {/* <Button
-        type={props.currentData ? "primary" : "danger"}
-        onClick={() => {
-          props.searchInvestorContactName(props.currentData);
-        }}
-      >
-        Submit
-      </Button>
-      &nbsp;
-      <Button
-        type={props.currentData ? "primary" : "danger"}
-        onClick={() => {
-          props.handleClear();
-        }}
-      >
-        <FormattedMessage id="app.clear" defaultMessage="Clear" />
-      </Button> */}
-      <div class="w-[40%] mt-[0.5rem] ml-2">
-          <StyledSelect placeholder="Sort"  onChange={(e)  => props.handleFilterChange(e)}>
+      </div>  
+      <div class="w-[40%]  ml-2">
+          <StyledSelect placeholder="Sort" defaultValue="Creation Date" value={props.filter}  onChange={(e)  => props.handleFilterChange(e)}>
           <Option value="CreationDate">Creation Date</Option>
             <Option value="ascending">A To Z</Option>
             <Option value="descending">Z To A</Option>

@@ -3,8 +3,7 @@ import { Button, Tooltip } from 'antd'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Select } from "antd";
-import styled from 'styled-components'
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -58,7 +57,6 @@ function LeaveCardList(props) {
 
   }, []);
 
-
   const [currentLeaveId, setCurrentLeaveId] = useState("");
 
   function handleSetCurrentLeaveId(leaveId) {
@@ -67,7 +65,6 @@ function LeaveCardList(props) {
   }
   if (props.fetchingLeaveListRangeByUserId) {
     return <BundleLoader />
-
 
       ;
   }
@@ -87,7 +84,7 @@ function LeaveCardList(props) {
 
   return (
     <>
-      <div class="rounded m-1 p-1 w-wk h-[31rem] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:h-[13rem]">
+      <div class="rounded m-1 p-1 w-wk h-[31rem] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white] max-sm:h-[13rem]">
         {/* <InfiniteScroll
                     dataLength={props.tableRequirement.length}
                 next={handleLoadMore}
@@ -126,7 +123,6 @@ function LeaveCardList(props) {
                       <div class=" font-normal text-[0.82rem]  font-poppins">
                         {` ${dayjs(item.endDate).format("ll")}`}
                       </div>
-
                       {/* </Tooltip>   */}
                     </div>
                     <div className=" flex font-medium flex-col md:w-40 max-sm:justify-between w-full max-sm:flex-row">
@@ -186,7 +182,6 @@ function LeaveCardList(props) {
                                 handleSetCurrentLeaveId(item.leaveId);
                               }}
                             >
-
                             </BorderColorIcon>
                           </Tooltip>
                           : ""}
@@ -195,17 +190,8 @@ function LeaveCardList(props) {
                         <div >
                           {item.status === "Pending" ? (
                             <Tooltip title="Delete">
-                              <DeleteOutlined
-                                type="delete"
-                                className="!text-icon cursor-pointer text-[red]"
-                              // onClick={() => {
-                              //   // props.getProviderById(item.serviceId);
-                              //   props.handleDrawerContactlistModal(true);
-                              //   handleRowData(item);
-                              //   handleSetCurrentProvider(item.name);
-                              // }}
-                              >
-                              </DeleteOutlined>
+                            <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
+                           
                             </Tooltip>
                           ) : null}
                           {item.status === "Rejected" && (
@@ -239,7 +225,6 @@ function LeaveCardList(props) {
     </>
   )
 }
-
 const mapStateToProps = ({ leave, auth }) => ({
   userId: auth.userDetails.userId,
   fetchingLeaveListRangeByUserId: leave.fetchingLeaveListRangeByUserId,
@@ -262,113 +247,3 @@ const mapDispatchToProps = (dispatch) =>
   )
 
 export default connect(mapStateToProps, mapDispatchToProps)(LeaveCardList)
-const MainWrapper = styled.div`
-  /* */
-  margin: 0px 20px;
-  @media only screen and (max-width: 600px) {
-  }
-`
-const CardWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  
-  @media only screen and (max-width: 600px) {
-    -webkit-justify-content: space-between;
-    flex-direction: column;
-    align-items: center;
-  }
-`
-const CardElement = styled.div`
- 
-border-radius: 0.75rem;
-    border: 3px solid #EEEEEE;
-    background-color: rgb(255,255,255);
-    box-shadow: 0 0.25em 0.62em #aaa;
-    height: 7rem;
-    color: rgb(68,68,68);
-    margin: 1em;
-    padding: 0.2rem;
-    width: 15vw;
-    display: flex;
-    flex-direction: column;
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-   
-  }
-`
-const CardDescription = styled.div`
-  
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display:flex;
-    align-items: center;
-    flex-direction:column
-  }
-`
-const CardImage = styled.div`
-  
-  width:200;
-  display:flex;
-  height:200
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display:flex;
-    align-items: center;
-    flex-direction:column
-  }
-`
-const WithOutImage = styled.div`
-  
-  width:200px;
-  height:200px;
-  display:flex;
-    align-items: center;
-    flex-direction:column
-  @media only screen and (max-width: 600px) {
-    width: 100%;
-    display:flex;
-    align-items: center;
-    flex-direction:column
-  }
-`
-
-const Desc = styled.p`
-  height: 0px;
-`
-const Price = styled.div`
-  height: 1.5em;
-  font-weight: 700;
-  font-family: Poppins;
-  font-size: 1em;
-  white-space: nowrap;
-`
-
-const AppIcon = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "123%" }}
-  ></i>
-);
-
-const AppIcon1 = (props) => (
-  <i
-    className={`fas fa-heartbeat ${props.className}`}
-    style={{ fontSize: "145%" }}
-  ></i>
-);
-
-const PulseIcon = styled(AppIcon)`
-  color: #df9697;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;
-const PulseIcon1 = styled(AppIcon1)`
-  color: green;
-  &:hover {
-    // background: yellow;
-    color: blue;
-  }
-`;

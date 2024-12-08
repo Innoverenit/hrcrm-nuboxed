@@ -1,7 +1,6 @@
 import React, { useState, useEffect, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
 import { MainWrapper } from "../../../../Components/UI/Layout";
 import { getCountry, getCountryCount, searchCountryName, allCountryMandatory, ClearReducerDataOfCountry } from "../Country/CountryAction";
 import { Button, Input, Tooltip } from "antd";
@@ -58,8 +57,8 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
   return (
     <>
    <div>
-    <div class=" flex flex-row justify-between">
-    <div class=" flex w-[18vw] mt-3"  >
+    <div class=" flex flex-row justify-end items-center">
+    <div class=" flex w-[18vw] mt-7px mr-2"  >
     <Input
             placeholder="Search by country"
             style={{ width: "100%", marginLeft: "0.5rem" }}
@@ -67,7 +66,7 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
             onChange={handleChangeDes}
           />
           </div>
-          <div className="flex w-[18rem]">
+          <div className="flex w-[4rem]">
           <Button 
             type="primary"
             onClick={handleSelectDeselect}
@@ -75,7 +74,7 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
             {selected ? "Clear All" : "Select All"}
           </Button>
         </div>
-        <div className="ml-4 w-[7rem]">
+        <div className="ml-4 w-[3rem]">
          
             <a href={`${base_url}/excel/export/country/All`}>
             <div className="circle-icon !text-base cursor-pointer text-[green]">
@@ -87,24 +86,24 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
         
         </div>
           </div>
-          <div class=" flex flex-col" >
+          <div class=" flex flex-col " >
          
-         <MainWrapper className="!h-[69vh] !mt-2" >
+         <MainWrapper className="!h-[77vh] !mt-2" >
           {!fetchingCountry && country.length === 0 ? <NodataFoundPage /> : country.slice().sort((a, b) => a.country_name.localeCompare(b.country_name)).map((region, index) => (
-            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  shadow-[0em 0.25em 0.625em -0.125em] bg-white text-[#444] mt-1  p-2 justify-between items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.country_id}>
+            <div className="flex rounded ml-1 font-bold shadow shadow-gray-300  border-[#0000001f]  border  shadow-[#a3abb980] bg-white text-[#444] mt-1  p-2 justify-between items-center scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]" key={region.country_id}>
             {/* Region name display or input field */}
             
             
-            <div className=" flex font-medium flex-col md:w-[20rem] max-sm:justify-between w-full max-sm:flex-row ">
+            <div className=" flex  md:w-[20rem] max-sm:justify-between w-full max-sm:flex-row ">
 
-                    <div class=" text-sm  font-medium font-poppins">
+                    <div class=" text-xs  font-poppins">
 
                       Name
 
                     </div>
 
 
-                    <div class=" font-normal text-sm  font-poppins">
+                    <div class=" font-normal text-xs font-poppins">
                     <div class=" w-[20rem]" >
   <div class=" basis-11/12 font-semibold">
   <CountryFlag1 countryCode={region.country_alpha2_code} />
@@ -115,16 +114,16 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
                     </div>
 
                   </div>
-                  <div className=" flex font-medium flex-col md:w-[12rem] max-sm:justify-between w-full max-sm:flex-row ">
+                  <div className=" flex  md:w-[12rem] max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm  font-medium font-poppins">
+<div class=" text-xs  font-poppins">
 
  Dial Code
 
 </div>
 
 
-<div class=" font-normal text-sm  font-poppins">
+<div class=" font-normal text-xs font-poppins">
 <div class=" w-[7rem]" >
 <div class=" font-semibold" >
 +{region.country_dial_code}
@@ -133,16 +132,16 @@ const Country = ({ fetchingCountry, country, getCountry, getCountryCount, search
 </div>
 
 </div>
-<div className=" flex font-medium flex-col md:w-[15rem] max-sm:justify-between w-full max-sm:flex-row ">
+<div className=" flex  md:w-[15rem] max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm  font-medium font-poppins">
+<div class=" text-xs  font-poppins">
 
 Currency
 </div>
 
 
-<div class=" font-normal text-sm  font-poppins">
-<div class=" w-[15rem]" >
+<div class=" font-normal text-xs font-poppins">
+<div class=" w-[13rem]" >
 <div class=" font-semibold" >
 {region.country_currency_name}
 </div>
@@ -151,16 +150,16 @@ Currency
 
 </div>
  <div className="flex justify-between w-[34rem]">
- <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+ <div className=" flex  md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
 
-<div class=" text-sm  font-medium font-poppins">
+<div class=" text-xs  font-poppins">
 
 Operations
 
 </div>
 
 
-<div class=" font-normal text-sm  font-poppins">
+<div class=" font-normal text-xs font-poppins">
 <div class=" w-2/6">
 <CountryStatusToggle
 editInd={region.editInd}
@@ -172,16 +171,16 @@ country_id={region.country_id}
 </div>
 
 </div>
-                  <div className=" w-[21rem]">
-                  <div className=" flex font-medium flex-col md:w-44 max-sm:justify-between w-full max-sm:flex-row ">
+                 
+                  <div className=" flex  w-full flex-col md:w-44 max-sm:justify-between  max-sm:flex-row ">
 
-<div class=" text-sm  font-medium font-poppins">
+<div class=" text-xs  font-poppins">
 
 Sales
 </div>
 
 
-<div class=" font-normal text-sm  font-poppins">
+<div class=" font-normal text-xs font-poppins">
 <div class=" w-2/6">
 <CountrySalesToggle
 editInd={region.editInd}
@@ -194,8 +193,7 @@ country_id={region.country_id}
 
 </div>
                   </div>
-                 
-                </div>
+              
             {/* Action buttons */}
  
 

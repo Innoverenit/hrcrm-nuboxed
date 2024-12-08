@@ -4,12 +4,9 @@ import { Route, Switch } from "react-router-dom";
 import "./App.css";
 import { BundleLoader } from "./Components/Placeholder";
 import PrivateRoute from "./Helpers/Auth/PrivateRoute";
-import AppErrorBoundary from "./Helpers/ErrorBoundary/AppErrorBoundary";
 import AppLoginMessage from "./Containers/Auth/AppLoginMessage";
 import OnBoardOrganizationPage from "./Containers/Auth/OnBoardOrganizationPage";
-import OnBoardUserPage from "./Containers/Auth/OnBoardUserPage";
-
-
+import NodataFoundPage from "./Helpers/ErrorBoundary/NodataFoundPage";
 
 /**
  * lazy loaded compenents
@@ -30,13 +27,8 @@ class App extends Component {
     const { fetchingUserDetails } = this.props;
     return (
       <div>
-        {/* <Offline>
-          <div className="wrapper">
-            <p>You're offline right now. Check your connection.</p>
-          </div>
-        </Offline> 
-        <Online> */}
-        <AppErrorBoundary>
+     
+        {/* <NodataFoundPage> */}
           <Suspense fallback={<BundleLoader />}>
             <Switch>
               <Route exact path="/register/:type?" component={Register} />
@@ -66,8 +58,8 @@ class App extends Component {
               )}
             </Switch>
           </Suspense>
-        </AppErrorBoundary>
-        {/* </Online> */}
+        {/* </NodataFoundPage> */}
+     
       </div>
     );
   }

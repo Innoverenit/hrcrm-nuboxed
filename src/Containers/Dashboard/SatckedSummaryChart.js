@@ -1,7 +1,7 @@
-//import "./styles.css";
-import React, { Component,useState, useMemo ,useEffect} from "react";
+
+import React from "react";
 import { connect } from "react-redux";
-import { Popover, Select, Button, Switch } from "antd";
+import { Popover } from "antd";
 import { bindActionCreators } from "redux";
 import TimeInterval from "../../Utils/TimeInterval";
 import {getDashBoardSummaryChart,} from "./DashboardAction";

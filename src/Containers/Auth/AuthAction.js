@@ -561,7 +561,7 @@ export const updateOrganizationDetails = (orgId, data, cb) => (dispatch) => {
       console.log(res);
       // dispatch(getOrganizationDetails());
       dispatch(getOrganizationDetails(orgId));
-      dispatch(getOrganizationList(orgId));
+      dispatch(getOrganizationList());
       dispatch({
         type: types.UPDATE_ORGANIZATION_DETAILS_SUCCESS,
         payload: res.data,
@@ -1598,6 +1598,8 @@ export const verifyEmailurL = (data) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'OTP sent successfully to the provided Email account',
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
     .catch((err) => {
@@ -1622,6 +1624,8 @@ export const validateOtpurL = (data, cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'OTP validiated successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
     .catch((err) => {
@@ -1633,6 +1637,8 @@ export const validateOtpurL = (data, cb) => (dispatch) => {
       Swal.fire({
         icon: 'error',
         title: 'OTP is not matching with input!',
+        showConfirmButton: false,
+        timer: 1500,
       })
     });
 };
@@ -1656,6 +1662,8 @@ export const forgotUserPassword = (data, cb) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'You have successfully reset your password!',
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
     .catch((err) => {

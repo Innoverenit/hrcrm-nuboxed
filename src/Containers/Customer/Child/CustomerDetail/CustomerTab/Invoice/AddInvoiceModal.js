@@ -1,6 +1,6 @@
 import React, {  Suspense, Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button, } from "antd";
 import { Formik, Form, Field } from "formik";
@@ -56,9 +56,7 @@ class AddInvoiceModal extends Component {
     return (
       <>
         <StyledDrawer
-          title={
-            <FormattedMessage id="app.invoice" defaultMessage="Invoice" />
-          }
+          title="Invoice" 
           width="65vw"
           visible={invoiceModal}
           onClose={() => this.handleClose()}
@@ -97,13 +95,8 @@ class AddInvoiceModal extends Component {
                         name="documentTypeId"
                         selectType="documentTypeName"
                         isColumnWithoutNoCreate
-                        // label="Type"
-                        label={
-                          <FormattedMessage
-                            id="app.type"
-                            defaultMessage="Type"
-                          />
-                        }
+                        label="Type"
+                        
                         component={InputComponent}
                         isColumn
                         inlineLabel
@@ -113,12 +106,8 @@ class AddInvoiceModal extends Component {
                     >
                       <Field
                         name="documentTitle"
-                        label={
-                          <FormattedMessage
-                            id="app.name"
-                            defaultMessage="Name"
-                          />
-                        }
+                        label="Name"
+                       
                         width={"100%"}
                         isColumn
                         component={InputComponent}
@@ -126,12 +115,8 @@ class AddInvoiceModal extends Component {
                    <div class=" mt-3">
                       <Field
                         name="documentDescription"
-                        label={
-                          <FormattedMessage
-                            id="app.description"
-                            defaultMessage="Description"
-                          />
-                        }
+                        label="Description"
+                         
                         isRequired
                         isColumn
                         width={"100%"}
@@ -146,12 +131,8 @@ class AddInvoiceModal extends Component {
                                   <Field
                                     inlineLabel
                                     name="department"
-                                    label={
-                                      <FormattedMessage
-                                        id="app.department"
-                                        defaultMessage="Function"
-                                      />
-                                    }
+                                    label="Function"
+                                     
                                     isRequired
                                     isColumn
                                     component={InputComponent}
@@ -179,10 +160,7 @@ class AddInvoiceModal extends Component {
                       htmlType="submit"
                       type="primary"
                     >
-                      <FormattedMessage
-                        id="app.submit"
-                        defaultMessage="Submit"
-                      />
+                    Submit
                     </Button>
                   </div>
                 </Form>

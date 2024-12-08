@@ -5,18 +5,24 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { DatePicker } from "../../../../../Components/Forms/Formik/DatePicker";
 import * as Yup from "yup";
-import { StyledLabel } from '../../../../../Components/UI/Elements';
 import { SelectComponent } from '../../../../../Components/Forms/Formik/SelectComponent';
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from '../../../../../Components/Forms/Formik/TextareaComponent';
-import { Button, Tooltip, message, } from 'antd';
-import { getSaleCurrency } from "../../../../Auth/AuthAction";
-import { FormattedMessage } from 'react-intl';
+import { Button, Tooltip, message, Select,Input  } from 'antd';
+import {getBrandCategoryData} from "../../../../../Containers/Settings/Category/BrandCategory/BrandCategoryAction"
+import { getSaleCurrency,getAllDialCodeList } from "../../../../Auth/AuthAction";
 import { getContactDistributorList } from "../../../Suppliers/SuppliersAction"
 import { addOrderForm, getLobList } from '../../AccountAction'
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import AddressFieldArray1 from '../../../../../Components/Forms/Formik/AddressFieldArray1';
 import dayjs from "dayjs";
+import axios from 'axios';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
+import CancelIcon from '@mui/icons-material/Cancel';
+import { base_url2 } from '../../../../../Config/Auth';
+
+const { Option } = Select; 
+
 const FormSchema = Yup.object().shape({
     lobDetsilsId: Yup.string().required("Input needed!"),
     advancePayment: Yup.number()
@@ -31,16 +37,78 @@ const FormSchema = Yup.object().shape({
     
 })
 function AddOrderInAccount(props) {
+
+    const [isAddingContact, setIsAddingContact] = useState(false);
+    const [newContact, setNewContact] = useState({
+        firstName: '',
+        lastName: '',
+        emailId: '',
+        phoneNumber: '',
+        countryDialCode:"",
+      });
+
+const handleAddContact = () => {
+    setIsAddingContact(true);
+  };
+  const handleMobileKeyPress = async (e) => {
+    if (e.key === 'Enter') {
+      console.log('New Contact Added:', newContact);
+      let data = {
+        firstName: newContact.firstName,
+        lastName: newContact.lastName,
+        emailId: newContact.emailId,
+        phoneNumber: newContact.phoneNumber,
+        countryDialCode: newContact.countryDialCode,
+        distributorId: props.distributorId,
+        userId:props.userId,
+      };
+  
+      try {
+        const response = await axios.post(`${base_url2}/contactPerson`,data,{  
+            headers: {
+                Authorization: "Bearer " + (sessionStorage.getItem("token") || ""),
+            },
+         });
+        setIsAddingContact(false);
+        setNewContact({ firstName: '', lastName: '', email: '', mobile: '', dialCode: '' });
+        props.getContactDistributorList(props.distributorId,"distributor");
+      } catch (error) {
+        console.error('Error adding contact:', error);
+      }
+    }
+  };
+  const handleRemoveFields = () => {
+    setIsAddingContact(false);
+    setNewContact({  firstName: '',
+      lastName: '',
+      emailId: '',
+      phoneNumber: '',
+      countryDialCode:"",
+      distributorId:""
+    });
+  };
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewContact((prev) => ({ ...prev, [name]: value }));
+  };
+  const handleDialCodeChange = (value) => {
+    setNewContact((prev) => ({ ...prev, countryDialCode: value }));
+  };
+ 
     const contactOption = props.contactDistributor.map((item) => {
         return {
             value: item.contactPersonId,
             label: `${item.firstName || ""} ${item.lastName || ""}`
         }
-    })
+    });
+
+
     useEffect(() => {
-        props.getContactDistributorList(props.distributorId)
+        props.getContactDistributorList(props.distributorId,"distributor")
         props.getSaleCurrency()
         props.getLobList(props.orgId)
+        props.getBrandCategoryData(props.orgId);
+        props.getAllDialCodeList();
     }, [])
 
     const [priority, setPriority] = useState("High")
@@ -53,6 +121,12 @@ function AddOrderInAccount(props) {
         return {
             label: item.currency_name || "",
             value: item.currency_id,
+        };
+    });
+    const categoryOption = props.BrandCategoryData.map((item) => {
+        return {
+            label: item.name || "",
+            value: item.shipById,
         };
     });
     const lobOption = props.lobList.map((item) => {
@@ -75,6 +149,7 @@ function AddOrderInAccount(props) {
                 paymentInTerms: "",
                  customPayment: "0",
                 comments: "",
+                shipById:"",
                 lobDetsilsId:"",
                 orderCurrencyId: "",
                 totalPhoneCount: "",
@@ -139,10 +214,8 @@ function AddOrderInAccount(props) {
                         <div class=" flex justify-between">
                             <div class=" w-[47%] flex-col flex">
                                 <div class="mt-3">
-                                    <StyledLabel><h3> <FormattedMessage
-                                        id="app.pickupaddress"
-                                        defaultMessage="Pickup Address"
-                                    /></h3></StyledLabel>
+                                    <div class=" text-xs font-bold font-poppins text-black"><h3> Pickup Address
+                                 </h3></div>
 
                                     <FieldArray
                                         name="loadingAddress"
@@ -182,12 +255,7 @@ function AddOrderInAccount(props) {
                                         <div class="w-[45%]">
                                             <Field
                                              type="number"
-                                                label={
-                                                    <FormattedMessage
-                                                        id="app.CustomPayment"
-                                                        defaultMessage="Custom Payment (in days)"
-                                                    />
-                                                }
+                                                label="Custom Payment (in days)"                                                   
                                                 name="customPayment"
                                                 component={InputComponent}
                                                 inlineLabel
@@ -199,8 +267,18 @@ function AddOrderInAccount(props) {
                                 </div>
                                 <div class="justify-between flex mt-3">
                                     <div class="w-[45%]">
+                                    <div class="flex items-center">
+                                    <div class="font-bold font-poppins text-xs">
+                                        Contact</div>
+                                        <div>
+<AddCircleIcon
+  onClick={handleAddContact}
+  style={{color:"red"}}
+/>
+</div>
+</div>
                                         <Field
-                                            label="Contact"
+                                            // label="Contact"
                                             style={{ borderRight: "3px red solid" }}
                                             name="contactPersonId"
                                             placeholder="Value"
@@ -210,6 +288,103 @@ function AddOrderInAccount(props) {
                                             width={"100%"}
                                             isColumn
                                         />
+                                        {isAddingContact && (
+                        <div class="flex  w-96 justify-between max-sm:flex-col mt-[0.75rem]">
+<div class=" w-w47.5 max-sm:w-wk">                
+<div className="font-bold text-xs">
+
+  {/* Customer */}
+  </div>
+  <Input
+              placeholder="First Name"
+              name="firstName"
+              style={{marginLeft:"-6px"}}
+              value={newContact.firstName}
+              onChange={handleInputChange}
+            />
+          
+            </div>
+
+            <div class=" w-w47.5 max-sm:w-wk">                
+<div className="font-bold text-xs">
+
+  {/* Customer */}
+  </div>
+  <Input
+              placeholder="Last Name"
+              name="lastName"
+              style={{marginLeft:"-4px"}}
+              value={newContact.lastName}
+              onChange={handleInputChange}
+            />
+          
+            </div>
+
+            <div class=" w-w47.5 max-sm:w-wk">                         
+
+<div className= "font-bold text-[0.75rem]">
+  </div>
+  <Select
+        placeholder="Select dialcode"
+        name="countryDialCode"
+        style={{width:"80px"}}
+      onChange={handleDialCodeChange}
+      value={newContact.dialCode}
+       
+      >
+        {props.dialcodeList.map(contact => (
+          <Option key= {`+${contact.country_dial_code}`} value= {`+${contact.country_dial_code}`}>
+           {`+${contact.country_dial_code}`}
+          </Option>
+        ))}
+      </Select>   
+                </div>
+
+            <div class=" w-w47.5 max-sm:w-wk">                         
+
+<div className= "font-bold text-[0.75rem]">
+  </div>
+  <Input
+              placeholder="Mobile No"
+              name="phoneNumber"
+              value={newContact.mobile}
+             
+              onChange={handleInputChange}
+             
+              style={{ flex: 1,marginLeft:"-1px" }} // Allow input to take full width
+            />    
+
+
+                </div>
+
+
+             
+            <div class=" w-w47.5 max-sm:w-wk">                
+<div className="font-bold text-xs">
+  </div>
+  <Input
+              placeholder="Email"
+              name="emailId"
+              value={newContact.email}
+              onChange={handleInputChange}
+              onKeyPress={handleMobileKeyPress}
+            />
+
+
+<CancelIcon
+              onClick={handleRemoveFields}
+              style={{
+                marginLeft: 8,
+                cursor: 'pointer',
+                color: 'red', 
+              }}
+            />
+          
+            </div>
+            
+            
+                        </div>
+                        )}
                                     </div>
                                     <div class="w-[45%]">
                                         <Field
@@ -258,7 +433,7 @@ function AddOrderInAccount(props) {
                                             inlineLabel
                                             width={"100%"}
 
-                                            disabledDate={disabledDate}
+                                            // disabledDate={disabledDate}
                                             component={DatePicker}
                                             value={values.availabilityDate}
 
@@ -273,42 +448,48 @@ function AddOrderInAccount(props) {
                                             width={"100%"}
                                             disable={!values.availabilityDate}
                                             component={DatePicker}
-                                            disabledDate={(currentDate) => {
-                                                if (values.availabilityDate) {
-                                                    if (
-                                                        dayjs(currentDate).isBefore(
-                                                            dayjs(values.availabilityDate)
-                                                        )
-                                                    ) {
-                                                        return true;
-                                                    } else {
-                                                        return false;
-                                                    }
-                                                }
-                                            }}
+                                            // disabledDate={(currentDate) => {
+                                            //     if (values.availabilityDate) {
+                                            //         if (
+                                            //             dayjs(currentDate).isBefore(
+                                            //                 dayjs(values.availabilityDate)
+                                            //             )
+                                            //         ) {
+                                            //             return true;
+                                            //         } else {
+                                            //             return false;
+                                            //         }
+                                            //     }
+                                            // }}
                                             value={values.deliveryDate}
 
                                         />
                                     </div>
 
                                 </div>
+                                <div class="w-[45%]">
+                                        <Field
+                                            name="shipById"
+                                            label="Category"
+                                            isColumn
+                                            style={{ borderRight: "3px red solid" }}
+                                            inlineLabel
+                                            component={SelectComponent}
+                                            options={Array.isArray(categoryOption) ? categoryOption : []}
+                                        />
+                                    </div>
                                 <div class="justify-between flex mt-3">
 
                                     <div class="w-[46%]  ml-8 mt-2">
-                                        <StyledLabel><FormattedMessage
-                                            id="app.priority"
-                                            defaultMessage="Priority"
-                                        /></StyledLabel>
+                                        <div class=" text-xs font-bold font-poppins text-black">Priority
+                                       </div>
                                         <div class="justify-between flex">
                                             <div>
-                                                <Tooltip title={<FormattedMessage
-                                                    id="app.high"
-                                                    defaultMessage="High"
-                                                />}>
+                                                <Tooltip title="High">
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
-                                                        icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
+                                                        icon={<ErrorOutlineIcon style={{ fontSize: '0.1875em' }} />}
                                                         onClick={() => handleButtonClick("High")}
                                                         style={{
                                                             backgroundColor:
@@ -322,35 +503,12 @@ function AddOrderInAccount(props) {
                                                     />
                                                 </Tooltip>
                                                 &nbsp;
-                                                <Tooltip title={<FormattedMessage
-                                                    id="app.medium"
-                                                    defaultMessage="Medium"
-                                                />}>
+                                            
+                                                <Tooltip title="Low">
                                                     <Button
                                                         // type="primary"
                                                         shape="circle"
-                                                        icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
-                                                        onClick={() => handleButtonClick("Medium")}
-                                                        style={{
-                                                            backgroundColor:
-                                                                priority === "Medium"
-                                                                    ? "Orange"
-                                                                    : "white",
-                                                            borderRadius: "50%",
-                                                            width: "31px",
-                                                            height: "31px"
-                                                        }}
-                                                    />
-                                                </Tooltip>
-                                                &nbsp;
-                                                <Tooltip title={<FormattedMessage
-                                                    id="app.low"
-                                                    defaultMessage="Low"
-                                                />}>
-                                                    <Button
-                                                        // type="primary"
-                                                        shape="circle"
-                                                        icon={<ExclamationCircleOutlined style={{ fontSize: '0.1875em' }} />}
+                                                        icon={<ErrorOutlineIcon style={{ fontSize: '0.1875em' }} />}
                                                         onClick={() => handleButtonClick("Low")}
                                                         style={{
                                                             backgroundColor:
@@ -376,11 +534,7 @@ function AddOrderInAccount(props) {
                                             htmlType="Submit"
                                             loading={props.addingOrder}
                                         >
-                                            <FormattedMessage
-                                                id="app.save"
-                                                defaultMessage="Save"
-                                            />
-
+                                            Save
                                         </Button>
 
                                     </div>
@@ -395,13 +549,15 @@ function AddOrderInAccount(props) {
     );
 }
 
-const mapStateToProps = ({ homeStepper, auth, distributor, suppliers }) => ({
+const mapStateToProps = ({ homeStepper, auth, distributor,brandCategory, suppliers }) => ({
     contactDistributor: suppliers.contactDistributor,
     userId: auth.userDetails.userId,
     saleCurrencies: auth.saleCurrencies,
     addingOrder: distributor.addingOrder,
     lobList: distributor.lobList,
+    BrandCategoryData: brandCategory.BrandCategoryData,
     orgId: auth.userDetails.organizationId,
+    dialcodeList: auth.dialcodeList,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -410,7 +566,9 @@ const mapDispatchToProps = (dispatch) =>
             addOrderForm,
             getSaleCurrency,
             getLobList,
-            getContactDistributorList
+            getContactDistributorList,
+            getBrandCategoryData,
+            getAllDialCodeList
         },
         dispatch
     );

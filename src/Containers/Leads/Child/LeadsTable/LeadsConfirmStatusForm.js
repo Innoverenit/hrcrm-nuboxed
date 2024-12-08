@@ -4,10 +4,9 @@ import { bindActionCreators } from "redux";
 import { Formik, Form, } from "formik";
 import {
   Select,
-  StyledLabel,
+  
 } from "../../../../Components/UI/Elements";
-import { MainWrapper } from "../../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
+
 import { Button, Switch } from "antd";
 import {
     getDepartmentwiserUser,
@@ -24,6 +23,34 @@ console.log("single",single)
     const handleSingleMultiple = (checked) =>{
         setSingle(checked)
     }
+
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+   
+    useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [
+      '76', // 0 Assign To
+  '1590', // 1Select Department
+  '1507', // 2 User
+    "1591",    // select user
+    "1246"    // Update
+  
+          ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
   useEffect(() => {
   
     props.getDepartments();
@@ -76,17 +103,17 @@ const handleDeptChange = (event) => {
         }}
       >
         {({ values }) => (
-        <MainWrapper style={{ height: "446px", width: "", overflow: "auto" }}>
+      <div class="mr-5 ml-5 h-[28rem] overflow-auto"> 
         <Form className="form-background">
           <div class=" flex justify-between w-full"
           >
             <div class=" flex  mt-[0.625rem] ml-[1rem]"
             >             
-              <div class=" flex justify-between w-[30%] "
+              <div class=" flex justify-between w-[30%] mr-3 "
               >           
                 <div>
                      
-                      <StyledLabel>Assign To</StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black"> {translatedMenuItems[0]}</div>
                         <Switch
                           style={{ width: "5em" }}
                           onChange={handleSingleMultiple}
@@ -104,7 +131,7 @@ const handleDeptChange = (event) => {
                       <select   className="customize-select"
                    
                       onChange={handleDeptChange}>
-          <option value="">Select Department</option>
+          <option value=""> {translatedMenuItems[1]}</option>
           {props.departments.map((item, index) => (
             <option 
            
@@ -117,15 +144,14 @@ const handleDeptChange = (event) => {
         {selectedDept && (
           <>                                           
 <div  >
-            <div className="text-black text-xs font-bold" >User</div>
+            <div className="text-black text-xs font-bold" > {translatedMenuItems[2]}</div>
             <select   className="customize-select"
                  onChange={handleUserChange}
               >
-    <option value="">select user</option>
+    <option value=""> {translatedMenuItems[3]}</option>
     {props.departmentwiseUser.map((item, index) => (
       <option key={index}
-      // disabled
-      // disabled={selectedDept}
+   
        value={item.employeeId}>
         {item.empName}
       </option>
@@ -134,9 +160,8 @@ const handleDeptChange = (event) => {
   </div>                  
 </> 
         )}                                                  
-                                         </div>
-                                           
-                                          )}
+                                         </div>                                          
+                                         )}
             </div>
           </div>       
               <div class=" flex justify-end mt-3" >
@@ -145,13 +170,13 @@ const handleDeptChange = (event) => {
                   htmlType="submit"
                   loading={props.linkingCustomerStatus}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+                 {translatedMenuItems[4]}
                   {/* Update */}
                 </Button>
               </div>
   
         </Form>
-      </MainWrapper>
+      </div>
         )}
       </Formik>
     </>

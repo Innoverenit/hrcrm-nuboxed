@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, Component } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../../Components/UI/Antd";
 
@@ -17,11 +17,7 @@ class AddEmploymentModal extends Component {
     return (
       <>
         <StyledDrawer
-          //title="Employment"
-          title={<FormattedMessage
-            id="app.employment"
-            defaultMessage="Employment"
-          />}
+          title="Employment"
           width="30%"
           visible={updateEmploymentModal}
           onClose={() => handleUpdateEmploymentModal(false)}

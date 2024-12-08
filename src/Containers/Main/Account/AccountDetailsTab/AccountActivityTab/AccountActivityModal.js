@@ -1,25 +1,29 @@
-import React, { Component, lazy, Suspense } from "react";
+import React, {  lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../Components/UI/Antd";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
-const AcitivityCallForm = lazy(() => import("./AcitivityCallForm"));
-const ActivityEventForm = lazy(() => import("./ActivityEventForm"));
-const ActivityTaskForm = lazy(() => import("./ActivityTaskForm"));
+import ActivityForm from "../../../../Activity/ActivityForm";
+// const AcitivityCallForm = lazy(() => import("./AcitivityCallForm"));
+// const ActivityEventForm = lazy(() => import("./ActivityEventForm"));
+// const ActivityTaskForm = lazy(() => import("./ActivityTaskForm"));
 
 const TabPane = StyledTabs.TabPane;
-class AccountActivityModal extends Component {
-    render() {
+function AccountActivityModal (props) {
+
         const {
             addDistributorActivityModal,
             handleDistributorActivityModal,
-        } = this.props;
+        } = props;
+        const isSmallScreen = window.innerWidth <= 600;
+        const drawerWidth = isSmallScreen ? "90%" : "60%";
+
         return (
             <div>
                 <StyledDrawer
-                    title="Activity"
-                    width="55vw"
+                    title="Schedule"
+                  width={drawerWidth}
                     visible={addDistributorActivityModal}
                     destroyOnClose
                     maskClosable={false}
@@ -29,7 +33,7 @@ class AccountActivityModal extends Component {
                     footer={null}
                 >
                     <Suspense fallback={<BundleLoader />}>
-                        <StyledTabs defaultActiveKey="1">
+                        {/* <StyledTabs defaultActiveKey="1">
                             <TabPane tab={`Call`} key="1">
                                 <div style={{ marginTop: 20 }}>
                                     <AcitivityCallForm />
@@ -45,13 +49,21 @@ class AccountActivityModal extends Component {
                                     <ActivityTaskForm/>
                                 </div>
                             </TabPane>
-                        </StyledTabs>
+                        </StyledTabs> */}
+                        <ActivityForm
+           defaultValue={props.defaultValue}
+           distributorId={props. distributorId }
+           uniqueId={props.uniqueId}
+           name={props.name}
+           distributor={props.distributor}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+        translatedMenuItems={props.translatedMenuItems}/>
                     </Suspense>
                 </StyledDrawer>
             </div>
         );
     }
-}
 
 const mapStateToProps = ({ auth }) => ({});
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);

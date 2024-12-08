@@ -11,8 +11,8 @@ class AddCustomerProcurementModal extends Component {
         return (
             <div>
                 <StyledDrawer
-                    title="Add Procurement"
-                    width="90%"
+                    title="Add Order"
+                    width="60%"
                     visible={addLinkCustomerProcurementModal}
                     destroyOnClose
                     maskClosable={false}
@@ -20,7 +20,11 @@ class AddCustomerProcurementModal extends Component {
                     onClose={() => handleLinkCustomerProcurementModal(false)}
                     footer={null}
                 >
-                    <ProcurementStepper distributorId={this.props.distributorId} />
+                    <ProcurementStepper distributorId={this.props.distributorId}
+                      selectedLanguage={this.props.selectedLanguage}
+                      translateText={this.props.translateText}
+                      type={this.props.type}
+                    />
 
                 </StyledDrawer>
             </div>

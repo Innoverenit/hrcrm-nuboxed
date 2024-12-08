@@ -5,7 +5,7 @@ import AddCreateManufactureModal from "../Child/AddCreateManufactureModal"
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Tooltip, Button, Select } from "antd";
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 import ReactToPrint from "react-to-print";
 import { BorderColorOutlined, } from "@mui/icons-material";
@@ -96,8 +96,8 @@ function CreateProductionCard(props) {
     return (
         <>
             <div className=' flex justify-end sticky  z-auto'>
-                <div class="rounded-lg max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">
+                <div class="rounded-lg max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+                    <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
                         <div className="w-[7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11rem] ">Manufacture ID</div>
                         <div className=" w-[6.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.01rem]">Name</div>
                         <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem]">Category</div>
@@ -192,15 +192,11 @@ function CreateProductionCard(props) {
                                                                 onClick={() => {
                                                                     handleSubmitRoomRack(item.manufactureId)
                                                                 }} >
-                                                                <FormattedMessage
-                                                                    id="app.save"
-                                                                    defaultMessage="Save"
-                                                                />
+                                                               Save
                                                             </Button>
-                                                            <Button onClick={() => handleCancelStore()}><FormattedMessage
-                                                                id="app.cancel"
-                                                                defaultMessage="Cancel"
-                                                            /></Button>
+                                                            <Button onClick={() => handleCancelStore()}>
+                                                                Cancel
+                                                            </Button>
                                                         </>
                                                         :
                                                         <>
@@ -272,6 +268,8 @@ function CreateProductionCard(props) {
                                                     display: "flex",
                                                     flexDirection: "column",
                                                     alignItems: "center",
+                                                      height:"-webkit-fill-available",
+                                                    justifyContent:"center"
                                                 }}
                                             >
                                                 <div class=" mt-8"><QRCode size={130} value={item.manufactureId} /></div>

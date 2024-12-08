@@ -8,7 +8,7 @@ import RemarksTable from "../Child/RemarksTable";
 import AddSentimentModal from "../Child/AddSentimentModal" 
  import { handleRemarksModal,handleDocumentUploadModal ,handleSentimentModal} from "../../../../../OpportunityAction";
 import AddRemarksModal from "../Child/AddRemarksModal";
-import {  PlusOutlined } from "@ant-design/icons";
+import AddBoxIcon from '@mui/icons-material/AddBox';
 const AddCandidateEducationModal = lazy(()=>import("../../../../../../Candidate/Child/CandidateTable/CandidateDetails/CandidateDetailTab/Education/AddCandidateEducationModal"));
 const AddCandidateTrainingModal =lazy(()=>import("../../../../../../Candidate/Child/CandidateTable/CandidateDetails/CandidateDetailTab/Training/AddCandidateTrainingModal"));
 const AddCandidateEmploymentModal =lazy(()=>import("../../../../../../Candidate/Child/CandidateTable/CandidateDetails/CandidateDetailTab/Employment/AddCandidateEmploymentModal"));
@@ -53,30 +53,14 @@ class RecruitmentDetailsTab extends Component {
                   <span>Feedback</span>
                   {activeKey === "1" && (
                     <>
-                      {/* <Tooltip //title="Tag Remarks"
-                        title={<FormattedMessage
-                          id="app.tagremarks"
-                          defaultMessage="tagremarks"
-                        />} */}
+                     
                       
-                        <PlusOutlined
-                          type="plus"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                            tooltipTitle="Tag Feedback"
                            onClick={() => handleSentimentModal(true)}
-                          size="0.875em"
-                          style={{ marginLeft: 10, verticalAlign: "center" ,color:"blue"}}
                         />
-                        {/* <AddSentimentModalModal
-
-                        /> */}
-
-                        {/* <AddRemarksModal
-                        addRemarksModal={addRemarksModal}
-                        handleRemarksModal={handleRemarksModal}
-                        stageList={this.props.stageList}
-                        profileId={this.props.profileId}
-                      /> */}
-                      {/* </Tooltip> */}
+                       
                     </>
                   )}
                 </>
@@ -91,145 +75,7 @@ class RecruitmentDetailsTab extends Component {
               </Suspense>
             </TabPane>
 
-            {/* <TabPane
-              tab={
-                <>
-                  <span>
-                 
-                    <FormattedMessage
-                      id="app.sdcuments"
-                      defaultMessage="Documents"
-                    />
-                  
-                  </span>
-                  {activeKey === "3" && (
-                    <>
-            
-            <PlusOutlined
-                        
-                          type="plus"
-                          tooltipTitle="Tag Document"
-                          onClick={() =>
-                            handleDocumentUploadModal(true)
-                          }
-                          size="1em"
-                          style={{ marginLeft: 10, verticalAlign: "center" }}
-                        />
-
-               <AddDocumentModal
-              documentUploadModal={documentUploadModal}
-              handleDocumentUploadModal={handleDocumentUploadModal}
-               />
-                     
-                    </>
-                  )}
-                </>
-              }
-              key="3"
-            >
-            
-
-              <Suspense fallback={"Loading ..."}>
-                 <LinkedDocuments candidate={this.props.candidate} /> 
-              </Suspense>
-            </TabPane> */}
-            {/* <TabPane
-              tab={
-                <>
-                  <span>
-                    <i class="fa fa-graduation-cap"></i>
-                    &nbsp;Education
-                  </span>
-                  {activeKey === "5" && (
-                    <>
-                      {addingEmail ? (
-                        <></>
-                      ) : (
-                        <>
-                          <PlusOutlined
-                            type="plus"
-                            tooltipTitle="Add"
-                            handleIconClick={() =>
-                              handleCandidateEducationModal(true)
-                            }
-                            size="1em"
-                            style={{
-                              marginLeft: "0.3125em",
-                              verticalAlign: "center",
-                            }}
-                          />
-       
-                        </>
-                      )}
-                    </>
-                  )}
-                </>
-              }
-              key="5"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <CandidateEducationTable />
-              </Suspense>
-            </TabPane> */}
-            {/* <TabPane
-              tab={
-                <>
-                  <span>
-                    <CustomerServiceOutlined type="customer-service" />
-                    Training
-                  </span>
-                  {activeKey === "6" && (
-                    <>
-                      <PlusOutlined
-                        type="plus"
-                        tooltipTitle="Add"
-                        handleIconClick={() =>
-                          handleCandidateTrainingModal(true)
-                        }
-                        size="1em"
-                        style={{ marginLeft:"0.3125em", verticalAlign: "center" }}
-                      />
-                    </>
-                  )}
-                </>
-              }
-              key="6"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <CandidateTrainingTable />
-              </Suspense>
-            </TabPane> */}
-            {/* <TabPane
-              tab={
-                <>
-                  <span>
-                    <BankOutlined type="bank" />
-                   Employment
-                  </span>
-                  {activeKey === "7" && (
-                    <>
-                      <PlusOutlined
-                        type="plus"
-                        tooltipTitle="Add"
-                        handleIconClick={() =>
-                          handleCandidateEmploymentModal(true)
-                        }
-                        size="1em"
-                        style={{ marginLeft: "0.3125em", verticalAlign: "center" }}
-                      />
-                    </>
-                  )}
-                </>
-              }
-              key="7"
-            >
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <CandidateEmploymentTable />
-              </Suspense>
-            </TabPane> */}
+           
           </StyledTabs>
         </TabsWrapper>
         <Suspense fallback={"Loading..."}>

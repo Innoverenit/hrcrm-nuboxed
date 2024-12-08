@@ -3,7 +3,7 @@ import { Tooltip } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Select } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import dayjs from "dayjs";
 import BorderColorIcon from "@mui/icons-material/BorderColor";
 import { BundleLoader } from "../../../../Components/Placeholder";
@@ -56,7 +56,7 @@ function LeaveCardView(props) {
         <div className="flex flex-wrap w-full max-sm:justify-between max-sm:flex-col max-sm:items-center">
           {leaveListRangeByUserId.map((item) => {
             return (
-              <div className="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[6.5rem] 
+              <div className="rounded-md border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[8rem] 
 text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
                 <div className="w-[200] flex h-[200] max-sm:w-full max-sm:flex-col max-sm:items-center  ">
                   <div className=" flex flex-col justify-around w-full ">
@@ -94,7 +94,7 @@ text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
                     <div>
                       <div class=" text-sm  font-medium font-poppins">
                         Cover:{" "}
-                        <label class="text-xs"> {item.coverDetails}</label>
+                        <div class="text-xs"> {item.coverDetails}</div>
                         &nbsp;
                       </div>
                     </div>
@@ -193,18 +193,8 @@ text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
                         <div >
                           {item.status === "Pending" ? (
                             <Tooltip title="Delete">
-                              <DeleteOutlined
-                                type="delete"
-                                className="!text-icon cursor-pointer text-[red]"
-                              // onClick={() => {
-                              //   // props.getProviderById(item.serviceId);
-                              //   props.handleDrawerContactlistModal(true);
-                              //   handleRowData(item);
-                              //   handleSetCurrentProvider(item.name);
-                              // }}
-
-                              >
-                              </DeleteOutlined>
+                             
+                             <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                             </Tooltip>
                             ) : null}
                             </div>
@@ -213,10 +203,7 @@ text-[#444444] m-3 p-1 w-[19vw] flex flex-col max-sm:w-wk  ">
                     <span>
                       {item.status === "Pending" ? (
                         <div class="cursor-pointer">
-                          <DeleteOutlined
-                            type="delete"
-                            className="!text-xl cursor-pointer text-[red]"
-                          ></DeleteOutlined>
+                           <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                         </div>
                       ) : (
                         ""

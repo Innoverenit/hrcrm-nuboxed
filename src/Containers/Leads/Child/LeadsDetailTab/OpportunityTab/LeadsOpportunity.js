@@ -1,7 +1,7 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import Highlighter from "react-highlight-words";
 import { Link } from "../../../../../Components/Common";
 import dayjs from "dayjs";
@@ -10,9 +10,7 @@ import {
   MultiAvatar,
   SubTitle,
 } from "../../../../../Components/UI/Elements";
-import {
-  SearchOutlined,
-} from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { CurrencySymbol } from "../../../../../Components/Common";
 import { getOpportunityListByLeadsId,handleUpdateLeadsOpportunityModal,
@@ -57,7 +55,7 @@ function OpportunityTable(props) {
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
             // icon="search"
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             size="small"
             style={{ width: 90 }}
           >
@@ -84,7 +82,7 @@ function OpportunityTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "#1890ff" : undefined }}
         />
@@ -181,10 +179,7 @@ function OpportunityTable(props) {
       }
    },
     {
-      //title: "Start Date",
-      title: (
-        <FormattedMessage id="app.startDate" defaultMessage="Start Date" />
-      ),
+      title: "Start Date",
       dataIndex: "startDate",
       width: "20%",
       defaultSortOrder: "descend",
@@ -206,8 +201,7 @@ function OpportunityTable(props) {
       },
     },
     {
-      //title: "End Date",
-      title: <FormattedMessage id="app.endDate" defaultMessage="End Date" />,
+      title: "End Date",
       dataIndex: "endDate",
       width: "20%",
       defaultSortOrder: "descend",
@@ -229,13 +223,7 @@ function OpportunityTable(props) {
       },
     },
     {
-      //title: "Value",
-      title: (
-        <FormattedMessage
-          id="app.proposalAmount"
-          defaultMessage="Value"
-        />
-      ),
+      title: "Value",
       dataIndex: "proposalAmount",
       width: "20%",
       onFilter: (value, record) => record.proposalAmount.indexOf(value) === 0,
@@ -254,13 +242,7 @@ function OpportunityTable(props) {
 
 
     {
-      //title: "sponsor",
-      title: (
-        <FormattedMessage
-          id="app.sponsor"
-          defaultMessage="Sponsor"
-        />
-      ),
+      title: "sponsor",
       dataIndex: "contactName",
       width: "10%",
       onFilter: (value, record) => record.contactName.indexOf(value) === 0,

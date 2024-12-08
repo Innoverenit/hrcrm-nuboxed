@@ -7,12 +7,13 @@ import { getExpenses } from "../../Settings/Expense/ExpenseAction";
 import DownloadIcon from '@mui/icons-material/Download';
 import dayjs from "dayjs";
 import { base_url } from "../../../Config/Auth";
-import { DeleteOutlined,UploadOutlined } from "@ant-design/icons";
+import UploadIcon from '@mui/icons-material/Upload';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import EditUpload from "../../../Components/Forms/Edit/EditUpload";
 import { BundleLoader } from "../../../Components/Placeholder";
 
-const AddDocumentModal = lazy(() => import("./AddDocumentModal"));
+
 const UpdateExpenseModal = lazy(() => import("./UpdateExpense/UpdateExpenseModal"));
 
 function ExpenseDrawerCard(props) {
@@ -95,7 +96,7 @@ if(fetchingExpenseByVoucherId) {
   
   return (
     <>
-      <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+      <div class="rounded-lg m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
        {inputValues.map((item,index) => { 
                   return (
                       <div key={index}>
@@ -260,7 +261,7 @@ style={{ border: "1px solid grey" }}
                               <div class="flex flex-row items-center w-[10%]">
                                 <div class="flex items-center">
                                 <Tooltip title="Upload Document">
-            <UploadOutlined
+            <UploadIcon
               type="upload"
               style={{ cursor: "pointer",fontSize:"1rem" }}
               onClick={() => {
@@ -283,16 +284,7 @@ style={{ border: "1px solid grey" }}
           </Tooltip>
                                 </div>
                   <div class="flex items-center ml-[0.25rem]">
-                    {/* <EditOutlined
-                      //  style={{ color: "blue" ,display:"flex",justifyItems:"center",justifyContent:"center",fontSize:"0.75rem",marginTop:"0.25rem",marginLeft:"0.25rem"}}
-                      type="edit"
-              style={{ cursor: "pointer" }}
-              onClick={() => {
-                this.props.setEditExpense(item);
-                handleUpdateExpenseModal(true);
-        }} 
-                      /> */}
-                                <button onClick={() => toggleEdit(index)}>
+                <button onClick={() => toggleEdit(index)}>
           {editStates[index] ? 'Cancel' : 'Edit'}
         </button>
         {editStates[index] && (
@@ -303,7 +295,7 @@ style={{ border: "1px solid grey" }}
                       <div >
                          {/* {item.status === "Pending" ? ( */}
                          <Tooltip title="Delete">
-            <DeleteOutlined
+            <DeleteOutlineIcon
               type="delete"
               style={{ cursor: "pointer",fontSize:"1rem" }}
               onClick={() => {
@@ -340,10 +332,10 @@ style={{ border: "1px solid grey" }}
       handleUpdateExpenseModal={handleUpdateExpenseModal}
       // handleSetCurrentExpenseId={handleSetCurrentExpenseId}
     />
-    <AddDocumentModal
+    {/* <AddDocumentModal
       documentUploadModal={documentUploadModal}
       handleDocumentUploadModal={handleDocumentUploadModal}
-    />
+    /> */}
     </>
   );
 }

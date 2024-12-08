@@ -1,7 +1,7 @@
 import React, { useState, useEffect, lazy } from "react";
-import { FormattedMessage } from "react-intl";
+
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { linkTypeToggle, removeDocuments } from "../DocumentsAction";
 import { connect } from "react-redux";
 import dayjs from "dayjs";
@@ -94,14 +94,7 @@ const SingleDocuments = ({
                           cancelText="No"
                           onConfirm={() => removeDocuments(documentTypeId)}
                         >
-                          <DeleteOutlined
-                            style={{
-                              verticalAlign: "center",
-                              marginLeft: "1rem",
-                              fontSize: "1rem",
-                              color: "red",
-                            }}
-                          />
+                          <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                         </Popconfirm>
                       </Tooltip>
                     )}
@@ -125,10 +118,10 @@ const SingleDocuments = ({
                   disabled={!value}
                   onClick={() => handleUpdateDocument(documentTypeId, value, toggleViewType())}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+               Update
                 </Button>
                 <Button type="cancel" onClick={() => toggleViewType()}>
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+               Cancel
                 </Button>
               </div>
             </div>

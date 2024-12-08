@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { updateEmployeeById } from "../../../../EmployeeAction";
@@ -46,12 +46,8 @@ class EmployeePersonalEdit extends Component {
               defaultValue={bloodGroup}
               handleChange={this.handleChange}
               name={"bloodGroup"}
-              label={
-                <FormattedMessage
-                  id="app.bloodGroup"
-                  defaultMessage="Blood Group"
-                />
-              }
+              label="Blood Group"
+                
               placeholder={"Blood Group"}
               options={["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]}
               value={this.state.fields.bloodGroup}
@@ -64,9 +60,8 @@ class EmployeePersonalEdit extends Component {
               defaultValue={dob}
               handleChange={this.handleChange}
               name={"dob"}
-              label={
-                <FormattedMessage id="app.dob" defaultMessage="Date Of Birth" />
-              }
+              label="Date Of Birth"
+             
               placeholder={"Date Of Birth"}
               value={this.state.fields.dob}
               style={{ width: "100%" }}
@@ -80,11 +75,11 @@ class EmployeePersonalEdit extends Component {
             Loading={updatingEmployeeById}
             onClick={this.handleUpdate}
           >
-            <FormattedMessage id="app.save" defaultMessage="Save" />,
+          Save
           </Button>
       <div class=" ml-2">
           <Button type="ghost" onClick={() => toggleViewType()}>
-            <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+         Cancel
           </Button>
           </div>
         </div>

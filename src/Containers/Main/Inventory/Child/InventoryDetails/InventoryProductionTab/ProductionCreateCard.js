@@ -5,7 +5,7 @@ import AddCreateManufactureModal from "../../../../../Production/Child/AddCreate
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import { Tooltip, Button, Select } from "antd";
 import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 import ReactToPrint from "react-to-print";
 import { BorderColorOutlined, } from "@mui/icons-material";
@@ -96,8 +96,8 @@ function ProductionCreateCard(props) {
     return (
         <>
             <div className=' flex justify-end sticky  z-auto'>
-                <div class="rounded-lg max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-                    <div className=" flex max-sm:hidden justify-between w-[99%] p-1 bg-transparent font-bold sticky z-10">
+                <div class="rounded-lg max-sm:m-1 m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+                    <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
                         <div className="w-[7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[11rem] ">
                             {/* Manufacture ID */}
                             {props.translatedMenuItems[35]}
@@ -205,16 +205,10 @@ function ProductionCreateCard(props) {
                                                                 onClick={() => {
                                                                     handleSubmitRoomRack(item.manufactureId)
                                                                 }} >
-                                                                {/* <FormattedMessage
-                                                                    id="app.save"
-                                                                    defaultMessage="Save"
-                                                                /> */}  {props.translatedMenuItems[34]}
+                                                                {props.translatedMenuItems[34]}
                                                             </Button>
                                                             <Button onClick={() => handleCancelStore()}>
-                                                                {/* <FormattedMessage
-                                                                id="app.cancel"
-                                                                defaultMessage="Cancel"
-                                                            /> */} {props.translatedMenuItems[24]}
+                                                              {props.translatedMenuItems[24]}
                                                             </Button>
                                                         </>
                                                         :
@@ -290,6 +284,8 @@ function ProductionCreateCard(props) {
                                                     display: "flex",
                                                     flexDirection: "column",
                                                     alignItems: "center",
+                                                      height:"-webkit-fill-available",
+                                                    justifyContent:"center"
                                                 }}
                                             >
                                                 <div class=" mt-8"><QRCode size={130} value={item.manufactureId} /></div>

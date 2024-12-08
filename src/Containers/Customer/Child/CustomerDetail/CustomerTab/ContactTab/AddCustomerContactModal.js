@@ -1,5 +1,4 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import {handleCustomerContactModal} from "../../../../CustomerAction";
@@ -19,10 +18,8 @@ const AddCustomerContactModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.contact"
-          defaultMessage="Contact"
-        />}
+      title="Contact"
+        // title={`${props.translatedMenuItems[1]}`}
         width="60%"
         visible={addCustomerContactModal}
         onClose={() => handleCustomerContactModal(false)}
@@ -30,8 +27,15 @@ const AddCustomerContactModal = (props) => {
       >
         <Suspense fallback={<BundleLoader />}>
           <CustomerContactForm {...formProps} 
+          name={props.name}
+          customer={props.customer}
+          customerId={props.customerId}
+          id={props.id}
           opportunityId={props.opportunityId}
           investorId={props.investorId}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
+          translatedMenuItems={props.translatedMenuItems}
           />{" "}
         </Suspense>
       </StyledDrawer>

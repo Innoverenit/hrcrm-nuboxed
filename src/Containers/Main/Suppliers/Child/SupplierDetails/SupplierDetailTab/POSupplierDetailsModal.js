@@ -1,15 +1,14 @@
-import React, { Suspense} from "react";
+import React, { Suspense, lazy} from "react";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
-import POSupplierDetailsTable from "./POSupplierDetailsTable";
-
+const  POSupplierDetailsTable  = lazy(() => import("./POSupplierDetailsTable"));
 const POSupplierDetailsModal = (props) => {
     const { addPoListmModal, handlePoListModal, ...formProps } = props;
     return (
         <>
             <StyledDrawer
                 title={`PO Details - ${props.rowData.newPoNumber}`}
-                width="70%"
+                width="81%"
                 visible={addPoListmModal}
                 closable
                 destroyOnClose
@@ -19,7 +18,9 @@ const POSupplierDetailsModal = (props) => {
                 <Suspense fallback={<BundleLoader />}>
                     <POSupplierDetailsTable
                         supplierId={props.supplierId}
-                        poSupplierDetailsId={props.rowData.poSupplierDetailsId} />
+                        poSupplierDetailsId={props.rowData.poSupplierDetailsId} 
+                        translateText={props.translateText}
+                        selectedLanguage={props.selectedLanguage}/>
                 </Suspense>
             </StyledDrawer>
         </>

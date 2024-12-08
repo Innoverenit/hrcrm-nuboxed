@@ -4,7 +4,6 @@ import { StyledCollapse } from "../../../../../Components/UI/Antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Icon } from "antd";
-// import { CaretRightOutlined} from '@ant-design/icons';
 import ServiceTable from "./ServiceTable";
 // import { getCurrentQuotation } from "../../../OpportunityAction";
 const Panel = StyledCollapse.Panel;
@@ -191,7 +190,7 @@ function Header1(props) {
 //       {
 //         title: "",
 //         render: (name, item, i) => {
-//           return <div>{/* <EyeOutlined /> */}</div>;
+//           return <div>/div>;
 //         },
 //       },
 //     ];

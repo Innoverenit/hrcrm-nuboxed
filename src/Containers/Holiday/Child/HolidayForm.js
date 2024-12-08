@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button,} from "antd";
 import { Formik, Form, Field,  FastField } from "formik";
@@ -66,13 +66,7 @@ class HolidayForm extends Component {
                 <div class=" w-full" >
                   <FastField
                     name="accountNo"
-                    // label="Holiday Name"
-                    label={
-                      <FormattedMessage
-                        id="app.accountNo"
-                        defaultMessage="Holiday Name"
-                      />
-                    }
+                    label="Holiday Name"
                     isColumn
                     margintop={"0.25em"}
                     selectType="number"
@@ -86,13 +80,7 @@ class HolidayForm extends Component {
                   <div class=" w-[47%]" >
                     <Field
                       name="startDate"
-                      // label="Start Date"
-                      label={
-                        <FormattedMessage
-                          id="app.startDate"
-                          defaultMessage="Start Date"
-                        />
-                      }
+                      label="Start Date"
                       isRequired
                       component={DatePicker}
                       isColumn
@@ -129,8 +117,7 @@ class HolidayForm extends Component {
                   type="primary"
                   // Loading={adddingDocumentByOpportunityId}
                 >
-                  <FormattedMessage id="app.submit" defaultMessage="Submit" />
-                  {/* Submit */}
+                 Submit
                 </Button>
               </div>
             </Form>

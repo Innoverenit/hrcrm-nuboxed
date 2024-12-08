@@ -1,19 +1,16 @@
 import React from "react";
 import { Marker, Popup } from "react-leaflet";
 import dayjs from "dayjs";
-import {
-  Title,
-  Spacer,
-} from "../../Components/UI/Elements";
+import {Title} from "../../Components/UI/Elements";
 import { Link } from "../../Components/Common";
 import L from "leaflet";
 
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require("../../Assets/Images/download.png"),
-  iconUrl: require("../../Assets/Images/download.png"),
-  shadowUrl: require("../../Assets/Images/download.png"),
+  iconRetinaUrl: require("../../Assets/Images/download.webp"),
+  iconUrl: require("../../Assets/Images/download.webp"),
+  shadowUrl: require("../../Assets/Images/download.webp"),
   iconSize: [15, 25], // size of the icon
   shadowSize: [35, 25], // size of the shadow
   shadowAnchor: [15, 40],
@@ -59,7 +56,7 @@ export default function PartnerMapPopUpMarker({ mark }) {
 
   const image = new L.Icon({
     iconUrl: mark.timeToConnect
-      ? require("../../Assets/Images/download.png")
+      ? require("../../Assets/Images/download.webp")
       : require("leaflet/dist/images/marker-icon.png"),
     shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
     iconSize: mark.timeToConnect ? [25, 35] : [15, 25], // size of the icon
@@ -91,7 +88,7 @@ export default function PartnerMapPopUpMarker({ mark }) {
         </div>
       </div>
 
-        <Spacer />
+        <div class=" mt-3" />
         <div class=" flex justify-between w-full" >
           <div
             style={{

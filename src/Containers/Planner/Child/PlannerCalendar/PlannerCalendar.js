@@ -4,7 +4,6 @@ import { bindActionCreators } from "redux";
 import { CalendarInstance } from "../../../../Components/Utils";
 import dayjs from "dayjs";
 import {
-  ApplicationWrapper,
   LayoutWrapper,
   MainWrapper,
 } from "../../../../Components/UI/Layout";

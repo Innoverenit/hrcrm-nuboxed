@@ -18,10 +18,8 @@ import {
 } from "../../ProductAction";
 import DistributorOfferHistory from "./DistributorOfferHistory";
 import ProductPublishToggle from "./ProductPublishToggle";
-import {
-    EditOutlined,
-    DeleteOutlined,
-} from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import PriceDrawer from "./PriceDrawer";
 import { StyledTable } from "../../../../Components/UI/Antd";
 import { MultiAvatar, SubTitle } from "../../../../Components/UI/Elements";
@@ -786,7 +784,7 @@ function ProductHistoryTable(props) {
         //             children: (
         //                 <span>
         //                     <Tooltip title="Product History">
-        //                         <HistoryOutlined
+        //                         <HistoryIcon
         //                             onClick={() => {
         //                                 handleHistoryModal(true);
         //                                 handleParticularRowData(item);
@@ -814,7 +812,7 @@ function ProductHistoryTable(props) {
                 return (
                    
                                     <Tooltip title="Edit">
-                                        <EditOutlined
+                                        <VisibilityIcon
                                     style={{ cursor: "pointer", fontSize: "12px" }}
                                             onClick={() => {
                                                 props.setEditProducts(item);
@@ -853,7 +851,7 @@ function ProductHistoryTable(props) {
                                             title="Do you want to delete?"
                                             onConfirm={() => props.deleteProductData(item.productId)}
                                         >
-                                            <DeleteOutlined
+                                            <DeleteOutlineIcon
                                                 style={{ cursor: "pointer", color: "red" }}
                                             />
                                         </Popconfirm>

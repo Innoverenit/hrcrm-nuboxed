@@ -1,38 +1,21 @@
-import React, { lazy, Suspense, Component } from "react";
+import React, {  Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-
-import { Button, Switch, Tooltip, Icon,Select } from "antd";
+import { Button, Switch,Select } from "antd";
 import { getDepartments } from "../../Containers/Settings/Department/DepartmentAction";
 import {addOrganizationDocument} from "../Auth/AuthAction"
-// import { RightSquareOutlined, ToTopOutlined } from '@ant-design/icons';
-import { Formik, Form, Field, FieldArray,FastField } from "formik";
-import { StyledDrawer, StyledModal } from "../../Components/UI/Antd";
-import { Spacer, StyledLabel } from "../../Components/UI/Elements";
-import SearchSelect from "../../Components/Forms/Formik/SearchSelect";
+import { Formik, Form, Field } from "formik";
 import { SelectComponent } from "../../Components/Forms/Formik/SelectComponent";
-import DocumentUpload from "../../Components/Forms/Formik/DocumentUpload";
 import { InputComponent } from "../../Components/Forms/Formik/InputComponent";
 import { TextareaComponent } from "../../Components/Forms/Formik/TextareaComponent";
 import {getAssignedToList}  from "../Employees/EmployeeAction"
 import * as Yup from "yup";
 import {getDocuments} from "../Settings/Documents/DocumentsAction"
-// import { getOppoStages, getLevels } from "../../Settings/SettingsAction";
-import { FlexContainer } from "../../Components/UI/Layout";
 import DragableUpload from "../../Components/Forms/Formik/DragableUpload";
-import LazySelect from "../../Components/Forms/Formik/LazySelect";
-
-import { FormattedMessage } from "react-intl";
-import { RightSquareOutlined, ToTopOutlined } from "@ant-design/icons";
 const ButtonGroup = Button.Group;
 
 const { Option } = Select;
-// const documentSchema = Yup.object().shape({
-// documentName: Yup.string().required("This field is required !"),
-// documentId: Yup.string().required("Input needed !"),
-// documentDescription: Yup.string().required("This field is required !"),
-// stageId: Yup.string().required("This field is required !")
-// });
+
 const documentSchema = Yup.object().shape({
 
 documentId: Yup.string().required("Input needed!"),
@@ -133,8 +116,7 @@ class AddOrgDocumentForm extends Component {
   const employeesData =this.props.assignedToList.map((item) => {
     return {
       label: `${item.empName}`,
-      // label: `${item.salutation || ""} ${item.firstName ||
-      //   ""} ${item.middleName || ""} ${item.lastName || ""}`,
+    
       value: item.employeeId,
     };
   });
@@ -205,21 +187,12 @@ class AddOrgDocumentForm extends Component {
                           {errors.documentId}
                         </p>
                       )}
-                      <Spacer />
+                      <div class=" mt-3" />
                       <Field
                     name="documentType"
                     type="text"
-                    //label="Type"
-                    label={
-                      <FormattedMessage id="app.type" defaultMessage="Type" />
-                    }
-                    // options={[
-                    //   "Aadhar Card",
-                    //   "Voter-Id Card",
-                    //   "Driving-License",
-                    //   "Pan Card",
-                    //   "Passport",
-                    // ]}
+                    label="Type"
+                    
                     options={
                       Array.isArray(documentNameOption)
                         ? documentNameOption
@@ -230,16 +203,10 @@ class AddOrgDocumentForm extends Component {
                     className="field"
                     isColumn
                      />
-                  <Spacer />
+                  <div class=" mt-3" />
                         <Field
                         name="description"
-                        //label="Description"
-                        label={
-                          <FormattedMessage
-                            id="app.documentDescription"
-                            defaultMessage="Description"
-                          />
-                        }
+                        label="Description"
                         isRequired
                         isColumn
                         width={"100%"}
@@ -255,42 +222,31 @@ class AddOrgDocumentForm extends Component {
                     >
                       <Field
                         name="name"
-                        //label="Name"
-                        label={
-                          <FormattedMessage
-                            id="app.documentName"
-                            defaultMessage="Name"
-                          />
-                        }
+                        label="Name"
                         width={"100%"}
                         isColumn
                         component={InputComponent}
                         style={{ height: "2em",  }}
                       />
-                      <Spacer />
+                      <div class=" mt-3" />
                       <Field
                             // name="department"
                             name="catagory"
-                            // isColumnWithoutNoCreate
-                            //  selectType="sectorName"
+                       
                             label="Category"
                              
                             isColumn
-                            //component={SearchSelect}
+                      
                             component={SelectComponent}
-                            // value={values.sectorId}
+                      
                             options={
                               Array.isArray(catagoryOption) ? catagoryOption : []
                             }
                           />
 
-<Field
-                            // name="department"
-                            name="department"
-                            // isColumnWithoutNoCreate
-                            //  selectType="sectorName"
-                            label="Department"
-                             
+<Field                
+                            name="department"                       
+                            label="Department"                             
                             isColumn
                             //component={SearchSelect}
                             component={SelectComponent}
@@ -299,10 +255,10 @@ class AddOrgDocumentForm extends Component {
                               Array.isArray(departmentOption) ? departmentOption : []
                             }
                           />
-                      <Spacer style={{ marginBottom: "0.9375em" }} />
+                      <div class=" mt-3" style={{ marginBottom: "0.9375em" }} />
 
-                      <FlexContainer>
-                        <StyledLabel>Share</StyledLabel>
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
+                        <div class=" text-xs font-bold font-poppins text-black">Share</div>
                         <Switch
                           style={{ width: "6.25em", marginLeft: "0.625em" }}
                           checked={showUserList}
@@ -311,18 +267,12 @@ class AddOrgDocumentForm extends Component {
                           checkedChildren="Public"
                           unCheckedChildren="Private"
                         />
-                      </FlexContainer>
+                      </div>
                       {!showUserList && (
           <div class="mt-1">
           <Field
             name="included"
-            // label="Include"
-            label={
-              <FormattedMessage
-                id="app.include"
-                defaultMessage="include"
-              />
-            }
+            label="Include"
             mode
             placeholder="Select"
             component={SelectComponent}
@@ -340,8 +290,8 @@ class AddOrgDocumentForm extends Component {
                     </div>
                   </div>
 
-                  <Spacer />
-                  <FlexContainer justifyContent="flex-end">
+                  <div class=" mt-3" />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                     <Button
                       htmlType="submit"
                       type="primary"
@@ -349,7 +299,7 @@ class AddOrgDocumentForm extends Component {
                     >
                       Submit
                     </Button>
-                  </FlexContainer>
+                  </div>
                 </Form>
               )}
             </Formik>

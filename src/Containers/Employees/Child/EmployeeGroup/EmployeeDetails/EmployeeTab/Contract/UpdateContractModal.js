@@ -1,5 +1,5 @@
 import React, { lazy, Suspense, Component } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../../Components/UI/Antd";
 
@@ -17,11 +17,8 @@ class UpdateContractModal extends Component {
     return (
       <>
         <StyledDrawer
-          // title="Contract"
-          title={<FormattedMessage
-            id="app.updateContract"
-            defaultMessage="Update Contract"
-          />}
+          title="Update Contract"
+      
           width="25%"
           visible={updateContractModal}
           onClose={() => handleUpdateContractModal(false)}

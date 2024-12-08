@@ -2,13 +2,13 @@ import React, { useEffect,Suspense,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
-import { MainWrapper } from "../../../../../../../Components/UI/Elements";
 import { Formik, Form, Field } from "formik";
 import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import {getTopicsByUserId} from "../../../../../EmployeeAction";
 import * as Yup from "yup";
-import { updateExperienceByEmployeeId} from "../../../../../EmployeeAction"
+import { updateExperienceByEmployeeId} from "../../../../../EmployeeAction";
+
 const EmployeeExperienceTable=lazy(()=>import("./EmployeeExperienceTable"));
 
 const experienceSchema = Yup.object().shape({
@@ -53,26 +53,19 @@ function EmployeeExperienceForm(props) {
           ...rest
         }) => (
           <Form className="form-background">
-            <MainWrapper>
-            <div class=" flex w-full h-full justify-evenly items-center"
-                          
-              >            
+            <div>
+            <div class=" flex w-full h-full justify-evenly items-center">                                            
                 <div class=" w-[15%]"
                 >
                   <Field
                     name="keySkillsId"
                     label="Skill"
                     type="text"
-                    isColumn
-                   // width={"100%"}
+                    isColumn              
                     component={SelectComponent}
                     options={
                       Array.isArray(skillNameOption) ? skillNameOption : []
-                    }  
-                    // onSelect={(e) => {
-                    //   console.log(e);
-                    //   handleSkillInCandidate(e, setFieldValue);
-                    // }}                 
+                    }                                 
                     inlineLabel
                   />
                 </div>
@@ -98,7 +91,7 @@ function EmployeeExperienceForm(props) {
                   </Button>
                 </div>
               </div>
-            </MainWrapper>
+            </div>
           </Form>
         )}
       </Formik>

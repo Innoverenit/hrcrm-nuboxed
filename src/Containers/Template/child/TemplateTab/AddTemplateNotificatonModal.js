@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
 import { StyledTabs } from "../../../../Components/UI/Antd";
@@ -12,10 +12,8 @@ const AddTemplateNotificatonModal = (props) => {
     <>
       <StyledDrawer
         //title="Template"
-        title={<FormattedMessage
-          id="app.notificaton"
-          defaultMessage="Notificaton"
-        />}
+        title="Notificaton"
+      
         width="60%"
         visible={props.addTemplateNotificatonModal}
         maskClosable={false}

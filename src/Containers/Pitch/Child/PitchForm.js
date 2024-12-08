@@ -2,10 +2,11 @@ import React, {  useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Select,Switch,Tooltip} from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
 import dayjs from "dayjs";
+import ReactDescription from "../../../Components/ReactSpeech/ReactDescription";
 import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
 import RotateRightIcon from "@mui/icons-material/RotateRight";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
@@ -16,7 +17,6 @@ import {getAllEmployeelist,getDialCode} from "../../Investor/InvestorAction"
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 import {addPitch,setClearbitData} from "../PitchAction"
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
-import { TextareaComponent } from "../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
@@ -25,7 +25,7 @@ import { Listbox, } from '@headlessui/react'
 import {getInvestorCurrency} from "../../Auth/AuthAction"
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import { DatePicker } from "../../../Components/Forms/Formik/DatePicker";
-// yup validation scheme for creating a account
+import {base_url} from "../../../Config/Auth";
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const CustomerSchema = Yup.object().shape({
   firstName: Yup.string().required("Input needed!"),
@@ -87,7 +87,6 @@ props.getInvestorCurrency();
     const [defaultOption, setDefaultOption] = useState(props.fullName);
     const [selected, setSelected] = useState(defaultOption);
     const selectedOption = props.allEmployeeList.find((item) => item.empName === selected);
-
     const [sector, setSector] = useState([]);
     const [source, setSource] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -108,27 +107,34 @@ props.getInvestorCurrency();
         const fetchMenuTranslations = async () => {
           try {
             const itemsToTranslate = [
-             "First Name",//0
-              "Middle Name",//1
-              "Last Name",//2
-              "Email",//3
-              "DialCode",//4
-              "PhoneNo",//5
-              "Company",//6
-              "Url",//7
-              "Share Quantity",//8
-              "Share Value",//9
-              "Category",//10
-              "Date",//11
-              "Currency",//12
-              "Assigned",//13
-              "Address",//14
-              // "Street",//15
-              // "Zip Code",//16
-              // "City",//17
-              // "State",//18
-              // "Country",//19
-              "Notes"//20
+             "295",//0 First Name
+              "353",//1 Middle Name
+              "354",//2 Last Name
+              "140",//3 Email
+              "357",//4 Dial Code
+              "300",//5 Phone No
+              "277",//6 Company
+              "302",//7 Url
+              "454",//8 Share Quantity
+              "455",//9 Share Value
+              "14",//10 Category
+              "74",//11 Date
+              "241",//12 Currency
+              "76",//13 Assigned
+              "185", // 14 "Address",
+              "316",//15 Notes
+               "104",//  16Create
+            "194" ,//  "Clear"17
+            "5" , //  "Stop"18
+            "158" , //  "Start19
+            "273" , //  "Cold"20
+            "272" , //  "Warm"21
+            "271" , //  "Hot"22
+            "279" ,  //  Source23
+            "1302" ,  //  Search or select source24
+            "288" ,  //  Search or select sector25
+            "278" , //  Sector26
+            "460" , //  businessregistration27
             ];
     
             const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -152,7 +158,7 @@ props.getInvestorCurrency();
     const fetchSector = async () => {
       setIsLoadingSector(true);
       try {
-        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/sector`;
+        const apiEndpoint = `${base_url}/sector`;
         const response = await fetch(apiEndpoint,{
           method: 'GET',
           headers: {
@@ -209,7 +215,7 @@ props.getInvestorCurrency();
     const fetchSource = async () => {
       setIsLoading(true);
       try {
-        const apiEndpoint = `https://develop.tekorero.com/employeePortal/api/v1/source/${props.organizationId}`;
+        const apiEndpoint =`${base_url}/source/${props.userId}`;
         const response = await fetch(apiEndpoint,{
           method: 'GET',
           headers: {
@@ -388,33 +394,14 @@ props.getInvestorCurrency();
                    
                     <div>
                       <div class=" flex justify-between max-sm:flex-col">
-                        {/* <div class=" w-2/5 max-sm:w-full">
-                          <Field
-                            name="salutation"
-                            label={
-                              <FormattedMessage
-                                id="app.salutation"
-                                defaultMessage="salutation"
-                              />
-                            }
-                            options={["Mr.", "Ms.", "None"]}
-                            component={SelectComponent}
-                            inlineLabel
-                            isColumn
-                          />
-                        </div> */}
-                        <div class="text-xs  w-full max-sm:w-full">
-                    <label>{translatedMenuItems[0]} </label>
+                      
+                            {/* name="salutation"
+                            */}
+                        <div class="text-xs font-bold font-poppins w-full max-sm:w-full">
+                             {translatedMenuItems[0]}
                              <FastField
                             isRequired
-                            name="firstName"
-                           
-                            // Label={
-                            //   // <FormattedMessage
-                            //   //   id="app.firstname"
-                            //   //   defaultMessage="firstname"
-                            //   // />
-                            // }
+                            name="firstName"                                               
                             type="text"
                             width={"100%"}
                             isColumn
@@ -424,17 +411,10 @@ props.getInvestorCurrency();
                         </div>
                       </div>                  
                       <div class=" flex justify-between  max-sm:flex-col">
-                        <div class=" text-xs  w-2/5 max-sm:w-full"> 
-                        <label>{translatedMenuItems[1]} </label>           
+                        <div class=" text-xs font-bold   w-2/5 max-sm:w-full"> 
+                        {translatedMenuItems[1]}  
                           <FastField
-                            name="middleName"
-                         
-                            // Label={
-                            //   <FormattedMessage
-                            //     id="app.middle"
-                            //     defaultMessage="middle"
-                            //   />
-                            // }
+                            name="middleName"                                    
                             type="text"
                             width={"100%"}
                             isColumn
@@ -442,17 +422,11 @@ props.getInvestorCurrency();
                             inlineLabel
                           />
                         </div>
-                        <div class=" text-xs w-1/2 max-sm:w-full"> 
-                        <label>  {translatedMenuItems[2]} </label>                     
+                        <div class=" text-xs font-bold w-1/2 max-sm:w-full"> 
+                      {translatedMenuItems[2]}            
                           <FastField
                             name="lastName"
-                            // label="Last Name"
-                            // Label={
-                            //   <FormattedMessage
-                            //     id="app.lastname"
-                            //     defaultMessage="lastname"
-                            //   />
-                            // }
+                            // label="Last Name"                      
                             type="text"
                             width={"100%"}
                             isColumn
@@ -463,31 +437,23 @@ props.getInvestorCurrency();
                       </div>
                     </div>
                   </div>  
-                  <label>  {translatedMenuItems[3]} </label>       
+                  <div className="text-xs font-bold w-1/2 max-sm:w-full mt-1">
+                  {translatedMenuItems[3]} </div>  
               <Field
                   isRequired
                     name="email"
-                    type="text"
-                    // label={
-                    //   <FormattedMessage id="app.email" defaultMessage="Email" />
-                    // }
+                    type="text"             
                     isColumn
                     width={"100%"}
                     component={InputComponent}
                     inlineLabel
                   />                             
                 <div class=" flex justify-between">
-                    <div class=" w-3/12 max-sm:w-[32%]">
-                    <label>  {translatedMenuItems[4]} </label>
+                    <div class="font-bold text-xs w-3/12 max-sm:w-[32%]">
+                 {translatedMenuItems[4]}     
                       <FastField
                       name="countryDialCode"
-                        isColumnWithoutNoCreate
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.dialCode"
-                        //     defaultMessage="Dial Code"
-                        //   />
-                        // }
+                        isColumnWithoutNoCreate                   
                         defaultValue={{
                           label:`+${user.countryDialCode}`,
                         }}
@@ -500,18 +466,12 @@ props.getInvestorCurrency();
                   
                     </div>
                     <div class=" w-8/12">
-                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">   
-                    <label>  {translatedMenuItems[5]} </label>               
+                    <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs ">   
+                 {translatedMenuItems[5]}     
+                    {/* //Phone Number           */}
                       <FastField
                         type="text"
-                        name="phoneNumber"
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.phoneno#"
-                        //     defaultMessage="phoneno#"
-                        //   />
-                        // }
-                        
+                        name="phoneNumber"                                            
                         isColumn
                         component={InputComponent}
                         inlineLabel
@@ -522,14 +482,10 @@ props.getInvestorCurrency();
                   </div>
                  
                   <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">   
-                  <label>  {translatedMenuItems[6]} </label>          
+                 {translatedMenuItems[6]}        
                   <Field
-
                     name="companyName"
-                    type="text"
-                    // label={
-                    //   <FormattedMessage id="app.company" defaultMessage="company" />
-                    // }
+                    type="text"               
                     isColumn
                     width={"100%"}
                     setClearbitData={props.setClearbitData}
@@ -539,11 +495,11 @@ props.getInvestorCurrency();
                   />
                   </div>
                  <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">  
-                 <label>  {translatedMenuItems[7]} </label>                 
+               {translatedMenuItems[7]}     
+                 {/* url  */}
                   <Field
                     name="url"
-                    type="text"
-                    // label={<FormattedMessage id="app.url" defaultMessage="url" />}
+                    type="text"                
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -557,12 +513,8 @@ props.getInvestorCurrency();
                    <Field
                         name="vatNo"
                         type="text"
-                        label={
-                          <FormattedMessage
-                            id="app.vatNumber"
-                            defaultMessage="vatNumber"
-                          />
-                        }
+                        label="vatNumber"
+                        
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -574,16 +526,12 @@ props.getInvestorCurrency();
                      {contract ?
                     <div class="w-w47.5">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
+                    {translatedMenuItems[27]}  
                                      <Field
                         name="businessRegistration"
                         type="text"
                         label="URL"
-                        Label={
-                          <FormattedMessage
-                            id="app.businessregistration"
-                            defaultMessage=" businessregistration"
-                          />
-                        }
+                       
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -594,14 +542,14 @@ props.getInvestorCurrency();
                       : ( null)}
                   </div>
 
-                  <div class=" flex justify-between">
+                  <div class=" flex justify-between mt-1">
                     <div class=" w-w47.5">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                    <label>  {translatedMenuItems[8]} </label>
+                   {translatedMenuItems[8]}  
                       <Field
                         name="unitOfShare"
                         type="text"
-                        label="Share Quantity"
+                        // label="Share Quantity"
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -609,13 +557,13 @@ props.getInvestorCurrency();
                       />
                       </div>
                     </div>
-                    <div class="w-w47.5">
+                    <div class="w-w47.5 mt-1">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                    <label>  {translatedMenuItems[9]} </label>
+                    {translatedMenuItems[9]} 
                       <Field
                         name="valueOfShare"
                         type="text"
-                        label="Share Value"
+                        // label="Share Value"
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -628,29 +576,15 @@ props.getInvestorCurrency();
 
                   <div class=" flex justify-between">
                   {contract ?
-                  <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
-                      {/* <Field
-                        name="sectorId"
-                        isColumnWithoutNoCreate
-                        // selectType="sectorName"
-                        label={
-                          <FormattedMessage
-                            id="app.sector"
-                            defaultMessage="Sector"
-                          />
-                        }
-                        isColumn
-                        component={SelectComponent}
-                        options={
-                          Array.isArray(sectorOption) ? sectorOption : []
-                        }
-                      /> */}
-                                            <label>Sector</label>
-
+                  <div class=" w-w47.5 flex flex-col" >           
+                     <div class="font-bold text-xs">
+                     {translatedMenuItems[26]}   {/* Sector */}
+                      </div>
 <Select
         showSearch
        
-        placeholder="Search or select sector"
+        placeholder= {translatedMenuItems[25]}  
+        // "Search or select sector"
         optionFilterProp="children"
         loading={isLoadingSector}
         onFocus={handleSelectSectorFocus}
@@ -665,29 +599,16 @@ props.getInvestorCurrency();
                     </div>
                      : ( null)}
                        {contract ?
-                    <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
-                          {/* <Field
-                            name="source"
-                             label={
-                              <FormattedMessage
-                                id="app.source"
-                                defaultMessage="source"
-                              />
-                            }
-                            isColumnWithoutNoCreate
-                            component={SelectComponent}
-                            options={
-                              Array.isArray(sourceOption) ? sourceOption : []
-                            }
-                            isColumn
-                          /> */}
+                    <div class=" w-w47.5 flex flex-col" >                
 
-<label>Source</label>
+                     <div class="font-bold text-xs"> 
+                      {/* Source */} {translatedMenuItems[23]}  
+                      </div>
 
 <Select
-        showSearch
-      
-        placeholder="Search or select source"
+        showSearch    
+        placeholder= {translatedMenuItems[24]}  
+        // "Search or select source"
         optionFilterProp="children"
         loading={isLoading}
         onFocus={handleSelectFocus}
@@ -700,14 +621,12 @@ props.getInvestorCurrency();
         ))}
       </Select>
                         </div>
-: ( null)}
-                        
-
+: ( null)}                 
                     </div>
                     <div class=" flex items-center justify-between">
-                    <div class=" flex flex-col   mt-4">
+                    <div class=" flex flex-col   mt-2">
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                    <label>  {translatedMenuItems[10]} </label>  {/* Category */}
+                  {translatedMenuItems[10]}   {/* Category */}
                       </div>
                     <Switch
                       style={{ width: "6.25em", marginLeft: "0.625em" }}
@@ -717,60 +636,9 @@ props.getInvestorCurrency();
                       unCheckedChildren="Private"
                     />
                   </div>
-                  <div class=" flex justify-between  w-3/5 max-sm:w-wk">
-                    {/* <div class="flex">
-                       <Tooltip title="Hot">
-                         <Button
-                           
-                            shape="circle"
-                           onClick={() => handleButtonClick("hot")}
-                           style={{
-                             backgroundColor:"red",
-                                 borderRadius: "50%", 
-                                 width: "31px", 
-                                 height: "31px"
-                           }}
-                         >
-                           {priority === "hot" && <CheckOutlined style={{ color: "white" }} />}
-                           </Button>
-                       </Tooltip>
-                       &nbsp;
-                       <Tooltip title="Warm">
-                         <Button
-                           
-                            shape="circle"
-             
-                           onClick={() => handleButtonClick("warm")}
-                           style={{
-                             backgroundColor:"orange",
-                                 borderRadius: "50%", 
-                                 width: "31px", 
-                                 height: "31px",
-                           }}
-                         >
-                           {priority === "warm" && <CheckOutlined style={{ color: "white" }} />}
-                           </Button>
-                       </Tooltip>
-                       &nbsp;
-                       <Tooltip title="Cold">
-                         <Button
-                           
-                            shape="circle"
-                   
-                           onClick={() => handleButtonClick("cold")}
-                           style={{
-                             backgroundColor:"teal",
-                                 borderRadius: "50%", // Set the borderRadius to 50% for a circular shape
-                                 width: "31px", // Adjust the width as needed
-                                 height: "31px"
-                           }}
-                           >
-                           {priority === "cold" && <CheckOutlined style={{ color: "white" }} />}
-                           </Button>
-                       </Tooltip>
-                     </div> */}
+                  <div class=" flex justify-between  w-3/5 max-sm:w-wk">                 
        <div className="flex">
-      <Tooltip title="Hot">
+      <Tooltip title= {translatedMenuItems[22]}  >
         <i
           className={`fas fa-mug-hot${priority === "hot" ? " selected" : ""}`}
           onClick={() => handleIconClick("hot")}
@@ -785,7 +653,7 @@ props.getInvestorCurrency();
         ></i>
       </Tooltip>
      
-      <Tooltip title="Warm">
+      <Tooltip title={translatedMenuItems[21]}>
         <i
           className={`fas fa-burn${priority === "warm" ? " selected" : ""}`}
           onClick={() => handleIconClick("warm")}
@@ -801,7 +669,7 @@ props.getInvestorCurrency();
         ></i>
       </Tooltip>
   
-      <Tooltip title="Cold">
+      <Tooltip title={translatedMenuItems[20]}>
         <i
           className={`far fa-snowflake${priority === "cold" ? " selected" : ""}`}
           onClick={() => handleIconClick("cold")}
@@ -820,12 +688,12 @@ props.getInvestorCurrency();
     </div>
                       </div>
 </div>
-<div class=" flex items-center justify-between">
-<div class=" text-xs w-w47.5 max-sm:w-wk">
-<label>  {translatedMenuItems[11]} </label>
+<div class=" flex items-center justify-between mt-1">
+<div class=" text-xs font-bold w-w47.5 max-sm:w-wk">
+{translatedMenuItems[11]}  
                     <Field
                       name="firstMeetingDate"
-                      label="Date"
+                      // label="Date"
                       component={DatePicker}
                       value={values.firstMeetingDate}
                       isColumn
@@ -833,20 +701,14 @@ props.getInvestorCurrency();
                     />
                   </div>
 
-                  <div class="text-xs  w-w47.5 max-sm:w-wk"> 
-                  <label>  {translatedMenuItems[12]} </label>              
+                  <div class="text-xs font-bold w-w47.5 max-sm:w-wk"> 
+                {translatedMenuItems[12]}      
                     <Field
                       name="shareCurrency"
                       isColumnWithoutNoCreate
                       defaultValue={{
                         value: props.currency_id
-                      }}
-                      // // label={
-                      // //   <FormattedMessage
-                      // //     id="app.currency"
-                      // //     defaultMessage="Currency"
-                      // //   />
-                      // }
+                      }}                    
                       width="100%"
                       isColumn
                       // selectType="currencyName"
@@ -861,16 +723,12 @@ props.getInvestorCurrency();
                   </div>
   </div>
                 </div>
-                <div class=" text-xs h-3/4 w-w47.5 max-sm:w-wk "  
-                >                <label>  {translatedMenuItems[13]} </label>
+                <div class=" text-xs font-bold h-3/4 w-w47.5 max-sm:w-wk "  
+                >           {translatedMenuItems[13]}  
+                {/* Assigned */}
                    <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
-        <>
-          {/* <Listbox.Label className="block font-semibold text-[0.75rem]"><FormattedMessage
-                                id="app.assignedto"
-                                defaultMessage="assignedto"
-                              />
-           </Listbox.Label> */}
+        <>       
           <div className="relative ">
               <Listbox.Button style={{ boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em" }} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}
@@ -933,12 +791,11 @@ props.getInvestorCurrency();
         </>
       )}
     </Listbox>
-
-    
-                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-3">                 
+                 <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col mt-1">
+                 {translatedMenuItems[14]}                 
                   <FieldArray
                     name="address"
-                    label="Address"
+                    // label="Address"
                     render={(arrayHelpers) => (
                       <AddressFieldArray
                         arrayHelpers={arrayHelpers}
@@ -948,13 +805,18 @@ props.getInvestorCurrency();
                   />
                   </div>
                   
-                <div class="mt-3">               
-                <label>  {translatedMenuItems[14]} </label>
-                {/* Notes */}
-                    <div>
-                  <div>
+                <div class="mt-3">   
+                <ReactDescription
+                setText={setText}
+                text={text}
+                />
+                  {/* <div>          
+                <span class=" font-bold text-xs font-poppins">{translatedMenuItems[15]} </span>  
+                Notes
+           
+                  <span>
                     <span onClick={SpeechRecognition.startListening}>
-                      <Tooltip title="Start">
+                      <Tooltip title={translatedMenuItems[19]}>
                         <span  >
                           <RadioButtonCheckedIcon className="!text-icon ml-1 text-red-600"/>
                         </span>
@@ -962,7 +824,7 @@ props.getInvestorCurrency();
                     </span>
 
                     <span onClick={SpeechRecognition.stopListening}>
-                      <Tooltip title="Stop">
+                      <Tooltip title={translatedMenuItems[18]}>
                         <span>
                           <StopCircleIcon className="!text-icon ml-1 text-green-600" />
                         </span>
@@ -970,13 +832,13 @@ props.getInvestorCurrency();
                     </span>
 
                     <span onClick={resetTranscript}>
-                      <Tooltip title="Clear">
+                      <Tooltip title={translatedMenuItems[17]}>
                         <span >
                           <RotateRightIcon  className="!text-icon ml-1"/>
                         </span>
                       </Tooltip>
                     </span>
-                  </div>
+                  </span>
                   <div>
                     <textarea
                       name="description"
@@ -986,7 +848,8 @@ props.getInvestorCurrency();
                       onChange={handletext}
                     ></textarea>
                   </div>
-                </div>
+              
+                </div> */}
                   </div>
                 </div>
               </div>
@@ -997,7 +860,7 @@ props.getInvestorCurrency();
                   htmlType="submit"
                   loading={props.addingPitch}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="create" />
+                             <div class=" text-xs font-bold font-poppins"> {translatedMenuItems[16]}</div>  
                   {/*                     
                     Create */}
                 </Button>
@@ -1024,7 +887,6 @@ orgId:auth.userDetails.organizationId,
   fullName: auth.userDetails.fullName,
   token: auth.token,
   organizationId: auth.userDetails.organizationId,
-  // countryDialCode:auth.userDetails.countryDialCode,
   sectors: sector.sectors,
   investorCurrencies: auth.investorCurrencies,
 });

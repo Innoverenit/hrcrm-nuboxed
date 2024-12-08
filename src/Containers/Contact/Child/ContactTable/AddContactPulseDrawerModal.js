@@ -14,7 +14,7 @@ class AddContactPulseDrawerModal extends Component {
       <div>
         <StyledDrawer
         title={this.props.contactData.fullName}
-          width="64%"
+          width="38%"
           visible={this.props.addDrawerContactPulseModal}
           closable
           placement="right"

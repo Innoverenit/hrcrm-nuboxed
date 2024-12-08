@@ -4,14 +4,11 @@ import { bindActionCreators } from "redux";
 import { Link, withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { Input } from "./styled";
-import { ValidationError, Title, SubTitle } from "../../Components/UI/Elements";
-import { FlexContainer } from "../../Components/UI/Layout";
+import { ValidationError} from "../../Components/UI/Elements";
 import Button from "antd/lib/button";
-import styled from "styled-components";
-import inno from "../../Assets/Images/logo_22.png"; //inn
-import { EyeInvisibleOutlined, EyeOutlined } from "@ant-design/icons";
-import FWLogo from "../../Assets/Images/name.jpg";  // for CT
- import FWLogo2 from "../../Assets/Images/nuboxnew.jpg";  // for NB
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import FWLogo from "../../Assets/Images/name.webp";  // for CT
 import { forgotUserPassword, validateOtpurL, verifyEmailurL } from "./AuthAction";
 
 class ForgotPassword extends Component {
@@ -55,27 +52,21 @@ class ForgotPassword extends Component {
   render() {
     return (
       <>
-        <div className="main" style={{ display: "flex", justifyContent: "space-evenly" }}>
+        <div className="main flex justify-evenly" >
 
           <div className="forgot_password">
 
-            <FlexContainer>
-              <AuthContainer
-                style={{
-                  backgroundColor: "white",
-                  flexDirection: "column",
-                  width: "100%",
-                }}
-              >
+          <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
+          <div class="  w-full  min-h-[100vh] overflow-auto flex flex-col justify-center items-center bg-white  ">
+           
                 <img
-                  className="big-logo"
-                  src={FWLogo}
-                  style={{ width: 200 }}
+                  className="w-18 h-18"
+                  src={FWLogo}           
                   alt="Tekorero logo"
                 />
-                <FormWrapper>
-                  <Title>Forgot Password</Title>
-                  <SubTitle>Link will be sent to your registered email id</SubTitle>
+           <div class=" p-4 w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-solid bg-white">
+                  <div class=" text-lg font-poppins font-bold text-black ">Forgot Password</div>
+                  <div class=" text-sm font-poppins text-black">Link will be sent to your registered email id</div>
                   <div class="mt-3" />
                   <Formik
                     initialValues={{
@@ -96,7 +87,7 @@ class ForgotPassword extends Component {
                     }}
                   >
                     {({ errors, touched, values, isSubmitting }) => (
-                      <Form style={{ width: "25vw" }}>
+                      <Form className=" w-[25vw]">
                         <div >
                           <div className="flex w-full">
                             <div className="w-[75%]" >
@@ -168,7 +159,6 @@ class ForgotPassword extends Component {
                           </div>
 
                           <div className="w-full flex" >
-
                             <div className="w-full" >
                               <Field
                                 name="password"
@@ -178,21 +168,20 @@ class ForgotPassword extends Component {
                               />
                             </div>
                             {this.state.show ? (
-                              <EyeOutlined
+                              <VisibilityIcon
                                 type="eye"
                                 onClick={this.handleClick}
                                 style={{ marginLeft: "-1.25em", marginTop: "-0.25em" }}
                                 size="24"
                               />
                             ) : (
-                              <EyeInvisibleOutlined
-                                type="eye-invisible"
+                              <VisibilityOffIcon
+                                // type="eye-invisible"
                                 onClick={this.handleClick}
                                 size="24"
                                 style={{ marginLeft: "-1.25em", marginTop: "-0.25em" }}
                               />
                             )}
-
                           </div>
 
                           <div className="w-full flex" >
@@ -206,30 +195,17 @@ class ForgotPassword extends Component {
                               />
                             </div>
                             {this.state.show1 ? (
-                              <EyeOutlined
+                              <VisibilityIcon  className=" !text-icon  -ml-5 -mt-1"
                                 type="eye"
                                 onClick={this.handleClick1}
-                                style={{
-                                  marginLeft: "-1.25em",
-                                  marginTop: "-0.25em",
-                                }}
-                              // style={{ size: 24 }}
-                              />
+                                />
                             ) : (
-                              <EyeInvisibleOutlined
+                              <VisibilityOffIcon  className=" !text-icon  -ml-5 -mt-1"
                                 type="eye-invisible"
                                 onClick={this.handleClick1}
-                                style={{
-                                  marginLeft: "-1.25em",
-                                  marginTop: "-0.25em",
-                                }}
-                            
                               />
-                            )}
-                          
-
+                            )}        
                           </div>
-
                         </div>
 
                         <div className="mt-4">
@@ -243,11 +219,9 @@ class ForgotPassword extends Component {
                               >
                                 Back to login
                               </Link>
-
-
                             </span>
 
-                            <Button
+                            <Button 
                               type="primary"
                               htmlType="submit"
                               loading={this.props.doResetpassword}
@@ -257,21 +231,19 @@ class ForgotPassword extends Component {
                               Save Password
                             </Button>
                           </span>
-                        </div>
-                     
-
+                        </div>                   
                       </Form>
                     )}
                   </Formik>
                  
-                </FormWrapper>
+                </div>
                 <div className="text-xs text-center font-poppins mt-auto text-black absolute bottom-0"
                  >
                   © {new Date().getFullYear()},  {` `} CloudHub, All rights reserved.
                 </div>
-              </AuthContainer>
+              </div>
 
-            </FlexContainer>
+            </div>
           </div>
         </div>
       </>
@@ -297,32 +269,3 @@ export default withRouter(
   connect(mapStateToProps, mapDispatchToProps)(ForgotPassword)
 );
 
-const AuthContainer = styled.div`
-  // width: 50%;
-  width:${(props) => props.width || "50%"}
-  min-height: 100vh;
-  overflow: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url(${(props) => props.backgroundImage});
-  background-size: cover;
-  @media only screen and (max-width: 37.5em) { 
-   width:100%
-  }
-`;
-const FormWrapper = styled.div`    
-padding: 1rem;
-width: ${(props) => props.width}
-     border-radius: 0.3rem;
-    box-shadow: 0em 0.25em 0.625em -0.125em #444;
-    border: 0.0625em solid #ddd;
-    background: #fff;
-    @media only screen and (max-width: 37.5em) {
-       width:89%
-         }
- @media only screen 
-and (min-device-width : 48em) 
-and (max-device-width : 64em)
-and (-webkit-min-device-pixel-ratio: 2){
-}`;

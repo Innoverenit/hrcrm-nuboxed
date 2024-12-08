@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Switch, Popconfirm, message } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 // import { sponsorSwitch } from "../../../../OpportunityAction";
 import { StyledModal } from "../../../../../../Components/UI/Antd";
 // import { handleSponsorModal } from "../../../../OpportunityAction";
@@ -40,11 +40,7 @@ class RecruitmentSwitchSponsor extends Component {
     return (
       <div>
         <Popconfirm
-          // title="Do you wish to proceed?"
-          title={<FormattedMessage
-            id="app.doyouwishtoproceed?"
-            defaultMessage="Do you wish to proceed?"
-          />}
+          title="Do you wish to proceed?"
           onConfirm={
             this.props.sponserId
               ? this.onChange

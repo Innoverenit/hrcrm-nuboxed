@@ -2,6 +2,7 @@ import * as types from "./ExpenseActionType";
 import axios from "axios";
 import dayjs from "dayjs";
 import { base_url } from "../../Config/Auth";
+import Swal from "sweetalert2";
 
 export const handleExpenseModal = (modalProps) => (dispatch) => {
   dispatch({ type: types.HANDLE_EXPENSE_MODAL, payload: modalProps });
@@ -45,13 +46,13 @@ export const addExpense = (expense, cb) => (dispatch) => {
  * Fetch an expense voucher by userId
  */
 
-export const getExpenseById = (userId) => (dispatch) => {
+export const getExpenseById = (pageNo,userId) => (dispatch) => {
   dispatch({
     type: types.GET_EXPENSE_BY_USER_ID_REQUEST,
   });
 
   axios
-    .get(`${base_url}/voucher/expense/user/${userId}`, {
+    .get(`${base_url}/voucher/expense/user/${pageNo}/${userId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -418,4 +419,36 @@ export const getExpenseStatusByExpenseId = (voucherId) => (dispatch) => {
 };
 export const handlePExpenseVoucherIdDrawer = (modalProps) => (dispatch) => {
   dispatch({ type: types.HANDLE_PEXPENSE_VOUCHERID_DRAWER, payload: modalProps });
+};
+
+
+export const searchExpenseList = (name,type) => (dispatch) => {
+  dispatch({
+    type: types.SEARCH_EXPENSE_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url}/expense/search/alltype/${name}/${type}`,
+      {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.SEARCH_EXPENSE_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Contact list is empty',
+        showConfirmButton: false,
+        timer: 1500,
+      })
+      dispatch({
+        type: types.SEARCH_EXPENSE_LIST_FAILURE,
+        payload: err,
+      });
+    });
 };

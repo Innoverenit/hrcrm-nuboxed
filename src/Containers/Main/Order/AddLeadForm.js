@@ -8,6 +8,34 @@ import { BundleLoader } from "../../../Components/Placeholder";
 const { Option } = Select;
 
 function AddLeadForm(props) {
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+      const fetchMenuTranslations = async () => {
+        try {
+          setLoading(true); 
+          const itemsToTranslate = [
+          "326" , // Department 0
+          "658",  // Location 1 
+           "677", // Lead 2
+           "154", // Submit 3
+
+
+        ];
+  
+          const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+          setTranslatedMenuItems(translations);
+          setLoading(false);
+        } catch (error) {
+          setLoading(false);
+          console.error('Error translating menu items:', error);
+        }
+      };
+  
+      fetchMenuTranslations();
+    }, [props.selectedLanguage]);
+
+
     useEffect(() => {
         props.getDepartments()
         props.getLocationList(props.orgId);
@@ -42,7 +70,9 @@ function AddLeadForm(props) {
                 <>
                     <div class=" flex justify-between">
                         <div className=" w-1/4">
-                            <label>Department</label>
+                            <div class="font-bold text-xs font-poppins text-black">
+                               {translatedMenuItems[0]} {/* Department*/}
+                                </div>
                             <Select
                                 className="w-[200px]"
                                 value={department}
@@ -55,7 +85,9 @@ function AddLeadForm(props) {
                         </div>
 
                         <div className=" w-1/4">
-                            <label>Location</label>
+                            <div class="font-bold text-xs font-poppins text-black"> {translatedMenuItems[1]}
+                                {/* Location */}
+                                </div>
                             <Select
                                 className="w-[200px]"
                                 value={location}
@@ -68,7 +100,9 @@ function AddLeadForm(props) {
                         </div>
 
                         <div className=" w-1/4">
-                            <label>Lead</label>
+                            <div class="font-bold text-xs font-poppins text-black"> {translatedMenuItems[2]}
+                                {/* Lead */}
+                                </div>
                             <Select
                                 className="w-[200px]"
                                 value={technician}
@@ -79,14 +113,15 @@ function AddLeadForm(props) {
                                 })}
                             </Select>
                         </div>
-                    </div>
-                    <div class=" flex justify-end">
+                        <div class=" flex justify-end">
                         <Button
                             loading={props.addingLead}
                             disabled={!technician.length}
                             type="primary"
                             onClick={handleSubmit}>Submit</Button>
                     </div>
+                    </div>
+                    
                 </>}
         </>
     );

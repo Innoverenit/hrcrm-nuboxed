@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer, } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const LocationUpdateForm=lazy(()=>import("./LocationUpdateForm"));
@@ -12,10 +12,8 @@ const LocationUpdateDrawer = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.updateLocation"
-          defaultMessage="Update Location"
-        />}
+        title="Update Location"
+        
         destroyOnClose
           closable
         width={drawerWidth}
@@ -23,7 +21,9 @@ const LocationUpdateDrawer = (props) => {
         onClose={() => handleUpdateLocationDrawer(false)}
       >
         <Suspense fallback={<BundleLoader />}>
-          <LocationUpdateForm   storedLoc={storedLoc}/>
+          <LocationUpdateForm   storedLoc={storedLoc}
+            translateText={props.translateText}
+            selectedLanguage={props.selectedLanguage}/>
         </Suspense>
       </StyledDrawer>
     </>

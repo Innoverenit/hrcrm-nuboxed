@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field} from "formik";
@@ -222,11 +222,8 @@ class ProjectForm extends Component {
                   <Field
                     isRequired
                     name="project"
-                    // label="Project"
-                    label={<FormattedMessage
-                      id="app.project"
-                      defaultMessage="Project"
-                    />}
+                    label="Project"
+                  
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -239,11 +236,8 @@ class ProjectForm extends Component {
                       <Field
                         isRequired
                         name="startTime"
-                        // label="Start Time"
-                        label={<FormattedMessage
-                          id="app.startTime"
-                          defaultMessage="Start Time"
-                        />}
+                        label="Start Time"
+                       
                         isColumn
                         component={TimePicker}
                         use12Hours
@@ -258,11 +252,8 @@ class ProjectForm extends Component {
                       <Field
                         isRequired
                         name="endTime"
-                        //label="End Time"
-                        label={<FormattedMessage
-                          id="app.endTime"
-                          defaultMessage="End Time"
-                        />}
+                        label="End Time"
+                       
                         isColumn
                         component={TimePicker}
                         use12Hours
@@ -274,70 +265,7 @@ class ProjectForm extends Component {
                       />
                     </div>
                   </div>
-                  
-                  {/* <FlexContainer justifyContent="space-between">
-                     <div class="w-[47.5%]">
-                      <Field
-                        isRequired
-                        name="endDate"
-                        label="End "
-                        component={DatePicker}
-                        isColumn
-                        value={values.endDate || values.startDate}
-                        defaultValue={dayjs("2015-01-01")}
-                        inlineLabel
-                        style={{
-                          flexBasis: "80%",
-                          height: "2.0625em",
-                          marginTop: "0.25em",
-                          width: "100%",
-                        }}
-                        disabledDate={(currentDate) => {
-                          if (values.startDate) {
-                            if (
-                              dayjs(currentDate).isBefore(
-                                dayjs(values.startDate)
-                              )
-                            ) {
-                              return true;
-                            } else {
-                              return false;
-                            }
-                          }
-                        }}
-                      />
-                    </div>
-    <div class="w-[47.5%]">
-                    
-                    </div>
-                  </FlexContainer> */}
-
-                  
-                  {/* <Field
-                    isRequired
-                    defaultValue={{ label: timeZone, value: userId }}
-                    name="timeZone"
-                    label="TimeZone "
-                    selectType="timeZone"
-                    isColumn
-                    margintop={"0.25em"}
-                    value={values.timeZone}
-                    component={SearchSelect}
-                    inlineLabel
-                    style={{ flexBasis: "50%" }}
-                  /> */}
-                  {/* 
-                  <FieldArray
-                    name="address"
-                    render={(arrayHelpers) => (
-                      <AddressFieldArray
-                        singleAddress
-                        arrayHelpers={arrayHelpers}
-                        values={values}
-                      />
-                    )}
-                  /> */}
-              
+                                                                      
                   {startDate ? (
                     <span>
                       {dayjs(startDate).isBefore(dayjs()) && (
@@ -365,11 +293,7 @@ class ProjectForm extends Component {
                   <div class="mt-3">
                   <Field
                     name="notesField"
-                    //label="Notes"
-                    label={<FormattedMessage
-                      id="app.eventDescription"
-                      defaultMessage="Notes"
-                    />}
+                    label="Notes"
                     isColumn
                     width={"100%"}
                     component={TextareaComponent}

@@ -14,33 +14,15 @@ import {
 } from "./CandidateAction";
 
 const CandidateHeader = lazy(() => import("./Child/CandidateHeader"));
-const CandidateWhiteTable = lazy(() =>
-  import("../Candidate/Child/CandidateWhiteTable")
-);
-const CandidateBlackListTable = lazy(() =>
-  import("../Candidate/CandidateBlackListTable")
-);
-const AddCandidateResumeModal = lazy(() =>
-  import("../Candidate/Child/AddCandidateResumeModal")
-);
-const CandidateBlueTable = lazy(() =>
-  import("../Candidate/Child/CandidateBlueTable")
-);
-const CandidateTable = lazy(() =>
-  import("./Child/CandidateTable/CandidateTable")
-);
-const CandidateMap = lazy(() =>
-  import("../Candidate/CandidateMap")
-);
-const AddCandidateFilterModal = lazy(() =>
-  import("../Candidate/Child/AddCandidateFilterModal")
-);
-const CandidateDollarTable = lazy(() =>
-  import("../Candidate/Child/CandidateTable/CandidateDollarTable")
-);
-const CandidateBillableStepper = lazy(() =>
-  import("../Dashboard/Child/BillableCandidate/CandidateBillableStepper")
-);
+const CandidateWhiteTable = lazy(() =>import("../Candidate/Child/CandidateWhiteTable"));
+const CandidateBlackListTable = lazy(() =>import("../Candidate/CandidateBlackListTable"));
+const AddCandidateResumeModal = lazy(() =>import("../Candidate/Child/AddCandidateResumeModal"));
+const CandidateBlueTable = lazy(() =>import("../Candidate/Child/CandidateBlueTable"));
+const CandidateTable = lazy(() =>import("./Child/CandidateTable/CandidateTable"));
+const CandidateMap = lazy(() =>import("../Candidate/CandidateMap"));
+const AddCandidateFilterModal = lazy(() =>import("../Candidate/Child/AddCandidateFilterModal"));
+const CandidateDollarTable = lazy(() =>import("../Candidate/Child/CandidateTable/CandidateDollarTable"));
+const CandidateBillableStepper = lazy(() =>import("../Dashboard/Child/BillableCandidate/CandidateBillableStepper"));
 const CandidateCardView = lazy(() => import("./CandidateCardView"));
 
 const Candidate = (props) => {
@@ -127,6 +109,8 @@ const Candidate = (props) => {
           handleSkillClear={handleClear}
           currentSkillData={currentSkillData}
           setCurrentSkillData={setCurrentSkillData}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         />
 
 {/* <AddCandidateModal
@@ -138,12 +122,16 @@ const Candidate = (props) => {
         <AddCandidateFilterModal
           addCandidateFilterModal={addCandidateFilterModal}
           handleCandidateFilterModal={handleCandidateFilterModal}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         />
          <AddCandidateResumeModal
           addCandidateResumeModal={addCandidateResumeModal}
           handleCandidateResumeModal={handleCandidateResumeModal}
           handleResponseData={handleResponseData}
           responseData={responseData}
+          translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
         />
 
         <Suspense fallback={<BundleLoader />}>
@@ -152,35 +140,46 @@ const Candidate = (props) => {
               viewType={viewType}
               handleResponseData={handleResponseData}
               responseData={responseData}
+              translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
             />
           ) : viewType === "dollar" ? (
-            <CandidateDollarTable viewType={viewType} />
+            <CandidateDollarTable viewType={viewType} 
+            translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}/>
             
           ) 
           : viewType === "billable" ? (
-            <CandidateBillableStepper viewType={viewType} />
+            <CandidateBillableStepper viewType={viewType} 
+            translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}/>
             
           ) 
           : viewType === "table" ? (
             <CandidateTable
-              // handleResponseData={this.handleResponseData}
-              // responseData={this.state.responseData}
               currentUser={currentUser}
-              // selectedLanguage={this.props.selectedLanguage}
+              translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}
 
             />
           ) : viewType === "list" ? (
             <CandidateWhiteTable 
-            currentUser={currentUser} />
+            currentUser={currentUser} 
+            translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}/>
           ) : viewType === "dashboard" ? (
-            <CandidateBlueTable currentUser={currentUser} />
+            <CandidateBlueTable currentUser={currentUser} 
+            translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}/>
           ) : viewType === "black" ? (
-            <CandidateBlackListTable />
-          ) : // this.props.viewType==="grid"?
-          // <CandidateGridTable/>:
-
+            <CandidateBlackListTable 
+            translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}/>
+          ) : 
           viewType === "map" ? (
-            <CandidateMap />
+            <CandidateMap 
+            translateText={props.translateText}
+          selectedLanguage={props.selectedLanguage}/>
           ) : null}
         </Suspense>
 

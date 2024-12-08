@@ -53,6 +53,9 @@ const initialState = {
   fetchingMileagesNotes: false,
   fetchingMileagesNotesError: false,
   mileageNotes: [],
+
+  fetchingMileageSearchedList: false,
+  fetchingMileageSearchedListError: false,
 };
 
 export const mileageReducer = (state = initialState, action) => {
@@ -261,6 +264,20 @@ export const mileageReducer = (state = initialState, action) => {
         fetchingMileagesNotes: false,
         fetchingMileagesNotesError: true,
       };
+
+      case types.SEARCH_MILEAGE_LIST_REQUEST:
+        return { ...state, fetchingMileageSearchedList: true };
+      case types.SEARCH_MILEAGE_LIST_SUCCESS:
+        return {
+          ...state,
+          fetchingMileageSearchedList: false,
+          MileageDat: action.payload,
+          
+        };
+      case types.SEARCH_MILEAGE_LIST_FAILURE:
+        return { ...state, fetchingMileageSearchedListError: true };
+
   }
+  
   return state;
 };

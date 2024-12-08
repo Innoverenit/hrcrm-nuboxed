@@ -3,19 +3,20 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Link, withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
-import { FormWrapper, Input } from "./styled";
+import { Input } from "./styled";
 import { ValidationError} from "../../Components/UI/Elements";
-import { FlexContainer } from "../../Components/UI/Layout";
 import Button from "antd/lib/button";
+import "./autoplaycarousel.scss";
+import { cardDetails } from "./carousel-config";
+import CarouselItem from "./CarouselItem";
 import { login, generateOtpByEmail, validateOtp } from "./AuthAction";
-import {
-  EyeInvisibleOutlined, EyeOutlined,
-} from "@ant-design/icons";
-import FWLogo1 from "../../Assets/Images/Screenshot (251).png";
-import FWLogo from "../../Assets/Images/name.jpg";//ct
-// import FWLogo1 from "../../Assets/Images/dsdde.jpg"; //ct
-import FWLogo2 from "../../Assets/Images/nuboxnew.jpg"; //nubox
-import DevelopTk from "../../Assets/Images/logo_22.png";// testhr
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import FWLogo from "../../Assets/Images/name.webp";//ct
+import FWLogo2 from "../../Assets/Images/nuboxnew.webp"; //nubox
+import DevelopTk from "../../Assets/Images/logo_22.webp";// testhr
+import KAPSSN from "../../Assets/Images/KAPSSNLogo.webp";// KPSSN
+import OneDi from "../../Assets/Images/1DiLogo.webp";//1Di 
 
 
 
@@ -36,11 +37,6 @@ class Login extends Component {
       type: type === "text" ? "password" : "text",
       show: !this.state.show,
     }));
-  // enterLoading = () => {
-  //   this.setState({ Loading: true });
-  //   setTimeout(() => this.setState({ Loading: false }), 3500);
-  // };
-
   submit = (values) => {
     // this.enterLoading();
     this.props.login(values, this.props.history);
@@ -77,25 +73,23 @@ class Login extends Component {
     console.log(this.props);
     return (
       <>
-        <div class="flex justify-between ">
-          <div class=" flex justify-center w-1/2 items-center md:min-h-screen max-sm:w-wk h-[80vh] "
-            style={{
-              // backgroundColor: "#F5F5F5",
-              backgroundColor: "white",
-              flexDirection: "column",
-              position: "relative",
-              margin: "auto",
-            }}
-          >
-            <img
-              className="big-logo"
-              src={ DevelopTk }
-              style={{ width: 200 }}
+        <div class="flex justify-between p-4">
+          
+          <div class=" flex flex-col bg-[#fffafa] relative justify-center w-1/2 items-center md:min-h-screen max-sm:w-wk h-[80vh] ">
+             {/* <div className=" text-xxl font-bold font-poppins"> Welcome to Korero.</div> */}
+             
+             <div className=" flex justify-start ">
+              <img
+              className="w-[9rem] h-12"
+              src={DevelopTk}
               alt="Tekorero logo"
-            />
+            /></div>
+            
             <br />
+            <div className=" text-2xl font-bold font-poppins">Log in</div>
+            <div className=" text-sm font-poppins">Welcome back! Please enter your details.</div>
 
-            <FormWrapper width="25em">
+            <div class="w-[25rem] p-4 max-sm:w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-box bg-white border-2">
               <Formik
                 enableReinitialize
                 initialValues={{
@@ -118,7 +112,7 @@ class Login extends Component {
                       component={this.InputComponent}
                     />
                     <div class="mt-3" />
-                    <FlexContainer justifyContent="space-between" style={{ alignItems: "center" }} >
+                    <div class=" flex flex-row flex-wrap items-center self-start justify-between grow shrink h-auto mr-auto ">
                       <div className=" flex flex-row w-full">
                         <div class=" w-full">
                           <Field
@@ -129,63 +123,25 @@ class Login extends Component {
                           />
                         </div>
                         {this.state.show ? (
-                          <EyeOutlined
+                          <VisibilityIcon
                             type="eye"
                             onClick={this.handleClick}
                             style={{ alignSelf: "center", marginLeft: "-1.25rem" }}
                             size="24"
+                            className=" text-xs"
                           />
                         ) : (
-                          <EyeInvisibleOutlined
+                          <VisibilityOffIcon
                             type="eye-invisible"
                             onClick={this.handleClick}
-                            size="24"
+                            // size="24"
                             style={{ alignSelf: "center", marginLeft: "-1.25rem" }}
+                                  className=" text-xs"
                           />
                         )}
-                      </div>
-                      {/* <div >
-                        <Button
-                          type="primary"
-                          onClick={() => {
-                            this.props.generateOtpByEmail({
-                              userName: values.userName
-                            })
-                          }}
-
-                        >
-                          <ArrowRightOutlined />
-                        </Button>
-                      </div> */}
-
-                    </FlexContainer>
-                    <div class="mt-3" />
-                    {/* <FlexContainer justifyContent="space-around" style={{alignItems:"center"}}>                      
-                      <div >
-                        <Field
-                          name="otp"
-                          placeholder="Enter OTP"
-                          component={InputComponent}
-                        />
-                      </div>
-                    {values.otp  && (
-                      <div >
-                        <Button
-                          type="primary"
-                      //disabled={!values.otp}
-                          onClick={() => {
-                            this.props.validateOtp({
-                              otp: values.otp,
-                              userName: values.userName
-                            })
-                          }}
-                        >
-                          Validate
-                        </Button>                      
-                      </div>
-                      )} 
-                    </FlexContainer>
-                    <div class="mt-3" /> */}
+                      </div>           
+                    </div>
+                    <div class="mt-3" />                
                     <Button
                       type="primary"
                       htmlType="submit"
@@ -205,18 +161,32 @@ class Login extends Component {
               >
                 Forgot password?
               </Link>
-            </FormWrapper>
+            </div>
             <div class="mt-3" />
 
 
           </div>
-          <div class="w-1/2 flex justify-center  max-sm:hidden">
-            <img
-              className="big-logo"
-              src={FWLogo1}
-              style={{}}
-              alt="Tekorero logo"
-            />
+          <div class="w-1/2 flex justify-center flex-col items-center max-sm:hidden  overflow-x-auto bg-blue-400">
+          <div className=" flex flex-col mt-8">
+            <div class=" text-2xl text-white"> Simplify Your Workflow: Let Automation Drive Your Success 🚀</div>
+            <div class="flex mt-2  text-white justify-center text-base">Transform Your Lead Management with CRM Automation</div>
+            <div class=" flex mt-2  text-white justify-center text-base">Say goodbye to missed opportunities and manual task tracking</div>
+        </div>
+
+        
+            <div className="carousel-container">
+      <div className="carousel-track ">
+
+        {Object.keys(cardDetails).map((detailKey) => {
+          return (
+            <CarouselItem 
+              imgUrl={cardDetails[detailKey].imgUrl}
+              imgTitle={cardDetails[detailKey].title}
+            ></CarouselItem>
+          );
+        })}
+      </div>
+    </div>
           </div>
 
         </div>

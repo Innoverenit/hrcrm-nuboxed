@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
-import { FormattedMessage } from "react-intl";
-import { Spacer } from "../../../Components/UI/Elements";
+
 import { Formik, Form, Field, FastField } from "formik";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
@@ -57,9 +56,7 @@ function CourseForm(props) {
                   isRequired
                   name="courseName"
                   type="text"
-                  label={
-                    <FormattedMessage id="app.name" defaultMessage="Name" />
-                  }
+                  label="Name"
                   isColumn
                   width={"100%"}
                   component={InputComponent}
@@ -71,12 +68,8 @@ function CourseForm(props) {
                       isRequired
                       name="duration"
                       type="text"
-                      label={
-                        <FormattedMessage
-                          id="app.duration"
-                          defaultMessage="Duration"
-                        />
-                      }
+                      label="Duration"
+                       
                       isColumn
                       width={"100%"}
                       component={InputComponent}
@@ -87,12 +80,8 @@ function CourseForm(props) {
                     <FastField
                       name="drtnType"
                       type="text"
-                      label={
-                        <FormattedMessage
-                          id="app.duration"
-                          defaultMessage="Duration(months)"
-                        />
-                      }
+                      label="Duration(months)"
+                       
                       options={["Hours", "Days", "Month", "Years"]}
                       component={SelectComponent}
                       inlineLabel
@@ -105,9 +94,7 @@ function CourseForm(props) {
                     <Field
                       name="price"
                       //label="State"
-                      label={
-                        <FormattedMessage id="price" defaultMessage="Price" />
-                      }
+                      label="Price" 
                       component={InputComponent}
                       isColumn
                       width="100%"
@@ -118,12 +105,8 @@ function CourseForm(props) {
                       name="currencyName"
                       isColumnWithoutNoCreate
                       placeholder="Currency"
-                      label={
-                        <FormattedMessage
-                          id="app.currency"
-                          defaultMessage="Currency"
-                        />
-                      }
+                      label="Currency"
+                      
                       isColumn
                       selectType="currencyName"
                       isRequired
@@ -145,10 +128,10 @@ function CourseForm(props) {
               </div>
             </div>
 
-            <Spacer />
+            <div class=" mt-3" />
             <div class=" flex justify-end">
               <Button type="primary" htmlType="submit" loading={addingCourse}>
-                <FormattedMessage id="app.create" defaultMessage="Create" />
+               Create
               </Button>
             </div>
           </Form>

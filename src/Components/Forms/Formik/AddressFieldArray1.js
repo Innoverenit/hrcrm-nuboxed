@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import { Button, Icon, Tooltip } from "antd";
+import {Tooltip } from "antd";
 import { Field } from "formik";
-import { EnvironmentOutlined } from '@ant-design/icons';
-import { FlexContainer } from "../../UI/Layout";
-import { Spacer, StyledLabel } from "../../UI/Elements";
+import AddLocationAltIcon from '@mui/icons-material/AddLocationAlt';
 import FormikPlacesAutoComplete from "./FormikPlacesAutoComplete";
 import { InputComponent } from "../Formik/InputComponent";
-import { SelectComponent } from "../Formik/SelectComponent";
 class AddressFieldArray1 extends Component {
     render() {
         console.log(this.props);
@@ -14,12 +11,12 @@ class AddressFieldArray1 extends Component {
         console.log(singleAddress);
         return (
             <div >
-                <Spacer />
+                <mt-3 />
                 {values &&
                     values.loadingAddress.map((loadingAddress, index) => (
                         <div>
                             <div key={index} style={{ display: "flex", width: "100%" }}>
-                                <EnvironmentOutlined
+                                <AddLocationAltIcon
                                     // type="environment"
                                     style={{
                                         fontSize: "1.2em",
@@ -35,67 +32,21 @@ class AddressFieldArray1 extends Component {
                                     options={{}}
 
                                 />
-                                {/* <FormikPlacesAutoComplete /> */}
+                              
                                 <div
-                                //style={{ marginTop: "0.4375em" }}
-                                >
-                                    {/* {!singleAddress && (
-                    <Button
-                      type="primary"
-                      htmlType="button"
-                      onClick={() =>
-                        arrayHelpers.push({
-                          addressType: "",
-                          address1: "",
-                          address2: "",
-                          town: "",
-                          street: "",
-                          city: "",
-                          state: "",
-                          postalCode: "",
-                          country: "",
-                          latitude: "",
-                          longitude: "",
-                        })
-                      }
-                    >
-                      +
-                    </Button>
-                  )} */}
+            
+                                >                       
                                 </div>
 
                                 <div
-                                // style={{ marginTop: "0.4375em" }}
+                                
                                 >
-                                    {/* {!singleAddress && (
-                    <Button
-                      type="primary"
-                      htmlType="button"
-                      onClick={() => arrayHelpers.remove(index)}
-                    >
-                      -
-                    </Button>
-                  )} */}
+                                    
                                 </div>
                             </div>
-                            {/* {!singleAddress && (
-                <Button
-                  type="primary"
-                  htmlType="button"
-                  onClick={() => arrayHelpers.remove(index)}
-                >
-                  -
-                </Button>
-              )} */}
+                           
                             <span>
-                                {/* <Field
-                                name={`address[${index}].addressType`}
-                                label='Type'
-                                component={SelectComponent}
-                                options={['Office', 'Communication', 'Headquarters', 'Registered']}
-                                inlineLabel
-                                style={{ flexBasis: '80%' }}
-                            /> */}
+                              
                                 <p class="text-xs"
                                     style={{
                                         fontWeight: "bold",
@@ -182,22 +133,9 @@ class AddressFieldArray1 extends Component {
                                     </div>
                                 </div>
 
-                                <FlexContainer justifyContent="space-between">
-                                    {/* <div style={{ width: "47%" }}>
-                    <Tooltip title="Use Location feature for easy search ">
-                      <Field
-                        name={`loadingAddress.${index}.country`}
-                        label="Country"
-                        disabled
-                        component={InputComponent}
-                        isColumn
-                        width={"100%"}
-                        inlineLabel                       
-                      />
-                    </Tooltip>
-                  </div> */}
-
-                                </FlexContainer>
+                                <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+                          
+                                </div>
                             </span>
                         </div>
                     ))}

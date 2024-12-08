@@ -1,7 +1,40 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
 
 class SupplierOverDetailView extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+       
+      "188",  // "City",
+       "1261",   // "State",
+      "1236",   // "Pincode",
+      "1109",  // "Country",
+      "186",   // "Street" 
+            ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
   render() {
     console.log(this.props.supplier);
     const {
@@ -12,35 +45,18 @@ class SupplierOverDetailView extends Component {
     return (
       <>
         <ShipperItemRow
-            label={
-              <FormattedMessage id="app.street" defaultMessage="Street" />
-            }
+            label={this.state.translatedMenuItems[4]}
           value={addresses && addresses[0].street}
         />
         <ShipperItemRow 
-           label={
-            <FormattedMessage id="app.city" defaultMessage="City" />
-          }
+           label={this.state.translatedMenuItems[0]}
+          
         value={addresses && addresses[0].city} />
         <ShipperItemRow
    
-         label={
-          <FormattedMessage id="app.state" defaultMessage="State" />
-        }
+         label={this.state.translatedMenuItems[1]}
           value={addresses && addresses[0].state} />
-        <ShipperItemRow
-            label={
-              <FormattedMessage id="app.pincode" defaultMessage="Pincode" />
-            }
-            value={addresses && addresses[0].pinCode}
-        />
-        <ShipperItemRow
-             label={
-              <FormattedMessage id="app.country" defaultMessage="Country" />
-            }
-     
-          value={addresses && addresses[0].country}
-        />
+      
       </>
     );
   }

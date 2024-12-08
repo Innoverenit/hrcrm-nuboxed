@@ -1,4 +1,4 @@
-import React, { Component,lazy } from "react";
+import React, { Component,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledTable, } from "../../../../Components/UI/Antd";
@@ -7,7 +7,7 @@ import { Switch } from "antd";
 import { getEmailCredentials } from "../Email/EmailAction";
 import { handleUpdateEmailModal } from "../../../Settings/SettingsAction";
 import { setEditEmail } from "../../../Settings/SettingsAction";
-import { EditOutlined } from "@ant-design/icons";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 const UpdateEmailModal = lazy(() => import('./UpdateEmailModal'))
 class EmailTable extends Component {
   componentDidMount() {
@@ -76,7 +76,7 @@ class EmailTable extends Component {
         render: (name, item, i) => {
           //debugger
           return (
-            <EditOutlined
+            <VisibilityIcon
               type="edit"
               style={{ cursor: "pointer" }}
               onClick={() => {
@@ -108,10 +108,13 @@ class EmailTable extends Component {
               scroll={{ y: 280 }}
           pagination={false}
             />
+            <Suspense fallback={<BundleLoader />}>
             <UpdateEmailModal
               addUpdateEmailModal={addUpdateEmailModal}
               handleUpdateEmailModal={handleUpdateEmailModal}
-            />
+              selectedLanguage={this.props.selectedLanguage}
+            translateText={this.props.translateText} 
+            /></Suspense>
           </>
         )}
       </>

@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PeopleIcon from '@mui/icons-material/People';
 import TocIcon from '@mui/icons-material/Toc';
-import { FlexContainer } from "../../../Components/UI/Layout";
 import { StyledSelect } from "../../../Components/UI/Antd";
 import { Avatar, Tooltip, Badge } from "antd";
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
@@ -20,7 +19,7 @@ class TeamsActionLeft extends React.Component {
 
     return (
       <>
-        <FlexContainer alignItems="center">
+       <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
           {/* {user.functionName !== "Customer Care" && ( */}
           <Tooltip title="Performance Management">
           <Badge
@@ -35,7 +34,7 @@ class TeamsActionLeft extends React.Component {
                 color: viewType === "client" && "#1890ff",
               }}
             >
-               <Avatar style={{ background: this.props.viewType === "client" ? "#f279ab" : "#4bc076" }}>
+               <Avatar style={{ background: this.props.viewType === "client" ? "#f279ab" : "#28a355" }}>
             <div className="text-white !text-icon"> <ManageAccountsIcon className="!text-2xl cursor-pointern  " /></div>
             </Avatar>
               
@@ -50,7 +49,7 @@ class TeamsActionLeft extends React.Component {
                     color: viewType === "table" && "#1890ff",
                   }}
                   onClick={() => setTeamsViewType("table")}>
-                    <Avatar style={{ background: this.props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+                    <Avatar style={{ background: this.props.viewType === "table" ? "#f279ab" : "#28a355" }}>
             <div className="text-white !text-icon"> <TocIcon className="!text-2xl cursor-pointer "/></div>
             </Avatar>
                   
@@ -68,30 +67,19 @@ class TeamsActionLeft extends React.Component {
                   color: viewType === "teams" && "#1890ff",
                 }}
               >
-                  <Avatar style={{ background: this.props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+                  <Avatar style={{ background: this.props.viewType === "teams" ? "#f279ab" : "#28a355" }}>
             <div className="text-white !text-icon"> <PeopleIcon className="!text-2xl cursor-pointer"/></div>
             </Avatar>
             
               </span>
             </Badge>
             </Tooltip>
-          {/* )} */}
+        
 
        
 
-          {/* <Tooltip title="Inventory">
-            <span
-              onClick={() => setTeamsViewType("inventory")}
-              style={{
-                marginRight: "0.5rem",
-                color: viewType === "inventory" && "#1890ff",
-              }}
-            >
-              <FontAwesomeIcon icon={solid('warehouse')} />
-            </span>
-          </Tooltip> */}
 
-        </FlexContainer>
+        </div>
       </>
     );
   }

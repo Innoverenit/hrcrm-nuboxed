@@ -16,6 +16,8 @@ class CollectionHeader extends Component {
         <ActionHeader
           leftComponent={
             <CollectionActionLeft
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
               setCollectionViewType={setCollectionViewType}
               setCustomerSubViewType={this.props.setCustomerSubViewType}
               setDistributorViewType={this.props.setDistributorViewType}

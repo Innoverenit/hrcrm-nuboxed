@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../Components/Placeholder";
 import { StyledDrawer } from "../../../Components/UI/Antd";
 const AddPartnerForm=lazy(()=>import ("./AddPartnerForm"));
@@ -8,10 +8,8 @@ const AddPartnerModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.vendor"
-          defaultMessage="Vendor"
-        />}
+        title="Vendor"
+       
         width="60%"
         height="50%"
         visible={props.addPartnerModal}

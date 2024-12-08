@@ -1,11 +1,9 @@
 import React from 'react';
 import { withRouter } from "react-router-dom";
-import { FormattedMessage } from "react-intl";
-import { FlexContainer } from "../../../../../Components/UI/Layout/";
-import { Button } from "antd";
+
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { RollbackOutlined } from "@ant-design/icons";
+import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 import StatusToggleID from './AssessmentCards/StatusToggleID';
 
 function AssessmentDetailsActionLeft(props) {
@@ -17,15 +15,11 @@ function AssessmentDetailsActionLeft(props) {
     
         <div style={{display:"flex",flexDirection:"row",justifyContent:"space-between" }}>
           <div style={{margin:"auto"}}>
-        <RollbackOutlined
+        <KeyboardReturnIcon
           class="mr-[0.3rem]" 
             iconType="rollback"
-           tooltipTitle={
-            <FormattedMessage
-              id="app.back"
-              defaultMessage="Back"
-            />
-          }
+           tooltipTitle="Back"
+           
         onClick={() => props.history.goBack()}
         />
         </div>

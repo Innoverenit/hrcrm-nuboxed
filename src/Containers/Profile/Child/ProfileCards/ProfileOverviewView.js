@@ -1,12 +1,9 @@
 import React, { Component,lazy } from "react";
 import { Formik, Form, Field } from "formik";
-import { FormattedMessage } from "react-intl";
 import { Button } from "antd";
 import { handleMapModal } from "../../ProfileAction";
 import axios from "axios";
-import {
-  EditOutlined,
-} from '@ant-design/icons';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import { base_url } from "../../../../Config/Auth";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
 import FormikPlacesAutoComplete from "../../../../Components/Forms/Formik/FormikPlacesAutoComplete";
@@ -135,13 +132,11 @@ class ProfileOverviewView extends Component {
               size="1em"
             />{" "} */}
           
-            <EditOutlined
+            <VisibilityIcon className=" !text-icon  ml-4"
               tooltipTitle="Edit"
               iconType="edit"
               onClick={toggleViewType}
-              size="1em"
-              style={{marginLeft:"1rem"}}
-            />
+             />
           </div>
         </div>
 
@@ -175,7 +170,7 @@ class ProfileOverviewView extends Component {
               <div class=" flex justify-between items-start flex-no-wrap"
               >
                 <div>
-                  <div className="product3" style={{ width: "180" }}>
+                  <div classname="flex flex-col w-[11rem] h-[40%] px-2 py-5 bg-[f5f5f5] justify-left items-left mb-2 mt-2">
                     {address &&
                       address.map((components, i) => (
                         <AddressComponent
@@ -337,18 +332,12 @@ class AddressField extends Component {
                 />
 
                 <Button type="primary" htmlType="submit">
-                  {/* Save */}
-                  <FormattedMessage
-              id="app.save"
-              defaultMessage="Save"
-            />
+                  Save
+                 
               </Button>
                 <Button type="default" onClick={handleAddAddressVisible}>
-                  {/* Cancel */}
-                  <FormattedMessage
-              id="app.cancel"
-              defaultMessage="Cancel"
-            />
+                  Cancel
+                
               </Button>
               </Form>
             )}

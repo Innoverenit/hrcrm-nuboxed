@@ -1,6 +1,6 @@
-import React, {  useEffect, useState,lazy } from "react";
+import React, {  useEffect, useState,lazy,Suspense } from "react";
 import { MultiAvatar2, } from '../../../Components/UI/Elements'
-import {  Tooltip, Badge } from 'antd'
+import {  Tooltip } from 'antd'
 import { connect } from 'react-redux'
 import MonitorHeartIcon from "@mui/icons-material/MonitorHeart";
 import { bindActionCreators } from 'redux'
@@ -14,8 +14,8 @@ import VolumeUpIcon from '@mui/icons-material/VolumeUp';
 import {getEmployeeTreeMap} from "../../Employees/EmployeeAction"
 import { BundleLoader } from "../../../Components/Placeholder";
 import { getreportingManager,handleperformanceDrawerModal,handleTeamsPulseDrawerModal } from "./TeamsAction";
-import HandlePulseDrawerModal from "./TeamsCard.js/HandlePulseDrawerModal";
 const HandleperformanceModal = lazy(() => import("./HandleperformanceModal"));
+const  HandlePulseDrawerModal = lazy(() => import("./TeamsCard.js/HandlePulseDrawerModal"));
 
 
 const { Option } = Select;
@@ -35,7 +35,6 @@ const handleStoredData=(locs)=>{
 useEffect(() => {
   props.getreportingManager(props.reptMngrId);
 
- 
 }, []);
 function handleChange(data) {
   props.Candidatesorttype(props.userId,data);
@@ -69,15 +68,10 @@ function handleSetCurrentEmployeeId(employeeId,) {
   } = props;
   if (fetchingRepoting) {
     return <BundleLoader/>
-  
-    
 ;
   }
-
-    return (
-      
-            <>
-            
+    return ( 
+            <>        
             <div class=" h-h86 overflow-auto overflow-x-auto">
              
             <div class="flex flex-wrap w-full justify-start max-sm:justify-between max-sm:flex-col max-sm:items-center"> 
@@ -86,7 +80,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
                 console.log("noOfDocPending",item.noOfDocPending)
       
                  return (
-                  <div class="rounded border-2 bg-[#ffffff] shadow-[0_0.25em_0.62em] shadow-[#aaa] h-[9.5rem] 
+                  <div class="rounded border-2 bg-[#ffffff]  shadow-[#aaa] h-[9.5rem] 
                   text-[#444444] m-1 p-1 w-[16rem] flex flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE] ">
                       <div class="w-[200] flex h-[200]">
                    <Tooltip 
@@ -108,85 +102,51 @@ function handleSetCurrentEmployeeId(employeeId,) {
                       
                       <div class="font-semibold ml-2 ">
                       {item.fullName}
-                        {/* <Header>
-                        <EmployeeDetailsView
-   employeeId={item.employeeId}
-   fullName=
-          />       
-                        </Header>  */}
+                 
                         </div>
-                        </div> 
-        
-                         
-                        </div>
-                        
-                        <div class=" flex flex-row justify-evenly  w-full items-end">
-                       
-                     
+                        </div>             
+                        </div>                     
+                        <div class=" flex flex-row justify-evenly  w-full items-end">               
                       <div class=" font-normal text-xs  font-poppins">{item.department === null ? "Not Available" :item.department}</div>
                       <div class=" font-normal text-xs  font-poppins">{item.roleTypeName  === null ? "Not Available" :item.roleTypeName}</div>
-          
-                   
-                      
-                        <div >
-                       
-                      
-          </div>
-          
-                      </div> 
-                   
+                      <div >                   
+          </div>      
+                      </div>                  
                        <div class=" font-normal text-xs  font-poppins mt-2 "><VolumeUpIcon style={{fontSize:"0.75rem"}}/> {`${item.countryDialCode} ${item.mobileNo}`}</div>
           <div class=" font-normal text-xs  mt-2  font-poppins "><DraftsIcon style={{fontSize:"0.75rem"}} /> {item.emailId}</div>
           <div class=" font-normal text-xs mt-2  font-poppins ">Reports To:  {item.reportingManagerName}</div>
           <div class=" flex flex-row justify-between mt-[0.3rem] w-full items-end">
-          <div class=" font-normal text-xs  font-poppins ">
-       
-          <span
-              style={{ cursor: "pointer" }}
-            
-            >
-              
-              {item.locationName}
-         
+          <div class=" font-normal text-xs  font-poppins ">  
+          <span className="cursor-pointer"  
+            >         
+              {item.locationName}     
      </span>
-   
            </div>
            <div className="flex">
           <div class=" font-normal text-xs  font-poppins ">
-          <span
-              style={{ cursor: "pointer" }}
+          <span className="cursor-pointer"     
               onClick={() => {
                 props.getEmployeeTreeMap(item.employeeId);
                 props.handleperformanceDrawerModal(true);
                 handleSetCurrentCustomer(item);
                handleRowData(item);
-              }}
-             
-            
-          
+              }}  
             >
                 <Tooltip title="Pulse">
-              <MonitorHeartIcon   className=" !text-base cursor-pointer text-[#df9697]"/>
+              <MonitorHeartIcon   className=" !text-icon cursor-pointer text-[#df9697]"/>
               </Tooltip>
      </span>
            </div>
            <div class=" font-normal text-xs  font-poppins ml-[0.15rem] ">
           
-          <span
-              style={{ cursor: "pointer" }}
+          <span className="cursor-pointer"
               onClick={() => {
                
                 props.handleTeamsPulseDrawerModal(true);
                 handleSetCurrentCustomer(item);
                handleRowData(item);
-              }}
-          
-            >
-                   {/* <Badge
-                   style={{  fontSize:"0.75em",height:"18px" ,width:"5px"}}
-                count={item.noOfDocPending}
-                overflowCount={999}
-              >  */}
+              }}         
+            >                
               <InsertDriveFileIcon  className="!text-base cursor-pointer text-[#0e9590d6]"/>
               {/* </Badge> */}
      </span>
@@ -196,13 +156,9 @@ function handleSetCurrentEmployeeId(employeeId,) {
            <Tooltip 
                    title={`${item.workplace} , ${item.location}`}
                    >
-          <span
-              style={{ cursor: "pointer" }}
-            
-            >
-              
-              <PlaceIcon  className=" !text-base cursor-pointer text-[#960a0a]"/>
-         
+          <span className="cursor-pointer"           
+            >            
+              <PlaceIcon  className=" !text-base cursor-pointer text-[#960a0a]"/>  
      </span>
      </Tooltip>
            </div>
@@ -210,10 +166,7 @@ function handleSetCurrentEmployeeId(employeeId,) {
            <Tooltip title="Notify">
            <CircleNotificationsIcon
            className=" !text-base cursor-pointer text-[gold]"
-        //    onClick={() => {
-        //     handleSetCurrentEmployeeId(item);
-        //     props.handleNotifyDrawer(true);
-        //    }}
+  
            />
            </Tooltip>
             </div>
@@ -221,29 +174,19 @@ function handleSetCurrentEmployeeId(employeeId,) {
            {/* {user.userUpdateInd === true || user.role === "ADMIN"  ? ( */}
             <Tooltip title="Edit">
               <BorderColorIcon
-                 className=" !text-base cursor-pointer text-[tomato]"
-                // onClick={() => {
-                //     props.setEditEmployee(item);
-                //     handleStoredData(item);
-                //     props.handleUpdateEmployeeModal(true);
-                //     handleSetCurrentEmployeeId(item);
-                  
-                // }}
+                 className=" !text-base cursor-pointer text-[tomato]"      
               />
             </Tooltip>
             {/* ):null} */}
            </div>
            </div>
-           </div>
-         
-                     
-                     
-
+           </div>        
                     </div>
                  )  
             })}
               </div>
               </div>
+              <Suspense fallback={<BundleLoader />}>
               <HandleperformanceModal
                  rowdata={rowdata}
                  employeeTreeMap={props.employeeTreeMap}
@@ -257,12 +200,9 @@ function handleSetCurrentEmployeeId(employeeId,) {
                  handleTeamsPulseDrawerModal={props.handleTeamsPulseDrawerModal}
          handleSetCurrentCustomer={handleSetCurrentCustomer}
       />
-
+</Suspense>
             </>
-      
-    
-    )
-              
+    )            
 }
 
 const mapStateToProps = ({ auth,teams,employee }) => ({

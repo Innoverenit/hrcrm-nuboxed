@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  Tooltip } from "antd";
 import { getExpenseById,handlePExpenseVoucherIdDrawer,getPendingExpense,deleteExpense } from "../ExpenseAction";
-import { DeleteOutlined, } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import dayjs from "dayjs";
 import { BundleLoader } from "../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
+
 import { StyledPopconfirm } from "../../../Components/UI/Antd";
 
 const PExpenseVoucherIdDrawer =lazy(()=>import("./PExpenseVoucherIdDrawer"));
@@ -44,7 +44,7 @@ return <BundleLoader/>
 }
     return (
       <>
-        <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1] max-sm:w-wk">
+        <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white] max-sm:w-wk">
          <div className="p-0.5 inline-flex items-center rounded-md w-max ml-1">
             <span className="pl-2 pr-4 relative">
               <span
@@ -120,16 +120,10 @@ return <BundleLoader/>
                                   </div>
                               </div>
                               <StyledPopconfirm
-           // title="Do you want to delete?"
-           title={
-             <FormattedMessage
-               id="app.doyouwanttodelete?"
-               defaultMessage="Do you want to delete?"
-             />
-           }
+           title="Do you want to delete?"
            onConfirm={() =>   props.deleteExpense(item.voucherId)}
          >
-              <DeleteOutlined
+              <DeleteOutlineIcon
                 type="delete"
                 style={{ cursor: "pointer" }}
                 // onClick={() => {

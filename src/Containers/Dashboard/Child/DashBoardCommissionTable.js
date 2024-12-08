@@ -2,11 +2,11 @@
  import React, { useEffect, useState } from "react";
  import { connect } from "react-redux";
  import { bindActionCreators } from "redux";
- import { FormattedMessage } from "react-intl";
+ 
  import { Tooltip, Icon,Input,Button, Table,  InputNumber, Popconfirm, Form, Typography  } from "antd";
  import Highlighter from 'react-highlight-words';
  import { CurrencySymbol } from "../../../Components/Common";
- import moment from "moment";
+ import dayjs from "dayjs";
  import { StyledTable, StyledPopconfirm } from "../../../Components/UI/Antd";
  import { MultiAvatar, SubTitle } from "../../../Components/UI/Elements";
  import { BundleLoader } from "../../../Components/Placeholder";
@@ -18,7 +18,7 @@
  // import UpdateOpportunityModal from "../UpdateOpportunity/UpdateOpportunityModal";
  import APIFailed from "../../../Helpers/ErrorBoundary/APIFailed";
 import { dashboardReducer } from "../DashboardReducer";
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
  
  function onChange(pagination, filters, sorter) {
    console.log("params", pagination, filters, sorter);
@@ -68,7 +68,7 @@ import { SearchOutlined } from "@ant-design/icons";
              <Button
                type="primary"
                onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-                icon={<SearchOutlined />}
+                icon={<SearchIcon />}
                //icon="search"
                size="small"
                style={{ width: 90 }}
@@ -97,8 +97,8 @@ import { SearchOutlined } from "@ant-design/icons";
          </div>
        ),
        filterIcon: (filtered) => (
-         // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-         <SearchOutlined type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+         // <SearchIcon style={{ color: filtered ? "#1890ff" : undefined }} />
+         <SearchIcon type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
        ),
        onFilter: (value, record) =>
          record[dataIndex]
@@ -159,11 +159,9 @@ import { SearchOutlined } from "@ant-design/icons";
  
      {
        //title: "Name",
-       title: <FormattedMessage
-         id="app.month(Year)"
-         defaultMessage="Month(Year)"
+       title: "Month(Year)"
       
-       />,
+     ,
        width:"14%",
  
        dataIndex: "requirement",
@@ -171,10 +169,8 @@ import { SearchOutlined } from "@ant-design/icons";
      },
      {
        //title: "Currency",
-       title: <FormattedMessage
-         id="app.amount"
-         defaultMessage="Amount"
-       />,
+       title:"Amount"
+      ,
  
        dataIndex: "jobId",
      //   ...getColumnSearchProps('customer'),
@@ -182,10 +178,8 @@ import { SearchOutlined } from "@ant-design/icons";
      },
      {
         //title: "Currency",
-        title: <FormattedMessage
-          id="app.highestOnboarded"
-          defaultMessage="Highest Onboarded"
-        />,
+        title: "Highest Onboarded"
+      ,
   
         dataIndex: "sponsor",
       //   ...getColumnSearchProps('customer'),

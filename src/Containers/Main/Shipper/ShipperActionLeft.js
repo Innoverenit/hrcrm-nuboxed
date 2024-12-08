@@ -16,9 +16,8 @@ import {
   getShipperByUserId,
   ClearReducerDataOfShipper
 } from "./ShipperAction";
-import {
-  DeleteOutlined, AudioOutlined
-} from "@ant-design/icons";
+import MicIcon from '@mui/icons-material/Mic';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { StyledRangePicker } from "../../../Components/UI/Antd";
 import { TimeInterval } from "../../../Utils";
@@ -90,6 +89,9 @@ const ShipperActionLeft = (props) => {
       } else if (props.viewType === "all") {
         props.inputDataSearch(currentData,'all');
       }
+      else if (props.viewType === "grid") {
+        props.inputDataSearch(currentData,'grid');
+      }
       setSearchOnEnter(true);  //Code for Search
     } else {
       console.error("Input is empty. Please provide a value.");
@@ -108,7 +110,7 @@ const ShipperActionLeft = (props) => {
     }, minRecordingTime);
   };
   const suffix = (
-    <AudioOutlined
+    <MicIcon
       onClick={handleStartListening}
       style={{
         fontSize: 16,
@@ -126,6 +128,9 @@ const ShipperActionLeft = (props) => {
         props.inputDataSearch(transcript,'table');
       } else if (props.viewType === "all") {
         props.inputDataSearch(transcript,'all');
+      }
+      else if (props.viewType === "grid") {
+        props.inputDataSearch(transcript,'grid');
       }
       setSearchOnEnter(true);
     }
@@ -153,16 +158,16 @@ const ShipperActionLeft = (props) => {
         <Badge size="small"
           count={props.shippeRecordCount.shipper || 0}
         >
-          <span
-            style={{
-              marginRight: "0.5rem",
-              color: props.viewType === "table" && "#1890ff",
-              fontSize: "17px",
-              cursor: "pointer",
+          <span className="mr-2 cursor-pointer text-base"
+            style={{         
+              color: props.viewType === "table" && "#1890ff",         
             }}
             onClick={() => props.setShipperViewType("table")}
           >
-            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355",
+                                    boxShadow: props.viewType === "table" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                                      transform: props.viewType === "table" ? "scale(1.05)" : "scale(1)"
+             }}>
               <TocIcon className="text-white" />
             </Avatar>
           </span>
@@ -181,7 +186,10 @@ const ShipperActionLeft = (props) => {
               }}
               onClick={() => props.setShipperViewType("all")}
             >
-              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355",
+                                    boxShadow: props.viewType === "all" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                                      transform: props.viewType === "all" ? "scale(1.05)" : "scale(1)"
+               }}>
                 {/* ALL */}{props.translatedMenuItems[18]}
               </Avatar>
             </span>
@@ -192,8 +200,11 @@ const ShipperActionLeft = (props) => {
         <Badge size="small"
           count={props.recordDeletedData.deletedShipper || 0}
         >
-          <Avatar style={{ background: props.viewType === "grid" ? "#f279ab" : "#4bc076" }}>
-            <DeleteOutlined
+          <Avatar style={{ background: props.viewType === "grid" ? "#f279ab" : "#28a355",
+                                    boxShadow: props.viewType === "grid" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                                      transform: props.viewType === "grid" ? "scale(1.05)" : "scale(1)"
+           }}>
+            <DeleteOutlineIcon
               className="!text-sm text-white cursor-pointer"
               style={{
                 color: props.viewType === "grid" && "red",

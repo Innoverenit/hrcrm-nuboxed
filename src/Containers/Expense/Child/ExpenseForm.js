@@ -5,7 +5,7 @@ import dayjs from "dayjs";
 import { getExpenses } from "../../Settings/Expense/ExpenseAction";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import {DeleteOutlined} from '@ant-design/icons';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {getCurrencyList} from "../../Settings/Category/Currency/CurrencyAction"
 import { addExpense, getExpenseById } from "../ExpenseAction";
 import Upload from "../../../Components/Forms/Formik/Upload";
@@ -380,7 +380,7 @@ function ExpenseForm(props) {
        
           
               {row.length > 1 && (
-                <DeleteOutlined
+                <DeleteOutlineIcon
                   style={{
                     color: "red",
                     fontSize: "1.125em",

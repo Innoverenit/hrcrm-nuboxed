@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { withRouter } from "react-router-dom";
 import { base_url } from "../../../Config/Auth";
 import { Button, Tooltip, } from "antd";
@@ -9,6 +9,45 @@ import DataSaverOnIcon from '@mui/icons-material/DataSaverOn';
 import UploadIcon from '@mui/icons-material/Upload';
 
 class DealActionRight extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+    };
+  }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        
+          
+         
+        "85",//0 Add
+      "499",//1 Export
+      
+        
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
+
+
+
   render() {
     const {
       userId,
@@ -18,27 +57,21 @@ class DealActionRight extends React.Component {
     } = this.props;
     return (
       <div class=" flex items-center">
-        <Tooltip placement={"left"} title={<FormattedMessage
-                id="app.create"
-                defaultMessage="Create"
-              />}>
-           {/* {user.userType !== "USER" && user.department !== "Recruiter" && (  */}
+        <Tooltip placement={"left"} title="Create"
+             >
+  
            {viewType === "table" && user.imInd === true  && user.opportunityCreateInd ===true && (
           <Button
             type="primary"
             // ghost
             onClick={() => handleDealModal(true)}
           >
-              <DataSaverOnIcon/> <FormattedMessage
-                        id="app.add"
-                        defaultMessage="Add"
-                      />
+              <DataSaverOnIcon className="!text-icon"/> 
+              {this.state.translatedMenuItems[0]}
+
           </Button>
             )}  
         </Tooltip>
-         {/* {user.employee_type === "contractor" && user.candiContShareInd === true || user.employee_type === "employee" && user.candiEmpShareInd === true && user.opportunityFullListInd===true &&( */}
-  {/* <OpportunityShareForm/> */}
-         {/* )} */}
          <div class="max-sm:hidden">
         <Button
         style={{lineHeight:"inherit"}}
@@ -46,11 +79,9 @@ class DealActionRight extends React.Component {
           // default
         href={`${base_url}/excel/export/user/opportunity/${userId}`}
         >
-          {/* Export */}<UploadIcon className=" !text-icon"/>
-          <FormattedMessage
-                id="app.export"
-                defaultMessage="Export"
-              />
+          {/* Export */}
+          <UploadIcon className=" !text-icon"/>
+          {this.state.translatedMenuItems[1]}
         </Button>
         </div>
         

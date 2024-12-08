@@ -6,7 +6,6 @@ import { connect } from "react-redux";
 import {  Badge } from "antd";
 import HandymanIcon from '@mui/icons-material/Handyman';
 import SourceIcon from '@mui/icons-material/Source';
-import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import Quality from "../Quality/Quality"
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import BrandCategory from "../BrandCategory/BrandCategory";
@@ -76,14 +75,14 @@ class OrderTab extends Component {
                   tab={
                     <>
                       < HandymanIcon  className=" !text-icon" />
-                      <Badge
-                count={this.props.itemTaskCount.ItemTaskCount}
-                overflowCount={999}
-              >
-                      <span class=" ml-1" >
+                     
+                      <span class="!text-tab ml-1 text-sm" >
                       Repair Task
                       </span>
-                      </Badge>
+                      <Badge
+                count={this.props.itemTaskCount.ItemTaskCount}
+                overflowCount={999} offset={[ 0, -16]}
+              > </Badge>
                     </>
                   }
                   key="0"
@@ -95,14 +94,15 @@ class OrderTab extends Component {
                   tab={
                     <>
                      
-                      <Badge
-                count={this.props.shipByCount.shipByCount}
-                overflowCount={999}
-              >
-                     <LocalShippingIcon className=" !text-icon"/> <span class=" ml-1">
+                      
+                     <LocalShippingIcon className=" !text-icon"/> <span class="!text-tab ml-1 text-sm">
                         Ship By
                       </span>
-                      </Badge>
+                     
+                      <Badge
+                count={this.props.shipByCount.shipByCount}
+                overflowCount={999} offset={[ 0, -16]}
+              > </Badge>
                     </>
                   }
                   key="1"
@@ -115,7 +115,7 @@ class OrderTab extends Component {
                   tab={
                     <>
                      
-                      <QuizIcon className=" !text-icon"/> <span class=" ml-1">
+                      <QuizIcon className=" !text-icon"/> <span class="!text-tab ml-1 text-sm">
                         Brand Model
                       </span>
                     </>
@@ -130,7 +130,7 @@ class OrderTab extends Component {
                   tab={
                     <>
                       <SourceIcon  className=" !text-icon"/>
-                      <span class=" ml-1">
+                      <span class="!text-tab ml-1 text-sm">
                      Category
                       </span>
                     </>
@@ -156,13 +156,14 @@ class OrderTab extends Component {
                   tab={
                     <>
                       <VerifiedUserIcon className=" !text-icon"/>
-                      <Badge
-                count={this.props.qualityCount.QualityCount}
-                overflowCount={999}
-              >
-                      <span class=" ml-1">
+                      <span class="!text-tab ml-1 text-sm">
                        Quality
                       </span>
+                      <Badge
+                count={this.props.qualityCount.QualityCount}
+                overflowCount={999} offset={[ 0, -16]}
+              >
+                      
                       </Badge>
                     </>
                   }
@@ -174,13 +175,14 @@ class OrderTab extends Component {
                   tab={
                     <>
                       < FeedbackIcon className=" !text-icon"/>
-                      <Badge
-                count={this.props.feedBackCount.FeedbackCount}
-                overflowCount={999}
-              >
-                      <span class=" ml-1">
+                      <span class="!text-tab ml-1 text-sm">
                        FeedBack
                       </span>
+                      <Badge
+                count={this.props.feedBackCount.FeedbackCount}
+                overflowCount={999} offset={[ 0, -16]}
+              >
+                      
                       </Badge>
                     </>
                   }

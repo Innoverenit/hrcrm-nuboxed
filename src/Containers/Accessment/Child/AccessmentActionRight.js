@@ -17,17 +17,6 @@ class AccessmentActionRight extends React.Component {
   render() {
     return (
       <>
-      {/* <FlexContainer alignItems="center">
-       
-     
-
-        <Button type="primary"
-         ghost onClick={() => handleAccessmentModal(true)}>
-
-          Add
-        </Button>
-
-        </FlexContainer> */}
       </>
     );
   }

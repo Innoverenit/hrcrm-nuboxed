@@ -53,16 +53,16 @@ export const addMachinary = (sectors,orgId, cb) => (dispatch) => {
           Swal.fire({
             icon: 'error',
             title: res.data.message,
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         } else {
          
           Swal.fire({
             icon: 'success',
             title: 'Machinary added Successfully!',
-            // showConfirmButton: false,
-            // timer: 1500
+            showConfirmButton: false,
+            timer: 1500,
           });
         }
         dispatch(getMachinaryCount());
@@ -103,6 +103,8 @@ export const removeMachinary = ( machinaryId,orgId) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Machinary deleted Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("MACHINARY has been deleted successfully!");
         console.log(res);
@@ -141,6 +143,8 @@ export const updateMachinary = ( data,machinaryId,cb) => (dispatch) => {
         Swal.fire({
           icon: 'success',
           title: 'Machinary updated Successfully!',
+          showConfirmButton: false,
+          timer: 1500,
         })
         // message.success("MACHINARY has been updated successfully!");
         console.log(res);

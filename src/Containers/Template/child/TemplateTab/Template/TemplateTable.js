@@ -8,10 +8,9 @@ import {
 import AddTemplateViewModal from "../Template/AddTemplateViewModal"
 import { withRouter } from "react-router-dom";
 import { getTemplate } from "../../../../Rules/RulesAction";
-import moment from "moment";
+import dayjs from "dayjs";
 import { setCurrentEmail,handleTemplateViewModal } from "../../../../Rules/RulesAction";
-import { FormattedMessage } from "react-intl";
-import { EyeInvisibleOutlined } from "@ant-design/icons";
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 const ButtonGroup = Button.Group;
 
 // const data = [{ templateName: "Birthday", date: "29-10-20" }];
@@ -92,14 +91,11 @@ class EmployeeTable extends React.Component {
      },
 
       {
-        //title: "Created on",
-        title: <FormattedMessage
-          id="app.createdon"
-          defaultMessage="Created on"
-        />,
+        title: "Created on",
+
         width: "15%",
         render: (name, item, i) => {
-          return <span>{moment(item.creationDate).format("YYYY-MM-DD")}</span>;
+          return <span>{dayjs(item.creationDate).format("YYYY-MM-DD")}</span>;
         },
       },
 
@@ -114,12 +110,10 @@ class EmployeeTable extends React.Component {
             <>
              <Tooltip
                   // title="Close Template"
-                  title={<FormattedMessage
-                    id="app.closetemplate"
-                    defaultMessage="Close Template"
-                  />}
+                  title="Close Template"
+                
                 >
-                  <EyeInvisibleOutlined
+                  <VisibilityOffIcon
                     type="eye-invisible"
                     onClick={() => {
                      
@@ -134,55 +128,7 @@ class EmployeeTable extends React.Component {
                     size="30"
                   />
                 </Tooltip>
-              {/* {close ? (
-                <Tooltip
-                  // title="Close Template"
-                  title={<FormattedMessage
-                    id="app.closetemplate"
-                    defaultMessage="Close Template"
-                  />}
-                >
-                  <Icon
-                    type="eye-invisible"
-                    onClick={this.handleCloseIconClick}
-                    style={{
-                      fontSize: "1.125em",
-                      color: this.state.show ? "#1890ff" : "black",
-                    }}
-                    size="30"
-                  />
-                </Tooltip>
-              ) : (
-                  <Tooltip
-                    //title="View Template"
-                    title={<FormattedMessage
-                      id="app.viewtemplate"
-                      defaultMessage="View Template"
-                    />}
-
-                  >
-                    <Icon
-                      type="eye"
-                      onClick={() => {
-                        this.handleIconClick(
-                          item.templateId,
-                          item.template,
-                          item.type
-                        );
-                        this.props.setCurrentEmail(item);
-                      }}
-                      style={{
-                        fontSize: "1.125em",
-                        color:
-                          this.state.show &&
-                            this.state.templateId === item.templateId
-                            ? "#1890ff"
-                            : "black",
-                      }}
-                      size="30"
-                    />
-                  </Tooltip>
-                )} */}
+              
             </>
           );
         },

@@ -14,9 +14,9 @@ import {
   getAllProductList,
   getLocationList
 } from "../AccountAction";
-import { DeleteOutlined } from "@ant-design/icons";
-import moment from "moment";
-import { FormattedMessage } from "react-intl";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import dayjs from "dayjs";
+
 import { BundleLoader } from "../../../../Components/Placeholder";
 
 const { Option } = Select;
@@ -36,7 +36,7 @@ function QuotationDetailsCardList(props) {
 
   useEffect(() => {
     props.getBrand();
-    props.getQuotationExcelDetails(props.orderDetailsId.orderId);
+    props.getQuotationExcelDetails(props.orderDetailsId.quotationId);
     props.getCategorylist();
     props.getAllProductList();
     props.getSupplierSuppliesQuality();
@@ -104,7 +104,7 @@ function QuotationDetailsCardList(props) {
   const handleUpdate = (id) => {
     const data = {
       model: brand,
-      orderPhoneId: props.orderDetailsId.orderId,
+      orderPhoneId: props.orderDetailsId.quotationId,
       brandId: model,
       unit: newUnitName,
       specs: specs,
@@ -130,33 +130,33 @@ function QuotationDetailsCardList(props) {
 
   return (
     <>
-      <div className="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-        <div className="flex justify-between w-full p-1 bg-transparent font-bold sticky  z-10">
+      <div className="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+        <div className="flex justify-between w-full  p-1 bg-transparent font-bold sticky  z-10">
         <div className="md:w-[7.4rem]">
-            <FormattedMessage id="app.category" defaultMessage="Category" />
+         Category
           </div>
           <div className="md:w-[7.4rem]">
-            <FormattedMessage id="app.brand" defaultMessage="Brand" />
+           Brand
           </div>
           <div className="md:w-[7.1rem]">
-            <FormattedMessage id="app.model" defaultMessage="Model" />
+         Model
           </div>
           <div className="md:w-[7.1rem]">
-            <FormattedMessage id="app.attribute" defaultMessage="Attribute" />
+         Attribute
           </div>
-          <div className="md:w-[7.1rem]">
-            <FormattedMessage id="app.quality" defaultMessage="Quality" />
+      
+          <div className="md:w-[4.8rem]">
+           Units
           </div>
-          <div className="md:w-[7.1rem]">
-            <FormattedMessage id="app.location" defaultMessage="Location" />
+          <div className="md:w-[5.8rem]">
+           Price
           </div>
-          <div className="md:w-[8.8rem]">
-            <FormattedMessage id="app.specs" defaultMessage="Specs" />
+          <div className="md:w-[6.8rem]">
+          Discount
           </div>
-          <div className="md:w-[8.8rem]">
-            <FormattedMessage id="app.unit" defaultMessage="Unit" />
+          <div className="md:w-[6.8rem]">
+          Value
           </div>
-        
           <div className="md:w-[6.12rem]"></div>
         </div>
 
@@ -344,14 +344,7 @@ function QuotationDetailsCardList(props) {
                     onConfirm={() => props.deleteProcureData(item.id)}
                   >
                     <Tooltip title="Delete">
-                      <DeleteOutlined
-                        type="delete"
-                        style={{
-                          cursor: "pointer",
-                          color: "red",
-                          fontSize: "1rem",
-                        }}
-                      />
+                    <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                     </Tooltip>
                   </StyledPopconfirm>
                 </div>

@@ -3,11 +3,20 @@ import { base_url } from "../../../Config/Auth";
 import { base_url2 } from "../../../Config/Auth";
 import Swal from "sweetalert2";
 import axios from "axios";
-import moment from "moment";
+import dayjs from "dayjs";
 import { message } from "antd";
 
 export const setInventoryViewType = (viewType) => (dispatch) =>
   dispatch({ type: types.SET_INVENTORY_VIEW_TYPE, payload: viewType });
+
+
+
+export const handleReceiveScanModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_RECEIVE_SCAN_MODAL,
+    payload: modalProps,
+  });
+};
 
 
 export const handleQualityManufactureModal = (modalProps) => (dispatch) => {
@@ -18,6 +27,20 @@ export const handleQualityManufactureModal = (modalProps) => (dispatch) => {
 };
 
 
+
+export const handleScanModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SCAN_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const handleStockUpload = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_STOCK_MODAL,
+    payload: modalProps,
+  });
+};
 
 export const emptyQualityManufactureData = () => (dispatch) => {
   dispatch({
@@ -265,6 +288,20 @@ export const handleCreateAWB = (modalProps) => (dispatch) => {
   });
 };
 
+export const handleCreateAddPack = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CREATE_PACK_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const handlepackId = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CREATE_PACK_ID,
+    payload: modalProps,
+  });
+};
+
 export const setInventoryDetailViewType = (viewType1) => (dispatch) => {
   dispatch({
     type: types.SET_INVENTORY_DETAIL_VIEW_TYPE,
@@ -475,13 +512,13 @@ export const completeShipperContact = (data, dispatchId) => (dispatch) => {
 // };
 
 //get dispatch list
-export const getDispatchList = (locationId,pageNo) => (dispatch) => {
+export const getDispatchList = (locationId,pageNo,type) => (dispatch) => {
   // const dispatchId = getState().inventory.dispatch.dispatchId;
   dispatch({
     type: types.GET_DISPATCH_LIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/orderInventoryLocationLink/get-newDispatchData/${locationId}/${pageNo}`, {
+    .get(`${base_url2}/orderInventoryLocationLink/get-newDispatchData/${locationId}/${pageNo}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -497,6 +534,87 @@ export const getDispatchList = (locationId,pageNo) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_DISPATCH_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getCompleteDispatchList = (locationId,pageNo,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_COMPLETE_DISPATCH_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderInventoryLocationLink/get-completeDispatchData/${locationId}/${pageNo}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COMPLETE_DISPATCH_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_COMPLETE_DISPATCH_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getCompleteDispatchSearch = (locationId,type,newOrderNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_COMPLETE_DISPATCH_SEARCH_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/orderInventoryLocationLink/searchNewDispatchData/${locationId}/${type}/${newOrderNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COMPLETE_DISPATCH_SEARCH_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_COMPLETE_DISPATCH_SEARCH_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const getCommerceList = (orgId,pageNo) => (dispatch) => {
+  // const dispatchId = getState().inventory.dispatch.dispatchId;
+  dispatch({
+    type: types.GET_COMMERCE_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/all-procure-dispatch/${orgId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COMMERCE_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_COMMERCE_LIST_FAILURE,
         payload: err,
       });
     });
@@ -1244,6 +1362,8 @@ export const updateInspection = (data, orderPhoneId) => (dispatch) => {
         icon: 'success',
         title: 'Inspection Status Updated',
         showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       // dispatch(getReceivedUserList(locationId))
       dispatch({
@@ -1504,6 +1624,8 @@ export const updateReceivedDamagedUnit = (data, poSupplierDetailsId, suppliesId)
         icon: 'success',
         title: 'Updated Successfully',
         showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       console.log(res);
       dispatch({
@@ -1590,6 +1712,8 @@ export const generateGrnForPo = (data) => (dispatch) => {
         icon: 'success',
         title: 'Grn Created Successfully',
         showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.GENERATE_GRN_FOR_PO_SUCCESS,
@@ -1676,6 +1800,8 @@ export const trnasferGrnItemToStock = (data, poSupplierSuppliesId, cb) => (dispa
         icon: 'success',
         title: 'Updated Successfully',
         showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.TRANSFER_PO_GRN_TO_STOCK_SUCCESS,
@@ -1746,6 +1872,8 @@ export const updatePartIdOfAnItem = (data, supplierSuppliesUniqueNumberId) => (d
         icon: 'success',
         title: 'Part no updated successfully',
         showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.UPDATE_PART_ID_OF_AN_ITEM_SUCCESS,
@@ -1872,12 +2000,12 @@ export const handleStockUsedDrawer = (modalProps) => (dispatch) => {
   });
 };
 
-export const getRoomRackByLocId = (locationId, orgId) => (dispatch) => {
+export const getRoomRackByLocId = (locationDetailsId, orgId) => (dispatch) => {
   dispatch({
     type: types.GET_ROOM_RACK_BY_LOCID_REQUEST,
   });
   axios
-    .get(`${base_url2}/roomrack/roomAndRackDetails/${locationId}/${orgId}`, {
+    .get(`${base_url2}/roomrack/allChamberDetails/${locationDetailsId}/${orgId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1896,12 +2024,12 @@ export const getRoomRackByLocId = (locationId, orgId) => (dispatch) => {
       });
     });
 };
-export const updateRoomRackId = (data, roomRackId) => (dispatch) => {
+export const updateRoomRackId = (data, roomRackChamberLinkId) => (dispatch) => {
   dispatch({
     type: types.UPDATE_ROOM_RACK_ID_REQUEST,
   });
   axios
-    .put(`${base_url2}/roomrack/update/${roomRackId}`, data, {
+    .put(`${base_url2}/roomrack/update/roomRackChamberLink/${roomRackChamberLinkId}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2270,4 +2398,609 @@ export const moveRejectToggle = (productionProductId,cellChamberLinkId) => (disp
       });
       // message.error("Something went wrong");
     });
+};
+
+export const handleInventoryexpand = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_INVENTORY_EXPAND,
+    payload: modalProps,
+  });
+};
+
+export const handleInventoryTask = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_INVENTORY_TASK,
+    payload: modalProps,
+  });
+};
+
+export const searchOpenOrdeReceived = (imei,orderPhoneId) => (dispatch) => {
+  dispatch({
+    type: types.SEARCH_OPEN_ORDER_RECEIVED_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phone/search/${imei}/${orderPhoneId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // message.success(res.data.message);
+
+      dispatch({
+        type: types.SEARCH_OPEN_ORDER_RECEIVED_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+     
+      dispatch({
+        type: types.SEARCH_OPEN_ORDER_RECEIVED_FAILURE,
+        payload: err,
+      });
+    });
+}; 
+export const ClearReducerData= () => (dispatch) => {
+  dispatch({
+    type: types.CLAER_REDUCERS_DATA,
+  });
+}
+
+export const clearDispatch= () => (dispatch) => {
+  dispatch({
+    type: types.CLAER_DISPATCH_DATA,
+  });
+}
+
+export const clearCompleteDispatch= () => (dispatch) => {
+  dispatch({
+    type: types.CLAER_COMPLETE_DISPATCH_DATA,
+  });
+}
+
+export const getMaterialBestBefore = (locationDetailsId) => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIAL_BEST_BEFORE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getBestBeforeItemlist/${locationDetailsId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_MATERIAL_BEST_BEFORE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_MATERIAL_BEST_BEFORE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getWasteMaterial = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_WASTE_MATERIAL_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/waste/Org/wasteItemList/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_WASTE_MATERIAL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_WASTE_MATERIAL_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const getWasteMaterialLocation = (locationId) => (dispatch) => {
+  dispatch({
+    type: types.GET_WASTE_MATERIAL_LOCATION_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/waste/wasteItemList/${locationId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_WASTE_MATERIAL_LOCATION_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_WASTE_MATERIAL_LOCATION_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getMaterialDamagedData = (locationDetailsId) => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIAL_DAMAGE_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/dameged/supplies/${locationDetailsId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_MATERIAL_DAMAGE_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_MATERIAL_DAMAGE_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getPackData = (orderId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PACK_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/dispatchPacking/dispatch-packing/${orderId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_PACK_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PACK_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getPackNo = (dispachPackingId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PACK_NO_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/dispatchPacking/dispatch-packing-data/${dispachPackingId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_PACK_NO_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PACK_NO_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getPackAndTrack = (orderId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PACK_TRACK_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/dispatchPacking/dispatch-packing-track/${orderId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_PACK_TRACK_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PACK_TRACK_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getSubList = (orderPhoneId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUB_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phoneOrder/dispatchProcure/item/${orderPhoneId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_SUB_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUB_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const getRepairSubList = (orderPhoneId,pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_REPAIR_SUB_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/phone/remainingDispatchItemDetail/${orderPhoneId}/${pageNo}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_REPAIR_SUB_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REPAIR_SUB_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addToWaste = (customer,poSupplierSuppliesId) => (dispatch, getState) => {
+  const userId = getState().auth.userDetails.userId;
+
+  // const opportunityId = getState().opportunity.opportunity.opportunityId;
+  console.log("inside add customer");
+  dispatch({
+    type: types.ADD_TO_WASTE_REQUEST,
+  });
+
+  axios
+    .post(`${base_url2}/waste/moveToWaste`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Prospect created Successfully!',
+      // })
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Prospect created Successfully!',
+      //   showConfirmButton: false,
+      //   // timer: 1500
+      // })
+      console.log(res);
+      // dispatch(
+      //   linkCustomersToOpportunity(opportunityId, { CustomerIds: [res.data] }, cb)
+      // );
+      // message.success(res.data.message)
+   
+
+      dispatch({
+        type: types.ADD_TO_WASTE_SUCCESS,
+        payload: poSupplierSuppliesId,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_TO_WASTE_FAILURE,
+        payload: err,
+      });
+      message.error(err.data.message)
+      // cb && cb();
+    });
+};
+
+
+
+
+export const addRepairData = (documents,poSupplierSuppliesId, cb) => (dispatch) => {
+  console.log(documents);
+  dispatch({
+    type: types.ADD_REPAIR_DATA_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/po/rePacked/damagedItem/${poSupplierSuppliesId}`, documents, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+    
+      
+      // dispatch(getDocuments());
+      //dispatch(getRegionCount(orgId));
+      console.log(res);
+      dispatch({
+        type: types.ADD_REPAIR_DATA_SUCCESS,
+        payload: res.data
+        
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_REPAIR_DATA_FAILURE,
+      });
+      cb();
+    });
+};
+
+
+
+export const addDamagedCredit = (documents,poSupplierSuppliesId, cb) => (dispatch) => {
+  console.log(documents);
+  dispatch({
+    type: types.ADD_DAMAGED_CREDIT_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/po/creditNote/${poSupplierSuppliesId}`, documents, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+    
+      
+      // dispatch(getDocuments());
+      //dispatch(getRegionCount(orgId));
+      console.log(res);
+      dispatch({
+        type: types.ADD_DAMAGED_CREDIT_SUCCESS,
+        payload: res.data
+        
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_DAMAGED_CREDIT_FAILURE,
+      });
+      cb();
+    });
+};
+
+
+
+
+export const addAsileInbest = (customer,poSupplierS7ppliesId) => (dispatch, getState) => {
+  const userId = getState().auth.userDetails.userId;
+
+  // const opportunityId = getState().opportunity.opportunity.opportunityId;
+  console.log("inside add customer");
+  dispatch({
+    type: types.ADD_ASILE_IN_BEST_REQUEST,
+  });
+
+  axios
+    .put(`${base_url2}/po/updateBestBefore/roomRack/${poSupplierS7ppliesId}`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Prospect created Successfully!',
+      // })
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Prospect created Successfully!',
+      //   showConfirmButton: false,
+      //   // timer: 1500
+      // })
+      console.log(res);
+      // dispatch(
+      //   linkCustomersToOpportunity(opportunityId, { CustomerIds: [res.data] }, cb)
+      // );
+      // message.success(res.data.message)
+   
+
+      dispatch({
+        type: types.ADD_ASILE_IN_BEST_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_ASILE_IN_BEST_FAILURE,
+        payload: err,
+      });
+      message.error(err.data.message)
+      // cb && cb();
+    });
+};
+
+
+
+export const addScandata = (data) => (dispatch) => {
+  dispatch({
+    type: types.ADD_SCAN_DATA_REQUEST,
+  });
+  axios
+    .post(`${base_url2}/dispatchPacking/dispatch-packing-item-link`, data,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.ADD_SCAN_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_SCAN_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const uploadStockList =(customer, userId) => (dispatch, getState) => {
+  dispatch({
+    type: types.ADD_STOCK_IMPORT_FORM_REQUEST,
+  });
+
+  axios
+    .post(`${base_url2}/excel/posupplier-supplies-details`, customer, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+
+    //  window.location.reload()
+      // dispatch(getRecords(userId));
+      dispatch({
+        type: types.ADD_STOCK_IMPORT_FORM_SUCCESS,
+        payload: res.data,
+      });
+      // cb && cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_STOCK_IMPORT_FORM_FAILURE,
+        payload: err,
+      });
+      // cb && cb();
+    });
+};
+
+
+
+
+export const addScanReceivedata = (data,poSupplierDetailsId,qrCodeNo) => (dispatch) => {
+  dispatch({
+    type: types.ADD_SCAN_RECEIVED_DATA_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/po/scannedUnitAndInd/${poSupplierDetailsId}/${qrCodeNo}`, data,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.ADD_SCAN_RECEIVED_DATA_SUCCESS,
+        payload: res.data,
+      });
+      message.success(res.data.message);
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_SCAN_RECEIVED_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const setPackedUnpacked = (data,orderId) => (dispatch) => {
+  dispatch({ type: types.INVENTORY_PACKED_UNPACKED_TOGGLE_REQUEST });
+  axios
+    .post(
+      `${base_url2}/dispatchPacking/dispatch-packing`,data,
+      {
+    
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      
+      })
+    .then((res) => {
+      console.log(res);
+     dispatch(getPackData(orderId));
+      dispatch({
+        type: types.INVENTORY_PACKED_UNPACKED_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+      Swal({
+        icon: 'success',
+        title: 'Satus has been changed successfully!',
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.INVENTORY_PACKED_UNPACKED_TOGGLE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const linkMaterialStockToggle = ( data,suppliesId) => (dispatch, getState) => {
+  dispatch({
+    type: types.LINK_MATERIAL_STOCK_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/supplies/update/publishInd/${suppliesId}`,data,  {
+    // headers: {
+    //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    // },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.LINK_MATERIAL_STOCK_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.LINK_MATERIAL_STOCK_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
 };

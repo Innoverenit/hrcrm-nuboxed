@@ -17,6 +17,11 @@ const initialState = {
   fetchingEventListRangeByTypeError: false,
   eventListRangeByType: [],
 
+
+  fetchingEventAllListRangeByUserId:false,
+  fetchingEventAllListRangeByUserIdError:false,
+  eventallListRangeByUserId:[],
+
   fetchingOpportunityRecord: false,
   fetchingOpportunityRecordError: false,
   opportunityRecord:[],
@@ -40,6 +45,12 @@ const initialState = {
 
   setEditingEvents: {},
   updateEventModal: false,
+
+  addEventLocation:false,
+  addEventLocationError:false,
+
+  fetchingEventSearchedList: false,
+  fetchingEventSearchedListError: false,
 
 };
 export const EventReducer = (state = initialState, action) => {
@@ -195,6 +206,29 @@ export const EventReducer = (state = initialState, action) => {
         fetchingNotesListByEventIdError: true,
       };
 
+
+
+
+
+
+      case types.GET_EVENT_ALL_LIST_RANGE_BY_USER_ID_REQUEST:
+        return { ...state, fetchingEventAllListRangeByUserId: true };
+      case types.GET_EVENT_ALL_LIST_RANGE_BY_USER_ID_SUCCESS:
+        return {
+          ...state,
+          fetchingEventAllListRangeByUserId: false,
+          // eventListRangeByUserId: action.payload,
+          eventallListRangeByUserId: [
+            ...state.eventallListRangeByUserId,
+            ...action.payload],
+        };
+      case types.GET_EVENT_ALL_LIST_RANGE_BY_USER_ID_FAILURE:
+        return {
+          ...state,
+          fetchingEventAllListRangeByUserId: false,
+          fetchingEventAllListRangeByUserIdError: true,
+        };
+
    
     /**
      * update Event modal
@@ -236,7 +270,39 @@ export const EventReducer = (state = initialState, action) => {
             fetchingOpportunityRecord: false,
             fetchingOpportunityRecordError: true,
           };
-  
+
+
+
+
+          case types.ADD_EVENT_LOCATION_REQUEST:
+            return { ...state, addEventLocation: true };
+          case types.ADD_EVENT_LOCATION_SUCCESS:
+            return {
+              ...state,
+              addEventLocation: false,
+              //updateEventModal: false,
+              eventListRangeByUserId: state.eventListRangeByUserId.map((event) =>
+              event.eventId === action.payload.eventId
+                ? action.payload
+                : event
+            ),
+              
+            };
+          case types.ADD_EVENT_LOCATION_FAILURE:
+            return { ...state, addEventLocation: false, addEventLocationError: false };
+
+          case types.SEARCH_EVENT_LIST_REQUEST:
+            return { ...state, fetchingEventSearchedList: true };
+          case types.SEARCH_EVENT_LIST_SUCCESS:
+            return {
+              ...state,
+              fetchingEventSearchedList: false,
+              eventListRangeByUserId: action.payload,
+              
+            };
+          case types.SEARCH_EVENT_LIST_FAILURE:
+            return { ...state, fetchingEventSearchedListError: true };
+      
       default:
       return state;
     

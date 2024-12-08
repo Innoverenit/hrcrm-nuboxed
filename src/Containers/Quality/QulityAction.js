@@ -1,6 +1,6 @@
 import * as types from "./QulityActionType";
 import axios from "axios";
-import moment from "moment";
+import dayjs from "dayjs";
 import { message } from "antd";
 import Swal from "sweetalert2";
 

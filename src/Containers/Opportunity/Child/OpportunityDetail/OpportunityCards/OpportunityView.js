@@ -2,20 +2,15 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip, } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import LinkTagCustomerModal from "./LinkTagCustomerModal"
 import {
   StyledPopconfirm,
 } from "../../../../../Components/UI/Antd";
-import {
-  Title,
-  SubTitle,
-  MultiAvatar,
-} from "../../../../../Components/UI/Elements";
+import {MultiAvatar} from "../../../../../Components/UI/Elements";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {linktagCustomer} from "../../../OpportunityAction";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
-import {  LinkOutlined } from "@ant-design/icons";
+import AttachFileIcon from '@mui/icons-material/AttachFile';
 import styled from "styled-components";
 
 class OpportunityView extends Component {
@@ -61,12 +56,9 @@ class OpportunityView extends Component {
     return (
       <>
         <div class="flex justify-between" >
-          <FlexContainer
-            justifyContent="flex-start"
-            flexWrap="nowrap"
-            style={{ width: "85%",marginTop:"-8px" }}
-          >
-            <div style={{ width: "20%",marginTop:"4px"  }}>
+        <div class=" flex flex-row flex-wrap  grow shrink w-full ">
+        
+            <div>
               <MultiAvatar
                 primaryTitle={opportunity.opportunityName}
                 imageId={imageId}
@@ -75,27 +67,27 @@ class OpportunityView extends Component {
               {/* )} */}
             </div>
             &nbsp;
-            <FlexContainer flexDirection="column" style={{ width: "80%" }}>
-              <Title
+            <div class=" flex  flex-wrap w-[78%]   grow shrink ">
+              <div
                 overflow="hidden"
                 textOverflow="ellipsis"
                 style={{fontSize:"0.85rem",lineHeight:"2rem"}}
-                // style={{ marginLeft: "0.625em" }}
+         
               >
                 {`${opportunityName || ""}`}
-              </Title>
-              <SubTitle
+              </div>
+              <div className="ml-[0.625rem]"
                 overflow="hidden"
                 textOverflow="ellipsis"
-                style={{ marginLeft: "0.625em" }}
+               
               >
                 {accountName}
-              </SubTitle>
-            </FlexContainer>
-            <FlexContainer flexDirection="column" style={{ width: "20%" }}>
+              </div>
+            </div>
+            <div class=" flex  flex-wrap  grow shrink  ">
             {this.props.partnerLogin === "Yes" &&
             this.props.department === "Partner" ? null : (
-              <FlexContainer style={{ placeItems: "center" }} justifyContent="flex-end">
+              <div class=" flex flex-row flex-wrap  justify-end grow shrink  ">
                 {this.props.account &&
                   this.props.account.hasOwnProperty("accountId") ? (
                     <StyledPopconfirm
@@ -106,26 +98,19 @@ class OpportunityView extends Component {
                     </StyledPopconfirm>
                   ) : (
                     <Tooltip //title="Tag Customer"
-                      title={<FormattedMessage
-                        id="app.tagcustomer"
-                        defaultMessage="Tag Customer"
-                      />}
+                      title="Tag Customer"
                     >
-                      <LinkOutlined
+                      <AttachFileIcon class="text-[#fb8500] text-[0.8rem]"
                         tooltipTitle="Tag Customer"
                         iconType="link"
                         onClick={this.handleLinkContactModalVisible}
-                        size="16px"
-                        style={{ color: "#fb8500",fontSize:"0.8rem" }}
+                        size="16px"                   
                       />
                     </Tooltip>
                   )}
               &nbsp;
                 <Tooltip 
-                  title={<FormattedMessage
-                    id="app.edit"
-                    defaultMessage="Edit"
-                  />}
+                  title="Edit"
                 >
                  <span
                     tooltipTitle="Edit"
@@ -133,13 +118,13 @@ class OpportunityView extends Component {
                     onClick={toggleViewType}
                     // size="16px"
                   >
-                       <BorderColorIcon  style={{fontSize:"0.8rem"}}/>
+                       <BorderColorIcon className="!text-icon"/>
               </span>
                 </Tooltip>
-              </FlexContainer>
+              </div>
             )}
-            </FlexContainer>
-          </FlexContainer>
+            </div>
+          </div>
 
           
         </div>
@@ -148,6 +133,9 @@ class OpportunityView extends Component {
         opportunityId={opportunityId}
         linkContactModalVisible={this.state.linkContactModalVisible}
         handleLinkContactModalVisible={this.handleLinkContactModalVisible}
+         translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
         />
       </>
     );

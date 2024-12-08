@@ -1,24 +1,21 @@
 
 
-import React, {useState,useEffect } from "react";
+import React, {useState,lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, Tooltip, Switch ,Select} from "antd";
-import { getTasks } from "../../../../Containers/Settings/Task/TaskAction";
-import { FormattedMessage } from "react-intl";
-import { Formik, Form, Field, FastField } from "formik";
+import { Button, Tooltip,Select} from "antd";
+
+import { Formik, Form, Field} from "formik";
+import { BundleLoader } from "../../../../Components/Placeholder";
 import dayjs from "dayjs";
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
-import { getUnits } from "../../../../Containers/Settings/Unit/UnitAction";
 import { InputComponent } from "../../../../Components/Forms/Formik/InputComponent";
-import { SelectComponent } from "../../../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../../../Components/Forms/Formik/DatePicker";
 import {
     addStepperTask,
 } from "../../TaskAction";
 import ButtonGroup from "antd/lib/button/button-group";
-import moment from "moment";
-import StepperTaskList from "./StepperTaskList";
+
+const  StepperTaskList = lazy(() => import("./StepperTaskList"));
 
 const { Option } = Select;
 
@@ -193,10 +190,8 @@ const[active,setactive]=useState(props.selectedTask ? props.selectedTask.status
                   <div class="w-[16%] ml-2">
               
              <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                 <FormattedMessage
-                   id="app.status"
-                   defaultMessage="status"
-                 />
+                status
+                
                
                </div>
 
@@ -207,12 +202,8 @@ const[active,setactive]=useState(props.selectedTask ? props.selectedTask.status
                      type="To Start"
                      iconType="fa-hourglass-start"
                      tooltip="To Start"
-                     tooltipTitle={
-                       <FormattedMessage
-                         id="app.tostart"
-                         defaultMessage="To Start"
-                       />
-                     }
+                     tooltipTitle="To Start"
+                       
                      status={active}
                      onClick={() => glassButtoClick("To Start")}
                    />
@@ -221,12 +212,8 @@ const[active,setactive]=useState(props.selectedTask ? props.selectedTask.status
                      type="In Progress"
                      iconType="fa-hourglass-half"
                      tooltip="In Progress"
-                     tooltipTitle={
-                       <FormattedMessage
-                         id="app.inprogress"
-                         defaultMessage="inprogress"
-                       />
-                     }
+                     tooltipTitle="inprogress"
+                       
                      status={active}
                      onClick={() => glassButtoClick("In Progress")}
                    />
@@ -235,12 +222,8 @@ const[active,setactive]=useState(props.selectedTask ? props.selectedTask.status
                      type="Completed"
                      iconType="fa-hourglass"
                      tooltip="Completed"
-                     tooltipTitle={
-                       <FormattedMessage
-                         id="app.completed"
-                         defaultMessage="completed"
-                       />
-                     }
+                     tooltipTitle="completed"
+                     
                      status={active}
                      onClick={() => glassButtoClick("Completed")}
                   
@@ -253,12 +236,8 @@ const[active,setactive]=useState(props.selectedTask ? props.selectedTask.status
                           
                             name="step"
                           
-                            label={
-                              <FormattedMessage
-                                id="app.step"
-                                defaultMessage="Step"
-                              />
-                            }
+                            label="Step"
+                             
                             component={InputComponent}
                             isColumn
                             width={"100%"}
@@ -269,13 +248,8 @@ const[active,setactive]=useState(props.selectedTask ? props.selectedTask.status
                       <Field
                         isRequired
                         name="endDate"
-                        // label="End "
-                        label={
-                          <FormattedMessage
-                            id="app.enddate"
-                            defaultMessage="enddate"
-                          />
-                        }
+                      label="End "
+                        
                         component={DatePicker}
                         isColumn
                         value={values.endDate || values.startDate}
@@ -287,8 +261,8 @@ const[active,setactive]=useState(props.selectedTask ? props.selectedTask.status
                         disabledDate={(currentDate) => {
                           if (values.startDate) {
                             if (
-                              moment(currentDate).isBefore(
-                                moment(values.startDate)
+                              dayjs(currentDate).isBefore(
+                                dayjs(values.startDate)
                               )
                             ) {
                               return true;
@@ -334,7 +308,7 @@ const[active,setactive]=useState(props.selectedTask ? props.selectedTask.status
                 >
                  
                    
-                    <FormattedMessage id="app.create" defaultMessage="create" />
+                 create
                  
                 </Button>
               </div>
@@ -342,7 +316,7 @@ const[active,setactive]=useState(props.selectedTask ? props.selectedTask.status
             // </div>
           )}
         </Formik>
-        <StepperTaskList currentNameId={props.currentNameId}/>
+        <Suspense fallback={<BundleLoader />}> <StepperTaskList currentNameId={props.currentNameId}/></Suspense>
       </>
     );
 }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Switch, Popconfirm, message } from "antd";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 // import { candidateSwitch } from "../../../../OpportunityAction";
 
@@ -39,11 +39,8 @@ class RecruitmentSwitch extends Component {
     return (
       <div>
         <Popconfirm
-          //title="Do you wish to proceed?"
-          title={<FormattedMessage
-            id="app.doyouwishtoproceed?"
-            defaultMessage="Do you wish to proceed?"
-          />}
+          title="Do you wish to proceed?"
+         
           onConfirm={this.props.contactId ? this.onChange : this.handleError}
           onCancel={null}
           okText="Ok"

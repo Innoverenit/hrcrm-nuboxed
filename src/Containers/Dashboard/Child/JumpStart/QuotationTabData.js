@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { DeleteOutlined } from "@ant-design/icons";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import InfiniteScroll from "react-infinite-scroll-component"
-import { FormattedMessage } from "react-intl";
+
 import {getQuotationTableData} from "../../../Dashboard/DashboardAction"
 import OpportunitySelectStages from "../../../Opportunity/Child/OpportunityTable/OpportunitySelectStages"
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -11,7 +11,8 @@ import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import { Link } from 'react-router-dom';
 import { Tooltip, Select, Menu, Dropdown, Progress ,Popconfirm} from "antd";
 import { CurrencySymbol, } from "../../../../Components/Common";
-import { CheckCircleTwoTone, StopTwoTone } from "@ant-design/icons";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import DoDisturbIcon from '@mui/icons-material/DoDisturb';
 import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { MultiAvatar, MultiAvatar2,  } from "../../../../Components/UI/Elements";
 
@@ -29,23 +30,6 @@ function QuotationTabData(props) {
 
   const [currentOpportunityId, setCurrentOpportunityId] = useState("");
   const [currentItem, setCurrentItem] = useState("");
-
-
-
-
-
-  useEffect(()=>{
-    props.getQuotationTableData(props.selectedCountry)
-   }, []);
-
-   useEffect(() => {
-    // Check if data is available
-    if (props.quotationTableData.length > 0) {
-      // Update activeTab when data is available
-      
-    }
-  }, [props.quotationTableData]);
-
 
 
   const {
@@ -207,13 +191,11 @@ imgHeight={"1.8em"}
               {item.approveInd&&item.opportunityOwner ? (
 <>
   <Tooltip 
-    title={<FormattedMessage
-      id="app.Own"
-      defaultMessage="Own"
-    />}
+    title="Own"
+   
 
   >
-    <CheckCircleTwoTone
+    <CheckCircleOutlineIcon
       type="check-circle"
       theme="twoTone"
       twoToneColor="#24D8A7"
@@ -226,7 +208,7 @@ imgHeight={"1.8em"}
 <>
   <Tooltip title={"Lost"}>
     {" "}
-    <StopTwoTone
+    <DoDisturbIcon
       type="stop"
       theme="twoTone"
       twoToneColor="red"         
@@ -243,13 +225,10 @@ imgHeight={"1.8em"}
   cancelText="No"
 >
   <Tooltip 
-    title={<FormattedMessage
-      id="app.Own"
-      defaultMessage="Won"
-    />}
-
+    title="Won"
+  
   >
-    <CheckCircleTwoTone
+    <CheckCircleOutlineIcon
       type="check-circle"
       theme="twoTone"
       twoToneColor="#24D8A7"
@@ -269,12 +248,11 @@ imgHeight={"1.8em"}
   cancelText="No"
 >
  <Tooltip
-        title={
-          <FormattedMessage id="app.drop" defaultMessage="Lost" />
-        }
+        title="Lost"
+      
       >
  
-  <StopTwoTone
+  <DoDisturbIcon
           type="stop"
           theme="twoTone"
           twoToneColor="red"
@@ -292,12 +270,8 @@ imgHeight={"1.8em"}
 <div>
 <Tooltip
           placement="right"
-          title={
-            <FormattedMessage
-              id="app.notes"
-              defaultMessage="Notes"
-            />
-          }
+          title="Notes"
+           
         >
          
               
@@ -315,12 +289,8 @@ imgHeight={"1.8em"}
           </Tooltip>
 <Tooltip
           placement="right"
-          title={
-            <FormattedMessage
-              id="app.edit"
-              defaultMessage="Edit"
-            />
-          }
+          title="Edit"
+           
         >
             {user.opportunityUpdateInd ===true && user.crmInd === true &&  (
               
@@ -343,9 +313,7 @@ imgHeight={"1.8em"}
           >
            
              {user.opportunityDeleteInd ===true && user.crmInd === true &&  (
-            <DeleteOutlined
-            // loading={props.deleteOpportunityData}
-            type="delete" className=" !text-xl cursor-pointer text-[red]" />
+         <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
              )}
           </StyledPopconfirm>
 

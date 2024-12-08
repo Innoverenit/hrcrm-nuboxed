@@ -3,12 +3,11 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
-import { Spacer } from "../../../../../../../Components/UI/Elements";
 import { FlexContainer } from "../../../../../../../Components/UI/Layout";
 import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
 import { TextareaComponent } from "../../../../../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
-import { FormattedMessage } from "react-intl";
+
 // import { addRemark } from "../../../../../OpportunityAction";
 import * as Yup from "yup";
 /**
@@ -67,14 +66,8 @@ function RemarkForm(props) {
                 {" "}
                 <Field
                   name="stageId"
-                  // label="Stage"
-                  label={
-                    <FormattedMessage
-                      name="stageId"
-                      id="app."
-                      defaultMessage="Stage"
-                    />
-                  }
+                  label="Stage"
+                 
                   isRequired
                   isColumn
                   style={{
@@ -85,16 +78,11 @@ function RemarkForm(props) {
                   component={SelectComponent}
                   options={Array.isArray(stageList) ? stageList : []}
                 />{" "}
-                <Spacer />
+                <div class=" mt-3" />
                 <Field
                   name="reviewer"
-                  //label="Reviewer"
-                  label={
-                    <FormattedMessage
-                      id="app.reviewer"
-                      defaultMessage="Reviewer"
-                    />
-                  }
+                  label="Reviewer"
+                 
                   width={"100%"}
                   isColumn
                   component={InputComponent}
@@ -104,7 +92,7 @@ function RemarkForm(props) {
                     marginTop: "0.25em",
                   }}
                 />
-                <Spacer />
+                <div class=" mt-3" />
                 <Field
                   name="note"
                   isRequired
@@ -127,15 +115,15 @@ function RemarkForm(props) {
                 }}
               ></div>
             </div>
-            <Spacer />
+            <div class=" mt-3" />
             <FlexContainer justifyContent="flex-end">
               <Button
                 type="primary"
                 htmlType="submit"
                 Loading={props.addingRemark}
               >
-                <FormattedMessage id="app.remark" defaultMessage="Remark" />
-                {/* Remark */}
+              
+                Remark
               </Button>
             </FlexContainer>
           </Form>

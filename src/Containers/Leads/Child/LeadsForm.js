@@ -2,13 +2,10 @@ import React, { useEffect,useState,useRef } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button,Select, Tooltip } from "antd";
-import { FormattedMessage } from "react-intl";
-import { CheckOutlined } from "@ant-design/icons";
 import { base_url } from "../../../Config/Auth";
 import { SelectComponent } from "../../../Components/Forms/Formik/SelectComponent";
 import { Formik, Form, Field, FieldArray, FastField } from "formik";
 import * as Yup from "yup";
-import SearchSelect from "../../../Components/Forms/Formik/SearchSelect";
 import AddressFieldArray from "../../../Components/Forms/Formik/AddressFieldArray";
 import {
   addLeads, 
@@ -17,18 +14,16 @@ import {
   getCrm
 } from "../../Leads/LeadsAction";
 import {getCustomerConfigure} from "../../Settings/SettingsAction"
-import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
-import RotateRightIcon from "@mui/icons-material/RotateRight";
-import StopCircleIcon from "@mui/icons-material/StopCircle";
+import ReactDescription from "../../../Components/ReactSpeech/ReactDescription"
 import PostImageUpld from "../../../Components/Forms/Formik/PostImageUpld";
 import { InputComponent } from "../../../Components/Forms/Formik/InputComponent";
 import ProgressiveImage from "../../../Components/Utils/ProgressiveImage";
 import ClearbitImage from "../../../Components/Forms/Autocomplete/ClearbitImage";
 import { Listbox, } from '@headlessui/react';
 import { BundleLoader } from "../../../Components/Placeholder";
+import SearchSelect1 from "../../../Components/Forms/Formik/SearchSelect1";
+import { InputComponent1 } from "../../../Components/Forms/Formik/InputComponent1";
 const { Option } = Select; 
-
-// yup validation scheme for creating a account
 const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 const LeadsSchema = Yup.object().shape({
   firstName: Yup.string().required("Input needed!"),
@@ -89,21 +84,22 @@ props.emptyClearbit();
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          'First Name', // 0
-'Middle ', // 1
-'Last Name', // 2
-'Email', // 3
-'Mobile', // 4
-'Phone No', // 5
-'Company', // 6
-'URL', // 7
-'Sector', // 8
-'Source', // 9
-'LOB', // 10
-'VAT Number', // 11
-'Registration', // 12
-'Assigned', // 13
-'Notes', // 14
+          '295', // 0
+'296', // 1
+'354', // 2
+'140', // 3
+'546', // 4
+'300', // 5
+'277', // 6
+'302', // 7
+'278', // 8
+'279', // 9
+'280', // 10
+'306', // 11
+'307', // 12
+'76', // 13
+'316', // 14
+'104'
 
 
         ];
@@ -119,7 +115,11 @@ props.emptyClearbit();
 
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
-  
+
+  const handleIconClick = (type) => {
+    setpriority(type);
+  };
+
     const fetchSource = async () => {
       setIsLoading(true);
       try {
@@ -328,21 +328,6 @@ props.emptyClearbit();
     setText('');
   };
 
-  
-
-  // const {
-  //   transcript,
-  //   listening,
-  //   resetTranscript,
-  //   browserSupportsSpeechRecognition,
-  // } = useSpeechRecognition();
-
-  // if (!browserSupportsSpeechRecognition) {
-  //   return <span>Browser doesn't support speech recognition.</span>;
-  // }
-
- 
-  
   if (loading) {
     return <div><BundleLoader/></div>;
   }
@@ -354,6 +339,7 @@ props.emptyClearbit();
             partnerName: "",
             // price:"",
             source: selectedSource,
+            leadType:"",
             url: "",
             sectorId: selectedSector,
             email: "",
@@ -405,20 +391,7 @@ props.emptyClearbit();
               props.userId,
             );
             resetForm()
-  //           setFieldValue("sectorId", "");
-
-  // // Reset address fields
-  // setFieldValue("address", [
-  //   {
-  //     address1: "",
-  //     address2: "",
-  //     street: "",
-  //     city: "",
-  //     state: "",
-  //     postalCode: "",
-  //   },
-  // ]);
-          }}
+         }}
         >
           {({
             errors,
@@ -463,28 +436,15 @@ props.emptyClearbit();
                     <div> <FastField name="imageId" component={PostImageUpld} /></div>
                    
                     <div>
-                      <div class=" flex justify-between max-sm:flex-col">
-                        {/* <div class=" w-2/5 max-sm:w-full">
-                          <Field
-                            name="salutation"
-                            label={
-                              <FormattedMessage
-                                id="app.salutation"
-                                defaultMessage="Salutation"
-                              />
-                            }
-                            options={["Mr.", "Ms.", "None"]}
-                            component={SelectComponent}
-                            inlineLabel
-                            isColumn
-                          />
-                        </div> */}
-                        <div class=" w-wk max-sm:w-full ">
+                      <div class=" flex justify-between max-sm:flex-col ml-2">                        
+                            {/* name="salutation" */}
+                    
+                        <div class=" w-wk max-sm:w-full  ">
+                          <div className="font-bold text-xs">{translatedMenuItems[0]}</div>
                           <FastField
                             isRequired
                             name="firstName"
-                            // label="First Name"
-                            label={translatedMenuItems[0]}
+                            // label="First Name"                          
                             type="text"
                             width={"100%"}
                             isColumn
@@ -493,13 +453,13 @@ props.emptyClearbit();
                           />
                         </div>
                       </div>                  
-                      <div class=" flex justify-between max-sm:flex-col">
+                      <div class=" flex justify-between max-sm:flex-col ml-2 ">
                       {props.customerConfigure.middleNameInd===true&&
                         <div class=" w-2/5 max-sm:w-full">
+                           <div className="font-bold text-xs">{translatedMenuItems[1]}</div>
                           <FastField
                             name="middleName"
-                            //label="Middle Name"
-                            label={translatedMenuItems[1]}
+                            //label="Middle Name"                         
                             type="text"
                             width={"100%"}
                             isColumn
@@ -510,10 +470,10 @@ props.emptyClearbit();
 }
 {props.customerConfigure.lastNameInd===true&&
                         <div class=" w-1/2 max-sm:w-full">
+                           <div className="font-bold text-xs">{translatedMenuItems[2]}</div>
                           <FastField
                             name="lastName"
-                            //label="Last Name"
-                            label={translatedMenuItems[2]}
+                            //label="Last Name"                       
                             type="text"
                             width={"100%"}
                             isColumn
@@ -525,23 +485,57 @@ props.emptyClearbit();
                       </div>
                     </div>
                   </div>
-}
-
+} 
+                    <div className="font-bold text-xs mt-1">{translatedMenuItems[3]}</div>
                   <Field
                     isRequired
                     name="email"
-                    type="text"
-                    label={translatedMenuItems[3]}
+                    type="text"                   
                     isColumn
                     width={"100%"}
                     component={InputComponent}
                     inlineLabel
                   /> 
-                               
-                  <div class=" flex justify-between">
+  <div className="font-bold text-xs">{translatedMenuItems[5]}</div>
+<div class=" flex justify-between shadow-[0_0.15em_0.3em_#aaa] border border-[#bfbebb] h-8">
+                     <div class=" w-3/12 max-sm:w-[35%]">     
+                      <FastField
+                        name="countryDialCode"
+                        selectType="dialCode"
+                        component={SearchSelect1}
+                        defaultValue={{
+                          label:`${props.user.countryDialCode}`,
+                        }}
+                        isColumnWithoutNoCreate                      
+                        isColumn
+                        inlineLabel
+                      />            
+                    </div>
+                    <div class="w-[1px] h-full bg-gray-300">
+  <div class="w-full h-[75%]"></div>
+</div>
+                    <div class=" w-[76%]">
+                    <div class="text-xs flex flex-col font-bold "> 
+                      <Field
+                        type="text"
+                        name="phoneNumber"                      
+                        isColumn
+                        component={InputComponent1}
+                        inlineLabel
+                        width={"100%"}
+                      />
+                      </div>
+
+                    </div>
+                  
+                  </div> 
+
+
+
+                  {/* <div class=" flex justify-between">
                   {props.customerConfigure.dailCodeInd===true&&
                     <div class=" w-3/12 max-sm:w-[35%]">
-                   
+                    <div className="font-bold text-xs">{translatedMenuItems[4]}</div>
                       <FastField
                         name="countryDialCode"
                         selectType="dialCode"
@@ -549,21 +543,19 @@ props.emptyClearbit();
                         defaultValue={{
                           label:`${props.user.countryDialCode}`,
                         }}
-                        isColumnWithoutNoCreate
-                        label={translatedMenuItems[4]}
+                        isColumnWithoutNoCreate                      
                         isColumn
                         inlineLabel
-                      />
-                  
+                      />            
                     </div>
 }
                     <div class=" w-8/12">
                     {props.customerConfigure.phoneNoInd===true&&
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
+                       <div className="font-bold text-xs">{translatedMenuItems[5]}</div>
                       <FastField
                         type="text"
-                        name="phoneNumber"
-                        label={translatedMenuItems[5]}
+                        name="phoneNumber"                      
                         isColumn
                         component={InputComponent}
                         inlineLabel
@@ -572,14 +564,27 @@ props.emptyClearbit();
                       </div>
 }
                     </div>
-                  </div>
-              
+                  
+                  </div>  */}
                   <div class=" mt-3">
                   <Field
                   
+                    name="leadType"
+                    // type="text"
+                    label="Lead Type"
+                    isColumn
+                    width={"100%"}
+                    options={["BtoB","BtoC" ]}
+                        component={SelectComponent}
+                    inlineLabel
+                  />
+                  </div> 
+                  {values.leadType === "BtoB" && (          
+                  <div class=" mt-1">
+                  <div className="font-bold text-xs">{translatedMenuItems[6]}</div>
+                  <Field                  
                     name="companyName"
-                    type="text"
-                    label={translatedMenuItems[6]}
+                    type="text"        
                     isColumn
                     width={"100%"}
                     setClearbitData={props.setClearbitData}
@@ -588,12 +593,14 @@ props.emptyClearbit();
                     inlineLabel
                   />
                   </div>
+                  )}
+                   {values.leadType === "BtoB" && (
                   <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
-                  {props.customerConfigure.urlInd===true&&
+                  <div className="font-bold text-xs">{translatedMenuItems[7]}</div>
+                  {props.customerConfigure.urlInd===true&&               
                   <Field
                     name="url"
-                    type="text"
-                    label={translatedMenuItems[7]}
+                    type="text"              
                     isColumn
                     width={"100%"}
                     component={InputComponent}
@@ -601,12 +608,12 @@ props.emptyClearbit();
                   />
 }
                   </div>
-                         
-                 
+                   )}
+                                        
                   <div class=" flex  justify-between mt-3">
-                   <div class=" w-w47.5" style={{display:"flex",flexDirection:"column"}}>
+                   <div class="flex flex-col w-w47.5" >
                    {props.customerConfigure.sectorInd===true&&
-<label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[8]}</label>
+                  <div className="font-bold text-xs">{translatedMenuItems[8]}</div>
 }
 {props.customerConfigure.sectorInd===true&&
 <Select
@@ -624,17 +631,16 @@ props.emptyClearbit();
           </Option>
         ))}
       </Select>
-}
-                    
+}                 
                     </div>
                     <div class=" w-w47.5"  style={{display:"flex",flexDirection:"column"}}>
                     {props.customerConfigure.sourceInd===true&&
-                          <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[9]}</label>
+                         <div className="font-bold text-xs">{translatedMenuItems[9]}</div>
                     }
                           {props.customerConfigure.sourceInd===true&&
 <Select
         showSearch
-       // style={{ width: 200 }}
+      
         placeholder="Search or select source"
         optionFilterProp="children"
         loading={isLoading}
@@ -654,7 +660,7 @@ props.emptyClearbit();
                     <div class=" flex justify-between mt-3 max-sm:flex-col">
                     <div class=" w-w47.5 max-sm:w-wk">
                     {props.customerConfigure.lobInd===true&&
-                    <label style={{fontWeight:"bold",fontSize:"0.75rem"}}>{translatedMenuItems[10]}</label>
+                  <div className="font-bold text-xs">{translatedMenuItems[10]}</div>
 }
 {props.customerConfigure.lobInd===true&&
 <Select
@@ -674,72 +680,69 @@ props.emptyClearbit();
       </Select>
 }
                     </div>
-                    <div class=" w-w47.5 max-sm:w-wk">
+                    <div class="flex items-center justify-center w-w47.5 max-sm:w-wk">
                     {props.customerConfigure.typeInd===true&&
                     <div class="flex">
                        <Tooltip title="Hot">
-                         <Button
-                           
-                            shape="circle"
-                           onClick={() => handleButtonClick("hot")}
-                           style={{
-                             backgroundColor:"red",
-                                 borderRadius: "50%", 
-                                 width: "31px", 
-                                 height: "31px"
-                           }}
-                         >
-                          {priority === "hot" && <CheckOutlined style={{ color: "white" }} />}
-                          </Button>
+                       <i
+          className={`fas fa-mug-hot${priority === "hot" ? " selected" : ""}`}
+          onClick={() => handleIconClick("hot")}
+          style={{
+            color: priority === "hot" ? "red" : "red",
+            borderRadius: "50%",
+            fontSize: "1rem",
+            height:"1.5rem",
+            padding: "5px",
+            cursor: "pointer"
+          }}
+        ></i>
                        </Tooltip>
                        &nbsp;
                        <Tooltip title="Warm">
-                         <Button
-                           
-                            shape="circle"
-             
-                           onClick={() => handleButtonClick("warm")}
-                           style={{
-                             backgroundColor:"orange",
-                                 borderRadius: "50%", 
-                                 width: "31px", 
-                                 height: "31px",
-                           }}
-                         >
-                          {priority === "warm" && <CheckOutlined style={{ color: "white" }} />}
-                          </Button>
+                       <i
+          className={`fas fa-burn${priority === "warm" ? " selected" : ""}`}
+          onClick={() => handleIconClick("warm")}
+          style={{
+            color: priority === "warm" ? "white" : "orange",
+            backgroundColor: priority === "warm" ? "orange" : "transparent",
+            borderRadius: "50%",
+            fontSize: "1rem",
+            height:"1.5rem",
+            padding: "5px",
+            cursor: "pointer"
+          }}
+        ></i>
                        </Tooltip>
                        &nbsp;
                        <Tooltip title="Cold">
-                         <Button
-                            shape="circle"
-                           onClick={() => handleButtonClick("cold")}
-                           style={{
-                             backgroundColor:"teal",
-                                 borderRadius: "50%", // Set the borderRadius to 50% for a circular shape
-                                 width: "31px", // Adjust the width as needed
-                                 height: "31px"
-                           }}
-                           >
-                           {priority === "cold" && <CheckOutlined style={{ color: "white" }} />}
-                           </Button>
+                       <i
+          className={`far fa-snowflake${priority === "cold" ? " selected" : ""}`}
+          onClick={() => handleIconClick("cold")}
+          style={{
+            color: priority === "cold" ? "white" : "teal",
+            backgroundColor: priority === "cold" ? "teal" : "transparent",
+            borderRadius: "50%",
+            fontSize: "1rem",
+            height:"1.5rem",
+            padding: "5px",
+            cursor: "pointer"
+          }}
+         
+        ></i>
                        </Tooltip>
                      </div>
 }
                       </div>
-
-
-                  </div>
-               
-                 
+                  </div>                            
                     <div class=" flex justify-between mt-3 max-sm:flex-col">
+                    {values.leadType === "BtoB" && (
                     <div class=" w-w47.5 max-sm:w-wk">
                     {props.customerConfigure.vatNoInd===true&&
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
+                      <div className="font-bold text-xs">{translatedMenuItems[11]}</div>
                       <Field
                         name="vatNo"
-                        type="text"
-                        label={translatedMenuItems[11]}
+                        type="text"                 
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -748,14 +751,16 @@ props.emptyClearbit();
                       </div>
 }
                     </div>
+                    )}
+                     {values.leadType === "BtoB" && (
                     <div class="w-w47.5">
                     {props.customerConfigure.businessRegInd===true&&
                     <div class="m-[0.1rem_0_0.02rem_0.2rem] text-xs flex flex-col font-bold ">
+                      <div className="font-bold text-xs">{translatedMenuItems[12]}</div>
                       <Field
                         name="businessRegistration"
                         type="text"
-                        // label="URL"
-                        label={translatedMenuItems[12]}
+                        // label="URL"            
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -764,45 +769,8 @@ props.emptyClearbit();
                       </div>
 }
                     </div>
-                  </div>
-             
-
-                  {/* <div class=" w-1/2">
-                    <StyledLabel>
-                      <Field
-                        name="proposalValue"
-                        type="text"
-                        label={
-                          <FormattedMessage
-                            id="app.proposalValue"
-                            defaultMessage="Proposal Value"
-                          />
-                        }
-                        isColumn
-                        width={"100%"}
-                        component={InputComponent}
-                        inlineLabel
-                      />
-                      </StyledLabel>
-                    </div>
-                    <div class=" w-1/2">
-                    <StyledLabel>
-                      <Field
-                        name="opportunityName"
-                        type="text"
-                        label={
-                          <FormattedMessage
-                            id="app.opportunityName"
-                            defaultMessage="Opportunity Name"
-                          />
-                        }
-                        isColumn
-                        width={"100%"}
-                        component={InputComponent}
-                        inlineLabel
-                      />
-                      </StyledLabel>
-                    </div> */}
+                     )}
+                  </div>               
                 </div>
                 <div class=" h-3/4 w-w47.5 max-sm:w-wk " 
                 >
@@ -810,7 +778,7 @@ props.emptyClearbit();
                    <Listbox value={selected} onChange={setSelected}>
       {({ open }) => (
         <>
-          <Listbox.Label className="block font-semibold text-[0.75rem]">{translatedMenuItems[13]}</Listbox.Label>
+          <div className=" font-bold text-xs">{translatedMenuItems[13]}</div>
           <div className="relative">
               <Listbox.Button  style={{boxShadow: "rgb(170, 170, 170) 0px 0.25em 0.62em"}} className="relative w-full leading-4 cursor-default border border-gray-300 bg-white py-0.5 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
                 {selected}
@@ -902,41 +870,24 @@ translatedMenuItems={props.translatedMenuItems}
                         name="bedrooms"
                         // selectType="customerList"
                         isColumnWithoutNoCreate
-                        label="Bedrooms"
-                       
-                        // label={
-                        //   <FormattedMessage
-                        //     id="app.tagCompany"
-                        //     defaultMessage="Tag Company"
-                        //   />
-                        // }
+                        label="Bedrooms"                                      
                         options={["1", "2", "3","4","5","6"]}
                         component={SelectComponent}
-                        isColumn
-                        //value={values.customerId}
-                        //isDisabled={defaultCustomers}
-                        //options={Array.isArray(customerNameOption) ? customerNameOption : []}
-                        // defaultValue={defaultCustomers ? defaultCustomers : null}
+                        isColumn                    
                         inlineLabel
                       />
-                    </div>
-
-                   
+                    </div>                
                     <div class="w-[47.5%]">
                     <FastField
                             name="price"
-                            label="Price"
-                            //isColumnWithoutNoCreate
+                            label="Price"                       
                             //selectType="sourceName"
                             options={["0-100000", "100001-300000", "300001-500000","500000+"]}
-                            component={SelectComponent}
-                            
-                            // value={values.source}
+                            component={SelectComponent}                           
+                           // value={values.source}
                             isColumn
                           />
-                        </div>
-                     
-                    
+                        </div>                                      
                   </div>
                  
                   <div class=" flex justify-between mt-3">         
@@ -948,107 +899,25 @@ translatedMenuItems={props.translatedMenuItems}
                       isColumn
                       isColumnWithoutNoCreate
                       options={["Studio", "Row house", "Villa"]}
-                      component={SelectComponent}
-                     
+                      component={SelectComponent}                    
                       // value={values.departmentId}
                       // options={Array.isArray(departmentNameOption) ? departmentNameOption : []}
                       inlineLabel
                     />
+                  </div>              
                   </div>
-                
-                  </div>
-                 
-                 
-
-                 
-                  {/* <Field
-                    name="address[0].address1"
-                    // label="Address"
-                    label={
-                      <FormattedMessage
-                        id="app.address[0].address1"
-                        defaultMessage="Address"
-                      />
-                    }
-                    component={InputComponent}
-                    isColumn
-                    width="100%"
-                  />
-                   */}
-                  {/* <Field
-                    name="address[0].street"
-                    //label="Street"
-
-                    label={
-                      <FormattedMessage
-                        id="app.street"
-                        defaultMessage="Street"
-                      />
-                    }
-                    component={InputComponent}
-                    isColumn
-                    width="100%"
-                  /> */}
-                  
+                                                                        
                   <div class=" flex  justify-between mt-3">
-                    {/* <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].city"
-                        //label="City"
-                        label={
-                          <FormattedMessage
-                            id="app.ddress[0].city"
-                            defaultMessage="City"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div> */}
-                  </div>
-                  
-                  {/* <FlexContainer justifyContent="space-between">
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].state"
-                        //label="State"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].State"
-                            defaultMessage="State"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                    <div style={{ width: "47%" }}>
-                      <Field
-                        name="address[0].postalCode"
-                        //label="Zip Code"
-
-                        label={
-                          <FormattedMessage
-                            id="app.address[0].postalCode"
-                            defaultMessage="Pin Code"
-                          />
-                        }
-                        component={InputComponent}
-                        isColumn
-                        width="100%"
-                      />
-                    </div>
-                  </FlexContainer> */}
+                  {/* city */}
+                  </div>             
                 </div>
                 )}
                  {props.customerConfigure.noteInd===true&&
-                <div class="mt-3">
-                    <div>{translatedMenuItems[14]}</div>
-                    <div>
-                  <div>
+              <div class="mt-3">
+                {/* <div>
+                  
+                    <span class=" font-bold text-xs font-poppins">{translatedMenuItems[14]}</span>
+                  <span>
                     <span onClick={startListening}>
                       <Tooltip title="Start">
                         <span  >
@@ -1072,17 +941,10 @@ translatedMenuItems={props.translatedMenuItems}
                         </span>
                       </Tooltip>
                     </span>
-                  </div>
-                  <div>
-                    {/* <textarea
-                      name="description"
-                      className="textarea"
-                      type="text"
-                      value={transcript ? transcript : text}
-                      onChange={handletext}
-                    ></textarea> */}
+                  </span>
 
-<textarea
+                  <div>                  
+        <textarea
         name="description"
         className="textarea"
         type="text"
@@ -1091,11 +953,16 @@ translatedMenuItems={props.translatedMenuItems}
       ></textarea>
 
                   </div>
-                </div>
+                  </div> */}
+            <ReactDescription
+                setText={setText}
+                text={text}
+                />
                   </div>
 }
                 </div>
               </div>
+              
             
               <div class="flex justify-end mt-3 w-wk bottom-2 mr-2 md:absolute ">
                 <Button
@@ -1103,7 +970,7 @@ translatedMenuItems={props.translatedMenuItems}
                htmlType="submit"
                   loading={addingLeads}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
+                       <div class=" font-bold text-xs font-poppins">{translatedMenuItems[15]}</div>
                   {/*                     
                     Create */}
                 </Button>

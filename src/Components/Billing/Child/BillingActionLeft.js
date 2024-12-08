@@ -1,19 +1,10 @@
-import React, { useEffect } from "react";
-import { FormattedMessage } from "react-intl";
-import { ActionIcon } from "../../../Components/Utils";
-import { FlexContainer } from "../../../Components/UI/Layout";
-import { StyledSelect, StyledRangePicker } from "../../../Components/UI/Antd";
-import { TimeInterval } from "../../../Utils";
-import ExploreIcon from '@mui/icons-material/Explore';
-import PersonIcon from '@mui/icons-material/Person';
-import moment from "moment";
+import React, { } from "react";
+import { StyledSelect } from "../../../Components/UI/Antd";
 import LocalAtmIcon from '@mui/icons-material/LocalAtm';
-import { Button, Tooltip, Badge, Tag } from "antd";
+import { Button, Tooltip } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
-// import { inputCustomerDataSearch,getRecords,getCategoryRecords } from "../PublishAction";
-// import { getAccountTopicList } from "../AccountAction";
 import { Input } from "antd";
 
 const Option = StyledSelect.Option;
@@ -22,31 +13,13 @@ const { Search } = Input;
 const BillingActionLeft = (props) => {
   const dummy = ["cloud", "azure", "fgfdg"];
 
-
 const billableCurr = props.billingByDesignation.length && props.billingByDesignation[0].billableCurency
 
   return (
-    <FlexContainer alignItems="center">
-      {/* <Tooltip
-        title={<FormattedMessage id="app.website" defaultMessage="Website" />}
-      >
-        <span
-          onClick={() => props.setBillingViewType("table")}
-          style={{
-            marginRight: "0.5rem",
-            color: props.viewType === "table" && "#1890ff",
-            fontSize: "1.0625em",
-            cursor: "pointer",
-          }}
-        >
-          <ExploreIcon />
-        </span>
-      </Tooltip> */}
+    <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ">
       <Tooltip
-        title={<FormattedMessage id="app.billing" defaultMessage="Billing" />}
-      // title={<FormattedMessage id="app.dollar" defaultMessage="Dollar" />}
-      >
-        {/* <Badge size="small" count={ props.viewType === "table" &&props.recordData.candidateDetails || 0} overflowCount={5000}> */}
+        title="Billing">
+       
         <span
           onClick={() => props.setBillingViewType("list")}
           style={{
@@ -65,13 +38,7 @@ const billableCurr = props.billingByDesignation.length && props.billingByDesigna
         <Input
           placeholder="Search by Name"
           // enterButton="Search"
-          width={"100%"}
-          // suffix={suffix}
-          // onSearch={(value) => {
-          //   props.inputCandidateDataSearch(value);
-          //   props.setCurrentData(value);
-
-          // }}
+          width={"100%"}     
           onChange={(e) => props.handleChange(e)}
           value={props.currentData}
         />
@@ -97,13 +64,9 @@ const billableCurr = props.billingByDesignation.length && props.billingByDesigna
           props.getCandidateCountSearch()
         }}
       >
-        <FormattedMessage id="app.clear" defaultMessage="Clear" />
-        {/* Clear */}
+        Clear
       </Button>
-
-
-
-    </FlexContainer>
+    </div>
   );
 };
 const mapStateToProps = ({ billings, auth }) => ({

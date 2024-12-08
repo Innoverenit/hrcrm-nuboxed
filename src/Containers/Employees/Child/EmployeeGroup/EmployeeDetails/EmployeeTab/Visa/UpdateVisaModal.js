@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer } from "../../../../../../../Components/UI/Antd";
 const UpdateVisaForm =lazy(()=>import("./UpdateVisaForm"));
 
@@ -17,10 +17,7 @@ class UpdateVisaModal extends Component {
       <>
         <StyledDrawer
           //title="Education"
-          title={<FormattedMessage
-            id="app.visa"
-            defaultMessage="Visa"
-          />}
+          title="Visa"
           width="60%"
           visible={updateVisaModal}
           onClose={() => handleUpdateVisaModal(false)}

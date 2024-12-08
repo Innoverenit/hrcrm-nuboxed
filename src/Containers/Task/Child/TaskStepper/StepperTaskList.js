@@ -1,13 +1,10 @@
 import React, { useState,lazy,useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
-import styled from "styled-components";
-import { DeleteOutlined } from "@ant-design/icons";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import moment from "moment";
-import { Tooltip, Button,Popconfirm  } from "antd";
+
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import dayjs from "dayjs";
+import { Tooltip, Button,Popconfirm  } from "antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import {
     getStepperTaskList,
@@ -62,21 +59,13 @@ const cancelEdit = () => {
   return (
     <>
     
-          <div className=' flex justify-end sticky top-28 z-auto'>
-          <div class="rounded-lg max-sm:m-1 m-5 p-2 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex max-sm:hidden justify-between w-[99%] p-2 bg-transparent font-bold sticky top-0 z-10">
-        <div className=" w-[8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7rem] max-lg:w-[9rem]"><FormattedMessage
-                          id="app.status"
-                          defaultMessage="Status"
-                        /></div>
-                        <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] "><FormattedMessage
-                          id="app.step"
-                          defaultMessage="Step"
-                        /></div>
-             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] "><FormattedMessage
-                          id="app.end"
-                          defaultMessage="End Date"
-                        /></div>
+          <div className=' flex  sticky z-auto'>
+          <div class="rounded max-sm:m-1 m-1 p-1 w-[98%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+          <div className=" flex max-sm:hidden justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
+        <div className=" w-[8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7rem] max-lg:w-[9rem]">Status</div>
+                        <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] ">Step
+                        </div>
+             <div className=" w-[5.01rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.01rem] max-lg:w-[7.01rem] ">End Date</div>
              <div className=" w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.13rem] max-lg:w-[5.13rem] "></div>
 
 
@@ -91,7 +80,7 @@ const cancelEdit = () => {
         const endDate = dayjs(item.endDate);
         return (
             <div key={index}>
-                <div className="flex rounded-xl justify-between mt-4 bg-white h-12 items-center p-3 max-sm:h-[8rem] max-sm:flex-col">
+                <div className="flex rounded justify-between mt-1 bg-white h-8 items-center p-1 max-sm:h-[8rem] max-sm:flex-col">
                     <div className="flex max-sm:justify-between max-sm:w-wk items-center">
                         <div className="flex flex-col w-[19.1rem] max-xl:w-[4.12rem] max-lg:w-[4.5rem] max-sm:w-auto">
                             <div>
@@ -147,7 +136,7 @@ const cancelEdit = () => {
                     onChange={(e) => setStepName(e.target.value)}
                 />
             ) : (
-                <div className="region">  {`${moment.utc(item.endDate).format("YYYY/MM/DD")}`}
+                <div className="region">  {`${dayjs(item.endDate).format("YYYY/MM/DD")}`}
                </div>
             )}
                               
@@ -174,16 +163,7 @@ const cancelEdit = () => {
                         cancelText="No"
                         onConfirm={() =>  props.deleteStepperTaskData(item.id,)}
                       >
-                <DeleteOutlined 
-                  style={{
-                  
-                    color: "red",
-                    cursor:"pointer"
-                  }}
-              // onClick={() => 
-              //     props.removeServiceLine(item.id)
-              //  }
-                 />
+                <DeleteOutlineIcon ClassName="!text-icon text-[tomato] cursor-pointer"  />
                  </Popconfirm>
 
                                   </div>
@@ -291,17 +271,3 @@ const cancelEdit = () => {
           );
         }
       }
-      
-      const AppIcon = (props) => (
-        <i
-          className={`fas fa-heartbeat ${props.className}`}
-          style={{ fontSize: "123%" }}
-        ></i>
-      );
-      const PulseIcon = styled(AppIcon)`
-        color: #df9697;
-        &:hover {
-          // background: yellow;
-          color: blue;
-        }
-      `;

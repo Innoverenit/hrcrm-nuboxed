@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect, useState }  from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field, } from "formik";
@@ -10,6 +9,7 @@ import { DistributorCollectionArchiveToday } from "../CollectionAction";
 
 
 function EventForm(props) {
+
 
   const {
     user: { userId, timeZone },
@@ -121,12 +121,7 @@ function EventForm(props) {
                   isRequired
                   name="startDate"
                   //label="Start "
-                  label={
-                    <FormattedMessage
-                      id="app.startdate"
-                      defaultMessage="Start Date"
-                    />
-                  }
+                  label= {props.translatedMenuItems[9]}                  
                   isColumn
                   component={DatePicker}
                   value={values.startDate}
@@ -141,12 +136,8 @@ function EventForm(props) {
                   isRequired
                   name="endDate"
                   // label="End "
-                  label={
-                    <FormattedMessage
-                      id="app.enddate"
-                      defaultMessage="enddate"
-                    />
-                  }
+                  label={props.translatedMenuItems[10]} 
+                 
                   component={DatePicker}
                   isColumn
                   value={values.endDate || values.startDate}
@@ -174,7 +165,7 @@ function EventForm(props) {
                 loading={props.DistributorCollectionArchive}
               >
 
-                <FormattedMessage id="app.submit" defaultMessage="Submit" />
+                        <div class="text-xs font-bold font-poppins"> {props.translatedMenuItems[11]}</div>    
 
               </Button>
             </div>

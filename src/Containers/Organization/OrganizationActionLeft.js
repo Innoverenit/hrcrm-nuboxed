@@ -1,53 +1,4 @@
-// import React, { Component, lazy, } from "react";
-// import { connect } from "react-redux";
-// import { bindActionCreators } from "redux";
-// const OrganizationHeaderTab = lazy(() =>
-//   import("./Child/OrganizationHeader/OrganizationHeaderTab")
-// );
-
-
-
-// class OrganizationActionLeft extends Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-
-//     };
-//   }
-
-
-
-
-
-//   render() {
-
-//     return (
-//       <>
-   
-
-//       <OrganizationHeaderTab     handleOnClick={this.props.handleOnClick}/>
- 
-  
- 
-  
-//       </>
-//     );
-//   }
-// }
-// const mapStateToProps = ({ auth, customer, contact, opportunity }) => ({
-//   organizationDetailsList:auth.organizationDetailsList,
-// });
-// const mapDispatchToProps = (dispatch) =>
-//   bindActionCreators(
-//     {
-//     },
-//     dispatch
-//   );
-
-// export default connect(mapStateToProps, mapDispatchToProps)(OrganizationActionLeft);
-
-
-import React, { Component, lazy, } from "react";
+import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 const OrganizationHeaderTab = lazy(() =>
@@ -63,16 +14,11 @@ class OrganizationActionLeft extends Component {
 
     };
   }
-
-
-
-
-
-  render() {
+render() {
 
     return (
       <>
-   
+    <Suspense fallback={"Loading..."}>
 
       <OrganizationHeaderTab
        activeTab={this.props.activeTab}
@@ -80,7 +26,7 @@ class OrganizationActionLeft extends Component {
       organizationDetails={this.props.organizationDetails}   
        handleOnClick={this.props.handleOnClick}/>
  
-  
+ </Suspense>
  
   
       </>

@@ -1,35 +1,41 @@
 import React, { useEffect,useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import OrdersAddedModal from "./OrdersAddedModal"
-import OrdersCancelModal from "./OrdersCancelModal"
-import OrdersOpenModal from "./OrdersOpenModal"
+import ProductionOrderValuePieChart from "../JumpStart/ProductionOrderValuePieChart"
+import ProductionVolumePieChart from "../JumpStart/ProductionVolumePieChart"
 import { JumpStartBox,  } from "../../../../Components/UI/Elements";
 import {
   getJumpOrderCount,
   getJumpOrderDetail,
 handleOrderAddedModal,
-handleOrderCancelModal,
 handleOrderClosedModal,
-handleOrderOpenModal
+getOrderAddedList,
+getOrderOpenList,
+getOrderClosedList,
+getOrderCancelList
 } from "../../DashboardAction";
-import OrdersClosedModal from "./OrdersClosedModal"
+import OrdersClosedModal from "./OrdersClosedModal";
 import { BundleLoader } from "../../../../Components/Placeholder";
+import OrdersOpenDrawer from "./OrdersOpenDrawer";
+import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
 
 function DashboardOrderJumpstart(props) {
 
   const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [modalData, setModalData] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentOrderType, setCurrentOrderType] = useState("");
 
   useEffect(() => {
     const fetchMenuTranslations = async () => {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-       "Orders Added", // 0
-       "Orders Open", // 1
-        "Orders Closed", // 2
-       "Orders Cancelled"//3
+    "1229",  //  "Orders Added", // 0
+     "1230", //  "Orders Open", // 1
+      "1231",//   "Orders Closed", // 2
+      "1232",//  "Orders Cancelled"//3
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -43,120 +49,197 @@ function DashboardOrderJumpstart(props) {
 
     fetchMenuTranslations();
   }, [props.selectedLanguage]);
+  
   useEffect(() => {
     props.getJumpOrderDetail(props.timeRangeType, "Catalog")
   }, [props.timeRangeType]);
   console.log(props.timeRangeType)
 
+  useEffect(() => {
+    if (props.orderAddedList) {
+      setModalData(props.orderAddedList);
+    }
+  }, [props.orderAddedList]);
+
+  useEffect(() => {
+    if (props.orderOpenList) {
+      setModalData(props.orderOpenList);
+    }
+  }, [props.orderOpenList]);
+
+  useEffect(() => {
+    if (props.orderClosedList) {
+      setModalData(props.orderClosedList);
+    }
+  }, [props.orderClosedList]);
+
+  useEffect(() => {
+    if (props.orderCancelList) {
+      setModalData(props.orderCancelList);
+    }
+  }, [props.orderCancelList]);
+
+
+
+  const handleClick = (type) => {
+    setCurrentOrderType(type);
+    setIsModalOpen(true);
+
+    switch(type) {
+      case 'Added':
+        props.getOrderAddedList(props.userId,props.endDate,props.startDate);
+        break;
+      case 'Open':
+        props.getOrderOpenList(props.userId,props.endDate,props.startDate);
+        break;
+      case 'Closed':
+        props.getOrderClosedList(props.userId,props.endDate,props.startDate);
+        break;
+      case 'Cancelled':
+        props.getOrderCancelList(props.userId,props.endDate,props.startDate);
+        break;
+      default:
+        break;
+    }
+  };
+
+  
   if (loading) {
     return <div><BundleLoader/></div>;
   } 
+
   return (
     <>
+    <div className=" flex flex-col">
       <div class=" flex flex-row w-full" >
         <div class=" flex w-full max-sm:flex-col" >
-          <div class="flex w-wk">
-            <JumpStartBox
+          
+          <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                     
+                     <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
+                         <div class="flex flex-row items-center text-xs">
+                             <div class="flex-shrink pr-1">
+                                 <div class="rounded-full p-2 bg-green-600"><DynamicFeedIcon className="text-white"/></div>
+                             </div>
+                             <JumpStartBox
               bgColor="linear-gradient(270deg,#F15753,orange)"
               noProgress
               title= {translatedMenuItems[0]}
             
-              jumpstartClick={()=>props.handleOrderAddedModal(true)}
+              jumpstartClick={()=> handleClick("Added")}
               cursorData={"pointer"}
               value={props.orderinDashboard.totalOrder}
             isLoading={props.fetchingorderDetails}
             />
-
-            <JumpStartBox
+                         </div>
+                     </div>
+                 
+                 </div> 
+                 <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                       <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
+                           <div class="flex flex-row items-center text-xs">
+                               <div class="flex-shrink pr-1">
+                                   <div class="rounded-full p-2 bg-pink-600"><DynamicFeedIcon className="text-white"/></div>
+                               </div>
+                               <JumpStartBox
             bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
               noProgress
-              title= {translatedMenuItems[1]}
-              
-            jumpstartClick={()=>props.handleOrderOpenModal(true)}
+              title= {translatedMenuItems[1]} 
+            jumpstartClick={()=> handleClick("Open")}
               cursorData={"pointer"}
             // value={ props.orderinDashboard.pendingOrder}
             isLoading={props.fetchingorderDetails}
             />
-          </div>
-          <div class="flex w-wk">
-            <JumpStartBox
-bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
+                           </div>
+                       </div>
+                    
+                   </div>  
+                    
+                <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                       <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
+                           <div class="flex flex-row items-center text-xs">
+                               <div class="flex-shrink pr-1">
+                                   <div class="rounded-full p-2 bg-yellow-600"><DynamicFeedIcon className="text-white"/></div>
+                               </div>
+                               <JumpStartBox
+                bgColor="linear-gradient(270deg,#3db8b5,#41e196)"
               noProgress
               title= {translatedMenuItems[2]}
           
-              jumpstartClick={()=>props.handleOrderClosedModal(true)}
+              jumpstartClick={()=> handleClick("Closed")}
               cursorData={"pointer"}
             // value={props.orderinDashboard.completeOrder}
             isLoading={props.fetchingorderDetails}
             />
-            <JumpStartBox
-                        bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
-              noProgress
-              title= {translatedMenuItems[3]}
-              
-              jumpstartClick={()=>props.handleOrderCancelModal(true)}
-              cursorData={"pointer"}
-              value={props.orderinDashboard.cancelOrder}
-            isLoading={props.fetchingorderDetails}
-            />
-
-
+                           </div>
+                       </div>
+                     
+                   </div>  
+                   
+                   <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                      
+                      <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[3.5rem] w-wk flex items-center">
+                          <div class="flex flex-row items-center text-xs">
+                              <div class="flex-shrink pr-1">
+                                  <div class="rounded-full p-2 bg-blue-600"><DynamicFeedIcon className="text-white"/></div>
+                              </div>
+                              <JumpStartBox
+                             bgColor="linear-gradient(270deg,#5786ea,#20dbde)"
+                              noProgress
+                              title= {translatedMenuItems[3]} 
+                              jumpstartClick={()=> handleClick("Cancelled")}
+                              cursorData={"pointer"}
+                              value={props.orderinDashboard.cancelOrder}
+                            isLoading={props.fetchingorderDetails}
+                            />
+                          </div>
+                      </div>      
+                  </div>
           </div>
-           {/* <div class="flex w-wk">
-          <JumpStartBox
-                         bgColor="linear-gradient(270deg,#ff8f57,#ffd342)"
-              noProgress
-              title={<FormattedMessage
-                id="app.financeopen"
-                defaultMessage="Receivables Open"
-              />}
-           
-            // jumpstartClick={()=>handlePitchAddedDrawer(true)}
-            // cursorData={"pointer"}
-            // value={props.financeDetail.createdinvestorLeadsList}
-            // isLoading={props.fetchingJumpstartInvestor2}
-            />
-               </div> */}
+          
+        </div>
+        <div class=" mt-1 flex flex-row justify-between" >
+        <div>
+        <div class=" font-poppins font-bold text-base ">By Order Value</div>
+        <ProductionOrderValuePieChart/>
+        </div>
+        <div>
+        <div class=" font-poppins font-bold text-base ">By Order Volume</div>
+        <ProductionVolumePieChart/>
         </div>
       </div>
-   
-     <OrdersAddedModal
-      selectedLanguage={this.props.selectedLanguage}
-      translateText={this.props.translateText}
-       orderAddedModal={props.orderAddedModal}
-       handleOrderAddedModal={props.handleOrderAddedModal}
-      />
-        <OrdersCancelModal
-         selectedLanguage={this.props.selectedLanguage}
-         translateText={this.props.translateText}
+      </div>
+        {/* <OrdersCancelModal
+         selectedLanguage={props.selectedLanguage}
+         translateText={props.translateText}
        orderCancelModal={props.orderCancelModal}
        handleOrderCancelModal={props.handleOrderCancelModal}
-      />
+      /> */}
        <OrdersClosedModal
-        selectedLanguage={this.props.selectedLanguage}
-        translateText={this.props.translateText}
+        selectedLanguage={props.selectedLanguage}
+        translateText={props.translateText}
        orderClosedModal={props.orderClosedModal}
        handleOrderClosedModal={props.handleOrderClosedModal}
       />
 
-<OrdersOpenModal
- selectedLanguage={this.props.selectedLanguage}
- translateText={this.props.translateText}
+{/* <OrdersOpenModal
+ selectedLanguage={props.selectedLanguage}
+ translateText={props.translateText}
        orderOpenModal={props.orderOpenModal}
        handleOrderOpenModal={props.handleOrderOpenModal}
+      /> */}
+
+      <OrdersOpenDrawer
+ selectedLanguage={props.selectedLanguage}
+ translateText={props.translateText}
+ isModalOpen={isModalOpen}
+ setIsModalOpen={() => setIsModalOpen(false)}
+ modalData={modalData}
+ title={currentOrderType}
       />
-       {/* <PitchAddedDrawer
-      openPitchAdded={openPitchAdded}
-      handlePitchAddedDrawer={handlePitchAddedDrawer}
-      />
-      <DealsAddedDrawer 
-     openDealAdded={openDealAdded}
-     handleDealAddedDrawer={handleDealAddedDrawer}
-    />
-    <DealsClosedDrawer 
-     openDealClosed={openDealClosed}
-     handleDealClosedDrawer={handleDealClosedDrawer}
-    />  */}
+   
     </>
 
   );
@@ -166,13 +249,16 @@ const mapStateToProps = ({ dashboard, auth }) => ({
   orderinDashboard: dashboard.orderinDashboard,
   orgId: auth.userDetails.organizationId,
   fetchingorderDetails: dashboard.fetchingorderDetails,
-  userId: auth.userDetails.employeeId,
+  userId: auth.userDetails.userId,
   orderAddedModal:dashboard.orderAddedModal,
-  orderCancelModal:dashboard.orderCancelModal,
   orderClosedModal:dashboard.orderClosedModal,
   timeRangeType: dashboard.timeRangeType,
-  orderOpenModal:dashboard.orderOpenModal
-
+  startDate: dashboard.startDate,
+  endDate: dashboard.endDate,
+  orderAddedList:dashboard.orderAddedList,
+  orderOpenList:dashboard.orderOpenList,
+  orderClosedList:dashboard.orderClosedList,
+  orderCancelList:dashboard.orderCancelList,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -181,16 +267,11 @@ const mapDispatchToProps = (dispatch) =>
       getJumpOrderCount,
       getJumpOrderDetail,
       handleOrderAddedModal,
-      handleOrderCancelModal,
       handleOrderClosedModal,
-      handleOrderOpenModal
-      //   getJumpInvestor2list,
-      //   getJumpInvestor3list,
-      //   getJumpInvestor4list,
-      //   handlePitchQualifiedDrawer,
-      //   handlePitchAddedDrawer,
-      //   handleDealAddedDrawer,
-      //   handleDealClosedDrawer
+      getOrderAddedList,
+      getOrderOpenList,
+      getOrderClosedList,
+      getOrderCancelList
 
     },
     dispatch

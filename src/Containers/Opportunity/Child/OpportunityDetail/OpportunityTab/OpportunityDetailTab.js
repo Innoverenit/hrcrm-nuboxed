@@ -3,9 +3,8 @@ import { connect } from "react-redux";
 import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStation';
 import { bindActionCreators } from "redux";
 import RecruitmentDeletedTable from "../../OpportunityDetail/OpportunityTab/Recruitment/RecruitmentDeletedTable"
-import {Tooltip, } from "antd";
+import {Tooltip,Badge } from "antd";
 import DynamicFeedIcon from '@mui/icons-material/DynamicFeed';
-import { FormattedMessage } from "react-intl";
 import PieChartIcon from '@mui/icons-material/PieChart';
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import {
@@ -14,11 +13,10 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import ContactsIcon from '@mui/icons-material/Contacts';
-import { LinkOutlined, PlusOutlined, 
-} from '@ant-design/icons';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import { handleContactModal,handleLinkContactModal } from "../../../../Contact/ContactAction";
 import RecruitmentClosedTable from "../OpportunityTab/RecruitmentClosedTable"
-import {handleReactSpeechModal} from "../../../OpportunityAction"
+// import {handleReactSpeechModal} from "../../../OpportunityAction"
 import {handleCustomerContactModal} from "../../../../Customer/CustomerAction"
 import {
     getContactListByOpportunityId,
@@ -32,17 +30,17 @@ import {
 } from "../../../OpportunityAction";
 import LockIcon from '@mui/icons-material/Lock';
 import { BundleLoader } from "../../../../../Components/Placeholder";
-import ReactSpeechModal from "./ReactSpeechModal";
+// import ReactSpeechModal from "./ReactSpeechModal";
 import AddDocumentModals from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
 import AddCustomerContactModal from "../../../../Customer/Child/CustomerDetail/CustomerTab/ContactTab/AddCustomerContactModal";
+import LinkedContact from "../../../../Customer/Child/CustomerDetail/CustomerTab/ContactTab/LinkedContact";
+import LinkedDocuments from "../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments";
 const RecruitmentTable = lazy(() => import("./Recruitment/RecruitmentTable"));
 const AddRecruitModal = lazy(() => import("./Recruitment/AddRecruitModal"));
 const AddTagProfileModal = lazy(() => import("./Recruitment/AddTagProfileModal"));
 const RecruitProJumpstart = lazy(() => import("../../RecruitProJumpstart/RecruitProJumpstart"));
 const SummaryTable = lazy(() => import("./Recruitment/Child/SummaryTable"));
 const AddDocumentModal = lazy(() => import("./Document/AddDocumentModal"));
-const LinkedContact = lazy(() => import("./LinkedContact"));
-const LinkedDocuments = lazy(() => import("./Document/LinkedDocuments"));
 const AddContactModal = lazy(() => import("../../../../Contact/Child/AddContactModal"));
 const LinkContactModal = lazy(() => import("../../../../Contact/Child/LinkContactModal"));
 
@@ -70,7 +68,36 @@ class OpportunityDetailTab extends Component {
       customField: [],
       ganttChart: false,
       costId: "",
+      translatedMenuItems: [],
+      loading: true
     };
+  }
+
+  componentDidMount() {
+    this.props.getCustomerData(this.props.userId);
+    this.props.getDepartments();
+    
+  }
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  async fetchMenuTranslations() {
+    try {
+      this.setState({ loading: true });
+      const itemsToTranslate = [
+       '73', // 0 contacts
+       '1166', // 1 Document
+       '1255' // 'Version', // 2
+
+      ];
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations ,loading: false});
+     
+    } catch (error) {
+      this.setState({ loading: false });
+      console.error('Error translating menu items:', error);
+    }
   }
 
   handleRecriutmentdashboard = () => {
@@ -140,139 +167,11 @@ class OpportunityDetailTab extends Component {
       documentUploadModal,
     } = this.props;
     const { deliveryInd, stageName } = this.props;
-    if(fetchingOpportunityDetailsById){
-return  <BundleLoader />
-    }
-    return (
-      <>
-        <TabsWrapper>
-          <StyledTabs
-            defaultActiveKey="1"
-            onChange={this.handleTabChange}
-            forceRender={true}
-          >
-            {user.requirementAccessInd === true && user.recruitProInd === true ? (
-             <TabPane
-              tab={
-                <>
-                  <span onClick={this.handleRecruitClick}>
-                  <TransferWithinAStationIcon 
-                  style={{fontSize:"1.1rem"}}
-                   />
-                    <span style={{ marginLeft: '0.25em' }}>RecruitPro</span>
-                  </span>
-                  {activeKey === "1" && (
-                    <>
-
-                      <>
-                     
-                        <Tooltip title="Add Requirement">
-                        {user.userType !== "USER" && user.department !== "Recruiter" && ( 
-                          <PlusOutlined
-                            type="plus"
-                            tooltipTitle="Add Requirement"
-                            onClick={() =>
-                              this.props.handleRecruitModal(true)
-                            }
-                            size="0.875em"
-                            style={{
-                              marginLeft: "0.125em",
-                              verticalAlign: "center",
-                            }}
-                          />
-                        )}
-                          </Tooltip>
-                        
-                        {/* <Tooltip //title="Tag Position"
-                          title={<FormattedMessage
-                            id="app.tagposition"
-                            defaultMessage="Tag Position"
-                          />}
-
-                        >
-                           {user.userType !== "USER" && user.department !== "Recruiter" && ( 
-                          <Icon
-                            type="link"
-                            onClick={() => {
-                              this.handlepartnerPopoverVisibleChange();
-                              handleTagProfileModal(true);
-                            }}
-                            size="0.875em"
-                            style={{
-                              marginLeft: "-5px",
-                              verticalAlign: "center",
-                            }}
-                          />
-                           )}
-                        </Tooltip> */}
-
-                        <Tooltip title="Summary">
-                      <span
-                       style={{marginLeft:"-4px"}}
-                          type="area-chart"
-                          // tooltipTitle="Summary"
-                          onClick={() => {
-                            this.handleRecriutmentdashboard();
-                          }}
-                          size="0.875em"                         
-                          >
-                          {/* <i class="fas fa-chart-line"></i> */}
-                          {/* <i class="fas-solid fa-chart-pie"></i> */}
-                          <PieChartIcon  style={{fontSize:"1.1rem"}} />
-                          </span>
-                        </Tooltip>
-
-                        <Tooltip title="Close">
-                         <span
-                     
-                      style={{marginLeft:"4px"}}
-                          type="area-chart"
-                          // tooltipTitle="Summary"
-                          onClick={() => {
-                            this.handleClosedPopoverVisibleChange();
-                          }}
-                          size="0.8em"                         
-                          >
-                             <LockIcon style={{fontSize:"1.1rem"}} />
-                            
-                          
-                          </span>
-                      
-                        </Tooltip>
-
-                        <Tooltip title="Close">
-                         <span
-                     
-                      style={{marginLeft:"4px"}}
-                          type="area-chart"
-                          // tooltipTitle="Summary"
-                          // onClick={() => {
-                          //   this.handleClosedPopoverVisibleChange();
-                          // }}
-                          size="0.8em"                         
-                          >
-                            <DeleteIcon  style={{fontSize:"1.1rem"}}
-                            onClick={() => {
-                            this.handledeletedPopoverVisibleChange();
-                          }}
-                            />
-                            
-                          
-                          </span>
-                      
-                        </Tooltip>
-                      
-                       
-                      </>
-                  
-                    </>
-                  )}
-                </>
-              }
-              key="1"
-            >
-               
-              {this.state.recriutmentdashboard ? (
+    const renderTabContent = (key) => {
+      switch (key) {
+        case "1":
+          return     <div> 
+                  {this.state.recriutmentdashboard ? (
                 <Suspense fallback={"Loading ..."}>
                   {" "}
                   <RecruitProJumpstart />
@@ -296,65 +195,196 @@ return  <BundleLoader />
                   </Suspense>
                   
                 )}
+              </div>;
+        case "2":
+          return  <div>   <LinkedContact 
+          uniqueId={opportunityId}
+          type={"oppertunity"}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}
+          /></div>;
+         case "3":
+          return  <div>     <LinkedDocuments
+          uniqueId={opportunityId}
+          type={"oppertunity"}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+        translatedMenuItems={this.props.translatedMenuItems}
+         /> </div>;
+          case "4":
+            return  <div>    </div>;
+        default:
+          return null;
+      }
+    };
+    if(fetchingOpportunityDetailsById){
+return  <BundleLoader />
+    }
+    const {loading,translatedMenuItems } = this.state;
+    if (loading) {
+      return <div><BundleLoader/></div>;
+    } 
+    return (
+      <>
+        <TabsWrapper>
+          <StyledTabs
+            defaultActiveKey="1"
+            onChange={this.handleTabChange}
+            forceRender={true}
+          >
+            {
+            // user.requirementAccessInd === true && 
+            user.recruitProInd === true ? (
+             <TabPane
+              tab={
+                <>
+                  <span onClick={this.handleRecruitClick}>
+                  <TransferWithinAStationIcon 
+                 className="!text-icon"
+                   />
+                    <span className="ml-[0.25rem]">RecruitPro</span>
+                  </span>
+                  {activeKey === "1" && (
+                    <>
+
+                      <>
+                     
+                        <Tooltip title="Add Requirement">
+                        {user.userType !== "USER" && user.department !== "Recruiter" && ( 
+                           <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]" 
+                           
+                            tooltipTitle="Add Requirement"
+                            onClick={() =>
+                              this.props.handleRecruitModal(true)
+                            }
+                                               
+                          />
+                        )}
+                          </Tooltip>                                        
+
+                        <Tooltip title="Summary">
+                      <span className=" -ml-1"                   
+                          type="area-chart"
+                          // tooltipTitle="Summary"
+                          onClick={() => {
+                            this.handleRecriutmentdashboard();
+                          }}
+                          size="0.875em"                         
+                          >
+                       
+                          <PieChartIcon className="!text-icon text-[#42858c]" />
+                          </span>
+                        </Tooltip>
+
+                        <Tooltip title="Close">
+                         <span
+                         className=" ml-1 "
                   
+                          type="area-chart"
+                          // tooltipTitle="Summary"
+                          onClick={() => {
+                            this.handleClosedPopoverVisibleChange();
+                          }}
+                                           
+                          >
+                             <LockIcon className="!text-icon text-[#e4eb2f] " />
+                            
+                          
+                          </span>
+                      
+                        </Tooltip>
+
+                        <Tooltip title="Delete">
+                         <span
+                      className=" ml-1 !text-icon text-[#c42847]"
+                      
+                          type="area-chart"
+                          // tooltipTitle="Summary"
+                          // onClick={() => {
+                          //   this.handleClosedPopoverVisibleChange();
+                          // }}
+                                          
+                          >
+                            <DeleteIcon
+                      className=" ml-1 !text-icon "
+                            onClick={() => {
+                            this.handledeletedPopoverVisibleChange();
+                          }}
+                            />
+                                                    
+                          
+                          </span>
+                      
+                        </Tooltip>
+                      
+                       
+                      </>
+                  
+                    </>
+                  )}
+                </>
+              }
+              key="1"
+            >
+               
+              {/* {this.state.recriutmentdashboard ? (
+                <Suspense fallback={"Loading ..."}>
+                  {" "}
+                  <RecruitProJumpstart />
+                  <SummaryTable />
+                </Suspense>
+              ) :this.state.closedPopover ? 
+              (
+                <Suspense fallback={"Loading ..."}>
+                <RecruitmentClosedTable  opportunityId={opportunityId}/>
+                </Suspense>
+              ):this.state.deletePopover ? 
+                 
+                (
+                  <Suspense fallback={"Loading ..."}>
+                  <RecruitmentDeletedTable  opportunityId={opportunityId}/>
+                  </Suspense>
+                ):(
+                  <Suspense fallback={"Loading ..."}>
+                    {" "}
+                    <RecruitmentTable  opportunityId={opportunityId}/>
+                  </Suspense>
+                  
+                )}
+                   */}
             </TabPane>
             ):null}
              <TabPane
               tab={
                 <>
                   <span>
-                    <ContactsIcon   style={{fontSize:"1.1rem"}}/>
-                    <span style={{ marginLeft: '0.25em' }}>
-                      <FormattedMessage
-                        id="app.contacts"
-                        defaultMessage="Contacts"
-                      />
+                  <ContactsIcon className="!text-icon text-[#96bdc6]" />
+                    <span className="ml-[0.25rem] !text-tab">       
+                    {translatedMenuItems[0]}           
                     </span>
                   </span>
                 
                   {activeKey === "2" && (
                     <>
                       <Tooltip 
-                        title={<FormattedMessage
-                          id="app.create"
-                          defaultMessage="Create"
-                        />}
-                      >
-                         {user.userType !== "USER" && user.department !== "Recruiter" && ( 
-                        <PlusOutlined
-                          type="plus"
+                        title="Create"
+                        >
+                         {/* {user.userType !== "USER" && user.department !== "Recruiter" && (  */}
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                           tooltipTitle="Create"
                           onClick={() => {
                             this.handleContactPopoverVisibleChange();
                             //handleContactModal(true);
                             handleCustomerContactModal(true);
                           }}
-                          size="0.875em"
-                          style={{ verticalAlign: "center", marginLeft: "0.125em" }}
+                    
                         />
-                         )}
+                         {/* )} */}
                          
                       </Tooltip>
-                      <Tooltip 
-                          title={<FormattedMessage
-                            id="app.tagexisting"
-                            defaultMessage="Tag Existing"
-                          />}
-                      >
-                        <LinkOutlined
-                            type="link"
-                            onClick={() => {
-                              this.handleContactPopoverVisibleChange();
-                              handleLinkContactModal(true);
-                            }}
-                            size="0.875em"
-                            style={{
-                              marginLeft: "-0.31em",
-                              verticalAlign: "center",
-                            }}
-                          />
-
-                     </Tooltip>
+                     
                     </>
                   )}
                 </>
@@ -363,38 +393,39 @@ return  <BundleLoader />
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedContact/>
+                {/* <LinkedContact
+                 translateText={this.props.translateText}
+                 selectedLanguage={this.props.selectedLanguage}
+                translatedMenuItems={this.props.translatedMenuItems}
+                /> */}
               </Suspense>
             </TabPane>
             <TabPane
               tab={
                 <>
-                  <InsertDriveFileIcon   style={{fontSize:"1.1rem"}}/>
-                    <span style={{ marginLeft: "0.25em" }}>
-                      <FormattedMessage
-                        id="app.documents"
-                        defaultMessage="Documents"
-                      />
-                  </span>
+                  <i class="far fa-file text-[#41ead4]"></i>
+              
+                  <span class="ml-1 !text-tab font-poppins ">
+                                    {translatedMenuItems[1]}
+                                    {/* Documents */}
+                                        </span>
+                                        <Badge
+                count={this.props.documentsByCount.OpportunityDocumentDetails}
+                overflowCount={999}
+              > 
+                   </Badge>      
                   {activeKey === "3" && (
                     <>
                       <Tooltip 
-                        title={<FormattedMessage
-                          id="app.uploaddocument"
-                          defaultMessage="Upload Document"
-                        />}
-                      >
-                        <PlusOutlined
-                          type="plus"
-                          tooltiptitle={<FormattedMessage
-                            id="app.uploaddocument"
-                            defaultMessage="Upload Document"
-                          />}
+                        title="Upload Document"
+                        >
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
+                          tooltiptitle="Upload Document"
+                          
                           onClick={() =>
                             handleDocumentUploadModal(true)
                           }
-                          size="0.875em"
-                          style={{ marginLeft: "0.25em", verticalAlign: "center" }}
                         />
                       </Tooltip>
                     </>
@@ -405,19 +436,20 @@ return  <BundleLoader />
             >
               <Suspense fallback={"Loading ..."}>
                 {" "}
-                <LinkedDocuments opportunity={opportunity} />
+                {/* <LinkedDocuments opportunity={opportunity} 
+                translateText={this.props.translateText}
+                selectedLanguage={this.props.selectedLanguage}
+              translatedMenuItems={this.props.translatedMenuItems}
+                /> */}
               </Suspense>
             </TabPane>
 
               <TabPane
               tab={
                 <>
-                  <DynamicFeedIcon   style={{fontSize:"1.1rem"}}/>
-                    <span style={{ marginLeft: "0.25em" }}>
-                      <FormattedMessage
-                        id="app.version"
-                        defaultMessage="Version"
-                      />
+                  <DynamicFeedIcon  className="!text-icon"/>
+                  <span className="ml-[0.25rem] !text-tab">
+                  {translatedMenuItems[2]} 
                   </span>
                
                 </>
@@ -430,40 +462,11 @@ return  <BundleLoader />
               </Suspense>
             </TabPane>
 
-            {/* <TabPane
-              tab={
-                <>
-                  <span>
-                    <NoteAltIcon style={{fontSize:"1.1rem"}}/>
-                    &nbsp;
-                    <FormattedMessage
-                      id="app.notes"
-                      defaultMessage="Notes"
-                    />
-                    &nbsp;
-                    {activeKey === "4" && (
-                      <>
-                        <Tooltip title="Voice to Text">
-                      <span                       
-                   onClick={()=>handleReactSpeechModal(true)}>
-                  <MicIcon
-                  style={{fontSize:"1.1rem"}}
-                 />
-                  
-                  </span>
-                  </Tooltip>
-                  </>
-                    )}
-                  </span>
-                </>
-              }
-              key="4">
-              <Suspense fallback={"Loading ..."}>
-                {" "}
-                <LinkedNotes />
-              </Suspense>
-            </TabPane> */}
+          
           </StyledTabs>
+          <Suspense fallback={<div class="flex justify-center">Loading...</div>}>
+                {renderTabContent(activeKey)}
+              </Suspense>
         </TabsWrapper>
         <Suspense fallback={null}>
 
@@ -471,10 +474,14 @@ return  <BundleLoader />
            opportunity={this.props.opportunity}
             addRecruitModal={this.props.addRecruitModal}
             handleRecruitModal={this.props.handleRecruitModal}
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.state.translateText}
           />
           <AddTagProfileModal
             addTagProfileModal={this.props.addTagProfileModal}
             handleTagProfileModal={this.props.handleTagProfileModal}
+            selectedLanguage={this.props.selectedLanguage}
+            translateText={this.state.translateText}
           />
 
           {/* <AddContactModal
@@ -487,6 +494,9 @@ return  <BundleLoader />
           handleCustomerContactModal={handleCustomerContactModal}
             addCustomerContactModal={addCustomerContactModal}
             opportunityId={opportunityId}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.state.translatedMenuItems}
             // defaultCustomers={[{ label: name, value: customerId }]}
             // customerId={{ value: customerId }}
             // callback={() => getContactListByCustomerId(customerId)}
@@ -500,18 +510,29 @@ return  <BundleLoader />
               { label: opportunityName, value: opportunityId },
             ]}
             linkType="opportunity"
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+             translatedMenuItems={this.state.translatedMenuItems}
           />
 
 <AddDocumentModals
 opportunityId={opportunityId}
+uniqueId={opportunityId}
+type={"oppertunity"}
             documentUploadModal={documentUploadModal}
             handleDocumentUploadModal={handleDocumentUploadModal}
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.state.translatedMenuItems}
           />
-          <ReactSpeechModal
+          {/* <ReactDescription
           opportunityId={opportunityId}
           handleReactSpeechModal={handleReactSpeechModal}
           addSpeechModal={addSpeechModal}
-          />
+          translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}
+           translatedMenuItems={this.state.translatedMenuItems}
+          /> */}
       
         </Suspense>
       </>
@@ -543,6 +564,7 @@ const mapStateToProps = ({
   addRecruitModal: opportunity.addRecruitModal,
   addTagProfileModal: opportunity.addTagProfileModal,
   documentUploadModal: opportunity.documentUploadModal,
+  documentsByCount:customer.documentsByCount
 });
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
@@ -551,7 +573,6 @@ const mapDispatchToProps = (dispatch) =>
       handleContactModal,
       handleCustomerContactModal,
       handleLinkContactModal,
-      handleReactSpeechModal,
       handleDocumentUploadModal,
       getContactListByOpportunityId,
        linkContactsCheckToOpportunity,

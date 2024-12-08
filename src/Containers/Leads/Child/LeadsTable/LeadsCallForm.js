@@ -2,7 +2,7 @@ import React, { useState, useEffect} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getAllSalesList } from "../../../Opportunity/OpportunityAction"
-import { FormattedMessage } from "react-intl";
+
 import { Button,  Switch, Tooltip } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import * as Yup from "yup";
@@ -28,12 +28,12 @@ import { StyledPopconfirm } from "../../../../Components/UI/Antd";
 import { getAssignedToList } from "../../../Employees/EmployeeAction";
 import { setClearbitCandidateData } from "../../../Candidate/CandidateAction";
 import SpeechRecognition, { } from 'react-speech-recognition';
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import { Listbox} from '@headlessui/react'
 
 const ButtonGroup = Button.Group;
 const suffix = (
-  <AudioOutlined
+  <MicIcon
     onClick={SpeechRecognition.startListening}
     style={{
       fontSize: 16,
@@ -299,16 +299,12 @@ function LeadsCallForm(props) {
 
                       <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
                        
-                        <FormattedMessage id="app.type" defaultMessage="Type" />
+                        Type
                       </div>
                       <div class=" flex justify-between">
                         <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.introductory"
-                              defaultMessage="Introductory"
-                            />
-                          }
+                          title="Introductory"
+                            
                         >
                           <div
                           class="text-xl cursor-pointer"
@@ -324,12 +320,8 @@ function LeadsCallForm(props) {
                         </Tooltip>
      
                         <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.interview"
-                              defaultMessage="Interview"
-                            />
-                          }
+                          title="Interview"
+                          
                         >
                           <div
                           class="text-xl cursor-pointer"
@@ -347,12 +339,8 @@ function LeadsCallForm(props) {
                         </Tooltip>
    
                         <Tooltip
-                          title={
-                            <FormattedMessage
-                              id="app.closure"
-                              defaultMessage="Closure"
-                            />
-                          }
+                          title="Closure"
+                            
                         >
                           <div
                           class="text-xl cursor-pointer"
@@ -373,10 +361,8 @@ function LeadsCallForm(props) {
                     <div class=" w-1/2 mt-4">
                 
                     <div class="font-bold m-[0.1rem-0-0.02rem-0.2rem] text-xs flex flex-col">
-                        <FormattedMessage
-                          id="app.category"
-                          defaultMessage="Category"
-                        />
+                       Category
+                     
                       </div>
                       
                       <ButtonGroup>
@@ -392,7 +378,7 @@ function LeadsCallForm(props) {
                           }}
                         >
                          
-                          <FormattedMessage id="app.new" defaultMessage="New" />
+                         New
                         </Button>
                         <Button
                           onClick={() => handleCategoryChange("Follow up")}
@@ -408,10 +394,7 @@ function LeadsCallForm(props) {
                           }}
                         >
                    
-                          <FormattedMessage
-                            id="app.followup"
-                            defaultMessage="Follow up"
-                          />
+                   Follow up  
                         </Button>
                       </ButtonGroup>
                     </div>
@@ -458,12 +441,7 @@ function LeadsCallForm(props) {
                   </div>
                   <Field
                     name="callPurpose"
-                    label={
-                      <FormattedMessage
-                        id="app.subject"
-                        defaultMessage="Subject"
-                      />
-                    }
+                    label="Subject"
                     component={InputComponent}
                     isColumn
                     width={"100%"}
@@ -472,7 +450,7 @@ function LeadsCallForm(props) {
                   <div class="mt-4">
                   <Field
                     name="startDate"
-                    label={<FormattedMessage id="app.date" defaultMessage="Date" />}
+                    label="Date" 
                     component={DatePicker}
                     isColumn
                     width={"100%"}
@@ -485,12 +463,7 @@ function LeadsCallForm(props) {
                     <div class=" w-1/2 max-sm:w-wk">
                       <Field
                         name="startTime"                   
-                        label={
-                          <FormattedMessage
-                            id="app.starttime"
-                            defaultMessage="Start Time"
-                          />
-                        }
+                        label="Start Time"
                         component={TimePicker}
                         isRequired
                         isColumn
@@ -502,12 +475,7 @@ function LeadsCallForm(props) {
                     <div class=" w-2/5 max-sm:w-wk">
                       <Field
                         name="endTime"                   
-                        label={
-                          <FormattedMessage
-                            id="app.endtime"
-                            defaultMessage="End Time"
-                          />
-                        }
+                        label="End Time"
                         component={TimePicker}
                         use12Hours
                         isRequired
@@ -523,12 +491,7 @@ function LeadsCallForm(props) {
                     defaultValue={{ label: timeZone, value: userId }}
                     name="timeZone"
                     isColumnWithoutNoCreate           
-                    label={
-                      <FormattedMessage
-                        id="app.timeZone"
-                        defaultMessage="Time Zone"
-                      />
-                    }
+                    label="Time Zone"
                     selectType="timeZone"
                     isColumn
                     value={values.timeZone}
@@ -607,12 +570,9 @@ function LeadsCallForm(props) {
                     <div class="mt-4">
                   <Field
                     name="included"
-                    label={
-                      <FormattedMessage
-                        id="app.include"
-                        defaultMessage="Include"
-                      />
-                    }
+                    label="Include"
+                     
+                 
                     mode
                     placeholder="Select"
                     component={SelectComponent}
@@ -628,72 +588,23 @@ function LeadsCallForm(props) {
                   <div>
                     <div class=" w-full mt-4"><Field
                       name="callDescription"
-                      // label="Notes"
-                      label={
-                        <FormattedMessage id="app.notes" defaultMessage="Notes" />
-                      }
+                      label="Notes"
+                      
                       isColumn
                       width={"100%"}
                       component={TextareaComponent}
                       inlineLabel
                     /></div>
                   </div>
-                 
-            
-                  {/* <div class=" flex justify-between" >
-                    <div 
-                    class=" w-1/2 font-bold">
-                    <div class=" flex justify-between" >
-                        <div>
-                          <StyledLabel>Set Reminder</StyledLabel>
-                        </div>
-                        <div>
-                          <Switch
-                            onChange={handleReminderChange}
-                            checked={reminder}
-                            checkedChildren="Yes"
-                            unCheckedChildren="No"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                    <div class=" w-1/3 font-bold">
-                      {reminder ? (
-                        <div>
-                          <Field
-                            // isRequired
-                            name="remindTime"
-                            label="Reminder"
-                            width={"100%"}
-                            component={SelectComponent}
-                            options={[
-                              "15 min",
-                              "30 min",
-                              "45 min",
-                              "1 hour",
-                              "2 hour",
-                            ]}
-                            defaultValue="30 min"
-                            isColumn
-                            inlineLabel
-                          />
-                        </div>
-                      ) : null}
-                    </div>
-                  </div> */}
+                                
                 </div>
               </div>
               <div class=" flex justify-end mt-4">
                 {isEditing && (
                   <>
                     <StyledPopconfirm
-                      // title="Do you want to delete?"
-                      title={
-                        <FormattedMessage
-                          id="app.doyouwanttodelete?"
-                          defaultMessage="Do you want to delete?"
-                        />
-                      }
+                      title="Do you want to delete?"
+                  
                       onConfirm={() => deleteCall(prefillCall.callId)}
                     >
                       <Button
@@ -701,10 +612,7 @@ function LeadsCallForm(props) {
                         htmlType="submit"
                         Loading={deletingCall}
                       >
-                        <FormattedMessage
-                          id="app.delete"
-                          defaultMessage="Delete"
-                        />
+                        Delete
                       </Button>
                     </StyledPopconfirm>
                   </>
@@ -717,8 +625,8 @@ function LeadsCallForm(props) {
                   {isEditing ? (
                     "Update"
                   ) : (
-                    // "Create"
-                    <FormattedMessage id="app.create" defaultMessage="Create" />
+                    "Create"
+                  
                   )}
                 </Button>
               </div>

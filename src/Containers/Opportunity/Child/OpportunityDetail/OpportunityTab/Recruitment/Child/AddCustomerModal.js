@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from "react";
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer, StyledModal } from "../../../../../../../Components/UI/Antd";
 const CustomerForm = lazy(() => import("./CustomerForm"));
 
@@ -8,11 +8,7 @@ const AddCustomerModal = (props) => {
   return (
     <>
       <StyledDrawer
-        // title="Requirement"
-        title={<FormattedMessage
-          id="app.requirement"
-          defaultMessage="Requirement"
-        />}
+        title="Requirement"
 
         width="58%"
         visible={props.addCustomerModal}

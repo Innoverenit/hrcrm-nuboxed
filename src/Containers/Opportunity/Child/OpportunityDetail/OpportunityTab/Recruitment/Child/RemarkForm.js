@@ -4,16 +4,12 @@ import { bindActionCreators } from "redux";
 import  { useSpeechRecognition } from 'react-speech-recognition';
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
-import { FormattedMessage } from "react-intl";
-import { Spacer } from "../../../../../../../Components/UI/Elements";
-import { FlexContainer } from "../../../../../../../Components/UI/Layout";
 import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import { addRemark } from "../../../../../OpportunityAction";
 import * as Yup from "yup";
-/**
- * yup validation scheme for creating a opportunity
- */
+
+
 const ProfileSchema = Yup.object().shape({
   // note: Yup.string().required("Input needed!"),
 
@@ -91,11 +87,7 @@ function RemarkForm(props) {
                   {" "}
                   <Field
                     name="stageId"
-                    // label="Stage"
-                    label={<FormattedMessage
-                      id="app.stageId"
-                      defaultMessage="Stage"
-                    />}
+                    label="Stage"
                     isRequired
                     isColumn
                     style={{
@@ -106,14 +98,10 @@ function RemarkForm(props) {
                     component={SelectComponent}
                     options={Array.isArray(stageList) ? stageList : []}
                   />{" "}
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="reviewer"
-                    //  label="Reviewer"
-                    label={<FormattedMessage
-                      id="app.reviewer"
-                      defaultMessage="Reviewer"
-                    />}
+                     label="Reviewer"
                     width={"100%"}
                     isColumn
                     component={InputComponent}
@@ -123,87 +111,7 @@ function RemarkForm(props) {
                       marginTop: "0.25em",
                     }}
                   />
-                  <Spacer />
-                  {/* <Field
-                    name="note"
-                    isRequired
-                    // label="Comments"
-                    label={<FormattedMessage
-                      id="app.note"
-                      defaultMessage="Note"
-                    />}
-                    width={"100%"}
-                    isColumn
-                    component={TextareaComponent}
-                    style={{
-                      flexBasis: "80%",
-                      height: "5em",
-                      // marginLeft: "2.5em",
-                      marginTop: "0.25em",
-                    }}
-                    
-                  /> */}
-
-               
-                  
-                    {/* <div>
-      <p>Microphone:  {listening ? 'on' : 'off'} 
-        </p>
-      <div>
-      <span
-      onClick={SpeechRecognition.startListening}
-      > 
-      <Tooltip title="Start">
-         <span style={{ fontSize: "1.5em",
-    color: "red" }}>
-        <FontAwesomeIcon icon={solid("record-vinyl")} />
-        </span>
-        </Tooltip>
-      </span>
-     
-      <span
-     
-      onClick={SpeechRecognition.stopListening}
-      >
-         <Tooltip title="Stop">
-         <span style={{ fontSize: "1.5em",color:"green",marginLeft:"3px" }}>
-         
-        <FontAwesomeIcon icon={solid("stop")} />
-       
-        </span>
-        </Tooltip>
-      </span>
-    
-     
-      <span
-       onClick={resetTranscript}
-      >
-          <Tooltip title="Clear">
-             <span style={{ fontSize: "1.5em",marginLeft:"3px" }}>
-        <FontAwesomeIcon icon={solid("rotate-right")} />
-        </span>
-        </Tooltip>
-        </span>
-        </div>
-        <div>
-        <textarea
-        name="note"
-        className="textarea"
-        type="text"
-         value={transcript?transcript:text}
-         onChange={handletext}
-        >
-        
-        </textarea>
-    
-      
-      </div>
-      
-      
-     
-    </div> */}
-  
-    
+                  <div class=" mt-3" />                                          
                 </div>
                 <div
                   style={{
@@ -211,21 +119,18 @@ function RemarkForm(props) {
                   }}
                 ></div>
               </div>
-              <Spacer />
-              <FlexContainer justifyContent="flex-end">
+              <div class=" mt-3" />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
                   Loading={props.addingRemark}
                 >
-                  <FormattedMessage
-                    id="app.submit"
-                    defaultMessage="Submit"
-                  />
-                  {/* Remark */}
+                 Submit
+                 
                 </Button>
                
-              </FlexContainer>
+              </div>
            
             </Form>
             

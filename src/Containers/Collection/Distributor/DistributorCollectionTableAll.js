@@ -3,13 +3,12 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Tooltip } from "antd";
 import { getAllDistributorsList } from "../CollectionAction";
-import APIFailed from "../../../Helpers/ErrorBoundary/APIFailed";
 import { CurrencySymbol } from "../../../Components/Common";
 import { Link } from "../../../Components/Common";
 import { OnlyWrapCard } from "../../../Components/UI/Layout";
-import moment from "moment";
-import { FormattedMessage } from "react-intl";
+import dayjs from "dayjs";
 import InfiniteScroll from "react-infinite-scroll-component";
+import NodataFoundPage from "../../../Helpers/ErrorBoundary/NodataFoundPage";
 
 class AllDistributorList extends Component {
 
@@ -17,14 +16,44 @@ class AllDistributorList extends Component {
     searchText: "",
     searchedColumn: "",
     page: 0,
-    hasMore: true
+    hasMore: true,
+    translatedMenuItems: [],
   };
 
   componentDidMount() {
     this.setState({ page: this.state.page + 1 })
     this.props.getAllDistributorsList(this.state.page);
+    this.fetchMenuTranslations();
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+       
+       '248',// customer 
+       '546',// Mobile
+       '700',// Website
+       '185',//  Address
+       '1236',// pinCode
+       '188',// city
+       '77',// owner
+       '1093',//  Balance
+       '267',// Previous
+       
+            ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  }; 
   handleLoadMore = () => {
     this.setState({ page: this.state.page + 1 })
     this.props.getAllDistributorsList(this.state.page);
@@ -33,24 +62,33 @@ class AllDistributorList extends Component {
   render() {
 
     if (this.props.fetchingAllDistributorsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
-
+ 
 
     return (
       <>
         <div className='flex  sticky z-auto'>
-          <OnlyWrapCard style={{ backgroundColor: "#eaedf1" }}>
-            <div className=" flex justify-between w-[99%] p-1 bg-transparent font-bold sticky  z-10">
-              <div className=" md:w-[8.1rem]"><FormattedMessage id="app.customer" defaultMessage="Customer" /></div>
-              <div className=" md:w-[5.1rem]"><FormattedMessage id="app.mobile" defaultMessage="Mobile" /></div>
-              <div className=" md:w-[6.8rem] "><FormattedMessage id="app.website" defaultMessage="Website" /></div>
-              <div className="md:w-[5.9rem]"><FormattedMessage id="app.address" defaultMessage="Address" /></div>
-              <div className="md:w-[7.8rem]"><FormattedMessage id="app.pincode" defaultMessage="Pin Code" /></div>
-              <div className="md:w-[7.9rem]"><FormattedMessage id="app.city" defaultMessage="City" /></div>
-              <div className="md:w-[6.2rem]"><FormattedMessage id="app.owner" defaultMessage="Owner" /> </div>
-              <div className="md:w-[11.3rem]"><FormattedMessage id="app.balance" defaultMessage="Balance" /></div>
-              <div className="md:w-[11.3rem]"><FormattedMessage id="app.previous" defaultMessage="Previous" /></div>
+          <OnlyWrapCard style={{ backgroundColor: "white" }}>
+            <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky  z-10">
+              <div className=" md:w-[8.1rem]">{this.state.translatedMenuItems[0]}</div>
+               {/* customer */}
+              <div className=" md:w-[5.1rem]">{this.state.translatedMenuItems[1]}</div>
+              {/* Mobile */}
+              <div className=" md:w-[6.8rem] ">{this.state.translatedMenuItems[2]}</div>
+               {/* Website */}
+              <div className="md:w-[5.9rem]">{this.state.translatedMenuItems[3]}</div>
+               {/* Address */}
+              <div className="md:w-[7.8rem]">{this.state.translatedMenuItems[4]}</div> 
+              {/* pinCode */}
+              <div className="md:w-[7.9rem]">{this.state.translatedMenuItems[5]}</div>
+               {/* city */}
+              <div className="md:w-[6.2rem]">{this.state.translatedMenuItems[6]} </div>
+               {/* owner */}
+              <div className="md:w-[11.3rem]">{this.state.translatedMenuItems[7]}</div> 
+              {/* Balance */}
+              <div className="md:w-[11.3rem]">{this.state.translatedMenuItems[8]}</div>
+               {/* Previous */}
 
 
             </div>
@@ -60,13 +98,14 @@ class AllDistributorList extends Component {
               hasMore={this.state.hasMore}
               loader={this.props.fetchingAllDistributors ? <div style={{ textAlign: 'center' }}>Loading...</div> : null}
               height={"75vh"}
+              style={{scrollbarWidth:"thin"}}
             >
 
               {this.props.allDistributors.map((item) => {
-                const currentdate = moment().format("DD/MM/YYYY");
-                const date = moment(item.creationDate).format("DD/MM/YYYY");
+                const currentdate = dayjs().format("DD/MM/YYYY");
+                const date = dayjs(item.creationDate).format("DD/MM/YYYY");
                 const diff = Math.abs(
-                  moment().diff(moment(item.lastRequirementOn), "days")
+                  dayjs().diff(dayjs(item.lastRequirementOn), "days")
                 );
                 const dataLoc = ` Address : ${item.address && item.address.length && item.address[0].address1
                   } 
@@ -85,7 +124,7 @@ class AllDistributorList extends Component {
                     // }}
                     >
                       <div class="flex">
-                        <div className=" flex font-medium flex-col md:w-40 max-sm:w-full  ">
+                        <div className=" flex border-l-2 h-8 border-green-500 bg-[#eef2f9] md:w-40 max-sm:w-full  ">
 
 
                           <Tooltip>
@@ -93,7 +132,7 @@ class AllDistributorList extends Component {
                               {/* <div class=" text-xs  font-poppins max-sm:hidden">
                                             Name
                                             </div> */}
-                              <div class=" text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                              <div class=" text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
 
                                 <Link
                                   toUrl={`distributor/${item.distributorId}`}
@@ -116,9 +155,9 @@ class AllDistributorList extends Component {
 
                         </div>
 
-                        <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
+                        <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
 
-                          {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                          {/*  Sector </div> */}
                           <div class=" text-xs  font-poppins">
                             {item.phoneNo}
                           </div>
@@ -127,44 +166,37 @@ class AllDistributorList extends Component {
 
                       </div>
                       <div class="flex">
-                        <div className=" flex font-medium flex-col md:w-full max-sm:flex-row w-full max-sm:justify-between ">
-                          {/* <div class=" text-sm  font-poppins max-sm:hidden"># Opportunity</div> */}
+                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-full max-sm:flex-row w-full max-sm:justify-between ">
+                          {/* # Opportunity</div> */}
 
                           <div class=" text-xs  font-poppins text-center">
                             {item.url}
 
                           </div>
                         </div>
-                        <div className=" flex font-medium flex-col md:w-0 max-sm:flex-row w-full max-sm:justify-between ">
-                          {/* <div class=" text-sm  font-poppins max-sm:hidden">Pipeline Value</div> */}
+                        <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-0 max-sm:flex-row w-full max-sm:justify-between ">
+                          {/* Pipeline Value</div> */}
 
                           <div class=" text-xs  font-poppins text-center">
-                            {/* { `${item.addresses[0].address1 || ""} ${item.addresses[0]
-                                      .address2 || ""} ${item.addresses[0].street || ""} 
-                                          ${item.addresses[0].city || ""},
-                                              `} */}
+                       
 
                           </div>
                         </div>
                       </div>
-                      <div className=" flex font-medium flex-col md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
-                        {/* <div class=" text-sm  font-poppins max-sm:hidden">Weighted Value</div> */}
+                      <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-96 max-sm:flex-row w-full max-sm:justify-between ">
+                        {/* </div> */}
 
                         <div class=" text-xs  font-poppins text-center">
-                          {/* {`${(item.addresses &&
-                                    item.addresses.length &&
-                                    item.addresses[0].city) ||
-                                    ""} 
-                                          `}  */}
+                   
 
                         </div>
                       </div>
 
                       <div class="flex md:items-center">
                         <div class="flex">
-                          <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
+                          <div className=" flex items-center justify-center h-8 ml-gap bg-[#eef2f9]  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
 
-                            {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                            {/* Sector </div> */}
                             <div class=" text-xs  font-poppins">
                               <span>
                                 <CurrencySymbol currencyType={"INR"} />
@@ -173,9 +205,9 @@ class AllDistributorList extends Component {
                             </div>
 
                           </div>
-                          <div className=" flex font-medium flex-col  md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
+                          <div className=" flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] md:w-28 max-sm:flex-row w-full max-sm:justify-between  ">
 
-                            {/* <div class=" text-sm  font-poppins max-sm:hidden"> Sector </div> */}
+                            {/*  Sector </div> */}
                             <div class=" text-xs  font-poppins">
                               <span>
                                 <CurrencySymbol currencyType={"INR"} />

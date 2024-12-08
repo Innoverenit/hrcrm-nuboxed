@@ -5,7 +5,6 @@ import { Button,Select } from 'antd';
 import { linkPurchaseToSuppliers, getSuppliesListBySupplier,getSupplierwiseQuality } from "../../../SuppliersAction"
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
 import AddedSuppliesTable from './AddedSuppliesTable';
 import * as Yup from "yup";
 import { BundleLoader } from '../../../../../../Components/Placeholder';
@@ -16,9 +15,40 @@ const FormSchema = Yup.object().shape({
 })
 
 const AddPurchaseOrder = (props) => {
-
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
     const [material, setMaterial] = useState("");
     const [quality, setQuality] = useState("")
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+       
+          "798",  // " linked Material",//0
+             "654",   // "Quality",//1
+              "260",  // "Units",//2
+              "14",  // "Category",//3
+               "1154", // "Sub Category",//5
+               "259", // "Attribute",//5
+                "263",// "Sub Attribute",//6
+               "154", // "Submit",//7
+                
+    
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
+    
     useEffect(() => {
         props.getSuppliesListBySupplier(props.supplier.supplierId)
     }, [])
@@ -96,6 +126,7 @@ const AddPurchaseOrder = (props) => {
                         supplierId: props.supplier.supplierId,
                         poSupplierDetailsId: props.poSupplierDetailsId || "",
                         userId: props.userId,
+                        orgId: props.orgId,
                     }}
                     validationSchema={FormSchema}
                     onSubmit={(values, { resetForm }) => {
@@ -124,7 +155,10 @@ const AddPurchaseOrder = (props) => {
                             <div class="flex w-wk">
                                 <div class=" flex flex-col w-wk">
                                     <div class="w-[47.5%]">
-                                    <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Materials</label>
+                                    <div className='font-bold font-poppins text-xs'> 
+                                        {/* {translatedMenuItems[0]}  */}
+                                        Tagged Material
+                                        </div>
                       <Select
                         className="w-[250px]"
                         value={material}
@@ -135,29 +169,10 @@ const AddPurchaseOrder = (props) => {
                           return <Option value={a.suppliesId}>{a.suppliesName}</Option>;
                         })}
                       </Select>
-                                        {/* <Field
-                                            name="suppliesId"
-                                            label={<FormattedMessage
-                                                id="app.material"
-                                                defaultMessage="Materials"
-                                            />}
-                                            isRequired
-                                            isColumn
-                                            inlineLabel
-                                            width={"100%"}
-                                            component={SelectComponent}
-                                            onSelect={(e) => {
-                                                console.log(e);
-                                                handleProductList(e, setFieldValue);
-                                            }}
-                                            options={Array.isArray(materialOption) ? materialOption : []}
-                                            style={{
-                                                borderRight: "0.18em solid red",
-                                            }}
-                                        />  */}
+                                      
                                     </div>
                                     <div class="w-w48  max-sm:w-wk">
-                      <label style={{ color: "#444", fontWeight: "bold", fontSize: " 0.75rem" }}>Quality</label>
+                      <div className=' font-bold font-poppins text-xs mt-1'> {translatedMenuItems[1]} </div>
                       <Select
                         className="w-[250px]"
                         value={quality}
@@ -170,12 +185,12 @@ const AddPurchaseOrder = (props) => {
 
                     </div>
                                     <div class="w-[47.5%]">
+                                        <div class="  font-bold font-poppins text-xs mt-1"> {translatedMenuItems[2]} </div>
                                         <Field
                                             name="unit"
-                                            label={<FormattedMessage
-                                                id="app.units"
-                                                defaultMessage="Units"
-                                            />}
+                                        
+                                            // Units"
+                                       
                                             isRequired
                                             isColumn
                                             inlineLabel
@@ -189,12 +204,11 @@ const AddPurchaseOrder = (props) => {
                                 <div class=" flex flex-col w-wk">
                                     <div class="flex w-wk justify-between">
                                         <div class="w-[47.5%]">
+                                        <div class=" text-xs font-poppins font-bold"> {translatedMenuItems[3]} </div>
                                             <Field
                                                 name="categoryName"
-                                                label={<FormattedMessage
-                                                    id="app.category"
-                                                    defaultMessage="Category"
-                                                />}
+                                                // Category"
+                                             
                                                 disabled
                                                 isColumn
                                                 inlineLabel
@@ -203,12 +217,11 @@ const AddPurchaseOrder = (props) => {
                                             />
                                         </div>
                                         <div class="w-[47.5%]">
+                                        <div class=" text-xs font-poppins font-bold"> {translatedMenuItems[4]} </div>
                                             <Field
                                                 name="subCategoryName"
-                                                label={<FormattedMessage
-                                                    id="app.subcategory"
-                                                    defaultMessage="Sub Category"
-                                                />}
+                                         //Sub Category"
+                                             
                                                 disabled
                                                 isColumn
                                                 inlineLabel
@@ -219,12 +232,11 @@ const AddPurchaseOrder = (props) => {
                                     </div>
                                     <div class="flex w-wk justify-between">
                                         <div class="w-[47.5%]">
+                                        <div class=" text-xs font-poppins font-bold"> {translatedMenuItems[5]} </div>
                                             <Field
                                                 name="attributeName"
-                                                label={<FormattedMessage
-                                                    id="app.attribute"
-                                                    defaultMessage="Attribute"
-                                                />}
+                                           //"Attribute"
+                                           
                                                 disabled
                                                 isColumn
                                                 inlineLabel
@@ -233,12 +245,11 @@ const AddPurchaseOrder = (props) => {
                                             />
                                         </div>
                                         <div class="w-[47.5%]">
+                                        <div class=" text-xs font-poppins font-bold"> {translatedMenuItems[6]} </div>
                                             <Field
                                                 name="subAttributeName"
-                                                label={<FormattedMessage
-                                                    id="app.subattribute"
-                                                    defaultMessage="Sub Attribute"
-                                                />}
+                                         // Sub Attribute"
+                                           
                                                 disabled
                                                 isColumn
                                                 inlineLabel
@@ -248,15 +259,14 @@ const AddPurchaseOrder = (props) => {
                                         </div>
                                     </div>
                                     <div class="w-[95%] mt-4">
+                                 
                                         <Button
                                             type="primary"
                                             htmlType="submit"
                                             loading={props.addingPurchaseSuppliers}
                                         >
-                                            <FormattedMessage
-                                                id="app.submit"
-                                                defaultMessage="Submit"
-                                            />
+                                              {translatedMenuItems[7]}
+                                              {/* Submit */}
                                         </Button>
                                     </div>
                                 </div>
@@ -265,13 +275,17 @@ const AddPurchaseOrder = (props) => {
                     )}
                 </Formik>}
             <Suspense fallback={"Loading"}>
-                <AddedSuppliesTable />
+                <AddedSuppliesTable
+                      translateText={props.translateText}
+                      selectedLanguage={props.selectedLanguage}
+                />
             </Suspense>
         </>
     )
 }
 const mapStateToProps = ({ suppliers, auth }) => ({
     userId: auth.userDetails.userId,
+    orgId:auth.userDetails.organizationId,
     materialwiseQuality:suppliers.materialwiseQuality,
     suppliesBySupplier: suppliers.suppliesBySupplier,
     poSupplierDetailsId: suppliers.pOSupplierDetailsId,

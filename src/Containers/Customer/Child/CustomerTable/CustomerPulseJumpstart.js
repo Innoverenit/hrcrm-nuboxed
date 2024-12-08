@@ -1,7 +1,7 @@
 import React, {Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+import CustomerTimeLineChart from "../CustomerTable/CustomerTimeLineChart"
 import dayjs from "dayjs";
 import {getProspectWeightedValue,
   getCustomerActivityRecords,
@@ -23,9 +23,17 @@ import { BundleLoader } from "../../../../Components/Placeholder";
 import CustrContJumpstartCardList from "./CustrContJumpstartCardList";
 import CustrWonOpportunityJumpstartCardList from "./CustrWonOpportunityJumpstartCardList";
 import CustrActivityJumpstartCardList from "./CustrActivityJumpstartCardList";
+import ContactsIcon from '@mui/icons-material/Contacts';
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
+
 class CustomerPulseJumpStart extends React.Component{
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.state = {
+      isFlipped: false,
+      translatedMenuItems: [],
+      loading: true
+    };
     const startDate = dayjs().startOf("month"); 
     const endDate = dayjs();
     var today = new Date(),
@@ -41,6 +49,8 @@ class CustomerPulseJumpStart extends React.Component{
         startDate,
         endDate,
         activeCard: "quotations", // default card to show
+        translatedMenuItems: [],
+        loading: true
       };
 }
 componentDidMount() {
@@ -48,27 +58,53 @@ componentDidMount() {
   this.props.getWonCustomerWeightedValue(this.props.customer.customerId)
   this.props.getWonCustomerPipeLineValue(this.props.customer.customerId)
   this.props.getWonCustomerOppValue(this.props.customer.customerId)
-  // const startDate = `${this.state.startDate.format("YYYY-MM-DD")}T20:00:00Z`
-  // const endDate = `${this.state.endDate.format("YYYY-MM-DD")}T20:00:00Z`
+  
   this.props.getProspectWeightedValue(this.props.customer.customerId);
   this.props.getCustomerActivityRecords(this.props.customer.customerId);
   
     this.props.getProspectOppValue(this.props.customer.customerId);    
     this.props.getProspectContactValue(this.props.customer.customerId);
     this.props.getProspectPipeLineValue(this.props.customer.customerId);
-  // console.log(`Start Date: ${this.state.startDate.format("ll")}`);
-  // console.log(`End Date: ${this.state.endDate.format("ll")}`);
+    this.fetchMenuTranslations();
 }
+
+componentDidUpdate(prevProps) {
+  if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+    this.fetchMenuTranslations();
+  }
+}
+async fetchMenuTranslations() {
+  try {
+    this.setState({ loading: true });
+    const itemsToTranslate = [
+     '1291', // 0 #Open Quotations
+     '1162', // 1  Pipeline value
+    //  '', // 2 Quotations Won
+    '1165', // 3 Activity
+    '73', // 4 Contacts
+
+
+    ];
+    const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+    this.setState({ translatedMenuItems: translations ,loading: false});
+   
+  } catch (error) {
+    this.setState({ loading: false });
+    console.error('Error translating menu items:', error);
+  }
+}
+handleClick = () => {
+  this.setState(prevState => ({
+    isFlipped: !prevState.isFlipped
+  }));
+};
 handleCardClick = (cardName) => {
   this.setState({ activeCard: cardName });
 }
 
 render() {
-
-   if (this.props.fetchingOppValue) {
-    return <BundleLoader />;
-  }
-
+  const { isFlipped } = this.state;
+  
  
   const weightedValue = `${this.props.WeightedValue.weightedValue} ${this.props.WeightedValue.tradeCurrency}`;
   const pipeLineValue = `${this.props.pipelineValue.pipeLineValue} ${this.props.pipelineValue.tradeCurrency}`;
@@ -91,55 +127,59 @@ render() {
     handleCustomerWonOpportunityJumpstartModal
   } = this.props;
   const { activeCard } = this.state;
+
+
   return(
     <>
-    <div class=" flex flex-row w-full" >
-    <div class="flex w-full justify-center" >
-        
-        <JumpStartBox
+<div className=" flex justify-between w-wk"> 
+<div class="flex flex-col w-[50%] justify-between h-[68vh] max-md:h-[68vh]">
+<div className=" flex flex-wrap">
+    <div class=" flex flex-row w-full" >     
+    <div class="flex flex-wrap w-full" >
+    <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                     
+                        <div class="bg-gradient-to-b from-[#bbf7d082] to-green-100 border-b-4 border-[#16a34a87] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                            <div class="flex flex-row items-center text-xs">
+                                <div class="flex-shrink pr-3">
+                                    <div class="rounded-full p-1 bg-green-600"><i class="fa fa-wallet fa-2x fa-inverse"></i></div>
+                                </div>
+                                <JumpStartBox
             noProgress
-            title={
-              <FormattedMessage
-                id="app.quotations"
-                defaultMessage="#Open Quotations"
-              />
-            }
+            title=' #Open Quotations'
+              // "Open Quotations"      
+              
 
              jumpstartClick={() => this.handleCardClick("quotations")}
-           
-            // jumpstartClick={() => {
-            //   if (!this.props.fetchingOppValue &&    this.props.OppValue.CustomerOppertunityDetails !== 0) {
-            //     handleCustomerOpenOpportunityJumpstartModal(true);
-            //   }
-            // }}
-            // cursorData={
-            //   this.props.fetchingOppValue ||   this.props.OppValue.CustomerOppertunityDetails === 0 ? "not-allowed" : "pointer"
-            // }
-      
+         
             value={
               this.props.fetchingOppValue ? "Loading..." :
               this.props.OppValue.CustomerOppertunityDetails === 0 ? "None" :
               this.props.OppValue.CustomerOppertunityDetails
             }
-            // value={
-            //   this.props.OppValue.CustomerOppertunityDetails
-
-            // }
+         
             bgColor="#33D7FF" 
-            // bgColor="linear-gradient(270deg,#7630f0,#ad82f7)"
+       
             isLoading={this.props.fetchingOppValue} 
-            //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
+ 
           
           />
   
-  <JumpStartBox
+                            </div>
+                        </div>
+                    
+                    </div>  
+                    <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                        <div class="bg-gradient-to-b from-[#fbcfe887] to-pink-100 border-b-4 border-[#ec48998f] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                            <div class="flex flex-row items-center text-xs">
+                                <div class="flex-shrink pr-3">
+                                    <div class="rounded-full p-1 bg-pink-600"><i class="fas fa-users fa-2x fa-inverse"></i></div>
+                                </div>
+                                <JumpStartBox
   noProgress
-  title={
-    <FormattedMessage
-      id="app.pipeLineValue"
-      defaultMessage="Pipeline value"
-    />
-  }
+ title= 'Pipeline value'
+ //'{this.props.translatedMenuItems[1]}'
+  // Pipeline value */}
   bgColor="#34495E"
   value={
     this.props.fetchingPipelineValue ? "Loading..." :
@@ -148,29 +188,32 @@ render() {
   }
   isLoading={this.props.fetchingPipelineValue} 
 />
-         
-
-
-<JumpStartBox
+                            </div>
+                        </div>
+                     
+                    </div>  
+  
+                    <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                       
+                        <div class="bg-gradient-to-b from-[#fef08a70] to-yellow-100 border-b-4 border-[#ca8a0494] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                            <div class="flex flex-row items-center text-xs">
+                                <div class="flex-shrink pr-3">
+                                    <div class="rounded-full p-1 bg-yellow-600"><i class="fas fa-user-plus fa-2x fa-inverse"></i></div>
+                                </div>
+                                <JumpStartBox
     noProgress
-    title={
-        <FormattedMessage
-            id="app.quotations"
-            defaultMessage=" Quotations Won"
-        />
-    }
+    title='Quotations Won'
+    // '{this.props.translatedMenuItems[2]}' 
+    // Quotations Won
+     
     value={
       this.props.fetchingWonCustomerOppValue ? "Loading..." :
       this.props.WonCustomerOpp.CustomerWonOppertunityDetails === null ? "None" :
       this.props.WonCustomerOpp.CustomerWonOppertunityDetails
     }
-    // value={this.props.WonCustomerOpp.CustomerWonOppertunityDetails}
+    
     jumpstartClick={() => this.handleCardClick("quotationsWon")}
-    // jumpstartClick={() => {
-    //   if (!this.props.fetchingWonCustomerOppValue && this.props.WonCustomerOpp.CustomerWonOppertunityDetails !== 0) {
-    //     handleCustomerWonOpportunityJumpstartModal(true);
-    //   }
-    // }}
+   
     cursorData={
       this.props.fetchingWonCustomerOppValue || this.props.WonCustomerOpp.CustomerWonOppertunityDetails === 0 ? "not-allowed" : "pointer"
     }
@@ -179,33 +222,34 @@ render() {
     isLoading={this.props.fetchingWonCustomerOppValue} 
     //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
 />
+                            </div>
+                        </div>
+                      
+                    </div>    
 
 
-
-      <JumpStartBox
+                    <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                      
+                        <div class="bg-gradient-to-b from-[#bfdbfe7a] to-blue-100 border-b-4 border-[#3b82f699] rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                            <div class="flex flex-row items-center text-xs">
+                                <div class="flex-shrink pr-3">
+                                    <div class="rounded-full p-1 bg-blue-600">
+                                    <HourglassFullIcon className="text-blue-500  !text-icon" />
+                                      </div>
+                                </div>  
+                                <JumpStartBox
         noProgress
-        title={
-          <FormattedMessage
-            id="app.activity"
-            defaultMessage="Activity"
-          />
-        }
+        title='Activity'
+  //  Activity
         value={
           this.props.fetchingCustomerActivityCount ? "Loading..." :
           this.props.customerActivityCount.count === 0 ? "None" :
           this.props.customerActivityCount.count
         }
-        // value={
-        //   this.props.customerActivityCount.count
-
-        // }
+       
         isLoading={this.props.fetchingCustomerActivityCount} 
         jumpstartClick={() => this.handleCardClick("activity")}
-        // jumpstartClick={() => {
-        //   if (!this.props.fetchingCustomerActivityCount &&  this.props.customerActivityCount.count !== 0) {
-        //     handleCustomerActivityJumpstartModal(true);
-        //   }
-        // }}
+       
         cursorData={
           this.props.fetchingCustomerActivityCount ||  this.props.customerActivityCount.count === 0 ? "not-allowed" : "pointer"
         }
@@ -214,26 +258,24 @@ render() {
         //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
       
       />
-      <JumpStartBox
+                            </div>
+                        </div>
+                       
+                    </div>
+
+                    {/* <div class="w-full md:w-1/2 xl:w-1/3 p-2">
+                    
+                       <div class="bg-gradient-to-b from-red-200 to-red-100 border-b-4 border-red-500 rounded-lg shadow-xl p-1 h-[5rem] w-wk flex items-center">
+                            <div class="flex flex-row items-center">
+                                <div class="flex-shrink pr-3">
+                                    <div class="rounded-full p-3 bg-red-500"><i class="fas fa-tasks fa-2x fa-inverse"></i></div>
+                                </div>
+                                <JumpStartBox
             noProgress
-            title={
-              <FormattedMessage
-                id="app.#Contacts"
-                defaultMessage="#Contacts "
-              />
-            }
+            title="#Contacts "
+             
             jumpstartClick={() => this.handleCardClick("contacts")}
-            // jumpstartClick={() => {
-            //   if (!this.props.fetchingContactValue && this.props.contactValue.CustomerContactDetails !== 0) {
-            //     this.setState({ showContactCard: !this.state.showContactCard }); 
-            //   }
-            // }}
-       
-            // jumpstartClick={() => {
-            //   if (!this.props.fetchingContactValue &&   this.props.contactValue.CustomerContactDetails !== 0) {
-            //     handleCustomerContactJumpstartModal(true);
-            //   }
-            // }}
+          
             cursorData={
               this.props.fetchingContactValue ||   this.props.contactValue.CustomerContactDetails === 0 ? "not-allowed" : "pointer"
             }
@@ -249,143 +291,137 @@ render() {
             }
             bgColor="linear-gradient(270deg,black,grey)"
             isLoading={this.props.fetchingContactValue} 
-            //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-          
-            
-          />
-        
-        
-           
+            //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"               
+          /> 
+                            </div>
+                        </div>
+                       
+                    </div> */}
 
-        </div>
-
-        {/* <FlexContainer>
-          <JumpStartBox noProgress title="All Products" bgColor="#8791a1" />
-          <JumpStartBox noProgress title="Quantity On Hand" bgColor="#8791a1" />
-          <JumpStartBox
+<div className="w-full md:w-1/2 xl:w-1/3 p-2" style={{ perspective: '1000px' }}>
+        <div
+          className={`relative  h-[5rem] w-full transition-transform duration-700 ${isFlipped ? 'flip' : ''}`}
+          style={{ transformStyle: 'preserve-3d' }}
+          onClick={this.handleClick}
+        >
+          {/* Front of the card */}
+          <div
+            className="absolute inset-0 bg-gradient-to-b w-wk from-red-200 to-red-100 border-b-4 border-red-500 rounded-lg shadow-xl flex items-center p-1 text-xs"
+            style={{ backfaceVisibility: 'hidden' }}
+          >
+             <div class="flex-shrink pr-3">
+                                    <div class="rounded-full p-1 bg-red-500"><ContactsIcon className="!text-3xl text-[#FFFF]"/></div>
+                                </div>
+            {/* Replace with your actual JumpStartBox component */}
+            <div>
+            <JumpStartBox
             noProgress
-            title="Out of Stock Products"
-            bgColor="#8791a1"
-          />
-          <JumpStartBox noProgress title="Total Visitors" bgColor="#8791a1" />
-        </FlexContainer> */}
+            title='contacts'
+      // #Contacts
+            jumpstartClick={() => this.handleCardClick("contacts")}
+          
+            cursorData={
+              this.props.fetchingContactValue ||   this.props.contactValue.CustomerContactDetails === 0 ? "not-allowed" : "pointer"
+            }
+
+            // value={
+            //   this.props.contactValue.CustomerContactDetails
+
+            // }
+            value={
+              this.props.fetchingContactValue ? "Loading..." :
+              this.props.contactValue.CustomerContactDetails === 0 ? "None" :
+              this.props.contactValue.CustomerContactDetails
+            }
+            bgColor="linear-gradient(270deg,black,grey)"
+            isLoading={this.props.fetchingContactValue} 
+            //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"               
+          /> 
+            </div>
+          </div>
+
+          {/* Back of the card */}
+          <div
+            className="absolute inset-0 bg-gradient-to-b from-gray-200 to-gray-100 border-b-4 border-gray-500 rounded-lg shadow-xl flex flex-col items-center justify-center text-xs"
+            style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+          >
+            <h2 className="text-lg font-semibold">Additional Details</h2>
+            <p>Some more information can be displayed here.</p>
+          </div>
+        </div>
       </div>
 
-<div class=" flex flex-row w-full mt-4" >
+
+
+
+
+
+
+
+
+                           
+        </div>
+
+     
+      </div>
+</div>
+<div className=" ">
+    <CustomerTimeLineChart
+     customer={this.props.customer}
+    />
+  </div>
+</div>
+<div class=" flex  w-[50%] mt-1" >
 <Suspense fallback={<BundleLoader />}>
-          {activeCard === "quotations" && <CustrOpenOpportunityJumpstartCardList customer={this.props.customer} />}
-          {activeCard === "contacts" && <CustrContJumpstartCardList customer={this.props.customer} />}
-          {activeCard === "quotationsWon" && <CustrWonOpportunityJumpstartCardList customer={this.props.customer} />}
-          {activeCard === "activity" && <CustrActivityJumpstartCardList customer={this.props.customer} />}
-          
-         
+          {activeCard === "quotations" && <CustrOpenOpportunityJumpstartCardList customer={this.props.customer}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems} />}
+          {activeCard === "contacts" && <CustrContJumpstartCardList customer={this.props.customer}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems} />}
+          {activeCard === "quotationsWon" && <CustrWonOpportunityJumpstartCardList customer={this.props.customer}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems} />}
+          {activeCard === "activity" && <CustrActivityJumpstartCardList customer={this.props.customer}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems} />}       
         </Suspense>
-{/* <Suspense fallback={<BundleLoader />}>
-            <CustrOpenOpportunityJumpstartCardList 
-          customer={this.props.customer} 
-           
-            />
-                {this.state.showContactCard && (
-            <Suspense fallback={<BundleLoader />}>
-             <CustrContJumpstartCardList 
-          customer={this.props.customer} 
-           
-            />
-            </Suspense>
-          )}
-          </Suspense> */}
-{/* <div class="flex w-full" >
-    
-<JumpStartBox2
-            noProgress
-            // title="Open Tasks"
-            title={
-              <FormattedMessage
-                id="app.weightedValue"
-                defaultMessage="Weighted Value"
-              />
-            }
-            value={
-              weightedValue
 
-            }
-            isLoading={this.props.fetchingWeightedValue} 
-            //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-          
-            
-          />
-  
-   
-      <JumpStartBox1
-        noProgress
-        title={
-          <FormattedMessage
-            id="app.pipeLineValue"
-            defaultMessage="Won Pipe line value"
-          />
-        }
-      
-        value={
-          this.props.WonCustomerPipeline.WonPipeLineValue
-
-        }
-         isLoading={this.props.fetchingWonCusPipelineValue} 
-        //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-      
-      />
-
-      <JumpStartBox2
-        noProgress
-        // title="Open Tasks"
-        title={
-          <FormattedMessage
-            id="app.weightedValue"
-            defaultMessage="Won Weighted Value"
-          />
-        }
-        value={
-          this.props.WonCustomerWeighted.weightedValue
-
-        }
-        isLoading={this.props.fetchingWonCusmWeightedValue} 
-        //bgColor="linear-gradient(270deg, #3066BE 0%, #005075 100%);"
-      
-        
-      />
-
- 
-       
-
-    </div> */}
-
-    {/* <FlexContainer>
-      <JumpStartBox noProgress title="All Products" bgColor="#8791a1" />
-      <JumpStartBox noProgress title="Quantity On Hand" bgColor="#8791a1" />
-      <JumpStartBox
-        noProgress
-        title="Out of Stock Products"
-        bgColor="#8791a1"
-      />
-      <JumpStartBox noProgress title="Total Visitors" bgColor="#8791a1" />
-    </FlexContainer> */}
+  </div>
   </div>
   <AddCustomerContactJumpstartModal
        customer={this.props.customer}
+       translateText={this.props.translateText}
+       selectedLanguage={this.props.selectedLanguage}
+       translatedMenuItems={this.props.translatedMenuItems}
         addCustomerContactJumpstartModal={addCustomerContactJumpstartModal}
         handleCustomerContactJumpstartModal={handleCustomerContactJumpstartModal}
       />
         <AddCustomerActivityJumpstartModal
        customer={this.props.customer}
+       translateText={this.props.translateText}
+       selectedLanguage={this.props.selectedLanguage}
+       translatedMenuItems={this.props.translatedMenuItems}
        addCustomerActivityJumpstartModal={addCustomerActivityJumpstartModal}
         handleCustomerActivityJumpstartModal={handleCustomerActivityJumpstartModal}
       />
            <AddCustomerOpenOppJumpstartModal
        customer={this.props.customer}
+       translateText={this.props.translateText}
+       selectedLanguage={this.props.selectedLanguage}
+       translatedMenuItems={this.props.translatedMenuItems}
        addCustomerOpenOppJumpstartModal={addCustomerOpenOppJumpstartModal}
        handleCustomerOpenOpportunityJumpstartModal={handleCustomerOpenOpportunityJumpstartModal}
       />
                <AddCustomerWonOppJumpstartModal
        customer={this.props.customer}
+       translateText={this.props.translateText}
+       selectedLanguage={this.props.selectedLanguage}
+       translatedMenuItems={this.props.translatedMenuItems}
        addCustomerWonOppJumpstartModal={addCustomerWonOppJumpstartModal}
        handleCustomerWonOpportunityJumpstartModal={handleCustomerWonOpportunityJumpstartModal}
       />

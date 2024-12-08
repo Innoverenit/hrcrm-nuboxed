@@ -2,7 +2,7 @@ import TabPane from "antd/lib/tabs/TabPane";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import React, { Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledTabs } from "../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../Components/UI/Layout";
 import QuestionsGroup from "./AssessmentDetailsRight/Questions/QuestionsGroup";
@@ -24,10 +24,7 @@ const assessmentId=props.assessmentByAssessmentId.assessmentId;
             tab={
               <>
                 <span>
-                  <FormattedMessage
-                    id="app.questions"
-                    defaultMessage="Questions"
-                  />
+                  Questions
                 </span>
               </>
             }

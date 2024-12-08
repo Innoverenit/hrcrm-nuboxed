@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
-import { Formik, Form, Field } from "formik";
-import { MainWrapper, FlexContainer } from "../../Components/UI/Layout";
+import { Formik, Form } from "formik";
+import { MainWrapper} from "../../Components/UI/Layout";
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { getStages } from "../Opportunity/OpportunityAction";
 import SinglePolicy from './SinglePolicy';
@@ -59,12 +59,12 @@ class Policy extends Component {
             {({ errors, touched, isSubmitting, setFieldValue, setFieldTouched, values, ...rest }) => (
 
               <Form className="form-background">
-                <FlexContainer flexDirection='column'>
+       <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                   {stages && stages
                     .map(stage => Number(stage.probability) === 0 ? { ...stage, probability: 101 } : stage)
                     .sort((a, b) => Number(a.probability) > Number(b.probability) ? 1 : -1)
                     .map(stage => <SinglePolicy stage={stage} />)}
-                </FlexContainer>
+                </div>
                 <Button type='primary' ghost htmlType='button'>Add stage</Button>&nbsp;
                 <Button type='primary' htmlType='submit'>Save</Button>
               </Form>

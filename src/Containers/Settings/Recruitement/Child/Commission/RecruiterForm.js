@@ -5,7 +5,7 @@ import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
 import { MainWrapper } from "../../../../../Components/UI/Elements";
 import { addRecruiter } from "../../../../Settings/SettingsAction";
-import { FormattedMessage } from "react-intl";
+
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
@@ -75,12 +75,8 @@ function RecruiterForm(props) {
                      // selectType="employee"
                           isColumnWithoutNoCreate
                     // label="Assigned"
-                    label={
-                      <FormattedMessage
-                        id="app.name"
-                        defaultMessage="Name"
-                      />
-                    }
+                    label="Name"
+                     
                     component={SelectComponent}
                      options={Array.isArray(recruiterNameOption) ? recruiterNameOption : []}
                     //options={["rdf","desh"]}
@@ -111,12 +107,8 @@ function RecruiterForm(props) {
                         // defaultValue={{
                         //   value: this.props.user.currency,
                         // }}
-                        label={
-                          <FormattedMessage
-                            id="app.currency"
-                            defaultMessage="Currency"
-                          />
-                        }
+                        label="Currency"
+                        
                         width="100%"
                         isColumn
                         selectType="currencyName"

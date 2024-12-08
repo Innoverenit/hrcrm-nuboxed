@@ -9,10 +9,7 @@ const ReactContactSpeechModal = props => {
     <>
       <StyledModal
         title="Click to start Recording"
-        // title={<FormattedMessage
-        //   id="app.linkdelivery"
-        //   defaultMessage="Link Delivery"
-        // />}
+     
         width="40vw"
         visible={addContactSpeechModal}
         maskClosable={false}
@@ -27,6 +24,9 @@ const ReactContactSpeechModal = props => {
       >
         <ReactContactSpeeech
         contactId={props.contactId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
        
         />
       </StyledModal>

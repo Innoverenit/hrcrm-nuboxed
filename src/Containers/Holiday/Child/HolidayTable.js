@@ -1,24 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-// import { getEmailCredentials } from "../../../../../Settings/Email/EmailAction";
-import { StyledTable, StyledModal } from "../../../Components/UI/Antd";
-import { BundleLoader } from "../../../Components/Placeholder";
-import { Icon } from "antd";
-import {
-  EditOutlined,
-  EyeInvisibleOutlined,
- 
-  
-} from '@ant-design/icons';
-import APIFailed from "../../../Helpers/ErrorBoundary/APIFailed";
-// import { handleBankModal } from "../../../../ProfileAction";
-// import AddBankModal from "./AddBankModal";
-// import UpdateBankModal from "../../ProfileBoost/Bank/UpdateBankModal";
-// import { handleUpdateBankModal, setEditBank } from "../../../../ProfileAction";
-// import { getBankDetails } from "../../../../ProfileAction";
-// import EditEmailForm from "../../../../../Settings/Email/Child/EditEmailForm"
+import { StyledTable } from "../../../Components/UI/Antd";
 
+import APIFailed from "../../../Helpers/ErrorBoundary/APIFailed";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 class HolidayTable extends Component {
   // constructor(props) {
   //     super(props);
@@ -67,7 +53,7 @@ class HolidayTable extends Component {
         render: (name, item, i) => {
           //debugger
           return (
-            <EditOutlined
+            <VisibilityIcon
               type="edit"
               style={{ cursor: "pointer" }}
               onClick={() => {

@@ -1,7 +1,7 @@
 import React, { Component ,lazy} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import {
   List,
   Popconfirm,
@@ -231,11 +231,8 @@ class Todo extends Component {
                     // disabled={todo.completionInd === "false"}
                     onConfirm={this.onConfirm}
                     okText="Ok"
-                    // cancelText="Cancel"
-                    cancelText={<FormattedMessage
-                      id="app.cancel"
-                      defaultMessage="Cancel"
-                    />}
+                    cancelText="Cancel"
+                    
                     onCancel={this.confirm}
                   >
  

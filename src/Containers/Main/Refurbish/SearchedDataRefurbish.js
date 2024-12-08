@@ -27,10 +27,9 @@ import {
 } from "./RefurbishAction";
 import { withRouter } from "react-router";
 import dayjs from "dayjs";
-import { AudioOutlined } from '@ant-design/icons';
+import MicIcon from '@mui/icons-material/Mic';
 import SpeechRecognition, { useSpeechRecognition} from 'react-speech-recognition';
-import { FormattedMessage } from "react-intl";
-import { HistoryOutlined } from "@ant-design/icons";
+
 import { BundleLoader } from "../../../Components/Placeholder";
 import CategoryIcon from '@mui/icons-material/Category'
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -116,7 +115,7 @@ const SearchedDataRefurbish = (props) => {
         }, minRecordingTime);
       };
       const suffix = (
-        <AudioOutlined
+        <MicIcon
           onClick={handleStartListening}
           style={{
             fontSize: 16,
@@ -226,43 +225,19 @@ const SearchedDataRefurbish = (props) => {
             
         <>
             <div className=' flex justify-end sticky  z-auto'>
-                <div class="rounded-lg  max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+                <div class="rounded-lg  max-sm:m-1 m-2 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
                
                     <div className=" flex max-sm:hidden  justify-between w-[82%] p-2 bg-transparent font-bold sticky top-0 z-10">
                     <div className=" md:w-[3.54rem] text-[white] flex justify-center mr-1 bg-[black]">Type </div>
-                        <div className=" w-[15.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.orderid"
-                            defaultMessage="orderid"
-                        /></div>
-                        <div className=" w-[14.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.customer"
-                            defaultMessage="customer"
-                        /></div>
-                        <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] "><FormattedMessage
-                            id="app.contact"
-                            defaultMessage="contact"
-                        /></div>
-                        <div className="w-[3.621rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.lead"
-                            defaultMessage="Lead"
-                        /> </div>
-                        <div className="w-[6.62rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.assigned"
-                            defaultMessage="Assigned"
-                        /> </div>
-                        <div className="w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.owner"
-                            defaultMessage="owner"
-                        /> </div>
+                        <div className=" w-[15.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">orderid</div>
+                        <div className=" w-[14.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">customer</div>
+                        <div className=" w-[5.8rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] ">contact</div>
+                        <div className="w-[3.621rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Lead </div>
+                        <div className="w-[6.62rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Assigned </div>
+                        <div className="w-[4.81rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">owner </div>
 
-                        <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]"><FormattedMessage
-                            id="app.quoted"
-                            defaultMessage="Quoted"
-                        /></div>
-                        <div className="md:w-[5.8rem]"><FormattedMessage
-                            id="app.final"
-                            defaultMessage="Final"
-                        /></div>
+                        <div className="w-[6.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Quoted</div>
+                        <div className="md:w-[5.8rem]"> Final</div>
                         <div className="w-[21.7rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem]">Delivery</div>
                         <div className="w-[7.2rem]"></div>
                     </div>
@@ -395,7 +370,7 @@ const SearchedDataRefurbish = (props) => {
 
                                             <div className=" flex font-medium  w-[9.22rem] max-sm:flex-row max-sm:w-auto max-sm:justify-between ">
                                                 <div class=" text-xs  font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:text-xs">
-                                                    {item.qcStartInd === 0 ? <b>Waiting for QC approval</b>
+                                                    {item.qcStartInd === 0 ? <div class=" font-bold text-[#ff1862] text-xs text-center">QC to be approved by Sales Owner / Customer </div>
                                                         : item.qcStartInd === 1 ?
                                                             // <Badge size="small" count={`${item.totalReceiveQuantity - item.cannotRepairCount} / ${item.totalReceiveQuantity}`} overflowCount={5000}>
                                                             <Tooltip title="Assign For QC">

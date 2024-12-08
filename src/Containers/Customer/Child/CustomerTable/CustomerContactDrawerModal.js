@@ -3,20 +3,18 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../Components/UI/Antd";
+import LinkedContact from "../CustomerDetail/CustomerTab/ContactTab/LinkedContact";
 
-const CustomerContactCardList = lazy(() =>
-  import("./CustomerContactCardList")
-);
 
 class CustomerContactDrawerModal extends Component {
   render() {
       console.log("data5", this.props.customer.name);
-
+      const {customer : {name,customerId}} =this.props
     return (
       <div>
         <StyledDrawer
         // title="Notes"
-          title={this.props.customer.name}
+          title={name}
           width="65%"
           visible={this.props.addDrawerCustomerContactModal}
           destroyOnClose
@@ -24,8 +22,12 @@ class CustomerContactDrawerModal extends Component {
           onClose={() => this.props.handleCustomerContactDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <CustomerContactCardList 
-            customer={this.props.customer}
+            <LinkedContact 
+            defaultCustomers={[{ label: name, value: customerId }]}
+            customerId={ this.props.customer.customerId }
+            translateText={this.props.translateText}
+            selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
             />
           </Suspense>
         </StyledDrawer>
@@ -33,7 +35,9 @@ class CustomerContactDrawerModal extends Component {
     );
   }
 }
-const mapStateToProps = ({ opportunity, candidate }) => ({});
+const mapStateToProps = ({ customer, candidate }) => ({
+ 
+});
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({}, dispatch);
 

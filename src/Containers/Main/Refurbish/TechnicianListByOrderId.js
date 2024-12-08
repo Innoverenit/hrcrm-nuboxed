@@ -2,12 +2,39 @@ import React, { useEffect, useState, lazy } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { getNoOfTechnicianById } from "./RefurbishAction";
-import { FormattedMessage } from 'react-intl';
 import { BundleLoader } from '../../../Components/Placeholder';
 const QCPhoneListByTechnician = lazy(() => import('./QCPhoneListByTechnician'));
 
 const TechnicianListByOrderId = (props) => {
+    const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+    const [loading, setLoading] = useState(true);
 
+    useEffect(() => {
+        const fetchMenuTranslations = async () => {
+          try {
+            setLoading(true); 
+            const itemsToTranslate = [
+              "110",  // "Name"
+              "299",  // "Mobile #"
+              "1309", // "Total Unit"
+              "1310",// "Remaining"
+              "144", // "In Progress"
+              "268", // "Complete"
+              
+          
+            ];
+    
+            const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+            setTranslatedMenuItems(translations);
+            setLoading(false);
+          } catch (error) {
+            setLoading(false);
+            console.error('Error translating menu items:', error);
+          }
+        };
+    
+        fetchMenuTranslations();
+      }, [props.selectedLanguage]);
     useEffect(() => {
         props.getNoOfTechnicianById(props.rowData.orderPhoneId)
     }, [])
@@ -25,42 +52,27 @@ const TechnicianListByOrderId = (props) => {
     return (
         <>
             <div className=' flex  sticky  z-auto'>
-                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[rgba(163,171,185,0.5)] bg-[#eaedf1]">
+                <div class="rounded m-1 p-1 w-full overflow-auto shadow-[4px_0px_9px_3px_] shadow-[rgba(163,171,185,0.5)] bg-[white]">
                     <div className=" flex  w-[95%] p-2 bg-transparent font-bold sticky z-10">
-                        <div className=" md:w-[12rem]"><FormattedMessage
-                            id="app.name"
-                            defaultMessage="Name"
-                        />
+                        <div className=" md:w-[12rem]">
+                            {translatedMenuItems[0]}
                         </div>
                         <div className=" md:w-[8rem]">
-                            <FormattedMessage
-                                id="app.mobile"
-                                defaultMessage="Mobile #"
-                            />
+                        {translatedMenuItems[1]} 
                         </div>
                         <div className="md:w-[8rem]">
-                            <FormattedMessage
-                                id="app.totalUnit"
-                                defaultMessage="Total Unit"
-                            /></div>
+                        {translatedMenuItems[2]} 
+                            </div>
                         <div className=" md:w-[8rem]">
-                            <FormattedMessage
-                                id="app.remaining"
-                                defaultMessage="Remaining"
-                            />
+                        {translatedMenuItems[3]}
                         </div>
                         <div className=" md:w-[8rem]">
 
-                            <FormattedMessage
-                                id="app.InProgress"
-                                defaultMessage="In Progress"
-                            />
+                        {translatedMenuItems[4]}
                         </div>
                         <div className="md:w-[8rem]">
-                            <FormattedMessage
-                                id="app.complete"
-                                defaultMessage="Complete"
-                            /></div>
+                        {translatedMenuItems[5]}
+                            </div>
 
                     </div>
                     {props.technicianByID.map((item) => {
@@ -72,7 +84,7 @@ const TechnicianListByOrderId = (props) => {
                                             <span
                                                 onClick={() => handleRowdata(item)}
                                                 style={{
-                                                    textDecoration: "underline",
+                                                    textDecoration: "underline", fontWeight:"bold",
                                                     color: show && item.technicianId === row.technicianId ? "rgb(225 158 14)" : "#0f6ace",
                                                     cursor: "pointer"
                                                 }}

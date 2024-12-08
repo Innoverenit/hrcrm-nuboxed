@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { StyledModal } from "../../../../Components/UI/Antd";
 // const AccountForm = lazy(() => import("./AccountForm"));
@@ -8,11 +8,7 @@ const AddFunctionModal = (props) => {
   return (
     <>
       <StyledModal
-        //title="Customer"
-        title={<FormattedMessage
-          id="app.customer"
-          defaultMessage="Customer"
-        />}
+        title="Customer"
         width="60%"
         visible={props.addInnoventoryModal}
         maskClosable={false}

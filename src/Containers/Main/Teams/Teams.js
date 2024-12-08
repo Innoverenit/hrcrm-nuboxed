@@ -28,9 +28,9 @@ function Teams (props) {
     const fetchMenuTranslations = async () => {
       try {
           const itemsToTranslate = [
-            'Name',//0
-            'Team Lead',//1
-            'Team Members',//2
+           "110", // 'Name',//0
+           "1139", // 'Team Lead',//1
+           "1163" // 'Team Members',//2
            ];
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
         setTranslatedMenuItems(translations);
@@ -43,28 +43,23 @@ function Teams (props) {
   }, [props.selectedLanguage]);
   return (
     <React.Fragment>
-      <TeamsHeader
-       
-       translateText={props.translateText}
-      
+       <Suspense fallback={<BundleLoader />}>
+      <TeamsHeader       
+       translateText={props.translateText}      
        selectedLanguage={props.selectedLanguage}
         viewType={viewType}
         handleTeamsModal={handleTeamsModal}
         setTeamsViewType={setTeamsViewType}
       />
-      <TeamsModal
-       
+      <TeamsModal       
        translateText={props.translateText}
        translatedMenuItems={translatedMenuItems}
        selectedLanguage={props.selectedLanguage}
         addTeamsModal={addTeamsModal}
         handleTeamsModal={handleTeamsModal}
       />
-
-      <Suspense fallback={<BundleLoader />}>
       {  viewType === "table" ?
-       <TeamsCardList 
-       
+       <TeamsCardList        
        translateText={props.translateText}
        translatedMenuItems={translatedMenuItems}
        selectedLanguage={props.selectedLanguage}/>
@@ -75,8 +70,8 @@ function Teams (props) {
        translatedMenuItems={translatedMenuItems}
        selectedLanguage={props.selectedLanguage}/> 
 
-:viewType==="client" ?
-<PerformanceManagement/> 
+           :viewType==="client" ?
+         <PerformanceManagement/> 
 
         :null}
     

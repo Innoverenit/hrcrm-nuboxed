@@ -1,5 +1,5 @@
 import React, { useEffect, useState,useRef } from "react";
-import { FormattedMessage } from "react-intl";
+import MoveUpIcon from '@mui/icons-material/MoveUp';
 import TocIcon from '@mui/icons-material/Toc';
 import PeopleIcon from '@mui/icons-material/People';
 import { getCustomerListByUserId } from "../CustomerAction"
@@ -8,7 +8,8 @@ import { Tooltip, Badge, Avatar } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
-import { AudioOutlined } from "@ant-design/icons";
+import MicIcon from '@mui/icons-material/Mic';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
@@ -21,10 +22,18 @@ import {
   getCategoryRecords,
   getTeamCustomer
 } from "../CustomerAction";
-import { Input } from "antd";
+import { Input ,Button,Select} from "antd";
+import { base_url } from "../../../Config/Auth";
 
 const Option = StyledSelect.Option;
 const { Search } = Input;
+
+
+const userList = [
+  { id: 1, name: 'User A' },
+  { id: 2, name: 'User B' },
+  { id: 3, name: 'User C' },
+];
 
 const CustomerActionLeft = (props) => {
   const [filter, setFilter] = useState("creationdate")
@@ -36,7 +45,43 @@ const CustomerActionLeft = (props) => {
 
   const [searchOnEnter, setSearchOnEnter] = useState(false);
   const [currentData, setCurrentData] = useState("");
+  const [userData, setUserData] = useState([]);
+  const [isLoadingUser, setIsLoadingUser] = useState(false);
+  const [touchedUser, setTouchedUser] = useState(false);
   const dummy = ["cloud", "azure", "fgfdg"];
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+
+   "374", // "My Prospects" // 0
+   "227",// "Team View", // 1
+   "228",// '"All', // 2
+   "228",// '"ALL"', // 3
+   "288",// 'Search by Name or Sector" // 4
+   "396",// ' Sort by Creation Date', // 5
+   "289",// 'Creation Date', // 6
+  //  "",//Transfer
+   "1079",//Cancel7
+  
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
+
+  
   console.log(searchOnEnter)
   const handleChange = (e) => {
     setCurrentData(e.target.value);
@@ -78,6 +123,16 @@ const CustomerActionLeft = (props) => {
       console.error("Input is empty. Please provide a value.");
     }
   };
+
+
+  const handleSelectUserFocus = () => {
+    if (!touchedUser) {
+      fetchUser();
+      // fetchSector();
+
+      setTouchedUser(true);
+    }
+  };
   const handleStartListening = () => {
     setStartTime(Date.now());
     setIsRecording(true);
@@ -91,7 +146,7 @@ const CustomerActionLeft = (props) => {
     }, minRecordingTime);
   };
   const suffix = (
-    <AudioOutlined
+    <MicIcon
       onClick={handleStartListening}
       style={{
         fontSize: 16,
@@ -202,12 +257,36 @@ const CustomerActionLeft = (props) => {
 
   // }, [])
 
+  const fetchUser = async () => {
+    setIsLoadingUser(true);
+    try {
+   
+
+      const apiEndpoint = `${base_url}/employee/active/user/type/drop-down/${props.orgId}/${"employee"}`;
+      const response = await fetch(apiEndpoint,{
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${props.token}`,
+          'Content-Type': 'application/json',
+          // Add any other headers if needed
+        },
+      });
+      const data = await response.json();
+      setUserData(data);
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+    } finally {
+      setIsLoadingUser(false);
+    }
+  };
+
   const { user } = props;
   const teamCount = props.teamsAccessInd && props.customerTeamRecordData ? props.customerTeamRecordData.prospectTeam : 0;
   return (
     <div class=" flex items-center"
     >
-      <Tooltip title={<FormattedMessage id="app.myprospects" defaultMessage="My Prospects" />}>
+      <Tooltip title= {translatedMenuItems[0]}>
+   
         <Badge
           size="small"
           count={(props.viewType === "table" && props.recordData.customer) || 0}
@@ -220,33 +299,17 @@ const CustomerActionLeft = (props) => {
               color: props.viewType === "table" && "#1890ff",
             }}
           >
-            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#4bc076" }}>
+            <Avatar style={{ background: props.viewType === "table" ? "#f279ab" : "#28a355" ,
+               boxShadow: props.viewType === "table" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "table" ? "scale(1.05)" : "scale(1)"}}>
               <TocIcon className="text-white !text-icon" />
             </Avatar>
           </span>
         </Badge>
       </Tooltip>
-      {/* <Tooltip title={<FormattedMessage id="app.card" defaultMessage="Card" />}>
-        <Badge
-          size="small"
-          count={(props.viewType === "card" && props.recordData.customer) || 0}
-          overflowCount={999}
-        >
-          <span
-            class=" mr-1 text-sm cursor-pointer"
-            onClick={() => props.setCustomerViewType("card")}
-            style={{
-              color: props.viewType === "card" && "#1890ff",
-            }}
-          >
-            <Avatar style={{ background: props.viewType === "card" ? "#f279ab" : "#4bc076" }}>
-            <GridViewIcon className="text-white"/>
-            </Avatar>
-          </span>
-        </Badge>
-      </Tooltip> */}
+      
       {user.teamsAccessInd === true && (
-        <Tooltip title="Team View">
+        <Tooltip title= {translatedMenuItems[1]}>
           <Badge
             size="small"
             count={(teamCount||props.viewType === "teams" && props.customerTeamRecordData.prospectTeam || 0)}
@@ -259,7 +322,9 @@ const CustomerActionLeft = (props) => {
                 color: props.viewType === "teams" && "#1890ff",
               }}
             >
-              <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#4bc076" }}>
+              <Avatar style={{ background:props.teamsAccessInd|| props.viewType === "teams" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "teams" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "teams" ? "scale(1.05)" : "scale(1)" }}>
                 <PeopleIcon className="text-white !text-icon" />
               </Avatar>
             </span>
@@ -267,7 +332,7 @@ const CustomerActionLeft = (props) => {
         </Tooltip>
       )}
       {(user.crmInd === true && user.customerFullListInd === true || user.role === "ADMIN") && (
-        <Tooltip title="All">
+        <Tooltip title= {translatedMenuItems[2]}>
           <Badge
             size="All"
             count={(props.viewType === "all" && props.customerAllRecordData.customer) || 0}
@@ -280,11 +345,10 @@ const CustomerActionLeft = (props) => {
                 color: props.viewType === "all" && "#1890ff",
               }}
             >
-              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#4bc076" }}>
-                <FormattedMessage
-                  id="app.all"
-                  defaultMessage="ALL"
-                />
+              <Avatar style={{ background: props.viewType === "all" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "all" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "all" ? "scale(1.05)" : "scale(1)" }}>
+              {translatedMenuItems[3]} 
               </Avatar>
 
             </span>
@@ -292,48 +356,33 @@ const CustomerActionLeft = (props) => {
         </Tooltip>
       )}
 
-      {/* <Tooltip
-        title={<FormattedMessage id="app.mapview" defaultMessage="Map View" />}
-      >
-        <Badge
-          size="small"
-          // count={(props.viewType === "mapView" && props.recordData.customer) || 0}
-          overflowCount={999}
-        >
-          <span
-            class=" mr-1 text-sm cursor-pointer"
-            onClick={() => props.setCustomerViewType("mapView")}
-            style={{
-              color: props.viewType === "mapView" && "#1890ff",
-            }}
-          >
-           <LanguageIcon />
-          </span>
-        </Badge>
-      </Tooltip> */}
-      {/* <Tooltip
-        title={<FormattedMessage id="app.mapview" defaultMessage="Map View" />}
-      >
-        <Badge
-          size="small"
-          count={(props.viewType === "map" && props.recordData.customer) || 0}
-        >
-          <span
-            class=" mr-1 text-sm cursor-pointer"
-            style={{
-              color: props.viewType === "map" && "#1890ff",
-            }}
-            onClick={() => props.setCustomerViewType("map")}
-          >
-            <LanguageIcon />
-          </span>
-        </Badge>
-      </Tooltip> */}
+      
+         {user.teamsAccessInd === true && (
+       <Tooltip title="My Deleted-Prospect">
+                <Badge size="small"
+                // count={props.accountRecordData.distributor || 0}
+                >
+                    <span class=" mr-1 text-sm cursor-pointer"
+                        onClick={() => props.setCustomerViewType("dashboard1")}
+                        style={{
+                            color: props.viewType === "dashboard1" && "#1890ff",
+                        }}
+                    >
+                        <Avatar style={{ background: props.viewType === "dashboard1" ? "#f279ab" : "#28a355",
+               boxShadow: props.viewType === "dashboard1" ? "0 1px 3px 2px rgba(242, 121, 171, 0.7)" : "none",
+                  transform: props.viewType === "dashboard1" ? "scale(1.05)" : "scale(1)" }}>
+                            <DeleteOutlineIcon className="text-white !text-icon " /></Avatar>
+
+                    </span>
+                </Badge>
+            </Tooltip>
+             )}
       <div class=" flex items-center justify-between"
       >
-        <div class=" w-72 max-sm:w-24">
+        <div class=" w-[24rem] max-sm:w-24">
           <Input
-            placeholder="Search by Name or Sector"
+            placeholder= {translatedMenuItems[4]}
+            // "Search by Name or Sector"
 
             width={"100%"}
             suffix={suffix}
@@ -345,13 +394,46 @@ const CustomerActionLeft = (props) => {
         <div class="w-[40%]  ml-2 max-sm:w-[45%]">
           <StyledSelect placeholder={
             <span>
-              Sort by Creation Date
+               {translatedMenuItems[5]}{/* Sort by Creation Date */}
             </span>
-          } onChange={(e) => props.handleFilterChange(e)}>
-            <Option value="CreationDate">Creation Date</Option>
+          } value={props.filter} onChange={(e) => props.handleFilterChange(e)}>
+            <Option value="CreationDate"> {translatedMenuItems[6]}</Option>
             <Option value="ascending">A To Z</Option>
             <Option value="descending">Z To A</Option>
           </StyledSelect>
+        </div>
+
+
+
+
+        <div class="w-[40%]  ml-2 max-sm:w-[45%]">
+       {/* {!props.showCheckboxes && (  */}
+        <Button type="primary" 
+        onClick={props.handleTransferClick}
+        >
+         <MoveUpIcon className=" !text-icon  text-white"/> {props.isTransferMode ? 'Transfer' : translatedMenuItems[7]}
+
+        </Button>
+        {/* Cancel */}
+       {/* )} */}
+        </div>
+
+        <div class="w-[40%]  ml-2 max-sm:w-[45%]">
+       {props.showCheckboxes && props.selectedDeals.length > 0 && ( 
+        <Select
+       
+       placeholder="Select User"
+       loading={isLoadingUser}
+       onFocus={handleSelectUserFocus}
+       onChange={props.handleUserSelect}
+     >
+       {userData.map(customer => (
+         <Option key={customer.employeeId} value={customer.employeeId}>
+           {customer.empName}
+         </Option>
+       ))}
+     </Select>
+     )}
         </div>
       </div>
     </div>
@@ -366,6 +448,7 @@ const mapStateToProps = ({ customer, auth, candidate }) => ({
   recordCategoryDataBlue: customer.recordCategoryDataBlue,
   Candidatesort: candidate.Candidatesort,
   userId: auth.userDetails.userId,
+  token: auth.token,
   orgId: auth.userDetails.organizationId,
 });
 const mapDispatchToProps = (dispatch) =>

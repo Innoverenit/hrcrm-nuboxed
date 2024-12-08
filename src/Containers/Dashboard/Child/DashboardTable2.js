@@ -5,7 +5,7 @@
  import React, { useEffect, useState,lazy } from "react";
  import { connect } from "react-redux";
  import { bindActionCreators } from "redux";
- import { FormattedMessage } from "react-intl";
+ 
  import { Suspense } from "react";
  import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
  import { Tooltip,Input,Button,Badge, } from "antd";
@@ -21,7 +21,7 @@
  import SchoolIcon from '@mui/icons-material/School';
  import AccountBoxIcon from '@mui/icons-material/AccountBox';
  import {getCandidateRequirement} from "../../Opportunity/OpportunityAction"
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
 const AddJobDetailModal = lazy(() => import("../Child/AddJobDetailModal"));
  
  function onChange(pagination, filters, sorter) {
@@ -78,12 +78,11 @@ const AddJobDetailModal = lazy(() => import("../Child/AddJobDetailModal"));
             <Button
               type="primary"
               onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-               icon={<SearchOutlined />}
-              //icon="search"
+              
               size="small"
               style={{ width: 90 }}
             >
-              Search
+             <SearchIcon ClassName="!text-icon" /> Search
             </Button>
             <Button
               onClick={() => handleReset(clearFilters)}
@@ -107,8 +106,8 @@ const AddJobDetailModal = lazy(() => import("../Child/AddJobDetailModal"));
         </div>
       ),
       filterIcon: (filtered) => (
-        // <SearchOutlined style={{ color: filtered ? "#1890ff" : undefined }} />
-        <SearchOutlined type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
+        // <SearchIcon ClassName="!text-icon" style={{ color: filtered ? "#1890ff" : undefined }} />
+        <SearchIcon ClassName="!text-icon" type="search" style={{ color: filtered ? '#1890ff' : undefined }} />
       ),
       onFilter: (value, record) =>
         record[dataIndex]
@@ -153,10 +152,8 @@ const AddJobDetailModal = lazy(() => import("../Child/AddJobDetailModal"));
     },
     {
       //title: "Currency",
-      title: <FormattedMessage
-        id="app.jobId"
-        defaultMessage="Job ID"
-      />,
+      title: "Job ID"
+   ,
      dataIndex: "jobOrder",
       width: "13%",
       ...getColumnSearchProps('jobOrder'),
@@ -193,19 +190,15 @@ const AddJobDetailModal = lazy(() => import("../Child/AddJobDetailModal"));
   
     },
     {
-     title: <FormattedMessage
-       id="app.customer"
-       defaultMessage="Customer"
-     />,
+     title:"Customer"
+    ,
      dataIndex: "customerName",
      ...getColumnSearchProps('customerName'),
       width: "16%",
    },
     {
-       title: <FormattedMessage
-         id="app.sponsor"
-         defaultMessage="Sponsor"
-       />,
+       title: "Sponsor"
+      ,
  
        dataIndex: "sponserName",
        ...getColumnSearchProps('sponserName'),
@@ -219,10 +212,8 @@ const AddJobDetailModal = lazy(() => import("../Child/AddJobDetailModal"));
         width: "10%",
      },
    {
-     title: <FormattedMessage
-       id="app.created"
-       defaultMessage="Created"
-     />,
+     title:"Created"
+     ,
 
      dataIndex: "creationDate",
      sorter: (a, b) => {
@@ -261,10 +252,8 @@ render: (name, item, i) => {
    children: (
      <>
      <Tooltip 
-     title={<FormattedMessage
-      id="app.submitted"
-      defaultMessage="Submitted"
-    />}
+     title="Submitted"
+ 
      >
      <Badge count={item.offered}  style={{ right: "1px" }}>
    <span
@@ -296,10 +285,8 @@ return {
  children: (
    <>
    <Tooltip 
-    title={<FormattedMessage
-      id="app.dropped"
-      defaultMessage="Dropped"
-    />}
+    title="Dropped"
+  
   >
    <Badge count={item.rejected}  style={{ right: "1px" }}>
  <span
@@ -320,10 +307,8 @@ return {
 },
 },
 {
-     title: <FormattedMessage
-       id="app.progress"
-       defaultMessage="Progress"
-     />,
+     title:"Progress"
+    ,
      dataIndex: "selectedCandidate",
      width: "15%",
      
@@ -409,10 +394,8 @@ render: (name, item, i) => {
    children: (
      <>
       <Tooltip
-          title={<FormattedMessage
-            id="app.selected"
-            defaultMessage="Selected"
-          />}
+          title="Selected"
+        
     >
      <Badge count={item.closedPosition}  style={{ right: "1px" }}>
    <span
@@ -443,10 +426,8 @@ render: (name, item, i) => {
    children: (
      <>
      <Tooltip 
-        title={<FormattedMessage
-          id="app.onBoarded"
-          defaultMessage="OnBoarded"
-        />}
+        title="OnBoarded"
+     
 >
      <Badge count={item.onBoardNo}  style={{ right: "1px" }}>
    <span

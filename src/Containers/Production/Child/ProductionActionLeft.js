@@ -3,11 +3,11 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Tooltip, Badge, Avatar } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import {getReaasignProduct} from "../ProductionAction"
 import ArchiveIcon from '@mui/icons-material/Archive';
 import TokenIcon from '@mui/icons-material/Token';
-import { TableOutlined } from "@ant-design/icons";
+import GridOnIcon from '@mui/icons-material/GridOn';
 import {getProductRecords} from "../ProductionAction";
 import { TableBarOutlined } from "@mui/icons-material";
 
@@ -37,7 +37,7 @@ const ProductionActionLeft = (props) => {
                                 color: viewType === "table" && "#1890ff",
                             }}
                         >
-                            <Avatar style={{ background: viewType === "table" ? "#f279ab" : "#4bc076" }}>
+                            <Avatar style={{ background: viewType === "table" ? "#f279ab" : "#28a355" }}>
                                 {/* <div className="text-white">All</div> */}
                                 <TableBarOutlined className=" text-white !text-icon"/>
                                 </Avatar>
@@ -47,9 +47,7 @@ const ProductionActionLeft = (props) => {
                 </Tooltip>
   
       <Tooltip
-          title={
-            <FormattedMessage id="app.stageview" defaultMessage="Stage View" />
-          }
+          title="Stage View" 
         >
              <Badge
         size="small"
@@ -63,8 +61,8 @@ const ProductionActionLeft = (props) => {
             }}
             onClick={() => props.setProductionViewType("stage")}
           >
-             <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#4bc076" }}>
-           <TableOutlined className=" text-white !text-icon  cursor-pointer"/>
+             <Avatar style={{ background: props.viewType === "stage" ? "#f279ab" : "#28a355" }}>
+           <GridOnIcon className=" text-white !text-icon  cursor-pointer"/>
            </Avatar>
           </span>
           </Badge>
@@ -76,7 +74,7 @@ const ProductionActionLeft = (props) => {
             color: viewType === "arch" && "#1890ff",
           }}
         >
-          <Avatar style={{ background: viewType === "arch" ? "#f279ab" : "#4bc076" }}>
+          <Avatar style={{ background: viewType === "arch" ? "#f279ab" : "#28a355" }}>
             <ArchiveIcon className=" text-white !text-icon cursor-pointer " />
           </Avatar>
 
@@ -94,7 +92,7 @@ const ProductionActionLeft = (props) => {
                                 color: viewType === "all" && "#1890ff",
                             }}
                         >
-                            <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                            <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#28a355" }}>
                                 <div className=" text-white  cursor-pointer ">ALL</div></Avatar>
 
                         </span>
@@ -115,7 +113,7 @@ const ProductionActionLeft = (props) => {
                             }}
                         >
                            
-                            <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#4bc076" }}>
+                            <Avatar style={{ background: viewType === "all" ? "#f279ab" : "#28a355" }}>
                        <TokenIcon className="text-white !text-icon cursor-pointer" /></Avatar>
 
 

@@ -8,10 +8,7 @@ const ReactCandidateSpeechModal = props => {
     <>
       <StyledModal
         title="Click to start Recording"
-        // title={<FormattedMessage
-        //   id="app.linkdelivery"
-        //   defaultMessage="Link Delivery"
-        // />}
+      
         width="60%"
         visible={addCandidateSpeechModal}
         maskClosable={false}

@@ -4,16 +4,14 @@ import { bindActionCreators } from "redux";
 import { withRouter } from "react-router-dom";
 import { Formik, Form, Field } from "formik";
 import { Button } from "antd";
-import { EyeOutlined, EyeInvisibleOutlined, CheckCircleOutlined } from '@ant-design/icons';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import * as Yup from "yup";
-import { AuthContainer, FormWrapper, Input } from "./styled";
+import { Input } from "./styled";
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import {
-  SubTitle,
   ValidationError,
-  HeaderText,
-} from "../../Components/UI/Elements";
-import FWLogo from "../../Assets/Images/Unboxed.jpeg";
-import FWLogo1 from "../../Assets/Images/unboxcover.jpeg";
+ } from "../../Components/UI/Elements";
 import { setPassword } from "./AuthAction";
 
 const SetPasswordSchema = Yup.object().shape({
@@ -73,22 +71,18 @@ class SetPassword extends Component {
   render() {
     return (
       <>
-        <div class="flex justify-between ">
-          <AuthContainer
-            style={{ backgroundColor: "#F5F5F5", flexDirection: "column" }}
-          >
-            {/* <img className="big-logo" src={FWLogo} style={{ width: 200 }} /> */}
+        <div class="flex  justify-center items-center h-[100vh] ">
+        <div class="   overflow-auto flex flex-col justify-center items-center bg-[#F5F5F5] ">      
+          
             <br />
-            <FormWrapper>
-              <HeaderText>Set your password</HeaderText>
-              <SubTitle>You've successfully verified your account. </SubTitle>
-              &nbsp;
-              {/* <SubTitle>Enter Password below</SubTitle>
-              &nbsp; */}
-              <SubTitle>
+            <div class=" p-4 w-wk shadow-[ 0em 0.25em 0.625em -0.125em #444] border-2 box-border bg-white">
+              <div class=" text-lg font-poppins font-bold text-black ">Set your password</div>
+              <div>You've successfully verified your account. </div>
+                         
+              <div class=" text-sm font-poppins text-black">
                 Minimum 8 characters and contain atleast 1 Number,
-              </SubTitle>
-              <SubTitle>1 Capital Letter & 1 Special Character.</SubTitle>
+              </div>
+              <div class=" text-sm font-poppins text-black">1 Capital Letter & 1 Special Character.</div>
               < div class="mt-3" />
               <Formik
                 initialValues={{
@@ -103,12 +97,12 @@ class SetPassword extends Component {
                 }}
               >
                 {({ errors, touched, values, isSubmitting }) => (
-                  <Form style={{ width: "25vw" }}>
+                  <Form className=" w-[25vw]">
                     <div
                       className="flex flex-row"
                    
                     >
-                      <div style={{ width: "80%", marginLeft: "2.18em" }}>
+                      <div  class=" w-4/5">
                         <Field
                           type={this.state.type}
                           name="password"
@@ -117,26 +111,21 @@ class SetPassword extends Component {
                         />
                       </div>
                       {this.state.show ? (
-                        <EyeOutlined
+                        <VisibilityIcon className=" !text-icon  -ml-5"
                           // type="eye"
-                          onClick={this.handleClick}
-                          style={{ marginLeft: "-1.25em",  }}
-                          size="24"
-                        />
+                          onClick={this.handleClick} />
                       ) : (
-                        <EyeInvisibleOutlined
+                        <VisibilityOffIcon className=" !text-icon  -ml-5"
                           // type="eye-invisible"
                           onClick={this.handleClick}
-                          size="24"
-                          style={{ marginLeft: "-1.25em",  }}
-                        />
+                          />
                       )}
                     </div>
-                    < div class="mt-3" style={{ marginBottom: "-0.25em" }} />
+                    
                     <div
-                      className="flex flex-row"
+                      className="flex flex-row mt-3"
                     >
-                      <div style={{ width: "80%", marginLeft: "2.18em" }}>
+                      <div  class=" w-4/5" >
                         <Field
                           type={this.state.type1}
                           name="confirmPassword"
@@ -145,38 +134,26 @@ class SetPassword extends Component {
                         />
                       </div>
                       {this.state.show1 ? (
-                        <EyeOutlined
+                        <VisibilityIcon  className=" !text-icon  -ml-5"
                           onClick={this.handleClick1}
-                          style={{
-                            marginLeft: "-1.25em",
-                            
-                          }}
+                         
                         />
                       ) : (
-                        <EyeInvisibleOutlined
+                        <VisibilityOffIcon  className=" !text-icon  -ml-5"
                           onClick={this.handleClick1}
-                          style={{
-                            marginLeft: "-1.25em",
-                           
-                          }}
-                        />
+                                                 />
                       )}
                       {values.password.length &&
                         values.password === values.confirmPassword ? (
-                        <CheckCircleOutlined
+                        <CheckCircleOutlineIcon  className=" !text-icon "
                           theme="twoTone"
                           twoToneColor="#52c41a"
-                          size={100}
-                          style={{
-                            marginLeft: "1.25em",
-                            marginTop: "0.875em",
-                          }}
+                        
                         />
                       ) : null}
                     </div>
 
-                    < div class="mt-3" />
-                    <div className=" flex justify-end">
+                    <div className=" flex justify-end mt-3">
                       <Button
                         block
                         type="primary"
@@ -189,19 +166,15 @@ class SetPassword extends Component {
                   </Form>
                 )}
               </Formik>
-            </FormWrapper>
+            </div>
         
          
-          </AuthContainer>
+          </div>
        
         </div>
         <div
-              className="text-xs text-center font-poppins mt-auto text-black  w-wk items-center"
-              style={{
-                textAlign: "center",
-                position: "absolute",
-                bottom: 0,
-              }}
+              className="text-xs text-center absolute bottom-0 font-poppins mt-auto text-black  w-wk items-center"
+            
             >
               © {new Date().getFullYear()}, {` `}  All rights
               reserved.

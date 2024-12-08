@@ -1,6 +1,6 @@
 import React, { lazy, Component, Suspense } from "react";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../Components/Placeholder";
 const CreateProduction = lazy(() => import("../Child/CreateProduction"));
 
@@ -12,10 +12,7 @@ class CreateProductionDrawer extends Component {
     return (
       <>
         <StyledDrawer
-          title={<FormattedMessage
-            id="app.production"
-            defaultMessage="Production"
-          />}
+          title="Production"
 
           width={drawerWidth}
           visible={openProductiondrawer}

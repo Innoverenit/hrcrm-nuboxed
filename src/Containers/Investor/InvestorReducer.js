@@ -6,9 +6,19 @@ const initialState = {
 
   addInvestorActivityJumpstartModal:false,
 
+
+  creatingDeal:false,
+  creatingDealError:false,
+
   fetchingInvestors: false,
   fetchingInvestorsError: false,
   investorsbyId: [],
+
+  addInvestorAddressModal:false,
+
+  fetchingDeleteInvestors: false,
+        fetchingDeleteInvestorsError: false,
+        deleteInvestorList:[],
 
   fetchingDocumentList: false,
    fetchingDocumentListError: false,
@@ -91,6 +101,9 @@ const initialState = {
 
   deleteInvestorData: false, 
   deleteInvestorDataError: false ,
+
+  updatingInvestorOwenership:false,
+  updatingInvestorOwenershipError:false,
 
   fetchingWonInvPipelineValue: false,
   fetchingWonInvPipelineValueError: false,
@@ -207,6 +220,26 @@ export const investorReducer = (state = initialState, action) => {
         fetchingInvestors: false,
         fetchingInvestorsError: true,
       };
+        return {
+          ...state,
+          fetchingTeamUserList: false,
+          fetchingTeamUserListError: true,
+        };
+      case types.GET_INVESTORS_DELETELIST_REQUEST:
+      return { ...state, fetchingDeleteInvestors: true };
+    case types.GET_INVESTORS_DELETELIST_SUCCESS:
+      return {
+        ...state,
+        fetchingDeleteInvestors: false,
+         deleteInvestorList:action.payload,
+        
+      };
+    case types.GET_INVESTORS_DELETELIST_FAILURE:
+      return {
+        ...state,
+        fetchingDeleteInvestors: false,
+        fetchingDeleteInvestorsError: true,
+      };
 
       case types.GET_ALL_INVESTORS_BY_ID_REQUEST:
         return { ...state, fetchingAllInvestors: true };
@@ -214,7 +247,10 @@ export const investorReducer = (state = initialState, action) => {
         return {
           ...state,
           fetchingAllInvestors: false,
-          allInvestorsbyId: [...state.investorsbyId, ...action.payload],
+          allInvestorsbyId: [
+            ...state.allInvestorsbyId,
+            ...action.payload],
+          // allInvestorsbyId: [...state.investorsbyId, ...action.payload],
           clearbit:null
         };
       case types.GET_ALL_INVESTORS_BY_ID_FAILURE:
@@ -265,6 +301,8 @@ export const investorReducer = (state = initialState, action) => {
       case types.HANDLE_INVESTOR_MODAL:
       return { ...state, addInvestorModal: action.payload };
 
+      case types.HANDLE_INVESTOR_ADDRESS_MODAL:
+        return { ...state, addInvestorAddressModal: action.payload };
 
     case types.UPDATE_INVESTOR_BY_ID_REQUEST:
       return { ...state, updateInvestorById: true };
@@ -274,6 +312,13 @@ export const investorReducer = (state = initialState, action) => {
         updateInvestorById: false,
         updateInvestorModal: false,
         investorsbyId: state.investorsbyId.map((item) => {
+          if (item.investorId === action.payload.investorId) {
+            return action.payload;
+          } else {
+            return item;
+          }
+        }),
+        teamInvestor: state.teamInvestor.map((item) => {
           if (item.investorId === action.payload.investorId) {
             return action.payload;
           } else {
@@ -316,6 +361,26 @@ export const investorReducer = (state = initialState, action) => {
         fetchingsInvestorContact: false,
         fetchingsInvestorContactError: true,
       };
+
+
+
+      case types.CREATE_DEAL_REQUEST:
+        return { ...state, creatingDeal: true };
+      case types.CREATE_DEAL_SUCCESS:
+        return {
+          ...state,
+          creatingDeal: false,
+          opencreateDealModal: false,
+         dealsByuserId :[action.payload,...state.dealsByuserId],
+         allDealsData :[action.payload,...state.allDealsData],
+        //  investorDealsData:[action.payload,...state.investorDealsData],
+        };
+      case types.CREATE_DEAL_FAILURE:
+        return {
+          ...state,
+          creatingDeal: false,
+          creatingDealError: true,
+        };
 
     case types.GET_INVESTOR_DOCUMENTS_REQUEST:
       return {
@@ -461,6 +526,53 @@ export const investorReducer = (state = initialState, action) => {
                           updateInvestorContactById: false,
                           updateInvestorContactByIdError: true,
                         };  
+
+
+
+
+                        case types.UPDATE_INVESTOR_OWNERSHIP_REQUEST:
+                          return { ...state, updatingInvestorOwenership: true };
+                        case types.UPDATE_INVESTOR_OWNERSHIP_SUCCESS:
+                          return {
+                            ...state,
+                            updatingInvestorOwenership: false,
+                            // updateCandidateEmploymentModal: false,
+                            // employmentDetails: state.employmentDetails.map((employment, i) => {
+                            //   if (employment.id === action.payload.id) {
+                            //     return action.payload;
+                            //   } else {
+                            //     return employment;
+                            //   }investorsbyId
+                            // }),
+
+                            allInvestorsbyId:state.allInvestorsbyId.filter(
+                              (item)=>{
+                                console.log("abc",item,action.payload);
+                    
+                              return !action.payload.includes(item.investorId)  
+                              }
+                            ),
+                            investorsbyId:state.investorsbyId.filter(
+                              (item)=>{
+                                console.log("abc",item,action.payload);
+                    
+                              return !action.payload.includes(item.investorId)  
+                              }
+                            ),
+                            teamInvestor:state.teamInvestor.filter(
+                              (item)=>{
+                                console.log("abc",item,action.payload);
+                    
+                              return !action.payload.includes(item.investorId)  
+                              }
+                            ),
+                          };
+                        case types.UPDATE_INVESTOR_OWNERSHIP_FAILURE:
+                          return {
+                            ...state,
+                            updatingInvestorOwenership: false,
+                            updatingInvestorOwenershipError: true,
+                          };
                         
                         case types.GET_INVESTOR_DATA_REQUEST:
                           return { ...state, fetchingInvestorData: true };
@@ -634,7 +746,10 @@ export const investorReducer = (state = initialState, action) => {
                     return {
                       ...state,
                       fetchingTeamInvestor: false,
-                  teamInvestor:action.payload,
+                      teamInvestor: [
+                        ...state.teamInvestor,
+                        ...action.payload],
+                  // teamInvestor:action.payload,
                     };
                   case types.GET_TEAM_INVESTOR_FAILURE:
                     return {
@@ -771,7 +886,20 @@ export const investorReducer = (state = initialState, action) => {
                                   case types.GET_WON_INVESTOR_WEIGHTED_VALUE_FAILURE:
                                     return { ...state, fetchingWonINVWeightedValue: false, fetchingWonINVWeightedValueError: true };
   
-
+                                    case types.GET_TEAM_USERLIST_REQUEST:
+                                      return {
+                                        ...state,
+                                        fetchingTeamUserList: true,
+                                        fetchingTeamUserListError: false,
+                                      };
+                                    case types.GET_TEAM_USERLIST_SUCCESS:
+                                      return {
+                                        ...state,
+                                        fetchingTeamUserList: false,
+                                        fetchingTeamUserListError: false,
+                                        teamUserList: action.payload,
+                                      };
+                                    case types.GET_TEAM_USERLIST_FAILURE:
 
                                   case types.GET_INVESTOR_CONTACT_VALUE_REQUEST:
                                     return { ...state, fetchingInvContactValue: true, fetchingInvContactValueError: false };
@@ -850,7 +978,12 @@ export const investorReducer = (state = initialState, action) => {
                                                   investorsbyId: state.investorsbyId.filter(
                                                     (item) => item.investorId !== action.payload
                                                 ), 
-                                  
+                                                teamInvestor: state.teamInvestor.filter(
+                                                  (item) => item.investorId !== action.payload
+                                              ), 
+                                              allInvestorsbyId: state.allInvestorsbyId.filter(
+                                                (item) => item.investorId !== action.payload
+                                            ), 
                                                 };
                                               case types.DELETE_INVESTOR_DATA_FAILURE:
                                                 return { ...state, deleteInvestorData: false, deleteInvestorDataError: false };
@@ -964,7 +1097,23 @@ export const investorReducer = (state = initialState, action) => {
                 uploadingInvestorListError: true,
               };
 
-
+              case types.REINSTATE_TOGGLE_FOR_INVESTOR_REQUEST:
+                return { ...state, reInstatedInvestor: true };
+            case types.REINSTATE_TOGGLE_FOR_INVESTOR_SUCCESS:
+                return {
+                    ...state,
+                    reInstatedInvestor: false,
+                    deleteInvestorList: state.deleteInvestorList.filter(
+                        (item) => item.investorId !== action.payload
+                      ),
+                 
+                };
+            case types.REINSTATE_TOGGLE_FOR_INVESTOR_FAILURE:
+                return {
+                    ...state,
+                    reInstatedInvestor: false,
+                    reInstatedInvestorError: true,
+                };
 
 default:
       return state;

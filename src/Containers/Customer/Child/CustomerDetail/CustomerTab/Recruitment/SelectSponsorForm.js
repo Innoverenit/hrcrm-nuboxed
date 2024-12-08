@@ -1,23 +1,12 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { Button, message, Input, Switch } from "antd";
+import { Button, message } from "antd";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-import dayjs from "dayjs";
-import { FormattedMessage } from "react-intl";
-import { Spacer, StyledLabel } from "../../../../../../Components/UI/Elements";
-import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
-// import {
-//   getContactListByOpportunityId,
-//   updateRecruitment,
-//   sponsorSwitch,
-// } from "../../../../OpportunityAction";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
 
-/**
- * yup validation scheme for creating a opportunity
- */
+import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
+
 
 const OpportunitySchema = Yup.object().shape({});
 
@@ -60,13 +49,7 @@ function SelectSponsorForm(props) {
         }}
         validationSchema={OpportunitySchema}
         onSubmit={(values, { resetForm }) => {
-          // props.updateRecruitment(
-          //   {
-          //     ...values,
-          //   },
-          //   props.opportunityId,
-          //   (data, id) => handleSponsor(data, id)
-          // );
+      
         }}
       >
         {({
@@ -90,13 +73,8 @@ function SelectSponsorForm(props) {
                   <>
                     <Field
                       name="sponserId"
-                      //label="Sponsor"
-                      label={
-                        <FormattedMessage
-                          id="app.sponserId"
-                          defaultMessage="Sponsor"
-                        />
-                      }
+                      label="Sponsor"
+                     
                       isColumn
                       style={{
                         flexBasis: "80%",
@@ -116,7 +94,7 @@ function SelectSponsorForm(props) {
                   </>
                 )}
 
-                <Spacer />
+                <mt-3 />
               </div>
               &nbsp;
               <div
@@ -125,19 +103,18 @@ function SelectSponsorForm(props) {
                 }}
               ></div>
             </div>
-            <Spacer />
+            <mt-3 />
             {Sponsor.length ? (
               <>
-                <FlexContainer justifyContent="flex-end">
+             <div class=" flex flex-row flex-wrap items-start self-start justify-end  grow shrink h-auto mr-auto ">
                   <Button
                     type="primary"
                     htmlType="submit"
                     Loading={props.updatingRecruitment}
                   >
-                    <FormattedMessage id="app.update" defaultMessage="Update" />
-                    {/* Update */}
+                    Update
                   </Button>
-                </FlexContainer>
+                </div>
               </>
             ) : (
               <></>
@@ -158,18 +135,13 @@ const mapStateToProps = ({
   settings,
   partner,
 }) => ({
-  // contactListByOpportunityId: opportunity.contactListByOpportunityId,
-  // currentRecruitmentData: opportunity.currentRecruitmentData,
-  // updatingRecruitment: opportunity.updatingRecruitment,
-  // opportunityId: opportunity.opportunity.opportunityId,
+
 });
 
 const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
-      // getContactListByOpportunityId,
-      // updateRecruitment,
-      // sponsorSwitch,
+    
     },
     dispatch
   );

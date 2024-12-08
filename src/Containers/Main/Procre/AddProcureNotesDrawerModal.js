@@ -3,7 +3,7 @@ import { BundleLoader } from "../../../Components/Placeholder";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { StyledDrawer } from "../../../Components/UI/Antd";
-import NotesFormProcure from "./NotesFormProcure";
+
 
 
 class AddProcureNotesDrawerModal extends Component {
@@ -15,7 +15,7 @@ class AddProcureNotesDrawerModal extends Component {
         <StyledDrawer
          title="Notes"
          // title={this.props.particularRowData.name}
-          width="64%"
+         width="38%"
           destroyOnClose
           closable
           placement="right"
@@ -23,9 +23,7 @@ class AddProcureNotesDrawerModal extends Component {
           onClose={() => this.props.handleProcureNotesDrawerModal(false)}
         >
           <Suspense fallback={<BundleLoader />}>
-            <NotesFormProcure 
-             particularRowData={this.props.particularRowData} 
-            />
+           {/* <MainNotes/> */}
           </Suspense>
         </StyledDrawer>
       </div>

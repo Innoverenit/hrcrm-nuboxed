@@ -38,6 +38,14 @@ export const emptyCustomer = () => (dispatch) => {
   });
 };
 
+
+// export const handleUpdateUserModal = (modalProps) => (dispatch) => {
+//   dispatch({
+//     type: types.HANDLE_UPDATE_USER_MODAL,
+//     payload: modalProps,
+//   });
+// };
+
 export const handleCustomerReactSpeechModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_CUSTOMER_REACT_SPEECH_MODAL,
@@ -83,6 +91,8 @@ export const addCustomer = (customer) => (dispatch, getState) => {
       Swal.fire({
         icon: 'success',
         title: 'Prospect created Successfully!',
+        showConfirmButton: false,
+        timer: 1500
       })
       // Swal.fire({
       //   icon: 'success',
@@ -352,7 +362,7 @@ export const handleCallActivityModal = (modalProps) => (dispatch) => {
   });
 };
 
-export const deleteDocument = (documentId) => (dispatch, getState) => {
+export const deleteDocument = (documentId,type) => (dispatch, getState) => {
   console.log("inside deleteDocument", documentId);
   // const { opportunityId } = getState("opportunity").opportunity.opportunity;
   dispatch({
@@ -360,7 +370,7 @@ export const deleteDocument = (documentId) => (dispatch, getState) => {
   });
 
   axios
-    .delete(`${base_url}/customer/document/${documentId}`, {
+    .delete(`${base_url}/document/delete/${documentId}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -474,7 +484,7 @@ export const setEditCustomerCard = (name) => (dispatch) => {
 export const updateCustomer = (data, customerId) => (dispatch) => {
   dispatch({ type: types.UPDATE_CUSTOMER_BY_ID_REQUEST });
   axios
-    .put(`${base_url}/customer/${customerId}`, data, {
+    .put(`${base_url}/customer/row-edit/${customerId}`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -496,6 +506,37 @@ export const updateCustomer = (data, customerId) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.UPDATE_CUSTOMER_BY_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const updateDocument = (data, documentId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_DOCUMENT_BY_ID_REQUEST });
+  axios
+    .put(`${base_url}/document/update/${documentId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Prospect Info updated Successfully!',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_DOCUMENT_BY_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_DOCUMENT_BY_ID_FAILURE,
         payload: err,
       });
     });
@@ -559,10 +600,10 @@ export const documentUpload = (data) => (dispatch) => {
 /**
  * get documents of an customer
  */
-export const getCustomerDocument = (customerId) => (dispatch) => {
+export const getCustomerDocument = (id,type) => (dispatch) => {
   dispatch({ type: types.GET_CUSTOMER_DOCUMENTS_REQUEST });
   axios
-    .get(`${base_url}/customer/document/${customerId}`, {
+    .get(`${base_url}/document/get/${id}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -579,6 +620,31 @@ export const getCustomerDocument = (customerId) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_CUSTOMER_DOCUMENTS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getDocumentCount = (id,type) => (dispatch) => {
+  dispatch({ type: types.GET_DOCUMENTS_COUNT_REQUEST });
+  axios
+    .get(`${base_url}/document/count/${id}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_DOCUMENTS_COUNT_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_DOCUMENTS_COUNT_FAILURE,
         payload: err,
       });
     });
@@ -730,16 +796,16 @@ export const addCustomerContact = (contact,userId) => (dispatch, getState) => {
         Swal.fire({
           icon: 'error',
           title: res.data.message,
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500
         });
       } else {
        
         Swal.fire({
           icon: 'success',
           title: 'Contact created Successfully',
-          // showConfirmButton: false,
-          // timer: 1500
+          showConfirmButton: false,
+          timer: 1500
         });
       }
       console.log(res);
@@ -767,13 +833,12 @@ export const addCustomerContact = (contact,userId) => (dispatch, getState) => {
 };
 
 /*get all the contact of the customer */
-export const getContactListByCustomerId = (customerId) => (dispatch) => {
-  console.log(customerId);
+export const getContactListByCustomerId = (id,type) => (dispatch) => {
   dispatch({
     type: types.GET_CUSTOMER_CONTACT_REQUEST,
   });
   axios
-    .get(`${base_url}/customer/contacts/${customerId}`, {
+    .get(`${base_url}/contact/get/${id}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1393,7 +1458,7 @@ export const getInvoiceByCustomerId = (customerId) => (dispatch) => {
     });
 };
 
-export const updateOwnercustomerById = (userId, data) => (dispatch, getState) => {
+export const updateOwnercustomerById = (data,userId, ) => (dispatch, getState) => {
   const userId1 = getState().auth.userDetails.userId;
   dispatch({
     type: types.UPDATE_CUSTOMER_OWNERSHIP_REQUEST,
@@ -1405,7 +1470,8 @@ export const updateOwnercustomerById = (userId, data) => (dispatch, getState) =>
       },
     })
     .then((res) => {
-      dispatch(getCustomerListByUserId(userId1));
+      // dispatch(getCustomerListByUserId(userId1,0,"creationdate"));
+      // dispatch(getTeamCustomer(userId1,0,));
       dispatch({
         type: types.UPDATE_CUSTOMER_OWNERSHIP_SUCCESS,
         payload: res.data,
@@ -2359,7 +2425,9 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
         });
         Swal.fire({
           icon: 'error',
-          title: 'Something went wrong , reach out to support!',
+          title: 'Something went wrong, reach out to support!',
+          showConfirmButton: false,
+        timer: 1500,
         })
       });
   };
@@ -2370,7 +2438,7 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
     });
   };
 
-  export const linkCustomerContract = (data, customerId) => (
+  export const linkCustomerContract = (data, documentId,contractInd) => (
     dispatch,
     getState
   ) => {
@@ -2380,13 +2448,13 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
       type: types.LINK_CUSTOMER_CONTRACT_REQUEST,
     });
     axios
-      .put(`${base_url}/customer/document/contract/update`, data, {
+      .put(`${base_url}/document/update/contract/${documentId}/${contractInd}`, data, {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
         },
       })
       .then((res) => {
-        dispatch(getCustomerDocument(customerId));
+       // dispatch(getCustomerDocument(customerId));
         dispatch({
           type: types.LINK_CUSTOMER_CONTRACT_SUCCESS,
           payload: res.data,
@@ -2413,6 +2481,13 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
   export const handleCustomerOpportunityDrawerModal = (modalProps) => (dispatch) => {
     dispatch({
       type: types.HANDLE_CUSTOMER_OPPORTUNITY_DRAWER_MODAL,
+      payload: modalProps,
+    });
+  };
+
+  export const handleAddressCutomerModal = (modalProps) => (dispatch) => {
+    dispatch({
+      type: types.HANDLE_ADDRESS_CUSTOMER_MODAL,
       payload: modalProps,
     });
   };
@@ -2529,6 +2604,34 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
       });
   };
 
+
+  export const getProspectContactCount = (id, type) => (dispatch) => {
+    dispatch({ type: types.GET_PROSPECT_CONTACT_COUNT_REQUEST });
+  
+    axios
+      .get(
+        `${base_url}/contact/count/${id}/${type}`,
+        {
+          headers: {
+            Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+          },
+        }
+      )
+      .then((res) => {
+        // console.log(res)
+        dispatch({
+          type: types.GET_PROSPECT_CONTACT_COUNT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.GET_PROSPECT_CONTACT_COUNT_FAILURE,
+          payload: err,
+        });
+      });
+  };
 
   export const getCustomerActivityRecords = (customerId) => (dispatch) => {
     dispatch({
@@ -2668,6 +2771,8 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
         Swal.fire({
           icon: 'success',
           title: 'Event has been created successfully!',
+          showConfirmButton: false,
+        timer: 1500,
         })
       })
       .catch((err) => {
@@ -2693,6 +2798,8 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
         Swal.fire({
           icon: 'success',
           title: 'Campaign has been created successfully!',
+          showConfirmButton: false,
+        timer: 1500,
         })
         console.log(res);
         dispatch({
@@ -2785,6 +2892,39 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
       payload: modalProps,
     });
   };
+
+
+
+
+  export const updateProspectUser = ( customerId,userId) => (dispatch) => {
+    dispatch({ type: types.UPDATE_PROSPECT_USER_REQUEST });
+    axios
+      .put(`${base_url}/customer/changesAssignTo/${customerId}/${userId}`, {}, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        Swal.fire({
+          icon: 'success',
+          title: 'Prospect User updated Successfully!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        console.log(res);
+        dispatch({
+          type: types.UPDATE_PROSPECT_USER_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: types.UPDATE_PROSPECT_USER_FAILURE,
+          payload: err,
+        });
+      });
+  };
   export const handleCustomerActivityJumpstartModal = (modalProps) => (dispatch) => {
     dispatch({
       type: types.HANDLE_CUSTOMER_ACTIVITY_JUMPSTART_MODAL,
@@ -2834,6 +2974,35 @@ export const getAllCustomerByCloser = (userId, startDate, endDate) => (
         console.log(err.response);
         dispatch({
           type: types.GET_CONTACTS_OF_JUMPSTART_FAILURE,
+          payload: err,
+        });
+      });
+  };
+
+
+
+
+  export const getCustomerDonut = (customerId) => (dispatch) => {
+    dispatch({
+      type: types.GET_CUSTOMER_DONUT_REQUEST,
+    });
+    axios
+      .get(`${base_url}/opportunity/customer/record/count/${customerId}`, {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        dispatch({
+          type: types.GET_CUSTOMER_DONUT_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response);
+        dispatch({
+          type: types.GET_CUSTOMER_DONUT_FAILURE,
           payload: err,
         });
       });
@@ -3001,6 +3170,31 @@ export const getInvestorDocument = (investorId) => (dispatch) => {
     });
 };
 
+export const getTeamUserList = (reptMngrId) => (dispatch) => {
+  dispatch({ type: types.GET_TEAM_USERLIST_REQUEST });
+  axios
+    .get(`${base_url}/employee/user-list/reptMngr/${reptMngrId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_TEAM_USERLIST_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_TEAM_USERLIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const updateActivityCallForm = (data, callId, cb) => (dispatch) => {
   console.log(data);
   dispatch({ type: types.UPDATE_ACTIVITY_CALL_FORM_REQUEST });
@@ -3094,6 +3288,45 @@ export const handleCustomerImportModal = (modalProps) => (dispatch) => {
     type: types.HANDLE_CUSTOMER_IMPORT_MODAL,
     payload: modalProps,
   });
+};
+
+
+
+export const deleteCustomer = (data, customerId) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.DELETE_CUSTOMER_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/customer/deleteCustomer/${customerId}`, data,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+     
+      dispatch({
+        type: types.DELETE_CUSTOMER_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Deleted Successfully',
+        showConfirmButton: false,
+        timer: 1500,
+
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_CUSTOMER_FAILURE,
+        payload: err,
+      });
+    });
 };
 
 

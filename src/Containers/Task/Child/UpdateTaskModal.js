@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer } from "../../../Components/UI/Antd";
 import { BundleLoader } from "../../../Components/Placeholder";
 const UpdateTaskForm = lazy(() => import("./UpdateTaskForm"));
@@ -11,11 +11,7 @@ const UpdateTaskModal = (props) => {
     return (
       <>
         <StyledDrawer
-          // title="Update Task"
-          title={<FormattedMessage
-            id="app.updatetask"
-            defaultMessage="Update Task"
-          />}
+          title="Update Task"         
           width={drawerWidth}
           visible={updateTaskModal}
           maskClosable={false}
@@ -24,7 +20,10 @@ const UpdateTaskModal = (props) => {
           footer={null}
         >
           <Suspense fallback={<BundleLoader />}>
-            <UpdateTaskForm />
+            <UpdateTaskForm
+             selectedLanguage={props.selectedLanguage}
+             translateText={props.translateText}
+            />
           </Suspense>
         </StyledDrawer>
       </>

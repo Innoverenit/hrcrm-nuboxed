@@ -5,8 +5,9 @@ import { bindActionCreators } from "redux";
 import { Tooltip } from "antd";
 import {StyledPopconfirm } from "../../../Components/UI/Antd";
 import { getMileageByUserId,getPendingMileage,deleteMileageVoucher,handleMileageVoucherIdDrwer } from "../MileageAction";
-import { DeleteOutlined, } from "@ant-design/icons";
-import { FormattedMessage } from "react-intl";
+
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+
 const MileageVoucherIdDrawer = lazy(() => import("./MileageVoucherIdDrawer"))
 
 class MileagePendingStatusCard extends React.Component {
@@ -35,7 +36,7 @@ class MileagePendingStatusCard extends React.Component {
 
     return (
       <>        
-        <div class="rounded m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+        <div class="rounded m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
       <div className="p-0.5 inline-flex items-center rounded-md w-max ml-1">
             <span className="pl-2 pr-4 relative">
               <span
@@ -103,15 +104,10 @@ class MileagePendingStatusCard extends React.Component {
                            {item.status === "Pending" ? (
                      <StyledPopconfirm
                      // title="Do you want to delete?"
-                     title={
-                       <FormattedMessage
-                         id="app.doyouwanttodelete?"
-                         defaultMessage="Do you want to delete?"
-                       />
-                     }
+                     title="Do you want to delete?"                   
                      onConfirm={() =>   this.props.deleteMileageVoucher(item.voucherId)}
                    >
-              <DeleteOutlined
+              <DeleteOutlineIcon
                 type="delete"
                 style={{ cursor: "pointer" }}
                 // onClick={() => {

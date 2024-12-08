@@ -1,10 +1,6 @@
 import React, { Component, lazy, Suspense } from "react";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
-import {
-  BankOutlined,
-  CustomerServiceOutlined, MailOutlined, PhoneOutlined, PlusOutlined, 
-} from '@ant-design/icons';
 import{handleEmailProfileModal} from "../../../Profile/ProfileAction";
 import { handleEducationModal } from "../../ProfileAction";
 import { handleBankModal } from "../../ProfileAction";
@@ -14,12 +10,21 @@ import { handlePersonalModal } from "../../ProfileAction";
 import { handlePersonalDetailsModal } from "../../ProfileAction";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import PerformanceTable from "./Performance/PerformanceTable";
-import LinkAccountForm from "./LinkAccount/LinkAccountForm";
-import EquipmentForm from "./ProfileBoost/EquipmentForm";
-import LocalOfferIcon from '@mui/icons-material/LocalOffer';
-import MedicalServicesIcon from '@mui/icons-material/MedicalServices';
+import CommitIcon from '@mui/icons-material/Commit';
+import ModelTrainingIcon from '@mui/icons-material/ModelTraining';
+import SchoolIcon from '@mui/icons-material/School';
+import BadgeIcon from '@mui/icons-material/Badge';
+import HealingIcon from '@mui/icons-material/Healing';
+import SavingsIcon from '@mui/icons-material/Savings';
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import EditNoteIcon from '@mui/icons-material/EditNote';
+import HomeRepairServiceIcon from '@mui/icons-material/HomeRepairService';
+import LeakAddIcon from '@mui/icons-material/LeakAdd';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
+const PerformanceTable = lazy(() => import("./Performance/PerformanceTable"));
+const LinkAccountForm = lazy(() => import("././LinkAccount/LinkAccountForm"));
+const EquipmentForm = lazy(() => import("./ProfileBoost/EquipmentForm"));
 const AddEducationModal = lazy(() => import("./ProfileBoost/Education/AddEducationModal"));
 const AddTrainingModal = lazy(() => import("./ProfileBoost/Training/AddTrainingModal"));
 const AddEmploymentModal = lazy(() => import("./ProfileBoost/Employment/AddEmploymentModal"));
@@ -29,7 +34,6 @@ const AddPersonalDetailsModal = lazy(() => import("./ProfileBoost/PersonalDetail
 const Signature = lazy(() => import("./ProfileBoost/Signature"));
 const EmailTable = lazy(() => import("./ProfileBoost/Email/EmailTable"));
 const AddEmailModal = lazy(() => import("../ProfileTabs/AddEmailModal"));
-
 const BankTable = lazy(() => import("./ProfileBoost/Bank/BankTable"));
 const EducationTable = lazy(() =>
   import("./ProfileBoost/Education/EducationTable")
@@ -54,6 +58,48 @@ const PersonalDetailsTable = lazy(() =>
 const TabPane = StyledTabs.TabPane;
 
 class ProfileDetailTab extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      translatedMenuItems: [],
+      activeKey: "1",
+    };
+  }
+
+  componentDidMount() {
+    this.fetchMenuTranslations();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.selectedLanguage !== this.props.selectedLanguage) {
+      this.fetchMenuTranslations();
+    }
+  }
+
+  fetchMenuTranslations = async () => {
+    try {
+      const itemsToTranslate = [
+        "Performance",
+        "Training",
+        "Education",
+        "Employment",
+        "Emergency",
+        "Bank Details",
+        "Personal Details",
+        "Signature",
+        "Email",
+        "Link Account",
+        "Equipment",
+        
+      ];
+
+      const translations = await this.props.translateText(itemsToTranslate, this.props.selectedLanguage);
+      this.setState({ translatedMenuItems: translations });
+    } catch (error) {
+      console.error('Error translating menu items:', error);
+    }
+  };
+
   state = {
     order: [],
   };
@@ -79,12 +125,12 @@ class ProfileDetailTab extends Component {
     });
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeKey: "1",
-    };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     activeKey: "1",
+  //   };
+  // }
   handleTabChange = (key) => this.setState({ activeKey: key });
   render() {
     console.log(this.props.userDetails.employeeId)
@@ -116,14 +162,14 @@ class ProfileDetailTab extends Component {
       <>
         <TabsWrapper>
           <StyledTabs defaultActiveKey="1" onChange={this.handleTabChange}>
-
+        
           <TabPane
               tab={
                 <>
                    <span> 
-                    <MailOutlined type="mail" />
-                    <span class=" ml-1">
-                    Performance
+                    <CommitIcon type="mail" className="!text-icon" />
+                    <span class=" ml-[0.1rem]">
+                    {this.state.translatedMenuItems[0]}{/* Performance */}
                   </span>
                     </span>
                  
@@ -142,19 +188,17 @@ class ProfileDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <CustomerServiceOutlined type="customer-service" />
-                    <span class=" ml-1">
-                    Training
+                    <ModelTrainingIcon type="customer-service" className="!text-icon"/>
+                    <span class=" ml-[0.1rem]">
+                    {this.state.translatedMenuItems[1]} {/* Training */}
                   </span>
                   </span>
                   {activeKey === "2" && (
                     <>
-                      <PlusOutlined
-                        type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle="Add"
                         onClick={() => handleTrainingModal(true)}
-                        size="1em"
-                        style={{ marginLeft: 10, verticalAlign: "center" }}
                       />
                     </>
                   )}
@@ -171,9 +215,9 @@ class ProfileDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <i class="fa fa-graduation-cap"></i>
-                    <span class=" ml-1">
-                    Education
+                  <SchoolIcon type="customer-service" className="!text-icon"/>
+                    <span class=" ml-[0.1rem]">
+                    {this.state.translatedMenuItems[2]}{/* Education */}
                   </span>
                   </span>
                   {activeKey === "3" && (
@@ -182,15 +226,11 @@ class ProfileDetailTab extends Component {
                         <></>
                       ) : (
                           <>
-                            <PlusOutlined
-                              type="plus"
+                             <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                             
                               tooltipTitle="Add"
                               onClick={() => handleEducationModal(true)}
-                              size="1em"
-                              style={{
-                                marginLeft: 10,
-                                verticalAlign: "center",
-                              }}
+                             
                             />
                           </>
                         )}
@@ -212,19 +252,17 @@ class ProfileDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <BankOutlined type="bank" />
-                    <span class=" ml-1">
-                    Employment
+                    <BadgeIcon type="bank" className="!text-icon"/>
+                    <span class=" ml-[0.1rem]">
+                    {this.state.translatedMenuItems[3]} {/* Employment */}
                   </span>
                   </span>
                   {activeKey === "4" && (
                     <>
-                      <PlusOutlined
-                        type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle="Add"
                         onClick={() => handleEmploymentModal(true)}
-                        size="1em"
-                        style={{ marginLeft: 10, verticalAlign: "center" }}
                       />
                     </>
                   )}
@@ -242,20 +280,19 @@ class ProfileDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <MedicalServicesIcon className="!text-icon" type="phone" />
-                    <span class=" ml-1">
+                    <HealingIcon className="!text-icon" type="phone" />
+                    <span class=" ml-[0.1rem]">
 
-                    Emergency
+                    {this.state.translatedMenuItems[4]} {/* Emergency */}
                     </span>
                   </span>
                   {activeKey === "5" && (
                     <>
-                      <PlusOutlined
-                        type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle="Add"
                         onClick={() => handlePersonalModal(true)}
-                        size="1em"
-                        style={{ marginLeft: 10, verticalAlign: "center" }}
+                 
                       />
                     </>
                   )}
@@ -274,19 +311,18 @@ class ProfileDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <i class="fa fa-credit-card"></i> 
-                     <span class=" ml-1"> 
-                    Bank Details
+                  <SavingsIcon className="!text-icon" type="phone" />
+                     <span class=" ml-[0.1rem]"> 
+                     {this.state.translatedMenuItems[5]} {/* Bank Details */}
                   </span>
                   </span>
                   {activeKey === "6" && (
                     <>
-                      <PlusOutlined
-                        type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle="Add"
                         onClick={() => handleBankModal(true)}
-                        size="1em"
-                        style={{ marginLeft: 10, verticalAlign: "center" }}
+              
                       />
                     </>
                   )}
@@ -304,19 +340,17 @@ class ProfileDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <i class="fa fa-id-card"></i>
-                    <span class=" ml-1"> 
-                     Personal Details
+                  < MailOutlineIcon className="!text-icon" type="phone" />
+                    <span class=" ml-[0.1rem]">
+                    {this.state.translatedMenuItems[6]}   {/* Personal Details */}
                   </span>
                   </span>
                   {activeKey === "7" && (
                     <>
-                      <PlusOutlined
-                        type="plus"
+                       <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                       
                         tooltipTitle="Add"
                         onClick={() => handlePersonalDetailsModal(true)}
-                        size="1em"
-                        style={{ marginLeft: 10, verticalAlign: "center" }}
                       />
                     </>
                   )}
@@ -333,9 +367,9 @@ class ProfileDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <i className="fas fa-file-signature"></i>
-                    <span class=" ml-1"> 
-                    Signature
+                  <EditNoteIcon className="!text-icon"/>
+                    <span class=" ml-[0.1rem]"> 
+                    {this.state.translatedMenuItems[7]}  {/* Signature */}
                   </span>
                   </span>
                 </>
@@ -351,25 +385,21 @@ class ProfileDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <MailOutlined type="mail" />
-                    <span class=" ml-1"> 
-                    Email
+                    <MailOutlineIcon type="mail" className="!text-icon"/>
+                    <span class=" ml-[0.1rem]"> 
+                    {this.state.translatedMenuItems[8]} {/* Email */}
                   </span>
                   </span>
                   {activeKey === "9" && (
                     <>
                       <>
-                        <PlusOutlined
-                          type="plus"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                           tooltipTitle="Add"
                           onClick={() =>
                             this.props.handleEmailProfileModal(true) 
                           }
-                          size="1em"
-                          style={{
-                            marginLeft: 10,
-                            verticalAlign: "center",
-                          }}
+                         
                         />
                       </>
                     </>
@@ -388,16 +418,16 @@ class ProfileDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <LocalOfferIcon type="mail" />
-                    <span class=" ml-1"> 
-                 Link Account
+                    <LeakAddIcon className="!text-icon"/>
+                    <span class=" ml-[0.1rem]"> 
+                    {this.state.translatedMenuItems[9]} {/* Link Account */}
                   </span>
                   </span>
                   {/* {activeKey === "9" && (
                     <>
                       <>
-                        <PlusOutlined
-                          type="plus"
+                         <AddBoxIcon className=" !text-icon  ml-1 items-center text-[#6f0080ad]"
+                         
                           tooltipTitle="Add"
                           onClick={() =>
                             this.props.handleEmailProfileModal(true) 
@@ -425,9 +455,9 @@ class ProfileDetailTab extends Component {
               tab={
                 <>
                   <span>
-                    <MailOutlined type="mail" />
-                    <span class=" ml-1"> 
-              Equipment
+                    <HomeRepairServiceIcon className="!text-icon" />
+                    <span class=" ml-[0.1rem]"> 
+                    {this.state.translatedMenuItems[10]}{/* Equipment */}
                   </span>
                   </span>
             
@@ -447,45 +477,59 @@ class ProfileDetailTab extends Component {
 
           </StyledTabs>
         </TabsWrapper>
-        
+        <Suspense fallback={"Loading ..."}>
         <AddEmailModal
+        translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
           addEmailProfileModal={addEmailProfileModal}
           handleEmailProfileModal={handleEmailProfileModal}
         />
 
         <AddPersonalModal
+        translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
           addPersonalModal={addPersonalModal}
           handlePersonalModal={handlePersonalModal}
           employeeId={this.props.userDetails.employeeId}
 
         />
         <AddEducationModal
+        translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
           addEducationModal={addEducationModal}
           handleEducationModal={handleEducationModal}
           employeeId={this.props.userDetails.employeeId}
         />
 
         <AddTrainingModal
+        translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
           addTrainingModal={addTrainingModal}
           handleTrainingModal={handleTrainingModal}
           employeeId={this.props.userDetails.employeeId}
         />
 
         <AddEmploymentModal
+        translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
           addEmploymentModal={addEmploymentModal}
           handleEmploymentModal={handleEmploymentModal}
           employeeId={this.props.userDetails.employeeId}
         />
         <AddBankModal
+        translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
           addBankModal={addBankModal}
           handleBankModal={handleBankModal}
           employeeId={this.props.userDetails.employeeId}
         />
         <AddPersonalDetailsModal
+        translateText={this.props.translateText}
+        selectedLanguage={this.props.selectedLanguage}
           addPersonalDetailsModal={addPersonalDetailsModal}
           handlePersonalDetailsModal={handlePersonalDetailsModal}
           employeeId={this.props.userDetails.employeeId}
-        />
+        /></Suspense>
       </>
     );
   }

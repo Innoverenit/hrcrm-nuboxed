@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
-import { Button, Divider, message, Input } from "antd";
-import { MainWrapper, FlexContainer } from "../../../../../Components/UI/Layout";
-import { TextInput, Title } from "../../../../../Components/UI/Elements";
-import dayjs from "dayjs";
-import moment from "moment";
+
+import { Button,  message, Input } from "antd";
+import { MainWrapper } from "../../../../../Components/UI/Layout";
+import { TextInput } from "../../../../../Components/UI/Elements";
 import {
     getStreams,
     addStreams,
@@ -14,8 +12,7 @@ import {
 //   updateSectors,
 //   searchSectorName,
 } from "./StreamAction";
-import axios from "axios";
-import { base_url } from "../../../../../Config/Auth";
+
 import SingleStream from "./SingleStream";
 
 class Stream extends Component {
@@ -82,21 +79,7 @@ class Stream extends Component {
     this.props.updateSectors(sectorName, sectorId, editInd, cb);
     this.setState({ sectorName: "", singleSector: "", editInd: true });
   };
-  // getLinkedDocuments = () => {
-  //   axios
-  //     .get(`${base_url}/opportunity/source/linkedSources`, {
-  //       headers: {
-  //         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
-  //       },
-  //     })
-  //     .then((res) => {
-  //       console.log(res);
-  //       this.setState({ linkedSources: res.data });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+
   componentDidMount() {
     const { getStreams } = this.props;
     console.log();
@@ -122,7 +105,7 @@ class Stream extends Component {
     //if (fetchingSectorsError) return <p>We are unable to load data</p>;
     return (
       <>
-        <FlexContainer flexWrap="nowrap">
+   <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
           <MainWrapper
             style={{
               flexBasis: "100%",
@@ -158,11 +141,11 @@ class Stream extends Component {
                   this.handleClear();
                 }}
               >
-                <FormattedMessage id="app.clear" defaultMessage="Clear" />
+                Clear
               </Button>
             </div>
 
-            <FlexContainer flexDirection="column">
+            <div class=" flex flex-col flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
               {/* <Title style={{ padding: 8 }}>Types Of Documents</Title> */}
               <MainWrapper style={{ height: "30em", marginTop: "0.625em" }}>
                 {streams.length &&
@@ -184,12 +167,9 @@ class Stream extends Component {
                     />
                   ))}
               </MainWrapper>
-            </FlexContainer>
+            </div>
             {isTextInputOpen ? (
-              <FlexContainer
-                alignItems="center"
-                style={{ marginLeft: "0.3125em", marginTop: "0.3125em" }}
-              >
+              <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto ml-[0.3125em] mt-[0.3125em] ">                                      
                 <br />
                 <br />
                 <TextInput
@@ -209,19 +189,17 @@ class Stream extends Component {
                   onClick={this.handleAddSector}
                   style={{ marginRight: "0.125em" }}
                 >
-                  {/* Save */}
-                  <FormattedMessage id="app.save" defaultMessage="Save" />
+                  Save
                 </Button>
                 &nbsp;
                 <Button type="primary" ghost onClick={this.toggleInput}>
-                  {/* Cancel */}
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                  Cancel
                 </Button>
-              </FlexContainer>
+              </div>
             ) : (
               <>
                 <br />
-                <FlexContainer justifyContent="flex-end">
+                <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                   <Button
                     type="primary"
                     ghost
@@ -229,44 +207,15 @@ class Stream extends Component {
                     Loading={addingStreams}
                     onClick={this.toggleInput}
                   >
-                    {/* Add More */}
-                    <FormattedMessage
-                      id="app.addmore"
-                      defaultMessage="Add More"
-                    />
+       Add More
                   </Button>
-                </FlexContainer>
+                </div>
                
               </>
             )}
-          </MainWrapper>
-          {/* <MainWrapper>
-            <FlexContainer
-              style={{
-                border: "0.0625em solid #eee",
-                width: "100%",
-                padding: "1.6rem",
-                marginRight: 70,
-              }}
-            >
-              <p style={{ color: "#035b9b", fontSize: "1rem" }}>
-                Here is a list of sample sources, it will help attribute
-                opportunities to their sources thereby identifying the effective
-                channels and further allocating resources accordingly.
-              </p>
-              <p style={{ color: "#035b9b", fontSize: "1rem" }}>
-                Korero allows you to change the sources as per your
-                organization's requirements.
-              </p>
-              <p style={{ color: "#035b9b", fontSize: "1rem" }}>
-                The only exception is if an opportunity is associated with a
-                source then it cannot be deleted from the list till no
-                opportunity exists in that source.
-              </p>
-            </FlexContainer>
-          </MainWrapper> */}
-        </FlexContainer>
-        <div>Updated on {moment(this.props.streams && this.props.streams.length && this.props.streams[0].updationDate).format("ll")} by {this.props.streams && this.props.streams.length && this.props.streams[0].name}</div>
+          </MainWrapper>       
+        </div>
+        <div>Updated on {dayjs(this.props.streams && this.props.streams.length && this.props.streams[0].updationDate).format("ll")} by {this.props.streams && this.props.streams.length && this.props.streams[0].name}</div>
       </>
     );
   }

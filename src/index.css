@@ -1,5 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Poppins|Roboto");
-@import "~video-react/dist/video-react.css";
+/* @import url("https://fonts.googleapis.com/css?family=Poppins|Roboto"); */
+/* @import "~video-react/dist/video-react.css"; */
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
@@ -17,35 +17,6 @@
   background: #888;
 }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family:"Poppins","Roboto";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-h1{
-  font-size: "1em";
-  color:grey;                    
-  padding: "0.31em";
-  align-Content: "center";
-  justify-content: "center";
 
-}
-h2{
-  color: rgb(56, 68, 94);
-  font-size: "3rem";
-     margin: "auto";
-}
-h3{
-  color: rgb(56, 68, 94);
-     margin: "auto"
-}
-h4 {
-  font-size: "0.3em";
-  margin: revert;
-  color:rgb(152, 148, 148);                    
-  padding: "0.31em";
-  align-Content: "center";
-  justify-content: "center";
-}
+
+

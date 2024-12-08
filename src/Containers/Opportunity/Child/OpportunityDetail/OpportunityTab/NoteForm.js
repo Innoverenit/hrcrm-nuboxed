@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
-import { Button, Icon } from "antd";
-import { Formik, Form, Field } from "formik";
-//  import ReactSpeeech from "../../../../../Components/ReactSpeech/ReactSpeech";
+import { Button } from "antd";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Editor } from "react-draft-wysiwyg";
-import { EditorState, convertToRaw, ContentState } from "draft-js";
+import { EditorState, convertToRaw} from "draft-js";
 import draftToHtml from "draftjs-to-html";
-import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
 import { addNote } from "../../../OpportunityAction";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { FlexContainer } from "../../../../../Components/UI/Layout";
@@ -154,11 +152,8 @@ class NoteForm extends Component {
                       marginRight: "0.3125em",
                     }}
                   >
-                    <FormattedMessage
-                      id="app.post"
-                      defaultMessage="Post"
-                    />
-                    {/* Post */}
+                  
+                    Post
                   </Button>
                 </FlexContainer>
               </Form>

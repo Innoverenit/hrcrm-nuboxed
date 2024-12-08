@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Switch } from "antd";
 
-import { FlexContainer } from "../../UI/Layout";
 
 export const SwitchComponent = ({
   field,
@@ -23,7 +22,7 @@ export const SwitchComponent = ({
 
   return (
     <>
-      <FlexContainer>
+    <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
         <Switch
           disabled={disabled}
           label={label}
@@ -37,7 +36,7 @@ export const SwitchComponent = ({
             marginTop: marginTop,
           }}
         />
-      </FlexContainer>
+      </div>
     </>
   );
 };

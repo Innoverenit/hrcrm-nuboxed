@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Button } from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
@@ -54,16 +54,7 @@ class UpdateTrainingForm extends Component {
             values,
             ...rest
           }) => (
-              <Form className="form-background">
-                {/* <div
-                                    style={{
-                                        display: "flex",
-                                        // border: "0.125em solid red",
-                                        width: "100%",
-                                        height: "100%",
-                                        justifyContent: "space-between",
-                                    }}
-                                > */}
+              <Form className="form-background">            
                 <div class=" w-full"
                 >
                <div class=" flex justify-between" >
@@ -71,11 +62,7 @@ class UpdateTrainingForm extends Component {
                       <FastField
                         isRequired
                         name="courseName"
-                        //label="Course Name"
-                        label={<FormattedMessage
-                          id="app.courseName"
-                          defaultMessage="Course Name"
-                        />}
+                        label="Course Name"
                         type="text"
                         width={"100%"}
                         isColumn
@@ -87,14 +74,11 @@ class UpdateTrainingForm extends Component {
 
                   <div class=" flex justify-between mt-3" >
                       <div class=" w-[60%]" >
-                      {/* <StyledLabel>Organization/Institution</StyledLabel> */}
+                      {/* <div class=" text-xs font-bold font-poppins text-black">Organization/Institution</div> */}
                       <FastField
                         type="Organization"
                         name="organization"
-                        label={<FormattedMessage
-                          id="app.organization"
-                          defaultMessage="Organization"
-                        />}
+                        label="Organization"
                         className="field"
                         isColumn
                         width={"100%"}
@@ -103,13 +87,11 @@ class UpdateTrainingForm extends Component {
                        />
                     </div>
                     <div class=" w-[30%]" >
-                      {/* <StyledLabel>Grade</StyledLabel> */}
+                      {/* <div class=" text-xs font-bold font-poppins text-black">Grade</div> */}
                       <FastField
                         name="grade"
-                        label={<FormattedMessage
-                          id="app.grade"
-                          defaultMessage="Grade"
-                        />}
+                        label="Grade"
+                     
                         isColumn
                         selectType="text"
                         width={"100%"}
@@ -122,11 +104,7 @@ class UpdateTrainingForm extends Component {
                       <div class=" w-[47%]" >
                       <Field
                         name="startDate"
-                        //label="Start Date"
-                        label={<FormattedMessage
-                          id="app.startDate"
-                          defaultMessage="Start Date"
-                        />}
+                        label="Start Date"
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -140,12 +118,7 @@ class UpdateTrainingForm extends Component {
                   >
                       <Field
                         name="endDate"
-                        //label="End Date "
-                        label={<FormattedMessage
-                          id="app.endDate"
-                          defaultMessage="End Date"
-                        />}
-                        isRequired
+                        label="End Date "
                         isColumn
                         width={"100%"}
                         component={DatePicker}
@@ -168,74 +141,14 @@ class UpdateTrainingForm extends Component {
                     </div>
                   </div>
                
-                </div>
-
-                {/* <div
-                                        style={{
-                                            width: "50%",
-                                            // border: "0.125em solid green"
-                                        }}
-                                    >
-                                        <FlexContainer justifyContent="space-between"></FlexContainer> */}
-
-                {/* <div
-                                            style={{
-                                                width: "100%",
-                                                // border: "0.125em solid green"
-                                            }}
-                                        >
-                                            <Field
-                                                name="documentId"
-                                                isRequired
-                                                component={DragableUpload}
-                                            />
-
-                                            <Field
-                                                name="documentTitle"
-                                                label="Name"
-                                                width={"100%"}
-                                                isColumn
-                                                component={InputComponent}
-                                                style={{ height: "2.0625em", marginTop: "0.25em" }}
-                                            />
-                                            <Spacer />
-                                            <Field
-                                                name="documentDescription"
-                                                label="Description"
-                                                isRequired
-                                                isColumn
-                                                width={"100%"}
-                                                component={TextareaComponent}
-                                                style={{ height: "5em", marginTop: "0.25em" }}
-                                            />
-                                            <Spacer style={{ marginBottom: "0.9375em" }} />
-                                        </div>
-
-                                        <Spacer />
-
-                                        {/* <FieldArray
-                                    name="address"
-                                    render={(arrayHelpers) => (
-                                        <AddressFieldArray
-                                            singleAddress
-                                            arrayHelpers={arrayHelpers}
-                                            values={values}
-                                        />
-                                    )}
-                                /> */}
-
-                 {/* </div> */}
-                {/* </div> */}
+                </div>                         
                 <div class=" flex justify-end mt-3" >
                   <Button
                     htmlType="submit"
                     type="primary"
                     Loading={updatingTrainingDetails}
                   >
-                    <FormattedMessage
-                      id="app.update"
-                      defaultMessage="Update"
-                    />
+                    Update
                   </Button>
                 </div>
               </Form>

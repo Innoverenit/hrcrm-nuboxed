@@ -2,21 +2,16 @@ import React, { useState, useEffect, useMemo } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button, Switch } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import dayjs from "dayjs";
-import {
-  Spacer,
-  StyledLabel,
-} from "../../../../../../../Components/UI/Elements";
 import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
 import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
 import {
   getProcessForRecruit,
   getProcessStagesForRecruit,
-} from "../../../../../../Settings/SettingsAction";
-import { FlexContainer } from "../../../../../../../Components/UI/Layout";
+} from "../../../../../../Settings/SettingsAction"; 
 import {
   addRecruit,
   getContactListByOpportunityId,
@@ -29,9 +24,6 @@ import { DatePicker } from "../../../../../../../Components/Forms/Formik/DatePic
 import { TextareaComponent } from "../../../../../../../Components/Forms/Formik/TextareaComponent";
 import SearchSelect from "../../../../../../../Components/Forms/Formik/SearchSelect";
 
-/**
- * yup validation scheme for creating a opportunity
- */
 
 const OpportunitySchema = Yup.object().shape({
   // requirementName: Yup.string().required("Please provide Requirement"),
@@ -66,15 +58,6 @@ function CustomerForm(props) {
     );
   }, [props.recruitProcess]);
 
-  // const currency = props.currencies.map((item) => {
-  //   return {
-  //     label: item.currencyName || "",
-  //     value: item.currencyName,
-  //   };
-  // });
-
- 
-  
   const Sponsor = props.contactListByOpportunityId.map((item) => {
     return {
       label: `${item.firstName || ""}  ${item.middleName ||
@@ -82,27 +65,6 @@ function CustomerForm(props) {
       value: item.contactId,
     };
   });
-
-  // function getStagesOptions(filterOptionKey, filterOptionValue) {
-  //   const stagesOptions =
-  //     props.allProcessStagesForRecruit.length &&
-  //     props.allProcessStagesForRecruit
-  //       .filter((option) => {
-  //         if (
-  //           option.processId === filterOptionValue &&
-  //           option.probability !== 0 &&
-  //           option.probability !== 100
-  //         ) {
-  //           return option;
-  //         }
-  //       })
-  //       .map((option) => ({
-  //         label: option.stageName || "",
-  //         value: option.stageId,
-  //       }));
-
-  //   return stagesOptions;
-  // }
 
   const partnerNameOption = props.allpartnerByUserId.map((item) => {
     return {
@@ -128,10 +90,6 @@ function CustomerForm(props) {
   function handleReset(resetForm) {
     resetForm();
   }
-
-  // function handleCallback() {
-  //   props.getRecruitByOpportunityId(props.opportunityId);
-  // }
 
   return (
   
@@ -273,30 +231,12 @@ function CustomerForm(props) {
                   width: "45%",
                   }}
                 >
-                  <FlexContainer justifyContent="space-between">
-                    {/* <div style={{ width: "47%" }}>
-                    <Field
-                        name="jobOrder"
-                        //  label="Sponsor"
-                        label={<FormattedMessage
-                          id="app.joborder"
-                          defaultMessage="Job ID"
-                        />}
-                        isColumn
-                        width={"100%"}
-                        inlineLabel                       
-                      component={InputComponent}
-                      // options={Array.isArray(Sponsor) ? Sponsor : []}
-                      />
-                    </div> */}
+           <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
+                  
                     <div style={{ width: "47%" ,}}>
                     <Field
                         name="requirementName"
-                        //label="Name"
-                        label={<FormattedMessage
-                          id="app.name"
-                          defaultMessage="Name"
-                        />}
+                        label="Name"
                         width={"100%"}
                         // isRequired
                         isColumn
@@ -306,17 +246,14 @@ function CustomerForm(props) {
                       />                 
                     
                     </div>
-                  </FlexContainer>
+                  </div>
                                   
-                  <FlexContainer justifyContent="space-between">
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                     <Field
                         name="experience"
-                        //  label="Sponsor"
-                        label={<FormattedMessage
-                          id="app.joborder"
-                          defaultMessage="Experience (in Years)"
-                        />}
+                         label="Experience (in Years)"
+                     
                         isColumn
                         width={"100%"}
                         inlineLabel                       
@@ -327,11 +264,8 @@ function CustomerForm(props) {
                     <div style={{ width: "47%" ,}}>
                     <Field
                         name="location"
-                        //label="Name"
-                        label={<FormattedMessage
-                          id="app.location"
-                          defaultMessage="Location"
-                        />}
+                        label="Location"
+                      
                         width={"100%"}
                         // isRequired
                         isColumn
@@ -342,20 +276,15 @@ function CustomerForm(props) {
                   
                     
                     </div>
-                  </FlexContainer>
-                  <FlexContainer justifyContent="space-between">
+                  </div>
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "100%" }}>
                       <Field
                         // isRequired
                         // type="email"
                         name="workpreference"
-                        //label="Email"
-                        label={
-                          <FormattedMessage
-                            id="app.workpreference"
-                            defaultMessage="Work Preference"
-                          />
-                        }
+                        label="Work Preference"
+                          
                         className="field"
                         isColumn
                         width={"100%"}
@@ -368,17 +297,14 @@ function CustomerForm(props) {
                         inlineLabel
                       />
                     </div>
-                  </FlexContainer>
-                  <Spacer/>                  
-                  <FlexContainer justifyContent="space-between">
+                  </div>
+                  <div class=" mt-3"/>                  
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "47%" ,}}>
                     <Field
                         name="sponserId"
-                        //  label="Sponsor"
-                        label={<FormattedMessage
-                          id="app.customercontact"
-                          defaultMessage="Customer Contact"
-                        />}
+                         label="Customer Contact"
+
                         isColumn
                         width={"100%"}
                         inlineLabel
@@ -391,13 +317,8 @@ function CustomerForm(props) {
                       <Field
                         name="partnerId"
                         // isColumnWithoutNoCreate
-                        //label="Mobile #"
-                        label={
-                          <FormattedMessage
-                            id="app.vendor"
-                            defaultMessage="Vendor"
-                          />
-                        }
+                        label="Vendor"
+                         
                         placeholder="Select"
                         width={"100%"}
                          component={SelectComponent}
@@ -405,9 +326,9 @@ function CustomerForm(props) {
                       
                       />
                     </div>
-                      </FlexContainer>
-                      <Spacer />
-                      <FlexContainer justifyContent="space-between">
+                      </div>
+                      <div class=" mt-3" />
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       <Field
                         name="departmentId"
@@ -427,13 +348,8 @@ function CustomerForm(props) {
                       <Field
                         name="roleTypeId"
                         selectType="roleType"
-                        //label="Designation"
-                        label={
-                          <FormattedMessage
-                            id="app.role"
-                            defaultMessage="Role"
-                          />
-                        }
+                        label="Role"
+                         
                         isColumnWithoutNoCreate
                         // selectType="designationType"
                         // options={[
@@ -451,21 +367,17 @@ function CustomerForm(props) {
                         inlineLabel
                       />
                     </div>
-                  </FlexContainer>  
-                  <Spacer />
-                      <FlexContainer justifyContent="space-between">
+                  </div>  
+                  <div class=" mt-3" />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "100%" ,}}>
                   <Field
                     name="recruitersId"
                     //  selectType="contactList"
                     // isColumnWithoutNoCreate
                     // label="Contact"
-                    label={
-                      <FormattedMessage
-                        id="app.recruiter"
-                        defaultMessage="Recruiter"
-                      />
-                    }
+                    label="Recruiter"
+                     
                   // mode
                     placeholder="Select"
                     width={"100%"}
@@ -476,19 +388,16 @@ function CustomerForm(props) {
                   </div>
                    
                    
-                      </FlexContainer>
-                      <Spacer />
+                      </div>
+                      <div class=" mt-3" />
 
-                  <FlexContainer justifyContent="space-between">
+                      <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       {" "}
                       <Field
                         name="number"
-                        // label="# Positions"
-                        label={<FormattedMessage
-                          id="app.number"
-                          defaultMessage="# Positions"
-                        />}
+                        label="# Positions"
+                       
                         width={"100%"}
                         isRequired
                         isColumn
@@ -497,7 +406,7 @@ function CustomerForm(props) {
                       />
                     </div>
                     <div style={{ width: "47%" }}>
-                      <StyledLabel>Type </StyledLabel>
+                      <div class=" text-xs font-bold font-poppins text-black">Type </div>
                       <br/>
                     <Switch
                         checked={typeData}
@@ -509,18 +418,15 @@ function CustomerForm(props) {
                         // }}
                       />
                     </div>
-                  </FlexContainer>                
+                  </div>                
                
-                  <Spacer />
-                  <FlexContainer justifyContent="space-between">
+                  <div class=" mt-3" />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "47%" }}>
                   <Field
                     name="recruitmentProcessId"
-                    //label="Workflow"
-                    label={<FormattedMessage
-                      id="app.recruitmentProcessId"
-                      defaultMessage="Workflow"
-                    />}
+                    label="Workflow"
+                   
                     isRequired
                     isColumn
                     style={{
@@ -535,16 +441,13 @@ function CustomerForm(props) {
                   />
                   </div>
                   <div style={{ width: "47%", }}>
-                  <FlexContainer justifyContent="space-between">
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                   <div style={{ width: "45%" }}>
                       {" "}
                       <Field
                         name="billing"
                         label={typeData?"Salary":"Rate/hr"}
-                        // label={<FormattedMessage
-                        //   id="app.billing"
-                        //   defaultMessage="Billing/hour"
-                        // />}
+                       
                         width={"100%"}
                         isRequired
                         isColumn
@@ -557,39 +460,29 @@ function CustomerForm(props) {
                         name="currency"
                         isColumnWithoutNoCreate
                     
-                        label={
-                          <FormattedMessage
-                            id="app.currency"
-                            defaultMessage="Currency"
-                          />
-                        }
+                        label="Currency"
                         width="100%"
                         isColumn
                         selectType="currencyName"
                         value={values.currencyName}
                         isRequired
                         component={SearchSelect}
-                        // flag={values.currency}
-                        // options={Array.isArray(currency) ? currency : []}
+                      
                       />
                     </div>
                     
-                    </FlexContainer>
                     </div>
-                    </FlexContainer>
+                    </div>
+                    </div>
                   
                  
-                    <Spacer />
-                  <FlexContainer justifyContent="space-between">
+                    <div class=" mt-3" />
+                    <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       {" "}
                       <Field
                         name="avilableDate"
-                        // label="Start Date"
-                        label={<FormattedMessage
-                          id="app.avilableDate"
-                          defaultMessage="Start Date"
-                        />}
+                        label="Start Date"
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -616,12 +509,9 @@ function CustomerForm(props) {
                       {" "}
                       <Field
                         name="endDate"
-                        // label="Start Date"
-                        label={<FormattedMessage
-                          id="app.endate"
-                          defaultMessage="End Date"
-                        />}
-                        // isRequired
+                        label="End Date"
+                     
+                   // isRequired
                         component={DatePicker}
                         isColumn
                         width={"100%"}
@@ -645,11 +535,11 @@ function CustomerForm(props) {
                       />
                     </div>
                   
-                  </FlexContainer>
-                  <Spacer style={{marginTop:"1.25em"}}/>
-                <FlexContainer style={{}}>
+                  </div>
+                  <div class=" mt-3" style={{marginTop:"1.25em"}}/>
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                  
-                 <StyledLabel style={{marginLeft:"0px"}}>Category</StyledLabel>
+                 <div class=" text-xs font-bold font-poppins ml-0" >Category</div>
                  &nbsp;&nbsp;
                  <Switch
                    style={{
@@ -661,7 +551,7 @@ function CustomerForm(props) {
                    checkedChildren="White"
                    unCheckedChildren="Blue"
                  />
-                  </FlexContainer>
+                  </div>
                 </div>
               &nbsp;
               <div
@@ -670,15 +560,11 @@ function CustomerForm(props) {
                        width: "47%",
                   }}
                 >
-               <FlexContainer justifyContent="space-between">
+           <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "101%" }}>
                     <Field
                     name="description"
-                    //label="Description"
-                    label={<FormattedMessage
-                      id="app.description"
-                      defaultMessage="Description"
-                    />}
+                    label="Description"
                     width={"100%"}
                     isColumn
                     component={TextareaComponent}
@@ -690,24 +576,21 @@ function CustomerForm(props) {
                     }}
                   />
                 </div>
-                </FlexContainer>
+                </div>
                
               </div>
               </div>
-              <Spacer />
-              <FlexContainer justifyContent="flex-end">
+              <div class=" mt-3" />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
                   Loading={props.linkingRecruitToOpportunity}
                 >
-                  <FormattedMessage
-                    id="app.create"
-                    defaultMessage="Create"
-                  />
-                  {/* Create */}
+                
+                  Create
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
       </Formik>

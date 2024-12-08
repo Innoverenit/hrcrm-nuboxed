@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, Component } from "react";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
 import { StyledDrawer } from "../../../../../../Components/UI/Antd";
-import { FormattedMessage } from "react-intl";
+
 
 const PersonalDetailDocumentForm = lazy(() =>
     import("./PersonalDetailsDocumentForm")
@@ -17,13 +17,7 @@ class AddPersonalDetailsModal extends Component {
     return (
       <>
         <StyledDrawer
-          // title="Personal Details"
-          title={
-            <FormattedMessage
-              id="app.personaldetails"
-              defaultMessage="Personal Details"
-            />
-          }
+          title="Personal Details"
           width="60%"
           visible={addPersonalDetailsModal}
           destroyOnClose
@@ -34,7 +28,9 @@ class AddPersonalDetailsModal extends Component {
           footer={null}
         >
           <Suspense fallback={<BundleLoader />}>
-            <PersonalDetailDocumentForm employeeId={this.props.employeeId}/>
+            <PersonalDetailDocumentForm employeeId={this.props.employeeId}
+             translateText={this.props.translateText}
+             selectedLanguage={this.props.selectedLanguage}/>
           </Suspense>
         </StyledDrawer>
       </>

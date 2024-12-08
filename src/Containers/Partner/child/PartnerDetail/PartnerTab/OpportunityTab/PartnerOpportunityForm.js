@@ -1,22 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
 import { Button } from "antd";
-import { Formik, Form, Field, FieldArray, FastField } from "formik";
+import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-// import { base_url } from "../../../Config/Auth";
-import { Spacer } from "../../../../../../Components/UI/Elements";
-import Clearbit from "../../../../../../Components/Forms/Autocomplete/Clearbit";
-import LazySelect from "../../../../../../Components/Forms/Formik/LazySelect";
 import SearchSelect from "../../../../../../Components/Forms/Formik/SearchSelect";
-import AddressFieldArray from "../../../../../../Components/Forms/Formik/AddressFieldArray";
-import ProgessiveImage from "../../../../../../Components/Utils/ProgressiveImage";
 import { addPartnerOpportunity } from "../../../../PartnerAction";
-import { FlexContainer } from "../../../../../../Components/UI/Layout";
-import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 import { InputComponent } from "../../../../../../Components/Forms/Formik/InputComponent";
-import { SelectComponent } from "../../../../../../Components/Forms/Formik/SelectComponent";
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
 import dayjs from "dayjs";
 
@@ -93,35 +83,21 @@ class OpportunityForm extends Component {
                     isRequired
                     name="opportunityName"
                     type="text"
-                    //label="Name"
-
-                    label={
-                      <FormattedMessage
-                        id="app.opportunityName"
-                        defaultMessage="Name"
-                      />
-                    }
-                    isColumn
-                    isRequired
+                    label="Name"
+                    isColumn                   
                     width={"100%"}
                     component={InputComponent}
                     // accounts={accounts}
                     inlineLabel
                     style={{ flexBasis: "80%" }}
                   />
-                  <Spacer />
-                  <FlexContainer justifyContent="space-between">
+                  <div class=" mt-3" />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       <Field
                         isRequired
                         name="startDate"
-                        //label="Start "
-                        label={
-                          <FormattedMessage
-                            id="app.startDate"
-                            defaultMessage="Start Date"
-                          />
-                        }
+                        label="Start "
                         component={DatePicker}
                         value={values.startDate}
                         isColumn
@@ -138,13 +114,7 @@ class OpportunityForm extends Component {
                       <Field
                         isRequired
                         name="endDate"
-                        // label="End Date"
-                        label={
-                          <FormattedMessage
-                            id="app.endDate"
-                            defaultMessage="End Date"
-                          />
-                        }
+                        label="End Date"
                         isColumn
                         component={DatePicker}
                         value={values.endDate || values.startDate}
@@ -170,20 +140,13 @@ class OpportunityForm extends Component {
                         }}
                       />
                     </div>
-                  </FlexContainer>
-                  <Spacer />
-                  <FlexContainer justifyContent="space-between">
+                  </div>
+                  <div class=" mt-3" />
+                  <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                     <div style={{ width: "47%" }}>
                       <Field
                         name="proposalAmount"
-                        //label="Value"
-
-                        label={
-                          <FormattedMessage
-                            id="app.proposalAmount"
-                            defaultMessage="Value"
-                          />
-                        }
+                        label="Value"
                         isColumn
                         width={"100%"}
                         component={InputComponent}
@@ -196,14 +159,9 @@ class OpportunityForm extends Component {
                     </div>
                     <div style={{ width: "47%" }}>
                       <Field
-                        name="currency"
+                        name="currency"             
                         label="Currency"
-                        label={
-                          <FormattedMessage
-                            id="app.currency"
-                            defaultMessage="Currency"
-                          />
-                        }
+                        
                         width="100%"
                         isColumn
                         selectType="currency"
@@ -213,7 +171,7 @@ class OpportunityForm extends Component {
                         // options={Array.isArray(currency) ? currency : []}
                       />
                     </div>
-                  </FlexContainer>
+                  </div>
                 </div>
                 <div
                   style={{
@@ -224,14 +182,7 @@ class OpportunityForm extends Component {
                   <Field
                     name="customerId"
                     selectType="customerList"
-                    // label="Customer"
-
-                    label={
-                      <FormattedMessage
-                        id="app.customerId"
-                        defaultMessage="Customer"
-                      />
-                    }
+                    label="Customer"
                     // isRequired
                     component={SearchSelect}
                     isColumn
@@ -242,17 +193,12 @@ class OpportunityForm extends Component {
                     inlineLabel
                     style={{ flexBasis: "80%" }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="contactId"
-                    selectType="contactOpportunityList"
+                    selectType="contactOpportunityList"                   
                     label="Contact"
-                    label={
-                      <FormattedMessage
-                        id="app.contactId"
-                        defaultMessage="Contact"
-                      />
-                    }
+                      
                     // isRequired
                     component={SearchSelect}
                     isColumn
@@ -264,20 +210,20 @@ class OpportunityForm extends Component {
                     inlineLabel
                     style={{ flexBasis: "80%" }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                 </div>
               </div>
-              <Spacer />
-              <FlexContainer justifyContent="flex-end">
+              <div class=" mt-3" />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
                   Loading={addingPartnerOpportunity}
                 >
-                  <FormattedMessage id="app.create" defaultMessage="Create" />
-                  {/* Create */}
+                 
+                  Create
                 </Button>
-              </FlexContainer>
+              </div>
             </Form>
           )}
         </Formik>

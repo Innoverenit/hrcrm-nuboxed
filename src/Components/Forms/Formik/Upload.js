@@ -2,7 +2,7 @@ import React from "react";
 import { message,Upload ,Tooltip} from "antd";
 import { base_url } from "../../../Config/Auth";
 import axios from "axios";
-import { UploadOutlined } from "@ant-design/icons";
+import UploadIcon from '@mui/icons-material/Upload';
 const token = sessionStorage.getItem("token");
 
 class Upload1 extends React.Component {
@@ -78,7 +78,7 @@ class Upload1 extends React.Component {
     const uploadButton = (
       <div style={{display:"flex"}}>
               <Tooltip title="Upload">
-        <UploadOutlined />
+        <UploadIcon />
         </Tooltip>
         {/* <div className="ant-upload-text">Upload</div> */}
       </div>

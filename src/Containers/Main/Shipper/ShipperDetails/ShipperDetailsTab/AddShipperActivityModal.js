@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { BundleLoader } from "../../../../../Components/Placeholder";
 import { StyledModal } from "../../../../../Components/UI/Antd";
 import { StyledTabs } from "../../../../../Components/UI/Antd";
@@ -12,7 +12,7 @@ const AddShipperActivityModal = (props) => {
   return (
     <div>
       <StyledModal
-        title={<FormattedMessage id="app.activity" defaultMessage="Activity"/>}
+        title="Activity"
         width="68vw"
         visible={props.addShipperActivityTableModal}
         maskClosable={false}
@@ -23,7 +23,10 @@ const AddShipperActivityModal = (props) => {
         footer={null}
       >
         <Suspense fallback={<BundleLoader />}></Suspense>
-        <ShipperActivityTable shipperId={props.shipperId} />
+        <ShipperActivityTable shipperId={props.shipperId}
+               translateText={props.translateText}
+               selectedLanguage={props.selectedLanguage}
+         />
       </StyledModal>
     </div>
   );

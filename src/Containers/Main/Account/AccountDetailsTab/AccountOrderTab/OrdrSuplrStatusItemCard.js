@@ -1,12 +1,11 @@
 import React, { useState, useEffect,lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from 'react-intl';
 import InfiniteScroll from "react-infinite-scroll-component";
 import {updateOrdrSuplrItems,getLocationNamesByProductId} from "../../AccountAction";
 import { Tooltip,Button,Input,Select } from "antd";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import moment from "moment";
+import dayjs from "dayjs";
 import { base_url2 } from "../../../../../Config/Auth";
 import axios from 'axios';
 
@@ -122,113 +121,84 @@ const handleSelectChange = (value, key, dataIndex) => {
              <div> 
                       
              <div className=' flex justify-end sticky flex-col z-auto'>
-             <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-             <div className=" flex rounded  max-sm:hidden w-[99%] mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
-                                    <div className=" md:w-[10rem]"><FormattedMessage
-                                        id="app.name"
-                                        defaultMessage="Name"
-                                    /></div>
-                                     <div className=" md:w-[4.5rem]"><FormattedMessage
-                                       id="app."
-                                        defaultMessage="Category"
-                                    /></div>
-                                        <div className=" md:w-[4.5rem]"><FormattedMessage
-                                       id="app."
-                                        defaultMessage="Attribute"
-                                    /></div>
-                                    <div className=" md:w-[4.5rem]"><FormattedMessage
-                                       id="app.itemid"
-                                        defaultMessage="Item ID"
-                                    /></div>
-                                     <div className=" md:w-[5.1rem]"><FormattedMessage
-                                        id="app.units"
-                                        defaultMessage="Units"
-                                    /></div>
-                                    <div className=" md:w-[5rem]"><FormattedMessage
-                                        id="app.loc"
-                                        defaultMessage="Delivery"
-                                    /></div>
-                                    <div className="md:w-[6.2rem]"><FormattedMessage
-                                        id="app.shippingno"
-                                        defaultMessage="Ship By "
-                                    /></div>
-                                    <div className=" md:w-[5rem]"><FormattedMessage
-                                        id="app.awb"
-                                        defaultMessage="AWB"
-                                    /></div>
-                                   
-                                   {/* <div className=" md:w-[5rem]"><FormattedMessage
-                                        id="app."
-                                        defaultMessage=""
-                                    /></div> */}
-                                    <div className=" md:w-[6.5rem]"><FormattedMessage
-                                        id="app."
-                                        defaultMessage="Pick up"
-                                    /></div>
-                        
-                                   
+             <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+             <div className=" flex rounded  max-sm:hidden w-[100%]  mt-1 p-1 bg-transparent font-bold sticky top-0 z-10">
+                                    <div className=" md:w-[10rem]">Name</div>
+                                     <div className=" md:w-[4.5rem]">Category</div>
+                                        <div className=" md:w-[4.5rem]">Attribute</div>
+                                    <div className=" md:w-[4.5rem]">Item ID</div>
+                                     <div className=" md:w-[5.1rem]">Units</div>
+                                    <div className=" md:w-[5rem]">Delivery</div>
+                                    <div className="md:w-[6.2rem]">Ship By </div>
+                                    <div className=" md:w-[5rem]">AWB</div>
+                                    <div className=" md:w-[6.5rem]">Pick up</div>
                                     <div className="md:w-[2rem]"></div>
                  
                                 </div>
                                <div class="overflow-y-auto h-[65vh]">
 
                                         {data.map((item) => {
+                                            const date=  item && item.deliveryDate ? 
+                                                dayjs(item.deliveryDate).format("YYYY/MM/DD") :  ""
+                                             const date1=   item && item.shippingDate ? 
+                                                dayjs(item.shippingDate).format("YYYY/MM/DD") :  ""
                                             return (
                                                 <div>
                                                     <div key={item.itemId}
                 className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[5rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]  ">
-                                                         <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            <div className=" flex font-medium   md:w-[6rem] max-sm:flex-row max-sm:justify-between  ">
+                                                         <div class="flex max-sm:justify-between max-sm:w-wk border-green-500 bg-[#eef2f9] items-center">
+                                                            <div className=" flex font-medium h-8  bg-[#eef2f9]  md:w-[6rem] max-sm:flex-row max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.productFullName}
                                                                 </div>
                                                             </div>
 
-                                                            <div className=" flex font-medium   md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium  h-8 ml-gap  bg-[#eef2f9] md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.category}
                                                                 </div>
 
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium h-8 ml-gap  bg-[#eef2f9]  md:w-[4.5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.attribute}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium  h-8 ml-gap  bg-[#eef2f9] md:w-[rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
-                                                                    {item.itemId}
+                                                                    {item.newProductId}
                                                                 </div>
                                                             </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium h-8 ml-gap  bg-[#eef2f9]  md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                     {item.unit}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium h-8 ml-gap  bg-[#eef2f9]  md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
-                                                                {moment(item.deliveryDate).format("YYYY/MM/DD")} 
+                                                                {date}
+                                                             
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium  h-8 ml-gap  bg-[#eef2f9] md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                  {editsuppliesId === item.itemId ? (
                                                                 <input
           type="date"
           value={date}
           onChange={(e) => handleDateChange(e,item)}
-          min={moment(item.deliveryDate).format("YYYY-MM-DD")}
+          min={date}
           class="border border-black rounded"
         /> ) : (
             <div className="font-normal text-sm  font-poppins">
               <div> 
-              {moment(item.shippingDate).format("YYYY/MM/DD")}</div>
+              {date1}</div>
             </div>
           )}
                                                                 </div>
                                                             </div>
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium  h-8 ml-gap  bg-[#eef2f9]  md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                 {editsuppliesId === item.itemId ? (
                        <Input
@@ -261,7 +231,7 @@ const handleSelectChange = (value, key, dataIndex) => {
                                                                      
                                                                 </div>
                                                             </div> */}
-                                                            <div className=" flex font-medium   md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
+                                                            <div className=" flex font-medium h-8 ml-gap  bg-[#eef2f9]  md:w-[5rem] max-sm:flex-row  max-sm:justify-between  ">
                                                                 <div class=" text-xs text-cardBody font-poppins">
                                                                 {editsuppliesId === item.itemId ? (
                        <Select
@@ -285,7 +255,7 @@ const handleSelectChange = (value, key, dataIndex) => {
                                                                 </div>
                                                             </div>
                                                             <div class="flex max-sm:justify-between max-sm:w-wk items-center">
-                                                            <div className=" flex font-medium  md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
+                                                            <div className=" flex font-medium h-8 ml-gap  bg-[#eef2f9] md:w-[2rem] max-sm:flex-row w-full max-sm:justify-between ">
     {editsuppliesId === item.itemId ? (
                         <>
                       <Button 

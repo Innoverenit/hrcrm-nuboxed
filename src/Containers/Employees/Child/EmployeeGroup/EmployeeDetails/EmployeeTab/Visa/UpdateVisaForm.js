@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { FormattedMessage } from "react-intl";
+
 import { Button, Switch, Tooltip,} from "antd";
 import { Formik, Form, Field, FastField } from "formik";
 import {getCountries} from "../../../../../../Auth/AuthAction"
@@ -101,10 +101,7 @@ class UpdateVisaForm extends Component {
                       <div> <FastField
                     name="documentTypeId"
                     type="text"
-                    //label="Type"
-                    label={
-                      <FormattedMessage id="app.type" defaultMessage="Type" />
-                    }
+                    label="Type"
                  
                     options={
                       Array.isArray(documentNameOption)
@@ -121,11 +118,7 @@ class UpdateVisaForm extends Component {
                 <Field
                         name="country"
                         isColumnWithoutNoCreate
-                        //label="Mobile #"
-                        label={<FormattedMessage
-                          id="app.country"
-                          defaultMessage="Country"
-                        />}
+                        label="Country"
                         isColumn
                         options={
                           Array.isArray(countryNameOption)
@@ -140,12 +133,8 @@ class UpdateVisaForm extends Component {
                           <FastField
                             name="type"
                             type="text"
-                            label={
-                              <FormattedMessage
-                                id="app.type"
-                                defaultMessage="Type"
-                              />
-                            }
+                            label="Type"
+                           
                             options={["Business", "Work Permit"]}
                             component={SelectComponent}
                             inlineLabel
@@ -158,13 +147,7 @@ class UpdateVisaForm extends Component {
                     <div class=" w-[47%]" >
                       <Field
                         name="startDate"
-                        //label="Start Date"
-                        label={
-                          <FormattedMessage
-                            id="app.startDate"
-                            defaultMessage="Start Date"
-                          />
-                        }
+                        label="Start Date"
                         isRequired
                         component={DatePicker}
                         isColumn
@@ -176,13 +159,7 @@ class UpdateVisaForm extends Component {
                     <div class=" w-[47%]" >
                       <Field
                         name="endDate"
-                        // label="End Date "
-                        label={
-                          <FormattedMessage
-                            id="app.endDate"
-                            defaultMessage="End Date"
-                          />
-                        }
+                        label="End Date "
                         isRequired
                         isColumn
                         width={"100%"}
@@ -223,12 +200,7 @@ class UpdateVisaForm extends Component {
                 >
                   <Field
                     name="documentId"
-                    label={
-                      <FormattedMessage
-                        id="app.documentId"
-                        defaultMessage="Document Id"
-                      />
-                    }
+                    label="Document Id"
                     isRequired
                     component={DragableUpload}
                   />
@@ -242,7 +214,7 @@ class UpdateVisaForm extends Component {
                   type="primary"
                   loading={updatingVisaDetails}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+              Update
                 </Button>
               </div>
             </Form>

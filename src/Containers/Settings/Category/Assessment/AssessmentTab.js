@@ -2,13 +2,10 @@ import React, { Component, lazy, Suspense } from "react";
 import { bindActionCreators } from "redux";
 import { StyledTabs } from "../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../Components/UI/Layout";
-import { MainWrapper, FlexContainer } from "../../../../Components/UI/Layout";
 import { connect } from "react-redux";
 import Level from "../../Recruitement/Level/Level";
 import Stream from "./Stream/Stream";
 import Program from "./Program/Program";
-// import Event from "../Event/Event";
-// import Task from "../Task/Task";
 const TabPane = StyledTabs.TabPane;
 
 class AssessmentTab extends Component {
@@ -29,7 +26,7 @@ class AssessmentTab extends Component {
   render() {
     return (
       <>
-        <FlexContainer flexWrap="nowrap">
+   <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
         <div style= {{width:"46%"}}>
           <TabsWrapper>
             <StyledTabs defaultActiveKey="0" onChange={this.handleTabChange}>
@@ -77,7 +74,7 @@ class AssessmentTab extends Component {
             </StyledTabs>
           </TabsWrapper>
           </div>
-        </FlexContainer>
+        </div>
       </>
     );
   }

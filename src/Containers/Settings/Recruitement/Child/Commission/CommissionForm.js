@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { Button } from "antd";
 import { Formik, Form, Field } from "formik";
-import { MainWrapper, Spacer } from "../../../../../Components/UI/Elements";
+import { MainWrapper } from "../../../../../Components/UI/Elements";
 import { addCommission } from "../../../../Settings/SettingsAction";
-import { FormattedMessage } from "react-intl";
+
 import { InputComponent } from "../../../../../Components/Forms/Formik/InputComponent";
 import SearchSelect from "../../../../../Components/Forms/Formik/SearchSelect";
 import { TextareaComponent } from "../../../../../Components/Forms/Formik/TextareaComponent";
@@ -76,12 +76,8 @@ console.log("orggg",props.organizationId)
                     // selectType="employee"
                     isColumnWithoutNoCreate
                     // label="Assigned"
-                    label={
-                      <FormattedMessage
-                        id="app.name"
-                        defaultMessage="Name"
-                      />
-                    }
+                    label="Name"
+                     
                     component={SelectComponent}
                     options={Array.isArray(salesNameOption) ? salesNameOption : []}
                     // options={["rdf","desh"]}
@@ -113,12 +109,8 @@ console.log("orggg",props.organizationId)
                         // defaultValue={{
                         //   value: this.props.user.currency,
                         // }}
-                        label={
-                          <FormattedMessage
-                            id="app.currency"
-                            defaultMessage="Currency"
-                          />
-                        }
+                        label="Currency"
+                         
                         width="100%"
                         isColumn
                         selectType="currencyName"
@@ -146,7 +138,7 @@ console.log("orggg",props.organizationId)
                                     />
                                     </div>
                          &nbsp;&nbsp;
-                                    {/* <Spacer/> */}
+                                    {/* <div class=" mt-3"/> */}
                                     <div
                                     style={{
                                         width: "10%",  

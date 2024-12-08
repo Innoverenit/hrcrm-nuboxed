@@ -7,9 +7,11 @@ import { Link } from 'react-router-dom';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PhoneDisabledIcon from '@mui/icons-material/PhoneDisabled';
 import {  Tooltip, Select } from "antd";
-import DoNotDisturbOnTotalSilenceIcon from '@mui/icons-material/DoNotDisturbOnTotalSilence';
-import AlarmOnIcon from '@mui/icons-material/AlarmOn';
-import { MultiAvatar, MultiAvatar2 } from "../../../../Components/UI/Elements";
+import { MultiAvatar2 } from "../../../../Components/UI/Elements";
+import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import ApartmentIcon from '@mui/icons-material/Apartment';
+import RadioButtonCheckedIcon from '@mui/icons-material/RadioButtonChecked';
+import ScoreIcon from '@mui/icons-material/Score';
 import {
   getContactListByUserId,
   handleUpdateContactModal,
@@ -26,8 +28,6 @@ import {
   handleContactPulseDrawerModal,
   handleContactCETdrawer
 } from "../../ContactAction";
-import AddchartIcon from "@mui/icons-material/Addchart";
-import { FormattedMessage } from "react-intl";
 import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import PhoneInTalkIcon from '@mui/icons-material/PhoneInTalk';
 import { getDesignations } from "../../../Settings/Designation/DesignationAction";
@@ -38,9 +38,13 @@ import AddContactEmailDrawerModal from "../UpdateContact/AddContactEmailDrawerMo
 import BorderColorIcon from '@mui/icons-material/BorderColor';
 import AddContactNotesDrawerModal from "../AddContactNotesDrawerModal";
 import AddContactPulseDrawerModal from "./AddContactPulseDrawerModal";
-import NodataFoundPage from "../../../../Helpers/ErrorBoundary/NodataFoundPage";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import AddContactAddressDrawerModal from "../ContactTable/AddContactAddressDrawerModal"
+import HourglassFullIcon from '@mui/icons-material/HourglassFull';
+import ContactsIcon from '@mui/icons-material/Contacts';
+import EmptyPage from "../../../Main/EmptyPage";
+
+
 const ContactCETdrawer =lazy(()=>import("./ContactCETdrawer"));
  
 const Option = Select;
@@ -127,15 +131,21 @@ function ContactCardList(props) {
       try {
         setLoading(true); 
         const itemsToTranslate = [
-          'Name', // 0
-'Company', // 1
-'Designation', // 2
-'Department', // 3
-'Quotation', // 4
-'Pipeline', // 5
-'Portal Access', // 6
-'Owner' // 7
-
+          '110', // 0 
+          '277', // 1
+          '325', // 2
+          '326', // 3
+          '213', // 4
+          '328', // 5
+          '329', // 6
+          "1581", // Score
+         "100", // New
+        "1592", // "Provided"
+         "1593", // Not Provided
+         "185", // Address"
+         "316", // Notes
+       "1165",   // Activity"
+        "170",  // "Edit
         ];
 
         const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
@@ -176,25 +186,39 @@ function ContactCardList(props) {
     <>
       
       
-      <div class="rounded m-1 max-sm:m-1 p-1 w-[99%] max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-      <div className=" max-sm:hidden flex justify-between w-[99%] max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent font-bold sticky  z-10">
-        <div className=" w-[13.9rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+      <div class="rounded m-1 max-sm:m-1 p-1 w-[100%]  max-sm:w-wk overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+      <div className=" max-sm:hidden flex justify-between w-[96%]  max-lg:w-[89%] max-xl:w-[96%] p-1 bg-transparent font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]  font-bold sticky  z-10">
+      <div class=" flex justify-between w-[99%] font-bold  font-poppins !text-lm items-end ">
+        <div className=" w-[22.9rem] text-[#00A2E8] truncate max-md:w-[21.9rem]  text-sm max-xl:w-[21.5rem] max-lg:w-[20.5rem]">
+        <ContactsIcon className="!text-icon mr-1 "/>
         {translatedMenuItems[0]}</div>
-        <div className=" w-[13.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
-        {translatedMenuItems[1]}</div>
-        <div className=" md:w-[9.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.11rem]">
+        <div className=" w-[29.1rem] truncate max-md:w-[29.1rem] max-xl:w-[6.1rem] max-lg:w-[8.1rem]">
+        <ApartmentIcon className="!text-icon  "/> {translatedMenuItems[1]}</div>
+         {/* Company */}
+        <div className="w-[24.1rem] max-md:w-[24.1rem] truncate  max-xl:w-[10.11rem]">
+        <i className="fab fa-artstation mr-1 text-[#b744b8]"></i>
         {translatedMenuItems[2]}</div>
-        <div className="md:w-[8.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
-        {translatedMenuItems[3]}</div>
-        <div className="md:w-[6.2rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
-        {translatedMenuItems[4]}</div>
-        <div className="md:w-[3.3rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
-        {translatedMenuItems[5]}</div>
-        <div className="w-[6.11rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
-        {translatedMenuItems[6]}</div>
-        <div className="w-[4.1rem] max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-xl:w-[6.12rem] max-lg:w-[3.12rem]">
-        {translatedMenuItems[7]}</div>
-        <div className="w-[4.2rem]"></div>
+        {/* Designation */}
+        <div className="w-[26.7rem] truncate max-md:w-[24.1rem]  max-xl:w-[10.1rem] max-lg:w-[7.1rem]">
+        <ApartmentIcon className="!text-icon text-[#f0386b] "/> {translatedMenuItems[3]}</div>
+        {/* Department */}
+        <div className="w-[15.2rem] max-md:w-[15.2rem] truncate max-xl:w-[7.2rem] max-lg:w-[10.2rem]">
+        <LightbulbIcon className="!text-icon text-[#84a59d]"/> {translatedMenuItems[4]}</div>
+         {/* Quotation */}
+        {/* <div className=" md:w-[12.3rem]  max-xl:w-[5.3rem] max-lg:w-[8.3rem]">
+        <FilterAltIcon className="!text-icon mr-1 text-[#ff66b3]"/> {translatedMenuItems[5]}</div> */}
+        {/* Pipeline */}
+        <div className=" w-[13.11rem] truncate max-md:w-[13.11rem] max-xl:w-[7.1rem] max-lg:w-[8.1rem]">
+        <RadioButtonCheckedIcon className="!text-icon  text-[#f28482]"/> {translatedMenuItems[6]}</div>
+           {/* Portal Access */}
+        {props.user.aiInd && (
+            <div className=" w-[8.81rem] truncate max-md:w-[13.81rem]  max-xl:w-[3.81rem]">
+                     {/* Score */}      <ScoreIcon className="!text-icon  text-[#f28482]"/>  {translatedMenuItems[7]} 
+          
+            </div>
+            )}   
+        <div className="w-[7.2rem]"></div>
+        </div>
 
       </div>
           <InfiniteScroll
@@ -202,12 +226,12 @@ function ContactCardList(props) {
         next={handleLoadMore}
         hasMore={hasMore}
         loader={fetchingContacts?<div class="flex justify-center">Loading ...</div>:null}
-        height={"80vh"}
+        height={"83vh"}
         style={{scrollbarWidth:"thin"}}
         endMessage={ <p class="flex text-center font-bold text-xs text-red-500">You have reached the end of page</p>}
       >
         
-        { !fetchingContacts && filterData.length === 0 ?<NodataFoundPage />:filterData.map((item,index) =>  {
+        { !fetchingContacts && filterData.length === 0 ?<EmptyPage/>:filterData.map((item,index) =>  {
         
          const currentdate = dayjs().format("DD/MM/YYYY");
          const date = dayjs(item.creationDate).format("DD/MM/YYYY");
@@ -231,11 +255,11 @@ function ContactCardList(props) {
             item.address[0].postalCode} `;
                     return (
                       <div>
-                      <div
-                className="flex rounded justify-between  bg-white mt-1 h-8 items-center p-1 max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid m-1 leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
+                     
+          <div className="flex rounded justify-between  bg-white mt-1 items-center  max-sm:rounded-lg max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-sm:bg-gradient-to-b max-sm:from-blue-200 max-sm:to-blue-100 max-sm:border-b-4 max-sm:border-blue-500   max-sm:h-[9rem] max-sm:flex-col scale-[0.99] hover:scale-100 ease-in duration-100 shadow  border-solid  leading-3 hover:border  hover:border-[#23A0BE]  hover:shadow-[#23A0BE]"
               >
                                
-                          <div className=" flex font-medium  w-[14rem] max-sm:flex-row  max-sm:justify-between max-sm:w-wk  ">
+      <div className=" flex   w-[18rem] max-sm:flex-row border-l-2 border-green-500 bg-[#eef2f9] max-sm:justify-between max-sm:w-wk  ">
 <div className="flex max-sm:w-full md:items-center max-lg:w-[7.2rem] max-xl:w-[9rem]"> 
 <div>
                          
@@ -248,21 +272,21 @@ function ContactCardList(props) {
       />
     </div>
   
-    <div class="max-sm:w-full">
+    <div class="max-sm:w-full flex items-center">
                                   <Tooltip>
-                                    <div class=" flex max-sm:w-full justify-between flex-row md:flex-col">
+                                    <div class=" flex max-sm:w-full justify-between  md:flex-col">
                                     
-                                      <div class="text-xs flex text-blue-500  font-poppins  font-semibold  cursor-pointer">
-                                      <Link class="overflow-ellipsis whitespace-nowrap h-8 text-xs p-1 max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
+                                      <div class="text-xs flex items-center text-blue-500  font-poppins  font-semibold  cursor-pointer">
+                                      <Link class="overflow-ellipsis whitespace-nowrap h-8 flex  items-center text-xs p-1 max-sm:text-sm  text-[#042E8A] cursor-pointer"  to={`contact/${item.contactId}`} title={item.fullName}>
 {item.fullName}
 </Link>                                               
   
 
   {date === currentdate ? (
- <div class="text-xs mt-[0.4rem] text-[tomato] font-bold"
+ <div class="text-[0.65rem]   text-[tomato] font-bold"
                             
  >
-      New
+      {/* New */}{translatedMenuItems[8]}
     </div>
   ) : null}
  
@@ -274,85 +298,81 @@ function ContactCardList(props) {
                           </div>
                           <div class="flex max-sm:justify-between max-sm:w-wk">
 
-                          <div className=" flex  max-sm:w-auto  w-[14.01rem] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">
+                          <div className=" flex  max-sm:w-auto items-center  h-8 ml-gap  w-[16.01rem] bg-[#eef2f9] max-sm:flex-row max-xl:w-[5.5rem] max-lg:w-[4.8rem]  max-sm:justify-between ">
                              
-                              <div class=" text-xs  font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem] max-lg:max-w-[10ch] truncate">   
+                              <div class=" text-xs ml-gap font-poppins max-sm:text-sm  max-lg:max-w-[10ch] truncate">   
                               {item.tagWithCompany}
                               </div>
                           </div>
-                          <div className=" flex  max-sm:w-auto w-[10.2rem] max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">
+                          <div className=" flex  max-sm:w-auto items-center  h-8 ml-gap w-[13.2rem] bg-[#eef2f9]  max-xl:w-[5.6rem] max-lg:w-[3.01rem] max-sm:flex-row  max-sm:justify-between ">
                              
-                              <div class="text-xs font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class="text-xs  ml-gap font-poppins max-sm:text-sm ">
                                    {item.designation}
                               </div>
                           </div>
-                          <div className=" flex   max-sm:w-auto w-[8.3rem] max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
+                          <div className=" flex   max-sm:w-auto items-center  w-[14.3rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[5.3rem] max-lg:w-[4.2rem]  max-sm:flex-row  max-sm:justify-between">
                           
-                            <div class="text-xs max-sm:text-sm font-poppins max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                            <div class="text-xs  ml-gap max-sm:text-sm font-poppins ">
                                  {item.department}
                             </div>
                         </div>
                         </div>
-                        <div class="flex max-sm:justify-between max-sm:w-wk">
-                        <div className="flex  w-[6.01rem] max-xl:w-[3rem] max-sm:w-auto  max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div class="flex max-sm:justify-evenly max-sm:w-wk">
+                        <div className=" flex items-center justify-center   w-[8.01rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">
+                        <div className="flex items-center justify-center   w-[3.01rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[3rem] max-sm:w-auto  max-lg:w-[2.1rem] max-sm:flex-row  max-sm:justify-between ">
 
-<div className="text-xs font-poppins text-center max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+<div className="text-xs font-poppins text-center max-sm:text-sm ">
 {item.oppNo}
 </div>
 </div>
-<div className=" flex  w-[5.01rem] max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">
+<div className=" flex items-center justify-center   w-[3.01rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[8rem] max-lg:w-[7rem] max-sm:w-auto max-lg:text-[6.21rem] max-sm:flex-row  max-sm:justify-between ">
                               
 
-                              <div class=" text-xs  max-sm:text-sm font-poppins text-center max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                              <div class=" text-xs  max-sm:text-sm font-poppins text-center ">
                               {item.totalProposalValue}
 
                               </div>
                           </div>
-                          <div className="flex  w-[5.1rem]  max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
+</div>
+                          <div className="flex items-center justify-center   w-[7.1rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[3.1rem] max-sm:w-auto max-sm:flex-row  max-sm:justify-between ">
                           
-                              <div class="text-xs font-poppins max-sm:text-sm max-xl:text-[0.65rem] max-lg:text-[0.45rem]">
+                          <div class="flex items-center text-xs font-poppins w-wk h-8  max-sm:text-sm ">
 
-                              {item.thirdPartyAccessInd === true
-?<Tooltip title="Provided"><AlarmOnIcon   className=" !text-xl text-[green]"/></Tooltip> 
-:  <Tooltip title="Not Provided"> <DoNotDisturbOnTotalSilenceIcon  className=" !text-xl text-[red]"/></Tooltip>}
+                          {item.thirdPartyAccessInd === true
+?<Tooltip title={translatedMenuItems[9]}>
+  <div className="flex text-green-600 w-wk font-bold bg-green-100 justify-center   py-1 rounded max-h-max">
+  Yes
+  </div>
+  {/* <AlarmOnIcon   className=" !text-xl text-[green]"/> */}
+  </Tooltip> 
+:  <Tooltip title={translatedMenuItems[10]}> 
+  <div className="flex text-red-600 w-wk font-bold bg-red-100 justify-center   py-1 rounded max-h-max">
+No
+</div>
+{/* <DoNotDisturbOnTotalSilenceIcon  className=" !text-xl text-[red]"/> */}
+</Tooltip>}
 
-                              </div>
                           </div>
-                          </div>
-                          <div class="flex items-center max-sm:justify-between max-sm:w-wk">
-                          <div className="flex   w-[3.01rem] max-sm:w-wk  max-sm:flex-row max-xl:w-[3rem] max-lg:w-[3.01rem]  max-sm:justify-between">
-        <Tooltip title={item.ownerName}>
-          <div class="max-sm:flex justify-end">
-          <Tooltip title={item.ownerName}>
-        <MultiAvatar
-          primaryTitle={item.ownerName}
-          imageId={item.ownerImageId}
-          imgWidth={"1.8rem"}
-          imgHeight={"1.8rem"}
-        />
-      </Tooltip>
-      </div>
-    </Tooltip>
-
-             </div>
-             <div>
-              <Tooltip title="Address">
- <AddLocationAltIcon
-          className=" !text-icon cursor-pointer text-[#8e4bc0]"
-          onClick={() => {
-            props.handleContactAddressDrawerModal(true);
-            handleSetCurrentContact(item);
-          }}
+                      </div>
+                          {props.user.aiInd && (
+           <div className=" flex   items-center justify-center   w-[5.12rem] ml-gap bg-[#eef2f9] h-8 max-xl:w-[8.1rem] max-lg:w-[8.1rem] max-sm:flex-row  ">
+           {item.noteScoreInd}
           
-        />
-     </Tooltip>
-     </div>
+            </div>
+            )}
+                         
+                       
+                          </div>
+                       
+          
+             <div class="flex  items-center justify-center max-sm:justify-between max-sm:w-wk">
+          
            
-              <div>
-              <Tooltip title="Notes">
+              <div class=" items-center justify-center bg-[#eef2f9] h-8  flex">
+              <Tooltip title={translatedMenuItems[12]}>
  <NoteAltIcon
-          className=" !text-icon cursor-pointer text-[#4bc076]"
-          onClick={() => {
+          className=" !text-icon cursor-pointer text-green-800"
+            onClick={() => {
             handleContactNotesDrawerModal(true);
             handleSetCurrentContact(item);
           }}
@@ -360,31 +380,26 @@ function ContactCardList(props) {
         />
      </Tooltip>
      </div>
-     {/* <div>
-     <Tooltip title="Pulse">
- <MonitorHeartIcon
- className=" !text-xl cursor-pointer text-[#df9697]"
-          onClick={() => {
-            handleContactPulseDrawerModal(true);
+     <div class=" items-center justify-center bg-[#eef2f9] h-8  flex">
+              <Tooltip title={translatedMenuItems[11]}>
+ <AddLocationAltIcon
+          className=" !text-icon cursor-pointer text-[#8e4bc0]"
+            onClick={() => {
+            props.handleContactAddressDrawerModal(true);
             handleSetCurrentContact(item);
           }}
           
         />
      </Tooltip>
-
-</div> */}
-<div>
+     </div>
+ 
+<div class=" items-center justify-center bg-[#eef2f9] h-8  flex">
                 <Tooltip
-                  title={
-                    <FormattedMessage
-                      id="app.activity"
-                      defaultMessage="Activity"
-                    />
-                  }
+                  title={translatedMenuItems[13]}
                 >
-                  <AddchartIcon
-                  className="!text-icon cursor-pointer text-blue-500"
-                    onClick={() => {
+                  <HourglassFullIcon
+                 className="text-blue-500 cursor-pointer !text-icon"
+                      onClick={() => {
                       props.handleContactCETdrawer(true);
                       handleSetCurrentContact(item);
                     }}
@@ -393,11 +408,11 @@ function ContactCardList(props) {
               </div>
      
                         
-              <div >
+              <div class=" items-center justify-center bg-[#eef2f9] h-8  flex" >
               <Tooltip title={item.mobileNo} >
       {item.doNotCallInd !== true && (
         <span 
-          onClick={() => {
+            onClick={() => {
             props.handleDonotCallModal(true);
             handleSetCurrentContactId(item);
           }}
@@ -407,7 +422,7 @@ function ContactCardList(props) {
       )}
       {item.doNotCallInd === true && (
         <span
-          onClick={() => {
+            onClick={() => {
             props.handleDonotCallModal(true);
             handleSetCurrentContactId(item);
           }}
@@ -417,53 +432,26 @@ function ContactCardList(props) {
       )}
     </Tooltip>
                   </div>
-                  <div class=" max-sm:flex justify-end  max-sm:w-full">
+               <div class=" items-center justify-center bg-[#eef2f9] h-8  flex">
                   <Tooltip title={item.emailId}>
      
       <MailOutlineIcon
         type="mail"
         className=" !text-icon cursor-pointer text-[red]"
-        onClick={() => {
+          onClick={() => {
           props.getContactById(item.contactId);
           props.handleContactEmailDrawerModal(true);
         }}
       />
      </Tooltip>
-                  </div>
-
-                 
-                  
-             
-              
-                {/* <div>
-              <Tooltip overlayStyle={{ maxWidth: "300px" }} title={dataLoc}>
-      <span
-        style={{
-          cursor: "pointer",
-        }}
-      >
-      <LocationOnIcon   
-      className=" !text-icon cursor-pointer text-[#960A0A]"/>
-      </span>
-    </Tooltip>
-    </div> */}
-    {/* <div><Tooltip title={item.email}>
-        <MailOutlineIcon
-          type="mail"
-          style={{ cursor: "pointer",fontSize: "1rem" }}
-          onClick={() => {
-            props.getCustomerById(item.customerId);
-            props.handleCustomerEmailDrawerModal(true);
-          }}
-        />
-      </Tooltip> </div> */}
+             </div>                               
         {user.contactUpdateInd === true &&  user.crmInd === true && (
-      <div>
+      <div class=" items-center justify-center bg-[#eef2f9] h-8  flex">
      
-      <Tooltip title="Edit">
+      <Tooltip title={translatedMenuItems[14]}>
         <BorderColorIcon
           className=" !text-icon cursor-pointer text-[tomato]"
-          onClick={() => {
+            onClick={() => {
             props.setEditContact(item);
             handleUpdateContactModal(true);
             handleSetCurrentContactId(item);
@@ -473,14 +461,10 @@ function ContactCardList(props) {
       </Tooltip>
 
       </div>
-        )}
-               
-   
+        )}               
                 </div>
                       </div>
                   </div>
-
-
                     )
                 })}
                       </InfiniteScroll>
@@ -503,6 +487,9 @@ function ContactCardList(props) {
         addDrawerContactNotesModal={addDrawerContactNotesModal}
         handleContactNotesDrawerModal={handleContactNotesDrawerModal}
         handleSetCurrentContact={handleSetCurrentContact}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
          <AddContactPulseDrawerModal
         contactData={currentContact}
@@ -510,12 +497,18 @@ function ContactCardList(props) {
         addDrawerContactPulseModal={addDrawerContactPulseModal}
         handleContactPulseDrawerModal={handleContactPulseDrawerModal}
         handleSetCurrentContact={handleSetCurrentContact}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <AddContactEmailDrawerModal
         // item={currentContactId}
         contactData={currentContactId}
         addDrawerContactEmailModal={props.addDrawerContactEmailModal}
         handleContactEmailDrawerModal={props.handleContactEmailDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <ReactContactSpeechModal
         // item={currentContactId}
@@ -523,21 +516,36 @@ function ContactCardList(props) {
         handleContactReactSpeechModal={handleContactReactSpeechModal}
         addContactSpeechModal={addContactSpeechModal}
         handleSetCurrentContactId={handleSetCurrentContactId}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <ContactCETdrawer
         currentContact={currentContact}
+        contact={currentContact.contactId}
+        type="contact"
         contactCETdrawer={props.contactCETdrawer}
         handleContactCETdrawer={props.handleContactCETdrawer}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
       <AddContactDrawerModal
         item={currentContactId}
         addDrawerContactModal={props.addDrawerContactModal}
         handleContactDrawerModal={props.handleContactDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
        <AddContactAddressDrawerModal
         item={currentContact}
+        type="Contact"
         addDrawerContactAddressModal={props.addDrawerContactAddressModal}
         handleContactAddressDrawerModal={props.handleContactAddressDrawerModal}
+        translateText={props.translateText}
+        selectedLanguage={props.selectedLanguage}
+      translatedMenuItems={props.translatedMenuItems}
       />
     </>
   );

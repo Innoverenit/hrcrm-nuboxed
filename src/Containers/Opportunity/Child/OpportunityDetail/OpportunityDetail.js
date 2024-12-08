@@ -2,7 +2,7 @@ import React, { Component, lazy, Suspense } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import OpportunityDetailHeader from "./OpportunityDetailHeader";
-import { FlexContainer, MainWrapper } from "../../../../Components/UI/Layout";
+import { MainWrapper } from "../../../../Components/UI/Layout";
 import { BundleLoader } from "../../../../Components/Placeholder";
 import { getOpportunityById } from "../../OpportunityAction";
 const OpportunityDetailLeft = lazy(() => import("./OpportunityDetailLeft"));
@@ -21,26 +21,36 @@ class OpportunityDetail extends Component {
         <OpportunityDetailHeader
           opportunity={opportunity}
           fetchingOpportunityById={fetchingOpportunityById}
+          translateText={this.props.translateText}
+          selectedLanguage={this.props.selectedLanguage}
+          translatedMenuItems={this.props.translatedMenuItems}
         />
         {fetchingOpportunityById ? (
           <MainWrapper>
             <BundleLoader />
           </MainWrapper>
         ) : (
-          <FlexContainer>
+          <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
             <Suspense fallback={""}>
-              <FlexContainer flexWrap="no-wrap" style={{ width: "100%" }}>
+            <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto w-full ">
                 <div class=" w-[22%] max-sm:w-full max-sm:flex flex-col">
-                  <OpportunityDetailLeft opportunity={opportunity} />
+                  <OpportunityDetailLeft opportunity={opportunity}
+                   translateText={this.props.translateText}
+                   selectedLanguage={this.props.selectedLanguage}
+                   translatedMenuItems={this.props.translatedMenuItems}
+                  />
                 </div>
                 <div class="w-[80%] max-sm:hidden">
                   <OpportunityDetailRight 
+                   translateText={this.props.translateText}
+                   selectedLanguage={this.props.selectedLanguage}
+                   translatedMenuItems={this.props.translatedMenuItems}
                   opportunity={opportunity}
                   />
                 </div>
-              </FlexContainer>
+              </div>
             </Suspense>
-          </FlexContainer>
+          </div>
         )}
       </>
     );

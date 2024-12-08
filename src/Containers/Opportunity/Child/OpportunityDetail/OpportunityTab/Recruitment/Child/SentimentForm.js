@@ -1,29 +1,15 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import PlayCircleFilledIcon from '@mui/icons-material/PlayCircleFilled';
 import RotateRightIcon from '@mui/icons-material/RotateRight';
 import StopCircleIcon from '@mui/icons-material/StopCircle';
-import ReactSpeech from "../../../../../../../Components/ReactSpeech/ReactSpeech";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { Button ,Tooltip} from "antd";
 import { Formik, Form, Field } from "formik";
-import { FormattedMessage } from "react-intl";
-import { Spacer } from "../../../../../../../Components/UI/Elements";
-import { FlexContainer } from "../../../../../../../Components/UI/Layout";
-import { SelectComponent } from "../../../../../../../Components/Forms/Formik/SelectComponent";
-import { TextareaComponent } from "../../../../../../../Components/Forms/Formik/TextareaComponent";
-import { InputComponent } from "../../../../../../../Components/Forms/Formik/InputComponent";
-import { addSentiment } from "../../../../../OpportunityAction";
-import * as Yup from "yup";
-/**
- * yup validation scheme for creating a opportunity
- */
-// const ProfileSchema = Yup.object().shape({
-//   // note: Yup.string().required("Input needed!"),
 
-//   stageId: Yup.string().required("Input needed!"),
-// });
+import { addSentiment } from "../../../../../OpportunityAction";
+
 function SentimentForm(props) {
  
 
@@ -75,14 +61,9 @@ function SentimentForm(props) {
                     height: "100%",
                     width: "100%",
                   }}
-                >
-                 
-                  <Spacer />
-                  
-                
-
-               
-                  
+                >                
+                  <div class=" mt-3" />
+                                                               
                     <div>
       {/* <p>Microphone:  {listening ? 'on' : 'off'} 
         </p> */}
@@ -129,15 +110,10 @@ function SentimentForm(props) {
         type="text"
          value={transcript?transcript:text}
          onChange={handletext}
-        >
-        
-        </textarea>
-    
+        >      
+        </textarea>  
       
-      </div>
-      
-      
-     
+      </div>             
     </div>
   
     
@@ -148,22 +124,19 @@ function SentimentForm(props) {
                   }}
                 ></div>
               </div>
-              <Spacer />
-              <FlexContainer justifyContent="flex-end">
+              <div class=" mt-3" />
+              <div class=" flex flex-row flex-wrap items-start self-start justify-end grow shrink h-auto mr-auto ">
                 <Button
                   type="primary"
                   htmlType="submit"
                   //onClick={props.handleRemarksModal}
                   Loading={props.addingSentiment}
                 >
-                  <FormattedMessage
-                    id="app.submit"
-                    defaultMessage="Submit"
-                  />
+                 Submit 
                   {/* Remark */}
                 </Button>
                
-              </FlexContainer>
+              </div>
            
             </Form>
             

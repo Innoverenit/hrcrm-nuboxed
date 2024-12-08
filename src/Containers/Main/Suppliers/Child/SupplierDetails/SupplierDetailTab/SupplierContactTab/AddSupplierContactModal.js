@@ -2,7 +2,7 @@ import React, { lazy, Suspense, Component } from "react";
 import { StyledDrawer } from "../../../../../../../Components/UI/Antd";
 import SupplierContactForm from "./SupplierContactForm";
 import { BundleLoader } from "../../../../../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
+
 
 class AddSupplierContactModal extends Component {
     render() {
@@ -13,9 +13,7 @@ class AddSupplierContactModal extends Component {
         return (
             <>
                 <StyledDrawer
-                    title={
-                        <FormattedMessage id="app.Contact" defaultMessage="Contact" />
-                    }
+                    title="Contact" 
                     width="60%"
                     visible={addSupplierContactModal}
                     destroyOnClose
@@ -27,6 +25,8 @@ class AddSupplierContactModal extends Component {
                         <SupplierContactForm
                             type={this.props.type}
                             id={this.props.id}
+                            translateText={this.props.translateText}
+                            selectedLanguage={this.props.selectedLanguage}
                         />
                     </Suspense>
                 </StyledDrawer>

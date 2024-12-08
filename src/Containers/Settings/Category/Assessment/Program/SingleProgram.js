@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import { Button, Tooltip } from "antd";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
-import { FormattedMessage } from "react-intl";
+
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { TextInput } from "../../../../../Components/UI/Elements";
@@ -34,7 +33,7 @@ class SingleProgram extends Component {
         <ViewEditCard>
           {({ viewType }, toggleViewType) =>
             viewType === "view" ? (
-              <FlexContainer justifyContent="space-between">
+              <div class=" flex flex-row flex-wrap items-start self-start justify-between grow shrink h-auto mr-auto ">
                 <EducationName style={{ flexBasis: "85%" }}>
                   {educationType}
                 </EducationName>
@@ -60,19 +59,11 @@ class SingleProgram extends Component {
                         color: "red",
                       }}
                     />
-                  </Tooltip>
-                  {/* <ActionIcon
-                                  tooltipTitle="Delete"
-                                 iconType="delete"
-                                  handleIconClick={() => handleDeleteSector(typeId)}
-                                  size="0.75em"
-                                theme="filled"
-                               style={{ color: "#666" }}
-                                 /> */}
+                  </Tooltip>           
                 </div>
-              </FlexContainer>
+              </div>
             ) : (
-              <FlexContainer>
+              <div class=" flex flex-row flex-wrap items-start self-start justify-start grow shrink h-auto mr-auto ">
                 <TextInput
                   name={name}
                   // value={value || educationType}
@@ -96,16 +87,14 @@ class SingleProgram extends Component {
                       )
                     }
                   >
-                    {/* Save */}
-                    <FormattedMessage id="app.update" defaultMessage="Update" />
+                    Save
                   </Button>
                   &nbsp;
                   <Button type="primary" ghost onClick={() => toggleViewType()}>
-                    {/* Cancel */}
-                    <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                    Cancel
                   </Button>
                 </div>
-              </FlexContainer>
+              </div>
             )
           }
         </ViewEditCard>

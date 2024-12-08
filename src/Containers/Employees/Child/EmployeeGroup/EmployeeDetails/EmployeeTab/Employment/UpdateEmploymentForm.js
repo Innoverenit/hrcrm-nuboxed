@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormattedMessage } from "react-intl";
+
 import { bindActionCreators } from "redux";
 import { Button,} from "antd";
 import { Formik, Form, Field, FastField } from "formik";
@@ -78,13 +78,7 @@ class EmploymentDocumentForm extends Component {
                     type="text"
                     isColumn
                     width={"100%"}
-                    //label="Organization Name"
-                    label={
-                      <FormattedMessage
-                        id="app.companyName"
-                        defaultMessage="Organization Name"
-                      />
-                    }
+                    label="Organization Name"
                     component={InputComponent}
                     inlineLabel
                      />
@@ -92,13 +86,7 @@ class EmploymentDocumentForm extends Component {
                      <div class=" w-[47%]">
                      <FastField
                     name="designationTypeId"
-                    //label="Designation"
-                    label={
-                      <FormattedMessage
-                        id="app.designation"
-                        defaultMessage="Designation"
-                      />
-                    }  
+                    label="Designation"  
                     selectType="designationType"
                     isColumn
                     width={"100%"}
@@ -117,13 +105,7 @@ class EmploymentDocumentForm extends Component {
                     <div class=" w-[47%]">
                     <Field
                       name="startDate"
-                      //label="Start Date"
-                      label={
-                        <FormattedMessage
-                          id="app.startDate"
-                          defaultMessage="Start Date"
-                        />
-                      }
+                      label="Start Date"
                       isRequired
                       component={DatePicker}
                       isColumn
@@ -138,13 +120,7 @@ class EmploymentDocumentForm extends Component {
                   <div class=" w-[47%]">
                     <Field
                       name="endDate"
-                      // label="End Date "
-                      label={
-                        <FormattedMessage
-                          id="app.endDate"
-                          defaultMessage="End Date"
-                        />
-                      }
+                      label="End Date "
                       isRequired
                       isColumn
                       width={"100%"}
@@ -178,13 +154,7 @@ class EmploymentDocumentForm extends Component {
                       type="text"
                       isColumn
                       width="47%"
-                      //label="Salary"
-                      label={
-                        <FormattedMessage
-                          id="app.salary"
-                          defaultMessage="Salary"
-                        />
-                      }
+                      label="Salary"
                       component={InputComponent}
                       inlineLabel
                        style={{
@@ -197,14 +167,8 @@ class EmploymentDocumentForm extends Component {
                       name="currency"
                       placeholder="Curr"
                       isColumnWithoutNoCreate
-                      //label="Curr"
-                      label={
-                        <FormattedMessage
-                          name="currency"
-                          id="app.currency"
-                          defaultMessage="Currency"
-                        />
-                      }
+                      label="Currency"
+                     
                       width="100%"
                       isColumn
                       selectType="currencyName"
@@ -221,13 +185,7 @@ class EmploymentDocumentForm extends Component {
                       type="text"
                       isColumn
                       width="47%"
-                      //label="Salary Type"
-                      label={
-                        <FormattedMessage
-                          id="app.salaryType"
-                          defaultMessage="Salary Type"
-                        />
-                      }
+                      label="Salary Type"
                       component={SelectComponent}
                       options={["Daily", "Monthly", "Annual"]}
                       inlineLabel
@@ -239,13 +197,7 @@ class EmploymentDocumentForm extends Component {
                 <div class=" mt-3">
                   <Field
                     name="description"
-                    //label="Describe your role"
-                    label={
-                      <FormattedMessage
-                        id="app.description"
-                        defaultMessage="Describe your role"
-                      />
-                    }
+                    label="Describe your role"
                     isRequired
                     isColumn
                     width={"100%"}
@@ -276,7 +228,7 @@ class EmploymentDocumentForm extends Component {
                     component={InputComponent}
                     style={{ height: "2.0625em", marginTop: "0.25em" }}
                   />
-                  <Spacer />
+                  <div class=" mt-3" />
                   <Field
                     name="documentDescription"
                     label="Description"
@@ -286,7 +238,7 @@ class EmploymentDocumentForm extends Component {
                     component={TextareaComponent}
                     style={{ height: "5em", marginTop: "0.25em" }}
                   />
-                  <Spacer style={{ marginBottom: "0.9375em" }} />
+                  <div class=" mt-3" style={{ marginBottom: "0.9375em" }} />
                 </div> */}
               {/* </div> */}
               <div class=" flex justify-end mt-3" >
@@ -295,7 +247,7 @@ class EmploymentDocumentForm extends Component {
                   type="primary"
                   Loading={updatingEmploymentDetails}
                 >
-                  <FormattedMessage id="app.update" defaultMessage="Update" />
+                  Update
                 </Button>
               </div>
             </Form>

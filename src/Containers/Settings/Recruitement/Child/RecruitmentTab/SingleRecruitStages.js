@@ -1,23 +1,16 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import { FormattedMessage } from "react-intl";
+
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { SelectComponent } from "../../../../../Components/Forms/Formik/SelectComponent";
-import { Button, Tooltip,Switch,Popconfirm, Divider } from "antd";
-import { FlexContainer } from "../../../../../Components/UI/Layout";
-import { Formik, Form, Field,FastField } from "formik";
-import { TextInput, Spacer, Select } from "../../../../../Components/UI/Elements";
-import { ActionIcon } from "../../../../../Components/Utils";
+import { Button, Tooltip,Popconfirm } from "antd";
+import { TextInput,  Select } from "../../../../../Components/UI/Elements";
 import { elipsize } from "../../../../../Helpers/Function/Functions";
 import { ViewEditCard } from "../../../../../Components/UI/Elements";
-import { EditOutlined } from "@ant-design/icons";
-import AddApprovalModal from "./AddApprovalModal";
 import {handleApprovalModal,} from "../../../SettingsAction";
 import { connect } from "react-redux";
 import {deleteHiringStagesData} from "../../../../Settings/SettingsAction";
 import { bindActionCreators } from "redux";
 import DeleteIcon from '@mui/icons-material/Delete';
-import { StyledPopconfirm } from "../../../../../Components/UI/Antd";
 const { Option } = Select;
 
 class SingleRecruitStages extends Component {
@@ -95,9 +88,7 @@ class SingleRecruitStages extends Component {
         <ViewEditCard>
           {({ viewType }, toggleViewType) =>
             viewType === "view" ? (
-              <FlexContainer
-                justifyContent="start"
-                alignItems="center"
+              <div class=" flex flex-row flex-wrap items-center self-start justify-start grow shrink h-auto mr-auto "  
                 // onClick={() => handleStageClick(stageId, stageName)}
                 style={{
                   backgroundColor:
@@ -190,11 +181,11 @@ class SingleRecruitStages extends Component {
                    
 
                  
-           </FlexContainer>
+           </div>
             
             ) : (
               
-              <FlexContainer justifyContent="center">
+              <div class=" flex flex-row flex-wrap items-start self-start justify-center grow shrink h-auto mr-auto ">
                 <TextInput
                   name={newStageName}
                   // value={stageValue1 || stageName}
@@ -253,21 +244,15 @@ class SingleRecruitStages extends Component {
                     )
                   }
                 >
-                  {/* Save */}
-                  <FormattedMessage
-                    id="app.save"
-                    defaultMessage="Save"
-                  />
+                  Save
+                
                 </Button>
              
                 <Button type="primary" ghost onClick={() => toggleViewType()}>
-               {/* Cancel */}
-                  <FormattedMessage
-                    id="app.cancel"
-                    defaultMessage="Cancel"
-                  />
+               Cancel
+                 
                 </Button>
-              </FlexContainer>
+              </div>
             )
           }
 

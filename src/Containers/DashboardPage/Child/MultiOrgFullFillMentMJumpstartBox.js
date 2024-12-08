@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { getRegions } from "../../Settings/Category/Region/RegionAction";
 import { JumpStartBox } from "../../../Components/UI/Elements";
-// import AddFullFillmentDrawerModal from "./AddFullFillmentDrawerModal";
+
 
 function MultiOrgFullFillMentJumpstartBox(props) {
   const [totalOrgValue, setTotalOrgValue] = useState(0);

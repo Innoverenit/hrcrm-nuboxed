@@ -1,5 +1,5 @@
 import React, { Suspense,lazy } from "react";
-import { FormattedMessage } from "react-intl";
+
 import { StyledDrawer, } from "../../../../Components/UI/Antd";
 import { BundleLoader } from "../../../../Components/Placeholder";
 const LocationForm=lazy(()=> import("./LocationForm"));
@@ -12,10 +12,8 @@ const AddMileageModal = (props) => {
   return (
     <>
       <StyledDrawer
-        title={<FormattedMessage
-          id="app.addLocations"
-          defaultMessage="Add Locations"
-        />}
+        title="Add Locations"
+     
         width={drawerWidth}
         visible={addlocationModal}
         onClose={() => handleLocationModal(false)}

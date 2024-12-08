@@ -1,18 +1,14 @@
 import React, { lazy, Suspense } from "react";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
-import { FormattedMessage } from "react-intl";
-import { StyledDrawer, StyledModal } from "../../../../../../Components/UI/Antd";
+
+import { StyledDrawer } from "../../../../../../Components/UI/Antd";
 const RecruitForm = lazy(() => import("./RecruitForm"));
 
 const AddRecruitModal = (props) => {
   return (
     <>
       <StyledDrawer
-        // title="Requirement"
-        title={<FormattedMessage
-          id="app.requirement"
-          defaultMessage="Requirement"
-        />}
+        title="Requirement"
 
         width="58%"
         style={{marginTop:"5rem"}}

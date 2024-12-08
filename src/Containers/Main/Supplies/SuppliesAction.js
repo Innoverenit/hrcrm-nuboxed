@@ -1,7 +1,7 @@
 import * as types from "./SuppliesActionType";
-import { base_url2 } from "../../../Config/Auth";
+import { base_url, base_url2 } from "../../../Config/Auth";
 import axios from "axios";
-import moment from "moment";
+import dayjs from "dayjs";
 import { message } from "antd";
 import Swal from 'sweetalert2'
 
@@ -15,9 +15,49 @@ export const handleSuppliesModal = (modalProps) => (dispatch) => {
   });
 };
 
+
+export const handleUploadSuppliesModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_UPLOAD_SUPPLIES_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+export const handleLocationuppliesModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_LOCATION_SUPPLIES_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const handleUploadMaterialModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_UPLOAD_MATERIAL_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+
+export const handleSuppliesLocationModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIES_LOCATION_MODAL,
+    payload: modalProps,
+  });
+};
+
 export const handleBrandModel = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_BRAND_MODEL,
+    payload: modalProps,
+  });
+};
+
+
+export const handleSuppliesBrandModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIES_BRAND_MODAL,
     payload: modalProps,
   });
 };
@@ -124,6 +164,84 @@ export const getSuppliesHistory = (suppliesId) => (dispatch) => {
       console.log(err);
       dispatch({
         type: types.GET_SUPPLIES_HISTORY_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const getBestBeforeJumpList = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_BESTBEFORE_JUMPLIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/BestBefore/list/${orgId}`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_BESTBEFORE_JUMPLIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_BESTBEFORE_JUMPLIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getBestBeforeJumpListCount = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_BEST_BEFORE_JUMP_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/BestBefore/count/${orgId}`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_BEST_BEFORE_JUMP_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_BEST_BEFORE_JUMP_FAILURE,
+        payload: err,
+      });
+    });
+};
+export const getReorderCount = () => (dispatch) => {
+  dispatch({
+    type: types.GET_REORDER_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getReorder/all/count/material`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_REORDER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_REORDER_FAILURE,
         payload: err,
       });
     });
@@ -716,13 +834,13 @@ export const inputSuppliesDataSearch = (name) => (dispatch) => {
     type: types.INPUT_SUPPLIES_SEARCH_DATA_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplies/suppliesName/${name}`, {
+    .get(`${base_url2}/supplies/search/${name}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
     })
     .then((res) => {
-      message.success(res.data.message);
+      // message.success(res.data.message);
 
       dispatch({
         type: types.INPUT_SUPPLIES_SEARCH_DATA_SUCCESS,
@@ -744,6 +862,11 @@ export const ClearReducerDataOfMaterial = () => (dispatch) => {
   });
 };
 
+export const clearPriceFactor = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_REDUCER_FACTOR,
+  });
+};
 export const handleMaterialInventory = (modalProps) => (dispatch)=> {
   dispatch({
     type:types.HANDLE_MATERIAL_INVENTORY,
@@ -1055,3 +1178,939 @@ export const materialCategorySearch = (categoryName) => (dispatch) => {
       });
     });
 }; 
+
+
+
+
+export const uploadMaterialList = (data) => (dispatch) => {
+  dispatch({ type: types.UPLOAD_MATERIAL_LIST_REQUEST });
+  axios
+    .post(`${base_url2}/excel/supplies-details`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // dispatch(getProducts(0))
+      window.location.reload()
+      dispatch({
+        type: types.UPLOAD_MATERIAL_LIST_SUCCESS,
+        payload: res.data,
+      });
+      Swal.fire({
+        icon: 'success',
+        title: 'Uploaded Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPLOAD_MATERIAL_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getMaterialsBySuppliesId = (suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_MATERIALS_BY_SUPPLIES_ID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/product/bothSuppliesAndProduct/${suppliesId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_MATERIALS_BY_SUPPLIES_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_MATERIALS_BY_SUPPLIES_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getComplementaryList = (pageNo,suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_COMPLEMENTARY_LIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplies/all-supplies/complementaryind/${pageNo}/${suppliesId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_COMPLEMENTARY_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_COMPLEMENTARY_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const suppliesPUnpblishToggle = ( data,categoryId) => (dispatch) => {
+  dispatch({
+    type: types.SUPPLIES_PUNBLISH_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/supplies/updateCategory/publishInd/${categoryId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.SUPPLIES_PUNBLISH_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.SUPPLIES_PUNBLISH_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};
+export const materialRecommendToggle = ( data,suppliesId) => (dispatch, getState) => {
+  dispatch({
+    type: types.MATERIAL_RECOMMEND_TOGGLE_REQUEST,
+  });
+  axios
+  .put(`${base_url2}/supplies/update/recomendInd/${suppliesId}`,data,  {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.MATERIAL_RECOMMEND_TOGGLE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.MATERIAL_RECOMMEND_TOGGLE_FAILURE,
+        payload: err,
+      });
+    })
+};
+
+export const materialPricetype = ( data,suppliesId) => (dispatch, getState) => {
+  dispatch({
+    type: types.MATERIAL_PRICE_TYPE_REQUEST,
+  });
+  axios
+  .post(`${base_url2}/supplies/suppliesPrice`,data,  {
+    // headerss: {
+    //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    // },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.MATERIAL_PRICE_TYPE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.MATERIAL_PRICE_TYPE_FAILURE,
+        payload: err,
+      });
+    })
+};
+
+export const linkComplementryToggle = ( data) => (dispatch) => {
+  dispatch({
+    type: types.MATERIAL_COMPLEMENTARY_REQUEST,
+  });
+  axios
+  .post(`${base_url2}/supplies/complementary`,data,  {
+    headerss: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.MATERIAL_COMPLEMENTARY_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.MATERIAL_COMPLEMENTARY_FAILURE,
+        payload: err,
+      });
+    })
+};
+
+
+export const addSuppliesBrand = (data, cb) => (dispatch) => {
+  console.log("inside add product");
+  dispatch({ type: types.ADD_SUPPLIES_BRAND_REQUEST });
+  axios
+    .post(`${base_url2}/supplies/saveSuppliesBrand`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_SUPPLIES_BRAND_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_SUPPLIES_BRAND_FAILURE,
+        payload: err,
+      });
+      cb();
+    });
+};
+
+
+
+export const getBrandSupplies = (pageNo) => (dispatch) => {
+  dispatch({
+    type: types.GET_BRAND_SUPPLIES_REQUEST,
+  });
+  axios
+    // .get(`${base_url2}/product`,
+    .get(`${base_url2}/supplies/allSuppliesBrand`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_BRAND_SUPPLIES_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_BRAND_SUPPLIES_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const getBrandProductList = (brandId) => (dispatch) => {
+  dispatch({
+    type: types.GET_BRAND_PRODUCT_LIST_REQUEST,
+  });
+  axios
+    // .get(`${base_url2}/product`,
+    .get(`${base_url2}/supplies/supplies/brand/${brandId}`,
+      {
+        headers: {
+          Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        },
+      })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_BRAND_PRODUCT_LIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_BRAND_PRODUCT_LIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const UpdateMaterialIamge = (data, itemId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_MATERIAL_IMAGE_REQUEST });
+  axios
+    .put(`${base_url2}/supplies/leadImage/${itemId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch(getMaterialsBySuppliesId(itemId));
+      dispatch({
+        type: types.UPDATE_MATERIAL_IMAGE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_MATERIAL_IMAGE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const deleteSuppliesBrandData = (data,suppliesBrandId) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_SUPPLIES_BRAND_DATA_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/supplies/deleteBrand/${suppliesBrandId}`,data, {
+      // headers: {
+      //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      // },
+    })
+    .then((res) => {
+      dispatch(getBrandSupplies());
+      
+      console.log(res);
+      dispatch({
+        type: types.DELETE_SUPPLIES_BRAND_DATA_SUCCESS,
+        payload: suppliesBrandId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_SUPPLIES_BRAND_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+
+export const updateBrandMaterial = (data, suppliesBrandId, cb) => (dispatch) => {
+  // console.log(leadDocumentsId, DocumentsName);
+  dispatch({
+    type: types.UPDATE_BRAND_MATERIAL_REQUEST,
+  });
+  axios
+    .put(
+      `${base_url2}/supplies/brandUpdate/${suppliesBrandId}`,
+      data,
+      {
+        // headers: {
+        //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+        // },
+      }
+    )
+    .then((res) => {
+    
+      // message.success("Document has been updated successfully!");
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_BRAND_MATERIAL_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_BRAND_MATERIAL_FAILURE,
+      });
+    });
+};
+
+export const handleImageSuppliesModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_IMAGE_SUPPLIES_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const handleNewAriival = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_NEWARRIVAL_MODAL,
+    payload: modalProps,
+  });
+};
+export const handleBestbefore = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_BESTBEFORE_MODAL,
+    payload: modalProps,
+  });
+};
+
+export const getLocationSupplies = (orgId,suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_LOCATION_SUPPLIES_REQUEST,
+  });
+  axios
+    .get(`${base_url}/locationDetails/getLocationDetailsList/${orgId}/${suppliesId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_LOCATION_SUPPLIES_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_LOCATION_SUPPLIES_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getSuppliesDocument = (suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIES_DOCUMENTS_REQUEST,
+  });
+  axios
+    .get(`${base_url}/supplies/document/${suppliesId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIES_DOCUMENTS_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIES_DOCUMENTS_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const deleteSuppliesData = (documentId) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_SUPPLIES_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/supplies/document/${documentId}`)
+    .then((res) => {
+      console.log(res);
+      // dispatch(getDeletedPurchaseById());
+      dispatch({
+        type: types.DELETE_SUPPLIES_DATA_SUCCESS,
+        payload: documentId,
+      });
+      message.success("Supplies deleted Successfully");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_SUPPLIES_DATA_FAILURE,
+        payload: err,
+      });
+      message.error("Something went wrong")
+    });
+};
+
+export const handleErpDocumentUploadModal = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_ERP_DOCUMENT_UPLOAD_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+
+
+export const getSuppliesLocationItem = (locationId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIES_LOCATION_ITEM_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getReorder/material/${locationId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_SUPPLIES_LOCATION_ITEM_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIES_LOCATION_ITEM_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getItemData = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ITEM_DATA_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/newArrivals/material/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_ITEM_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ITEM_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getBestBefore = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_BEST_BEFORE_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getBestBeforeItemList/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_BEST_BEFORE_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_BEST_BEFORE_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addLocationSuppliesValue = (documents,suppliesId, cb) => (dispatch) => {
+  console.log(documents);
+  dispatch({
+    type: types.ADD_LOCATION_SUPPLIES_VALUE_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/supplies/location/reOrderLevel/${suppliesId}`, documents, {
+      // headers: {
+      //   Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      // },
+    })
+    .then((res) => {
+    
+      
+      // dispatch(getDocuments());
+      //dispatch(getRegionCount(orgId));
+      console.log(res);
+      dispatch({
+        type: types.ADD_LOCATION_SUPPLIES_VALUE_SUCCESS,
+        payload: res.data
+        
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_LOCATION_SUPPLIES_VALUE_FAILURE,
+      });
+      cb();
+    });
+
+     
+
+};
+
+export const getBestBeforeEmailList = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_BEST_BEFORE_EMAILLIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getBestBeforeEmailList/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_BEST_BEFORE_EMAILLIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_BEST_BEFORE_EMAILLIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getNewArrivalList = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.GET_NEW_ARRIVALLIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/getNewArrivals/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_NEW_ARRIVALLIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_NEW_ARRIVALLIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getBestBeforeContactList = (bstBfrUseId) => (dispatch) => {
+  dispatch({
+    type: types.GET_BEST_BEFORE_CONTACTLIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getBestBeforeSuppliesDetails/${bstBfrUseId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_BEST_BEFORE_CONTACTLIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_BEST_BEFORE_CONTACTLIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getNewArrivalContactList = (newArrId) => (dispatch) => {
+  dispatch({
+    type: types.GET_NEW_ARRIVAL_CONTACTLIST_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/getNewArrivalsSuppliesDetails/${newArrId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_NEW_ARRIVAL_CONTACTLIST_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_NEW_ARRIVAL_CONTACTLIST_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getArrivalContact = (newArrId) => (dispatch) => {
+  dispatch({
+    type: types.GET_ARRIVAL_CONTACT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/getNewArrivalsContactDetails/${newArrId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_ARRIVAL_CONTACT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_ARRIVAL_CONTACT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getEmailContact = (bstBfrUseId) => (dispatch) => {
+  dispatch({
+    type: types.GET_EMAIL_CONTACT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/po/getBestBfrContactDetails/${bstBfrUseId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.GET_EMAIL_CONTACT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_EMAIL_CONTACT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const deleteEmailList = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_EMAILLIST_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/po/bestBfrUseHistory/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      // dispatch(getDeletedPurchaseById());
+      dispatch({
+        type: types.DELETE_EMAILLIST_SUCCESS,
+        payload: orgId,
+      });
+      message.success("Supplies deleted Successfully");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_EMAILLIST_FAILURE,
+        payload: err,
+      });
+      message.error("Something went wrong")
+    });
+};
+
+export const deleteNewArrival = (orgId) => (dispatch) => {
+  dispatch({
+    type: types.DELETE_NEWARRIVAL_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/newArrivalHistory/${orgId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      // dispatch(getDeletedPurchaseById());
+      dispatch({
+        type: types.DELETE_NEWARRIVAL_SUCCESS,
+        payload: orgId,
+      });
+      message.success("Supplies deleted Successfully");
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_NEWARRIVAL_FAILURE,
+        payload: err,
+      });
+      message.error("Something went wrong")
+    });
+};
+
+
+
+
+
+export const addQualityCategory = (product, categoryId,cb) => (dispatch) => {
+  dispatch({ type: types.ADD_QUALITY_CATEGORY_REQUEST });
+  axios
+    .put(`${base_url2}/supplies/suppliescatagory/qualitySpecs/${categoryId}`, product, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.ADD_QUALITY_CATEGORY_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_QUALITY_CATEGORY_FAILURE,
+        payload: err,
+      });
+      cb();
+    });
+};
+
+export const getPriceFactor = (suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_PRICE_FACTOR_REQUEST,
+  });
+  axios
+  .get(`${base_url2}/supplies/suppliesFactor/${suppliesId}`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRICE_FACTOR_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRICE_FACTOR_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getBarcodeViewer = (suppliesId) => (dispatch) => {
+  dispatch({
+    type: types.GET_BAR_CODE_VIEWER_REQUEST,
+  });
+  axios
+  .get(`${base_url2}/supplies/multiBarCode/${suppliesId}`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_BAR_CODE_VIEWER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_BAR_CODE_VIEWER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getPriceUpdated = () => (dispatch) => {
+  dispatch({
+    type: types.GET_PRICE_UPDATED_REQUEST,
+  });
+  axios
+  .get(`${base_url2}/urlShouldChange`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRICE_UPDATED_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRICE_UPDATED_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getPriceUpdatedCount = () => (dispatch) => {
+  dispatch({
+    type: types.GET_PRICE_UPDATED_COUNT_REQUEST,
+  });
+  axios
+  .get(`${base_url2}/urlShouldChange`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_PRICE_UPDATED_COUNT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_PRICE_UPDATED_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};

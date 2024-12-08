@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import TransferWithinAStationIcon from '@mui/icons-material/TransferWithinAStation';
 import { Button, message, Tooltip, Popover, Icon } from "antd";
-import { FormattedMessage } from "react-intl";
+
 import LockIcon from '@mui/icons-material/Lock';
 import { StyledModal, StyledTabs } from "../../../Components/UI/Antd";
 import {
@@ -97,7 +97,7 @@ class RequirementTab extends Component {
                           // user.userType !== "USER" && user.department !== "Customer" &&user.department !== "Recruiter"&&
                            (
                            <Icon
-                              type="plus"
+                             
                               tooltipTitle="Add Requirement"
                               onClick={() =>
                                 this.props.handleCustomerModal(true)
@@ -114,10 +114,7 @@ class RequirementTab extends Component {
                             
                           
                           {/* <Tooltip //title="Tag Position"
-                            title={<FormattedMessage
-                              id="app.tagposition"
-                              defaultMessage="Tag Position"
-                            />}
+                            title=
   
                           >
                              {user.userType !== "USER" && user.department !== "Customer" && (

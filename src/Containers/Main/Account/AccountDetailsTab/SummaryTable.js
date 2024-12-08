@@ -1,7 +1,10 @@
-import React from 'react'
-import PieChart1 from '../../../../Components/Charts/PieChart1'
-import { Flex, Progress } from 'antd';
-import PulseTable from './AccountDocumentTab/PulseTable';
+import React, { lazy,Suspense } from 'react'
+import { BundleLoader } from "../../../../Components/Placeholder";
+import StackedBarChart from '../../../Dashboard/Child/JumpStart/DashRepairBarClousreJumpstartUser';
+import DynamicPieChart from '../../../Dashboard/Child/JumpStart/DynamicPieChart';
+const AccountDonutChartByVolume = lazy(() => import("../AccountDetailsTab/AccountDonutChartByVolume"));
+const AccountDonutChartByValue = lazy(() => import("../AccountDetailsTab/AccountDonutChartByValue"));
+const PulseTable = lazy(() => import("./AccountDocumentTab/PulseTable"));
 
 const SummaryTable = (props) => {
     const currentDate = new Date();
@@ -10,39 +13,49 @@ const SummaryTable = (props) => {
   const year = currentDate.getFullYear();
   return (
     <>
-     <div class="flex flex-col items-center ">
-      <label class="font-bold"> {year}</label>
-    </div>
+
+       <div class="font-bold"> {year}</div>
+       
+    <div class="flex justify-between w-[79rem]">
+    <div class="flex flex-col w-[35rem]">
+        <Suspense fallback={<BundleLoader />}>
+        <PulseTable
+         RowData={props.RowData}
+        /></Suspense>
+        </div>
+        <div class="flex flex-col ml-2">
+        <div class="flex  w-[25%]">
+            <div class="flex ">
+            <div class="font-poppins font-bold">Order By Value</div>
+     <DynamicPieChart dtype={"DistributorOrder"} 
+        userId={props.RowData.distributorId} timeRangeType={year}/>
+     </div>
+     <div class="flex  justify-end">
+     <div class="font-poppins font-bold">Order By Volume</div>
+     <DynamicPieChart dtype={"DistributoVolume"} 
+        userId={props.RowData.distributorId} timeRangeType={year}/>
    
-    <div class="flex justify-between">
-        <div class="flex flex-col w-[25%]">
-            <div>
-            Order By Value
-     <PieChart1/>
-    
-     </div>
-     <div>
-     Order By Volume
-     <PieChart1/>
-   
      </div>
      </div>
-     <div class="flex flex-col mt-3 w-[30%] ml-36">
-        <div class="flex items-center">
+     <div class="flex items-center w-[50rem]">
         <div class="w-16">
             LOB 1
             </div>
-            <div class="w-wk">
-     <Flex gap="small" vertical>
+            <div class="w-[50rem]">
+              <StackedBarChart dtype={"Bar"} 
+        userId={props.RowData.distributorId} timeRangeType={year}/>
+     {/* <Flex gap="small" vertical>
     <Progress percent={30} />
     <Progress percent={50} status="active" />
     <Progress percent={70} status="exception" />
     <Progress percent={100} />
     <Progress percent={50} showInfo={false} />
-  </Flex>
+  </Flex> */}
   </div>
   </div>
-  <div class="flex items-center mt-20">
+     </div>
+    
+  {/* <div class="flex items-center mt-20">
   <div class="w-16">
   LOB 2
   </div>
@@ -55,14 +68,9 @@ const SummaryTable = (props) => {
     <Progress percent={50} showInfo={false} />
   </Flex>
   </div>
-  </div>
-        </div>
-        <div class="flex flex-col w-[33%]">
-        <PulseTable
-         RowData={props.RowData}
-        />
-        </div>
+  </div> */}
     </div>
+
     </>
   )
 }

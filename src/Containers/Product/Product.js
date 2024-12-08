@@ -2,13 +2,16 @@ import React, { Component, Suspense, lazy } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { BundleLoader } from "../../Components/Placeholder";
-import ProductHeader from "./Child/ProductHeader";
 import { handleConfigureModal, setProductViewType } from "./ProductAction";
+const ProductHeader=lazy(()=>import("./Child/ProductHeader"));
 const ProductDeleteList =lazy(()=>import("./Child/ProductTable/ProductDeleteList"));
 const ProductCategory =lazy(()=>import("./Child/ProductTable/ProductCategory"));
 const ProductListingTable =lazy(()=>import("./Child/ProductTable/ProductListingTable"));
 const ProductCardList =lazy(()=>import("./Child/ProductTable/ProductCardList"));
 const ConfigureModal=lazy(()=>import("./Child/ConfigureModal"));
+const BrandDeletedList=lazy(()=>import("./BrandDeletedList"));
+const ProductBrandModelList =lazy(()=>import("./ProductBrandModelList"));
+const  BrandList=lazy(()=>import("../Product/Child/BrandList"));
 
 class Product extends Component {
   render() {
@@ -23,6 +26,9 @@ class Product extends Component {
     } = this.props;
     return (
       <React.Fragment>
+         <Suspense fallback={
+          
+          <BundleLoader/>}>
         <ProductHeader
           translateText={this.props.translateText}
           selectedLanguage={this.props.selectedLanguage}
@@ -38,13 +44,14 @@ class Product extends Component {
         />
 
 
-        <Suspense fallback={<BundleLoader />}>
+       
           {this.props.viewType === "all" ?
             (<ProductListingTable
               translateText={this.props.translateText}
               selectedLanguage={this.props.selectedLanguage} />) :
             // this.props.viewType === "dashboard" ? (
             //   <SuspendProductList />) :
+            
               this.props.viewType === "table" ? (
                 <ProductCardList 
                 translateText={this.props.translateText}
@@ -53,6 +60,18 @@ class Product extends Component {
                   <ProductDeleteList
                   translateText={this.props.translateText}
                   selectedLanguage={this.props.selectedLanguage} />) :
+                  this.props.viewType === "brand" ? (
+                    <BrandList
+                    translateText={this.props.translateText}
+                    selectedLanguage={this.props.selectedLanguage} />) :
+                    this.props.viewType === "brandModel" ? (
+                    <ProductBrandModelList
+                    translateText={this.props.translateText}
+                    selectedLanguage={this.props.selectedLanguage} />) :
+                    this.props.viewType === "instate" ? (
+                      <BrandDeletedList
+                      translateText={this.props.translateText}
+                      selectedLanguage={this.props.selectedLanguage} />) :
                 this.props.viewType === "category" ? (
                   <ProductCategory 
                   translateText={this.props.translateText}

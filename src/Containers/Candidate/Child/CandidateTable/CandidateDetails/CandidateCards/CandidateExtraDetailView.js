@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { SubTitle } from "../../../../../../Components/UI/Elements";
-import { FormattedMessage } from "react-intl";
+
 
 class CandidateExtraDetailView extends Component {
   render() {
@@ -12,38 +12,28 @@ class CandidateExtraDetailView extends Component {
     return (
       <>
       <CandidateItemRow //label="Mobile Number" 
-          label={<FormattedMessage
-            id="app.emailId"
-            defaultMessage="Email ID"
-          />}
+          label="Email ID"
+          
           
           value={emailId} 
           />
 
 <CandidateItemRow //label="Mobile Number" 
-          label={<FormattedMessage
-            id="app.mobileNo"
-            defaultMessage="Mobile #"
-          />}
+          label="Mobile #"
+        
           value={mobileNumber} />
 
         <CandidateItemRow 
-          label={<FormattedMessage
-            id="app.linkedin"
-            defaultMessage="Linkedin"
-          />}
+          label="Linkedin"
+       
            value={linkedin} />
              <CandidateItemRow //label="Mobile Number" 
-          label={<FormattedMessage
-            id="app.nationality"
-            defaultMessage="Nationality"
-          />}
+          label="Nationality"
+         
            value={nationality} />
              <CandidateItemRow //label="Mobile Number" 
-          label={<FormattedMessage
-            id="app.role"
-            defaultMessage="Role"
-          />}
+          label="Role"
+         
            value={roleType} />
        
       </>

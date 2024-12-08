@@ -1,14 +1,14 @@
 import React, { Component,lazy} from "react";
 import { connect } from "react-redux";
 import BorderColorIcon from '@mui/icons-material/BorderColor';
-import { FormattedMessage } from "react-intl";
+
 import DeleteIcon from '@mui/icons-material/Delete';
 import { bindActionCreators } from "redux";
 import { Button,  message, Popconfirm } from "antd";
 import styled from "styled-components";
 import {
   MainWrapper,
-  Spacer,
+  
   TextInput,
 } from "../../../../../../Components/UI/Elements";
 import {addProcessForDeals,
@@ -272,8 +272,8 @@ handleStagePublishClick = (investorOppStagesId, publishInd) => {
           <MainWrapper>
             <h1
             >
-              {/* Workflow */}
-              <FormattedMessage id="app.workflow" defaultMessage="Workflow" />
+              Workflow
+           
             </h1>
 
             <div class=" flex">
@@ -382,7 +382,7 @@ handleStagePublishClick = (investorOppStagesId, publishInd) => {
                         htmlType="submit"
                         onClick={this.handleEditProcessName}
                       >
-                        <FormattedMessage id="app.save" defaultMessage="Save" />
+                     Save
                       </Button>
                       <Button
                            type="cancel"
@@ -392,10 +392,7 @@ handleStagePublishClick = (investorOppStagesId, publishInd) => {
                         }}
                         onClick={this.handleCancel}
                       >
-                        <FormattedMessage
-                          id="app.cancel"
-                          defaultMessage="Cancel"
-                        />
+                       Cancel
                       </Button>
                     </div>
                   </div>
@@ -470,12 +467,11 @@ handleStagePublishClick = (investorOppStagesId, publishInd) => {
                 handleStageType={this.handleStageType}
                 handleStagePublishClick={this.handleStagePublishClick}
                 investorOppStagesId={dealsProcessStages.investorOppStagesId}
-                className="scrollbar"
-                id="style-3"
+                style={{scrollbarWidth:"thin", backgroundColor:"f5f5f5" }}
               />
             ))}  
 
-            <Spacer />
+            <div class=" mt-3" />
             {this.state.isTextInputOpen ? (
               <div class=" flex justify-center"
               >
@@ -520,13 +516,11 @@ handleStagePublishClick = (investorOppStagesId, publishInd) => {
                   htmlType="submit"
                   onClick={this.handleAddStage}
                 >
-                  {/* Save */}
-                  <FormattedMessage id="app.save" defaultMessage="Save" />
+                  Save
                 </Button>
                 &nbsp;
                 <Button type="cancel"  onClick={this.toggleInput}>
-                  {/* Cancel */}
-                  <FormattedMessage id="app.cancel" defaultMessage="Cancel" />
+                  Cancel
                 </Button>
               </div>
             ) : this.state.currentProcess.workflowName? (
@@ -539,11 +533,8 @@ handleStagePublishClick = (investorOppStagesId, publishInd) => {
                     onClick={this.toggleInput}
                     style={{ marginTop: "0.62em" }}
                   >
-                    {/* Add Stage */}
-                    <FormattedMessage
-                      id="app.addstage"
-                      defaultMessage="Add Stage"
-                    />
+                    Add Stage
+                  
                   </Button>
                 </div>
               </>

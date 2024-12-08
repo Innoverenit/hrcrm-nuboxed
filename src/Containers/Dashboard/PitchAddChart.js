@@ -13,26 +13,23 @@ import {
   Tooltip,
   Legend
 } from "recharts";
-import { MainWrapper } from "../../Components/UI/Elements";
 
  function PitchAddChart(props) {
   useEffect(()=> {
     if (props.timeRangeType === "today"){
-      props.getDashInvestorAddedPitch(props.userId,props.startDate,props.endDate); 
+      props.getDashInvestorAddedPitch(props.userId,props.endDate,props.startDate); 
     }
     else {
-      props.getDashInvestorAddedPitch(props.userId,props.startDate,props.endDate); 
+      props.getDashInvestorAddedPitch(props.userId,props.endDate,props.startDate); 
     }
   
-  },[props.userId,props.startDate,props.endDate]);
+  },[props.userId,props.endDate,props.startDate]);
  
 
     const data=props.dashInvstPitchAdded
   return (
     <>
-    <MainWrapper
-    style={{height:"16em",width:"-webkit-fill-available"}}
-    >
+    <div class="mr-5 ml-5  h-[16rem] w-wk ">
     
       <div class=" flex justify-between" >
     <TimeInterval
@@ -59,7 +56,7 @@ import { MainWrapper } from "../../Components/UI/Elements";
       <Legend className="recharts-default-legend"/>
       <Bar dataKey="Number" stackId="a" fill="rgb(0, 192, 239, 0.4)" />
     </BarChart>
-    </MainWrapper>
+    </div>
     </>
   );
 }

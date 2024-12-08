@@ -1,7 +1,7 @@
 import * as types from "./ProcreActionTypes";
 import axios from "axios";
 import { base_url, base_url2 } from "../../../Config/Auth";
-import moment from "moment";
+import dayjs from "dayjs";
 import { message } from "antd";
 import Swal from "sweetalert2";
 
@@ -99,6 +99,8 @@ export const updateProcures = (data) => (dispatch) => {
       Swal.fire({
         icon: "success",
         title: "Updated Successfully",
+        showConfirmButton: false,
+        timer: 1500,
       });
     })
     .catch((err) => {

@@ -15,6 +15,20 @@ export const handleSuppliersModal = (modalProps) => (dispatch) => {
   });
 };
 
+export const handleRecall = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_RECALL_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+export const emptynotApprovedSuppliers = () => (dispatch) => {
+  dispatch({
+    type: types.EMPTY_NOT_APPROVED_SUPPLIER_LIST,
+  });
+};
+
 // add supplier
 
 export const addSuppliers = (data, userId) => (dispatch) => {
@@ -813,11 +827,11 @@ export const addSupplierInventoryImportForm =
 
 //add supplier document
 
-export const addSupplierDocument = (data, cb) => (dispatch) => {
+export const addSupplierDocument = (data) => (dispatch) => {
   console.log(data);
   dispatch({ type: types.ADD_SUPPLIER_DOCUMENT_REQUEST });
   axios
-    .post(`${base_url}/supplier/suppliers/document/`, data, {
+    .post(`${base_url2}/document/save`, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -829,7 +843,7 @@ export const addSupplierDocument = (data, cb) => (dispatch) => {
         payload: res.data,
       });
       // dispatch(getCandidateDocument(candidateId));
-      cb();
+      //cb();
     })
     .catch((err) => {
       console.log(err);
@@ -963,10 +977,10 @@ export const getDeletedPurchaseById = () => (dispatch) => {
     });
 };
 //get customer documnet
-export const getSupplierDocument = (supplierId) => (dispatch) => {
+export const getSupplierDocument = (id,type) => (dispatch) => {
   dispatch({ type: types.GET_SUPPLIER_DOCUMENTS_REQUEST });
   axios
-    .get(`${base_url2}/supplier/suppliers/document/${supplierId}`, {
+    .get(`${base_url2}/document/get/${id}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -988,11 +1002,152 @@ export const getSupplierDocument = (supplierId) => (dispatch) => {
     });
 };
 
+export const getErpDocumentCount = (id,type) => (dispatch) => {
+  dispatch({ type: types.GET_SUPPLIER_DOCUMENTS_COUNT_REQUEST });
+  axios
+    .get(`${base_url2}/document/count/${id}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIER_DOCUMENTS_COUNT_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIER_DOCUMENTS_COUNT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const deleteErpDocument = (documentId,type) => (dispatch, getState) => {
+  dispatch({
+    type: types.DELETE_ERP_DOCUMENT_REQUEST,
+  });
+
+  axios
+    .delete(`${base_url2}/document/delete/${documentId}/${type}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      dispatch({
+        type: types.DELETE_ERP_DOCUMENT_SUCCESS,
+        payload: documentId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.DELETE_ERP_DOCUMENT_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const updateErpDocument = (data, documentId) => (dispatch) => {
+  dispatch({ type: types.UPDATE_ERP_DOCUMENT_BY_ID_REQUEST });
+  axios
+    .put(`${base_url2}/document/update/${documentId}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Erp Info updated Successfully!',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_ERP_DOCUMENT_BY_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_ERP_DOCUMENT_BY_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const linkSupplierDoc = (data, documentId,contractInd) => (dispatch) => {
+  dispatch({ type: types.UPDATE_ERP_DOCUMENT_SUPPLIER_REQUEST });
+  axios
+    .put(`${base_url2}/document/update/contract/${documentId}/${contractInd}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Erp Info updated Successfully!',
+        // showConfirmButton: false,
+        // timer: 1500
+      })
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_ERP_DOCUMENT_SUPPLIER_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_ERP_DOCUMENT_SUPPLIER_FAILURE,
+        payload: err,
+      });
+    });
+};
+
 export const handleSupplierContactModal = (modalProps) => (dispatch) => {
   dispatch({
     type: types.HANDLE_SUPPLIER_CONTACT_MODAL,
     payload: modalProps,
   });
+};
+
+export const getCostShipperList = (shipperId) => (dispatch) => {
+  // const shipperId = getState().shipper.allShipper.shipperId;
+  dispatch({
+    type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/shipper/contactPerson/${shipperId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CONTACT_SHIPPER_LIST_BY_ID_FAILURE,
+        payload: err,
+      });
+    });
 };
 
 export const getContactShipperList = (shipperId) => (dispatch) => {
@@ -1029,7 +1184,7 @@ export const addSupplierContact = (supplier, id, type) => (dispatch) => {
     type: types.ADD_SUPPLIER_CONTACT_REQUEST,
   });
   axios
-    .post(`${base_url2}/contactPerson`, supplier,
+    .post(`${base_url2}/contactPerson`, supplier, 
       {
         headers: {
           Authorization: "Bearer " + sessionStorage.getItem("token") || "",
@@ -1049,6 +1204,8 @@ export const addSupplierContact = (supplier, id, type) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Contact created Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
     })
     .catch((err) => {
@@ -1076,6 +1233,8 @@ export const applyForLoginInContact = (data, contactPersonId, userId,type,suppli
         icon: 'success',
         title: 'Applied for login',
         showConfirmButton: true,
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch(getSupplierContactList(supplierId))
       dispatch(getContactDistributorList(id))
@@ -1093,12 +1252,12 @@ export const applyForLoginInContact = (data, contactPersonId, userId,type,suppli
     });
 };
 
-export const getContactDistributorList = (distributorId) => (dispatch) => {
+export const getContactDistributorList = (id,type) => (dispatch) => {
   dispatch({
     type: types.GET_CONTACT_DISTRIBUTORS_LIST_BY_ID_REQUEST,
   });
   axios
-    .get(`${base_url2}/distributor/contactPerson/${distributorId}`, {
+    .get(`${base_url2}/contactPerson/contact/get/${id}/${type}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1667,6 +1826,32 @@ export const getSupplierCount = (userId) => (dispatch) => {
       });
     });
 };
+
+export const getSupplierCountNot = (userId) => (dispatch) => {
+  dispatch({
+    type: types.GET_SUPPLIER_COUNT_NOT_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/supplier/user/NotApproved/count/${userId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_SUPPLIER_COUNT_NOT_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_SUPPLIER_COUNT_NOT_FAILURE,
+        payload: err,
+      });
+    });
+};
 export const getSupplierAllCount = (orgId) => (dispatch) => {
   dispatch({
     type: types.GET_ALL_SUPPLIER_COUNT_REQUEST,
@@ -1762,6 +1947,8 @@ export const deleteSupplierData = (supplierId,userId) => (dispatch, getState) =>
       Swal.fire({
         icon: 'success',
         title: 'Supplier deleted Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.DELETE_SUPPLIER_DATA_SUCCESS,
@@ -1782,7 +1969,7 @@ export const updateSupplierById = (data, id, userId) => (dispatch) => {
     type: types.UPDATE_SUPPLIERS_BY_ID_REQUEST,
   });
   axios
-    .put(`${base_url2}/supplier/${id} `, data, {
+    .put(`${base_url2}/supplier/rowEdit/${id} `, data, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -1792,6 +1979,8 @@ export const updateSupplierById = (data, id, userId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Supplier updated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.UPDATE_SUPPLIERS_BY_ID_SUCCESS,
@@ -1935,6 +2124,8 @@ export const reinstateToggleForSupplier = (data, supplierId,orgId) => (
       Swal.fire({
         icon: 'success',
         title: 'Reinstated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       // message.success("Reinstated Successfully");
     })
@@ -2041,7 +2232,7 @@ export const getCategorylist = () => (dispatch) => {
     type: types.GET_CATEGORYLIST_REQUEST,
   });
   axios
-    .get(`${base_url2}/product/allProductCatagory`, {
+    .get(`${base_url2}/supplies/allSuppliesCatagory`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2078,6 +2269,8 @@ export const updatePOContact = (data,poSupplierDetailsId) => (dispatch) => {
       Swal.fire({
         icon: 'success',
         title: 'Updated Successfully!',
+        showConfirmButton: false,
+        timer: 1500,
       })
       dispatch({
         type: types.UPDATE_PO_CONTACT_SUCCESS,
@@ -2094,12 +2287,12 @@ export const updatePOContact = (data,poSupplierDetailsId) => (dispatch) => {
     });
 };
 
-export const inputInventorySearch = (treadId) => (dispatch) => {
+export const inputInventorySearch = (supplierId,treadId) => (dispatch) => {
   dispatch({
     type: types.GET_SEARCH_INVENTORY_REQUEST,
   });
   axios
-    .get(`${base_url2}/supplier/inventory/supplier/search/tread/${treadId}`, {
+    .get(`${base_url2}/supplier/inventory/search/tread/${supplierId}/${treadId}`, {
       headers: {
         Authorization: "Bearer " + sessionStorage.getItem("token") || "",
       },
@@ -2244,5 +2437,360 @@ export const linkSupplierNotApproval = (supplierId,approveInd) => (dispatch) => 
         payload: err,
       });
       // message.error("Something went wrong");
+    });
+};
+ 
+export const linkSupplierApproval = (supplierId,approveInd) => (dispatch) => {
+  dispatch({
+    type: types.ADDING_SUPPLIER_APPROVAL_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/supplier/user/updateApprovedInd/${supplierId}/${approveInd}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+
+    .then((res) => {
+      dispatch({
+        type: types.ADDING_SUPPLIER_APPROVAL_SUCCESS,
+        payload: supplierId,
+      });
+      message.success(res.data);
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADDING_SUPPLIER_APPROVAL_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addContactAddress = (data,type,id) => (dispatch) => {
+  // console.log(sectors);
+  dispatch({
+    type: types.ADD_CONTACT_ADDRESS_REQUEST,
+  });
+  axios
+    .post(`${base_url2}/api/v1/saveAddressByType/${type}/${id}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      //dispatch(getSectorCount(orgId));
+      
+      console.log(res);
+      dispatch({
+        type: types.ADD_CONTACT_ADDRESS_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.ADD_CONTACT_ADDRESS_FAILURE,
+      });
+      // message.success(res.data.message);
+      // cb();
+    });
+};
+
+
+
+
+
+export const getContactAddressData = (id,type) => (dispatch) => {
+  dispatch({
+    type: types.GET_CONTACT_ADDRESS_DATA_REQUEST,
+  });
+  axios
+  .get(`${base_url2}/api/v1/address/type/${id}/${type}`, {
+    headers: {
+      Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+    },
+  })
+    
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_CONTACT_ADDRESS_DATA_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.GET_CONTACT_ADDRESS_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+
+export const updateContactAddress = (data) => (dispatch) => {
+  // console.log(sectors);
+  dispatch({
+    type: types.UPDATE_CONTACT_ADDRESS_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/api/v1/address/update`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      //dispatch(getSectorCount(orgId));
+      
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_CONTACT_ADDRESS_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.UPDATE_CONTACT_ADDRESS_FAILURE,
+      });
+      // message.success(res.data.message);
+      // cb();
+    });
+};
+
+
+
+export const removeAddressData = (addressId) => (dispatch) => {
+  dispatch({
+    type: types.REMOVE_ADDRESS_DATA_REQUEST,
+  });
+  axios
+    .delete(`${base_url2}/api/v1/delete/address/${addressId}`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      Swal.fire({
+        icon: 'success',
+        title: 'Address Deleted Successfully',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      // if (res.data) {
+      //   Swal.fire({
+      //     icon: 'success',
+      //     title: res.data,
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // } else {
+       
+      //   Swal.fire({
+      //     icon: 'error',
+      //     title: 'Not Deleted',
+      //     showConfirmButton: false,
+      //     // timer: 1500
+      //   });
+      // }
+      console.log(res);
+      dispatch({
+        type: types.REMOVE_ADDRESS_DATA_SUCCESS,
+        payload: addressId,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.REMOVE_ADDRESS_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const addContactMand = (addressId,primaryInd) => (dispatch) => {
+  // console.log(sectors);
+  dispatch({
+    type: types.ADD_CONTACT_MAND_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/api/v1/address/makePrimary/${addressId}/${primaryInd}`, {}, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      //dispatch(getSectorCount(orgId));
+      
+      console.log(res);
+      dispatch({
+        type: types.ADD_CONTACT_MAND_SUCCESS,
+        payload: res.data,
+      });
+      // cb();
+    })
+    .catch((err) => {
+      console.log(err);
+   
+      dispatch({
+        type: types.ADD_CONTACT_MAND_FAILURE,
+      });
+      // message.success(res.data.message);
+      // cb();
+    });
+};
+
+export const handleSuppliersAddress = (modalProps) => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_SUPPLIERS_ADDRESS_MODAL,
+    payload: modalProps,
+  });
+};
+
+
+export const getSearchPo =(supplierId,name)=>(dispatch)=>{
+  dispatch({
+    type: types.INPUT_SEARCH_PO_REQUEST,
+  });
+  axios.get(`${base_url2}/po/search/${supplierId}/${name}`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+  .then((res)=>{
+    dispatch({
+      type:types.INPUT_SEARCH_PO_SUCCESS,
+      payload:res.data,
+    });
+  })
+  .catch((err)=>{
+    dispatch({
+  type:types.INPUT_SEARCH_PO_FAILURE,
+  payload:err,
+    });
+  });
+};
+
+export const ClearPoData = () => (dispatch) => {
+  dispatch({
+    type: types.HANDLE_CLAER_PO_DATA_PROCESS,
+  });
+};
+
+export const updateDistributorContact = (data, id) => (
+  dispatch
+) => {
+  dispatch({
+    type: types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_REQUEST,
+  });
+  axios
+    .put(`${base_url2}/contactPerson/${id}`, data, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.UPDATE_DISTRIBUTOR_CONTACT_BY_ID_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+
+export const addRecallData = (opportunity, cb) => (dispatch, getState) => {
+  const userId = getState().auth.userDetails.userId;
+  dispatch({
+    type: types.ADD_RECALL_DATA_REQUEST,
+  });
+  axios
+    .post(`${base_url2}/api/v1/email/recallSupplier`, opportunity, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      // Swal.fire({
+      //   icon: 'success',
+      //   title: 'Opportunity created Successfully!',
+      //   showConfirmButton: false,
+      //   timer: 1500
+      // })
+     
+      dispatch({
+        type: types.ADD_RECALL_DATA_SUCCESS,
+        payload: res.data,
+      });
+      cb();
+    })
+    .catch((err) => {
+      console.log(err);
+      dispatch({
+        type: types.ADD_RECALL_DATA_FAILURE,
+        payload: err,
+      });
+    });
+};
+
+export const getContactCount =(id,type)=>(dispatch)=>{
+  dispatch({
+    type: types.GET_CONTACT_COUNT_REQUEST,
+  });
+  axios.get(`${base_url2}/contactPerson/contact/count/${id}/${type}`,{
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+  .then((res)=>{
+    dispatch({
+      type:types.GET_CONTACT_COUNT_SUCCESS,
+      payload:res.data,
+    });
+  })
+  .catch((err)=>{
+    dispatch({
+  type:types.GET_CONTACT_COUNT_FAILURE,
+  payload:err,
+    });
+  });
+};
+
+export const getBatchNo = () => (dispatch) => {
+  dispatch({
+    type: types.GET_BATCH_NO_REQUEST,
+  });
+  axios
+    .get(`${base_url2}/api/v1/email/getAllBatchNo`, {
+      headers: {
+        Authorization: "Bearer " + sessionStorage.getItem("token") || "",
+      },
+    })
+    .then((res) => {
+      console.log(res);
+      dispatch({
+        type: types.GET_BATCH_NO_SUCCESS,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      console.log(err.response);
+      dispatch({
+        type: types.GET_BATCH_NO_FAILURE,
+        payload: err,
+      });
     });
 };

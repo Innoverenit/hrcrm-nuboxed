@@ -12,7 +12,7 @@ import {
   deleteCandidateTrainingTable,
 } from "../../../../../CandidateAction";
 import { base_url } from "../../../../../../../Config/Auth";
-import APIFailed from "../../../../../../../Helpers/ErrorBoundary/APIFailed";
+import NodataFoundPage from "../../../../../../../Helpers/ErrorBoundary/NodataFoundPage";
 const UpdateCandidateTrainingModal = lazy(()=>import("./UpdateCandidateTrainingModal"));
 
 class CandidateTrainingTable extends Component {
@@ -35,12 +35,12 @@ class CandidateTrainingTable extends Component {
   
 
     if (fetchingCandidateTrainingDetailsError) {
-      return <APIFailed />;
+      return <NodataFoundPage />;
     }
     return (
       <>
          <div className=' flex justify-end sticky top-28 z-auto'>
-         <div class="rounded-lg m-5 p-2 w-[98%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
+         <div class="rounded-lg m-5 p-2 w-[98%] overflow-y-auto overflow-x-hidden shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
         <div className=" flex justify-between w-[97.5%] px-2 bg-transparent font-bold sticky top-0 z-10">
         <div className=" md:w-[10.5rem]">Course Name</div>
        <div className=" md:w-[8.1rem] ">Start Date</div>

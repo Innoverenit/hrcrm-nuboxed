@@ -8,7 +8,6 @@ import Highlighter from 'react-highlight-words';
 import "jspdf-autotable";
 import { BundleLoader } from '../../../../Components/Placeholder';
 import { MultiAvatar } from '../../../../Components/UI/Elements';
-import { FormattedMessage } from 'react-intl';
 
 
 
@@ -159,18 +158,14 @@ function BillableCandidateListTable (props)  {
     const columns = [
    
         {
-          title: <FormattedMessage
-          id="app.name"
-          defaultMessage="Name"
-        />,
+          title: "Name"
+       ,
           dataIndex: "fullName",
           width:"15%",
       },
       {
-        title: <FormattedMessage
-        id="app.project"
-        defaultMessage="Project"
-      />,
+        title: "Project"
+    ,
         dataIndex: "projectName",
         width:"8%",
         render: (name, item, i) => {
@@ -190,10 +185,8 @@ function BillableCandidateListTable (props)  {
         },
     },
     {
-      title: <FormattedMessage
-      id="app.customer"
-      defaultMessage="Customer"
-    />,
+      title: "Customer"
+    ,
       dataIndex: "customerName",
       width:"8%",
       render: (name, item, i) => {
@@ -215,27 +208,21 @@ function BillableCandidateListTable (props)  {
       },
   },
       {
-        title: <FormattedMessage
-        id="app.partner"
-        defaultMessage="Partner"
-      />,
+        title: "Partner"
+    ,
         dataIndex: "partnerName",
         width:"8%",
     },
  
         {
-          title: <FormattedMessage
-          id="app.requirement"
-          defaultMessage="Requirement"
-        />,
+          title:"Requirement"
+       ,
             dataIndex: "requirementName",
             width:"10%",
         },
         {
-          title: <FormattedMessage
-          id="app.mobile"
-          defaultMessage="Mobile"
-        />,
+          title:"Mobile"
+        ,
           dataIndex: "mobileNumber",
           width:"8%",
           render: (text, item) => {
@@ -245,18 +232,14 @@ function BillableCandidateListTable (props)  {
           }
       },
       {
-        title: <FormattedMessage
-        id="app.email"
-        defaultMessage="Email"
-      />,
+        title: "Email"
+    ,
         dataIndex: "emailId",
         width:"12%",
     },
       {
-        title: <FormattedMessage
-        id="app.role"
-        defaultMessage="Role"
-      />,
+        title:"Role"
+      ,
         dataIndex: "roleType",
         width:"14%",
     },

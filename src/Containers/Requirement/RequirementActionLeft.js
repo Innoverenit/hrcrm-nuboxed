@@ -73,7 +73,6 @@ return (
         type={props.currentData ? "primary" : "danger"}
         onClick={props.handleClear}
       >
-        <FormattedMessage id="app.clear" defaultMessage="Clear" />
       
       </Button> */}
       

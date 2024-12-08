@@ -1,12 +1,9 @@
-import React, { useEffect, useState, useMemo, lazy } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import {  Select, Tooltip } from "antd"
-import { DeleteOutlined } from "@ant-design/icons";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
 import {getUserSalary,} from "../../EmployeeAction"
 
-import { FormattedMessage } from "react-intl";
 const Option = Select;
 function onChange(pagination, filters, sorter) {
   console.log("params", pagination, filters, sorter);
@@ -19,6 +16,34 @@ function SalaryForm(props) {
     const [submitted, setSubmitted] = useState(false);
   const [editedFields, setEditedFields] = useState({});
   const [editContactId, setEditContactId] = useState(null);
+  const [translatedMenuItems, setTranslatedMenuItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchMenuTranslations = async () => {
+      try {
+        setLoading(true); 
+        const itemsToTranslate = [
+          "",//0  Basic
+          "",//1   Housing
+           "",//2  Transportation
+        "" , //  Total salary"3
+        "103" ,//    Others4
+       
+                 
+        ];
+
+        const translations = await props.translateText(itemsToTranslate, props.selectedLanguage);
+        setTranslatedMenuItems(translations);
+       
+      } catch (error) {
+   
+        console.error('Error translating menu items:', error);
+      }
+    };
+
+    fetchMenuTranslations();
+  }, [props.selectedLanguage]);
 
   useEffect(() => {
     props.getUserSalary(props.employeeName.employeeId)
@@ -53,25 +78,25 @@ function SalaryForm(props) {
   return (
     <>
   
-  <div class="rounded-lg m-5 p-2 w-[97%]  overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[#eaedf1]">
-          <div className=" flex justify-between w-[98%] p-2 bg-transparent font-bold sticky top-0 z-10">
+  <div class="rounded m-1 p-1 w-[100%]   overflow-auto shadow-[4px_0px_9px_3px_] shadow-[#a3abb980] bg-[white]">
+          <div className=" flex justify-between w-[100%]  p-1 bg-transparent font-bold sticky z-10">
           <div className=" md:w-[17.5rem]">
-       Basic
+          {translatedMenuItems[0]}  {/* Basic */}
                 </div>
  
         <div className="md:w-[21.1rem]">
-            Housing
+        {translatedMenuItems[1]}   {/* Housing */}
                 </div>
 
                 <div className="md:w-[10.1rem]">
-            Transportation
+                {translatedMenuItems[2]}  {/* Transportation */}
                 </div>
 
                 <div className="md:w-[10.1rem]">
-            Total salary
+                {translatedMenuItems[3]}   {/* Total salary */}
                 </div>
                 <div className="md:w-[10.1rem]">
-            Others
+          {translatedMenuItems[4]}  {/* Others */}
                 </div>
                
        
@@ -83,17 +108,17 @@ function SalaryForm(props) {
         
       
                         <div>
-                            <div className="flex rounded-xl justify-between bg-white mt-[0.5rem] h-[2.75rem] items-center p-3"
+                            <div className="flex rounded justify-between bg-white mt-[0.5rem] h-8 items-center p-1"
                                 >
                                      
-                                     <div className=" flex font-medium flex-col md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
+                                     <div className=" flex  md:w-[14rem] max-sm:flex-row w-full max-sm:justify-between  ">
 <div className="flex max-sm:w-full items-center"> 
 
           <div class="max-sm:w-full">
                                         <Tooltip>
                                           <div class=" flex max-sm:w-full justify-between flex-row md:flex-col w-[8rem]">
                                           
-                                            <div class="text-sm text-blue-500  font-poppins font-semibold  cursor-pointer">
+                                            <div class="text-xs text-blue-500  font-poppins font-semibold  cursor-pointer">
                                                 
       {props.usersalary.basic} {props.usersalary.currency}
      
@@ -108,29 +133,29 @@ function SalaryForm(props) {
 
                              
                               
-                                <div className=" flex font-medium flex-col md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                                <div className=" flex  md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
-                                  <div class="text-sm  font-poppins">
+                                  <div class="text-xs  font-poppins">
                                {props.usersalary.housing} {props.usersalary.currency}
                                   </div>
                               </div>
 
 
-                              <div className=" flex font-medium flex-col md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                              <div className=" flex  md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
                                 
-                                <div class="text-sm  font-poppins">
+                                <div class="text-xs  font-poppins">
                              {props.usersalary.transportation} {props.usersalary.currency}
                                 </div>
                             </div>
-                            <div className=" flex font-medium flex-col md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
-                            <div class="text-sm  font-poppins">
+                            <div className=" flex  md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                            <div class="text-xs  font-poppins">
                              {props.usersalary.totalSalary} {props.usersalary.currency}
                                 </div>
                                 </div>
 
 
-                                <div className=" flex font-medium flex-col md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
-                            <div class="text-sm  font-poppins">
+                                <div className=" flex  md:w-[12.3rem]  max-sm:flex-row w-full max-sm:justify-between">
+                            <div class="text-xs  font-poppins">
                              {props.usersalary.others} {props.usersalary.currency}
                                 </div>
                                 </div>

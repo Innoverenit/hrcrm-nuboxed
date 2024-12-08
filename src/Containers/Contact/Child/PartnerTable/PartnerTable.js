@@ -1,13 +1,13 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import moment from "moment";
+import dayjs from "dayjs";
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { FormattedMessage } from "react-intl";
+
 import InfiniteScroll from "react-infinite-scroll-component";
 import PhoneDisabledIcon from "@mui/icons-material/PhoneDisabled";
-import { SearchOutlined } from "@ant-design/icons";
+import SearchIcon from '@mui/icons-material/Search';;
 import Highlighter from "react-highlight-words";
 import PhoneInTalkIcon from "@mui/icons-material/PhoneInTalk";
 import { getAllSalesList } from "../../../Opportunity/OpportunityAction";
@@ -125,7 +125,7 @@ function ContactTable(props) {
           <Button
             type="primary"
             onClick={() => handleSearch(selectedKeys, confirm, dataIndex)}
-            icon={<SearchOutlined />}
+            icon={<SearchIcon />}
             //icon="search"
             size="small"
             style={{ width: 90 }}
@@ -155,7 +155,7 @@ function ContactTable(props) {
         </div>
       ),
       filterIcon: (filtered) => (
-        <SearchOutlined
+        <SearchIcon
           type="search"
           style={{ color: filtered ? "tomato" : "1890ff" }}
         />
@@ -266,8 +266,7 @@ function ContactTable(props) {
       },
     },
     {
-      //title: "Name",
-      title: <FormattedMessage id="app.name" defaultMessage="Name" />,
+title: "Name",
       dataIndex: "firstName",
       ...getColumnSearchProps("firstName"),
       width: "15%",
@@ -276,8 +275,8 @@ function ContactTable(props) {
         const fullName = `${item.salutation || ""} ${item.firstName || ""} ${
           item.middleName || ""
         } ${item.lastName || ""} `;
-        const currentdate = moment().format("DD/MM/YYYY");
-        const date = moment(item.creationDate).format("DD/MM/YYYY");
+        const currentdate = dayjs().format("DD/MM/YYYY");
+        const date = dayjs(item.creationDate).format("DD/MM/YYYY");
         console.log(date, currentdate, currentdate === date);
         return (
           <>
@@ -301,17 +300,15 @@ function ContactTable(props) {
       },
     },
     {
-      //title: "Company",
-      title: <FormattedMessage id="app.company" defaultMessage="Company" />,
+      title: "Company",
+     
       dataIndex: "tagWithCompany",
       ...getColumnSearchProps("tagWithCompany"),
       width: "15%",
     },
     {
-      //title: "Designation",
-      title: (
-        <FormattedMessage id="app.designation" defaultMessage="Designation" />
-      ),
+     title: "Designation",
+      
       dataIndex: "designation",
       width: "15%",
       defaultSortOrder: "descend",
@@ -323,8 +320,8 @@ function ContactTable(props) {
       },
     },
     {
-      //title: "Department",
-      title: <FormattedMessage id="app.sector" defaultMessage="Sector" />,
+   title: "Department",
+    
       width: "15%",
       dataIndex: "department",
       // dataIndex:"secor",
@@ -336,15 +333,14 @@ function ContactTable(props) {
     },
 
     {
-      title: (
-        <FormattedMessage id="app.Portal Acess" defaultMessage="Portal Acess" />
-      ),
+      title: "Portal Acess" 
+      ,
       width: "8%",
     },
 
     {
       //title: "Email",
-      title: <FormattedMessage id="app.owner" defaultMessage="Owner" />,
+      title:"Owner" ,
       dataIndex: "ownerName",
       // ...getColumnSearchProps('ownerName'),
       width: "7%",

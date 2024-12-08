@@ -7,6 +7,7 @@ import MainNotes from "../../CustomNote/MainNotes";
 
 
 class AddContactNotesDrawerModal extends Component {
+
   render() {
       console.log("data5", this.props.contactData.contactId);
 
@@ -15,7 +16,7 @@ class AddContactNotesDrawerModal extends Component {
         <StyledDrawer
         // title="Notes"
           title={this.props.contactData.fullName}
-          width="64%"
+          width="38%"
           visible={this.props.addDrawerContactNotesModal}
           closable
           placement="right"

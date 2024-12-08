@@ -7,7 +7,7 @@ import { Formik, Form, Field } from "formik";
 import { DatePicker } from "../../../../../../Components/Forms/Formik/DatePicker";
 import { addReceivedItem } from "../../../InventoryAction";
 
-import moment from "moment";
+import dayjs from "dayjs";
 import { TextareaComponent } from "../../../../../../Components/Forms/Formik/TextareaComponent";
 
 function ReceivedForm(props) {
@@ -16,7 +16,7 @@ function ReceivedForm(props) {
     <>
       <Formik
         initialValues={{
-          date: moment(),
+          date: dayjs(),
           userId: props.userId,
           description: "",
         }}
