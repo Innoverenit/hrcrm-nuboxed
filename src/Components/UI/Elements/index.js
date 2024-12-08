@@ -13,7 +13,6 @@ export { default as MultiAvatar2 } from "./MultiAvatar2";
 export { default as TextInput } from "./TextInput";
 export { default as StyledTextarea } from "./StyledTextarea";
 export { default as SelectInput } from "./SelectInput";
-export { default as ValidationError } from "./ValidationError";
 export { default as StyledReactSelect } from "./StyledReactSelect";
 export { default as StyledCreatable } from "./StyledCreatable";
 export { default as StyledCreatable1 } from "./StyledCreatable1";

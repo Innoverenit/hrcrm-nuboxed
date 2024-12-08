@@ -1,4 +1,4 @@
-import React, { Component} from "react";
+import React, { Component, Suspense} from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import RequirementHeader from "./RequirementHeader";
@@ -49,7 +49,9 @@ class Requirement extends Component  {
         selectedLanguage={this.props.selectedLanguage}
         translateText={this.props.translateText}
         />
-        <AllRequirementTable/>
+          <Suspense fallback={"Loading..."}>
+        {viewType === 'card' &&  <AllRequirementTable/>}
+        </Suspense>
         </>
     ); 
  }

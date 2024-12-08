@@ -1,7 +1,6 @@
 import React from "react";
 import { get } from "lodash";
 import { StyledDatePicker } from "../../UI/Antd";
-import { ValidationError } from "../../UI/Elements";
 import { FlexContainer } from "../../UI/Layout";
 import dayjs from "dayjs";
 export const DatePicker = ({
@@ -46,9 +45,9 @@ export const DatePicker = ({
         />
 
         {get(touched, field.name) && get(errors, field.name) && (
-          <ValidationError style={{ marginTop: "5px" }}>
+          <div className=" flex text-[tomato] font-bold !text-lm px-1 mt-1" >
             {get(errors, field.name)}
-          </ValidationError>
+          </div>
         )}
       </>
     );
@@ -79,54 +78,8 @@ export const DatePicker = ({
       </FlexContainer>
 
       {get(touched, field.name) && get(errors, field.name) && (
-        <ValidationError>{get(errors, field.name)}</ValidationError>
+        <div className=" flex text-[tomato] font-bold !text-lm px-1">{get(errors, field.name)}</div>
       )}
     </>
   );
 };
-
-// import React from "react";
-// import { get } from "lodash";
-// import dayjs from "dayjs";
-
-// import { StyledDatePicker } from "../../UI/Antd";
-// import { ValidationError } from "../../UI/Elements";
-// import { FlexContainer } from "../../UI/Layout";
-// export const DatePicker = ({
-//   value,
-//   field,
-//   label,
-//   isRequired,
-//   noLabel,
-//   inlineLabel,
-//   form: { setFieldValue, setFieldTouched, touched, errors, height, width },
-//   ...props
-// }) => {
-//   return (
-//     <>
-//       <FlexContainer>
-//         <FlexContainer alignItems="center" flexWrap={inlineLabel && "nowrap"}>
-//           {!noLabel && (
-//             <div class=" text-xs font-bold font-poppins style={{ flexBasis: "20%" }}>{label}</div>
-//           )}
-//           <StyledDatePicker
-//             allowClear={false}
-//             {...field}
-//             {...props}
-//             isRequired={isRequired}
-//             onChange={(date, dateString) =>
-//               setFieldValue(field.name, dayjs(dateString))
-//             }
-//             value={value}
-//             // height={height}
-//             width={width}
-//             onBlur={() => setFieldTouched(field.name, true)}
-//           />
-//         </FlexContainer>
-//       </FlexContainer>
-//       {get(touched, field.name) && get(errors, field.name) && (
-//         <ValidationError>{get(errors, field.name)}</ValidationError>
-//       )}
-//     </>
-//   );
-// };
