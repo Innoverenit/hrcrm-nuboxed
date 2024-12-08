@@ -2,15 +2,13 @@ import React, { useEffect, useState,} from 'react'
 import { StyledTable } from '../../../../Components/UI/Antd';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {  } from 'react-intl';
-import { Tooltip,Button,Input } from "antd";
+import { Button,Input } from "antd";
 import SearchIcon from '@mui/icons-material/Search';
 import Highlighter from 'react-highlight-words';
 
 import "jspdf-autotable";
 
 import { BundleLoader } from '../../../../Components/Placeholder';
-import { Link } from 'react-router-dom';
 
 
 function TopicTable (props)  {

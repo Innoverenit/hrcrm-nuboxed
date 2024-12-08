@@ -6,16 +6,16 @@ import App from "./App";
 import { Provider } from "react-redux";
 import store from "./Store/index";
 import * as serviceWorker from "./serviceWorker";
-import Wrapper from "./Wrapper"
+// import Wrapper from "./Wrapper"
 // NetworkService.setupInterceptors(store);
 
 ReactDOM.render(
   <Provider store={store}>
-  <Wrapper>
+  {/* <Wrapper> */}
     <Router basename={process.env.PUBLIC_URL}>
       <App />
     </Router>
-    </Wrapper>
+    {/* </Wrapper> */}
   </Provider>,
   document.getElementById("root")
 );
