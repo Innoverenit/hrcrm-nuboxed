@@ -13,34 +13,34 @@ import { handleCandidateReactSpeechModal } from "../../../../CandidateAction";
 import { StyledTabs } from "../../../../../../Components/UI/Antd";
 import { TabsWrapper } from "../../../../../../Components/UI/Layout";
 import SchoolIcon from '@mui/icons-material/School';
-import { handleCandidateEducationModal } from "../../../../CandidateAction";
-import { handleDocumentUploadModal } from "../../../../../Customer/CustomerAction";
-import { handleCandidateTrainingModal } from "../../../../CandidateAction";
 import HourglassFullIcon from '@mui/icons-material/HourglassFull';
 import {
   handleCandidateEmploymentModal,
   handleCandidateBankModal,
   handleCandidateActivityModal,
 } from "../../../../CandidateAction";
+import {
+  handleEmploymentModal,
+  handleTrainingModal,
+  handleBankModal,
+  handleEducationModal,handleDocumentUploadModal} from "../../../../../Profile/ProfileAction"
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import AddDocumentModals from "../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/AddDocumentModals";
 import LinkedDocuments from "../../../../../Customer/Child/CustomerDetail/CustomerTab/Document/LinkedDocuments";
 import EducationTable from "../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Education/EducationTable";
 import TrainingTable from "../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Training/TrainingTable";
 import EmploymentTable from "../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Employment/EmploymentTable";
+import AddBankModal from "../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Bank/AddBankModal";
+import AddTrainingModal from "../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Training/AddTrainingModal";
+import AddEducationModal from "../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Education/AddEducationModal";
+import AddEmploymentModal from "../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Employment/UpdateEmploymentModal";
 const ReactCandidateSpeechModal = lazy(() => import("../../ReactCandidateSpeechModal"));
 const ExperienceForm = lazy(() => import("../CandidateDetailTab/Experience/ExperienceForm"));
-const CandidateEducationTable = lazy(() => import("./Education/CandidateEducationTable"));
-const AddCandidateEducationModal = lazy(() => import("../CandidateDetailTab/Education/AddCandidateEducationModal"));
-const AddCandidateTrainingModal = lazy(() => import("../CandidateDetailTab/Training/AddCandidateTrainingModal"));
-const CandidateTrainingTable = lazy(() => import("./Training/CandidateTrainingTable"));
-const AddCandidateEmploymentModal = lazy(() => import("./Employment/AddCandidateEmploymentModal"));
-const CandidateEmploymentTable = lazy(() => import("./Employment/CandidateEmploymentTable"));
-const AddBankModal = lazy(() => import("./Bank/AddBankModal"));
 const BankTable = lazy(() => import("../../../../../Employees/Child/EmployeeGroup/EmployeeDetails/EmployeeTab/Bank/BankTable"));
 const PlacementTable = lazy(() => import("./Placement/PlacementTable"));
 const ActivityModal = lazy(() => import("./Activity/ActivityModal"));
 const ActivityTable = lazy(() => import("./Activity/ActivityTable"));
+
 
 const TabPane = StyledTabs.TabPane;
 
@@ -147,19 +147,19 @@ function CandidateDetailTab(props) {
     }
   };  
   const {
+    handleEmploymentModal,
+    handleTrainingModal,
+    handleBankModal,
+    handleEducationModal,
     addingEmail,
     handleDocumentUploadModal,
     documentUploadModal,
+    addBankModal,
+    addEducationModal,
+    addEmploymentModal,
+    addTrainingModal,
     handleOpportunityModal,
     addOpportunityModal,
-    addCandidateEducationModal,
-    handleCandidateEducationModal,
-    handleCandidateTrainingModal, 
-    addCandidateTrainingModal,
-    handleCandidateEmploymentModal,
-    addCandidateEmploymentModal,
-    handleCandidateBankModal,
-    addCandidateBankModal,
     handleCandidateActivityModal,
     addCandidateActivityModal,
     handleCandidateReactSpeechModal,
@@ -342,7 +342,7 @@ function CandidateDetailTab(props) {
                          
                           tooltipTitle="Add"
                           onClick={() =>
-                            handleCandidateEducationModal(true)
+                            handleEducationModal(true)
                           }
                        
                         />
@@ -374,7 +374,7 @@ function CandidateDetailTab(props) {
                      
                       tooltipTitle="Add"
                       onClick={() =>
-                        handleCandidateTrainingModal(true)
+                        handleTrainingModal(true)
                       }
                     />
                   </>
@@ -403,7 +403,7 @@ function CandidateDetailTab(props) {
                      
                       tooltipTitle="Add"
                       onClick={() =>
-                        handleCandidateEmploymentModal(true)
+                        handleEmploymentModal(true)
                       }
                     />
                   </>
@@ -432,7 +432,7 @@ function CandidateDetailTab(props) {
  text-[#6f0080ad]"
                      
                       tooltipTitle="Add"
-                      onClick={() => handleCandidateBankModal(true)}
+                      onClick={() => handleBankModal(true)}
                     />
                   </>
                 )}
@@ -452,27 +452,27 @@ function CandidateDetailTab(props) {
       </TabsWrapper>
       <Suspense fallback={"Loading..."}>
        
-        <AddCandidateEducationModal
-          addCandidateEducationModal={addCandidateEducationModal}
-          handleCandidateEducationModal={handleCandidateEducationModal}
+        <AddEducationModal
+         addEducationModal={addEducationModal}
+         handleEducationModal={handleEducationModal}
           translateText={props.translateText}
           selectedLanguage={props.selectedLanguage}
         />
-        <AddCandidateTrainingModal
-          addCandidateTrainingModal={addCandidateTrainingModal}
-          handleCandidateTrainingModal={handleCandidateTrainingModal}
+        <AddTrainingModal
+           addTrainingModal={addTrainingModal}
+           handleTrainingModal={handleTrainingModal}
           translateText={props.translateText}
           selectedLanguage={props.selectedLanguage}
         />
-        <AddCandidateEmploymentModal
-          addCandidateEmploymentModal={addCandidateEmploymentModal}
-          handleCandidateEmploymentModal={handleCandidateEmploymentModal}
+        <AddEmploymentModal
+            addEmploymentModal={addEmploymentModal}
+            handleEmploymentModal={handleEmploymentModal}
           translateText={props.translateText}
           selectedLanguage={props.selectedLanguage}
         />
         <AddBankModal
-          addCandidateBankModal={addCandidateBankModal}
-          handleCandidateBankModal={handleCandidateBankModal}
+          addBankModal={addBankModal}
+          handleBankModal={handleBankModal}
           translateText={props.translateText}
           selectedLanguage={props.selectedLanguage}
         />
@@ -503,13 +503,13 @@ function CandidateDetailTab(props) {
   );
 }
 
-const mapStateToProps = ({ candidate,customer, auth }) => ({
+const mapStateToProps = ({ candidate,customer, auth,profile  }) => ({
   user: auth.userDetails,
   documentUploadModal: customer.documentUploadModal,
-  addCandidateEducationModal: candidate.addCandidateEducationModal,
-  addCandidateTrainingModal: candidate.addCandidateTrainingModal,
-  addCandidateEmploymentModal: candidate.addCandidateEmploymentModal,
-  addCandidateBankModal: candidate.addCandidateBankModal,
+  addEducationModal: profile.addEducationModal,
+  addTrainingModal: profile.addTrainingModal,
+  addEmploymentModal: profile.addEmploymentModal,
+  addBankModal: profile.addBankModal,
   addCandidateActivityModal: candidate.addCandidateActivityModal,
   addCandidateSpeechModal: candidate.addCandidateSpeechModal,
   candidateId: candidate.candidateId,
@@ -520,8 +520,10 @@ const mapDispatchToProps = (dispatch) =>
   bindActionCreators(
     {
       handleDocumentUploadModal,
-      handleCandidateEducationModal,
-      handleCandidateTrainingModal,
+      handleTrainingModal,
+      handleEducationModal,
+      handleEmploymentModal,
+      handleBankModal,
       handleCandidateEmploymentModal,
       handleCandidateBankModal,
       handleCandidateActivityModal,

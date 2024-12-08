@@ -9,9 +9,9 @@ import AddSentimentModal from "../Child/AddSentimentModal"
  import { handleRemarksModal,handleDocumentUploadModal ,handleSentimentModal} from "../../../../../OpportunityAction";
 import AddRemarksModal from "../Child/AddRemarksModal";
 import AddBoxIcon from '@mui/icons-material/AddBox';
-const AddCandidateEducationModal = lazy(()=>import("../../../../../../Candidate/Child/CandidateTable/CandidateDetails/CandidateDetailTab/Education/AddCandidateEducationModal"));
-const AddCandidateTrainingModal =lazy(()=>import("../../../../../../Candidate/Child/CandidateTable/CandidateDetails/CandidateDetailTab/Training/AddCandidateTrainingModal"));
-const AddCandidateEmploymentModal =lazy(()=>import("../../../../../../Candidate/Child/CandidateTable/CandidateDetails/CandidateDetailTab/Employment/AddCandidateEmploymentModal"));
+// const AddCandidateEducationModal = lazy(()=>import("../../../../../../Candidate/Child/CandidateTable/CandidateDetails/CandidateDetailTab/Education/AddCandidateEducationModal"));
+// const AddCandidateTrainingModal =lazy(()=>import("../../../../../../Candidate/Child/CandidateTable/CandidateDetails/CandidateDetailTab/Training/AddCandidateTrainingModal"));
+// const AddCandidateEmploymentModal =lazy(()=>import("../../../../../../Candidate/Child/CandidateTable/CandidateDetails/CandidateDetailTab/Employment/AddCandidateEmploymentModal"));
 const TabPane = StyledTabs.TabPane;
 
 class RecruitmentDetailsTab extends Component {
@@ -79,10 +79,10 @@ class RecruitmentDetailsTab extends Component {
           </StyledTabs>
         </TabsWrapper>
         <Suspense fallback={"Loading..."}>
-        <AddCandidateEducationModal
+        {/* <AddCandidateEducationModal
             addCandidateEducationModal={addCandidateEducationModal}
             handleCandidateEducationModal={handleCandidateEducationModal}
-          />
+          /> */}
             <AddRemarksModal
                         addRemarksModal={addRemarksModal}
                         handleRemarksModal={handleRemarksModal}
@@ -90,19 +90,19 @@ class RecruitmentDetailsTab extends Component {
                         profileId={this.props.profileId}
                         candidateId={this.props.candidateId}
                       />
-          <AddCandidateTrainingModal
+          {/* <AddCandidateTrainingModal
             addCandidateTrainingModal={addCandidateTrainingModal}
             handleCandidateTrainingModal={handleCandidateTrainingModal}
-          />
+          /> */}
             <AddSentimentModal
             addSentimentModal={addSentimentModal}
             handleSentimentModal={handleSentimentModal}
             handleRemarksModal={handleRemarksModal}
           />
-            <AddCandidateEmploymentModal
+            {/* <AddCandidateEmploymentModal
             addCandidateEmploymentModal={addCandidateEmploymentModal}
             handleCandidateEmploymentModal={handleCandidateEmploymentModal}
-          />
+          /> */}
         </Suspense>
       </>
     );
