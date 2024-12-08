@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { SubTitle } from "../../../../../Components/UI/Elements";
 
 class PartnerDetailView extends Component {
   render() {
@@ -35,8 +34,8 @@ const PartnerItemRow = ({ label, value }) => {
   return (
     <div class=" flex items-center flex-nowrap m-1"
     >
-      <SubTitle style={{ color: "#444", fontWeight: 600 }}>{label}</SubTitle>
-      <SubTitle style={{ marginLeft: "-30px" }}>{value}</SubTitle>
+     <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk" >{label}</div>
+     <div className=" text-xs font-poppins font-bold flex whitespace-nowrap w-wk" >{value}</div>
     </div>
   );
 };

@@ -3,7 +3,6 @@ import { MainWrapper } from "../../../../Components/UI/Layout";
 import {
   MultiAvatar,
   Title,
-  SubTitle,
 } from "../../../../Components/UI/Elements";
 
 const BussinessCard = (props) => {
@@ -52,8 +51,8 @@ const BussinessCard = (props) => {
           </div>
         </div>
 
-        <SubTitle style={{ color: "#337df4", fontSize: "0.75em" }}>
-        </SubTitle>
+        <div style={{ color: "#337df4", fontSize: "0.75em" }}>
+        </div>
       {/* </div> */}
       </MainWrapper>
     </div>

@@ -18,14 +18,14 @@ import {
 } from "../../ProductAction";
 import { handleCurrencyPriceModal } from "../../../Main/Supplies/SuppliesAction";
 import { CurrencySymbol } from "../../../../Components/Common";
-import { Tooltip, Button, Popconfirm, Switch } from "antd";
+import { Tooltip, Button, Popconfirm,  } from "antd";
 import PriceChangeIcon from '@mui/icons-material/PriceChange'; 
 import HistoryIcon from '@mui/icons-material/History';  
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import {
   MultiAvatar,
-  SubTitle,
+  
 } from "../../../../Components/UI/Elements";
 import ProductPublishToggle from "./ProductPublishToggle";
 import dayjs from "dayjs";
@@ -130,7 +130,7 @@ function ProductListingTable(props) {
       width: "4%",
       render: (name, item, i) => {
         return (
-          <SubTitle>
+          <div>
             {item.imageId ? (
               <MultiAvatar
                 imageId={item.imageId ? item.imageId : ''}
@@ -143,7 +143,7 @@ function ProductListingTable(props) {
                 No Image
               </span>
             )}
-          </SubTitle>
+          </div>
         );
       },
     },

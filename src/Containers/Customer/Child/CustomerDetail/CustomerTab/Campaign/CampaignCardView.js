@@ -17,7 +17,7 @@ import {
 } from "../../../../../Event/EventAction";
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import { getCurrency } from "../../../../../Auth/AuthAction";
-import { MultiAvatar2, SubTitle } from "../../../../../../Components/UI/Elements";
+import { MultiAvatar2 } from "../../../../../../Components/UI/Elements";
 import FileCopyIcon from '@mui/icons-material/FileCopy';
 import {geCustomerCampaignEvent,addCustomerCampaignEvent} from "../../../../CustomerAction";
 import { BundleLoader } from "../../../../../../Components/Placeholder";
@@ -426,7 +426,7 @@ if(fetchingCustomerCampaign){
                                     </div>
                                 </div>
                                 <div className="flex items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[4.69rem]  max-md:w-[4.69rem] max-sm:flex-row  w-full ">                   
-              <SubTitle>
+              <div>
               <span>
               {item.assignedTo === null ? (
                 "None"
@@ -445,13 +445,13 @@ if(fetchingCustomerCampaign){
                 </>
               )}
             </span>
-              </SubTitle>
+              </div>
            
                                 </div>
                                 <div className="flex  items-center justify-center h-8 ml-gap bg-[#eef2f9] w-[3.12rem]   max-md:w-[4.12rem] max-sm:flex-row  ">
                    <div class="max-sm:flex justify-end">
 
-            <SubTitle>
+            <div>
               <MultiAvatar2
               primaryTitle={item.woner}
               imageId={item.ownerImageId}
@@ -459,7 +459,7 @@ if(fetchingCustomerCampaign){
                 imgWidth={"1.8rem"}
                 imgHeight={"1.8rem"}
               />
-            </SubTitle>
+            </div>
         
           </div>
                    </div>
